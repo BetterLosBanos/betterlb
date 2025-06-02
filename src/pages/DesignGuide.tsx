@@ -2,7 +2,7 @@ import React from 'react';
 import { Card, CardHeader, CardContent, CardImage } from '../components/ui/Card';
 import Button from '../components/ui/Button';
 import SearchInput from '../components/ui/SearchInput';
-import { Search, MapPin, Phone, Mail, ExternalLink } from 'lucide-react';
+import { Search, MapPin, Phone, Mail, ExternalLink, Calendar, Award, Building, Globe } from 'lucide-react';
 
 const ColorBlock = ({ color, name, value }: { color: string; name: string; value: string }) => (
   <div className="flex items-center space-x-2">
@@ -32,6 +32,26 @@ const DesignGuide: React.FC = () => {
     { id: 1, name: 'John Doe', email: 'john@example.com', status: 'Active' },
     { id: 2, name: 'Jane Smith', email: 'jane@example.com', status: 'Pending' },
     { id: 3, name: 'Bob Johnson', email: 'bob@example.com', status: 'Inactive' },
+  ];
+
+  const achievements = [
+    "Led the implementation of digital transformation initiatives across government agencies",
+    "Established international partnerships for economic cooperation",
+    "Launched nationwide infrastructure development programs",
+    "Reformed tax collection systems for improved efficiency"
+  ];
+
+  const education = [
+    {
+      degree: "Bachelor of Arts in Political Science",
+      institution: "University of Oxford",
+      year: "1975"
+    },
+    {
+      degree: "Master in Business Administration",
+      institution: "Wharton School of Business",
+      year: "1979"
+    }
   ];
 
   return (
@@ -255,58 +275,139 @@ const DesignGuide: React.FC = () => {
           </CardContent>
         </Card>
 
-        {/* Profile Section */}
+        {/* Updated Profile Section */}
         <Card>
           <CardHeader>
-            <h2 className="text-2xl font-semibold">Profile Components</h2>
-            <p className="text-gray-600">Profile card and information display</p>
+            <h2 className="text-2xl font-semibold">Official Biography</h2>
+            <p className="text-gray-600">Government official profile and biography layout</p>
           </CardHeader>
           <CardContent>
-            <div className="max-w-2xl mx-auto">
+            <div className="max-w-4xl mx-auto">
               <div className="bg-white rounded-xl shadow-sm overflow-hidden">
-                <div className="relative h-48">
-                  <img
-                    src="https://images.pexels.com/photos/1714455/pexels-photo-1714455.jpeg"
-                    alt="Profile cover"
-                    className="w-full h-full object-cover"
-                  />
-                  <div className="absolute bottom-0 left-0 right-0 h-24 bg-gradient-to-t from-black/50 to-transparent" />
-                </div>
-                <div className="relative px-6 pb-6">
-                  <div className="flex items-end mb-4">
-                    <div className="relative -mt-16 mr-4">
+                {/* Header Section */}
+                <div className="relative h-64 bg-primary-700">
+                  <div className="absolute inset-0">
+                    <img
+                      src="https://images.pexels.com/photos/1714455/pexels-photo-1714455.jpeg"
+                      alt="Office"
+                      className="w-full h-full object-cover opacity-20"
+                    />
+                  </div>
+                  <div className="absolute inset-0 bg-gradient-to-b from-primary-900/50 to-primary-900/90" />
+                  <div className="relative h-full container mx-auto px-6 flex items-center">
+                    <div className="flex items-center space-x-8">
                       <img
                         src="https://images.pexels.com/photos/2379005/pexels-photo-2379005.jpeg"
-                        alt="Profile"
-                        className="w-32 h-32 rounded-full border-4 border-white object-cover"
+                        alt="Ferdinand Marcos Jr."
+                        className="w-40 h-40 rounded-full border-4 border-white shadow-xl object-cover"
                       />
-                    </div>
-                    <div className="flex-1">
-                      <h3 className="text-2xl font-bold text-gray-900">Ferdinand Marcos Jr.</h3>
-                      <p className="text-gray-600">President of the Republic of the Philippines</p>
+                      <div className="text-white">
+                        <div className="text-sm font-medium text-primary-200 mb-1">
+                          17th President of the Republic of the Philippines
+                        </div>
+                        <h1 className="text-4xl font-bold mb-2">Ferdinand Marcos Jr.</h1>
+                        <p className="text-primary-100">
+                          Serving since June 30, 2022
+                        </p>
+                      </div>
                     </div>
                   </div>
-                  <div className="space-y-4">
-                    <p className="text-gray-600">
-                      The 17th President of the Philippines, serving since June 30, 2022.
-                    </p>
-                    <div className="space-y-2">
-                      <div className="flex items-center text-gray-600">
-                        <MapPin className="h-5 w-5 mr-2" />
-                        <span>Malacañang Palace, Manila</span>
+                </div>
+
+                {/* Content Section */}
+                <div className="container mx-auto px-6 py-8">
+                  <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+                    {/* Left Column - Contact & Basic Info */}
+                    <div className="space-y-6">
+                      <div className="bg-gray-50 rounded-lg p-6">
+                        <h3 className="text-lg font-semibold mb-4">Contact Information</h3>
+                        <div className="space-y-4">
+                          <div className="flex items-center text-gray-600">
+                            <Building className="h-5 w-5 mr-3 text-primary-600" />
+                            <div>
+                              <div className="font-medium">Office</div>
+                              <div className="text-sm">Malacañang Palace, Manila</div>
+                            </div>
+                          </div>
+                          <div className="flex items-center text-gray-600">
+                            <Phone className="h-5 w-5 mr-3 text-primary-600" />
+                            <div>
+                              <div className="font-medium">Phone</div>
+                              <div className="text-sm">+63 (2) 8736 8645</div>
+                            </div>
+                          </div>
+                          <div className="flex items-center text-gray-600">
+                            <Mail className="h-5 w-5 mr-3 text-primary-600" />
+                            <div>
+                              <div className="font-medium">Email</div>
+                              <div className="text-sm">op@president.gov.ph</div>
+                            </div>
+                          </div>
+                          <div className="flex items-center text-gray-600">
+                            <Globe className="h-5 w-5 mr-3 text-primary-600" />
+                            <div>
+                              <div className="font-medium">Website</div>
+                              <div className="text-sm">www.president.gov.ph</div>
+                            </div>
+                          </div>
+                        </div>
                       </div>
-                      <div className="flex items-center text-gray-600">
-                        <Phone className="h-5 w-5 mr-2" />
-                        <span>+63 (2) 8736 8645</span>
-                      </div>
-                      <div className="flex items-center text-gray-600">
-                        <Mail className="h-5 w-5 mr-2" />
-                        <span>op@president.gov.ph</span>
+
+                      <div className="bg-gray-50 rounded-lg p-6">
+                        <h3 className="text-lg font-semibold mb-4">Education</h3>
+                        <div className="space-y-4">
+                          {education.map((edu, index) => (
+                            <div key={index} className="border-l-2 border-primary-500 pl-4">
+                              <div className="font-medium">{edu.degree}</div>
+                              <div className="text-sm text-gray-600">{edu.institution}</div>
+                              <div className="text-sm text-gray-500">{edu.year}</div>
+                            </div>
+                          ))}
+                        </div>
                       </div>
                     </div>
-                    <div className="flex space-x-4">
-                      <Button>Contact</Button>
-                      <Button variant="outline">View Profile</Button>
+
+                    {/* Right Column - Bio & Achievements */}
+                    <div className="lg:col-span-2 space-y-6">
+                      <div>
+                        <h3 className="text-xl font-semibold mb-4">Biography</h3>
+                        <div className="prose max-w-none">
+                          <p className="text-gray-600 leading-relaxed">
+                            Ferdinand "Bongbong" Romualdez Marcos Jr. serves as the 17th President of the Philippines, 
+                            assuming office on June 30, 2022. As the country's chief executive, he leads the 
+                            implementation of laws and policies aimed at national development and public welfare.
+                          </p>
+                          <p className="text-gray-600 leading-relaxed mt-4">
+                            Prior to his presidency, he served in various government positions including as a 
+                            Senator of the Philippines from 2010 to 2016, and as Governor of Ilocos Norte. His 
+                            administration focuses on economic recovery, infrastructure development, and digital 
+                            transformation of government services.
+                          </p>
+                        </div>
+                      </div>
+
+                      <div>
+                        <h3 className="text-xl font-semibold mb-4">Key Achievements</h3>
+                        <div className="grid gap-4">
+                          {achievements.map((achievement, index) => (
+                            <div key={index} className="flex items-start">
+                              <Award className="h-5 w-5 text-primary-600 mt-1 mr-3 flex-shrink-0" />
+                              <p className="text-gray-600">{achievement}</p>
+                            </div>
+                          ))}
+                        </div>
+                      </div>
+
+                      <div className="flex space-x-4 mt-8">
+                        <Button>
+                          <Mail className="h-4 w-4 mr-2" />
+                          Contact Office
+                        </Button>
+                        <Button variant="outline">
+                          <Globe className="h-4 w-4 mr-2" />
+                          Visit Website
+                        </Button>
+                      </div>
                     </div>
                   </div>
                 </div>
