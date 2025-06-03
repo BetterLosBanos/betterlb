@@ -7,6 +7,8 @@ import Footer from './components/layout/Footer';
 import Home from './pages/Home';
 import DesignGuide from './pages/DesignGuide';
 import Services from './pages/Services';
+import AboutPhilippines from './pages/philippines/about';
+import PhilippinesHistory from './pages/philippines/history';
 
 function App() {
   return (
@@ -19,6 +21,8 @@ function App() {
             <Route path="/" element={<Home />} />
             <Route path="/design" element={<DesignGuide />} />
             <Route path="/services" element={<Services />} />
+            <Route path="/philippines/about" element={<AboutPhilippines />} />
+            <Route path="/philippines/history" element={<PhilippinesHistory />} />
           </Routes>
           <Footer />
         </div>
@@ -27,4 +31,4 @@ function App() {
   );
 }
 
-export default App
+export default App;
