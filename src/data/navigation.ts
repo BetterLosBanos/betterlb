@@ -1,4 +1,5 @@
 import { NavigationItem } from '../types';
+import serviceCategories from './service_categories.json';
 
 export const mainNavigation: NavigationItem[] = [
   {
@@ -15,14 +16,10 @@ export const mainNavigation: NavigationItem[] = [
   {
     label: 'Services',
     href: '/services',
-    children: [
-      { label: 'Citizenship & Civil Registry', href: '/services/citizenship' },
-      { label: 'Business & Employment', href: '/services/business' },
-      { label: 'Health & Social Welfare', href: '/services/health' },
-      { label: 'Education', href: '/services/education' },
-      { label: 'Transportation', href: '/services/transportation' },
-      { label: 'Housing & Land', href: '/services/housing' },
-    ],
+    children: serviceCategories.categories.map(category => ({
+      label: category.category,
+      href: `/services?category=${encodeURIComponent(category.category)}`
+    })),
   },
   {
     label: 'Travel',
