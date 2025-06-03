@@ -24,7 +24,7 @@ const translations: Record<LanguageType, Record<string, string>> = {
     'news.title': 'Latest News and Updates',
     'weather.title': 'Weather Updates',
     'forex.title': 'Foreign Exchange Rates',
-    'footer.copyright': '© 2025 Republic of the Philippines. All rights reserved.',
+    'footer.copyright': '© 2025 BetterGov. Public Domain.',
     // Add more translations as needed
   },
   fil: {
