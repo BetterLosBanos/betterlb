@@ -18,7 +18,7 @@ const translations: Record<LanguageType, Record<string, string>> = {
     'navbar.travel': 'Travel',
     'navbar.government': 'Government',
     'hero.title': 'Welcome to BetterGov.ph',
-    'hero.subtitle': 'The Unofficial Portal of the Republic of the Philippines. Access government services, stay updated with the latest news, and find information about the Philippines.',
+    'hero.subtitle': 'The Unofficial Portal of the Republic of the Philippines. Find information, access government services, stay updated with the latest news about the Philippines.',
     'hero.search': 'Search for services, information, or agencies',
     'services.title': 'Popular Services',
     'news.title': 'Latest News and Updates',
