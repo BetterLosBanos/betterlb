@@ -12,6 +12,21 @@ const Hero: React.FC = () => {
     // Implementation for search functionality
   };
 
+  const popularServices = [
+    {
+      label: 'National ID',
+      href: '/services?category=Certificates+and+IDs&subcategory=ID',
+    },
+    {
+      label: 'Birth Certificate',
+      href: '/services?category=Certificates+and+IDs&subcategory=Certificates',
+    },
+    {
+      label: 'Business Registration',
+      href: '/services?category=Business+and+Trade&subcategory=Business+Registration%2C+Certificates+and+Compliance',
+    },
+  ];
+
   return (
     <div className="bg-gradient-to-r from-primary-600 to-primary-700 text-white py-12 md:py-24">
       <div className="container mx-auto px-4">
@@ -34,24 +49,16 @@ const Hero: React.FC = () => {
               />
             </div>
             <div className="mt-4 flex flex-wrap gap-2">
-              <Button
-                variant="outline"
-                className="bg-white/10 text-white border-white/20 hover:bg-white/20"
-              >
-                Popular: National ID
-              </Button>
-              <Button
-                variant="outline"
-                className="bg-white/10 text-white border-white/20 hover:bg-white/20"
-              >
-                Birth Certificate
-              </Button>
-              <Button
-                variant="outline"
-                className="bg-white/10 text-white border-white/20 hover:bg-white/20"
-              >
-                Passport
-              </Button>
+              {popularServices.map((service) => (
+                <Button
+                  key={service.label}
+                  variant="outline"
+                  className="bg-white/10 text-white border-white/20 hover:bg-white/20"
+                  href={service.href}
+                >
+                  {service.label}
+                </Button>
+              ))}
             </div>
           </div>
 
@@ -60,7 +67,7 @@ const Hero: React.FC = () => {
             <h2 className="text-2xl font-semibold mb-4">{translate('services.title')}</h2>
             <div className="grid grid-cols-2 gap-4">
               <a
-                href="/services/citizenship"
+                href="/services?category=Certificates+and+IDs"
                 className="bg-white/10 hover:bg-white/20 rounded-lg p-4 transition-all duration-200 flex flex-col items-center text-center"
               >
                 <div className="bg-primary-500 p-3 rounded-full mb-3">
@@ -72,7 +79,7 @@ const Hero: React.FC = () => {
                 <span className="font-medium">Citizenship & ID</span>
               </a>
               <a
-                href="/services/business"
+                href="/services?category=Business+and+Trade"
                 className="bg-white/10 hover:bg-white/20 rounded-lg p-4 transition-all duration-200 flex flex-col items-center text-center"
               >
                 <div className="bg-primary-500 p-3 rounded-full mb-3">
@@ -84,7 +91,7 @@ const Hero: React.FC = () => {
                 <span className="font-medium">Business</span>
               </a>
               <a
-                href="/services/education"
+                href="/services?category=Education"
                 className="bg-white/10 hover:bg-white/20 rounded-lg p-4 transition-all duration-200 flex flex-col items-center text-center"
               >
                 <div className="bg-primary-500 p-3 rounded-full mb-3">
@@ -96,7 +103,7 @@ const Hero: React.FC = () => {
                 <span className="font-medium">Education</span>
               </a>
               <a
-                href="/services/health"
+                href="/services?category=Health"
                 className="bg-white/10 hover:bg-white/20 rounded-lg p-4 transition-all duration-200 flex flex-col items-center text-center"
               >
                 <div className="bg-primary-500 p-3 rounded-full mb-3">
@@ -111,6 +118,7 @@ const Hero: React.FC = () => {
               <Button
                 fullWidth
                 className="bg-white text-primary-600 hover:bg-gray-100"
+                href="/services"
               >
                 View All Services
               </Button>

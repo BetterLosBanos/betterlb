@@ -14,13 +14,19 @@ const ServicesPage: React.FC = () => {
   const [searchParams, setSearchParams] = useSearchParams();
   const [searchQuery, setSearchQuery] = useState('');
   const [selectedCategory, setSelectedCategory] = useState('all');
+  const [selectedSubcategory, setSelectedSubcategory] = useState('all');
   const [currentPage, setCurrentPage] = useState(1);
 
-  // Set initial category from URL params
+  // Set initial category and subcategory from URL params
   useEffect(() => {
     const categoryParam = searchParams.get('category');
+    const subcategoryParam = searchParams.get('subcategory');
+    
     if (categoryParam) {
       setSelectedCategory(categoryParam);
+    }
+    if (subcategoryParam) {
+      setSelectedSubcategory(subcategoryParam);
     }
   }, [searchParams]);
 
@@ -41,10 +47,16 @@ const ServicesPage: React.FC = () => {
       filtered = filtered.filter(
         service => service.category === selectedCategory
       );
+
+      if (selectedSubcategory !== 'all') {
+        filtered = filtered.filter(
+          service => service.subcategory === selectedSubcategory
+        );
+      }
     }
 
     return filtered;
-  }, [searchQuery, selectedCategory]);
+  }, [searchQuery, selectedCategory, selectedSubcategory]);
 
   const paginatedServices = filteredServices.slice(
     (currentPage - 1) * ITEMS_PER_PAGE,
@@ -58,9 +70,28 @@ const ServicesPage: React.FC = () => {
 
   const handleCategoryChange = (category: string) => {
     setSelectedCategory(category);
+    setSelectedSubcategory('all');
     setCurrentPage(1);
-    setSearchParams(category === 'all' ? {} : { category });
+    setSearchParams(
+      category === 'all' 
+        ? {} 
+        : { category }
+    );
   };
+
+  const handleSubcategoryChange = (subcategory: string) => {
+    setSelectedSubcategory(subcategory);
+    setCurrentPage(1);
+    setSearchParams(
+      subcategory === 'all'
+        ? { category: selectedCategory }
+        : { category: selectedCategory, subcategory }
+    );
+  };
+
+  const currentCategoryData = serviceCategories.categories.find(
+    cat => cat.category === selectedCategory
+  );
 
   return (
     <div className="min-h-screen bg-gray-50">
@@ -105,17 +136,36 @@ const ServicesPage: React.FC = () => {
                       All Services
                     </button>
                     {serviceCategories.categories.map((category) => (
-                      <button
-                        key={category.category}
-                        onClick={() => handleCategoryChange(category.category)}
-                        className={`w-full text-left px-3 py-2 rounded-md text-sm transition-colors ${
-                          selectedCategory === category.category
-                            ? 'bg-primary-50 text-primary-600 font-medium'
-                            : 'text-gray-600 hover:bg-gray-50'
-                        }`}
-                      >
-                        {category.category}
-                      </button>
+                      <div key={category.category}>
+                        <button
+                          onClick={() => handleCategoryChange(category.category)}
+                          className={`w-full text-left px-3 py-2 rounded-md text-sm transition-colors ${
+                            selectedCategory === category.category
+                              ? 'bg-primary-50 text-primary-600 font-medium'
+                              : 'text-gray-600 hover:bg-gray-50'
+                          }`}
+                        >
+                          {category.category}
+                        </button>
+                        
+                        {selectedCategory === category.category && (
+                          <div className="ml-4 space-y-1 mt-1">
+                            {category.subcategories.map((subcategory) => (
+                              <button
+                                key={subcategory}
+                                onClick={() => handleSubcategoryChange(subcategory)}
+                                className={`w-full text-left px-3 py-1.5 rounded-md text-sm transition-colors ${
+                                  selectedSubcategory === subcategory
+                                    ? 'bg-primary-50 text-primary-600 font-medium'
+                                    : 'text-gray-500 hover:bg-gray-50'
+                                }`}
+                              >
+                                {subcategory}
+                              </button>
+                            ))}
+                          </div>
+                        )}
+                      </div>
                     ))}
                   </div>
                 </ScrollArea.Viewport>
