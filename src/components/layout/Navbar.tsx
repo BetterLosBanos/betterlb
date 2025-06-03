@@ -56,7 +56,7 @@ const Navbar: React.FC = () => {
         <div className="flex justify-between items-center py-4">
           <div className="flex items-center">
             <a href="/" className="flex items-center">
-              <img src="/ph-logo.svg" alt="Philippines Logo" className="h-10 w-10 mr-2" />
+              <img src="/ph-logo.svg" alt="Philippines Coat of Arms" className="h-12 w-12 mr-3" />
               <div>
                 <div className="font-bold text-primary-700">BetterGov.ph</div>
                 <div className="text-xs text-gray-600">Unofficial Government Portal</div>

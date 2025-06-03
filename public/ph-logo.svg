@@ -1,4 +1,7 @@
-<svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
-  <circle cx="16" cy="16" r="15" fill="#0066EB" stroke="#FFF" stroke-width="2"/>
-  <path d="M16 5L18.5 12.8868H27L20.25 17.7265L22.75 25.6132L16 20.7735L9.25 25.6132L11.75 17.7265L5 12.8868H13.5L16 5Z" fill="#F58900"/>
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="1200" height="1200" version="1.1" viewBox="0 0 317.5 317.5" xmlns="http://www.w3.org/2000/svg">
+ <g transform="translate(0 -244.08)">
+  <path d="m158.75 244.08a158.75 158.75 0 0 0-158.75 158.75 158.75 158.75 0 0 0 158.75 158.75 158.75 158.75 0 0 0 158.75-158.75 158.75 158.75 0 0 0-158.75-158.75zm0 26.458a132.29 132.29 0 0 1 132.29 132.29 132.29 132.29 0 0 1-132.29 132.29 132.29 132.29 0 0 1-132.29-132.29 132.29 132.29 0 0 1 132.29-132.29z" fill="#0066eb"/>
+  <image x="39.688" y="283.77" width="238.13" height="238.13" preserveAspectRatio="none" href="https://upload.wikimedia.org/wikipedia/commons/thumb/8/84/Coat_of_arms_of_the_Philippines.svg/1200px-Coat_of_arms_of_the_Philippines.svg.png"/>
+ </g>
 </svg>

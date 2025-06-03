@@ -27,7 +27,7 @@ const Footer: React.FC = () => {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
           <div>
             <div className="flex items-center mb-4">
-              <img src="/ph-logo.svg" alt="Philippines Logo" className="h-10 w-10 mr-2" />
+              <img src="/ph-logo.svg" alt="Philippines Coat of Arms" className="h-12 w-12 mr-3" />
               <div>
                 <div className="font-bold">Republic of the Philippines</div>
                 <div className="text-xs text-gray-400">BetterGov.ph Portal</div>
