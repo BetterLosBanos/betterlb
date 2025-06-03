@@ -76,41 +76,45 @@ const ServicesPage: React.FC = () => {
           />
         </div>
 
-        {/* Popular Services */}
+        {/* Popular Services - Horizontal Scrollable */}
         <div className="mb-12">
           <h2 className="text-2xl font-semibold mb-6">Popular Services</h2>
-          <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-6">
-            {popularServices.map((service) => (
-              <Card key={service.id} hoverable className="bg-white">
-                <CardContent className="p-6">
-                  <h3 className="text-lg font-semibold mb-2 text-gray-900">
-                    {service.title}
-                  </h3>
-                  <p className="text-sm text-gray-600 mb-4">
-                    {service.description}
-                  </p>
-                  <a
-                    href={service.url}
-                    className="text-primary-600 hover:text-primary-700 font-medium inline-flex items-center text-sm"
-                  >
-                    Access Service
-                    <svg
-                      className="ml-1 h-4 w-4"
-                      fill="none"
-                      stroke="currentColor"
-                      viewBox="0 0 24 24"
-                    >
-                      <path
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        strokeWidth={2}
-                        d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"
-                      />
-                    </svg>
-                  </a>
-                </CardContent>
-              </Card>
-            ))}
+          <div className="relative">
+            <div className="overflow-x-auto pb-4 -mx-4 px-4 scrollbar-hide">
+              <div className="flex space-x-4" style={{ minWidth: 'max-content' }}>
+                {popularServices.map((service) => (
+                  <Card key={service.id} hoverable className="bg-white w-[300px] flex-shrink-0">
+                    <CardContent className="p-4">
+                      <h3 className="text-base font-semibold mb-2 text-gray-900">
+                        {service.title}
+                      </h3>
+                      <p className="text-sm text-gray-600 mb-3 line-clamp-2">
+                        {service.description}
+                      </p>
+                      <a
+                        href={service.url}
+                        className="text-primary-600 hover:text-primary-700 font-medium inline-flex items-center text-sm"
+                      >
+                        Access Service
+                        <svg
+                          className="ml-1 h-4 w-4"
+                          fill="none"
+                          stroke="currentColor"
+                          viewBox="0 0 24 24"
+                        >
+                          <path
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                            strokeWidth={2}
+                            d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"
+                          />
+                        </svg>
+                      </a>
+                    </CardContent>
+                  </Card>
+                ))}
+              </div>
+            </div>
           </div>
         </div>
 
