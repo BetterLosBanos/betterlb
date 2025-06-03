@@ -40,7 +40,7 @@ const PhilippinesHistory: React.FC = () => {
       <div className="relative h-[60vh] overflow-hidden">
         <div className="absolute inset-0">
           <img
-            src="https://images.pexels.com/photos/5325407/pexels-photo-5325407.jpeg"
+            src="https://images.unsplash.com/photo-1565113180093-077f1e8f1c74?w=900&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8dGhlJTIwcGhpbGlwcGluZXN8ZW58MHx8MHx8fDA%3D"
             alt="Historical Philippines"
             className="w-full h-full object-cover"
           />
