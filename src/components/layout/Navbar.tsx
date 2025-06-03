@@ -58,7 +58,7 @@ const Navbar: React.FC = () => {
             <a href="/" className="flex items-center">
               <img src="/ph-logo.png" alt="Philippines Coat of Arms" className="h-12 w-12 mr-3" />
               <div>
-                <div className="font-bold text-primary-700">BetterGov.ph</div>
+                <div className="text-black font-light">BetterGov.ph</div>
                 <div className="text-xs text-gray-600">Unofficial Government Portal</div>
               </div>
             </a>
