@@ -1,0 +1,766 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "properties": {
+        "NAME_1": "National Capital Region",
+        "REGION": "NCR",
+        "ADM1_EN": "Metro Manila",
+        "provinces": [
+          "Manila",
+          "Quezon City",
+          "Makati",
+          "Pasig",
+          "Taguig",
+          "Caloocan",
+          "Las Piñas",
+          "Malabon",
+          "Mandaluyong",
+          "Marikina",
+          "Muntinlupa",
+          "Navotas",
+          "Parañaque",
+          "Pasay",
+          "San Juan",
+          "Valenzuela"
+        ],
+        "capital": "Manila",
+        "population": "13.5 million"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              121.0,
+              14.4
+            ],
+            [
+              121.1,
+              14.4
+            ],
+            [
+              121.1,
+              14.7
+            ],
+            [
+              121.0,
+              14.7
+            ],
+            [
+              121.0,
+              14.4
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "NAME_1": "Ilocos Region",
+        "REGION": "Region I",
+        "ADM1_EN": "Ilocos",
+        "provinces": [
+          "Ilocos Norte",
+          "Ilocos Sur",
+          "La Union",
+          "Pangasinan"
+        ],
+        "capital": "San Fernando, La Union",
+        "population": "5.3 million"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              119.8,
+              15.8
+            ],
+            [
+              121.0,
+              15.8
+            ],
+            [
+              121.0,
+              18.5
+            ],
+            [
+              119.8,
+              18.5
+            ],
+            [
+              119.8,
+              15.8
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "NAME_1": "Cagayan Valley",
+        "REGION": "Region II",
+        "ADM1_EN": "Cagayan Valley",
+        "provinces": [
+          "Batanes",
+          "Cagayan",
+          "Isabela",
+          "Nueva Vizcaya",
+          "Quirino"
+        ],
+        "capital": "Tuguegarao City",
+        "population": "3.6 million"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              121.0,
+              16.0
+            ],
+            [
+              122.5,
+              16.0
+            ],
+            [
+              122.5,
+              18.5
+            ],
+            [
+              121.0,
+              18.5
+            ],
+            [
+              121.0,
+              16.0
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "NAME_1": "Central Luzon",
+        "REGION": "Region III",
+        "ADM1_EN": "Central Luzon",
+        "provinces": [
+          "Aurora",
+          "Bataan",
+          "Bulacan",
+          "Nueva Ecija",
+          "Pampanga",
+          "Tarlac",
+          "Zambales"
+        ],
+        "capital": "San Fernando, Pampanga",
+        "population": "12.4 million"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              119.8,
+              14.7
+            ],
+            [
+              121.5,
+              14.7
+            ],
+            [
+              121.5,
+              16.0
+            ],
+            [
+              119.8,
+              16.0
+            ],
+            [
+              119.8,
+              14.7
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "NAME_1": "CALABARZON",
+        "REGION": "Region IV-A",
+        "ADM1_EN": "CALABARZON",
+        "provinces": [
+          "Batangas",
+          "Cavite",
+          "Laguna",
+          "Quezon",
+          "Rizal"
+        ],
+        "capital": "Calamba City",
+        "population": "16.2 million"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              120.5,
+              13.5
+            ],
+            [
+              122.0,
+              13.5
+            ],
+            [
+              122.0,
+              14.7
+            ],
+            [
+              120.5,
+              14.7
+            ],
+            [
+              120.5,
+              13.5
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "NAME_1": "MIMAROPA",
+        "REGION": "Region IV-B",
+        "ADM1_EN": "MIMAROPA",
+        "provinces": [
+          "Marinduque",
+          "Occidental Mindoro",
+          "Oriental Mindoro",
+          "Palawan",
+          "Romblon"
+        ],
+        "capital": "Calapan City",
+        "population": "3.2 million"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              117.0,
+              9.5
+            ],
+            [
+              122.0,
+              9.5
+            ],
+            [
+              122.0,
+              13.5
+            ],
+            [
+              117.0,
+              13.5
+            ],
+            [
+              117.0,
+              9.5
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "NAME_1": "Bicol Region",
+        "REGION": "Region V",
+        "ADM1_EN": "Bicol",
+        "provinces": [
+          "Albay",
+          "Camarines Norte",
+          "Camarines Sur",
+          "Catanduanes",
+          "Masbate",
+          "Sorsogon"
+        ],
+        "capital": "Legazpi City",
+        "population": "6.1 million"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              122.0,
+              12.5
+            ],
+            [
+              124.5,
+              12.5
+            ],
+            [
+              124.5,
+              14.0
+            ],
+            [
+              122.0,
+              14.0
+            ],
+            [
+              122.0,
+              12.5
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "NAME_1": "Western Visayas",
+        "REGION": "Region VI",
+        "ADM1_EN": "Western Visayas",
+        "provinces": [
+          "Aklan",
+          "Antique",
+          "Capiz",
+          "Guimaras",
+          "Iloilo",
+          "Negros Occidental"
+        ],
+        "capital": "Iloilo City",
+        "population": "7.9 million"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              121.5,
+              9.5
+            ],
+            [
+              123.5,
+              9.5
+            ],
+            [
+              123.5,
+              11.8
+            ],
+            [
+              121.5,
+              11.8
+            ],
+            [
+              121.5,
+              9.5
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "NAME_1": "Central Visayas",
+        "REGION": "Region VII",
+        "ADM1_EN": "Central Visayas",
+        "provinces": [
+          "Bohol",
+          "Cebu",
+          "Negros Oriental",
+          "Siquijor"
+        ],
+        "capital": "Cebu City",
+        "population": "8.1 million"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              123.0,
+              9.0
+            ],
+            [
+              125.0,
+              9.0
+            ],
+            [
+              125.0,
+              11.0
+            ],
+            [
+              123.0,
+              11.0
+            ],
+            [
+              123.0,
+              9.0
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "NAME_1": "Eastern Visayas",
+        "REGION": "Region VIII",
+        "ADM1_EN": "Eastern Visayas",
+        "provinces": [
+          "Biliran",
+          "Eastern Samar",
+          "Leyte",
+          "Northern Samar",
+          "Samar",
+          "Southern Leyte"
+        ],
+        "capital": "Tacloban City",
+        "population": "4.5 million"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              124.0,
+              10.5
+            ],
+            [
+              125.8,
+              10.5
+            ],
+            [
+              125.8,
+              12.8
+            ],
+            [
+              124.0,
+              12.8
+            ],
+            [
+              124.0,
+              10.5
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "NAME_1": "Zamboanga Peninsula",
+        "REGION": "Region IX",
+        "ADM1_EN": "Zamboanga Peninsula",
+        "provinces": [
+          "Zamboanga del Norte",
+          "Zamboanga del Sur",
+          "Zamboanga Sibugay"
+        ],
+        "capital": "Pagadian City",
+        "population": "3.9 million"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              121.8,
+              6.9
+            ],
+            [
+              123.5,
+              6.9
+            ],
+            [
+              123.5,
+              8.5
+            ],
+            [
+              121.8,
+              8.5
+            ],
+            [
+              121.8,
+              6.9
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "NAME_1": "Northern Mindanao",
+        "REGION": "Region X",
+        "ADM1_EN": "Northern Mindanao",
+        "provinces": [
+          "Bukidnon",
+          "Camiguin",
+          "Lanao del Norte",
+          "Misamis Occidental",
+          "Misamis Oriental"
+        ],
+        "capital": "Cagayan de Oro City",
+        "population": "5.0 million"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              123.5,
+              7.5
+            ],
+            [
+              125.5,
+              7.5
+            ],
+            [
+              125.5,
+              9.0
+            ],
+            [
+              123.5,
+              9.0
+            ],
+            [
+              123.5,
+              7.5
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "NAME_1": "Davao Region",
+        "REGION": "Region XI",
+        "ADM1_EN": "Davao",
+        "provinces": [
+          "Davao de Oro",
+          "Davao del Norte",
+          "Davao del Sur",
+          "Davao Occidental",
+          "Davao Oriental"
+        ],
+        "capital": "Davao City",
+        "population": "5.2 million"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              125.0,
+              5.5
+            ],
+            [
+              126.5,
+              5.5
+            ],
+            [
+              126.5,
+              8.0
+            ],
+            [
+              125.0,
+              8.0
+            ],
+            [
+              125.0,
+              5.5
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "NAME_1": "SOCCSKSARGEN",
+        "REGION": "Region XII",
+        "ADM1_EN": "SOCCSKSARGEN",
+        "provinces": [
+          "Cotabato",
+          "Sarangani",
+          "South Cotabato",
+          "Sultan Kudarat"
+        ],
+        "capital": "Koronadal City",
+        "population": "4.9 million"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              124.0,
+              5.5
+            ],
+            [
+              125.5,
+              5.5
+            ],
+            [
+              125.5,
+              7.5
+            ],
+            [
+              124.0,
+              7.5
+            ],
+            [
+              124.0,
+              5.5
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "NAME_1": "Caraga",
+        "REGION": "Region XIII",
+        "ADM1_EN": "Caraga",
+        "provinces": [
+          "Agusan del Norte",
+          "Agusan del Sur",
+          "Dinagat Islands",
+          "Surigao del Norte",
+          "Surigao del Sur"
+        ],
+        "capital": "Butuan City",
+        "population": "2.8 million"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              125.5,
+              8.0
+            ],
+            [
+              126.5,
+              8.0
+            ],
+            [
+              126.5,
+              10.0
+            ],
+            [
+              125.5,
+              10.0
+            ],
+            [
+              125.5,
+              8.0
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "NAME_1": "Bangsamoro Autonomous Region",
+        "REGION": "BARMM",
+        "ADM1_EN": "BARMM",
+        "provinces": [
+          "Basilan",
+          "Lanao del Sur",
+          "Maguindanao del Norte",
+          "Maguindanao del Sur",
+          "Sulu",
+          "Tawi-Tawi"
+        ],
+        "capital": "Cotabato City",
+        "population": "4.4 million"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              119.5,
+              5.0
+            ],
+            [
+              124.0,
+              5.0
+            ],
+            [
+              124.0,
+              7.5
+            ],
+            [
+              119.5,
+              7.5
+            ],
+            [
+              119.5,
+              5.0
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "NAME_1": "Cordillera Administrative Region",
+        "REGION": "CAR",
+        "ADM1_EN": "Cordillera",
+        "provinces": [
+          "Abra",
+          "Apayao",
+          "Benguet",
+          "Ifugao",
+          "Kalinga",
+          "Mountain Province"
+        ],
+        "capital": "Baguio City",
+        "population": "1.8 million"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              120.5,
+              16.5
+            ],
+            [
+              121.5,
+              16.5
+            ],
+            [
+              121.5,
+              18.0
+            ],
+            [
+              120.5,
+              18.0
+            ],
+            [
+              120.5,
+              16.5
+            ]
+          ]
+        ]
+      }
+    }
+  ]
+}
