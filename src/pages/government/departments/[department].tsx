@@ -51,7 +51,7 @@ function DepartmentDetailSection({
     return (
       <div
         className={`mb-4 grid grid-cols-${cols} md:grid-cols-${cols} lg:grid-cols-${cols} gap-x-6 ${
-          level === 1 ? 'bg-blue-100 p-4 rounded-2xl font-bold text-lg' : ''
+          level === 1 ? 'rounded-2xl font-bold text-lg' : ''
         }`}
       >
         {Object.entries(data).map(([key, value]) => {
