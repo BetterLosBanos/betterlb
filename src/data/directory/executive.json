@@ -1,746 +1,819 @@
 [
   {
-    "office_name": "Office of the President",
+    "office": "OFFICE OF THE PRESIDENT",
     "address": "Malacañang Palace Compound, New Executive Bldg. J. P. Laurel St., San Miguel, 1005 Manila",
     "trunkline": "(632) 8249-8310",
     "website": "www.op-proper.gov.ph",
-    "president": {
-      "name": "H.E. FERDINAND R. MARCOS JR."
-    },
-    "office_of_the_executive_secretary": {
-      "executive_secretary": {
-        "name": "LUCAS P. BERSAMIN",
-        "contact": "[REDACTED]"
-      },
-      "undersecretary": {
-        "name": "LEONARDO ROY A. CERVANTES",
-        "contact": "[REDACTED]"
-      },
-      "assistant_secretaries": [
-        {
-          "name": "ADRIAN CARLOS A. BERSAMIN",
-          "contact": "[REDACTED]"
-        },
-        {
-          "name": "JOSE MARCELL A. CANLAS",
-          "contact": "[REDACTED]"
-        },
-        {
-          "name": "AL-AZREE J. MOHAMMADSALI",
-          "contact": "[REDACTED]"
-        },
-        {
-          "name": "JEFFREY G. GALLARDO",
-          "contact": "[REDACTED]"
-        }
-      ]
-    },
-    "office_of_the_special_assistant_to_the_president": {
-      "special_assistant_to_the_president": {
-        "name": "ANTONIO ERNESTO F. LAGDAMEO JR.",
-        "contact": "[REDACTED]"
-      },
-      "senior_undersecretary": {
-        "name": "MARIA REGINA VICTORIA F. LAGDAMEO",
-        "contact": "[REDACTED]"
-      },
-      "undersecretary": {
-        "name": "ATHALIA B. LIONG",
-        "contact": "[REDACTED]"
-      },
-      "assistant_executive_secretary": {
-        "name": "MICHELLE CRISABEL M. TEVES",
-        "contact": "[REDACTED]"
-      },
-      "assistant_secretaries": [
-        {
-          "name": "MARIA MARGARITA H. GARALDE-CHUA",
-          "contact": "[REDACTED]"
-        },
-        {
-          "name": "RIA DANIELLE A. LUMAPAS",
-          "contact": "[REDACTED]"
-        },
-        {
-          "name": "LORENZO G. SAGUCIO JR.",
-          "contact": "[REDACTED]"
-        }
-      ]
-    },
-    "office_of_the_chief_presidential_legal_counsel": {
-      "chief_presidential_legal_counsel": {
-        "name": "JUAN F. PONCE ENRILE",
-        "contact": "[REDACTED]"
-      },
-      "deputy_presidential_legal_counsels": [
-        {
-          "name": "ROGEL C. GATCHALIAN",
-          "contact": "[REDACTED]"
-        },
-        {
-          "name": "JOSEPH B. SAGANDOY JR.",
-          "contact": "[REDACTED]"
-        },
-        {
-          "name": "JAMES JAYSON J. JORVINA",
-          "contact": "[REDACTED]"
-        }
-      ],
-      "assistant_presidential_legal_counsels": [
-        {
-          "name": "EDWARDSON LEE ONG",
-          "contact": "[REDACTED]"
-        },
-        {
-          "name": "IVY D. PATDU",
-          "contact": "[REDACTED]"
-        },
-        {
-          "name": "HONORIO EDUARDO B. REYES III",
-          "contact": "[REDACTED]"
-        }
-      ]
-    },
-    "protocol_office": {
-      "chief_of_presidential_protocol_and_presidential_assistant_for_foreign_affairs": {
-        "name": "REICHEL QUIÑONES",
-        "contact": "[REDACTED]"
-      },
-      "deputy_chief_of_presidential_protocols": [
-        {
-          "name": "DENNIS JOHN C. BRIONES",
-          "contact": "[REDACTED]"
-        },
-        {
-          "name": "HELEN ANNE S. GAN",
-          "contact": "[REDACTED]"
-        },
-        {
-          "name": "JUNALYN GIFT C. SO",
-          "contact": "[REDACTED]"
-        }
-      ]
-    },
-    "office_of_the_presidential_adviser_for_investment_and_economic_affairs": {
-      "presidential_adviser": {
-        "name": "FREDERICK D. GO",
-        "contact": "[REDACTED]"
-      },
-      "undersecretary": {
-        "name": "JOSE EDWINIEL C. GUILAS",
-        "contact": "[REDACTED]"
-      },
-      "assistant_secretaries": [
-        {
-          "name": "MARVIN JOSON N. BAYANG",
-          "contact": "[REDACTED]"
-        },
-        {
-          "name": "KRISTINE JOY D. DIAZ-TESTON",
-          "contact": "[REDACTED]"
-        }
-      ]
-    },
-    "office_of_the_presidential_adviser_for_marawi_rehabilitation": {
-      "presidential_adviser": {
-        "name": "NASSER C. PANGANDAMAN SR."
-      },
-      "assistant_secretary": {
-        "name": "FELIX J. CASTRO JR"
-      }
-    },
-    "office_of_the_presidential_adviser_on_military_and_police_affairs": {
-      "presidential_adviser": {
-        "name": "ROMAN A. FELIX"
-      },
-      "undersecretaries": [
-        {
-          "name": "ARIEL R. CACULITAN",
-          "contact": "[REDACTED]"
-        },
-        {
-          "name": "ISAGANI R. NEREZ",
-          "contact": "[REDACTED]"
-        }
-      ]
-    },
-    "other_presidential_advisers_assistants": [
+    "officials": [
       {
-        "name": "LORENZO G. GADON",
-        "role": "Presidential Adviser"
+        "name": "H.E. FERDINAND R. MARCOS JR.",
+        "role": "President"
       },
       {
-        "name": "ANDRES C. CENTINO",
-        "role": "Presidential Assistant",
-        "office": "Office of the Presidential Assistant for Poverty Alleviation"
+        "office_division": "Office of the Executive Secretary",
+        "personnel": [
+          {
+            "name": "LUCAS P. BERSAMIN",
+            "role": "Executive Secretary",
+            "contact": "[REDACTED]"
+          },
+          {
+            "name": "LEONARDO ROY A. CERVANTES",
+            "role": "Undersecretary",
+            "contact": "[REDACTED]"
+          },
+          {
+            "name": "ADRIAN CARLOS A. BERSAMIN",
+            "role": "Assistant Secretary",
+            "contact": "[REDACTED]"
+          },
+          {
+            "name": "JOSE MARCELL A. CANLAS",
+            "role": "Assistant Secretary",
+            "contact": "[REDACTED]"
+          },
+          {
+            "name": "AL-AZREE J. MOHAMMADSALI",
+            "role": "Assistant Secretary",
+            "contact": "[REDACTED]"
+          },
+          {
+            "name": "JEFFREY G. GALLARDO",
+            "role": "Assistant Secretary",
+            "contact": "[REDACTED]"
+          }
+        ]
       },
       {
-        "name": "MARCIANO A. PAYNOR JR.",
-        "role": "Presidential Assistant",
-        "office": "Office of the Presidential Assistant for Maritime Concerns"
+        "office_division": "Office of the Special Assistant to the President",
+        "personnel": [
+          {
+            "name": "ANTONIO ERNESTO F. LAGDAMEO JR.",
+            "role": "Special Assistant to the President",
+            "contact": "[REDACTED]"
+          },
+          {
+            "name": "MARIA REGINA VICTORIA F. LAGDAMEO",
+            "role": "Senior Undersecretary",
+            "contact": "[REDACTED]"
+          },
+          {
+            "name": "ATHALIA B. LIONG",
+            "role": "Undersecretary",
+            "contact": "[REDACTED]"
+          },
+          {
+            "name": "MICHELLE CRISABEL M. TEVES",
+            "role": "Assistant Executive Secretary",
+            "contact": "[REDACTED]"
+          },
+          {
+            "name": "MARIA MARGARITA H. GARALDE-CHUA",
+            "role": "Assistant Secretary",
+            "contact": "[REDACTED]"
+          },
+          {
+            "name": "RIA DANIELLE A. LUMAPAS",
+            "role": "Assistant Secretary",
+            "contact": "[REDACTED]"
+          },
+          {
+            "name": "LORENZO G. SAGUCIO JR.",
+            "role": "Assistant Secretary",
+            "contact": "[REDACTED]"
+          }
+        ]
       },
       {
-        "name": "ALMARIM C. TILLAH",
-        "role": "Presidential Assistant",
-        "office": "Office of the Presidential Assistant for State and Foreign Visits",
-        "contact": "[REDACTED]"
+        "office_division": "Office of the Chief Presidential Legal Counsel",
+        "personnel": [
+          {
+            "name": "JUAN F. PONCE ENRILE",
+            "role": "Chief Presidential Legal Counsel",
+            "contact": "[REDACTED]"
+          },
+          {
+            "name": "ROGEL C. GATCHALIAN",
+            "role": "Deputy Presidential Legal Counsel",
+            "contact": "[REDACTED]"
+          },
+          {
+            "name": "JOSEPH B. SAGANDOY JR.",
+            "role": "Deputy Presidential Legal Counsel",
+            "contact": "[REDACTED]"
+          },
+          {
+            "name": "JAMES JAYSON J. JORVINA",
+            "role": "Assistant Presidential Legal Counsel",
+            "contact": "[REDACTED]"
+          },
+          {
+            "name": "EDWARDSON LEE ONG",
+            "role": "Assistant Presidential Legal Counsel",
+            "contact": "[REDACTED]"
+          },
+          {
+            "name": "IVY D. PATDU",
+            "role": "Assistant Presidential Legal Counsel",
+            "contact": "[REDACTED]"
+          },
+          {
+            "name": "HONORIO EDUARDO B. REYES III",
+            "role": "Assistant Presidential Legal Counsel",
+            "contact": "[REDACTED]"
+          }
+        ]
       },
       {
-        "name": "ANTONIO R. TABORA JR.",
-        "role": "Presidential Assistant",
-        "office": "Office of the Presidential Assistant on Muslims Affairs"
+        "office_division": "Protocol Office",
+        "personnel": [
+          {
+            "name": "REICHEL QUIÑONES",
+            "role": "Chief of Presidential Protocol and Presidential Assistant for Foreign Affairs",
+            "contact": "[REDACTED]"
+          },
+          {
+            "name": "DENNIS JOHN C. BRIONES",
+            "role": "Deputy Chief of Presidential Protocol",
+            "contact": "[REDACTED]"
+          },
+          {
+            "name": "HELEN ANNE S. GAN",
+            "role": "Deputy Chief of Presidential Protocol",
+            "contact": "[REDACTED]"
+          },
+          {
+            "name": "JUNALYN GIFT C. SO",
+            "role": "Deputy Chief of Presidential Protocol",
+            "contact": "[REDACTED]"
+          }
+        ]
       },
       {
-        "name": "ANA CARMELA V. REMIGIO",
-        "role": "Presidential Assistant",
-        "office": "Office of the Presidential Assistant for the Cordillera Administrative Region"
+        "office_division": "Office of the Presidential Adviser for Investment and Economic Affairs",
+        "personnel": [
+          {
+            "name": "FREDERICK D. GO",
+            "role": "Presidential Adviser",
+            "contact": "[REDACTED]"
+          },
+          {
+            "name": "JOSE EDWINIEL C. GUILAS",
+            "role": "Undersecretary",
+            "contact": "[REDACTED]"
+          },
+          {
+            "name": "MARVIN JOSON N. BAYANG",
+            "role": "Assistant Secretary",
+            "contact": "[REDACTED]"
+          },
+          {
+            "name": "KRISTINE JOY D. DIAZ-TESTON",
+            "role": "Assistant Secretary",
+            "contact": "[REDACTED]"
+          }
+        ]
       },
       {
-        "name": "TERENCE C. CALATRAVA",
-        "role": "Presidential Assistant",
-        "office": "Office of the Presidential Assistant for Northern Luzon"
+        "office_division": "Office of the Presidential Adviser for Marawi Rehabilitation",
+        "personnel": [
+          {
+            "name": "NASSER C. PANGANDAMAN SR.",
+            "role": "Presidential Adviser"
+          },
+          {
+            "name": "FELIX J. CASTRO JR",
+            "role": "Assistant Secretary"
+          }
+        ]
       },
       {
-        "name": "IGNACIO SALVADOR R. GIMENEZ III",
-        "role": "Presidential Assistant I",
-        "office": "Office of the Presidential Assistant for the Visayas"
-      }
-    ],
-    "office_of_the_deputy_executive_secretary_for_finance_and_administration": {
-      "deputy_executive_secretary": {
-        "name": "AMANTE A. LIBERATO",
-        "contact": "[REDACTED]"
-      }
-    },
-    "office_of_the_deputy_executive_secretary_for_general_administration": {
-      "deputy_executive_secretary": {
-        "name": "NAEALLA BAINTO AGUINALDO",
-        "contact": "[REDACTED]"
+        "office_division": "Office of the Presidential Adviser on Military and Police Affairs",
+        "personnel": [
+          {
+            "name": "ROMAN A. FELIX",
+            "role": "Presidential Adviser",
+            "contact": "[REDACTED]"
+          },
+          {
+            "name": "ARIEL R. CACULITAN",
+            "role": "Undersecretary",
+            "contact": "[REDACTED]"
+          },
+          {
+            "name": "ISAGANI R. NEREZ",
+            "role": "Undersecretary",
+            "contact": "[REDACTED]"
+          }
+        ]
       },
-      "assistant_executive_secretary": {
-        "name": "NEAL VINCENT M. BAINTO",
-        "contact": "[REDACTED]"
+      {
+        "office_division": "Other Presidential Advisers/Assistants",
+        "personnel": [
+          {
+            "name": "LORENZO G. GADON",
+            "role": "Presidential Adviser",
+            "other_office": "Office of the Presidential Adviser for Poverty Alleviation"
+          },
+          {
+            "name": "ANDRES C. CENTINO",
+            "role": "Presidential Assistant",
+            "other_office": "Office of the Presidential Assistant for Maritime Concerns"
+          },
+          {
+            "name": "MARCIANO A. PAYNOR JR.",
+            "role": "Presidential Assistant",
+            "other_office": "Office of the Presidential Assistant for State and Foreign Visits",
+            "contact": "[REDACTED]"
+          },
+          {
+            "name": "ALMARIM C. TILLAH",
+            "role": "Presidential Assistant",
+            "other_office": "Office of the Presidential Assistant on Muslims Affairs"
+          },
+          {
+            "name": "ANTONIO R. TABORA JR.",
+            "role": "Presidential Assistant",
+            "other_office": "Office of the Presidential Assistant for the Cordillera Administrative Region"
+          },
+          {
+            "name": "ANA CARMELA V. REMIGIO",
+            "role": "Presidential Assistant",
+            "other_office": "Office of the Presidential Assistant for Northern Luzon"
+          },
+          {
+            "name": "TERENCE C. CALATRAVA",
+            "role": "Presidential Assistant",
+            "other_office": "Office of the Presidential Assistant for the Visayas"
+          },
+          {
+            "name": "IGNACIO SALVADOR R. GIMENEZ III",
+            "role": "Presidential Assistant I"
+          }
+        ]
       },
-      "assistant_secretary": {
-        "name": "GABRIEL LORENZO L. IGNACIO",
-        "contact": "[REDACTED]"
-      }
-    },
-    "strategic_action_and_response_star_office": {
-      "assistant_executive_secretary": {
-        "name": "CYNTHIA S. VERGARA",
-        "contact": "[REDACTED]"
-      }
-    },
-    "office_of_the_deputy_executive_secretary_for_legal_affairs": {
-      "deputy_executive_secretary": {
-        "name": "ANNA LIZA G. LOGAN",
-        "contact": "[REDACTED]"
-      }
-    },
-    "office_of_the_appointments_secretary": {
-      "presidential_assistant_i": {
-        "name": "MARY LYN CHARISSE A. LAGAMON",
-        "contact": "[REDACTED]"
-      }
-    },
-    "social_secretary_s_office": {
-      "assistant_executive_secretary": {
-        "name": "BIANCA CRISTINA C. ZOBEL",
-        "contact": "[REDACTED]"
-      }
-    },
-    "correspondence_office": {
-      "assistant_executive_secretary": {
-        "name": "NICELY R. ROM",
-        "contact": "[REDACTED]"
-      }
-    },
-    "national_task_force_to_end_local_communist_armed_conflict_secretariat": {
-      "executive_director": {
-        "name": "ERNESTO C. TORRES, JR.",
-        "contact": "[REDACTED]"
-      }
-    },
-    "presidential_human_rights_committee_secretariat": {
-      "executive_director": {
-        "name": "SEVERO S. CATURA",
-        "contact": "[REDACTED]"
-      }
-    },
-    "presidential_anti_organized_crime_commission": {
-      "undersecretary": {
-        "name": "GILBERTO DC. CRUZ"
+      {
+        "office_division": "Office of the President",
+        "personnel": [
+          {
+            "name": "AMANTE A. LIBERATO",
+            "role": "Deputy Executive Secretary",
+            "other_office": "Office of the Deputy Executive Secretary for Finance and Administration",
+            "contact": "[REDACTED]"
+          },
+          {
+            "name": "NAEALLA BAINTO AGUINALDO",
+            "role": "Deputy Executive Secretary",
+            "other_office": "Office of the Deputy Executive Secretary for General Administration",
+            "contact": "[REDACTED]"
+          },
+          {
+            "name": "NEAL VINCENT M. BAINTO",
+            "role": "Assistant Executive Secretary",
+            "other_office": "Office of the Deputy Executive Secretary for General Administration",
+            "contact": "[REDACTED]"
+          },
+          {
+            "name": "GABRIEL LORENZO L. IGNACIO",
+            "role": "Assistant Secretary",
+            "other_office": "Strategic Action and Response (STAR) Office",
+            "contact": "[REDACTED]"
+          },
+          {
+            "name": "CYNTHIA S. VERGARA",
+            "role": "Assistant Executive Secretary",
+            "other_office": "Internal Audit Office",
+            "contact": "[REDACTED]"
+          },
+          {
+            "name": "ANNA LIZA G. LOGAN",
+            "role": "Deputy Executive Secretary",
+            "other_office": "Office of the Deputy Executive Secretary for Legal Affairs",
+            "contact": "[REDACTED]"
+          },
+          {
+            "name": "MARY LYN CHARISSE A. LAGAMON",
+            "role": "Presidential Assistant I",
+            "other_office": "Office of the Appointments Secretary",
+            "contact": "[REDACTED]"
+          },
+          {
+            "name": "BIANCA CRISTINA C. ZOBEL",
+            "role": "Assistant Executive Secretary",
+            "other_office": "Social Secretary's Office",
+            "contact": "[REDACTED]"
+          },
+          {
+            "name": "NICELY R. ROM",
+            "role": "Assistant Executive Secretary",
+            "other_office": "Correspondence Office",
+            "contact": "[REDACTED]"
+          },
+          {
+            "name": "ERNESTO C. TORRES, JR.",
+            "role": "Executive Director",
+            "other_office": "National Task Force to End Local Communist Armed Conflict Secretariat",
+            "contact": "[REDACTED]"
+          },
+          {
+            "name": "SEVERO S. CATURA",
+            "role": "Executive Director",
+            "other_office": "Presidential Human Rights Committee Secretariat",
+            "contact": "[REDACTED]"
+          },
+          {
+            "name": "GILBERTO DC. CRUZ",
+            "role": "Undersecretary",
+            "other_office": "Presidential Anti-Organized Crime Commission",
+            "contact": "[REDACTED]"
+          },
+          {
+            "name": "GENESIS L. TOLEJANO",
+            "role": "Executive Director IV",
+            "other_office": "Presidential Anti-Organized Crime Commission",
+            "contact": "[REDACTED]"
+          },
+          {
+            "name": "WINNIE D. QUIDATO",
+            "role": "Deputy Executive Director IV",
+            "other_office": "Presidential Anti-Organized Crime Commission",
+            "contact": "[REDACTED]"
+          },
+          {
+            "name": "MARKUS V. LACANILAO",
+            "role": "Special Envoy on Transnational Crime",
+            "other_office": "Office of the Special Envoy on Transnational Crime",
+            "contact": "[REDACTED]"
+          },
+          {
+            "name": "BERNARDO C. FLORECE JR.",
+            "role": "Undersecretary/Executive Director",
+            "other_office": "Anti-Terrorism Council-Program Management Center"
+          },
+          {
+            "name": "ANTHONY J. ALCANTARA",
+            "role": "Executive Director",
+            "other_office": "Philippine Center on Transnational Crime",
+            "contact": "[REDACTED]"
+          }
+        ]
       },
-      "executive_director_iv": {
-        "name": "GENESIS L. TOLEJANO",
-        "contact": "[REDACTED]"
-      },
-      "deputy_executive_director_iv": {
-        "name": "WINNIE D. QUIDATO",
-        "contact": "[REDACTED]"
+      {
+        "office_division": "PUBLIC ASSISTANCE DESK/EXTERNAL RELATIONS OFFICE",
+        "personnel": [
+          {
+            "name": "MARIA EDSIE V. BUADO-GARCIA",
+            "role": "Director IV",
+            "other_office": "Presidential Action Center",
+            "contact": "[REDACTED]"
+          }
+        ]
       }
-    },
-    "office_of_the_special_envoy_on_transnational_crime": {
-      "special_envoy_on_transnational_crime": {
-        "name": "MARKUS V. LACANILAO",
-        "contact": "[REDACTED]"
-      }
-    },
-    "anti_terrorism_council_program_management_center": {
-      "undersecretary_executive_director": {
-        "name": "BERNARDO C. FLORECE JR."
-      }
-    },
-    "philippine_center_on_transnational_crime": {
-      "executive_director": {
-        "name": "ANTHONY J. ALCANTARA",
-        "contact": "[REDACTED]"
-      }
-    },
-    "public_assistance_desk_external_relations_office": {
-      "director_iv": {
-        "name": "MARIA EDSIE V. BUADO-GARCIA",
-        "office": "Presidential Action Center",
-        "contact": "[REDACTED]"
-      }
-    }
+    ]
   },
   {
-    "office_name": "Office of the Vice President",
-    "address": "11th Floor, Robinson's Cybergate Plaza, EDSA, cor Pioneer St. Mandaluyong City",
-    "trunkline": "(632) 8532-5942: 8370-1719",
+    "office": "OFFICE OF THE VICE PRESIDENT",
+    "address": "11th Floor, Robinson's Cybergate Plaza, EDSA, cor Pioneer St., Mandaluyong City",
+    "trunkline": "(632) 8532-5942; 8370-1719",
     "website": "www.ovp.gov.ph",
-    "vice_president": {
-      "name": "SARA Z. DUTERTE-CARPIO",
-      "email": "vp@ovp.gov.ph"
-    },
-    "office_of_the_chief_of_staff": {
-      "undersecretary_chief_of_staff": {
-        "name": "ZULEIKA T. LOPEZ",
-        "email": "zuleika.lopez@ovp.gov.ph"
+    "officials": [
+      {
+        "name": "SARA Z. DUTERTE-CARPIO",
+        "role": "Vice President",
+        "email": "vp@ovp.gov.ph"
+      },
+      {
+        "office_division": "Office of the Chief of Staff",
+        "personnel": [
+          {
+            "name": "ZULEIKA T. LOPEZ",
+            "role": "Undersecretary/Chief of Staff",
+            "email": "zuleika.lopez@ovp.gov.ph"
+          }
+        ]
+      },
+      {
+        "office_division": "Office of the Assistant Chief of Staff",
+        "personnel": [
+          {
+            "name": "LEMUEL G. ORTONIO",
+            "role": "Assistant Secretary/Assistant Chief of Staff",
+            "email": "lemuel.ortonio@ovp.gov.ph"
+          }
+        ]
+      },
+      {
+        "office_division": "Administrative and Financial Services Office",
+        "personnel": [
+          {
+            "name": "ROSALYNNE L. SANCHEZ",
+            "role": "Director",
+            "email": "rosalynne.sanchez@ovp.gov.ph"
+          }
+        ]
+      },
+      {
+        "office_division": "Strategy Management Office",
+        "personnel": [
+          {
+            "name": "SUNSHINE CHARRY A. FAJARDA",
+            "role": "Director",
+            "email": "sunshine.fajarda@ovp.gov.ph"
+          }
+        ]
+      },
+      {
+        "office_division": "Operations",
+        "personnel": [
+          {
+            "name": "NORMAN B. BALORO",
+            "role": "Director",
+            "email": "norman.baloro@ovp.gov.ph"
+          }
+        ]
+      },
+      {
+        "office_division": "PUBLIC ASSISTANCE DESK/EXTERNAL RELATIONS OFFICE",
+        "personnel": [
+          {
+            "name": "WINNIE G. DAYEGO",
+            "role": "VP Staff Officer VI/Chief",
+            "other_office": "Public Assistance Division",
+            "email": "winnie.dayego@ovp.gov.ph"
+          }
+        ]
       }
-    },
-    "office_of_the_assistant_chief_of_staff": {
-      "assistant_secretary_assistant_chief_of_staff": {
-        "name": "LEMUEL G. ORTONIO",
-        "email": "lemuel.ortonio@ovp.gov.ph"
-      }
-    },
-    "administrative_and_financial_services_office": {
-      "director": {
-        "name": "ROSALYNNE L. SANCHEZ",
-        "email": "rosalynne.sanchez@ovp.gov.ph"
-      }
-    },
-    "strategy_management_office": {
-      "director": {
-        "name": "SUNSHINE CHARRY A. FAJARDA",
-        "email": "sunshine.fajarda@ovp.gov.ph"
-      }
-    },
-    "operations": {
-      "director": {
-        "name": "NORMAN B. BALORO",
-        "email": "norman.baloro@ovp.gov.ph"
-      }
-    },
-    "public_assistance_desk_external_relations_office": {
-      "vp_staff_officer_vi_chief": {
-        "name": "WINNIE G. DAYEGO",
-        "office": "Public Assistance Division",
-        "email": "winnie.dayego@ovp.gov.ph"
-      }
-    }
+    ]
   },
   {
-    "office_name": "Presidential Communications Office",
+    "office": "PRESIDENTIAL COMMUNICATIONS OFFICE",
     "address": "New Executive Building (NEB), J.P. Laurel St., Malacañang, Manila",
     "trunkline": "(632) 8733-0790; 8733-1206; 8733-3630; 8734-5611",
     "website": "www.pco.gov.ph",
-    "acting_secretary": {
-      "name": "CESAR B. CHAVEZ",
-      "contact": "[REDACTED]"
-    },
-    "undersecretaries": [
+    "officials": [
       {
-        "name": "EMERALD ANNE R. RIDAO",
-        "role": "Senior Undersecretary"
-      },
-      {
-        "name": "CHERBETT KAREN L. MARALIT",
-        "role": "Digital Media Services",
+        "name": "CESAR B. CHAVEZ",
+        "role": "Acting Secretary",
         "contact": "[REDACTED]"
       },
       {
-        "name": "GERALD B. BARIA",
-        "role": "Operations, Administration, Finance, and GOCCS",
-        "contact": "[REDACTED]"
+        "office_division": "UNDERSECRETARIES",
+        "personnel": [
+          {
+            "name": "EMERALD ANNE R. RIDAO",
+            "role": "Senior Undersecretary",
+            "other_office": "Digital Media Services",
+            "contact": "[REDACTED]"
+          },
+          {
+            "name": "CHERBETT KAREN L. MARALIT",
+            "role": "Operations, Administration, Finance, and GOCCS",
+            "contact": "[REDACTED]"
+          },
+          {
+            "name": "GERALD B. BARIA",
+            "role": "Content Production",
+            "contact": "[REDACTED]"
+          },
+          {
+            "name": "JOSE MARIA M. VILLARAMA II",
+            "role": "OIC-Undersecretary",
+            "other_office": "Strategic Communications",
+            "contact": "[REDACTED]"
+          }
+        ]
       },
       {
-        "name": "JOSE MARIA M. VILLARAMA II",
-        "role": "OIC-Undersecretary, Content Production",
-        "contact": "[REDACTED]"
-      }
-    ],
-    "assistant_secretaries": [
-      {
-        "name": "JOSE MARIA M. VILLARAMA II",
-        "role": "Strategic Communications",
-        "contact": "[REDACTED]"
-      },
-      {
-        "name": "DALE Q. DE VERA",
-        "role": "Radio and Television",
-        "contact": "[REDACTED]"
-      },
-      {
-        "name": "ROWENA H. OTIDA",
-        "role": "Media Accreditation and Relations",
-        "contact": "[REDACTED]"
-      },
-      {
-        "name": "MICHEL ANDRE P. DEL ROSARIO",
-        "role": "Cultural Affairs and International Engagements",
-        "contact": "[REDACTED]"
-      },
-      {
-        "name": "PATRICIA KAYLE S. MARTIN",
-        "role": "Office of the Secretary Affairs",
-        "contact": "[REDACTED]"
-      },
-      {
-        "name": "FRANCISCO P. RODRIGUEZ III",
-        "role": "Digital Media and Communications",
-        "contact": "[REDACTED]"
-      },
-      {
-        "name": "RONADALE M. ZAPATA",
-        "role": "Office of the Secretary",
-        "contact": "[REDACTED]"
-      },
-      {
-        "name": "KATRINA GRACE C. ONGOCO",
-        "role": "Legal, Administration, Finance and GOCCS",
-        "contact": "[REDACTED]"
-      },
-      {
-        "name": "JULIUS N. LEONEN",
-        "role": "Administration",
-        "contact": "[REDACTED]"
-      },
-      {
-        "name": "CLAUDYN MARIE L. CAPARON",
-        "role": "Integrated State Media News Operations",
-        "contact": "[REDACTED]"
-      },
-      {
-        "name": "MARIO F. FETALINO JR.",
-        "role": "Inter-Agency Communications Operations",
-        "contact": "[REDACTED]"
-      },
-      {
-        "name": "ISABEL CHRISTINE LOZADA",
-        "role": "Print, Content Production",
-        "contact": "[REDACTED]"
+        "office_division": "ASSISTANT SECRETARIES",
+        "personnel": [
+          {
+            "name": "JOSE MARIA M. VILLARAMA II",
+            "role": "Radio and Television",
+            "contact": "[REDACTED]"
+          },
+          {
+            "name": "DALE Q. DE VERA",
+            "role": "Media Accreditation and Relations",
+            "contact": "[REDACTED]"
+          },
+          {
+            "name": "ROWENA H. OTIDA",
+            "role": "Cultural Affairs and International Engagements",
+            "contact": "[REDACTED]"
+          },
+          {
+            "name": "MICHEL ANDRE P. DEL ROSARIO",
+            "role": "Office of the Secretary Affairs",
+            "contact": "[REDACTED]"
+          },
+          {
+            "name": "PATRICIA KAYLE S. MARTIN",
+            "role": "Digital Media and Communications",
+            "contact": "[REDACTED]"
+          },
+          {
+            "name": "FRANCISCO P. RODRIGUEZ III",
+            "role": "Office of the Secretary",
+            "contact": "[REDACTED]"
+          },
+          {
+            "name": "RONADALE M. ZAPATA",
+            "role": "Legal, Administration, Finance and GOCCS",
+            "contact": "[REDACTED]"
+          },
+          {
+            "name": "KATRINA GRACE C. ONGOCO",
+            "role": "Administration",
+            "contact": "[REDACTED]"
+          },
+          {
+            "name": "JULIUS N. LEONEN",
+            "role": "Integrated State Media News Operations",
+            "contact": "[REDACTED]"
+          },
+          {
+            "name": "CLAUDYN MARIE L. CAPARON",
+            "role": "Inter-Agency Communications Operations",
+            "contact": "[REDACTED]"
+          },
+          {
+            "name": "MARIO F. FETALINO JR.",
+            "role": "Print",
+            "contact": "[REDACTED]"
+          },
+          {
+            "name": "ISABEL CHRISTINE LOZADA",
+            "role": "Content Production",
+            "contact": "[REDACTED]"
+          }
+        ]
       }
     ],
     "bureaus": [
       {
         "name": "NEWS INFORMATION BUREAU",
-        "director": "LUIS A. MORENTE",
         "address": "NIB Bldg., J.P. Laurel Street, Malacañang, Manila",
-        "contact": "[REDACTED]"
+        "phone": "8241-4512"
       },
       {
         "name": "PRESIDENTIAL BROADCAST SERVICE - BUREAU OF BROADCAST SERVICES",
-        "director": "FERNANDO A. SANGA",
         "address": "4/F Government Media Center Bldg. Visayas Avenue, Vasra, Quezon City",
-        "contact": "[REDACTED]",
+        "phone": "8929-0437",
         "website": "www.pbs.gov.ph"
       }
     ],
-    "attached_agency": {
-      "name": "NATIONAL PRINTING OFFICE",
-      "director": "FRANCIS CARLO D. TAPARAN",
-      "address": "EDSA cor. NIA Road, Diliman, Quezon City",
-      "contact": "[REDACTED]",
-      "email": "directors.office@npo.gov.ph",
-      "website": "www.npo.gov.ph"
-    }
-  },
-  {
-    "office_name": "Other Executive Offices",
-    "offices": [
+    "attached_agency": [
       {
-        "name": "ANTI-MONEY LAUNDERING COUNCIL",
-        "executive_director": "MATTHEW M. DAVID",
-        "address": "$5/F$ EDPC Bldg., Bangko Sentral ng Pilipinas Complex Mabini cor. Vito Cruz Streets, Malate, Manila",
-        "contact": "[REDACTED]",
-        "email": "secretariat@amlc.gov.ph",
-        "website": "www.amic.gov.ph"
-      },
-      {
-        "name": "ANTI-RED TAPE AUTHORITY",
-        "director_general": "ERNESTO V. PEREZ",
-        "address": "$4/F$ and $5/F$ National Food Authority Bldg. Visayas Avenue, Brgy. Vasra, Quezon City",
-        "contact": "[REDACTED]",
-        "email": "odg@arta.gov.ph",
-        "website": "www.arta.gov.ph"
-      },
-      {
-        "name": "CAREER EXECUTIVE SERVICE BOARD",
-        "executive_director": "MARIA MARCY C. BALLESTEROS",
-        "address": "3 Marcelino Street, Isidora Hills Subd., Brgy. Holy Spirit Drive, Diliman, Quezon City",
-        "contact": "[REDACTED]",
-        "email": "mmcballesteros@cesboard.gov.ph",
-        "website": "www.cesboard.gov.ph"
-      },
-      {
-        "name": "CLIMATE CHANGE COMMISSION",
-        "vice_chairperson_and_executive_director": "ROBERT E.A. BORJE",
-        "address": "6/F First Residences Bldg., 1557 J.P. Laurel St. Malacañang Complex, San Miguel, Manila",
-        "contact": "[REDACTED]",
-        "email": "osec@climate.gov.ph",
-        "website": "www.climate.gov.ph"
-      },
-      {
-        "name": "COMMISSION ON FILIPINOS OVERSEAS",
-        "chairperson": "DANTE FRANCIS M. ANG II",
-        "address": "$20/F$ and $21/F$, The Upper Class Tower, Quezon Ave. cor. Scout Reyes St., Brgy. Paligsahan, Diliman, Quezon City",
-        "contact": "[REDACTED]",
-        "email": "info@cfo.gov.ph",
-        "website": "www.cfo.gov.ph"
-      },
-      {
-        "name": "COMMISSION ON HIGHER EDUCATION",
-        "chairperson": "J. PROSPERO E. DE VERA III",
-        "address": "Higher Education Development Center Building C. P. Garcia Avenue, Diliman, Quezon City",
-        "contact": "[REDACTED]",
-        "email": "chairperson@ched.gov.ph",
-        "website": "www.ched.gov.ph"
-      },
-      {
-        "name": "KOMISYON SA WIKANG FILIPINO",
-        "chairperson": "ARTHUR P. CASANOVA",
-        "address": "2/F Watson Bldg., 1610 J.P. Laurel St., San Miguel, Manila",
-        "email": "artcasanova@kwf.gov.ph",
-        "website": "www.kwf.gov.ph"
-      },
-      {
-        "name": "DANGEROUS DRUGS BOARD",
-        "chairperson": "CATALINO S. CUY",
-        "address": "3/F DDB-PDEA Bldg. National Government Center NIA Road, Brgy. Pinyahan, Quezon City",
-        "contact": "[REDACTED]",
-        "email": "cscuy@ddb.gov.ph",
-        "website": "www.ddb.gov.ph"
-      },
-      {
-        "name": "ENERGY REGULATORY COMMISSION",
-        "chairperson": "MONALISA C. DIMALANTA",
-        "address": "Exquadra Tower 1, Jade Drive, Ortigas Center San Antonio, Pasig City",
-        "contact": "[REDACTED]",
-        "email": "mcdimalanta@erc.ph",
-        "website": "www.erc.gov.ph"
-      },
-      {
-        "name": "FERTILIZER AND PESTICIDE AUTHORITY",
-        "executive_director": "JULIETA B, LANSANGAN",
-        "address": "Visayas Avenue, Diliman, Quezon City",
-        "contact": "[REDACTED]",
-        "website": "www.fpa.da.gov.ph"
-      },
-      {
-        "name": "FILM DEVELOPMENT COUNCIL OF THE PHILIPPINES",
-        "chairperson_and_ceo": "JOSE JAVIER REYES",
-        "address": "855 T. M. Kalaw St., Ermita, Manila",
-        "contact": "[REDACTED]",
-        "email": "occeo@fdcp.ph",
-        "website": "www.fdcp.ph"
-      },
-      {
-        "name": "GAMES AND AMUSEMENTS BOARD",
-        "chairperson": "FRANCISCO J. RIVERA",
-        "address": "2/F Legaspi Tower 200, Paseo de Roxas St. Legaspi Village, Makati City",
-        "contact": "[REDACTED]",
-        "email": "chairman@gab.gov.ph",
-        "website": "www.gab.gov.ph"
-      },
-      {
-        "name": "GOVERNANCE COMMISSION FOR GOCCS",
-        "chairperson": "MARIUS P. CORPUS",
-        "address": "3/F BDO Paseo Towers, Paseo de Roxas Avenue, Makati City",
-        "contact": "[REDACTED]",
-        "website": "www.gcg.gov.ph"
-      },
-      {
-        "name": "METROPOLITAN MANILA DEVELOPMENT AUTHORITY",
-        "chairperson": "ROMANDO S. ARTES",
-        "address": "Doña Julia Vargas Avenue cor. Molave St., Brgy. Ugong, Pasig City",
-        "contact": "[REDACTED]",
-        "email": "oc@mmda.gov.ph",
-        "website": "www.mmda.gov.ph"
-      },
-      {
-        "name": "MINDANAO DEVELOPMENT AUTHORITY",
-        "chairperson": "LEO TERESO A. MAGNO",
-        "address": "14/F Pryce Tower, Pryce Business Park JP Laurel Avenue, Davao City",
-        "email": "minda.chair@minda.gov.ph",
-        "website": "www.minda.gov.ph"
-      },
-      {
-        "name": "MOVIE AND TELEVISION REVIEW AND CLASSIFICATION BOARD",
-        "chairperson": "DIORELLA MARIA G. SOTTO-ANTOΝΙΟ",
-        "address": "MTRCB Bldg., No. 18 Timog Avenue, Quezon City",
-        "contact": "[REDACTED]",
-        "email": "otc@mtrcb.gov.ph",
-        "website": "www.midas.mtrcb.gov.ph"
-      },
-      {
-        "name": "NATIONAL ARCHIVES OF THE PHILIPPINES",
-        "executive_director": "VICTORINO M. MANALO",
-        "address": "1765 Paz M. Guazon St., Paco, Manila",
-        "contact": "[REDACTED]",
-        "email": "vmmanalo@nationalarchives.gov.ph",
-        "website": "www.nationalarchives.gov.ph"
-      },
-      {
-        "name": "NATIONAL COMMISSION FOR CULTURE AND THE ARTS",
-        "executive_director": "ERIC B. ZERRUDO",
-        "address": "7/F NCCA Bldg., 633 General Luna St., Intramuros, Manila",
-        "contact": "[REDACTED]",
-        "email": "oed@ncca.gov.ph",
-        "website": "www.ncca.gov.ph"
-      },
-      {
-        "name": "NATIONAL HISTORICAL COMMISSION OF THE PHILIPPINES",
-        "chairperson": "REGALADO TROTA JOSE JR.",
-        "address": "NHCP Bldg., T. M. Kalaw St., Ermita, Manila",
-        "contact": "[REDACTED]",
-        "email": "nhcp.chair@gmail.com",
-        "website": "www.nhcp.gov.ph"
-      },
-      {
-        "name": "NATIONAL COMMISSION OF SENIOR CITIZENS",
-        "chairperson_and_ceo": "FRANKLIN M. QUIJANO",
-        "address": "4/F AAP Tower, Aurora Blvd., New Manila, Quezon City San Miguel, Manila",
-        "contact": "[REDACTED]",
-        "website": "www.ncsc.gov.ph"
-      },
-      {
-        "name": "NATIONAL INTELLIGENCE COORDINATING AGENCY",
-        "director_general": "RICARDO F. DE LEON",
-        "address": "V. Luna Road, Quezon City",
-        "contact": "[REDACTED]",
-        "website": "www.nica.gov.ph"
-      },
-      {
-        "name": "NATIONAL LIBRARY OF THE PHILIPPINES",
-        "director": "CESAR GILBERT Q. ADRIANO",
-        "address": "1000 Kalaw Ave., Ermita, Manila",
-        "contact": "[REDACTED]",
-        "email": "cgqadriano@nlp.gov.ph",
-        "website": "web.nlp.gov.ph"
-      },
-      {
-        "name": "NATIONAL SECURITY COUNCIL",
-        "national_security_adviser_and_director_general": "EDUARDO M. ΑΝΟ",
-        "address": "NICA Compound, V. Luna Road cor. East Ave., Diliman, Quezon City",
-        "email": "publicaffairs@nsc.gov.ph",
-        "website": "www.nsc.gov.ph"
-      },
-      {
-        "name": "OFFICE OF THE PRESIDENTIAL ADVISER ON PEACE, RECONCILIATION AND UNITY",
-        "presidential_adviser": "CARLITO G. GALVEZ JR.",
-        "address": "5/F Agustin I Bldg., F. Ortigas Jr. Road Ortigas Center, Pasig City",
-        "contact": "[REDACTED]",
-        "email": "central_receiving@peace.gov.ph",
-        "website": "www.peace.gov.ph"
-      },
-      {
-        "name": "OPTICAL MEDIA BOARD",
-        "chairperson_and_ceo": "vacant",
-        "address": "35 Scout Limbaga, Brgy. Laging Handa, Quezon City",
-        "contact": "[REDACTED]",
-        "website": "www.omb.gov.ph"
-      },
-      {
-        "name": "PHILIPPINE COMPETITION COMMISSION",
-        "chairperson": "MICHAEL G. AGUINALDO",
-        "address": "25/F Vertis North Corporate Center 1 North Avenue, Quezon City",
-        "contact": "[REDACTED]",
-        "website": "www.phcc.gov.ph"
-      },
-      {
-        "name": "PHILIPPINE DRUG ENFORCEMENT AGENCY",
-        "director_general": "MORO VIRGILIO M. LAZO",
-        "address": "PDEA Bldg., NIA Northside Road Diliman, Quezon City",
-        "contact": "[REDACTED]",
-        "email": "odg@pdea.gov.ph",
-        "website": "www.pdea.gov.ph"
-      },
-      {
-        "name": "PHILIPPINE INFORMATION AGENCY",
-        "director_general": "KATHERINE CHLOE S. DE CASTRO",
-        "address": "PIA Bldg., Visayas Avenue, Vasra, Quezon City",
-        "contact": "[REDACTED]",
-        "email": "odg@pia.gov.ph",
-        "website": "www.pia.gov.ph"
-      },
-      {
-        "name": "BUREAU OF COMMUNICATIONS SERVICES",
-        "concurrent_director": "MARIO F. FETALINO JR.",
-        "address": "No. 310 San Rafael Street Malacañang Complex, San Miguel, Manila",
-        "contact": "[REDACTED]",
-        "website": "www.bcs.gov.ph"
-      },
-      {
-        "name": "PHILIPPINE RACING COMMISSION",
-        "chairperson": "AURELIO P. DE LEON",
-        "address": "4/F Electra House Bldg. Esteban cor. V.A. Rufino Sts., Legaspi Village, Makati",
-        "contact": "[REDACTED]",
-        "email": "chairman@philracom.gov.ph",
-        "website": "www.philracom.gov.ph"
-      },
-      {
-        "name": "PHILIPPINE SPACE AGENCY",
-        "director_general": "JOEL JOSEPH S. MARCIANO JR.",
-        "address": "29/F Cyber One Bldg., II Eastwood Avenue Bagumbayan, Quezon City",
-        "contact": "[REDACTED]",
-        "email": "odg@philsa.gov.ph",
-        "website": "www.philsa.gov.ph"
-      },
-      {
-        "name": "PHILIPPINE SPORTS COMMISSION",
-        "chairperson": "RICHARD E. BACHMANN",
-        "address": "Rizal Memorial Sports Complex Pablo Ocampo Sr. St., Malate, Manila",
-        "contact": "[REDACTED]",
-        "website": "www.psc.gov.ph"
-      },
-      {
-        "name": "PRESIDENTIAL LEGISLATIVE LIAISON OFFICE",
-        "head_and_presidential_adviser_on_legislative_affairs": "MARK LLANDRO L. MENDOZA",
-        "address": "Room G-101-D, Mabini Hall, Malacañang, Manila",
-        "contact": "[REDACTED]",
-        "email": "pllo.osec@pllo.gov.ph",
-        "website": "www.pllo.gov.ph"
-      },
-      {
-        "name": "PRESIDENTIAL MANAGEMENT STAFF",
-        "head_and_senior_undersecretary": "ELAINE T. MASUKAT",
-        "address": "PMS Bldg., Arlegui St., San Miguel, Manila",
-        "contact": "[REDACTED]",
-        "email": "info@pms.gov.ph",
-        "website": "www.pms.gov.ph"
-      },
-      {
-        "name": "PRESIDENTIAL BROADCAST STAFF- RADIO TELEVISION MALACAÑANG",
-        "executive_director": "FRANZ GERARD R. IMPERIAL",
-        "address": "RTVM Bldg., Gate 7, J.P. Laurel Street, Malacañang, Manila",
-        "contact": "[REDACTED]",
-        "email": "frimperial@rtvm.gov.ph",
-        "website": "www.rtvm.gov.ph"
+        "name": "NATIONAL PRINTING OFFICE",
+        "address": "EDSA cor. NIA Road, Diliman, Quezon City",
+        "phone": "8925-2187; 8925-2189",
+        "email": "directors.office@npo.gov.ph",
+        "website": "www.npo.gov.ph"
       }
     ]
+  },
+  {
+    "office": "ANTI-MONEY LAUNDERING COUNCIL",
+    "address": "5/F EDPC Bldg., Bangko Sentral ng Pilipinas Complex Mabini cor. Vito Cruz Streets, Malate, Manila",
+    "trunkline": "8708-7701",
+    "phone_fax": "8708-7066; 8708-7909",
+    "email": "secretariat@amlc.gov.ph",
+    "website": "www.amlc.gov.ph"
+  },
+  {
+    "office": "ANTI-RED TAPE AUTHORITY",
+    "address": "4/F and 5/F National Food Authority Bldg. Visayas Avenue, Brgy. Vasra, Quezon City",
+    "phone": "8478-5091",
+    "email": "odg@arta.gov.ph",
+    "website": "www.arta.gov.ph"
+  },
+  {
+    "office": "CAREER EXECUTIVE SERVICE BOARD",
+    "address": "3 Marcelino Street, Isidora Hills Subd., Brgy. Holy Spirit Drive, Diliman, Quezon City",
+    "phone": "8951-4981 loc. 102",
+    "email": "mmcballesteros@cesboard.gov.ph",
+    "website": "www.cesboard.gov.ph"
+  },
+  {
+    "office": "CLIMATE CHANGE COMMISSION",
+    "address": "6/F First Residences Bldg., 1557 J.P. Laurel St. Malacañang Complex, San Miguel, Manila",
+    "phone": "8287-8450",
+    "email": "osec@climate.gov.ph",
+    "website": "www.climate.gov.ph"
+  },
+  {
+    "office": "COMMISSION ON FILIPINOS OVERSEAS",
+    "address": "20/F and 21/F, The Upper Class Tower, Quezon Ave. cor. Scout Reyes St., Brgy. Paligsahan, Diliman, Quezon City",
+    "phone": "8552-4707",
+    "email": "info@cfo.gov.ph",
+    "website": "www.cfo.gov.ph"
+  },
+  {
+    "office": "COMMISSION ON HIGHER EDUCATION",
+    "address": "Higher Education Development Center Building C. P. Garcia Avenue, Diliman, Quezon City",
+    "phone": "8441-1260; 8351-7413",
+    "email": "chairperson@ched.gov.ph",
+    "website": "www.ched.gov.ph"
+  },
+  {
+    "office": "KOMISYON SA WIKANG FILIPINO",
+    "address": "2/F Watson Bldg., 1610 J.P. Laurel St., San Miguel, Manila",
+    "email": "artcasanova@kwf.gov.ph",
+    "website": "www.kwf.gov.ph"
+  },
+  {
+    "office": "DANGEROUS DRUGS BOARD",
+    "address": "3/F DDB-PDEA Bldg. National Government Center NIA Road, Brgy. Pinyahan, Quezon City",
+    "phone": "8929-1753 loc. 102; 8929-6679",
+    "phone_fax": "8929-5377",
+    "email": "cscuy@ddb.gov.ph",
+    "website": "www.ddb.gov.ph"
+  },
+  {
+    "office": "ENERGY REGULATORY COMMISSION",
+    "address": "Exquadra Tower 1, Jade Drive, Ortigas Center San Antonio, Pasig City",
+    "phone": "8689-5372 loc. 5301 and 5302",
+    "email": "mcdimalanta@erc.ph",
+    "website": "www.erc.gov.ph"
+  },
+  {
+    "office": "FERTILIZER AND PESTICIDE AUTHORITY",
+    "address": "Visayas Avenue, Diliman, Quezon City",
+    "phone": "8371-5388",
+    "website": "www.fpa.da.gov.ph"
+  },
+  {
+    "office": "FILM DEVELOPMENT COUNCIL OF THE PHILIPPINES",
+    "address": "855 T. M. Kalaw St., Ermita, Manila",
+    "phone": "8256-9908",
+    "email": "occeo@fdcp.ph",
+    "website": "www.fdcp.ph"
+  },
+  {
+    "office": "GAMES AND AMUSEMENTS BOARD",
+    "address": "2/F Legaspi Tower 200, Paseo de Roxas St., Legaspi Village, Makati City",
+    "phone": "8817-2184; 8819-5854",
+    "phone_fax": "8815-2168",
+    "email": "chairman@gab.gov.ph",
+    "website": "www.gab.gov.ph"
+  },
+  {
+    "office": "GOVERNANCE COMMISSION FOR GOCCS",
+    "address": "3/F BDO Paseo Towers, Paseo de Roxas Avenue, Makati City",
+    "phone": "5328-2030",
+    "website": "www.gcg.gov.ph"
+  },
+  {
+    "office": "METROPOLITAN MANILA DEVELOPMENT AUTHORITY",
+    "address": "Doña Julia Vargas Avenue cor. Molave St., Brgy. Ugong, Pasig City",
+    "phone": "8898-4200 loc. 1901",
+    "email": "oc@mmda.gov.ph",
+    "website": "www.mmda.gov.ph"
+  },
+  {
+    "office": "MINDANAO DEVELOPMENT AUTHORITY",
+    "address": "14/F Pryce Tower, Pryce Business Park JP Laurel Avenue, Davao City",
+    "email": "minda.chair@minda.gov.ph",
+    "website": "www.minda.gov.ph"
+  },
+  {
+    "office": "MOVIE AND TELEVISION REVIEW AND CLASSIFICATION BOARD",
+    "address": "MTRCB Bldg., No. 18 Timog Avenue, Quezon City",
+    "phone": "8376-7380",
+    "phone_fax": "8376-7379",
+    "email": "otc@mtrcb.gov.ph",
+    "website": "www.midas.mtrcb.gov.ph"
+  },
+  {
+    "office": "NATIONAL ARCHIVES OF THE PHILIPPINES",
+    "address": "1765 Paz M. Guazon St., Paco, Manila",
+    "phone": "8524-3231",
+    "email": "vmmanalo@nationalarchives.gov.ph",
+    "website": "www.nationalarchives.gov.ph"
+  },
+  {
+    "office": "NATIONAL COMMISSION FOR CULTURE AND THE ARTS",
+    "address": "7/F NCCA Bldg., 633 General Luna St., Intramuros, Manila",
+    "trunkline": "8527-2192",
+    "phone": "8523-0199",
+    "email": "oed@ncca.gov.ph",
+    "website": "www.ncca.gov.ph"
+  },
+  {
+    "office": "NATIONAL HISTORICAL COMMISSION OF THE PHILIPPINES",
+    "address": "NHCP Bldg., T. M. Kalaw St., Ermita, Manila",
+    "phone": "5335-1288",
+    "email": "nhcp.chair@gmail.com",
+    "website": "www.nhcp.gov.ph"
+  },
+  {
+    "office": "NATIONAL COMMISSION OF SENIOR CITIZENS",
+    "address": "4/F AAP Tower, Aurora Blvd., New Manila, Quezon City San Miguel, Manila",
+    "trunkline": "8931-8101 to 07",
+    "website": "www.ncsc.gov.ph"
+  },
+  {
+    "office": "NATIONAL INTELLIGENCE COORDINATING AGENCY",
+    "address": "V. Luna Road, Quezon City",
+    "phone": "8927-4245 loc. 6102; 8927-5017",
+    "phone_fax": "8927-4331",
+    "website": "www.nica.gov.ph"
+  },
+  {
+    "office": "NATIONAL LIBRARY OF THE PHILIPPINES",
+    "address": "1000 Kalaw Ave., Ermita, Manila",
+    "phone": "5336-7200 loc. 303; 5310-5034 to 35",
+    "email": "cgqadriano@nlp.gov.ph",
+    "website": "web.nlp.gov.ph"
+  },
+  {
+    "office": "NATIONAL SECURITY COUNCIL",
+    "address": "NICA Compound, V. Luna Road cor. East Ave., Diliman, Quezon City",
+    "email": "publicaffairs@nsc.gov.ph",
+    "website": "www.nsc.gov.ph"
+  },
+  {
+    "office": "OFFICE OF THE PRESIDENTIAL ADVISER ON PEACE, RECONCILIATION AND UNITY",
+    "address": "5/F Agustin I Bldg., F. Ortigas Jr. Road Ortigas Center, Pasig City",
+    "trunkline": "8636-0701 to 07",
+    "phone": "8637-6083; 8638-2216",
+    "email": "central_receiving@peace.gov.ph",
+    "website": "www.peace.gov.ph"
+  },
+  {
+    "office": "OPTICAL MEDIA BOARD",
+    "address": "35 Scout Limbaga, Brgy. Laging Handa, Quezon City",
+    "phone": "7905-1678 loc. 100",
+    "website": "www.omb.gov.ph"
+  },
+  {
+    "office": "PHILIPPINE COMPETITION COMMISSION",
+    "address": "25/F Vertis North Corporate Center 1 North Avenue, Quezon City",
+    "trunkline": "8771-9722",
+    "website": "www.phcc.gov.ph"
+  },
+  {
+    "office": "PHILIPPINE DRUG ENFORCEMENT AGENCY",
+    "address": "PDEA Bldg., NIA Northside Road Diliman, Quezon City",
+    "trunkline": "8927-9702; 8928-5292",
+    "phone": "8928-6358 loc. 163, 144",
+    "email": "odg@pdea.gov.ph",
+    "website": "www.pdea.gov.ph"
+  },
+  {
+    "office": "PHILIPPINE INFORMATION AGENCY",
+    "address": "PIA Bldg., Visayas Avenue, Vasra, Quezon City",
+    "phone": "8920-1224; 8772-7601",
+    "phone_fax": "8920-4386",
+    "email": "odg@pia.gov.ph",
+    "website": "www.pia.gov.ph"
+  },
+  {
+    "office": "BUREAU OF COMMUNICATIONS SERVICES",
+    "address": "No. 310 San Rafael Street Malacañang Complex, San Miguel, Manila",
+    "phone": "8734-2120 loc. 100-101, 414; 8734-2118",
+    "website": "www.bcs.gov.ph"
+  },
+  {
+    "office": "PHILIPPINE RACING COMMISSION",
+    "address": "4/F Electra House Bldg. Esteban cor. V.A. Rufino Sts., Legaspi Village, Makati",
+    "phone": "8815-6453; 8813-7198",
+    "email": "chairman@philracom.gov.ph",
+    "website": "www.philracom.gov.ph"
+  },
+  {
+    "office": "PHILIPPINE SPACE AGENCY",
+    "address": "29/F Cyber One Bldg., II Eastwood Avenue Bagumbayan, Quezon City",
+    "phone": "8568-9931",
+    "email": "odg@philsa.gov.ph",
+    "website": "www.philsa.gov.ph"
+  },
+  {
+    "office": "PHILIPPINE SPORTS COMMISSION",
+    "address": "Rizal Memorial Sports Complex Pablo Ocampo Sr. St., Malate, Manila",
+    "phone": "8524-4336 loc. 168, 888, 148, 158",
+    "website": "www.psc.gov.ph"
+  },
+  {
+    "office": "PRESIDENTIAL LEGISLATIVE LIAISON OFFICE",
+    "address": "Room G-101-D, Mabini Hall, Malacañang, Manila",
+    "phone": "8736-1116",
+    "email": "pllo.osec@pllo.gov.ph",
+    "website": "www.pllo.gov.ph"
+  },
+  {
+    "office": "PRESIDENTIAL MANAGEMENT STAFF",
+    "address": "PMS Bldg., Arlegui St., San Miguel, Manila",
+    "trunkline": "8876-8450",
+    "email": "info@pms.gov.ph",
+    "website": "www.pms.gov.ph"
+  },
+  {
+    "office": "PRESIDENTIAL BROADCAST STAFF-RADIO TELEVISION MALACAÑANG",
+    "address": "RTVM Bldg., Gate 7, J.P. Laurel Street, Malacañang, Manila",
+    "phone": "8735-6186; 8733-3713",
+    "phone_fax": "8735-6175",
+    "email": "frimperial@rtvm.gov.ph",
+    "website": "www.rtvm.gov.ph"
   }
 ]

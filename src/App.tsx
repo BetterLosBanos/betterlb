@@ -44,6 +44,10 @@ import DiplomaticIndex from './pages/government/diplomatic/index'
 import DiplomaticMissionsPage from './pages/government/diplomatic/missions'
 import ConsulatesPage from './pages/government/diplomatic/consulates'
 import InternationalOrganizationsPage from './pages/government/diplomatic/organizations'
+import OfficeOfThePresident from './pages/government/executive/office-of-the-president'
+import OtherExecutiveOffices from './pages/government/executive/other-executive-offices'
+import OfficeOfTheVicePresident from './pages/government/executive/office-of-the-vice-president'
+import PresidentialCommunicationsOffice from './pages/government/executive/presidential-communications-office'
 
 function App() {
   return (
@@ -81,7 +85,23 @@ function App() {
 
               <Route path="executive" element={<ExecutiveLayout />}>
                 <Route index element={<ExecutiveDirectory />} />
-                <Route path=":office" element={<ExecutiveOffice />} />
+                {/* <Route path=":office" element={<ExecutiveOffice />} /> */}
+                <Route
+                  path="other-executive-offices"
+                  element={<OtherExecutiveOffices />}
+                />
+                <Route
+                  path="office-of-the-president"
+                  element={<OfficeOfThePresident />}
+                />
+                <Route
+                  path="office-of-the-vice-president"
+                  element={<OfficeOfTheVicePresident />}
+                />
+                <Route
+                  path="presidential-communications-office"
+                  element={<PresidentialCommunicationsOffice />}
+                />
               </Route>
 
               <Route path="departments" element={<DepartmentsLayout />}>
@@ -99,13 +119,19 @@ function App() {
                 <Route index element={<LegislativeIndex />} />
                 <Route path=":chamber" element={<LegislativeChamber />} />
                 <Route path="house-members" element={<HouseMembersPage />} />
-                <Route path="senate-committees" element={<SenateCommitteesPage />} />
+                <Route
+                  path="senate-committees"
+                  element={<SenateCommitteesPage />}
+                />
               </Route>
               <Route path="diplomatic" element={<DiplomaticLayout />}>
                 <Route index element={<DiplomaticIndex />} />
                 <Route path="missions" element={<DiplomaticMissionsPage />} />
                 <Route path="consulates" element={<ConsulatesPage />} />
-                <Route path="organizations" element={<InternationalOrganizationsPage />} />
+                <Route
+                  path="organizations"
+                  element={<InternationalOrganizationsPage />}
+                />
               </Route>
             </Route>
           </Routes>
