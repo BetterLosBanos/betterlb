@@ -1,5 +1,5 @@
 import React from 'react'
-import { Outlet, Link } from 'react-router-dom'
+import { Outlet, Link, useLocation } from 'react-router-dom'
 import {
   Building2,
   Landmark,
@@ -46,7 +46,8 @@ const BranchCard: React.FC<BranchCardProps> = ({
 
 export default function GovernmentLayout({ children }: GovernmentLayoutProps) {
   // Get current path to highlight active tab
-  const currentPath = window.location.pathname
+  const location = useLocation()
+  const currentPath = location.pathname
 
   // Define branch data
   const branches = [
