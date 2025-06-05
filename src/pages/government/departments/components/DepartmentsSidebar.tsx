@@ -48,6 +48,9 @@ export default function DepartmentsSidebar({
         </div>
       ) : (
         <nav className="p-1">
+          <h3 className="px-3 text-xs font-medium text-gray-500 uppercase tracking-wider mb-2">
+            Department of
+          </h3>
           <ul className="space-y-1">
             {filteredDepartments.map((dept) => (
               <li key={dept.office_name}>
@@ -61,7 +64,9 @@ export default function DepartmentsSidebar({
                 >
                   <div className="flex items-center">
                     <Building2 className="h-4 w-4 mr-2 text-gray-400 flex-shrink-0" />
-                    <span className="truncate">{dept.office_name}</span>
+                    <span className="truncate">
+                      {dept.office_name.replace('DEPARTMENT OF ', '')}
+                    </span>
                   </div>
                 </button>
               </li>

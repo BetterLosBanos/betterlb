@@ -8,16 +8,11 @@ interface StandardSidebarProps {
   children: ReactNode
 }
 
-export default function StandardSidebar({
-  searchTerm,
-  onSearchChange,
-  searchPlaceholder,
-  children
-}: StandardSidebarProps) {
+export default function StandardSidebar({ children }: StandardSidebarProps) {
   return (
     <div className="w-full md:w-64 flex-shrink-0">
       <div className="sticky top-6 space-y-4">
-        <div className="relative">
+        {/* <div className="relative">
           <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-gray-400" />
           <input
             type="search"
@@ -26,10 +21,10 @@ export default function StandardSidebar({
             value={searchTerm}
             onChange={(e) => onSearchChange(e.target.value)}
           />
-        </div>
+        </div> */}
 
         <div className="border rounded-lg overflow-hidden bg-white">
-          <div className="max-h-[calc(100vh-200px)] overflow-y-auto">
+          <div className="max-h-[calc(100vh-200px)] overflow-y-auto py-4 px-2">
             {children}
           </div>
         </div>
