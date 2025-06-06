@@ -9,6 +9,8 @@ import {
 } from 'lucide-react'
 import visaData from '../../../data/visa/philippines_visa_policy.json'
 import { PhilippinesVisaPolicy, VisaRequirement } from '../../../types/visa'
+import Button from '../../../components/ui/Button'
+import { Link } from 'react-router-dom'
 
 type Country = string
 
@@ -166,10 +168,15 @@ const VisaPage: React.FC = () => {
               <div className="flex items-center space-x-2 text-sm">
                 <Globe className="h-4 w-4" />
                 <span>
-                  Official data from the Philippine Department of Foreign
-                  Affairs
+                  Official data from the Bureau of Immigration and Philippine
+                  Department of Foreign Affairs
                 </span>
               </div>
+              <Link to="/travel/visa-types">
+                <Button className="text-xl bg-blue-800 py-8 px-8 mt-6">
+                  Check visa types
+                </Button>
+              </Link>
             </div>
             <div className="md:w-1/3">
               <div className="bg-white rounded-lg shadow-lg p-6 text-gray-800">
