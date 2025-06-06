@@ -1,97 +1,93 @@
-import React, { useState, useMemo, useEffect } from 'react';
-import { useSearchParams } from 'react-router-dom';
-import { Search, CheckCircle2 } from 'lucide-react';
-import * as ScrollArea from '@radix-ui/react-scroll-area';
-import { Card, CardContent } from '../components/ui/Card';
-import SearchInput from '../components/ui/SearchInput';
-import serviceCategories from '../data/service_categories.json';
-import services from '../data/services.json';
-import { formatDate } from '../lib/utils';
+import React, { useState, useMemo, useEffect } from 'react'
+import { useSearchParams } from 'react-router-dom'
+import { Search, CheckCircle2 } from 'lucide-react'
+import * as ScrollArea from '@radix-ui/react-scroll-area'
+import { Card, CardContent } from '../../components/ui/Card'
+import SearchInput from '../../components/ui/SearchInput'
+import serviceCategories from '../../data/service_categories.json'
+import services from '../../data/services.json'
+import { formatDate } from '../../lib/utils'
 
-const ITEMS_PER_PAGE = 12;
+const ITEMS_PER_PAGE = 12
 
 const ServicesPage: React.FC = () => {
-  const [searchParams, setSearchParams] = useSearchParams();
-  const [searchQuery, setSearchQuery] = useState('');
-  const [selectedCategory, setSelectedCategory] = useState('all');
-  const [selectedSubcategory, setSelectedSubcategory] = useState('all');
-  const [currentPage, setCurrentPage] = useState(1);
+  const [searchParams, setSearchParams] = useSearchParams()
+  const [searchQuery, setSearchQuery] = useState('')
+  const [selectedCategory, setSelectedCategory] = useState('all')
+  const [selectedSubcategory, setSelectedSubcategory] = useState('all')
+  const [currentPage, setCurrentPage] = useState(1)
 
   // Set initial category and subcategory from URL params
   useEffect(() => {
-    const categoryParam = searchParams.get('category');
-    const subcategoryParam = searchParams.get('subcategory');
-    
+    const categoryParam = searchParams.get('category')
+    const subcategoryParam = searchParams.get('subcategory')
+
     if (categoryParam) {
-      setSelectedCategory(categoryParam);
+      setSelectedCategory(categoryParam)
     }
     if (subcategoryParam) {
-      setSelectedSubcategory(subcategoryParam);
+      setSelectedSubcategory(subcategoryParam)
     }
-  }, [searchParams]);
+  }, [searchParams])
 
   const filteredServices = useMemo(() => {
-    let filtered = services;
+    let filtered = services
 
     if (searchQuery) {
-      const query = searchQuery.toLowerCase();
+      const query = searchQuery.toLowerCase()
       filtered = filtered.filter(
-        service =>
+        (service) =>
           service.service.toLowerCase().includes(query) ||
           service.category.toLowerCase().includes(query) ||
           service.subcategory.toLowerCase().includes(query)
-      );
+      )
     }
 
     if (selectedCategory !== 'all') {
       filtered = filtered.filter(
-        service => service.category === selectedCategory
-      );
+        (service) => service.category === selectedCategory
+      )
 
       if (selectedSubcategory !== 'all') {
         filtered = filtered.filter(
-          service => service.subcategory === selectedSubcategory
-        );
+          (service) => service.subcategory === selectedSubcategory
+        )
       }
     }
 
-    return filtered;
-  }, [searchQuery, selectedCategory, selectedSubcategory]);
+    return filtered
+  }, [searchQuery, selectedCategory, selectedSubcategory])
 
   const paginatedServices = filteredServices.slice(
     (currentPage - 1) * ITEMS_PER_PAGE,
     currentPage * ITEMS_PER_PAGE
-  );
+  )
 
   const handleSearch = (query: string) => {
-    setSearchQuery(query);
-    setCurrentPage(1);
-  };
+    setSearchQuery(query)
+    setCurrentPage(1)
+  }
 
   const handleCategoryChange = (category: string) => {
-    setSelectedCategory(category);
-    setSelectedSubcategory('all');
-    setCurrentPage(1);
-    setSearchParams(
-      category === 'all' 
-        ? {} 
-        : { category }
-    );
-  };
+    setSelectedCategory(category)
+    setSelectedSubcategory('all')
+    setCurrentPage(1)
+    setSearchParams(category === 'all' ? {} : { category })
+  }
 
   const handleSubcategoryChange = (subcategory: string) => {
-    setSelectedSubcategory(subcategory);
-    setCurrentPage(1);
+    setSelectedSubcategory(subcategory)
+    setCurrentPage(1)
     setSearchParams(
       subcategory === 'all'
         ? { category: selectedCategory }
         : { category: selectedCategory, subcategory }
-    );
-  };
+    )
+  }
 
   const currentCategoryData = serviceCategories.categories.find(
-    cat => cat.category === selectedCategory
-  );
+    (cat) => cat.category === selectedCategory
+  )
 
   return (
     <div className="min-h-screen bg-gray-50">
@@ -102,8 +98,8 @@ const ServicesPage: React.FC = () => {
             Government Services
           </h1>
           <p className="text-lg text-gray-600 max-w-2xl mx-auto">
-            Access official government services quickly and easily.
-            Find what you need for citizenship, business, education, and more.
+            Access official government services quickly and easily. Find what
+            you need for citizenship, business, education, and more.
           </p>
         </div>
 
@@ -138,7 +134,9 @@ const ServicesPage: React.FC = () => {
                     {serviceCategories.categories.map((category) => (
                       <div key={category.category}>
                         <button
-                          onClick={() => handleCategoryChange(category.category)}
+                          onClick={() =>
+                            handleCategoryChange(category.category)
+                          }
                           className={`w-full text-left px-3 py-2 rounded-md text-sm transition-colors ${
                             selectedCategory === category.category
                               ? 'bg-primary-50 text-primary-600 font-medium'
@@ -147,13 +145,15 @@ const ServicesPage: React.FC = () => {
                         >
                           {category.category}
                         </button>
-                        
+
                         {selectedCategory === category.category && (
                           <div className="ml-4 space-y-1 mt-1">
                             {category.subcategories.map((subcategory) => (
                               <button
                                 key={subcategory}
-                                onClick={() => handleSubcategoryChange(subcategory)}
+                                onClick={() =>
+                                  handleSubcategoryChange(subcategory)
+                                }
                                 className={`w-full text-left px-3 py-1.5 rounded-md text-sm transition-colors ${
                                   selectedSubcategory === subcategory
                                     ? 'bg-primary-50 text-primary-600 font-medium'
@@ -223,7 +223,7 @@ const ServicesPage: React.FC = () => {
             {filteredServices.length > ITEMS_PER_PAGE * currentPage && (
               <div className="mt-8 text-center">
                 <button
-                  onClick={() => setCurrentPage(prev => prev + 1)}
+                  onClick={() => setCurrentPage((prev) => prev + 1)}
                   className="inline-flex items-center justify-center px-6 py-3 border border-transparent text-base font-medium rounded-md text-white bg-primary-600 hover:bg-primary-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-500"
                 >
                   Load More Services
@@ -234,7 +234,7 @@ const ServicesPage: React.FC = () => {
         </div>
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default ServicesPage;
+export default ServicesPage
