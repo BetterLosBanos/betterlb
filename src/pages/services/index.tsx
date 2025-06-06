@@ -5,8 +5,57 @@ import * as ScrollArea from '@radix-ui/react-scroll-area'
 import { Card, CardContent } from '../../components/ui/Card'
 import SearchInput from '../../components/ui/SearchInput'
 import serviceCategories from '../../data/service_categories.json'
-import services from '../../data/services.json'
 import { formatDate } from '../../lib/utils'
+
+// Import all service files
+import businessTradeServices from '../../data/services/business-trade.json'
+import certificatesIdsServices from '../../data/services/certificates-ids.json'
+import contributionsServices from '../../data/services/contributions.json'
+import disasterWeatherServices from '../../data/services/disaster-weather.json'
+import educationServices from '../../data/services/education.json'
+import employmentServices from '../../data/services/employment.json'
+import healthServices from '../../data/services/health.json'
+import housingServices from '../../data/services/housing.json'
+import passportTravelServices from '../../data/services/passport-travel.json'
+import socialServices from '../../data/services/social-services.json'
+import taxServices from '../../data/services/tax.json'
+import transportDrivingServices from '../../data/services/transport-driving.json'
+import uncategorizedServices from '../../data/services/uncategorized.json'
+
+// Combine all services
+const allServices = [
+  ...businessTradeServices,
+  ...certificatesIdsServices,
+  ...contributionsServices,
+  ...disasterWeatherServices,
+  ...educationServices,
+  ...employmentServices,
+  ...healthServices,
+  ...housingServices,
+  ...passportTravelServices,
+  ...socialServices,
+  ...taxServices,
+  ...transportDrivingServices,
+  ...uncategorizedServices
+]
+
+interface Service {
+  service: string
+  url: string
+  id: string
+  slug: string
+  published: boolean
+  category: {
+    name: string
+    slug: string
+  }
+  subcategory: {
+    name: string
+    slug: string
+  }
+  createdAt: string
+  updatedAt: string
+}
 
 interface Subcategory {
   name: string
@@ -58,26 +107,26 @@ export default function ServicesPage() {
   }, [selectedCategory, selectedSubcategorySlug])
 
   const filteredServices = useMemo(() => {
-    let filtered = services
+    let filtered = allServices
 
     if (searchQuery) {
       const query = searchQuery.toLowerCase()
       filtered = filtered.filter(
         (service) =>
           service.service.toLowerCase().includes(query) ||
-          service.category.toLowerCase().includes(query) ||
-          service.subcategory.toLowerCase().includes(query)
+          service.category.name.toLowerCase().includes(query) ||
+          service.subcategory.name.toLowerCase().includes(query)
       )
     }
 
     if (selectedCategory) {
       filtered = filtered.filter(
-        (service) => service.category === selectedCategory.category
+        (service) => service.category.slug === selectedCategory.slug
       )
 
       if (selectedSubcategory) {
         filtered = filtered.filter(
-          (service) => service.subcategory === selectedSubcategory.name
+          (service) => service.subcategory.slug === selectedSubcategory.slug
         )
       }
     }
@@ -307,37 +356,16 @@ export default function ServicesPage() {
                           </h3>
                           <div className="mt-2 flex flex-wrap gap-2">
                             <Link
-                              to={`/services?category=${
-                                (
-                                  serviceCategories.categories as Category[]
-                                ).find(
-                                  (cat) => cat.category === service.category
-                                )?.slug || ''
-                              }`}
+                              to={`/services?category=${service.category.slug}`}
                               className="inline-block px-2 py-1 text-xs font-medium rounded bg-primary-100 text-primary-800 hover:bg-primary-200 transition-colors"
                             >
-                              {service.category}
+                              {service.category.name}
                             </Link>
                             <Link
-                              to={`/services?category=${
-                                (
-                                  serviceCategories.categories as Category[]
-                                ).find(
-                                  (cat) => cat.category === service.category
-                                )?.slug || ''
-                              }&subcategory=${
-                                (serviceCategories.categories as Category[])
-                                  .find(
-                                    (cat) => cat.category === service.category
-                                  )
-                                  ?.subcategories.find(
-                                    (subcat) =>
-                                      subcat.name === service.subcategory
-                                  )?.slug || ''
-                              }`}
+                              to={`/services?category=${service.category.slug}&subcategory=${service.subcategory.slug}`}
                               className="inline-block px-2 py-1 text-xs font-medium rounded bg-gray-100 text-gray-800 hover:bg-gray-200 transition-colors"
                             >
-                              {service.subcategory}
+                              {service.subcategory.name}
                             </Link>
                           </div>
                         </div>
