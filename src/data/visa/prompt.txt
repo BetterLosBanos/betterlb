@@ -1,0 +1,1 @@
+Let's create a new page for travel/visa-types page displaying various visa types found in @immigration_services.txt and @philippines_visa_policy.json 
