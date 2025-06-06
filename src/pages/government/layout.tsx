@@ -34,12 +34,12 @@ const BranchCard: React.FC<BranchCardProps> = ({
     to={path}
     className={`flex flex-col h-full bg-white border rounded-lg shadow-sm hover:shadow-md transition-shadow overflow-hidden`}
   >
-    <div className={`p-4 ${color} text-white flex items-center`}>
-      <div className="mr-3">{icon}</div>
-      <h3 className="text-lg font-semibold">{title}</h3>
+    <div className={`p-3 md:p-4 ${color} text-white flex items-center`}>
+      <div className="mr-2 md:mr-3">{icon}</div>
+      <h3 className="text-base md:text-lg font-semibold">{title}</h3>
     </div>
-    <div className="p-4 flex-grow">
-      <p className="text-gray-600 text-sm">{description}</p>
+    <div className="p-3 md:p-4 flex-grow">
+      <p className="text-xs md:text-sm text-gray-600">{description}</p>
     </div>
   </Link>
 )
@@ -117,37 +117,37 @@ export default function GovernmentLayout({ children }: GovernmentLayoutProps) {
     currentPath === '/government' || currentPath === '/government/'
 
   return (
-    <div className="container mx-auto">
-      <div className="px-8 py-12 text-center flex flex-col justify-center">
-        <h2 className="text-4xl font-bold text-gray-800 mb-4">
+    <div className="container mx-auto px-4 md:px-0">
+      <div className="py-8 md:py-12 text-center flex flex-col justify-center">
+        <h2 className="text-3xl md:text-4xl font-bold text-gray-800 mb-4">
           The Philippine Government Directory
         </h2>
-        <p className="text-gray-600">
+        <p className="text-sm md:text-base text-gray-600">
           Explore the different branches and agencies of the Philippine
           government
         </p>
       </div>
 
       {/* Card Tabs Navigation */}
-      <div className="mb-12 overflow-x-auto flex justify-center">
-        <div className="grid grid-cols-3 gap-2">
+      <div className="mb-8 md:mb-12 overflow-x-auto">
+        <div className="inline-grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3 min-w-full md:min-w-0 px-4">
           {branches.map((branch) => {
             const isActive = currentPath.includes(branch.path)
             return (
               <Link
                 key={branch.path}
                 to={branch.path}
-                className={`flex flex-col px-4 py-4 xrounded-md transition-all rounded-md shadow-sm ${
+                className={`flex flex-col px-3 md:px-4 py-3 md:py-4 transition-all rounded-md shadow-sm ${
                   isActive
                     ? `${branch.color} text-white`
                     : `bg-white border ${branch.textColor} ${branch.hoverColor} hover:text-white`
                 }`}
               >
                 <div className="flex items-center gap-1 mb-1">
-                  <div className="mr-2 text-xs">{branch.icon}</div>
-                  <span className="font-medium text-sm">{branch.title}</span>
+                  <div className="mr-2 text-xs md:text-sm">{branch.icon}</div>
+                  <span className="font-medium text-sm md:text-base">{branch.title}</span>
                 </div>
-                <div className="text-xs text-gray-800">
+                <div className="text-xs md:text-sm text-gray-800">
                   {branch.description}
                 </div>
               </Link>
@@ -157,18 +157,18 @@ export default function GovernmentLayout({ children }: GovernmentLayoutProps) {
       </div>
 
       {/* Main Content */}
-      <div className="">
+      <div className="px-4 md:px-0 pb-12">
         {isMainPage ? (
           <div className="space-y-6">
             <div>
-              <h1 className="text-2xl font-bold mb-2">Philippine Government</h1>
-              <p className="text-gray-600">
+              <h1 className="text-xl md:text-2xl font-bold mb-2">Philippine Government</h1>
+              <p className="text-sm md:text-base text-gray-600">
                 Explore the different branches and agencies of the Philippine
                 government
               </p>
             </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6">
               {branches.map((branch) => (
                 <BranchCard
                   key={branch.path}
