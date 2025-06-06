@@ -37,7 +37,10 @@ const ServicesSection: React.FC = () => {
   }
 
   // Show only first 12 categories
-  const displayedCategories = serviceCategories.categories.slice(0, 12) as Category[]
+  const displayedCategories = serviceCategories.categories.slice(
+    0,
+    12
+  ) as Category[]
 
   return (
     <section className="py-12 bg-white">
@@ -52,7 +55,7 @@ const ServicesSection: React.FC = () => {
           </p>
         </div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
           {displayedCategories.map((category) => (
             <Card
               key={category.slug}
@@ -71,7 +74,7 @@ const ServicesSection: React.FC = () => {
                 </div>
 
                 <ul className="space-y-2 mb-6 flex-grow">
-                  {category.subcategories.map((subcategory) => (
+                  {category.subcategories.slice(0, 3).map((subcategory) => (
                     <li key={subcategory.slug}>
                       <Link
                         to={`/services?category=${category.slug}&subcategory=${subcategory.slug}`}

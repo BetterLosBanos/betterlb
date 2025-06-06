@@ -27,17 +27,31 @@ const AboutPage: React.FC = () => {
                   </a>
                   , presents numerous challenges for citizens:
                 </p>
-                <ul className="list-disc pl-6 mb-6 text-gray-700">
-                  <li>
-                    The main Gov.ph website is outdated and hasn't been updated
-                    for a long time
+                <ul className="list-disc pl-6 mb-6 text-gray-700 leading-relaxed">
+                  <li className="mb-2">
+                    It would benefit from regular content updates to ensure
+                    citizens have access to the most current information and
+                    services.
                   </li>
-                  <li>Full of broken links and difficult navigation paths</li>
-                  <li>Inconsistent formatting and design across pages</li>
-                  <li>Poor user experience and accessibility issues</li>
-                  <li>
-                    Similar problems exist across most government agency
-                    websites
+                  <li className="mb-2">
+                    There's an opportunity to improve user navigation by
+                    reviewing and updating links, as well as streamlining
+                    pathways to help visitors find what they need more easily.
+                  </li>
+                  <li className="mb-2">
+                    Implementing consistent design standards and formatting
+                    across all pages could create a more cohesive and
+                    professional user experience.
+                  </li>
+                  <li className="mb-2">
+                    Enhancing accessibility features and overall user experience
+                    would make government services more inclusive and
+                    user-friendly for all citizens.
+                  </li>
+                  <li className="mb-2">
+                    These improvements could serve as a model for other
+                    government agency websites, creating a more unified and
+                    effective digital government presence.
                   </li>
                 </ul>
                 <p className="text-gray-700">
@@ -57,8 +71,8 @@ const AboutPage: React.FC = () => {
                 <p className="mb-4 text-gray-700">Our goals include:</p>
                 <ul className="list-disc pl-6 mb-6 text-gray-700">
                   <li>
-                    Building a proper national website that reflects Filipino
-                    values and culture
+                    Building a volunteer-run national website that reflects
+                    Filipino values and culture
                   </li>
                   <li>
                     Creating intuitive navigation and search functionality
