@@ -5,6 +5,7 @@
     "id": "cfb2333a-eb21-4929-952c-b2d189e05d2b",
     "slug": "apply-for-a-trademark-online",
     "published": true,
+    "featured": false,
     "category": {
       "name": "Business and Trade",
       "slug": "business-trade"
@@ -22,6 +23,7 @@
     "id": "58ee4717-63c3-4874-940e-67e89f2f20a4",
     "slug": "apply-for-a-utility-model",
     "published": true,
+    "featured": false,
     "category": {
       "name": "Business and Trade",
       "slug": "business-trade"
@@ -39,6 +41,7 @@
     "id": "68bc28c0-d8ed-4215-8a21-40207196eacc",
     "slug": "apply-for-ddb-certification-non-controlled-and-exemption-with-controlled-chemicals",
     "published": true,
+    "featured": false,
     "category": {
       "name": "Business and Trade",
       "slug": "business-trade"
@@ -56,6 +59,7 @@
     "id": "bc3024a5-e15d-4680-94b8-e0dc0e02a952",
     "slug": "request-for-a-grant-of-a-philippine-patent",
     "published": true,
+    "featured": false,
     "category": {
       "name": "Business and Trade",
       "slug": "business-trade"
@@ -73,6 +77,7 @@
     "id": "2d328ff9-36f7-4367-88c6-b8d375758008",
     "slug": "search-trademark-information",
     "published": true,
+    "featured": false,
     "category": {
       "name": "Business and Trade",
       "slug": "business-trade"
@@ -90,6 +95,7 @@
     "id": "236d2732-4f61-4150-91bb-517eeef57a28",
     "slug": "calculate-registration-fee-of-stock-corporation",
     "published": true,
+    "featured": false,
     "category": {
       "name": "Business and Trade",
       "slug": "business-trade"
@@ -107,6 +113,7 @@
     "id": "04e2b17b-a3cf-4814-8209-06467e7088e1",
     "slug": "cancel-your-application-for-business-name-registration",
     "published": true,
+    "featured": false,
     "category": {
       "name": "Business and Trade",
       "slug": "business-trade"
@@ -124,6 +131,7 @@
     "id": "94c1e669-d8a2-4895-a6fe-da89960fcc08",
     "slug": "register-a-sole-proprietorship-business",
     "published": true,
+    "featured": false,
     "category": {
       "name": "Business and Trade",
       "slug": "business-trade"
@@ -141,6 +149,7 @@
     "id": "738774b6-d115-46c3-af39-a6c27cb792f2",
     "slug": "request-for-renewal-of-business-name",
     "published": true,
+    "featured": false,
     "category": {
       "name": "Business and Trade",
       "slug": "business-trade"
@@ -158,6 +167,7 @@
     "id": "84b06589-b11e-461d-8bd9-9187599a9d9e",
     "slug": "request-securing-copies-of-corporate-and-partnership-documents",
     "published": true,
+    "featured": false,
     "category": {
       "name": "Business and Trade",
       "slug": "business-trade"
@@ -175,6 +185,7 @@
     "id": "6af6107c-1ba8-46b5-ad25-a26de9eaf5f2",
     "slug": "check-status-of-your-requested-documents-from-sec",
     "published": true,
+    "featured": false,
     "category": {
       "name": "Business and Trade",
       "slug": "business-trade"
@@ -192,6 +203,7 @@
     "id": "1a1dc798-a76f-4b00-88c5-49a7d3ad39c4",
     "slug": "submit-your-companys-general-information-sheet-andor-audited-financial-statements-online-to-sec",
     "published": true,
+    "featured": false,
     "category": {
       "name": "Business and Trade",
       "slug": "business-trade"
@@ -209,6 +221,7 @@
     "id": "97ba2171-c0ae-4e67-90c8-dec9793b668c",
     "slug": "update-information-of-your-application-for-a-business-name",
     "published": true,
+    "featured": false,
     "category": {
       "name": "Business and Trade",
       "slug": "business-trade"
@@ -226,6 +239,7 @@
     "id": "f94add98-a78c-435f-9552-a181cfaeb43d",
     "slug": "file-complaints-on-consumer-affair-service",
     "published": true,
+    "featured": false,
     "category": {
       "name": "Business and Trade",
       "slug": "business-trade"
@@ -243,6 +257,7 @@
     "id": "79002068-fbf9-4427-a7c0-f20adf26fd6f",
     "slug": "know-more-about-business-or-investment-related-assistance",
     "published": true,
+    "featured": false,
     "category": {
       "name": "Business and Trade",
       "slug": "business-trade"
@@ -260,6 +275,7 @@
     "id": "292e11b1-af11-4662-a209-d9a8be614115",
     "slug": "apply-online-for-advance-rulings-on-tariff-classification-and-tariff-classification-dispute-rulings",
     "published": true,
+    "featured": false,
     "category": {
       "name": "Business and Trade",
       "slug": "business-trade"
@@ -277,6 +293,7 @@
     "id": "2f799612-d354-4606-a239-999dbf1e9530",
     "slug": "check-the-prevailing-prices-of-basic-necessities-and-prime-commodities-epresyo",
     "published": true,
+    "featured": false,
     "category": {
       "name": "Business and Trade",
       "slug": "business-trade"
@@ -294,6 +311,7 @@
     "id": "6b235845-b5a0-4fb0-b4aa-602f5983e6cc",
     "slug": "know-the-buying-and-selling-prices-of-rice-and-corn",
     "published": true,
+    "featured": false,
     "category": {
       "name": "Business and Trade",
       "slug": "business-trade"
@@ -311,6 +329,7 @@
     "id": "d1c49abc-dcf9-4e61-9398-bfb47befec82",
     "slug": "apply-for-certificate-of-conformity",
     "published": true,
+    "featured": false,
     "category": {
       "name": "Business and Trade",
       "slug": "business-trade"
@@ -328,6 +347,7 @@
     "id": "04d94d78-72cf-4c6e-b1f6-667359a005a9",
     "slug": "check-status-of-ecc-application-online",
     "published": true,
+    "featured": false,
     "category": {
       "name": "Business and Trade",
       "slug": "business-trade"
@@ -345,6 +365,7 @@
     "id": "df9be184-9a30-46fa-87dc-6115ed02ec3e",
     "slug": "register-your-business-online-with-mtrcb-for-analog-television-station",
     "published": true,
+    "featured": false,
     "category": {
       "name": "Business and Trade",
       "slug": "business-trade"
@@ -362,6 +383,7 @@
     "id": "4a436eb0-8b1a-4570-9b45-702c5c01dfb5",
     "slug": "register-your-business-online-with-mtrcb-for-cable-tv",
     "published": true,
+    "featured": false,
     "category": {
       "name": "Business and Trade",
       "slug": "business-trade"
@@ -379,6 +401,7 @@
     "id": "650482d5-b6c9-43ab-b47c-e0104defaf73",
     "slug": "register-your-business-online-with-mtrcb-for-dtt-digital-terrestrial-television",
     "published": true,
+    "featured": false,
     "category": {
       "name": "Business and Trade",
       "slug": "business-trade"
@@ -396,6 +419,7 @@
     "id": "192a7a44-9082-4a75-a972-2aa148e8bb6f",
     "slug": "register-your-business-online-with-mtrcb-for-theatercinema",
     "published": true,
+    "featured": false,
     "category": {
       "name": "Business and Trade",
       "slug": "business-trade"
@@ -413,6 +437,7 @@
     "id": "0653afb9-dc97-4cbf-b992-0f80ac3ba778",
     "slug": "apply-for-erc-certificate-of-compliance",
     "published": true,
+    "featured": false,
     "category": {
       "name": "Business and Trade",
       "slug": "business-trade"
@@ -430,6 +455,7 @@
     "id": "53613cc0-81d6-4a86-90d8-764ee5d77c75",
     "slug": "search-patent-availability",
     "published": true,
+    "featured": false,
     "category": {
       "name": "Business and Trade",
       "slug": "business-trade"
@@ -447,6 +473,7 @@
     "id": "32dddf38-23aa-4a36-85c4-27dbe974a3e4",
     "slug": "file-for-ipophl-industiral-design",
     "published": true,
+    "featured": false,
     "category": {
       "name": "Business and Trade",
       "slug": "business-trade"
@@ -464,6 +491,7 @@
     "id": "4232285a-d2de-40d3-ba75-5c1043aa98fe",
     "slug": "apply-for-non-cites-wildlife-products-export-biodiversity-management",
     "published": true,
+    "featured": false,
     "category": {
       "name": "Business and Trade",
       "slug": "business-trade"
@@ -481,6 +509,7 @@
     "id": "cdbcc847-0dad-4ce6-a363-330f48d2c84d",
     "slug": "apply-for-non-cites-wildlife-products-re-export-biodiversity-management",
     "published": true,
+    "featured": false,
     "category": {
       "name": "Business and Trade",
       "slug": "business-trade"
@@ -498,6 +527,7 @@
     "id": "6372d430-1fcd-485f-868b-388bcc388d21",
     "slug": "apply-for-non-cites-wildlife-products-import-biodiversity-management",
     "published": true,
+    "featured": false,
     "category": {
       "name": "Business and Trade",
       "slug": "business-trade"
@@ -515,6 +545,7 @@
     "id": "e52d7382-7f67-4a2b-a0a9-f7dd05bf99a3",
     "slug": "register-a-business-name",
     "published": true,
+    "featured": false,
     "category": {
       "name": "Business and Trade",
       "slug": "business-trade"
@@ -532,6 +563,7 @@
     "id": "a933fc8e-cf74-4e3b-8aa5-c9886dc5840f",
     "slug": "request-a-business-name-certificate",
     "published": true,
+    "featured": false,
     "category": {
       "name": "Business and Trade",
       "slug": "business-trade"
@@ -549,6 +581,7 @@
     "id": "9ce56cf4-a46f-473f-9f0c-db4ca2a269ac",
     "slug": "search-for-tariff",
     "published": true,
+    "featured": false,
     "category": {
       "name": "Business and Trade",
       "slug": "business-trade"
@@ -566,6 +599,7 @@
     "id": "b1f5c170-3485-408f-b962-41502833f38d",
     "slug": "apply-for-dbp-msme-loan",
     "published": true,
+    "featured": false,
     "category": {
       "name": "Business and Trade",
       "slug": "business-trade"
@@ -583,6 +617,7 @@
     "id": "1869dd35-7719-44e3-8c03-45025b06411d",
     "slug": "apply-for-registration-as-ecozone-enterprise-or-ecozone-developer",
     "published": true,
+    "featured": false,
     "category": {
       "name": "Business and Trade",
       "slug": "business-trade"
@@ -600,6 +635,7 @@
     "id": "be8adae2-65d9-4ffc-8998-41e1d7823750",
     "slug": "check-status-of-cnc-application-online",
     "published": true,
+    "featured": false,
     "category": {
       "name": "Business and Trade",
       "slug": "business-trade"
@@ -617,6 +653,7 @@
     "id": "6e7605a8-805f-4ea2-8adb-59a639027432",
     "slug": "apply-for-environmental-laboratory-recognition",
     "published": true,
+    "featured": false,
     "category": {
       "name": "Business and Trade",
       "slug": "business-trade"
@@ -634,6 +671,7 @@
     "id": "8c385bb2-9ef6-44a1-be1f-539105f31153",
     "slug": "apply-for-importer-and-importation-clearance-for-recyclable-materials-containing-hazardous-substances",
     "published": true,
+    "featured": false,
     "category": {
       "name": "Business and Trade",
       "slug": "business-trade"
@@ -651,6 +689,7 @@
     "id": "22049d1c-84d3-406b-a2ad-8f1e02ed13ac",
     "slug": "apply-for-pre-manufacture-and-pre-importation-notification-certificate",
     "published": true,
+    "featured": false,
     "category": {
       "name": "Business and Trade",
       "slug": "business-trade"
@@ -668,6 +707,7 @@
     "id": "a136711d-7655-46a5-a42b-1b44a7379533",
     "slug": "apply-for-priority-chemical-list-compliance-certificate",
     "published": true,
+    "featured": false,
     "category": {
       "name": "Business and Trade",
       "slug": "business-trade"
@@ -685,6 +725,7 @@
     "id": "a4cb5081-3943-40db-b7aa-b04f7d981e19",
     "slug": "apply-for-waste-water-discharge-permit",
     "published": true,
+    "featured": false,
     "category": {
       "name": "Business and Trade",
       "slug": "business-trade"

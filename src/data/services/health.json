@@ -5,6 +5,7 @@
     "id": "d11ca0cf-f771-4316-94d5-8d4a99c466b7",
     "slug": "validate-the-guarantee-letter-issued-by-the-pcso",
     "published": true,
+    "featured": false,
     "category": {
       "name": "Health",
       "slug": "health"
@@ -22,6 +23,7 @@
     "id": "77e064ec-f4a1-49f6-b4ba-df0535712c86",
     "slug": "look-for-dengue-information",
     "published": true,
+    "featured": false,
     "category": {
       "name": "Health",
       "slug": "health"
@@ -39,6 +41,7 @@
     "id": "88a38808-151b-4248-9747-7d36ecafcb00",
     "slug": "access-health-and-health-related-research-information",
     "published": true,
+    "featured": false,
     "category": {
       "name": "Health",
       "slug": "health"
@@ -56,6 +59,7 @@
     "id": "64861885-5ed7-4324-8ec7-37ef954b3a6d",
     "slug": "get-health-research-ethics-clearance",
     "published": true,
+    "featured": false,
     "category": {
       "name": "Health",
       "slug": "health"
@@ -73,6 +77,7 @@
     "id": "0e30d0a3-4b7c-4dca-adf2-26d38a572d23",
     "slug": "look-for-newly-approved-health-researches-from-year-2012-onwards",
     "published": true,
+    "featured": false,
     "category": {
       "name": "Health",
       "slug": "health"
@@ -90,6 +95,7 @@
     "id": "49ab9f06-d59f-4960-988a-cc12427a25ff",
     "slug": "search-for-completed-national-health-researches",
     "published": true,
+    "featured": false,
     "category": {
       "name": "Health",
       "slug": "health"
@@ -107,6 +113,7 @@
     "id": "448fe3f4-7273-495b-83e2-7634264ab332",
     "slug": "schedule-for-an-individual-medical-assistance-program-imap-online-appointment",
     "published": true,
+    "featured": false,
     "category": {
       "name": "Health",
       "slug": "health"
@@ -124,6 +131,7 @@
     "id": "5a9c1559-74ed-4649-a733-890f26e00ba9",
     "slug": "check-responsible-parenthood-and-family-planning-program",
     "published": true,
+    "featured": false,
     "category": {
       "name": "Health",
       "slug": "health"
@@ -141,6 +149,7 @@
     "id": "6374ef37-53e2-4830-a875-c30ce81c9ff6",
     "slug": "register-to-submit-health-research-proposals",
     "published": true,
+    "featured": false,
     "category": {
       "name": "Health",
       "slug": "health"

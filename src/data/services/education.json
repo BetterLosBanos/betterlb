@@ -5,6 +5,7 @@
     "id": "48ed16bd-dc88-4b90-a383-890caa7402b8",
     "slug": "apply-for-ched-financial-assistance",
     "published": true,
+    "featured": false,
     "category": {
       "name": "Education",
       "slug": "education"
@@ -22,6 +23,7 @@
     "id": "9bf9ac39-0d9d-49ca-8332-b67c1838cb69",
     "slug": "apply-to-the-balik-scientist-program-bsp",
     "published": true,
+    "featured": false,
     "category": {
       "name": "Education",
       "slug": "education"
@@ -39,6 +41,7 @@
     "id": "d3f0ece7-75eb-4692-8214-ef7d0e3d6946",
     "slug": "apply-for-pchrd-research-grant",
     "published": true,
+    "featured": false,
     "category": {
       "name": "Education",
       "slug": "education"
@@ -56,6 +59,7 @@
     "id": "fbba6f06-25e8-49c9-9e83-9de02c7e31b9",
     "slug": "apply-for-ched-foreign-scholarship-and-training-programs",
     "published": true,
+    "featured": false,
     "category": {
       "name": "Education",
       "slug": "education"
@@ -73,6 +77,7 @@
     "id": "b917ad09-3c29-43c2-9648-da1b645d6b2d",
     "slug": "register-for-a-coa-training",
     "published": true,
+    "featured": false,
     "category": {
       "name": "Education",
       "slug": "education"
@@ -90,6 +95,7 @@
     "id": "4d14d5da-ac0b-4833-a4f3-2defaa63bc2d",
     "slug": "apply-for-tesda-online-program",
     "published": true,
+    "featured": false,
     "category": {
       "name": "Education",
       "slug": "education"
@@ -107,6 +113,7 @@
     "id": "f127deec-ea3e-4a3a-b9bc-8c202f379bb2",
     "slug": "register-online-for-2019-psrti-regular-training-courses",
     "published": true,
+    "featured": false,
     "category": {
       "name": "Education",
       "slug": "education"
@@ -124,6 +131,7 @@
     "id": "885b16fb-47f6-419b-8798-633d7808d1be",
     "slug": "apply-for-da-elearning-certification",
     "published": true,
+    "featured": false,
     "category": {
       "name": "Education",
       "slug": "education"
@@ -141,6 +149,7 @@
     "id": "d0a43a7d-7d29-40f6-b5dc-633c97b9947d",
     "slug": "apply-for-tesda-scholarship",
     "published": true,
+    "featured": false,
     "category": {
       "name": "Education",
       "slug": "education"
@@ -158,6 +167,7 @@
     "id": "ce5e2d38-33d4-419b-9f8b-c16f714332d3",
     "slug": "apply-online-for-shs-voucher-program-for-school-year-2019-2020",
     "published": true,
+    "featured": false,
     "category": {
       "name": "Education",
       "slug": "education"

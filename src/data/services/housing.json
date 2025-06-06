@@ -5,6 +5,7 @@
     "id": "33230a27-1335-4b29-bb1a-71a4fcd55b32",
     "slug": "apply-for-pag-ibig-conversion-to-full-risk-based-pricing-re-pricing",
     "published": true,
+    "featured": false,
     "category": {
       "name": "Housing",
       "slug": "housing"
@@ -22,6 +23,7 @@
     "id": "faac15a2-6153-439c-9470-7f6cd1a97701",
     "slug": "apply-for-pag-ibig-housing-loan",
     "published": true,
+    "featured": false,
     "category": {
       "name": "Housing",
       "slug": "housing"
@@ -39,6 +41,7 @@
     "id": "70e1b64f-0fc1-4546-ac63-b89f5c1ccac9",
     "slug": "apply-for-pag-ibig-housing-loan-on-behalf-of-the-prospective-borrowers",
     "published": true,
+    "featured": false,
     "category": {
       "name": "Housing",
       "slug": "housing"
@@ -56,6 +59,7 @@
     "id": "56ec2ecf-91a4-4e69-82a0-3fa39e5b39f1",
     "slug": "check-pag-ibig-housing-loan-payments",
     "published": true,
+    "featured": false,
     "category": {
       "name": "Housing",
       "slug": "housing"
@@ -73,6 +77,7 @@
     "id": "afa09de7-b12b-41bd-b6e2-2f018771c226",
     "slug": "look-for-different-government-housing-programs",
     "published": true,
+    "featured": false,
     "category": {
       "name": "Housing",
       "slug": "housing"
@@ -90,6 +95,7 @@
     "id": "4f39d93f-70a4-41f7-b87f-05b471aed19c",
     "slug": "pay-pag-ibig-calamity-loan-online",
     "published": true,
+    "featured": false,
     "category": {
       "name": "Housing",
       "slug": "housing"
@@ -107,6 +113,7 @@
     "id": "7e96e670-976b-437d-9f1b-332565d35bb2",
     "slug": "pay-pag-ibig-housing-loan-online",
     "published": true,
+    "featured": false,
     "category": {
       "name": "Housing",
       "slug": "housing"
@@ -124,6 +131,7 @@
     "id": "4bffa1d7-b2b2-4262-ad15-d853b9806b2f",
     "slug": "pay-pag-ibig-housing-loan-processing-fee-online",
     "published": true,
+    "featured": false,
     "category": {
       "name": "Housing",
       "slug": "housing"
@@ -141,6 +149,7 @@
     "id": "2ae2126b-76ba-469a-9487-f1fb8ef301ca",
     "slug": "pay-pag-ibig-mp2-savings-voluntary-savings-online",
     "published": true,
+    "featured": false,
     "category": {
       "name": "Housing",
       "slug": "housing"
@@ -158,6 +167,7 @@
     "id": "21009162-d106-4c3b-87b2-a8fddae497ce",
     "slug": "pay-pag-ibig-multi-purpose-loan-online",
     "published": true,
+    "featured": false,
     "category": {
       "name": "Housing",
       "slug": "housing"
@@ -175,6 +185,7 @@
     "id": "05f5d7ff-0c7f-417d-b2ef-5e1fb874af43",
     "slug": "pay-pag-ibig-regular-savings-mandatory-contribution-online",
     "published": true,
+    "featured": false,
     "category": {
       "name": "Housing",
       "slug": "housing"
@@ -192,6 +203,7 @@
     "id": "dbdda242-8d08-4e2f-9fbf-f4dd01a5f264",
     "slug": "apply-as-developer-of-condominium-projects",
     "published": true,
+    "featured": false,
     "category": {
       "name": "Housing",
       "slug": "housing"
@@ -209,6 +221,7 @@
     "id": "67d8bc26-972c-4d6f-acae-a6beedb554d8",
     "slug": "know-your-right-as-buyer-of-subdivision-lot-or-condominium-unit",
     "published": true,
+    "featured": false,
     "category": {
       "name": "Housing",
       "slug": "housing"
@@ -226,6 +239,7 @@
     "id": "2842e0ed-4661-4dc8-aef4-9320c4af1d4c",
     "slug": "view-list-of-real-estate-brokerssalespersons",
     "published": true,
+    "featured": false,
     "category": {
       "name": "Housing",
       "slug": "housing"
@@ -243,6 +257,7 @@
     "id": "b7f0543c-fd88-439a-b3ee-e1e84dd4eb49",
     "slug": "compute-monthly-amortization",
     "published": true,
+    "featured": false,
     "category": {
       "name": "Housing",
       "slug": "housing"

@@ -5,6 +5,7 @@
     "id": "9c1a3f20-0729-409a-adc5-7fffb0379cfa",
     "slug": "calculate-possible-retirement-benefit-with-sss",
     "published": true,
+    "featured": false,
     "category": {
       "name": "Contributions",
       "slug": "contributions"
@@ -22,6 +23,7 @@
     "id": "e8a72d98-49a5-4d76-94a7-67f223e5a92a",
     "slug": "register-your-kasambahay-sss-form",
     "published": true,
+    "featured": false,
     "category": {
       "name": "Contributions",
       "slug": "contributions"
@@ -39,6 +41,7 @@
     "id": "fb5e4c0d-d70e-4e4c-a166-4a687c0bed46",
     "slug": "register-your-pag-ibig-members-information",
     "published": true,
+    "featured": false,
     "category": {
       "name": "Contributions",
       "slug": "contributions"
@@ -56,6 +59,7 @@
     "id": "55e1da50-dfb7-4835-b877-a82f9f877751",
     "slug": "submit-your-pag-ibig-monthly-remittance-esrs-online",
     "published": true,
+    "featured": false,
     "category": {
       "name": "Contributions",
       "slug": "contributions"
@@ -73,6 +77,7 @@
     "id": "53a49dd6-f25d-439a-9531-11c300800757",
     "slug": "update-sss-information",
     "published": true,
+    "featured": false,
     "category": {
       "name": "Contributions",
       "slug": "contributions"
@@ -90,6 +95,7 @@
     "id": "956f8318-5ef8-4f37-bba0-a8f50b3b7080",
     "slug": "view-your-gsis-membership-record",
     "published": true,
+    "featured": false,
     "category": {
       "name": "Contributions",
       "slug": "contributions"
@@ -107,6 +113,7 @@
     "id": "b135f92d-b632-458a-a232-0f07172da657",
     "slug": "submit-loan-collection-list-for-employers",
     "published": true,
+    "featured": false,
     "category": {
       "name": "Contributions",
       "slug": "contributions"
@@ -124,6 +131,7 @@
     "id": "b74a0ddb-d36c-4691-bd55-c120da866638",
     "slug": "report-philhealth-premium-contributions-of-your-employees",
     "published": true,
+    "featured": false,
     "category": {
       "name": "Contributions",
       "slug": "contributions"

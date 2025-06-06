@@ -5,6 +5,7 @@
     "id": "cd1fc9bf-8428-43e4-b1be-6775627ab8cc",
     "slug": "apply-for-bir-tax-clearance-certificate",
     "published": true,
+    "featured": false,
     "category": {
       "name": "Tax",
       "slug": "tax"
@@ -22,6 +23,7 @@
     "id": "3402681d-862c-4d58-a22e-755d3a11482d",
     "slug": "file-tax-returns-and-pay-taxes-online",
     "published": true,
+    "featured": false,
     "category": {
       "name": "Tax",
       "slug": "tax"
@@ -39,6 +41,7 @@
     "id": "387e8805-4277-4a21-bf1b-116bea0586cb",
     "slug": "register-for-a-taxpayer-identification-number-tin",
     "published": true,
+    "featured": false,
     "category": {
       "name": "Tax",
       "slug": "tax"
@@ -56,6 +59,7 @@
     "id": "370ebb7c-3e8e-432d-be2d-7fba9c8e6ed9",
     "slug": "report-gross-monthly-sales-of-business-taxpayers",
     "published": true,
+    "featured": false,
     "category": {
       "name": "Tax",
       "slug": "tax"
@@ -73,6 +77,7 @@
     "id": "8c624069-2710-4b6c-b2e0-247918a425e3",
     "slug": "apply-and-process-certification-of-electronic-tax-return-preparation-filing-andor-payment-solutions",
     "published": true,
+    "featured": false,
     "category": {
       "name": "Tax",
       "slug": "tax"
@@ -90,6 +95,7 @@
     "id": "dfbf89c9-eafe-484a-9390-79b92ddf3cf5",
     "slug": "submit-official-register-book-of-goods-and-products-subject-to-excise-tax",
     "published": true,
+    "featured": false,
     "category": {
       "name": "Tax",
       "slug": "tax"
@@ -107,6 +113,7 @@
     "id": "5dd583b8-f78a-405e-8322-05cf6e0bc80a",
     "slug": "file-tax-complaints",
     "published": true,
+    "featured": false,
     "category": {
       "name": "Tax",
       "slug": "tax"

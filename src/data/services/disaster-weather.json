@@ -5,6 +5,7 @@
     "id": "175c33be-c6f7-4c5a-8925-7e6bf615df03",
     "slug": "check-dswd-preparedness-response-online",
     "published": true,
+    "featured": false,
     "category": {
       "name": "Disaster and Weather",
       "slug": "disaster-weather"
@@ -22,6 +23,7 @@
     "id": "eccdcee8-4553-4d9e-94f1-e279c580f01a",
     "slug": "check-earthquake-information",
     "published": true,
+    "featured": false,
     "category": {
       "name": "Disaster and Weather",
       "slug": "disaster-weather"
@@ -39,6 +41,7 @@
     "id": "a6f16b68-c51c-4813-b15a-882b267a0c8a",
     "slug": "check-tsunami-advisory-and-warning",
     "published": true,
+    "featured": false,
     "category": {
       "name": "Disaster and Weather",
       "slug": "disaster-weather"
@@ -56,6 +59,7 @@
     "id": "5c7577f1-4759-4633-b379-f791defac724",
     "slug": "check-volcano-bulletins",
     "published": true,
+    "featured": false,
     "category": {
       "name": "Disaster and Weather",
       "slug": "disaster-weather"
@@ -73,6 +77,7 @@
     "id": "66ae31c6-c103-4b6b-bfe7-56d7d9faf760",
     "slug": "generate-initial-hazard-assessments-in-your-selected-location-for-seismic-volcanic-and-hydro-meteorological-hazards",
     "published": true,
+    "featured": false,
     "category": {
       "name": "Disaster and Weather",
       "slug": "disaster-weather"
@@ -90,6 +95,7 @@
     "id": "fec73404-9125-475b-ba30-037bb7f5006c",
     "slug": "generate-summaries-of-hazards-and-risk-assessment-and-perform-analysis-and-visualization-of-exposure-and-elements-at-risk-to-natural-hazards",
     "published": true,
+    "featured": false,
     "category": {
       "name": "Disaster and Weather",
       "slug": "disaster-weather"
@@ -107,6 +113,7 @@
     "id": "48424831-e361-4ac1-9a14-929e873fcba1",
     "slug": "access-weather-data-via-philsensors",
     "published": true,
+    "featured": false,
     "category": {
       "name": "Disaster and Weather",
       "slug": "disaster-weather"
@@ -124,6 +131,7 @@
     "id": "1efccadd-8e74-4085-9cbc-7064665994ba",
     "slug": "view-real-time-information-on-hazards-via-project-noah",
     "published": true,
+    "featured": false,
     "category": {
       "name": "Disaster and Weather",
       "slug": "disaster-weather"
@@ -141,6 +149,7 @@
     "id": "89667fdc-a69b-49a8-abdb-b5d146b5fdbb",
     "slug": "check-volcanic-eruptions-earthquakes-tsunami-and-other-related-geotectonic-phenomena",
     "published": true,
+    "featured": false,
     "category": {
       "name": "Disaster and Weather",
       "slug": "disaster-weather"

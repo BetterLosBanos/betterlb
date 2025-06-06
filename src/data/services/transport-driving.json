@@ -5,6 +5,7 @@
     "id": "76f903f1-459a-472e-ad6b-d4a474aaff7e",
     "slug": "apply-for-dbp-cruise-loan",
     "published": true,
+    "featured": false,
     "category": {
       "name": "Transport and Driving",
       "slug": "transport-driving"
@@ -22,6 +23,7 @@
     "id": "afe78506-7b96-487a-ac37-5e28b3523a0b",
     "slug": "get-a-drivers-license",
     "published": true,
+    "featured": false,
     "category": {
       "name": "Transport and Driving",
       "slug": "transport-driving"
@@ -39,6 +41,7 @@
     "id": "608751b3-2353-4485-978f-027a6c7c5f64",
     "slug": "renew-your-drivers-license",
     "published": true,
+    "featured": false,
     "category": {
       "name": "Transport and Driving",
       "slug": "transport-driving"
@@ -56,6 +59,7 @@
     "id": "2adc9acb-96b2-4627-8f13-10d008da1c52",
     "slug": "file-reports-on-motorists-and-road-concerns",
     "published": true,
+    "featured": false,
     "category": {
       "name": "Transport and Driving",
       "slug": "transport-driving"
@@ -73,6 +77,7 @@
     "id": "327c5ae2-1b1c-4227-9546-9e1967872ff8",
     "slug": "check-if-one-has-committed-a-traffic-violation",
     "published": true,
+    "featured": false,
     "category": {
       "name": "Transport and Driving",
       "slug": "transport-driving"

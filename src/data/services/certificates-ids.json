@@ -5,6 +5,7 @@
     "id": "97c671ff-7798-4416-a8a6-e9776d705797",
     "slug": "apply-for-dost-accreditation-and-certification",
     "published": true,
+    "featured": false,
     "category": {
       "name": "Certificates and IDs",
       "slug": "certificates-ids"
@@ -22,6 +23,7 @@
     "id": "e80122a2-42aa-455a-ad15-f348030c4aec",
     "slug": "avail-certification-of-science-and-technology-oriented-foundations",
     "published": true,
+    "featured": false,
     "category": {
       "name": "Certificates and IDs",
       "slug": "certificates-ids"
@@ -39,6 +41,7 @@
     "id": "3f6e4e39-1c64-471a-8a05-c79cb186325a",
     "slug": "request-a-birth-certificate-via-psa-serbilis",
     "published": true,
+    "featured": false,
     "category": {
       "name": "Certificates and IDs",
       "slug": "certificates-ids"
@@ -56,6 +59,7 @@
     "id": "24dd68a4-e1c2-495e-904a-cd72e7e616da",
     "slug": "request-a-birth-certificate-via-psahelplineph",
     "published": true,
+    "featured": false,
     "category": {
       "name": "Certificates and IDs",
       "slug": "certificates-ids"
@@ -73,6 +77,7 @@
     "id": "e4f3ea9f-8e61-4458-b746-f4b7537a47b1",
     "slug": "request-a-certificate-of-no-marriage-record-cenomar-via-psa-serbilis",
     "published": true,
+    "featured": false,
     "category": {
       "name": "Certificates and IDs",
       "slug": "certificates-ids"
@@ -90,6 +95,7 @@
     "id": "67202ef1-1cf4-4ef4-a5ce-daa2d967895c",
     "slug": "request-a-certificate-of-no-marriage-record-cenomar-via-psahelplineph",
     "published": true,
+    "featured": false,
     "category": {
       "name": "Certificates and IDs",
       "slug": "certificates-ids"
@@ -107,6 +113,7 @@
     "id": "637546d2-9265-43d3-a01a-7c26c1caf71b",
     "slug": "request-a-death-certificate-via-psahelplineph",
     "published": true,
+    "featured": false,
     "category": {
       "name": "Certificates and IDs",
       "slug": "certificates-ids"
@@ -124,6 +131,7 @@
     "id": "d8c9468a-66af-4194-8115-e31fe3689808",
     "slug": "request-a-marriage-certificate-via-psahelplineph",
     "published": true,
+    "featured": false,
     "category": {
       "name": "Certificates and IDs",
       "slug": "certificates-ids"
@@ -141,6 +149,7 @@
     "id": "5f4f4780-0f2b-4687-a0ab-8706550661ea",
     "slug": "apply-for-nbi-multipurpose-clearance",
     "published": true,
+    "featured": false,
     "category": {
       "name": "Certificates and IDs",
       "slug": "certificates-ids"
@@ -158,6 +167,7 @@
     "id": "361bf4c9-5792-46f3-a198-4dab1663ad22",
     "slug": "get-a-postal-id",
     "published": true,
+    "featured": false,
     "category": {
       "name": "Certificates and IDs",
       "slug": "certificates-ids"
@@ -175,6 +185,7 @@
     "id": "bf434e20-7943-4ff5-aee9-5935fc7ab0d7",
     "slug": "get-a-pwd-id",
     "published": true,
+    "featured": false,
     "category": {
       "name": "Certificates and IDs",
       "slug": "certificates-ids"
@@ -192,6 +203,7 @@
     "id": "4c153521-6115-41ef-ae0d-19264d004fa2",
     "slug": "get-a-umid-id",
     "published": true,
+    "featured": false,
     "category": {
       "name": "Certificates and IDs",
       "slug": "certificates-ids"
@@ -209,6 +221,7 @@
     "id": "7415d144-1f59-42a6-bd4a-73fd1f5fc839",
     "slug": "register-to-the-philippine-identification-system-philsys-or-national-id",
     "published": true,
+    "featured": false,
     "category": {
       "name": "Certificates and IDs",
       "slug": "certificates-ids"
@@ -226,6 +239,7 @@
     "id": "621d6a30-2250-4039-ab7b-a144d3103323",
     "slug": "renew-nbi-multipurpose-clearance",
     "published": true,
+    "featured": false,
     "category": {
       "name": "Certificates and IDs",
       "slug": "certificates-ids"
@@ -243,6 +257,7 @@
     "id": "f7653aa4-fb47-4608-b07c-4e4468329269",
     "slug": "register-as-an-overseas-voter",
     "published": true,
+    "featured": false,
     "category": {
       "name": "Certificates and IDs",
       "slug": "certificates-ids"
@@ -260,6 +275,7 @@
     "id": "dd7ca5bf-83a2-4297-8372-28098a54673c",
     "slug": "know-how-to-correct-errors-in-your-civil-registry-documents",
     "published": true,
+    "featured": false,
     "category": {
       "name": "Certificates and IDs",
       "slug": "certificates-ids"
@@ -277,6 +293,7 @@
     "id": "942f1e2e-64c7-48da-b961-3a16494a020c",
     "slug": "get-a-solo-parent-id",
     "published": true,
+    "featured": false,
     "category": {
       "name": "Certificates and IDs",
       "slug": "certificates-ids"

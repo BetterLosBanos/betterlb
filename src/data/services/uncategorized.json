@@ -5,6 +5,7 @@
     "id": "9d6a49bc-a487-4f97-afc6-b459e9301a9b",
     "slug": "know-more-about-public-private-partnership-opportunities",
     "published": true,
+    "featured": false,
     "category": {
       "name": "Uncategorized",
       "slug": "uncategorized"
@@ -22,6 +23,7 @@
     "id": "d0d7029d-c8c7-483b-8540-6d68c7420111",
     "slug": "track-philpost-package",
     "published": true,
+    "featured": false,
     "category": {
       "name": "Uncategorized",
       "slug": "uncategorized"
@@ -39,6 +41,7 @@
     "id": "c6d55f86-1764-4bd0-9ec3-ae5450ce4ac6",
     "slug": "sign-in-for-dbp-digital-banking-portal",
     "published": true,
+    "featured": false,
     "category": {
       "name": "Uncategorized",
       "slug": "uncategorized"
@@ -56,6 +59,7 @@
     "id": "4a5ab5a1-d638-4ed4-bb3d-71b217609b2a",
     "slug": "request-and-access-government-records",
     "published": true,
+    "featured": false,
     "category": {
       "name": "Uncategorized",
       "slug": "uncategorized"
@@ -73,6 +77,7 @@
     "id": "4fdb2ede-ed6e-4632-b4f7-145a953829cf",
     "slug": "view-postal-id-privileges",
     "published": true,
+    "featured": false,
     "category": {
       "name": "Uncategorized",
       "slug": "uncategorized"
@@ -90,6 +95,7 @@
     "id": "64e81d06-e909-4ff4-b2d2-c6d990f3421e",
     "slug": "apply-for-lgu-loan",
     "published": true,
+    "featured": false,
     "category": {
       "name": "Uncategorized",
       "slug": "uncategorized"
@@ -107,6 +113,7 @@
     "id": "a0ba7540-17d0-4d04-8bed-a392f86702df",
     "slug": "seek-assistance-or-information-from-the-dilg",
     "published": true,
+    "featured": false,
     "category": {
       "name": "Uncategorized",
       "slug": "uncategorized"
@@ -124,6 +131,7 @@
     "id": "04f6253e-48f0-4402-8c54-3d610d958d79",
     "slug": "access-science-for-every-juan-know-about-the-latest-breakthroughs-and-developments-in-the-philippine-science-scene",
     "published": true,
+    "featured": false,
     "category": {
       "name": "Uncategorized",
       "slug": "uncategorized"
@@ -141,6 +149,7 @@
     "id": "0b4ec793-8035-4110-89ac-e26cfa6c5c6c",
     "slug": "connecting-rural-urban-intermodal-systems-efficiently-cruise",
     "published": true,
+    "featured": false,
     "category": {
       "name": "Uncategorized",
       "slug": "uncategorized"
@@ -158,6 +167,7 @@
     "id": "227e1e8a-b406-474e-8ecd-a72ac3eb79b9",
     "slug": "dbp-mindanao-development-assistance-financing-program-dbp-minda",
     "published": true,
+    "featured": false,
     "category": {
       "name": "Uncategorized",
       "slug": "uncategorized"
@@ -175,6 +185,7 @@
     "id": "e36e493f-6dc4-4cb3-896e-4e3530b47ada",
     "slug": "dbps-electric-cooperative-loan-take-out-assistance-from-psalm-delta-p",
     "published": true,
+    "featured": false,
     "category": {
       "name": "Uncategorized",
       "slug": "uncategorized"
@@ -192,6 +203,7 @@
     "id": "d0590f1a-4e5f-41ea-bab0-271839710e86",
     "slug": "financing-utilities-for-sustainable-energy-development-fused",
     "published": true,
+    "featured": false,
     "category": {
       "name": "Uncategorized",
       "slug": "uncategorized"
@@ -209,6 +221,7 @@
     "id": "073c569e-870b-4dcf-b47c-b5972aac02c2",
     "slug": "infrastructure-contractors-support-icons-program",
     "published": true,
+    "featured": false,
     "category": {
       "name": "Uncategorized",
       "slug": "uncategorized"
@@ -226,6 +239,7 @@
     "id": "dd723cd9-91ce-4509-a653-b5861f2bd058",
     "slug": "solar-merchant-power-plant-smpp-financing-program",
     "published": true,
+    "featured": false,
     "category": {
       "name": "Uncategorized",
       "slug": "uncategorized"
@@ -243,6 +257,7 @@
     "id": "e246d8f7-e16a-4c30-89c2-4fcfd618b9bf",
     "slug": "water-for-every-resident-water-program",
     "published": true,
+    "featured": false,
     "category": {
       "name": "Uncategorized",
       "slug": "uncategorized"
@@ -260,6 +275,7 @@
     "id": "8789f0b8-17c4-491a-9e3b-6c53a722de41",
     "slug": "apply-as-dpwh-accredited-civil-society-organizations-cso",
     "published": true,
+    "featured": false,
     "category": {
       "name": "Uncategorized",
       "slug": "uncategorized"
@@ -277,6 +293,7 @@
     "id": "f3e7558c-bc59-4c7b-a25a-aee15250504f",
     "slug": "monitor-the-status-of-documents-in-the-dpwh",
     "published": true,
+    "featured": false,
     "category": {
       "name": "Uncategorized",
       "slug": "uncategorized"
@@ -294,6 +311,7 @@
     "id": "1ad8e130-17f5-4edc-864d-d44fbb66e49c",
     "slug": "verify-the-status-of-the-contractors-profile",
     "published": true,
+    "featured": false,
     "category": {
       "name": "Uncategorized",
       "slug": "uncategorized"
