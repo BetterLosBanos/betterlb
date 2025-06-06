@@ -1,6 +1,6 @@
 import React, { useState, useMemo, useEffect } from 'react'
 import { useSearchParams, Link } from 'react-router-dom'
-import { Search, CheckCircle2 } from 'lucide-react'
+import { Search, CheckCircle2, Menu, X } from 'lucide-react'
 import * as ScrollArea from '@radix-ui/react-scroll-area'
 import { Card, CardContent } from '../../components/ui/Card'
 import SearchInput from '../../components/ui/SearchInput'
@@ -114,22 +114,24 @@ export default function ServicesPage() {
 
   // const currentCategoryData = selectedCategory
 
+  const [sidebarOpen, setSidebarOpen] = useState(false)
+
   return (
     <div className="min-h-screen bg-gray-50">
-      <div className="container mx-auto px-4 py-12">
+      <div className="container mx-auto px-4 py-6 md:py-12">
         {/* Header */}
-        <div className="text-center mb-12">
+        <div className="text-center mb-8 md:mb-12">
           <h1 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
             Government Services
           </h1>
-          <p className="text-lg text-gray-600 max-w-2xl mx-auto">
+          <p className="text-sm md:text-lg text-gray-600 max-w-2xl mx-auto">
             Access official government services quickly and easily. Find what
             you need for citizenship, business, education, and more.
           </p>
         </div>
 
         {/* Search Bar */}
-        <div className="max-w-2xl mx-auto mb-12">
+        <div className="max-w-2xl mx-auto mb-8 md:mb-12">
           <SearchInput
             placeholder="Search for services..."
             onSearch={handleSearch}
@@ -138,16 +140,34 @@ export default function ServicesPage() {
           />
         </div>
 
-        <div className="flex gap-8">
+        {/* Mobile Category Toggle */}
+        <div className="md:hidden mb-6">
+          <button
+            onClick={() => setSidebarOpen(!sidebarOpen)}
+            className="flex items-center justify-between w-full px-4 py-3 bg-white rounded-lg shadow-sm text-gray-900 font-medium"
+          >
+            <span>Categories {selectedCategorySlug !== 'all' && `(${selectedCategory?.category})`}</span>
+            {sidebarOpen ? (
+              <X className="h-5 w-5 text-gray-600" />
+            ) : (
+              <Menu className="h-5 w-5 text-gray-600" />
+            )}
+          </button>
+        </div>
+
+        <div className="flex flex-col md:flex-row md:gap-8">
           {/* Categories Sidebar */}
-          <div className="w-64 flex-shrink-0">
+          <div className={`${sidebarOpen ? 'block' : 'hidden'} md:block w-full md:w-64 md:flex-shrink-0 mb-6 md:mb-0`}>
             <div className="bg-white rounded-lg shadow-sm p-4">
               <h3 className="font-semibold text-gray-900 mb-4">Categories</h3>
-              <ScrollArea.Root className="h-[calc(100vh-400px)]">
+              <ScrollArea.Root className="h-[calc(60vh)] md:h-[calc(100vh-400px)]">
                 <ScrollArea.Viewport className="h-full w-full">
                   <div className="space-y-1 pr-4">
                     <button
-                      onClick={() => handleCategoryChange('all')}
+                      onClick={() => {
+                        handleCategoryChange('all')
+                        setSidebarOpen(false)
+                      }}
                       className={`w-full text-left px-3 py-2 rounded-md text-sm transition-colors ${
                         selectedCategorySlug === 'all'
                           ? 'bg-primary-50 text-primary-600 font-medium'
@@ -160,7 +180,10 @@ export default function ServicesPage() {
                       (category) => (
                         <div key={category.slug}>
                           <button
-                            onClick={() => handleCategoryChange(category.slug)}
+                            onClick={() => {
+                              handleCategoryChange(category.slug)
+                              setSidebarOpen(false)
+                            }}
                             className={`w-full text-left px-3 py-2 rounded-md text-sm transition-colors ${
                               selectedCategorySlug === category.slug
                                 ? 'bg-primary-50 text-primary-600 font-medium'
@@ -175,9 +198,10 @@ export default function ServicesPage() {
                               {category.subcategories.map((subcategory) => (
                                 <button
                                   key={subcategory.slug}
-                                  onClick={() =>
+                                  onClick={() => {
                                     handleSubcategoryChange(subcategory.slug)
-                                  }
+                                    setSidebarOpen(false)
+                                  }}
                                   className={`w-full text-left px-3 py-1.5 rounded-md text-sm transition-colors ${
                                     selectedSubcategorySlug === subcategory.slug
                                       ? 'bg-primary-50 text-primary-600 font-medium'
@@ -206,16 +230,16 @@ export default function ServicesPage() {
 
           {/* Services Grid */}
           <div className="flex-1">
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6">
               {paginatedServices.map((service, index) => (
-                <Card key={index} hoverable className="bg-white">
-                  <CardContent className="p-6">
+                <Card key={index} hoverable className="bg-white h-full">
+                  <CardContent className="p-4 md:p-6">
                     <div className="flex items-start justify-between mb-4">
                       <div>
                         <h3 className="text-lg font-semibold text-gray-900">
                           {service.service}
                         </h3>
-                        <div className="mt-2 space-x-2">
+                        <div className="mt-2 flex flex-wrap gap-2">
                           <Link
                             to={`/services?category=${
                               (serviceCategories.categories as Category[]).find(
@@ -259,7 +283,7 @@ export default function ServicesPage() {
                         {service.url}
                       </a>
                       <div className="flex items-center text-sm text-gray-500">
-                        <span>Last verified: {formatDate(new Date())}</span>
+                        <span className="text-xs md:text-sm">Last verified: {formatDate(new Date())}</span>
                       </div>
                     </div>
                   </CardContent>
@@ -269,10 +293,10 @@ export default function ServicesPage() {
 
             {/* Load More Button */}
             {filteredServices.length > ITEMS_PER_PAGE * currentPage && (
-              <div className="mt-8 text-center">
+              <div className="mt-6 md:mt-8 text-center">
                 <button
                   onClick={() => setCurrentPage((prev) => prev + 1)}
-                  className="inline-flex items-center justify-center px-6 py-3 border border-transparent text-base font-medium rounded-md text-white bg-primary-600 hover:bg-primary-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-500"
+                  className="inline-flex items-center justify-center px-4 py-2 md:px-6 md:py-3 border border-transparent text-sm md:text-base font-medium rounded-md text-white bg-primary-600 hover:bg-primary-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-500"
                 >
                   Load More Services
                 </button>
