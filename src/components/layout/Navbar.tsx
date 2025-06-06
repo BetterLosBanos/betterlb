@@ -42,10 +42,10 @@ const Navbar: React.FC = () => {
             </a>
 
             <a
-              href="/transparency"
+              href="/about"
               className="text-xs text-gray-600 hover:text-primary-600 transition-colors"
             >
-              Transparency
+              About
             </a>
             <a
               href="/contact"

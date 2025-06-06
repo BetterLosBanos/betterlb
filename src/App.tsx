@@ -12,6 +12,7 @@ import Footer from './components/layout/Footer'
 import Home from './pages/Home'
 import DesignGuide from './pages/DesignGuide'
 import Services from './pages/services'
+import AboutPage from './pages/about'
 import AboutPhilippines from './pages/philippines/about'
 import PhilippinesHistory from './pages/philippines/history'
 import PhilippinesCulture from './pages/philippines/culture'
@@ -64,6 +65,7 @@ function App() {
             <Route path="/" element={<Home />} />
             <Route path="/design" element={<DesignGuide />} />
             <Route path="/services" element={<Services />} />
+            <Route path="/about" element={<AboutPage />} />
             <Route path="/philippines/about" element={<AboutPhilippines />} />
             <Route
               path="/philippines/history"
