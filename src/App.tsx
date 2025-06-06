@@ -17,9 +17,12 @@ import AboutPhilippines from './pages/philippines/about'
 import PhilippinesHistory from './pages/philippines/history'
 import PhilippinesCulture from './pages/philippines/culture'
 import PhilippinesRegions from './pages/philippines/regions'
-import PublicHolidays from './pages/philippines/holidays'
 import PhilippinesMap from './pages/philippines/map'
+import PublicHolidays from './pages/philippines/holidays'
 import Hotlines from './pages/philippines/Hotlines'
+import VisaPage from './pages/travel/visa'
+import VisaTypesPage from './pages/travel/visa-types'
+import VisaTypeDetail from './pages/travel/visa-types/[type]'
 import ExecutiveDirectory from './pages/government/executive'
 import ExecutiveLayout from './pages/government/executive/layout'
 import DepartmentsIndex from './pages/government/departments'
@@ -83,6 +86,18 @@ function App() {
             <Route path="/philippines/map" element={<PhilippinesMap />} />
             <Route path="/philippines/holidays" element={<PublicHolidays />} />
             <Route path="/philippines/hotlines" element={<Hotlines />} />
+            
+            {/* Travel Routes */}
+            <Route path="/travel/visa" element={<VisaPage />} />
+            <Route path="/travel/visa-types" element={<VisaTypesPage />} />
+          <Route 
+            path="/travel/visa-types/:type" 
+            element={
+              <React.Suspense fallback={<div className="flex items-center justify-center min-h-screen">Loading...</div>}>
+                <VisaTypeDetail />
+              </React.Suspense>
+            } 
+          />
 
             {/* Government Routes */}
             <Route
