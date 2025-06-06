@@ -8,7 +8,7 @@ export default function LegislativeIndex() {
   // Redirect to the first chamber on load
   useEffect(() => {
     if (legislativeData.length > 0) {
-      const firstChamber = legislativeData[0].chamber
+      const firstChamber = legislativeData[0].slug
       navigate(`/government/legislative/${encodeURIComponent(firstChamber)}`)
     }
   }, [navigate])

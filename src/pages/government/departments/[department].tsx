@@ -56,6 +56,7 @@ function DepartmentDetailSection({
       >
         {Object.entries(data).map(([key, value]) => {
           if (key === 'office_name' || value === undefined) return null
+          if (key === 'slug' || value === undefined) return null
 
           return (
             <div key={key} className="text-sm">
@@ -73,6 +74,7 @@ function DepartmentDetailSection({
     <div className="space-y-4">
       {Object.entries(data).map(([key, value]) => {
         if (key === 'office_name' || value === undefined) return null
+        if (key === 'slug' || value === undefined) return null
 
         const label = key
           .split('_')
@@ -151,7 +153,7 @@ export default function DepartmentDetail() {
               className="inline-flex items-center text-primary-600 hover:text-primary-800 text-sm"
             >
               <ExternalLink className="h-4 w-4 mr-1" />
-              <span>Website</span>
+              <span>{website}</span>
             </a>
           )}
 
