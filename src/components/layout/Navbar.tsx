@@ -1,45 +1,61 @@
-import React, { useState } from 'react';
-import { X, Menu, ChevronDown, Globe } from 'lucide-react';
-import Button from '../ui/Button';
-import { useLanguage } from '../../contexts/LanguageContext';
-import { mainNavigation } from '../../data/navigation';
-import { LanguageType } from '../../types';
+import React, { useState } from 'react'
+import { X, Menu, ChevronDown, Globe } from 'lucide-react'
+import Button from '../ui/Button'
+import { useLanguage } from '../../contexts/LanguageContext'
+import { mainNavigation } from '../../data/navigation'
+import { LanguageType } from '../../types'
 
 const Navbar: React.FC = () => {
-  const [isOpen, setIsOpen] = useState(false);
-  const [activeMenu, setActiveMenu] = useState<string | null>(null);
-  const { language, setLanguage, translate } = useLanguage();
+  const [isOpen, setIsOpen] = useState(false)
+  const [activeMenu, setActiveMenu] = useState<string | null>(null)
+  const { language, setLanguage, translate } = useLanguage()
 
   const toggleMenu = () => {
-    setIsOpen(!isOpen);
+    setIsOpen(!isOpen)
     if (isOpen) {
-      setActiveMenu(null);
+      setActiveMenu(null)
     }
-  };
+  }
 
   const toggleSubmenu = (label: string) => {
-    setActiveMenu(activeMenu === label ? null : label);
-  };
+    setActiveMenu(activeMenu === label ? null : label)
+  }
 
   const changeLanguage = (newLanguage: LanguageType) => {
-    setLanguage(newLanguage);
-  };
+    setLanguage(newLanguage)
+  }
 
   return (
     <nav className="bg-white shadow-sm sticky top-0 z-50">
       {/* Top bar with language switcher and additional links */}
       <div className="border-b border-gray-200">
         <div className="container mx-auto px-4 flex justify-between items-center h-10">
-          <div className="text-xs text-gray-600">The Unofficial Government Portal</div>
+          <div className="text-xs text-gray-600">
+            The Unofficial Government Portal
+          </div>
           <div className="flex items-center space-x-4">
-            <a href="/transparency" className="text-xs text-gray-600 hover:text-primary-600 transition-colors">
+            <a
+              href="https://www.gov.ph"
+              className="text-xs text-gray-600 hover:text-primary-600 transition-colors"
+              target="_blank"
+            >
+              Official Gov.ph
+            </a>
+
+            <a
+              href="/transparency"
+              className="text-xs text-gray-600 hover:text-primary-600 transition-colors"
+            >
               Transparency
             </a>
-            <a href="/contact" className="text-xs text-gray-600 hover:text-primary-600 transition-colors">
+            <a
+              href="/contact"
+              className="text-xs text-gray-600 hover:text-primary-600 transition-colors"
+            >
               Contact
             </a>
             <div className="relative">
-              <button 
+              <button
                 className="flex items-center text-xs text-gray-600 hover:text-primary-600 transition-colors"
                 onClick={() => changeLanguage(language === 'en' ? 'fil' : 'en')}
               >
@@ -56,10 +72,16 @@ const Navbar: React.FC = () => {
         <div className="flex justify-between items-center py-4">
           <div className="flex items-center">
             <a href="/" className="flex items-center">
-              <img src="/ph-logo.png" alt="Philippines Coat of Arms" className="h-12 w-12 mr-3" />
+              <img
+                src="/ph-logo.png"
+                alt="Philippines Coat of Arms"
+                className="h-12 w-12 mr-3"
+              />
               <div>
                 <div className="text-black font-light">BetterGov.ph</div>
-                <div className="text-xs text-gray-600">Unofficial Government Portal</div>
+                <div className="text-xs text-gray-600">
+                  Unofficial Government Portal
+                </div>
               </div>
             </a>
           </div>
@@ -79,7 +101,11 @@ const Navbar: React.FC = () => {
                 </a>
                 {item.children && (
                   <div className="absolute left-0 mt-2 w-56 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-50">
-                    <div className="py-1" role="menu" aria-orientation="vertical">
+                    <div
+                      className="py-1"
+                      role="menu"
+                      aria-orientation="vertical"
+                    >
                       {item.children.map((child) => (
                         <a
                           key={child.label}
@@ -125,7 +151,11 @@ const Navbar: React.FC = () => {
               >
                 {translate(`navbar.${item.label.toLowerCase()}`)}
                 {item.children && (
-                  <ChevronDown className={`h-5 w-5 transition-transform ${activeMenu === item.label ? 'transform rotate-180' : ''}`} />
+                  <ChevronDown
+                    className={`h-5 w-5 transition-transform ${
+                      activeMenu === item.label ? 'transform rotate-180' : ''
+                    }`}
+                  />
                 )}
               </button>
               {item.children && activeMenu === item.label && (
@@ -149,14 +179,22 @@ const Navbar: React.FC = () => {
               <div className="space-x-2">
                 <button
                   onClick={() => changeLanguage('en')}
-                  className={`text-sm ${language === 'en' ? 'font-semibold text-primary-600' : 'text-gray-600'}`}
+                  className={`text-sm ${
+                    language === 'en'
+                      ? 'font-semibold text-primary-600'
+                      : 'text-gray-600'
+                  }`}
                 >
                   English
                 </button>
                 <span className="text-gray-400">|</span>
                 <button
                   onClick={() => changeLanguage('fil')}
-                  className={`text-sm ${language === 'fil' ? 'font-semibold text-primary-600' : 'text-gray-600'}`}
+                  className={`text-sm ${
+                    language === 'fil'
+                      ? 'font-semibold text-primary-600'
+                      : 'text-gray-600'
+                  }`}
                 >
                   Filipino
                 </button>
@@ -166,7 +204,7 @@ const Navbar: React.FC = () => {
         </div>
       </div>
     </nav>
-  );
-};
+  )
+}
 
-export default Navbar;
+export default Navbar

@@ -76,9 +76,10 @@ const Footer: React.FC = () => {
         </div>
 
         <div className="flex justify-center my-24">
-          <p className="text-gray-500 text-lg bg-gray-800/90 p-4 px-8 rounded-full">
-            Cost to build this site to date: $20. To the People of the
-            Philippines: $0.
+          <p className="text-white text-lg bg-gray-800 p-4 px-8 rounded-full">
+            Cost to build this site to date:{' '}
+            <span className="animate-pulse">$50</span>. Cost to the People of
+            the Philippines: $0.
           </p>
         </div>
 
