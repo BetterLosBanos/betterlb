@@ -1,5 +1,5 @@
 import React, { useState, useMemo, useEffect } from 'react'
-import { useSearchParams } from 'react-router-dom'
+import { useSearchParams, Link } from 'react-router-dom'
 import { Search, CheckCircle2 } from 'lucide-react'
 import * as ScrollArea from '@radix-ui/react-scroll-area'
 import { Card, CardContent } from '../../components/ui/Card'
@@ -8,13 +8,24 @@ import serviceCategories from '../../data/service_categories.json'
 import services from '../../data/services.json'
 import { formatDate } from '../../lib/utils'
 
+interface Subcategory {
+  name: string
+  slug: string
+}
+
+interface Category {
+  category: string
+  slug: string
+  subcategories: Subcategory[]
+}
+
 const ITEMS_PER_PAGE = 12
 
-const ServicesPage: React.FC = () => {
+export default function ServicesPage() {
   const [searchParams, setSearchParams] = useSearchParams()
   const [searchQuery, setSearchQuery] = useState('')
-  const [selectedCategory, setSelectedCategory] = useState('all')
-  const [selectedSubcategory, setSelectedSubcategory] = useState('all')
+  const [selectedCategorySlug, setSelectedCategorySlug] = useState('all')
+  const [selectedSubcategorySlug, setSelectedSubcategorySlug] = useState('all')
   const [currentPage, setCurrentPage] = useState(1)
 
   // Set initial category and subcategory from URL params
@@ -23,12 +34,28 @@ const ServicesPage: React.FC = () => {
     const subcategoryParam = searchParams.get('subcategory')
 
     if (categoryParam) {
-      setSelectedCategory(categoryParam)
+      setSelectedCategorySlug(categoryParam)
     }
     if (subcategoryParam) {
-      setSelectedSubcategory(subcategoryParam)
+      setSelectedSubcategorySlug(subcategoryParam)
     }
   }, [searchParams])
+
+  // Find selected category object
+  const selectedCategory = useMemo(() => {
+    if (selectedCategorySlug === 'all') return null
+    return (serviceCategories.categories as Category[]).find(
+      (cat) => cat.slug === selectedCategorySlug
+    )
+  }, [selectedCategorySlug])
+
+  // Find selected subcategory object
+  const selectedSubcategory = useMemo(() => {
+    if (!selectedCategory || selectedSubcategorySlug === 'all') return null
+    return selectedCategory.subcategories.find(
+      (subcat) => subcat.slug === selectedSubcategorySlug
+    )
+  }, [selectedCategory, selectedSubcategorySlug])
 
   const filteredServices = useMemo(() => {
     let filtered = services
@@ -43,14 +70,14 @@ const ServicesPage: React.FC = () => {
       )
     }
 
-    if (selectedCategory !== 'all') {
+    if (selectedCategory) {
       filtered = filtered.filter(
-        (service) => service.category === selectedCategory
+        (service) => service.category === selectedCategory.category
       )
 
-      if (selectedSubcategory !== 'all') {
+      if (selectedSubcategory) {
         filtered = filtered.filter(
-          (service) => service.subcategory === selectedSubcategory
+          (service) => service.subcategory === selectedSubcategory.name
         )
       }
     }
@@ -68,26 +95,24 @@ const ServicesPage: React.FC = () => {
     setCurrentPage(1)
   }
 
-  const handleCategoryChange = (category: string) => {
-    setSelectedCategory(category)
-    setSelectedSubcategory('all')
+  const handleCategoryChange = (categorySlug: string) => {
+    setSelectedCategorySlug(categorySlug)
+    setSelectedSubcategorySlug('all')
     setCurrentPage(1)
-    setSearchParams(category === 'all' ? {} : { category })
+    setSearchParams(categorySlug === 'all' ? {} : { category: categorySlug })
   }
 
-  const handleSubcategoryChange = (subcategory: string) => {
-    setSelectedSubcategory(subcategory)
+  const handleSubcategoryChange = (subcategorySlug: string) => {
+    setSelectedSubcategorySlug(subcategorySlug)
     setCurrentPage(1)
     setSearchParams(
-      subcategory === 'all'
-        ? { category: selectedCategory }
-        : { category: selectedCategory, subcategory }
+      subcategorySlug === 'all'
+        ? { category: selectedCategorySlug }
+        : { category: selectedCategorySlug, subcategory: subcategorySlug }
     )
   }
 
-  const currentCategoryData = serviceCategories.categories.find(
-    (cat) => cat.category === selectedCategory
-  )
+  // const currentCategoryData = selectedCategory
 
   return (
     <div className="min-h-screen bg-gray-50">
@@ -124,49 +149,49 @@ const ServicesPage: React.FC = () => {
                     <button
                       onClick={() => handleCategoryChange('all')}
                       className={`w-full text-left px-3 py-2 rounded-md text-sm transition-colors ${
-                        selectedCategory === 'all'
+                        selectedCategorySlug === 'all'
                           ? 'bg-primary-50 text-primary-600 font-medium'
                           : 'text-gray-600 hover:bg-gray-50'
                       }`}
                     >
                       All Services
                     </button>
-                    {serviceCategories.categories.map((category) => (
-                      <div key={category.category}>
-                        <button
-                          onClick={() =>
-                            handleCategoryChange(category.category)
-                          }
-                          className={`w-full text-left px-3 py-2 rounded-md text-sm transition-colors ${
-                            selectedCategory === category.category
-                              ? 'bg-primary-50 text-primary-600 font-medium'
-                              : 'text-gray-600 hover:bg-gray-50'
-                          }`}
-                        >
-                          {category.category}
-                        </button>
+                    {(serviceCategories.categories as Category[]).map(
+                      (category) => (
+                        <div key={category.slug}>
+                          <button
+                            onClick={() => handleCategoryChange(category.slug)}
+                            className={`w-full text-left px-3 py-2 rounded-md text-sm transition-colors ${
+                              selectedCategorySlug === category.slug
+                                ? 'bg-primary-50 text-primary-600 font-medium'
+                                : 'text-gray-600 hover:bg-gray-50'
+                            }`}
+                          >
+                            {category.category}
+                          </button>
 
-                        {selectedCategory === category.category && (
-                          <div className="ml-4 space-y-1 mt-1">
-                            {category.subcategories.map((subcategory) => (
-                              <button
-                                key={subcategory}
-                                onClick={() =>
-                                  handleSubcategoryChange(subcategory)
-                                }
-                                className={`w-full text-left px-3 py-1.5 rounded-md text-sm transition-colors ${
-                                  selectedSubcategory === subcategory
-                                    ? 'bg-primary-50 text-primary-600 font-medium'
-                                    : 'text-gray-500 hover:bg-gray-50'
-                                }`}
-                              >
-                                {subcategory}
-                              </button>
-                            ))}
-                          </div>
-                        )}
-                      </div>
-                    ))}
+                          {selectedCategorySlug === category.slug && (
+                            <div className="ml-4 space-y-1 mt-1">
+                              {category.subcategories.map((subcategory) => (
+                                <button
+                                  key={subcategory.slug}
+                                  onClick={() =>
+                                    handleSubcategoryChange(subcategory.slug)
+                                  }
+                                  className={`w-full text-left px-3 py-1.5 rounded-md text-sm transition-colors ${
+                                    selectedSubcategorySlug === subcategory.slug
+                                      ? 'bg-primary-50 text-primary-600 font-medium'
+                                      : 'text-gray-500 hover:bg-gray-50'
+                                  }`}
+                                >
+                                  {subcategory.name}
+                                </button>
+                              ))}
+                            </div>
+                          )}
+                        </div>
+                      )
+                    )}
                   </div>
                 </ScrollArea.Viewport>
                 <ScrollArea.Scrollbar
@@ -191,12 +216,35 @@ const ServicesPage: React.FC = () => {
                           {service.service}
                         </h3>
                         <div className="mt-2 space-x-2">
-                          <span className="inline-block px-2 py-1 text-xs font-medium rounded bg-primary-100 text-primary-800">
+                          <Link
+                            to={`/services?category=${
+                              (serviceCategories.categories as Category[]).find(
+                                (cat) => cat.category === service.category
+                              )?.slug || ''
+                            }`}
+                            className="inline-block px-2 py-1 text-xs font-medium rounded bg-primary-100 text-primary-800 hover:bg-primary-200 transition-colors"
+                          >
                             {service.category}
-                          </span>
-                          <span className="inline-block px-2 py-1 text-xs font-medium rounded bg-gray-100 text-gray-800">
+                          </Link>
+                          <Link
+                            to={`/services?category=${
+                              (serviceCategories.categories as Category[]).find(
+                                (cat) => cat.category === service.category
+                              )?.slug || ''
+                            }&subcategory=${
+                              (serviceCategories.categories as Category[])
+                                .find(
+                                  (cat) => cat.category === service.category
+                                )
+                                ?.subcategories.find(
+                                  (subcat) =>
+                                    subcat.name === service.subcategory
+                                )?.slug || ''
+                            }`}
+                            className="inline-block px-2 py-1 text-xs font-medium rounded bg-gray-100 text-gray-800 hover:bg-gray-200 transition-colors"
+                          >
                             {service.subcategory}
-                          </span>
+                          </Link>
                         </div>
                       </div>
                       <CheckCircle2 className="h-5 w-5 text-success-500 flex-shrink-0" />
@@ -236,5 +284,3 @@ const ServicesPage: React.FC = () => {
     </div>
   )
 }
-
-export default ServicesPage

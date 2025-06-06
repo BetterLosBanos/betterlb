@@ -2,6 +2,18 @@ import React from 'react'
 import * as LucideIcons from 'lucide-react'
 import { Card, CardContent } from '../ui/Card'
 import serviceCategories from '../../data/service_categories.json'
+import { Link } from 'react-router-dom'
+
+interface Subcategory {
+  name: string
+  slug: string
+}
+
+interface Category {
+  category: string
+  slug: string
+  subcategories: Subcategory[]
+}
 
 const ServicesSection: React.FC = () => {
   const getIcon = (category: string) => {
@@ -24,8 +36,8 @@ const ServicesSection: React.FC = () => {
     return Icon ? <Icon className="h-6 w-6" /> : null
   }
 
-  // Show only first 6 categories
-  const displayedCategories = serviceCategories.categories.slice(0, 12)
+  // Show only first 12 categories
+  const displayedCategories = serviceCategories.categories.slice(0, 12) as Category[]
 
   return (
     <section className="py-12 bg-white">
@@ -43,7 +55,7 @@ const ServicesSection: React.FC = () => {
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
           {displayedCategories.map((category) => (
             <Card
-              key={category.category}
+              key={category.slug}
               hoverable
               className="border-t-4 border-primary-500"
             >
@@ -59,42 +71,38 @@ const ServicesSection: React.FC = () => {
                 </div>
 
                 <ul className="space-y-2 mb-6 flex-grow">
-                  {category.subcategories.map((subcategory, index) => (
-                    <li key={index}>
-                      <a
-                        href={`/services?category=${encodeURIComponent(
-                          category.category
-                        )}&subcategory=${encodeURIComponent(subcategory)}`}
+                  {category.subcategories.map((subcategory) => (
+                    <li key={subcategory.slug}>
+                      <Link
+                        to={`/services?category=${category.slug}&subcategory=${subcategory.slug}`}
                         className="text-gray-600 hover:text-primary-600 transition-colors text-md flex items-center"
                       >
                         <span className="w-1.5 h-1.5 bg-gray-300 rounded-full mr-2"></span>
-                        {subcategory}
-                      </a>
+                        {subcategory.name}
+                      </Link>
                     </li>
                   ))}
                 </ul>
 
-                <a
-                  href={`/services?category=${encodeURIComponent(
-                    category.category
-                  )}`}
+                <Link
+                  to={`/services?category=${category.slug}`}
                   className="mt-auto text-primary-600 hover:text-primary-700 font-medium transition-colors inline-flex items-center"
                 >
                   View All {category.category}
                   <LucideIcons.ArrowRight className="ml-1 h-4 w-4" />
-                </a>
+                </Link>
               </CardContent>
             </Card>
           ))}
         </div>
 
         <div className="text-center mt-8">
-          <a
-            href="/services"
+          <Link
+            to="/services"
             className="inline-flex items-center justify-center rounded-md font-medium transition-colors px-6 py-3 bg-primary-500 text-white hover:bg-primary-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-500 shadow-sm"
           >
             View All Services
-          </a>
+          </Link>
         </div>
       </div>
     </section>

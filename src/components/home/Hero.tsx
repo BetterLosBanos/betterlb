@@ -3,6 +3,19 @@ import { Search } from 'lucide-react'
 import { useLanguage } from '../../contexts/LanguageContext'
 import SearchInput from '../ui/SearchInput'
 import Button from '../ui/Button'
+import { Link } from 'react-router-dom'
+import serviceCategories from '../../data/service_categories.json'
+
+interface Subcategory {
+  name: string
+  slug: string
+}
+
+interface Category {
+  category: string
+  slug: string
+  subcategories: Subcategory[]
+}
 
 const Hero: React.FC = () => {
   const { translate } = useLanguage()
@@ -12,18 +25,52 @@ const Hero: React.FC = () => {
     // Implementation for search functionality
   }
 
+  // Find categories and subcategories by their names to get slugs
+  const findCategorySlug = (categoryName: string) => {
+    return (
+      (serviceCategories.categories as Category[]).find(
+        (cat) => cat.category === categoryName
+      )?.slug || ''
+    )
+  }
+
+  const findSubcategorySlug = (
+    categoryName: string,
+    subcategoryName: string
+  ) => {
+    const category = (serviceCategories.categories as Category[]).find(
+      (cat) => cat.category === categoryName
+    )
+    return (
+      category?.subcategories.find((sub) => sub.name === subcategoryName)
+        ?.slug || ''
+    )
+  }
+
   const popularServices = [
     {
       label: 'National ID',
-      href: '/services?category=Certificates+and+IDs&subcategory=ID',
+      href: `/services?category=${findCategorySlug(
+        'Certificates and IDs'
+      )}&subcategory=${findSubcategorySlug('Certificates and IDs', 'ID')}`,
     },
     {
       label: 'Birth Certificate',
-      href: '/services?category=Certificates+and+IDs&subcategory=Certificates',
+      href: `/services?category=${findCategorySlug(
+        'Certificates and IDs'
+      )}&subcategory=${findSubcategorySlug(
+        'Certificates and IDs',
+        'Certificates'
+      )}`,
     },
     {
       label: 'Business Registration',
-      href: '/services?category=Business+and+Trade&subcategory=Business+Registration%2C+Certificates+and+Compliance',
+      href: `/services?category=${findCategorySlug(
+        'Business and Trade'
+      )}&subcategory=${findSubcategorySlug(
+        'Business and Trade',
+        'Business Registration, Certificates and Compliance'
+      )}`,
     },
   ]
 
@@ -50,14 +97,13 @@ const Hero: React.FC = () => {
             </div>
             <div className="mt-4 flex flex-wrap gap-2">
               {popularServices.map((service) => (
-                <Button
+                <Link
                   key={service.label}
-                  variant="outline"
-                  className="bg-white/10 text-white border-white/20 hover:bg-white/20"
-                  href={service.href}
+                  className="bg-white/10 text-white border-white/20 hover:bg-white/20 py-2 px-4 rounded-xl text-sm"
+                  to={service.href}
                 >
                   {service.label}
-                </Button>
+                </Link>
               ))}
             </div>
           </div>
@@ -68,8 +114,10 @@ const Hero: React.FC = () => {
               {translate('services.title')}
             </h2>
             <div className="grid grid-cols-2 gap-4">
-              <a
-                href="/services?category=Certificates+and+IDs"
+              <Link
+                to={`/services?category=${findCategorySlug(
+                  'Certificates and IDs'
+                )}`}
                 className="bg-white/10 hover:bg-white/20 rounded-lg p-4 transition-all duration-200 flex flex-col items-center text-center"
               >
                 <div className="bg-primary-500 p-3 rounded-full mb-3">
@@ -87,9 +135,11 @@ const Hero: React.FC = () => {
                   </svg>
                 </div>
                 <span className="font-medium">Citizenship & ID</span>
-              </a>
-              <a
-                href="/services?category=Business+and+Trade"
+              </Link>
+              <Link
+                to={`/services?category=${findCategorySlug(
+                  'Business and Trade'
+                )}`}
                 className="bg-white/10 hover:bg-white/20 rounded-lg p-4 transition-all duration-200 flex flex-col items-center text-center"
               >
                 <div className="bg-primary-500 p-3 rounded-full mb-3">
@@ -114,9 +164,9 @@ const Hero: React.FC = () => {
                   </svg>
                 </div>
                 <span className="font-medium">Business</span>
-              </a>
-              <a
-                href="/services?category=Education"
+              </Link>
+              <Link
+                to={`/services?category=${findCategorySlug('Education')}`}
                 className="bg-white/10 hover:bg-white/20 rounded-lg p-4 transition-all duration-200 flex flex-col items-center text-center"
               >
                 <div className="bg-primary-500 p-3 rounded-full mb-3">
@@ -134,10 +184,10 @@ const Hero: React.FC = () => {
                   </svg>
                 </div>
                 <span className="font-medium">Education</span>
-              </a>
-              <a
-                href="/services?category=Health"
-                className="bg-white/10 hover:bg-white/20 rounded-lg p-4 transition-all duration-200 flex flex-col items-center text-center"
+              </Link>
+              <Link
+                to={`/services?category=${findCategorySlug('Health')}`}
+                className="bg-white/10 hover:bg-white/20 rounded-lg p-4 transition-all duration-500 flex flex-col items-center text-center"
               >
                 <div className="bg-primary-500 p-3 rounded-full mb-3">
                   <svg
@@ -153,16 +203,15 @@ const Hero: React.FC = () => {
                   </svg>
                 </div>
                 <span className="font-medium">Health</span>
-              </a>
+              </Link>
             </div>
-            <div className="mt-4">
-              <Button
-                fullWidth
-                className="bg-white text-primary-600 hover:bg-gray-100"
-                href="/services"
+            <div className="mt-4 flex">
+              <Link
+                className="bg-white/10 text-white hover:bg-white/20 transition-all duration-500 w-full rounded-lg p-4 text-center"
+                to="/services"
               >
                 View All Services
-              </Button>
+              </Link>
             </div>
           </div>
         </div>
