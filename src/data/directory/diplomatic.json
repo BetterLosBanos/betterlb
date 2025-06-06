@@ -1,6 +1,7 @@
 {
   "Diplomatic Mission": [
     {
+      "slug": "holy-see",
       "country": "HOLY SEE",
       "office_name": "Apostolic Nunciature",
       "address": "2140 Taft Avenue, Manila",
@@ -9,6 +10,7 @@
       "title": "Apostolic Nuncio"
     },
     {
+      "slug": "angola",
       "country": "ANGOLA",
       "office_name": "Embassy of the Republic of Angola",
       "address": "Unit 2003 One Global Place, 5th Avenue cor. 25th Street, Bonifacio Global City, Taguig City",
@@ -18,6 +20,7 @@
       "title": "Ambassador Extraordinary and Plenipotentiary"
     },
     {
+      "slug": "argentina",
       "country": "ARGENTINA",
       "office_name": "Embassy of the Argentine Republic",
       "address": "8/F Liberty Center Bldg., 104 H. V. Dela Costa St., Salcedo Village, Makati City",
@@ -28,6 +31,7 @@
       "title": "Ambassador Extraordinary and Plenipotentiary"
     },
     {
+      "slug": "australia",
       "country": "AUSTRALIA",
       "office_name": "Australian Embassy",
       "address": "23rd Level Tower 2, RCBC Plaza, 6819 Ayala Ave., Makati City",
@@ -38,6 +42,7 @@
       "title": "Ambassador Extraordinary and Plenipotentiary"
     },
     {
+      "slug": "austria",
       "country": "AUSTRIA",
       "office_name": "Embassy of the Republic of Austria",
       "address": "8/F One Orion Bldg., 11th Ave. cor. 38th St., Bonifacio Global City, Taguig Cty",
@@ -48,6 +53,7 @@
       "title": "Ambassador Extraordinary and Plenipotentiary"
     },
     {
+      "slug": "bangladesh",
       "country": "BANGLADESH",
       "office_name": "Embassy of the People's Republic of Bangladesh",
       "address": "2/F HERCO Center, 114 Benavidez St., Legaspi Village, Makati City",
@@ -58,6 +64,7 @@
       "title": "Ambassador Extraordinary and Plenipotentiary"
     },
     {
+      "slug": "belgium",
       "country": "BELGIUM",
       "office_name": "Embassy of the Kingdom of Belgium",
       "address": "9/F Multinational Bancorporation Center, 6805 Ayala Ave., Makati City",
@@ -68,6 +75,7 @@
       "title": "Ambassador Extraordinary and Plenipotentiary"
     },
     {
+      "slug": "brazil",
       "country": "BRAZIL",
       "office_name": "Embassy of the Federative Republic of Brazil",
       "address": "16/F Liberty Center Bldg., 104 H. V. Dela Costa St., Salcedo Village, Makati City",
@@ -78,6 +86,7 @@
       "title": "Ambassador Extraordinary and Plenipotentiary"
     },
     {
+      "slug": "brunei-darussalam",
       "country": "BRUNEI DARUSSALAM",
       "office_name": "Embassy of Brunei Darussalam",
       "address": "6/F 111 Paseo de Roxas Bldg., Paseo de Roxas cor. Legaspi St., Makati City",
@@ -88,6 +97,7 @@
       "title": "Ambassador Extraordinary and Plenipotentiary"
     },
     {
+      "slug": "cambodia",
       "country": "CAMBODIA",
       "office_name": "Royal Embassy of Cambodia",
       "address": "Unit 7-A Country Space One Bldg., Sen. Gil Puyat Ave., Makati City",
@@ -97,6 +107,7 @@
       "title": "Ambassador Extraordinary and Plenipotentiary"
     },
     {
+      "slug": "canada",
       "country": "CANADA",
       "office_name": "Embassy of Canada",
       "address": "Levels 6 to 8 Tower 2, RCBC Plaza, 6819 Ayala Ave., Makati City",
@@ -107,6 +118,7 @@
       "title": "Ambassador Extraordinary and Plenipotentiary"
     },
     {
+      "slug": "chile",
       "country": "CHILE",
       "office_name": "Embassy of Chile",
       "address": "17/F Liberty Center Bldg., 104 H. V. Dela Costa cor. Leviste St., Salcedo Village, Makati City",
@@ -117,6 +129,7 @@
       "title": "Ambassador Extraordinary and Plenipotentiary"
     },
     {
+      "slug": "china",
       "country": "CHINA",
       "office_name": "Embassy of the People's Republic of China",
       "address": "4896 Pasay Road, Dasmariñas Village, Makati City",
@@ -127,6 +140,7 @@
       "title": "Ambassador Extraordinary and Plenipotentiary"
     },
     {
+      "slug": "colombia",
       "country": "COLOMBIA",
       "office_name": "Embassy of the Republic of Colombia",
       "address": "14/F Inoza Tower, 40th Street, Bonicafio Global City, Taguig",
@@ -137,6 +151,7 @@
       "title": null
     },
     {
+      "slug": "the-czech-republic",
       "country": "THE CZECH REPUBLIC",
       "office_name": "Embassy of the Czech Republic",
       "address": "30/F Rufino Pacific Tower, 6784 Ayala Ave., V.A. Rufino St., Makati City",
@@ -147,6 +162,7 @@
       "title": "Ambassador Extraordinary and Plenipotentiary"
     },
     {
+      "slug": "denmark",
       "country": "DENMARK",
       "office_name": "Royal Danish Embassy",
       "address": "11/F 11th Corporate Center, 11th Ave. cor. Triangle Drive, Bonifacio Global City, Taguig City",
@@ -157,6 +173,7 @@
       "title": "Ambassador Extraordinary and Plenipotentiary"
     },
     {
+      "slug": "egypt",
       "country": "EGYPT",
       "office_name": "Embassy of the Arab Republic of Egypt",
       "address": "7/F G.C. Corporate Plaza, 150 Legaspi St., Legaspi Village, Makati City",
@@ -166,6 +183,7 @@
       "title": "Ambassador Extraordinary and Plenipotentiary"
     },
     {
+      "slug": "european-union",
       "country": "EUROPEAN UNION",
       "office_name": "Delegation of the European Union to the Philippines",
       "address": "30/F Tower 2, RCBC Plaza, 6819 Ayala Ave. cor. Sen. Gil Puyat Ave., Makati City",
@@ -176,6 +194,7 @@
       "title": "Head of Delegation"
     },
     {
+      "slug": "finland",
       "country": "FINLAND",
       "office_name": "Embassy of Finland",
       "address": "The Finance Centre, 27th floor, 26th St. cor. 9th Avenue, Bonifacio Global City, Taguig City",
@@ -186,6 +205,7 @@
       "title": "Ambassador Extraordinary and Plenipotentiary"
     },
     {
+      "slug": "france",
       "country": "FRANCE",
       "office_name": "Embassy of the French Republic",
       "address": "21/F, Ayala Triangle Gardens Tower 2, Paseo de Roxas corner Makati Avenue, Makati City",
@@ -196,6 +216,7 @@
       "title": "Ambassador Extraordinary and Plenipotentiary"
     },
     {
+      "slug": "germany",
       "country": "GERMANY",
       "office_name": "Embassy of the Federal Republic of Germany",
       "address": "25/F Tower 2, RCBC Plaza, 6819 Ayala Ave., Makati City",
@@ -206,6 +227,7 @@
       "title": "Ambassador Extraordinary and Plenipotentiary"
     },
     {
+      "slug": "greece",
       "country": "GREECE",
       "office_name": "Embassy of the Hellenic Republic",
       "address": "Unit 701 SEDCCO 1 Bldg., 120 Rada cor. Legaspi St., Legaspi Village, Makati City",
@@ -216,6 +238,7 @@
       "title": "Ambassador Extraordinary and Plenipotentiary"
     },
     {
+      "slug": "hungary",
       "country": "HUNGARY",
       "office_name": "Embassy of Hungary",
       "address": "8/F Del Rosario Law Center, 21st Drive cor. 20th Drive, Bonifacio Global City, Taguig City",
@@ -226,6 +249,7 @@
       "title": "Ambassador Extraordinary and Plenipotentiary"
     },
     {
+      "slug": "india",
       "country": "INDIA",
       "office_name": "Embassy of the Republic of India",
       "address": "2190 Paraiso St., Dasmariñas Village, Makati City",
@@ -236,6 +260,7 @@
       "title": "Ambassador Extraordinary and Plenipotentiary"
     },
     {
+      "slug": "indonesia",
       "country": "INDONESIA",
       "office_name": "Embassy of the Republic of Indonesia",
       "address": "185 Salcedo Street, Legaspi Village, Makati City",
@@ -246,6 +271,7 @@
       "title": "Ambassador Extraordinary and Plenipotentiary"
     },
     {
+      "slug": "iran",
       "country": "IRAN",
       "office_name": "Embassy of the Islamic Republic of Iran",
       "address": "2224 Paraiso cor. Pasay Road, Dasmariñas Village, Makati City",
@@ -256,6 +282,7 @@
       "title": "Ambassador Extraordinary and Plenipotentiary"
     },
     {
+      "slug": "iraq",
       "country": "IRAQ",
       "office_name": "Embassy of the Republic of Iraq",
       "address": "2209 Paraiso cor. Acacia St., Dasmariñas Village, Makati City",
@@ -265,6 +292,7 @@
       "title": "Ambassador Extraordinary and Plenipotentiary"
     },
     {
+      "slug": "ireland",
       "country": "IRELAND",
       "office_name": "Embassy of Ireland",
       "address": "30F Tower 2, RCBC Plaza, 6819 Ayala Ave., Makati City 1200",
@@ -275,6 +303,7 @@
       "title": "Ambassador Extraordinary and Plenipotentiary"
     },
     {
+      "slug": "israel",
       "country": "ISRAEL",
       "office_name": "Embassy of the State of Israel",
       "address": "10/F Avecshares Center, 1132 University Parkway, Bonifacio North Triangle, Bonifacio Global City, Taguig City",
@@ -285,6 +314,7 @@
       "title": "Ambassador Extraordinary and Plenipotentiary"
     },
     {
+      "slug": "italy",
       "country": "ITALY",
       "office_name": "Embassy of the Republic of Italy",
       "address": "5/F Tower B, One Campus Place McKinley Hill, Taguig City",
@@ -295,6 +325,7 @@
       "title": "Ambassador Extraordinary and Plenipotentiary"
     },
     {
+      "slug": "japan",
       "country": "JAPAN",
       "office_name": "Embassy of Japan",
       "address": "2627 Roxas Boulevard, Pasay City",
@@ -305,6 +336,7 @@
       "title": "Ambassador Extraordinary and Plenipotentiary"
     },
     {
+      "slug": "korea",
       "country": "KOREA",
       "office_name": "Embassy of the Republic of Korea",
       "address": "122 Upper McKinley Road, McKinley Town Center, Fort Bonifacio, Taguig City",
@@ -315,6 +347,7 @@
       "title": "Ambassador Extraordinary and Plenipotentiary"
     },
     {
+      "slug": "kuwait",
       "country": "KUWAIT",
       "office_name": "Embassy of the State of Kuwait",
       "address": "8/F PhilPlans Corporate Center, Kalayaan Avenue and Triangle Drive, Bonifacio Global City, Taguig City",
@@ -324,6 +357,7 @@
       "title": "Ambassador Extraordinary and Plenipotentiary"
     },
     {
+      "slug": "laos",
       "country": "LAOS",
       "office_name": "Embassy of the Lao People's Democratic Republic",
       "address": "805 One Global Place, 5th Avenue corner 25th Street, Bonifacio Global City, Taguig City",
@@ -334,6 +368,7 @@
       "title": "Ambassador Extraordinary and Plenipotentiary"
     },
     {
+      "slug": "libya",
       "country": "LIBYA",
       "office_name": "Embassy of the State of Libya",
       "address": "2056 Lumbang cor. Caballero St., Dasmariñas Village, Makati City",
@@ -343,6 +378,7 @@
       "title": "Ambassador Extraordinary and Plenipotentiary"
     },
     {
+      "slug": "malaysia",
       "country": "MALAYSIA",
       "office_name": "Embassy of Malaysia",
       "address": "107 Tordesillas St., Salcedo Village, Makati City",
@@ -353,6 +389,7 @@
       "title": "Ambassador Extraordinary and Plenipotentiary"
     },
     {
+      "slug": "sovereign-military-order-of-malta",
       "country": "SOVEREIGN MILITARY ORDER OF MALTA",
       "office_name": "Embassy of the Sovereign Military Order of Malta",
       "address": "1120 R. Hidalgo St., Quiapo, Manila",
@@ -362,6 +399,7 @@
       "title": "Ambassador Extraordinary and Plenipotentiary"
     },
     {
+      "slug": "mexico",
       "country": "MEXICO",
       "office_name": "Embassy of the United Mexican States",
       "address": "2/F GC Corporate Plaza, 150 Legaspi St., Legaspi Village, Makati City",
@@ -372,6 +410,7 @@
       "title": "Ambassador Extraordinary and Plenipotentiary"
     },
     {
+      "slug": "morocco",
       "country": "MOROCCO",
       "office_name": "Embassy of the Kingdom of Morocco",
       "address": "17/F Marajo Tower, 26th St. cor. 4th Ave., Bonifacio Global City, Taguig City",
@@ -381,6 +420,7 @@
       "title": "Ambassador Extraordinary and Plenipotentiary"
     },
     {
+      "slug": "myanmar",
       "country": "MYANMAR",
       "office_name": "Embassy of the Republic of the Union of Myanmar",
       "address": "8/F Gervasia Corporate Centre, 152 Amorsolo St., Legaspi Village, Makati City",
@@ -391,6 +431,7 @@
       "title": "Chargé d' Affaires, a.i."
     },
     {
+      "slug": "netherlands",
       "country": "NETHERLANDS",
       "office_name": "Embassy of the Kingdom of the Netherlands",
       "address": "26/F BDO Equitable Tower, Paseo de Roxas, Makati City",
@@ -401,6 +442,7 @@
       "title": "Ambassador Extraordinary and Plenipotentiary"
     },
     {
+      "slug": "new-zealand",
       "country": "NEW ZEALAND",
       "office_name": "New Zealand Embassy",
       "address": "35/F Zuellig Bldg., Makati Ave. cor. Paseo de Roxas, Makati City",
@@ -411,6 +453,7 @@
       "title": "Ambassador Extraordinary and Plenipotentiary"
     },
     {
+      "slug": "nigeria",
       "country": "NIGERIA",
       "office_name": "Embassy of the Federal Republic of Nigeria",
       "address": "2211 Paraiso St., Dasmariñas Village, Makati City",
@@ -421,6 +464,7 @@
       "title": null
     },
     {
+      "slug": "norway",
       "country": "NORWAY",
       "office_name": "Royal Norwegian Embassy",
       "address": "12/F Del Rosario Law Center, 21st Drive cor. 20th Drive, Bonifacio Global City, Taguig City",
@@ -431,6 +475,7 @@
       "title": "Ambassador Extraordinary and Plenipotentiary"
     },
     {
+      "slug": "oman",
       "country": "OMAN",
       "office_name": "Embassy of the Sultanate of Oman",
       "address": "26/F NAC Tower Bldg., 32nd St., Bonifacio Global City, Taguig City",
@@ -440,6 +485,7 @@
       "title": "Ambassador Extraordinary and Plenipotentiary"
     },
     {
+      "slug": "pakistan",
       "country": "PAKISTAN",
       "office_name": "Embassy of the Islamic Republic of Pakistan",
       "address": "6/F Alexander House, 132 Amorsolo St., Legaspi Village, Makati City",
@@ -450,6 +496,7 @@
       "title": "Ambassador Extraordinary and Plenipotentiary"
     },
     {
+      "slug": "palau",
       "country": "PALAU",
       "office_name": "Embassy of the Republic of Palau",
       "address": "10/F, Unit 10-D PDCP Bank Centre, V.A. Rufino St. cor. Leviste St., Salcedo Village, Makati City",
@@ -459,6 +506,7 @@
       "title": "Chargé d' Affaires, a.i."
     },
     {
+      "slug": "palestine",
       "country": "PALESTINE",
       "office_name": "Embassy of the State of Palestine",
       "address": "Unit 22-D, Chatham House Condomimium, 116 Valero corner Rufino Streets, Salcedo Village, Makati City",
@@ -468,6 +516,7 @@
       "title": null
     },
     {
+      "slug": "panama",
       "country": "PANAMA",
       "office_name": "Embassy of the Republic of Panama",
       "address": "Units 1702-1703 Panorama Tower, 34th Street corner Lane A, Bonifacio Global City, Taguig City",
@@ -477,6 +526,7 @@
       "title": "Chargé d' Affaires, a.i."
     },
     {
+      "slug": "papua-new-guinea",
       "country": "PAPUA NEW GUINEA",
       "office_name": "Embassy of the Independent State of Papua New Guinea",
       "address": "3/F Corinthian Plaza Bldg., Paseo de Roxas cor. Gamboa St., Legaspi Village, Makati City",
@@ -486,6 +536,7 @@
       "title": null
     },
     {
+      "slug": "poland",
       "country": "POLAND",
       "office_name": "Embassy of the Republic of Poland",
       "address": "9/F Del Rosario Law Center, 21st Drive corner 20th Drive, Bonifacio Global City, Taguig",
@@ -496,6 +547,7 @@
       "title": "Chargé d'Affaires, a.i."
     },
     {
+      "slug": "qatar",
       "country": "QATAR",
       "office_name": "Embassy of the State of Qatar",
       "address": "No. 32 McKinley Road, North Forbes Park, Brgy. Forbes Park, Makati City",
@@ -506,6 +558,7 @@
       "title": "Ambassador Extraordinary and Plenipotentiary"
     },
     {
+      "slug": "romania",
       "country": "ROMANIA",
       "office_name": "Embassy of Romania",
       "address": "6/F GC Corporate Plaza, 150 Legaspi St., Legaspi Village, Makati City",
@@ -516,6 +569,7 @@
       "title": "Ambassador Extraordinary and Plenipotentiary"
     },
     {
+      "slug": "russian-federation",
       "country": "RUSSIAN FEDERATION",
       "office_name": "Embassy of the Russian Federation",
       "address": "1245 Acacia Rd., Dasmariñas Village, Makati City",
@@ -526,6 +580,7 @@
       "title": "Ambassador Extraordinary and Plenipotentiary"
     },
     {
+      "slug": "saudi-arabia",
       "country": "SAUDI ARABIA",
       "office_name": "Royal Embassy of Saudi Arabia",
       "address": "128 H.V. Dela Costa St., Salcedo Village, Makati City",
@@ -536,6 +591,7 @@
       "title": "Ambassador Extraordinary and Plenipotentiary"
     },
     {
+      "slug": "singapore",
       "country": "SINGAPORE",
       "office_name": "Embassy of the Republic of Singapore",
       "address": "505 Rizal Drive, Bonifacio Global City, Taguig City",
@@ -546,6 +602,7 @@
       "title": "Ambassador Extraordinary and Plenipotentiary"
     },
     {
+      "slug": "slovenia",
       "country": "SLOVENIA",
       "office_name": "Embassy of the Republic of Slovenia",
       "address": "18/F Tower II, RCBC Plaza, 6819 Ayala Avenue, Makati City",
@@ -555,6 +612,7 @@
       "title": "Chargé d'Affaires, a.i."
     },
     {
+      "slug": "south-africa",
       "country": "SOUTH AFRICA",
       "office_name": "Embassy of the Republic of South Africa",
       "address": "29/F Yuchengco Tower, RCBC Plaza, 6819 Ayala Ave., Makati City",
@@ -565,6 +623,7 @@
       "title": "Ambassador Extraordinary and Plenipotentiary"
     },
     {
+      "slug": "spain",
       "country": "SPAIN",
       "office_name": "Embassy of Spain",
       "address": "27/F BDO Equitable Tower, 8751 Paseo de Roxas, Makati City",
@@ -575,6 +634,7 @@
       "title": "Ambassador Extraordinary and Plenipotentiary"
     },
     {
+      "slug": "sri-lanka",
       "country": "SRI LANKA",
       "office_name": "Embassy of the Democratic Socialist Republic of Sri Lanka",
       "address": "7/F G.C. Corporate Plaza Building, No. 150 Legaspi Street, Legaspi Village, Makati City",
@@ -584,6 +644,7 @@
       "title": "Ambassador Extraordinary and Plenipotentiary"
     },
     {
+      "slug": "sweden",
       "country": "SWEDEN",
       "office_name": "Embassy of Sweden",
       "address": "11/F Del Rosario Law Center, 21st Drive cor. 20th Drive, Bonifacio Global City, Taguig City",
@@ -594,6 +655,7 @@
       "title": "Charge d'Affaires"
     },
     {
+      "slug": "switzerland",
       "country": "SWITZERLAND",
       "office_name": "Embassy of the Swiss Confederation",
       "address": "24/F BDO Equitable Tower, 8751 Paseo de Roxas, Makati City",
@@ -604,6 +666,7 @@
       "title": "Ambassador Extraordinary and Plenipotentiary"
     },
     {
+      "slug": "thailand",
       "country": "THAILAND",
       "office_name": "The Royal Thai Embassy",
       "address": "107 Thailand (Rada) St., Legaspi Village, Makati City",
@@ -614,6 +677,7 @@
       "title": "Ambassador Extraordinary and Plenipotentiary"
     },
     {
+      "slug": "timor-leste",
       "country": "TIMOR-LESTE",
       "office_name": "Embassy of the Democratic Republic of Timor Leste",
       "address": "The Discovery Centre, 26/F, Unit 2601, 25 ADB Ave., Ortigas Centre, Pasig City",
@@ -623,6 +687,7 @@
       "title": "Ambassador Extraordinary and Plenipotentiary"
     },
     {
+      "slug": "trkiye",
       "country": "TÜRKIYE",
       "office_name": "Embassy of the Republic of Türkiye",
       "address": "2268 Paraiso St., Dasmariñas Village, Makati City",
@@ -632,6 +697,7 @@
       "title": "Ambassador Extraordinary and Plenipotentiary"
     },
     {
+      "slug": "united-arab-emirates",
       "country": "UNITED ARAB EMIRATES",
       "office_name": "Embassy of the United Arab Emirates",
       "address": "16/F Commerce and Industry Plaza Bldg., 1030 Campus cor. Park Avenues, McKinley Town Center, Fort Bonifacio, Taguig City",
@@ -642,6 +708,7 @@
       "title": "Ambassador Extraordinary and Plenipotentiary"
     },
     {
+      "slug": "united-kingdom-of-great-britain-and-northern-ireland",
       "country": "UNITED KINGDOM OF GREAT BRITAIN AND NORTHERN IRELAND",
       "office_name": "Embassy of the United Kingdom of Great Britain and Northern Ireland",
       "address": "120 Upper McKinley Road, McKinley Hill, Taguig City",
@@ -652,6 +719,7 @@
       "title": "Ambassador Extraordinary and Plenipotentiary"
     },
     {
+      "slug": "united-states-of-america",
       "country": "UNITED STATES OF AMERICA",
       "office_name": "Embassy of the United States of America",
       "address": "1201 Roxas Boulevard, Manila",
@@ -661,6 +729,7 @@
       "title": "Ambassador Extraordinary and Plenipotentiary"
     },
     {
+      "slug": "venezuela",
       "country": "VENEZUELA",
       "office_name": "Embassy of the Bolivarian Republic of Venezuela",
       "address": "Unit 17-A, 17/F Multinational Bancorporation Center, 6805 Ayala Ave., Makati City",
@@ -671,6 +740,7 @@
       "title": "Chargé d'Affaires, a.i."
     },
     {
+      "slug": "vietnam",
       "country": "VIETNAM",
       "office_name": "Embassy of the Socialist Republic of Viet Nam",
       "address": "670 Pablo Ocampo St., Malate, Manila",

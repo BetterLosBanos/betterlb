@@ -1,5 +1,6 @@
 [
   {
+    "slug": "office-of-the-president",
     "office": "OFFICE OF THE PRESIDENT",
     "address": "Malacañang Palace Compound, New Executive Bldg. J. P. Laurel St., San Miguel, 1005 Manila",
     "trunkline": "(632) 8249-8310",
@@ -372,6 +373,7 @@
     ]
   },
   {
+    "slug": "office-of-the-vice-president",
     "office": "OFFICE OF THE VICE PRESIDENT",
     "address": "11th Floor, Robinson's Cybergate Plaza, EDSA, cor Pioneer St., Mandaluyong City",
     "trunkline": "(632) 8532-5942; 8370-1719",
@@ -446,6 +448,7 @@
     ]
   },
   {
+    "slug": "presidential-communications-office",
     "office": "PRESIDENTIAL COMMUNICATIONS OFFICE",
     "address": "New Executive Building (NEB), J.P. Laurel St., Malacañang, Manila",
     "trunkline": "(632) 8733-0790; 8733-1206; 8733-3630; 8734-5611",
@@ -573,6 +576,7 @@
     ]
   },
   {
+    "slug": "anti-money-laundering-council",
     "office": "ANTI-MONEY LAUNDERING COUNCIL",
     "address": "5/F EDPC Bldg., Bangko Sentral ng Pilipinas Complex Mabini cor. Vito Cruz Streets, Malate, Manila",
     "trunkline": "8708-7701",
@@ -581,6 +585,7 @@
     "website": "www.amlc.gov.ph"
   },
   {
+    "slug": "anti-red-tape-authority",
     "office": "ANTI-RED TAPE AUTHORITY",
     "address": "4/F and 5/F National Food Authority Bldg. Visayas Avenue, Brgy. Vasra, Quezon City",
     "phone": "8478-5091",
@@ -588,6 +593,7 @@
     "website": "www.arta.gov.ph"
   },
   {
+    "slug": "career-executive-service-board",
     "office": "CAREER EXECUTIVE SERVICE BOARD",
     "address": "3 Marcelino Street, Isidora Hills Subd., Brgy. Holy Spirit Drive, Diliman, Quezon City",
     "phone": "8951-4981 loc. 102",
@@ -595,6 +601,7 @@
     "website": "www.cesboard.gov.ph"
   },
   {
+    "slug": "climate-change-commission",
     "office": "CLIMATE CHANGE COMMISSION",
     "address": "6/F First Residences Bldg., 1557 J.P. Laurel St. Malacañang Complex, San Miguel, Manila",
     "phone": "8287-8450",
@@ -602,6 +609,7 @@
     "website": "www.climate.gov.ph"
   },
   {
+    "slug": "commission-on-filipinos-overseas",
     "office": "COMMISSION ON FILIPINOS OVERSEAS",
     "address": "20/F and 21/F, The Upper Class Tower, Quezon Ave. cor. Scout Reyes St., Brgy. Paligsahan, Diliman, Quezon City",
     "phone": "8552-4707",
@@ -609,6 +617,7 @@
     "website": "www.cfo.gov.ph"
   },
   {
+    "slug": "commission-on-higher-education",
     "office": "COMMISSION ON HIGHER EDUCATION",
     "address": "Higher Education Development Center Building C. P. Garcia Avenue, Diliman, Quezon City",
     "phone": "8441-1260; 8351-7413",
@@ -616,12 +625,14 @@
     "website": "www.ched.gov.ph"
   },
   {
+    "slug": "komisyon-sa-wikang-filipino",
     "office": "KOMISYON SA WIKANG FILIPINO",
     "address": "2/F Watson Bldg., 1610 J.P. Laurel St., San Miguel, Manila",
     "email": "artcasanova@kwf.gov.ph",
     "website": "www.kwf.gov.ph"
   },
   {
+    "slug": "dangerous-drugs-board",
     "office": "DANGEROUS DRUGS BOARD",
     "address": "3/F DDB-PDEA Bldg. National Government Center NIA Road, Brgy. Pinyahan, Quezon City",
     "phone": "8929-1753 loc. 102; 8929-6679",
@@ -630,6 +641,7 @@
     "website": "www.ddb.gov.ph"
   },
   {
+    "slug": "energy-regulatory-commission",
     "office": "ENERGY REGULATORY COMMISSION",
     "address": "Exquadra Tower 1, Jade Drive, Ortigas Center San Antonio, Pasig City",
     "phone": "8689-5372 loc. 5301 and 5302",
@@ -637,12 +649,14 @@
     "website": "www.erc.gov.ph"
   },
   {
+    "slug": "fertilizer-and-pesticide-authority",
     "office": "FERTILIZER AND PESTICIDE AUTHORITY",
     "address": "Visayas Avenue, Diliman, Quezon City",
     "phone": "8371-5388",
     "website": "www.fpa.da.gov.ph"
   },
   {
+    "slug": "film-development-council-of-the-philippines",
     "office": "FILM DEVELOPMENT COUNCIL OF THE PHILIPPINES",
     "address": "855 T. M. Kalaw St., Ermita, Manila",
     "phone": "8256-9908",
@@ -650,6 +664,7 @@
     "website": "www.fdcp.ph"
   },
   {
+    "slug": "games-and-amusements-board",
     "office": "GAMES AND AMUSEMENTS BOARD",
     "address": "2/F Legaspi Tower 200, Paseo de Roxas St., Legaspi Village, Makati City",
     "phone": "8817-2184; 8819-5854",
@@ -658,12 +673,14 @@
     "website": "www.gab.gov.ph"
   },
   {
+    "slug": "governance-commission-for-goccs",
     "office": "GOVERNANCE COMMISSION FOR GOCCS",
     "address": "3/F BDO Paseo Towers, Paseo de Roxas Avenue, Makati City",
     "phone": "5328-2030",
     "website": "www.gcg.gov.ph"
   },
   {
+    "slug": "metropolitan-manila-development-authority",
     "office": "METROPOLITAN MANILA DEVELOPMENT AUTHORITY",
     "address": "Doña Julia Vargas Avenue cor. Molave St., Brgy. Ugong, Pasig City",
     "phone": "8898-4200 loc. 1901",
@@ -671,12 +688,14 @@
     "website": "www.mmda.gov.ph"
   },
   {
+    "slug": "mindanao-development-authority",
     "office": "MINDANAO DEVELOPMENT AUTHORITY",
     "address": "14/F Pryce Tower, Pryce Business Park JP Laurel Avenue, Davao City",
     "email": "minda.chair@minda.gov.ph",
     "website": "www.minda.gov.ph"
   },
   {
+    "slug": "movie-and-television-review-and-classification-board",
     "office": "MOVIE AND TELEVISION REVIEW AND CLASSIFICATION BOARD",
     "address": "MTRCB Bldg., No. 18 Timog Avenue, Quezon City",
     "phone": "8376-7380",
@@ -685,6 +704,7 @@
     "website": "www.midas.mtrcb.gov.ph"
   },
   {
+    "slug": "national-archives-of-the-philippines",
     "office": "NATIONAL ARCHIVES OF THE PHILIPPINES",
     "address": "1765 Paz M. Guazon St., Paco, Manila",
     "phone": "8524-3231",
@@ -692,6 +712,7 @@
     "website": "www.nationalarchives.gov.ph"
   },
   {
+    "slug": "national-commission-for-culture-and-the-arts",
     "office": "NATIONAL COMMISSION FOR CULTURE AND THE ARTS",
     "address": "7/F NCCA Bldg., 633 General Luna St., Intramuros, Manila",
     "trunkline": "8527-2192",
@@ -700,6 +721,7 @@
     "website": "www.ncca.gov.ph"
   },
   {
+    "slug": "national-historical-commission-of-the-philippines",
     "office": "NATIONAL HISTORICAL COMMISSION OF THE PHILIPPINES",
     "address": "NHCP Bldg., T. M. Kalaw St., Ermita, Manila",
     "phone": "5335-1288",
@@ -707,12 +729,14 @@
     "website": "www.nhcp.gov.ph"
   },
   {
+    "slug": "national-commission-of-senior-citizens",
     "office": "NATIONAL COMMISSION OF SENIOR CITIZENS",
     "address": "4/F AAP Tower, Aurora Blvd., New Manila, Quezon City San Miguel, Manila",
     "trunkline": "8931-8101 to 07",
     "website": "www.ncsc.gov.ph"
   },
   {
+    "slug": "national-intelligence-coordinating-agency",
     "office": "NATIONAL INTELLIGENCE COORDINATING AGENCY",
     "address": "V. Luna Road, Quezon City",
     "phone": "8927-4245 loc. 6102; 8927-5017",
@@ -720,6 +744,7 @@
     "website": "www.nica.gov.ph"
   },
   {
+    "slug": "national-library-of-the-philippines",
     "office": "NATIONAL LIBRARY OF THE PHILIPPINES",
     "address": "1000 Kalaw Ave., Ermita, Manila",
     "phone": "5336-7200 loc. 303; 5310-5034 to 35",
@@ -727,12 +752,14 @@
     "website": "web.nlp.gov.ph"
   },
   {
+    "slug": "national-security-council",
     "office": "NATIONAL SECURITY COUNCIL",
     "address": "NICA Compound, V. Luna Road cor. East Ave., Diliman, Quezon City",
     "email": "publicaffairs@nsc.gov.ph",
     "website": "www.nsc.gov.ph"
   },
   {
+    "slug": "office-of-the-presidential-adviser-on-peace-reconciliation-and-unity",
     "office": "OFFICE OF THE PRESIDENTIAL ADVISER ON PEACE, RECONCILIATION AND UNITY",
     "address": "5/F Agustin I Bldg., F. Ortigas Jr. Road Ortigas Center, Pasig City",
     "trunkline": "8636-0701 to 07",
@@ -741,18 +768,21 @@
     "website": "www.peace.gov.ph"
   },
   {
+    "slug": "optical-media-board",
     "office": "OPTICAL MEDIA BOARD",
     "address": "35 Scout Limbaga, Brgy. Laging Handa, Quezon City",
     "phone": "7905-1678 loc. 100",
     "website": "www.omb.gov.ph"
   },
   {
+    "slug": "philippine-competition-commission",
     "office": "PHILIPPINE COMPETITION COMMISSION",
     "address": "25/F Vertis North Corporate Center 1 North Avenue, Quezon City",
     "trunkline": "8771-9722",
     "website": "www.phcc.gov.ph"
   },
   {
+    "slug": "philippine-drug-enforcement-agency",
     "office": "PHILIPPINE DRUG ENFORCEMENT AGENCY",
     "address": "PDEA Bldg., NIA Northside Road Diliman, Quezon City",
     "trunkline": "8927-9702; 8928-5292",
@@ -761,6 +791,7 @@
     "website": "www.pdea.gov.ph"
   },
   {
+    "slug": "philippine-information-agency",
     "office": "PHILIPPINE INFORMATION AGENCY",
     "address": "PIA Bldg., Visayas Avenue, Vasra, Quezon City",
     "phone": "8920-1224; 8772-7601",
@@ -769,12 +800,14 @@
     "website": "www.pia.gov.ph"
   },
   {
+    "slug": "bureau-of-communications-services",
     "office": "BUREAU OF COMMUNICATIONS SERVICES",
     "address": "No. 310 San Rafael Street Malacañang Complex, San Miguel, Manila",
     "phone": "8734-2120 loc. 100-101, 414; 8734-2118",
     "website": "www.bcs.gov.ph"
   },
   {
+    "slug": "philippine-racing-commission",
     "office": "PHILIPPINE RACING COMMISSION",
     "address": "4/F Electra House Bldg. Esteban cor. V.A. Rufino Sts., Legaspi Village, Makati",
     "phone": "8815-6453; 8813-7198",
@@ -782,6 +815,7 @@
     "website": "www.philracom.gov.ph"
   },
   {
+    "slug": "philippine-space-agency",
     "office": "PHILIPPINE SPACE AGENCY",
     "address": "29/F Cyber One Bldg., II Eastwood Avenue Bagumbayan, Quezon City",
     "phone": "8568-9931",
@@ -789,12 +823,14 @@
     "website": "www.philsa.gov.ph"
   },
   {
+    "slug": "philippine-sports-commission",
     "office": "PHILIPPINE SPORTS COMMISSION",
     "address": "Rizal Memorial Sports Complex Pablo Ocampo Sr. St., Malate, Manila",
     "phone": "8524-4336 loc. 168, 888, 148, 158",
     "website": "www.psc.gov.ph"
   },
   {
+    "slug": "presidential-legislative-liaison-office",
     "office": "PRESIDENTIAL LEGISLATIVE LIAISON OFFICE",
     "address": "Room G-101-D, Mabini Hall, Malacañang, Manila",
     "phone": "8736-1116",
@@ -802,6 +838,7 @@
     "website": "www.pllo.gov.ph"
   },
   {
+    "slug": "presidential-management-staff",
     "office": "PRESIDENTIAL MANAGEMENT STAFF",
     "address": "PMS Bldg., Arlegui St., San Miguel, Manila",
     "trunkline": "8876-8450",
@@ -809,6 +846,7 @@
     "website": "www.pms.gov.ph"
   },
   {
+    "slug": "presidential-broadcast-staff-radio-television-malacaang",
     "office": "PRESIDENTIAL BROADCAST STAFF-RADIO TELEVISION MALACAÑANG",
     "address": "RTVM Bldg., Gate 7, J.P. Laurel Street, Malacañang, Manila",
     "phone": "8735-6186; 8733-3713",

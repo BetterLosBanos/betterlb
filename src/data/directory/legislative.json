@@ -1,5 +1,6 @@
 [
   {
+    "slug": "senate-of-the-philippines-19th-congress",
     "branch": "Legislative Branch",
     "chamber": "Senate of the Philippines (19th Congress)",
     "address": "GSIS Building, Financial Center Roxas Blvd., 1300 Pasay City",
@@ -358,6 +359,7 @@
     ]
   },
   {
+    "slug": "house-of-representatives-19th-congress",
     "branch": "Legislative Branch",
     "chamber": "House of Representatives (19th Congress)",
     "address": "IBP Road, Batasan Hills, 1126 Quezon City",

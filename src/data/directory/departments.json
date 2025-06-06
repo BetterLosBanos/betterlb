@@ -1,5 +1,6 @@
 [
   {
+    "slug": "department-of-budget-and-management",
     "office_name": "DEPARTMENT OF BUDGET AND MANAGEMENT",
     "address": "Boncodin Hall, General Solano St., San Miguel, 1005 Manila",
     "trunkline": "(632) 8657-3300",
@@ -412,6 +413,7 @@
     ]
   },
   {
+    "slug": "department-of-agriculture",
     "office_name": "DEPARTMENT OF AGRICULTURE",
     "address": "Elliptical Road, Diliman, 1100 Quezon City",
     "trunkline": "(632) 8928-8741 to 64; 8273-2474",
@@ -785,6 +787,7 @@
     ]
   },
   {
+    "slug": "department-of-agrarian-reform",
     "office_name": "DEPARTMENT OF AGRARIAN REFORM",
     "address": "Elliptical Road, Diliman, 1107 Quezon City",
     "trunkline": "(632) 8920-0380",
@@ -1007,6 +1010,7 @@
     }
   },
   {
+    "slug": "department-of-education",
     "office_name": "DEPARTMENT OF EDUCATION",
     "address": "DepEd Complex, Meralco Ave., 1604 Pasig City",
     "website": "www.deped.gov.ph",
@@ -1340,6 +1344,7 @@
     ]
   },
   {
+    "slug": "department-of-energy",
     "office_name": "DEPARTMENT OF ENERGY",
     "address": "Energy Center, 34th St., Rizal Drive Bonifacio Global City, 1632 Taguig City",
     "trunkline": "(632) 8479-2900",
@@ -1453,6 +1458,7 @@
     ]
   },
   {
+    "slug": "department-of-environment-and-natural-resources",
     "office_name": "DEPARTMENT OF ENVIRONMENT AND NATURAL RESOURCES",
     "address": "Visayas Avenue, Diliman, 1104 Quezon City",
     "trunkline": "(632) 8929-6626/IP Phone Trunkline No. 8248-3367",
@@ -1716,6 +1722,7 @@
     ]
   },
   {
+    "slug": "department-of-finance",
     "office_name": "DEPARTMENT OF FINANCE",
     "address": "DOF Building, BSP Complex, Roxas Boulevard, 1004 Manila",
     "trunkline": "(632) 5317-6363",
@@ -1928,6 +1935,7 @@
     ]
   },
   {
+    "slug": "department-of-foreign-affairs",
     "office_name": "DEPARTMENT OF FOREIGN AFFAIRS",
     "address": "2330 Roxas Boulevard, Pasay City",
     "trunkline": "(632) 8834-4000",
@@ -3036,6 +3044,7 @@
     ]
   },
   {
+    "slug": "department-of-health",
     "office_name": "DEPARTMENT OF HEALTH",
     "address": "San Lazaro Compound, Tayuman, Sta. Cruz, 1003 Manila",
     "trunkline": "(632) 8651-7800; 8711-6744 F",
@@ -3409,6 +3418,7 @@
     ]
   },
   {
+    "slug": "department-of-human-settlements-and-urban-development",
     "office_name": "DEPARTMENT OF HUMAN SETTLEMENTS AND URBAN DEVELOPMENT",
     "address": "DHSUD Building, Kalayaan Avenue cor. Mayaman Street, Diliman, Quezon City",
     "trunkline": "8424-4070",
@@ -3597,6 +3607,7 @@
     }
   },
   {
+    "slug": "department-of-information-and-communications-technology",
     "office_name": "DEPARTMENT OF INFORMATION AND COMMUNICATIONS TECHNOLOGY",
     "address": "C.P. Garcia Avenue, Diliman, 1101 Quezon City",
     "trunkline": "(02) 8920-0101",
@@ -3832,6 +3843,7 @@
     ]
   },
   {
+    "slug": "department-of-the-interior-and-local-government",
     "office_name": "DEPARTMENT OF THE INTERIOR AND LOCAL GOVERNMENT",
     "address": "DILG-NAPOLCOM Center, EDSA corner Quezon Avenue West Triangle, 1104 Quezon City",
     "trunkline": "(632) 8876-3454",
@@ -4141,6 +4153,7 @@
     ]
   },
   {
+    "slug": "department-of-justice",
     "office_name": "DEPARTMENT OF JUSTICE",
     "address": "Padre Faura Street, Ermita, 1000 Manila",
     "trunkline": "(632) 8523-8481 to 98",
@@ -4464,6 +4477,7 @@
     ]
   },
   {
+    "slug": "department-of-labor-and-employment",
     "office_name": "DEPARTMENT OF LABOR AND EMPLOYMENT",
     "address": "Muralla Wing cor. General Luna St., Intramuros, 1002 Manila",
     "trunkline": "(632) 8527-3000",
@@ -4714,6 +4728,7 @@
     ]
   },
   {
+    "slug": "department-of-migrant-workers",
     "office_name": "DEPARTMENT OF MIGRANT WORKERS",
     "address": "Blas F. Ople Bldg., Ortigas Ave. cor. EDSA Ave., Mandaluyong City",
     "trunkline": "(632) 8722-1144; 8722-1155",
@@ -5239,6 +5254,7 @@
     ]
   },
   {
+    "slug": "department-of-national-defense",
     "office_name": "DEPARTMENT OF NATIONAL DEFENSE",
     "address": "DND Building, Segundo Ave. Camp General Emilio Aguinaldo, 1110 Quezon City",
     "trunkline": "(632) 8982-5600",
@@ -5387,6 +5403,7 @@
     ]
   },
   {
+    "slug": "department-of-public-works-and-highways",
     "office_name": "DEPARTMENT OF PUBLIC WORKS AND HIGHWAYS",
     "address": "Bonifacio Drive, Port Area, 1018 Manila",
     "trunkline": "(632) 5304-3000",
@@ -5644,6 +5661,7 @@
     }
   },
   {
+    "slug": "department-of-science-and-technology",
     "office_name": "DEPARTMENT OF SCIENCE AND TECHNOLOGY",
     "address": "Gen. Santos Avenue, Bicutan, 1631 Taguig City",
     "trunkline": "(632) 8837-2071 to 82",
@@ -5945,6 +5963,7 @@
     ]
   },
   {
+    "slug": "department-of-social-welfare-and-development",
     "office_name": "DEPARTMENT OF SOCIAL WELFARE AND DEVELOPMENT",
     "address": "DSWD Central Office, Batasang Pambansa Complex Constitution Hills, 1126 Quezon City",
     "trunkline": "(632) 8931-8101 to 07",
@@ -6312,6 +6331,7 @@
     ]
   },
   {
+    "slug": "department-of-tourism",
     "office_name": "DEPARTMENT OF TOURISM",
     "address": "The New DOT Building, 351 Sen. Gil Puyat Avenue, 1200 Makati City",
     "trunkline": "(632) 8459-5200 to 30",
@@ -6523,6 +6543,7 @@
     ]
   },
   {
+    "slug": "department-of-trade-and-industry",
     "office_name": "DEPARTMENT OF TRADE AND INDUSTRY",
     "address": "361 Sen. Gil J. Puyat Avenue, 1200 Makati City",
     "trunkline": "(632) 7751-0384; 7791-3101",
@@ -6812,6 +6833,7 @@
     ]
   },
   {
+    "slug": "department-of-transportation",
     "office_name": "DEPARTMENT OF TRANSPORTATION",
     "address": "The Columbia Tower, Wack-wack, Ortigas Avenue, 1555 Mandaluyong City",
     "satellite_office": "Primex Bldg. EDSA cor., Connecticut, Greenhills, San Juan City",
@@ -7030,6 +7052,7 @@
     ]
   },
   {
+    "slug": "national-economic-and-development-authority",
     "office_name": "NATIONAL ECONOMIC AND DEVELOPMENT AUTHORITY",
     "address": "12 Escriva Drive, Ortigas Center, 1605 Pasig City",
     "trunkline": "(632) 8631-0945 to 68",

@@ -1,5 +1,6 @@
 [
   {
+    "slug": "civil-service-commission-csc",
     "office_type": "Constitutional Office",
     "name": "Civil Service Commission (CSC)",
     "description": "The central personnel agency of the government.",
@@ -166,6 +167,7 @@
     }
   },
   {
+    "slug": "commission-on-audit-coa",
     "office_type": "Constitutional Office",
     "name": "Commission on Audit (COA)",
     "description": "Primary duty is to examine, audit and settle all accounts pertaining to the revenue and receipts of, and expenditures or uses of funds and property owned or held in trust by the Government or any of its subdivisions, agencies or instrumentalities.",
@@ -389,6 +391,7 @@
     }
   },
   {
+    "slug": "commission-on-elections-comelec",
     "office_type": "Constitutional Office",
     "name": "Commission on Elections (COMELEC)",
     "description": "Tasked to enforce and administer all laws and regulations relative to the conduct of elections, plebiscites, initiatives, referanda and recall.",
@@ -556,6 +559,7 @@
     }
   },
   {
+    "slug": "commission-on-human-rights-chr",
     "office_type": "Constitutionally Mandated Body",
     "name": "Commission on Human Rights (CHR)",
     "description": "Primary function of investigating all forms of human rights violations involving civil and political rights.",
@@ -710,6 +714,7 @@
     }
   },
   {
+    "slug": "office-of-the-ombudsman",
     "office_type": "Constitutionally Mandated Body",
     "name": "Office of the Ombudsman",
     "description": "Has the power to investigate on its own or upon complaint, any act or omission of any public official, employee, office or agency deemed to be illegal, unjust, improper or inefficient.",
@@ -874,6 +879,7 @@
     ]
   },
   {
+    "slug": "al-amanah-islamic-investment-bank-of-the-philippines",
     "office_type": "Government-Owned And/Or -Controlled Corporations (GOCCs)",
     "name": "AL-AMANAH ISLAMIC INVESTMENT BANK OF THE PHILIPPINES",
     "address": "Greenhills McKinley Arcade MA-104B, Ortigas Avenue corner Club Filipino St., San Juan City",
@@ -887,6 +893,7 @@
     ]
   },
   {
+    "slug": "apo-production-unit-inc",
     "office_type": "Government-Owned And/Or -Controlled Corporations (GOCCs)",
     "name": "APO PRODUCTION UNIT, INC.",
     "address": "2/F PIA Building, Visayas Ave. VASRA, Quezon City",
@@ -900,6 +907,7 @@
     ]
   },
   {
+    "slug": "aurora-pacific-economic-zone-and-freeport-authority",
     "office_type": "Government-Owned And/Or -Controlled Corporations (GOCCs)",
     "name": "AURORA PACIFIC ECONOMIC ZONE AND FREEPORT AUTHORITY",
     "address": "1 Corporate Campus. Sitio Motyong, Brgy. Esteves, Casiguran, Aurora",
@@ -914,6 +922,7 @@
     "email": "busdevmarketing@apecozonefreeport.com"
   },
   {
+    "slug": "authority-of-the-freeport-area-of-bataan",
     "office_type": "Government-Owned And/Or -Controlled Corporations (GOCCs)",
     "name": "AUTHORITY OF THE FREEPORT AREA OF BATAAN",
     "address": "AFAB Administration Bldg., Freeport Area of Bataan, Mariveles, Bataan",
@@ -928,6 +937,7 @@
     "email": "info@afab.gov.ph"
   },
   {
+    "slug": "bangko-sentral-ng-pilipinas",
     "office_type": "Government-Owned And/Or -Controlled Corporations (GOCCs)",
     "name": "BANGKO SENTRAL NG PILIPINAS",
     "address": "A. Mabini St. cor. P. Ocampo St., Malate, Manila",
@@ -942,6 +952,7 @@
     "email": "bspmail@bsp.gov.ph"
   },
   {
+    "slug": "bases-conversion-and-development-authority",
     "office_type": "Government-Owned And/Or -Controlled Corporations (GOCCs)",
     "name": "BASES CONVERSION AND DEVELOPMENT AUTHORITY",
     "address": "2/F Bonifacio Technology Center 31 St. cor. 2nd Ave., Bonifacio Global City, Taguig",
@@ -956,6 +967,7 @@
     "email": "bcda@bcda.gov.ph"
   },
   {
+    "slug": "batangas-land-company-inc",
     "office_type": "Government-Owned And/Or -Controlled Corporations (GOCCs)",
     "name": "BATANGAS LAND COMPANY, INC.",
     "address": "Makati City",
@@ -967,6 +979,7 @@
     ]
   },
   {
+    "slug": "boy-scouts-of-the-philippines",
     "office_type": "Government-Owned And/Or -Controlled Corporations (GOCCs)",
     "name": "BOY SCOUTS OF THE PHILIPPINES",
     "address": "181 Natividad Almeda-Lopez St., Ermita, Manila",
@@ -980,6 +993,7 @@
     "email": "bsp@scouts.org.ph"
   },
   {
+    "slug": "bukidnon-forest-inc",
     "office_type": "Government-Owned And/Or -Controlled Corporations (GOCCs)",
     "name": "BUKIDNON FOREST, INC.",
     "address": "BFI Compound, Sumpong, Malaybalay City, Bukidnon",
@@ -992,6 +1006,7 @@
     ]
   },
   {
+    "slug": "cagayan-economic-zone-authority",
     "office_type": "Government-Owned And/Or -Controlled Corporations (GOCCs)",
     "name": "CAGAYAN ECONOMIC ZONE AUTHORITY",
     "address": "10/F Greenfield Tower, Mayflower cor. William Sts. Greenfield District, Mandaluyong",
@@ -1006,6 +1021,7 @@
     "email": "info@ceza.gov.ph"
   },
   {
+    "slug": "cebu-port-authority",
     "office_type": "Government-Owned And/Or -Controlled Corporations (GOCCs)",
     "name": "CEBU PORT AUTHORITY",
     "address": "CIP Complex, Sergio Osmeña Boulevard, North Reclamation Area, Cebu City",
@@ -1020,6 +1036,7 @@
     "email": "ogm_staff01@cpa.gov.ph"
   },
   {
+    "slug": "center-for-international-trade-expositions-and-missions",
     "office_type": "Government-Owned And/Or -Controlled Corporations (GOCCs)",
     "name": "CENTER FOR INTERNATIONAL TRADE EXPOSITIONS AND MISSIONS",
     "address": "Golden Shell Pavilion, Roxas Boulevard cor. Sen. Gil J. Puyat Avenue, Pasay City",
@@ -1034,6 +1051,7 @@
     "email": "info@citem.gov.ph"
   },
   {
+    "slug": "civil-aviation-authority-of-the-philippines",
     "office_type": "Government-Owned And/Or -Controlled Corporations (GOCCs)",
     "name": "CIVIL AVIATION AUTHORITY OF THE PHILIPPINES",
     "address": "MIA Road, Pasay City",
@@ -1048,6 +1066,7 @@
     "email": "odg@caap.gov.ph; director.general@capp.gov.ph"
   },
   {
+    "slug": "clark-development-corporation",
     "office_type": "Government-Owned And/Or -Controlled Corporations (GOCCs)",
     "name": "CLARK DEVELOPMENT CORPORATION",
     "address": "Bldg. 2125, Elpidio Quirino St., Clark Freeport Zone, Pampanga",
@@ -1062,6 +1081,7 @@
     "email": "information@clark.com.ph"
   },
   {
+    "slug": "clark-international-airport-corporation",
     "office_type": "Government-Owned And/Or -Controlled Corporations (GOCCs)",
     "name": "CLARK INTERNATIONAL AIRPORT CORPORATION",
     "address": "Corporate Office Building, Civil Aviation Complex, Clark Freeport Zone, Pampanga",
@@ -1076,6 +1096,7 @@
     "email": "arreyperez@ciac.gov.ph; OP.Office@ciac.gov.ph"
   },
   {
+    "slug": "coconut-industry-investment-fund-group-a",
     "office_type": "Government-Owned And/Or -Controlled Corporations (GOCCs)",
     "name": "COCONUT INDUSTRY INVESTMENT FUND GROUP A",
     "address": "4/F Plaacio Del Gobernador Gen. Luna St., Intramuros, Manila",
@@ -1090,6 +1111,7 @@
     "email": "trade-info@ciif.ph"
   },
   {
+    "slug": "coconut-industry-investment-fund-group-b",
     "office_type": "Government-Owned And/Or -Controlled Corporations (GOCCs)",
     "name": "COCONUT INDUSTRY INVESTMENT FUND GROUP B",
     "address": "4/F Plaacio Del Gobernador Gen. Luna St., Intramuros, Manila",
@@ -1104,6 +1126,7 @@
     "email": "trade-info@ciif.ph"
   },
   {
+    "slug": "credit-information-corporation",
     "office_type": "Government-Owned And/Or -Controlled Corporations (GOCCs)",
     "name": "CREDIT INFORMATION CORPORATION",
     "address": "6/F Exchange Corner Bldg. 107 V.A. Rufino St. cor. Esteban St., Legaspi Village, Makati City",
@@ -1118,6 +1141,7 @@
     "email": "cichelpdesk@creditinfo.gov.ph"
   },
   {
+    "slug": "cultural-center-of-the-philippines",
     "office_type": "Government-Owned And/Or -Controlled Corporations (GOCCs)",
     "name": "CULTURAL CENTER OF THE PHILIPPINES",
     "address": "15/F Ramon Magsaysay Center, Quintos St., Malate, Manila",
@@ -1132,6 +1156,7 @@
     "email": "mdscorplan.cad@culturalcenter.gov.ph"
   },
   {
+    "slug": "davao-international-airport-authority",
     "office_type": "Government-Owned And/Or -Controlled Corporations (GOCCs)",
     "name": "DAVAO INTERNATIONAL AIRPORT AUTHORITY",
     "address": "Daang Maharlika Highway, Buhangin, Davao City, Davao del Sur",
@@ -1143,6 +1168,7 @@
     ]
   },
   {
+    "slug": "dbp-data-center-inc",
     "office_type": "Government-Owned And/Or -Controlled Corporations (GOCCs)",
     "name": "DBP DATA CENTER, INC.",
     "address": "9/F DBP Building, Sen. Gil J. Puyat Avenue cor. Makati Avenue, Makati City",
@@ -1157,6 +1183,7 @@
     "email": "info@dci.ph"
   },
   {
+    "slug": "dbp-leasing-corporation",
     "office_type": "Government-Owned And/Or -Controlled Corporations (GOCCs)",
     "name": "DBP LEASING CORPORATION",
     "address": "2/F Pacific Star Bldg., San Miguel Ave., Pasig City",
@@ -1171,6 +1198,7 @@
     "email": "customerservice@dbm-leasing.ph"
   },
   {
+    "slug": "development-academy-of-the-philippines",
     "office_type": "Government-Owned And/Or -Controlled Corporations (GOCCs)",
     "name": "DEVELOPMENT ACADEMY OF THE PHILIPPINES",
     "address": "DAP Bldg., San Miguel Ave., Pasig City",
@@ -1185,6 +1213,7 @@
     "email": "publicaffairsdesk@dap.edu.ph"
   },
   {
+    "slug": "development-bank-of-the-philippines",
     "office_type": "Government-Owned And/Or -Controlled Corporations (GOCCs)",
     "name": "DEVELOPMENT BANK OF THE PHILIPPINES",
     "address": "Sen. Gil J. Puyat Avenue, Makati City",
@@ -1198,6 +1227,7 @@
     ]
   },
   {
+    "slug": "duty-free-philippines-corporation",
     "office_type": "Government-Owned And/Or -Controlled Corporations (GOCCs)",
     "name": "DUTY FREE PHILIPPINES CORPORATION",
     "address": "Fiestamall, E.H.A. Bldg., Ninoy Aquino Avenue, Parañaque City",
@@ -1211,6 +1241,7 @@
     ]
   },
   {
+    "slug": "employees-compensation-commission",
     "office_type": "Government-Owned And/Or -Controlled Corporations (GOCCs)",
     "name": "EMPLOYEES' COMPENSATION COMMISSION",
     "address": "4/F & 5/F ECC Bldg., 355 Sen. Gil Puyat Avenue, Makati City",
@@ -1225,6 +1256,7 @@
     "email": "info@ecc.gov.ph"
   },
   {
+    "slug": "food-terminal-inc",
     "office_type": "Government-Owned And/Or -Controlled Corporations (GOCCs)",
     "name": "FOOD TERMINAL, INC.",
     "address": "FTI Administration Building, Radian Street, Barangay Western Bicutan, Taguig City",
@@ -1239,6 +1271,7 @@
     "email": "info@fti.gov.ph"
   },
   {
+    "slug": "government-service-insurance-system",
     "office_type": "Government-Owned And/Or -Controlled Corporations (GOCCs)",
     "name": "GOVERNMENT SERVICE INSURANCE SYSTEM",
     "address": "Financial Center, Pasay City",
@@ -1253,6 +1286,7 @@
     "email": "gsiscares@gsis.gov.ph"
   },
   {
+    "slug": "gy-real-estate-inc",
     "office_type": "Government-Owned And/Or -Controlled Corporations (GOCCs)",
     "name": "GY REAL ESTATE, INC.",
     "address": "NDC Building 116 Tordesillas Street, Salcedo Village, Makati",
@@ -1264,6 +1298,7 @@
     ]
   },
   {
+    "slug": "home-development-mutual-fund-pag-ibig",
     "office_type": "Government-Owned And/Or -Controlled Corporations (GOCCs)",
     "name": "HOME DEVELOPMENT MUTUAL FUND (PAG-IBIG)",
     "address": "Petron Megaplaza Bldg., Sen. Gil J. Puyat Ave., Makati City",
@@ -1278,6 +1313,7 @@
     "email": "contactus@pagibigfund.gov.ph"
   },
   {
+    "slug": "intercontinental-broadcasting-corporation-ibc-13",
     "office_type": "Government-Owned And/Or -Controlled Corporations (GOCCs)",
     "name": "INTERCONTINENTAL BROADCASTING CORPORATION (IBC-13)",
     "address": "Broadcast City, Capitol Hills, Diliman, Quezon City",
@@ -1289,6 +1325,7 @@
     ]
   },
   {
+    "slug": "john-hay-management-corporation",
     "office_type": "Government-Owned And/Or -Controlled Corporations (GOCCs)",
     "name": "JOHN HAY MANAGEMENT CORPORATION",
     "address": "JHMC Office Complex John Hay Special Economic Zone, Baguio, Benguet",
@@ -1303,6 +1340,7 @@
     "email": "mgmt@jhmc.com.ph"
   },
   {
+    "slug": "kamayan-realty-corporation",
     "office_type": "Government-Owned And/Or -Controlled Corporations (GOCCs)",
     "name": "KAMAYAN REALTY CORPORATION",
     "address": "NDC Building 116 Tordesillas Street, Salcedo Village, Makati",
@@ -1314,6 +1352,7 @@
     ]
   },
   {
+    "slug": "laguna-lake-development-authority",
     "office_type": "Government-Owned And/Or -Controlled Corporations (GOCCs)",
     "name": "LAGUNA LAKE DEVELOPMENT AUTHORITY",
     "address": "LLADA Bldg., National Ecology Center, East Avenue Diliman, Quezon City",
@@ -1328,6 +1367,7 @@
     "email": "info@llda.gov.ph"
   },
   {
+    "slug": "land-bank-of-the-philippines",
     "office_type": "Government-Owned And/Or -Controlled Corporations (GOCCs)",
     "name": "LAND BANK OF THE PHILIPPINES",
     "address": "32/F Landbank Plaza, 1598 M. H. del Pilar cor. Dr. J. Quintos Sts., Malate, Manila",
@@ -1341,6 +1381,7 @@
     ]
   },
   {
+    "slug": "landbank-countryside-devt-foundation-inc",
     "office_type": "Government-Owned And/Or -Controlled Corporations (GOCCs)",
     "name": "LANDBANK COUNTRYSIDE DEV'T FOUNDATION, INC.",
     "address": "26/F Landbank Plaza, M.H. Del Pilar cor. Dr. Quintos St.",
@@ -1355,6 +1396,7 @@
     "email": "info@landbankfoundation.com"
   },
   {
+    "slug": "landbank-securities-inc",
     "office_type": "Government-Owned And/Or -Controlled Corporations (GOCCs)",
     "name": "LANDBANK SECURITIES, INC.",
     "address": "16/F Unit L2L16-11 The PSE Tower, One Bonifacio High Street, 5th Avenue corner 28th Street, Bonifacio Global City, Taguig City",
@@ -1369,6 +1411,7 @@
     "email": "mystocks@landbank.com"
   },
   {
+    "slug": "lbp-insurance-brokerage-inc",
     "office_type": "Government-Owned And/Or -Controlled Corporations (GOCCs)",
     "name": "LBP INSURANCE BROKERAGE, INC.",
     "address": "12/F SSHG Law Center 105 Paseo de Roxas, Legaspi Village, Makati City",
@@ -1383,6 +1426,7 @@
     "email": "libi@lbp-insurance.com"
   },
   {
+    "slug": "lbp-leasing-and-finance-corporation",
     "office_type": "Government-Owned And/Or -Controlled Corporations (GOCCs)",
     "name": "LBP LEASING AND FINANCE CORPORATION",
     "address": "15/F SYCIP Law Center, 105 Paseo de Roxas, Legazpi Village, Makati",
@@ -1397,6 +1441,7 @@
     "email": "info@lbpleasing.com"
   },
   {
+    "slug": "lbp-resources-and-development-corporation",
     "office_type": "Government-Owned And/Or -Controlled Corporations (GOCCs)",
     "name": "LBP RESOURCES AND DEVELOPMENT CORPORATION",
     "address": "24th Floor LBP Plaza, 1598 M.H. Del Pilar cor. Dr. J. Quintos St., Malate, Manila",
@@ -1411,6 +1456,7 @@
     "email": "customerservice@lbpresources.com"
   },
   {
+    "slug": "light-rail-transit-authority",
     "office_type": "Government-Owned And/Or -Controlled Corporations (GOCCs)",
     "name": "LIGHT RAIL TRANSIT AUTHORITY",
     "address": "1/F Line 2 Depot, Marcos Highway, Pasig City",
@@ -1425,6 +1471,7 @@
     "email": "administrator.office@Irta.gov.ph"
   },
   {
+    "slug": "local-water-utilities-administration",
     "office_type": "Government-Owned And/Or -Controlled Corporations (GOCCs)",
     "name": "LOCAL WATER UTILITIES ADMINISTRATION",
     "address": "LWUA-MWSS Complex, Katipunan Ave., Balara, Quezon City",
@@ -1439,6 +1486,7 @@
     "email": "corplan.smd@lwua.gov.ph"
   },
   {
+    "slug": "lung-center-of-the-philippines",
     "office_type": "Government-Owned And/Or -Controlled Corporations (GOCCs)",
     "name": "LUNG CENTER OF THE PHILIPPINES",
     "address": "Quezon Avenue Extension, Quezon City",
@@ -1453,6 +1501,7 @@
     "email": "director01@lcp.gov.ph"
   },
   {
+    "slug": "mactan-cebu-international-airport-authority",
     "office_type": "Government-Owned And/Or -Controlled Corporations (GOCCs)",
     "name": "MACTAN-CEBU INTERNATIONAL AIRPORT AUTHORITY",
     "address": "Lapu-Lapu Airport Road, Lapu-Lapu City, Cebu",
@@ -1467,6 +1516,7 @@
     "email": "ogm@mciaa.gov.ph"
   },
   {
+    "slug": "maharlika-investment-corporation",
     "office_type": "Government-Owned And/Or -Controlled Corporations (GOCCs)",
     "name": "MAHARLIKA INVESTMENT CORPORATION",
     "address": "29/F ORE Central 31st Street corner 9th Avenue Bonifacio Global City, Taguig",
@@ -1480,6 +1530,7 @@
     "email": "admin@mic.gov.ph; maharlikasecretariat@treasury.gov.ph"
   },
   {
+    "slug": "manila-international-airport-authority",
     "office_type": "Government-Owned And/Or -Controlled Corporations (GOCCs)",
     "name": "MANILA INTERNATIONAL AIRPORT AUTHORITY",
     "address": "MIAA Administration Bldg., MIA Road, Pasay City",
@@ -1494,6 +1545,7 @@
     "email": "gmo@miaa.gov.ph"
   },
   {
+    "slug": "marawi-resort-hotel-inc",
     "office_type": "Government-Owned And/Or -Controlled Corporations (GOCCs)",
     "name": "MARAWI RESORT HOTEL, INC.",
     "address": "Mindanao State University- Main Campus, Marawi City, Lanao del Sur",
@@ -1505,6 +1557,7 @@
     ]
   },
   {
+    "slug": "metropolitan-waterworks-and-sewerage-system",
     "office_type": "Government-Owned And/Or -Controlled Corporations (GOCCs)",
     "name": "METROPOLITAN WATERWORKS AND SEWERAGE SYSTEM",
     "address": "MWSS Complex, 489 Katipunan Rd., Balara, Quezon City",
@@ -1519,6 +1572,7 @@
     "email": "info@mwss.gov.ph"
   },
   {
+    "slug": "national-dairy-authority",
     "office_type": "Government-Owned And/Or -Controlled Corporations (GOCCs)",
     "name": "NATIONAL DAIRY AUTHORITY",
     "address": "NDA Bldg., BAI Compound Visayas Avenue, Diliman, Quezon City",
@@ -1533,6 +1587,7 @@
     "email": "sbsumagaysay@nda.da.gov.ph"
   },
   {
+    "slug": "national-development-company",
     "office_type": "Government-Owned And/Or -Controlled Corporations (GOCCs)",
     "name": "NATIONAL DEVELOPMENT COMPANY",
     "address": "116 Tordesillas St., Salcedo Village, Makati City",
@@ -1547,6 +1602,7 @@
     "email": "info@ndc.gov.ph"
   },
   {
+    "slug": "national-electrification-administration",
     "office_type": "Government-Owned And/Or -Controlled Corporations (GOCCs)",
     "name": "NATIONAL ELECTRIFICATION ADMINISTRATION",
     "address": "57 NEA Bldg., NIA Road, Government Center, Diliman, Quezon City",
@@ -1560,6 +1616,7 @@
     ]
   },
   {
+    "slug": "national-food-authority",
     "office_type": "Government-Owned And/Or -Controlled Corporations (GOCCs)",
     "name": "NATIONAL FOOD AUTHORITY",
     "address": "Visayas Avenue, Brgy. Vasra, Quezon City",
@@ -1572,6 +1629,7 @@
     ]
   },
   {
+    "slug": "national-home-mortgage-finance-corporation",
     "office_type": "Government-Owned And/Or -Controlled Corporations (GOCCs)",
     "name": "NATIONAL HOME MORTGAGE FINANCE CORPORATION",
     "address": "Filomena Bldg. III, 104 Amorsolo St., Legaspi Village, Makati City",
@@ -1586,6 +1644,7 @@
     "email": "inquiry@nhmfc.gov.ph"
   },
   {
+    "slug": "national-housing-authority",
     "office_type": "Government-Owned And/Or -Controlled Corporations (GOCCs)",
     "name": "NATIONAL HOUSING AUTHORITY",
     "address": "Quezon Memorial Elliptical Road, Diliman, Quezon City",
@@ -1600,6 +1659,7 @@
     "email": "ogm@nha.gov.ph"
   },
   {
+    "slug": "national-irrigation-administration",
     "office_type": "Government-Owned And/Or -Controlled Corporations (GOCCs)",
     "name": "NATIONAL IRRIGATION ADMINISTRATION",
     "address": "National Government Center, EDSA, Diliman, Quezon City",
@@ -1614,6 +1674,7 @@
     "email": "cps@nia.gov.ph"
   },
   {
+    "slug": "national-kidney-and-transplant-institute",
     "office_type": "Government-Owned And/Or -Controlled Corporations (GOCCs)",
     "name": "NATIONAL KIDNEY AND TRANSPLANT INSTITUTE",
     "address": "East Avenue, Diliman, Quezon City",
@@ -1628,6 +1689,7 @@
     "email": "pro@nkti.gov.ph"
   },
   {
+    "slug": "national-power-corporation",
     "office_type": "Government-Owned And/Or -Controlled Corporations (GOCCs)",
     "name": "NATIONAL POWER CORPORATION",
     "address": "Gabriel Y. Itchon Building, Senator Miriam P. Defensor-Santiago Avenue corner Quezon Avenue, Diliman, Quezon City",
@@ -1642,6 +1704,7 @@
     "email": "corpcomm@napocor.gov.ph"
   },
   {
+    "slug": "national-tobacco-administration",
     "office_type": "Government-Owned And/Or -Controlled Corporations (GOCCs)",
     "name": "NATIONAL TOBACCO ADMINISTRATION",
     "address": "NTA Bldg., Scout Reyes cor. Panay Avenue, Brgy. Paligsahan, Quezon City",
@@ -1655,6 +1718,7 @@
     ]
   },
   {
+    "slug": "national-transmission-corporation",
     "office_type": "Government-Owned And/Or -Controlled Corporations (GOCCs)",
     "name": "NATIONAL TRANSMISSION CORPORATION",
     "address": "TransCo Head Office, Power Center Quezon Ave., cor. BIR Road, Diliman, Quezon City",
@@ -1669,6 +1733,7 @@
     "email": "customerservice@transco.ph"
   },
   {
+    "slug": "natural-resources-development-corporation",
     "office_type": "Government-Owned And/Or -Controlled Corporations (GOCCs)",
     "name": "NATURAL RESOURCES DEVELOPMENT CORPORATION",
     "address": "9/F DENR By the Bay Bldg., Roxas Blvd., Manila",
@@ -1682,6 +1747,7 @@
     ]
   },
   {
+    "slug": "nayong-pilipino-foundation-inc",
     "office_type": "Government-Owned And/Or -Controlled Corporations (GOCCs)",
     "name": "NAYONG PILIPINO FOUNDATION, INC.",
     "address": "Plaza San Luis, General Luna St., Intramuros, Manila",
@@ -1695,6 +1761,7 @@
     "email": "planning@nayongpilipino.gov.ph"
   },
   {
+    "slug": "overseas-filipino-bank",
     "office_type": "Government-Owned And/Or -Controlled Corporations (GOCCs)",
     "name": "OVERSEAS FILIPINO BANK",
     "address": "3/F Liwasang Bonifacio, Ofbank center, Ermita, Manila",
@@ -1709,6 +1776,7 @@
     "email": "customer.care@ofbank.com.ph"
   },
   {
+    "slug": "palacio-del-gobernador-condominium-corporation",
     "office_type": "Government-Owned And/Or -Controlled Corporations (GOCCs)",
     "name": "PALACIO DEL GOBERNADOR CONDOMINIUM CORPORATION",
     "address": "Gen. Luna Street corner A. Soriano Street Intramuros, Manila",
@@ -1723,6 +1791,7 @@
     "email": "info@pdgcc.gov.ph"
   },
   {
+    "slug": "pea-tollway-corporation",
     "office_type": "Government-Owned And/Or -Controlled Corporations (GOCCs)",
     "name": "PEA TOLLWAY CORPORATION",
     "address": "PEATC Compound. Aguinaldo Boulevard, Brgy. San Dionisio, Parañaque City",
@@ -1737,6 +1806,7 @@
     "email": "info@pea.gov.ph; peatollwaycorp@peatc.gov.ph"
   },
   {
+    "slug": "peoples-television-network-inc",
     "office_type": "Government-Owned And/Or -Controlled Corporations (GOCCs)",
     "name": "PEOPLE'S TELEVISION NETWORK, INC.",
     "address": "Broadcast Complex, Visayas Ave Brgy. Vasra, Quezon City",
@@ -1750,6 +1820,7 @@
     ]
   },
   {
+    "slug": "philippine-aerospace-development-corporation",
     "office_type": "Government-Owned And/Or -Controlled Corporations (GOCCs)",
     "name": "PHILIPPINE AEROSPACE DEVELOPMENT CORPORATION",
     "address": "PADC Hangar 2, General Aviation Area Domestic Road, Pasay City",
@@ -1764,6 +1835,7 @@
     "email": "pocastaneda@padc.com.ph"
   },
   {
+    "slug": "philippine-amusement-and-gaming-corporation",
     "office_type": "Government-Owned And/Or -Controlled Corporations (GOCCs)",
     "name": "PHILIPPINE AMUSEMENT AND GAMING CORPORATION",
     "address": "11th Floor, MET LIVE Bldg., Central Business Park 1-A Macapagal Blvd. corner EDSA Extension, Pasay City",
@@ -1778,6 +1850,7 @@
     "email": "info@pagcor.ph"
   },
   {
+    "slug": "philippine-center-for-economic-development",
     "office_type": "Government-Owned And/Or -Controlled Corporations (GOCCs)",
     "name": "PHILIPPINE CENTER FOR ECONOMIC DEVELOPMENT",
     "address": "Room 203, 2/F School of Economics University of the Philippines, Diliman, Quezon City",
@@ -1792,6 +1865,7 @@
     "email": "executivedirector@up.edu.ph"
   },
   {
+    "slug": "philippine-charity-sweepstakes-office",
     "office_type": "Government-Owned And/Or -Controlled Corporations (GOCCs)",
     "name": "PHILIPPINE CHARITY SWEEPSTAKES OFFICE",
     "address": "9/F Sun Plaza Bldg., 1507 Princeton St. cor. Shaw Blvd., Mandaluyong City",
@@ -1805,6 +1879,7 @@
     ]
   },
   {
+    "slug": "philippine-childrens-medical-center",
     "office_type": "Government-Owned And/Or -Controlled Corporations (GOCCs)",
     "name": "PHILIPPINE CHILDREN'S MEDICAL CENTER",
     "address": "Quezon Avenue cor. Sen. Miriam Defensor-Santiago Ave., Bagong Pag-asa, Quezon City",
@@ -1819,6 +1894,7 @@
     "email": "officeofthedirector@pcmc.gov.ph"
   },
   {
+    "slug": "philippine-coconut-authority",
     "office_type": "Government-Owned And/Or -Controlled Corporations (GOCCs)",
     "name": "PHILIPPINE COCONUT AUTHORITY",
     "address": "Commonwealth Avenue, Diliman, Quezon City",
@@ -1833,6 +1909,7 @@
     "email": "cps@pca.gov.ph"
   },
   {
+    "slug": "philippine-crop-insurance-corporation",
     "office_type": "Government-Owned And/Or -Controlled Corporations (GOCCs)",
     "name": "PHILIPPINE CROP INSURANCE CORPORATION",
     "address": "7/F Bldg. A, NIA Complex, EDSA, Diliman, Quezon City",
@@ -1847,6 +1924,7 @@
     "email": "op@pcic.gov.ph"
   },
   {
+    "slug": "philippine-deposit-insurance-corporation",
     "office_type": "Government-Owned And/Or -Controlled Corporations (GOCCs)",
     "name": "PHILIPPINE DEPOSIT INSURANCE CORPORATION",
     "address": "2228 Chino Roces Avenue, Makati City",
@@ -1861,6 +1939,7 @@
     "email": "pad@pdic.gov.ph"
   },
   {
+    "slug": "philippine-economic-zone-authority",
     "office_type": "Government-Owned And/Or -Controlled Corporations (GOCCs)",
     "name": "PHILIPPINE ECONOMIC ZONE AUTHORITY",
     "address": "10/F Double Dragon Center West Building DD Meridian Park, Macapagal Avenue, Pasay City",
@@ -1875,6 +1954,7 @@
     "email": "odg@peza.gov.ph"
   },
   {
+    "slug": "philippine-fisheries-development-authority",
     "office_type": "Government-Owned And/Or -Controlled Corporations (GOCCs)",
     "name": "PHILIPPINE FISHERIES DEVELOPMENT AUTHORITY",
     "address": "PCA Annex Bldg. 1, Elliptical Road, Diliman, Quezon City",
@@ -1889,6 +1969,7 @@
     "email": "cpmsid@da.gov.ph"
   },
   {
+    "slug": "philippine-guarantee-corporation",
     "office_type": "Government-Owned And/Or -Controlled Corporations (GOCCs)",
     "name": "PHILIPPINE GUARANTEE CORPORATION",
     "address": "17/F CitiTower, Valero Street Salcedo Village, Makati City",
@@ -1903,6 +1984,7 @@
     "email": "aepascual@philguarantee.gov.ph"
   },
   {
+    "slug": "philippine-health-insurance-corporation",
     "office_type": "Government-Owned And/Or -Controlled Corporations (GOCCs)",
     "name": "PHILIPPINE HEALTH INSURANCE CORPORATION",
     "address": "22/F-24/F BPI Philam Life Makati, 6811 Ayala Avenue, Makati City",
@@ -1917,6 +1999,7 @@
     "email": "actioncenter@philhealth.gov.ph"
   },
   {
+    "slug": "philippine-heart-center",
     "office_type": "Government-Owned And/Or -Controlled Corporations (GOCCs)",
     "name": "PHILIPPINE HEART CENTER",
     "address": "East Avenue, Quezon City",
@@ -1931,6 +2014,7 @@
     "email": "query@phc.gov.ph"
   },
   {
+    "slug": "philippine-institute-development-studies",
     "office_type": "Government-Owned And/Or -Controlled Corporations (GOCCs)",
     "name": "PHILIPPINE INSTITUTE DEVELOPMENT STUDIES",
     "address": "18/F Three Cyberpod Centris-North Tower EDSA cor. Quezon Ave., Quezon City",
@@ -1945,6 +2029,7 @@
     "email": "pids-op@pids.gov.ph"
   },
   {
+    "slug": "philippine-institute-of-traditional-and-alternative-health-care",
     "office_type": "Government-Owned And/Or -Controlled Corporations (GOCCs)",
     "name": "PHILIPPINE INSTITUTE OF TRADITIONAL AND ALTERNATIVE HEALTH CARE",
     "address": "PITAHC Bldg., East Avenue Medical Center Compound Matapang St., Brgy. Central, Quezon City",
@@ -1959,6 +2044,7 @@
     "email": "contact@pitahc.gov.ph"
   },
   {
+    "slug": "philippine-international-trading-corporation",
     "office_type": "Government-Owned And/Or -Controlled Corporations (GOCCs)",
     "name": "PHILIPPINE INTERNATIONAL TRADING CORPORATION",
     "address": "NDC Bldg., 116 Tordesillas St. Salcedo Village, Makati City",
@@ -1973,6 +2059,7 @@
     "email": "pitc@pitc.gov.ph"
   },
   {
+    "slug": "philippine-mining-development-corporation",
     "office_type": "Government-Owned And/Or -Controlled Corporations (GOCCs)",
     "name": "PHILIPPINE MINING DEVELOPMENT CORPORATION",
     "address": "Unit 3001B West Tower, Philippine Stock Exchange Centre, Ortigas Center, Pasig City",
@@ -1987,6 +2074,7 @@
     "email": "info@pmdc.com.ph"
   },
   {
+    "slug": "philippine-national-construction-corporation",
     "office_type": "Government-Owned And/Or -Controlled Corporations (GOCCs)",
     "name": "PHILIPPINE NATIONAL CONSTRUCTION CORPORATION",
     "address": "KM. 15 East Service Road, Bicutan, Parañaque City",
@@ -2001,6 +2089,7 @@
     "email": "op@pncc.ph"
   },
   {
+    "slug": "philippine-national-oil-company",
     "office_type": "Government-Owned And/Or -Controlled Corporations (GOCCs)",
     "name": "PHILIPPINE NATIONAL OIL COMPANY",
     "address": "PNOC Bldg. 6, Energy Center, Rizal Drive, Bonifacio Global City, Taguig",
@@ -2015,6 +2104,7 @@
     "email": "pnocpacd@pnoc.com.ph"
   },
   {
+    "slug": "philippine-national-railways",
     "office_type": "Government-Owned And/Or -Controlled Corporations (GOCCs)",
     "name": "PHILIPPINE NATIONAL RAILWAYS",
     "address": "PNR Executive Bldg., Mayhaligue St. Tondo, Manila",
@@ -2029,6 +2119,7 @@
     "email": "ogm@pnr.gov.ph"
   },
   {
+    "slug": "philippine-pharma-procurement-inc",
     "office_type": "Government-Owned And/Or -Controlled Corporations (GOCCs)",
     "name": "PHILIPPINE PHARMA PROCUREMENT INC.",
     "address": "Penthouse, NDC Building, 116 Tordesillas St., Salcedo Village, Makati City",
@@ -2042,6 +2133,7 @@
     "email": "info@pppi.gov.ph"
   },
   {
+    "slug": "philippine-ports-authority",
     "office_type": "Government-Owned And/Or -Controlled Corporations (GOCCs)",
     "name": "PHILIPPINE PORTS AUTHORITY",
     "address": "Bonifacio Drive, South Harbor, Port Area, Manila",
@@ -2056,6 +2148,7 @@
     "email": "ogm@ppa.com.ph"
   },
   {
+    "slug": "philippine-postal-corporation",
     "office_type": "Government-Owned And/Or -Controlled Corporations (GOCCs)",
     "name": "PHILIPPINE POSTAL CORPORATION",
     "address": "Manila Central Post Office Bldg. Liwasang Bonifacio, Manila",
@@ -2070,6 +2163,7 @@
     "email": "phipostcares@phlpost.gov.ph"
   },
   {
+    "slug": "philippine-reclamation-authority",
     "office_type": "Government-Owned And/Or -Controlled Corporations (GOCCs)",
     "name": "PHILIPPINE RECLAMATION AUTHORITY",
     "address": "7/F Legaspi Towers 200 Bldg., 107 Paseo de Roxas St. Legaspi Village, Makati City",
@@ -2084,6 +2178,7 @@
     "email": "info@pea.gov.ph"
   },
   {
+    "slug": "philippine-retirement-authority",
     "office_type": "Government-Owned And/Or -Controlled Corporations (GOCCs)",
     "name": "PHILIPPINE RETIREMENT AUTHORITY",
     "address": "29/F BDO Towers Valero, Paseo de Roxas, Makati City",
@@ -2098,6 +2193,7 @@
     "email": "clientrelations@pra.gov.ph"
   },
   {
+    "slug": "philippine-rice-research-institute",
     "office_type": "Government-Owned And/Or -Controlled Corporations (GOCCs)",
     "name": "PHILIPPINE RICE RESEARCH INSTITUTE",
     "address": "Maligaya, Science City of Muñoz, Nueva Ecija",
@@ -2110,6 +2206,7 @@
     ]
   },
   {
+    "slug": "philippine-tax-academy",
     "office_type": "Government-Owned And/Or -Controlled Corporations (GOCCs)",
     "name": "PHILIPPINE TAX ACADEMY",
     "address": "Roxas Blvd. cor. Pablo Ocampo St., Malate, Manila",
@@ -2124,6 +2221,7 @@
     "email": "info@doftaxacademy.gov.ph"
   },
   {
+    "slug": "pinagkaisa-realty-corporation",
     "office_type": "Government-Owned And/Or -Controlled Corporations (GOCCs)",
     "name": "PINAGKAISA REALTY CORPORATION",
     "address": "Makati City",
@@ -2135,6 +2233,7 @@
     ]
   },
   {
+    "slug": "planters-product-inc",
     "office_type": "Government-Owned And/Or -Controlled Corporations (GOCCs)",
     "name": "PLANTERS PRODUCT INC.",
     "address": "Bldg. 109 Esteban Street, Legaspi Village Makati City",
@@ -2148,6 +2247,7 @@
     ]
   },
   {
+    "slug": "pnoc-exploration-corporation",
     "office_type": "Government-Owned And/Or -Controlled Corporations (GOCCs)",
     "name": "PNOC EXPLORATION CORPORATION",
     "address": "PNOC Building 1, Energy Center, Rizal Drive, Bonifacio Global City, Taguig City",
@@ -2162,6 +2262,7 @@
     "email": "info@pnoc-ec.com.ph"
   },
   {
+    "slug": "pnoc-renewables-corporation",
     "office_type": "Government-Owned And/Or -Controlled Corporations (GOCCs)",
     "name": "PNOC RENEWABLES CORPORATION",
     "address": "Ground Floor, PNOC Building 5, Energy Center, Rizal Drive, Bonifacio Global City, Taguig City",
@@ -2175,6 +2276,7 @@
     "email": "inquiry@pnoc-rc.com.ph"
   },
   {
+    "slug": "poro-point-management-corporation",
     "office_type": "Government-Owned And/Or -Controlled Corporations (GOCCs)",
     "name": "PORO POINT MANAGEMENT CORPORATION",
     "address": "Gov. Joaquin L. Ortega Avenue San Fernando City, La Union",
@@ -2188,6 +2290,7 @@
     ]
   },
   {
+    "slug": "phividec-industrial-authority",
     "office_type": "Government-Owned And/Or -Controlled Corporations (GOCCs)",
     "name": "PHIVIDEC INDUSTRIAL AUTHORITY",
     "address": "Mindanao Container Terminal Complex, Tagoloan, Misamis Oriental",
@@ -2202,6 +2305,7 @@
     "email": "oapia@piamo.gov.ph"
   },
   {
+    "slug": "power-sector-assets-and-liabilities-management-corporation",
     "office_type": "Government-Owned And/Or -Controlled Corporations (GOCCs)",
     "name": "POWER SECTOR ASSETS AND LIABILITIES MANAGEMENT CORPORATION",
     "address": "10/F & 24/F Vertis North Corporate Center 1 Astra corner Lux Drives, North Avenue, Quezon City",
@@ -2216,6 +2320,7 @@
     "email": "infos@psalm.gov.ph"
   },
   {
+    "slug": "quezon-city-development-authority",
     "office_type": "Government-Owned And/Or -Controlled Corporations (GOCCs)",
     "name": "QUEZON CITY DEVELOPMENT AUTHORITY",
     "officials": [
@@ -2226,6 +2331,7 @@
     ]
   },
   {
+    "slug": "small-business-corporation",
     "office_type": "Government-Owned And/Or -Controlled Corporations (GOCCs)",
     "name": "SMALL BUSINESS CORPORATION",
     "address": "17/F & 18/F 139 Corporate Center 139 Valero St., Salcedo Village, Makati City",
@@ -2240,6 +2346,7 @@
     "email": "sbcorporation@sbcorp.gov.ph"
   },
   {
+    "slug": "social-housing-finance-corporation",
     "office_type": "Government-Owned And/Or -Controlled Corporations (GOCCs)",
     "name": "SOCIAL HOUSING FINANCE CORPORATION",
     "address": "BDO Plaza, 8737 Paseo de Roxas, Makati City",
@@ -2254,6 +2361,7 @@
     "email": "contact@shfcph.com"
   },
   {
+    "slug": "social-security-system",
     "office_type": "Government-Owned And/Or -Controlled Corporations (GOCCs)",
     "name": "SOCIAL SECURITY SYSTEM",
     "address": "SSS Bldg., East Avenue, Diliman, Quezon City",
@@ -2268,6 +2376,7 @@
     "email": "usssaptayo@sss.gov.ph"
   },
   {
+    "slug": "southern-philippines-development-authority",
     "office_type": "Government-Owned And/Or -Controlled Corporations (GOCCs)",
     "name": "SOUTHERN PHILIPPINES DEVELOPMENT AUTHORITY",
     "address": "KM. 12 Catalunan Pequeño, SPDA Compound Davao-Bukidnon Highway, Davao City",
@@ -2282,6 +2391,7 @@
     "email": "info_mio@spda.gov.ph"
   },
   {
+    "slug": "subic-bay-metropolitan-authority",
     "office_type": "Government-Owned And/Or -Controlled Corporations (GOCCs)",
     "name": "SUBIC BAY METROPOLITAN AUTHORITY",
     "address": "Bldg. 229 Waterfront Road Subic Bay Freeport Zone",
@@ -2296,6 +2406,7 @@
     "email": "administratorsoffice@sbma.com"
   },
   {
+    "slug": "sugar-regulatory-administration",
     "office_type": "Government-Owned And/Or -Controlled Corporations (GOCCs)",
     "name": "SUGAR REGULATORY ADMINISTRATION",
     "address": "Sugar Center Bldg., North Avenue, Diliman, Quezon City",
@@ -2310,6 +2421,7 @@
     "email": "ppspdsra@sra.gov.ph"
   },
   {
+    "slug": "tourism-infrastructure-and-enterprise-zone-authority",
     "office_type": "Government-Owned And/Or -Controlled Corporations (GOCCs)",
     "name": "TOURISM INFRASTRUCTURE AND ENTERPRISE ZONE AUTHORITY",
     "address": "6/F & 7/F Tower 1 Double Dragon Plaza Double Dragon Meridian Park Macapagal Avenue corner EDSA Extension, 1302, Bay Area, Pasay City",
@@ -2324,6 +2436,7 @@
     "email": "ocoo@tieza.gov.ph"
   },
   {
+    "slug": "tourism-promotions-board",
     "office_type": "Government-Owned And/Or -Controlled Corporations (GOCCs)",
     "name": "TOURISM PROMOTIONS BOARD",
     "address": "6/F Five E-Com Center, Harbor Drive, Mall of Asia Complex, Pasay City",
@@ -2338,6 +2451,7 @@
     "email": "info@tpb.gov.ph"
   },
   {
+    "slug": "zamboanga-city-special-economic-zone-authority-and-freeport",
     "office_type": "Government-Owned And/Or -Controlled Corporations (GOCCs)",
     "name": "ZAMBOANGA CITY SPECIAL ECONOMIC ZONE AUTHORITY AND FREEPORT",
     "address": "San Ramon, Zamboanga City",
@@ -2352,6 +2466,7 @@
     "email": "ecozone@zfa.gov.ph"
   },
   {
+    "slug": "ucpb-leasing-and-finance-corporation",
     "office_type": "Government-Owned And/Or -Controlled Corporations (GOCCs)",
     "name": "UCPB LEASING AND FINANCE CORPORATION",
     "address": "14/F Sycip Law Center, 105 Paseo de Roxas St. Brgy. San Lorenzo, Makati City",
@@ -2365,6 +2480,7 @@
     "email": "kgcuevas@ucpb.com; lsgopico@ucpb.com"
   },
   {
+    "slug": "ucpb-savings-bank-inc",
     "office_type": "Government-Owned And/Or -Controlled Corporations (GOCCs)",
     "name": "UCPB SAVINGS BANK, INC.",
     "address": "7/F Robinsons Cybergate Magnolia, Aurora Boulevard corner Doña Hemady Street, Quezon City",
@@ -2379,6 +2495,7 @@
     "email": "usb-camu@ucpbsavings.com"
   },
   {
+    "slug": "eulogio-amang-rodriguez-institute-of-science-and-technology",
     "office_type": "State Universities and Colleges (SUCs)",
     "region": "NATIONAL CAPITAL REGION",
     "name": "EULOGIO \"AMANG\" RODRIGUEZ INSTITUTE OF SCIENCE AND TECHNOLOGY",
@@ -2394,6 +2511,7 @@
     "email": "rmamaradlo@earist.edu.ph"
   },
   {
+    "slug": "marikina-polytechnic-college",
     "office_type": "State Universities and Colleges (SUCs)",
     "region": "NATIONAL CAPITAL REGION",
     "name": "MARIKINA POLYTECHNIC COLLEGE",
@@ -2408,6 +2526,7 @@
     "email": "info@mpc.edu.ph"
   },
   {
+    "slug": "philippine-normal-university",
     "office_type": "State Universities and Colleges (SUCs)",
     "region": "NATIONAL CAPITAL REGION",
     "name": "PHILIPPINE NORMAL UNIVERSITY",
@@ -2423,6 +2542,7 @@
     "email": "president@pnu.edu.ph"
   },
   {
+    "slug": "philippine-state-college-of-aeronautics",
     "office_type": "State Universities and Colleges (SUCs)",
     "region": "NATIONAL CAPITAL REGION",
     "name": "PHILIPPINE STATE COLLEGE OF AERONAUTICS",
@@ -2438,6 +2558,7 @@
     "email": "pmdelacruz@philsca.edu.ph"
   },
   {
+    "slug": "polytechnic-university-of-the-philippines",
     "office_type": "State Universities and Colleges (SUCs)",
     "region": "NATIONAL CAPITAL REGION",
     "name": "POLYTECHNIC UNIVERSITY OF THE PHILIPPINES",
@@ -2453,6 +2574,7 @@
     "email": "president@pup.edu.ph"
   },
   {
+    "slug": "rizal-technological-university",
     "office_type": "State Universities and Colleges (SUCs)",
     "region": "NATIONAL CAPITAL REGION",
     "name": "RIZAL TECHNOLOGICAL UNIVERSITY",
@@ -2468,6 +2590,7 @@
     "email": "op@rtu.edu.ph"
   },
   {
+    "slug": "technological-university-of-the-philippines",
     "office_type": "State Universities and Colleges (SUCs)",
     "region": "NATIONAL CAPITAL REGION",
     "name": "TECHNOLOGICAL UNIVERSITY OF THE PHILIPPINES",
@@ -2483,6 +2606,7 @@
     "email": "reynaldo_ramos@tup.edu.ph"
   },
   {
+    "slug": "university-of-the-philippines-system",
     "office_type": "State Universities and Colleges (SUCs)",
     "region": "NATIONAL CAPITAL REGION",
     "name": "UNIVERSITY OF THE PHILIPPINES SYSTEM",
@@ -2498,6 +2622,7 @@
     "email": "op@up.edu.ph"
   },
   {
+    "slug": "philippines-energy-research-and-policy-institute",
     "office_type": "State Universities and Colleges (SUCs)",
     "region": "NATIONAL CAPITAL REGION",
     "name": "PHILIPPINES ENERGY RESEARCH AND POLICY INSTITUTE",
@@ -2510,6 +2635,7 @@
     ]
   },
   {
+    "slug": "abra-state-institute-of-science-and-technology",
     "office_type": "State Universities and Colleges (SUCs)",
     "region": "CORDILLERA ADMINISTRATIVE REGION",
     "name": "ABRA STATE INSTITUTE OF SCIENCE AND TECHNOLOGY",
@@ -2524,6 +2650,7 @@
     "email": "president@asist.edu.ph"
   },
   {
+    "slug": "apayao-state-college",
     "office_type": "State Universities and Colleges (SUCs)",
     "region": "CORDILLERA ADMINISTRATIVE REGION",
     "name": "APAYAO STATE COLLEGE",
@@ -2537,6 +2664,7 @@
     ]
   },
   {
+    "slug": "benguet-state-university",
     "office_type": "State Universities and Colleges (SUCs)",
     "region": "CORDILLERA ADMINISTRATIVE REGION",
     "name": "BENGUET STATE UNIVERSITY",
@@ -2552,6 +2680,7 @@
     "email": "president@bsu.edu.ph"
   },
   {
+    "slug": "ifugao-state-university",
     "office_type": "State Universities and Colleges (SUCs)",
     "region": "CORDILLERA ADMINISTRATIVE REGION",
     "name": "IFUGAO STATE UNIVERSITY",
@@ -2566,6 +2695,7 @@
     "email": "president@ifsu.edu.ph"
   },
   {
+    "slug": "kalinga-state-university",
     "office_type": "State Universities and Colleges (SUCs)",
     "region": "CORDILLERA ADMINISTRATIVE REGION",
     "name": "KALINGA STATE UNIVERSITY",
@@ -2580,6 +2710,7 @@
     "email": "jgpdoctor@ksu.edu.ph"
   },
   {
+    "slug": "mountain-province-state-polytechnic-college",
     "office_type": "State Universities and Colleges (SUCs)",
     "region": "CORDILLERA ADMINISTRATIVE REGION",
     "name": "MOUNTAIN PROVINCE STATE POLYTECHNIC COLLEGE",
@@ -2595,6 +2726,7 @@
     "email": "ecue@mpspc.edu.ph"
   },
   {
+    "slug": "don-mariano-marcos-memorial-state-university",
     "office_type": "State Universities and Colleges (SUCs)",
     "region": "REGION I ILOCOS REGION",
     "name": "DON MARIANO MARCOS MEMORIAL STATE UNIVERSITY",
@@ -2609,6 +2741,7 @@
     "email": "president@dmmmsu.edu.ph"
   },
   {
+    "slug": "ilocos-sur-polytechnic-state-college",
     "office_type": "State Universities and Colleges (SUCs)",
     "region": "REGION I ILOCOS REGION",
     "name": "ILOCOS SUR POLYTECHNIC STATE COLLEGE",
@@ -2624,6 +2757,7 @@
     "email": "op@ispsc.edu.ph"
   },
   {
+    "slug": "mariano-marcos-state-university",
     "office_type": "State Universities and Colleges (SUCs)",
     "region": "REGION I ILOCOS REGION",
     "name": "MARIANO MARCOS STATE UNIVERSITY",
@@ -2639,6 +2773,7 @@
     "email": "op@mmsu.edu.ph"
   },
   {
+    "slug": "pangasinan-state-university",
     "office_type": "State Universities and Colleges (SUCs)",
     "region": "REGION I ILOCOS REGION",
     "name": "PANGASINAN STATE UNIVERSITY",
@@ -2654,6 +2789,7 @@
     "email": "prpio@psu.edu.ph"
   },
   {
+    "slug": "university-of-northern-philippines",
     "office_type": "State Universities and Colleges (SUCs)",
     "region": "REGION I ILOCOS REGION",
     "name": "UNIVERSITY OF NORTHERN PHILIPPINES",
@@ -2669,6 +2805,7 @@
     "email": "op@unp.edu.ph"
   },
   {
+    "slug": "batanes-state-college",
     "office_type": "State Universities and Colleges (SUCs)",
     "region": "REGION II CAGAYAN VALLEY",
     "name": "BATANES STATE COLLEGE",
@@ -2682,6 +2819,7 @@
     ]
   },
   {
+    "slug": "cagayan-state-university",
     "office_type": "State Universities and Colleges (SUCs)",
     "region": "REGION II CAGAYAN VALLEY",
     "name": "CAGAYAN STATE UNIVERSITY",
@@ -2697,6 +2835,7 @@
     "email": "president@csu.edu.ph"
   },
   {
+    "slug": "isabela-state-university",
     "office_type": "State Universities and Colleges (SUCs)",
     "region": "REGION II CAGAYAN VALLEY",
     "name": "ISABELA STATE UNIVERSITY",
@@ -2712,6 +2851,7 @@
     "email": "op@isu.edu.ph"
   },
   {
+    "slug": "nueva-vizcaya-state-university",
     "office_type": "State Universities and Colleges (SUCs)",
     "region": "REGION II CAGAYAN VALLEY",
     "name": "NUEVA VIZCAYA STATE UNIVERSITY",
@@ -2727,6 +2867,7 @@
     "email": "info@nvsu.edu.ph"
   },
   {
+    "slug": "quirino-state-university",
     "office_type": "State Universities and Colleges (SUCs)",
     "region": "REGION II CAGAYAN VALLEY",
     "name": "QUIRINO STATE UNIVERSITY",
@@ -2742,6 +2883,7 @@
     "email": "info@qsu.edu.ph"
   },
   {
+    "slug": "aurora-state-college-of-technology",
     "office_type": "State Universities and Colleges (SUCs)",
     "region": "REGION III - CENTRAL LUZON",
     "name": "AURORA STATE COLLEGE OF TECHNOLOGY",
@@ -2756,6 +2898,7 @@
     "email": "president@ascot.edu.ph"
   },
   {
+    "slug": "bataan-peninsula-state-university",
     "office_type": "State Universities and Colleges (SUCs)",
     "region": "REGION III - CENTRAL LUZON",
     "name": "BATAAN PENINSULA STATE UNIVERSITY",
@@ -2770,6 +2913,7 @@
     ]
   },
   {
+    "slug": "bulacan-agricultural-state-college",
     "office_type": "State Universities and Colleges (SUCs)",
     "region": "REGION III - CENTRAL LUZON",
     "name": "BULACAN AGRICULTURAL STATE COLLEGE",
@@ -2784,6 +2928,7 @@
     ]
   },
   {
+    "slug": "bulacan-state-university",
     "office_type": "State Universities and Colleges (SUCs)",
     "region": "REGION III - CENTRAL LUZON",
     "name": "BULACAN STATE UNIVERSITY",
@@ -2799,6 +2944,7 @@
     "email": "officeofthepresident@bulsu.edu.ph"
   },
   {
+    "slug": "central-luzon-state-university",
     "office_type": "State Universities and Colleges (SUCs)",
     "region": "REGION III - CENTRAL LUZON",
     "name": "CENTRAL LUZON STATE UNIVERSITY",
@@ -2814,6 +2960,7 @@
     "email": "op@clsu.edu.ph"
   },
   {
+    "slug": "don-honorio-ventura-state-university",
     "office_type": "State Universities and Colleges (SUCs)",
     "region": "REGION III - CENTRAL LUZON",
     "name": "DON HONORIO VENTURA STATE UNIVERSITY",
@@ -2828,6 +2975,7 @@
     ]
   },
   {
+    "slug": "nueva-ecija-university-of-science-and-technology",
     "office_type": "State Universities and Colleges (SUCs)",
     "region": "REGION III - CENTRAL LUZON",
     "name": "NUEVA ECIJA UNIVERSITY OF SCIENCE AND TECHNOLOGY",
@@ -2841,6 +2989,7 @@
     ]
   },
   {
+    "slug": "pampanga-state-agricultural-university",
     "office_type": "State Universities and Colleges (SUCs)",
     "region": "REGION III - CENTRAL LUZON",
     "name": "PAMPANGA STATE AGRICULTURAL UNIVERSITY",
@@ -2855,6 +3004,7 @@
     "email": "officeofthepresident@psau.edu.ph"
   },
   {
+    "slug": "philippine-merchant-marine-academy",
     "office_type": "State Universities and Colleges (SUCs)",
     "region": "REGION III - CENTRAL LUZON",
     "name": "PHILIPPINE MERCHANT MARINE ACADEMY",
@@ -2869,6 +3019,7 @@
     ]
   },
   {
+    "slug": "president-ramon-magsaysay-state-university",
     "office_type": "State Universities and Colleges (SUCs)",
     "region": "REGION III - CENTRAL LUZON",
     "name": "PRESIDENT RAMON MAGSAYSAY STATE UNIVERSITY",
@@ -2884,6 +3035,7 @@
     "email": "universitypresident@prmsu.edu.ph"
   },
   {
+    "slug": "tarlac-agricultural-university",
     "office_type": "State Universities and Colleges (SUCs)",
     "region": "REGION III - CENTRAL LUZON",
     "name": "TARLAC AGRICULTURAL UNIVERSITY",
@@ -2898,6 +3050,7 @@
     ]
   },
   {
+    "slug": "tarlac-state-university",
     "office_type": "State Universities and Colleges (SUCs)",
     "region": "REGION III - CENTRAL LUZON",
     "name": "TARLAC STATE UNIVERSITY",
@@ -2913,6 +3066,7 @@
     "email": "pres_office@tsu.edu.ph"
   },
   {
+    "slug": "batangas-state-university",
     "office_type": "State Universities and Colleges (SUCs)",
     "region": "REGION IV-CALABARZON",
     "name": "BATANGAS STATE UNIVERSITY",
@@ -2927,6 +3081,7 @@
     ]
   },
   {
+    "slug": "cavite-state-university",
     "office_type": "State Universities and Colleges (SUCs)",
     "region": "REGION IV-CALABARZON",
     "name": "CAVITE STATE UNIVERSITY",
@@ -2942,6 +3097,7 @@
     "email": "office.president@cvsu.edu.ph"
   },
   {
+    "slug": "laguna-state-polytechnic-university",
     "office_type": "State Universities and Colleges (SUCs)",
     "region": "REGION IV-CALABARZON",
     "name": "LAGUNA STATE POLYTECHNIC UNIVERSITY",
@@ -2956,6 +3112,7 @@
     ]
   },
   {
+    "slug": "southern-luzon-state-university",
     "office_type": "State Universities and Colleges (SUCs)",
     "region": "REGION IV-CALABARZON",
     "name": "SOUTHERN LUZON STATE UNIVERSITY",
@@ -2971,6 +3128,7 @@
     "email": "info@slsu.edu.ph"
   },
   {
+    "slug": "university-of-rizal-system",
     "office_type": "State Universities and Colleges (SUCs)",
     "region": "REGION IV-CALABARZON",
     "name": "UNIVERSITY OF RIZAL SYSTEM",
@@ -2986,6 +3144,7 @@
     "email": "urs.opmorong@urs.edu.ph"
   },
   {
+    "slug": "marinduque-state-university",
     "office_type": "State Universities and Colleges (SUCs)",
     "region": "MIMAROPA",
     "name": "MARINDUQUE STATE UNIVERSITY",
@@ -3000,6 +3159,7 @@
     ]
   },
   {
+    "slug": "mindoro-state-university",
     "office_type": "State Universities and Colleges (SUCs)",
     "region": "MIMAROPA",
     "name": "MINDORO STATE UNIVERSITY",
@@ -3014,6 +3174,7 @@
     "email": "universitypresident@minsu.edu..ph"
   },
   {
+    "slug": "occidental-mindoro-state-college",
     "office_type": "State Universities and Colleges (SUCs)",
     "region": "MIMAROPA",
     "name": "OCCIDENTAL MINDORO STATE COLLEGE",
@@ -3028,6 +3189,7 @@
     ]
   },
   {
+    "slug": "palawan-state-university",
     "office_type": "State Universities and Colleges (SUCs)",
     "region": "MIMAROPA",
     "name": "PALAWAN STATE UNIVERSITY",
@@ -3043,6 +3205,7 @@
     "email": "rdocto@psu.palawan.edu.ph"
   },
   {
+    "slug": "romblon-state-university",
     "office_type": "State Universities and Colleges (SUCs)",
     "region": "MIMAROPA",
     "name": "ROMBLON STATE UNIVERSITY",
@@ -3057,6 +3220,7 @@
     ]
   },
   {
+    "slug": "western-philippines-university",
     "office_type": "State Universities and Colleges (SUCs)",
     "region": "MIMAROPA",
     "name": "WESTERN PHILIPPINES UNIVERSITY",
@@ -3072,6 +3236,7 @@
     "email": "pres.office@wpu.edu.ph"
   },
   {
+    "slug": "bicol-state-college-of-applied-sciences-and-technology",
     "office_type": "State Universities and Colleges (SUCs)",
     "region": "REGION V - BICOL REGION",
     "name": "BICOL STATE COLLEGE OF APPLIED SCIENCES AND TECHNOLOGY",
@@ -3087,6 +3252,7 @@
     "email": "president@biscast.edu.ph"
   },
   {
+    "slug": "bicol-university",
     "office_type": "State Universities and Colleges (SUCs)",
     "region": "REGION V - BICOL REGION",
     "name": "BICOL UNIVERSITY",
@@ -3101,6 +3267,7 @@
     "email": "bupresident@bicol-u.edu.ph"
   },
   {
+    "slug": "camarines-norte-state-college",
     "office_type": "State Universities and Colleges (SUCs)",
     "region": "REGION V - BICOL REGION",
     "name": "CAMARINES NORTE STATE COLLEGE",
@@ -3116,6 +3283,7 @@
     "email": "president@cnsc.edu.ph"
   },
   {
+    "slug": "camarines-sur-polytechnic-colleges",
     "office_type": "State Universities and Colleges (SUCs)",
     "region": "REGION V - BICOL REGION",
     "name": "CAMARINES SUR POLYTECHNIC COLLEGES",
@@ -3131,6 +3299,7 @@
     "email": "mail@cspc.edu.ph"
   },
   {
+    "slug": "catanduanes-state-university",
     "office_type": "State Universities and Colleges (SUCs)",
     "region": "REGION V - BICOL REGION",
     "name": "CATANDUANES STATE UNIVERSITY",
@@ -3145,6 +3314,7 @@
     "email": "csu2012@catanduanesstateu.edu.ph"
   },
   {
+    "slug": "central-bicol-state-university-of-agriculture",
     "office_type": "State Universities and Colleges (SUCs)",
     "region": "REGION V - BICOL REGION",
     "name": "CENTRAL BICOL STATE UNIVERSITY OF AGRICULTURE",
@@ -3160,6 +3330,7 @@
     "email": "op@cbsua.edu.ph"
   },
   {
+    "slug": "dr-emilio-b-espinosa-sr-memorial-state-college-of-agriculture-and-techonology",
     "office_type": "State Universities and Colleges (SUCs)",
     "region": "REGION V - BICOL REGION",
     "name": "DR. EMILIO B. ESPINOSA SR. MEMORIAL STATE COLLEGE OF AGRICULTURE AND TECHONOLOGY",
@@ -3174,6 +3345,7 @@
     "email": "arnel.millesca@debesmscat.edu.ph"
   },
   {
+    "slug": "partido-state-university",
     "office_type": "State Universities and Colleges (SUCs)",
     "region": "REGION V - BICOL REGION",
     "name": "PARTIDO STATE UNIVERSITY",
@@ -3189,6 +3361,7 @@
     "email": "op@parsu.edu.ph"
   },
   {
+    "slug": "sorsogon-state-university",
     "office_type": "State Universities and Colleges (SUCs)",
     "region": "REGION V - BICOL REGION",
     "name": "SORSOGON STATE UNIVERSITY",
@@ -3203,6 +3376,7 @@
     ]
   },
   {
+    "slug": "aklan-state-university",
     "office_type": "State Universities and Colleges (SUCs)",
     "region": "REGION VI - WESTERN VISAYAS",
     "name": "AKLAN STATE UNIVERSITY",
@@ -3218,6 +3392,7 @@
     "email": "president@asu.edu.ph"
   },
   {
+    "slug": "capiz-state-university",
     "office_type": "State Universities and Colleges (SUCs)",
     "region": "REGION VI - WESTERN VISAYAS",
     "name": "CAPIZ STATE UNIVERSITY",
@@ -3233,6 +3408,7 @@
     "email": "president@capsu.edu.ph"
   },
   {
+    "slug": "carlos-hilado-memorial-state-college",
     "office_type": "State Universities and Colleges (SUCs)",
     "region": "REGION VI - WESTERN VISAYAS",
     "name": "CARLOS HILADO MEMORIAL STATE COLLEGE",
@@ -3248,6 +3424,7 @@
     "email": "president.office@chmsc.edu.ph"
   },
   {
+    "slug": "central-philippines-state-university",
     "office_type": "State Universities and Colleges (SUCs)",
     "region": "REGION VI - WESTERN VISAYAS",
     "name": "CENTRAL PHILIPPINES STATE UNIVERSITY",
@@ -3263,6 +3440,7 @@
     "email": "cpsu_presoffice@cpsu.edu.ph"
   },
   {
+    "slug": "guimaras-state-university",
     "office_type": "State Universities and Colleges (SUCs)",
     "region": "REGION VI - WESTERN VISAYAS",
     "name": "GUIMARAS STATE UNIVERSITY",
@@ -3278,6 +3456,7 @@
     "email": "university.president@gsu.edu.ph"
   },
   {
+    "slug": "iloilo-state-university-of-fisheries-science-and-technology",
     "office_type": "State Universities and Colleges (SUCs)",
     "region": "REGION VI - WESTERN VISAYAS",
     "name": "ILOILO STATE UNIVERSITY OF FISHERIES SCIENCE AND TECHNOLOGY",
@@ -3293,6 +3472,7 @@
     "email": "president@isufst.edu.ph"
   },
   {
+    "slug": "iloilo-science-and-technology-university",
     "office_type": "State Universities and Colleges (SUCs)",
     "region": "REGION VI - WESTERN VISAYAS",
     "name": "ILOILO SCIENCE AND TECHNOLOGY UNIVERSITY",
@@ -3308,6 +3488,7 @@
     "email": "mail@isatu.edu.ph"
   },
   {
+    "slug": "northern-iloilo-state-university",
     "office_type": "State Universities and Colleges (SUCs)",
     "region": "REGION VI - WESTERN VISAYAS",
     "name": "NORTHERN ILOILO STATE UNIVERSITY",
@@ -3323,6 +3504,7 @@
     "email": "president@nipsc.edu.ph"
   },
   {
+    "slug": "state-university-of-northern-negros",
     "office_type": "State Universities and Colleges (SUCs)",
     "region": "REGION VI - WESTERN VISAYAS",
     "name": "STATE UNIVERSITY OF NORTHERN NEGROS",
@@ -3338,6 +3520,7 @@
     "email": "president@sunn.edu.ph"
   },
   {
+    "slug": "university-of-antique",
     "office_type": "State Universities and Colleges (SUCs)",
     "region": "REGION VI - WESTERN VISAYAS",
     "name": "UNIVERSITY OF ANTIQUE",
@@ -3353,6 +3536,7 @@
     "email": "president@antiquespride.edu.ph"
   },
   {
+    "slug": "west-visayas-state-university",
     "office_type": "State Universities and Colleges (SUCs)",
     "region": "REGION VI - WESTERN VISAYAS",
     "name": "WEST VISAYAS STATE UNIVERSITY",
@@ -3368,6 +3552,7 @@
     "email": "president@wvsu.edu.ph"
   },
   {
+    "slug": "bohol-island-state-university",
     "office_type": "State Universities and Colleges (SUCs)",
     "region": "REGION VII - CENTRAL VISAYAS",
     "name": "BOHOL ISLAND STATE UNIVERSITY",
@@ -3381,6 +3566,7 @@
     ]
   },
   {
+    "slug": "cebu-normal-university",
     "office_type": "State Universities and Colleges (SUCs)",
     "region": "REGION VII - CENTRAL VISAYAS",
     "name": "CEBU NORMAL UNIVERSITY",
@@ -3396,6 +3582,7 @@
     "email": "pres@cnu.edu.ph"
   },
   {
+    "slug": "cebu-technological-university",
     "office_type": "State Universities and Colleges (SUCs)",
     "region": "REGION VII - CENTRAL VISAYAS",
     "name": "CEBU TECHNOLOGICAL UNIVERSITY",
@@ -3411,6 +3598,7 @@
     "email": "joseph.pepito@ctu.edu.ph"
   },
   {
+    "slug": "negros-oriental-state-university",
     "office_type": "State Universities and Colleges (SUCs)",
     "region": "REGION VII - CENTRAL VISAYAS",
     "name": "NEGROS ORIENTAL STATE UNIVERSITY",
@@ -3426,6 +3614,7 @@
     "email": "norsupres@norsu.edu.ph"
   },
   {
+    "slug": "siquijor-state-college",
     "office_type": "State Universities and Colleges (SUCs)",
     "region": "REGION VII - CENTRAL VISAYAS",
     "name": "SIQUIJOR STATE COLLEGE",
@@ -3440,6 +3629,7 @@
     "email": "presoffice@siquijorstate.edu.ph"
   },
   {
+    "slug": "eastern-samar-state-university",
     "office_type": "State Universities and Colleges (SUCs)",
     "region": "REGION VIII - EASTERN VISAYAS",
     "name": "EASTERN SAMAR STATE UNIVERSITY",
@@ -3454,6 +3644,7 @@
     "email": "op@essu.edu.ph"
   },
   {
+    "slug": "eastern-visayas-state-university",
     "office_type": "State Universities and Colleges (SUCs)",
     "region": "REGION VIII - EASTERN VISAYAS",
     "name": "EASTERN VISAYAS STATE UNIVERSITY",
@@ -3469,6 +3660,7 @@
     "email": "president@evsu.edu.ph"
   },
   {
+    "slug": "leyte-normal-university",
     "office_type": "State Universities and Colleges (SUCs)",
     "region": "REGION VIII - EASTERN VISAYAS",
     "name": "LEYTE NORMAL UNIVERSITY",
@@ -3484,6 +3676,7 @@
     "email": "president@Inu.edu.ph"
   },
   {
+    "slug": "biliran-province-state-university",
     "office_type": "State Universities and Colleges (SUCs)",
     "region": "REGION VIII - EASTERN VISAYAS",
     "name": "BILIRAN PROVINCE STATE UNIVERSITY",
@@ -3499,6 +3692,7 @@
     "email": "op@bipsu.edu.ph"
   },
   {
+    "slug": "northwest-samar-state-university",
     "office_type": "State Universities and Colleges (SUCs)",
     "region": "REGION VIII - EASTERN VISAYAS",
     "name": "NORTHWEST SAMAR STATE UNIVERSITY",
@@ -3514,6 +3708,7 @@
     "email": "president@nwssu.edu.ph"
   },
   {
+    "slug": "palompon-institute-of-technology",
     "office_type": "State Universities and Colleges (SUCs)",
     "region": "REGION VIII - EASTERN VISAYAS",
     "name": "PALOMPON INSTITUTE OF TECHNOLOGY",
@@ -3529,6 +3724,7 @@
     "email": "op@pit.edu.ph"
   },
   {
+    "slug": "samar-state-university",
     "office_type": "State Universities and Colleges (SUCs)",
     "region": "REGION VIII - EASTERN VISAYAS",
     "name": "SAMAR STATE UNIVERSITY",
@@ -3544,6 +3740,7 @@
     "email": "marilyn.cardoso@ssu.edu.ph"
   },
   {
+    "slug": "southern-leyte-state-university",
     "office_type": "State Universities and Colleges (SUCs)",
     "region": "REGION VIII - EASTERN VISAYAS",
     "name": "SOUTHERN LEYTE STATE UNIVERSITY",
@@ -3559,6 +3756,7 @@
     "email": "pyepes@southernleytestateu.edu.ph"
   },
   {
+    "slug": "university-of-eastern-philippines",
     "office_type": "State Universities and Colleges (SUCs)",
     "region": "REGION VIII - EASTERN VISAYAS",
     "name": "UNIVERSITY OF EASTERN PHILIPPINES",
@@ -3573,6 +3771,7 @@
     ]
   },
   {
+    "slug": "visayas-state-university",
     "office_type": "State Universities and Colleges (SUCs)",
     "region": "REGION VIII - EASTERN VISAYAS",
     "name": "VISAYAS STATE UNIVERSITY",
@@ -3588,6 +3787,7 @@
     "email": "op@vsu.edu.ph"
   },
   {
+    "slug": "basilan-state-college",
     "office_type": "State Universities and Colleges (SUCs)",
     "region": "REGION IX - ZAMBOANGA PENINSULA",
     "name": "BASILAN STATE COLLEGE",
@@ -3601,6 +3801,7 @@
     ]
   },
   {
+    "slug": "j-h-cerilles-state-college",
     "office_type": "State Universities and Colleges (SUCs)",
     "region": "REGION IX - ZAMBOANGA PENINSULA",
     "name": "J. H. CERILLES STATE COLLEGE",
@@ -3616,6 +3817,7 @@
     "email": "president@jhcsc.edu.ph"
   },
   {
+    "slug": "jose-rizal-memorial-state-university",
     "office_type": "State Universities and Colleges (SUCs)",
     "region": "REGION IX - ZAMBOANGA PENINSULA",
     "name": "JOSE RIZAL MEMORIAL STATE UNIVERSITY",
@@ -3630,6 +3832,7 @@
     ]
   },
   {
+    "slug": "western-mindanao-state-university",
     "office_type": "State Universities and Colleges (SUCs)",
     "region": "REGION IX - ZAMBOANGA PENINSULA",
     "name": "WESTERN MINDANAO STATE UNIVERSITY",
@@ -3645,6 +3848,7 @@
     "email": "pres@wmsu.edu.ph"
   },
   {
+    "slug": "zamboanga-peninsula-polytechnic-state-university",
     "office_type": "State Universities and Colleges (SUCs)",
     "region": "REGION IX - ZAMBOANGA PENINSULA",
     "name": "ZAMBOANGA PENINSULA POLYTECHNIC STATE UNIVERSITY",
@@ -3660,6 +3864,7 @@
     "email": "zppsu@zppsu.edu.ph"
   },
   {
+    "slug": "zamboanga-state-college-of-marine-sciences-and-technology",
     "office_type": "State Universities and Colleges (SUCs)",
     "region": "REGION IX - ZAMBOANGA PENINSULA",
     "name": "ZAMBOANGA STATE COLLEGE OF MARINE SCIENCES AND TECHNOLOGY",
@@ -3675,6 +3880,7 @@
     "email": "pres@zscmst.edu.ph"
   },
   {
+    "slug": "bukidnon-state-university",
     "office_type": "State Universities and Colleges (SUCs)",
     "region": "REGION X - NORTHERN MINDANAO",
     "name": "BUKIDNON STATE UNIVERSITY",
@@ -3690,6 +3896,7 @@
     "email": "buksupresoffice@buksu.edu.ph"
   },
   {
+    "slug": "camiguin-polytechnic-state-college",
     "office_type": "State Universities and Colleges (SUCs)",
     "region": "REGION X - NORTHERN MINDANAO",
     "name": "CAMIGUIN POLYTECHNIC STATE COLLEGE",
@@ -3704,6 +3911,7 @@
     ]
   },
   {
+    "slug": "central-mindanao-university",
     "office_type": "State Universities and Colleges (SUCs)",
     "region": "REGION X - NORTHERN MINDANAO",
     "name": "CENTRAL MINDANAO UNIVERSITY",
@@ -3719,6 +3927,7 @@
     "email": "cmu1910op@cmu.edu.ph"
   },
   {
+    "slug": "northwestern-mindanao-state-college-of-science-and-technology",
     "office_type": "State Universities and Colleges (SUCs)",
     "region": "REGION X - NORTHERN MINDANAO",
     "name": "NORTHWESTERN MINDANAO STATE COLLEGE OF SCIENCE AND TECHNOLOGY",
@@ -3734,6 +3943,7 @@
     "email": "op@nmsc.edu.ph"
   },
   {
+    "slug": "northern-bukidnon-state-college",
     "office_type": "State Universities and Colleges (SUCs)",
     "region": "REGION X - NORTHERN MINDANAO",
     "name": "NORTHERN BUKIDNON STATE COLLEGE",
@@ -3748,6 +3958,7 @@
     "email": "opnbsc@nbsc.ph"
   },
   {
+    "slug": "university-of-science-and-technology-of-southern-philippines",
     "office_type": "State Universities and Colleges (SUCs)",
     "region": "REGION X - NORTHERN MINDANAO",
     "name": "UNIVERSITY OF SCIENCE AND TECHNOLOGY OF SOUTHERN PHILIPPINES",
@@ -3763,6 +3974,7 @@
     "email": "president.office@ustp.edu.ph"
   },
   {
+    "slug": "davao-de-oro-state-college",
     "office_type": "State Universities and Colleges (SUCs)",
     "region": "REGION XI - DAVAO REGION",
     "name": "DAVAO DE ORO STATE COLLEGE",
@@ -3777,6 +3989,7 @@
     "email": "president@ddosc.edu.ph"
   },
   {
+    "slug": "davao-del-norte-state-college",
     "office_type": "State Universities and Colleges (SUCs)",
     "region": "REGION XI - DAVAO REGION",
     "name": "DAVAO DEL NORTE STATE COLLEGE",
@@ -3792,6 +4005,7 @@
     "email": "president@dnsc.edu.ph"
   },
   {
+    "slug": "davao-del-sur-state-college",
     "office_type": "State Universities and Colleges (SUCs)",
     "region": "REGION XI - DAVAO REGION",
     "name": "DAVAO DEL SUR STATE COLLEGE",
@@ -3807,6 +4021,7 @@
     "email": "president@dssc.edu.ph"
   },
   {
+    "slug": "davao-oriental-state-university",
     "office_type": "State Universities and Colleges (SUCs)",
     "region": "REGION XI - DAVAO REGION",
     "name": "DAVAO ORIENTAL STATE UNIVERSITY",
@@ -3822,6 +4037,7 @@
     "email": "op@dorsu.edu.ph"
   },
   {
+    "slug": "southern-philippines-agri-business-marine-and-aquatic-school-of-technology",
     "office_type": "State Universities and Colleges (SUCs)",
     "region": "REGION XI - DAVAO REGION",
     "name": "SOUTHERN PHILIPPINES AGRI-BUSINESS, MARINE AND AQUATIC SCHOOL OF TECHNOLOGY",
@@ -3837,6 +4053,7 @@
     "email": "op@spamast.edu.ph"
   },
   {
+    "slug": "university-of-southeastern-philippines",
     "office_type": "State Universities and Colleges (SUCs)",
     "region": "REGION XI - DAVAO REGION",
     "name": "UNIVERSITY OF SOUTHEASTERN PHILIPPINES",
@@ -3852,6 +4069,7 @@
     "email": "president@usep.edu.ph"
   },
   {
+    "slug": "cotabato-foundation-college-of-science-and-technology",
     "office_type": "State Universities and Colleges (SUCs)",
     "region": "REGION XII - SOCCSKSARGEN",
     "name": "COTABATO FOUNDATION COLLEGE OF SCIENCE AND TECHNOLOGY",
@@ -3866,6 +4084,7 @@
     ]
   },
   {
+    "slug": "south-cotabato-state-college",
     "office_type": "State Universities and Colleges (SUCs)",
     "region": "REGION XII - SOCCSKSARGEN",
     "name": "SOUTH COTABATO STATE COLLEGE",
@@ -3879,6 +4098,7 @@
     ]
   },
   {
+    "slug": "sultan-kudarat-state-university",
     "office_type": "State Universities and Colleges (SUCs)",
     "region": "REGION XII - SOCCSKSARGEN",
     "name": "SULTAN KUDARAT STATE UNIVERSITY",
@@ -3893,6 +4113,7 @@
     ]
   },
   {
+    "slug": "university-of-southern-mindanao",
     "office_type": "State Universities and Colleges (SUCs)",
     "region": "REGION XII - SOCCSKSARGEN",
     "name": "UNIVERSITY OF SOUTHERN MINDANAO",
@@ -3908,6 +4129,7 @@
     "email": "op@usm.edu.ph"
   },
   {
+    "slug": "agusan-del-sur-state-college-of-agriculture-and-technology",
     "office_type": "State Universities and Colleges (SUCs)",
     "region": "REGION XIII - CARAGA REGION",
     "name": "AGUSAN DEL SUR STATE COLLEGE OF AGRICULTURE AND TECHNOLOGY",
@@ -3923,6 +4145,7 @@
     "email": "op@asscat.edu.ph"
   },
   {
+    "slug": "caraga-state-university",
     "office_type": "State Universities and Colleges (SUCs)",
     "region": "REGION XIII - CARAGA REGION",
     "name": "CARAGA STATE UNIVERSITY",
@@ -3938,6 +4161,7 @@
     "email": "op@carsu.edu.ph"
   },
   {
+    "slug": "northeastern-mindanao-state-university",
     "office_type": "State Universities and Colleges (SUCs)",
     "region": "REGION XIII - CARAGA REGION",
     "name": "NORTHEASTERN MINDANAO STATE UNIVERSITY",
@@ -3953,6 +4177,7 @@
     "email": "nemsuop@sdssu.edu.ph"
   },
   {
+    "slug": "surigao-del-norte-state-university",
     "office_type": "State Universities and Colleges (SUCs)",
     "region": "REGION XIII - CARAGA REGION",
     "name": "SURIGAO DEL NORTE STATE UNIVERSITY",
@@ -3967,6 +4192,7 @@
     ]
   },
   {
+    "slug": "cotabato-state-university",
     "office_type": "State Universities and Colleges (SUCs)",
     "region": "BANGSAMORO AUTONOMOUS REGION IN MUSLIM MINDANAO",
     "name": "COTABATO STATE UNIVERSITY",
@@ -3982,6 +4208,7 @@
     "email": "op@cotsu.edu.ph"
   },
   {
+    "slug": "adiong-memorial-state-college",
     "office_type": "State Universities and Colleges (SUCs)",
     "region": "BANGSAMORO AUTONOMOUS REGION IN MUSLIM MINDANAO",
     "name": "ADIONG MEMORIAL STATE COLLEGE",
@@ -3994,6 +4221,7 @@
     ]
   },
   {
+    "slug": "mindanao-state-university",
     "office_type": "State Universities and Colleges (SUCs)",
     "region": "BANGSAMORO AUTONOMOUS REGION IN MUSLIM MINDANAO",
     "name": "MINDANAO STATE UNIVERSITY",
@@ -4009,6 +4237,7 @@
     "email": "op@msumain.edu.ph"
   },
   {
+    "slug": "sulu-state-college",
     "office_type": "State Universities and Colleges (SUCs)",
     "region": "BANGSAMORO AUTONOMOUS REGION IN MUSLIM MINDANAO",
     "name": "SULU STATE COLLEGE",
@@ -4022,6 +4251,7 @@
     ]
   },
   {
+    "slug": "tawi-tawi-regional-agricultural-college",
     "office_type": "State Universities and Colleges (SUCs)",
     "region": "BANGSAMORO AUTONOMOUS REGION IN MUSLIM MINDANAO",
     "name": "TAWI-TAWI REGIONAL AGRICULTURAL COLLEGE",
