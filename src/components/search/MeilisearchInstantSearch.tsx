@@ -15,7 +15,6 @@ import './MeilisearchInstantSearch.css' // For custom styles
 const MEILISEARCH_HOST =
   import.meta.env.VITE_MEILISEARCH_HOST || 'http://localhost'
 const MEILISEARCH_PORT = import.meta.env.VITE_MEILISEARCH_PORT || '7700'
-// IMPORTANT: Use a PUBLIC search-only API key here, not the master key
 const MEILISEARCH_SEARCH_API_KEY =
   import.meta.env.VITE_MEILISEARCH_SEARCH_API_KEY ||
   'your_public_search_key_here'
@@ -182,7 +181,7 @@ const MeilisearchInstantSearch: React.FC = () => {
           />
 
           {hasInteracted && (
-            <div className="bg-white rounded-lg shadow overflow-y-scroll h-96 absolute z-30 w-2/5">
+            <div className="bg-white rounded-lg shadow overflow-y-scroll h-96 absolute z-30 w-1/2">
               <Stats
                 classNames={{
                   root: 'text-sm text-gray-600 p-2 text-right text-xs',
@@ -192,7 +191,8 @@ const MeilisearchInstantSearch: React.FC = () => {
                 hitComponent={Hit}
                 className="w-full"
                 classNames={{
-                  item: 'w-full px-2 py-0 border-none',
+                  list: 'w-full p-0',
+                  item: 'w-full  py-0 px-0 border-none',
                 }}
               />
             </div>

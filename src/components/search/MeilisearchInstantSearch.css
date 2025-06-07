@@ -8,6 +8,10 @@
   width: 100%;
 }
 
+.ais-Hits-item {
+  padding: 0;
+}
+
 /* Style for individual hit items */
 .hit-item h2 .ais-Highlight-highlighted {
   background-color: #ffe082; /* Light yellow highlight */
