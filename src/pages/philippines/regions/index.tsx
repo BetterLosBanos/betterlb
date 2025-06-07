@@ -1,41 +1,56 @@
-import React from 'react';
-import { MapPin, Mountain, Palmtree, Building2, Ship } from 'lucide-react';
-import { Card, CardContent } from '../../../components/ui/Card';
+import React, { useMemo } from 'react'
+import { MapPin, Mountain, Building2, Users, Globe, Search } from 'lucide-react'
+import { Link } from 'react-router-dom'
+import { Card, CardContent } from '../../../components/ui/Card'
+import regionsData from '../../../data/directory/regions.json'
+import SEO from '../../../components/SEO'
+import { getLocalGovSEOData } from '../../../utils/seo-data'
 
 const PhilippinesRegions: React.FC = () => {
-  const regions = [
-    {
-      icon: <Building2 className="h-6 w-6" />,
-      name: 'National Capital Region',
-      description: 'Metro Manila, the economic and political center of the Philippines',
-      keyPlaces: ['Manila', 'Quezon City', 'Makati', 'Taguig'],
-      image: 'https://images.pexels.com/photos/1239162/pexels-photo-1239162.jpeg',
-    },
-    {
-      icon: <Mountain className="h-6 w-6" />,
-      name: 'Cordillera Administrative Region',
-      description: 'Home to ancient rice terraces and indigenous mountain cultures',
-      keyPlaces: ['Baguio', 'Sagada', 'Banaue', 'Mountain Province'],
-      image: 'https://images.pexels.com/photos/2166553/pexels-photo-2166553.jpeg',
-    },
-    {
-      icon: <Palmtree className="h-6 w-6" />,
-      name: 'Visayas',
-      description: 'Central islands known for beaches, festivals, and historic sites',
-      keyPlaces: ['Cebu', 'Boracay', 'Bohol', 'Iloilo'],
-      image: 'https://images.pexels.com/photos/1268855/pexels-photo-1268855.jpeg',
-    },
-    {
-      icon: <Ship className="h-6 w-6" />,
-      name: 'Mindanao',
-      description: 'Southern region rich in cultural diversity and natural resources',
-      keyPlaces: ['Davao', 'Cagayan de Oro', 'Zamboanga', 'General Santos'],
-      image: 'https://images.pexels.com/photos/2387873/pexels-photo-2387873.jpeg',
-    },
-  ];
+  // Use the regions data from our JSON file
+  const regions = useMemo(() => {
+    // Map region data to include additional display information
+    return regionsData.map((region) => {
+      // Get icon based on region name pattern
+      let icon = <Building2 className="h-6 w-6" />
+
+      if (region.name.includes('CORDILLERA')) {
+        icon = <Mountain className="h-6 w-6" />
+      } else if (
+        region.name.includes('VISAYAS') ||
+        region.name.includes('MIMAROPA')
+      ) {
+        icon = <Globe className="h-6 w-6" />
+      } else if (region.name.includes('MINDANAO')) {
+        icon = <Users className="h-6 w-6" />
+      }
+
+      // Format the region name for display (title case)
+      const displayName = region.name
+        .split(' ')
+        .map(
+          (word) => word.charAt(0).toUpperCase() + word.slice(1).toLowerCase()
+        )
+        .join(' ')
+        .replace('Ncr', 'NCR')
+        .replace('Mimaropa', 'MIMAROPA')
+        .replace('Calabarzon', 'CALABARZON')
+
+      return {
+        ...region,
+        icon,
+        displayName,
+        // Link to the LGU page using the slug
+        lguLink: `/government/local/${region.slug}`,
+      }
+    })
+  }, [])
+
+  const seoData = getLocalGovSEOData()
 
   return (
     <div className="min-h-screen bg-gray-50">
+      <SEO {...seoData} />
       {/* Hero Section */}
       <div className="relative h-[60vh] overflow-hidden">
         <div className="absolute inset-0">
@@ -53,8 +68,8 @@ const PhilippinesRegions: React.FC = () => {
                 Regions of the Philippines
               </h1>
               <p className="text-xl text-white/90 leading-relaxed">
-                Explore the diverse regions of the Philippines, each with its unique 
-                culture, landscapes, and traditions.
+                Explore all {regions.length} administrative regions of the
+                Philippines and their local government units.
               </p>
             </div>
           </div>
@@ -67,36 +82,52 @@ const PhilippinesRegions: React.FC = () => {
           {/* Regions Grid */}
           <div className="lg:col-span-2">
             <section className="mb-12">
-              <h2 className="text-3xl font-bold text-gray-900 mb-6">Major Regions</h2>
+              <h2 className="text-3xl font-bold text-gray-900 mb-6">
+                Administrative Regions
+              </h2>
               <div className="grid gap-6">
                 {regions.map((region, index) => (
-                  <Card key={index}>
+                  <Card
+                    key={index}
+                    className="hover:shadow-md transition-shadow duration-300"
+                  >
                     <CardContent className="p-6">
                       <div className="flex items-start space-x-4">
                         <div className="p-3 bg-primary-100 rounded-lg text-primary-600">
                           {region.icon}
                         </div>
                         <div className="flex-1">
-                          <h3 className="text-xl font-semibold text-gray-900 mb-2">
-                            {region.name}
-                          </h3>
-                          <p className="text-gray-600 mb-4">{region.description}</p>
-                          <div className="flex flex-wrap gap-2 mb-4">
-                            {region.keyPlaces.map((place, i) => (
-                              <span
-                                key={i}
-                                className="inline-flex items-center px-3 py-1 rounded-full text-sm bg-gray-100 text-gray-800"
-                              >
-                                <MapPin className="h-3 w-3 mr-1" />
-                                {place}
-                              </span>
-                            ))}
+                          <Link to={region.lguLink} className="group">
+                            <h3 className="text-xl font-semibold text-gray-900 mb-2 group-hover:text-primary-600 transition-colors">
+                              {region.displayName}
+                            </h3>
+                          </Link>
+                          <div className="flex items-center text-sm text-gray-500 mb-4">
+                            <MapPin className="h-4 w-4 mr-1" />
+                            <span>Local Government Units</span>
                           </div>
-                          <img
-                            src={region.image}
-                            alt={region.name}
-                            className="w-full h-48 object-cover rounded-lg"
-                          />
+                          <div className="flex justify-between items-center">
+                            <Link
+                              to={region.lguLink}
+                              className="inline-flex items-center text-sm font-medium text-primary-600 hover:text-primary-700"
+                            >
+                              View LGUs
+                              <svg
+                                className="w-4 h-4 ml-1"
+                                fill="none"
+                                stroke="currentColor"
+                                viewBox="0 0 24 24"
+                                xmlns="http://www.w3.org/2000/svg"
+                              >
+                                <path
+                                  strokeLinecap="round"
+                                  strokeLinejoin="round"
+                                  strokeWidth="2"
+                                  d="M9 5l7 7-7 7"
+                                />
+                              </svg>
+                            </Link>
+                          </div>
                         </div>
                       </div>
                     </CardContent>
@@ -106,23 +137,28 @@ const PhilippinesRegions: React.FC = () => {
             </section>
 
             <section>
-              <h2 className="text-3xl font-bold text-gray-900 mb-6">Regional Overview</h2>
+              <h2 className="text-3xl font-bold text-gray-900 mb-6">
+                Regional Overview
+              </h2>
               <div className="prose max-w-none">
                 <p className="text-gray-600 leading-relaxed mb-4">
-                  The Philippines is divided into three main geographical divisions: Luzon, 
-                  Visayas, and Mindanao. These are further subdivided into 17 regions, each 
-                  with its own administrative center, cultural identity, and economic focus.
+                  The Philippines is divided into three main geographical
+                  divisions: Luzon, Visayas, and Mindanao. These are further
+                  subdivided into 17 regions, each with its own administrative
+                  center, cultural identity, and economic focus.
                 </p>
                 <p className="text-gray-600 leading-relaxed mb-4">
-                  Each region showcases unique traditions, dialects, and cuisines, contributing 
-                  to the country's rich cultural tapestry. From the mountain tribes of the 
-                  Cordilleras to the seafaring communities of the Visayas, the diversity of 
+                  Each region showcases unique traditions, dialects, and
+                  cuisines, contributing to the country's rich cultural
+                  tapestry. From the mountain tribes of the Cordilleras to the
+                  seafaring communities of the Visayas, the diversity of
                   Filipino regional cultures is remarkable.
                 </p>
                 <p className="text-gray-600 leading-relaxed">
-                  The regions also vary in their economic activities, from the industrial and 
-                  service-oriented National Capital Region to the agricultural heartlands of 
-                  Central Luzon and the resource-rich provinces of Mindanao.
+                  The regions also vary in their economic activities, from the
+                  industrial and service-oriented National Capital Region to the
+                  agricultural heartlands of Central Luzon and the resource-rich
+                  provinces of Mindanao.
                 </p>
               </div>
             </section>
@@ -132,23 +168,35 @@ const PhilippinesRegions: React.FC = () => {
           <div className="space-y-6">
             <Card>
               <CardContent className="p-6">
-                <h3 className="text-xl font-semibold text-gray-900 mb-4">Quick Facts</h3>
+                <h3 className="text-xl font-semibold text-gray-900 mb-4">
+                  Quick Facts
+                </h3>
                 <div className="space-y-4">
                   <div>
-                    <div className="text-sm font-medium text-gray-500">Total Regions</div>
-                    <div className="text-gray-900">17 Administrative Regions</div>
+                    <div className="text-sm font-medium text-gray-500">
+                      Total Regions
+                    </div>
+                    <div className="text-gray-900">
+                      18 Administrative Regions
+                    </div>
                   </div>
                   <div>
-                    <div className="text-sm font-medium text-gray-500">Provinces</div>
-                    <div className="text-gray-900">81 Provinces</div>
+                    <div className="text-sm font-medium text-gray-500">
+                      Provinces
+                    </div>
+                    <div className="text-gray-900">82 Provinces</div>
                   </div>
                   <div>
-                    <div className="text-sm font-medium text-gray-500">Cities</div>
-                    <div className="text-gray-900">146 Cities</div>
+                    <div className="text-sm font-medium text-gray-500">
+                      Cities
+                    </div>
+                    <div className="text-gray-900">149 Cities</div>
                   </div>
                   <div>
-                    <div className="text-sm font-medium text-gray-500">Municipalities</div>
-                    <div className="text-gray-900">1,488 Municipalities</div>
+                    <div className="text-sm font-medium text-gray-500">
+                      Municipalities
+                    </div>
+                    <div className="text-gray-900">1,493 Municipalities</div>
                   </div>
                 </div>
               </CardContent>
@@ -156,19 +204,27 @@ const PhilippinesRegions: React.FC = () => {
 
             <Card>
               <CardContent className="p-6">
-                <h3 className="text-xl font-semibold text-gray-900 mb-4">Regional Languages</h3>
+                <h3 className="text-xl font-semibold text-gray-900 mb-4">
+                  Regional Languages
+                </h3>
                 <div className="space-y-3">
                   <div>
                     <div className="font-medium text-gray-900">Luzon</div>
-                    <div className="text-sm text-gray-600">Tagalog, Ilocano, Bicolano</div>
+                    <div className="text-sm text-gray-600">
+                      Tagalog, Ilocano, Bicolano
+                    </div>
                   </div>
                   <div>
                     <div className="font-medium text-gray-900">Visayas</div>
-                    <div className="text-sm text-gray-600">Cebuano, Hiligaynon, Waray</div>
+                    <div className="text-sm text-gray-600">
+                      Cebuano, Hiligaynon, Waray
+                    </div>
                   </div>
                   <div>
                     <div className="font-medium text-gray-900">Mindanao</div>
-                    <div className="text-sm text-gray-600">Cebuano, Maguindanaon, Tausug</div>
+                    <div className="text-sm text-gray-600">
+                      Cebuano, Maguindanaon, Tausug
+                    </div>
                   </div>
                 </div>
               </CardContent>
@@ -176,32 +232,46 @@ const PhilippinesRegions: React.FC = () => {
 
             <Card>
               <CardContent className="p-6">
-                <h3 className="text-xl font-semibold text-gray-900 mb-4">Related Links</h3>
+                <h3 className="text-xl font-semibold text-gray-900 mb-4">
+                  Related Links
+                </h3>
                 <nav className="space-y-2">
-                  <a
-                    href="/philippines/about"
+                  <Link
+                    to="/philippines/map"
                     className="block px-4 py-2 text-gray-700 hover:bg-gray-50 rounded-md transition-colors"
                   >
-                    About
-                  </a>
-                  <a
-                    href="/philippines/history"
+                    <div className="flex items-center">
+                      <MapPin className="h-4 w-4 mr-2" />
+                      Interactive Map
+                    </div>
+                  </Link>
+                  <Link
+                    to="/government/local"
                     className="block px-4 py-2 text-gray-700 hover:bg-gray-50 rounded-md transition-colors"
                   >
-                    History
-                  </a>
-                  <a
-                    href="/philippines/culture"
+                    <div className="flex items-center">
+                      <Building2 className="h-4 w-4 mr-2" />
+                      Local Government Units
+                    </div>
+                  </Link>
+                  <Link
+                    to="/government/departments"
                     className="block px-4 py-2 text-gray-700 hover:bg-gray-50 rounded-md transition-colors"
                   >
-                    Culture
-                  </a>
-                  <a
-                    href="/philippines/tourism"
+                    <div className="flex items-center">
+                      <Users className="h-4 w-4 mr-2" />
+                      Government Departments
+                    </div>
+                  </Link>
+                  <Link
+                    to="/philippines/about"
                     className="block px-4 py-2 text-gray-700 hover:bg-gray-50 rounded-md transition-colors"
                   >
-                    Tourism
-                  </a>
+                    <div className="flex items-center">
+                      <Globe className="h-4 w-4 mr-2" />
+                      About the Philippines
+                    </div>
+                  </Link>
                 </nav>
               </CardContent>
             </Card>
@@ -209,7 +279,7 @@ const PhilippinesRegions: React.FC = () => {
         </div>
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default PhilippinesRegions;
+export default PhilippinesRegions
