@@ -1,0 +1,92 @@
+/* Basic styling for the search results container */
+.ais-InstantSearch {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.hit-item {
+  width: 100%;
+}
+
+/* Style for individual hit items */
+.hit-item h2 .ais-Highlight-highlighted {
+  background-color: #ffe082; /* Light yellow highlight */
+  font-style: normal;
+}
+
+.hit-item p .ais-Snippet-highlighted {
+  background-color: #ffe082;
+  font-style: normal;
+}
+
+/* Ensure SearchBox input has good contrast and size */
+.ais-SearchBox-input {
+  font-size: 1rem;
+  padding: 0.75rem 1rem;
+}
+
+/* Style for refinement list */
+.ais-RefinementList-label {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+}
+
+.ais-RefinementList-labelText {
+  margin-left: 8px;
+  flex-grow: 1;
+}
+
+.ais-RefinementList-count {
+  font-size: 0.875rem;
+  color: #6b7280; /* text-gray-500 */
+  background-color: #f3f4f6; /* bg-gray-100 */
+  padding: 2px 8px;
+  border-radius: 9999px; /* rounded-full */
+}
+
+.ais-RefinementList-item--selected .ais-RefinementList-labelText {
+  font-weight: 600;
+}
+
+/* Pagination styling */
+.ais-Pagination-list {
+  display: flex;
+  justify-content: center;
+  list-style: none;
+  padding: 0;
+}
+
+.ais-Pagination-item {
+  margin: 0 4px;
+}
+
+.ais-Pagination-link {
+  padding: 8px 12px;
+  border: 1px solid #d1d5db; /* border-gray-300 */
+  border-radius: 4px;
+  text-decoration: none;
+  color: #374151; /* text-gray-700 */
+  transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out;
+}
+
+.ais-Pagination-link:hover {
+  background-color: #f3f4f6; /* bg-gray-100 */
+}
+
+.ais-Pagination-item--selected .ais-Pagination-link {
+  background-color: #3b82f6; /* bg-blue-500 */
+  color: white;
+  border-color: #3b82f6; /* border-blue-500 */
+}
+
+.ais-Pagination-item--disabled .ais-Pagination-link {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+/* Stats styling */
+.ais-Stats {
+  font-size: 0.875rem;
+  color: #4b5563; /* text-gray-600 */
+}

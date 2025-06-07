@@ -1,8 +1,6 @@
 import React from 'react'
-import { Search } from 'lucide-react'
 import { useLanguage } from '../../contexts/LanguageContext'
-import SearchInput from '../ui/SearchInput'
-import Button from '../ui/Button'
+import MeilisearchInstantSearch from '../search/MeilisearchInstantSearch'
 import { Link } from 'react-router-dom'
 import serviceCategories from '../../data/service_categories.json'
 
@@ -19,11 +17,6 @@ interface Category {
 
 const Hero: React.FC = () => {
   const { translate } = useLanguage()
-
-  const handleSearch = (query: string) => {
-    console.log('Searching for:', query)
-    // Implementation for search functionality
-  }
 
   // Find categories and subcategories by their names to get slugs
   const findCategorySlug = (categoryName: string) => {
@@ -86,14 +79,11 @@ const Hero: React.FC = () => {
             <p className="text-lg opacity-90 mb-8 max-w-lg">
               {translate('hero.subtitle')}
             </p>
-            <div className="bg-white rounded-lg p-1 shadow-lg">
-              <SearchInput
-                placeholder={translate('hero.search')}
-                onSearch={handleSearch}
-                size="lg"
-                className="w-full"
-                icon={<Search className="h-5 w-5 text-primary-500" />}
-              />
+            {/* Meilisearch component will be full width and include its own styling */}
+            {/* The background of Hero is dark, MeilisearchInstantSearch has a light theme by default */}
+            {/* Consider adjusting MeilisearchInstantSearch styles or Hero background for better blending */}
+            <div className="mb-8">
+              <MeilisearchInstantSearch />
             </div>
             <div className="mt-4 flex flex-wrap gap-2">
               {popularServices.map((service) => (
