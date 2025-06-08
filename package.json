@@ -7,6 +7,7 @@
     "dev": "vite",
     "build": "vite build",
     "lint": "eslint .",
+    "wrangler": "wrangler",
     "preview": "vite preview",
     "index:meilisearch": "node ./scripts/index_meilisearch.cjs",
     "index:meilisearch:reset": "node ./scripts/index_meilisearch.cjs --reset",
@@ -32,7 +33,8 @@
     "react-instantsearch": "^7.15.8",
     "react-leaflet": "5.0.0-rc.2",
     "react-router-dom": "^6.22.2",
-    "tailwind-merge": "^2.2.1"
+    "tailwind-merge": "^2.2.1",
+    "wrangler": "^4.19.1"
   },
   "devDependencies": {
     "@eslint/js": "^9.9.1",
