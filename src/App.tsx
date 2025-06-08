@@ -58,6 +58,9 @@ import LocalLayout from './pages/government/local/components/LocalLayout'
 import LocalGovernmentIndex from './pages/government/local/index'
 import RegionalLGUPage from './pages/government/local/[region]'
 
+// Search Page
+import SearchPage from './pages/Search'
+
 function App() {
   return (
     <LanguageProvider>
@@ -70,6 +73,7 @@ function App() {
             <Route path="/design" element={<DesignGuide />} />
             <Route path="/services" element={<Services />} />
             <Route path="/about" element={<AboutPage />} />
+            <Route path="/search" element={<SearchPage />} />
             <Route path="/philippines/about" element={<AboutPhilippines />} />
             <Route
               path="/philippines/history"
@@ -86,18 +90,24 @@ function App() {
             <Route path="/philippines/map" element={<PhilippinesMap />} />
             <Route path="/philippines/holidays" element={<PublicHolidays />} />
             <Route path="/philippines/hotlines" element={<Hotlines />} />
-            
+
             {/* Travel Routes */}
             <Route path="/travel/visa" element={<VisaPage />} />
             <Route path="/travel/visa-types" element={<VisaTypesPage />} />
-          <Route 
-            path="/travel/visa-types/:type" 
-            element={
-              <React.Suspense fallback={<div className="flex items-center justify-center min-h-screen">Loading...</div>}>
-                <VisaTypeDetail />
-              </React.Suspense>
-            } 
-          />
+            <Route
+              path="/travel/visa-types/:type"
+              element={
+                <React.Suspense
+                  fallback={
+                    <div className="flex items-center justify-center min-h-screen">
+                      Loading...
+                    </div>
+                  }
+                >
+                  <VisaTypeDetail />
+                </React.Suspense>
+              }
+            />
 
             {/* Government Routes */}
             <Route

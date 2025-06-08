@@ -12,6 +12,12 @@
   padding: 0;
 }
 
+.ais-SearchBox-form {
+  background-color: none;
+  height: auto;
+  line-height: auto;
+}
+
 /* Style for individual hit items */
 .hit-item h2 .ais-Highlight-highlighted {
   background-color: #ffe082; /* Light yellow highlight */
@@ -76,12 +82,6 @@
 
 .ais-Pagination-link:hover {
   background-color: #f3f4f6; /* bg-gray-100 */
-}
-
-.ais-Pagination-item--selected .ais-Pagination-link {
-  background-color: #3b82f6; /* bg-blue-500 */
-  color: white;
-  border-color: #3b82f6; /* border-blue-500 */
 }
 
 .ais-Pagination-item--disabled .ais-Pagination-link {

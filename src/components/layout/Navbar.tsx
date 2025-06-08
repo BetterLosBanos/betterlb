@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { X, Menu, ChevronDown, Globe } from 'lucide-react'
+import { X, Menu, ChevronDown, Globe, Search } from 'lucide-react'
 import { useLanguage } from '../../contexts/LanguageContext'
 import { mainNavigation } from '../../data/navigation'
 import { LanguageType } from '../../types'
@@ -115,12 +115,19 @@ const Navbar: React.FC = () => {
               </div>
             ))}
           </div>
-          <div className="hidden md:block">
+          <div className="hidden md:flex items-center space-x-6">
             <a
               href="/about"
               className="flex items-center text-gray-700 hover:text-primary-600 font-medium transition-colors"
             >
               About
+            </a>
+            <a
+              href="/search"
+              className="flex items-center text-gray-700 hover:text-primary-600 font-medium transition-colors"
+            >
+              <Search className="h-4 w-4 mr-1" />
+              Search
             </a>
           </div>
 

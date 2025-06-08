@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect, useRef } from 'react'
 import {
   InstantSearch,
   SearchBox,
@@ -150,6 +150,37 @@ const Hit: React.FC<HitProps> = ({ hit }) => {
 
 const MeilisearchInstantSearch: React.FC = () => {
   const [hasInteracted, setHasInteracted] = useState(false)
+  const searchContainerRef = useRef<HTMLDivElement>(null)
+
+  // Handle click outside to close search results
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (
+        searchContainerRef.current &&
+        !searchContainerRef.current.contains(event.target as Node)
+      ) {
+        setHasInteracted(false)
+      }
+    }
+
+    // Handle escape key press to close search results
+    const handleEscapeKey = (event: KeyboardEvent) => {
+      if (event.key === 'Escape') {
+        setHasInteracted(false)
+      }
+    }
+
+    // Add event listeners
+    document.addEventListener('mousedown', handleClickOutside)
+    document.addEventListener('keydown', handleEscapeKey)
+
+    // Clean up event listeners
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside)
+      document.removeEventListener('keydown', handleEscapeKey)
+    }
+  }, [setHasInteracted])
+
   return (
     <InstantSearch
       searchClient={searchClient}
@@ -162,8 +193,8 @@ const MeilisearchInstantSearch: React.FC = () => {
       }}
     >
       <Configure hitsPerPage={10} />
-      <div className="ais-InstantSearch">
-        <div className="mb-2 w-full">
+      <div className="ais-InstantSearch rounded-lg">
+        <div className="mb-2 w-full" ref={searchContainerRef}>
           <SearchBox
             placeholder="Search for services, directory items..."
             className="w-full"
@@ -172,7 +203,7 @@ const MeilisearchInstantSearch: React.FC = () => {
               root: 'mb-2',
               form: 'relative',
               input:
-                'w-full p-3 pl-10 border border-gray-300  focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none transition duration-150 ease-in-out',
+                'w-full p-3 pl-10 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none transition duration-150 ease-in-out',
               submit:
                 'absolute top-0 right-0 h-full px-3 text-gray-500 hover:text-blue-600',
               reset:
@@ -181,7 +212,7 @@ const MeilisearchInstantSearch: React.FC = () => {
           />
 
           {hasInteracted && (
-            <div className="bg-white rounded-lg shadow overflow-y-scroll h-96 absolute z-30 w-1/2">
+            <div className="bg-white rounded-lg shadow overflow-y-scroll h-96 absolute z-30 w-[calc(100%-2rem)] max-w-[calc(100%-4rem)] lg:w-1/2">
               <Stats
                 classNames={{
                   root: 'text-sm text-gray-600 p-2 text-right text-xs',
