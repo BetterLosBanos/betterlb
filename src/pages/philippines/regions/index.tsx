@@ -1,8 +1,8 @@
 import React, { useMemo } from 'react'
-import { MapPin, Mountain, Building2, Users, Globe, Search } from 'lucide-react'
+import { MapPin, Mountain, Building2, Users, Globe } from 'lucide-react'
 import { Link } from 'react-router-dom'
 import { Card, CardContent } from '../../../components/ui/Card'
-import regionsData from '../../../data/directory/regions.json'
+import regionsData from '../../../data/regions.json'
 import SEO from '../../../components/SEO'
 import { getLocalGovSEOData } from '../../../utils/seo-data'
 

@@ -9,14 +9,14 @@ const __dirname = dirname(__filename);
 // Path to the LGU JSON file
 const lguFilePath = join(__dirname, '../src/data/directory/lgu.json');
 // Output path for the regions JSON file
-const outputFilePath = join(__dirname, '../src/data/directory/regions.json');
+const outputFilePath = join(__dirname, '../src/data/regions.json');
 
 async function extractRegions() {
   try {
     // Read and parse the LGU JSON file
     const data = await readFile(lguFilePath, 'utf8');
     const lguData = JSON.parse(data);
-    
+
     // Extract region data
     const regions = lguData.map(region => ({
       name: region.region,
@@ -29,7 +29,7 @@ async function extractRegions() {
       JSON.stringify(regions, null, 2),
       'utf8'
     );
-    
+
     console.log(`✅ Successfully extracted ${regions.length} regions to ${outputFilePath}`);
   } catch (error) {
     console.error('❌ Error processing LGU data:', error);
