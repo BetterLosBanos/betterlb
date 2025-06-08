@@ -84,30 +84,6 @@ async function fetchWeatherData(env, specificCity = null) {
   return weatherData;
 }
 
-// Function for scheduled execution
-export async function onScheduled(event) {
-  try {
-    // Fetch weather data for all cities
-    const weatherData = await fetchWeatherData(event.env);
-
-    // Store the data in Cloudflare KV
-    await event.env.WEATHER_KV.put('philippines_weather', JSON.stringify(weatherData), {
-      expirationTtl: 3600 * 24 // Expire after 1 day
-    });
-
-    return {
-      success: true,
-      message: `Weather data updated for ${Object.keys(weatherData).length} Philippine cities`,
-      timestamp: new Date().toISOString()
-    };
-  } catch (error) {
-    console.error('Error in weather function:', error);
-    return {
-      success: false,
-      error: error.message
-    };
-  }
-}
 
 // Handler for direct HTTP requests
 export async function onRequest(context) {
@@ -213,7 +189,26 @@ export async function onRequest(context) {
   }
 }
 
-// Trigger function every hour
-export const scheduled = {
-  cron: '0 * * * *' // Run every hour at minute 0
-};
+export async function scheduled(controller, env, ctx) {
+  try {
+    // Fetch weather data for all cities
+    const weatherData = await fetchWeatherData(env);
+
+    // Store the data in Cloudflare KV
+    await env.WEATHER_KV.put('philippines_weather', JSON.stringify(weatherData), {
+      expirationTtl: 3600 * 6 // Expire after 6 hours
+    });
+
+    return {
+      success: true,
+      message: `Weather data updated for ${Object.keys(weatherData).length} Philippine cities`,
+      timestamp: new Date().toISOString()
+    };
+  } catch (error) {
+    console.error('Error in weather scheduled function:', error);
+    return {
+      success: false,
+      error: error.message
+    };
+  }
+}

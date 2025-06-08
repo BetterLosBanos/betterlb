@@ -44,31 +44,6 @@ async function fetchForexData(env) {
   }
 }
 
-// Function for scheduled execution
-export async function onScheduled(event) {
-  try {
-    // Fetch forex data
-    const forexData = await fetchForexData(event.env);
-
-    // Store the data in Cloudflare KV
-    await event.env.FOREX_KV.put('bsp_exchange_rates', JSON.stringify(forexData), {
-      expirationTtl: 3600 * 24 // Expire after 1 day
-    });
-
-    return {
-      success: true,
-      message: `Exchange rate data updated for ${forexData.rates.length} currencies`,
-      timestamp: new Date().toISOString()
-    };
-  } catch (error) {
-    console.error('Error in forex scheduled function:', error);
-    return {
-      success: false,
-      error: error.message
-    };
-  }
-}
-
 // Function for direct API access
 export async function onRequest(context) {
   const { request, env } = context;
@@ -205,7 +180,26 @@ export async function onRequest(context) {
   }
 }
 
-// Trigger function every hour
-export const scheduled = {
-  cron: '0 * * * *' // Run every hour at minute 0
-};
+export async function scheduled(controller, env, ctx) {
+  try {
+    // Fetch forex data
+    const forexData = await fetchForexData(env);
+
+    // Store the data in Cloudflare KV
+    await env.FOREX_KV.put('bsp_exchange_rates', JSON.stringify(forexData), {
+      expirationTtl: 3600 * 6 // Expire after 6 hours
+    });
+
+    return {
+      success: true,
+      message: `Exchange rate data updated for ${forexData.rates.length} currencies`,
+      timestamp: new Date().toISOString()
+    };
+  } catch (error) {
+    console.error('Error in forex scheduled function:', error);
+    return {
+      success: false,
+      error: error.message
+    };
+  }
+}

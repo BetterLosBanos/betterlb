@@ -42,7 +42,7 @@ const Navbar: React.FC = () => {
             </a>
 
             <a
-              href="/hotlines"
+              href="/philippines/hotlines"
               className="text-xs text-gray-600 hover:text-primary-600 transition-colors"
             >
               Hotlines

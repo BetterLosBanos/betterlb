@@ -1,15 +1,24 @@
 // Main entry point for Cloudflare Workers
-import { onScheduled as getWeatherScheduled, onRequest as weatherRequest } from './api/weather';
-import { onScheduled as getForexScheduled, onRequest as forexRequest } from './api/forex';
+import { scheduled as getWeatherScheduled, onRequest as weatherRequest } from './api/weather';
+import { scheduled as getForexScheduled, onRequest as forexRequest } from './api/forex';
 import { onRequest as weatherKVRequest } from './weather';
 import { onRequest as forexKVRequest } from './forex';
 
 // Export the scheduled handlers
-export { onScheduled as scheduled_getWeather } from './api/weather';
-export { onScheduled as scheduled_getForex } from './api/forex';
+export { scheduled as scheduled_getWeather } from './api/weather';
+export { scheduled as scheduled_getForex } from './api/forex';
 
 // Handler for HTTP requests
 export default {
+  async scheduled(controller, env, ctx) {
+
+
+    console.log('Scheduled update');
+    await getWeatherScheduled(controller, env, ctx);
+    await getForexScheduled(controller, env, ctx);
+
+  },
+
   async fetch(request, env, ctx) {
     const url = new URL(request.url);
     const path = url.pathname;
@@ -20,7 +29,7 @@ export default {
       'Access-Control-Allow-Methods': 'GET, OPTIONS',
       'Access-Control-Allow-Headers': 'Content-Type',
     };
-    
+
     // Handle OPTIONS requests for CORS
     if (request.method === 'OPTIONS') {
       return new Response(null, {
@@ -42,7 +51,7 @@ export default {
         headers: newHeaders
       });
     }
-    
+
     if (path === '/api/forex') {
       const response = await forexRequest({ request, env, ctx });
       // Add CORS headers to the response
@@ -71,7 +80,7 @@ export default {
         headers: newHeaders
       });
     }
-    
+
     if (path === '/forex') {
       const response = await forexKVRequest({ request, env, ctx });
       // Add CORS headers to the response
@@ -136,7 +145,7 @@ export default {
     return new Response(JSON.stringify({
       error: 'Not found',
       availableEndpoints: ['/api/status', '/api/weather', '/api/forex', '/weather', '/forex']
-    }), { 
+    }), {
       status: 404,
       headers: {
         'Content-Type': 'application/json',
