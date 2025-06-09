@@ -35,6 +35,11 @@ const DATA_SOURCES = [
     dataType: 'directory_item',
     dataPath: path.join(dataBasePath, 'directory'),
   },
+  {
+    dataType: 'website',
+    dataPath: path.join(dataBasePath, 'websites.json'),
+    isFile: true,
+  },
 ];
 
 const COMMON_INDEX_SETTINGS = {
@@ -138,6 +143,58 @@ async function main() {
       `Processing data source type: ${dataSource.dataType} from ${dataSource.dataPath}`
     );
     try {
+      // Handle single file case (like websites.json)
+      if (dataSource.isFile) {
+        try {
+          const filePath = dataSource.dataPath;
+          const baseNameForFile = path.basename(filePath, '.json');
+          const fileContent = await fs.readFile(filePath, 'utf-8');
+          const parsedJson = JSON.parse(fileContent);
+          const documentsFromFile = Array.isArray(parsedJson) ? parsedJson : [parsedJson];
+          let docIndex = 0;
+
+          console.log(`Processing single file ${filePath} with ${documentsFromFile.length} items.`);
+
+          for (const doc of documentsFromFile) {
+            let itemSlug = doc.slug;
+            const itemIdentifierLog = documentsFromFile.length > 1 ? `${baseNameForFile}[${docIndex}]` : baseNameForFile;
+
+            if (!itemSlug) {
+              const slugSource = doc.name || doc.title || doc.service || baseNameForFile;
+              if (slugSource) {
+                itemSlug = slugSource
+                  .toString()
+                  .toLowerCase()
+                  .replace(/\s+/g, '-')
+                  .replace(/[^\w-]+/g, '')
+                  .replace(/--+/g, '-')
+                  .replace(/^-+/, '')
+                  .replace(/-+$/, '');
+                if (documentsFromFile.length > 1 && !doc.name && !doc.title && !doc.service) {
+                  itemSlug = `${itemSlug}-${docIndex}`;
+                }
+              } else {
+                itemSlug = `${baseNameForFile}${documentsFromFile.length > 1 ? `-${docIndex}` : ''}`;
+              }
+              console.log(`Document from ${baseNameForFile} (item: ${itemIdentifierLog}) missing 'slug'. Generated slug: ${itemSlug}`);
+            }
+
+            const documentData = {
+              ...doc,
+              id: doc.id || itemSlug,
+              slug: itemSlug,
+              type: dataSource.dataType,
+            };
+            allDocumentsToIndex.push(documentData);
+            docIndex++;
+          }
+        } catch (fileReadOrParseError) {
+          console.error(`Error processing file ${dataSource.dataPath}:`, fileReadOrParseError);
+        }
+        continue;
+      }
+      
+      // Handle directory case (original code)
       const filesInDir = await fs.readdir(dataSource.dataPath);
       const jsonFiles = filesInDir.filter(
         (f) => path.extname(f).toLowerCase() === '.json'
