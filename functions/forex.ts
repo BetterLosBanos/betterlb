@@ -3,13 +3,25 @@
  * This endpoint is a simplified version that only reads from KV
  */
 
-export async function onRequest(context) {
+import { Env } from './types';
+
+interface RateItem {
+  symbol: string;
+  [key: string]: any;
+}
+
+interface ForexCachedData {
+  metadata: Record<string, any>;
+  rates: RateItem[];
+}
+
+export async function onRequest(context: { request: Request; env: Env; ctx: ExecutionContext }): Promise<Response> {
   try {
     const url = new URL(context.request.url);
     const symbolParam = url.searchParams.get('symbol');
     
     // Get data from KV store
-    const cachedData = await context.env.FOREX_KV.get('bsp_exchange_rates', { type: 'json' });
+    const cachedData = await context.env.FOREX_KV.get('bsp_exchange_rates', { type: 'json' }) as ForexCachedData | null;
     
     if (!cachedData) {
       return new Response(JSON.stringify({ 
@@ -67,8 +79,8 @@ export async function onRequest(context) {
     
   } catch (error) {
     return new Response(JSON.stringify({ 
-      error: error.message,
-      stack: error.stack
+      error: (error as Error).message,
+      stack: (error as Error).stack
     }), {
       status: 500,
       headers: {

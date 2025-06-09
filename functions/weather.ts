@@ -3,13 +3,15 @@
  * This endpoint is a simplified version that only reads from KV
  */
 
-export async function onRequest(context) {
+import { Env } from './types';
+
+export async function onRequest(context: { request: Request; env: Env; ctx: ExecutionContext }): Promise<Response> {
   try {
     const url = new URL(context.request.url);
     const cityParam = url.searchParams.get('city');
     
     // Get data from KV store
-    const cachedData = await context.env.WEATHER_KV.get('philippines_weather', { type: 'json' });
+    const cachedData = await context.env.WEATHER_KV.get('philippines_weather', { type: 'json' }) as Record<string, any> | null;
     
     if (!cachedData) {
       return new Response(JSON.stringify({ 
@@ -60,8 +62,8 @@ export async function onRequest(context) {
     
   } catch (error) {
     return new Response(JSON.stringify({ 
-      error: error.message,
-      stack: error.stack
+      error: (error as Error).message,
+      stack: (error as Error).stack
     }), {
       status: 500,
       headers: {

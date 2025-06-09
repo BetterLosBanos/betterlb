@@ -1,5 +1,73 @@
+import { Env, WeatherData } from '../types';
+
+// Interface for Philippine city coordinates
+interface CityCoordinates {
+  name: string;
+  lat: number;
+  lon: number;
+}
+
+// Interface for city coordinates map
+interface CityCoordinatesMap {
+  [key: string]: { lat: number; lon: number };
+}
+
+// Interface for OpenWeatherMap API response
+interface OpenWeatherMapResponse {
+  name?: string;
+  coord?: { lat: number; lon: number };
+  weather?: Array<{
+    id: number;
+    main: string;
+    description: string;
+    icon: string;
+  }>;
+  main?: {
+    temp: number;
+    feels_like: number;
+    temp_min: number;
+    temp_max: number;
+    pressure: number;
+    humidity: number;
+  };
+  visibility?: number;
+  wind?: { speed: number; deg: number };
+  clouds?: { all: number };
+  rain?: Record<string, number>;
+  dt?: number;
+  sys?: Record<string, any>;
+  timezone?: number;
+  id?: number;
+}
+
+// Interface for weather response data
+interface WeatherResponseData {
+  [cityName: string]: {
+    city: string;
+    coordinates: { lat: number; lon: number };
+    weather: Array<any>;
+    main: {
+      temp: number;
+      feels_like: number;
+      temp_min: number;
+      temp_max: number;
+      pressure: number;
+      humidity: number;
+    };
+    visibility: number;
+    wind: { speed: number; deg: number };
+    clouds: { all: number };
+    rain: Record<string, any>;
+    dt: number;
+    sys: Record<string, any>;
+    timezone: number;
+    id: number;
+    timestamp: string;
+  };
+}
+
 // Major Philippine cities with their coordinates (latitude, longitude)
-const PHILIPPINE_CITIES = [
+const PHILIPPINE_CITIES: CityCoordinates[] = [
   { name: 'Manila', lat: 14.5995, lon: 120.9842 },
   { name: 'Cebu', lat: 10.3157, lon: 123.8854 },
   { name: 'Davao', lat: 7.1907, lon: 125.4553 },
@@ -7,13 +75,13 @@ const PHILIPPINE_CITIES = [
 ];
 
 // Map of city names to their coordinates for quick lookup
-const CITY_COORDINATES = PHILIPPINE_CITIES.reduce((map, city) => {
+const CITY_COORDINATES: CityCoordinatesMap = PHILIPPINE_CITIES.reduce((map, city) => {
   map[city.name.toLowerCase()] = { lat: city.lat, lon: city.lon };
   return map;
-}, {});
+}, {} as CityCoordinatesMap);
 
 // Core function to fetch weather data using OpenWeatherMap API
-async function fetchWeatherData(env, specificCity = null) {
+async function fetchWeatherData(env: Env, specificCity: string | null = null): Promise<WeatherResponseData> {
   // Get API key from environment variable
   const apiKey = env.OPENWEATHERMAP_API_KEY;
   if (!apiKey) {
@@ -26,7 +94,7 @@ async function fetchWeatherData(env, specificCity = null) {
     : PHILIPPINE_CITIES.map(city => city.name.toLowerCase());
 
   // Fetch weather data for cities
-  const weatherData = {};
+  const weatherData: WeatherResponseData = {};
 
   for (const cityName of citiesToFetch) {
     try {
@@ -46,7 +114,7 @@ async function fetchWeatherData(env, specificCity = null) {
         continue;
       }
 
-      const data = await response.json();
+      const data = await response.json() as OpenWeatherMapResponse;
 
       // Format the response data based on the example format
       weatherData[cityName] = {
@@ -84,9 +152,8 @@ async function fetchWeatherData(env, specificCity = null) {
   return weatherData;
 }
 
-
 // Handler for direct HTTP requests
-export async function onRequest(context) {
+export async function onRequest(context: { request: Request; env: Env; ctx: ExecutionContext }): Promise<Response> {
   try {
     const url = new URL(context.request.url);
     const cityParam = url.searchParams.get('city');
@@ -104,7 +171,7 @@ export async function onRequest(context) {
         });
       } else if (cityParam && weatherData[cityParam.toLowerCase()]) {
         // If a specific city was requested and found, update just that city in the KV store
-        const existingData = await context.env.WEATHER_KV.get('philippines_weather', { type: 'json' }) || {};
+        const existingData = await context.env.WEATHER_KV.get('philippines_weather', { type: 'json' }) as WeatherResponseData || {};
         existingData[cityParam.toLowerCase()] = weatherData[cityParam.toLowerCase()];
         await context.env.WEATHER_KV.put('philippines_weather', JSON.stringify(existingData), {
           expirationTtl: 3600 // Expire after 1 hour
@@ -122,7 +189,7 @@ export async function onRequest(context) {
     }
 
     // Check if data exists in KV and is not expired
-    const cachedData = await context.env.WEATHER_KV.get('philippines_weather', { type: 'json' });
+    const cachedData = await context.env.WEATHER_KV.get('philippines_weather', { type: 'json' }) as WeatherResponseData | null;
 
     // If city parameter is provided, filter the data
     if (cityParam && cachedData) {
@@ -163,7 +230,7 @@ export async function onRequest(context) {
       });
     } else if (cityParam && weatherData[cityParam.toLowerCase()]) {
       // If a specific city was requested and found, update just that city in the KV store
-      const existingData = await context.env.WEATHER_KV.get('philippines_weather', { type: 'json' }) || {};
+      const existingData = await context.env.WEATHER_KV.get('philippines_weather', { type: 'json' }) as WeatherResponseData || {};
       existingData[cityParam.toLowerCase()] = weatherData[cityParam.toLowerCase()];
       await context.env.WEATHER_KV.put('philippines_weather', JSON.stringify(existingData), {
         expirationTtl: 3600 // Expire after 1 hour
@@ -179,7 +246,7 @@ export async function onRequest(context) {
       }
     });
   } catch (error) {
-    return new Response(JSON.stringify({ error: error.message }), {
+    return new Response(JSON.stringify({ error: (error as Error).message }), {
       status: 500,
       headers: {
         'Content-Type': 'application/json',
@@ -189,7 +256,7 @@ export async function onRequest(context) {
   }
 }
 
-export async function scheduled(controller, env, ctx) {
+export async function scheduled(controller: ScheduledController, env: Env, ctx: ExecutionContext) {
   try {
     // Fetch weather data for all cities
     const weatherData = await fetchWeatherData(env);
@@ -208,7 +275,7 @@ export async function scheduled(controller, env, ctx) {
     console.error('Error in weather scheduled function:', error);
     return {
       success: false,
-      error: error.message
+      error: (error as Error).message
     };
   }
 }

@@ -9,6 +9,9 @@
     "lint": "eslint .",
     "wrangler": "wrangler",
     "preview": "vite preview",
+    "functions:dev": "wrangler dev ./functions/index.ts",
+    "functions:build": "tsc -p ./functions/tsconfig.json",
+    "functions:deploy": "wrangler deploy ./functions/index.ts",
     "index:meilisearch": "node ./scripts/index_meilisearch.cjs",
     "index:meilisearch:reset": "node ./scripts/index_meilisearch.cjs --reset",
     "create:search-key": "node ./scripts/create_search_key.cjs"
@@ -38,6 +41,7 @@
     "wrangler": "^4.19.1"
   },
   "devDependencies": {
+    "@cloudflare/workers-types": "^4.20250607.0",
     "@eslint/js": "^9.9.1",
     "@types/leaflet": "^1.9.18",
     "@types/react": "^18.3.5",

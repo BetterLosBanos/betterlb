@@ -1,8 +1,49 @@
+import { Env, ForexData } from '../types';
+
 // BSP API endpoint for exchange rates
 const BSP_URL = "https://www.bsp.gov.ph/_api/web/lists/getByTitle('Exchange%20Rate')/items?$select=*&$filter=Group%20eq%20%271%27&$orderby=Ordering%20asc";
 
+// Interface for BSP API response item
+interface BSPRateItem {
+  Title: string;
+  Unit: string;
+  Symbol: string;
+  EURequivalent: string;
+  USDequivalent: string;
+  PHPequivalent: string;
+  CountryCode: string;
+  PublishedDate: string;
+}
+
+// Interface for processed rate item
+interface ProcessedRateItem {
+  country: string;
+  currency: string;
+  symbol: string;
+  euroEquivalent: number;
+  usdEquivalent: number;
+  phpEquivalent: number;
+  countryCode: string;
+  publishedDate: string;
+}
+
+// Interface for processed forex data
+interface ProcessedForexData {
+  metadata: {
+    source: string;
+    fetchedAt: string;
+    url: string;
+  };
+  rates: ProcessedRateItem[];
+}
+
+// Interface for BSP API response
+interface BSPApiResponse {
+  value: BSPRateItem[];
+}
+
 // Core function to fetch currency exchange rates
-async function fetchForexData(env) {
+async function fetchForexData(env: Env): Promise<ProcessedForexData> {
   try {
     // Fetch exchange rate data
     const response = await fetch(BSP_URL, {
@@ -16,16 +57,16 @@ async function fetchForexData(env) {
       throw new Error(`Failed to fetch BSP data: ${response.status} ${response.statusText}`);
     }
 
-    const data = await response.json();
+    const data = await response.json() as BSPApiResponse;
 
     // Process the data to make it more usable
-    const processedData = {
+    const processedData: ProcessedForexData = {
       metadata: {
         source: "Bangko Sentral ng Pilipinas",
         fetchedAt: new Date().toISOString(),
         url: "https://www.bsp.gov.ph/SitePages/Statistics/ExchangeRate.aspx"
       },
-      rates: data.value.map(item => ({
+      rates: data.value.map((item: BSPRateItem) => ({
         country: item.Title,
         currency: item.Unit,
         symbol: item.Symbol,
@@ -45,7 +86,7 @@ async function fetchForexData(env) {
 }
 
 // Function for direct API access
-export async function onRequest(context) {
+export async function onRequest(context: { request: Request; env: Env; ctx: ExecutionContext }): Promise<Response> {
   const { request, env } = context;
   const url = new URL(request.url);
   const symbol = url.searchParams.get('symbol');
@@ -97,7 +138,7 @@ export async function onRequest(context) {
     const cachedData = await env.FOREX_KV.get('bsp_exchange_rates');
 
     if (cachedData) {
-      const parsedData = JSON.parse(cachedData);
+      const parsedData = JSON.parse(cachedData) as ProcessedForexData;
 
       // If a specific currency symbol is requested, filter the data
       if (symbol) {
@@ -169,7 +210,7 @@ export async function onRequest(context) {
   } catch (error) {
     return new Response(JSON.stringify({
       success: false,
-      error: error.message
+      error: (error as Error).message
     }), {
       status: 500,
       headers: {
@@ -180,7 +221,7 @@ export async function onRequest(context) {
   }
 }
 
-export async function scheduled(controller, env, ctx) {
+export async function scheduled(controller: ScheduledController, env: Env, ctx: ExecutionContext) {
   try {
     // Fetch forex data
     const forexData = await fetchForexData(env);
@@ -199,7 +240,7 @@ export async function scheduled(controller, env, ctx) {
     console.error('Error in forex scheduled function:', error);
     return {
       success: false,
-      error: error.message
+      error: (error as Error).message
     };
   }
 }

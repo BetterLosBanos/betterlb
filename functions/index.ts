@@ -3,6 +3,7 @@ import { scheduled as getWeatherScheduled, onRequest as weatherRequest } from '.
 import { scheduled as getForexScheduled, onRequest as forexRequest } from './api/forex';
 import { onRequest as weatherKVRequest } from './weather';
 import { onRequest as forexKVRequest } from './forex';
+import { Env } from './types';
 
 // Export the scheduled handlers
 export { scheduled as scheduled_getWeather } from './api/weather';
@@ -10,21 +11,18 @@ export { scheduled as scheduled_getForex } from './api/forex';
 
 // Handler for HTTP requests
 export default {
-  async scheduled(controller, env, ctx) {
-
-
+  async scheduled(controller: ScheduledController, env: Env, ctx: ExecutionContext): Promise<void> {
     console.log('Scheduled update');
     await getWeatherScheduled(controller, env, ctx);
     await getForexScheduled(controller, env, ctx);
-
   },
 
-  async fetch(request, env, ctx) {
+  async fetch(request: Request, env: Env, ctx: ExecutionContext): Promise<Response> {
     const url = new URL(request.url);
     const path = url.pathname;
 
     // Add CORS headers to all responses
-    const corsHeaders = {
+    const corsHeaders: Record<string, string> = {
       'Access-Control-Allow-Origin': '*',
       'Access-Control-Allow-Methods': 'GET, OPTIONS',
       'Access-Control-Allow-Headers': 'Content-Type',
