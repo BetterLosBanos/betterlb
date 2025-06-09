@@ -27,3 +27,4 @@ dist-ssr
 
 functions/wrangler.toml
 functions/.wrangler
+.wrangler/
