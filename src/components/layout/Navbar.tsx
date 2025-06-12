@@ -3,6 +3,7 @@ import { X, Menu, ChevronDown, Globe, Search } from 'lucide-react'
 import { useLanguage } from '../../contexts/LanguageContext'
 import { mainNavigation } from '../../data/navigation'
 import { LanguageType } from '../../types'
+import { Link } from 'react-router-dom'
 
 const Navbar: React.FC = () => {
   const [isOpen, setIsOpen] = useState(false)
@@ -41,12 +42,12 @@ const Navbar: React.FC = () => {
               Official Gov.ph
             </a>
 
-            <a
-              href="/philippines/hotlines"
+            <Link
+              to="/philippines/hotlines"
               className="text-xs text-gray-600 hover:text-primary-600 transition-colors"
             >
               Hotlines
-            </a>
+            </Link>
             <div className="hidden md:block relative">
               <button
                 className="flex items-center text-xs text-gray-600 hover:text-primary-600 transition-colors"
@@ -64,7 +65,7 @@ const Navbar: React.FC = () => {
       <div className="container mx-auto px-4">
         <div className="flex justify-between items-center py-4">
           <div className="flex items-center">
-            <a href="/" className="flex items-center">
+            <Link to="/" className="flex items-center">
               <img
                 src="/ph-logo.png"
                 alt="Philippines Coat of Arms"
@@ -76,22 +77,22 @@ const Navbar: React.FC = () => {
                   Unofficial Government Portal
                 </div>
               </div>
-            </a>
+            </Link>
           </div>
 
           {/* Desktop navigation */}
           <div className="hidden md:flex items-center space-x-8 pr-24">
             {mainNavigation.map((item) => (
               <div key={item.label} className="relative group">
-                <a
-                  href={item.href}
+                <Link
+                  to={item.href}
                   className="flex items-center text-gray-700 hover:text-primary-600 font-medium transition-colors"
                 >
                   {translate(`navbar.${item.label.toLowerCase()}`)}
                   {item.children && (
                     <ChevronDown className="ml-1 h-4 w-4 text-gray-500 group-hover:text-primary-600 transition-colors" />
                   )}
-                </a>
+                </Link>
                 {item.children && (
                   <div className="absolute left-0 mt-2 w-56 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-50">
                     <div
@@ -100,14 +101,14 @@ const Navbar: React.FC = () => {
                       aria-orientation="vertical"
                     >
                       {item.children.map((child) => (
-                        <a
+                        <Link
                           key={child.label}
-                          href={child.href}
+                          to={child.href}
                           className="text-left block px-4 py-2 text-sm text-gray-700 hover:bg-primary-50 hover:text-primary-600"
                           role="menuitem"
                         >
                           {child.label}
-                        </a>
+                        </Link>
                       ))}
                     </div>
                   </div>
@@ -116,19 +117,25 @@ const Navbar: React.FC = () => {
             ))}
           </div>
           <div className="hidden md:flex items-center space-x-6">
-            <a
-              href="/about"
+            <Link
+              to="/about"
               className="flex items-center text-gray-700 hover:text-primary-600 font-medium transition-colors"
             >
               About
-            </a>
-            <a
-              href="/search"
+            </Link>
+            <Link
+              to="/search"
               className="flex items-center text-gray-700 hover:text-primary-600 font-medium transition-colors"
             >
               <Search className="h-4 w-4 mr-1" />
               Search
-            </a>
+            </Link>
+            <Link
+              to="/sitemap"
+              className="flex items-center text-gray-700 hover:text-primary-600 font-medium transition-colors"
+            >
+              Sitemap
+            </Link>
           </div>
 
           {/* Mobile menu button */}
@@ -169,18 +176,36 @@ const Navbar: React.FC = () => {
               {item.children && activeMenu === item.label && (
                 <div className="pl-6 py-2 space-y-1 bg-gray-50">
                   {item.children.map((child) => (
-                    <a
+                    <Link
                       key={child.label}
-                      href={child.href}
+                      to={child.href}
                       className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-primary-500"
                     >
                       {child.label}
-                    </a>
+                    </Link>
                   ))}
                 </div>
               )}
             </div>
           ))}
+          <Link
+            to="/about"
+            className="block px-4 py-2 text-base font-medium text-gray-700 hover:bg-gray-50 hover:text-primary-500"
+          >
+            About
+          </Link>
+          <Link
+            to="/search"
+            className="block px-4 py-2 text-base font-medium text-gray-700 hover:bg-gray-50 hover:text-primary-500"
+          >
+            Search
+          </Link>
+          <Link
+            to="/sitemap"
+            className="block px-4 py-2 text-base font-medium text-gray-700 hover:bg-gray-50 hover:text-primary-500"
+          >
+            Sitemap
+          </Link>
           <div className="px-4 py-3 border-t border-gray-200">
             <div className="flex items-center">
               <Globe className="h-5 w-5 text-gray-500 mr-2" />

@@ -68,6 +68,9 @@ import ForexPage from './pages/data/forex'
 // Services Pages
 import WebsitesDirectory from './pages/services/websites'
 
+// Sitemap Page
+import SitemapPage from './pages/sitemap'
+
 function App() {
   return (
     <LanguageProvider>
@@ -81,6 +84,7 @@ function App() {
             <Route path="/services" element={<Services />} />
             <Route path="/about" element={<AboutPage />} />
             <Route path="/search" element={<SearchPage />} />
+            <Route path="/sitemap" element={<SitemapPage />} />
             <Route path="/philippines/about" element={<AboutPhilippines />} />
             <Route
               path="/philippines/history"

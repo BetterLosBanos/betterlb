@@ -2,6 +2,7 @@ import React from 'react'
 import { Facebook, Twitter, Instagram, Youtube } from 'lucide-react'
 import { useLanguage } from '../../contexts/LanguageContext'
 import { footerNavigation } from '../../data/navigation'
+import { Link } from 'react-router-dom'
 
 const Footer: React.FC = () => {
   const { translate } = useLanguage()
@@ -102,6 +103,12 @@ const Footer: React.FC = () => {
               >
                 Terms of Use
               </a>
+              <Link
+                to="/sitemap"
+                className="text-gray-400 hover:text-white text-sm transition-colors"
+              >
+                Sitemap
+              </Link>
               <a
                 href="/accessibility"
                 className="text-gray-400 hover:text-white text-sm transition-colors"
