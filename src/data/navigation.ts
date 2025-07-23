@@ -24,6 +24,7 @@ export const mainNavigation: NavigationItem[] = [
       { label: 'Map', href: '/philippines/map' },
       // { label: 'Tourism', href: '/philippines/tourism' },
       { label: 'Hotlines', href: '/philippines/hotlines' },
+      { label: 'Holidays', href: '/philippines/holidays' },
     ],
   },
   {
@@ -42,8 +43,6 @@ export const mainNavigation: NavigationItem[] = [
       { label: 'Visa Types', href: '/travel/visa-types' },
       { label: 'Working in the Philippines', href: '/travel/visa-types/swp-c' },
       { label: 'Tourist Destinations', href: '/travel/destinations' },
-      { label: 'Transportation', href: '/travel/transportation' },
-      { label: 'Travel Advisories', href: '/travel/advisories' },
     ],
   },
   {
@@ -78,8 +77,11 @@ export const footerNavigation = {
         { label: 'All Services', href: '/services' },
         { label: 'Popular Services', href: '/services/popular' },
         { label: 'Service Directory', href: '/services/directory' },
-        // { label: 'Forms', href: '/forms' },
-        // { label: 'Payments', href: '/payments' },
+        { label: 'Websites', href: '/services/websites' },
+        { label: 'Forex', href: '/data/forex' },
+        { label: 'Weather', href: '/data/weather' },
+        { label: 'Hotlines', href: '/philippines/hotlines' },
+        { label: 'Holidays', href: '/philippines/holidays' },
       ],
     },
     {
@@ -87,11 +89,14 @@ export const footerNavigation = {
       links: [
         { label: 'Open Data', href: 'https://data.gov.ph' },
         { label: 'Freedom of Information', href: 'https://www.foi.gov.ph' },
-        { label: 'Contact Center', href: 'https://contactcenterngbayan.gov.ph' },
-        { label: 'Official Gazette', href: 'https://www.officialgazette.gov.ph' },
-        // { label: 'Procurement', href: '/procurement' },
-        // { label: 'Budget', href: '/budget' },
-        // { label: 'Jobs', href: '/jobs' },
+        {
+          label: 'Contact Center',
+          href: 'https://contactcenterngbayan.gov.ph',
+        },
+        {
+          label: 'Official Gazette',
+          href: 'https://www.officialgazette.gov.ph',
+        },
       ],
     },
   ],

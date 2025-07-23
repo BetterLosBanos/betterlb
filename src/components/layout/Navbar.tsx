@@ -127,12 +127,12 @@ const Navbar: React.FC = () => {
               <Search className="h-4 w-4 mr-1" />
               Search
             </Link>
-            <Link
+            {/* <Link
               to="/sitemap"
               className="flex items-center text-gray-700 hover:text-primary-600 font-medium transition-colors"
             >
               Sitemap
-            </Link>
+            </Link> */}
           </div>
 
           {/* Mobile menu button */}

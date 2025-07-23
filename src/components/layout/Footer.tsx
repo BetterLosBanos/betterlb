@@ -34,12 +34,12 @@ const Footer: React.FC = () => {
                 className="h-12 w-12 mr-3"
               />
               <div>
-                <div className="font-bold">Republic of the Philippines</div>
+                <div className="font-bold">Better Philippines</div>
                 <div className="text-xs text-gray-400">BetterGov.ph Portal</div>
               </div>
             </div>
             <p className="text-gray-400 text-sm mb-4">
-              The unofficial portal of the Philippine government, providing
+              A community portal of the Philippine government, providing
               citizens, businesses, and visitors with information and services.
             </p>
             <div className="flex space-x-4">

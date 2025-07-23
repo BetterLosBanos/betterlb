@@ -269,7 +269,7 @@ export default function ServicesPage() {
         </section>
 
         {/* Featured Services */}
-        <section className="mb-12">
+        {/* <section className="mb-12">
           <h2 className="text-2xl font-bold text-gray-900 mb-6">
             Featured Resources
           </h2>
@@ -298,7 +298,7 @@ export default function ServicesPage() {
               </Card>
             </Link>
           </div>
-        </section>
+        </section> */}
 
         {/* Mobile Category Toggle */}
         <div className="md:hidden mb-6">
