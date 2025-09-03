@@ -70,6 +70,7 @@ import WebsitesDirectory from './pages/services/websites'
 
 // Sitemap Page
 import SitemapPage from './pages/sitemap'
+import ScrollToTop from './components/ui/ScrollToTop'
 
 function App() {
   return (
@@ -78,6 +79,7 @@ function App() {
         <div className="min-h-screen flex flex-col">
           <Navbar />
           <Ticker />
+          <ScrollToTop />
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/design" element={<DesignGuide />} />
@@ -101,11 +103,11 @@ function App() {
             <Route path="/philippines/map" element={<PhilippinesMap />} />
             <Route path="/philippines/holidays" element={<PublicHolidays />} />
             <Route path="/philippines/hotlines" element={<Hotlines />} />
-            
+
             {/* Data Routes */}
             <Route path="/data/weather" element={<WeatherPage />} />
             <Route path="/data/forex" element={<ForexPage />} />
-            
+
             {/* Services Routes */}
             <Route path="/services/websites" element={<WebsitesDirectory />} />
 
