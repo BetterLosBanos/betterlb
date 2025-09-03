@@ -39,8 +39,8 @@ const Footer: React.FC = () => {
               </div>
             </div>
             <p className="text-gray-400 text-sm mb-4">
-              A community portal of the Philippine government, providing
-              citizens, businesses, and visitors with information and services.
+              A community portal of providing Philippine citizens, businesses,
+              and visitors with information and services.
             </p>
             <div className="flex space-x-4">
               {footerNavigation.socialLinks.map((link) => (

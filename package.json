@@ -5,8 +5,8 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "vite build",
-    "lint": "eslint .",
+    "build": "tsc && vite build",
+    "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
     "wrangler": "wrangler",
     "preview": "vite preview",
     "functions:dev": "wrangler dev ./functions/index.ts",
@@ -14,9 +14,10 @@
     "functions:deploy": "wrangler deploy ./functions/index.ts",
     "index:meilisearch": "node ./scripts/index_meilisearch.cjs",
     "index:meilisearch:reset": "node ./scripts/index_meilisearch.cjs --reset",
-    "index:flood-control": "node ./scripts/index_flood_control.cjs",
-    "index:flood-control:reset": "node ./scripts/index_flood_control.cjs --reset",
-    "create:search-key": "node ./scripts/create_search_key.cjs"
+    "index:flood-control:arcgis": "node ./scripts/index_flood_control_arcgis.js",
+    "index:flood-control:arcgis:reset": "node ./scripts/index_flood_control_arcgis.js --reset",
+    "index:create-key": "node ./scripts/create_search_key.cjs",
+    "load:flood-control:arcgis": "node ./src/data/flood_control/load_flood_control_arcgis.js"
   },
   "dependencies": {
     "@meilisearch/instant-meilisearch": "^0.26.0",
@@ -31,6 +32,7 @@
     "date-fns": "^3.3.1",
     "dotenv": "^16.5.0",
     "instantsearch.css": "^8.5.1",
+    "jsdom": "^26.1.0",
     "leaflet": "^1.9.4",
     "lucide-react": "^0.513.0",
     "meilisearch": "^0.50.0",

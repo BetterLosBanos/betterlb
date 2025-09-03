@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 
 /**
- * Local CSV to Cloudflare D1 Database Loader
+ * Local JSON to Cloudflare D1 Database Loader
  * Run with: node load_flood_control.js
  * 
  * Requirements:
@@ -19,7 +19,7 @@ const execAsync = promisify(exec);
 // Configuration - update these values for your setup
 const CONFIG = {
   databaseName: 'bettergov', // Replace with your D1 database name
-  csvFilePath: './flood_control.csv',
+  jsonFilePath: './flood_control.json',
   batchSize: 100 // Number of records to process in each batch
 };
 
@@ -28,33 +28,36 @@ const CONFIG = {
  */
 async function main() {
   try {
-    console.log('🚀 Starting CSV import process...');
+    console.log('🚀 Starting JSON import process...');
 
     // Validate input
-    if (!CONFIG.csvFilePath) {
-      console.error('❌ Please provide a CSV file path as an argument');
-      console.log('Usage: node csv-loader.js <csv-file-path>');
+    if (!CONFIG.jsonFilePath) {
+      console.error('❌ Please provide a JSON file path as an argument');
+      console.log('Usage: node load_flood_control.js');
       process.exit(1);
     }
 
     // Check if file exists
     try {
-      readFileSync(CONFIG.csvFilePath, 'utf8');
+      readFileSync(CONFIG.jsonFilePath, 'utf8');
     } catch (error) {
-      console.error(`❌ Cannot read file: ${CONFIG.csvFilePath}`);
+      console.error(`❌ Cannot read file: ${CONFIG.jsonFilePath}`);
       console.error(error.message);
       process.exit(1);
     }
 
-    // Parse CSV
-    console.log(`📄 Reading CSV file: ${CONFIG.csvFilePath}`);
-    const csvText = readFileSync(CONFIG.csvFilePath, 'utf8');
-    const contracts = parseCSV(csvText);
+    // Parse JSON
+    console.log(`📄 Reading JSON file: ${CONFIG.jsonFilePath}`);
+    const jsonText = readFileSync(CONFIG.jsonFilePath, 'utf8');
+    const contracts = JSON.parse(jsonText);
 
     console.log(`✅ Parsed ${contracts.length} contract records`);
+    
+    // Process contracts to ensure they have the right format
+    const processedContracts = contracts.map(contract => processContract(contract));
 
     // Validate contracts
-    const validContracts = contracts.filter(contract => {
+    const validContracts = processedContracts.filter(contract => {
       if (!contract.contract_id) {
         console.warn(`⚠️  Skipping record without contract_id: ${JSON.stringify(contract)}`);
         return false;
@@ -75,84 +78,19 @@ async function main() {
   }
 }
 
-/**
- * Parse CSV text into contract objects
- */
-function parseCSV(csvText) {
-  const lines = csvText.trim().split('\n');
-  if (lines.length < 2) {
-    throw new Error('CSV file must have at least a header row and one data row');
-  }
-
-  const headers = lines[0].split(',').map(h => h.trim().replace(/"/g, ''));
-  console.log(`📋 CSV Headers: ${headers.join(', ')}`);
-
-  const contracts = [];
-
-  for (let i = 1; i < lines.length; i++) {
-    if (!lines[i].trim()) continue; // Skip empty lines
-
-    const values = parseCSVLine(lines[i]);
-
-    if (values.length !== headers.length) {
-      console.warn(`⚠️  Row ${i + 1} has ${values.length} columns, expected ${headers.length} - skipping`);
-      continue;
-    }
-
-    const contract = {};
-    headers.forEach((header, index) => {
-      contract[header] = values[index] || null;
-    });
-
-    // Process and validate the contract data
-    contracts.push(processContract(contract));
-  }
-
-  return contracts;
-}
+// No CSV parsing functions needed for JSON processing
 
 /**
- * Parse a single CSV line, handling quoted values with commas
- */
-function parseCSVLine(line) {
-  const values = [];
-  let current = '';
-  let inQuotes = false;
-
-  for (let i = 0; i < line.length; i++) {
-    const char = line[i];
-
-    if (char === '"') {
-      if (i + 1 < line.length && line[i + 1] === '"') {
-        // Handle escaped quotes
-        current += '"';
-        i++; // Skip the next quote
-      } else {
-        inQuotes = !inQuotes;
-      }
-    } else if (char === ',' && !inQuotes) {
-      values.push(current.trim());
-      current = '';
-    } else {
-      current += char;
-    }
-  }
-
-  values.push(current.trim());
-  return values.map(v => v.replace(/^"(.*)"$/, '$1')); // Remove surrounding quotes
-}
-
-/**
- * Process and validate contract data
+ * Process and validate contract data from JSON
  */
 function processContract(contract) {
   return {
-    contract_id: contract.contract_id?.toString().trim() || null,
+    contract_id: contract.contract_id?.toString().trim() || contract.id?.toString().trim() || null,
     project_title: contract.project_title?.toString().trim() || null,
     location: contract.location?.toString().trim() || null,
     contractor: contract.contractor?.toString().trim() || null,
     contract_cost_raw: contract.contract_cost_raw?.toString().trim() || null,
-    contract_cost_numeric: parseNumericCost(contract.contract_cost_numeric) || null,
+    contract_cost_numeric: typeof contract.contract_cost_numeric === 'number' ? contract.contract_cost_numeric : parseNumericCost(contract.contract_cost_numeric) || null,
     start_date: formatDate(contract.start_date) || null,
     completion_date: formatDate(contract.completion_date) || null,
     region: contract.region?.toString().trim() || null

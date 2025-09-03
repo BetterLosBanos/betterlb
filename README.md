@@ -1,6 +1,6 @@
 # BetterGov.ph
 
-A community-led initiative to create a better Philippine national government website.
+A community-led initiative to create a better and usable Philippine national government website.
 
 ## Why We're Building This Project
 
@@ -16,7 +16,7 @@ These issues create barriers for citizens trying to access essential government 
 
 ## Our Mission
 
-We are a volunteer-led initiative with a clear mission: to provide a 'better' national website for the Philippines.
+We are a volunteer-led initiative with a clear mission: to provide a 'better' and 'usable' website for the Philippines.
 
 Our goals include:
 
@@ -80,5 +80,3 @@ npm run build
 This project is released under the [Creative Commons CC0](https://creativecommons.org/publicdomain/zero/1.0/) dedication. This means the work is dedicated to the public domain and can be freely used by anyone for any purpose without restriction under copyright law.
 
 ---
-
-*BetterGov.ph - By the people, for the people.*

@@ -1,0 +1,3 @@
+# How to download the JSON from ArcGIS as JSON
+
+<https://services1.arcgis.com/IwZZTMxZCmAmFYvF/arcgis/rest/services/FloodControl_Data_20250802_v6_corrected_coordinates_for_uploading/FeatureServer/0/query?f=json&geometry=10018754.171389025,0.000002983957529067993,20037508.342788905,10018754.171394993&maxRecordCountFactor=4&resultOffset=0&resultRecordCount=10000&where=1=1&orderByFields=ObjectId%20ASC&outFields=*&quantizationParameters={%22extent%22:{%22xmin%22:10018754.171389025,%22ymin%22:0.000002983957529067993,%22xmax%22:20037508.342788905,%22ymax%22:10018754.171394993},%22mode%22:%22view%22,%22originPosition%22:%22upperLeft%22,%22tolerance%22:19567.879241000017}&resultType=tile&spatialRel=esriSpatialRelIntersects&geometryType=esriGeometryEnvelope&defaultSR=102100>
