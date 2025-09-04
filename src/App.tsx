@@ -64,6 +64,9 @@ import SearchPage from './pages/Search'
 // Data Pages
 import WeatherPage from './pages/data/weather'
 import ForexPage from './pages/data/forex'
+import FloodControlProjects from './pages/flood-control-projects'
+import FloodControlProjectsTable from './pages/flood-control-projects/table'
+import FloodControlProjectsMap from './pages/flood-control-projects/map'
 
 // Services Pages
 import WebsitesDirectory from './pages/services/websites'
@@ -107,6 +110,9 @@ function App() {
             {/* Data Routes */}
             <Route path="/data/weather" element={<WeatherPage />} />
             <Route path="/data/forex" element={<ForexPage />} />
+            <Route path="/flood-control-projects" element={<FloodControlProjects />} />
+            <Route path="/flood-control-projects/table" element={<FloodControlProjectsTable />} />
+            <Route path="/flood-control-projects/map" element={<FloodControlProjectsMap />} />
 
             {/* Services Routes */}
             <Route path="/services/websites" element={<WebsitesDirectory />} />

@@ -55,6 +55,7 @@ export const mainNavigation: NavigationItem[] = [
       { label: 'Departments', href: '/government/departments' },
       { label: 'Diplomatic', href: '/government/diplomatic' },
       { label: 'Local Government', href: '/government/local' },
+      { label: 'Flood Control Projects', href: '/flood-control-projects' },
     ],
   },
 ]
@@ -82,6 +83,7 @@ export const footerNavigation = {
         { label: 'Weather', href: '/data/weather' },
         { label: 'Hotlines', href: '/philippines/hotlines' },
         { label: 'Holidays', href: '/philippines/holidays' },
+        { label: 'Flood Control Projects', href: '/flood-control-projects' },
       ],
     },
     {

@@ -39,8 +39,8 @@ const Footer: React.FC = () => {
               </div>
             </div>
             <p className="text-gray-400 text-sm mb-4">
-              A community portal of providing Philippine citizens, businesses,
-              and visitors with information and services.
+              A community portal providing Philippine citizens, businesses, and
+              visitors with information and services.
             </p>
             <div className="flex space-x-4">
               {footerNavigation.socialLinks.map((link) => (
@@ -79,9 +79,9 @@ const Footer: React.FC = () => {
         <div className="flex justify-center my-24">
           <p className="text-white text-sm md:text-lg bg-gray-800 p-4 px-12 md:px-8 rounded-full border border-gray-700">
             Cost to build this site to date:{' '}
-            <span className="animate-pulse text-green-500">$50</span>. Cost to
+            <span className="animate-pulse text-red-500">₱3,000</span>. Cost to
             the People of the Philippines:{' '}
-            <span className="text-red-500">$0</span>.
+            <span className="text-green-500">₱0</span>.
           </p>
         </div>
 
