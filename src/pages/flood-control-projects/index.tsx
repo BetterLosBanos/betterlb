@@ -775,7 +775,7 @@ const FloodControlProjects: React.FC = () => {
               <Configure
                 filters={buildFilterString(filters)}
                 query={getEffectiveSearchTerm()}
-                hitsPerPage={10000}
+                hitsPerPage={10}
                 attributesToRetrieve={[
                   'ProjectDescription',
                   'Municipality',
