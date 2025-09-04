@@ -25,6 +25,7 @@ const translations: Record<LanguageType, Record<string, string>> = {
     'navbar.services': 'Services',
     'navbar.travel': 'Travel',
     'navbar.government': 'Government',
+    'navbar.flood control projects': 'Flood Control Projects',
     'hero.title': 'Welcome to BetterGov.ph',
     'hero.subtitle':
       'The volunteer run portal of the Republic of the Philippines. Find information, access government services, stay updated with the latest news about the Philippines.',
@@ -43,6 +44,7 @@ const translations: Record<LanguageType, Record<string, string>> = {
     'navbar.services': 'Mga Serbisyo',
     'navbar.travel': 'Paglalakbay',
     'navbar.government': 'Pamahalaan',
+    'navbar.flood control projects': 'Flood Control Projects',
     'hero.title':
       'Maligayang Pagdating sa Unopisyal na Portal ng Republika ng Pilipinas',
     'hero.subtitle':

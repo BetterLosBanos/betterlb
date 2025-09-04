@@ -55,7 +55,15 @@ export const mainNavigation: NavigationItem[] = [
       { label: 'Departments', href: '/government/departments' },
       { label: 'Diplomatic', href: '/government/diplomatic' },
       { label: 'Local Government', href: '/government/local' },
-      { label: 'Flood Control Projects', href: '/flood-control-projects' },
+    ],
+  },
+  {
+    label: 'Flood Control Projects',
+    href: '/flood-control-projects',
+    children: [
+      { label: 'Charts', href: '/flood-control-projects' },
+      { label: 'Table', href: '/flood-control-projects/table' },
+      { label: 'Map', href: '/flood-control-projects/map' },
     ],
   },
 ]

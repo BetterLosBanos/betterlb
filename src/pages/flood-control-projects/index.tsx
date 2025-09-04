@@ -584,7 +584,7 @@ const FloodControlProjects: React.FC = () => {
             }`}
           >
             <div className="bg-white rounded-lg shadow-md p-4 sticky top-20">
-              <div className="flex items-center justify-between mb-4">
+              <div className="flex items-center justify-between">
                 <div className="flex items-center">
                   <Filter className="w-5 h-5 text-blue-600 mr-2" />
                   <h2 className="text-lg font-semibold text-gray-800">
@@ -600,6 +600,25 @@ const FloodControlProjects: React.FC = () => {
               </div>
 
               <div className="space-y-4">
+                {/* Search box in sidebar */}
+                <div className="pt-4">
+                  <h3 className="text-sm font-medium text-gray-700 mb-2">
+                    Search Projects
+                  </h3>
+                  <div className="relative">
+                    <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                      <Search className="h-4 w-4 text-gray-400" />
+                    </div>
+                    <input
+                      type="text"
+                      className="block w-full pl-10 pr-3 py-2 border border-gray-300 rounded-md leading-5 bg-white placeholder-gray-500 focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
+                      placeholder="Search projects..."
+                      value={searchTerm}
+                      onChange={(e) => handleSearchChange(e.target.value)}
+                    />
+                  </div>
+                </div>
+
                 <div>
                   <label className="block text-sm font-medium text-gray-700 mb-1">
                     Infrastructure Year
@@ -680,25 +699,6 @@ const FloodControlProjects: React.FC = () => {
                       handleFilterChange('LegislativeDistrict', value)
                     }
                     searchable
-                  />
-                </div>
-              </div>
-
-              {/* Search box in sidebar */}
-              <div className="mt-6 border-t border-gray-200 pt-4">
-                <h3 className="text-sm font-medium text-gray-700 mb-2">
-                  Search Projects
-                </h3>
-                <div className="relative">
-                  <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                    <Search className="h-4 w-4 text-gray-400" />
-                  </div>
-                  <input
-                    type="text"
-                    className="block w-full pl-10 pr-3 py-2 border border-gray-300 rounded-md leading-5 bg-white placeholder-gray-500 focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
-                    placeholder="Search projects..."
-                    value={searchTerm}
-                    onChange={(e) => handleSearchChange(e.target.value)}
                   />
                 </div>
               </div>
