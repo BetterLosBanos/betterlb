@@ -295,7 +295,7 @@ const RegionChart: React.FC = () => {
           fill="#8884d8"
           dataKey="Projects"
           nameKey="name"
-          label={({ percent }) => `${(percent * 100).toFixed(0)}%`}
+          label={({ name }) => name}
         >
           {chartData.map((_, index) => (
             <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
@@ -353,7 +353,7 @@ const TypeOfWorkChart: React.FC = () => {
           fill="#8884d8"
           dataKey="count"
           nameKey="value"
-          label={({ percent }) => `${(percent * 100).toFixed(0)}%`}
+          label={({ value }) => value}
         >
           {chartData.map((_, index) => (
             <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
@@ -915,9 +915,7 @@ const FloodControlProjects: React.FC = () => {
                           fill="#8884d8"
                           dataKey="Projects"
                           nameKey="name"
-                          label={({ percent }) =>
-                            `${(percent * 100).toFixed(0)}%`
-                          }
+                          label={({ name }) => name}
                         >
                           {regionChartData.map((_, index) => (
                             <Cell
@@ -973,9 +971,7 @@ const FloodControlProjects: React.FC = () => {
                           fill="#8884d8"
                           dataKey="count"
                           nameKey="value"
-                          label={({ percent }) =>
-                            `${(percent * 100).toFixed(0)}%`
-                          }
+                          label={({ value }) => value}
                         >
                           {typeWorkPieData.map((_, index) => (
                             <Cell
