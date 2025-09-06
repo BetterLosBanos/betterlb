@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { ChevronLeft } from 'lucide-react'
+import { ChevronLeft, ChevronDown, Filter } from 'lucide-react'
 import { ScrollArea } from '../../components/ui/ScrollArea'
 
 // Define types
@@ -190,28 +190,14 @@ export const FilterTitle: React.FC<{
   }
 
   // Generate title
-  let title = 'All Flood Control Projects'
-
-  if (activeFilters.length > 0) {
-    title = `Flood Control Projects | ${activeFilters.join(' | ')}`
-  }
-
+  const title = activeFilters.length > 0 
+    ? `Flood Control Projects (${activeFilters.join(', ')})` 
+    : 'Flood Control Projects'
+  
   return (
-    <div className="p-6">
-      <h2 className="text-xl font-bold text-gray-800">{title}</h2>
-      {activeFilters.length > 0 && (
-        <div className="mt-2 flex flex-wrap gap-2">
-          {activeFilters.map((filter, index) => (
-            <span
-              key={index}
-              className="inline-flex items-center px-3 py-1 rounded-full text-sm font-medium bg-blue-100 text-blue-800"
-            >
-              {filter}
-            </span>
-          ))}
-        </div>
-      )}
-    </div>
+    <h1 className="text-2xl font-bold text-gray-900 mb-4">
+      {title}
+    </h1>
   )
 }
 
