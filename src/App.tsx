@@ -68,6 +68,7 @@ import FloodControlProjects from './pages/flood-control-projects'
 import FloodControlProjectsTable from './pages/flood-control-projects/table'
 import FloodControlProjectsMap from './pages/flood-control-projects/map'
 import FloodControlProjectsContractors from './pages/flood-control-projects/contractors'
+import ContractorDetail from './pages/flood-control-projects/contractors/[contractor-name]'
 
 // Services Pages
 import WebsitesDirectory from './pages/services/websites'
@@ -115,6 +116,7 @@ function App() {
             <Route path="/flood-control-projects/table" element={<FloodControlProjectsTable />} />
             <Route path="/flood-control-projects/map" element={<FloodControlProjectsMap />} />
             <Route path="/flood-control-projects/contractors" element={<FloodControlProjectsContractors />} />
+            <Route path="/flood-control-projects/contractors/:contractor-name" element={<ContractorDetail />} />
 
             {/* Services Routes */}
             <Route path="/services/websites" element={<WebsitesDirectory />} />

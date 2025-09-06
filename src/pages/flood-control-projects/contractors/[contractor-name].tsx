@@ -1,41 +1,30 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
+import { useParams, useNavigate, Link } from 'react-router-dom'
 import { Helmet } from 'react-helmet-async'
-import { useNavigate } from 'react-router-dom'
 import { InstantSearch, Configure, useHits } from 'react-instantsearch'
 import { instantMeiliSearch } from '@meilisearch/instant-meilisearch'
 import 'instantsearch.css/themes/satellite.css'
-import { exportMeilisearchData } from '../../lib/exportData'
+import { exportMeilisearchData } from '../../../lib/exportData'
 import {
+  ChevronLeft,
   BarChart3,
   Download,
   Table,
   Map,
   ArrowUpDown,
   Info,
-  Search,
   Users,
-  ExternalLink,
+  Building2,
 } from 'lucide-react'
-import Button from '../../components/ui/Button'
-import { ScrollArea } from '../../components/ui/ScrollArea'
+import Button from '../../../components/ui/Button'
 
 // Import contractor data
-import contractorData from '../../data/flood_control/lookups/Contractor_with_counts.json'
+import contractorData from '../../../data/flood_control/lookups/Contractor_with_counts.json'
 
 // Define types for our data
 interface DataItem {
   value: string
   count: number
-}
-
-// Utility function to create slug from contractor name
-const createSlug = (name: string): string => {
-  return name
-    .toLowerCase()
-    .replace(/[^a-z0-9\s-]/g, '') // Remove special characters except spaces and hyphens
-    .replace(/\s+/g, '-') // Replace spaces with hyphens
-    .replace(/-+/g, '-') // Replace multiple hyphens with single hyphen
-    .trim()
 }
 
 // Meilisearch configuration
@@ -91,7 +80,6 @@ const TableRow: React.FC<HitProps> = ({ hit }) => {
       <td className="px-4 py-3 text-sm">{hit.Province || 'N/A'}</td>
       <td className="px-4 py-3 text-sm">{hit.Municipality || 'N/A'}</td>
       <td className="px-4 py-3 text-sm">{hit.TypeofWork || 'N/A'}</td>
-      <td className="px-4 py-3 text-sm">{hit.Contractor || 'N/A'}</td>
       <td className="px-4 py-3 text-sm text-right">
         {hit.ContractCost
           ? `₱${Number(hit.ContractCost).toLocaleString()}`
@@ -113,6 +101,7 @@ type FloodControlHit = {
   TypeofWork?: string
   Contractor?: string
   ContractCost?: string
+  [key: string]: string | undefined
 }
 
 // Statistics component for displaying summary data
@@ -120,8 +109,7 @@ const ResultsStatistics: React.FC<{
   hits: FloodControlHit[]
   totalHits: number
   contractor: string
-  onViewDetails?: () => void
-}> = ({ hits, totalHits, contractor, onViewDetails }) => {
+}> = ({ hits, totalHits, contractor }) => {
   // Use total hits from Meilisearch for accurate count
   const totalCount = totalHits
 
@@ -137,41 +125,32 @@ const ResultsStatistics: React.FC<{
   const estimatedTotalContractCost = avgCostPerProject * totalCount
 
   return (
-    <div className="bg-white p-4 rounded-lg shadow mb-4">
-      <div className="flex justify-between items-center mb-2 py-2">
-        <h2 className="text-lg font-bold text-gray-900">
-          {contractor ? `Projects by ${contractor}` : 'All Projects'}
-        </h2>
-        {contractor && onViewDetails && (
-          <button
-            className="text-md bg-blue-600 hover:text-blue-800 text-white flex items-center gap-1 px-3 py-2 rounded hover:bg-blue-50 border border-blue-200"
-            onClick={onViewDetails}
-            title={`View detailed page for ${contractor}`}
-          >
-            <span>View More Details</span>
-            <ExternalLink className="w-4 h-4" />
-          </button>
-        )}
+    <div className="bg-white p-6 rounded-lg shadow mb-6">
+      <div className="flex items-center mb-4">
+        <Building2 className="w-6 h-6 text-blue-600 mr-3" />
+        <h3 className="text-xl font-semibold text-gray-900">
+          {contractor}
+        </h3>
       </div>
       <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-        <div className="bg-blue-50 p-3 rounded-md">
+        <div className="bg-blue-50 p-4 rounded-md">
           <p className="text-sm text-gray-500">Total Projects</p>
-          <p className="text-2xl font-bold text-blue-700">
+          <p className="text-3xl font-bold text-blue-700">
             {totalCount.toLocaleString()}
           </p>
         </div>
-        <div className="bg-green-50 p-3 rounded-md">
+        <div className="bg-green-50 p-4 rounded-md">
           <p className="text-sm text-gray-500">Total Contract Cost</p>
-          <p className="text-2xl font-bold text-green-700">
+          <p className="text-3xl font-bold text-green-700">
             ₱
             {estimatedTotalContractCost.toLocaleString(undefined, {
               maximumFractionDigits: 0,
             })}
           </p>
         </div>
-        <div className="bg-purple-50 p-3 rounded-md">
+        <div className="bg-purple-50 p-4 rounded-md">
           <p className="text-sm text-gray-500">Average Project Cost</p>
-          <p className="text-2xl font-bold text-purple-700">
+          <p className="text-3xl font-bold text-purple-700">
             ₱
             {avgCostPerProject.toLocaleString(undefined, {
               maximumFractionDigits: 0,
@@ -184,10 +163,9 @@ const ResultsStatistics: React.FC<{
 }
 
 // Custom Hits component for table view
-const TableHits: React.FC<{
-  selectedContractor: string
-  onViewDetails?: () => void
-}> = ({ selectedContractor, onViewDetails }) => {
+const TableHits: React.FC<{ selectedContractor: string }> = ({
+  selectedContractor,
+}) => {
   const [sortField, setSortField] = useState<string>('ProjectDescription')
   const [sortDirection, setSortDirection] = useState<'asc' | 'desc'>('asc')
   const [currentPage, setCurrentPage] = useState(0)
@@ -197,7 +175,7 @@ const TableHits: React.FC<{
   const { hits, results } = useHits()
 
   // Sort hits based on current sort field and direction
-  const sortedHits = [...hits].sort((a: any, b: any) => {
+  const sortedHits = [...hits].sort((a: FloodControlHit, b: FloodControlHit) => {
     // Handle special case for ContractCost which needs numeric sorting
     if (sortField === 'ContractCost') {
       const costA = parseFloat(a[sortField] || '0')
@@ -298,7 +276,6 @@ const TableHits: React.FC<{
         totalHits={results?.nbHits || 0}
         hits={hits as FloodControlHit[]}
         contractor={selectedContractor}
-        onViewDetails={onViewDetails}
       />
 
       <div className="overflow-x-auto" style={{ maxHeight: '65vh' }}>
@@ -314,7 +291,6 @@ const TableHits: React.FC<{
               <SortHeader field="Province" label="Province" />
               <SortHeader field="Municipality" label="Municipality" />
               <SortHeader field="TypeofWork" label="Type of Work" />
-              <SortHeader field="Contractor" label="Contractor" />
               <SortHeader field="ContractCost" label="Contract Cost" />
             </tr>
           </thead>
@@ -445,87 +421,57 @@ const TableHits: React.FC<{
   )
 }
 
-// Contractor item component
-interface ContractorItemProps {
-  contractor: DataItem
-  isSelected: boolean
-  onClick: () => void
-  onNavigate: (contractorSlug: string) => void
+// Utility function to create slug from contractor name
+const createSlug = (name: string): string => {
+  return name
+    .toLowerCase()
+    .replace(/[^a-z0-9\s-]/g, '') // Remove special characters except spaces and hyphens
+    .replace(/\s+/g, '-') // Replace spaces with hyphens
+    .replace(/-+/g, '-') // Replace multiple hyphens with single hyphen
+    .trim()
 }
 
-const ContractorItem: React.FC<ContractorItemProps> = ({
-  contractor,
-  isSelected,
-  onClick,
-  onNavigate,
-}) => (
-  <div className="flex">
-    <button
-      className={`flex-1 text-left px-3 py-2 text-sm hover:bg-gray-100 ${
-        isSelected ? 'bg-blue-50 text-blue-600 font-medium' : ''
-      }`}
-      onClick={onClick}
-      title={contractor.value} // Show full name on hover
-    >
-      <div className="flex justify-between items-center">
-        <span className="truncate max-w-[180px]">
-          {contractor.value.length > 40
-            ? `${contractor.value.substring(0, 40)}...`
-            : contractor.value}
-        </span>
-        <span className="text-gray-500 text-xs ml-2 flex-shrink-0">
-          {contractor.count}
-        </span>
-      </div>
-    </button>
-    <button
-      className="px-2 py-2 text-xs text-blue-600 hover:text-blue-800 hover:bg-blue-50 flex-shrink-0"
-      onClick={() => onNavigate(createSlug(contractor.value))}
-      title={`View ${contractor.value} details`}
-    >
-      →
-    </button>
-  </div>
-)
+// Utility function to find contractor by slug
+const findContractorBySlug = (slug: string): DataItem | null => {
+  return contractorData.Contractor.find(contractor => 
+    createSlug(contractor.value) === slug
+  ) || null
+}
 
-// Main Contractors component
-const FloodControlProjectsContractors: React.FC = () => {
+// Main Contractor Detail component
+const ContractorDetail: React.FC = () => {
+  const { 'contractor-name': contractorSlug } = useParams<{ 'contractor-name': string }>()
   const navigate = useNavigate()
-  const [selectedContractor, setSelectedContractor] = useState('')
-  const [searchTerm, setSearchTerm] = useState('')
   const [isExporting, setIsExporting] = useState(false)
+  const [contractor, setContractor] = useState<DataItem | null>(null)
 
-  // Navigation handler for contractor details
-  const handleContractorNavigation = (contractorSlug: string) => {
-    navigate(`/flood-control-projects/contractors/${contractorSlug}`)
-  }
-
-  // Filter contractors based on search term
-  const filteredContractors = searchTerm
-    ? contractorData.Contractor.filter((contractor) =>
-        contractor.value.toLowerCase().includes(searchTerm.toLowerCase())
-      )
-    : contractorData.Contractor
-
-  // Get search query based on selected contractor
-  const getSearchQuery = (): string => {
-    return selectedContractor || ''
-  }
+  useEffect(() => {
+    if (contractorSlug) {
+      const foundContractor = findContractorBySlug(contractorSlug)
+      if (foundContractor) {
+        setContractor(foundContractor)
+      } else {
+        // Contractor not found, redirect to contractors list
+        navigate('/flood-control-projects/contractors')
+      }
+    }
+  }, [contractorSlug, navigate])
 
   // Build filter string for Meilisearch
   const buildFilterString = (): string => {
-    // Only filter by type
     return 'type = "flood_control"'
   }
 
   // Export data function
   const handleExportData = async () => {
+    if (!contractor) return
+
     // Set loading state
     setIsExporting(true)
 
     // Use filter for type and search for contractor
     const filterString = buildFilterString()
-    const searchTerm = getSearchQuery()
+    const searchTerm = contractor.value
 
     try {
       await exportMeilisearchData({
@@ -535,11 +481,7 @@ const FloodControlProjectsContractors: React.FC = () => {
         indexName: 'bettergov_flood_control',
         filters: filterString,
         searchTerm: searchTerm,
-        filename: selectedContractor
-          ? `flood-control-projects-${selectedContractor
-              .replace(/\s+/g, '-')
-              .toLowerCase()}`
-          : 'flood-control-projects-contractors',
+        filename: `flood-control-projects-${createSlug(contractor.value)}`,
       })
       // Show success message
       alert('Data exported successfully!')
@@ -552,181 +494,132 @@ const FloodControlProjectsContractors: React.FC = () => {
     }
   }
 
+  if (!contractor) {
+    return (
+      <div className="min-h-screen bg-gray-50 flex items-center justify-center">
+        <div className="text-center">
+          <div className="animate-spin rounded-full h-32 w-32 border-b-2 border-blue-600 mx-auto"></div>
+          <p className="mt-4 text-gray-600">Loading contractor details...</p>
+        </div>
+      </div>
+    )
+  }
+
   return (
     <div className="min-h-screen bg-gray-50">
       <Helmet>
-        <title>Flood Control Projects Contractors | BetterGov.ph</title>
+        <title>{contractor.value} - Flood Control Projects | BetterGov.ph</title>
         <meta
           name="description"
-          content="Explore flood control projects by contractor"
+          content={`View all flood control projects by ${contractor.value}. Total projects: ${contractor.count}`}
         />
       </Helmet>
 
-      {/* Main layout with sidebar and content */}
+      {/* Main layout */}
       <div className="container mx-auto px-4 py-8">
-        <div className="flex flex-col md:flex-row gap-6">
-          {/* Sidebar with contractors list */}
-          <div className="w-full md:w-72 bg-white p-4 rounded-lg shadow-md">
-            <div className="flex items-center justify-between mb-2">
-              <div className="flex items-center">
-                <Users className="w-5 h-5 text-blue-600 mr-2" />
-                <h2 className="text-lg font-semibold text-gray-800">
-                  Contractors
-                </h2>
-              </div>
-            </div>
+        {/* Back button and breadcrumb */}
+        <div className="mb-6">
+          <Link
+            to="/flood-control-projects/contractors"
+            className="inline-flex items-center text-blue-600 hover:text-blue-800 mb-4"
+          >
+            <ChevronLeft className="w-4 h-4 mr-1" />
+            Back to Contractors
+          </Link>
+          
+          <nav className="text-sm text-gray-500 mb-4">
+            <Link to="/" className="hover:text-blue-600">Home</Link>
+            <span className="mx-2">/</span>
+            <Link to="/flood-control-projects" className="hover:text-blue-600">Flood Control Projects</Link>
+            <span className="mx-2">/</span>
+            <Link to="/flood-control-projects/contractors" className="hover:text-blue-600">Contractors</Link>
+            <span className="mx-2">/</span>
+            <span className="text-gray-900">{contractor.value}</span>
+          </nav>
+        </div>
 
-            {/* Search box in sidebar */}
-            <div className="pt-4">
-              <div className="relative">
-                <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                  <Search className="h-4 w-4 text-gray-400" />
-                </div>
-                <input
-                  type="text"
-                  className="block w-full pl-10 pr-3 py-2 border border-gray-300 rounded-md leading-5 bg-white placeholder-gray-500 focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
-                  placeholder="Search contractors..."
-                  value={searchTerm}
-                  onChange={(e) => setSearchTerm(e.target.value)}
-                />
-              </div>
-            </div>
-
-            <div className="mt-4">
-              <ScrollArea className="h-[60vh]">
-                <div className="space-y-1">
-                  <button
-                    className={`w-full text-left px-3 py-2 text-sm hover:bg-gray-100 ${
-                      !selectedContractor
-                        ? 'bg-blue-50 text-blue-600 font-medium'
-                        : ''
-                    }`}
-                    onClick={() => setSelectedContractor('')}
-                  >
-                    All Contractors
-                  </button>
-
-                  {filteredContractors.map((contractor) => (
-                    <ContractorItem
-                      key={contractor.value}
-                      contractor={contractor}
-                      isSelected={selectedContractor === contractor.value}
-                      onClick={() => setSelectedContractor(contractor.value)}
-                      onNavigate={handleContractorNavigation}
-                    />
-                  ))}
-                </div>
-              </ScrollArea>
-            </div>
+        {/* Page header */}
+        <div className="flex justify-between items-start mb-6">
+          <div>
+            <h1 className="text-3xl font-bold text-gray-900 mb-2">
+              {contractor.value}
+            </h1>
+            <p className="text-gray-600">
+              Flood control projects contractor with {contractor.count} total projects
+            </p>
           </div>
+          <Button
+            variant="outline"
+            leftIcon={isExporting ? null : <Download className="w-4 h-4" />}
+            onClick={handleExportData}
+            disabled={isExporting}
+          >
+            {isExporting ? 'Exporting...' : 'Export Data'}
+          </Button>
+        </div>
 
-          {/* Main content area */}
-          <div className="flex-1">
-            {/* Mobile toggle for sidebar */}
-            <div className="md:hidden mb-4">
-              <Button
-                variant="outline"
-                onClick={() => {
-                  /* Mobile sidebar functionality */
-                }}
-                leftIcon={<Users className="w-4 h-4" />}
-              >
-                Show Contractors
-              </Button>
-            </div>
+        {/* View Tabs */}
+        <div className="flex border-b border-gray-200 mb-6">
+          <Link
+            to="/flood-control-projects"
+            className="px-4 py-2 text-gray-600 hover:text-blue-600 font-medium flex items-center"
+          >
+            <BarChart3 className="w-4 h-4 mr-2" />
+            Visual
+          </Link>
+          <Link
+            to="/flood-control-projects/table"
+            className="px-4 py-2 text-gray-600 hover:text-blue-600 font-medium flex items-center"
+          >
+            <Table className="w-4 h-4 mr-2" />
+            Table
+          </Link>
+          <Link
+            to="/flood-control-projects/map"
+            className="px-4 py-2 text-gray-600 hover:text-blue-600 font-medium flex items-center"
+          >
+            <Map className="w-4 h-4 mr-2" />
+            Map
+          </Link>
+          <Link
+            to="/flood-control-projects/contractors"
+            className="px-4 py-2 border-b-2 border-blue-500 text-blue-600 font-medium flex items-center"
+          >
+            <Users className="w-4 h-4 mr-2" />
+            Contractors
+          </Link>
+        </div>
 
-            {/* Page header */}
-            <div className="flex justify-between items-center mb-6">
-              <h1 className="text-2xl font-bold text-gray-900">
-                Flood Control Projects by Contractor
-              </h1>
-              <Button
-                variant="outline"
-                leftIcon={isExporting ? null : <Download className="w-4 h-4" />}
-                onClick={handleExportData}
-                disabled={isExporting}
-              >
-                {isExporting ? 'Exporting...' : 'Export Data'}
-              </Button>
-            </div>
+        {/* Table View */}
+        <div className="bg-white rounded-lg shadow-md overflow-hidden">
+          <InstantSearch
+            indexName="bettergov_flood_control"
+            searchClient={searchClient}
+            future={{ preserveSharedStateOnUnmount: true }}
+            key={`search-${contractor.value}`} // Force re-render when contractor changes
+          >
+            <Configure 
+              hitsPerPage={1000} 
+              filters={buildFilterString()} 
+              query={contractor.value} 
+            />
+            <TableHits selectedContractor={contractor.value} />
+          </InstantSearch>
+        </div>
 
-            {/* View Tabs */}
-            <div className="flex border-b border-gray-200 mb-6">
-              <a
-                href="/flood-control-projects"
-                className="px-4 py-2 text-gray-600 hover:text-blue-600 font-medium flex items-center"
-              >
-                <BarChart3 className="w-4 h-4 mr-2" />
-                Visual
-              </a>
-              <a
-                href="/flood-control-projects/table"
-                className="px-4 py-2 text-gray-600 hover:text-blue-600 font-medium flex items-center"
-              >
-                <Table className="w-4 h-4 mr-2" />
-                Table
-              </a>
-              <a
-                href="/flood-control-projects/map"
-                className="px-4 py-2 text-gray-600 hover:text-blue-600 font-medium flex items-center"
-              >
-                <Map className="w-4 h-4 mr-2" />
-                Map
-              </a>
-              <a
-                href="/flood-control-projects/contractors"
-                className="px-4 py-2 border-b-2 border-blue-500 text-blue-600 font-medium flex items-center"
-              >
-                <Users className="w-4 h-4 mr-2" />
-                Contractors
-              </a>
-            </div>
-
-            {/* Table View */}
-            <div className="bg-white rounded-lg shadow-md overflow-hidden">
-              {selectedContractor ? (
-                <InstantSearch
-                  indexName="bettergov_flood_control"
-                  searchClient={searchClient}
-                  future={{ preserveSharedStateOnUnmount: true }}
-                  key={`search-${selectedContractor}`} // Force re-render when contractor changes
-                >
-                  <Configure
-                    hitsPerPage={1000}
-                    filters={buildFilterString()}
-                    query={getSearchQuery()}
-                  />
-                  <TableHits
-                    selectedContractor={selectedContractor}
-                    onViewDetails={() =>
-                      handleContractorNavigation(createSlug(selectedContractor))
-                    }
-                  />
-                </InstantSearch>
-              ) : (
-                <div className="p-8 text-center">
-                  <p className="text-lg text-gray-500">
-                    Select a contractor to view their projects
-                  </p>
-                </div>
-              )}
-            </div>
-
-            {/* Data Source Information */}
-            <div className="bg-white rounded-lg shadow-md p-4 mt-8">
-              <div className="flex items-start space-x-2">
-                <Info className="w-5 h-5 text-blue-500 mt-0.5" />
-                <div>
-                  <h4 className="text-sm font-medium text-gray-900">
-                    Data Source
-                  </h4>
-                  <p className="text-sm text-gray-500">
-                    This data is sourced from the Department of Public Works and
-                    Highways (DPWH) and represents flood control infrastructure
-                    projects across the Philippines.
-                  </p>
-                </div>
-              </div>
+        {/* Data Source Information */}
+        <div className="bg-white rounded-lg shadow-md p-4 mt-8">
+          <div className="flex items-start space-x-2">
+            <Info className="w-5 h-5 text-blue-500 mt-0.5" />
+            <div>
+              <h4 className="text-sm font-medium text-gray-900">
+                Data Source
+              </h4>
+              <p className="text-sm text-gray-500">
+                This data is sourced from the Department of Public Works and
+                Highways (DPWH) and represents flood control infrastructure
+                projects across the Philippines.
+              </p>
             </div>
           </div>
         </div>
@@ -735,4 +628,4 @@ const FloodControlProjectsContractors: React.FC = () => {
   )
 }
 
-export default FloodControlProjectsContractors
+export default ContractorDetail
