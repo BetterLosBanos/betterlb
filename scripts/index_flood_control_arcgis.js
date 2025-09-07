@@ -51,10 +51,10 @@ function extractFeatures(arcgisData) {
   // Extract just the attributes from each feature and add type field
   return arcgisData.features.map(feature => {
     const attributes = feature.attributes || {};
-    
+
     // Add type field for filtering
     attributes.type = 'flood_control';
-    
+
     // Add a slug field for SEO-friendly URLs
     if (attributes.ProjectDescription) {
       const baseSlug = attributes.ProjectDescription
@@ -63,9 +63,9 @@ function extractFeatures(arcgisData) {
         .replace(/\s+/g, '-')     // Replace spaces with hyphens
         .replace(/^-+/, '')       // Remove leading hyphens
         .replace(/-+$/, '');      // Remove trailing hyphens
-      
+
       // Append ContractID to make it more unique if available
-      attributes.slug = attributes.ContractID 
+      attributes.slug = attributes.ContractID
         ? `${baseSlug}-${attributes.ContractID.toLowerCase()}`
         : baseSlug;
     }
@@ -116,13 +116,17 @@ async function main() {
           'DistrictEngineeringOffice'
         ],
         filterableAttributes: [
+          'slug',
           'Municipality',
           'Region',
           'Province',
           'StartDate',
           'CompletionDateActual',
+          'Contractor',
           'type',
           'FundingYear',
+          'Latitude',
+          'Longitude',
           'TypeofWork',
           'LegislativeDistrict',
           'DistrictEngineeringOffice',

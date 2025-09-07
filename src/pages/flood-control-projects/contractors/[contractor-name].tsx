@@ -32,6 +32,30 @@ interface DataItem {
   count: number
 }
 
+// Define contractor profile interface
+interface ContractorProfile {
+  slug: string
+  company_name: string
+  website?: string
+  phone?: string
+  email?: string
+  ceo?: string
+  employees?: number
+  description?: string
+  address?: string
+  license?: string
+  sec_registration?: string
+  incorporation_date?: string
+  locations?: string[]
+  employee_count?: number
+  key_personnel?: Array<{ name: string; role: string }>
+  related_companies?: Array<{ title: string; url: string }>
+  sources?: Array<{ title: string; url: string }>
+  articles?: Array<{ title: string; url: string }>
+  created_at?: string
+  type?: string
+}
+
 // Meilisearch configuration
 const MEILISEARCH_HOST =
   import.meta.env.VITE_MEILISEARCH_HOST || 'http://localhost'
@@ -50,9 +74,21 @@ const meiliSearchInstance = instantMeiliSearch(
   }
 )
 
+// Create contractors search client
+const contractorsSearchInstance = instantMeiliSearch(
+  `${MEILISEARCH_HOST}:${MEILISEARCH_PORT}`,
+  MEILISEARCH_SEARCH_API_KEY,
+  {
+    primaryKey: 'slug',
+    keepZeroFacets: true,
+  }
+)
+
 // Extract the searchClient from meiliSearchInstance
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 const searchClient = meiliSearchInstance.searchClient as any
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+const contractorsSearchClient = contractorsSearchInstance.searchClient as any
 
 // Define hit component for search results
 interface FloodControlProject {
@@ -180,6 +216,20 @@ const MapHits: React.FC<{
   useEffect(() => {
     onHitsUpdate(hits)
   }, [hits, onHitsUpdate])
+
+  return null
+}
+
+// Custom component to fetch contractor profile
+const ContractorProfileFetcher: React.FC<{
+  onProfileUpdate: (profile: ContractorProfile | null) => void
+}> = ({ onProfileUpdate }) => {
+  const { hits } = useHits<ContractorProfile>()
+
+  useEffect(() => {
+    // Should only return 1 record since we're searching by exact slug
+    onProfileUpdate(hits.length > 0 ? hits[0] : null)
+  }, [hits, onProfileUpdate])
 
   return null
 }
@@ -472,6 +522,8 @@ const ContractorDetail: React.FC = () => {
   const navigate = useNavigate()
   const [isExporting, setIsExporting] = useState(false)
   const [contractor, setContractor] = useState<DataItem | null>(null)
+  const [contractorProfile, setContractorProfile] =
+    useState<ContractorProfile | null>(null)
   // Remove viewMode state since we'll show both views side by side
   const [mapProjects, setMapProjects] = useState<FloodControlProject[]>([])
   const mapRef = useRef<L.Map>(null)
@@ -493,7 +545,14 @@ const ContractorDetail: React.FC = () => {
 
   // Build filter string for Meilisearch
   const buildFilterString = (): string => {
-    return 'type = "flood_control"'
+    const filters = ['type = "flood_control"']
+
+    // Add contractor filter if contractor is available
+    if (contractor) {
+      filters.push(`Contractor = "${contractor.value}"`)
+    }
+
+    return filters.join(' AND ')
   }
 
   // Export data function
@@ -503,7 +562,7 @@ const ContractorDetail: React.FC = () => {
     // Set loading state
     setIsExporting(true)
 
-    // Use filter for type and search for contractor
+    // Use filter for type and contractor
     const filterString = buildFilterString()
     const searchTerm = contractor.value
 
@@ -583,27 +642,6 @@ const ContractorDetail: React.FC = () => {
           </nav>
         </div>
 
-        {/* Page header */}
-        <div className="flex justify-between items-start mb-6">
-          <div>
-            <h1 className="text-3xl font-bold text-gray-900 mb-2">
-              {contractor.value}
-            </h1>
-            <p className="text-gray-600">
-              Flood control projects contractor with {contractor.count} total
-              projects
-            </p>
-          </div>
-          <Button
-            variant="outline"
-            leftIcon={isExporting ? null : <Download className="w-4 h-4" />}
-            onClick={handleExportData}
-            disabled={isExporting}
-          >
-            {isExporting ? 'Exporting...' : 'Export Data'}
-          </Button>
-        </div>
-
         {/* View Tabs */}
         <div className="flex border-b border-gray-200 mb-6">
           <Link
@@ -636,6 +674,166 @@ const ContractorDetail: React.FC = () => {
           </Link>
         </div>
 
+        {/* Contractor Profile Section */}
+        {contractorProfile && (
+          <div className="bg-white rounded-lg shadow-md p-6 mb-6">
+            <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+              {/* Company Info */}
+              <div className="lg:col-span-2">
+                <div className="flex items-start justify-between mb-4">
+                  <div>
+                    <h1 className="text-3xl font-bold text-gray-900 mb-2">
+                      {contractorProfile.company_name}
+                    </h1>
+                    <p className="text-gray-600 mb-4">
+                      {contractorProfile.description ||
+                        'Construction company specializing in flood control projects'}
+                    </p>
+                  </div>
+                </div>
+
+                {/* Contact Information */}
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
+                  {contractorProfile.address && (
+                    <div>
+                      <h4 className="font-semibold text-gray-900 mb-1">
+                        Address
+                      </h4>
+                      <p className="text-gray-600 text-sm">
+                        {contractorProfile.address}
+                      </p>
+                    </div>
+                  )}
+                  {contractorProfile.phone && (
+                    <div>
+                      <h4 className="font-semibold text-gray-900 mb-1">
+                        Phone
+                      </h4>
+                      <p className="text-gray-600 text-sm">
+                        {contractorProfile.phone}
+                      </p>
+                    </div>
+                  )}
+                  {contractorProfile.email && (
+                    <div>
+                      <h4 className="font-semibold text-gray-900 mb-1">
+                        Email
+                      </h4>
+                      <p className="text-gray-600 text-sm">
+                        {contractorProfile.email}
+                      </p>
+                    </div>
+                  )}
+                  {contractorProfile.website && (
+                    <div>
+                      <h4 className="font-semibold text-gray-900 mb-1">
+                        Website
+                      </h4>
+                      <a
+                        href={contractorProfile.website}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="text-blue-600 hover:text-blue-800 text-sm"
+                      >
+                        {contractorProfile.website}
+                      </a>
+                    </div>
+                  )}
+                </div>
+
+                {/* Key Personnel */}
+                {contractorProfile.key_personnel &&
+                  contractorProfile.key_personnel.length > 0 && (
+                    <div className="mb-4">
+                      <h4 className="font-semibold text-gray-900 mb-2">
+                        Key Personnel
+                      </h4>
+                      <div className="space-y-1">
+                        {contractorProfile.key_personnel.map(
+                          (person, index) => (
+                            <div key={index} className="text-sm text-gray-600">
+                              <span className="font-medium">{person.name}</span>{' '}
+                              - {person.role}
+                            </div>
+                          )
+                        )}
+                      </div>
+                    </div>
+                  )}
+              </div>
+
+              {/* Company Stats */}
+              <div>
+                <div className="space-y-4">
+                  <div className="bg-blue-50 p-4 rounded-md">
+                    <p className="text-sm text-gray-500">Total Projects</p>
+                    <p className="text-2xl font-bold text-blue-700">
+                      {contractor?.count || 0}
+                    </p>
+                  </div>
+
+                  {contractorProfile.sec_registration && (
+                    <div className="bg-purple-50 p-4 rounded-md">
+                      <p className="text-sm text-gray-500">SEC Registration</p>
+                      <p className="text-sm font-medium text-purple-700">
+                        {contractorProfile.sec_registration}
+                      </p>
+                    </div>
+                  )}
+
+                  {contractorProfile.license && (
+                    <div className="bg-orange-50 p-4 rounded-md">
+                      <p className="text-sm text-gray-500">License</p>
+                      <p className="text-sm text-orange-700">
+                        {contractorProfile.license}
+                      </p>
+                    </div>
+                  )}
+                </div>
+              </div>
+            </div>
+          </div>
+        )}
+
+        {/* Fallback header if no profile found */}
+        {!contractorProfile && (
+          <div className="flex justify-between items-start mb-6">
+            <div>
+              <h1 className="text-3xl font-bold text-gray-900 mb-2">
+                {contractor?.value || 'Contractor'}
+              </h1>
+              <p className="text-gray-600">
+                Flood control projects contractor with {contractor?.count || 0}{' '}
+                total projects
+              </p>
+            </div>
+            <Button
+              variant="outline"
+              leftIcon={isExporting ? null : <Download className="w-4 h-4" />}
+              onClick={handleExportData}
+              disabled={isExporting}
+            >
+              {isExporting ? 'Exporting...' : 'Export Data'}
+            </Button>
+          </div>
+        )}
+
+        {/* Hidden InstantSearch for contractor profile */}
+        {contractorSlug && (
+          <InstantSearch
+            indexName="contractors"
+            searchClient={contractorsSearchClient}
+            key={`contractor-profile-${contractorSlug}`}
+          >
+            <Configure
+              hitsPerPage={1}
+              filters={`slug = "${contractorSlug}"`}
+              query=""
+            />
+            <ContractorProfileFetcher onProfileUpdate={setContractorProfile} />
+          </InstantSearch>
+        )}
+
         {/* Side by Side Content View */}
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
           {/* Table View */}
@@ -649,7 +847,7 @@ const ContractorDetail: React.FC = () => {
               <Configure
                 hitsPerPage={1000}
                 filters={buildFilterString()}
-                query={contractor.value}
+                query=""
                 attributesToRetrieve={[
                   'ProjectDescription',
                   'Municipality',
@@ -667,6 +865,16 @@ const ContractorDetail: React.FC = () => {
               />
               <TableHits selectedContractor={contractor.value} />
             </InstantSearch>
+            <div className="p-4">
+              <Button
+                variant="outline"
+                leftIcon={isExporting ? null : <Download className="w-4 h-4" />}
+                onClick={handleExportData}
+                disabled={isExporting}
+              >
+                {isExporting ? 'Exporting...' : 'Export Data'}
+              </Button>
+            </div>
           </div>
 
           {/* Map View */}
@@ -766,7 +974,9 @@ const ContractorDetail: React.FC = () => {
                 {/* Map Info Panel */}
                 <div className="absolute top-4 left-4 bg-white rounded-lg shadow-lg p-3 max-w-xs z-[1000]">
                   <h4 className="font-bold text-gray-900 text-sm mb-1">
-                    {contractor.value}
+                    {contractorProfile?.company_name ||
+                      contractor?.value ||
+                      'Contractor'}
                   </h4>
                   <p className="text-xs text-gray-600">
                     <strong>Total:</strong> {mapProjects.length}
@@ -790,7 +1000,7 @@ const ContractorDetail: React.FC = () => {
               <Configure
                 hitsPerPage={1000}
                 filters={buildFilterString()}
-                query={contractor.value}
+                query=""
                 attributesToRetrieve={[
                   'ProjectDescription',
                   'Municipality',

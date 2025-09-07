@@ -17,6 +17,7 @@
     "index:flood-control:arcgis": "node ./scripts/index_flood_control_arcgis.js",
     "index:flood-control:arcgis:reset": "node ./scripts/index_flood_control_arcgis.js --reset",
     "index:create-key": "node ./scripts/create_search_key.cjs",
+    "index:contractor-profiles": "node ./scripts/index_contractors.cjs",
     "load:flood-control:arcgis": "node ./src/data/flood_control/load_flood_control_arcgis.js",
     "process:unique-contractors": "node ./scripts/process_contractors.cjs",
     "fetch:contractor-profiles": "node ./scripts/fetch_contractor_profiles.cjs"

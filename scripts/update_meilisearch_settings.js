@@ -24,16 +24,79 @@ const client = new MeiliSearch({
 async function updateSettings() {
   try {
     console.log(`Setting maxTotalHits to 10000 for index ${INDEX_NAME}...`);
-    
+
     // Update the settings
-    await client.index(INDEX_NAME).updateSettings({ 
-      pagination: { 
-        maxTotalHits: 10000 
-      }
+    await client.index(INDEX_NAME).updateSettings({
+      pagination: {
+        maxTotalHits: 10000
+      },
+      searchableAttributes: [
+        'ProjectDescription',
+        'Municipality',
+        'Contractor',
+        'Region',
+        'ContractID',
+        'ProjectID',
+        'Province',
+        'LegislativeDistrict',
+        'DistrictEngineeringOffice'
+      ],
+      filterableAttributes: [
+        'slug',
+        'Municipality',
+        'Region',
+        'Province',
+        'StartDate',
+        'CompletionDateActual',
+        'Contractor',
+        'type',
+        'FundingYear',
+        'Latitude',
+        'Longitude',
+        'TypeofWork',
+        'LegislativeDistrict',
+        'DistrictEngineeringOffice',
+        'GlobalID'
+      ],
+    });
+
+    const contractorIndex = client.index('contractors');
+    await contractorIndex.updateSettings({
+      filterableAttributes: [
+        'slug',
+        'company_name',
+        'ceo',
+        'employees',
+        'employee_count',
+        'locations',
+        'incorporation_date',
+        'license',
+        'sec_registration',
+        'type'
+      ],
+      sortableAttributes: [
+        'company_name',
+        'employees',
+        'employee_count',
+        'incorporation_date',
+        'created_at'
+      ],
+      searchableAttributes: [
+        'company_name',
+        'description',
+        'ceo',
+        'address',
+        'license',
+        'sec_registration',
+        'key_personnel.name',
+        'key_personnel.role',
+        'locations',
+        'related_companies.title'
+      ],
     });
 
     console.log('Settings updated successfully!');
-    
+
     // Verify the settings were updated
     const settings = await client.index(INDEX_NAME).getSettings();
     console.log('Current settings:', JSON.stringify(settings, null, 2));

@@ -508,15 +508,16 @@ const FloodControlProjectsContractors: React.FC = () => {
       )
     : contractorData.Contractor
 
-  // Get search query based on selected contractor
-  const getSearchQuery = (): string => {
-    return selectedContractor || ''
-  }
-
   // Build filter string for Meilisearch
   const buildFilterString = (): string => {
-    // Only filter by type
-    return 'type = "flood_control"'
+    const filters = ['type = "flood_control"']
+    
+    // Add contractor filter if one is selected
+    if (selectedContractor) {
+      filters.push(`Contractor = "${selectedContractor}"`)
+    }
+    
+    return filters.join(' AND ')
   }
 
   // Export data function
@@ -524,9 +525,9 @@ const FloodControlProjectsContractors: React.FC = () => {
     // Set loading state
     setIsExporting(true)
 
-    // Use filter for type and search for contractor
+    // Use filter for type and contractor
     const filterString = buildFilterString()
-    const searchTerm = getSearchQuery()
+    const searchTerm = selectedContractor || ''
 
     try {
       await exportMeilisearchData({
@@ -666,7 +667,7 @@ const FloodControlProjectsContractors: React.FC = () => {
                   <Configure
                     hitsPerPage={1000}
                     filters={buildFilterString()}
-                    query={getSearchQuery()}
+                    query=""
                   />
                   <TableHits
                     selectedContractor={selectedContractor}

@@ -12,8 +12,8 @@ const contractorsData = JSON.parse(
   )
 );
 
-const START_INDEX = 350;
-const END_INDEX = 400;
+const START_INDEX = 500;
+const END_INDEX = 600;
 
 // Slice to first 10 for debugging
 const contractors = contractorsData.Contractor.slice(START_INDEX, END_INDEX);

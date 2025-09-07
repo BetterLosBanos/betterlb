@@ -28,7 +28,7 @@ async function createSearchKey() {
     const newKey = await client.createKey({
       description: 'Public search-only key for BetterGov frontend',
       actions: ['search'], // Only allows search action
-      indexes: ['bettergov', 'bettergov_flood_control'], // Restricted to the 'bettergov' index
+      indexes: ['bettergov', 'bettergov_flood_control', 'contractors'], // Restricted to the 'bettergov' indices only.
       expiresAt: null, // Key does not expire
     });
 
