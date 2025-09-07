@@ -70,6 +70,20 @@ function extractFeatures(arcgisData) {
         : baseSlug;
     }
 
+    // Create _geo field from Latitude and Longitude for Meilisearch geo search
+    if (attributes.Latitude && attributes.Longitude) {
+      const lat = parseFloat(attributes.Latitude);
+      const lng = parseFloat(attributes.Longitude);
+      
+      // Only add _geo if we have valid coordinates
+      if (!isNaN(lat) && !isNaN(lng)) {
+        attributes._geo = {
+          lat: lat,
+          lng: lng
+        };
+      }
+    }
+
     return attributes;
   });
 }
@@ -130,7 +144,8 @@ async function main() {
           'TypeofWork',
           'LegislativeDistrict',
           'DistrictEngineeringOffice',
-          'GlobalID'
+          'GlobalID',
+          '_geo'
         ],
         sortableAttributes: [
           'ContractCost',

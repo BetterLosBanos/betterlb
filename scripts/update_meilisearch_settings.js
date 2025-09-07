@@ -56,7 +56,8 @@ async function updateSettings() {
         'TypeofWork',
         'LegislativeDistrict',
         'DistrictEngineeringOffice',
-        'GlobalID'
+        'GlobalID',
+        '_geo'
       ],
     });
 

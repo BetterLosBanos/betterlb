@@ -1,10 +1,10 @@
-import React, { useState, useEffect, useCallback, useRef, useMemo } from 'react'
+import React, { useState, useEffect, useCallback, useRef } from 'react'
 import { Helmet } from 'react-helmet-async'
 import { InstantSearch, Configure, useHits } from 'react-instantsearch'
 import { instantMeiliSearch } from '@meilisearch/instant-meilisearch'
 import 'instantsearch.css/themes/satellite.css'
 import { exportMeilisearchData } from '../../lib/exportData'
-import { Download, X, Info, Loader2, ZoomIn, ZoomOut } from 'lucide-react'
+import { Download, Info, ZoomIn, ZoomOut } from 'lucide-react'
 import Button from '../../components/ui/Button'
 import { MapContainer, TileLayer, GeoJSON, Marker, Popup } from 'react-leaflet'
 import L, { LatLngExpression, GeoJSON as LeafletGeoJSON, Layer } from 'leaflet'
@@ -154,11 +154,15 @@ const FloodControlProjectsMap: React.FC = () => {
     return 'type = "flood_control"'
   }
 
-  // Note: Meilisearch geo search requires _geo attribute to be filterable
-  // Since it's not configured, we'll use client-side filtering instead
+  // Build geo search parameters for Meilisearch aroundLatLng
   const buildGeoSearchParams = () => {
-    // Return empty object - we'll filter client-side
-    return {}
+    if (!geoSearch) return {}
+
+    // Use Meilisearch's aroundLatLng functionality
+    return {
+      aroundLatLng: `${geoSearch.lat}, ${geoSearch.lng}`,
+      aroundRadius: Math.round(geoSearch.radius), // Convert to meters (integer)
+    }
   }
 
   const getRegionName = (
@@ -204,48 +208,15 @@ const FloodControlProjectsMap: React.FC = () => {
     return {
       lat: center.lat,
       lng: center.lng,
-      radius: Math.max(radius, 50000), // Minimum 50km radius
+      radius: Math.max(radius * 0.6, 10000), // minimum 5km radius
     }
   }, [])
 
-  // Filter projects by geographic bounds (client-side)
-  const filterProjectsByBounds = useCallback(
-    (
-      projects: FloodControlProject[],
-      geoParams: { lat: number; lng: number; radius: number }
-    ) => {
-      return projects.filter((project) => {
-        if (!project.Latitude || !project.Longitude) return false
+  // Note: Client-side filtering is no longer needed since we use Meilisearch's aroundLatLng
 
-        const lat = parseFloat(project.Latitude)
-        const lng = parseFloat(project.Longitude)
-
-        if (isNaN(lat) || isNaN(lng)) return false
-
-        // Calculate distance using Haversine formula
-        const R = 6371000 // Earth's radius in meters
-        const dLat = ((lat - geoParams.lat) * Math.PI) / 180
-        const dLng = ((lng - geoParams.lng) * Math.PI) / 180
-        const a =
-          Math.sin(dLat / 2) * Math.sin(dLat / 2) +
-          Math.cos((geoParams.lat * Math.PI) / 180) *
-            Math.cos((lat * Math.PI) / 180) *
-            Math.sin(dLng / 2) *
-            Math.sin(dLng / 2)
-        const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a))
-        const distance = R * c
-
-        return distance <= geoParams.radius
-      })
-    },
-    []
-  )
-
-  // Get filtered projects based on current geo search
-  const filteredProjects = useMemo(() => {
-    if (!geoSearch) return mapProjects
-    return filterProjectsByBounds(mapProjects, geoSearch)
-  }, [mapProjects, geoSearch, filterProjectsByBounds])
+  // Since we're now using Meilisearch's native geo search,
+  // filteredProjects is just the mapProjects returned from the search
+  const filteredProjects = mapProjects
 
   // Update region statistics when filtered projects change
   useEffect(() => {
@@ -299,8 +270,8 @@ const FloodControlProjectsMap: React.FC = () => {
       }
       setSelectedRegion(regionDetails)
 
-      // Center map on the region and zoom in
-      if (mapRef.current && feature.geometry) {
+      // Only zoom/fit bounds if we're not already zoomed in (zoom level <= 8)
+      if (mapRef.current && feature.geometry && zoomLevel <= 8) {
         mapRef.current.fitBounds(bounds, { padding: [20, 20] })
         // Force zoom to at least level 9 to show project pins
         setTimeout(() => {
@@ -309,9 +280,12 @@ const FloodControlProjectsMap: React.FC = () => {
           }
           setZoomLevel(mapRef.current?.getZoom() || 9)
         }, 500)
+      } else if (mapRef.current) {
+        // If already zoomed in, just update the zoom level state without changing the view
+        setZoomLevel(mapRef.current.getZoom())
       }
     },
-    [calculateGeoSearchParams]
+    [calculateGeoSearchParams, zoomLevel]
   )
 
   // Event handlers for each feature
@@ -322,15 +296,21 @@ const FloodControlProjectsMap: React.FC = () => {
     layer.on({
       click: () => onRegionClick(feature),
       mouseover: (e) => {
-        setHoveredRegionName(getRegionName(feature))
-        e.target.setStyle(regionStyle(feature)) // Re-apply style with hover state
-        e.target.bringToFront()
+        // Disable hover effects when zoomed in (zoom level > 8)
+        if (zoomLevel <= 8) {
+          setHoveredRegionName(getRegionName(feature))
+          // e.target.setStyle(regionStyle(feature)) // Re-apply style with hover state
+          e.target.bringToFront()
+        }
       },
       mouseout: (e) => {
-        setHoveredRegionName(null)
-        // Reset to default style or selected style if it's the selected region
-        if (geoJsonLayerRef.current) {
-          geoJsonLayerRef.current.resetStyle(e.target)
+        // Only reset hover state if we're not zoomed in
+        if (zoomLevel <= 8) {
+          setHoveredRegionName(null)
+          // Reset to default style or selected style if it's the selected region
+          if (geoJsonLayerRef.current) {
+            geoJsonLayerRef.current.resetStyle(e.target)
+          }
         }
       },
     })
