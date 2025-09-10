@@ -5,11 +5,7 @@
     "name": "Civil Service Commission (CSC)",
     "description": "The central personnel agency of the government.",
     "address": "Constitution Hills, Batasang Pambansa Complex, Diliman, 1126 Quezon City",
-    "trunklines": [
-      "(632) 8931-7935",
-      "8931-7939",
-      "8931-8092"
-    ],
+    "trunklines": ["(632) 8931-7935", "8931-7939", "8931-8092"],
     "website": "www.csc.gov.ph",
     "officials": [
       {
@@ -1972,7 +1968,7 @@
     "slug": "philippine-guarantee-corporation",
     "office_type": "Government-Owned And/Or -Controlled Corporations (GOCCs)",
     "name": "PHILIPPINE GUARANTEE CORPORATION",
-    "address": "17/F CitiTower, Valero Street Salcedo Village, Makati City",
+    "address": "22nd - 24th Floor, BPI AIA Makati, 6811 Ayala Avenue, Bel-air, 1209 City of Makati, Fourth District, Philippines",
     "phone": "5322-8100",
     "website": "philguarantee.gov.ph",
     "officials": [
@@ -1981,7 +1977,7 @@
         "name": "ALBERTO FRANCISCO E. PASCUAL"
       }
     ],
-    "email": "aepascual@philguarantee.gov.ph"
+    "email": "info@philguarantee.gov.ph"
   },
   {
     "slug": "philippine-health-insurance-corporation",
