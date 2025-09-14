@@ -76,6 +76,7 @@ import WebsitesDirectory from './pages/services/websites'
 
 // Sitemap Page
 import SitemapPage from './pages/sitemap'
+import Ideas from './pages/Ideas'
 import ScrollToTop from './components/ui/ScrollToTop'
 
 function App() {
@@ -93,6 +94,7 @@ function App() {
             <Route path="/about" element={<AboutPage />} />
             <Route path="/accessibility" element={<AccessibilityPage />} />
             <Route path="/search" element={<SearchPage />} />
+            <Route path="/ideas" element={<Ideas />} />
             <Route path="/sitemap" element={<SitemapPage />} />
             <Route path="/philippines/about" element={<AboutPhilippines />} />
             <Route
