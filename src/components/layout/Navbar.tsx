@@ -31,6 +31,12 @@ const Navbar: React.FC = () => {
       <div className="border-b border-gray-200">
         <div className="container mx-auto px-4 flex justify-end items-center h-10">
           <div className="flex items-center space-x-4">
+            <Link
+              to="/ideas"
+              className="text-xs text-gray-800 hover:text-primary-600 transition-colors"
+            >
+              Project Ideas
+            </Link>
             <a
               href="https://www.gov.ph"
               className="text-xs text-gray-800 hover:text-primary-600 transition-colors"
