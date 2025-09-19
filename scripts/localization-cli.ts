@@ -9,6 +9,7 @@ import * as fs from 'fs'
 import * as path from 'path'
 import * as readline from 'readline'
 import { program } from 'commander'
+import * as glob from 'glob'
 
 // Language codes for Philippine languages
 const LANGUAGE_CODES = {
@@ -279,6 +280,63 @@ class LocalizationManager {
     this.saveProgress()
   }
 
+  public getAllKeys(): string[] {
+    return this.allKeys
+  }
+
+  public scanCodebase(): { found: string[], missing: string[], unused: string[] } {
+    const srcDir = path.join(process.cwd(), 'src')
+
+    // Find all TypeScript/JavaScript files
+    const files = glob.sync('**/*.{ts,tsx,js,jsx}', {
+      cwd: srcDir,
+      ignore: ['**/node_modules/**', '**/*.test.*', '**/*.spec.*']
+    })
+
+    // Collect all translate() calls from the codebase
+    const usedKeys = new Set<string>()
+    const translateRegex = /translate\(['"`]([^'"`]+)['"`]\)/g
+    const templateRegex = /translate\(`([^`]+)`\)/g
+
+    files.forEach(file => {
+      const filePath = path.join(srcDir, file)
+      try {
+        const content = fs.readFileSync(filePath, 'utf-8')
+        let match
+
+        // Check for regular string literals
+        while ((match = translateRegex.exec(content)) !== null) {
+          usedKeys.add(match[1])
+        }
+
+        // Check for template literals (skip dynamic ones)
+        while ((match = templateRegex.exec(content)) !== null) {
+          // Skip template literals with ${} expressions
+          if (!match[1].includes('${')) {
+            usedKeys.add(match[1])
+          }
+        }
+      } catch (error) {
+        // Skip files that can't be read
+      }
+    })
+
+    // Get all keys defined in en.json
+    const definedKeys = new Set(this.allKeys)
+
+    // Find missing keys (used in code but not defined)
+    const missing = Array.from(usedKeys).filter(key => !definedKeys.has(key))
+
+    // Find unused keys (defined but not used in code)
+    const unused = Array.from(definedKeys).filter(key => !usedKeys.has(key))
+
+    return {
+      found: Array.from(usedKeys).sort(),
+      missing: missing.sort(),
+      unused: unused.sort()
+    }
+  }
+
   public async interactiveTranslate(): Promise<void> {
     const rl = readline.createInterface({
       input: process.stdin,
@@ -495,6 +553,77 @@ program
   .action(async (options) => {
     const manager = new LocalizationManager(options.file, options.progress)
     await manager.interactiveTranslate()
+  })
+
+program
+  .command('scan')
+  .description('Scan codebase for translation keys and verify they exist in en.json')
+  .option('-f, --file <path>', 'Path to translations directory', 'src/localization/translations')
+  .option('-p, --progress <path>', 'Path to progress file', 'src/localization/translations/.translation_progress.json')
+  .option('--verbose', 'Show all found keys')
+  .action((options) => {
+    const manager = new LocalizationManager(options.file, options.progress)
+    const results = manager.scanCodebase()
+
+    console.log('Translation Key Scanner')
+    console.log('='.repeat(50))
+    console.log(`Total keys found in code: ${results.found.length}`)
+    console.log(`Keys defined in en.json: ${manager.getAllKeys().length}`)
+    console.log('')
+
+    if (results.missing.length > 0) {
+      console.log('❌ MISSING KEYS (used in code but not in en.json):')
+      console.log('-'.repeat(50))
+      results.missing.forEach(key => {
+        console.log(`  - ${key}`)
+      })
+      console.log('')
+    } else {
+      console.log('✅ All translation keys used in code are defined!')
+      console.log('')
+    }
+
+    if (results.unused.length > 0) {
+      console.log('⚠️  UNUSED KEYS (in en.json but not used in code):')
+      console.log('-'.repeat(50))
+      results.unused.forEach(key => {
+        console.log(`  - ${key}`)
+      })
+      console.log('')
+    } else {
+      console.log('✅ All defined keys are being used!')
+      console.log('')
+    }
+
+    if (options.verbose) {
+      console.log('📋 ALL KEYS FOUND IN CODE:')
+      console.log('-'.repeat(50))
+      results.found.forEach(key => {
+        console.log(`  - ${key}`)
+      })
+      console.log('')
+    }
+
+    // Check for dynamic template usage
+    const dynamicKeys = results.missing.filter(key => key.includes('${'))
+    const realMissing = results.missing.filter(key => !key.includes('${'))
+
+    if (dynamicKeys.length > 0) {
+      console.log('ℹ️  DYNAMIC KEYS DETECTED:')
+      console.log('-'.repeat(50))
+      console.log('  The following patterns use dynamic template literals:')
+      dynamicKeys.forEach(key => {
+        console.log(`  - ${key}`)
+      })
+      console.log('  Note: navbar.* keys are defined for dynamic usage')
+      console.log('')
+    }
+
+    // Exit with error code if there are real missing keys
+    if (realMissing.length > 0) {
+      console.log('⚠️  Fix missing keys before proceeding with translations!')
+      process.exit(1)
+    }
   })
 
 // Help command enhancement
