@@ -9,6 +9,9 @@ export type LanguageType =
   | 'pam'   // Kapampangan
   | 'bcl'   // Bikol
   | 'pag'   // Pangasinan
+  | 'mag'   // Maguindanao
+  | 'tsg'   // Tausug
+  | 'mdh'   // Maranao
 
 export interface NewsItem {
   id: string

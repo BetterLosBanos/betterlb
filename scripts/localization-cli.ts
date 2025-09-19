@@ -21,6 +21,9 @@ const LANGUAGE_CODES = {
   pam: 'Kapampangan',
   bcl: 'Bikol',
   pag: 'Pangasinan',
+  mag: 'Maguindanao',
+  tsg: 'Tausug',
+  mdh: 'Maranao',
 }
 
 // Note: We use 'fil' for Filipino/Tagalog translations
@@ -388,6 +391,9 @@ program
   .option('--pam <text>', 'Kapampangan translation')
   .option('--bcl <text>', 'Bikol translation')
   .option('--pag <text>', 'Pangasinan translation')
+  .option('--mag <text>', 'Maguindanao translation')
+  .option('--tsg <text>', 'Tausug translation')
+  .option('--mdh <text>', 'Maranao translation')
   .option('-f, --file <path>', 'Path to translations directory', 'src/localization/translations')
   .option('-p, --progress <path>', 'Path to progress file', 'src/localization/translations/.translation_progress.json')
   .action((key, options) => {

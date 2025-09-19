@@ -31,6 +31,9 @@ export const LANGUAGES: Record<string, { name: string; nativeName: string }> = {
   pam: { name: 'Kapampangan', nativeName: 'Kapampangan' },
   bcl: { name: 'Bikol', nativeName: 'Bikol Central' },
   pag: { name: 'Pangasinan', nativeName: 'Pangasinan' },
+  mag: { name: 'Maguindanao', nativeName: 'Maguindanaon' },
+  tsg: { name: 'Tausug', nativeName: 'Bahasa Sūg' },
+  mdh: { name: 'Maranao', nativeName: 'Meranaw' },
 }
 
 // Normalize language codes (fil and tgl are the same)
