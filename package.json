@@ -24,7 +24,8 @@
     "translate": "npx tsx scripts/localization-cli.ts",
     "translate:next": "npx tsx scripts/localization-cli.ts next",
     "translate:status": "npx tsx scripts/localization-cli.ts status",
-    "translate:interactive": "npx tsx scripts/localization-cli.ts interactive"
+    "translate:interactive": "npx tsx scripts/localization-cli.ts interactive",
+    "translate:scan": "npx tsx scripts/localization-cli.ts scan"
   },
   "dependencies": {
     "@meilisearch/instant-meilisearch": "^0.26.0",
