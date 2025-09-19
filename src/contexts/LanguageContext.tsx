@@ -85,7 +85,7 @@ export const LanguageProvider: React.FC<{ children: ReactNode }> = ({
   useEffect(() => {
     // Load saved language preference
     const savedLanguage = localStorage.getItem('language') as LanguageType
-    const validLanguages: LanguageType[] = ['en', 'fil', 'tgl', 'ceb', 'ilo', 'hil', 'war', 'pam', 'bcl', 'pag']
+    const validLanguages: LanguageType[] = ['en', 'fil', 'tgl', 'ceb', 'ilo', 'hil', 'war', 'pam', 'bcl', 'pag', 'mag', 'tsg', 'mdh']
 
     if (savedLanguage && validLanguages.includes(savedLanguage)) {
       setLanguageState(savedLanguage)
