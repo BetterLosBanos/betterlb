@@ -37,6 +37,12 @@ const Navbar: React.FC = () => {
         <div className="container mx-auto px-4 flex justify-end items-center h-10">
           <div className="flex items-center space-x-4">
             <Link
+              to="/join-us"
+              className="text-xs text-primary-600 hover:text-primary-700 font-semibold transition-colors"
+            >
+              🚀 Join Us
+            </Link>
+            <Link
               to="/ideas"
               className="text-xs text-gray-800 hover:text-primary-600 transition-colors"
             >
@@ -197,6 +203,13 @@ const Navbar: React.FC = () => {
               )}
             </div>
           ))}
+          <Link
+            to="/join-us"
+            onClick={closeMenu}
+            className="block px-4 py-2 text-base font-semibold text-primary-600 hover:bg-primary-50 hover:text-primary-700"
+          >
+            🚀 Join Us
+          </Link>
           <Link
             to="/about"
             onClick={closeMenu}
