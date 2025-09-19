@@ -404,7 +404,7 @@ const DesignGuide: React.FC = () => {
                         </span>
                       </div>
                       <div className="flex items-center gap-3">
-                        <button className="bg-white text-gray-900 px-4 py-1.5 rounded-full text-sm font-semibold">
+                        <button className="bg-gray-100 text-gray-800 px-4 py-1.5 rounded-full text-sm font-semibold hover:bg-gray-200">
                           Join Now
                         </button>
                         <span className="text-xs text-orange-200 underline">Discord</span>
@@ -427,10 +427,10 @@ const DesignGuide: React.FC = () => {
                       <strong className="text-yellow-200"> Volunteer-led. Open source. Community-driven.</strong>
                     </p>
                     <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                      <button className="bg-yellow-300 text-gray-900 px-6 py-3 rounded-lg font-bold">
+                      <button className="bg-white text-gray-900 px-6 py-3 rounded-lg font-bold hover:bg-gray-100">
                         Join Our Movement
                       </button>
-                      <button className="border-2 border-yellow-200 text-yellow-200 px-6 py-3 rounded-lg font-semibold">
+                      <button className="border-2 border-white text-white px-6 py-3 rounded-lg font-semibold hover:bg-white hover:text-gray-900">
                         Join Discord
                       </button>
                     </div>
