@@ -20,10 +20,10 @@ const LanguageContext = createContext<LanguageContextType | undefined>(
 )
 
 // Language metadata
-export const LANGUAGES: Record<LanguageType, { name: string; nativeName: string }> = {
+// Note: 'tgl' is handled as an alias for 'fil' in normalizeLanguage()
+export const LANGUAGES: Record<string, { name: string; nativeName: string }> = {
   en: { name: 'English', nativeName: 'English' },
-  fil: { name: 'Filipino', nativeName: 'Filipino' },
-  tgl: { name: 'Tagalog', nativeName: 'Tagalog' }, // Alias for Filipino
+  fil: { name: 'Filipino/Tagalog', nativeName: 'Filipino/Tagalog' },
   ceb: { name: 'Cebuano', nativeName: 'Bisaya/Sinugboanon' },
   ilo: { name: 'Ilocano', nativeName: 'Ilokano' },
   hil: { name: 'Hiligaynon', nativeName: 'Ilonggo' },
