@@ -1,0 +1,30 @@
+{
+  "navbar": {
+    "philippines": "Pilipinas",
+    "home": "Tahanan",
+    "services": "Mga Serbisyo",
+    "travel": "Paglalakbay",
+    "government": "Pamahalaan",
+    "flood control projects": "Flood Control Projects"
+  },
+  "hero": {
+    "title": "Maligayang Pagdating sa Unopisyal na Portal ng Republika ng Pilipinas",
+    "subtitle": "I-access ang mga serbisyo ng pamahalaan, manatiling updated sa pinakabagong balita, at humanap ng impormasyon tungkol sa Pilipinas.",
+    "search": "Maghanap ng mga serbisyo, impormasyon, o ahensya"
+  },
+  "services": {
+    "title": "Mga Sikat na Serbisyo"
+  },
+  "news": {
+    "title": "Pinakabagong Balita at Updates"
+  },
+  "weather": {
+    "title": "Mga Update sa Panahon"
+  },
+  "forex": {
+    "title": "Palitan ng Pera"
+  },
+  "footer": {
+    "copyright": "© 2025 BetterGov."
+  }
+}

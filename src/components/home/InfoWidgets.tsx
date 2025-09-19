@@ -1,14 +1,14 @@
-import React, { useState, useEffect } from 'react'
-import * as LucideIcons from 'lucide-react'
-import { Card, CardHeader, CardContent } from '../ui/Card'
-import { WeatherData, ForexRate } from '../../types'
-import { useLanguage } from '../../contexts/LanguageContext'
-import CriticalHotlinesWidget from '../widgets/CriticalHotlinesWidget'
-import { fetchWeatherData } from '../../lib/weather'
-import { fetchForexData } from '../../lib/forex'
+import React, { useState, useEffect } from "react"
+import * as LucideIcons from "lucide-react"
+import { Card, CardHeader, CardContent } from "../ui/Card"
+import { WeatherData, ForexRate } from "../../types"
+import { useTranslation } from "react-i18next"
+import CriticalHotlinesWidget from "../widgets/CriticalHotlinesWidget"
+import { fetchWeatherData } from "../../lib/weather"
+import { fetchForexData } from "../../lib/forex"
 
 const InfoWidgets: React.FC = () => {
-  const { translate } = useLanguage()
+  const { t } = useTranslation("common")
   const [weatherData, setWeatherData] = useState<WeatherData[]>([])
   const [forexRates, setForexRates] = useState<ForexRate[]>([])
   const [isLoadingWeather, setIsLoadingWeather] = useState<boolean>(true)
@@ -32,11 +32,11 @@ const InfoWidgets: React.FC = () => {
         const transformedData = await fetchWeatherData()
         setWeatherData(transformedData)
       } catch (error) {
-        console.error('Error fetching weather data:', error)
+        console.error("Error fetching weather data:", error)
         setWeatherError(
           error instanceof Error
             ? error.message
-            : 'Failed to fetch weather data'
+            : "Failed to fetch weather data"
         )
       } finally {
         setIsLoadingWeather(false)
@@ -55,18 +55,18 @@ const InfoWidgets: React.FC = () => {
 
         // Get forex data for the top 6 currencies
         const transformedData = await fetchForexData([
-          'USD',
-          'EUR',
-          'JPY',
-          'GBP',
-          'AUD',
-          'SGD',
+          "USD",
+          "EUR",
+          "JPY",
+          "GBP",
+          "AUD",
+          "SGD",
         ])
         setForexRates(transformedData)
       } catch (error) {
-        console.error('Error fetching forex data:', error)
+        console.error("Error fetching forex data:", error)
         setForexError(
-          error instanceof Error ? error.message : 'Failed to fetch forex data'
+          error instanceof Error ? error.message : "Failed to fetch forex data"
         )
       } finally {
         setIsLoadingForex(false)
@@ -85,7 +85,7 @@ const InfoWidgets: React.FC = () => {
             <CardHeader className="bg-primary-50">
               <h3 className="text-xl font-semibold text-gray-900 flex items-center">
                 <LucideIcons.Cloud className="h-5 w-5 mr-2 text-primary-600" />
-                {translate('weather.title')}
+                {t("weather.title")}
               </h3>
             </CardHeader>
             <CardContent>
@@ -137,7 +137,7 @@ const InfoWidgets: React.FC = () => {
             <CardHeader className="bg-primary-50">
               <h3 className="text-xl font-semibold text-gray-900 flex items-center">
                 <LucideIcons.BarChart3 className="h-5 w-5 mr-2 text-primary-600" />
-                {translate('forex.title')}
+                {t("forex.title")}
               </h3>
             </CardHeader>
             <CardContent>

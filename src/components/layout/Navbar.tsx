@@ -1,14 +1,14 @@
-import React, { useState } from 'react'
-import { X, Menu, ChevronDown, Globe, Search } from 'lucide-react'
-import { useLanguage } from '../../contexts/LanguageContext'
-import { mainNavigation } from '../../data/navigation'
-import { LanguageType } from '../../types'
-import { Link } from 'react-router-dom'
+import React, { useState } from "react"
+import { X, Menu, ChevronDown, Globe, Search } from "lucide-react"
+import { useTranslation } from "react-i18next"
+import { mainNavigation } from "../../data/navigation"
+import { LanguageType } from "../../types"
+import { Link } from "react-router-dom"
 
 const Navbar: React.FC = () => {
   const [isOpen, setIsOpen] = useState(false)
   const [activeMenu, setActiveMenu] = useState<string | null>(null)
-  const { language, setLanguage, translate } = useLanguage()
+  const { t, i18n } = useTranslation("common")
 
   const toggleMenu = () => {
     setIsOpen(!isOpen)
@@ -27,7 +27,7 @@ const Navbar: React.FC = () => {
   }
 
   const changeLanguage = (newLanguage: LanguageType) => {
-    setLanguage(newLanguage)
+    i18n.changeLanguage(newLanguage)
   }
 
   return (
@@ -65,10 +65,12 @@ const Navbar: React.FC = () => {
             <div className="hidden md:block relative">
               <button
                 className="flex items-center text-xs text-gray-800 hover:text-primary-600 transition-colors"
-                onClick={() => changeLanguage(language === 'en' ? 'fil' : 'en')}
+                onClick={() =>
+                  changeLanguage(i18n.language === "en" ? "fil" : "en")
+                }
               >
                 <Globe className="h-3 w-3 mr-1" />
-                {language === 'en' ? 'English' : 'Filipino'}
+                {i18n.language === "en" ? "English" : "Filipino"}
               </button>
             </div>
           </div>
@@ -102,7 +104,7 @@ const Navbar: React.FC = () => {
                   to={item.href}
                   className="flex items-center text-gray-700 hover:text-primary-600 font-medium transition-colors"
                 >
-                  {translate(`navbar.${item.label.toLowerCase()}`)}
+                  {t(`navbar.${item.label.toLowerCase()}`)}
                   {item.children && (
                     <ChevronDown className="ml-1 h-4 w-4 text-gray-800 group-hover:text-primary-600 transition-colors" />
                   )}
@@ -170,7 +172,7 @@ const Navbar: React.FC = () => {
       </div>
 
       {/* Mobile menu */}
-      <div className={`md:hidden ${isOpen ? 'block' : 'hidden'}`}>
+      <div className={`md:hidden ${isOpen ? "block" : "hidden"}`}>
         <div className="pt-2 pb-4 space-y-1 border-t border-gray-200 bg-white">
           {mainNavigation.map((item) => (
             <div key={item.label}>
@@ -178,11 +180,11 @@ const Navbar: React.FC = () => {
                 onClick={() => toggleSubmenu(item.label)}
                 className="w-full flex justify-between items-center px-4 py-2 text-base font-medium text-gray-700 hover:bg-gray-50 hover:text-primary-500"
               >
-                {translate(`navbar.${item.label.toLowerCase()}`)}
+                {t(`navbar.${item.label.toLowerCase()}`)}
                 {item.children && (
                   <ChevronDown
                     className={`h-5 w-5 transition-transform ${
-                      activeMenu === item.label ? 'transform rotate-180' : ''
+                      activeMenu === item.label ? "transform rotate-180" : ""
                     }`}
                   />
                 )}
@@ -236,22 +238,22 @@ const Navbar: React.FC = () => {
               <Globe className="h-5 w-5 text-gray-800 mr-2" />
               <div className="space-x-2">
                 <button
-                  onClick={() => changeLanguage('en')}
+                  onClick={() => changeLanguage("en")}
                   className={`text-sm ${
-                    language === 'en'
-                      ? 'font-semibold text-primary-600'
-                      : 'text-gray-800'
+                    i18n.language === "en"
+                      ? "font-semibold text-primary-600"
+                      : "text-gray-800"
                   }`}
                 >
                   English
                 </button>
                 <span className="text-gray-400">|</span>
                 <button
-                  onClick={() => changeLanguage('fil')}
+                  onClick={() => changeLanguage("fil")}
                   className={`text-sm ${
-                    language === 'fil'
-                      ? 'font-semibold text-primary-600'
-                      : 'text-gray-800'
+                    i18n.language === "fil"
+                      ? "font-semibold text-primary-600"
+                      : "text-gray-800"
                   }`}
                 >
                   Filipino

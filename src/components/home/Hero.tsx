@@ -1,8 +1,8 @@
-import React from 'react'
-import { useLanguage } from '../../contexts/LanguageContext'
-import MeilisearchInstantSearch from '../search/MeilisearchInstantSearch'
-import { Link } from 'react-router-dom'
-import serviceCategories from '../../data/service_categories.json'
+import React from "react"
+import { useTranslation } from "react-i18next"
+import MeilisearchInstantSearch from "../search/MeilisearchInstantSearch"
+import { Link } from "react-router-dom"
+import serviceCategories from "../../data/service_categories.json"
 
 interface Subcategory {
   name: string
@@ -16,14 +16,14 @@ interface Category {
 }
 
 const Hero: React.FC = () => {
-  const { translate } = useLanguage()
+  const { t } = useTranslation("common")
 
   // Find categories and subcategories by their names to get slugs
   const findCategorySlug = (categoryName: string) => {
     return (
       (serviceCategories.categories as Category[]).find(
         (cat) => cat.category === categoryName
-      )?.slug || ''
+      )?.slug || ""
     )
   }
 
@@ -36,33 +36,33 @@ const Hero: React.FC = () => {
     )
     return (
       category?.subcategories.find((sub) => sub.name === subcategoryName)
-        ?.slug || ''
+        ?.slug || ""
     )
   }
 
   const popularServices = [
     {
-      label: 'National ID',
+      label: "National ID",
       href: `/services?category=${findCategorySlug(
-        'Certificates and IDs'
-      )}&subcategory=${findSubcategorySlug('Certificates and IDs', 'ID')}`,
+        "Certificates and IDs"
+      )}&subcategory=${findSubcategorySlug("Certificates and IDs", "ID")}`,
     },
     {
-      label: 'Birth Certificate',
+      label: "Birth Certificate",
       href: `/services?category=${findCategorySlug(
-        'Certificates and IDs'
+        "Certificates and IDs"
       )}&subcategory=${findSubcategorySlug(
-        'Certificates and IDs',
-        'Certificates'
+        "Certificates and IDs",
+        "Certificates"
       )}`,
     },
     {
-      label: 'Business Registration',
+      label: "Business Registration",
       href: `/services?category=${findCategorySlug(
-        'Business and Trade'
+        "Business and Trade"
       )}&subcategory=${findSubcategorySlug(
-        'Business and Trade',
-        'Business Registration, Certificates and Compliance'
+        "Business and Trade",
+        "Business Registration, Certificates and Compliance"
       )}`,
     },
   ]
@@ -74,10 +74,10 @@ const Hero: React.FC = () => {
           {/* Left section with title and search */}
           <div className="animate-fade-in">
             <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-4 leading-tight">
-              {translate('hero.title')}
+              {t("hero.title")}
             </h1>
             <p className="text-lg text-blue-200 mb-8 max-w-lg">
-              {translate('hero.subtitle')}
+              {t("hero.subtitle")}
             </p>
             {/* Meilisearch component will be full width and include its own styling */}
             {/* The background of Hero is dark, MeilisearchInstantSearch has a light theme by default */}
@@ -101,12 +101,12 @@ const Hero: React.FC = () => {
           {/* Right section with quick access services */}
           <div className="bg-white/10 backdrop-blur-sm rounded-xl p-6 shadow-lg animate-slide-in">
             <h2 className="text-2xl font-semibold mb-4">
-              {translate('services.title')}
+              {t("services.title")}
             </h2>
             <div className="grid grid-cols-2 gap-4">
               <Link
                 to={`/services?category=${findCategorySlug(
-                  'Certificates and IDs'
+                  "Certificates and IDs"
                 )}`}
                 className="bg-white/10 hover:bg-white/20 rounded-lg p-4 transition-all duration-200 flex flex-col items-center text-center"
               >
@@ -128,7 +128,7 @@ const Hero: React.FC = () => {
               </Link>
               <Link
                 to={`/services?category=${findCategorySlug(
-                  'Business and Trade'
+                  "Business and Trade"
                 )}`}
                 className="bg-white/10 hover:bg-white/20 rounded-lg p-4 transition-all duration-200 flex flex-col items-center text-center"
               >
@@ -156,7 +156,7 @@ const Hero: React.FC = () => {
                 <span className="font-medium">Business</span>
               </Link>
               <Link
-                to={`/services?category=${findCategorySlug('Education')}`}
+                to={`/services?category=${findCategorySlug("Education")}`}
                 className="bg-white/10 hover:bg-white/20 rounded-lg p-4 transition-all duration-200 flex flex-col items-center text-center"
               >
                 <div className="bg-primary-500 p-3 rounded-full mb-3">
@@ -176,7 +176,7 @@ const Hero: React.FC = () => {
                 <span className="font-medium">Education</span>
               </Link>
               <Link
-                to={`/services?category=${findCategorySlug('Health')}`}
+                to={`/services?category=${findCategorySlug("Health")}`}
                 className="bg-white/10 hover:bg-white/20 rounded-lg p-4 transition-all duration-500 flex flex-col items-center text-center"
               >
                 <div className="bg-primary-500 p-3 rounded-full mb-3">

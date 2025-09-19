@@ -1,8 +1,7 @@
-import React, { useState, useEffect } from 'react'
-import * as LucideIcons from 'lucide-react'
-import { fetchForexData, getCurrencyIconName } from '../../lib/forex'
-import { ForexRate } from '../../types'
-import { useLanguage } from '../../contexts/LanguageContext'
+import React, { useState, useEffect } from "react"
+import * as LucideIcons from "lucide-react"
+import { fetchForexData, getCurrencyIconName } from "../../lib/forex"
+import { ForexRate } from "../../types"
 
 import {
   LineChart,
@@ -13,19 +12,19 @@ import {
   Tooltip,
   ResponsiveContainer,
   Legend,
-} from 'recharts'
+} from "recharts"
 
 const ForexPage: React.FC = () => {
   const [forexRates, setForexRates] = useState<ForexRate[]>([])
   const [isLoading, setIsLoading] = useState<boolean>(true)
   const [error, setError] = useState<string | null>(null)
   const [selectedCurrency, setSelectedCurrency] = useState<string | null>(null)
-  const [timeframe, setTimeframe] = useState<'1W' | '1M' | '3M' | '6M' | '1Y'>(
-    '1M'
+  const [timeframe, setTimeframe] = useState<"1W" | "1M" | "3M" | "6M" | "1Y">(
+    "1M"
   )
 
   // Function to get currency icon
-  const getCurrencyIcon = (code: string, size = 'h-6 w-6') => {
+  const getCurrencyIcon = (code: string, size = "h-6 w-6") => {
     const iconName = getCurrencyIconName(code)
     if (!iconName) return null
 
@@ -46,12 +45,12 @@ const ForexPage: React.FC = () => {
 
         // Set USD as selected by default
         if (data.length > 0 && !selectedCurrency) {
-          setSelectedCurrency('USD')
+          setSelectedCurrency("USD")
         }
       } catch (error) {
-        console.error('Error fetching forex data:', error)
+        console.error("Error fetching forex data:", error)
         setError(
-          error instanceof Error ? error.message : 'Failed to fetch forex data'
+          error instanceof Error ? error.message : "Failed to fetch forex data"
         )
       } finally {
         setIsLoading(false)
@@ -72,19 +71,19 @@ const ForexPage: React.FC = () => {
     let days = 30 // default to 1 month
 
     switch (timeframe) {
-      case '1W':
+      case "1W":
         days = 7
         break
-      case '1M':
+      case "1M":
         days = 30
         break
-      case '3M':
+      case "3M":
         days = 90
         break
-      case '6M':
+      case "6M":
         days = 180
         break
-      case '1Y':
+      case "1Y":
         days = 365
         break
       default:
@@ -103,7 +102,7 @@ const ForexPage: React.FC = () => {
       const historicalRate = currentRate * randomFactor
 
       data.push({
-        date: date.toISOString().split('T')[0],
+        date: date.toISOString().split("T")[0],
         rate: parseFloat(historicalRate.toFixed(4)),
       })
     }
@@ -114,9 +113,9 @@ const ForexPage: React.FC = () => {
   // Format currency name
   const formatCurrencyName = (name: string) => {
     return name
-      .split(' ')
+      .split(" ")
       .map((word) => word.charAt(0).toUpperCase() + word.slice(1).toLowerCase())
-      .join(' ')
+      .join(" ")
   }
 
   // Generate historical data for the selected currency
@@ -150,8 +149,8 @@ const ForexPage: React.FC = () => {
                     onClick={() => setSelectedCurrency(rate.code)}
                     className={`w-full text-left px-4 py-3 rounded-md transition-all flex items-center justify-between ${
                       selectedCurrency === rate.code
-                        ? 'bg-primary-100 text-primary-800'
-                        : 'hover:bg-gray-100'
+                        ? "bg-primary-100 text-primary-800"
+                        : "hover:bg-gray-100"
                     }`}
                   >
                     <div className="flex items-center">
@@ -179,7 +178,7 @@ const ForexPage: React.FC = () => {
                       <div className="bg-primary-100 p-3 rounded-full mr-4">
                         {getCurrencyIcon(
                           selectedCurrencyData.code,
-                          'h-8 w-8 text-primary-600'
+                          "h-8 w-8 text-primary-600"
                         )}
                       </div>
                       <div>
@@ -206,14 +205,14 @@ const ForexPage: React.FC = () => {
 
                   {/* Timeframe Selection */}
                   <div className="flex space-x-2 mb-4">
-                    {(['1W', '1M', '3M', '6M', '1Y'] as const).map((period) => (
+                    {(["1W", "1M", "3M", "6M", "1Y"] as const).map((period) => (
                       <button
                         key={period}
                         onClick={() => setTimeframe(period)}
                         className={`px-3 py-1 text-sm rounded-md ${
                           timeframe === period
-                            ? 'bg-primary-600 text-white'
-                            : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
+                            ? "bg-primary-600 text-white"
+                            : "bg-gray-100 text-gray-700 hover:bg-gray-200"
                         }`}
                       >
                         {period}
@@ -234,29 +233,29 @@ const ForexPage: React.FC = () => {
                           tick={{ fontSize: 12 }}
                           tickFormatter={(value) => {
                             const date = new Date(value)
-                            return date.toLocaleDateString('en-US', {
-                              month: 'short',
-                              day: 'numeric',
+                            return date.toLocaleDateString("en-US", {
+                              month: "short",
+                              day: "numeric",
                             })
                           }}
                         />
                         <YAxis
-                          domain={['auto', 'auto']}
+                          domain={["auto", "auto"]}
                           tick={{ fontSize: 12 }}
                           tickFormatter={(value) => `₱${value.toFixed(2)}`}
                         />
                         <Tooltip
                           formatter={(value: number) => [
                             `₱${value.toFixed(4)}`,
-                            'Rate',
+                            "Rate",
                           ]}
                           labelFormatter={(label) => {
                             const date = new Date(label)
-                            return date.toLocaleDateString('en-US', {
-                              weekday: 'long',
-                              year: 'numeric',
-                              month: 'long',
-                              day: 'numeric',
+                            return date.toLocaleDateString("en-US", {
+                              weekday: "long",
+                              year: "numeric",
+                              month: "long",
+                              day: "numeric",
                             })
                           }}
                         />
@@ -305,15 +304,15 @@ const ForexPage: React.FC = () => {
                       <div className="relative rounded-md shadow-sm">
                         <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
                           <span className="text-gray-800 sm:text-sm">
-                            {selectedCurrencyData.code === 'USD'
-                              ? '$'
-                              : selectedCurrencyData.code === 'EUR'
-                              ? '€'
-                              : selectedCurrencyData.code === 'GBP'
-                              ? '£'
-                              : selectedCurrencyData.code === 'JPY'
-                              ? '¥'
-                              : ''}
+                            {selectedCurrencyData.code === "USD"
+                              ? "$"
+                              : selectedCurrencyData.code === "EUR"
+                              ? "€"
+                              : selectedCurrencyData.code === "GBP"
+                              ? "£"
+                              : selectedCurrencyData.code === "JPY"
+                              ? "¥"
+                              : ""}
                           </span>
                         </div>
                         <input
@@ -327,13 +326,13 @@ const ForexPage: React.FC = () => {
                   </div>
                   <p className="mt-4 text-sm text-gray-800">
                     Exchange rates are provided by Bangko Sentral ng Pilipinas
-                    (BSP). Last updated:{' '}
-                    {new Date().toLocaleDateString('en-US', {
-                      year: 'numeric',
-                      month: 'long',
-                      day: 'numeric',
-                      hour: '2-digit',
-                      minute: '2-digit',
+                    (BSP). Last updated:{" "}
+                    {new Date().toLocaleDateString("en-US", {
+                      year: "numeric",
+                      month: "long",
+                      day: "numeric",
+                      hour: "2-digit",
+                      minute: "2-digit",
                     })}
                   </p>
                 </div>
@@ -371,7 +370,7 @@ const ForexPage: React.FC = () => {
               </h3>
               <p className="text-gray-800">
                 For official foreign exchange reference rates and more detailed
-                information, please visit the{' '}
+                information, please visit the{" "}
                 <a
                   href="https://www.bsp.gov.ph/SitePages/Statistics/ExchangeRate.aspx"
                   className="text-primary-600 hover:underline"
