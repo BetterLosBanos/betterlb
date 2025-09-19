@@ -9,6 +9,11 @@ import cebCommon from './i18n/ceb/common.json'
 import hilCommon from './i18n/hil/common.json'
 import iloCommon from './i18n/ilo/common.json'
 import warCommon from './i18n/war/common.json'
+import bclCommon from './i18n/bcl/common.json'
+import pamCommon from './i18n/pam/common.json'
+import pagCommon from './i18n/pag/common.json'
+import magCommon from './i18n/mag/common.json'
+import tsgCommon from './i18n/tsg/common.json'
 
 // TODO: Will make this more dynamic later. Trying to avoid more conflicts.
 const resources = {
@@ -30,6 +35,21 @@ const resources = {
   war: {
     common: warCommon,
   },
+  bcl: {
+    common: bclCommon,
+  },
+  pam: {
+    common: pamCommon,
+  },
+  pag: {
+    common: pagCommon,
+  },
+  mag: {
+    common: magCommon,
+  },
+  tsg: {
+    common: tsgCommon
+  }
 }
 
 i18n
