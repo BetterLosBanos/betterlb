@@ -1,55 +1,36 @@
 [
+  
   {
-    "slug": "senate-of-the-philippines-19th-congress",
+    "slug": "senate-of-the-philippines-20th-congress",
     "branch": "Legislative Branch",
-    "chamber": "Senate of the Philippines (19th Congress)",
+    "chamber": "Senate of the Philippines (20th Congress)",
     "address": "GSIS Building, Financial Center Roxas Blvd., 1300 Pasay City",
     "trunkline": "(632) 8552-6601 to 70",
     "website": "www.senate.gov.ph",
     "officials": [
       {
         "role": "Senate President",
-        "name": "FRANCIS G. ESCUDERO",
+        "name": "VICENTE C. SOTTO III",
         "contact": "[REDACTED]"
       },
       {
         "role": "Senate President Pro Tempore",
-        "name": "JINGGOY E. ESTRADA",
+        "name": "PANFILO M. LACSON",
         "contact": "[REDACTED]"
       },
       {
-        "role": "Majority Floor Leader",
-        "name": "FRANCIS N. TOLENTINO",
+        "role": "Senate Majority Leader",
+        "name": "JUAN MIGUEL F. ZUBIRI",
         "contact": "[REDACTED]"
       },
       {
-        "role": "Minority Floor Leader",
-        "name": "AQUILINO PIMENTEL III",
-        "contact": "[REDACTED]"
-      },
-      {
-        "role": "Deputy Majority Floor Leader",
-        "name": "JOSEPH VICTOR G. EJERCITO",
-        "contact": "[REDACTED]"
-      },
-      {
-        "role": "Deputy Majority Floor Leader",
-        "name": "MARK A. VILLAR",
-        "contact": "[REDACTED]"
-      },
-      {
-        "role": "Deputy Minority Floor Leader",
-        "name": "RISA HONTIVEROS",
-        "contact": "[REDACTED]"
-      },
-      {
-        "role": "Senator",
-        "name": "MARIA LOURDES NANCY S. BINAY",
-        "contact": "[REDACTED]"
-      },
-      {
-        "role": "Senator",
+        "role": "Senate Minority Leader",
         "name": "ALAN PETER S. CAYETANO",
+        "contact": "[REDACTED]"
+      },
+      {
+        "role": "Senator",
+        "name": "BAM AQUINO",
         "contact": "[REDACTED]"
       },
       {
@@ -59,12 +40,27 @@
       },
       {
         "role": "Senator",
-        "name": "RONALD M. DELA ROSA",
+        "name": "RONALD DELA ROSA",
         "contact": "[REDACTED]"
       },
       {
         "role": "Senator",
-        "name": "SHERWIN T. GATCHALIAN",
+        "name": "JOSEPH VICTOR G. EJERCITO",
+        "contact": "[REDACTED]"
+      },
+      {
+        "role": "Senator",
+        "name": "FRANCIS G. ESCUDERO",
+        "contact": "[REDACTED]"
+      },
+      {
+        "role": "Senator",
+        "name": "JINGGOY EJERCITO ESTRADA",
+        "contact": "[REDACTED]"
+      },
+      {
+        "role": "Senator",
+        "name": "SHERWIN GATCHALIAN",
         "contact": "[REDACTED]"
       },
       {
@@ -74,12 +70,22 @@
       },
       {
         "role": "Senator",
+        "name": "RISA HONTIVEROS",
+        "contact": "[REDACTED]"
+      },
+      {
+        "role": "Senator",
         "name": "MANUEL M. LAPID",
         "contact": "[REDACTED]"
       },
       {
         "role": "Senator",
-        "name": "LOREN B. LEGARDA",
+        "name": "LOREN LEGARDA",
+        "contact": "[REDACTED]"
+      },
+      {
+        "role": "Senator",
+        "name": "RODANTE D. MARCOLETA",
         "contact": "[REDACTED]"
       },
       {
@@ -94,12 +100,12 @@
       },
       {
         "role": "Senator",
-        "name": "GRACE L. POE",
+        "name": "FRANCIS PANGILINAN",
         "contact": "[REDACTED]"
       },
       {
         "role": "Senator",
-        "name": "RAMON BONG REVILLA JR.",
+        "name": "ERWIN T. TULFO",
         "contact": "[REDACTED]"
       },
       {
@@ -109,52 +115,52 @@
       },
       {
         "role": "Senator",
-        "name": "JOEL J. VILLANUEVA",
+        "name": "JOEL VILLANUEVA",
         "contact": "[REDACTED]"
       },
       {
         "role": "Senator",
-        "name": "CYNTHIA A. VILLAR",
+        "name": "CAMILLE A. VILLAR",
         "contact": "[REDACTED]"
       },
       {
         "role": "Senator",
-        "name": "JUAN MIGUEL F. ZUBIRI",
+        "name": "MARK A. VILLAR",
         "contact": "[REDACTED]"
       }
     ],
     "permanent_committees": [
       {
         "committee": "Accountability of Public Officers and Investigations (Blue Ribbon)",
-        "chairperson": "PIA S. CAYETANO"
+        "chairperson": "PANFILO M. LACSON"
       },
       {
         "committee": "Accounts",
-        "chairperson": "ALAN PETER S. CAYETANO"
+        "chairperson": "LOREN LEGARDA"
       },
       {
         "committee": "Agriculture, Food and Agrarian Reform",
-        "chairperson": "CYNTHIA A. VILLAR"
+        "chairperson": "FRANCIS PANGILINAN"
       },
       {
         "committee": "Banks, Financial Institutions and Currencies",
-        "chairperson": "MARK A. VILLAR"
+        "chairperson": "JOEL VILLANUEVA"
       },
       {
         "committee": "Basic Education",
-        "chairperson": "SHERWIN T. GATCHALIAN"
+        "chairperson": "BAM AQUINO"
       },
       {
         "committee": "Civil Service, Government Reorganization and Professional Regulation",
-        "chairperson": "RAMON BONG REVILLA JR."
+        "chairperson": "RONALD DELA ROSA"
       },
       {
         "committee": "Constitutional Amendments and Revision of Codes",
-        "chairperson": "ROBINHOOD C. PADILLA"
+        "chairperson": "FRANCIS PANGILINAN"
       },
       {
         "committee": "Cooperatives",
-        "chairperson": "IMEE R. MARCOS"
+        "chairperson": "MANUEL M. LAPID"
       },
       {
         "committee": "Cultural Communities and Muslim Affairs",
@@ -162,15 +168,15 @@
       },
       {
         "committee": "Culture and the Arts",
-        "chairperson": "LOREN B. LEGARDA"
+        "chairperson": "LOREN LEGARDA"
       },
       {
         "committee": "Economic Affairs",
-        "chairperson": "JUAN MIGUEL F. ZUBIRI"
+        "chairperson": "CAMILLE A. VILLAR"
       },
       {
         "committee": "Electoral Reforms and People's Participation",
-        "chairperson": "IMEE R. MARCOS"
+        "chairperson": "PANFILO M. LACSON"
       },
       {
         "committee": "Energy",
@@ -178,15 +184,15 @@
       },
       {
         "committee": "Environment, Natural Resources and Climate Change",
-        "chairperson": "CYNTHIA A. VILLAR"
+        "chairperson": "CAMILLE A. VILLAR"
       },
       {
         "committee": "Ethics and Privileges",
-        "chairperson": "FRANCIS N. TOLENTINO"
+        "chairperson": "VACANT"
       },
       {
         "committee": "Finance",
-        "chairperson": "GRACE L. POE"
+        "chairperson": "SHERWIN GATCHALIAN"
       },
       {
         "committee": "Foreign Relations",
@@ -194,7 +200,7 @@
       },
       {
         "committee": "Games and Amusement",
-        "chairperson": "MARK A. VILLAR"
+        "chairperson": "ERWIN T. TULFO"
       },
       {
         "committee": "Government Corporations and Public Enterprises",
@@ -202,23 +208,23 @@
       },
       {
         "committee": "Health and Demography",
-        "chairperson": "CHRISTOPHER LAWRENCE T. GO"
+        "chairperson": "RISA HONTIVEROS"
       },
       {
         "committee": "Higher, Technical and Vocational Education",
-        "chairperson": "ALAN PETER S. CAYETANO"
+        "chairperson": "LOREN LEGARDA"
       },
       {
         "committee": "Justice and Human Rights",
-        "chairperson": "AQUILINO PIMENTEL III"
+        "chairperson": "FRANCIS PANGILINAN"
       },
       {
-        "committee": "Labor, Employment and Human Resource Development",
-        "chairperson": "JOEL A. VILLANUEVA"
+        "committee": "Labor, Employment and Human Resources Development",
+        "chairperson": "RAFFY T. TULFO"
       },
       {
         "committee": "Local Government",
-        "chairperson": "JOSEPH VICTOR G. EJERCITO"
+        "chairperson": "JINGGOY EJERCITO ESTRADA"
       },
       {
         "committee": "Migrant Workers",
@@ -226,7 +232,7 @@
       },
       {
         "committee": "National Defense and Security, Peace, Unification and Reconciliation",
-        "chairperson": "JINGGOY E. ESTRADA"
+        "chairperson": "LOREN LEGARDA"
       },
       {
         "committee": "Public Information and Mass Media",
@@ -234,7 +240,7 @@
       },
       {
         "committee": "Public Order and Dangerous Drugs",
-        "chairperson": "RONALD M. DELA ROSA"
+        "chairperson": "JOSEPH VICTOR G. EJERCITO"
       },
       {
         "committee": "Public Services",
@@ -242,19 +248,19 @@
       },
       {
         "committee": "Public Works",
-        "chairperson": "RAMON BONG REVILLA JR."
+        "chairperson": "MARK A. VILLAR"
       },
       {
         "committee": "Rules",
-        "chairperson": "FRANCIS N. TOLENTINO"
+        "chairperson": "JUAN MIGUEL F. ZUBIRI"
       },
       {
         "committee": "Science and Technology",
-        "chairperson": "ALAN PETER S. CAYETANO"
+        "chairperson": "BAM AQUINO"
       },
       {
         "committee": "Social Justice, Welfare and Rural Development",
-        "chairperson": "IMEE R. MARCOS"
+        "chairperson": "ERWIN T. TULFO"
       },
       {
         "committee": "Sports",
@@ -262,23 +268,23 @@
       },
       {
         "committee": "Sustainable Development Goals, Innovation and Futures Thinking",
-        "chairperson": "MARIA LOURDES NANCY S. BINAY"
+        "chairperson": "PIA S. CAYETANO"
       },
       {
         "committee": "Tourism",
-        "chairperson": "MANUEL M. LAPID"
+        "chairperson": "JOSEPH VICTOR G. EJERCITO"
       },
       {
         "committee": "Trade, Commerce and Entrepreneurship",
-        "chairperson": "ALAN PETER S. CAYETANO"
+        "chairperson": "RODANTE D. MARCOLETA"
       },
       {
         "committee": "Urban Planning, Housing and Resettlement",
-        "chairperson": "IMEE R. MARCOS"
+        "chairperson": "FRANCIS G. ESCUDERO"
       },
       {
         "committee": "Ways and Means",
-        "chairperson": "SHERWIN T. GATCHALIAN"
+        "chairperson": "PIA S. CAYETANO"
       },
       {
         "committee": "Women, Children, Family Relations and Gender Equality",
@@ -297,7 +303,7 @@
       },
       {
         "role": "Sergeant-at-Arms",
-        "name": "ROBERTO T. ANCAN",
+        "name": "MA.O APLASCA",
         "contact": "[REDACTED]"
       },
       {
