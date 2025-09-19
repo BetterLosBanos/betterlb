@@ -14,6 +14,7 @@ import pamCommon from './i18n/pam/common.json'
 import pagCommon from './i18n/pag/common.json'
 import magCommon from './i18n/mag/common.json'
 import tsgCommon from './i18n/tsg/common.json'
+import mdhCommon from './i18n/mdh/common.json'
 
 // TODO: Will make this more dynamic later. Trying to avoid more conflicts.
 const resources = {
@@ -49,6 +50,9 @@ const resources = {
   },
   tsg: {
     common: tsgCommon
+  },
+  mdh: {
+    common: mdhCommon
   }
 }
 
