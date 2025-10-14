@@ -358,6 +358,9 @@ const VisaPage: FC = () => {
       const requirement = countryRequirements.get(selectedCountry);
       if (requirement) {
         setVisaRequirement(requirement);
+        // Auto-open dialog when country parameter is present in URL
+        setDialogCountry(selectedCountry);
+        setDialogOpen(true);
       }
     }
   }, [selectedCountry, countryRequirements, viewMode]);
