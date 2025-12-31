@@ -295,13 +295,13 @@
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://bettergov.ph/government/executive/office-of-the-president</loc>
+    <loc>https://bettergov.ph/government/executive/office-of-the-mayor</loc>
     <lastmod>2025-09-25</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://bettergov.ph/government/executive/office-of-the-vice-president</loc>
+    <loc>https://bettergov.ph/government/executive/office-of-the-vice-mayor</loc>
     <lastmod>2025-09-25</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>

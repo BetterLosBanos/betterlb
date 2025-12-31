@@ -141,7 +141,7 @@ function generateGovernmentDirectory(governmentData) {
     '- Office of the President (https://bettergov.ph/government/executive/office-of-the-president)'
   );
   sections.push(
-    '- Office of the Vice President (https://bettergov.ph/government/executive/office-of-the-vice-president)'
+    '- Office of the Vice Mayor (https://bettergov.ph/government/executive/office-of-the-vice-mayor)'
   );
   sections.push(
     '- Presidential Communications Office (https://bettergov.ph/government/executive/presidential-communications-office)'
@@ -278,7 +278,7 @@ function generateSitemap(mainNavigation, governmentData) {
   if (governmentData) {
     // Executive branch pages
     pages.add(`${siteUrl}/government/executive/office-of-the-president`);
-    pages.add(`${siteUrl}/government/executive/office-of-the-vice-president`);
+    pages.add(`${siteUrl}/government/executive/office-of-the-vice-mayor`);
     pages.add(
       `${siteUrl}/government/executive/presidential-communications-office`
     );

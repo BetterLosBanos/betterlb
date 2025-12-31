@@ -1,7 +1,7 @@
 {
   "hero": {
-    "title": "Welcome to BetterGov.ph",
-    "subtitle": "The volunteer run portal of the Republic of the Philippines. Find information, access government services, stay updated with the latest news about the Philippines.",
+    "title": "Welcome to BetterLB",
+    "subtitle": "The volunteer run portal of the Municipality of Los Baños. Find information, access government services, stay updated with the latest news about Los Baños.",
     "nationalId": "National ID",
     "birthCertificate": "Birth Certificate",
     "businessRegistration": "Business Registration"
@@ -26,12 +26,13 @@
     "copyright": "2025 BetterGov.ph - All content is public domain unless otherwise specified."
   },
   "navbar": {
-    "philippines": "Philippines",
+    "home": "Home",
     "services": "Services",
-    "travel": "Travel",
+    "statistics": "Statistics",
     "government": "Government",
-    "flood control projects": "Flood Control Projects",
-    "our projects": "Our Projects"
+    "legislative": "Legislative",
+    "transparency": "Transparency",
+    "contact": "Contact"
   },
   "joinUs": {
     "stripTitle": "🚀 Join the #CivicTech Revolution",

@@ -175,7 +175,7 @@ const Ticker: FC = () => {
                 </span>
               </div>
             ) : (
-              weatherData.slice(0, 4).map(data => (
+              weatherData.slice(0, 5).map(data => (
                 <div
                   key={data.location}
                   className='flex flex-col items-center justify-center uppercase space-x-0 sm:flex-row sm:space-x-2'

@@ -28,12 +28,12 @@ export function getExecutiveSEOData(officeName?: string): GovernmentSEOData {
     title,
     description: officeName
       ? `Contact information and details for ${officeName}. A directory of the Philippine Executive Branch.`
-      : 'A directory of the Philippine Executive Branch including the Office of the President, Vice President, and other executive offices.',
+      : 'A directory of the Philippine Executive Branch including the Office of the President, Vice Mayor, and other executive offices.',
     keywords: [
       ...baseKeywords,
       'Executive Branch',
       'President of the Philippines',
-      'Vice President',
+      'Vice Mayor',
       'Executive Offices',
       'Presidential Communications',
       ...(officeName ? [officeName] : []),

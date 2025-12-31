@@ -16,10 +16,10 @@ import executiveData from '../../../data/directory/executive.json';
 import { getExecutiveSEOData } from '../../../utils/seo-data';
 
 const officeData = executiveData.find(
-  office => office.office === 'OFFICE OF THE PRESIDENT'
+  office => office.office === 'OFFICE OF THE MAYOR'
 );
 
-export default function OfficeOfThePresidentPage() {
+export default function OfficeOfTheMayorPage() {
   const [searchTerm, setSearchTerm] = useState('');
 
   // Filter officials based on search term
@@ -115,16 +115,14 @@ export default function OfficeOfThePresidentPage() {
         ) : (
           <CardList>
             {filteredOfficials.find(
-              official =>
-                'name' in official && official.role.includes('President')
+              official => 'name' in official && official.role.includes('Mayor')
             ) && (
               <Card variant='featured'>
                 <CardContent>
                   {filteredOfficials
                     .filter(
                       official =>
-                        'name' in official &&
-                        official.role.includes('President')
+                        'name' in official && official.role.includes('Mayor')
                     )
                     .map((official, index) => {
                       if (!('name' in official)) return null;

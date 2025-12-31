@@ -1,7 +1,7 @@
 import {
-  BriefcaseIcon,
+  // BriefcaseIcon,
   BuildingIcon,
-  MessageSquareIcon,
+  // MessageSquareIcon,
   UserCheckIcon,
 } from 'lucide-react';
 import { Link, useLocation } from 'react-router-dom';
@@ -16,29 +16,29 @@ export default function ExecutiveSidebar() {
 
   const offices = [
     {
-      label: 'Office of the President',
+      label: 'Office of the Mayor',
       icon: BuildingIcon,
-      path: '/government/executive/office-of-the-president',
-      title: 'Office of the President',
+      path: '/government/executive/office-of-the-mayor',
+      title: 'Office of the Mayor',
     },
     {
-      label: 'Office of the Vice President',
+      label: 'Office of the Vice Mayor',
       icon: UserCheckIcon,
-      path: '/government/executive/office-of-the-vice-president',
-      title: 'Office of the Vice President',
+      path: '/government/executive/office-of-the-vice-mayor',
+      title: 'Office of the Vice Mayor',
     },
-    {
-      label: 'Presidential Communications Office',
-      icon: MessageSquareIcon,
-      path: '/government/executive/presidential-communications-office',
-      title: 'Presidential Communications Office',
-    },
-    {
-      label: 'Other Executive Offices',
-      icon: BriefcaseIcon,
-      path: '/government/executive/other-executive-offices',
-      title: 'Other Executive Offices',
-    },
+    // {
+    //   label: 'Presidential Communications Office',
+    //   icon: MessageSquareIcon,
+    //   path: '/government/executive/presidential-communications-office',
+    //   title: 'Presidential Communications Office',
+    // },
+    // {
+    //   label: 'Other Executive Offices',
+    //   icon: BriefcaseIcon,
+    //   path: '/government/executive/other-executive-offices',
+    //   title: 'Other Executive Offices',
+    // },
   ];
 
   return (
@@ -46,7 +46,7 @@ export default function ExecutiveSidebar() {
       <nav className='p-2 space-y-4 pt-4'>
         <div>
           <h3 className='px-3 text-xs font-medium text-gray-800 uppercase tracking-wider mb-2'>
-            Executive Categories
+            Executive
           </h3>
           <ul className='space-y-1'>
             {offices.map(({ label, icon: Icon, path, title }) => (

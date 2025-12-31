@@ -21,7 +21,7 @@ BetterGov.ph provides detailed information about all branches of the Philippine 
 
 #### Executive Branch
 - Office of the President (https://bettergov.ph/government/executive/office-of-the-president)
-- Office of the Vice President (https://bettergov.ph/government/executive/office-of-the-vice-president)
+- Office of the Vice Mayor (https://bettergov.ph/government/executive/office-of-the-vice-mayor)
 - Presidential Communications Office (https://bettergov.ph/government/executive/presidential-communications-office)
 - Other Executive Offices (https://bettergov.ph/government/executive/other-executive-offices)
 
@@ -186,7 +186,7 @@ https://bettergov.ph/government/diplomatic/missions
 https://bettergov.ph/government/diplomatic/organizations
 https://bettergov.ph/government/executive
 https://bettergov.ph/government/executive/office-of-the-president
-https://bettergov.ph/government/executive/office-of-the-vice-president
+https://bettergov.ph/government/executive/office-of-the-vice-mayor
 https://bettergov.ph/government/executive/other-executive-offices
 https://bettergov.ph/government/executive/presidential-communications-office
 https://bettergov.ph/government/legislative

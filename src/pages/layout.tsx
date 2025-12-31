@@ -25,21 +25,15 @@ export default function GovernmentLayout({ children }: GovernmentLayoutProps) {
   const branches = [
     {
       title: 'Executive Branch',
-      description: 'The executive officials who implement and enforce laws.',
+      description:
+        'The President, Vice Mayor, and the Cabinet members who implement and enforce laws.',
       icon: <LandmarkIcon className='h-4 w-4' />,
       path: '/government/executive',
     },
     {
-      title: 'Legislative Branch',
+      title: 'Executive Departments',
       description:
-        'The Sangguniang Bayan, and Municipal Councilors that make laws and policies.',
-      icon: <GalleryVerticalIcon className='h-4 w-4' />,
-      path: '/government/legislative',
-    },
-    {
-      title: 'Municipal Departments',
-      description:
-        'Municipal departments and agencies responsible for specific areas of governance.',
+        'Government departments and agencies responsible for specific areas of governance.',
       icon: <Building2Icon className='h-4 w-4' />,
       path: '/government/departments',
     },
@@ -50,6 +44,13 @@ export default function GovernmentLayout({ children }: GovernmentLayoutProps) {
     //   icon: <BookOpenIcon className='h-4 w-4' />,
     //   path: '/government/constitutional',
     // },
+    {
+      title: 'Legislative Branch',
+      description:
+        'The Senate and House of Representatives that make laws and policies.',
+      icon: <GalleryVerticalIcon className='h-4 w-4' />,
+      path: '/government/legislative',
+    },
     // {
     //   title: 'Local Government Units',
     //   description: 'Local government units of the Philippines.',
@@ -73,10 +74,10 @@ export default function GovernmentLayout({ children }: GovernmentLayoutProps) {
     <div className='container mx-auto px-4 md:px-0'>
       <div className='py-8 md:py-12 text-center flex flex-col justify-center'>
         <h2 className='text-3xl md:text-4xl font-bold text-gray-800 mb-4'>
-          Municipal Government of Los Baños Directory
+          The Philippine Government Directory
         </h2>
         <p className='text-sm md:text-base text-gray-800'>
-          Explore the different branches and agencies of the Municipal
+          Explore the different branches and agencies of the Philippine
           government
         </p>
       </div>

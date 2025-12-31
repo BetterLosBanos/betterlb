@@ -143,7 +143,7 @@ function generateGovernmentUrls(siteUrl, governmentData) {
       changefreq: 'monthly',
     },
     {
-      url: `${siteUrl}/government/executive/office-of-the-vice-president`,
+      url: `${siteUrl}/government/executive/office-of-the-vice-mayor`,
       priority: '0.7',
       changefreq: 'monthly',
     },

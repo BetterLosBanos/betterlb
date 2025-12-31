@@ -1,14 +1,14 @@
 [
   {
-    "slug": "office-of-the-president",
-    "office": "OFFICE OF THE PRESIDENT",
+    "slug": "office-of-the-Mayor",
+    "office": "OFFICE OF THE MAYOR",
     "address": "Malacañang Palace Compound, New Executive Bldg. J. P. Laurel St., San Miguel, 1005 Manila",
     "trunkline": "(632) 8249-8310",
-    "website": "www.op-proper.gov.ph",
+    "website": "www.losbanos.gov.ph",
     "officials": [
       {
-        "name": "H.E. FERDINAND R. MARCOS JR.",
-        "role": "President"
+        "name": "NIEL ANDREW N. NOCON",
+        "role": "Mayor"
       },
       {
         "office_division": "Office of the Executive Secretary",
@@ -373,15 +373,15 @@
     ]
   },
   {
-    "slug": "office-of-the-vice-president",
-    "office": "OFFICE OF THE VICE PRESIDENT",
+    "slug": "office-of-the-vice-mayor",
+    "office": "OFFICE OF THE VICE MAYOR",
     "address": "11th Floor, Robinson's Cybergate Plaza, EDSA, cor Pioneer St., Mandaluyong City",
     "trunkline": "(632) 8532-5942; 8370-1719",
     "website": "www.ovp.gov.ph",
     "officials": [
       {
-        "name": "SARA Z. DUTERTE-CARPIO",
-        "role": "Vice President",
+        "name": "MARLO PJ A. ALIPON",
+        "role": "Vice Mayor",
         "email": "vp@ovp.gov.ph"
       },
       {

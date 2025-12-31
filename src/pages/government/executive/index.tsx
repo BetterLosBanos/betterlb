@@ -6,7 +6,7 @@ export default function ExecutiveIndex() {
 
   // Redirect to the Office of the President page on load
   useEffect(() => {
-    navigate('/government/executive/office-of-the-president');
+    navigate('/government/executive/office-of-the-mayor');
   }, [navigate]);
 
   return (

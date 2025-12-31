@@ -14,10 +14,10 @@ import {
 import { executiveData } from './data';
 
 const officeData = executiveData.find(
-  office => office.office === 'OFFICE OF THE VICE PRESIDENT'
+  office => office.office === 'OFFICE OF THE VICE MAYOR'
 );
 
-export default function OfficeOfTheVicePresidentPage() {
+export default function OfficeOfTheViceMayorPage() {
   const [searchTerm, setSearchTerm] = useState('');
 
   const filteredOfficials = useMemo(() => {
@@ -106,15 +106,14 @@ export default function OfficeOfTheVicePresidentPage() {
         <CardList>
           {filteredOfficials.find(
             official =>
-              'name' in official && official.role.includes('Vice President')
+              'name' in official && official.role.includes('Vice Mayor')
           ) && (
             <Card variant='featured'>
               <CardContent>
                 {filteredOfficials
                   .filter(
                     official =>
-                      'name' in official &&
-                      official.role.includes('Vice President')
+                      'name' in official && official.role.includes('Vice Mayor')
                   )
                   .map((official, index) => {
                     if (!('name' in official)) return null;

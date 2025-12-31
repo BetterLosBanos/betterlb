@@ -182,9 +182,9 @@ const Navbar: FC = () => {
                 className='h-12 w-12 mr-3'
               />
               <div>
-                <div className='text-black font-bold'>BetterGov.ph</div>
+                <div className='text-black font-bold'>BetterLB</div>
                 <div className='text-xs text-gray-800'>
-                  A community-run portal for the Philippines
+                  A community-run portal for the Municipality of Los Baños
                 </div>
               </div>
             </Link>

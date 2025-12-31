@@ -12,8 +12,8 @@ import { executiveData } from './data';
 
 const otherOffices = executiveData.filter(
   office =>
-    !office.office.includes('OFFICE OF THE PRESIDENT') &&
-    !office.office.includes('OFFICE OF THE VICE PRESIDENT') &&
+    !office.office.includes('OFFICE OF THE MAYOR') &&
+    !office.office.includes('OFFICE OF THE VICE MAYOR') &&
     !office.office.toLowerCase().includes('communication')
 );
 

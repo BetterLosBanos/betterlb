@@ -28,9 +28,7 @@ test.describe('Navigation', () => {
     // Navigate to Government and then Travel section
     if (isMobile) {
       await navigate(page, 'Government', 'Executive');
-      expect(page.url()).toContain(
-        '/government/executive/office-of-the-president'
-      );
+      expect(page.url()).toContain('/government/executive/office-of-the-mayor');
       await navigate(page, 'Travel', 'Visa Information');
       expect(page.url()).toContain('/travel/visa');
     } else {

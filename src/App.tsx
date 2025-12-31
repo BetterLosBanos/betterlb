@@ -33,11 +33,11 @@ import DepartmentsIndex from './pages/government/departments';
 import DepartmentDetail from './pages/government/departments/[department]';
 import DepartmentsLayout from './pages/government/departments/layout';
 import GovernmentLayout from './pages/government/layout';
-import ConstitutionalLayout from './pages/government/constitutional/layout';
-import ConstitutionalIndex from './pages/government/constitutional/index';
-import ConstitutionalOffice from './pages/government/constitutional/[office]';
-import GOCCsPage from './pages/government/constitutional/goccs';
-import SUCsPage from './pages/government/constitutional/sucs';
+// import ConstitutionalLayout from './pages/government/constitutional/layout';
+// import ConstitutionalIndex from './pages/government/constitutional/index';
+// import ConstitutionalOffice from './pages/government/constitutional/[office]';
+// import GOCCsPage from './pages/government/constitutional/goccs';
+// import SUCsPage from './pages/government/constitutional/sucs';
 
 // Legislative Branch
 import LegislativeLayout from './pages/government/legislative/layout';
@@ -48,20 +48,20 @@ import PartyListMembersPage from './pages/government/legislative/party-list-memb
 import SenateCommitteesPage from './pages/government/legislative/senate-committees';
 
 // Diplomatic Section
-import DiplomaticLayout from './pages/government/diplomatic/layout';
-import DiplomaticIndex from './pages/government/diplomatic/index';
-import DiplomaticMissionsPage from './pages/government/diplomatic/missions';
-import ConsulatesPage from './pages/government/diplomatic/consulates';
-import InternationalOrganizationsPage from './pages/government/diplomatic/organizations';
-import OfficeOfThePresident from './pages/government/executive/office-of-the-president';
+// import DiplomaticLayout from './pages/government/diplomatic/layout';
+// import DiplomaticIndex from './pages/government/diplomatic/index';
+// import DiplomaticMissionsPage from './pages/government/diplomatic/missions';
+// import ConsulatesPage from './pages/government/diplomatic/consulates';
+// import InternationalOrganizationsPage from './pages/government/diplomatic/organizations';
+import OfficeOfTheMayor from './pages/government/executive/office-of-the-mayor';
 import OtherExecutiveOffices from './pages/government/executive/other-executive-offices';
-import OfficeOfTheVicePresident from './pages/government/executive/office-of-the-vice-president';
-import PresidentialCommunicationsOffice from './pages/government/executive/presidential-communications-office';
+import OfficeOfTheViceMayor from './pages/government/executive/office-of-the-vice-mayor';
+// import PresidentialCommunicationsOffice from './pages/government/executive/presidential-communications-office';
 
 // Local Government Units
-import LocalLayout from './pages/government/local/components/LocalLayout';
-import LocalGovernmentIndex from './pages/government/local/index';
-import RegionalLGUPage from './pages/government/local/[region]';
+// import LocalLayout from './pages/government/local/components/LocalLayout';
+// import LocalGovernmentIndex from './pages/government/local/index';
+// import RegionalLGUPage from './pages/government/local/[region]';
 
 // Search Page
 import SearchPage from './pages/Search';
@@ -189,17 +189,17 @@ function App() {
                   element={<OtherExecutiveOffices />}
                 />
                 <Route
-                  path='office-of-the-president'
-                  element={<OfficeOfThePresident />}
+                  path='office-of-the-mayor'
+                  element={<OfficeOfTheMayor />}
                 />
                 <Route
-                  path='office-of-the-vice-president'
-                  element={<OfficeOfTheVicePresident />}
+                  path='office-of-the-vice-mayor'
+                  element={<OfficeOfTheViceMayor />}
                 />
-                <Route
+                {/* <Route
                   path='presidential-communications-office'
                   element={<PresidentialCommunicationsOffice />}
-                />
+                /> */}
               </Route>
 
               <Route path='departments' element={<DepartmentsLayout />}>
@@ -207,12 +207,12 @@ function App() {
                 <Route path=':department' element={<DepartmentDetail />} />
               </Route>
 
-              <Route path='constitutional' element={<ConstitutionalLayout />}>
+              {/* <Route path='constitutional' element={<ConstitutionalLayout />}>
                 <Route index element={<ConstitutionalIndex />} />
                 <Route path=':office' element={<ConstitutionalOffice />} />
                 <Route path='goccs' element={<GOCCsPage />} />
                 <Route path='sucs' element={<SUCsPage />} />
-              </Route>
+              </Route> */}
               <Route path='legislative' element={<LegislativeLayout />}>
                 <Route index element={<LegislativeIndex />} />
                 <Route path=':chamber' element={<LegislativeChamber />} />
@@ -226,7 +226,7 @@ function App() {
                   element={<SenateCommitteesPage />}
                 />
               </Route>
-              <Route path='diplomatic' element={<DiplomaticLayout />}>
+              {/* <Route path='diplomatic' element={<DiplomaticLayout />}>
                 <Route index element={<DiplomaticIndex />} />
                 <Route path='missions' element={<DiplomaticMissionsPage />} />
                 <Route path='consulates' element={<ConsulatesPage />} />
@@ -234,13 +234,13 @@ function App() {
                   path='organizations'
                   element={<InternationalOrganizationsPage />}
                 />
-              </Route>
+              </Route> */}
 
               {/* Local Government Routes */}
-              <Route path='local' element={<LocalLayout />}>
+              {/* <Route path='local' element={<LocalLayout />}>
                 <Route index element={<LocalGovernmentIndex />} />
                 <Route path=':region' element={<RegionalLGUPage />} />
-              </Route>
+              </Route> */}
             </Route>
 
             {/*Not Found/404 Page */}

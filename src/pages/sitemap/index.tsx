@@ -93,14 +93,14 @@ const SitemapPage: FC = () => {
           description: 'Office of the President and executive offices',
         },
         {
-          title: 'Office of the President',
-          url: '/government/executive/office-of-the-president',
+          title: 'Office of the Mayor',
+          url: '/government/executive/office-of-the-mayor',
           description: 'Information about the Office of the President',
         },
         {
-          title: 'Office of the Vice President',
-          url: '/government/executive/office-of-the-vice-president',
-          description: 'Information about the Office of the Vice President',
+          title: 'Office of the Vice Mayor',
+          url: '/government/executive/office-of-the-vice-mayor',
+          description: 'Information about the Office of the Vice Mayor',
         },
         {
           title: 'Presidential Communications Office',

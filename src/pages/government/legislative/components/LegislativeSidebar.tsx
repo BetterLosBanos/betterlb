@@ -1,8 +1,8 @@
 import {
   BookOpenIcon,
   BuildingIcon,
-  LandPlotIcon,
-  UsersIcon,
+  // LandPlotIcon,
+  // UsersIcon,
 } from 'lucide-react';
 import { Link, useLocation } from 'react-router-dom';
 import StandardSidebar from '../../../../components/ui/StandardSidebar';
@@ -17,42 +17,19 @@ export default function LegislativeSidebar() {
 
   const sections = [
     {
-      title: 'Senate',
+      title: 'Legislative',
       items: [
         {
-          label: 'Senate of the Philippines (20th Congress)',
+          label: '12th Sangguniang Bayan',
           icon: BuildingIcon,
-          path: '/government/legislative/senate-of-the-philippines-20th-congress',
-          title: 'Senate of the Philippines (20th Congress)',
+          path: '/government/legislative/12th-sangguniang-bayan',
+          title: '12th Sangguniang Bayan',
         },
         {
           label: 'Committees',
           icon: BookOpenIcon,
           path: '/government/legislative/senate-committees',
           title: 'Committees',
-        },
-      ],
-    },
-    {
-      title: 'House of Representatives',
-      items: [
-        {
-          label: 'House of Representatives (20th Congress)',
-          icon: LandPlotIcon,
-          path: '/government/legislative/house-of-representatives-20th-congress',
-          title: 'House of Representatives (20th Congress)',
-        },
-        {
-          label: 'Members by City/Province',
-          icon: UsersIcon,
-          path: '/government/legislative/house-members',
-          title: 'Members by City/Province',
-        },
-        {
-          label: 'Members by Party List',
-          icon: UsersIcon,
-          path: '/government/legislative/party-list-members',
-          title: 'Members by Party List',
         },
       ],
     },

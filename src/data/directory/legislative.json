@@ -1,365 +1,288 @@
 [
   {
-    "slug": "senate-of-the-philippines-20th-congress",
+    "slug": "12th-sangguniang-bayan",
     "branch": "Legislative Branch",
-    "chamber": "Senate of the Philippines (20th Congress)",
-    "address": "GSIS Building, Financial Center Roxas Blvd., 1300 Pasay City",
-    "trunkline": "(632) 8552-6601 to 70",
-    "website": "www.senate.gov.ph",
+    "chamber": "12th Sangguniang Bayan",
+    "address": "Los Baños Municipal Hall, Jamboree Road, Brgy. Timugan, Los Baños",
+    "trunkline": "(049) 530 2818",
+    "website": "www.losbanos.gov.ph",
     "officials": [
       {
-        "role": "Senate President",
-        "name": "VICENTE C. SOTTO III",
+        "role": "SB Member",
+        "name": "MIKO C. PELEGRINA",
         "contact": "local nos. 6501-6504"
       },
       {
-        "role": "Senate President Pro Tempore",
-        "name": "PANFILO M. LACSON",
+        "role": "SB Member",
+        "name": "ALDOUS AMIEL B. PEREZ",
         "contact": "local nos. 5790-5792 / 8617"
       },
       {
-        "role": "Senate Majority Leader",
-        "name": "JUAN MIGUEL F. ZUBIRI",
+        "role": "SB Member",
+        "name": "MURIEL LAISA B. DIZON",
         "contact": "local nos. 5715 & 5718"
       },
       {
-        "role": "Senate Minority Leader",
-        "name": "ALAN PETER S. CAYETANO",
+        "role": "SB Member",
+        "name": "LEREN MAE M. BAUTISTA",
         "contact": "local nos. 8526 and 2539"
       },
       {
-        "role": "Senator",
-        "name": "BAM AQUINO",
+        "role": "SB Member",
+        "name": "BENEDICTO S. ALBORIDA",
         "contact": "local no. 6518"
       },
       {
-        "role": "Senator",
-        "name": "PIA S. CAYETANO",
+        "role": "SB Member",
+        "name": "RAND EDOUARD S. DE JESUS",
         "contact": "local no. 5125"
       },
       {
-        "role": "Senator",
-        "name": "RONALD DELA ROSA",
+        "role": "SB Member",
+        "name": "MYLA E. ALINSUNURIN",
         "contact": "local nos. 5614 / 5615 / 5617 / 8611"
       },
       {
-        "role": "Senator",
-        "name": "JOSEPH VICTOR G. EJERCITO",
+        "role": "SB Member",
+        "name": "JAY G. ROLUSTA",
         "contact": "local no. 5851"
       },
       {
-        "role": "Senator",
-        "name": "FRANCIS G. ESCUDERO",
+        "role": "Liga ng mga Barangay President",
+        "name": "GAUDENCIO P. MACATANGAY",
         "contact": "local nos. 5810 / 8606"
       },
       {
-        "role": "Senator",
-        "name": "JINGGOY EJERCITO ESTRADA",
+        "role": "SK Federation President",
+        "name": "SAMANTHA NICOLE A. BANASIHAN-ORTEGA",
         "contact": "local nos. 6811, 6826"
-      },
-      {
-        "role": "Senator",
-        "name": "SHERWIN GATCHALIAN",
-        "contact": "local nos. 5710, 8622"
-      },
-      {
-        "role": "Senator",
-        "name": "CHRISTOPHER LAWRENCE T. GO",
-        "contact": "local nos. 5315, 5316, 5318, 5580"
-      },
-      {
-        "role": "Senator",
-        "name": "RISA HONTIVEROS",
-        "contact": "local nos. 8603 / 8529 / 5781"
-      },
-      {
-        "role": "Senator",
-        "name": "MANUEL M. LAPID",
-        "contact": "local nos. 5678, 5677, 8610"
-      },
-      {
-        "role": "Senator",
-        "name": "LOREN LEGARDA",
-        "contact": "local nos. 6801 / 8617"
-      },
-      {
-        "role": "Senator",
-        "name": "RODANTE D. MARCOLETA",
-        "contact": "local nos. 5533, 5532"
-      },
-      {
-        "role": "Senator",
-        "name": "IMEE R. MARCOS",
-        "contact": "local nos. 5707, 5755, 5776, 5777"
-      },
-      {
-        "role": "Senator",
-        "name": "ROBINHOOD C. PADILLA",
-        "contact": "local nos. 5843, 5844, 8624"
-      },
-      {
-        "role": "Senator",
-        "name": "FRANCIS PANGILINAN",
-        "contact": "local nos. 5267 5265 5268 5269"
-      },
-      {
-        "role": "Senator",
-        "name": "ERWIN T. TULFO",
-        "contact": "local nos. 5517, 5518, 5521"
-      },
-      {
-        "role": "Senator",
-        "name": "RAFFY T. TULFO",
-        "contact": "local nos. 5820, 8604"
-      },
-      {
-        "role": "Senator",
-        "name": "JOEL VILLANUEVA",
-        "contact": "local no. 4675"
-      },
-      {
-        "role": "Senator",
-        "name": "CAMILLE A. VILLAR",
-        "contact": "local nos. 6508, 6509"
-      },
-      {
-        "role": "Senator",
-        "name": "MARK A. VILLAR",
-        "contact": "local nos. 5801 to 5804"
       }
     ],
     "permanent_committees": [
       {
-        "committee": "Accountability of Public Officers and Investigations (Blue Ribbon)",
-        "chairperson": "PANFILO M. LACSON"
+        "committee": "Appropriations, Ways and Means",
+        "chairperson": "MIKO C. PELEGRINA",
+        "members": [
+          { "name": "JAY G. ROLUSTA", "role": "Vice Chair" },
+          { "name": "ALDOUS AMIEL B. PEREZ", "role": "Member" },
+          { "name": "BENEDICTO S. ALBORIDA", "role": "Member" }
+        ]
       },
       {
-        "committee": "Accounts",
-        "chairperson": "LOREN LEGARDA"
+        "committee": "Social Welfare, Senor Citizens and PWD",
+        "chairperson": "MIKO C. PELEGRINA",
+        "members": [
+          { "name": "ALDOUS AMIEL B. PEREZ", "role": "Vice Chair" },
+          { "name": "LEREN MAE M. BAUTISTA", "role": "Member" },
+          { "name": "BENEDICTO S. ALBORIDA", "role": "Member" }
+        ]
       },
       {
-        "committee": "Agriculture, Food and Agrarian Reform",
-        "chairperson": "FRANCIS PANGILINAN"
+        "committee": "Livelihood and Cooperative",
+        "chairperson": "MIKO C. PELEGRINA",
+        "members": [
+          { "name": "RAND EDOUARD S. DE JESUS", "role": "Vice Chair" },
+          { "name": "BENEDICTO S. ALBORIDA", "role": "Member" },
+          { "name": "ALDOUS AMIEL B. PEREZ", "role": "Member" },
+          { "name": "MYLA E. ALINSUNURIN", "role": "Member" }
+        ]
       },
       {
-        "committee": "Banks, Financial Institutions and Currencies",
-        "chairperson": "JOEL VILLANUEVA"
+        "committee": "Public Works and Infrastructure",
+        "chairperson": "ALDOUS AMIEL B. PEREZ",
+        "members": [
+          { "name": "BENEDICTO S. ALBORIDA", "role": "Vice Chair" },
+          { "name": "JAY G. ROLUSTA", "role": "Member" },
+          { "name": "MIKO C. PELEGRINA", "role": "Member" },
+          { "name": "MYLA E. ALINSUNURIN", "role": "Member" }
+        ]
       },
       {
-        "committee": "Basic Education",
-        "chairperson": "BAM AQUINO"
+        "committee": "Good Governance, Public Ethics and Accountability",
+        "chairperson": "ALDOUS AMIEL B. PEREZ",
+        "members": [
+          { "name": "JAY G. ROLUSTA", "role": "Vice Chair" },
+          { "name": "MIKO C. PELEGRINA", "role": "Member" },
+          { "name": "BENEDICTO S. ALBORIDA", "role": "Member" },
+          { "name": "MYLA E. ALINSUNURIN", "role": "Member" }
+        ]
       },
       {
-        "committee": "Civil Service, Government Reorganization and Professional Regulation",
-        "chairperson": "RONALD DELA ROSA"
+        "committee": "Agriculture and Food Security",
+        "chairperson": "ALDOUS AMIEL B. PEREZ",
+        "members": [
+          { "name": "MIKO C. PELEGRINA", "role": "Vice Chair" },
+          { "name": "RAND EDOUARD S. DE JESUS", "role": "Member" },
+          { "name": "JAY G. ROLUSTA", "role": "Member" },
+          { "name": "SAMANTHA NICOLE A. BANASIHAN-ORTEGA", "role": "Member" }
+        ]
       },
       {
-        "committee": "Constitutional Amendments and Revision of Codes",
-        "chairperson": "FRANCIS PANGILINAN"
-      },
-      {
-        "committee": "Cooperatives",
-        "chairperson": "MANUEL M. LAPID"
-      },
-      {
-        "committee": "Cultural Communities and Muslim Affairs",
-        "chairperson": "ROBINHOOD C. PADILLA"
-      },
-      {
-        "committee": "Culture and the Arts",
-        "chairperson": "LOREN LEGARDA"
-      },
-      {
-        "committee": "Economic Affairs",
-        "chairperson": "CAMILLE A. VILLAR"
-      },
-      {
-        "committee": "Electoral Reforms and People's Participation",
-        "chairperson": "PANFILO M. LACSON"
-      },
-      {
-        "committee": "Energy",
-        "chairperson": "PIA S. CAYETANO"
-      },
-      {
-        "committee": "Environment, Natural Resources and Climate Change",
-        "chairperson": "CAMILLE A. VILLAR"
-      },
-      {
-        "committee": "Ethics and Privileges",
-        "chairperson": "VACANT"
-      },
-      {
-        "committee": "Finance",
-        "chairperson": "SHERWIN GATCHALIAN"
-      },
-      {
-        "committee": "Foreign Relations",
-        "chairperson": "IMEE R. MARCOS"
-      },
-      {
-        "committee": "Games and Amusement",
-        "chairperson": "ERWIN T. TULFO"
-      },
-      {
-        "committee": "Government Corporations and Public Enterprises",
-        "chairperson": "MARK A. VILLAR"
-      },
-      {
-        "committee": "Health and Demography",
-        "chairperson": "RISA HONTIVEROS"
-      },
-      {
-        "committee": "Higher, Technical and Vocational Education",
-        "chairperson": "LOREN LEGARDA"
-      },
-      {
-        "committee": "Justice and Human Rights",
-        "chairperson": "FRANCIS PANGILINAN"
-      },
-      {
-        "committee": "Labor, Employment and Human Resources Development",
-        "chairperson": "RAFFY T. TULFO"
-      },
-      {
-        "committee": "Local Government",
-        "chairperson": "JINGGOY EJERCITO ESTRADA"
-      },
-      {
-        "committee": "Migrant Workers",
-        "chairperson": "RAFFY T. TULFO"
-      },
-      {
-        "committee": "National Defense and Security, Peace, Unification and Reconciliation",
-        "chairperson": "LOREN LEGARDA"
-      },
-      {
-        "committee": "Public Information and Mass Media",
-        "chairperson": "ROBINHOOD C. PADILLA"
-      },
-      {
-        "committee": "Public Order and Dangerous Drugs",
-        "chairperson": "JOSEPH VICTOR G. EJERCITO"
-      },
-      {
-        "committee": "Public Services",
-        "chairperson": "RAFFY T. TULFO"
-      },
-      {
-        "committee": "Public Works",
-        "chairperson": "MARK A. VILLAR"
-      },
-      {
-        "committee": "Rules",
-        "chairperson": "JUAN MIGUEL F. ZUBIRI"
+        "committee": "Health and Sanitation",
+        "chairperson": "MURIEL LAISA B. DIZON",
+        "members": [
+          { "name": "JAY G. ROLUSTA", "role": "Vice Chair" },
+          { "name": "MIKO C. PELEGRINA", "role": "Member" },
+          { "name": "ALDOUS AMIEL B. PEREZ", "role": "Member" },
+          { "name": "BENEDICTO S. ALBORIDA", "role": "Member" }
+        ]
       },
       {
         "committee": "Science and Technology",
-        "chairperson": "BAM AQUINO"
+        "chairperson": "MURIEL LAISA B. DIZON",
+        "members": [
+          { "name": "LEREN MAE M. BAUTISTA", "role": "Vice Chair" },
+          { "name": "MYLA E. ALINSUNURIN", "role": "Member" },
+          { "name": "JAY G. ROLUSTA", "role": "Member" },
+          { "name": "SAMANTHA NICOLE A. BANASIHAN-ORTEGA", "role": "Member" }
+        ]
       },
       {
-        "committee": "Social Justice, Welfare and Rural Development",
-        "chairperson": "ERWIN T. TULFO"
+        "committee": "Tourism, History, Arts and Culture",
+        "chairperson": "LEREN MAE M. BAUTISTA",
+        "members": [
+          { "name": "MURIEL LAISA B. DIZON", "role": "Vice Chair" },
+          { "name": "MYLA E. ALINSUNURIN", "role": "Member" },
+          { "name": "RAND EDOUARD S. DE JESUS", "role": "Member" },
+          { "name": "SAMANTHA NICOLE A. BANASIHAN-ORTEGA", "role": "Member" }
+        ]
       },
       {
-        "committee": "Sports",
-        "chairperson": "CHRISTOPHER LAWRENCE T. GO"
+        "committee": "Women, GAD and Family Welfare",
+        "chairperson": "LEREN MAE M. BAUTISTA",
+        "members": [
+          { "name": "RAND EDOUARD S. DE JESUS", "role": "Vice Chair" },
+          { "name": "ALDOUS AMIEL B. PEREZ", "role": "Member" },
+          { "name": "BENEDICTO S. ALBORIDA", "role": "Member" },
+          { "name": "MYLA E. ALINSUNURIN", "role": "Member" }
+        ]
       },
       {
-        "committee": "Sustainable Development Goals, Innovation and Futures Thinking",
-        "chairperson": "PIA S. CAYETANO"
+        "committee": "Games and Amusement",
+        "chairperson": "BENEDICTO S. ALBORIDA",
+        "members": [
+          { "name": "MYLA E. ALINSUNURIN", "role": "Vice Chair" },
+          { "name": "MIKO C. PELEGRINA", "role": "Member" },
+          { "name": "ALDOUS AMIEL B. PEREZ", "role": "Member" },
+          { "name": "JAY G. ROLUSTA", "role": "Member" }
+        ]
       },
       {
-        "committee": "Tourism",
-        "chairperson": "JOSEPH VICTOR G. EJERCITO"
+        "committee": "Peace and Order, and Human Rights",
+        "chairperson": "BENEDICTO S. ALBORIDA",
+        "members": [
+          { "name": "MYLA E. ALINSUNURIN", "role": "Vice Chair" },
+          { "name": "ALDOUS AMIEL B. PEREZ", "role": "Member" },
+          { "name": "RAND EDOUARD S. DE JESUS", "role": "Member" },
+          { "name": "JAY G. ROLUSTA", "role": "Member" }
+        ]
+      },
+      {
+        "committee": "Transportation and Communication",
+        "chairperson": "RAND EDOUARD S. DE JESUS",
+        "members": [
+          { "name": "ALDOUS AMIEL B. PEREZ", "role": "Vice Chair" },
+          { "name": "MIKO C. PELEGRINA", "role": "Member" },
+          { "name": "JAY G. ROLUSTA", "role": "Member" },
+          { "name": "RAND EDOUARD S. DE JESUS", "role": "Member" }
+        ]
       },
       {
         "committee": "Trade, Commerce and Entrepreneurship",
-        "chairperson": "RODANTE D. MARCOLETA"
+        "chairperson": "RAND EDOUARD S. DE JESUS",
+        "members": [
+          { "name": "MURIEL LAISA B. DIZON", "role": "Vice Chair" },
+          { "name": "ALDOUS AMIEL B. PEREZ", "role": "Member" },
+          { "name": "LEREN MAE M. BAUTISTA", "role": "Member" },
+          { "name": "MYLA E. ALINSUNURIN", "role": "Member" }
+        ]
       },
       {
-        "committee": "Urban Planning, Housing and Resettlement",
-        "chairperson": "FRANCIS G. ESCUDERO"
+        "committee": "Labor and Employment",
+        "chairperson": "RAND EDOUARD S. DE JESUS",
+        "members": [
+          { "name": "LEREN MAE M. BAUTISTA", "role": "Vice Chair" },
+          { "name": "MURIEL LAISA B. DIZON", "role": "Member" },
+          { "name": "MYLA E. ALINSUNURIN", "role": "Member" },
+          { "name": "JAY G. ROLUSTA", "role": "Member" }
+        ]
       },
       {
-        "committee": "Ways and Means",
-        "chairperson": "PIA S. CAYETANO"
+        "committee": "External Affairs and Sisterhood",
+        "chairperson": "MYLA E. ALINSUNURIN",
+        "members": [
+          { "name": "MURIEL LAISA B. DIZON", "role": "Vice Chair" },
+          { "name": "LEREN MAE M. BAUTISTA", "role": "Member" },
+          { "name": "RAND EDOUARD S. DE JESUS", "role": "Member" }
+        ]
       },
       {
-        "committee": "Women, Children, Family Relations and Gender Equality",
-        "chairperson": "RISA HONTIVEROS"
+        "committee": "Administrative and Investigative Committee",
+        "chairperson": "MYLA E. ALINSUNURIN",
+        "members": [
+          { "name": "BENEDICTO S. ALBORIDA", "role": "Vice Chair" },
+          { "name": "MURIEL LAISA B. DIZON", "role": "Member" },
+          { "name": "LEREN MAE M. BAUTISTA", "role": "Member" },
+          { "name": "SAMANTHA NICOLE A. BANASIHAN-ORTEGA", "role": "Member" }
+        ]
       },
       {
-        "committee": "Youth",
-        "chairperson": "CHRISTOPHER LAWRENCE T. GO"
-      }
-    ],
-    "secretariat_officials": [
-      {
-        "role": "Senate Secretary",
-        "name": "RENATO N. BANTUG JR.",
-        "contact": "loc. 6122; 8552-6735"
+        "committee": "Environment Protection",
+        "chairperson": "MYLA E. ALINSUNURIN",
+        "members": [
+          { "name": "ALDOUS AMIEL B. PEREZ", "role": "Vice Chair" },
+          { "name": "MURIEL LAISA B. DIZON", "role": "Member" },
+          { "name": "LEREN MAE M. BAUTISTA", "role": "Member" },
+          { "name": "RAND EDOUARD S. DE JESUS", "role": "Member" }
+        ]
       },
       {
-        "role": "Sergeant-at-Arms",
-        "name": "MA.O APLASCA",
-        "contact": "loc. 1406 to 1407; 8552-6867"
+        "committee": "Housing and Land-Use Plan",
+        "chairperson": "JAY G. ROLUSTA",
+        "members": [
+          { "name": "BENEDICTO S. ALBORIDA", "role": "Vice Chair" },
+          { "name": "MIKO C. PELEGRINA", "role": "Member" },
+          { "name": "ALDOUS AMIEL B. PEREZ", "role": "Member" }
+        ]
       },
       {
-        "role": "Deputy Secretary for Legislation",
-        "name": "MARIVIC LAUREL GARCIA",
-        "contact": "loc. 2314, 2316; 8552-6808"
+        "committee": "Education and Public Information",
+        "chairperson": "JAY G. ROLUSTA",
+        "members": [
+          { "name": "MIKO C. PELEGRINA", "role": "Vice Chair" },
+          { "name": "ALDOUS AMIEL B. PEREZ", "role": "Member" },
+          { "name": "BENEDICTO S. ALBORIDA", "role": "Member" },
+          { "name": "MYLA E. ALINSUNURIN", "role": "Member" }
+        ]
       },
       {
-        "role": "Deputy Secretary for Administrative and Financial Services",
-        "name": "ARNEL JOSE S. BAÑAS",
-        "contact": "loc. 4250 to 4253; 8552-6798"
+        "committee": "Rules, Privileges, Laws and Ordinances",
+        "chairperson": "JAY G. ROLUSTA",
+        "members": [
+          { "name": "BENEDICTO S. ALBORIDA", "role": "Vice Chair" },
+          { "name": "MIKO C. PELEGRINA", "role": "Member" },
+          { "name": "ALDOUS AMIEL B. PEREZ", "role": "Member" }
+        ]
       },
       {
-        "role": "Deputy Secretary for External Affairs and Relations",
-        "name": "ENRIQUE LUIS D. PAPA",
-        "contact": "loc. 4101 to 4103; 8552-6805"
+        "committee": "Barangay Affairs",
+        "chairperson": "GAUDENCIO P. MACATANGAY",
+        "members": [
+          { "name": "BENEDICTO S. ALBORIDA", "role": "Vice Chair" },
+          { "name": "MIKO C. PELEGRINA", "role": "Member" },
+          { "name": "MURIEL LAISA B. DIZON", "role": "Member" },
+          { "name": "SAMANTHA NICOLE A. BANASIHAN-ORTEGA", "role": "Member" }
+        ]
       },
       {
-        "role": "Senate Legal Counsel",
-        "name": "MARIA VALENTINA S. SANTANA-CRUZ",
-        "contact": "loc. 4117; 8552-6806"
-      },
-      {
-        "role": "Director General",
-        "name": "EIREEN R. PALANCA",
-        "office": "Legislative Budget Research and Monitoring Office",
-        "contact": "loc. 2136; 8552-6812,8552-6887"
-      },
-      {
-        "role": "Director General",
-        "name": "RODELIO T. DASCIL",
-        "office": "Senate Tax Study and Research Office",
-        "contact": "loc. 5507, 5508; 8834-6590"
-      },
-      {
-        "role": "Director General",
-        "name": "ANTONIO G. DE GUZMAN JR.",
-        "office": "Office of the International Relations and Protocol",
-        "contact": "loc. 6130, 6131; 8552-6795; 8551-2186"
-      },
-      {
-        "role": "Director General",
-        "name": "RODOLFO NOEL S. QUIMBO",
-        "office": "Blue Ribbon Oversight Office Management",
-        "contact": "loc. 5511, 5112; 8552-6851"
-      },
-      {
-        "role": "Director General",
-        "name": "LINO S. ONG",
-        "office": "Senate Public Assistance Office",
-        "contact": "loc.. 1116, 1114; 8552-6708; 8552-6704"
-      },
-      {
-        "role": "Director General",
-        "name": "VACANT",
-        "office": "Senate Economic Planning Office",
-        "contact": "loc. 4176; 8552-6823"
+        "committee": "Youth & Sports Development",
+        "chairperson": "SAMANTHA NICOLE A. BANASIHAN-ORTEGA",
+        "members": [
+          { "name": "MURIEL LAISA B. DIZON", "role": "Vice Chair" },
+          { "name": "LEREN MAE M. BAUTISTA", "role": "Member" },
+          { "name": "ALDOUS AMIEL B. PEREZ", "role": "Member" },
+          { "name": "RAND EDOUARD S. DE JESUS", "role": "Member" }
+        ]
       }
     ]
   },
