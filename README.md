@@ -108,9 +108,6 @@ For setup instructions, coverage details, and examples, see our [Testing Guide](
 
 Thanks to all the people who already contributed!
 
-<a href="https://github.com/bettergovph/bettergov/graphs/contributors">
-    <img src="https://contributors-img.web.app/image?repo=bettergovph/bettergov&max=750&columns=20" />
-</a>
 
 ## License
 
