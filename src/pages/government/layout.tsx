@@ -6,7 +6,7 @@ import {
   GalleryVerticalIcon,
   // GlobeIcon,
   // BookOpenIcon,
-  // MapPinIcon,
+  MapPinIcon,
 } from 'lucide-react';
 import { cn } from '../../lib/utils';
 
@@ -43,13 +43,13 @@ export default function GovernmentLayout({ children }: GovernmentLayoutProps) {
       icon: <Building2Icon className='h-4 w-4' />,
       path: '/government/departments',
     },
-    // {
-    //   title: 'Constitutional Bodies',
-    //   description:
-    //     'Independent bodies created by the Constitution with specific mandates.',
-    //   icon: <BookOpenIcon className='h-4 w-4' />,
-    //   path: '/government/constitutional',
-    // },
+    {
+      title: 'Barangays of Los Baños',
+      description:
+        'The local barangays of Los Baños and their elected officials responsible for community governance and services.',
+      icon: <MapPinIcon className='h-4 w-4' />,
+      path: '/government/barangays',
+    },
     // {
     //   title: 'Local Government Units',
     //   description: 'Local government units of the Philippines.',

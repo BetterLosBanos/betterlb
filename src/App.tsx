@@ -54,8 +54,11 @@ import SenateCommitteesPage from './pages/government/legislative/senate-committe
 // import ConsulatesPage from './pages/government/diplomatic/consulates';
 // import InternationalOrganizationsPage from './pages/government/diplomatic/organizations';
 import OfficeOfTheMayor from './pages/government/executive/office-of-the-mayor';
-import OtherExecutiveOffices from './pages/government/executive/other-executive-offices';
+import ExecutiveOfficials from './pages/government/executive/executive-officials';
 import OfficeOfTheViceMayor from './pages/government/executive/office-of-the-vice-mayor';
+import BarangaysIndex from './pages/government/barangays';
+import BarangayDetail from './pages/government/barangays/[barangay]';
+import BarangaysLayout from './pages/government/barangays/layout';
 // import PresidentialCommunicationsOffice from './pages/government/executive/presidential-communications-office';
 
 // Local Government Units
@@ -185,8 +188,8 @@ function App() {
               <Route path='executive' element={<ExecutiveLayout />}>
                 <Route index element={<ExecutiveDirectory />} />
                 <Route
-                  path='other-executive-offices'
-                  element={<OtherExecutiveOffices />}
+                  path='executive-officials'
+                  element={<ExecutiveOfficials />}
                 />
                 <Route
                   path='office-of-the-mayor'
@@ -205,6 +208,11 @@ function App() {
               <Route path='departments' element={<DepartmentsLayout />}>
                 <Route index element={<DepartmentsIndex />} />
                 <Route path=':department' element={<DepartmentDetail />} />
+              </Route>
+
+              <Route path='barangays' element={<BarangaysLayout />}>
+                <Route index element={<BarangaysIndex />} />
+                <Route path=':barangay' element={<BarangayDetail />} />
               </Route>
 
               {/* <Route path='constitutional' element={<ConstitutionalLayout />}>

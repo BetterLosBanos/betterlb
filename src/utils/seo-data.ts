@@ -139,6 +139,58 @@ export function getDepartmentsSEOData(
   };
 }
 
+export function getBarangaysSEOData(barangayName?: string): GovernmentSEOData {
+  const baseTitle = 'Government Barangays';
+  const title = barangayName ? `${barangayName} - ${baseTitle}` : baseTitle;
+
+  return {
+    title,
+    description: barangayName
+      ? `Contact information, officials, and services for the ${barangayName}. A government barangay directory.`
+      : 'A directory of Philippine Government Barangays. Browse all barangays, their services, and contact information.',
+    keywords: [
+      ...baseKeywords,
+      'Government Barangays',
+      'Philippine Barangays',
+      'Government Services',
+      'Barangay Directory',
+      ...(barangayName ? [barangayName] : []),
+    ],
+    canonical: barangayName
+      ? `/government/barangays/${encodeURIComponent(barangayName)}`
+      : '/government/barangays',
+    breadcrumbs: [
+      { name: 'Home', url: '/' },
+      { name: 'Government', url: '/government' },
+      { name: 'Barangays', url: '/government/barangays' },
+      ...(barangayName
+        ? [
+            {
+              name: barangayName,
+              url: `/government/barangays/${encodeURIComponent(barangayName)}`,
+            },
+          ]
+        : []),
+    ],
+    jsonLd: {
+      '@context': 'https://schema.org',
+      '@type': 'GovernmentOrganization',
+      name: barangayName || 'Philippine Government Barangays',
+      url: `https://gov.ph/government/barangays${
+        barangayName ? `/${encodeURIComponent(barangayName)}` : ''
+      }`,
+      description: barangayName
+        ? `${barangayName} - Philippine Government Barangay`
+        : 'A directory of Philippine Government Barangays',
+      address: {
+        '@type': 'PostalAddress',
+        addressCountry: 'PH',
+        addressLocality: 'Manila',
+      },
+    },
+  };
+}
+
 export function getConstitutionalSEOData(
   officeName?: string
 ): GovernmentSEOData {

@@ -218,7 +218,7 @@ export default function DepartmentsIndex() {
       <div className='space-y-8 @container'>
         <div>
           <h1 className='text-3xl font-bold text-gray-900 mb-2'>
-            Government Departments
+            Municipal Departments
           </h1>
           <p className='text-gray-800 max-w-3xl'>
             Browse through the official government departments. Each department

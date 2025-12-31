@@ -27,6 +27,12 @@ export default function ExecutiveSidebar() {
       path: '/government/executive/office-of-the-vice-mayor',
       title: 'Office of the Vice Mayor',
     },
+    {
+      label: 'Executive Officials',
+      icon: UserCheckIcon,
+      path: '/government/executive/executive-officials',
+      title: 'Office of the Vice Mayor',
+    },
     // {
     //   label: 'Presidential Communications Office',
     //   icon: MessageSquareIcon,
