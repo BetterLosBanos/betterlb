@@ -3,36 +3,28 @@ import {
   scheduled as getWeatherScheduled,
   onRequest as weatherRequest,
 } from './api/weather';
-import {
-  scheduled as getForexScheduled,
-  onRequest as forexRequest,
-} from './api/forex';
-import { onRequest as crawlRequest } from './api/crawl';
+// import {
+//   scheduled as getForexScheduled,
+//   onRequest as forexRequest,
+// } from './api/forex';
+// import { onRequest as crawlRequest } from './api/crawl';
 import { onRequest as weatherKVRequest } from './weather';
-import { onRequest as forexKVRequest } from './forex';
+// import { onRequest as forexKVRequest } from './forex';
 import { Env } from './types';
 
 // Export the scheduled handlers
 export { scheduled as scheduled_getWeather } from './api/weather';
-export { scheduled as scheduled_getForex } from './api/forex';
+// export { scheduled as scheduled_getForex } from './api/forex';
 
 // Handler for HTTP requests
 export default {
-  async scheduled(
-    controller: ScheduledController,
-    env: Env,
-    ctx: ExecutionContext
-  ): Promise<void> {
+  async scheduled(controller: ScheduledController, env: Env): Promise<void> {
     console.log('Scheduled update');
-    await getWeatherScheduled(controller, env, ctx);
-    await getForexScheduled(controller, env, ctx);
+    await getWeatherScheduled(controller, env);
+    // await getForexScheduled(controller, env, ctx);
   },
 
-  async fetch(
-    request: Request,
-    env: Env,
-    ctx: ExecutionContext
-  ): Promise<Response> {
+  async fetch(request: Request, env: Env): Promise<Response> {
     const url = new URL(request.url);
     const path = url.pathname;
 
@@ -65,19 +57,19 @@ export default {
       });
     }
 
-    if (path === '/api/forex') {
-      const response = await forexRequest({ request, env, ctx });
-      // Add CORS headers to the response
-      const newHeaders = new Headers(response.headers);
-      Object.keys(corsHeaders).forEach(key => {
-        newHeaders.set(key, corsHeaders[key]);
-      });
-      return new Response(response.body, {
-        status: response.status,
-        statusText: response.statusText,
-        headers: newHeaders,
-      });
-    }
+    // if (path === '/api/forex') {
+    //   const response = await forexRequest({ request, env, ctx });
+    //   // Add CORS headers to the response
+    //   const newHeaders = new Headers(response.headers);
+    //   Object.keys(corsHeaders).forEach(key => {
+    //     newHeaders.set(key, corsHeaders[key]);
+    //   });
+    //   return new Response(response.body, {
+    //     status: response.status,
+    //     statusText: response.statusText,
+    //     headers: newHeaders,
+    //   });
+    // }
 
     // Handle the new KV-only endpoints
     if (path === '/weather') {
@@ -94,40 +86,41 @@ export default {
       });
     }
 
-    if (path === '/forex') {
-      const response = await forexKVRequest({ request, env, ctx });
-      // Add CORS headers to the response
-      const newHeaders = new Headers(response.headers);
-      Object.keys(corsHeaders).forEach(key => {
-        newHeaders.set(key, corsHeaders[key]);
-      });
-      return new Response(response.body, {
-        status: response.status,
-        statusText: response.statusText,
-        headers: newHeaders,
-      });
-    }
+    // if (path === '/forex') {
+    //   const response = await forexKVRequest({ request, env, ctx });
+    //   // Add CORS headers to the response
+    //   const newHeaders = new Headers(response.headers);
+    //   Object.keys(corsHeaders).forEach(key => {
+    //     newHeaders.set(key, corsHeaders[key]);
+    //   });
+    //   return new Response(response.body, {
+    //     status: response.status,
+    //     statusText: response.statusText,
+    //     headers: newHeaders,
+    //   });
+    // }
 
-    if (path === '/api/crawl') {
-      const response = await crawlRequest({ request, env, ctx });
-      // Add CORS headers to the response
-      const newHeaders = new Headers(response.headers);
-      Object.keys(corsHeaders).forEach(key => {
-        newHeaders.set(key, corsHeaders[key]);
-      });
-      return new Response(response.body, {
-        status: response.status,
-        statusText: response.statusText,
-        headers: newHeaders,
-      });
-    }
+    // if (path === '/api/crawl') {
+    //   const response = await crawlRequest({ request, env, ctx });
+    //   // Add CORS headers to the response
+    //   const newHeaders = new Headers(response.headers);
+    //   Object.keys(corsHeaders).forEach(key => {
+    //     newHeaders.set(key, corsHeaders[key]);
+    //   });
+    //   return new Response(response.body, {
+    //     status: response.status,
+    //     statusText: response.statusText,
+    //     headers: newHeaders,
+    //   });
+    // }
 
     // Simple API to check if the functions are running
     if (path === '/api/status') {
       return new Response(
         JSON.stringify({
           status: 'online',
-          functions: ['weather', 'forex', 'crawl'],
+          functions: ['weather'],
+          // , 'forex', 'crawl'],
           endpoints: [
             {
               path: '/api/weather',
@@ -146,23 +139,23 @@ export default {
                 },
               ],
             },
-            {
-              path: '/api/forex',
-              description:
-                'Get currency exchange rates from BSP API (fetches from external API)',
-              parameters: [
-                {
-                  name: 'symbol',
-                  required: false,
-                  description: 'Filter by currency symbol (e.g., USD)',
-                },
-                {
-                  name: 'update',
-                  required: false,
-                  description: 'Set to "true" to force update KV store',
-                },
-              ],
-            },
+            // {
+            //   path: '/api/forex',
+            //   description:
+            //     'Get currency exchange rates from BSP API (fetches from external API)',
+            //   parameters: [
+            //     {
+            //       name: 'symbol',
+            //       required: false,
+            //       description: 'Filter by currency symbol (e.g., USD)',
+            //     },
+            //     {
+            //       name: 'update',
+            //       required: false,
+            //       description: 'Set to "true" to force update KV store',
+            //     },
+            //   ],
+            // },
             {
               path: '/weather',
               description:
@@ -175,35 +168,35 @@ export default {
                 },
               ],
             },
-            {
-              path: '/forex',
-              description:
-                'Get forex data from KV store only (no external API calls)',
-              parameters: [
-                {
-                  name: 'symbol',
-                  required: false,
-                  description: 'Filter by currency symbol (e.g., USD)',
-                },
-              ],
-            },
-            {
-              path: '/api/crawl',
-              description:
-                'Get content from a URL using web crawler and store in D1 database',
-              parameters: [
-                {
-                  name: 'url',
-                  required: true,
-                  description: 'URL to fetch content from',
-                },
-                {
-                  name: 'update',
-                  required: false,
-                  description: 'Set to "true" to force update from crawler',
-                },
-              ],
-            },
+            // {
+            //   path: '/forex',
+            //   description:
+            //     'Get forex data from KV store only (no external API calls)',
+            //   parameters: [
+            //     {
+            //       name: 'symbol',
+            //       required: false,
+            //       description: 'Filter by currency symbol (e.g., USD)',
+            //     },
+            //   ],
+            // },
+            // {
+            //   path: '/api/crawl',
+            //   description:
+            //     'Get content from a URL using web crawler and store in D1 database',
+            //   parameters: [
+            //     {
+            //       name: 'url',
+            //       required: true,
+            //       description: 'URL to fetch content from',
+            //     },
+            //     {
+            //       name: 'update',
+            //       required: false,
+            //       description: 'Set to "true" to force update from crawler',
+            //     },
+            //   ],
+            // },
           ],
           timestamp: new Date().toISOString(),
         }),
@@ -223,10 +216,10 @@ export default {
         availableEndpoints: [
           '/api/status',
           '/api/weather',
-          '/api/forex',
-          '/api/crawl',
+          // '/api/forex',
+          // '/api/crawl',
           '/weather',
-          '/forex',
+          // '/forex',
         ],
       }),
       {

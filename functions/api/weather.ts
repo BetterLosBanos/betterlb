@@ -73,10 +73,6 @@ interface WeatherResponseData {
 
 // Major Philippine cities with their coordinates (latitude, longitude)
 const PHILIPPINE_CITIES: CityCoordinates[] = [
-  { name: 'Manila', lat: 14.5995, lon: 120.9842 },
-  { name: 'Cebu', lat: 10.3157, lon: 123.8854 },
-  { name: 'Davao', lat: 7.1907, lon: 125.4553 },
-  { name: 'Baguio', lat: 16.4023, lon: 120.596 },
   { name: 'Los Baños', lat: 14.1763, lon: 121.2219 },
 ];
 
