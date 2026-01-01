@@ -1,6 +1,6 @@
 {
-  "name": "bettergovph",
-  "account_id": "cd41784b73cc20f93b3137292f818ff6",
+  "name": "betterlb",
+  "account_id": "39c1422dc87080bcec58fcc5ff4593a7",
   "compatibility_date": "2025-11-17",
   "assets": {
     "directory": "./dist",
@@ -8,16 +8,16 @@
   },
   "kv_namespaces": [
     {
-      "id": "124001eaebfb4815b32db5344fc59251",
       "binding": "BROWSER_KV",
+      "id": "0f53ef9a6db24b8ea2a1280eb062658b",
     },
     {
-      "id": "a1151781bef24f3092aa3ddefe86aac5",
       "binding": "FOREX_KV",
+      "id": "d5d8662bf114495c859ddde799f17b08",
     },
     {
-      "id": "7e1c950bb42d4282b13e3e9524ce5335",
       "binding": "WEATHER_KV",
+      "id": "a6daec9904a04769918521d0b3d836e3",
     },
   ],
 }

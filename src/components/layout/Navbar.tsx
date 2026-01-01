@@ -4,6 +4,7 @@ import {
   MenuIcon,
   SearchIcon,
   XIcon,
+  CheckCircle2,
 } from 'lucide-react';
 import { FC, useState } from 'react';
 import { useTranslation } from 'react-i18next';
@@ -140,7 +141,7 @@ const Navbar: FC = () => {
               About <span className='hidden md:inline'>BetterGov.ph</span>
             </Link>
             <a
-              href='https://www.gov.ph'
+              href='https://losbanos.gov.ph'
               className='text-xs leading-12 text-gray-800 hover:text-primary-600 transition-colors'
               target='_blank'
               rel='noreferrer'
@@ -176,11 +177,12 @@ const Navbar: FC = () => {
         <div className='flex justify-between items-center py-4'>
           <div className='flex items-center'>
             <Link to='/' className='flex items-center'>
-              <img
+              <CheckCircle2 className='h-12 w-12 mr-3' />
+              {/* <img
                 src='/logos/svg/BetterGov_Icon-Primary.svg'
                 alt='BetterGov Logo'
                 className='h-12 w-12 mr-3'
-              />
+              /> */}
               <div>
                 <div className='text-black font-bold'>BetterLB</div>
                 <div className='text-xs text-gray-800'>
