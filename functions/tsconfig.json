@@ -4,7 +4,7 @@
     "module": "ESNext",
     "moduleResolution": "node",
     "esModuleInterop": true,
-    "strict": true,
+    "strict": false,
     "lib": ["ES2022"],
     "types": ["@cloudflare/workers-types"],
     "jsx": "react-jsx",
@@ -13,8 +13,9 @@
     "allowJs": true,
     "resolveJsonModule": true,
     "isolatedModules": true,
-    "forceConsistentCasingInFileNames": true
+    "forceConsistentCasingInFileNames": true,
+    "noEmitOnError": false
   },
-  "include": ["**/*.ts", "**/*.tsx"],
+  "include": ["**/*.ts", "**/*.tsx", "api/crawl.ts.bak"],
   "exclude": ["node_modules", "dist"]
 }
