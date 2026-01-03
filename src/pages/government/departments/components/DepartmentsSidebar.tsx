@@ -47,7 +47,7 @@ export default function DepartmentsSidebar({
       ) : (
         <nav className='p-1'>
           <h3 className='px-3 text-xs font-medium text-gray-800 uppercase tracking-wider mb-2'>
-            Department of
+            Municipal Department
           </h3>
           <ul className='space-y-1'>
             {filteredDepartments
@@ -55,7 +55,10 @@ export default function DepartmentsSidebar({
               .map(dept => (
                 <li key={dept.slug}>
                   <button
-                    title={dept.office_name.replace('DEPARTMENT OF ', '')}
+                    title={dept.office_name.replace(
+                      /DEPARTMENT OF |LOCAL /g,
+                      ''
+                    )}
                     onClick={() => handleDeptSelect(dept)}
                     className={`w-full text-left px-4 py-3 text-sm rounded-md transition-colors cursor-pointer ${
                       departmentParam === dept.slug
@@ -66,7 +69,7 @@ export default function DepartmentsSidebar({
                     <div className='flex items-center'>
                       <Building2Icon className='h-4 w-4 mr-2 text-gray-400 flex-shrink-0' />
                       <span className='truncate'>
-                        {dept.office_name.replace('DEPARTMENT OF ', '')}
+                        {dept.office_name.replace(/DEPARTMENT OF |LOCAL /g, '')}
                       </span>
                     </div>
                   </button>
