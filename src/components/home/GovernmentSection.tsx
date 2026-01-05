@@ -46,9 +46,9 @@ const GovernmentSection: FC = () => {
       link: '/government/legislative',
     },
     {
-      id: 'judiciary',
-      title: t('government.judiciaryTitle'),
-      description: t('government.judiciaryDescription'),
+      id: 'barangays',
+      title: t('government.barangaysTitle'),
+      description: t('government.barangaysDescription'),
       icon: (
         <svg
           className='h-10 w-10 text-primary-600'
@@ -59,13 +59,12 @@ const GovernmentSection: FC = () => {
           strokeLinecap='round'
           strokeLinejoin='round'
         >
-          <path d='M3 21h18'></path>
-          <path d='M12 3v18'></path>
-          <path d='M5 8h14'></path>
-          <path d='M5 16h14'></path>
+          <path d='M3 12l9-8 9 8'></path>
+          <path d='M5 10v10h14V10'></path>
+          <path d='M9 20v-6h6v6'></path>
         </svg>
       ),
-      link: '/government/judiciary',
+      link: '/government/barangays',
     },
   ];
 
