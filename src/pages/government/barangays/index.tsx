@@ -23,10 +23,10 @@ interface Barangay {
   slug: string;
   barangay_name: string;
   address?: string;
-  trunkline?: string;
+  trunkline?: string[];
   website?: string;
   email?: string;
-  officials?: Official[];
+  officials: Official[];
 }
 
 export default function BarangaysIndex() {
@@ -131,12 +131,19 @@ export default function BarangaysIndex() {
                           </span>
                         </div>
                       )} */}
-                      {barangay.trunkline && (
-                        <div className='flex items-center'>
-                          <PhoneIcon className='h-4 w-4 text-gray-400 mr-2 shrink-0' />
-                          <span className='text-sm text-gray-800'>
-                            {barangay.trunkline}
-                          </span>
+                      {barangay.trunkline && barangay.trunkline.length > 0 && (
+                        <div className='flex flex-col text-sm text-gray-800'>
+                          {barangay.trunkline.map((number, index) => (
+                            <a
+                              key={index}
+                              href={`tel:${number.replace(/\s+/g, '')}`}
+                              onClick={e => e.stopPropagation()}
+                              className='flex items-center'
+                            >
+                              <PhoneIcon className='h-4 w-4 text-gray-400 mr-2 shrink-0' />
+                              <span>{number}</span>
+                            </a>
+                          ))}
                         </div>
                       )}
                       {barangay.website && (

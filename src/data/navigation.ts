@@ -194,7 +194,7 @@ export const footerNavigation = {
         { label: 'Project Ideas', href: '/ideas' },
         { label: 'Accessibility', href: '/accessibility' },
         { label: 'Terms of Use', href: '/terms-of-service' },
-        { label: 'Contact Us', href: '/about' },
+        { label: 'Contact Us', href: '/contact' },
       ],
     },
     {

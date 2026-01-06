@@ -27,7 +27,7 @@ interface Official {
 interface Barangay {
   barangay_name: string;
   address?: string;
-  trunkline?: string;
+  trunkline?: string[];
   website?: string;
   email?: string;
   officials?: Official[];

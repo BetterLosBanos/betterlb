@@ -48,7 +48,6 @@ function DepartmentDetailSection({
     );
   }
 
-  // Check if this is a simple key-value object with no nested objects
   const isSimpleObject = Object.values(data).every(
     value => value === null || typeof value !== 'object'
   );
