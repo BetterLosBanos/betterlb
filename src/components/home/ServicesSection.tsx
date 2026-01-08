@@ -5,45 +5,41 @@ import serviceCategories from '../../data/service_categories.json';
 import { Link } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 
-interface Subcategory {
+interface Category {
   name: string;
   slug: string;
-}
-
-interface Category {
-  category: string;
-  slug: string;
-  subcategories: Subcategory[];
+  description: string;
 }
 
 const ServicesSection: FC = () => {
   const { t } = useTranslation('common');
 
-  const getIcon = (category: string) => {
+  const getIcon = (categoryName: string) => {
     const iconMap: { [key: string]: keyof typeof LucideIcons } = {
-      'Business and Trade': 'Building2',
-      'Certificates and IDs': 'FileCheck',
-      Contributions: 'Wallet',
-      'Disaster and Weather': 'Cloud',
-      Education: 'GraduationCap',
-      Employment: 'Briefcase',
-      Health: 'Heart',
-      Housing: 'Home',
-      'Passport and Travel': 'Plane',
-      'Social Services': 'Users',
-      Tax: 'Receipt',
-      'Transport and Driving': 'Car',
+      'Certificates & Vital Records': 'ScrollText',
+      'Business & Licensing': 'Store',
+      'Taxation & Assessment': 'Landmark',
+      'Infrastructure & Engineering': 'HardHat',
+      'Social Services': 'HeartHandshake',
+      'Health & Wellness': 'Stethoscope',
+      'Agriculture & Livelihood': 'Sprout',
+      'Environment & Waste': 'Leaf',
+      'Education & Scholarship': 'GraduationCap',
+      'Public Safety': 'ShieldCheck',
     };
 
-    const Icon = LucideIcons[iconMap[category] || 'FileText'];
+    // Fallback to FileText if icon not found
+    const iconName = iconMap[categoryName] || 'FileText';
+    const Icon = LucideIcons[iconName] as React.ElementType;
+
     return Icon ? <Icon className='h-6 w-6' /> : null;
   };
 
-  // Show only first 12 categories
-  const displayedCategories = serviceCategories.categories.slice(
-    0,
-    12
-  ) as Category[];
+  // Cast JSON data to new Interface
+  const categories = serviceCategories.categories as Category[];
+
+  // Show only first 8-12 categories (depending on your grid preference)
+  const displayedCategories = categories.slice(0, 8);
 
   return (
     <section className='py-12 bg-white'>
@@ -59,52 +55,44 @@ const ServicesSection: FC = () => {
 
         <div className='grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6'>
           {displayedCategories.map(category => (
-            <Card
+            <Link
               key={category.slug}
-              hoverable
-              className='border-t-4 border-primary-500'
+              to={`/services?category=${category.slug}`}
+              className='group h-full'
             >
-              <CardContent className='flex flex-col h-full p-6'>
-                <div className='flex gap-2'>
-                  <div className='bg-primary-100 text-primary-600 p-3 rounded-md mb-4 self-start'>
-                    {getIcon(category.category)}
+              <Card
+                hoverable
+                className='h-full border-t-4 border-primary-500 transition-all hover:-translate-y-1'
+              >
+                <CardContent className='flex flex-col h-full p-6'>
+                  <div className='flex items-start justify-between mb-4'>
+                    <div className='bg-primary-50 text-primary-600 p-3 rounded-lg group-hover:bg-primary-600 group-hover:text-white transition-colors'>
+                      {getIcon(category.name)}
+                    </div>
                   </div>
 
-                  <h3 className='text-lg font-semibold mb-4 text-gray-900'>
-                    {category.category}
+                  <h3 className='text-lg font-bold mb-2 text-gray-900 group-hover:text-primary-700'>
+                    {category.name}
                   </h3>
-                </div>
 
-                <ul className='space-y-2 mb-6 grow'>
-                  {category.subcategories.slice(0, 3).map(subcategory => (
-                    <li key={subcategory.slug}>
-                      <Link
-                        to={`/services?category=${category.slug}&subcategory=${subcategory.slug}`}
-                        className='text-gray-800 hover:text-primary-600 transition-colors text-md flex items-center'
-                      >
-                        <span className='w-1.5 h-1.5 bg-gray-300 rounded-full mr-2'></span>
-                        {subcategory.name}
-                      </Link>
-                    </li>
-                  ))}
-                </ul>
+                  <p className='text-sm text-gray-600 line-clamp-3 mb-6 flex-grow'>
+                    {category.description}
+                  </p>
 
-                <Link
-                  to={`/services?category=${category.slug}`}
-                  className='mt-auto text-primary-600 hover:text-primary-700 font-medium transition-colors inline-flex items-center'
-                >
-                  {t('services.viewAllCategory')} {category.category}
-                  <LucideIcons.ArrowRight className='ml-1 h-4 w-4' />
-                </Link>
-              </CardContent>
-            </Card>
+                  <div className='text-primary-600 font-medium text-sm flex items-center group-hover:underline'>
+                    View Services
+                    <LucideIcons.ArrowRight className='ml-1 h-4 w-4 transition-transform group-hover:translate-x-1' />
+                  </div>
+                </CardContent>
+              </Card>
+            </Link>
           ))}
         </div>
 
-        <div className='text-center mt-8'>
+        <div className='text-center mt-10'>
           <Link
-            to='/services'
-            className='inline-flex items-center justify-center rounded-md font-medium transition-colors px-6 py-3 bg-primary-500 text-white hover:bg-primary-600 focus:outline-hidden focus:ring-2 focus:ring-offset-2 focus:ring-primary-500 shadow-xs'
+            to='/services?category=all'
+            className='inline-flex items-center justify-center rounded-lg font-medium transition-colors px-6 py-3 bg-primary-600 text-white hover:bg-primary-700 focus:outline-hidden focus:ring-2 focus:ring-offset-2 focus:ring-primary-500 shadow-sm'
           >
             {t('services.viewAll')}
           </Link>

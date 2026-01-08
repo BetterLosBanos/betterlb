@@ -1,15 +1,10 @@
 import { NavigationItem } from '../types';
 import serviceCategories from './service_categories.json';
 
-interface Subcategory {
+interface Category {
   name: string;
   slug: string;
-}
-
-interface Category {
-  category: string;
-  slug: string;
-  subcategories: Subcategory[];
+  description?: string;
 }
 
 export const ourProjects = [
@@ -107,7 +102,7 @@ export const mainNavigation: NavigationItem[] = [
     label: 'Services',
     href: '/services',
     children: (serviceCategories.categories as Category[]).map(category => ({
-      label: category.category,
+      label: category.name,
       href: `/services?category=${category.slug}`,
     })),
   },

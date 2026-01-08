@@ -13,33 +13,33 @@ const FILE_CONFIGS = {
     slugField: 'office_name',
     isArray: true,
   },
-  constitutional: {
-    path: '../src/data/directory/constitutional.json',
-    slugField: 'name',
-    isArray: true,
-  },
+  // constitutional: {
+  //   path: '../src/data/directory/constitutional.json',
+  //   slugField: 'name',
+  //   isArray: true,
+  // },
   legislative: {
     path: '../src/data/directory/legislative.json',
     slugField: 'chamber',
     isArray: true,
   },
-  diplomatic: {
-    path: '../src/data/directory/diplomatic.json',
-    slugField: 'country',
-    isNested: true,
-    nestedKey: 'Diplomatic Mission',
-    isArray: true,
-  },
+  // diplomatic: {
+  //   path: '../src/data/directory/diplomatic.json',
+  //   slugField: 'country',
+  //   isNested: true,
+  //   nestedKey: 'Diplomatic Mission',
+  //   isArray: true,
+  // },
   executive: {
     path: '../src/data/directory/executive.json',
     slugField: 'office',
     isArray: true,
   },
-  lgu: {
-    path: '../src/data/directory/lgu.json',
-    slugField: 'region',
-    isArray: true,
-  },
+  // lgu: {
+  //   path: '../src/data/directory/lgu.json',
+  //   slugField: 'region',
+  //   isArray: true,
+  // },
 };
 
 // Function to generate a URL-friendly slug from a string
