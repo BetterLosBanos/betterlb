@@ -357,11 +357,11 @@ function generateServicesDirectory(serviceCategories) {
     servicesList.push(
       `- ${category.category} (https://bettergov.ph/services?category=${category.slug})`
     );
-    category.subcategories.forEach(subcat => {
-      servicesList.push(
-        `  - ${subcat.name} (https://bettergov.ph/services?category=${category.slug}&subcategory=${subcat.slug})`
-      );
-    });
+    // category.subcategories.forEach(subcat => {
+    //   servicesList.push(
+    //     `  - ${subcat.name} (https://bettergov.ph/services?category=${category.slug}&subcategory=${subcat.slug})`
+    //   );
+    // });
   });
 
   return servicesList;
