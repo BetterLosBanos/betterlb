@@ -1,9 +1,9 @@
 [
   {
-    "service": "Apply for SSS Maternity Benefit",
+    "service": "Apply for Senior Citizen ID",
     "url": "https://www.sss.gov.ph/maternity-benefit/",
     "id": "84898679-8bfe-40f6-b620-7056e0290f8a",
-    "slug": "apply-for-sss-maternity-benefit",
+    "slug": "apply-for-senior-citizen-id",
     "published": true,
     "featured": false,
     "category": {
@@ -18,10 +18,10 @@
     "updatedAt": "2025-06-06T11:30:06.318Z"
   },
   {
-    "service": "File Complaints on DSWD Disaster-related initiatives",
+    "service": "Apply for PWD ID",
     "url": "https://ereklamo.dswd.gov.ph/index.php",
     "id": "82f41298-4a38-4036-9f27-a7fc95d7a48d",
-    "slug": "file-complaints-on-dswd-disaster-related-initiatives",
+    "slug": "apply-for-pwd-id",
     "published": true,
     "featured": false,
     "category": {
@@ -36,10 +36,10 @@
     "updatedAt": "2025-06-06T11:30:06.318Z"
   },
   {
-    "service": "Apply for SSS Salary Loan",
+    "service": "Apply for Financial Assistance",
     "url": "https://www.sss.gov.ph/salary-loan/",
     "id": "12544f9a-bad4-47d9-b12b-1d4377b1859c",
-    "slug": "apply-for-sss-salary-loan",
+    "slug": "apply-for-financial-assistance",
     "published": true,
     "featured": false,
     "category": {
@@ -54,10 +54,10 @@
     "updatedAt": "2025-06-06T11:30:06.318Z"
   },
   {
-    "service": "Apply for DBP Water for Every Resident (WATER) Program",
+    "service": "Senior Social Pension",
     "url": "https://www.dbp.ph/developmental-banking/environment-initiatives/water-for-every-resident-water-program/",
     "id": "9d0d0565-4ac0-4385-9dcf-3ec927accc33",
-    "slug": "apply-for-dbp-water-for-every-resident-water-program",
+    "slug": "senior-social-pension",
     "published": true,
     "featured": false,
     "category": {

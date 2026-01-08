@@ -1,9 +1,9 @@
 [
   {
-    "service": "Apply for a Trademark Online",
-    "url": "https://tm.ipophil.gov.ph/sp-ui-tmefiling/wizard.htm?execution=e1s1",
+    "service": "Apply for New Business Permit",
+    "url": "",
     "id": "cfb2333a-eb21-4929-952c-b2d189e05d2b",
-    "slug": "apply-for-a-trademark-online",
+    "slug": "apply-for-business-permit-new",
     "published": true,
     "featured": false,
     "category": {
@@ -15,13 +15,47 @@
       "slug": "business-copyright-trademark-patent"
     },
     "createdAt": "2025-06-06T11:30:06.318Z",
-    "updatedAt": "2025-06-06T11:30:06.318Z"
+    "updatedAt": "2025-06-06T11:30:06.318Z",
+    "steps": [
+      "Prepare requirements",
+      "Submit application online or at office",
+      "Pay fees",
+      "Receive permit"
+    ],
+    "requirements": [
+      "Valid ID",
+      "Business registration form",
+      "Barangay clearance"
+    ],
+    "faqs": [
+      {
+        "question": "Can I apply online?",
+        "answer": "Yes, the city government portal accepts online applications."
+      },
+      {
+        "question": "How long does it take?",
+        "answer": "Processing usually takes 3–5 working days."
+      }
+    ],
+    "office": {
+      "name": "City Hall Business Permit Office",
+      "address": "123 Main St, Cityville",
+      "phone": "+63 912 345 6789",
+      "email": "bpo@city.gov.ph"
+    },
+    "relatedServices": ["Renew Business Permit", "Apply for Mayor's Permit"],
+    "quickInfo": {
+      "processingTime": "3–5 working days",
+      "fee": "₱500",
+      "whoCanApply": "Business owners",
+      "appointmentType": "Walk-in"
+    }
   },
   {
-    "service": "Apply for a Utility Model",
+    "service": "Apply for Business Permit Renewal",
     "url": "https://www.ipophil.gov.ph/utility-model-filing/",
     "id": "58ee4717-63c3-4874-940e-67e89f2f20a4",
-    "slug": "apply-for-a-utility-model",
+    "slug": "apply-for-a-business-permit-renewal",
     "published": true,
     "featured": false,
     "category": {
@@ -36,10 +70,10 @@
     "updatedAt": "2025-11-26T21:20:00.000Z"
   },
   {
-    "service": "Apply for DDB Certification (non-controlled) and Exemption (with controlled chemicals)",
+    "service": "Apply for Business Closure",
     "url": "https://ddb.gov.ph/regulatory-control/",
     "id": "68bc28c0-d8ed-4215-8a21-40207196eacc",
-    "slug": "apply-for-ddb-certification-non-controlled-and-exemption-with-controlled-chemicals",
+    "slug": "apply-for-business-closure",
     "published": true,
     "featured": false,
     "category": {
@@ -54,10 +88,10 @@
     "updatedAt": "2025-11-26T21:21:00.000Z"
   },
   {
-    "service": "Request for a Grant of a Philippine Patent",
+    "service": "Apply for Community Tax Certificate (cedula)",
     "url": "https://www.ipophil.gov.ph/how-to-file-for-patent-grant/",
     "id": "bc3024a5-e15d-4680-94b8-e0dc0e02a952",
-    "slug": "request-for-a-grant-of-a-philippine-patent",
+    "slug": "apply-for-ctc-cedula",
     "published": true,
     "featured": false,
     "category": {

@@ -1,6 +1,6 @@
 [
   {
-    "service": "Apply for DOST Accreditation and Certification",
+    "service": "Request for Birth Certificate",
     "url": "http://www.dost.gov.ph/products-and-services/accreditation-and-certification.html",
     "id": "97c671ff-7798-4416-a8a6-e9776d705797",
     "slug": "apply-for-dost-accreditation-and-certification",
@@ -18,7 +18,7 @@
     "updatedAt": "2025-06-06T11:30:06.318Z"
   },
   {
-    "service": "Avail Certification of Science and Technology-oriented Foundations",
+    "service": "Request for Marriage Certificate",
     "url": "https://sfu.dost.gov.ph",
     "id": "e80122a2-42aa-455a-ad15-f348030c4aec",
     "slug": "avail-certification-of-science-and-technology-oriented-foundations",
@@ -144,7 +144,7 @@
     "updatedAt": "2025-06-06T11:30:06.318Z"
   },
   {
-    "service": "Apply for NBI Multipurpose Clearance",
+    "service": "Apply for Barangay Clearance",
     "url": "https://clearance.nbi.gov.ph/",
     "id": "5f4f4780-0f2b-4687-a0ab-8706550661ea",
     "slug": "apply-for-nbi-multipurpose-clearance",
@@ -234,10 +234,10 @@
     "updatedAt": "2025-06-06T11:30:06.318Z"
   },
   {
-    "service": "Renew NBI Multipurpose Clearance",
+    "service": "Apply for Police Clearance",
     "url": "https://clearance.nbi.gov.ph/",
     "id": "621d6a30-2250-4039-ab7b-a144d3103323",
-    "slug": "renew-nbi-multipurpose-clearance",
+    "slug": "apply-for-police-clearance",
     "published": true,
     "featured": false,
     "category": {

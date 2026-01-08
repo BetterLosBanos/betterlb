@@ -4,8 +4,7 @@ import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { Card, CardContent } from '../../components/ui/Card';
 import SearchInput from '../../components/ui/SearchInput';
 import serviceCategories from '../../data/service_categories.json';
-
-// Import all service files
+import { Link } from 'react-router-dom';
 import { scrollToTop } from '@/lib/scrollUtils';
 import { parseAsString, useQueryState, useQueryStates } from 'nuqs';
 import { Helmet } from 'react-helmet-async';
@@ -67,8 +66,8 @@ export default function ServicesPage() {
   });
 
   const [currentPage, setCurrentPage] = useState(1);
-
   const loadMoreRef = useRef<HTMLDivElement>(null);
+  const [sidebarOpen, setSidebarOpen] = useState(false);
 
   // Find selected category object
   const selectedCategory = useMemo(() => {
@@ -142,15 +141,13 @@ export default function ServicesPage() {
   };
 
   const handleLoadMore = useCallback(() => {
-    // Prevent loading beyond available items
     if (filteredServices.length <= currentPage * ITEMS_PER_PAGE) {
       return;
     }
-
     setCurrentPage(prev => prev + 1);
-  }, [filteredServices.length, currentPage, setCurrentPage]);
+  }, [filteredServices.length, currentPage]);
 
-  // Intersection Observer for infinite scroll
+  // Infinite scroll observer
   useEffect(() => {
     const observer = new IntersectionObserver(
       entries => {
@@ -161,28 +158,20 @@ export default function ServicesPage() {
       },
       {
         root: null,
-        rootMargin: '100px', // Trigger 100px before the trigger comes into view
+        rootMargin: '100px',
         threshold: 0.1,
       }
     );
 
     const currentRef = loadMoreRef.current;
-    if (currentRef) {
-      observer.observe(currentRef);
-    }
+    if (currentRef) observer.observe(currentRef);
 
     return () => {
-      if (currentRef) {
-        observer.unobserve(currentRef);
-      }
+      if (currentRef) observer.unobserve(currentRef);
     };
   }, [handleLoadMore]);
 
-  // const currentCategoryData = selectedCategory
-
-  const [sidebarOpen, setSidebarOpen] = useState(false);
-
-  // Dynamically generate SEO meta tags based on selected category & subcategory
+  // SEO meta tags
   const { metaTitle, metaDescription, metaKeywords, canonicalUrl } =
     useMemo(() => {
       const baseTitle = 'Government Services Directory | BetterGov.ph';
@@ -190,12 +179,8 @@ export default function ServicesPage() {
         'Browse and search a comprehensive directory of Philippine government services across categories and subcategories.';
 
       const phrases: string[] = [];
-      if (selectedCategory) {
-        phrases.push(selectedCategory.category);
-      }
-      if (selectedSubcategory) {
-        phrases.push(selectedSubcategory.name);
-      }
+      if (selectedCategory) phrases.push(selectedCategory.category);
+      if (selectedSubcategory) phrases.push(selectedSubcategory.name);
 
       const title = phrases.length
         ? `${phrases.join(' – ')} | BetterGov.ph`
@@ -243,14 +228,13 @@ export default function ServicesPage() {
         <meta name='description' content={metaDescription} />
         <meta name='keywords' content={metaKeywords} />
         <link rel='canonical' href={canonicalUrl} />
-
-        {/* Open Graph / Social */}
         <meta property='og:title' content={metaTitle} />
         <meta property='og:description' content={metaDescription} />
         <meta property='og:type' content='website' />
         <meta property='og:url' content={canonicalUrl} />
         <meta property='og:image' content='https://gov.ph/ph-logo.webp' />
       </Helmet>
+
       <div className='container mx-auto px-4 py-6 md:py-12'>
         {/* Header */}
         <header className='text-center mb-8 md:mb-12'>
@@ -282,38 +266,6 @@ export default function ServicesPage() {
             Search for government services by name, category, or description
           </p>
         </section>
-
-        {/* Featured Services */}
-        {/* <section className="mb-12">
-          <h2 className="text-2xl font-bold text-gray-900 mb-6">
-            Featured Resources
-          </h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            <Link to="/services/websites" className="group">
-              <Card className="h-full transition-all duration-300 hover:shadow-lg hover:border-primary-300 group-hover:transform group-hover:-translate-y-1">
-                <CardContent className="p-6">
-                  <div className="flex items-center mb-4">
-                    <div className="p-3 rounded-full bg-primary-50 text-primary-600 mr-4">
-                      <Globe className="h-6 w-6" />
-                    </div>
-                    <h3 className="text-xl font-semibold text-gray-900 group-hover:text-primary-600 transition-colors">
-                      Government Websites Directory
-                    </h3>
-                  </div>
-                  <p className="text-gray-800 mb-4">
-                    Comprehensive directory of Philippine government websites,
-                    agencies, and services. Find official websites for all
-                    government institutions.
-                  </p>
-                  <div className="flex items-center text-primary-600 font-medium">
-                    <span>Browse Directory</span>
-                    <ExternalLink className="ml-2 h-4 w-4" />
-                  </div>
-                </CardContent>
-              </Card>
-            </Link>
-          </div>
-        </section> */}
 
         {/* Mobile Category Toggle */}
         <div className='md:hidden mb-6'>
@@ -472,9 +424,14 @@ export default function ServicesPage() {
                     <CardContent className='p-4 md:p-6'>
                       <div className='flex items-start justify-between mb-4'>
                         <div>
-                          <h3 className='text-lg font-semibold text-gray-900'>
+                          {/* Link to Service Detail page */}
+                          <Link
+                            to={`/services/${service.slug}`}
+                            className='text-lg font-semibold text-gray-900 hover:text-primary-600 transition-colors'
+                          >
                             {service.service}
-                          </h3>
+                          </Link>
+
                           <div className='mt-2 flex flex-wrap gap-2'>
                             <button
                               onClick={() => {
@@ -509,6 +466,8 @@ export default function ServicesPage() {
                           aria-hidden='true'
                         />
                       </div>
+
+                      {/* External link */}
                       <div className='space-y-3'>
                         <a
                           href={service.url}
@@ -518,24 +477,11 @@ export default function ServicesPage() {
                         >
                           {service.url}
                         </a>
-                        <a
-                          href={service.url}
-                          target='_blank'
-                          rel='noopener noreferrer'
-                        >
+                        <Link to={`/services/${service.slug}`}>
                           <Button className='cursor-default bg-blue-600 text-white rounded-lg px-4 py-1 text-xs mt-4 hover:cursor-pointer'>
                             View Service
                           </Button>
-                        </a>
-
-                        {/* <div className="flex items-center text-sm text-gray-800">
-                          <time
-                            dateTime={new Date().toISOString()}
-                            className="text-xs md:text-sm"
-                          >
-                            Last verified: {formatDate(new Date())}
-                          </time>
-                        </div> */}
+                        </Link>
                       </div>
                     </CardContent>
                   </Card>
@@ -552,7 +498,7 @@ export default function ServicesPage() {
               />
             )}
 
-            {/* Status message for screen readers */}
+            {/* Screen reader status */}
             <div className='sr-only' aria-live='polite' aria-atomic='true'>
               Showing {paginatedServices.length} of {filteredServices.length}{' '}
               services

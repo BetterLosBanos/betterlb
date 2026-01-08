@@ -60,13 +60,6 @@ import OfficeOfTheViceMayor from './pages/government/executive/office-of-the-vic
 import BarangaysIndex from './pages/government/barangays';
 import BarangayDetail from './pages/government/barangays/[barangay]';
 import BarangaysLayout from './pages/government/barangays/layout';
-// import PresidentialCommunicationsOffice from './pages/government/executive/presidential-communications-office';
-
-// Local Government Units
-// import LocalLayout from './pages/government/local/components/LocalLayout';
-// import LocalGovernmentIndex from './pages/government/local/index';
-// import RegionalLGUPage from './pages/government/local/[region]';
-
 // Search Page
 import SearchPage from './pages/Search';
 
@@ -81,7 +74,7 @@ import ContractorDetail from './pages/flood-control-projects/contractors/[contra
 
 // Services Pages
 import WebsitesDirectory from './pages/services/websites';
-
+import ServiceDetail from './pages/services/[service]';
 // Sitemap Page
 import SitemapPage from './pages/sitemap';
 import Ideas from './pages/Ideas';
@@ -105,6 +98,7 @@ function App() {
             <Route path='/' element={<Home />} />
             <Route path='/design' element={<DesignGuide />} />
             <Route path='/services' element={<Services />} />
+            <Route path='/services/:service' element={<ServiceDetail />} />
             <Route path='/about' element={<AboutPage />} />
             <Route path='/contact' element={<ContactUs />} />
             <Route path='/accessibility' element={<AccessibilityPage />} />

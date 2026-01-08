@@ -1,0 +1,42 @@
+[
+  {
+    "service": "Apply for New Business Permit",
+    "url": "",
+    "category": "Business and Trade",
+    "subcategory": "Business Registration",
+    "steps": [
+      "Prepare requirements",
+      "Submit application online or at office",
+      "Pay fees",
+      "Receive permit"
+    ],
+    "requirements": [
+      "Valid ID",
+      "Business registration form",
+      "Barangay clearance"
+    ],
+    "faqs": [
+      {
+        "question": "Can I apply online?",
+        "answer": "Yes, the city government portal accepts online applications."
+      },
+      {
+        "question": "How long does it take?",
+        "answer": "Processing usually takes 3–5 working days."
+      }
+    ],
+    "office": {
+      "name": "City Hall Business Permit Office",
+      "address": "123 Main St, Cityville",
+      "phone": "+63 912 345 6789",
+      "email": "bpo@city.gov.ph"
+    },
+    "relatedServices": ["Renew Business Permit", "Apply for Mayor's Permit"],
+    "quickInfo": {
+      "processingTime": "3–5 working days",
+      "fee": "₱500",
+      "whoCanApply": "Business owners",
+      "appointmentType": "Walk-in"
+    }
+  }
+]
