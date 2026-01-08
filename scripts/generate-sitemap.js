@@ -100,9 +100,9 @@ function loadData() {
 
     // Import government directory data
     const departments = JSON.parse(fs.readFileSync(departmentsPath, 'utf8'));
-    const constitutional = JSON.parse(
-      fs.readFileSync(constitutionalPath, 'utf8')
-    );
+    // const constitutional = JSON.parse(
+    //   fs.readFileSync(constitutionalPath, 'utf8')
+    // );
     const legislative = JSON.parse(fs.readFileSync(legislativePath, 'utf8'));
     const diplomatic = JSON.parse(fs.readFileSync(diplomaticPath, 'utf8'));
     const executive = JSON.parse(fs.readFileSync(executivePath, 'utf8'));
