@@ -12,7 +12,7 @@ import { fileURLToPath } from 'url';
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
-// Import data from the project
+// Import data paths
 const serviceCategoriesPath = path.join(
   __dirname,
   '../src/data/service_categories.json'
@@ -21,24 +21,16 @@ const departmentsPath = path.join(
   __dirname,
   '../src/data/directory/departments.json'
 );
-// const constitutionalPath = path.join(
-//   __dirname,
-//   '../src/data/directory/constitutional.json'
-// );
 const legislativePath = path.join(
   __dirname,
   '../src/data/directory/legislative.json'
 );
-// const diplomaticPath = path.join(
-//   __dirname,
-//   '../src/data/directory/diplomatic.json'
-// );
 const executivePath = path.join(
   __dirname,
   '../src/data/directory/executive.json'
 );
 
-// Static navigation data (extracted from navigation.ts to avoid import issues)
+// Static navigation data
 const mainNavigation = [
   {
     label: 'Philippines',
@@ -72,24 +64,18 @@ const mainNavigation = [
     children: [
       { label: 'Executive', href: '/government/executive' },
       { label: 'Departments', href: '/government/departments' },
-      // { label: 'Constitutional', href: '/government/constitutional' },
       { label: 'Legislative', href: '/government/legislative' },
-      // { label: 'Local Government', href: '/government/local' },
-      // { label: 'Diplomatic', href: '/government/diplomatic' },
-      // { label: 'Salary Grades', href: '/government/salary-grade' },
     ],
   },
-  // {
-  //   label: 'Flood Control Projects',
-  //   href: '/flood-control-projects',
-  //   children: [
-  //     { label: 'Charts', href: '/flood-control-projects' },
-  //     { label: 'Table', href: '/flood-control-projects/table' },
-  //     { label: 'Map', href: '/flood-control-projects/map' },
-  //     { label: 'Contractors', href: '/flood-control-projects/contractors' },
-  //   ],
-  // },
 ];
+
+// Helper to safely get the categories array regardless of JSON format
+function getSafeCategories(json) {
+  if (!json) return [];
+  if (Array.isArray(json)) return json;
+  if (json.categories && Array.isArray(json.categories)) return json.categories;
+  return [];
+}
 
 // Function to load data
 function loadData() {
@@ -100,18 +86,16 @@ function loadData() {
 
     // Import government directory data
     const departments = JSON.parse(fs.readFileSync(departmentsPath, 'utf8'));
-    // const constitutional = JSON.parse(
-    //   fs.readFileSync(constitutionalPath, 'utf8')
-    // );
     const legislative = JSON.parse(fs.readFileSync(legislativePath, 'utf8'));
-    // const diplomatic = JSON.parse(fs.readFileSync(diplomaticPath, 'utf8'));
     const executive = JSON.parse(fs.readFileSync(executivePath, 'utf8'));
 
     // Populate services children from categories
     const servicesNav = mainNavigation.find(nav => nav.label === 'Services');
-    if (servicesNav) {
-      servicesNav.children = serviceCategories.categories.map(category => ({
-        label: category.category,
+    const categoriesList = getSafeCategories(serviceCategories);
+
+    if (servicesNav && categoriesList.length > 0) {
+      servicesNav.children = categoriesList.map(category => ({
+        label: category.name || category.category, // Support both new 'name' and old 'category'
         href: `/services?category=${category.slug}`,
       }));
     }
@@ -120,9 +104,7 @@ function loadData() {
       mainNavigation,
       serviceCategories,
       departments,
-      // constitutional,
       legislative,
-      // diplomatic,
       executive,
     };
   } catch (error) {
@@ -135,31 +117,27 @@ function loadData() {
 function generateGovernmentDirectory(governmentData) {
   const sections = [];
 
-  // Executive Branch
+  // Executive Branch (Updated for LGU Structure)
   sections.push('#### Executive Branch');
   sections.push(
-    '- Office of the President (https://bettergov.ph/government/executive/office-of-the-mayor)'
+    '- Office of the Mayor (https://bettergov.ph/government/executive/office-of-the-mayor)'
   );
   sections.push(
     '- Office of the Vice Mayor (https://bettergov.ph/government/executive/office-of-the-vice-mayor)'
   );
-  // sections.push(
-  //   '- Presidential Communications Office (https://bettergov.ph/government/executive/presidential-communications-office)'
-  // );
-  // sections.push(
-  //   '- Other Executive Offices (https://bettergov.ph/government/executive/other-executive-offices)'
-  // );
+  sections.push(
+    '- Executive Officials (https://bettergov.ph/government/executive/executive-officials)'
+  );
   sections.push('');
 
   // Departments
   sections.push('#### Government Departments');
   if (governmentData.departments && Array.isArray(governmentData.departments)) {
-    const majorDepartments = governmentData.departments.slice(0, 10); // Show first 10 departments
+    const majorDepartments = governmentData.departments.slice(0, 10);
     majorDepartments.forEach(dept => {
       if (dept.slug && dept.office_name) {
-        const deptName = dept.office_name.replace('DEPARTMENT OF ', '');
         sections.push(
-          `- ${deptName} (https://bettergov.ph/government/departments/${encodeURIComponent(dept.slug)})`
+          `- ${dept.office_name} (https://bettergov.ph/government/departments/${encodeURIComponent(dept.slug)})`
         );
       }
     });
@@ -171,71 +149,14 @@ function generateGovernmentDirectory(governmentData) {
   }
   sections.push('');
 
-  // Constitutional Bodies
-  // sections.push('#### Constitutional Bodies');
-  // if (
-  //   governmentData.constitutional &&
-  //   Array.isArray(governmentData.constitutional)
-  // ) {
-  //   const constitutionalOffices = governmentData.constitutional
-  //     .filter(
-  //       office =>
-  //         office.slug &&
-  //         !office.office_type?.includes('Government-Owned') &&
-  //         !office.office_type?.includes('GOCCs') &&
-  //         !office.office_type?.includes('State Universities') &&
-  //         !office.office_type?.includes('SUCs')
-  //     )
-  //     .slice(0, 8); // Show first 8 constitutional offices
-
-  //   constitutionalOffices.forEach(office => {
-  //     sections.push(
-  //       `- ${office.name || office.office_name} (https://bettergov.ph/government/constitutional/${encodeURIComponent(office.slug)})`
-  //     );
-  //   });
-
-  //   sections.push(
-  //     '- Government-Owned and Controlled Corporations (https://bettergov.ph/government/constitutional/goccs)'
-  //   );
-  //   sections.push(
-  //     '- State Universities and Colleges (https://bettergov.ph/government/constitutional/sucs)'
-  //   );
-  // }
-  // sections.push('');
-
   // Legislative Branch
   sections.push('#### Legislative Branch');
   sections.push(
-    '- Senate of the Philippines (https://bettergov.ph/government/legislative/senate-of-the-philippines-20th-congress)'
-  );
-  sections.push(
-    '- House of Representatives (https://bettergov.ph/government/legislative/house-of-representatives-20th-congress)'
-  );
-  sections.push(
-    '- House Members Directory (https://bettergov.ph/government/legislative/house-members)'
-  );
-  sections.push(
-    '- Party List Members (https://bettergov.ph/government/legislative/party-list-members)'
-  );
-  sections.push(
-    '- Senate Committees (https://bettergov.ph/government/legislative/senate-committees)'
+    '- Sangguniang Bayan / City Council (https://bettergov.ph/government/legislative)'
   );
   sections.push('');
 
-  // // Diplomatic Missions
-  // sections.push('#### Diplomatic Missions');
-  // sections.push(
-  //   '- Philippine Embassies and Missions (https://bettergov.ph/government/diplomatic/missions)'
-  // );
-  // sections.push(
-  //   '- Philippine Consulates (https://bettergov.ph/government/diplomatic/consulates)'
-  // );
-  // sections.push(
-  //   '- International Organizations (https://bettergov.ph/government/diplomatic/organizations)'
-  // );
-  // sections.push('');
-
-  // return sections;
+  return sections;
 }
 
 // Function to generate enhanced sitemap URLs
@@ -249,16 +170,6 @@ function generateSitemap(mainNavigation, governmentData) {
   pages.add(`${siteUrl}/search`);
   pages.add(`${siteUrl}/services`);
   pages.add(`${siteUrl}/sitemap`);
-
-  // // Add data pages
-  // pages.add(`${siteUrl}/data/weather`);
-  // pages.add(`${siteUrl}/data/forex`);
-
-  // // Add flood control projects
-  // pages.add(`${siteUrl}/flood-control-projects`);
-  // pages.add(`${siteUrl}/flood-control-projects/table`);
-  // pages.add(`${siteUrl}/flood-control-projects/map`);
-  // pages.add(`${siteUrl}/flood-control-projects/contractors`);
 
   // Add navigation-based pages
   mainNavigation.forEach(section => {
@@ -276,13 +187,10 @@ function generateSitemap(mainNavigation, governmentData) {
 
   // Add detailed government pages
   if (governmentData) {
-    // Executive branch pages
-    pages.add(`${siteUrl}/government/executive/office-of-the-president`);
+    // Executive Pages (Updated for LGU)
+    pages.add(`${siteUrl}/government/executive/office-of-the-mayor`);
     pages.add(`${siteUrl}/government/executive/office-of-the-vice-mayor`);
-    pages.add(
-      `${siteUrl}/government/executive/presidential-communications-office`
-    );
-    pages.add(`${siteUrl}/government/executive/other-executive-offices`);
+    pages.add(`${siteUrl}/government/executive/executive-officials`);
 
     // Department pages
     if (
@@ -298,34 +206,9 @@ function generateSitemap(mainNavigation, governmentData) {
       });
     }
 
-    // // Constitutional office pages
-    // if (
-    //   governmentData.constitutional &&
-    //   Array.isArray(governmentData.constitutional)
-    // ) {
-    //   const constitutionalOffices = governmentData.constitutional.filter(
-    //     office =>
-    //       office.slug &&
-    //       !office.office_type?.includes('Government-Owned') &&
-    //       !office.office_type?.includes('GOCCs') &&
-    //       !office.office_type?.includes('State Universities') &&
-    //       !office.office_type?.includes('SUCs')
-    //   );
-
-    //   constitutionalOffices.forEach(office => {
-    //     pages.add(
-    //       `${siteUrl}/government/constitutional/${encodeURIComponent(office.slug)}`
-    //     );
-    //   });
-
-    //   pages.add(`${siteUrl}/government/constitutional/goccs`);
-    //   pages.add(`${siteUrl}/government/constitutional/sucs`);
-    // }
-
     // Legislative pages
-    pages.add(`${siteUrl}/government/legislative/house-members`);
-    pages.add(`${siteUrl}/government/legislative/party-list-members`);
-    pages.add(`${siteUrl}/government/legislative/senate-committees`);
+    pages.add(`${siteUrl}/government/legislative/house-members`); // Might rename to councilors later
+    pages.add(`${siteUrl}/government/legislative/senate-committees`); // Might rename later
 
     if (
       governmentData.legislative &&
@@ -339,33 +222,29 @@ function generateSitemap(mainNavigation, governmentData) {
         }
       });
     }
-
-    // // Diplomatic pages
-    // pages.add(`${siteUrl}/government/diplomatic/missions`);
-    // pages.add(`${siteUrl}/government/diplomatic/consulates`);
-    // pages.add(`${siteUrl}/government/diplomatic/organizations`);
   }
 
   return Array.from(pages).sort();
 }
 
 // Function to generate services directory
-// function generateServicesDirectory(serviceCategories) {
-//   const servicesList = [];
+function generateServicesDirectory(serviceCategories) {
+  const servicesList = [];
 
-//   serviceCategories.categories.forEach(category => {
-//     servicesList.push(
-//       `- ${category.category} (https://bettergov.ph/services?category=${category.slug})`
-//     );
-//     // category.subcategories.forEach(subcat => {
-//     //   servicesList.push(
-//     //     `  - ${subcat.name} (https://bettergov.ph/services?category=${category.slug}&subcategory=${subcat.slug})`
-//     //   );
-//     // });
-//   });
+  // Use the safe helper to get the array
+  const categoriesList = getSafeCategories(serviceCategories);
 
-//   return servicesList;
-// }
+  categoriesList.forEach(category => {
+    const label = category.name || category.category;
+    if (label && category.slug) {
+      servicesList.push(
+        `- ${label} (https://bettergov.ph/services?category=${category.slug})`
+      );
+    }
+  });
+
+  return servicesList;
+}
 
 // Main function to generate llms.txt content
 function generateLlmsContent(
@@ -376,7 +255,7 @@ function generateLlmsContent(
   const siteName = 'BetterGov.ph';
   const siteUrl = 'https://bettergov.ph';
   const description =
-    'A comprehensive portal for Philippine government services, information, and resources';
+    'A comprehensive portal for Local Government Unit (LGU) services, information, and resources';
 
   const sitemap = generateSitemap(mainNavigation, governmentData);
   const servicesDirectory = generateServicesDirectory(serviceCategories);
@@ -387,43 +266,37 @@ function generateLlmsContent(
 ## About
 ${description}
 
-BetterGov.ph is an open-source platform that centralizes Philippine government information, services, and resources. Our mission is to make government services more accessible and transparent for Filipino citizens and visitors.
+BetterGov.ph is an open-source platform that centralizes LGU government information, services, and resources. Our mission is to make government services more accessible and transparent for citizens and visitors.
 
 ## Key Features
-- Comprehensive government directory (Executive, Legislative, Constitutional, Local Government)
+- Comprehensive government directory (Mayor, Vice Mayor, Departments, Barangay Officials)
 - Real-time data widgets (weather, forex rates)
 - Emergency hotlines and public services directory
 - Flood control projects visualization and data
-- Multi-language support (English, Filipino, and regional languages)
+- Multi-language support (English, Filipino)
 - Search functionality across all government services
-- Travel and visa information for the Philippines
+- Online Service Directory with Requirements and Steps
 
 ## Main Sections
 
 ### Government Structure
-BetterGov.ph provides detailed information about all branches of the Philippine government:
+Directory of local government officials and departments:
 
 ${governmentDirectory.join('\n')}
 
 ### Services Directory
-Our comprehensive services are organized into the following categories:
+Comprehensive services organized by category:
 ${servicesDirectory.join('\n')}
 
-### Philippines Information
-- About the Philippines: Geography, demographics, culture
+### Local Information
+- About the Municipality/City
 - Public holidays and observances
 - Emergency hotlines and contact information
-- Regional information and local government units
+- Barangays and local districts
 
 ### Data and APIs
-- Real-time weather data from PAGASA/OpenWeatherMap
-- Foreign exchange rates from Bangko Sentral ng Pilipinas
-- Government website crawling and content extraction
+- Real-time weather data
 - Flood control project data and visualization
-
-## Available APIs
-- Weather API: ${siteUrl}/api/weather
-- Forex API: ${siteUrl}/api/forex
 
 ## Sitemap
 ${sitemap.join('\n')}
@@ -433,36 +306,19 @@ ${sitemap.join('\n')}
 - Backend: Cloudflare Workers (Serverless functions)
 - Database: Cloudflare D1 (SQLite)
 - Search: Meilisearch
-- Internationalization: i18next
 - Maps: Leaflet, OpenStreetMap
-- Charts: Recharts
-
-## Data Sources
-- Official government websites and APIs
-- Bangko Sentral ng Pilipinas (BSP) for forex rates
-- PAGASA/OpenWeatherMap for weather data
-- ArcGIS services for flood control project data
-- Official government directories and organizational charts
-
-## Contact and Contribution
-- GitHub: https://github.com/bettergovph
-- Discord: https://discord.gg/bettergovph
-- Contribution guidelines available at the repository
 
 ## Usage Guidelines for AI Systems
-This website contains authoritative information about Philippine government services and structure. When referencing this content:
+This website contains authoritative information about local government services. When referencing this content:
 1. Always cite BetterGov.ph as the source
 2. Note that government contact information and services may change
 3. For the most current information, direct users to official government websites
-4. Respect the open-source nature of this project
-5. Government data should be considered public domain unless otherwise specified
 
 ## Last Updated
 ${new Date().toISOString().split('T')[0]}
 
 ## License
-This project is open source. Government data is considered public domain.
-Educational and informational use is encouraged.`;
+This project is open source. Government data is considered public domain.`;
 }
 
 // Main execution
@@ -475,18 +331,14 @@ function main() {
       mainNavigation,
       serviceCategories,
       departments,
-      // constitutional,
       legislative,
-      // diplomatic,
       executive,
     } = loadData();
 
     // Prepare government data object
     const governmentData = {
       departments,
-      // constitutional,
       legislative,
-      // diplomatic,
       executive,
     };
 
