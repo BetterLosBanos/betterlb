@@ -29,10 +29,10 @@ const legislativePath = path.join(
   __dirname,
   '../src/data/directory/legislative.json'
 );
-const diplomaticPath = path.join(
-  __dirname,
-  '../src/data/directory/diplomatic.json'
-);
+// const diplomaticPath = path.join(
+//   __dirname,
+//   '../src/data/directory/diplomatic.json'
+// );
 const executivePath = path.join(
   __dirname,
   '../src/data/directory/executive.json'
@@ -72,23 +72,23 @@ const mainNavigation = [
     children: [
       { label: 'Executive', href: '/government/executive' },
       { label: 'Departments', href: '/government/departments' },
-      { label: 'Constitutional', href: '/government/constitutional' },
+      // { label: 'Constitutional', href: '/government/constitutional' },
       { label: 'Legislative', href: '/government/legislative' },
-      { label: 'Local Government', href: '/government/local' },
-      { label: 'Diplomatic', href: '/government/diplomatic' },
-      { label: 'Salary Grades', href: '/government/salary-grade' },
+      // { label: 'Local Government', href: '/government/local' },
+      // { label: 'Diplomatic', href: '/government/diplomatic' },
+      // { label: 'Salary Grades', href: '/government/salary-grade' },
     ],
   },
-  {
-    label: 'Flood Control Projects',
-    href: '/flood-control-projects',
-    children: [
-      { label: 'Charts', href: '/flood-control-projects' },
-      { label: 'Table', href: '/flood-control-projects/table' },
-      { label: 'Map', href: '/flood-control-projects/map' },
-      { label: 'Contractors', href: '/flood-control-projects/contractors' },
-    ],
-  },
+  // {
+  //   label: 'Flood Control Projects',
+  //   href: '/flood-control-projects',
+  //   children: [
+  //     { label: 'Charts', href: '/flood-control-projects' },
+  //     { label: 'Table', href: '/flood-control-projects/table' },
+  //     { label: 'Map', href: '/flood-control-projects/map' },
+  //     { label: 'Contractors', href: '/flood-control-projects/contractors' },
+  //   ],
+  // },
 ];
 
 // Function to load data
@@ -138,7 +138,7 @@ function generateGovernmentUrls(siteUrl, governmentData) {
   // Executive branch specific pages
   const executivePages = [
     {
-      url: `${siteUrl}/government/executive/office-of-the-president`,
+      url: `${siteUrl}/government/executive/office-of-the-mayor`,
       priority: '0.8',
       changefreq: 'monthly',
     },
@@ -147,16 +147,16 @@ function generateGovernmentUrls(siteUrl, governmentData) {
       priority: '0.7',
       changefreq: 'monthly',
     },
-    {
-      url: `${siteUrl}/government/executive/presidential-communications-office`,
-      priority: '0.6',
-      changefreq: 'monthly',
-    },
-    {
-      url: `${siteUrl}/government/executive/other-executive-offices`,
-      priority: '0.6',
-      changefreq: 'monthly',
-    },
+    // {
+    //   url: `${siteUrl}/government/executive/presidential-communications-office`,
+    //   priority: '0.6',
+    //   changefreq: 'monthly',
+    // },
+    // {
+    //   url: `${siteUrl}/government/executive/other-executive-offices`,
+    //   priority: '0.6',
+    //   changefreq: 'monthly',
+    // },
   ];
 
   executivePages.forEach(page => urls.add(page));
@@ -174,61 +174,61 @@ function generateGovernmentUrls(siteUrl, governmentData) {
     });
   }
 
-  // Constitutional offices (individual offices)
-  if (
-    governmentData.constitutional &&
-    Array.isArray(governmentData.constitutional)
-  ) {
-    // Filter out GOCCs and SUCs for individual office pages
-    const constitutionalOffices = governmentData.constitutional.filter(
-      office =>
-        office.slug &&
-        !office.office_type?.includes('Government-Owned') &&
-        !office.office_type?.includes('GOCCs') &&
-        !office.office_type?.includes('State Universities') &&
-        !office.office_type?.includes('SUCs')
-    );
+  // // Constitutional offices (individual offices)
+  // if (
+  //   governmentData.constitutional &&
+  //   Array.isArray(governmentData.constitutional)
+  // ) {
+  // Filter out GOCCs and SUCs for individual office pages
+  // const constitutionalOffices = governmentData.constitutional.filter(
+  //   office =>
+  //     office.slug &&
+  //     !office.office_type?.includes('Government-Owned') &&
+  //     !office.office_type?.includes('GOCCs') &&
+  //     !office.office_type?.includes('State Universities') &&
+  //     !office.office_type?.includes('SUCs')
+  // );
 
-    constitutionalOffices.forEach(office => {
-      urls.add({
-        url: `${siteUrl}/government/constitutional/${encodeURIComponent(office.slug)}`,
-        priority: '0.6',
-        changefreq: 'monthly',
-      });
-    });
+  // constitutionalOffices.forEach(office => {
+  //   urls.add({
+  //     url: `${siteUrl}/government/constitutional/${encodeURIComponent(office.slug)}`,
+  //     priority: '0.6',
+  //     changefreq: 'monthly',
+  //   });
+  // });
 
-    // Add GOCCs and SUCs special pages
-    urls.add({
-      url: `${siteUrl}/government/constitutional/goccs`,
-      priority: '0.6',
-      changefreq: 'monthly',
-    });
+  //   // Add GOCCs and SUCs special pages
+  //   urls.add({
+  //     url: `${siteUrl}/government/constitutional/goccs`,
+  //     priority: '0.6',
+  //     changefreq: 'monthly',
+  //   });
 
-    urls.add({
-      url: `${siteUrl}/government/constitutional/sucs`,
-      priority: '0.6',
-      changefreq: 'monthly',
-    });
-  }
+  //   urls.add({
+  //     url: `${siteUrl}/government/constitutional/sucs`,
+  //     priority: '0.6',
+  //     changefreq: 'monthly',
+  //   });
+  // }
 
   // Legislative branch specific pages
-  const legislativePages = [
-    {
-      url: `${siteUrl}/government/legislative/house-members`,
-      priority: '0.7',
-      changefreq: 'weekly',
-    },
-    {
-      url: `${siteUrl}/government/legislative/party-list-members`,
-      priority: '0.7',
-      changefreq: 'weekly',
-    },
-    {
-      url: `${siteUrl}/government/legislative/senate-committees`,
-      priority: '0.6',
-      changefreq: 'monthly',
-    },
-  ];
+  // const legislativePages = [
+  //   {
+  //     url: `${siteUrl}/government/legislative/house-members`,
+  //     priority: '0.7',
+  //     changefreq: 'weekly',
+  //   },
+  //   {
+  //     url: `${siteUrl}/government/legislative/party-list-members`,
+  //     priority: '0.7',
+  //     changefreq: 'weekly',
+  //   },
+  //   {
+  //     url: `${siteUrl}/government/legislative/senate-committees`,
+  //     priority: '0.6',
+  //     changefreq: 'monthly',
+  //   },
+  // ];
 
   legislativePages.forEach(page => urls.add(page));
 
@@ -246,25 +246,25 @@ function generateGovernmentUrls(siteUrl, governmentData) {
   }
 
   // Diplomatic missions specific pages
-  const diplomaticPages = [
-    {
-      url: `${siteUrl}/government/diplomatic/missions`,
-      priority: '0.6',
-      changefreq: 'monthly',
-    },
-    {
-      url: `${siteUrl}/government/diplomatic/consulates`,
-      priority: '0.6',
-      changefreq: 'monthly',
-    },
-    {
-      url: `${siteUrl}/government/diplomatic/organizations`,
-      priority: '0.6',
-      changefreq: 'monthly',
-    },
-  ];
+  // const diplomaticPages = [
+  //   {
+  //     url: `${siteUrl}/government/diplomatic/missions`,
+  //     priority: '0.6',
+  //     changefreq: 'monthly',
+  //   },
+  //   {
+  //     url: `${siteUrl}/government/diplomatic/consulates`,
+  //     priority: '0.6',
+  //     changefreq: 'monthly',
+  //   },
+  //   {
+  //     url: `${siteUrl}/government/diplomatic/organizations`,
+  //     priority: '0.6',
+  //     changefreq: 'monthly',
+  //   },
+  // ];
 
-  diplomaticPages.forEach(page => urls.add(page));
+  // diplomaticPages.forEach(page => urls.add(page));
 
   return Array.from(urls);
 }
