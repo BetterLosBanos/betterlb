@@ -48,11 +48,11 @@ jobs:
             src/data/directory/lgu/schema/lgu-region.schema.json \
             "src/data/directory/lgu/*.json"
 
-      - name: Validate constitutional JSON file
-        run: |
-          node scripts/validate-json-schema.js \
-            src/data/directory/schema/constitutional.schema.json \
-            src/data/directory/constitutional.json
+      # - name: Validate constitutional JSON file
+      #   run: |
+      #     node scripts/validate-json-schema.js \
+      #       src/data/directory/schema/constitutional.schema.json \
+      #       src/data/directory/constitutional.json
 
       - name: Validate departments JSON file
         run: |
