@@ -117,10 +117,9 @@ export default function SEO({
   }
 
   // Default values
-  const defaultTitle =
-    'BetterGov.ph Philippines | Community Powered Government Portal';
+  const defaultTitle = 'BetterLB | Community Powered Los Baños Portal';
   const defaultDescription =
-    'Community-powered portal of the Philippines. Access government services, stay updated with the latest news, and find information about the Philippines.';
+    'Community-powered portal of the Municipality of Los Baños. Access government services, stay updated with the latest news, and find information about the Municipality of Los Baños.';
   const defaultCanonical = location.pathname + location.search;
 
   useEffect(() => {
@@ -133,7 +132,7 @@ export default function SEO({
   const finalDescription =
     description || routeDescription || defaultDescription;
 
-  const siteTitle = 'BetterGov.ph';
+  const siteTitle = 'BetterLB';
   const fullTitle = title ? `${title} | ${siteTitle}` : finalTitle;
   const baseUrl = 'https://bettergov.ph';
   const fullCanonical = defaultCanonical

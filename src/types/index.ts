@@ -64,6 +64,32 @@ export interface ServiceCategory {
   services: Service[];
 }
 
+export interface QuickInfo {
+  label: string;
+  value: string;
+}
+
+export interface FAQ {
+  question: string;
+  answer: string;
+}
+
+export interface Office {
+  name: string;
+  address: string;
+  phone?: string;
+  email?: string;
+}
+
+export interface RelatedService {
+  service: string;
+  slug: string;
+  category?: {
+    name: string;
+    slug: string;
+  };
+}
+
 export interface Service {
   service: string;
   url: string;
@@ -81,6 +107,14 @@ export interface Service {
   };
   createdAt: string;
   updatedAt: string;
+
+  // New optional fields
+  steps?: string[];
+  requirements?: string[];
+  faqs?: FAQ[];
+  office?: Office;
+  relatedServices?: RelatedService[];
+  quickInfo?: QuickInfo[];
 }
 
 export interface WeatherData {

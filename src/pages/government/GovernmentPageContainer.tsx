@@ -52,8 +52,8 @@ export default function GovernmentIndexPageContainer({
       const getTimeoutByRoute = (pathname: string) => {
         if (pathname.includes('/legislative')) return 190;
         if (pathname.includes('/executive')) return 150;
-        if (pathname.includes('/constitutional')) return 120;
-        if (pathname.includes('/diplomatic')) return 190;
+        // if (pathname.includes('/constitutional')) return 120;
+        // if (pathname.includes('/diplomatic')) return 190;
         return 100;
       };
 

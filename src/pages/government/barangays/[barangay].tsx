@@ -9,7 +9,6 @@ import barangaysData from '../../../data/directory/barangays.json';
 import {
   Card,
   CardAvatar,
-  CardContactInfo,
   CardContent,
   CardDescription,
   // CardDivider,
@@ -21,7 +20,6 @@ import {
 interface Official {
   role: string;
   name: string;
-  contact?: string;
 }
 
 interface Barangay {
@@ -148,12 +146,6 @@ export default function BarangayDetail() {
                   <CardAvatar name={member.name} />
                   <CardTitle>{member.name}</CardTitle>
                   <CardDescription>{member.role}</CardDescription>
-                  {member.contact && (
-                    <CardContactInfo
-                      contact={{ phone: member.contact }}
-                      compact
-                    />
-                  )}
                 </CardContent>
               </Card>
             ))}
@@ -195,12 +187,6 @@ export default function BarangayDetail() {
                   <CardAvatar name={member.name} />
                   <CardTitle>{member.name}</CardTitle>
                   <CardDescription>{member.role}</CardDescription>
-                  {member.contact && (
-                    <CardContactInfo
-                      contact={{ phone: member.contact }}
-                      compact
-                    />
-                  )}
                 </CardContent>
               </Card>
             ))}

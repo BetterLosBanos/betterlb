@@ -3,7 +3,7 @@
     "slug": "gad",
     "office_name": "GENDER AND DEVELOPMENT OFFICE",
     "address": "",
-    "trunkline": "",
+    "trunkline": [""],
     "website": "https://losbanos.gov.ph/3",
     "department_head": {
       "name": "",
@@ -15,7 +15,7 @@
     "slug": "local-civil-registry-office",
     "office_name": "LOCAL CIVIL REGISTRY OFFICE",
     "address": "",
-    "trunkline": "",
+    "trunkline": [""],
     "website": "https://losbanos.gov.ph/7",
     "department_head": {
       "name": "",
@@ -27,7 +27,7 @@
     "slug": "municipal-planning-and-development-office",
     "office_name": "MUNICIPAL PLANNING AND DEVELOPMENT OFFICE",
     "address": "",
-    "trunkline": "",
+    "trunkline": [""],
     "website": "https://losbanos.gov.ph/8",
     "department_head": {
       "name": "",
@@ -39,8 +39,8 @@
     "slug": "municipal-engineering-office",
     "office_name": "MUNICIPAL ENGINEERING OFFICE",
     "address": "",
-    "trunkline": "",
-    "website": "https://losbanos.gov.ph/9",
+    "trunkline": [""],
+    "website": "https://www.facebook.com/EngineeringOfficeLB",
     "department_head": {
       "name": "",
       "contact": "[REDACTED]",
@@ -51,7 +51,7 @@
     "slug": "municipal-assessors-office",
     "office_name": "MUNICIPAL ASSESSOR'S OFFICE",
     "address": "",
-    "trunkline": "",
+    "trunkline": [""],
     "website": "https://losbanos.gov.ph/10",
     "department_head": {
       "name": "",
@@ -63,7 +63,7 @@
     "slug": "municipal-social-welfare-development-office",
     "office_name": "MUNICIPAL SOCIAL WELFARE DEVELOPMENT OFFICE",
     "address": "",
-    "trunkline": "",
+    "trunkline": [""],
     "website": "https://losbanos.gov.ph/11",
     "department_head": {
       "name": "",
@@ -75,7 +75,7 @@
     "slug": "municipal-environment-and-natural-resources-office",
     "office_name": "MUNICIPAL ENVIRONMENT AND NATURAL RESOURCES OFFICE",
     "address": "",
-    "trunkline": "",
+    "trunkline": [""],
     "website": "https://losbanos.gov.ph/12",
     "department_head": {
       "name": "",
@@ -87,7 +87,7 @@
     "slug": "municipal-treasurers-office",
     "office_name": "MUNICIPAL TREASURER'S OFFICE",
     "address": "",
-    "trunkline": "",
+    "trunkline": [""],
     "website": "https://losbanos.gov.ph/13",
     "department_head": {
       "name": "",
@@ -99,7 +99,7 @@
     "slug": "public-information-office",
     "office_name": "PUBLIC INFORMATION OFFICE",
     "address": "",
-    "trunkline": "",
+    "trunkline": [""],
     "website": "https://losbanos.gov.ph/14",
     "department_head": {
       "name": "",
@@ -111,7 +111,7 @@
     "slug": "municipal-budget-office",
     "office_name": "MUNICIPAL BUDGET OFFICE",
     "address": "",
-    "trunkline": "",
+    "trunkline": [""],
     "website": "https://losbanos.gov.ph/15",
     "department_head": {
       "name": "",
@@ -123,7 +123,7 @@
     "slug": "municipal-accounting-office",
     "office_name": "MUNICIPAL ACCOUNTING OFFICE",
     "address": "",
-    "trunkline": "",
+    "trunkline": [""],
     "website": "https://losbanos.gov.ph/16",
     "department_head": {
       "name": "",
@@ -135,7 +135,7 @@
     "slug": "municipal-human-resource-management-office",
     "office_name": "MUNICIPAL HUMAN RESOURCE MANAGEMENT OFFICE",
     "address": "",
-    "trunkline": "",
+    "trunkline": [""],
     "website": "https://losbanos.gov.ph/17",
     "department_head": {
       "name": "",
@@ -147,7 +147,7 @@
     "slug": "municipal-tourism-office",
     "office_name": "MUNICIPAL TOURISM OFFICE",
     "address": "",
-    "trunkline": "",
+    "trunkline": [""],
     "website": "https://losbanos.gov.ph/18",
     "department_head": {
       "name": "",
@@ -159,7 +159,7 @@
     "slug": "information-and-communication-systems-office",
     "office_name": "INFORMATION AND COMMUNICATION SYSTEMS OFFICE",
     "address": "",
-    "trunkline": "",
+    "trunkline": [""],
     "website": "https://losbanos.gov.ph/19",
     "department_head": {
       "name": "",
@@ -171,7 +171,7 @@
     "slug": "local-youth-and-development-office",
     "office_name": "LOCAL YOUTH AND DEVELOPMENT OFFICE",
     "address": "",
-    "trunkline": "",
+    "trunkline": [""],
     "website": "https://losbanos.gov.ph/20",
     "department_head": {
       "name": "",
@@ -183,7 +183,7 @@
     "slug": "municipal-agriculture-office",
     "office_name": "MUNICIPAL AGRICULTURE OFFICE",
     "address": "",
-    "trunkline": "",
+    "trunkline": [""],
     "website": "https://losbanos.gov.ph/21",
     "department_head": {
       "name": "",
@@ -195,8 +195,56 @@
     "slug": "municipal-mdrrmo-office",
     "office_name": "MUNICIPAL DISASTER RISK REDUCTION AND MANAGEMENT OFFICE",
     "address": "",
-    "trunkline": "0977 204 9641",
+    "trunkline": ["0977 204 9641"],
     "website": "https://losbanos.gov.ph/21",
+    "department_head": {
+      "name": "",
+      "contact": "[REDACTED]",
+      "email": ""
+    }
+  },
+  {
+    "slug": "municipal-police-station",
+    "office_name": "Municipal Police Station",
+    "address": "",
+    "trunkline": ["0927 509 1198"],
+    "website": "https://www.facebook.com/losbanospnpwebsite",
+    "department_head": {
+      "name": "",
+      "contact": "[REDACTED]",
+      "email": ""
+    }
+  },
+  {
+    "slug": "municipal-health-office",
+    "office_name": "Municipal Health Office",
+    "address": "",
+    "trunkline": ["049 536 3857"],
+    "website": "https://www.facebook.com/LBMHO",
+    "department_head": {
+      "name": "",
+      "contact": "[REDACTED]",
+      "email": "rhu@losbanos.gov.ph"
+    }
+  },
+  {
+    "slug": "bureau-fire-protection",
+    "office_name": "Bureau of Fire Protection",
+    "address": "",
+    "trunkline": ["049 536 7965", "049 310 9572", "0939 432 5837"],
+    "website": "https://www.facebook.com/lbfirestation",
+    "department_head": {
+      "name": "",
+      "contact": "[REDACTED]",
+      "email": ""
+    }
+  },
+  {
+    "slug": "business-permit-and-licensing-office",
+    "office_name": "Business Permit and Licensing Office",
+    "address": "",
+    "trunkline": [""],
+    "website": "",
     "department_head": {
       "name": "",
       "contact": "[REDACTED]",
