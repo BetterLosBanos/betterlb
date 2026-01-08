@@ -12,7 +12,12 @@ import Footer from './components/layout/Footer';
 import SEO from './components/SEO';
 import Home from './pages/Home';
 import DesignGuide from './pages/DesignGuide';
+
+// Services Imports
 import Services from './pages/services';
+import ServiceDetail from './pages/services/[service]';
+import ServicesLayout from './pages/services/layout';
+
 import AboutPage from './pages/about';
 import AccessibilityPage from './pages/accessibility';
 import AboutPhilippines from './pages/philippines/about';
@@ -34,11 +39,6 @@ import DepartmentsIndex from './pages/government/departments';
 import DepartmentDetail from './pages/government/departments/[department]';
 import DepartmentsLayout from './pages/government/departments/layout';
 import GovernmentLayout from './pages/government/layout';
-// import ConstitutionalLayout from './pages/government/constitutional/layout';
-// import ConstitutionalIndex from './pages/government/constitutional/index';
-// import ConstitutionalOffice from './pages/government/constitutional/[office]';
-// import GOCCsPage from './pages/government/constitutional/goccs';
-// import SUCsPage from './pages/government/constitutional/sucs';
 
 // Legislative Branch
 import LegislativeLayout from './pages/government/legislative/layout';
@@ -48,12 +48,6 @@ import HouseMembersPage from './pages/government/legislative/house-members';
 import PartyListMembersPage from './pages/government/legislative/party-list-members';
 import SenateCommitteesPage from './pages/government/legislative/senate-committees';
 
-// Diplomatic Section
-// import DiplomaticLayout from './pages/government/diplomatic/layout';
-// import DiplomaticIndex from './pages/government/diplomatic/index';
-// import DiplomaticMissionsPage from './pages/government/diplomatic/missions';
-// import ConsulatesPage from './pages/government/diplomatic/consulates';
-// import InternationalOrganizationsPage from './pages/government/diplomatic/organizations';
 import OfficeOfTheMayor from './pages/government/executive/office-of-the-mayor';
 import ExecutiveOfficials from './pages/government/executive/executive-officials';
 import OfficeOfTheViceMayor from './pages/government/executive/office-of-the-vice-mayor';
@@ -72,9 +66,6 @@ import FloodControlProjectsMap from './pages/flood-control-projects/map';
 import FloodControlProjectsContractors from './pages/flood-control-projects/contractors';
 import ContractorDetail from './pages/flood-control-projects/contractors/[contractor-name]';
 
-// Services Pages
-import WebsitesDirectory from './pages/services/websites';
-import ServiceDetail from './pages/services/[service]';
 // Sitemap Page
 import SitemapPage from './pages/sitemap';
 import Ideas from './pages/Ideas';
@@ -97,8 +88,6 @@ function App() {
           <Routes>
             <Route path='/' element={<Home />} />
             <Route path='/design' element={<DesignGuide />} />
-            <Route path='/services' element={<Services />} />
-            <Route path='/services/:service' element={<ServiceDetail />} />
             <Route path='/about' element={<AboutPage />} />
             <Route path='/contact' element={<ContactUs />} />
             <Route path='/accessibility' element={<AccessibilityPage />} />
@@ -145,7 +134,10 @@ function App() {
             />
 
             {/* Services Routes */}
-            <Route path='/services/websites' element={<WebsitesDirectory />} />
+            <Route path='/services' element={<ServicesLayout />}>
+              <Route index element={<Services />} />
+            </Route>
+            <Route path='/services/:service' element={<ServiceDetail />} />
 
             {/* Travel Routes */}
             <Route path='/travel'>
@@ -195,10 +187,6 @@ function App() {
                   path='office-of-the-vice-mayor'
                   element={<OfficeOfTheViceMayor />}
                 />
-                {/* <Route
-                  path='presidential-communications-office'
-                  element={<PresidentialCommunicationsOffice />}
-                /> */}
               </Route>
 
               <Route path='departments' element={<DepartmentsLayout />}>
@@ -211,12 +199,6 @@ function App() {
                 <Route path=':barangay' element={<BarangayDetail />} />
               </Route>
 
-              {/* <Route path='constitutional' element={<ConstitutionalLayout />}>
-                <Route index element={<ConstitutionalIndex />} />
-                <Route path=':office' element={<ConstitutionalOffice />} />
-                <Route path='goccs' element={<GOCCsPage />} />
-                <Route path='sucs' element={<SUCsPage />} />
-              </Route> */}
               <Route path='legislative' element={<LegislativeLayout />}>
                 <Route index element={<LegislativeIndex />} />
                 <Route path=':chamber' element={<LegislativeChamber />} />
@@ -230,21 +212,6 @@ function App() {
                   element={<SenateCommitteesPage />}
                 />
               </Route>
-              {/* <Route path='diplomatic' element={<DiplomaticLayout />}>
-                <Route index element={<DiplomaticIndex />} />
-                <Route path='missions' element={<DiplomaticMissionsPage />} />
-                <Route path='consulates' element={<ConsulatesPage />} />
-                <Route
-                  path='organizations'
-                  element={<InternationalOrganizationsPage />}
-                />
-              </Route> */}
-
-              {/* Local Government Routes */}
-              {/* <Route path='local' element={<LocalLayout />}>
-                <Route index element={<LocalGovernmentIndex />} />
-                <Route path=':region' element={<RegionalLGUPage />} />
-              </Route> */}
             </Route>
 
             {/*Not Found/404 Page */}
