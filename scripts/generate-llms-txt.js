@@ -29,10 +29,10 @@ const legislativePath = path.join(
   __dirname,
   '../src/data/directory/legislative.json'
 );
-const diplomaticPath = path.join(
-  __dirname,
-  '../src/data/directory/diplomatic.json'
-);
+// const diplomaticPath = path.join(
+//   __dirname,
+//   '../src/data/directory/diplomatic.json'
+// );
 const executivePath = path.join(
   __dirname,
   '../src/data/directory/executive.json'
@@ -72,23 +72,23 @@ const mainNavigation = [
     children: [
       { label: 'Executive', href: '/government/executive' },
       { label: 'Departments', href: '/government/departments' },
-      { label: 'Constitutional', href: '/government/constitutional' },
+      // { label: 'Constitutional', href: '/government/constitutional' },
       { label: 'Legislative', href: '/government/legislative' },
-      { label: 'Local Government', href: '/government/local' },
-      { label: 'Diplomatic', href: '/government/diplomatic' },
-      { label: 'Salary Grades', href: '/government/salary-grade' },
+      // { label: 'Local Government', href: '/government/local' },
+      // { label: 'Diplomatic', href: '/government/diplomatic' },
+      // { label: 'Salary Grades', href: '/government/salary-grade' },
     ],
   },
-  {
-    label: 'Flood Control Projects',
-    href: '/flood-control-projects',
-    children: [
-      { label: 'Charts', href: '/flood-control-projects' },
-      { label: 'Table', href: '/flood-control-projects/table' },
-      { label: 'Map', href: '/flood-control-projects/map' },
-      { label: 'Contractors', href: '/flood-control-projects/contractors' },
-    ],
-  },
+  // {
+  //   label: 'Flood Control Projects',
+  //   href: '/flood-control-projects',
+  //   children: [
+  //     { label: 'Charts', href: '/flood-control-projects' },
+  //     { label: 'Table', href: '/flood-control-projects/table' },
+  //     { label: 'Map', href: '/flood-control-projects/map' },
+  //     { label: 'Contractors', href: '/flood-control-projects/contractors' },
+  //   ],
+  // },
 ];
 
 // Function to load data
@@ -104,7 +104,7 @@ function loadData() {
     //   fs.readFileSync(constitutionalPath, 'utf8')
     // );
     const legislative = JSON.parse(fs.readFileSync(legislativePath, 'utf8'));
-    const diplomatic = JSON.parse(fs.readFileSync(diplomaticPath, 'utf8'));
+    // const diplomatic = JSON.parse(fs.readFileSync(diplomaticPath, 'utf8'));
     const executive = JSON.parse(fs.readFileSync(executivePath, 'utf8'));
 
     // Populate services children from categories
@@ -120,9 +120,9 @@ function loadData() {
       mainNavigation,
       serviceCategories,
       departments,
-      constitutional,
+      // constitutional,
       legislative,
-      diplomatic,
+      // diplomatic,
       executive,
     };
   } catch (error) {
@@ -172,36 +172,36 @@ function generateGovernmentDirectory(governmentData) {
   sections.push('');
 
   // Constitutional Bodies
-  sections.push('#### Constitutional Bodies');
-  if (
-    governmentData.constitutional &&
-    Array.isArray(governmentData.constitutional)
-  ) {
-    const constitutionalOffices = governmentData.constitutional
-      .filter(
-        office =>
-          office.slug &&
-          !office.office_type?.includes('Government-Owned') &&
-          !office.office_type?.includes('GOCCs') &&
-          !office.office_type?.includes('State Universities') &&
-          !office.office_type?.includes('SUCs')
-      )
-      .slice(0, 8); // Show first 8 constitutional offices
+  // sections.push('#### Constitutional Bodies');
+  // if (
+  //   governmentData.constitutional &&
+  //   Array.isArray(governmentData.constitutional)
+  // ) {
+  //   const constitutionalOffices = governmentData.constitutional
+  //     .filter(
+  //       office =>
+  //         office.slug &&
+  //         !office.office_type?.includes('Government-Owned') &&
+  //         !office.office_type?.includes('GOCCs') &&
+  //         !office.office_type?.includes('State Universities') &&
+  //         !office.office_type?.includes('SUCs')
+  //     )
+  //     .slice(0, 8); // Show first 8 constitutional offices
 
-    constitutionalOffices.forEach(office => {
-      sections.push(
-        `- ${office.name || office.office_name} (https://bettergov.ph/government/constitutional/${encodeURIComponent(office.slug)})`
-      );
-    });
+  //   constitutionalOffices.forEach(office => {
+  //     sections.push(
+  //       `- ${office.name || office.office_name} (https://bettergov.ph/government/constitutional/${encodeURIComponent(office.slug)})`
+  //     );
+  //   });
 
-    sections.push(
-      '- Government-Owned and Controlled Corporations (https://bettergov.ph/government/constitutional/goccs)'
-    );
-    sections.push(
-      '- State Universities and Colleges (https://bettergov.ph/government/constitutional/sucs)'
-    );
-  }
-  sections.push('');
+  //   sections.push(
+  //     '- Government-Owned and Controlled Corporations (https://bettergov.ph/government/constitutional/goccs)'
+  //   );
+  //   sections.push(
+  //     '- State Universities and Colleges (https://bettergov.ph/government/constitutional/sucs)'
+  //   );
+  // }
+  // sections.push('');
 
   // Legislative Branch
   sections.push('#### Legislative Branch');
@@ -222,20 +222,20 @@ function generateGovernmentDirectory(governmentData) {
   );
   sections.push('');
 
-  // Diplomatic Missions
-  sections.push('#### Diplomatic Missions');
-  sections.push(
-    '- Philippine Embassies and Missions (https://bettergov.ph/government/diplomatic/missions)'
-  );
-  sections.push(
-    '- Philippine Consulates (https://bettergov.ph/government/diplomatic/consulates)'
-  );
-  sections.push(
-    '- International Organizations (https://bettergov.ph/government/diplomatic/organizations)'
-  );
-  sections.push('');
+  // // Diplomatic Missions
+  // sections.push('#### Diplomatic Missions');
+  // sections.push(
+  //   '- Philippine Embassies and Missions (https://bettergov.ph/government/diplomatic/missions)'
+  // );
+  // sections.push(
+  //   '- Philippine Consulates (https://bettergov.ph/government/diplomatic/consulates)'
+  // );
+  // sections.push(
+  //   '- International Organizations (https://bettergov.ph/government/diplomatic/organizations)'
+  // );
+  // sections.push('');
 
-  return sections;
+  // return sections;
 }
 
 // Function to generate enhanced sitemap URLs
@@ -298,29 +298,29 @@ function generateSitemap(mainNavigation, governmentData) {
       });
     }
 
-    // Constitutional office pages
-    if (
-      governmentData.constitutional &&
-      Array.isArray(governmentData.constitutional)
-    ) {
-      const constitutionalOffices = governmentData.constitutional.filter(
-        office =>
-          office.slug &&
-          !office.office_type?.includes('Government-Owned') &&
-          !office.office_type?.includes('GOCCs') &&
-          !office.office_type?.includes('State Universities') &&
-          !office.office_type?.includes('SUCs')
-      );
+    // // Constitutional office pages
+    // if (
+    //   governmentData.constitutional &&
+    //   Array.isArray(governmentData.constitutional)
+    // ) {
+    //   const constitutionalOffices = governmentData.constitutional.filter(
+    //     office =>
+    //       office.slug &&
+    //       !office.office_type?.includes('Government-Owned') &&
+    //       !office.office_type?.includes('GOCCs') &&
+    //       !office.office_type?.includes('State Universities') &&
+    //       !office.office_type?.includes('SUCs')
+    //   );
 
-      constitutionalOffices.forEach(office => {
-        pages.add(
-          `${siteUrl}/government/constitutional/${encodeURIComponent(office.slug)}`
-        );
-      });
+    //   constitutionalOffices.forEach(office => {
+    //     pages.add(
+    //       `${siteUrl}/government/constitutional/${encodeURIComponent(office.slug)}`
+    //     );
+    //   });
 
-      pages.add(`${siteUrl}/government/constitutional/goccs`);
-      pages.add(`${siteUrl}/government/constitutional/sucs`);
-    }
+    //   pages.add(`${siteUrl}/government/constitutional/goccs`);
+    //   pages.add(`${siteUrl}/government/constitutional/sucs`);
+    // }
 
     // Legislative pages
     pages.add(`${siteUrl}/government/legislative/house-members`);
@@ -340,10 +340,10 @@ function generateSitemap(mainNavigation, governmentData) {
       });
     }
 
-    // Diplomatic pages
-    pages.add(`${siteUrl}/government/diplomatic/missions`);
-    pages.add(`${siteUrl}/government/diplomatic/consulates`);
-    pages.add(`${siteUrl}/government/diplomatic/organizations`);
+    // // Diplomatic pages
+    // pages.add(`${siteUrl}/government/diplomatic/missions`);
+    // pages.add(`${siteUrl}/government/diplomatic/consulates`);
+    // pages.add(`${siteUrl}/government/diplomatic/organizations`);
   }
 
   return Array.from(pages).sort();
@@ -475,18 +475,18 @@ function main() {
       mainNavigation,
       serviceCategories,
       departments,
-      constitutional,
+      // constitutional,
       legislative,
-      diplomatic,
+      // diplomatic,
       executive,
     } = loadData();
 
     // Prepare government data object
     const governmentData = {
       departments,
-      constitutional,
+      // constitutional,
       legislative,
-      diplomatic,
+      // diplomatic,
       executive,
     };
 
