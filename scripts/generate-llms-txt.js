@@ -138,17 +138,17 @@ function generateGovernmentDirectory(governmentData) {
   // Executive Branch
   sections.push('#### Executive Branch');
   sections.push(
-    '- Office of the President (https://bettergov.ph/government/executive/office-of-the-president)'
+    '- Office of the President (https://bettergov.ph/government/executive/office-of-the-mayor)'
   );
   sections.push(
     '- Office of the Vice Mayor (https://bettergov.ph/government/executive/office-of-the-vice-mayor)'
   );
-  sections.push(
-    '- Presidential Communications Office (https://bettergov.ph/government/executive/presidential-communications-office)'
-  );
-  sections.push(
-    '- Other Executive Offices (https://bettergov.ph/government/executive/other-executive-offices)'
-  );
+  // sections.push(
+  //   '- Presidential Communications Office (https://bettergov.ph/government/executive/presidential-communications-office)'
+  // );
+  // sections.push(
+  //   '- Other Executive Offices (https://bettergov.ph/government/executive/other-executive-offices)'
+  // );
   sections.push('');
 
   // Departments
@@ -250,15 +250,15 @@ function generateSitemap(mainNavigation, governmentData) {
   pages.add(`${siteUrl}/services`);
   pages.add(`${siteUrl}/sitemap`);
 
-  // Add data pages
-  pages.add(`${siteUrl}/data/weather`);
-  pages.add(`${siteUrl}/data/forex`);
+  // // Add data pages
+  // pages.add(`${siteUrl}/data/weather`);
+  // pages.add(`${siteUrl}/data/forex`);
 
-  // Add flood control projects
-  pages.add(`${siteUrl}/flood-control-projects`);
-  pages.add(`${siteUrl}/flood-control-projects/table`);
-  pages.add(`${siteUrl}/flood-control-projects/map`);
-  pages.add(`${siteUrl}/flood-control-projects/contractors`);
+  // // Add flood control projects
+  // pages.add(`${siteUrl}/flood-control-projects`);
+  // pages.add(`${siteUrl}/flood-control-projects/table`);
+  // pages.add(`${siteUrl}/flood-control-projects/map`);
+  // pages.add(`${siteUrl}/flood-control-projects/contractors`);
 
   // Add navigation-based pages
   mainNavigation.forEach(section => {
@@ -350,22 +350,22 @@ function generateSitemap(mainNavigation, governmentData) {
 }
 
 // Function to generate services directory
-function generateServicesDirectory(serviceCategories) {
-  const servicesList = [];
+// function generateServicesDirectory(serviceCategories) {
+//   const servicesList = [];
 
-  serviceCategories.categories.forEach(category => {
-    servicesList.push(
-      `- ${category.category} (https://bettergov.ph/services?category=${category.slug})`
-    );
-    // category.subcategories.forEach(subcat => {
-    //   servicesList.push(
-    //     `  - ${subcat.name} (https://bettergov.ph/services?category=${category.slug}&subcategory=${subcat.slug})`
-    //   );
-    // });
-  });
+//   serviceCategories.categories.forEach(category => {
+//     servicesList.push(
+//       `- ${category.category} (https://bettergov.ph/services?category=${category.slug})`
+//     );
+//     // category.subcategories.forEach(subcat => {
+//     //   servicesList.push(
+//     //     `  - ${subcat.name} (https://bettergov.ph/services?category=${category.slug}&subcategory=${subcat.slug})`
+//     //   );
+//     // });
+//   });
 
-  return servicesList;
-}
+//   return servicesList;
+// }
 
 // Main function to generate llms.txt content
 function generateLlmsContent(
