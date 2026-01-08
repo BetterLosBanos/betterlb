@@ -1,0 +1,222 @@
+[
+  {
+    "service": "Business Permit (New)",
+    "slug": "business-permit-new",
+    "url": "",
+    "officeSlug": "business-permit-and-licensing-office",
+    "category": {
+      "name": "Business & Licensing",
+      "slug": "business-licensing"
+    },
+    "steps": [
+      "Prepare requirements",
+      "Submit application online or at office",
+      "Pay fees",
+      "Receive permit"
+    ],
+    "requirements": [
+      "Valid ID",
+      "Business registration form",
+      "Barangay Clearance",
+      "Cedula / Community Tax Certificate",
+      "Updated Real Property Tax, Tax Declaration, or Title (if owner)",
+      "Latest Lease Contract (if renter)",
+      "Medical Certificate, or Sanitary Permit to Operate",
+      "Fire Safety Inspection Certificate (BFP)",
+      "1 unit Fire Extinguisher",
+      "Sketch of location"
+    ],
+    "faqs": [
+      {
+        "question": "Can I apply online?",
+        "answer": "Yes, the city government portal accepts online applications."
+      },
+      {
+        "question": "How long does it take?",
+        "answer": "Processing usually takes 3–5 working days."
+      }
+    ],
+    "relatedServices": [
+      "renewal-business-permit",
+      "barangay-business-clearance"
+    ],
+    "quickInfo": {
+      "processingTime": "3–5 working days",
+      "fee": "₱500",
+      "whoCanApply": "Business owners",
+      "appointmentType": "Walk-in"
+    },
+    "updatedAt": "2025-01-28T00:00:00.000Z"
+  },
+  {
+    "service": "Business Permit (Renewal)",
+    "slug": "business-permit-renewal",
+    "url": "",
+    "officeSlug": "business-permit-and-licensing-office",
+    "category": {
+      "name": "Business & Licensing",
+      "slug": "business-licensing"
+    },
+    "steps": [
+      "Prepare requirements",
+      "Submit application online or at office",
+      "Pay fees",
+      "Receive permit"
+    ],
+    "requirements": [
+      "Valid ID",
+      "Business registration form",
+      "Barangay Clearance",
+      "Cedula / Community Tax Certificate",
+      "Updated Real Property Tax, Tax Declaration, or Title (if owner)",
+      "Latest Lease Contract (if renter)",
+      "Medical Certificate, or Sanitary Permit to Operate",
+      "Fire Safety Inspection Certificate (BFP)",
+      "1 unit Fire Extinguisher",
+      "Sketch of location"
+    ],
+    "faqs": [
+      {
+        "question": "Can I apply online?",
+        "answer": "Yes, the city government portal accepts online applications."
+      },
+      {
+        "question": "How long does it take?",
+        "answer": "Processing usually takes 3–5 working days."
+      }
+    ],
+    "relatedServices": [
+      "new-business-permit",
+      "fire-safety-inspection-certificate"
+    ],
+    "quickInfo": {
+      "processingTime": "3–5 working days",
+      "fee": "₱500",
+      "whoCanApply": "Business owners",
+      "appointmentType": "Walk-in"
+    },
+    "updatedAt": "2025-01-28T00:00:00.000Z"
+  },
+  {
+    "service": "Barangay Business Clearance",
+    "slug": "barangay-business-clearance",
+    "url": "",
+    "officeSlug": "business-permit-and-licensing-office",
+    "category": {
+      "name": "Business & Licensing",
+      "slug": "business-licensing"
+    },
+    "steps": [
+      "Prepare requirements",
+      "Submit application online or at office",
+      "Pay fees",
+      "Receive permit"
+    ],
+    "requirements": [
+      "Valid ID",
+      "Business registration form",
+      "Barangay Clearance",
+      "Cedula / Community Tax Certificate",
+      "Updated Real Property Tax, Tax Declaration, or Title (if owner)",
+      "Latest Lease Contract (if renter)",
+      "Medical Certificate, or Sanitary Permit to Operate",
+      "Fire Safety Inspection Certificate (BFP)",
+      "1 unit Fire Extinguisher",
+      "Sketch of location"
+    ],
+    "faqs": [
+      {
+        "question": "Can I apply online?",
+        "answer": "Yes, the city government portal accepts online applications."
+      },
+      {
+        "question": "How long does it take?",
+        "answer": "Processing usually takes 3–5 working days."
+      }
+    ],
+    "relatedServices": ["new-business-permit"],
+    "quickInfo": {
+      "processingTime": "3–5 working days",
+      "fee": "₱500",
+      "whoCanApply": "Business owners",
+      "appointmentType": "Walk-in"
+    },
+    "updatedAt": "2025-01-28T00:00:00.000Z"
+  },
+  {
+    "service": "Building Permit",
+    "slug": "building-permit",
+    "url": "",
+    "officeSlug": "municipal-engineering-office",
+    "category": {
+      "name": "Infrastructure & Engineering",
+      "slug": "infrastructure-engineering"
+    },
+    "steps": [
+      "Prepare requirements",
+      "Submit application online or at office",
+      "Pay fees",
+      "Receive permit"
+    ],
+    "requirements": [
+      "Valid ID",
+      "Business registration form",
+      "Barangay clearance"
+    ],
+    "faqs": [
+      {
+        "question": "Can I apply online?",
+        "answer": "Yes, the city government portal accepts online applications."
+      },
+      {
+        "question": "How long does it take?",
+        "answer": "Processing usually takes 3–5 working days."
+      }
+    ],
+    "relatedServices": ["fire-safety-inspection-certificate"],
+    "quickInfo": {
+      "processingTime": "3–5 working days",
+      "fee": "₱500",
+      "whoCanApply": "Business owners",
+      "appointmentType": "Walk-in"
+    },
+    "updatedAt": "2025-01-28T00:00:00.000Z"
+  },
+  {
+    "service": "Fire Safety Inspection Certificate",
+    "slug": "fire-safety-inspection-certificate",
+    "url": "https://fsis.e-bfp.com/",
+    "officeSlug": "bureau-fire-protection",
+    "category": {
+      "name": "Public Safety",
+      "slug": "public-safety"
+    },
+    "steps": [
+      "Sign up at FSIS (See link)",
+      "Prepare requirements",
+      "Complete online application",
+      "Upload documents",
+      "Pay fees online",
+      "Certificate released online"
+    ],
+    "requirements": [
+      "Fees assessment bill from the Business Permit and Licensing Office",
+      "Copy of Fire Insurance (if any)",
+      "Affidavit of No Alteration to Building (For new businesses with Valid FSIC Issued for Occupancy)"
+    ],
+    "faqs": [
+      {
+        "question": "Can I apply online?",
+        "answer": "Yes, you can access it through the FSIS website."
+      }
+    ],
+    "relatedServices": ["new-business-permit", "building-permit"],
+    "quickInfo": {
+      "processingTime": "3–5 working days",
+      "fee": "₱500 or 15% LGU fees",
+      "whoCanApply": "Business owners",
+      "appointmentType": "Online"
+    },
+    "updatedAt": "2025-01-28T00:00:00.000Z"
+  }
+]
