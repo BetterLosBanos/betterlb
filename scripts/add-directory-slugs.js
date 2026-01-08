@@ -13,11 +13,11 @@ const FILE_CONFIGS = {
     slugField: 'office_name',
     isArray: true,
   },
-  constitutional: {
-    path: '../src/data/directory/constitutional.json',
-    slugField: 'name',
-    isArray: true,
-  },
+  // constitutional: {
+  //   path: '../src/data/directory/constitutional.json',
+  //   slugField: 'name',
+  //   isArray: true,
+  // },
   legislative: {
     path: '../src/data/directory/legislative.json',
     slugField: 'chamber',

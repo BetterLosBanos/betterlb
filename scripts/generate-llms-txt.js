@@ -21,10 +21,10 @@ const departmentsPath = path.join(
   __dirname,
   '../src/data/directory/departments.json'
 );
-const constitutionalPath = path.join(
-  __dirname,
-  '../src/data/directory/constitutional.json'
-);
+// const constitutionalPath = path.join(
+//   __dirname,
+//   '../src/data/directory/constitutional.json'
+// );
 const legislativePath = path.join(
   __dirname,
   '../src/data/directory/legislative.json'

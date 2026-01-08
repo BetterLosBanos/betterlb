@@ -5,7 +5,7 @@ import { dirname, join } from 'path';
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
 
-const filePath = join(__dirname, '../src/data/directory/constitutional.json');
+// const filePath = join(__dirname, '../src/data/directory/constitutional.json');
 
 // Read the JSON file
 const data = JSON.parse(readFileSync(filePath, 'utf8'));
