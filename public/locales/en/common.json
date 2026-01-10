@@ -32,7 +32,8 @@
     "government": "Government",
     "legislative": "Legislative",
     "transparency": "Transparency",
-    "contact": "[REDACTED]"
+    "contact": "[REDACTED]",
+    "legislation": "Legislation"
   },
   "joinUs": {
     "stripTitle": "🚀 Join the #CivicTech Revolution",
@@ -73,13 +74,15 @@
   },
   "government": {
     "title": "Local Government of the Municipality of Los Baños",
-    "description": "Learn about the three branches of the Philippine government and how they work together to serve the people.",
+    "description": "Learn about the key offices, councils, and local units that make up the Municipal Government of Los Baños.",
     "executiveTitle": "Executive Branch",
-    "executiveDescription": "Led by the Mayor, responsible for implementing and enforcing local laws.",
+    "executiveDescription": "Led by the Mayor, responsible for implementing municipal policies, programs, and ordinances.",
     "legislativeTitle": "Legislative Branch",
     "legislativeDescription": "Composed of the Sangguniang Bayan, responsible for making local laws.",
     "barangaysTitle": "Barangays",
-    "barangaysDescription": "Local government units that serve as the primary link between residents and the municipality.",
+    "barangaysDescription": "Local government units within the municipality, led by elected officials who manage community-level services and programs.",
+    "departmentsTitle": "Municipal Departments",
+    "departmentsDescription" : "Municipal departments and agencies responsible for specific areas of governance.",
     "learnMore": "Learn More",
     "directoryTitle": "Official Directory",
     "directoryDescription": "Find contact information for government officials, agencies, and offices at national and local levels.",

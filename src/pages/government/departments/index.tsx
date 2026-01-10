@@ -16,7 +16,7 @@ interface Department {
   office_name: string;
   slug: string;
   address?: string;
-  trunkline?: string;
+  trunkline?: string[];
   website?: string;
   email?: string;
   secretary?: {

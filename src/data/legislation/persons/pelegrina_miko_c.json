@@ -1,0 +1,57 @@
+{
+  "id": "pelegrina-miko-c",
+  "first_name": "Miko",
+  "middle_name": "C.",
+  "last_name": "Pelegrina",
+  "roles": ["Councilor"],
+  "memberships": [
+    {
+      "term_id": "sb_12",
+      "chamber": "sangguniang-bayan",
+      "role": "Councilor",
+      "rank": 1,
+      "committees": [
+        {
+          "id": "appropriations",
+          "role": "Chairperson"
+        },
+        {
+          "id": "social-welfare",
+          "role": "Chairperson"
+        },
+        {
+          "id": "livelihood",
+          "role": "Chairperson"
+        },
+        {
+          "id": "health",
+          "role": "Member"
+        },
+        {
+          "id": "public-works",
+          "role": "Member"
+        },
+        {
+          "id": "good-governance",
+          "role": "Member"
+        },
+        {
+          "id": "agriculture",
+          "role": "Vice Chair"
+        },
+        {
+          "id": "education",
+          "role": "Vice Chair"
+        },
+        {
+          "id": "barangay-affairs",
+          "role": "Member"
+        },
+        {
+          "id": "rules",
+          "role": "Member"
+        }
+      ]
+    }
+  ]
+}

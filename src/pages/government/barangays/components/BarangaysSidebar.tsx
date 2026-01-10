@@ -48,7 +48,7 @@ export default function BarangaysSidebar({
       ) : (
         <nav className='p-1'>
           <h3 className='px-3 text-xs font-medium text-gray-800 uppercase tracking-wider mb-2'>
-            Barangay of
+            Barangay
           </h3>
           <ul className='space-y-1'>
             {filteredBarangays
