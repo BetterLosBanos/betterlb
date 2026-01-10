@@ -117,9 +117,9 @@ export const mainNavigation: NavigationItem[] = [
     label: 'Legislation',
     href: '/legislation',
     children: [
-      { label: 'Ordinances', href: '/government/ordinances' },
-      { label: 'Resolutions', href: '/government/resolutions' },
-      { label: 'Executive Orders', href: '/government/executive-orders' },
+      { label: 'Ordinances', href: '/legislation?type=ordinance' },
+      { label: 'Resolutions', href: '/legislation?type=resolution' },
+      { label: 'Executive Orders', href: '/legislation?type=executive_order' },
     ],
   },
   {
