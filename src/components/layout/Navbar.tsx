@@ -40,29 +40,8 @@ const Navbar: FC = () => {
     i18n.changeLanguage(newLanguage);
   };
 
-  /**
-   * Removes a single trailing slash from a path string.
-   *
-   * This function returns a new string with one trailing '/' removed if present.
-   * It does not alter other slashes inside the path. For the root path "/" the
-   * returned value will be an empty string.
-   *
-   * @param path - The path to normalize.
-   * @returns The normalized path without a trailing slash.
-   *
-   * @example
-   * normalizePath("/about/"); // "/about"
-   *
-   * @example
-   * normalizePath("/about"); // "/about"
-   *
-   * @example
-   * normalizePath("/"); // ""
-   */
   const normalizePath = (path: string): string => path.replace(/\/$/, '');
 
-  // This function builds the full path
-  // Edge cases for certain links are handled here
   const buildFullPath = (href: string): string => {
     let fullPath = location.pathname;
 

@@ -60,6 +60,14 @@ import FloodControlProjectsMap from './pages/flood-control-projects/map';
 import FloodControlProjectsContractors from './pages/flood-control-projects/contractors';
 import ContractorDetail from './pages/flood-control-projects/contractors/[contractor-name]';
 
+// Legislation Pages
+import LegislationLayout from './pages/legislation/layout';
+import LegislationIndex from './pages/legislation/index';
+import LegislationDetail from './pages/legislation/[document]';
+import SessionDetail from './pages/legislation/[session]';
+import PersonDetail from './pages/legislation/[person]';
+import TermDetail from './pages/legislation/[term]';
+
 // Sitemap Page
 import SitemapPage from './pages/sitemap';
 import Ideas from './pages/Ideas';
@@ -180,6 +188,16 @@ function App() {
                   element={<SenateCommitteesPage />}
                 />
               </Route>
+            </Route>
+
+            {/* Legislation section */}
+            <Route path='legislation' element={<LegislationLayout />}>
+              {/* List page */}
+              <Route index element={<LegislationIndex />} />
+              <Route path=':type/:document' element={<LegislationDetail />} />
+              <Route path='session/:sessionId' element={<SessionDetail />} />
+              <Route path='person/:personId' element={<PersonDetail />} />
+              <Route path='term/:termId' element={<TermDetail />} />
             </Route>
 
             {/*Not Found/404 Page */}

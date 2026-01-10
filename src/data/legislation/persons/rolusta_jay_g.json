@@ -1,0 +1,57 @@
+{
+  "id": "rolusta-jay-g",
+  "first_name": "Jay",
+  "middle_name": "G.",
+  "last_name": "Rolusta",
+  "roles": ["Councilor"],
+  "memberships": [
+    {
+      "term_id": "sb_12",
+      "chamber": "sangguniang-bayan",
+      "role": "Councilor",
+      "rank": 6,
+      "committees": [
+        {
+          "id": "appropriations",
+          "role": "Vice Chair"
+        },
+        {
+          "id": "public-works",
+          "role": "Member"
+        },
+        {
+          "id": "good-governance",
+          "role": "Vice Chair"
+        },
+        {
+          "id": "agriculture",
+          "role": "Member"
+        },
+        {
+          "id": "games",
+          "role": "Member"
+        },
+        {
+          "id": "peace-order",
+          "role": "Member"
+        },
+        {
+          "id": "transportation",
+          "role": "Member"
+        },
+        {
+          "id": "housing",
+          "role": "Chairperson"
+        },
+        {
+          "id": "education",
+          "role": "Chairperson"
+        },
+        {
+          "id": "rules",
+          "role": "Chairperson"
+        }
+      ]
+    }
+  ]
+}
