@@ -80,6 +80,8 @@
     "legislativeDescription": "Composed of the Sangguniang Bayan, responsible for making local laws.",
     "barangaysTitle": "Barangays",
     "barangaysDescription": "Local government units that serve as the primary link between residents and the municipality.",
+    "departmentsTitle": "Municipal Departments",
+    "departmentsDescription" : "Municipal departments and agencies responsible for specific areas of governance."
     "learnMore": "Learn More",
     "directoryTitle": "Official Directory",
     "directoryDescription": "Find contact information for government officials, agencies, and offices at national and local levels.",
