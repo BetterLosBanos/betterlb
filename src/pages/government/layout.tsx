@@ -9,6 +9,7 @@ import {
   MapPinIcon,
 } from 'lucide-react';
 import { cn } from '../../lib/utils';
+import { useTranslation } from 'react-i18next';
 
 interface GovernmentLayoutProps {
   title: string;
@@ -20,49 +21,34 @@ export default function GovernmentLayout({ children }: GovernmentLayoutProps) {
   // Get current path to highlight active tab
   const location = useLocation();
   const currentPath = location.pathname;
+  const { t } = useTranslation('common');
 
   // Define branch data
   const branches = [
     {
-      title: 'Executive Branch',
-      description: 'The executive officials who implement and enforce laws.',
+      title: t('government.executiveTitle'),
+      description: t('government.executiveDescription'),
       icon: <LandmarkIcon className='h-4 w-4' />,
       path: '/government/executive',
     },
     {
-      title: 'Legislative Branch',
-      description:
-        'The Sangguniang Bayan, and Municipal Councilors that make laws and policies.',
+      title: t('government.legislativeTitle'),
+      description: t('government.legislativeDescription'),
       icon: <GalleryVerticalIcon className='h-4 w-4' />,
       path: '/government/legislative',
     },
     {
-      title: 'Municipal Departments',
-      description:
-        'Municipal departments and agencies responsible for specific areas of governance.',
+      title: t('government.departmentsTitle'),
+      description: t('government.departmentsDescription'),
       icon: <Building2Icon className='h-4 w-4' />,
       path: '/government/departments',
     },
     {
-      title: 'Barangays of Los Baños',
-      description:
-        'The local barangays of Los Baños and their elected officials responsible for community governance and services.',
+      title: t('government.barangaysTitle'),
+      description: t('government.barangaysDescription'),
       icon: <MapPinIcon className='h-4 w-4' />,
       path: '/government/barangays',
     },
-    // {
-    //   title: 'Local Government Units',
-    //   description: 'Local government units of the Philippines.',
-    //   icon: <MapPinIcon className='h-4 w-4' />,
-    //   path: '/government/local',
-    // },
-    // {
-    //   title: 'Diplomatic Missions',
-    //   description:
-    //     'Philippine embassies, consulates, and diplomatic missions around the world.',
-    //   icon: <GlobeIcon className='h-4 w-4' />,
-    //   path: '/government/diplomatic',
-    // },
   ];
 
   // Check if we're on the main government page
@@ -83,7 +69,7 @@ export default function GovernmentLayout({ children }: GovernmentLayoutProps) {
 
       {/* Card Tabs Navigation */}
       <div className='mb-8 md:mb-12 overflow-x-auto'>
-        <div className='inline-grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3 min-w-full md:min-w-0 px-4 py-2'>
+        <div className='inline-grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-3 min-w-full md:min-w-0 px-4 py-2'>
           {branches.map(branch => {
             const isActive = currentPath.includes(branch.path);
             return (
