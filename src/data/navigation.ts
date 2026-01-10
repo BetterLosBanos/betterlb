@@ -82,22 +82,6 @@ export const ourProjects = [
 ];
 
 export const mainNavigation: NavigationItem[] = [
-  // {
-  //   label: 'Philippines',
-  //   href: '/philippines',
-  //   children: [
-  //     { label: 'About the Philippines', href: '/philippines/about' },
-  //     { label: 'History', href: '/philippines/history' },
-  //     { label: 'Culture', href: '/philippines/culture' },
-  //     { label: 'Regions', href: '/philippines/regions' },
-  //     { label: 'Map', href: '/philippines/map' },
-  //     // { label: 'Tourism', href: '/philippines/tourism' },
-  //     { label: 'Hotlines', href: '/philippines/hotlines' },
-  //     { label: 'Holidays', href: '/philippines/holidays' },
-  //     { label: 'Forex', href: '/data/forex' },
-  //     { label: 'Weather', href: '/data/weather' },
-  //   ],
-  // },
   {
     label: 'Services',
     href: '/services',
@@ -106,17 +90,6 @@ export const mainNavigation: NavigationItem[] = [
       href: `/services?category=${category.slug}`,
     })),
   },
-  //{
-  //  label: 'Travel',
-  //  href: '/travel',
-  //  children: [
-  //    { label: 'Visa Information', href: '/travel/visa' },
-  //    { label: 'Visa Types', href: '/travel/visa-types' },
-  //    { label: 'Working in the Philippines', href: '/travel/visa-types/swp-c' },
-  //    { label: 'Communicating', href: '/travel/communicating' },
-  //    // { label: 'Tourist Destinations', href: '/travel/destinations' },
-  //  ],
-  //},
   {
     label: 'Government',
     href: '/government',
