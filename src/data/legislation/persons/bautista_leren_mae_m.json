@@ -1,0 +1,45 @@
+{
+  "id": "bautista-leren-mae-m",
+  "first_name": "Leren Mae",
+  "middle_name": "M.",
+  "last_name": "Bautista",
+  "roles": ["Councilor"],
+  "memberships": [
+    {
+      "term_id": "sb_12",
+      "chamber": "sangguniang-bayan",
+      "role": "Councilor",
+      "rank": 4,
+      "committees": [
+        {
+          "id": "science-tech",
+          "role": "Vice Chair"
+        },
+        {
+          "id": "tourism",
+          "role": "Chairperson"
+        },
+        {
+          "id": "women-gad",
+          "role": "Chairperson"
+        },
+        {
+          "id": "external-affairs",
+          "role": "Member"
+        },
+        {
+          "id": "administrative",
+          "role": "Member"
+        },
+        {
+          "id": "youth-sports",
+          "role": "Member"
+        },
+        {
+          "id": "social-welfare",
+          "role": "Member"
+        }
+      ]
+    }
+  ]
+}
