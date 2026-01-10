@@ -1,0 +1,53 @@
+{
+  "id": "alinsunurin-myla-e",
+  "first_name": "Myla",
+  "middle_name": "E.",
+  "last_name": "Alinsunurin",
+  "roles": ["Councilor"],
+  "memberships": [
+    {
+      "term_id": "sb_12",
+      "chamber": "sangguniang-bayan",
+      "role": "Councilor",
+      "rank": 8,
+      "committees": [
+        {
+          "id": "livelihood",
+          "role": "Member"
+        },
+        {
+          "id": "games",
+          "role": "Vice Chair"
+        },
+        {
+          "id": "peace-order",
+          "role": "Vice Chair"
+        },
+        {
+          "id": "external-affairs",
+          "role": "Chairperson"
+        },
+        {
+          "id": "administrative",
+          "role": "Chairperson"
+        },
+        {
+          "id": "environmental-protection",
+          "role": "Chairperson"
+        },
+        {
+          "id": "science-tech",
+          "role": "Member"
+        },
+        {
+          "id": "tourism",
+          "role": "Member"
+        },
+        {
+          "id": "women-gad",
+          "role": "Vice Chair"
+        }
+      ]
+    }
+  ]
+}

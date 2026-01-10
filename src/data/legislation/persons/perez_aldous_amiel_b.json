@@ -1,0 +1,57 @@
+{
+  "id": "perez-aldous-amiel-b",
+  "first_name": "Aldous Amiel",
+  "middle_name": "B.",
+  "last_name": "Perez",
+  "roles": ["Councilor"],
+  "memberships": [
+    {
+      "term_id": "sb_12",
+      "chamber": "sangguniang-bayan",
+      "role": "Councilor",
+      "rank": 2,
+      "committees": [
+        {
+          "id": "livelihood",
+          "role": "Member"
+        },
+        {
+          "id": "public-works",
+          "role": "Chairperson"
+        },
+        {
+          "id": "good-governance",
+          "role": "Member"
+        },
+        {
+          "id": "agriculture",
+          "role": "Member"
+        },
+        {
+          "id": "health",
+          "role": "Member"
+        },
+        {
+          "id": "transportation",
+          "role": "Vice Chair"
+        },
+        {
+          "id": "trade-commerce",
+          "role": "Member"
+        },
+        {
+          "id": "rules",
+          "role": "Member"
+        },
+        {
+          "id": "social-welfare",
+          "role": "Vice Chair"
+        },
+        {
+          "id": "games",
+          "role": "Member"
+        }
+      ]
+    }
+  ]
+}

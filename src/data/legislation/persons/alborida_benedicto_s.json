@@ -1,0 +1,61 @@
+{
+  "id": "alborida-benedicto-s",
+  "first_name": "Benedicto",
+  "middle_name": "S.",
+  "last_name": "Alborida",
+  "roles": ["Councilor"],
+  "memberships": [
+    {
+      "term_id": "sb_12",
+      "chamber": "sangguniang-bayan",
+      "role": "Councilor",
+      "rank": 5,
+      "committees": [
+        {
+          "id": "games",
+          "role": "Chairperson"
+        },
+        {
+          "id": "peace-order",
+          "role": "Chairperson"
+        },
+        {
+          "id": "transportation",
+          "role": "Vice Chair"
+        },
+        {
+          "id": "appropriations",
+          "role": "Member"
+        },
+        {
+          "id": "social-welfare",
+          "role": "Member"
+        },
+        {
+          "id": "livelihood",
+          "role": "Member"
+        },
+        {
+          "id": "public-works",
+          "role": "Vice Chair"
+        },
+        {
+          "id": "good-governance",
+          "role": "Member"
+        },
+        {
+          "id": "education",
+          "role": "Member"
+        },
+        {
+          "id": "rules",
+          "role": "Vice Chair"
+        },
+        {
+          "id": "barangay-affairs",
+          "role": "Vice Chair"
+        }
+      ]
+    }
+  ]
+}

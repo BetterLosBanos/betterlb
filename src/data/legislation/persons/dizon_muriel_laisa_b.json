@@ -1,0 +1,45 @@
+{
+  "id": "dizon-muriel-laisa-b",
+  "first_name": "Muriel Laisa",
+  "middle_name": "B.",
+  "last_name": "Dizon",
+  "roles": ["Councilor"],
+  "memberships": [
+    {
+      "term_id": "sb_12",
+      "chamber": "sangguniang-bayan",
+      "role": "Councilor",
+      "rank": 9,
+      "committees": [
+        {
+          "id": "health",
+          "role": "Chairperson"
+        },
+        {
+          "id": "science-tech",
+          "role": "Vice Chair"
+        },
+        {
+          "id": "tourism",
+          "role": "Vice Chair"
+        },
+        {
+          "id": "women-gad",
+          "role": "Member"
+        },
+        {
+          "id": "external-affairs",
+          "role": "Vice Chair"
+        },
+        {
+          "id": "labor",
+          "role": "Member"
+        },
+        {
+          "id": "administrative",
+          "role": "Member"
+        }
+      ]
+    }
+  ]
+}
