@@ -1,0 +1,21 @@
+{
+  "id": "macatangay-gaudencio-p",
+  "first_name": "Gaudencio",
+  "middle_name": "P.",
+  "last_name": "Macatangay",
+  "roles": ["Councilor"],
+  "memberships": [
+    {
+      "term_id": "sb_12",
+      "chamber": "sangguniang-bayan",
+      "role": "Liga President",
+      "rank": 10,
+      "committees": [
+        {
+          "id": "barangay-affairs",
+          "role": "Chairperson"
+        }
+      ]
+    }
+  ]
+}

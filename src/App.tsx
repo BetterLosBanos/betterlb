@@ -1,4 +1,3 @@
-import { Suspense } from 'react';
 import {
   BrowserRouter as Router,
   Routes,
@@ -28,11 +27,6 @@ import PhilippinesMap from './pages/philippines/map';
 import PublicHolidays from './pages/philippines/holidays';
 import ContactUs from './pages/ContactUs';
 import Hotlines from './pages/philippines/Hotlines';
-import VisaPage from './pages/travel/visa';
-import VisaTypesPage from './pages/travel/visa-types';
-import VisaTypeDetail from './pages/travel/visa-types/[type]';
-import CommunicatingPage from './pages/travel/communicating';
-import CommunicatingPrintPage from './pages/travel/communicating/print';
 import ExecutiveDirectory from './pages/government/executive';
 import ExecutiveLayout from './pages/government/executive/layout';
 import DepartmentsIndex from './pages/government/departments';
@@ -65,6 +59,14 @@ import FloodControlProjectsTable from './pages/flood-control-projects/table';
 import FloodControlProjectsMap from './pages/flood-control-projects/map';
 import FloodControlProjectsContractors from './pages/flood-control-projects/contractors';
 import ContractorDetail from './pages/flood-control-projects/contractors/[contractor-name]';
+
+// Legislation Pages
+import LegislationLayout from './pages/legislation/layout';
+import LegislationIndex from './pages/legislation/index';
+import LegislationDetail from './pages/legislation/[document]';
+import SessionDetail from './pages/legislation/[session]';
+import PersonDetail from './pages/legislation/[person]';
+import TermDetail from './pages/legislation/[term]';
 
 // Sitemap Page
 import SitemapPage from './pages/sitemap';
@@ -139,32 +141,6 @@ function App() {
             </Route>
             <Route path='/services/:service' element={<ServiceDetail />} />
 
-            {/* Travel Routes */}
-            <Route path='/travel'>
-              <Route index element={<Navigate to='visa' replace />} />
-              <Route path='visa' element={<VisaPage />} />
-              <Route path='visa-types' element={<VisaTypesPage />} />
-              <Route
-                path='visa-types/:type'
-                element={
-                  <Suspense
-                    fallback={
-                      <div className='flex items-center justify-center min-h-screen'>
-                        Loading...
-                      </div>
-                    }
-                  >
-                    <VisaTypeDetail />
-                  </Suspense>
-                }
-              />
-              <Route path='communicating' element={<CommunicatingPage />} />
-              <Route
-                path='communicating/print'
-                element={<CommunicatingPrintPage />}
-              />
-            </Route>
-
             {/* Government Routes */}
             <Route
               path='/government'
@@ -212,6 +188,16 @@ function App() {
                   element={<SenateCommitteesPage />}
                 />
               </Route>
+            </Route>
+
+            {/* Legislation section */}
+            <Route path='legislation' element={<LegislationLayout />}>
+              {/* List page */}
+              <Route index element={<LegislationIndex />} />
+              <Route path=':type/:document' element={<LegislationDetail />} />
+              <Route path='session/:sessionId' element={<SessionDetail />} />
+              <Route path='person/:personId' element={<PersonDetail />} />
+              <Route path='term/:termId' element={<TermDetail />} />
             </Route>
 
             {/*Not Found/404 Page */}

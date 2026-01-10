@@ -1,0 +1,41 @@
+{
+  "id": "de-jesus-rand-edouard-r",
+  "first_name": "Rand Edouard",
+  "middle_name": "R.",
+  "last_name": "De Jesus",
+  "roles": ["Councilor"],
+  "memberships": [
+    {
+      "term_id": "sb_12",
+      "chamber": "sangguniang-bayan",
+      "role": "Councilor",
+      "rank": 7,
+      "committees": [
+        {
+          "id": "livelihood",
+          "role": "Vice Chair"
+        },
+        {
+          "id": "trade-commerce",
+          "role": "Chairperson"
+        },
+        {
+          "id": "labor",
+          "role": "Chairperson"
+        },
+        {
+          "id": "tourism",
+          "role": "Member"
+        },
+        {
+          "id": "women-gad",
+          "role": "Member"
+        },
+        {
+          "id": "external-affairs",
+          "role": "Member"
+        }
+      ]
+    }
+  ]
+}

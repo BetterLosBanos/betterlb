@@ -1,17 +1,6 @@
 export type LanguageType =
   | 'en' // English
-  | 'fil' // Filipino (standardized Tagalog)
-  | 'ceb' // Cebuano/Bisaya
-  | 'bcl' // Bikol
-  | 'hil' // Hiligaynon/Ilonggo
-  | 'ilo' // Ilocano
-  | 'krj' // Kinaray-a
-  | 'mag' // Maguindanao
-  | 'mdh' // Maranao
-  | 'pag' // Pangasinan
-  | 'pam' // Kapampangan
-  | 'tsg' // Tausug
-  | 'war'; // Waray
+  | 'fil'; // Filipino (standardized Tagalog)
 
 export interface Country {
   name: string;

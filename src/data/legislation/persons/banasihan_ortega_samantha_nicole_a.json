@@ -1,0 +1,33 @@
+{
+  "id": "banasihan-ortega-samantha-nicole-a",
+  "first_name": "Samantha Nicole",
+  "middle_name": "A.",
+  "last_name": "Banasihan-Ortega",
+  "roles": ["Councilor"],
+  "memberships": [
+    {
+      "term_id": "sb_12",
+      "chamber": "sangguniang-bayan",
+      "role": "SK Federation President",
+      "rank": 11,
+      "committees": [
+        {
+          "id": "youth-sports",
+          "role": "Chairperson"
+        },
+        {
+          "id": "women-gad",
+          "role": "Member"
+        },
+        {
+          "id": "science-tech",
+          "role": "Member"
+        },
+        {
+          "id": "external-affairs",
+          "role": "Member"
+        }
+      ]
+    }
+  ]
+}
