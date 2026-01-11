@@ -1,0 +1,646 @@
+[
+  {
+    "period": "Q1-2024",
+    "location_info": {
+      "region": "Region IV-A",
+      "province": "Laguna",
+      "lgu_name": "Los Baños",
+      "lgu_type": "Municipality"
+    },
+    "current_operating_income": {
+      "local_sources": {
+        "tax_revenue": {
+          "real_property_tax": {
+            "general_fund": 8.7,
+            "special_education_fund": 10.88,
+            "total": 19.58
+          },
+          "tax_on_business": 45.55,
+          "other_taxes": 2.33,
+          "total_tax_revenue": 67.47
+        },
+        "non_tax_revenue": {
+          "regulatory_fees": 12.12,
+          "service_user_charges": 3.77,
+          "receipts_from_economic_enterprises": 3.31,
+          "other_receipts": 0.08,
+          "total_non_tax_revenue": 19.29
+        },
+        "total_local_sources": 86.76
+      },
+      "external_sources": {
+        "national_tax_allotment": 82.21,
+        "other_shares_from_national_tax_collection": 0.76,
+        "inter_local_transfers": 0.0,
+        "extraordinary_receipts_grants_donations_aids": 0.0,
+        "total_external_sources": 82.96
+      },
+      "total_current_operating_income": 169.72
+    },
+    "total_current_operating_expenditures": {
+      "general_public_services": 40.71,
+      "social_services": {
+        "education_culture_sports_manpower_development": 2.12,
+        "health_nutrition_population_control": 6.31,
+        "labor_and_employment": 0.0,
+        "housing_and_community_development": 0.0,
+        "social_services_and_social_welfare": 2.83,
+        "total_social_services": 11.26
+      },
+      "economic_services": 5.03,
+      "debt_service_interest_expense": 0.0,
+      "total_current_operating_expenditures": 57.0
+    },
+    "net_operating_income_loss_from_current_operations": 112.72,
+    "non_income_receipts": {
+      "capital_investment_receipts": {
+        "proceeds_from_sale_of_assets": 0.0,
+        "proceeds_from_sale_of_debt_securities_of_other_entities": 0.0,
+        "collection_of_loans_receivables": 0.0,
+        "total_capital_investment_receipts": 0.0
+      },
+      "receipts_from_loans_and_borrowings": {
+        "acquisition_of_loans": 0.0,
+        "issuance_of_bonds": 0.0,
+        "total_receipts_from_loans_and_borrowings": 0.0
+      },
+      "other_non_income_receipts": 0.0,
+      "total_non_income_receipts": 0.0
+    },
+    "non_operating_expenditures": {
+      "capital_investment_expenditures": {
+        "purchase_construct_of_property_plant_and_equipment": 0.0,
+        "purchase_of_debt_securities_of_other_entities": 0.0,
+        "grant_make_loan_to_other_entities": 0.0,
+        "total_capital_investment_expenditures": 0.0
+      },
+      "debt_service_principal_cost": {
+        "payment_of_loan_amortization": 0.37,
+        "retirement_redemption_of_bonds_debt_securities": 0.0,
+        "total_debt_service_principal_cost": 0.37
+      },
+      "other_non_operating_expenditures": 0.0,
+      "total_non_operating_expenditures": 0.37
+    },
+    "fund_summary": {
+      "net_increase_decrease_in_funds": 112.43,
+      "add_cash_balance_beginning": 464.08,
+      "fund_cash_available": 576.51,
+      "less_payment_of_prior_years_accounts_payable": 34.45,
+      "continuing_appropriation": 9.66,
+      "fund_cash_balance_end": 532.41
+    }
+  },
+  {
+    "period": "Q2-2024",
+    "location_info": {
+      "region": "Region IV-A",
+      "province": "Laguna",
+      "lgu_name": "Los Baños",
+      "lgu_type": "Municipality"
+    },
+    "current_operating_income": {
+      "local_sources": {
+        "tax_revenue": {
+          "real_property_tax": {
+            "general_fund": 10.66,
+            "special_education_fund": 13.33,
+            "total": 23.99
+          },
+          "tax_on_business": 53.98,
+          "other_taxes": 2.52,
+          "total_tax_revenue": 80.49
+        },
+        "non_tax_revenue": {
+          "regulatory_fees": 16.09,
+          "service_user_charges": 4.87,
+          "receipts_from_economic_enterprises": 6.15,
+          "other_receipts": 0.79,
+          "total_non_tax_revenue": 27.89
+        },
+        "total_local_sources": 108.38
+      },
+      "external_sources": {
+        "national_tax_allotment": 164.41,
+        "other_shares_from_national_tax_collection": 0.76,
+        "inter_local_transfers": 0.0,
+        "extraordinary_receipts_grants_donations_aids": 0.8,
+        "total_external_sources": 165.97
+      },
+      "total_current_operating_income": 274.35
+    },
+    "total_current_operating_expenditures": {
+      "general_public_services": 87.2,
+      "social_services": {
+        "education_culture_sports_manpower_development": 4.19,
+        "health_nutrition_population_control": 12.78,
+        "labor_and_employment": 0.0,
+        "housing_and_community_development": 0.0,
+        "social_services_and_social_welfare": 7.23,
+        "total_social_services": 24.2
+      },
+      "economic_services": 11.05,
+      "debt_service_interest_expense": 0.46,
+      "total_current_operating_expenditures": 122.91
+    },
+    "net_operating_income_loss_from_current_operations": 151.44,
+    "non_income_receipts": {
+      "capital_investment_receipts": {
+        "proceeds_from_sale_of_assets": 0.0,
+        "proceeds_from_sale_of_debt_securities_of_other_entities": 0.0,
+        "collection_of_loans_receivables": 0.0,
+        "total_capital_investment_receipts": 0.0
+      },
+      "receipts_from_loans_and_borrowings": {
+        "acquisition_of_loans": 0.0,
+        "issuance_of_bonds": 0.0,
+        "total_receipts_from_loans_and_borrowings": 0.0
+      },
+      "other_non_income_receipts": 0.0,
+      "total_non_income_receipts": 0.0
+    },
+    "non_operating_expenditures": {
+      "capital_investment_expenditures": {
+        "purchase_construct_of_property_plant_and_equipment": 0.73,
+        "purchase_of_debt_securities_of_other_entities": 0.0,
+        "grant_make_loan_to_other_entities": 0.0,
+        "total_capital_investment_expenditures": 0.73
+      },
+      "debt_service_principal_cost": {
+        "payment_of_loan_amortization": 1.69,
+        "retirement_redemption_of_bonds_debt_securities": 0.0,
+        "total_debt_service_principal_cost": 1.69
+      },
+      "other_non_operating_expenditures": 0.0,
+      "total_non_operating_expenditures": 2.41
+    },
+    "fund_summary": {
+      "net_increase_decrease_in_funds": 149.03,
+      "add_cash_balance_beginning": 464.08,
+      "fund_cash_available": 613.11,
+      "less_payment_of_prior_years_accounts_payable": 38.16,
+      "continuing_appropriation": 13.43,
+      "fund_cash_balance_end": 561.51
+    }
+  },
+  {
+    "period": "Q3-2024",
+    "location_info": {
+      "region": "Region IV-A",
+      "province": "Laguna",
+      "lgu_name": "Los Baños",
+      "lgu_type": "Municipality"
+    },
+    "current_operating_income": {
+      "local_sources": {
+        "tax_revenue": {
+          "real_property_tax": {
+            "general_fund": 13.48,
+            "special_education_fund": 16.85,
+            "total": 30.32
+          },
+          "tax_on_business": 61.87,
+          "other_taxes": 2.65,
+          "total_tax_revenue": 94.84
+        },
+        "non_tax_revenue": {
+          "regulatory_fees": 18.61,
+          "service_user_charges": 5.79,
+          "receipts_from_economic_enterprises": 8.84,
+          "other_receipts": 0.85,
+          "total_non_tax_revenue": 34.08
+        },
+        "total_local_sources": 128.93
+      },
+      "external_sources": {
+        "national_tax_allotment": 246.62,
+        "other_shares_from_national_tax_collection": 0.76,
+        "inter_local_transfers": 0.0,
+        "extraordinary_receipts_grants_donations_aids": 0.82,
+        "total_external_sources": 248.2
+      },
+      "total_current_operating_income": 377.12
+    },
+    "total_current_operating_expenditures": {
+      "general_public_services": 144.19,
+      "social_services": {
+        "education_culture_sports_manpower_development": 7.03,
+        "health_nutrition_population_control": 22.11,
+        "labor_and_employment": 0.0,
+        "housing_and_community_development": 0.0,
+        "social_services_and_social_welfare": 12.45,
+        "total_social_services": 41.6
+      },
+      "economic_services": 18.15,
+      "debt_service_interest_expense": 0.46,
+      "total_current_operating_expenditures": 204.39
+    },
+    "net_operating_income_loss_from_current_operations": 172.74,
+    "non_income_receipts": {
+      "capital_investment_receipts": {
+        "proceeds_from_sale_of_assets": 0.0,
+        "proceeds_from_sale_of_debt_securities_of_other_entities": 0.0,
+        "collection_of_loans_receivables": 0.0,
+        "total_capital_investment_receipts": 0.0
+      },
+      "receipts_from_loans_and_borrowings": {
+        "acquisition_of_loans": 0.0,
+        "issuance_of_bonds": 0.0,
+        "total_receipts_from_loans_and_borrowings": 0.0
+      },
+      "other_non_income_receipts": 0.0,
+      "total_non_income_receipts": 0.0
+    },
+    "non_operating_expenditures": {
+      "capital_investment_expenditures": {
+        "purchase_construct_of_property_plant_and_equipment": 7.32,
+        "purchase_of_debt_securities_of_other_entities": 0.0,
+        "grant_make_loan_to_other_entities": 0.0,
+        "total_capital_investment_expenditures": 7.32
+      },
+      "debt_service_principal_cost": {
+        "payment_of_loan_amortization": 2.06,
+        "retirement_redemption_of_bonds_debt_securities": 0.0,
+        "total_debt_service_principal_cost": 2.06
+      },
+      "other_non_operating_expenditures": 0.0,
+      "total_non_operating_expenditures": 9.38
+    },
+    "fund_summary": {
+      "net_increase_decrease_in_funds": 163.36,
+      "add_cash_balance_beginning": 464.08,
+      "fund_cash_available": 627.44,
+      "less_payment_of_prior_years_accounts_payable": 47.09,
+      "continuing_appropriation": 29.98,
+      "fund_cash_balance_end": 550.37
+    }
+  },
+  {
+    "period": "Q4-2024",
+    "location_info": {
+      "region": "Region IV-A",
+      "province": "Laguna",
+      "lgu_name": "Los Baños",
+      "lgu_type": "Municipality"
+    },
+    "current_operating_income": {
+      "local_sources": {
+        "tax_revenue": {
+          "real_property_tax": {
+            "general_fund": 15.32,
+            "special_education_fund": 19.15,
+            "total": 34.47
+          },
+          "tax_on_business": 69.66,
+          "other_taxes": 2.75,
+          "total_tax_revenue": 106.87
+        },
+        "non_tax_revenue": {
+          "regulatory_fees": 20.87,
+          "service_user_charges": 6.71,
+          "receipts_from_economic_enterprises": 11.49,
+          "other_receipts": 0.45,
+          "total_non_tax_revenue": 39.53
+        },
+        "total_local_sources": 146.41
+      },
+      "external_sources": {
+        "national_tax_allotment": 328.82,
+        "other_shares_from_national_tax_collection": 1.11,
+        "inter_local_transfers": 0.0,
+        "extraordinary_receipts_grants_donations_aids": 2.25,
+        "total_external_sources": 332.18
+      },
+      "total_current_operating_income": 478.58
+    },
+    "total_current_operating_expenditures": {
+      "general_public_services": 265.13,
+      "social_services": {
+        "education_culture_sports_manpower_development": 25.04,
+        "health_nutrition_population_control": 39.3,
+        "labor_and_employment": 0.0,
+        "housing_and_community_development": 0.01,
+        "social_services_and_social_welfare": 24.31,
+        "total_social_services": 88.66
+      },
+      "economic_services": 30.6,
+      "debt_service_interest_expense": 0.93,
+      "total_current_operating_expenditures": 385.31
+    },
+    "net_operating_income_loss_from_current_operations": 93.27,
+    "non_income_receipts": {
+      "capital_investment_receipts": {
+        "proceeds_from_sale_of_assets": 0.0,
+        "proceeds_from_sale_of_debt_securities_of_other_entities": 0.0,
+        "collection_of_loans_receivables": 0.0,
+        "total_capital_investment_receipts": 0.0
+      },
+      "receipts_from_loans_and_borrowings": {
+        "acquisition_of_loans": 0.0,
+        "issuance_of_bonds": 0.0,
+        "total_receipts_from_loans_and_borrowings": 0.0
+      },
+      "other_non_income_receipts": 0.0,
+      "total_non_income_receipts": 0.0
+    },
+    "non_operating_expenditures": {
+      "capital_investment_expenditures": {
+        "purchase_construct_of_property_plant_and_equipment": 29.54,
+        "purchase_of_debt_securities_of_other_entities": 0.0,
+        "grant_make_loan_to_other_entities": 0.0,
+        "total_capital_investment_expenditures": 29.54
+      },
+      "debt_service_principal_cost": {
+        "payment_of_loan_amortization": 3.35,
+        "retirement_redemption_of_bonds_debt_securities": 0.0,
+        "total_debt_service_principal_cost": 3.35
+      },
+      "other_non_operating_expenditures": 0.0,
+      "total_non_operating_expenditures": 32.89
+    },
+    "fund_summary": {
+      "net_increase_decrease_in_funds": 60.38,
+      "add_cash_balance_beginning": 464.08,
+      "fund_cash_available": 524.46,
+      "less_payment_of_prior_years_accounts_payable": 82.93,
+      "continuing_appropriation": 30.25,
+      "fund_cash_balance_end": 411.28
+    }
+  },
+  {
+    "period": "Q1-2025",
+    "location_info": {
+      "region": "Region IV-A",
+      "province": "Laguna",
+      "lgu_name": "Los Baños",
+      "lgu_type": "Municipality"
+    },
+    "current_operating_income": {
+      "local_sources": {
+        "tax_revenue": {
+          "real_property_tax": {
+            "general_fund": 11.48,
+            "special_education_fund": 14.35,
+            "total": 25.83
+          },
+          "tax_on_business": 49.84,
+          "other_taxes": 2.43,
+          "total_tax_revenue": 78.1
+        },
+        "non_tax_revenue": {
+          "regulatory_fees": 12.81,
+          "service_user_charges": 3.5,
+          "receipts_from_economic_enterprises": 3.22,
+          "other_receipts": 0.02,
+          "total_non_tax_revenue": 19.55
+        },
+        "total_local_sources": 97.65
+      },
+      "external_sources": {
+        "national_tax_allotment": 97.6,
+        "other_shares_from_national_tax_collection": 0.0,
+        "inter_local_transfers": 0.0,
+        "extraordinary_receipts_grants_donations_aids": 0.4,
+        "total_external_sources": 98.0
+      },
+      "total_current_operating_income": 195.65
+    },
+    "total_current_operating_expenditures": {
+      "general_public_services": 34.82,
+      "social_services": {
+        "education_culture_sports_manpower_development": 1.19,
+        "health_nutrition_population_control": 7.11,
+        "labor_and_employment": 0.0,
+        "housing_and_community_development": 0.0,
+        "social_services_and_social_welfare": 7.26,
+        "total_social_services": 15.56
+      },
+      "economic_services": 5.33,
+      "debt_service_interest_expense": 0.0,
+      "total_current_operating_expenditures": 55.7
+    },
+    "net_operating_income_loss_from_current_operations": 139.95,
+    "non_income_receipts": {
+      "capital_investment_receipts": {
+        "proceeds_from_sale_of_assets": 0.0,
+        "proceeds_from_sale_of_debt_securities_of_other_entities": 0.0,
+        "collection_of_loans_receivables": 0.0,
+        "total_capital_investment_receipts": 0.0
+      },
+      "receipts_from_loans_and_borrowings": {
+        "acquisition_of_loans": 0.0,
+        "issuance_of_bonds": 0.0,
+        "total_receipts_from_loans_and_borrowings": 0.0
+      },
+      "other_non_income_receipts": 0.0,
+      "total_non_income_receipts": 0.0
+    },
+    "non_operating_expenditures": {
+      "capital_investment_expenditures": {
+        "purchase_construct_of_property_plant_and_equipment": 0.69,
+        "purchase_of_debt_securities_of_other_entities": 0.0,
+        "grant_make_loan_to_other_entities": 0.0,
+        "total_capital_investment_expenditures": 0.69
+      },
+      "debt_service_principal_cost": {
+        "payment_of_loan_amortization": 0.37,
+        "retirement_redemption_of_bonds_debt_securities": 0.0,
+        "total_debt_service_principal_cost": 0.37
+      },
+      "other_non_operating_expenditures": 0.0,
+      "total_non_operating_expenditures": 1.06
+    },
+    "fund_summary": {
+      "net_increase_decrease_in_funds": 138.89,
+      "add_cash_balance_beginning": 415.08,
+      "fund_cash_available": 553.97,
+      "less_payment_of_prior_years_accounts_payable": 51.99,
+      "continuing_appropriation": 5.33,
+      "fund_cash_balance_end": 496.65
+    }
+  },
+  {
+    "period": "Q2-2025",
+    "location_info": {
+      "region": "Region IV-A",
+      "province": "Laguna",
+      "lgu_name": "Los Baños",
+      "lgu_type": "Municipality"
+    },
+    "current_operating_income": {
+      "local_sources": {
+        "tax_revenue": {
+          "real_property_tax": {
+            "general_fund": 14.03,
+            "special_education_fund": 17.53,
+            "total": 31.56
+          },
+          "tax_on_business": 58.86,
+          "other_taxes": 2.56,
+          "total_tax_revenue": 92.98
+        },
+        "non_tax_revenue": {
+          "regulatory_fees": 15.51,
+          "service_user_charges": 4.31,
+          "receipts_from_economic_enterprises": 5.77,
+          "other_receipts": 0.09,
+          "total_non_tax_revenue": 25.68
+        },
+        "total_local_sources": 118.66
+      },
+      "external_sources": {
+        "national_tax_allotment": 195.2,
+        "other_shares_from_national_tax_collection": 0.37,
+        "inter_local_transfers": 0.0,
+        "extraordinary_receipts_grants_donations_aids": 0.41,
+        "total_external_sources": 195.98
+      },
+      "total_current_operating_income": 314.65
+    },
+    "total_current_operating_expenditures": {
+      "general_public_services": 91.44,
+      "social_services": {
+        "education_culture_sports_manpower_development": 5.98,
+        "health_nutrition_population_control": 18.82,
+        "labor_and_employment": 0.0,
+        "housing_and_community_development": 0.0,
+        "social_services_and_social_welfare": 11.45,
+        "total_social_services": 36.26
+      },
+      "economic_services": 12.1,
+      "debt_service_interest_expense": 0.44,
+      "total_current_operating_expenditures": 140.24
+    },
+    "net_operating_income_loss_from_current_operations": 174.41,
+    "non_income_receipts": {
+      "capital_investment_receipts": {
+        "proceeds_from_sale_of_assets": 0.0,
+        "proceeds_from_sale_of_debt_securities_of_other_entities": 0.0,
+        "collection_of_loans_receivables": 0.0,
+        "total_capital_investment_receipts": 0.0
+      },
+      "receipts_from_loans_and_borrowings": {
+        "acquisition_of_loans": 0.0,
+        "issuance_of_bonds": 0.0,
+        "total_receipts_from_loans_and_borrowings": 0.0
+      },
+      "other_non_income_receipts": 0.0,
+      "total_non_income_receipts": 0.0
+    },
+    "non_operating_expenditures": {
+      "capital_investment_expenditures": {
+        "purchase_construct_of_property_plant_and_equipment": 16.09,
+        "purchase_of_debt_securities_of_other_entities": 0.0,
+        "grant_make_loan_to_other_entities": 0.0,
+        "total_capital_investment_expenditures": 16.09
+      },
+      "debt_service_principal_cost": {
+        "payment_of_loan_amortization": 1.71,
+        "retirement_redemption_of_bonds_debt_securities": 0.0,
+        "total_debt_service_principal_cost": 1.71
+      },
+      "other_non_operating_expenditures": 0.0,
+      "total_non_operating_expenditures": 17.8
+    },
+    "fund_summary": {
+      "net_increase_decrease_in_funds": 156.61,
+      "add_cash_balance_beginning": 415.08,
+      "fund_cash_available": 571.69,
+      "less_payment_of_prior_years_accounts_payable": 72.94,
+      "continuing_appropriation": 17.36,
+      "fund_cash_balance_end": 481.39
+    }
+  },
+  {
+    "period": "Q3-2025",
+    "location_info": {
+      "region": "Region IV-A",
+      "province": "Laguna",
+      "lgu_name": "Los Baños",
+      "lgu_type": "Municipality"
+    },
+    "current_operating_income": {
+      "local_sources": {
+        "tax_revenue": {
+          "real_property_tax": {
+            "general_fund": 15.93,
+            "special_education_fund": 19.91,
+            "total": 35.84
+          },
+          "tax_on_business": 66.24,
+          "other_taxes": 2.69,
+          "total_tax_revenue": 104.78
+        },
+        "non_tax_revenue": {
+          "regulatory_fees": 18.24,
+          "service_user_charges": 5.09,
+          "receipts_from_economic_enterprises": 8.57,
+          "other_receipts": 0.61,
+          "total_non_tax_revenue": 32.5
+        },
+        "total_local_sources": 137.28
+      },
+      "external_sources": {
+        "national_tax_allotment": 292.81,
+        "other_shares_from_national_tax_collection": 0.71,
+        "inter_local_transfers": 0.0,
+        "extraordinary_receipts_grants_donations_aids": 0.46,
+        "total_external_sources": 293.97
+      },
+      "total_current_operating_income": 431.26
+    },
+    "total_current_operating_expenditures": {
+      "general_public_services": 137.76,
+      "social_services": {
+        "education_culture_sports_manpower_development": 23.78,
+        "health_nutrition_population_control": 29.9,
+        "labor_and_employment": 0.0,
+        "housing_and_community_development": 0.0,
+        "social_services_and_social_welfare": 20.36,
+        "total_social_services": 74.04
+      },
+      "economic_services": 18.37,
+      "debt_service_interest_expense": 0.44,
+      "total_current_operating_expenditures": 230.61
+    },
+    "net_operating_income_loss_from_current_operations": 200.65,
+    "non_income_receipts": {
+      "capital_investment_receipts": {
+        "proceeds_from_sale_of_assets": 0.0,
+        "proceeds_from_sale_of_debt_securities_of_other_entities": 0.0,
+        "collection_of_loans_receivables": 0.0,
+        "total_capital_investment_receipts": 0.0
+      },
+      "receipts_from_loans_and_borrowings": {
+        "acquisition_of_loans": 0.0,
+        "issuance_of_bonds": 0.0,
+        "total_receipts_from_loans_and_borrowings": 0.0
+      },
+      "other_non_income_receipts": 0.0,
+      "total_non_income_receipts": 0.0
+    },
+    "non_operating_expenditures": {
+      "capital_investment_expenditures": {
+        "purchase_construct_of_property_plant_and_equipment": 24.41,
+        "purchase_of_debt_securities_of_other_entities": 0.0,
+        "grant_make_loan_to_other_entities": 0.0,
+        "total_capital_investment_expenditures": 24.41
+      },
+      "debt_service_principal_cost": {
+        "payment_of_loan_amortization": 1.71,
+        "retirement_redemption_of_bonds_debt_securities": 0.0,
+        "total_debt_service_principal_cost": 1.71
+      },
+      "other_non_operating_expenditures": 0.0,
+      "total_non_operating_expenditures": 26.12
+    },
+    "fund_summary": {
+      "net_increase_decrease_in_funds": 174.53,
+      "add_cash_balance_beginning": 415.08,
+      "fund_cash_available": 589.61,
+      "less_payment_of_prior_years_accounts_payable": 74.64,
+      "continuing_appropriation": 30.47,
+      "fund_cash_balance_end": 484.5
+    }
+  }
+]

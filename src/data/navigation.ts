@@ -170,12 +170,12 @@ export const footerNavigation = {
       links: [
         { label: 'All Services', href: '/services' },
         { label: 'Service Directory', href: '/services' },
-        { label: 'Websites', href: '/services/websites' },
-        { label: 'Forex', href: '/data/forex' },
-        { label: 'Weather', href: '/data/weather' },
-        { label: 'Hotlines', href: '/philippines/hotlines' },
-        { label: 'Holidays', href: '/philippines/holidays' },
-        { label: 'Flood Control Projects', href: '/flood-control-projects' },
+        // { label: 'Websites', href: '/services/websites' },
+        // { label: 'Forex', href: '/data/forex' },
+        // { label: 'Weather', href: '/data/weather' },
+        // { label: 'Hotlines', href: '/philippines/hotlines' },
+        // { label: 'Holidays', href: '/philippines/holidays' },
+        // { label: 'Flood Control Projects', href: '/flood-control-projects' },
       ],
     },
     {

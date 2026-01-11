@@ -19,14 +19,13 @@ import ServicesLayout from './pages/services/layout';
 
 import AboutPage from './pages/about';
 import AccessibilityPage from './pages/accessibility';
-import AboutPhilippines from './pages/philippines/about';
-import PhilippinesHistory from './pages/philippines/history';
-import PhilippinesCulture from './pages/philippines/culture';
-import PhilippinesRegions from './pages/philippines/regions';
-import PhilippinesMap from './pages/philippines/map';
-import PublicHolidays from './pages/philippines/holidays';
+// import AboutPhilippines from './pages/philippines/about';
+// import PhilippinesHistory from './pages/philippines/history';
+// import PhilippinesCulture from './pages/philippines/culture';
+// import PhilippinesRegions from './pages/philippines/regions';
+// import PhilippinesMap from './pages/philippines/map';
+// import PublicHolidays from './pages/philippines/holidays';
 import ContactUs from './pages/ContactUs';
-import Hotlines from './pages/philippines/Hotlines';
 import ExecutiveDirectory from './pages/government/executive';
 import ExecutiveLayout from './pages/government/executive/layout';
 import DepartmentsIndex from './pages/government/departments';
@@ -54,11 +53,11 @@ import SearchPage from './pages/Search';
 // Data Pages
 import WeatherPage from './pages/data/weather';
 import ForexPage from './pages/data/forex';
-import FloodControlProjects from './pages/flood-control-projects';
-import FloodControlProjectsTable from './pages/flood-control-projects/table';
-import FloodControlProjectsMap from './pages/flood-control-projects/map';
-import FloodControlProjectsContractors from './pages/flood-control-projects/contractors';
-import ContractorDetail from './pages/flood-control-projects/contractors/[contractor-name]';
+// import FloodControlProjects from './pages/flood-control-projects';
+// import FloodControlProjectsTable from './pages/flood-control-projects/table';
+// import FloodControlProjectsMap from './pages/flood-control-projects/map';
+// import FloodControlProjectsContractors from './pages/flood-control-projects/contractors';
+// import ContractorDetail from './pages/flood-control-projects/contractors/[contractor-name]';
 
 // Legislation Pages
 import LegislationLayout from './pages/legislation/layout';
@@ -68,6 +67,11 @@ import SessionDetail from './pages/legislation/[session]';
 import PersonDetail from './pages/legislation/[person]';
 import TermDetail from './pages/legislation/[term]';
 
+// Transparency Pages
+import TransparencyLayout from './pages/transparency/layout';
+import TransparencyIndex from './pages/transparency/index';
+import FinancialPage from './pages/transparency/financial';
+
 // Sitemap Page
 import SitemapPage from './pages/sitemap';
 import Ideas from './pages/Ideas';
@@ -75,7 +79,7 @@ import JoinUs from './pages/JoinUs';
 import TermsOfService from './pages/TermsOfService';
 import ScrollToTop from './components/ui/ScrollToTop';
 import Discord from './pages/Discord';
-import SalaryGradePage from './pages/government/salary-grade/index';
+// import SalaryGradePage from './pages/government/salary-grade/index';
 import NotFound from './pages/NotFound';
 
 function App() {
@@ -100,7 +104,7 @@ function App() {
             <Route path='/sitemap' element={<SitemapPage />} />
             <Route path='/discord' Component={Discord} />
 
-            <Route path='/philippines'>
+            {/* <Route path='/philippines'>
               <Route index element={<Navigate to='about' replace />} />
               <Route path='about' element={<AboutPhilippines />} />
               <Route path='history' element={<PhilippinesHistory />} />
@@ -109,12 +113,12 @@ function App() {
               <Route path='map' element={<PhilippinesMap />} />
               <Route path='holidays' element={<PublicHolidays />} />
               <Route path='hotlines' element={<Hotlines />} />
-            </Route>
+            </Route> */}
 
             {/* Data Routes */}
             <Route path='/data/weather' element={<WeatherPage />} />
             <Route path='/data/forex' element={<ForexPage />} />
-            <Route
+            {/* <Route
               path='/flood-control-projects'
               element={<FloodControlProjects />}
             />
@@ -133,7 +137,7 @@ function App() {
             <Route
               path='/flood-control-projects/contractors/:contractor-name'
               element={<ContractorDetail />}
-            />
+            /> */}
 
             {/* Services Routes */}
             <Route path='/services' element={<ServicesLayout />}>
@@ -147,7 +151,7 @@ function App() {
               element={<GovernmentLayout title='Government' />}
             >
               <Route index element={<Navigate to='executive' replace />} />
-              <Route path='salary-grade' element={<SalaryGradePage />} />
+              {/* <Route path='salary-grade' element={<SalaryGradePage />} /> */}
 
               <Route path='executive' element={<ExecutiveLayout />}>
                 <Route index element={<ExecutiveDirectory />} />
@@ -198,6 +202,11 @@ function App() {
               <Route path='session/:sessionId' element={<SessionDetail />} />
               <Route path='person/:personId' element={<PersonDetail />} />
               <Route path='term/:termId' element={<TermDetail />} />
+            </Route>
+
+            <Route path='/transparency' element={<TransparencyLayout />}>
+              <Route index element={<TransparencyIndex />} />
+              <Route path='financial' element={<FinancialPage />} />
             </Route>
 
             {/*Not Found/404 Page */}
