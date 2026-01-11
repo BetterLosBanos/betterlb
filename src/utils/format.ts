@@ -1,12 +1,34 @@
-export function formatPeso(value: number | undefined | null): string {
-  if (value == null) return '₱0.00 M';
-  return `₱${value.toFixed(2)} M`;
-}
+// Standard formatter
+export const formatPeso = (amount: number): string => {
+  return new Intl.NumberFormat('en-PH', {
+    style: 'currency',
+    currency: 'PHP',
+    minimumFractionDigits: 2,
+    maximumFractionDigits: 2,
+  }).format(amount);
+};
 
-export function calcPercent(
-  value: number | undefined | null,
-  total: number | undefined | null
-): string {
-  if (!value || !total) return '0.0%';
-  return ((value / total) * 100).toFixed(1) + '%';
-}
+// Formatter with "M" suffix for charts/tooltips
+export const formatMillions = (amount: number): string => {
+  return formatPeso(amount) + ' M';
+};
+
+// Fancy formatter for the Summary Cards
+export const formatPesoParts = (amount: number) => {
+  const formatter = new Intl.NumberFormat('en-PH', {
+    style: 'currency',
+    currency: 'PHP',
+    minimumFractionDigits: 2,
+  });
+  const parts = formatter.formatToParts(amount);
+  return {
+    symbol: parts.find(p => p.type === 'currency')?.value ?? '₱',
+    integer: parts
+      .filter(p => p.type === 'group' || p.type === 'integer')
+      .map(p => p.value)
+      .join(''),
+    decimal: parts.find(p => p.type === 'decimal')?.value ?? '.',
+    fraction: parts.find(p => p.type === 'fraction')?.value ?? '00',
+    unit: 'M', // Explicit unit
+  };
+};

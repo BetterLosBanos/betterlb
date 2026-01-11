@@ -1,224 +1,259 @@
-import { BarChart2Icon } from 'lucide-react';
-import { useEffect, useMemo, useState } from 'react';
-
+import { BarChart2Icon, Landmark, ReceiptText, Info } from 'lucide-react';
 import SummaryCards from '@/pages/transparency/components/SummaryCards';
-import IncomeSourcesChart from '@/pages/transparency/components/IncomeSourcesChart';
-import ExpendituresChart from '@/pages/transparency/components/ExpendituresChart';
+// ... rest of imports and component logic (no other changes needed)
 import QuarterToggle from '@/pages/transparency/components/QuarterToggle';
-
-import budgetData, { FinancialQuarter } from '@/data/transparency/budgetData';
-import { aggregateIncome, aggregateExpenditures } from '@/utils/budgetUtils';
-
-/* ---------------- Helpers ---------------- */
-const getYear = (period: string) => period.split('-')[1];
-const getQuarter = (period: string) => period.split('-')[0];
+import FinancialPieChart, {
+  ChartDataPoint,
+} from '@/pages/transparency/components/FinancialPieChart';
+import { useFinancialData } from '@/hooks/useFinancialData';
+import { formatLabel } from '@/utils/budgetUtils';
 
 export default function FinancialPage() {
-  /* ---------------- Years ---------------- */
-  const years = useMemo(
-    () => Array.from(new Set(budgetData.map(q => getYear(q.period)))).sort(),
-    []
-  );
-  const latestYear = years[years.length - 1];
+  // ... component implementation
+  const {
+    years,
+    selectedYear,
+    setSelectedYear,
+    viewMode,
+    setViewMode,
+    quartersInYear,
+    selectedQuarter,
+    setSelectedQuarter,
+    displayedIncome,
+    displayedExpenditure,
+    displayedFundSummary,
+    comparisonBaseline,
+    getQuarter,
+  } = useFinancialData();
 
-  /* ---------------- State ---------------- */
-  const [selectedYear, setSelectedYear] = useState(latestYear);
-  const [viewMode, setViewMode] = useState<'quarter' | 'year'>('quarter');
+  // --- Transform Data for Charts ---
 
-  /* ---------------- Quarters (selected year) ---------------- */
-  const quarters = useMemo(
-    () => budgetData.filter(q => getYear(q.period) === selectedYear),
-    [selectedYear]
-  );
+  // Helper: Safe Percentage Calculation (0.0 to 1.0)
+  const calcPct = (val: number, total: number) => (total > 0 ? val / total : 0);
 
-  const [selectedQuarter, setSelectedQuarter] = useState<FinancialQuarter>(
-    quarters[quarters.length - 1]
-  );
+  // ---------------- INCOME DATA PREP ---------------- //
 
-  useEffect(() => {
-    setSelectedQuarter(quarters[quarters.length - 1]);
-  }, [quarters]);
+  const localTotal = displayedIncome.local_sources.total_local_sources;
+  const externalTotal = displayedIncome.external_sources.total_external_sources;
+  // FIX: Calculate Grand Total for Income to generate Tier 1 percentages
+  const grandTotalIncome =
+    displayedIncome.total_current_operating_income ||
+    localTotal + externalTotal;
 
-  /* ---------------- Previous year ---------------- */
-  const previousYear = years[years.indexOf(selectedYear) - 1];
-
-  /* ---------------- Previous YEAR aggregate ---------------- */
-  const prevYearAggregate = useMemo(() => {
-    if (!previousYear) return undefined;
-    const prevYearQuarters = budgetData.filter(
-      q => getYear(q.period) === previousYear
-    );
-    return prevYearQuarters.reduce(
-      (acc, q) => {
-        acc.totalIncome +=
-          q.current_operating_income.total_current_operating_income || 0;
-        acc.totalExpenditure +=
-          q.current_operating_expenditures
-            .total_current_operating_expenditures || 0;
-        acc.netIncome +=
-          q.net_operating_income_loss_from_current_operations || 0;
-        acc.fundCashEnd += q.fund_summary?.fund_cash_balance_end || 0;
-        return acc;
-      },
-      { totalIncome: 0, totalExpenditure: 0, netIncome: 0, fundCashEnd: 0 }
-    );
-  }, [previousYear]);
-
-  /* ---------------- Previous QUARTER aggregate ---------------- */
-  const prevQuarterAggregate = useMemo(() => {
-    if (!previousYear || !selectedQuarter) return undefined;
-    const match = budgetData.find(
-      q =>
-        getYear(q.period) === previousYear &&
-        getQuarter(q.period) === getQuarter(selectedQuarter.period)
-    );
-    if (!match) return undefined;
-    return {
-      totalIncome:
-        match.current_operating_income.total_current_operating_income || 0,
-      totalExpenditure:
-        match.current_operating_expenditures
-          .total_current_operating_expenditures || 0,
-      netIncome: match.net_operating_income_loss_from_current_operations || 0,
-      fundCashEnd: match.fund_summary?.fund_cash_balance_end || 0,
-    };
-  }, [previousYear, selectedQuarter]);
-
-  /* ---------------- Year aggregates ---------------- */
-  const yearIncome = useMemo(
-    () => aggregateIncome(quarters.map(q => q.current_operating_income)),
-    [quarters]
-  );
-
-  const yearExpenditures = useMemo(
-    () =>
-      aggregateExpenditures(
-        quarters.map(q => q.current_operating_expenditures)
-      ),
-    [quarters]
-  );
-
-  const yearNetIncome = useMemo(
-    () =>
-      quarters.reduce(
-        (sum, q) =>
-          sum + (q.net_operating_income_loss_from_current_operations || 0),
-        0
-      ),
-    [quarters]
-  );
-
-  const yearFundSummary = useMemo(
-    () =>
-      quarters.reduce(
-        (acc, q) => {
-          if (!q.fund_summary) return acc;
-          acc.net_increase_decrease_in_funds +=
-            q.fund_summary.net_increase_decrease_in_funds || 0;
-          acc.add_cash_balance_beginning +=
-            q.fund_summary.add_cash_balance_beginning || 0;
-          acc.fund_cash_available += q.fund_summary.fund_cash_available || 0;
-          acc.less_payment_of_prior_years_accounts_payable +=
-            q.fund_summary.less_payment_of_prior_years_accounts_payable || 0;
-          acc.continuing_appropriation +=
-            q.fund_summary.continuing_appropriation || 0;
-          acc.fund_cash_balance_end +=
-            q.fund_summary.fund_cash_balance_end || 0;
-          return acc;
+  const incomeChartData: ChartDataPoint[] = [
+    {
+      name: 'Local Sources',
+      value: localTotal,
+      // FIX: Add percent property here for Tier 1 Tooltip
+      percent: calcPct(localTotal, grandTotalIncome),
+      details: [
+        {
+          name: 'Real Property Tax',
+          value:
+            displayedIncome.local_sources.tax_revenue.real_property_tax.total,
+          percent: calcPct(
+            displayedIncome.local_sources.tax_revenue.real_property_tax.total,
+            localTotal
+          ),
         },
         {
-          net_increase_decrease_in_funds: 0,
-          add_cash_balance_beginning: 0,
-          fund_cash_available: 0,
-          less_payment_of_prior_years_accounts_payable: 0,
-          continuing_appropriation: 0,
-          fund_cash_balance_end: 0,
-        }
+          name: 'Business Tax',
+          value: displayedIncome.local_sources.tax_revenue.tax_on_business,
+          percent: calcPct(
+            displayedIncome.local_sources.tax_revenue.tax_on_business,
+            localTotal
+          ),
+        },
+        {
+          name: 'Other Taxes',
+          value: displayedIncome.local_sources.tax_revenue.other_taxes,
+          percent: calcPct(
+            displayedIncome.local_sources.tax_revenue.other_taxes,
+            localTotal
+          ),
+        },
+        {
+          name: 'Regulatory Fees',
+          value: displayedIncome.local_sources.non_tax_revenue.regulatory_fees,
+          percent: calcPct(
+            displayedIncome.local_sources.non_tax_revenue.regulatory_fees,
+            localTotal
+          ),
+        },
+        {
+          name: 'Economic Ent.',
+          value:
+            displayedIncome.local_sources.non_tax_revenue
+              .receipts_from_economic_enterprises,
+          percent: calcPct(
+            displayedIncome.local_sources.non_tax_revenue
+              .receipts_from_economic_enterprises,
+            localTotal
+          ),
+        },
+        {
+          name: 'Service Charges',
+          value:
+            displayedIncome.local_sources.non_tax_revenue.service_user_charges,
+          percent: calcPct(
+            displayedIncome.local_sources.non_tax_revenue.service_user_charges,
+            localTotal
+          ),
+        },
+      ],
+    },
+    {
+      name: 'External Sources',
+      value: externalTotal,
+      // FIX: Add percent property here for Tier 1 Tooltip
+      percent: calcPct(externalTotal, grandTotalIncome),
+      details: [
+        {
+          name: 'NTA',
+          value: displayedIncome.external_sources.national_tax_allotment,
+          percent: calcPct(
+            displayedIncome.external_sources.national_tax_allotment,
+            externalTotal
+          ),
+        },
+        {
+          name: 'Other Shares',
+          value:
+            displayedIncome.external_sources
+              .other_shares_from_national_tax_collection,
+          percent: calcPct(
+            displayedIncome.external_sources
+              .other_shares_from_national_tax_collection,
+            externalTotal
+          ),
+        },
+        {
+          name: 'Grants/Aids',
+          value:
+            displayedIncome.external_sources
+              .extraordinary_receipts_grants_donations_aids,
+          percent: calcPct(
+            displayedIncome.external_sources
+              .extraordinary_receipts_grants_donations_aids,
+            externalTotal
+          ),
+        },
+      ],
+    },
+  ];
+
+  // ---------------- EXPENDITURE DATA PREP ---------------- //
+
+  const socialTotal =
+    displayedExpenditure.social_services.total_social_services;
+  // FIX: Calculate Grand Total for Expenditure
+  const grandTotalExp =
+    displayedExpenditure.total_current_operating_expenditures ||
+    displayedExpenditure.general_public_services +
+      socialTotal +
+      displayedExpenditure.economic_services +
+      displayedExpenditure.debt_service_interest_expense;
+
+  const expenditureChartData: ChartDataPoint[] = [
+    {
+      name: 'General Public Services',
+      value: displayedExpenditure.general_public_services,
+      // FIX: Add percent
+      percent: calcPct(
+        displayedExpenditure.general_public_services,
+        grandTotalExp
       ),
-    [quarters]
-  );
+    },
+    {
+      name: 'Social Services',
+      value: socialTotal,
+      // FIX: Add percent
+      percent: calcPct(socialTotal, grandTotalExp),
+      details: Object.entries(displayedExpenditure.social_services)
+        .filter(([key]) => key !== 'total_social_services')
+        .map(([key, value]) => ({
+          name: formatLabel(key),
+          value,
+          percent: calcPct(value, socialTotal),
+        })),
+    },
+    {
+      name: 'Economic Services',
+      value: displayedExpenditure.economic_services,
+      // FIX: Add percent
+      percent: calcPct(displayedExpenditure.economic_services, grandTotalExp),
+    },
+    {
+      name: 'Debt Service',
+      value: displayedExpenditure.debt_service_interest_expense,
+      // FIX: Add percent
+      percent: calcPct(
+        displayedExpenditure.debt_service_interest_expense,
+        grandTotalExp
+      ),
+    },
+  ];
 
-  /* ---------------- Display data ---------------- */
-  const incomeData =
-    viewMode === 'year' ? yearIncome : selectedQuarter.current_operating_income;
-  const expenditureData =
-    viewMode === 'year'
-      ? yearExpenditures
-      : selectedQuarter.current_operating_expenditures;
-  const netIncome =
-    viewMode === 'year'
-      ? yearNetIncome
-      : selectedQuarter.net_operating_income_loss_from_current_operations;
-  const fundSummary =
-    viewMode === 'year' ? yearFundSummary : selectedQuarter.fund_summary;
-  const comparisonBaseline =
-    viewMode === 'year' ? prevYearAggregate : prevQuarterAggregate;
-
-  /* ---------------- Render ---------------- */
   return (
     <div className='space-y-6 p-4 md:p-6'>
-      {/* Header Card */}
-      <div className='bg-white rounded-lg shadow p-4 md:p-6 flex flex-col md:flex-row md:justify-between md:items-center gap-4 md:gap-6'>
-        {/* Title + subtitle */}
+      {/* Header */}
+      <div className='bg-white rounded-lg shadow p-4 md:p-6 flex flex-col md:flex-row md:justify-between md:items-center gap-4'>
         <div>
-          <h1 className='text-2xl font-bold flex items-center gap-2'>
-            <BarChart2Icon className='w-6 h-6 text-green-600' />
+          <h1 className='text-2xl font-bold flex items-center gap-2 text-slate-900'>
+            <BarChart2Icon className='w-6 h-6 text-emerald-600' />
             Financial Report
           </h1>
-          <p className='text-gray-600 mt-1'>
-            Statement of Receipts & Expenditures
-          </p>
-          <p className='text-gray-500 text-sm mt-1'>
-            FY {selectedYear} {viewMode === 'quarter' ? 'quarterly' : 'yearly'}{' '}
-            financial performance
-          </p>
+
+          <div className='flex flex-wrap items-center gap-3 mt-2'>
+            <p className='text-slate-500 text-sm'>
+              FY {selectedYear} •{' '}
+              {viewMode === 'quarter' ? 'Quarterly' : 'Annual'} Performance
+            </p>
+
+            <div className='flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-slate-100 border border-slate-200 text-xs font-medium text-slate-600'>
+              <Info className='w-3.5 h-3.5 text-slate-400' />
+              <span>Figures in Million PHP (PHP)</span>
+            </div>
+          </div>
         </div>
 
-        {/* QuarterToggle */}
         <QuarterToggle
-          quarters={quarters.map(q => getQuarter(q.period))}
+          quarters={quartersInYear.map(q => getQuarter(q.period))}
           years={years}
           viewMode={viewMode}
           selectedYear={selectedYear}
-          selectedQuarter={
-            selectedQuarter ? getQuarter(selectedQuarter.period) : ''
-          }
-          onYearChange={y => setSelectedYear(y)}
-          onViewModeChange={mode => setViewMode(mode)}
+          selectedQuarter={getQuarter(selectedQuarter.period)}
+          onYearChange={setSelectedYear}
+          onViewModeChange={setViewMode}
           onQuarterChange={q => {
-            const selected = quarters.find(x => getQuarter(x.period) === q);
-            if (selected) setSelectedQuarter(selected);
+            const found = quartersInYear.find(x => getQuarter(x.period) === q);
+            if (found) setSelectedQuarter(found);
           }}
         />
       </div>
 
-      {/* Summary Cards */}
+      {/* KPI Cards */}
       <SummaryCards
-        totalIncome={incomeData.total_current_operating_income || 0}
-        totalExpenditure={
-          expenditureData.total_current_operating_expenditures || 0
-        }
-        netIncome={netIncome}
-        fundSummary={fundSummary}
+        income={displayedIncome}
+        expenditure={displayedExpenditure}
+        fundSummary={displayedFundSummary}
         prevYear={comparisonBaseline}
       />
 
-      {/* Charts */}
-      <div className='grid grid-cols-1 md:grid-cols-2 gap-4'>
-        <IncomeSourcesChart
-          data={
-            viewMode === 'year'
-              ? quarters.map(q => q.current_operating_income)
-              : [selectedQuarter.current_operating_income]
-          }
+      {/* Charts Grid */}
+      <div className='grid grid-cols-1 lg:grid-cols-2 gap-6'>
+        <FinancialPieChart
+          title='Income Composition'
+          icon={Landmark}
+          data={incomeChartData}
+          colors={['#10b981', '#0ea5e9', '#6366f1', '#64748b']}
         />
 
-        <ExpendituresChart
-          data={
-            viewMode === 'year'
-              ? quarters.map(q => q.current_operating_expenditures)
-              : [selectedQuarter.current_operating_expenditures]
-          }
+        <FinancialPieChart
+          title='Expenditure Allocation'
+          icon={ReceiptText}
+          data={expenditureChartData}
+          colors={['#f43f5e', '#f97316', '#eab308', '#3b82f6']}
         />
       </div>
     </div>
