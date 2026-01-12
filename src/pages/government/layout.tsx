@@ -2,10 +2,7 @@ import { ReactNode } from 'react';
 import { Outlet, Link, useLocation } from 'react-router-dom';
 import {
   Building2Icon,
-  LandmarkIcon,
-  GalleryVerticalIcon,
-  // GlobeIcon,
-  // BookOpenIcon,
+  UsersIcon, // Icon for Elected Officials
   MapPinIcon,
 } from 'lucide-react';
 import { cn } from '../../lib/utils';
@@ -18,24 +15,17 @@ interface GovernmentLayoutProps {
 }
 
 export default function GovernmentLayout({ children }: GovernmentLayoutProps) {
-  // Get current path to highlight active tab
   const location = useLocation();
   const currentPath = location.pathname;
   const { t } = useTranslation('common');
 
-  // Define branch data
+  // Modified Branches Array: Merged Executive & Legislative
   const branches = [
     {
-      title: t('government.executiveTitle'),
-      description: t('government.executiveDescription'),
-      icon: <LandmarkIcon className='h-4 w-4' />,
-      path: '/government/executive',
-    },
-    {
-      title: t('government.legislativeTitle'),
-      description: t('government.legislativeDescription'),
-      icon: <GalleryVerticalIcon className='h-4 w-4' />,
-      path: '/government/legislative',
+      title: t('government.electedofficialsTitle'),
+      description: t('government.electedofficialsDescription'),
+      icon: <UsersIcon className='h-4 w-4' />,
+      path: '/government/elected-officials',
     },
     {
       title: t('government.departmentsTitle'),
@@ -51,7 +41,6 @@ export default function GovernmentLayout({ children }: GovernmentLayoutProps) {
     },
   ];
 
-  // Check if we're on the main government page
   const isMainPage =
     currentPath === '/government' || currentPath === '/government/';
 
@@ -67,9 +56,9 @@ export default function GovernmentLayout({ children }: GovernmentLayoutProps) {
         </p>
       </div>
 
-      {/* Card Tabs Navigation */}
+      {/* Tabs */}
       <div className='mb-8 md:mb-12 overflow-x-auto'>
-        <div className='inline-grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-3 min-w-full md:min-w-0 px-4 py-2'>
+        <div className='inline-grid grid-cols-1 md:grid-cols-3 gap-3 min-w-full md:min-w-0 px-4 py-2'>
           {branches.map(branch => {
             const isActive = currentPath.includes(branch.path);
             return (
