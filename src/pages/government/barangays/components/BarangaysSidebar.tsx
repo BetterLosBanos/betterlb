@@ -1,7 +1,7 @@
 import { Building2Icon } from 'lucide-react';
 import { useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
-import StandardSidebar from '../../../../components/ui/StandardSidebar';
+import StandardSidebar from '@/components/ui/StandardSidebar';
 import barangaysData from '../../../../data/directory/barangays.json';
 
 interface Barangay {

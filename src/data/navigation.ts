@@ -94,8 +94,7 @@ export const mainNavigation: NavigationItem[] = [
     label: 'Government',
     href: '/government',
     children: [
-      { label: 'Executive', href: '/government/executive' },
-      { label: 'Legislative', href: '/government/legislative' },
+      { label: 'Elected Officials', href: '/government/elected-officials' },
       { label: 'Departments', href: '/government/departments' },
       { label: 'Barangays', href: '/government/barangays' },
     ],

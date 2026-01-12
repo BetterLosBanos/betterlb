@@ -139,9 +139,9 @@ const SitemapPage: FC = () => {
           description: 'Senate and House of Representatives',
         },
         {
-          title: 'Senate Committees',
-          url: '/government/legislative/senate-committees',
-          description: 'Committees in the Senate',
+          title: 'Municipal Council Committees',
+          url: '/government/legislative/municipal-committees',
+          description: 'Committees in the Municipal Council',
         },
         {
           title: 'House Members',
