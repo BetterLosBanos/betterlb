@@ -9,7 +9,7 @@ interface Committee {
   members?: Array<{ name: string; role?: string }>;
 }
 
-export default function SenateCommitteesPage() {
+export default function MunicipalCommitteesPage() {
   const [searchTerm, setSearchTerm] = useState('');
 
   // Get Senate data
