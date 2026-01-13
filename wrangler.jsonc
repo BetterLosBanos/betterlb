@@ -1,5 +1,7 @@
 {
   "project_name": "betterlb",
+  "pages_build_output_dir": "dist",
+
   "kv_namespaces": [
     {
       "binding": "WEATHER_KV",
