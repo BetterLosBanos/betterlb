@@ -1,220 +1,218 @@
 import { Link } from 'react-router-dom';
 import {
-  ArrowRightIcon,
-  BookOpenIcon,
-  Building2Icon,
-  GavelIcon,
-  UsersIcon,
-  LandmarkIcon,
-  ChevronRightIcon,
+  Gavel,
+  ChevronRight,
+  Landmark,
+  BookOpen,
+  Users,
+  Mail,
+  Phone,
 } from 'lucide-react';
-import executiveData from '../../../data/directory/executive.json';
-import legislativeData from '../../../data/directory/legislative.json';
+import { ModuleHeader } from '@/components/layout/PageLayouts';
+import { CardAvatar } from '@/components/ui/CardList';
 import {
-  Card,
-  CardContent,
-  CardAvatar,
-  CardTitle,
-  CardDescription,
-} from '../../../components/ui/CardList';
+  Breadcrumb,
+  BreadcrumbItem,
+  BreadcrumbList,
+  BreadcrumbPage,
+  BreadcrumbSeparator,
+  BreadcrumbHome,
+} from '@/components/ui/Breadcrumb';
+
+// Data Imports
+import executiveData from '@/data/directory/executive.json';
+import legislativeData from '@/data/directory/legislative.json';
 
 export default function ElectedOfficialsIndex() {
-  // 1. Get Executive Data (Mayor & Vice Mayor)
-  const mayor = executiveData.find(o => o.slug === 'office-of-the-mayor');
-  const viceMayor = executiveData.find(
+  // 1. Extract Executive Data
+  const mayorOffice = executiveData.find(o => o.slug === 'office-of-the-mayor');
+  const mayor = mayorOffice?.officials[0];
+
+  const viceMayorOffice = executiveData.find(
     o => o.slug === 'office-of-the-vice-mayor'
   );
+  const viceMayor = viceMayorOffice?.officials[0];
 
-  // 2. Get Legislative Data
-  const sbData = legislativeData.find(d => d.slug === '12th-sangguniang-bayan');
-  const committeeCount = sbData?.permanent_committees?.length || 0;
-  const memberCount = sbData?.officials?.length || 0;
+  // 2. Extract Legislative Data
+  const sbChamber = legislativeData.find(
+    o => o.slug === '12th-sangguniang-bayan'
+  );
+  const committeeCount = sbChamber?.permanent_committees?.length || 0;
 
   return (
-    <div className='space-y-12 @container animate-in fade-in duration-500'>
-      {/* --- Executive Branch Section --- */}
-      <section>
-        <div className='flex items-center gap-3 mb-6'>
-          <div className='p-2 bg-blue-100 rounded-lg'>
-            <Building2Icon className='h-6 w-6 text-blue-700' />
-          </div>
-          <div>
-            <h2 className='text-2xl font-bold text-gray-900'>
-              Executive Branch
+    <div className='mx-auto space-y-6 max-w-7xl duration-500 animate-in fade-in'>
+      <Breadcrumb>
+        <BreadcrumbList>
+          <BreadcrumbItem>
+            <BreadcrumbHome href='/' />
+          </BreadcrumbItem>
+          <BreadcrumbSeparator />
+          <BreadcrumbItem>
+            <BreadcrumbPage>Elected Officials</BreadcrumbPage>
+          </BreadcrumbItem>
+        </BreadcrumbList>
+      </Breadcrumb>
+
+      <ModuleHeader
+        title='Elected Officials'
+        description='Meet the current leadership of the Municipal Government of Los Baños.'
+      />
+
+      <div className='grid grid-cols-1 gap-8 pt-4 lg:grid-cols-2'>
+        {/* --- EXECUTIVE BRANCH --- */}
+        <div className='flex relative flex-col p-8 rounded-3xl border-2 border-blue-100 bg-blue-50/30 group'>
+          <Landmark className='absolute right-[-10px] bottom-[-10px] w-48 h-48 opacity-5 -rotate-12 pointer-events-none' />
+
+          <div className='relative z-10 flex-1'>
+            <h2 className='flex gap-2 items-center mb-6 text-xs font-bold tracking-widest text-blue-600 uppercase'>
+              <span className='w-8 h-px bg-blue-200' /> Executive Branch
             </h2>
-            <p className='text-gray-600 text-sm'>
-              Local Chief Executive and the Presiding Officer
+
+            <div className='mb-8 space-y-4'>
+              {/* Mayor Card */}
+              <Link
+                to='/government/elected-officials/office-of-the-mayor'
+                className='flex flex-col p-5 bg-white rounded-2xl border border-blue-100 shadow-sm transition-all hover:shadow-md hover:border-blue-300 group/item'
+              >
+                <div className='flex gap-4 items-center mb-4'>
+                  <CardAvatar
+                    name={mayor?.name || 'Mayor'}
+                    size='md'
+                    className='ring-2 ring-blue-50 shadow-inner'
+                  />
+                  <div className='flex-1 min-w-0'>
+                    <p className='text-[10px] font-bold text-blue-500 uppercase tracking-widest'>
+                      Municipal Mayor
+                    </p>
+                    <h3 className='text-lg font-bold text-gray-900 truncate group-hover/item:text-blue-700'>
+                      {mayor?.name}
+                    </h3>
+                  </div>
+                  <div className='p-2 text-blue-600 bg-blue-50 rounded-lg transition-colors group-hover/item:bg-blue-600 group-hover/item:text-white'>
+                    <ChevronRight className='w-4 h-4' />
+                  </div>
+                </div>
+
+                {/* Dynamic Contact Row from JSON */}
+                <div className='flex flex-wrap items-center gap-x-6 gap-y-2 pt-4 border-t border-gray-50 text-[11px] font-medium text-gray-500'>
+                  <div className='flex items-center gap-1.5'>
+                    <Mail className='w-3 h-3 text-blue-400' />
+                    <span>
+                      {mayorOffice?.email || 'officeofthemayor@losbanos.gov.ph'}
+                    </span>
+                  </div>
+                  <div className='flex items-center gap-1.5'>
+                    <Phone className='w-3 h-3 text-blue-400' />
+                    <span>
+                      {Array.isArray(mayorOffice?.trunkline)
+                        ? mayorOffice.trunkline[0]
+                        : mayorOffice?.trunkline}
+                    </span>
+                  </div>
+                </div>
+              </Link>
+
+              {/* Vice Mayor Card */}
+              <Link
+                to='/government/elected-officials/office-of-the-vice-mayor'
+                className='flex flex-col p-5 bg-white rounded-2xl border border-blue-100 shadow-sm transition-all hover:shadow-md hover:border-blue-300 group/item'
+              >
+                <div className='flex gap-4 items-center mb-4'>
+                  <CardAvatar
+                    name={viceMayor?.name || 'Vice Mayor'}
+                    size='md'
+                    className='ring-2 ring-blue-50 shadow-inner'
+                  />
+                  <div className='flex-1 min-w-0'>
+                    <p className='text-[10px] font-bold text-blue-500 uppercase tracking-widest'>
+                      Municipal Vice Mayor
+                    </p>
+                    <h3 className='text-lg font-bold text-gray-900 truncate group-hover/item:text-blue-700'>
+                      {viceMayor?.name}
+                    </h3>
+                  </div>
+                  <div className='p-2 text-blue-600 bg-blue-50 rounded-lg transition-colors group-hover/item:bg-blue-600 group-hover/item:text-white'>
+                    <ChevronRight className='w-4 h-4' />
+                  </div>
+                </div>
+
+                <div className='flex flex-wrap items-center gap-x-6 gap-y-2 pt-4 border-t border-gray-50 text-[11px] font-medium text-gray-500'>
+                  <div className='flex items-center gap-1.5'>
+                    <Mail className='w-3 h-3 text-blue-400' />
+                    <span>
+                      {viceMayorOffice?.email || 'vmo@losbanos.gov.ph'}
+                    </span>
+                  </div>
+                  <div className='flex items-center gap-1.5'>
+                    <Phone className='w-3 h-3 text-blue-400' />
+                    <span>
+                      {Array.isArray(viceMayorOffice?.trunkline)
+                        ? viceMayorOffice.trunkline[0]
+                        : viceMayorOffice?.trunkline}
+                    </span>
+                  </div>
+                </div>
+              </Link>
+            </div>
+          </div>
+        </div>
+
+        {/* --- LEGISLATIVE BRANCH --- */}
+        <div className='flex relative flex-col p-8 rounded-3xl border-2 border-indigo-100 bg-indigo-50/30 group'>
+          <Gavel className='absolute right-[-10px] bottom-[-10px] w-48 h-48 opacity-5 -rotate-12 pointer-events-none' />
+
+          <div className='relative z-10 flex-1'>
+            <h2 className='flex gap-2 items-center mb-6 text-xs font-bold tracking-widest text-indigo-600 uppercase'>
+              <span className='w-8 h-px bg-indigo-200' /> Legislative Branch
+            </h2>
+
+            <div className='mb-8 space-y-4'>
+              {/* Sangguniang Bayan Link */}
+              <Link
+                to='/government/elected-officials/12th-sangguniang-bayan'
+                className='flex gap-4 items-center p-6 bg-white rounded-2xl border border-indigo-100 shadow-sm transition-all hover:shadow-md hover:border-indigo-300 group/item'
+              >
+                <div className='flex justify-center items-center w-12 h-12 text-white bg-indigo-600 rounded-xl shadow-lg'>
+                  <Users className='w-6 h-6' />
+                </div>
+                <div className='flex-1'>
+                  <h3 className='text-lg font-bold text-gray-900 group-hover/item:text-indigo-700'>
+                    12th Sangguniang Bayan
+                  </h3>
+                  <p className='text-xs text-gray-500'>
+                    Official Council Members & Sangguniang Bayan Secretary
+                  </p>
+                </div>
+                <ChevronRight className='w-5 h-5 text-gray-300 group-hover/item:text-indigo-600' />
+              </Link>
+
+              {/* Committees Link */}
+              <Link
+                to='/government/elected-officials/municipal-committees'
+                className='flex gap-4 items-center p-6 bg-white rounded-2xl border border-indigo-100 shadow-sm transition-all hover:shadow-md hover:border-indigo-300 group/item'
+              >
+                <div className='flex justify-center items-center w-12 h-12 text-indigo-600 bg-indigo-100 rounded-xl border border-indigo-200'>
+                  <BookOpen className='w-6 h-6' />
+                </div>
+                <div className='flex-1'>
+                  <h3 className='text-lg font-bold text-gray-900 group-hover/item:text-indigo-700'>
+                    Municipal Committees
+                  </h3>
+                  <p className='text-xs text-gray-500'>
+                    View {committeeCount} Standing Committees & Chairpersons
+                  </p>
+                </div>
+                <ChevronRight className='w-5 h-5 text-gray-300 group-hover/item:text-indigo-600' />
+              </Link>
+            </div>
+
+            <p className='mt-auto text-xs italic font-medium text-indigo-600/70'>
+              Headed by the Presiding Officer, the SB is responsible for local
+              legislation.
             </p>
           </div>
         </div>
-
-        <div className='grid grid-cols-1 md:grid-cols-2 gap-6'>
-          {/* Mayor Card */}
-          {mayor && (
-            <Link
-              to={`/government/elected-officials/${mayor.slug}`}
-              state={{ scrollToContent: true }}
-              className='group'
-            >
-              <Card
-                variant='featured'
-                className='h-full border-blue-100 hover:border-blue-300 transition-all duration-300 hover:shadow-md'
-              >
-                <CardContent className='flex flex-col items-center text-center justify-center h-full py-8'>
-                  <div className='relative'>
-                    <CardAvatar
-                      name={mayor.officials[0].name}
-                      size='lg'
-                      className='mb-4 ring-4 ring-blue-50'
-                    />
-                    <div className='absolute -bottom-1 -right-1 bg-blue-600 rounded-full p-1.5 border-2 border-white'>
-                      <LandmarkIcon className='h-3.5 w-3.5 text-white' />
-                    </div>
-                  </div>
-                  <CardTitle
-                    level='h3'
-                    className='text-xl group-hover:text-blue-700 transition-colors'
-                  >
-                    {mayor.officials[0].name}
-                  </CardTitle>
-                  <CardDescription className='text-primary-600 font-bold uppercase tracking-wide text-sm mt-1'>
-                    {mayor.officials[0].role}
-                  </CardDescription>
-                  <div className='mt-4 flex items-center text-sm text-gray-500 group-hover:text-blue-600'>
-                    <span>Visit Office</span>
-                    <ArrowRightIcon className='ml-1 h-4 w-4 transition-transform group-hover:translate-x-1' />
-                  </div>
-                </CardContent>
-              </Card>
-            </Link>
-          )}
-
-          {/* Vice Mayor Card */}
-          {viceMayor && (
-            <Link
-              to={`/government/elected-officials/${viceMayor.slug}`}
-              state={{ scrollToContent: true }}
-              className='group'
-            >
-              <Card
-                variant='featured'
-                className='h-full border-blue-100 hover:border-blue-300 transition-all duration-300 hover:shadow-md'
-              >
-                <CardContent className='flex flex-col items-center text-center justify-center h-full py-8'>
-                  <div className='relative'>
-                    <CardAvatar
-                      name={viceMayor.officials[0].name}
-                      size='lg'
-                      className='mb-4 ring-4 ring-blue-50'
-                    />
-                    <div className='absolute -bottom-1 -right-1 bg-indigo-600 rounded-full p-1.5 border-2 border-white'>
-                      <GavelIcon className='h-3.5 w-3.5 text-white' />
-                    </div>
-                  </div>
-                  <CardTitle
-                    level='h3'
-                    className='text-xl group-hover:text-indigo-700 transition-colors'
-                  >
-                    {viceMayor.officials[0].name}
-                  </CardTitle>
-                  <CardDescription className='text-primary-600 font-bold uppercase tracking-wide text-sm mt-1'>
-                    {viceMayor.officials[0].role}
-                  </CardDescription>
-                  <div className='mt-4 flex items-center text-sm text-gray-500 group-hover:text-indigo-600'>
-                    <span>Visit Office</span>
-                    <ArrowRightIcon className='ml-1 h-4 w-4 transition-transform group-hover:translate-x-1' />
-                  </div>
-                </CardContent>
-              </Card>
-            </Link>
-          )}
-        </div>
-      </section>
-
-      {/* --- Legislative Branch Section --- */}
-      <section>
-        <div className='flex items-center gap-3 mb-6'>
-          <div className='p-2 bg-amber-100 rounded-lg'>
-            <UsersIcon className='h-6 w-6 text-amber-700' />
-          </div>
-          <div>
-            <h2 className='text-2xl font-bold text-gray-900'>
-              Legislative Branch
-            </h2>
-            <p className='text-gray-600 text-sm'>
-              Sangguniang Bayan Members and Committees
-            </p>
-          </div>
-        </div>
-
-        <div className='grid grid-cols-1 md:grid-cols-2 gap-6'>
-          {/* Sangguniang Bayan Main Link */}
-          <Link
-            to='/government/elected-officials/12th-sangguniang-bayan'
-            state={{ scrollToContent: true }}
-            className='group relative overflow-hidden bg-white border border-gray-200 rounded-xl p-6 hover:shadow-md transition-all duration-300 hover:border-amber-300'
-          >
-            <div className='absolute top-0 right-0 p-4 opacity-5 group-hover:opacity-10 transition-opacity'>
-              <UsersIcon className='h-24 w-24 text-amber-600' />
-            </div>
-
-            <div className='relative z-10'>
-              <div className='flex justify-between items-start mb-4'>
-                <div className='p-3 bg-amber-50 rounded-lg group-hover:bg-amber-100 transition-colors'>
-                  <LandmarkIcon className='h-6 w-6 text-amber-600' />
-                </div>
-                <ChevronRightIcon className='h-5 w-5 text-gray-400 group-hover:text-amber-600' />
-              </div>
-
-              <h3 className='text-lg font-bold text-gray-900 group-hover:text-amber-700 mb-2'>
-                12th Sangguniang Bayan
-              </h3>
-              <p className='text-gray-600 text-sm mb-4 line-clamp-2'>
-                The local legislative body of Los Baños responsible for passing
-                ordinances and resolutions.
-              </p>
-
-              <div className='inline-flex items-center text-xs font-medium text-amber-700 bg-amber-50 px-2.5 py-1 rounded-full'>
-                <UsersIcon className='h-3 w-3 mr-1.5' />
-                {memberCount} Members
-              </div>
-            </div>
-          </Link>
-
-          {/* Committees Link */}
-          <Link
-            to='/government/elected-officials/municipal-committees'
-            state={{ scrollToContent: true }}
-            className='group relative overflow-hidden bg-white border border-gray-200 rounded-xl p-6 hover:shadow-md transition-all duration-300 hover:border-emerald-300'
-          >
-            <div className='absolute top-0 right-0 p-4 opacity-5 group-hover:opacity-10 transition-opacity'>
-              <BookOpenIcon className='h-24 w-24 text-emerald-600' />
-            </div>
-
-            <div className='relative z-10'>
-              <div className='flex justify-between items-start mb-4'>
-                <div className='p-3 bg-emerald-50 rounded-lg group-hover:bg-emerald-100 transition-colors'>
-                  <BookOpenIcon className='h-6 w-6 text-emerald-600' />
-                </div>
-                <ChevronRightIcon className='h-5 w-5 text-gray-400 group-hover:text-emerald-600' />
-              </div>
-
-              <h3 className='text-lg font-bold text-gray-900 group-hover:text-emerald-700 mb-2'>
-                Legislative Committees
-              </h3>
-              <p className='text-gray-600 text-sm mb-4 line-clamp-2'>
-                Standing committees responsible for studying and deliberating
-                upon measures and concerns.
-              </p>
-
-              <div className='inline-flex items-center text-xs font-medium text-emerald-700 bg-emerald-50 px-2.5 py-1 rounded-full'>
-                <GavelIcon className='h-3 w-3 mr-1.5' />
-                {committeeCount} Standing Committees
-              </div>
-            </div>
-          </Link>
-        </div>
-      </section>
+      </div>
     </div>
   );
 }
