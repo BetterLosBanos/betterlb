@@ -1,5 +1,5 @@
 {
-  "name": "gov-ph-portal",
+  "name": "betterlb-portal",
   "private": true,
   "version": "0.1.0",
   "type": "module",
@@ -45,6 +45,7 @@
     "csv-parser": "^3.2.0",
     "date-fns": "^3.3.1",
     "dotenv": "^16.5.0",
+    "fuse.js": "^7.1.0",
     "i18next": "^25.5.2",
     "i18next-browser-languagedetector": "^8.2.0",
     "i18next-http-backend": "^3.0.2",

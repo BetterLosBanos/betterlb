@@ -1,104 +1,34 @@
-import { FC } from 'react';
-import {
-  InstantSearch,
-  SearchBox,
-  Hits,
-  Highlight,
-  Snippet,
-  Stats,
-  RefinementList,
-  Pagination,
-} from 'react-instantsearch';
-import { instantMeiliSearch } from '@meilisearch/instant-meilisearch';
-import 'instantsearch.css/themes/satellite.css';
-import '../components/search/MeilisearchInstantSearch.css';
+import { FC, useState, useMemo } from 'react';
+import Fuse from 'fuse.js';
 import { Helmet } from 'react-helmet-async';
+import servicesData from '@/data/services/services.json';
 
-interface SearchHit {
-  objectID: string;
-  name?: string;
-  office_name?: string;
-  office?: string;
-  service?: string;
-  description?: string;
-  website?: string;
-  url?: string;
-  category?: string | { name: string };
-  subcategory?: string | { name: string };
-  address?: string;
-  slug?: string;
-  type?: string;
+interface ServiceCategory {
+  name: string;
+  slug: string;
 }
 
-const MEILISEARCH_HOST =
-  import.meta.env.VITE_MEILISEARCH_HOST || 'http://localhost';
-const MEILISEARCH_PORT = import.meta.env.VITE_MEILISEARCH_PORT || '7700';
-const MEILISEARCH_SEARCH_API_KEY =
-  import.meta.env.VITE_MEILISEARCH_SEARCH_API_KEY ||
-  'your_public_search_key_here';
+type ServiceType = 'transaction' | 'information';
 
-const { searchClient } = instantMeiliSearch(
-  `${MEILISEARCH_HOST}:${MEILISEARCH_PORT}`,
-  MEILISEARCH_SEARCH_API_KEY,
-  {
-    primaryKey: 'slug',
-    keepZeroFacets: true,
-    meiliSearchParams: {
-      attributesToHighlight: [
-        'name',
-        'office_name',
-        'office',
-        'service',
-        'description',
-      ],
-      attributesToSearchOn: [
-        'name',
-        'office_name',
-        'office',
-        'service',
-        'website',
-        'description',
-        'category',
-        'subcategory',
-        'address',
-      ],
-    },
-  }
-);
+interface Service {
+  service: string;
+  slug: string;
+  type: ServiceType;
+  description?: string;
+  url?: string;
+  officeSlug: string;
+  category: ServiceCategory;
+}
 
 interface HitProps {
-  hit: {
-    name?: string;
-    office_name?: string;
-    office?: string;
-    service?: string;
-    website?: string;
-    category?:
-      | string
-      | {
-          name: string;
-          slug: string;
-        };
-    address?: string;
-    subcategory?:
-      | string
-      | {
-          name: string;
-          slug: string;
-        };
-    description?: string;
-    slug?: string;
-    url?: string;
-    type?: string;
-  };
+  hit: Service;
 }
 
 const Hit: FC<HitProps> = ({ hit }) => {
-  const title = hit.service || hit.name || hit.office_name || hit.office;
-  const link = hit.url || `/directory/${hit.slug}`;
+  const link = hit.url || `/services/${hit.slug}`;
 
   return (
-    <article className='hit-item p-4 border-b border-gray-200 hover:bg-gray-50'>
+    <article className='p-4 border-b border-gray-200 hit-item hover:bg-gray-50'>
       <a
         href={link}
         target='_blank'
@@ -106,49 +36,19 @@ const Hit: FC<HitProps> = ({ hit }) => {
         className='block'
       >
         <h2 className='text-lg font-semibold text-blue-600 hover:underline'>
-          {title}
+          {hit.service}
         </h2>
         {hit.description && (
-          <p className='text-sm text-gray-800 mt-1'>
-            <Snippet attribute='description' hit={hit as SearchHit} />
-          </p>
+          <p className='mt-1 text-sm text-gray-800'>{hit.description}</p>
         )}
-        <div className='text-xs text-gray-800'>
-          {hit.category && (
-            <span>
-              <Highlight
-                attribute={hit.category?.name ? 'category.name' : 'category'}
-                hit={hit as SearchHit}
-              />
-              {' > '}
-            </span>
-          )}
-          {hit.subcategory && (
-            <span>
-              <Highlight
-                attribute={
-                  hit.subcategory?.name ? 'subcategory.name' : 'subcategory'
-                }
-                hit={hit as SearchHit}
-              />{' '}
-            </span>
-          )}
-          {hit.address && (
-            <span>
-              <Highlight attribute='address' hit={hit as SearchHit} />
-              {' > '}
-            </span>
-          )}
-          {hit.type && (
-            <span className='bg-blue-100 text-blue-800 text-xs font-medium px-2 py-0.5 rounded-sm ml-2'>
-              {hit.type}
-            </span>
-          )}
+        <div className='mt-1 text-xs text-gray-800'>
+          {hit.category && <span>{hit.category.name}</span>}
+          <span className='bg-blue-100 text-blue-800 text-xs font-medium px-2 py-0.5 rounded-sm ml-2'>
+            {hit.type}
+          </span>
         </div>
-        {(hit.url || hit.website) && (
-          <p className='text-xs text-blue-500 mt-1 truncate'>
-            {hit.url || hit.website}
-          </p>
+        {hit.url && (
+          <p className='mt-1 text-xs text-blue-500 truncate'>{hit.url}</p>
         )}
       </a>
     </article>
@@ -156,8 +56,35 @@ const Hit: FC<HitProps> = ({ hit }) => {
 };
 
 const SearchPage: FC = () => {
+  const [query, setQuery] = useState('');
+  const [typeFilter, setTypeFilter] = useState<ServiceType | ''>('');
+  const [categoryFilter, setCategoryFilter] = useState<string>('');
+
+  const fuse = useMemo(() => {
+    return new Fuse(servicesData as Service[], {
+      keys: ['service', 'description', 'category.name'],
+      threshold: 0.3,
+    });
+  }, []);
+
+  const filteredResults = useMemo(() => {
+    let results: Service[] = query
+      ? fuse.search(query).map(r => r.item)
+      : (servicesData as Service[]);
+
+    if (typeFilter) results = results.filter(s => s.type === typeFilter);
+    if (categoryFilter)
+      results = results.filter(s => s.category.name === categoryFilter);
+
+    return results;
+  }, [query, typeFilter, categoryFilter, fuse]);
+
+  const categories = Array.from(
+    new Set((servicesData as Service[]).map(s => s.category.name))
+  );
+
   return (
-    <div className='container mx-auto px-4 py-8'>
+    <div className='container px-4 py-8 mx-auto'>
       <Helmet>
         <title>Search - Better Government Portal</title>
         <meta
@@ -166,118 +93,66 @@ const SearchPage: FC = () => {
         />
       </Helmet>
 
-      <h1 className='text-3xl font-bold mb-6'>Search</h1>
+      <h1 className='mb-6 text-3xl font-bold'>Search</h1>
 
-      <InstantSearch searchClient={searchClient} indexName='bettergov'>
-        <div className='grid grid-cols-1 lg:grid-cols-4 gap-8'>
-          <div className='lg:col-span-1'>
-            <div className='bg-white rounded-lg shadow-sm p-4 mb-6'>
-              <h3 className='text-lg font-semibold mb-4'>Filter By</h3>
+      <div className='mb-6'>
+        <input
+          type='text'
+          placeholder='Search for government services, offices, and resources...'
+          value={query}
+          onChange={e => setQuery(e.target.value)}
+          className='p-4 w-full text-lg rounded-lg border border-gray-300 focus:ring-2 focus:ring-blue-500 outline-hidden'
+        />
+      </div>
 
-              <div className='mb-6'>
-                <h4 className='font-medium mb-3'>Type</h4>
-                <RefinementList
-                  attribute='type'
-                  classNames={{
-                    root: '',
-                    list: 'space-y-2',
-                    item: '',
-                    label: '',
-                    checkbox: '',
-                    count:
-                      'ml-2 text-xs text-gray-800 bg-gray-100 px-2 py-0.5 rounded-full',
-                  }}
-                />
-              </div>
+      <div className='grid grid-cols-1 gap-8 lg:grid-cols-4'>
+        <div className='lg:col-span-1'>
+          <div className='p-4 mb-6 bg-white rounded-lg shadow-sm'>
+            <h3 className='mb-4 text-lg font-semibold'>Filter By</h3>
 
-              <div className='mb-6'>
-                <h4 className='font-medium mb-3'>Category</h4>
-                <RefinementList
-                  attribute='category'
-                  classNames={{
-                    root: '',
-                    list: 'space-y-2',
-                    item: '',
-                    label: '',
-                    checkbox: '',
-                    count:
-                      'ml-2 text-xs text-gray-800 bg-gray-100 px-2 py-0.5 rounded-full',
-                  }}
-                />
-              </div>
-
-              <div>
-                <h4 className='font-medium mb-3'>Subcategory</h4>
-                <RefinementList
-                  attribute='subcategory'
-                  classNames={{
-                    root: '',
-                    list: 'space-y-2',
-                    item: '',
-                    label: '',
-                    checkbox: '',
-                    count:
-                      'ml-2 text-xs text-gray-800 bg-gray-100 px-2 py-0.5 rounded-full',
-                  }}
-                />
-              </div>
-            </div>
-          </div>
-
-          <div className='lg:col-span-3'>
             <div className='mb-6'>
-              <SearchBox
-                placeholder='Search for government services, offices, and resources...'
-                classNames={{
-                  root: 'w-full',
-                  form: 'relative',
-                  input:
-                    'text-lg w-full p-4 pl-12 pr-12 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-hidden transition duration-150 ease-in-out',
-                  submit:
-                    'absolute top-0 right-0 h-full px-4 text-gray-800 hover:text-blue-600',
-                  reset:
-                    'absolute top-0 right-10 h-full px-3 text-gray-400 hover:text-gray-800',
-                }}
-              />
+              <h4 className='mb-3 font-medium'>Type</h4>
+              <select
+                value={typeFilter}
+                onChange={e =>
+                  setTypeFilter(e.target.value as ServiceType | '')
+                }
+                className='p-2 w-full rounded border border-gray-300'
+              >
+                <option value=''>All</option>
+                <option value='transaction'>Transaction</option>
+                <option value='information'>Information</option>
+              </select>
             </div>
 
-            <div className='bg-white rounded-lg shadow-sm overflow-hidden'>
-              <div className='p-4 border-b border-gray-200 flex justify-between items-center'>
-                <h2 className='text-xl font-semibold'>Results</h2>
-                <Stats
-                  classNames={{
-                    root: 'text-sm text-gray-800',
-                  }}
-                />
-              </div>
-
-              <div>
-                <Hits
-                  hitComponent={Hit}
-                  classNames={{
-                    list: 'divide-y divide-gray-200',
-                    item: 'w-full',
-                  }}
-                />
-              </div>
-
-              <div className='p-4 border-t border-gray-200'>
-                <Pagination
-                  className='text-black'
-                  classNames={{
-                    root: 'flex justify-center',
-                    list: 'flex items-center space-x-1',
-                    item: 'px-1',
-                    link: 'px-3 py-2 rounded-md text-gray-700 hover:bg-gray-100 transition-colors',
-                    disabledItem: 'opacity-50 cursor-not-allowed',
-                    selectedItem: 'text-black',
-                  }}
-                />
-              </div>
+            <div>
+              <h4 className='mb-3 font-medium'>Category</h4>
+              <select
+                value={categoryFilter}
+                onChange={e => setCategoryFilter(e.target.value)}
+                className='p-2 w-full rounded border border-gray-300'
+              >
+                <option value=''>All</option>
+                {categories.map(c => (
+                  <option key={c} value={c}>
+                    {c}
+                  </option>
+                ))}
+              </select>
             </div>
           </div>
         </div>
-      </InstantSearch>
+
+        <div className='lg:col-span-3'>
+          <div className='overflow-hidden bg-white rounded-lg shadow-sm'>
+            {filteredResults.length === 0 ? (
+              <p className='p-4 text-gray-700'>No results found.</p>
+            ) : (
+              filteredResults.map(hit => <Hit key={hit.slug} hit={hit} />)
+            )}
+          </div>
+        </div>
+      </div>
     </div>
   );
 };

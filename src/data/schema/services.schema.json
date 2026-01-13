@@ -1,0 +1,124 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://betterlb.org/schemas/services.schema.json",
+  "title": "Government Services",
+  "description": "Schema for Philippine government services data",
+  "type": "array",
+  "items": {
+    "type": "object",
+    "required": ["service", "slug", "category", "updatedAt"],
+    "properties": {
+      "service": {
+        "type": "string",
+        "description": "Name of the government service",
+        "minLength": 1
+      },
+      "slug": {
+        "type": "string",
+        "description": "URL-friendly slug for the service",
+        "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$",
+        "minLength": 1
+      },
+      "type": {
+        "type": "string",
+        "description": "Type of service entry",
+        "enum": ["transaction", "information"],
+        "default": "transaction"
+      },
+      "description": {
+        "type": "string",
+        "description": "Short summary or description of the service"
+      },
+      "url": {
+        "type": "string",
+        "description": "External URL to access the service (can be empty)"
+      },
+      "officeSlug": {
+        "type": "string",
+        "description": "Slug of the department responsible for this service"
+      },
+      "category": {
+        "type": "object",
+        "description": "Primary category of the service",
+        "required": ["name", "slug"],
+        "properties": {
+          "name": {
+            "type": "string",
+            "minLength": 1
+          },
+          "slug": {
+            "type": "string",
+            "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$",
+            "minLength": 1
+          }
+        },
+        "additionalProperties": false
+      },
+      "steps": {
+        "type": "array",
+        "description": "Step-by-step process or list of information",
+        "items": {
+          "type": "string"
+        }
+      },
+      "requirements": {
+        "type": "array",
+        "description": "List of requirements or documents needed",
+        "items": {
+          "type": "string"
+        }
+      },
+      "faqs": {
+        "type": "array",
+        "description": "Frequently asked questions",
+        "items": {
+          "type": "object",
+          "required": ["question", "answer"],
+          "properties": {
+            "question": { "type": "string" },
+            "answer": { "type": "string" }
+          },
+          "additionalProperties": false
+        }
+      },
+      "relatedServices": {
+        "type": "array",
+        "description": "Array of slugs for related services",
+        "items": {
+          "type": "string"
+        }
+      },
+      "quickInfo": {
+        "type": ["object", "null"],
+        "description": "Key details displayed in cards. Nullable for informational services.",
+        "properties": {
+          "processingTime": { "type": "string" },
+          "fee": { "type": "string" },
+          "whoCanApply": { "type": "string" },
+          "appointmentType": { "type": "string" },
+          "validity": { "type": "string" },
+          "documents": { "type": "string" }
+        },
+        "additionalProperties": true
+      },
+      "updatedAt": {
+        "type": ["string", "null"],
+        "description": "ISO 8601 timestamp when the service was last updated",
+        "format": "date-time"
+      },
+      "sources": {
+        "type": "array",
+        "description": "References or official sources for this service",
+        "items": {
+          "type": "object",
+          "required": ["name"],
+          "properties": {
+            "name": { "type": "string", "minLength": 1 },
+            "url": { "type": "string" }
+          },
+          "additionalProperties": false
+        }
+      }
+    }
+  }
+}

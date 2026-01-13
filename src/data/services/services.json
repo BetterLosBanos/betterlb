@@ -2,6 +2,8 @@
   {
     "service": "Business Permit (New)",
     "slug": "business-permit-new",
+    "type": "transaction",
+    "description": "Application for a new Mayor's Permit to conduct business within the municipality.",
     "url": "",
     "officeSlug": "business-permit-and-licensing-office",
     "category": {
@@ -9,214 +11,474 @@
       "slug": "business-licensing"
     },
     "steps": [
-      "Prepare requirements",
-      "Submit application online or at office",
-      "Pay fees",
-      "Receive permit"
+      "Prepare all required documents.",
+      "Submit application form and requirements at the BPLO one-stop shop or online.",
+      "Wait for assessment of taxes and fees.",
+      "Pay the assessed fees at the Treasurer's Office.",
+      "Claim your Business Permit and plates."
     ],
     "requirements": [
-      "Valid ID",
-      "Business registration form",
-      "Barangay Clearance",
-      "Cedula / Community Tax Certificate",
-      "Updated Real Property Tax, Tax Declaration, or Title (if owner)",
-      "Latest Lease Contract (if renter)",
-      "Medical Certificate, or Sanitary Permit to Operate",
-      "Fire Safety Inspection Certificate (BFP)",
-      "1 unit Fire Extinguisher",
-      "Sketch of location"
-    ],
-    "faqs": [
-      {
-        "question": "Can I apply online?",
-        "answer": "Yes, the city government portal accepts online applications."
-      },
-      {
-        "question": "How long does it take?",
-        "answer": "Processing usually takes 3–5 working days."
-      }
+      "DTI/SEC/CDA Registration",
+      "Barangay Business Clearance",
+      "Community Tax Certificate (Cedula)",
+      "Contract of Lease (if lessee) or Tax Declaration (if owner)",
+      "Locational Clearance",
+      "Fire Safety Inspection Certificate (FSIC)",
+      "Sanitary Permit"
     ],
     "relatedServices": [
-      "renewal-business-permit",
+      "business-permit-renewal",
       "barangay-business-clearance"
     ],
     "quickInfo": {
-      "processingTime": "3–5 working days",
-      "fee": "₱500",
-      "whoCanApply": "Business owners",
-      "appointmentType": "Walk-in"
+      "processingTime": "1-3 days",
+      "fee": "Based on capital investment",
+      "whoCanApply": "Business Owners",
+      "appointmentType": "Walk-in / Online"
     },
-    "updatedAt": "2025-01-28T00:00:00.000Z"
+    "updatedAt": null,
+    "sources": [
+      { "name": "Municipal Revenue Code", "url": "" },
+      { "name": "BPLO Regulatory Guidelines", "url": "" }
+    ]
   },
   {
     "service": "Business Permit (Renewal)",
     "slug": "business-permit-renewal",
-    "url": "",
+    "type": "transaction",
+    "description": "Annual renewal of Mayor's Permit for existing businesses.",
     "officeSlug": "business-permit-and-licensing-office",
     "category": {
       "name": "Business & Licensing",
       "slug": "business-licensing"
     },
     "steps": [
-      "Prepare requirements",
-      "Submit application online or at office",
-      "Pay fees",
-      "Receive permit"
+      "Present previous year's permit and official receipt.",
+      "Submit renewal application form.",
+      "Pay regulatory fees and business taxes.",
+      "Receive renewed Business Permit."
     ],
     "requirements": [
-      "Valid ID",
-      "Business registration form",
-      "Barangay Clearance",
-      "Cedula / Community Tax Certificate",
-      "Updated Real Property Tax, Tax Declaration, or Title (if owner)",
-      "Latest Lease Contract (if renter)",
-      "Medical Certificate, or Sanitary Permit to Operate",
-      "Fire Safety Inspection Certificate (BFP)",
-      "1 unit Fire Extinguisher",
-      "Sketch of location"
+      "Previous Year's Mayor's Permit",
+      "Barangay Business Clearance (Current Year)",
+      "BIR Income Tax Return (Previous Year)",
+      "Financial Statement"
     ],
-    "faqs": [
-      {
-        "question": "Can I apply online?",
-        "answer": "Yes, the city government portal accepts online applications."
-      },
-      {
-        "question": "How long does it take?",
-        "answer": "Processing usually takes 3–5 working days."
-      }
-    ],
-    "relatedServices": [
-      "new-business-permit",
-      "fire-safety-inspection-certificate"
-    ],
+    "relatedServices": ["business-permit-new"],
     "quickInfo": {
-      "processingTime": "3–5 working days",
-      "fee": "₱500",
-      "whoCanApply": "Business owners",
-      "appointmentType": "Walk-in"
+      "processingTime": "1 day",
+      "fee": "Based on gross sales",
+      "whoCanApply": "Business Owners",
+      "validity": "1 Year"
     },
-    "updatedAt": "2025-01-28T00:00:00.000Z"
+    "updatedAt": null,
+    "sources": [
+      { "name": "Municipal Ordinance No. 2023-01", "url": "" },
+      { "name": "LGOO Memorandum Circular 12", "url": "" }
+    ]
   },
   {
-    "service": "Barangay Business Clearance",
-    "slug": "barangay-business-clearance",
-    "url": "",
-    "officeSlug": "business-permit-and-licensing-office",
+    "service": "Community Tax Certificate (Cedula)",
+    "slug": "community-tax-certificate",
+    "type": "transaction",
+    "description": "Issuance of Community Tax Certificate for individuals and corporations.",
+    "officeSlug": "municipal-treasurers-office",
     "category": {
-      "name": "Business & Licensing",
-      "slug": "business-licensing"
+      "name": "Certificates & Civil Registry",
+      "slug": "certificates-civil-registry"
     },
     "steps": [
-      "Prepare requirements",
-      "Submit application online or at office",
-      "Pay fees",
-      "Receive permit"
+      "Fill out the CTC application slip.",
+      "Present valid ID.",
+      "Pay the corresponding tax fee.",
+      "Sign and claim the Cedula."
     ],
     "requirements": [
       "Valid ID",
-      "Business registration form",
-      "Barangay Clearance",
-      "Cedula / Community Tax Certificate",
-      "Updated Real Property Tax, Tax Declaration, or Title (if owner)",
-      "Latest Lease Contract (if renter)",
-      "Medical Certificate, or Sanitary Permit to Operate",
-      "Fire Safety Inspection Certificate (BFP)",
-      "1 unit Fire Extinguisher",
-      "Sketch of location"
+      "Proof of Income (if employed)",
+      "Payslip (optional)"
     ],
-    "faqs": [
-      {
-        "question": "Can I apply online?",
-        "answer": "Yes, the city government portal accepts online applications."
-      },
-      {
-        "question": "How long does it take?",
-        "answer": "Processing usually takes 3–5 working days."
-      }
-    ],
-    "relatedServices": ["new-business-permit"],
     "quickInfo": {
-      "processingTime": "3–5 working days",
-      "fee": "₱500",
-      "whoCanApply": "Business owners",
+      "processingTime": "15 minutes",
+      "fee": "Basic + Income based",
+      "whoCanApply": "Residents 18+",
       "appointmentType": "Walk-in"
     },
-    "updatedAt": "2025-01-28T00:00:00.000Z"
+    "updatedAt": null,
+    "sources": [
+      {
+        "name": "Republic Act No. 7160 (Local Government Code)",
+        "url": "https://www.officialgazette.gov.ph/1991/10/10/republic-act-no-7160/"
+      }
+    ]
   },
   {
-    "service": "Building Permit",
+    "service": "Real Property Tax Payment",
+    "slug": "real-property-tax-payment",
+    "type": "transaction",
+    "description": "Payment of taxes on land, buildings, and machinery (Amilyar).",
+    "officeSlug": "municipal-treasurers-office",
+    "category": {
+      "name": "Taxation & Assessment",
+      "slug": "taxation-assessment"
+    },
+    "steps": [
+      "Present latest Official Receipt or Tax Declaration.",
+      "Get assessment from the Assessor's window.",
+      "Proceed to Treasurer's window for payment.",
+      "Receive Official Receipt."
+    ],
+    "requirements": ["Previous Official Receipt", "Tax Declaration Number"],
+    "quickInfo": {
+      "processingTime": "30 minutes",
+      "fee": "1% of Assessed Value",
+      "whoCanApply": "Property Owners",
+      "appointmentType": "Walk-in"
+    },
+    "updatedAt": null,
+    "sources": [
+      { "name": "Municipal Tax Ordinance", "url": "" },
+      { "name": "Bureau of Local Government Finance Guidelines", "url": "" }
+    ]
+  },
+  {
+    "service": "Birth Certificate Registration",
+    "slug": "birth-certificate-registration",
+    "type": "transaction",
+    "description": "Timely registration of birth for newborn children.",
+    "officeSlug": "municipal-civil-registrar",
+    "category": {
+      "name": "Certificates & Civil Registry",
+      "slug": "certificates-civil-registry"
+    },
+    "steps": [
+      "Secure Certificate of Live Birth (COLB) from hospital/clinic.",
+      "Submit COLB to Civil Registrar.",
+      "Review drafted certificate.",
+      "Sign and receive registered copy."
+    ],
+    "requirements": [
+      "Certificate of Live Birth (4 copies)",
+      "Marriage Contract of Parents (if married)"
+    ],
+    "quickInfo": {
+      "processingTime": "1 hour",
+      "fee": "Free (Timely)",
+      "documents": "COLB, Marriage Cert"
+    },
+    "updatedAt": null,
+    "sources": [
+      { "name": "Republic Act No. 3753 (Civil Register Law)", "url": "" },
+      { "name": "PSA Administrative Order No. 1", "url": "" }
+    ]
+  },
+  {
+    "service": "Building Permit Application",
     "slug": "building-permit",
-    "url": "",
+    "type": "transaction",
+    "description": "Permit required before constructing, altering, or repairing any building.",
     "officeSlug": "municipal-engineering-office",
     "category": {
       "name": "Infrastructure & Engineering",
       "slug": "infrastructure-engineering"
     },
     "steps": [
-      "Prepare requirements",
-      "Submit application online or at office",
-      "Pay fees",
-      "Receive permit"
+      "Submit technical documents for evaluation.",
+      "Wait for order of payment.",
+      "Pay building permit fees.",
+      "Claim Building Permit."
     ],
     "requirements": [
-      "Valid ID",
-      "Business registration form",
-      "Barangay clearance"
+      "5 Sets of Building Plans",
+      "Bill of Materials & Cost Estimates",
+      "Land Title / Deed of Sale",
+      "Tax Declaration",
+      "Locational Clearance"
     ],
-    "faqs": [
-      {
-        "question": "Can I apply online?",
-        "answer": "Yes, the city government portal accepts online applications."
-      },
-      {
-        "question": "How long does it take?",
-        "answer": "Processing usually takes 3–5 working days."
-      }
-    ],
-    "relatedServices": ["fire-safety-inspection-certificate"],
     "quickInfo": {
-      "processingTime": "3–5 working days",
-      "fee": "₱500",
-      "whoCanApply": "Business owners",
-      "appointmentType": "Walk-in"
+      "processingTime": "5-10 days",
+      "fee": "Based on floor area",
+      "whoCanApply": "Property Owners"
     },
-    "updatedAt": "2025-01-28T00:00:00.000Z"
+    "updatedAt": null,
+    "sources": [
+      {
+        "name": "P.D. 1096 (National Building Code of the Philippines)",
+        "url": ""
+      },
+      { "name": "Municipal Engineering Regulatory Manual", "url": "" }
+    ]
   },
   {
-    "service": "Fire Safety Inspection Certificate",
-    "slug": "fire-safety-inspection-certificate",
-    "url": "https://fsis.e-bfp.com/",
-    "officeSlug": "bureau-fire-protection",
+    "service": "Tricycle Franchise Renewal",
+    "slug": "tricycle-franchise-renewal",
+    "type": "transaction",
+    "description": "Annual renewal of franchise for tricycle operators.",
+    "officeSlug": "tricycle-regulatory-unit",
     "category": {
-      "name": "Public Safety",
-      "slug": "public-safety"
+      "name": "Public Safety & Transport",
+      "slug": "public-safety-transport"
     },
     "steps": [
-      "Sign up at FSIS (See link)",
-      "Prepare requirements",
-      "Complete online application",
-      "Upload documents",
-      "Pay fees online",
-      "Certificate released online"
+      "Submit unit for roadworthiness inspection.",
+      "Present insurance and registration papers.",
+      "Pay franchise fee.",
+      "Get sticker and permit."
     ],
     "requirements": [
-      "Fees assessment bill from the Business Permit and Licensing Office",
-      "Copy of Fire Insurance (if any)",
-      "Affidavit of No Alteration to Building (For new businesses with Valid FSIC Issued for Occupancy)"
+      "LTO OR/CR",
+      "TPL Insurance",
+      "Previous Franchise",
+      "Voter's ID / Certification"
     ],
+    "quickInfo": {
+      "processingTime": "1 day",
+      "fee": "₱700",
+      "validity": "1 Year"
+    },
+    "updatedAt": null,
+    "sources": [
+      { "name": "Municipal Tricycle Franchising Ordinance", "url": "" }
+    ]
+  },
+  {
+    "service": "Public School Directory",
+    "slug": "public-school-directory",
+    "type": "information",
+    "description": "A comprehensive list of public elementary and secondary schools in the municipality.",
+    "officeSlug": "department-of-education",
+    "category": {
+      "name": "Education & Learning",
+      "slug": "education-learning"
+    },
+    "steps": [
+      "Los Baños Central Elementary School (Timugan)",
+      "Mayondon Elementary School",
+      "Bayog Elementary School",
+      "Lalakay Elementary School",
+      "Los Baños National High School (Poblacion)",
+      "Bernardo F. San Juan National High School",
+      "South Hill School (Private)",
+      "University of the Philippines Rural High School"
+    ],
+    "requirements": [],
+    "relatedServices": ["scholarship-application"],
     "faqs": [
       {
-        "question": "Can I apply online?",
-        "answer": "Yes, you can access it through the FSIS website."
+        "question": "When does enrollment start?",
+        "answer": "Enrollment typically begins in July. Please follow the official DepEd page for announcements."
       }
     ],
-    "relatedServices": ["new-business-permit", "building-permit"],
-    "quickInfo": {
-      "processingTime": "3–5 working days",
-      "fee": "₱500 or 15% LGU fees",
-      "whoCanApply": "Business owners",
-      "appointmentType": "Online"
+    "updatedAt": null,
+    "sources": [{ "name": "DepEd Schools Division Office List", "url": "" }]
+  },
+  {
+    "service": "Scholarship Application",
+    "slug": "scholarship-application",
+    "type": "transaction",
+    "description": "Financial assistance program for deserving college students.",
+    "officeSlug": "office-of-the-mayor",
+    "category": {
+      "name": "Education & Learning",
+      "slug": "education-learning"
     },
-    "updatedAt": "2025-01-28T00:00:00.000Z"
+    "steps": [
+      "Submit application form with grades.",
+      "Undergo interview/screening.",
+      "Wait for posting of qualified scholars.",
+      "Attend orientation and contract signing."
+    ],
+    "requirements": [
+      "Certificate of Grades (GWA 2.0 or higher)",
+      "Certificate of Indigency",
+      "Photocopy of School ID",
+      "Registration Form"
+    ],
+    "quickInfo": {
+      "processingTime": "Seasonal",
+      "whoCanApply": "College Students",
+      "documents": "Grades, Indigency"
+    },
+    "updatedAt": null,
+    "sources": [{ "name": "Municipal Scholarship Ordinance", "url": "" }]
+  },
+  {
+    "service": "Garbage Collection Schedule",
+    "slug": "garbage-collection-schedule",
+    "type": "information",
+    "description": "Weekly schedule for waste collection per barangay. Please segregate biodegradable and non-biodegradable waste.",
+    "officeSlug": "municipal-environment-and-natural-resources-office",
+    "category": {
+      "name": "Environment & Waste",
+      "slug": "environment-waste"
+    },
+    "steps": [
+      "Monday & Thursday: Batong Malake, San Antonio, Maahas (Biodegradable)",
+      "Tuesday & Friday: Bayog, Mayondon, Malinta (Biodegradable)",
+      "Wednesday: All Barangays (Non-Biodegradable / Recyclables)",
+      "Saturday: Special collection for Market area",
+      "Sunday: No Collection"
+    ],
+    "requirements": [
+      "Please ensure waste is segregated before putting it out.",
+      "Bring out trash only between 6:00 AM - 8:00 AM."
+    ],
+    "quickInfo": {
+      "processingTime": "Weekly",
+      "whoCanApply": "All Residents"
+    },
+    "updatedAt": null,
+    "sources": [
+      {
+        "name": "Republic Act No. 9003 (Ecological Solid Waste Management Act)",
+        "url": ""
+      },
+      { "name": "MENRO Garbage Collection Policy", "url": "" }
+    ]
+  },
+  {
+    "service": "Rural Health Unit (RHU) Locations",
+    "slug": "rhu-locations",
+    "type": "information",
+    "description": "Locations of health centers providing free primary care, immunization, and maternal services.",
+    "officeSlug": "municipal-health-office",
+    "category": {
+      "name": "Health & Nutrition",
+      "slug": "health-nutrition"
+    },
+    "steps": [
+      "RHU 1: Main Health Center, Municipal Hall Compound, Brgy. Timugan",
+      "RHU 2: Brgy. Batong Malake (Near Barangay Hall)",
+      "RHU 3: Brgy. Mayondon (Purok 3)",
+      "Animal Bite Center: Municipal Hall Compound"
+    ],
+    "requirements": [],
+    "relatedServices": ["health-certificate"],
+    "updatedAt": null,
+    "sources": [{ "name": "Municipal Health Office Registry", "url": "" }]
+  },
+  {
+    "service": "Health Certificate",
+    "slug": "health-certificate",
+    "type": "transaction",
+    "description": "Required for food handlers and employees in business establishments.",
+    "officeSlug": "municipal-health-office",
+    "category": {
+      "name": "Health & Nutrition",
+      "slug": "health-nutrition"
+    },
+    "steps": [
+      "Submit chest x-ray and stool exam results.",
+      "Attend food handler's seminar (if applicable).",
+      "Pay health fee.",
+      "Claim Health Certificate."
+    ],
+    "requirements": [
+      "Chest X-Ray Result (within 6 months)",
+      "Stool Exam Result",
+      "1x1 ID Picture",
+      "Community Tax Certificate"
+    ],
+    "quickInfo": {
+      "processingTime": "1 day",
+      "fee": "₱100",
+      "validity": "1 Year"
+    },
+    "updatedAt": null,
+    "sources": [
+      { "name": "P.D. 856 (Code on Sanitation of the Philippines)", "url": "" },
+      { "name": "Sanitary Office Guidelines", "url": "" }
+    ]
+  },
+  {
+    "service": "Medical Assistance (AICS)",
+    "slug": "medical-assistance-aics",
+    "type": "transaction",
+    "description": "Assistance to Individuals in Crisis Situations for medical needs.",
+    "officeSlug": "municipal-social-welfare-and-development-office",
+    "category": {
+      "name": "Social Welfare",
+      "slug": "social-welfare"
+    },
+    "steps": [
+      "Submit requirements for screening.",
+      "Undergo interview by Social Worker.",
+      "Receive Guarantee Letter or Cash Assistance."
+    ],
+    "requirements": [
+      "Medical Certificate / Abstract",
+      "Hospital Bill / Prescription",
+      "Barangay Certificate of Indigency",
+      "Valid ID of claimant"
+    ],
+    "quickInfo": {
+      "processingTime": "1-2 days",
+      "whoCanApply": "Indigent Residents",
+      "appointmentType": "Walk-in"
+    },
+    "updatedAt": null,
+    "sources": [
+      { "name": "DSWD Memorandum Circular No. 02 Series of 2014", "url": "" },
+      { "name": "MSWDO Guidelines on Financial Assistance", "url": "" }
+    ]
+  },
+  {
+    "service": "Senior Citizen ID Application",
+    "slug": "senior-citizen-id",
+    "type": "transaction",
+    "description": "Issuance of ID and purchase booklet for senior citizens (60 years old and above).",
+    "officeSlug": "municipal-social-welfare-and-development-office",
+    "category": {
+      "name": "Social Welfare",
+      "slug": "social-welfare"
+    },
+    "steps": [
+      "Fill out application form.",
+      "Submit requirements.",
+      "ID processing and printing.",
+      "Claim ID and booklets."
+    ],
+    "requirements": [
+      "Birth Certificate",
+      "1x1 ID Picture",
+      "Valid ID with address"
+    ],
+    "quickInfo": {
+      "processingTime": "Same day",
+      "fee": "Free",
+      "whoCanApply": "60 years old+",
+      "validity": "Lifetime"
+    },
+    "updatedAt": null,
+    "sources": [
+      {
+        "name": "Republic Act No. 9994 (Expanded Senior Citizens Act)",
+        "url": ""
+      }
+    ]
+  },
+  {
+    "service": "Seed & Fertilizer Distribution",
+    "slug": "seed-fertilizer-distribution",
+    "type": "information",
+    "description": "Availability of free vegetable seeds and subsidized fertilizers for local farmers.",
+    "officeSlug": "municipal-agriculture-office",
+    "category": {
+      "name": "Agriculture & Veterinary",
+      "slug": "agriculture-veterinary"
+    },
+    "steps": [
+      "Available Seeds: Eggplant, Tomato, Pechay, Mustard, Sitaw",
+      "Location: Municipal Agriculture Office, Hall Compound",
+      "Schedule: Monday to Friday, 8:00 AM - 5:00 PM"
+    ],
+    "requirements": [
+      "Must be a registered farmer (RSBSA) for fertilizer subsidies.",
+      "Walk-ins allowed for seed packets."
+    ],
+    "updatedAt": null,
+    "sources": [
+      { "name": "Municipal Agriculture Office Extension Program", "url": "" }
+    ]
   }
 ]

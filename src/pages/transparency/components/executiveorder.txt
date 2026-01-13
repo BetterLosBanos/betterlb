@@ -1,0 +1,981 @@
+
+          <div class="card-body" style="color:rgb(65, 65, 65);">
+            <div class="table-responsive">
+              <br><div id="dataTable_wrapper" class="dataTables_wrapper form-inline dt-bootstrap no-footer" data-protonpass-form=""><div class="row"><div class="col-sm-6"><div class="dataTables_length" id="dataTable_length"><label>Show <select name="dataTable_length" aria-controls="dataTable" class="form-control input-sm"><option value="10">10</option><option value="25">25</option><option value="50">50</option><option value="-1">100</option>
+</select> entries</label></div></div><div class="col-sm-6"><div id="dataTable_filter" class="dataTables_filter"><label>Search:<input type="search" class="form-control input-sm" placeholder="" aria-controls="dataTable"></label></div></div></div><div class="row"><div class="col-sm-12"><table style="color: rgb(65, 65, 65); width: 100%;" class="table table-bordered dataTable no-footer" id="dataTable" width="100%" cellspacing="0" role="grid" aria-describedby="dataTable_info">
+                <thead>
+                  <tr role="row"><th class="sorting_asc" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" style="width: 215px;" aria-sort="ascending" aria-label="Title: activate to sort column descending">Title</th><th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" style="width: 479px;" aria-label="Description: activate to sort column ascending">Description</th><th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" style="width: 107px;" aria-label="Created at: activate to sort column ascending">Created at</th><th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" style="width: 215px;" aria-label="Action: activate to sort column ascending">Action</th></tr>
+                </thead>
+                <tbody>
+                                        
+          
+                  
+          
+                  
+          
+                  
+          
+                  
+          
+                  
+          
+                  
+          
+                  
+          
+                  
+          
+                  
+          
+                  
+          
+                  
+          
+                  
+          
+                  
+          
+                  
+          
+                  
+          
+                  
+          
+                  
+          
+                  
+          
+                  
+          
+                  
+          
+                  
+          
+                  
+          
+                  
+          
+                  
+          
+                  
+          
+                  
+          
+                  
+          
+                  
+          
+                  
+          
+                  
+          
+                  
+          
+                  
+          
+                  
+          
+                  
+          
+                  
+          
+                  
+          
+                  
+          
+                  
+          
+                  
+          
+                  
+          
+                  
+          
+                  
+          
+                  
+          
+                  
+          
+                  
+          
+                  
+          
+                  
+          
+                  
+          
+                  
+          
+                  
+          
+                  
+          
+                  
+          
+                  
+          
+                  
+          
+                  
+          
+                  
+          
+                  
+          
+                  
+          
+                  
+          
+                  
+          
+                  
+          
+                  
+          
+                  
+          
+                  
+          
+                  
+          
+                  
+          
+                  
+          
+                  
+          
+                  
+          
+                  
+          
+                  
+          
+                  
+          
+                  
+          
+                  
+          
+                  
+          
+                  
+          
+                  
+          
+                  
+          
+                  
+          
+                  
+          
+                  
+          
+                  
+          
+                  
+          
+                  
+          
+                  
+          
+                  
+          
+                  
+          
+                  
+          
+                  
+          
+                  
+          
+                  
+          
+                  
+          
+                  
+          
+                  
+          
+                  
+          
+                  
+          
+                  
+          
+                  
+          
+                  
+          
+                  
+          
+                  
+          
+                  
+          
+                  
+          
+                  
+          
+                  
+          
+                  
+          
+                  
+          
+                  
+          
+                  
+          
+                  
+          
+                  
+          
+                  
+          
+                  
+          
+                  
+          
+                  
+          
+                  
+          
+                  
+          
+                  
+          
+                  
+          
+                  
+          
+                  
+          
+                  
+          
+                  
+          
+                  
+          
+                  
+          
+                  
+          
+                  
+          
+                  
+          
+                  
+          
+                  
+          
+                  
+          
+                  
+          
+                  
+          
+                  
+          
+                  
+          
+                  
+          
+                  
+          
+                        
+                      <tr role="row" class="odd">
+              <td style="width: 15%" class="sorting_1"><a href="#" download="">Executive Order no. 001 Series of 2021</a></td>
+              <td style="width: 30%">Directing the Creation of a Technical Working Group for the Operation of the Los Baños Dialysis Center.</td>
+              <td style="width: 8%">Jan 26, 2021</td>
+              <td style="width: 15%; text-align: center;"><a class="button" href="public/storage/executive_orders/EO-2021-001_1632962580.pdf" download=""><i class="fa fa-download"></i>&nbsp;PDF File/Download</a></td>
+            </tr><tr role="row" class="even">
+              <td style="width: 15%" class="sorting_1"><a href="#" download="">Executive Order no. 002 Series of 2021</a></td>
+              <td style="width: 30%">An Order Reorganizing the Local Manila Bay Clean Up Rehabilitation and Preservation Project, Inspection and Monitoring Team in the Municipality of Los Baños, Laguna.</td>
+              <td style="width: 8%">Feb 1, 2021</td>
+              <td style="width: 15%; text-align: center;"><a class="button" href="public/storage/executive_orders/EO-2021-002_1628837101.pdf" download=""><i class="fa fa-download"></i>&nbsp;PDF File/Download</a></td>
+            </tr><tr role="row" class="odd">
+              <td style="width: 15%" class="sorting_1"><a href="#" download="">Executive Order no. 003 Series of 2021</a></td>
+              <td style="width: 30%">An Order Reorganizing the Los Baños Municipal Solid Waste Management Board.</td>
+              <td style="width: 8%">Feb 1, 2021</td>
+              <td style="width: 15%; text-align: center;"><a class="button" href="public/storage/executive_orders/EO-2021-003_1628837755.pdf" download=""><i class="fa fa-download"></i>&nbsp;PDF File/Download</a></td>
+            </tr><tr role="row" class="even">
+              <td style="width: 15%" class="sorting_1"><a href="#" download="">Executive Order no. 004 Series of 2021</a></td>
+              <td style="width: 30%">AN ORDER ADOPTING THE LOCAL IATF RESOLUTION NO. 2021-01 RECOMENDING FOR AMMENDMENT OF ORDINANCE NO. 2020-2074 FOR EXTENSION OF WAKE FROM 48 HOURS TO 72 HOURS IN THE MUNICIPALITY OF LOS BAÑOS, LAGUNA.</td>
+              <td style="width: 8%">Jan 18, 2021</td>
+              <td style="width: 15%; text-align: center;"><a class="button" href="public/storage/executive_orders/EO-2021-004_1628838050.pdf" download=""><i class="fa fa-download"></i>&nbsp;PDF File/Download</a></td>
+            </tr><tr role="row" class="odd">
+              <td style="width: 15%" class="sorting_1"><a href="#" download="">Executive Order no. 005 Series of 2021</a></td>
+              <td style="width: 30%">AN ORDER FOR TEMPORARY SUSPENSION OF IMPLEMENTATION OF ODD-EVEN SCHEME FOR THE ESTABLISHMENTS IN THE MUNICIPALITY OF LOS BAÑOS.</td>
+              <td style="width: 8%">Jan 26, 2021</td>
+              <td style="width: 15%; text-align: center;"><a class="button" href="public/storage/executive_orders/EO-2021-005_1628838718.pdf" download=""><i class="fa fa-download"></i>&nbsp;PDF File/Download</a></td>
+            </tr><tr role="row" class="even">
+              <td style="width: 15%" class="sorting_1"><a href="#" download="">Executive Order no. 006 Series of 2021</a></td>
+              <td style="width: 30%">Directing the Reorganization of the Local Inter-Agency Committee (LIAC) for the PNR South Line Project Los Baños Segment.</td>
+              <td style="width: 8%">Feb 10, 2021</td>
+              <td style="width: 15%; text-align: center;"><a class="button" href="public/storage/executive_orders/EO 006_1628835654.pdf" download=""><i class="fa fa-download"></i>&nbsp;PDF File/Download</a></td>
+            </tr><tr role="row" class="odd">
+              <td style="width: 15%" class="sorting_1"><a href="#" download="">Executive Order No. 007 Series of 2021</a></td>
+              <td style="width: 30%">Directing the Organization of the Los Baños Inter-Agency Task Force Sub-Committee on Covid-19 Vaccination.</td>
+              <td style="width: 8%">Feb 10, 2021</td>
+              <td style="width: 15%; text-align: center;"><a class="button" href="public/storage/executive_orders/EO 007_1628836532.pdf" download=""><i class="fa fa-download"></i>&nbsp;PDF File/Download</a></td>
+            </tr><tr role="row" class="even">
+              <td style="width: 15%" class="sorting_1"><a href="#" download="">Executive Order no. 008 Series of 2021</a></td>
+              <td style="width: 30%">AN ORDER DESIGNATING MR. EPITACIO A. BELTRAN, JR. AS EXECUTIVE DIRECTOR OF LOS BAÑOS ANTI-DRUG ABUSE OFFICE AT THE FAMILY CENTER BUILDING FOR THE IMPLEMENTATION OF COMMUNITY-BASED DRUG REHABILITATION PROGRAM IN THE MUNICIPALITY OF LOS BAÑOS, LAGUNA.</td>
+              <td style="width: 8%">Feb 10, 2021</td>
+              <td style="width: 15%; text-align: center;"><a class="button" href="public/storage/executive_orders/EO-2021-008_1628839925.pdf" download=""><i class="fa fa-download"></i>&nbsp;PDF File/Download</a></td>
+            </tr><tr role="row" class="odd">
+              <td style="width: 15%" class="sorting_1"><a href="#" download="">Executive Order no. 009 Series of 2021</a></td>
+              <td style="width: 30%">DIRECTING THE REORGANIZATION OF THE TASK FORCE FOR THE PREPARATION OF THE TRICYCLE ROUTE PLAN OF THE MUNICIPALITY OF LOS BAÑOS.</td>
+              <td style="width: 8%">Feb 15, 2021</td>
+              <td style="width: 15%; text-align: center;"><a class="button" href="public/storage/executive_orders/EO-2021-009_1628840258.pdf" download=""><i class="fa fa-download"></i>&nbsp;PDF File/Download</a></td>
+            </tr><tr role="row" class="even">
+              <td style="width: 15%" class="sorting_1"><a href="#" download="">Executive Order No. 01 Series of 2025</a></td>
+              <td style="width: 30%">Directing the Municipal Disaster Risk Reduction and Management Council (MDRRMC) to Undertake Preparedness Measures to Mitigate the Impact of Typhoons during the Rainy Season</td>
+              <td style="width: 8%">Aug 19, 2025</td>
+              <td style="width: 15%; text-align: center;"><a class="button" href="public/storage/executive_orders/Executive Order No. 01_1755576440.pdf" download=""><i class="fa fa-download"></i>&nbsp;PDF File/Download</a></td>
+            </tr><tr role="row" class="odd">
+              <td style="width: 15%" class="sorting_1"><a href="#" download="">Executive Order no. 010 Series of 2021</a></td>
+              <td style="width: 30%">DIRECTING THE REORGANIZATION OF THE INSPECTION TEAM FOR ALL DELIVERIES OF SUPPLIES AND MATERIALS, EQUIPMENT, MEDICINES, VEHICLES, AND OTHER ACQUISITIONS AND DISPOSAL THEREOF OF THE MUNICIPALITY OF LOS BAÑOS.</td>
+              <td style="width: 8%">Feb 15, 2021</td>
+              <td style="width: 15%; text-align: center;"><a class="button" href="public/storage/executive_orders/EO-2021-010_1628840465.pdf" download=""><i class="fa fa-download"></i>&nbsp;PDF File/Download</a></td>
+            </tr><tr role="row" class="even">
+              <td style="width: 15%" class="sorting_1"><a href="#" download="">Executive Order no. 011 Series of 2021</a></td>
+              <td style="width: 30%">DIRECTING THE REORGANIZATION OF THE MUNICIPAL DEVELOPMENT COUNCIL OF THE MUNICIPALITY OF LOS BAÑOS.</td>
+              <td style="width: 8%">Feb 15, 2021</td>
+              <td style="width: 15%; text-align: center;"><a class="button" href="public/storage/executive_orders/EO-2021-011_1628840628.pdf" download=""><i class="fa fa-download"></i>&nbsp;PDF File/Download</a></td>
+            </tr><tr role="row" class="odd">
+              <td style="width: 15%" class="sorting_1"><a href="#" download="">Executive Order no. 012 Series of 2021</a></td>
+              <td style="width: 30%">DIRECTING THE REORGANIZATION OF THE MUNICIPAL SCHOOL BOARD OF THE MUNICIPALITY OF LOS BAÑOS.</td>
+              <td style="width: 8%">Feb 15, 2021</td>
+              <td style="width: 15%; text-align: center;"><a class="button" href="public/storage/executive_orders/EO-2021-012_1628841293.pdf" download=""><i class="fa fa-download"></i>&nbsp;PDF File/Download</a></td>
+            </tr><tr role="row" class="even">
+              <td style="width: 15%" class="sorting_1"><a href="#" download="">Executive Order no. 013 Series of 2021</a></td>
+              <td style="width: 30%">Directing the Reorganization of Municipal Health Board of the Municipality of Los Baños.</td>
+              <td style="width: 8%">Feb 15, 2021</td>
+              <td style="width: 15%; text-align: center;"><a class="button" href="public/storage/executive_orders/EO-2021-013_1628841421.pdf" download=""><i class="fa fa-download"></i>&nbsp;PDF File/Download</a></td>
+            </tr><tr role="row" class="odd">
+              <td style="width: 15%" class="sorting_1"><a href="#" download="">Executive Order no. 014 Series of 2021</a></td>
+              <td style="width: 30%">Directing the Reorganization of Municipal Disaster Risk Reduction and Management Council of the Municipality of Los Baños.</td>
+              <td style="width: 8%">Feb 15, 2021</td>
+              <td style="width: 15%; text-align: center;"><a class="button" href="public/storage/executive_orders/EO-2021-014_1628841517.pdf" download=""><i class="fa fa-download"></i>&nbsp;PDF File/Download</a></td>
+            </tr><tr role="row" class="even">
+              <td style="width: 15%" class="sorting_1"><a href="#" download="">Executive Order no. 015 Series of 2021</a></td>
+              <td style="width: 30%">Creating the Local Committee Against Squatting Syndicates and Professional Squatters.</td>
+              <td style="width: 8%">Feb 19, 2021</td>
+              <td style="width: 15%; text-align: center;"><a class="button" href="public/storage/executive_orders/EO-2021-015_1632962754.pdf" download=""><i class="fa fa-download"></i>&nbsp;PDF File/Download</a></td>
+            </tr><tr role="row" class="odd">
+              <td style="width: 15%" class="sorting_1"><a href="#" download="">Executive Order no. 016 Series of 2021</a></td>
+              <td style="width: 30%">Reorganization of the Municipal Nutrition Committee of the Municipality of Los Baños.</td>
+              <td style="width: 8%">Mar 3, 2021</td>
+              <td style="width: 15%; text-align: center;"><a class="button" href="public/storage/executive_orders/EO-2021-016_1629095622.pdf" download=""><i class="fa fa-download"></i>&nbsp;PDF File/Download</a></td>
+            </tr><tr role="row" class="even">
+              <td style="width: 15%" class="sorting_1"><a href="#" download="">Executive Order No. 017 Series of 2021</a></td>
+              <td style="width: 30%">Directing the Creation of Municipal Nutrition Cluster of the Municipality of Los Baños.</td>
+              <td style="width: 8%">Mar 3, 2021</td>
+              <td style="width: 15%; text-align: center;"><a class="button" href="public/storage/executive_orders/EO-2021-017_1629095788.pdf" download=""><i class="fa fa-download"></i>&nbsp;PDF File/Download</a></td>
+            </tr><tr role="row" class="odd">
+              <td style="width: 15%" class="sorting_1"><a href="#" download="">Executive Order no. 018 Series of 2021</a></td>
+              <td style="width: 30%">Directing the Reorganization of Municipal Task Force to End Local Communist Armed Conflict of Municipality of Los Baños.</td>
+              <td style="width: 8%">Mar 11, 2021</td>
+              <td style="width: 15%; text-align: center;"><a class="button" href="public/storage/executive_orders/EO-2021-018_1629095891.pdf" download=""><i class="fa fa-download"></i>&nbsp;PDF File/Download</a></td>
+            </tr><tr role="row" class="even">
+              <td style="width: 15%" class="sorting_1"><a href="#" download="">Executive Order no. 019 Series of 2021</a></td>
+              <td style="width: 30%">Directing the Inclusion of General Services Officer in the Reorganized Municipal Disaster Risk Reduction and Management Council of Municipality of Los Baños.</td>
+              <td style="width: 8%">Mar 15, 2021</td>
+              <td style="width: 15%; text-align: center;"><a class="button" href="public/storage/executive_orders/EO-2021-019_1629095963.pdf" download=""><i class="fa fa-download"></i>&nbsp;PDF File/Download</a></td>
+            </tr><tr role="row" class="odd">
+              <td style="width: 15%" class="sorting_1"><a href="#" download="">Executive Order No. 02 Series of 2025</a></td>
+              <td style="width: 30%">Reorganizing and Expanding the Local Finance Committee of the Municipal Government of Los Baños</td>
+              <td style="width: 8%">Aug 19, 2025</td>
+              <td style="width: 15%; text-align: center;"><a class="button" href="public/storage/executive_orders/Executive Order No. 02_1755576633.pdf" download=""><i class="fa fa-download"></i>&nbsp;PDF File/Download</a></td>
+            </tr><tr role="row" class="even">
+              <td style="width: 15%" class="sorting_1"><a href="#" download="">Executive Order no. 020 Series of 2021</a></td>
+              <td style="width: 30%">An Order Adopting the Inter-Agency Task Force for the Management of Emerging Infectious Disease (IATF-MEID) Resolution No. 104 Series of 2021 dated March 20, 2021 for Areas Placed under General Community Quarantine (GCQ).</td>
+              <td style="width: 8%">Mar 23, 2021</td>
+              <td style="width: 15%; text-align: center;"><a class="button" href="public/storage/executive_orders/EO-2021-020_1629097622.pdf" download=""><i class="fa fa-download"></i>&nbsp;PDF File/Download</a></td>
+            </tr><tr role="row" class="odd">
+              <td style="width: 15%" class="sorting_1"><a href="#" download="">Executive Order no. 021 Series of 2021</a></td>
+              <td style="width: 30%">An Order Reducing Hours of Work Transactions in the Municipal Government of Los Baños from Eight O'Clock in the Morning (8:00 AM) to Two O'Clock in the afternoon (2:00 PM), Monday to Friday.</td>
+              <td style="width: 8%">Mar 23, 2021</td>
+              <td style="width: 15%; text-align: center;"><a class="button" href="public/storage/executive_orders/EO-2021-021_1629098135.pdf" download=""><i class="fa fa-download"></i>&nbsp;PDF File/Download</a></td>
+            </tr><tr role="row" class="even">
+              <td style="width: 15%" class="sorting_1"><a href="#" download="">Executive Order no. 022Series of 2021</a></td>
+              <td style="width: 30%">Adendum to Executive Order No. 20 s. 2021 adopting the Department of Trade and Industry (DTI) MC No. 21-11 s. of 2021.</td>
+              <td style="width: 8%">Mar 25, 2021</td>
+              <td style="width: 15%; text-align: center;"><a class="button" href="public/storage/executive_orders/EO-2021-022_1629098234.pdf" download=""><i class="fa fa-download"></i>&nbsp;PDF File/Download</a></td>
+            </tr><tr role="row" class="odd">
+              <td style="width: 15%" class="sorting_1"><a href="#" download="">Executive Order no. 023 Series of 2021</a></td>
+              <td style="width: 30%">Authorizing the Municipal Health Office of the Municipality of Los Baños to Order Measures for Mandatory/Compulsary Isolation to Treat, Monitor Suspect, Probable and Confirmed Cases in the Municipality.</td>
+              <td style="width: 8%">Mar 29, 2021</td>
+              <td style="width: 15%; text-align: center;"><a class="button" href="public/storage/executive_orders/EO-2021-023_1629098474.pdf" download=""><i class="fa fa-download"></i>&nbsp;PDF File/Download</a></td>
+            </tr><tr role="row" class="even">
+              <td style="width: 15%" class="sorting_1"><a href="#" download="">Executive Order no. 024 Series of 2021</a></td>
+              <td style="width: 30%">DIrecting the Organization of Inter-Agency Task Force Sub-Committee for the Implementation of COVID-19 Ordinances and Other Issuances.</td>
+              <td style="width: 8%">Apr 5, 2021</td>
+              <td style="width: 15%; text-align: center;"><a class="button" href="public/storage/executive_orders/EO-2021-024_1629099064.pdf" download=""><i class="fa fa-download"></i>&nbsp;PDF File/Download</a></td>
+            </tr><tr role="row" class="odd">
+              <td style="width: 15%" class="sorting_1"><a href="#" download="">Executive Order no. 025 Series of 2021</a></td>
+              <td style="width: 30%">An order for the Distribution of Cash Assistance to Affected Individuals in Municipality of Los Baños and Creation of Grievance and Appeals Committee.</td>
+              <td style="width: 8%">Apr 5, 2021</td>
+              <td style="width: 15%; text-align: center;"><a class="button" href="public/storage/executive_orders/EO-2021-025_1629419331.pdf" download=""><i class="fa fa-download"></i>&nbsp;PDF File/Download</a></td>
+            </tr><tr role="row" class="even">
+              <td style="width: 15%" class="sorting_1"><a href="#" download="">Executive Order no. 026 Series of 2021</a></td>
+              <td style="width: 30%">An Order Prescribing the Guidelines and Procedures during the Modified Enhance Community Quarantine (MECQ) in the Municipality of Los Baños.</td>
+              <td style="width: 8%">Apr 13, 2021</td>
+              <td style="width: 15%; text-align: center;"><a class="button" href="public/storage/executive_orders/EO-2021-026_1629419423.pdf" download=""><i class="fa fa-download"></i>&nbsp;PDF File/Download</a></td>
+            </tr><tr role="row" class="odd">
+              <td style="width: 15%" class="sorting_1"><a href="#" download="">Executive Order no. 027 Series of 2021</a></td>
+              <td style="width: 30%">Directing the Organization of Barangay Peace and Order Committee Evaluation Task Force of the Municipality of Los Baños.</td>
+              <td style="width: 8%">Apr 27, 2021</td>
+              <td style="width: 15%; text-align: center;"><a class="button" href="public/storage/executive_orders/EO-2021-027_1629420606.pdf" download=""><i class="fa fa-download"></i>&nbsp;PDF File/Download</a></td>
+            </tr><tr role="row" class="even">
+              <td style="width: 15%" class="sorting_1"><a href="#" download="">Executive Order no. 028 Series of 2021</a></td>
+              <td style="width: 30%">An Order Revising Executive Order No. 2021-026 S-2021 entitled "An Order Prescribing the Guidelines and Procedures during the Modified Enhance Community Quarantine in the Municipality of Los Baños".</td>
+              <td style="width: 8%">May 4, 2021</td>
+              <td style="width: 15%; text-align: center;"><a class="button" href="public/storage/executive_orders/EO-2021-028_1629420715.pdf" download=""><i class="fa fa-download"></i>&nbsp;PDF File/Download</a></td>
+            </tr><tr role="row" class="odd">
+              <td style="width: 15%" class="sorting_1"><a href="#" download="">Executive Order no. 029 Series of 2021</a></td>
+              <td style="width: 30%">An Order Adopting the Inter-Agency Task Force for the Management of Emerging Infectious Disease (IATF-MEID) Resolution no. 115-A Series of 2021, May 13, 2021 in the Municipality of Los Baños.</td>
+              <td style="width: 8%">May 18, 2021</td>
+              <td style="width: 15%; text-align: center;"><a class="button" href="public/storage/executive_orders/EO-2021-029_1629421101.pdf" download=""><i class="fa fa-download"></i>&nbsp;PDF File/Download</a></td>
+            </tr><tr role="row" class="even">
+              <td style="width: 15%" class="sorting_1"><a href="#" download="">Executive Order No. 03 Series of 2025</a></td>
+              <td style="width: 30%">Directing all Barangays in the Municipality of Los Baños, Laguna to regularly submit situational reports to the Municipal Governments</td>
+              <td style="width: 8%">Aug 19, 2025</td>
+              <td style="width: 15%; text-align: center;"><a class="button" href="public/storage/executive_orders/Executive Order No. 03_1755576838.pdf" download=""><i class="fa fa-download"></i>&nbsp;PDF File/Download</a></td>
+            </tr><tr role="row" class="odd">
+              <td style="width: 15%" class="sorting_1"><a href="#" download="">Executive Order no. 030 Series of 2021</a></td>
+              <td style="width: 30%">Directing the Reorganization of the Construction Permitting Task Force for the Streamlining of the Process for the Issuance of Building Permits and Certificate Occupancy (BPCO) in the Municipality of Los Baños.</td>
+              <td style="width: 8%">May 19, 2021</td>
+              <td style="width: 15%; text-align: center;"><a class="button" href="public/storage/executive_orders/EO-2021-030_1629437678.pdf" download=""><i class="fa fa-download"></i>&nbsp;PDF File/Download</a></td>
+            </tr><tr role="row" class="even">
+              <td style="width: 15%" class="sorting_1"><a href="#" download="">Executive Order no. 031 Series of 2021</a></td>
+              <td style="width: 30%">Directing the Reorganization of the Municipal Council for the Protection of the Children of the Municipality of Los Baños.</td>
+              <td style="width: 8%">May 19, 2021</td>
+              <td style="width: 15%; text-align: center;"><a class="button" href="public/storage/executive_orders/EO-2021-031_1629943539.pdf" download=""><i class="fa fa-download"></i>&nbsp;PDF File/Download</a></td>
+            </tr><tr role="row" class="odd">
+              <td style="width: 15%" class="sorting_1"><a href="#" download="">Executive Order no. 032 Series of 2021</a></td>
+              <td style="width: 30%">Directing the Creation of the Municipal Information and Communications Technology Council (MICTC) of the Municipality of Los Baños.</td>
+              <td style="width: 8%">May 19, 2021</td>
+              <td style="width: 15%; text-align: center;"><a class="button" href="public/storage/executive_orders/EO-2021-032_1629943593.pdf" download=""><i class="fa fa-download"></i>&nbsp;PDF File/Download</a></td>
+            </tr><tr role="row" class="even">
+              <td style="width: 15%" class="sorting_1"><a href="#" download="">Executive Order no. 033 Series of 2021</a></td>
+              <td style="width: 30%">Directing the Reorganization  of the Regulatory Reform Team (RRT) in the Municipality of Los Baños.</td>
+              <td style="width: 8%">May 19, 2021</td>
+              <td style="width: 15%; text-align: center;"><a class="button" href="public/storage/executive_orders/EO-2021-033_1629943847.pdf" download=""><i class="fa fa-download"></i>&nbsp;PDF File/Download</a></td>
+            </tr><tr role="row" class="odd">
+              <td style="width: 15%" class="sorting_1"><a href="#" download="">Executive Order no. 034 Series of 2021</a></td>
+              <td style="width: 30%">Directing the Reorganization of the Inter-Agency Monitory Task Force (IMTF) for the Municipal Children Friendly Local Governance Audit (CFLGA) of the Municipality of Los Baños.</td>
+              <td style="width: 8%">May 20, 2021</td>
+              <td style="width: 15%; text-align: center;"><a class="button" href="public/storage/executive_orders/EO-2021-034_1629944361.pdf" download=""><i class="fa fa-download"></i>&nbsp;PDF File/Download</a></td>
+            </tr><tr role="row" class="even">
+              <td style="width: 15%" class="sorting_1"><a href="#" download="">Executive Order no. 035 Series of 2021</a></td>
+              <td style="width: 30%">An Order Adopting the Strict Implementation of a General Community Quarantine with Restrictions from June 1-15 2021 in the Municipaliy of Los Baños.</td>
+              <td style="width: 8%">Jun 4, 2021</td>
+              <td style="width: 15%; text-align: center;"><a class="button" href="public/storage/executive_orders/EO-2021-035_1629944495.pdf" download=""><i class="fa fa-download"></i>&nbsp;PDF File/Download</a></td>
+            </tr><tr role="row" class="odd">
+              <td style="width: 15%" class="sorting_1"><a href="#" download="">Executive Order no. 036 Series of 2021</a></td>
+              <td style="width: 30%">An Order Adopting the Safety Seal Certification Program of the Department of the Interior and Local Government with the Municipality of Los Baños as Issuing Authority and for other Purposes.</td>
+              <td style="width: 8%">Jun 1, 2021</td>
+              <td style="width: 15%; text-align: center;"><a class="button" href="public/storage/executive_orders/EO-2021-036_1629944586.pdf" download=""><i class="fa fa-download"></i>&nbsp;PDF File/Download</a></td>
+            </tr><tr role="row" class="even">
+              <td style="width: 15%" class="sorting_1"><a href="#" download="">Executive Order no. 037 Series of 2021</a></td>
+              <td style="width: 30%">An Order Constituting the Technical Working Group for the Formulation of the COVID-19 and Infectious Health Care Wastes Management Plan.</td>
+              <td style="width: 8%">Jun 1, 2021</td>
+              <td style="width: 15%; text-align: center;"><a class="button" href="public/storage/executive_orders/EO-2021-037_1632963127.pdf" download=""><i class="fa fa-download"></i>&nbsp;PDF File/Download</a></td>
+            </tr><tr role="row" class="odd">
+              <td style="width: 15%" class="sorting_1"><a href="#" download="">Executive Order no. 038 Series of 2021</a></td>
+              <td style="width: 30%">An Order Implementing the General Community Quarantine (GCQ) with Restrictions from 16 June 2021 until 30 June 2021 in the Municipality of Los Baños.</td>
+              <td style="width: 8%">Jun 17, 2021</td>
+              <td style="width: 15%; text-align: center;"><a class="button" href="public/storage/executive_orders/EO-2021-038_1631233057.pdf" download=""><i class="fa fa-download"></i>&nbsp;PDF File/Download</a></td>
+            </tr><tr role="row" class="even">
+              <td style="width: 15%" class="sorting_1"><a href="#" download="">Executive Order no. 039 Series of 2021</a></td>
+              <td style="width: 30%">An Order Reorganizing the Municipal Tricycle and Pedicab Franchising and Regulatory Board (MTPFRB) of the Municipality of Los Baños.</td>
+              <td style="width: 8%">Jul 5, 2021</td>
+              <td style="width: 15%; text-align: center;"><a class="button" href="public/storage/executive_orders/EO-2021-039_1631233277.pdf" download=""><i class="fa fa-download"></i>&nbsp;PDF File/Download</a></td>
+            </tr><tr role="row" class="odd">
+              <td style="width: 15%" class="sorting_1"><a href="#" download="">Executive Order No. 04 Series of 2025</a></td>
+              <td style="width: 30%">Declaring Suspension of Classes in all Levels for Private and Public Schools in Los Baños, Laguna in Times of Disasters and Emergencies</td>
+              <td style="width: 8%">Aug 19, 2025</td>
+              <td style="width: 15%; text-align: center;"><a class="button" href="public/storage/executive_orders/Executive Order No. 04_1755580734.pdf" download=""><i class="fa fa-download"></i>&nbsp;PDF File/Download</a></td>
+            </tr><tr role="row" class="even">
+              <td style="width: 15%" class="sorting_1"><a href="#" download="">Executive Order no. 040 Series of 2021</a></td>
+              <td style="width: 30%">Directing the Reorganization of the Municipal Assessment Team (MAT) for the Assessment of Barangay Development Council (BDC) Functionality.</td>
+              <td style="width: 8%">Jul 6, 2021</td>
+              <td style="width: 15%; text-align: center;"><a class="button" href="public/storage/executive_orders/EO-2021-040_1631233389.pdf" download=""><i class="fa fa-download"></i>&nbsp;PDF File/Download</a></td>
+            </tr><tr role="row" class="odd">
+              <td style="width: 15%" class="sorting_1"><a href="#" download="">Executive Order no. 041 Series of 2021</a></td>
+              <td style="width: 30%">Directing the Reorganization of the Bids and Awards Committee (BAC) its Secretariat and Observers.</td>
+              <td style="width: 8%">Jul 21, 2021</td>
+              <td style="width: 15%; text-align: center;"><a class="button" href="public/storage/executive_orders/EO-2021-041_1631233523.pdf" download=""><i class="fa fa-download"></i>&nbsp;PDF File/Download</a></td>
+            </tr><tr role="row" class="even">
+              <td style="width: 15%" class="sorting_1"><a href="#" download="">Executive Order no. 042 Series of 2021</a></td>
+              <td style="width: 30%">Reorganizing the Gender and Development Focal Point System (GFPS) of the Municipality of Los Baños.</td>
+              <td style="width: 8%">Jul 9, 2021</td>
+              <td style="width: 15%; text-align: center;"><a class="button" href="public/storage/executive_orders/EO-2021-042_1631233636.pdf" download=""><i class="fa fa-download"></i>&nbsp;PDF File/Download</a></td>
+            </tr><tr role="row" class="odd">
+              <td style="width: 15%" class="sorting_1"><a href="#" download="">Executive Order no. 043 Series of 2021</a></td>
+              <td style="width: 30%">Updating the Local Committee on Anti-Trafficking and Violence Against Women and their Children of the Municipality of Los Baños.</td>
+              <td style="width: 8%">Jul 9, 2021</td>
+              <td style="width: 15%; text-align: center;"><a class="button" href="public/storage/executive_orders/EO-2021-043_1631233699.pdf" download=""><i class="fa fa-download"></i>&nbsp;PDF File/Download</a></td>
+            </tr><tr role="row" class="even">
+              <td style="width: 15%" class="sorting_1"><a href="#" download="">Executive Order no. 044 Series of 2021</a></td>
+              <td style="width: 30%">Reorganizing the Local Council of Women of the Municipality of Los Baños.</td>
+              <td style="width: 8%">Jul 12, 2021</td>
+              <td style="width: 15%; text-align: center;"><a class="button" href="public/storage/executive_orders/EO-2021-044_1631233769.pdf" download=""><i class="fa fa-download"></i>&nbsp;PDF File/Download</a></td>
+            </tr><tr role="row" class="odd">
+              <td style="width: 15%" class="sorting_1"><a href="#" download="">Executive Order no. 045 Series of 2021</a></td>
+              <td style="width: 30%">Directing the Reorganization of Local Inter-Agency Committee for the Presidential Proclamation 550 in Barangays Lalakay, Bambang and Timugan.</td>
+              <td style="width: 8%">Jul 16, 2021</td>
+              <td style="width: 15%; text-align: center;"><a class="button" href="public/storage/executive_orders/EO-2021-045_1631233828.pdf" download=""><i class="fa fa-download"></i>&nbsp;PDF File/Download</a></td>
+            </tr><tr role="row" class="even">
+              <td style="width: 15%" class="sorting_1"><a href="#" download="">Executive Order no. 046 Series of 2021</a></td>
+              <td style="width: 30%">An Order Reconstituting the Human Resource Merit Promotion and Selection Board (Hrmpsb) Of The Municipal Government of Los Baños.</td>
+              <td style="width: 8%">Jul 16, 2021</td>
+              <td style="width: 15%; text-align: center;"><a class="button" href="public/storage/executive_orders/EO-2021-046_1632963851.pdf" download=""><i class="fa fa-download"></i>&nbsp;PDF File/Download</a></td>
+            </tr><tr role="row" class="odd">
+              <td style="width: 15%" class="sorting_1"><a href="#" download="">Executive Order no. 047 Series of 2021</a></td>
+              <td style="width: 30%">An Order Extending the General Community Quarantine with Heightened Restrictions (GCQ-WHR) from July 1-31, 2021 unless Amended, Modified or Revoke by the President and the National Inter-Agency Task Force for the Emerging Infectious Disease (IATF-MEID) in the Municipality of Los Baños.</td>
+              <td style="width: 8%">Jul 23, 2021</td>
+              <td style="width: 15%; text-align: center;"><a class="button" href="public/storage/executive_orders/EO-2021-047_1632963950.pdf" download=""><i class="fa fa-download"></i>&nbsp;PDF File/Download</a></td>
+            </tr><tr role="row" class="even">
+              <td style="width: 15%" class="sorting_1"><a href="#" download="">Executive Order no. 048 Series of 2021</a></td>
+              <td style="width: 30%">An Order Providing Restrictions, Strict Observance and Implementation Under the Modified Enhanced Community Quarantine from August 01 To 15, 2021 Unless Sooner Lifted or Extended by The President and The National Inter-Agency Task Force for The Management of Emerging Infectious Disease in The Municipality of Los Baños.</td>
+              <td style="width: 8%">Aug 3, 2021</td>
+              <td style="width: 15%; text-align: center;"><a class="button" href="public/storage/executive_orders/EO-2021-048_1632964081.pdf" download=""><i class="fa fa-download"></i>&nbsp;PDF File/Download</a></td>
+            </tr><tr role="row" class="odd">
+              <td style="width: 15%" class="sorting_1"><a href="#" download="">Executive Order no. 049 Series of 2021</a></td>
+              <td style="width: 30%">An Order Creating the Municipal Devolution Transition Committee (MDTC) and Designating Members, and Establishing its Functions, Roles and Responsibilities.</td>
+              <td style="width: 8%">Aug 4, 2021</td>
+              <td style="width: 15%; text-align: center;"><a class="button" href="public/storage/executive_orders/EO-2021-049_1632970206.pdf" download=""><i class="fa fa-download"></i>&nbsp;PDF File/Download</a></td>
+            </tr><tr role="row" class="even">
+              <td style="width: 15%" class="sorting_1"><a href="#" download="">Executive Order No. 05 Series of 2025</a></td>
+              <td style="width: 30%">Providing the Records Management guidelines for Municipal Issuances and Correspondences</td>
+              <td style="width: 8%">Aug 19, 2025</td>
+              <td style="width: 15%; text-align: center;"><a class="button" href="public/storage/executive_orders/Executive Order No. 05_1755580803.pdf" download=""><i class="fa fa-download"></i>&nbsp;PDF File/Download</a></td>
+            </tr><tr role="row" class="odd">
+              <td style="width: 15%" class="sorting_1"><a href="#" download="">Executive Order no. 050 Series of 2021</a></td>
+              <td style="width: 30%">An Order to Create Small Group to Study, Discuss and Implement the Use of Mobile Application Called Safe, Swift and Smart Passage or S-Pass Developed by The Department of Science and Technology (DOST) Regional Vi as A Travel Management System to Be Used Before and During Actual Travel in The Municipality of Los Baños.</td>
+              <td style="width: 8%">Aug 4, 2021</td>
+              <td style="width: 15%; text-align: center;"><a class="button" href="public/storage/executive_orders/EO-2021-050_1632970300.pdf" download=""><i class="fa fa-download"></i>&nbsp;PDF File/Download</a></td>
+            </tr><tr role="row" class="even">
+              <td style="width: 15%" class="sorting_1"><a href="#" download="">EXECUTIVE ORDER NO. 051 Series of 2021</a></td>
+              <td style="width: 30%">"AN ORDER PROVIDING GUIDELINES FOR THE IMPLEMENTATION OF ENHANCED COMMUNITY QUARANTINE (ECQ) FROM 06 AUGUST 2021 UNTIL 15 AUGUST 2021 UNLESS OTHERWISE MODIFIED, EXTENDED OR LIFTED BY THE PRESIDENT AND THE NATIONAL INTER-AGENCY TASK FORCE FOR THE MANAGEMENT OF EMERGING INFECTIOUS DISEASE IN THE MUNICIPALITY OF LOS BANOS"</td>
+              <td style="width: 8%">Aug 10, 2021</td>
+              <td style="width: 15%; text-align: center;"><a class="button" href="public/storage/executive_orders/EO 51 Hehe_1628577022.pdf" download=""><i class="fa fa-download"></i>&nbsp;PDF File/Download</a></td>
+            </tr><tr role="row" class="odd">
+              <td style="width: 15%" class="sorting_1"><a href="#" download="">Executive Order no. 052 Series of 2021</a></td>
+              <td style="width: 30%">An Order Pursuant to Los Baños Local IATF Resolution No. 2021-017 Entitled: “Resolution for The Strict Implementation of Barangay Control Points in All Barangays of the Municipality of Los Baños During the Implementation of Enhanced Community Quarantine (MECQ) To Ensure That Only APOR on Essential Travels Are Allowed to Go Out of Their Residences to Regulate Entry if Non-Residents within the Barangay and to Help in The Proper Implementation of Basic Health Protocols in The Barangay”.</td>
+              <td style="width: 8%">Aug 20, 2021</td>
+              <td style="width: 15%; text-align: center;"><a class="button" href="public/storage/executive_orders/EO-2021-052_1632970383.pdf" download=""><i class="fa fa-download"></i>&nbsp;PDF File/Download</a></td>
+            </tr><tr role="row" class="even">
+              <td style="width: 15%" class="sorting_1"><a href="#" download="">Executive Order no. 053 Series of 2021</a></td>
+              <td style="width: 30%">Directing The Reorganization of the Assessment and Validation Team for The Seal of Good Local Governance for Barangays.</td>
+              <td style="width: 8%">Aug 25, 2021</td>
+              <td style="width: 15%; text-align: center;"><a class="button" href="public/storage/executive_orders/EO-2021-053_1632970494.pdf" download=""><i class="fa fa-download"></i>&nbsp;PDF File/Download</a></td>
+            </tr><tr role="row" class="odd">
+              <td style="width: 15%" class="sorting_1"><a href="#" download="">Executive Order no. 054 Series of 2021</a></td>
+              <td style="width: 30%">Grant of Loyalty Incentives of the Employees of Municipal Government of Los Baños.</td>
+              <td style="width: 8%">Aug 27, 2021</td>
+              <td style="width: 15%; text-align: center;"><a class="button" href="public/storage/executive_orders/EO-2021-054_1632970597.pdf" download=""><i class="fa fa-download"></i>&nbsp;PDF File/Download</a></td>
+            </tr><tr role="row" class="even">
+              <td style="width: 15%" class="sorting_1"><a href="#" download="">Executive Order no. 055 Series of 2021</a></td>
+              <td style="width: 30%">An Order Extending the Effectivity of Executive Order No. 48, Series of 2021 Imposing Restrictions and Strict Observance under the Modified Enhanced Community Quarantine (MECQ) from 08 September until 30 September 2021 unless Otherwise Lifted or Extended by the President and the National Inter-Agency Task Force for Emerging Infectious Disease (IATF-MEID) in the Municipality of Los Baños.</td>
+              <td style="width: 8%">Sep 9, 2021</td>
+              <td style="width: 15%; text-align: center;"><a class="button" href="public/storage/executive_orders/EO-2021-055_1632970905.pdf" download=""><i class="fa fa-download"></i>&nbsp;PDF File/Download</a></td>
+            </tr><tr role="row" class="odd">
+              <td style="width: 15%" class="sorting_1"><a href="#" download="">Executive Order no. 056 Series of 2021</a></td>
+              <td style="width: 30%">An Order Amending Section 2 (10) of Executive Order No. 55 s. 2021 and Adopting the IATF Resolution No. 137 Series of 2021.</td>
+              <td style="width: 8%">Sep 10, 2021</td>
+              <td style="width: 15%; text-align: center;"><a class="button" href="public/storage/executive_orders/EO-2021-056_1632971349.pdf" download=""><i class="fa fa-download"></i>&nbsp;PDF File/Download</a></td>
+            </tr><tr role="row" class="even">
+              <td style="width: 15%" class="sorting_1"><a href="#" download="">Executive Order no. 057 Series of 2021</a></td>
+              <td style="width: 30%">An Order Regulating the Operation Hours of Convenience Stores, Restaurants and Eateries During Enhanced Community Quarantine (ECQ) and Modified Enhance Community Quarantine (MECQ) in the Municipality of Los Baños.</td>
+              <td style="width: 8%">Sep 9, 2021</td>
+              <td style="width: 15%; text-align: center;"><a class="button" href="public/storage/executive_orders/EO-2021-057_1632972034.pdf" download=""><i class="fa fa-download"></i>&nbsp;PDF File/Download</a></td>
+            </tr><tr role="row" class="odd">
+              <td style="width: 15%" class="sorting_1"><a href="#" download="">Executive Order no. 058 Series of 2021</a></td>
+              <td style="width: 30%">An Order for the Strict Implementation Pursuant to the Local Inter-Agency Task Force for COVID-19 Resolution No. 2021-015 entitled "Resolution Allowing Riders of the Food Delivery Services to Deliver Food Beyond 8:00 PM (Eight O 'Clock in the Evening ) until 10:00 PM (Ten O 'Clock in the Evening Only) with Proof of Identification and or Certification of the Barangay Issued to them in the Municipality of Los Baños.</td>
+              <td style="width: 8%">Sep 10, 2021</td>
+              <td style="width: 15%; text-align: center;"><a class="button" href="public/storage/executive_orders/EO-2021-058_1632972130.pdf" download=""><i class="fa fa-download"></i>&nbsp;PDF File/Download</a></td>
+            </tr><tr role="row" class="even">
+              <td style="width: 15%" class="sorting_1"><a href="#" download="">Executive Order no. 059 Series of 2021</a></td>
+              <td style="width: 30%">Rules and Regulations Implementing Municipal Ordinance: No.  2021-2117 re: Longevity Grant for Los Baños Senior Citizens.</td>
+              <td style="width: 8%">Sep 28, 2021</td>
+              <td style="width: 15%; text-align: center;"><a class="button" href="public/storage/executive_orders/EO-2021-059_1638422375.pdf" download=""><i class="fa fa-download"></i>&nbsp;PDF File/Download</a></td>
+            </tr><tr role="row" class="odd">
+              <td style="width: 15%" class="sorting_1"><a href="#" download="">Executive Order No. 06 Series of 2025</a></td>
+              <td style="width: 30%">Reorganizing the Municipal Peace and Order Council (MPOC), MPOC-Executive Committee, Special Action Committees, and MPOC Secretariat of the Municipal Government of Los Baños</td>
+              <td style="width: 8%">Aug 27, 2025</td>
+              <td style="width: 15%; text-align: center;"><a class="button" href="public/storage/executive_orders/Executive Order No. 06_1756283507.pdf" download=""><i class="fa fa-download"></i>&nbsp;PDF File/Download</a></td>
+            </tr><tr role="row" class="even">
+              <td style="width: 15%" class="sorting_1"><a href="#" download="">Executive Order No. 06 Series of 2025</a></td>
+              <td style="width: 30%">Reorganizing the Bids and Awards Committee (BAC), its Secretariat and Observers of the Municipal Government of Los Baños</td>
+              <td style="width: 8%">Aug 19, 2025</td>
+              <td style="width: 15%; text-align: center;"><a class="button" href="public/storage/executive_orders/Executive Order No. 06_1755580842.pdf" download=""><i class="fa fa-download"></i>&nbsp;PDF File/Download</a></td>
+            </tr><tr role="row" class="odd">
+              <td style="width: 15%" class="sorting_1"><a href="#" download="">Executive Order No. 06-A Series of 2025</a></td>
+              <td style="width: 30%">Further Reorganizing the Bids and Awards Committee (BAC), its Secretariat and Observers of the Municipal Government of Los Baños</td>
+              <td style="width: 8%">Aug 19, 2025</td>
+              <td style="width: 15%; text-align: center;"><a class="button" href="public/storage/executive_orders/Executive Order No. 06-A_1755580880.pdf" download=""><i class="fa fa-download"></i>&nbsp;PDF File/Download</a></td>
+            </tr><tr role="row" class="even">
+              <td style="width: 15%" class="sorting_1"><a href="#" download="">Executive Order no. 060 Series of 2021</a></td>
+              <td style="width: 30%">An Order Reorganizing the Advisory Group and Technical Working Group to Facilitate the Enhanced Local Climate Change Action Plan (e-LCCAP) of the Municipal Hall of Los Baños.</td>
+              <td style="width: 8%">Sep 28, 2021</td>
+              <td style="width: 15%; text-align: center;"><a class="button" href="public/storage/executive_orders/EO-2021-060_1638422447.pdf" download=""><i class="fa fa-download"></i>&nbsp;PDF File/Download</a></td>
+            </tr><tr role="row" class="odd">
+              <td style="width: 15%" class="sorting_1"><a href="#" download="">Executive Order no. 061 Series of 2021</a></td>
+              <td style="width: 30%">Directing the Reorganization of the Municipal Risk Reduction and Management Rescue Volunteers – Community Volunteers.</td>
+              <td style="width: 8%">Oct 13, 2021</td>
+              <td style="width: 15%; text-align: center;"><a class="button" href="public/storage/executive_orders/EO-2021-061_1638422592.pdf" download=""><i class="fa fa-download"></i>&nbsp;PDF File/Download</a></td>
+            </tr><tr role="row" class="even">
+              <td style="width: 15%" class="sorting_1"><a href="#" download="">Executive Order no. 062 Series of 2021</a></td>
+              <td style="width: 30%">Imposing the Temporary Closure of Private and Public Cemeteries, Memorial Parks and Burial Sites, Including Columbarium and the likes in the Municipality of Los Baños, Laguna on October 29 to November 5, 2021 in vuew of Enforcing Minimum Health and Safety Protocols under the COVID-19 Threat and Providing Guidelines Therefore.</td>
+              <td style="width: 8%">Oct 13, 2021</td>
+              <td style="width: 15%; text-align: center;"><a class="button" href="public/storage/executive_orders/EO-2021-062_1638422661.pdf" download=""><i class="fa fa-download"></i>&nbsp;PDF File/Download</a></td>
+            </tr><tr role="row" class="odd">
+              <td style="width: 15%" class="sorting_1"><a href="#" download="">Executive Order no. 063 Series of 2021</a></td>
+              <td style="width: 30%">Directing the Inclusion of Atty. Katrina D. Galang-Bacani, Municipal Administrator to the Various Councils/Committees/Task Forces of the Municipal Government of Los Baños.</td>
+              <td style="width: 8%">Oct 25, 2021</td>
+              <td style="width: 15%; text-align: center;"><a class="button" href="public/storage/executive_orders/EO-2021-063_1638422791.pdf" download=""><i class="fa fa-download"></i>&nbsp;PDF File/Download</a></td>
+            </tr><tr role="row" class="even">
+              <td style="width: 15%" class="sorting_1"><a href="#" download="">Executive Order no. 064 Series of 2021</a></td>
+              <td style="width: 30%">Directing the Reorganization of the Public Financial Management Team of the Municipality of Los Baños.</td>
+              <td style="width: 8%">Nov 2, 2021</td>
+              <td style="width: 15%; text-align: center;"><a class="button" href="public/storage/executive_orders/EO-2021-064_1638423071.pdf" download=""><i class="fa fa-download"></i>&nbsp;PDF File/Download</a></td>
+            </tr><tr role="row" class="odd">
+              <td style="width: 15%" class="sorting_1"><a href="#" download="">Executive Order no. 065 Series of 2021</a></td>
+              <td style="width: 30%">Directing the Reorganization of the Full Disclosure Policy Team of the Municipality of Los Baños.</td>
+              <td style="width: 8%">Nov 2, 2021</td>
+              <td style="width: 15%; text-align: center;"><a class="button" href="public/storage/executive_orders/EO-2021-065_1638423154.pdf" download=""><i class="fa fa-download"></i>&nbsp;PDF File/Download</a></td>
+            </tr><tr role="row" class="even">
+              <td style="width: 15%" class="sorting_1"><a href="#" download="">Executive Order no. 066 Series of 2021</a></td>
+              <td style="width: 30%">An Order Providing the Guidelines and Minimum Health Protocols under Alert Level 3 in the Municipality of Los Baños from November 1-14, 2021 Unless Otherwise Modified, Extended or Lifted Earlier and for Other Purposes.</td>
+              <td style="width: 8%">Nov 8, 2021</td>
+              <td style="width: 15%; text-align: center;"><a class="button" href="public/storage/executive_orders/EO-2021-066_1646963976.pdf" download=""><i class="fa fa-download"></i>&nbsp;PDF File/Download</a></td>
+            </tr><tr role="row" class="odd">
+              <td style="width: 15%" class="sorting_1"><a href="#" download="">Executive Order no. 067 Series of 2021</a></td>
+              <td style="width: 30%">Directing the Creation of the Los Baños Sports Council.</td>
+              <td style="width: 8%">Nov 9, 2021</td>
+              <td style="width: 15%; text-align: center;"><a class="button" href="public/storage/executive_orders/EO-2021-067_1646964139.pdf" download=""><i class="fa fa-download"></i>&nbsp;PDF File/Download</a></td>
+            </tr><tr role="row" class="even">
+              <td style="width: 15%" class="sorting_1"><a href="#" download="">Executive Order no. 068 Series of 2021</a></td>
+              <td style="width: 30%">An Order Adopting the Guidelines on the Nationwide Implementation of Alert Levels System for COVID-19 Response as of 11 November 2021 and Implementing Measures in Areas Placed under Alert Level 2 from 15 November to 30 November 2021, Unless Otherwise Modified, Extended or Lifted Earlier in the Municipality of Los Baños.</td>
+              <td style="width: 8%">Nov 17, 2021</td>
+              <td style="width: 15%; text-align: center;"><a class="button" href="public/storage/executive_orders/EO-2021-068_1646964342.pdf" download=""><i class="fa fa-download"></i>&nbsp;PDF File/Download</a></td>
+            </tr><tr role="row" class="odd">
+              <td style="width: 15%" class="sorting_1"><a href="#" download="">Executive Order no. 069 Series of 2021</a></td>
+              <td style="width: 30%">An Order Reorganizing the Performance Management Team.</td>
+              <td style="width: 8%">Nov 22, 2021</td>
+              <td style="width: 15%; text-align: center;"><a class="button" href="public/storage/executive_orders/EO-2021-069_1646964427.pdf" download=""><i class="fa fa-download"></i>&nbsp;PDF File/Download</a></td>
+            </tr><tr role="row" class="even">
+              <td style="width: 15%" class="sorting_1"><a href="#" download="">Executive Order No. 07 Series of 2025</a></td>
+              <td style="width: 30%">Reorganizing the Committee on Anti-Red Tape (CART) of the Municipal Government of Los Baños</td>
+              <td style="width: 8%">Aug 19, 2025</td>
+              <td style="width: 15%; text-align: center;"><a class="button" href="public/storage/executive_orders/Executive Order No. 07_1755580986.pdf" download=""><i class="fa fa-download"></i>&nbsp;PDF File/Download</a></td>
+            </tr><tr role="row" class="odd">
+              <td style="width: 15%" class="sorting_1"><a href="#" download="">Executive Order No. 07-A Series of 2025</a></td>
+              <td style="width: 30%">Further Reorganizing the Committee on Anti-Red Tape of the Municipal Government of Los Baños</td>
+              <td style="width: 8%">Aug 19, 2025</td>
+              <td style="width: 15%; text-align: center;"><a class="button" href="public/storage/executive_orders/Executive Order No. 07-A_1755581020.pdf" download=""><i class="fa fa-download"></i>&nbsp;PDF File/Download</a></td>
+            </tr><tr role="row" class="even">
+              <td style="width: 15%" class="sorting_1"><a href="#" download="">Executive Order no. 070 Series of 2021</a></td>
+              <td style="width: 30%">An Order Reorganizing the Technical Working Group to Facilitate the Institutionalized Local Disaster Reduction and Management Plan (LDRRMP) of the Municipality of Los Baños.</td>
+              <td style="width: 8%">Nov 22, 2021</td>
+              <td style="width: 15%; text-align: center;"><a class="button" href="public/storage/executive_orders/EO-2021-070_1646964538.pdf" download=""><i class="fa fa-download"></i>&nbsp;PDF File/Download</a></td>
+            </tr><tr role="row" class="odd">
+              <td style="width: 15%" class="sorting_1"><a href="#" download="">Executive Order no. 072 Series of 2021</a></td>
+              <td style="width: 30%">Addendum To Executive Order No. 003 Series Of 2021, Entitled: “An Order Reorganizing The Los Baños Municipal Solid Waste Management"</td>
+              <td style="width: 8%">Feb 1, 2022</td>
+              <td style="width: 15%; text-align: center;"><a class="button" href="public/storage/executive_orders/EO-2022-072_1650330425.pdf" download=""><i class="fa fa-download"></i>&nbsp;PDF File/Download</a></td>
+            </tr><tr role="row" class="even">
+              <td style="width: 15%" class="sorting_1"><a href="#" download="">Executive Order no. 074 Series of 2021</a></td>
+              <td style="width: 30%">An Order Providing for Guidelines to Suppress the Increase Spread of COVID-19 in the Municipality of Los Baños.</td>
+              <td style="width: 8%">Jan 6, 2022</td>
+              <td style="width: 15%; text-align: center;"><a class="button" href="public/storage/executive_orders/EO-2022-074_1650331264.pdf" download=""><i class="fa fa-download"></i>&nbsp;PDF File/Download</a></td>
+            </tr><tr role="row" class="odd">
+              <td style="width: 15%" class="sorting_1"><a href="#" download="">Executive Order no. 075 Series of 2021</a></td>
+              <td style="width: 30%">Creation of LGU P4 Selection Committee (P4-SC) for the Dialysis Center Project.</td>
+              <td style="width: 8%">Jan 18, 2022</td>
+              <td style="width: 15%; text-align: center;"><a class="button" href="public/storage/executive_orders/EO-2022-075_1650934987.pdf" download=""><i class="fa fa-download"></i>&nbsp;PDF File/Download</a></td>
+            </tr><tr role="row" class="even">
+              <td style="width: 15%" class="sorting_1"><a href="#" download="">Executive Order no. 076 Series of 2021</a></td>
+              <td style="width: 30%">Reorganization And Reactivation of The Local Committee Against Squatting Syndicates and Professional Squatters.</td>
+              <td style="width: 8%">Jan 25, 2022</td>
+              <td style="width: 15%; text-align: center;"><a class="button" href="public/storage/executive_orders/EO-2022-076_1650935054.pdf" download=""><i class="fa fa-download"></i>&nbsp;PDF File/Download</a></td>
+            </tr><tr role="row" class="odd">
+              <td style="width: 15%" class="sorting_1"><a href="#" download="">Executive Order no. 077 Series of 2021</a></td>
+              <td style="width: 30%">Reorganization And Reactivation of The Regulatory Reform Team .</td>
+              <td style="width: 8%">Jan 27, 2022</td>
+              <td style="width: 15%; text-align: center;"><a class="button" href="public/storage/executive_orders/EO-2022-077_1650935222.pdf" download=""><i class="fa fa-download"></i>&nbsp;PDF File/Download</a></td>
+            </tr><tr role="row" class="even">
+              <td style="width: 15%" class="sorting_1"><a href="#" download="">Executive Order no. 079 Series of 2021</a></td>
+              <td style="width: 30%">An Order Adopting the Guidelines On The Nationwide Implementation of Alert Level System Section [6] Guidelines For Areas Under AlertLevel 1 For Covid-19 Response As of 27 February 2022 In The Municipality of Los Baños.</td>
+              <td style="width: 8%">Mar 4, 2022</td>
+              <td style="width: 15%; text-align: center;"><a class="button" href="public/storage/executive_orders/EO-2022-079_1650935324.pdf" download=""><i class="fa fa-download"></i>&nbsp;PDF File/Download</a></td>
+            </tr><tr role="row" class="odd">
+              <td style="width: 15%" class="sorting_1"><a href="#" download="">Executive Order No. 08 Series of 2025</a></td>
+              <td style="width: 30%">Further Reorganizing the Bids and Awards Committee (BAC), its Secretariat and Observers of the Municipal Government of Los Baños</td>
+              <td style="width: 8%">Aug 19, 2025</td>
+              <td style="width: 15%; text-align: center;"><a class="button" href="public/storage/executive_orders/Executive Order No. 08_1755581056.pdf" download=""><i class="fa fa-download"></i>&nbsp;PDF File/Download</a></td>
+            </tr><tr role="row" class="even">
+              <td style="width: 15%" class="sorting_1"><a href="#" download="">Executive Order no. 080 Series of 2021</a></td>
+              <td style="width: 30%">An Order Reverting the Hours of Work Transactions in The Municipal Government of Los Baños (MGLB) from Eight O’clock In The Morning to Five O’clock in The Afternoon (8am-5pm) Monday To Friday.</td>
+              <td style="width: 8%">Mar 9, 2022</td>
+              <td style="width: 15%; text-align: center;"><a class="button" href="public/storage/executive_orders/EO-2022-080_1650935485.pdf" download=""><i class="fa fa-download"></i>&nbsp;PDF File/Download</a></td>
+            </tr><tr role="row" class="odd">
+              <td style="width: 15%" class="sorting_1"><a href="#" download="">Executive Order no. 081 Series of 2021</a></td>
+              <td style="width: 30%">Reorganization And Reactivation of The Los Baños Drinking Water Quality Monitoring Committee.</td>
+              <td style="width: 8%">Mar 11, 2022</td>
+              <td style="width: 15%; text-align: center;"><a class="button" href="public/storage/executive_orders/EO-2022-081 (1)_1651107466.pdf" download=""><i class="fa fa-download"></i>&nbsp;PDF File/Download</a></td>
+            </tr><tr role="row" class="even">
+              <td style="width: 15%" class="sorting_1"><a href="#" download="">Executive Order no. 083 Series of 2021</a></td>
+              <td style="width: 30%">Creation of the Los Baños Disaster Risk Reduction and Management in Health (Drrm-H) Planning Committee to Assess, Review and Update the         Drrm-H Plan of The Municipality of Los Baños.</td>
+              <td style="width: 8%">Mar 18, 2022</td>
+              <td style="width: 15%; text-align: center;"><a class="button" href="public/storage/executive_orders/EO-2022-083_1651107868.pdf" download=""><i class="fa fa-download"></i>&nbsp;PDF File/Download</a></td>
+            </tr><tr role="row" class="odd">
+              <td style="width: 15%" class="sorting_1"><a href="#" download="">Executive Order no. 084 Series of 2021</a></td>
+              <td style="width: 30%">Reorganization of the Municipal Peace and Order Council (MPOC), MPOC-Executive Committee, Special Action Committees, Pops-Plan Technical Working Group and Mpoc Secretariat of The Municipality of Los Baños.</td>
+              <td style="width: 8%">Mar 21, 2022</td>
+              <td style="width: 15%; text-align: center;"><a class="button" href="public/storage/executive_orders/EO-2022-084_1651108016.pdf" download=""><i class="fa fa-download"></i>&nbsp;PDF File/Download</a></td>
+            </tr><tr role="row" class="even">
+              <td style="width: 15%" class="sorting_1"><a href="#" download="">Executive Order no. 085 Series of 2021</a></td>
+              <td style="width: 30%">Reorganization of the Local Governance Performance Management System (LGPMS) Team of The Municipality of Los Baños for the 2022 Seal of Good Local Governance.</td>
+              <td style="width: 8%">Mar 25, 2022</td>
+              <td style="width: 15%; text-align: center;"><a class="button" href="public/storage/executive_orders/EO-2022-085_1651108173.pdf" download=""><i class="fa fa-download"></i>&nbsp;PDF File/Download</a></td>
+            </tr><tr role="row" class="odd">
+              <td style="width: 15%" class="sorting_1"><a href="#" download="">Executive Order no. 086 Series of 2021</a></td>
+              <td style="width: 30%">"Creating A Local Inter-Agency Committee (LIAC) for the Clearing and 	Relocation of Families Affected by The PNR South Long-Haul Project in the Municipality of Los Baños, Province of Laguna".</td>
+              <td style="width: 8%">Mar 28, 2022</td>
+              <td style="width: 15%; text-align: center;"><a class="button" href="public/storage/executive_orders/EO-2022-086_1651108289.pdf" download=""><i class="fa fa-download"></i>&nbsp;PDF File/Download</a></td>
+            </tr><tr role="row" class="even">
+              <td style="width: 15%" class="sorting_1"><a href="#" download="">Executive Order no. 087 Series of 2021</a></td>
+              <td style="width: 30%">Reorganization of the Local Governance Transition Team.</td>
+              <td style="width: 8%">Mar 28, 2022</td>
+              <td style="width: 15%; text-align: center;"><a class="button" href="public/storage/executive_orders/EO-2022-087_1651108365.pdf" download=""><i class="fa fa-download"></i>&nbsp;PDF File/Download</a></td>
+            </tr><tr role="row" class="odd">
+              <td style="width: 15%" class="sorting_1"><a href="#" download="">Executive Order no. 089 Series of 2021</a></td>
+              <td style="width: 30%">Creating the Climate Disaster Risk Assessment (CDRA) Technical Working Group of the Municipality of Los Baños.</td>
+              <td style="width: 8%">Apr 4, 2022</td>
+              <td style="width: 15%; text-align: center;"><a class="button" href="public/storage/executive_orders/EO-2022-089_1651109004.pdf" download=""><i class="fa fa-download"></i>&nbsp;PDF File/Download</a></td>
+            </tr><tr role="row" class="even">
+              <td style="width: 15%" class="sorting_1"><a href="#" download="">Executive Order No. 09 Series of 2025</a></td>
+              <td style="width: 30%">Reorganizing the Gender and Development Focal Point System (GFPS) of the Municipal Government of Los Banos in support of the revised guidelines on the localization of the Magna Carta of Women under PCW-DILG-DBM-NEDA JMC 2024-01</td>
+              <td style="width: 8%">Aug 19, 2025</td>
+              <td style="width: 15%; text-align: center;"><a class="button" href="public/storage/executive_orders/Executive Order No. 09_1755581099.pdf" download=""><i class="fa fa-download"></i>&nbsp;PDF File/Download</a></td>
+            </tr><tr role="row" class="odd">
+              <td style="width: 15%" class="sorting_1"><a href="#" download="">Executive Order no. 090 Series of 2021</a></td>
+              <td style="width: 30%">Creation of the Assessment Committee for the Philippine National Police (PNP) Community  Mobilization Project.</td>
+              <td style="width: 8%">Apr 5, 2022</td>
+              <td style="width: 15%; text-align: center;"><a class="button" href="public/storage/executive_orders/EO-2022-090_1651109147.pdf" download=""><i class="fa fa-download"></i>&nbsp;PDF File/Download</a></td>
+            </tr><tr role="row" class="even">
+              <td style="width: 15%" class="sorting_1"><a href="#" download="">Executive Order no. 091 Series of 2021</a></td>
+              <td style="width: 30%">Reorganization of the Municipal Development Council (MDC) of the Municipal Government of Los Baños.</td>
+              <td style="width: 8%">Apr 11, 2022</td>
+              <td style="width: 15%; text-align: center;"><a class="button" href="public/storage/executive_orders/EO-2022-091_1656469201.pdf" download=""><i class="fa fa-download"></i>&nbsp;PDF File/Download</a></td>
+            </tr><tr role="row" class="odd">
+              <td style="width: 15%" class="sorting_1"><a href="#" download="">Executive Order no. 092 Series of 2021</a></td>
+              <td style="width: 30%">Reorganization of the Municipal School  Board (MSB) of the Municipal Government of Los Baños.</td>
+              <td style="width: 8%">Apr 11, 2022</td>
+              <td style="width: 15%; text-align: center;"><a class="button" href="public/storage/executive_orders/EO-2022-092_1656469255.pdf" download=""><i class="fa fa-download"></i>&nbsp;PDF File/Download</a></td>
+            </tr><tr role="row" class="even">
+              <td style="width: 15%" class="sorting_1"><a href="#" download="">Executive Order no. 093 Series of 2021</a></td>
+              <td style="width: 30%">Reorganization of the Municipal Disaster Risk Reduction and Management Council of the Municipal Government of Los Baños.</td>
+              <td style="width: 8%">Apr 11, 2022</td>
+              <td style="width: 15%; text-align: center;"><a class="button" href="public/storage/executive_orders/EO-2022-093_1656469332.pdf" download=""><i class="fa fa-download"></i>&nbsp;PDF File/Download</a></td>
+            </tr><tr role="row" class="odd">
+              <td style="width: 15%" class="sorting_1"><a href="#" download="">Executive Order No. 11 Series of 2025</a></td>
+              <td style="width: 30%">Reorganizing the Local Youth Development Council of the Municipal Government of Los Baños</td>
+              <td style="width: 8%">Aug 19, 2025</td>
+              <td style="width: 15%; text-align: center;"><a class="button" href="public/storage/executive_orders/Executive Order No. 11_1755581137.pdf" download=""><i class="fa fa-download"></i>&nbsp;PDF File/Download</a></td>
+            </tr><tr role="row" class="even">
+              <td style="width: 15%" class="sorting_1"><a href="#" download="">Executive Order No. 12 Series of 2025</a></td>
+              <td style="width: 30%">Directing the Organization of the Municipal Gender and Development Project Monitoring and Evaluation (GAD M&amp;E) Team</td>
+              <td style="width: 8%">Aug 19, 2025</td>
+              <td style="width: 15%; text-align: center;"><a class="button" href="public/storage/executive_orders/Executive Order No. 12_1755581180.pdf" download=""><i class="fa fa-download"></i>&nbsp;PDF File/Download</a></td>
+            </tr><tr role="row" class="odd">
+              <td style="width: 15%" class="sorting_1"><a href="#" download="">Executive Order No. 13 Series of 2025</a></td>
+              <td style="width: 30%">Reorganizing the Municipal Council for the Local Protection of Children of the Municipal Government of Los Baños</td>
+              <td style="width: 8%">Aug 19, 2025</td>
+              <td style="width: 15%; text-align: center;"><a class="button" href="public/storage/executive_orders/Executive Order No. 13_1755581220.pdf" download=""><i class="fa fa-download"></i>&nbsp;PDF File/Download</a></td>
+            </tr><tr role="row" class="even">
+              <td style="width: 15%" class="sorting_1"><a href="#" download="">Executive Order No. 14 Series of 2025</a></td>
+              <td style="width: 30%">Reorganizing the Local Committee on Anti-Trafficking and Violence Against Women and their Children of the Municipal Government of Los Baños</td>
+              <td style="width: 8%">Aug 19, 2025</td>
+              <td style="width: 15%; text-align: center;"><a class="button" href="public/storage/executive_orders/Executive Order No. 14_1755581268.pdf" download=""><i class="fa fa-download"></i>&nbsp;PDF File/Download</a></td>
+            </tr><tr role="row" class="odd">
+              <td style="width: 15%" class="sorting_1"><a href="#" download="">Executive Order No. 15 Series of 2025</a></td>
+              <td style="width: 30%">An Order temporarily suspending the operations of all Small Town Lottery (STL) in the Municipality of Los Baños</td>
+              <td style="width: 8%">Aug 19, 2025</td>
+              <td style="width: 15%; text-align: center;"><a class="button" href="public/storage/executive_orders/Executive Order No. 15_1755581296.pdf" download=""><i class="fa fa-download"></i>&nbsp;PDF File/Download</a></td>
+            </tr><tr role="row" class="even">
+              <td style="width: 15%" class="sorting_1"><a href="#" download="">Executive Order No. 16 Series of 2025</a></td>
+              <td style="width: 30%">Reorganizing the Market Management Committee of the Municipal Government of Los Baños</td>
+              <td style="width: 8%">Aug 19, 2025</td>
+              <td style="width: 15%; text-align: center;"><a class="button" href="public/storage/executive_orders/Executive Order No. 16_1755591775.pdf" download=""><i class="fa fa-download"></i>&nbsp;PDF File/Download</a></td>
+            </tr><tr role="row" class="odd">
+              <td style="width: 15%" class="sorting_1"><a href="#" download="">Executive Order No. 17 Series of 2025</a></td>
+              <td style="width: 30%">Reorganizing the Municipal Solid Waste Management Board of the Municipal Government  of Los Baños</td>
+              <td style="width: 8%">Aug 27, 2025</td>
+              <td style="width: 15%; text-align: center;"><a class="button" href="public/storage/executive_orders/Executive Order No. 17_1756255852.pdf" download=""><i class="fa fa-download"></i>&nbsp;PDF File/Download</a></td>
+            </tr><tr role="row" class="even">
+              <td style="width: 15%" class="sorting_1"><a href="#" download="">Executive Order No. 18 Series of 2025</a></td>
+              <td style="width: 30%">Reorganizing the Manila Bay Task Force of the Municipal Government of Los Baños</td>
+              <td style="width: 8%">Aug 28, 2025</td>
+              <td style="width: 15%; text-align: center;"><a class="button" href="public/storage/executive_orders/Executive Order No. 18_1756351803.pdf" download=""><i class="fa fa-download"></i>&nbsp;PDF File/Download</a></td>
+            </tr><tr role="row" class="odd">
+              <td style="width: 15%" class="sorting_1"><a href="#" download="">Executive Order No. 19 Series of 2025</a></td>
+              <td style="width: 30%">Reorganizing Los Baños- Makiling Sub-Water Quality Management Area Council</td>
+              <td style="width: 8%">Aug 28, 2025</td>
+              <td style="width: 15%; text-align: center;"><a class="button" href="public/storage/executive_orders/Executive Order No. 19_1756351836.pdf" download=""><i class="fa fa-download"></i>&nbsp;PDF File/Download</a></td>
+            </tr><tr role="row" class="even">
+              <td style="width: 15%" class="sorting_1"><a href="#" download="">Executive Order No. 21 Series of 2025</a></td>
+              <td style="width: 30%">An Order lifting the temporary suspension of the operations of all Small Town Lottery (STL) in the Municipality of Los Baños</td>
+              <td style="width: 8%">Aug 19, 2025</td>
+              <td style="width: 15%; text-align: center;"><a class="button" href="public/storage/executive_orders/Executive Order No. 21_1755589342.pdf" download=""><i class="fa fa-download"></i>&nbsp;PDF File/Download</a></td>
+            </tr><tr role="row" class="odd">
+              <td style="width: 15%" class="sorting_1"><a href="#" download="">Executive Order No. 22 Series of 2025</a></td>
+              <td style="width: 30%">Reorganizing the Performance Management Team of the Municipal Government of Los Baños</td>
+              <td style="width: 8%">Aug 27, 2025</td>
+              <td style="width: 15%; text-align: center;"><a class="button" href="public/storage/executive_orders/Executive Order No. 22_1756262913.pdf" download=""><i class="fa fa-download"></i>&nbsp;PDF File/Download</a></td>
+            </tr><tr role="row" class="even">
+              <td style="width: 15%" class="sorting_1"><a href="#" download="">Executive Order No. 23 Series of 2025</a></td>
+              <td style="width: 30%">Reorganizing the People's Law Enforcement Board (PLEB) of the Municipal Government of Los Baños</td>
+              <td style="width: 8%">Aug 27, 2025</td>
+              <td style="width: 15%; text-align: center;"><a class="button" href="public/storage/executive_orders/Executive Order No. 23_1756283674.pdf" download=""><i class="fa fa-download"></i>&nbsp;PDF File/Download</a></td>
+            </tr><tr role="row" class="odd">
+              <td style="width: 15%" class="sorting_1"><a href="#" download="">Executive Order No. 24 Series of 2025</a></td>
+              <td style="width: 30%">Creation of the Technical Working Group (TWG) for the Formulation of the Los Baños Farm-to-Market Road Network Plan (FMRNP)</td>
+              <td style="width: 8%">Aug 29, 2025</td>
+              <td style="width: 15%; text-align: center;"><a class="button" href="public/storage/executive_orders/Executive Order No. 24_1756456889.pdf" download=""><i class="fa fa-download"></i>&nbsp;PDF File/Download</a></td>
+            </tr><tr role="row" class="even">
+              <td style="width: 15%" class="sorting_1"><a href="#" download="">Executive Order No. 26 Series of 2025</a></td>
+              <td style="width: 30%">Reorganizing the Public Financial Management Team of the Municipal Government of Los Baños</td>
+              <td style="width: 8%">Sep 4, 2025</td>
+              <td style="width: 15%; text-align: center;"><a class="button" href="public/storage/executive_orders/Executive Order No. 26_1756955169.pdf" download=""><i class="fa fa-download"></i>&nbsp;PDF File/Download</a></td>
+            </tr><tr role="row" class="odd">
+              <td style="width: 15%" class="sorting_1"><a href="#" download="">Executive Order No. 27 Series of 2025</a></td>
+              <td style="width: 30%">Designating a Data Protection Officer and a Compliance Officer for Privacy for the Municipal Government of Los Baños</td>
+              <td style="width: 8%">Sep 4, 2025</td>
+              <td style="width: 15%; text-align: center;"><a class="button" href="public/storage/executive_orders/Executive Order No. 27_1756955960.pdf" download=""><i class="fa fa-download"></i>&nbsp;PDF File/Download</a></td>
+            </tr><tr role="row" class="even">
+              <td style="width: 15%" class="sorting_1"><a href="#" download="">Executive Order No. 28 Series of 2025</a></td>
+              <td style="width: 30%">Organizing the Technical Working Group for the Crafting of the Research, Rest and Recreation Project Proposal of the Municipal Government of Los Baños</td>
+              <td style="width: 8%">Sep 4, 2025</td>
+              <td style="width: 15%; text-align: center;"><a class="button" href="public/storage/executive_orders/Executive Order No. 28_1756966686.pdf" download=""><i class="fa fa-download"></i>&nbsp;PDF File/Download</a></td>
+            </tr><tr role="row" class="odd">
+              <td style="width: 15%" class="sorting_1"><a href="#" download="">Executive Order No. 29 Series of 2025</a></td>
+              <td style="width: 30%">Reconstituting the Human Resource Merit Promotion and Selection Board (HRMPSB) of the Municipal Government of Los Baños, Laguna</td>
+              <td style="width: 8%">Sep 4, 2025</td>
+              <td style="width: 15%; text-align: center;"><a class="button" href="public/storage/executive_orders/Executive Order No. 29_1756956104.pdf" download=""><i class="fa fa-download"></i>&nbsp;PDF File/Download</a></td>
+            </tr><tr role="row" class="even">
+              <td style="width: 15%" class="sorting_1"><a href="#" download="">Executive Order No. 30 Series of 2025</a></td>
+              <td style="width: 30%">Reorganizing the Pantawid Pamilyang Pilipino Program (4Ps) Municipal Advisory Council</td>
+              <td style="width: 8%">Sep 10, 2025</td>
+              <td style="width: 15%; text-align: center;"><a class="button" href="public/storage/executive_orders/Executive Order No. 30_1757463518.pdf" download=""><i class="fa fa-download"></i>&nbsp;PDF File/Download</a></td>
+            </tr><tr role="row" class="odd">
+              <td style="width: 15%" class="sorting_1"><a href="#" download="">Executive Order No. 31 Series of 2025</a></td>
+              <td style="width: 30%">Reconstituting the Municipal Development Council of the Municipal Government of Los Baños</td>
+              <td style="width: 8%">Sep 11, 2025</td>
+              <td style="width: 15%; text-align: center;"><a class="button" href="public/storage/executive_orders/Executive Order No. 31_1757559681.pdf" download=""><i class="fa fa-download"></i>&nbsp;PDF File/Download</a></td>
+            </tr><tr role="row" class="even">
+              <td style="width: 15%" class="sorting_1"><a href="#" download="">Executive Order No. 32 Series of 2025</a></td>
+              <td style="width: 30%">Reconstituting the Municipal School Board of the Municipal Government of Los Baños</td>
+              <td style="width: 8%">Sep 10, 2025</td>
+              <td style="width: 15%; text-align: center;"><a class="button" href="public/storage/executive_orders/Executive Order No. 32_1757472657.pdf" download=""><i class="fa fa-download"></i>&nbsp;PDF File/Download</a></td>
+            </tr><tr role="row" class="odd">
+              <td style="width: 15%" class="sorting_1"><a href="#" download="">Executive Order No. 33 Series of 2025</a></td>
+              <td style="width: 30%">Reconstituting the Municipal Health Board of the Municipal Government of Los Baños</td>
+              <td style="width: 8%">Sep 10, 2025</td>
+              <td style="width: 15%; text-align: center;"><a class="button" href="public/storage/executive_orders/Executive Order No. 33_1757472842.pdf" download=""><i class="fa fa-download"></i>&nbsp;PDF File/Download</a></td>
+            </tr><tr role="row" class="even">
+              <td style="width: 15%" class="sorting_1"><a href="#" download="">Executive Order No. 34 Series of 2025</a></td>
+              <td style="width: 30%">Further Reconstituting the Municipal Peace and Order Council of the Municipal Government of Los Baños</td>
+              <td style="width: 8%">Sep 10, 2025</td>
+              <td style="width: 15%; text-align: center;"><a class="button" href="public/storage/executive_orders/Executive Order No. 34_1757473032.pdf" download=""><i class="fa fa-download"></i>&nbsp;PDF File/Download</a></td>
+            </tr><tr role="row" class="odd">
+              <td style="width: 15%" class="sorting_1"><a href="#" download="">Executive Order No. 35 Series of 2025</a></td>
+              <td style="width: 30%">Further Reconstituting the Municipal Disaster Risk Reduction and Management Council of the Municipal Government of Los Baños</td>
+              <td style="width: 8%">Sep 10, 2025</td>
+              <td style="width: 15%; text-align: center;"><a class="button" href="public/storage/executive_orders/Executive Order No. 35_1757473203.pdf" download=""><i class="fa fa-download"></i>&nbsp;PDF File/Download</a></td>
+            </tr><tr role="row" class="even">
+              <td style="width: 15%" class="sorting_1"><a href="#" download="">Executive Order No. 36 Series of 2025</a></td>
+              <td style="width: 30%">Reorganizing the Permanent Action Team for the Implementation of Citizens Complaint Hotline 8888</td>
+              <td style="width: 8%">Sep 12, 2025</td>
+              <td style="width: 15%; text-align: center;"><a class="button" href="public/storage/executive_orders/Executive Order No. 36_1757658742.pdf" download=""><i class="fa fa-download"></i>&nbsp;PDF File/Download</a></td>
+            </tr><tr role="row" class="odd">
+              <td style="width: 15%" class="sorting_1"><a href="#" download="">Executive Order No. 37 Series of 2025</a></td>
+              <td style="width: 30%">Reorganizing the Los Baños Municipal Nutrition Committee</td>
+              <td style="width: 8%">Sep 19, 2025</td>
+              <td style="width: 15%; text-align: center;"><a class="button" href="public/storage/executive_orders/Executive Order No. 37_1758242237.pdf" download=""><i class="fa fa-download"></i>&nbsp;PDF File/Download</a></td>
+            </tr><tr role="row" class="even">
+              <td style="width: 15%" class="sorting_1"><a href="#" download="">Executive Order No. 38 Series of 2025</a></td>
+              <td style="width: 30%">Establishing a Core Group to Develop an Implementation Plan for  "Rizal Classrooms of the Future" to Enhance the Delivery of Inclusive and Quality Education in the Municipality of Los Baños</td>
+              <td style="width: 8%">Sep 25, 2025</td>
+              <td style="width: 15%; text-align: center;"><a class="button" href="public/storage/executive_orders/Executive Order No. 38_1758760907.pdf" download=""><i class="fa fa-download"></i>&nbsp;PDF File/Download</a></td>
+            </tr><tr role="row" class="odd">
+              <td style="width: 15%" class="sorting_1"><a href="#" download="">Executive Order No. 39 Series of 2025</a></td>
+              <td style="width: 30%">Reorganizing the Pre-Marriage Orientation and Counseling (PMOC) Team of the Municipal Government of Los Baños</td>
+              <td style="width: 8%">Oct 16, 2025</td>
+              <td style="width: 15%; text-align: center;"><a class="button" href="public/storage/executive_orders/Executive Order No. 39_1760586804.pdf" download=""><i class="fa fa-download"></i>&nbsp;PDF File/Download</a></td>
+            </tr><tr role="row" class="even">
+              <td style="width: 15%" class="sorting_1"><a href="#" download="">Executive Order No. 40 Series of 2025</a></td>
+              <td style="width: 30%">Establishing the Human Rights Action Center (HRAC) and Creation of the Human Rights Committee (HRC) of the Municipal Government of Los Baños</td>
+              <td style="width: 8%">Oct 17, 2025</td>
+              <td style="width: 15%; text-align: center;"><a class="button" href="public/storage/executive_orders/Executive Order No. 40_1760678676.pdf" download=""><i class="fa fa-download"></i>&nbsp;PDF File/Download</a></td>
+            </tr><tr role="row" class="odd">
+              <td style="width: 15%" class="sorting_1"><a href="#" download="">Executive Order No. 41 Series of 2025</a></td>
+              <td style="width: 30%">Reorganizing the Municipal Information and Communications Technology Council (MICTC) of the Municipality of Los Baños</td>
+              <td style="width: 8%">Oct 21, 2025</td>
+              <td style="width: 15%; text-align: center;"><a class="button" href="public/storage/executive_orders/Executive Order No. 41_1761004861.pdf" download=""><i class="fa fa-download"></i>&nbsp;PDF File/Download</a></td>
+            </tr><tr role="row" class="even">
+              <td style="width: 15%" class="sorting_1"><a href="#" download="">Executive Order No. 42 Series of 2025</a></td>
+              <td style="width: 30%">Reorganizing the Municipal Urban Development and Housing Board of the Municipal Government of Los Baños</td>
+              <td style="width: 8%">Oct 24, 2025</td>
+              <td style="width: 15%; text-align: center;"><a class="button" href="public/storage/executive_orders/Executive Order No. 42_1761266689.pdf" download=""><i class="fa fa-download"></i>&nbsp;PDF File/Download</a></td>
+            </tr><tr role="row" class="odd">
+              <td style="width: 15%" class="sorting_1"><a href="#" download="">Executive Order No. 43 Series of 2025</a></td>
+              <td style="width: 30%">An Order Creating the Administrative Discipline Committee (ADC) and its Secretariat, and defining the respective powers, functions and duties thereof</td>
+              <td style="width: 8%">Oct 29, 2025</td>
+              <td style="width: 15%; text-align: center;"><a class="button" href="public/storage/executive_orders/Executive Order No. 43_1761698773.pdf" download=""><i class="fa fa-download"></i>&nbsp;PDF File/Download</a></td>
+            </tr><tr role="row" class="even">
+              <td style="width: 15%" class="sorting_1"><a href="#" download="">Executive Order No. 44 Series of 2025</a></td>
+              <td style="width: 30%">An Order adopting the 2025 Rules on Administrative Cases in the Civil Service (RACCS) for Implementation in the Municipal Government of Los Baños (MGLB)</td>
+              <td style="width: 8%">Oct 28, 2025</td>
+              <td style="width: 15%; text-align: center;"><a class="button" href="public/storage/executive_orders/Executive Order No. 44_1761636635.pdf" download=""><i class="fa fa-download"></i>&nbsp;PDF File/Download</a></td>
+            </tr><tr role="row" class="odd">
+              <td style="width: 15%" class="sorting_1"><a href="#" download="">Executive Order No. 45 Series of 2025</a></td>
+              <td style="width: 30%">Establishing the Local Infrastructure Audit Team (LIAT) Purposely in the Conduct of Infrastructure Audit of LGU-Owned and Lifeline Vertical Structures</td>
+              <td style="width: 8%">Nov 11, 2025</td>
+              <td style="width: 15%; text-align: center;"><a class="button" href="public/storage/executive_orders/Executive Order No. 45_1762828712.pdf" download=""><i class="fa fa-download"></i>&nbsp;PDF File/Download</a></td>
+            </tr><tr role="row" class="even">
+              <td style="width: 15%" class="sorting_1"><a href="#" download="">Executive Order No. 46 Series of 2025</a></td>
+              <td style="width: 30%">Redesignating Ms. Lillian T. Agoncillo, Municipal Government Department Head (Records Officer) as the Data Protection Officer for the Municipal Government of Los Baños</td>
+              <td style="width: 8%">Nov 11, 2025</td>
+              <td style="width: 15%; text-align: center;"><a class="button" href="public/storage/executive_orders/Executive Order No. 46_1762822773.pdf" download=""><i class="fa fa-download"></i>&nbsp;PDF File/Download</a></td>
+            </tr><tr role="row" class="odd">
+              <td style="width: 15%" class="sorting_1"><a href="#" download="">Executive Order No. 47 Series of 2025</a></td>
+              <td style="width: 30%">Reorganizing the Municipal Program on Awards and Incentives for Service Excellence (PRAISE) Committee of the Municipal Government of Los Baños</td>
+              <td style="width: 8%">Nov 13, 2025</td>
+              <td style="width: 15%; text-align: center;"><a class="button" href="public/storage/executive_orders/Executive Order No. 47_1763023951.pdf" download=""><i class="fa fa-download"></i>&nbsp;PDF File/Download</a></td>
+            </tr><tr role="row" class="even">
+              <td style="width: 15%" class="sorting_1"><a href="#" download="">Executive Order No. 48 Series of 2025</a></td>
+              <td style="width: 30%">Reorganizing the Local Inter-Agency Committee (LIAC) for Presidential Proclamation no. 550 in Barangays Lalakay, Bambang and Timugan</td>
+              <td style="width: 8%">Nov 20, 2025</td>
+              <td style="width: 15%; text-align: center;"><a class="button" href="public/storage/executive_orders/Executive Order No. 48_1763627692.pdf" download=""><i class="fa fa-download"></i>&nbsp;PDF File/Download</a></td>
+            </tr><tr role="row" class="odd">
+              <td style="width: 15%" class="sorting_1"><a href="#" download="">Executive Order No. 50 Series of 2025</a></td>
+              <td style="width: 30%">Establishing the Weekend Night Market at the Batong Malake Public Market and providing guidelines for its operation</td>
+              <td style="width: 8%">Dec 12, 2025</td>
+              <td style="width: 15%; text-align: center;"><a class="button" href="public/storage/executive_orders/Executive Order No. 50_1765528579.pdf" download=""><i class="fa fa-download"></i>&nbsp;PDF File/Download</a></td>
+            </tr><tr role="row" class="even">
+              <td style="width: 15%" class="sorting_1"><a href="#" download="">Executive Order No. 51 Series of 2025</a></td>
+              <td style="width: 30%">Reorganizing and reactivating the Municipal Inventory Team, Appraisal and Disposal of LGU property/ies committee and secretariat</td>
+              <td style="width: 8%">Dec 15, 2025</td>
+              <td style="width: 15%; text-align: center;"><a class="button" href="public/storage/executive_orders/Executive Order No. 51_1765787814.pdf" download=""><i class="fa fa-download"></i>&nbsp;PDF File/Download</a></td>
+            </tr></tbody>
+                    </table></div></div><div class="row"><div class="col-sm-5"><div class="dataTables_info" id="dataTable_info" role="status" aria-live="polite">Showing 1 to 138 of 138 entries</div></div><div class="col-sm-7"><div class="dataTables_paginate paging_simple_numbers" id="dataTable_paginate"><ul class="pagination"><li class="paginate_button previous disabled" id="dataTable_previous"><a href="#" aria-controls="dataTable" data-dt-idx="0" tabindex="0">Previous</a></li><li class="paginate_button active"><a href="#" aria-controls="dataTable" data-dt-idx="1" tabindex="0">1</a></li><li class="paginate_button next disabled" id="dataTable_next"><a href="#" aria-controls="dataTable" data-dt-idx="2" tabindex="0">Next</a></li></ul></div></div></div></div>
+                </div>
+            </div>
+        

@@ -1,5 +1,5 @@
-import { Link, useParams } from 'react-router-dom';
-import { format } from 'date-fns';
+import { useParams, Link } from 'react-router-dom';
+import { format, isValid } from 'date-fns';
 import {
   CheckCircle2Icon,
   ExternalLink,
@@ -10,55 +10,36 @@ import {
   FileText,
   CalendarCheck,
   ClipboardList,
-  FileCheck,
-  HelpCircle,
   Building2,
-  LayoutGrid,
-  MapPin,
-  Phone,
-  Globe,
-  ArrowLeft,
+  ArrowRight,
+  ShieldCheck,
+  AlertCircle,
+  InfoIcon,
+  BookOpen,
+  LinkIcon,
+  LucideIcon,
 } from 'lucide-react';
 
+import { DetailSection } from '@/components/layout/PageLayouts';
+import { Badge } from '@/components/ui/Badge';
 import {
-  Card,
-  CardContent,
-  CardList,
-  CardGrid,
-} from '../../components/ui/CardList';
+  Breadcrumb,
+  BreadcrumbItem,
+  BreadcrumbLink,
+  BreadcrumbList,
+  BreadcrumbPage,
+  BreadcrumbSeparator,
+  BreadcrumbHome,
+} from '@/components/ui/Breadcrumb';
 
-import servicesData from '../../data/services/services.json';
-import departmentsData from '../../data/directory/departments.json';
+import servicesData from '@/data/services/services.json';
+import departmentsData from '@/data/directory/departments.json';
+import type { Service, Source, QuickInfo } from '@/types/servicesTypes';
 
-interface Service {
-  id: string;
-  service: string;
-  slug?: string;
-  url?: string;
-  officeSlug?: string;
-  category: { name: string; slug: string };
-  steps?: string[];
-  requirements?: string[];
-  faqs?: { question: string; answer: string }[];
-  relatedServices?: string[];
-  quickInfo?: Record<string, string>;
-  createdAt?: string;
-  updatedAt?: string;
-  [key: string]: unknown;
-}
-
-interface Department {
-  slug: string;
-  office_name: string;
-  address?: string;
-  trunkline?: string | string[];
-  website?: string;
-  [key: string]: unknown;
-}
-
+// Strongly typed QuickInfo config
 const QUICK_INFO_CONFIG: Record<
-  string,
-  { label: string; icon: React.ElementType }
+  keyof QuickInfo,
+  { label: string; icon: LucideIcon }
 > = {
   processingTime: { label: 'Processing Time', icon: Clock },
   fee: { label: 'Fee', icon: Banknote },
@@ -68,325 +49,238 @@ const QUICK_INFO_CONFIG: Record<
   documents: { label: 'Documents Required', icon: FileText },
 };
 
-const allServices = servicesData as Service[];
-
-const loadedDepartments = departmentsData as unknown as Department[];
-
-const departmentMap: Record<string, Department> = Object.fromEntries(
-  loadedDepartments.map(d => [d.slug, d])
-);
-
 export default function ServiceDetail() {
   const { service: serviceSlug } = useParams<{ service: string }>();
+  if (!serviceSlug) return null;
 
-  const service = allServices.find(
-    s => s.slug === decodeURIComponent(serviceSlug || '')
+  const service = (servicesData as Service[]).find(
+    s => s.slug === decodeURIComponent(serviceSlug)
   );
+  if (!service)
+    return <div className='p-20 text-center'>Service not found</div>;
 
-  if (!service) {
-    return (
-      <div className='bg-white rounded-lg border p-8 text-center h-full flex flex-col items-center justify-center'>
-        <h2 className='text-2xl font-semibold mb-4'>Service not found</h2>
-        <p className='text-gray-800'>Please select a service from the list.</p>
-        <Link
-          to='/services'
-          className='mt-4 text-primary-600 hover:underline inline-flex items-center gap-2'
-        >
-          <ArrowLeft className='h-4 w-4' /> Back to Services
-        </Link>
-      </div>
-    );
-  }
+  const office = departmentsData.find(d => d.slug === service.officeSlug);
+  const isTransaction = service.type === 'transaction';
 
-  const {
-    service: serviceName,
-    category,
-    steps,
-    requirements,
-    faqs,
-    relatedServices,
-    quickInfo,
-    officeSlug,
-    updatedAt,
-    url,
-  } = service;
+  // Verification Logic
+  const updatedAtDate = service.updatedAt ? new Date(service.updatedAt) : null;
+  const isVerified = updatedAtDate !== null && isValid(updatedAtDate);
 
-  const office = officeSlug ? departmentMap[officeSlug] : null;
-
-  // Prepare Quick Info with Icons
-  const quickInfoArray = quickInfo
-    ? Object.entries(quickInfo).map(([key, value]) => {
-        const config = QUICK_INFO_CONFIG[key];
-        return {
-          label: config ? config.label : key,
-          icon: config ? config.icon : FileText, // Default icon
+  // Map quickInfo entries safely
+  const quickInfoArray = service.quickInfo
+    ? (Object.entries(service.quickInfo) as [keyof QuickInfo, string][]).map(
+        ([key, value]) => ({
+          label: QUICK_INFO_CONFIG[key]?.label || key,
+          icon: QUICK_INFO_CONFIG[key]?.icon || FileText,
           value,
-        };
-      })
+        })
+      )
     : [];
 
   return (
-    <div className='@container space-y-6 p-4 md:p-8'>
-      {/* Breadcrumb */}
-      <Link
-        to='/services'
-        className='inline-flex items-center text-sm text-gray-500 hover:text-primary-600 transition-colors'
-      >
-        <ArrowLeft className='w-4 h-4 mr-1.5' />
-        Back to Services
-      </Link>
+    <div className='mx-auto space-y-6 max-w-7xl duration-500 animate-in fade-in'>
+      <Breadcrumb>
+        <BreadcrumbList>
+          <BreadcrumbItem>
+            <BreadcrumbHome href='/' />
+          </BreadcrumbItem>
+          <BreadcrumbSeparator />
+          <BreadcrumbItem>
+            <BreadcrumbLink href='/services'>Services</BreadcrumbLink>
+          </BreadcrumbItem>
+          <BreadcrumbSeparator />
+          <BreadcrumbItem>
+            <BreadcrumbPage>{service.service}</BreadcrumbPage>
+          </BreadcrumbItem>
+        </BreadcrumbList>
+      </Breadcrumb>
 
       {/* Header */}
-      <div className='text-center'>
-        <h1 className='text-3xl md:text-4xl font-bold text-gray-900'>
-          {serviceName}
-        </h1>
-        <div className='flex items-center justify-center gap-2 mt-2 text-gray-600 text-sm'>
-          <span className='bg-gray-100 px-2 py-0.5 rounded text-gray-700 font-medium'>
-            {category?.name}
-          </span>
-        </div>
-
-        {/* External URL Button */}
-        {url && (
-          <div className='mt-5 flex justify-center'>
-            <a
-              href={url}
-              target='_blank'
-              rel='noopener noreferrer'
-              className='inline-flex items-center gap-2 px-4 py-2 bg-primary-600 text-white text-sm font-medium rounded-lg hover:bg-primary-700 transition-colors shadow-sm'
-            >
-              Visit Service Website
-              <ExternalLink className='h-4 w-4' />
-            </a>
+      <header
+        className={`relative p-8 md:p-12 rounded-3xl text-white overflow-hidden shadow-xl transition-colors duration-500 ${
+          isTransaction ? 'bg-slate-900' : 'bg-indigo-950'
+        }`}
+      >
+        <div className='relative z-10 max-w-3xl'>
+          <div className='flex flex-wrap gap-2 items-center mb-6'>
+            <Badge variant='primary'>{service.category.name}</Badge>
+            <Badge variant={isTransaction ? 'success' : 'secondary'} dot>
+              {isTransaction ? 'Transactional' : 'Resource'}
+            </Badge>
+            <Badge variant={isVerified ? 'success' : 'slate'}>
+              {isVerified ? 'Verified' : 'Unverified'}
+            </Badge>
           </div>
-        )}
-      </div>
+
+          <h1 className='mb-6 text-3xl font-extrabold tracking-tight leading-tight md:text-5xl'>
+            {service.service}
+          </h1>
+
+          {service.description && (
+            <p className='mb-8 max-w-2xl text-lg italic leading-relaxed text-slate-300'>
+              &quot;{service.description}&quot;
+            </p>
+          )}
+
+          {service.url && (
+            <a
+              href={service.url}
+              target='_blank'
+              rel='noreferrer'
+              className='inline-flex gap-3 items-center px-8 py-4 font-bold text-white rounded-2xl shadow-lg transition-all bg-primary-600 hover:bg-primary-500 group'
+            >
+              {isTransaction ? 'Access Online Portal' : 'View Full Document'}
+              <ExternalLink className='w-5 h-5 transition-transform group-hover:translate-x-1 group-hover:-translate-y-1' />
+            </a>
+          )}
+        </div>
+        <ShieldCheck className='absolute right-[-20px] bottom-[-20px] w-64 h-64 text-white/5 -rotate-12' />
+      </header>
 
       {/* Quick Info Grid */}
-      {quickInfoArray.length > 0 && (
-        <CardGrid className='md:grid-cols-2 lg:grid-cols-4 gap-4'>
-          {quickInfoArray.map((info, idx) => {
-            const Icon = info.icon;
-            return (
-              <Card key={idx} className='border-l-4 border-l-primary-500'>
-                <CardContent className='flex items-start gap-3 pt-5'>
-                  <div className='p-2 bg-primary-50 rounded-full text-primary-600'>
-                    <Icon className='h-5 w-5' />
-                  </div>
-                  <div>
-                    <h4 className='font-semibold text-xs text-gray-500 uppercase tracking-wide'>
-                      {info.label}
-                    </h4>
-                    <p className='text-gray-900 font-medium mt-0.5'>
-                      {info.value}
-                    </p>
-                  </div>
-                </CardContent>
-              </Card>
-            );
-          })}
-        </CardGrid>
-      )}
-
-      {/* Step-by-Step */}
-      {steps && steps.length > 0 && (
-        <CardList>
-          <Card>
-            <CardContent>
-              <div className='flex items-center gap-2 mb-4 border-b pb-2'>
-                <ClipboardList className='h-5 w-5 text-primary-600' />
-                <h2 className='text-xl font-semibold text-gray-900'>
-                  Step-by-Step Process
-                </h2>
+      {isTransaction && quickInfoArray.length > 0 && (
+        <div className='grid grid-cols-2 gap-4 md:grid-cols-3 lg:grid-cols-6'>
+          {quickInfoArray.map((info, idx) => (
+            <div
+              key={idx}
+              className='flex flex-col items-center p-4 text-center bg-white rounded-2xl border border-gray-100 shadow-xs'
+            >
+              <div className='p-2 mb-2 bg-gray-50 rounded-xl text-primary-600'>
+                <info.icon className='w-4 h-4' />
               </div>
-              <ol className='relative border-l border-gray-200 ml-3 space-y-6'>
-                {steps.map((step, idx) => (
-                  <li key={idx} className='mb-2 ml-6'>
-                    <span className='absolute flex items-center justify-center w-6 h-6 bg-primary-100 rounded-full -left-3 ring-4 ring-white text-primary-800 text-xs font-bold'>
-                      {idx + 1}
-                    </span>
-                    <p className='text-gray-700 leading-relaxed'>{step}</p>
-                  </li>
-                ))}
-              </ol>
-            </CardContent>
-          </Card>
-        </CardList>
-      )}
-
-      {/* Requirements */}
-      {requirements && requirements.length > 0 && (
-        <CardList>
-          <Card>
-            <CardContent>
-              <div className='flex items-center gap-2 mb-4 border-b pb-2'>
-                <FileCheck className='h-5 w-5 text-primary-600' />
-                <h2 className='text-xl font-semibold text-gray-900'>
-                  Requirements
-                </h2>
-              </div>
-              <ul className='grid grid-cols-1 md:grid-cols-1 gap-x-4 gap-y-2'>
-                {requirements.map((req, idx) => (
-                  <li key={idx} className='flex items-start gap-2'>
-                    <span className='mt-1.5 h-1.5 w-1.5 rounded-full bg-primary-500 flex-shrink-0' />
-                    <span className='text-gray-700'>{req}</span>
-                  </li>
-                ))}
-              </ul>
-            </CardContent>
-          </Card>
-        </CardList>
-      )}
-
-      {/* FAQs */}
-      {faqs && faqs.length > 0 && (
-        <CardList>
-          {faqs.map((faq, idx) => (
-            <Card key={idx}>
-              <CardContent>
-                <div className='flex gap-3'>
-                  <HelpCircle className='h-5 w-5 text-primary-600 flex-shrink-0 mt-1' />
-                  <div>
-                    <p className='font-semibold text-gray-900 mb-1'>
-                      {faq.question}
-                    </p>
-                    <p className='text-gray-600 text-sm leading-relaxed'>
-                      {faq.answer}
-                    </p>
-                  </div>
-                </div>
-              </CardContent>
-            </Card>
+              <p className='text-[10px] font-bold text-gray-400 uppercase tracking-widest mb-1 leading-none'>
+                {info.label}
+              </p>
+              <p className='text-xs font-bold leading-tight text-gray-900'>
+                {info.value}
+              </p>
+            </div>
           ))}
-        </CardList>
-      )}
-
-      {/* Office Information */}
-      {office && (
-        <CardList>
-          <Card>
-            <CardContent>
-              <div className='flex items-center gap-2 mb-4 border-b pb-2'>
-                <Building2 className='h-5 w-5 text-primary-600' />
-                <h2 className='text-xl font-semibold text-gray-900'>
-                  Office Information
-                </h2>
-              </div>
-
-              <div className='space-y-4'>
-                <Link
-                  to={`/departments/${office.slug}`}
-                  className='text-lg font-semibold text-primary-700 hover:underline block'
-                >
-                  {office.office_name}
-                </Link>
-
-                <div className='grid md:grid-cols-2 gap-4'>
-                  {/* Address */}
-                  {office.address && (
-                    <div className='flex items-start gap-3'>
-                      <MapPin className='h-5 w-5 text-gray-400 mt-0.5' />
-                      <div>
-                        <span className='block text-xs font-semibold text-gray-500 uppercase'>
-                          Address
-                        </span>
-                        <p className='text-gray-900 text-sm'>
-                          {office.address}
-                        </p>
-                      </div>
-                    </div>
-                  )}
-
-                  {/* Trunkline */}
-                  {office.trunkline && (
-                    <div className='flex items-start gap-3'>
-                      <Phone className='h-5 w-5 text-gray-400 mt-0.5' />
-                      <div>
-                        <span className='block text-xs font-semibold text-gray-500 uppercase'>
-                          Trunkline
-                        </span>
-                        <p className='text-gray-900 text-sm'>
-                          {Array.isArray(office.trunkline)
-                            ? office.trunkline.join(', ')
-                            : office.trunkline}
-                        </p>
-                      </div>
-                    </div>
-                  )}
-
-                  {/* Website */}
-                  {office.website && (
-                    <div className='flex items-start gap-3 md:col-span-2'>
-                      <Globe className='h-5 w-5 text-gray-400 mt-0.5' />
-                      <div>
-                        <span className='block text-xs font-semibold text-gray-500 uppercase'>
-                          Website
-                        </span>
-                        <a
-                          href={office.website}
-                          target='_blank'
-                          rel='noopener noreferrer'
-                          className='text-primary-600 hover:underline text-sm inline-flex items-center gap-1'
-                        >
-                          Visit Office Website
-                          <ExternalLink className='h-3 w-3' />
-                        </a>
-                      </div>
-                    </div>
-                  )}
-                </div>
-              </div>
-            </CardContent>
-          </Card>
-        </CardList>
-      )}
-
-      {/* Related Services */}
-      {relatedServices && relatedServices.length > 0 && (
-        <CardList>
-          <Card>
-            <CardContent>
-              <div className='flex items-center gap-2 mb-4'>
-                <LayoutGrid className='h-5 w-5 text-primary-600' />
-                <h2 className='text-xl font-semibold text-gray-900'>
-                  Related Services
-                </h2>
-              </div>
-              <ul className='grid sm:grid-cols-2 gap-2'>
-                {relatedServices.map(rel => {
-                  const relService = allServices.find(
-                    s => s.slug === rel || s.service === rel
-                  );
-                  if (!relService) return null;
-
-                  return (
-                    <li key={relService.slug}>
-                      <Link
-                        to={`/services/${relService.slug}`}
-                        className='flex items-center gap-2 text-primary-600 hover:text-primary-800 hover:bg-primary-50 px-3 py-2 rounded-md transition-colors text-sm font-medium'
-                      >
-                        <ArrowLeft className='h-3 w-3 rotate-180' />
-                        {relService.service}
-                      </Link>
-                    </li>
-                  );
-                })}
-              </ul>
-            </CardContent>
-          </Card>
-        </CardList>
-      )}
-
-      {/* Footer / Last Verified */}
-      {updatedAt && (
-        <div className='flex items-center gap-2 text-sm text-gray-500 mt-8 pt-6 border-t border-gray-100'>
-          <CheckCircle2Icon className='h-4 w-4 text-success-500' />
-          <time dateTime={updatedAt}>
-            Last verified: {format(new Date(updatedAt), 'd MMM yyyy')}
-          </time>
         </div>
       )}
+
+      <div className='flex flex-col gap-8 xl:flex-row'>
+        <div className='flex-1 space-y-8 min-w-0'>
+          {/* Steps */}
+          {service.steps && service.steps.length > 0 && (
+            <DetailSection
+              title={isTransaction ? 'Process Steps' : 'Detailed Information'}
+              icon={isTransaction ? ClipboardList : InfoIcon}
+            >
+              <div className='space-y-6'>
+                {service.steps.map((step, idx) => (
+                  <div key={idx} className='flex gap-4 group'>
+                    <div
+                      className={`shrink-0 w-8 h-8 rounded-full flex items-center justify-center font-bold text-sm border transition-colors ${
+                        isTransaction
+                          ? 'bg-primary-50 text-primary-600 border-primary-100 group-hover:bg-primary-600 group-hover:text-white'
+                          : 'text-indigo-600 bg-indigo-50 border-indigo-100 group-hover:bg-indigo-600 group-hover:text-white'
+                      }`}
+                    >
+                      {idx + 1}
+                    </div>
+                    <p className='pt-1 text-sm leading-relaxed text-gray-700 md:text-base'>
+                      {step}
+                    </p>
+                  </div>
+                ))}
+              </div>
+            </DetailSection>
+          )}
+
+          {/* Sources */}
+          {service.sources && service.sources.length > 0 && (
+            <DetailSection title='Sources & References' icon={BookOpen}>
+              <ul className='grid grid-cols-1 gap-3'>
+                {service.sources.map((source: Source, idx: number) => (
+                  <li
+                    key={idx}
+                    className='flex gap-3 items-start p-4 rounded-xl border border-gray-100 transition-all hover:border-primary-100 hover:bg-primary-50/10 group'
+                  >
+                    <div className='p-2 text-gray-400 bg-gray-50 rounded-lg transition-colors group-hover:text-primary-600'>
+                      <LinkIcon className='w-3.5 h-3.5' />
+                    </div>
+                    <div className='flex flex-col'>
+                      <p className='text-[10px] font-bold text-gray-400 uppercase tracking-widest mb-1'>
+                        Official Reference
+                      </p>
+                      {source.url ? (
+                        <a
+                          href={source.url}
+                          target='_blank'
+                          rel='noreferrer'
+                          className='text-sm font-bold text-primary-600 hover:underline inline-flex items-center gap-1.5'
+                        >
+                          {source.name} <ExternalLink className='w-3 h-3' />
+                        </a>
+                      ) : (
+                        <span className='text-sm font-bold text-gray-700'>
+                          {source.name}
+                        </span>
+                      )}
+                    </div>
+                  </li>
+                ))}
+              </ul>
+            </DetailSection>
+          )}
+        </div>
+
+        {/* Sidebar */}
+        <aside className='space-y-6 w-full xl:w-80'>
+          <div
+            className={`p-5 rounded-2xl border flex flex-col gap-3 ${
+              isVerified
+                ? 'border-emerald-100 bg-emerald-50/30'
+                : 'bg-gray-50 border-gray-200'
+            }`}
+          >
+            <div className='flex justify-between items-center'>
+              <p className='text-[10px] font-bold text-gray-400 uppercase tracking-widest'>
+                Audit Status
+              </p>
+              {isVerified ? (
+                <CheckCircle2Icon className='w-4 h-4 text-emerald-500' />
+              ) : (
+                <AlertCircle className='w-4 h-4 text-gray-300' />
+              )}
+            </div>
+            <div className='flex gap-3 items-center'>
+              <Clock
+                className={`w-5 h-5 ${isVerified ? 'text-emerald-600' : 'text-gray-300'}`}
+              />
+              <div>
+                <p
+                  className={`text-sm font-bold ${isVerified ? 'text-emerald-900' : 'text-gray-500'}`}
+                >
+                  {isVerified ? 'Verified Data' : 'Unverified'}
+                </p>
+                <p className='text-[11px] text-gray-400'>
+                  {isVerified
+                    ? `Updated ${format(updatedAtDate!, 'MMM yyyy')}`
+                    : 'Audit pending'}
+                </p>
+              </div>
+            </div>
+          </div>
+
+          {office && (
+            <DetailSection title='Responsible Office' icon={Building2}>
+              <Link
+                to={`/government/departments/${office.slug}`}
+                className='block mb-4 group'
+              >
+                <h3 className='mb-2 font-bold leading-tight text-gray-900 transition-colors group-hover:text-primary-600'>
+                  {office.office_name}
+                </h3>
+                <span className='text-[10px] font-bold text-primary-600 uppercase tracking-widest flex items-center gap-1 group-hover:gap-2 transition-all'>
+                  View Profile <ArrowRight className='w-3 h-3' />
+                </span>
+              </Link>
+            </DetailSection>
+          )}
+        </aside>
+      </div>
     </div>
   );
 }
