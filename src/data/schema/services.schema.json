@@ -102,11 +102,23 @@
         "additionalProperties": true
       },
       "updatedAt": {
-        "type": "string",
+        "type": ["string", "null"],
         "description": "ISO 8601 timestamp when the service was last updated",
         "format": "date-time"
+      },
+      "sources": {
+        "type": "array",
+        "description": "References or official sources for this service",
+        "items": {
+          "type": "object",
+          "required": ["name"],
+          "properties": {
+            "name": { "type": "string", "minLength": 1 },
+            "url": { "type": "string" }
+          },
+          "additionalProperties": false
+        }
       }
-    },
-    "additionalProperties": false
+    }
   }
 }

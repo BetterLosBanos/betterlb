@@ -19,29 +19,16 @@ import ServicesLayout from '@/pages/services/layout';
 
 import AboutPage from '@/pages/about';
 import AccessibilityPage from '@/pages/accessibility';
-// import AboutPhilippines from '@/pages/philippines/about';
-// import PhilippinesHistory from '@/pages/philippines/history';
-// import PhilippinesCulture from '@/pages/philippines/culture';
-// import PhilippinesRegions from '@/pages/philippines/regions';
-// import PhilippinesMap from '@/pages/philippines/map';
-// import PublicHolidays from '@/pages/philippines/holidays';
 import ContactUs from '@/pages/ContactUs';
-// import ExecutiveDirectory from '@/pages/government/executive';
-// import ExecutiveLayout from '@/pages/government/executive/layout';
 import DepartmentsIndex from '@/pages/government/departments';
 import DepartmentDetail from '@/pages/government/departments/[department]';
 import DepartmentsLayout from '@/pages/government/departments/layout';
 import GovernmentLayout from '@/pages/government/layout';
 
 // Legislative Branch
-// import LegislativeLayout from '@/pages/government/legislative/layout';
-// import LegislativeIndex from '@/pages/government/legislative/index';
 import LegislativeChamber from '@/pages/government/elected-officials/[chamber]';
 import MunicipalCommitteesPage from '@/pages/government/elected-officials/municipal-committees';
 
-import OfficeOfTheMayor from '@/pages/government/elected-officials/office-of-the-mayor';
-// import ExecutiveOfficials from '@/pages/government/executive/executive-officials';
-import OfficeOfTheViceMayor from '@/pages/government/elected-officials/office-of-the-vice-mayor';
 import ElectedOfficialsIndex from './pages/government/elected-officials';
 import ElectedOfficialsLayout from './pages/government/elected-officials/layout';
 import BarangaysIndex from '@/pages/government/barangays';
@@ -53,11 +40,8 @@ import SearchPage from '@/pages/Search';
 // Data Pages
 import WeatherPage from '@/pages/data/weather';
 import ForexPage from '@/pages/data/forex';
-// import FloodControlProjects from '@/pages/flood-control-projects';
-// import FloodControlProjectsTable from '@/pages/flood-control-projects/table';
-// import FloodControlProjectsMap from '@/pages/flood-control-projects/map';
-// import FloodControlProjectsContractors from '@/pages/flood-control-projects/contractors';
-// import ContractorDetail from '@/pages/flood-control-projects/contractors/[contractor-name]';
+
+// Statistics Pages
 
 // Legislation Pages
 import LegislationLayout from '@/pages/legislation/layout';
@@ -79,14 +63,18 @@ import JoinUs from '@/pages/JoinUs';
 import TermsOfService from '@/pages/TermsOfService';
 import ScrollToTop from '@/components/ui/ScrollToTop';
 import Discord from '@/pages/Discord';
-// import SalaryGradePage from '@/pages/government/salary-grade/index';
 import NotFound from '@/pages/NotFound';
+import StatisticsLayout from './pages/statistics/layout';
+import MunicipalIncomePage from './pages/statistics/MunicipalIncomePage';
+import CompetitivenessPage from './pages/statistics/CompetitivenessPage';
+import PopulationPage from './pages/statistics/PopulationPage';
+import ExecutiveOfficePage from './pages/government/elected-officials/ExecutiveOfficePage';
 
 function App() {
   return (
     <Router>
       <NuqsAdapter>
-        <div className='min-h-screen flex flex-col'>
+        <div className='flex flex-col min-h-screen'>
           <SEO />
           <Navbar />
           <Ticker />
@@ -104,40 +92,9 @@ function App() {
             <Route path='/sitemap' element={<SitemapPage />} />
             <Route path='/discord' Component={Discord} />
 
-            {/* <Route path='/philippines'>
-              <Route index element={<Navigate to='about' replace />} />
-              <Route path='about' element={<AboutPhilippines />} />
-              <Route path='history' element={<PhilippinesHistory />} />
-              <Route path='culture' element={<PhilippinesCulture />} />
-              <Route path='regions' element={<PhilippinesRegions />} />
-              <Route path='map' element={<PhilippinesMap />} />
-              <Route path='holidays' element={<PublicHolidays />} />
-              <Route path='hotlines' element={<Hotlines />} />
-            </Route> */}
-
             {/* Data Routes */}
             <Route path='/data/weather' element={<WeatherPage />} />
             <Route path='/data/forex' element={<ForexPage />} />
-            {/* <Route
-              path='/flood-control-projects'
-              element={<FloodControlProjects />}
-            />
-            <Route
-              path='/flood-control-projects/table'
-              element={<FloodControlProjectsTable />}
-            />
-            <Route
-              path='/flood-control-projects/map'
-              element={<FloodControlProjectsMap />}
-            />
-            <Route
-              path='/flood-control-projects/contractors'
-              element={<FloodControlProjectsContractors />}
-            />
-            <Route
-              path='/flood-control-projects/contractors/:contractor-name'
-              element={<ContractorDetail />}
-            /> */}
 
             {/* Services Routes */}
             <Route path='/services' element={<ServicesLayout />}>
@@ -151,7 +108,6 @@ function App() {
               element={<GovernmentLayout title='Government' />}
             >
               <Route index element={<Navigate to='executive' replace />} />
-              {/* <Route path='salary-grade' element={<SalaryGradePage />} /> */}
 
               <Route
                 path='elected-officials'
@@ -162,19 +118,21 @@ function App() {
                 {/* Executive Pages moved here */}
                 <Route
                   path='office-of-the-mayor'
-                  element={<OfficeOfTheMayor />}
+                  element={
+                    <ExecutiveOfficePage officeType='OFFICE OF THE MAYOR' />
+                  }
                 />
                 <Route
                   path='office-of-the-vice-mayor'
-                  element={<OfficeOfTheViceMayor />}
+                  element={
+                    <ExecutiveOfficePage officeType='OFFICE OF THE VICE MAYOR' />
+                  }
                 />
                 <Route path=':chamber' element={<LegislativeChamber />} />
                 <Route
                   path='municipal-committees'
                   element={<MunicipalCommitteesPage />}
                 />
-                {/* Ensure LegislativeChamber handles 'municipal-committees' slug if needed, 
-                    or add a specific route for committees if logic differs */}
               </Route>
 
               <Route path='departments' element={<DepartmentsLayout />}>
@@ -186,17 +144,16 @@ function App() {
                 <Route index element={<BarangaysIndex />} />
                 <Route path=':barangay' element={<BarangayDetail />} />
               </Route>
-
-              {/* <Route path='legislative' element={<LegislativeLayout />}>
-                <Route index element={<LegislativeIndex />} />
-                <Route path=':chamber' element={<LegislativeChamber />} />
-                <Route
-                  path='municipal-committees'
-                  element={<MunicipalCommitteesPage />}
-                />
-              </Route> */}
             </Route>
-
+            <Route path='statistics' element={<StatisticsLayout />}>
+              <Route index element={<PopulationPage />} />
+              <Route path='population' element={<PopulationPage />} />
+              <Route
+                path='municipal-income'
+                element={<MunicipalIncomePage />}
+              />
+              <Route path='competitiveness' element={<CompetitivenessPage />} />
+            </Route>
             {/* Legislation section */}
             <Route path='legislation' element={<LegislationLayout />}>
               {/* List page */}
