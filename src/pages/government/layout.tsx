@@ -7,6 +7,7 @@ import {
 } from 'lucide-react';
 import { cn } from '../../lib/utils';
 import { useTranslation } from 'react-i18next';
+import { PageHero } from '@/components/layout/PageLayouts';
 
 interface GovernmentLayoutProps {
   title: string;
@@ -46,16 +47,10 @@ export default function GovernmentLayout({ children }: GovernmentLayoutProps) {
 
   return (
     <div className='container mx-auto px-4 md:px-0'>
-      <div className='py-8 md:py-12 text-center flex flex-col justify-center'>
-        <h2 className='text-3xl md:text-4xl font-bold text-gray-800 mb-4'>
-          Municipal Government of Los Baños Directory
-        </h2>
-        <p className='text-sm md:text-base text-gray-800'>
-          Explore the different branches and agencies of the Municipal
-          government
-        </p>
-      </div>
-
+      <PageHero
+        title='Municipal Government of Los Baños Directory'
+        description='Explore the different branches and agencies of the Municipal government'
+      />
       {/* Tabs */}
       <div className='mb-8 md:mb-12 overflow-x-auto'>
         <div className='inline-grid grid-cols-1 md:grid-cols-3 gap-3 min-w-full md:min-w-0 px-4 py-2'>

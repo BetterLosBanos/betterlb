@@ -1,185 +1,221 @@
+import { useParams, Link } from 'react-router-dom';
 import {
-  ExternalLinkIcon,
-  MailIcon,
   MapPinIcon,
   PhoneIcon,
+  GlobeIcon,
+  MailIcon,
+  InfoIcon,
+  UserIcon,
+  ArrowRight,
+  ClipboardList,
+  CheckCircle2,
 } from 'lucide-react';
-import { useParams } from 'react-router-dom';
-import departmentsData from '../../../data/directory/departments.json';
-import { cn } from '../../../lib/utils';
 
-interface Department {
-  office_name: string;
-  address?: string;
-  trunkline?: string;
-  website?: string;
-  email?: string;
-  [key: string]: unknown;
-}
+// UI Components
+import { DetailSection } from '@/components/layout/PageLayouts';
+import {
+  Breadcrumb,
+  BreadcrumbItem,
+  BreadcrumbLink,
+  BreadcrumbList,
+  BreadcrumbPage,
+  BreadcrumbSeparator,
+  BreadcrumbHome,
+} from '@/components/ui/Breadcrumb';
+import { Badge } from '@/components/ui/Badge';
 
-// Recursive component to render nested department details
-function DepartmentDetailSection({
-  data,
-  level = 0,
-}: {
-  data: unknown;
-  level?: number;
-}) {
-  if (data === null || typeof data !== 'object') {
-    return <span className='text-gray-700'>{String(data)}</span>;
-  }
-
-  if (Array.isArray(data)) {
-    return (
-      <div className='space-y-2'>
-        {data.map((item, index) => (
-          <div
-            key={index}
-            className={`${
-              level > 0
-                ? 'ml-4 border-l border-neutral-100  border-b pl-3 p-2'
-                : ''
-            }`}
-          >
-            <DepartmentDetailSection data={item} level={level + 1} />
-          </div>
-        ))}
-      </div>
-    );
-  }
-
-  const isSimpleObject = Object.values(data).every(
-    value => value === null || typeof value !== 'object'
-  );
-
-  if (isSimpleObject) {
-    return (
-      <div
-        className={cn(
-          'grid grid-cols-1 @sm:grid-cols-2 gap-x-6 max-w-3xl',
-          level === 1 && 'rounded-2xl font-bold text-lg'
-        )}
-      >
-        {Object.entries(data).map(([key, value]) => {
-          if (key === 'office_name' || value === undefined) return null;
-          if (key === 'slug' || value === undefined) return null;
-
-          return (
-            <div key={key} className='text-sm'>
-              <span className='text-gray-800 leading-relaxed'>
-                {String(value)}
-              </span>
-            </div>
-          );
-        })}
-      </div>
-    );
-  }
-
-  return (
-    <div className='@container space-y-4'>
-      {Object.entries(data).map(([key, value]) => {
-        if (key === 'office_name' || value === undefined) return null;
-        if (key === 'slug' || value === undefined) return null;
-
-        const label = key
-          .split('_')
-          .map(word => word.charAt(0).toUpperCase() + word.slice(1))
-          .join(' ');
-
-        const isArray = Array.isArray(value);
-
-        return (
-          <div key={key} className='pb-4'>
-            <div className='flex items-center mb-1 align-middle gap-1'>
-              <h3
-                className={`font-medium text-gray-900 ${
-                  level === 0 ? 'text-xl' : 'text-base'
-                }`}
-              >
-                {label}
-              </h3>
-              {isArray && (
-                <div className='text-xs text-primary-600 font-medium mr-2'>
-                  ({Array.isArray(value) ? value.length : 0})
-                </div>
-              )}
-            </div>
-            <div className={`${level > 0 ? 'ml-2 mt-4' : 'mt-4'}`}>
-              <DepartmentDetailSection data={value} level={level + 1} />
-            </div>
-          </div>
-        );
-      })}
-    </div>
-  );
-}
+// Logic & Data
+import departmentsData from '@/data/directory/departments.json';
+import servicesData from '@/data/services/services.json';
+import { toTitleCase } from '@/lib/stringUtils';
 
 export default function DepartmentDetail() {
-  const { department: departmentName } = useParams<{ department: string }>();
-  const department = (departmentsData as Department[]).find(
-    d => d.slug === decodeURIComponent(departmentName || '')
-  );
+  const { department: slug } = useParams();
 
-  if (!department) {
+  // 1. Find Data
+  const dept = departmentsData.find(d => d.slug === slug);
+  const associatedServices = servicesData.filter(s => s.officeSlug === slug);
+
+  if (!dept)
     return (
-      <div className='bg-white rounded-lg border p-8 text-center h-full flex flex-col items-center justify-center'>
-        <h2 className='text-2xl font-semibold mb-4'>Department not found</h2>
-        <p className='text-gray-800'>
-          Please select a department from the sidebar.
-        </p>
+      <div className='p-20 font-bold tracking-widest text-center text-gray-400 uppercase'>
+        Office Not Found
       </div>
     );
-  }
-
-  // Extract top-level details
-  const { office_name, address, trunkline, website, email, ...details } =
-    department;
-  const displayName = office_name;
 
   return (
-    <div className='@container space-y-4'>
-      {/* Department Header */}
-      <div className='border-b pb-4'>
-        <div className='space-y-2'>
-          <h2 className='text-xl font-bold text-gray-900'>{displayName}</h2>
-          {address && (
-            <p className='mt-1 text-gray-800 flex items-start text-sm'>
-              <MapPinIcon className='h-4 w-4 text-gray-400 mr-2 mt-0.5 flex-shrink-0' />
-              <span>{address}</span>
-            </p>
-          )}
-          {website && (
-            <a
-              href={website.startsWith('http') ? website : `https://${website}`}
-              target='_blank'
-              rel='noopener noreferrer'
-              className='inline-flex items-center text-primary-600 hover:text-primary-800 text-sm'
-            >
-              <ExternalLinkIcon className='h-4 w-4 mr-1' />
-              <span>{website}</span>
-            </a>
-          )}
-          {trunkline && (
-            <div className='flex items-center text-gray-800 text-sm'>
-              <PhoneIcon className='h-4 w-4 text-gray-800 mr-1 flex-shrink-0' />
-              <span>{trunkline}</span>
-            </div>
-          )}
-          {email && (
-            <a
-              href={`mailto:${email}`}
-              className='flex items-center text-gray-800 hover:text-primary-600 text-sm'
-            >
-              <MailIcon className='h-4 w-4 text-gray-800 mr-1 flex-shrink-0' />
-              <span>{email}</span>
-            </a>
-          )}
+    <div className='mx-auto space-y-6 max-w-7xl duration-500 animate-in fade-in'>
+      {/* --- BREADCRUMBS --- */}
+      <Breadcrumb>
+        <BreadcrumbList>
+          <BreadcrumbItem>
+            <BreadcrumbHome href='/' />
+          </BreadcrumbItem>
+          <BreadcrumbSeparator />
+          <BreadcrumbItem>
+            <BreadcrumbLink href='/government/departments'>
+              Departments
+            </BreadcrumbLink>
+          </BreadcrumbItem>
+          <BreadcrumbSeparator />
+          <BreadcrumbItem>
+            <BreadcrumbPage>{toTitleCase(dept.office_name)}</BreadcrumbPage>
+          </BreadcrumbItem>
+        </BreadcrumbList>
+      </Breadcrumb>
+
+      {/* --- HERO HEADER --- */}
+      <header className='overflow-hidden relative p-8 text-white rounded-3xl shadow-xl md:p-12 bg-slate-900'>
+        <div className='relative z-10 max-w-3xl'>
+          <div className='flex gap-2 items-center mb-4'>
+            <Badge variant='primary' dot>
+              Official Municipal Office
+            </Badge>
+          </div>
+          <h1 className='mb-4 text-3xl font-extrabold tracking-tight leading-tight md:text-5xl'>
+            {toTitleCase(dept.office_name)}
+          </h1>
+          <div className='flex flex-wrap gap-y-2 gap-x-6 text-sm italic text-slate-400'>
+            {dept.address && (
+              <span className='flex gap-2 items-center'>
+                <MapPinIcon className='w-4 h-4 text-primary-400' />{' '}
+                {dept.address}
+              </span>
+            )}
+          </div>
         </div>
-      </div>
-      {/* Department Details */}
-      <div>
-        <DepartmentDetailSection data={details} />
+        {/* Background Decoration */}
+        <ClipboardList className='absolute right-[-20px] bottom-[-20px] w-64 h-64 text-white/5 -rotate-12 pointer-events-none' />
+      </header>
+
+      {/* --- CONTENT LAYOUT --- */}
+      <div className='flex flex-col gap-8 xl:flex-row'>
+        {/* MAIN COLUMN (LEFT) */}
+        <div className='flex-1 space-y-8 min-w-0'>
+          {/* Section: Associated Services */}
+          {associatedServices.length > 0 && (
+            <DetailSection title='Offered Services' icon={ClipboardList}>
+              <div className='grid grid-cols-1 gap-4 md:grid-cols-2'>
+                {associatedServices.map(service => (
+                  <Link
+                    key={service.slug}
+                    to={`/services/${service.slug}`}
+                    className='flex justify-between items-center p-4 bg-white rounded-2xl border border-gray-100 transition-all group hover:border-primary-200 hover:shadow-md'
+                  >
+                    <div className='flex gap-3 items-center'>
+                      <div className='p-2 rounded-lg transition-colors bg-primary-50 text-primary-600 group-hover:bg-primary-600 group-hover:text-white'>
+                        <CheckCircle2 className='w-4 h-4' />
+                      </div>
+                      <span className='text-sm font-bold text-gray-700 transition-colors group-hover:text-primary-700'>
+                        {service.service}
+                      </span>
+                    </div>
+                    <ArrowRight className='w-4 h-4 text-gray-300 transition-all group-hover:text-primary-500 group-hover:translate-x-1' />
+                  </Link>
+                ))}
+              </div>
+            </DetailSection>
+          )}
+
+          {/* Section: Department Head (Leadership) */}
+          {dept.department_head && (
+            <DetailSection title='Office Leadership' icon={UserIcon}>
+              <div className='flex flex-col gap-6 items-center p-6 rounded-2xl border md:flex-row md:items-start border-primary-100 bg-primary-50/30'>
+                {/* Avatar / Initials Box */}
+                <div className='flex justify-center items-center w-20 h-20 text-3xl font-extrabold text-white rounded-2xl shadow-lg bg-primary-600 shadow-primary-900/20 shrink-0'>
+                  {dept.department_head.name?.[0] || 'H'}
+                </div>
+
+                <div className='flex-1 text-center md:text-left'>
+                  <h4 className='text-xl font-extrabold leading-tight text-gray-900'>
+                    {dept.department_head.name || 'Head of Office'}
+                  </h4>
+                  <p className='mt-1 text-xs font-bold tracking-widest uppercase text-primary-700'>
+                    Department Head
+                  </p>
+
+                  {/* Head specific contact info if available */}
+                  {(dept.department_head.email ||
+                    dept.department_head.contact) && (
+                    <div className='flex flex-wrap gap-4 justify-center mt-4 md:justify-start'>
+                      {dept.department_head.email && (
+                        <span className='flex items-center gap-1.5 text-sm text-gray-500 font-medium'>
+                          <MailIcon className='w-4 h-4 text-primary-400' />{' '}
+                          {dept.department_head.email}
+                        </span>
+                      )}
+                    </div>
+                  )}
+                </div>
+              </div>
+            </DetailSection>
+          )}
+
+          {/* Section: About/Info */}
+          <DetailSection title='General Information' icon={InfoIcon}>
+            <p className='text-sm leading-relaxed text-gray-600 md:text-base'>
+              The {toTitleCase(dept.office_name)} serves as a vital component of
+              the municipal administration, focusing on the effective delivery
+              of public services and regulatory functions within its
+              jurisdiction.
+            </p>
+          </DetailSection>
+        </div>
+
+        {/* SIDEBAR COLUMN (RIGHT) */}
+        <aside className='space-y-6 w-full xl:w-80'>
+          <DetailSection title='Quick Contact'>
+            <div className='space-y-3'>
+              {/* Phone Item */}
+              {dept.trunkline && (
+                <div className='flex gap-3 items-start p-4 bg-gray-50 rounded-xl border border-gray-100'>
+                  <PhoneIcon className='mt-1 w-4 h-4 text-gray-400 shrink-0' />
+                  <div>
+                    <p className='text-[10px] font-bold text-gray-400 uppercase tracking-widest mb-1 leading-none'>
+                      Trunkline
+                    </p>
+                    <p className='text-sm font-bold text-gray-700'>
+                      {Array.isArray(dept.trunkline)
+                        ? dept.trunkline[0]
+                        : dept.trunkline}
+                    </p>
+                  </div>
+                </div>
+              )}
+
+              {/* Website Link */}
+              {dept.website && (
+                <a
+                  href={dept.website}
+                  target='_blank'
+                  rel='noreferrer'
+                  className='flex justify-between items-center p-4 w-full text-white rounded-xl shadow-md transition-all bg-primary-600 hover:bg-primary-700 shadow-primary-900/10 group'
+                >
+                  <div className='flex gap-3 items-center'>
+                    <GlobeIcon className='w-4 h-4' />
+                    <span className='text-sm font-bold tracking-tight'>
+                      Visit Office Website
+                    </span>
+                  </div>
+                  <ArrowRight className='w-4 h-4 opacity-50 transition-transform group-hover:translate-x-1' />
+                </a>
+              )}
+
+              {/* Email Link */}
+              {dept.email && (
+                <a
+                  href={`mailto:${dept.email}`}
+                  className='flex gap-3 items-center p-4 text-gray-600 rounded-xl border border-gray-200 transition-all hover:bg-gray-50'
+                >
+                  <MailIcon className='w-4 h-4' />
+                  <span className='text-sm font-bold tracking-tight'>
+                    Send official email
+                  </span>
+                </a>
+              )}
+            </div>
+          </DetailSection>
+        </aside>
       </div>
     </div>
   );

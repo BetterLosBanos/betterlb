@@ -1,541 +1,202 @@
-import { useParams } from 'react-router-dom';
+import { useParams, Link } from 'react-router-dom';
 import {
-  ExternalLinkIcon,
   MapPinIcon,
   PhoneIcon,
   GlobeIcon,
-  Mail,
-  UserIcon,
   UsersIcon,
-  CrownIcon,
-  ShieldIcon,
+  GavelIcon,
+  ChevronRight,
 } from 'lucide-react';
 
-import legislativeData from '../../../data/directory/legislative.json';
-import { cn } from '../../../lib/utils';
+import legislativeData from '@/data/directory/legislative.json';
+import { ModuleHeader, DetailSection } from '@/components/layout/PageLayouts';
+import { Card, CardContent, CardAvatar } from '@/components/ui/CardList';
 import {
-  Card,
-  CardHeader,
-  CardContent,
-  CardDivider,
-} from '../../../components/ui/CardList';
-
-// Component to render officials in a card grid
-function OfficialsGrid({
-  officials,
-}: {
-  officials: Array<{
-    role: string;
-    name: string;
-    contact?: string;
-    office?: string;
-  }>;
-}) {
-  return (
-    <div className='grid grid-cols-1 @lg:grid-cols-2 @2xl:grid-cols-3 gap-6'>
-      {officials.map((official, index) => (
-        <Card key={index} hover={false} className='h-full flex flex-col'>
-          <CardHeader className='flex-none min-h-[100px]'>
-            <div className='flex items-start justify-between gap-3 h-full'>
-              <div className='flex-1'>
-                <h3 className='font-semibold text-base text-gray-900 leading-tight'>
-                  {official.name}
-                </h3>
-                <p className='text-sm text-primary-600 font-medium mt-1'>
-                  {official.role}
-                </p>
-                {official.office && (
-                  <p className='text-xs text-gray-600 mt-1 line-clamp-2'>
-                    {official.office}
-                  </p>
-                )}
-              </div>
-              <div className='rounded-full bg-gray-100 p-2 shrink-0'>
-                <UserIcon className='h-5 w-5 text-gray-600' />
-              </div>
-            </div>
-          </CardHeader>
-          <CardDivider />
-          <CardContent className='flex-1 flex items-start'>
-            {official.contact && official.contact !== '__' ? (
-              <div className='flex items-start gap-2 text-sm w-full'>
-                <PhoneIcon className='h-4 w-4 text-gray-400 flex-shrink-0 mt-0.5' />
-                <span className='text-gray-700'>{official.contact}</span>
-              </div>
-            ) : (
-              <span className='text-sm text-gray-400 italic'>
-                No contact available
-              </span>
-            )}
-          </CardContent>
-        </Card>
-      ))}
-    </div>
-  );
-}
-
-// Component to render committees in a card grid
-function CommitteesGrid({
-  committees,
-}: {
-  committees: Array<{ committee: string; chairperson?: string; name?: string }>;
-}) {
-  return (
-    <div className='grid grid-cols-1 @lg:grid-cols-2 @3xl:grid-cols-3 gap-6'>
-      {committees.map((committee, index) => (
-        <Card key={index} hover={false} className='h-full flex flex-col'>
-          <CardHeader className='flex-none'>
-            <h3 className='font-semibold text-base text-gray-900 leading-snug line-clamp-2 min-h-[2.5rem]'>
-              {committee.committee}
-            </h3>
-          </CardHeader>
-          <CardDivider />
-          <CardContent className='flex-1 flex flex-col justify-between'>
-            <div className='flex items-center gap-2 text-sm'>
-              <UsersIcon className='h-4 w-4 text-gray-400 flex-shrink-0' />
-              <div className='flex flex-col'>
-                <span className='text-xs font-medium text-gray-500 uppercase tracking-wide'>
-                  Chairperson
-                </span>
-                <span className='font-medium text-gray-900 mt-0.5'>
-                  {committee.chairperson || committee.name || 'N/A'}
-                </span>
-              </div>
-            </div>
-          </CardContent>
-        </Card>
-      ))}
-    </div>
-  );
-}
-
-// Component to render house leaders
-interface HouseLeader {
-  name: string;
-  contact?: { contact?: string };
-}
-
-interface HouseLeadersData {
-  speaker?: HouseLeader;
-  deputy_speakers?: HouseLeader[];
-  majority_floor_leader?: HouseLeader;
-  senior_deputy_majority_floor_leader?: HouseLeader;
-  minority_floor_leader?: HouseLeader;
-  senior_deputy_minority_floor_leader?: HouseLeader;
-}
-
-interface LeaderCard {
-  name: string;
-  role: string;
-  contact?: string;
-  icon: typeof CrownIcon | typeof ShieldIcon | typeof UserIcon;
-  isPrimary: boolean;
-}
-
-function HouseLeadersGrid({ leaders }: { leaders: HouseLeadersData }) {
-  const leaderCards: LeaderCard[] = [];
-
-  // Speaker
-  if (leaders.speaker) {
-    leaderCards.push({
-      name: leaders.speaker.name,
-      role: 'Speaker of the House',
-      contact: leaders.speaker.contact?.contact,
-      icon: CrownIcon,
-      isPrimary: true,
-    });
-  }
-
-  // Deputy Speakers
-  if (leaders.deputy_speakers && Array.isArray(leaders.deputy_speakers)) {
-    leaders.deputy_speakers.forEach((deputy: HouseLeader) => {
-      leaderCards.push({
-        name: deputy.name,
-        role: 'Deputy Speaker',
-        contact: deputy.contact?.contact,
-        icon: ShieldIcon,
-        isPrimary: false,
-      });
-    });
-  }
-
-  // Majority Floor Leader
-  if (leaders.majority_floor_leader) {
-    leaderCards.push({
-      name: leaders.majority_floor_leader.name,
-      role: 'Majority Floor Leader',
-      contact: leaders.majority_floor_leader.contact?.contact,
-      icon: UserIcon,
-      isPrimary: false,
-    });
-  }
-
-  // Senior Deputy Majority Floor Leader
-  if (leaders.senior_deputy_majority_floor_leader) {
-    leaderCards.push({
-      name: leaders.senior_deputy_majority_floor_leader.name,
-      role: 'Senior Deputy Majority Floor Leader',
-      contact: leaders.senior_deputy_majority_floor_leader.contact?.contact,
-      icon: UserIcon,
-      isPrimary: false,
-    });
-  }
-
-  // Minority Floor Leader
-  if (leaders.minority_floor_leader) {
-    leaderCards.push({
-      name: leaders.minority_floor_leader.name,
-      role: 'Minority Floor Leader',
-      contact: leaders.minority_floor_leader.contact?.contact,
-      icon: UserIcon,
-      isPrimary: false,
-    });
-  }
-
-  // Senior Deputy Minority Floor Leader
-  if (leaders.senior_deputy_minority_floor_leader) {
-    leaderCards.push({
-      name: leaders.senior_deputy_minority_floor_leader.name,
-      role: 'Senior Deputy Minority Floor Leader',
-      contact: leaders.senior_deputy_minority_floor_leader.contact?.contact,
-      icon: UserIcon,
-      isPrimary: false,
-    });
-  }
-
-  return (
-    <div className='grid grid-cols-1 @lg:grid-cols-2 @2xl:grid-cols-3 gap-6'>
-      {leaderCards.map((leader, index) => {
-        const IconComponent = leader.icon;
-        return (
-          <Card key={index} hover={false} className='h-full flex flex-col'>
-            <CardHeader className='flex-none min-h-[90px]'>
-              <div className='flex items-start justify-between gap-3 h-full'>
-                <div className='flex-1'>
-                  <h3 className='font-semibold text-base text-gray-900 leading-tight'>
-                    {leader.name}
-                  </h3>
-                  <p
-                    className={`text-sm font-medium mt-1 ${
-                      leader.isPrimary ? 'text-primary-600' : 'text-gray-600'
-                    }`}
-                  >
-                    {leader.role}
-                  </p>
-                </div>
-                <div
-                  className={`rounded-full p-2 shrink-0 ${
-                    leader.isPrimary ? 'bg-primary-100' : 'bg-gray-100'
-                  }`}
-                >
-                  <IconComponent
-                    className={`h-5 w-5 ${
-                      leader.isPrimary ? 'text-primary-600' : 'text-gray-600'
-                    }`}
-                  />
-                </div>
-              </div>
-            </CardHeader>
-            <CardDivider />
-            <CardContent className='flex-1 flex items-start'>
-              {leader.contact ? (
-                <div className='flex items-start gap-2 text-sm w-full'>
-                  <PhoneIcon className='h-4 w-4 text-gray-400 flex-shrink-0 mt-0.5' />
-                  <span className='text-gray-700'>{leader.contact}</span>
-                </div>
-              ) : (
-                <span className='text-sm text-gray-400 italic'>
-                  No contact available
-                </span>
-              )}
-            </CardContent>
-          </Card>
-        );
-      })}
-    </div>
-  );
-}
-
-// Recursive component to render legislative details
-function LegislativeDetailSection({
-  data,
-  level = 0,
-  sectionKey = '',
-}: {
-  data: unknown;
-  level?: number;
-  sectionKey?: string;
-}) {
-  if (data === null || typeof data !== 'object') {
-    return <span className='text-gray-700'>{String(data)}</span>;
-  }
-
-  // Special handling for officials array
-  if (Array.isArray(data) && sectionKey === 'officials') {
-    return (
-      <OfficialsGrid
-        officials={
-          data as Array<{
-            role: string;
-            name: string;
-            contact?: string;
-            office?: string;
-          }>
-        }
-      />
-    );
-  }
-
-  // Special handling for secretariat officials
-  if (Array.isArray(data) && sectionKey === 'secretariat_officials') {
-    return (
-      <OfficialsGrid
-        officials={
-          data as Array<{
-            role: string;
-            name: string;
-            contact?: string;
-            office?: string;
-          }>
-        }
-      />
-    );
-  }
-
-  // Special handling for permanent committees
-  if (Array.isArray(data) && sectionKey === 'permanent_committees') {
-    return (
-      <CommitteesGrid
-        committees={data as Array<{ committee: string; chairperson: string }>}
-      />
-    );
-  }
-
-  // Special handling for special committees
-  if (Array.isArray(data) && sectionKey === 'special_committees') {
-    return (
-      <CommitteesGrid
-        committees={data as Array<{ committee: string; chairperson: string }>}
-      />
-    );
-  }
-
-  // Special handling for house committees (with nested chairpersons)
-  if (
-    typeof data === 'object' &&
-    data !== null &&
-    sectionKey === 'house_committees'
-  ) {
-    const houseCommittees = data as {
-      chairpersons?: Array<{ committee: string; name: string }>;
-    };
-    if (
-      houseCommittees.chairpersons &&
-      Array.isArray(houseCommittees.chairpersons)
-    ) {
-      return <CommitteesGrid committees={houseCommittees.chairpersons} />;
-    }
-  }
-
-  // Special handling for house leaders
-  if (
-    typeof data === 'object' &&
-    data !== null &&
-    sectionKey === 'house_leaders'
-  ) {
-    return <HouseLeadersGrid leaders={data} />;
-  }
-
-  if (Array.isArray(data)) {
-    return (
-      <div className='space-y-2'>
-        {data.map((item, index) => (
-          <div
-            key={index}
-            className={`${
-              level > 0
-                ? 'ml-4 border-l border-b border-neutral-100 pl-3 py-2'
-                : ''
-            }`}
-          >
-            <LegislativeDetailSection
-              data={item}
-              level={level + 1}
-              sectionKey={sectionKey}
-            />
-          </div>
-        ))}
-      </div>
-    );
-  }
-
-  // Check if this is a simple key-value object with no nested objects
-  const isSimpleObject = Object.values(data).every(
-    value => value === null || typeof value !== 'object'
-  );
-
-  // Skip these keys as they're displayed in the header or have dedicated pages
-  const skipKeys = [
-    'slug',
-    'branch',
-    'chamber',
-    'address',
-    'trunkline',
-    'website',
-    'house_members',
-    'party_list_representatives',
-  ];
-
-  if (isSimpleObject) {
-    return (
-      <div
-        className={cn(
-          'mb-4 grid grid-cols-1 @sm:grid-cols-2 gap-x-6 gap-y-3 max-w-3xl',
-          level === 1 && 'rounded-2xl font-bold text-lg'
-        )}
-      >
-        {Object.entries(data).map(([key, value]) => {
-          if (skipKeys.includes(key) || value === undefined) return null;
-
-          // Special rendering for email so it's visible and wraps cleanly
-          if (key === 'email' && value) {
-            return (
-              <div key={key} className='text-sm'>
-                <div className='flex items-start'>
-                  <Mail
-                    className='h-4 w-4 text-gray-400 mr-2 mt-0.5 flex-shrink-0'
-                    aria-hidden='true'
-                  />
-                  <a
-                    href={`mailto:${value}`}
-                    className='text-primary-600 hover:underline leading-relaxed break-all'
-                  >
-                    <span className='sr-only'>Email</span>
-                    {String(value)}
-                  </a>
-                </div>
-              </div>
-            );
-          }
-
-          return (
-            <div key={key} className='text-sm'>
-              <span className='text-gray-800 leading-relaxed'>
-                {String(value)}
-              </span>
-            </div>
-          );
-        })}
-      </div>
-    );
-  }
-
-  const entries = Object.entries(data).filter(
-    ([key]) => !skipKeys.includes(key)
-  );
-
-  if (entries.length === 0) return null;
-
-  return (
-    <div className='@container space-y-6'>
-      {entries.map(([key, value]) => {
-        if (value === undefined || value === null) return null;
-
-        const label = key
-          .split('_')
-          .map(word => word.charAt(0).toUpperCase() + word.slice(1))
-          .join(' ');
-
-        const isArray = Array.isArray(value);
-
-        return (
-          <div key={key} className='pb-4'>
-            <div className='flex items-center mb-3 align-middle gap-2'>
-              <h2 className='text-2xl font-bold text-gray-900'>{label}</h2>
-              {isArray && (
-                <div className='text-sm text-primary-600 font-medium bg-primary-50 px-2.5 py-1 rounded-md'>
-                  {Array.isArray(value) ? value.length : 0}
-                </div>
-              )}
-            </div>
-            <div className='mt-4'>
-              <LegislativeDetailSection
-                data={value}
-                level={level + 1}
-                sectionKey={key}
-              />
-            </div>
-          </div>
-        );
-      })}
-    </div>
-  );
-}
+  Breadcrumb,
+  BreadcrumbItem,
+  BreadcrumbLink,
+  BreadcrumbList,
+  BreadcrumbPage,
+  BreadcrumbSeparator,
+  BreadcrumbHome,
+} from '@/components/ui/Breadcrumb';
+import { EmptyState } from '@/components/ui/EmptyState';
 
 export default function LegislativeChamber() {
-  const { chamber } = useParams<{ chamber: string }>();
+  const { chamber: slug } = useParams();
+  const data = legislativeData.find(item => item.slug === slug);
 
-  const chamberData = legislativeData.find(
-    (item: { slug: string }) => item.slug === chamber
-  );
-
-  if (!chamberData) {
+  if (!data) {
     return (
-      <div className='bg-white rounded-lg p-6 shadow-xs'>
-        <h1 className='text-2xl font-bold text-gray-900 mb-4'>
-          Chamber Not Found
-        </h1>
-        <p className='text-gray-800'>
-          The requested legislative chamber could not be found.
-        </p>
-      </div>
+      <EmptyState
+        title='Chamber Not Found'
+        message='The legislative body you are looking for is unavailable.'
+        actionHref='/government/elected-officials'
+      />
     );
   }
 
   return (
-    <div className='space-y-6'>
-      <div>
-        <h1 className='text-3xl font-bold text-gray-900 mb-3'>
-          {chamberData.chamber}
-        </h1>
-
-        <div className='flex flex-col space-y-2 text-sm'>
-          {chamberData.address && (
-            <div className='flex items-start'>
-              <MapPinIcon className='h-5 w-5 text-gray-400 mr-2 mt-0.5' />
-              <span className='text-gray-800'>{chamberData.address}</span>
-            </div>
-          )}
-
-          {chamberData.trunkline && (
-            <div className='flex items-start'>
-              <PhoneIcon className='h-5 w-5 text-gray-400 mr-2 mt-0.5' />
-              <span className='text-gray-800'>{chamberData.trunkline}</span>
-            </div>
-          )}
-
-          {chamberData.website && (
-            <div className='flex items-start'>
-              <GlobeIcon className='h-5 w-5 text-gray-400 mr-2 mt-0.5' />
-              <a
-                href={
-                  chamberData.website.startsWith('http')
-                    ? chamberData.website
-                    : `https://${chamberData.website}`
-                }
-                target='_blank'
-                rel='noopener noreferrer'
-                className='text-primary-600 hover:underline flex items-center'
-              >
-                <span>{chamberData.website}</span>
-                <ExternalLinkIcon className='ml-1 h-3.5 w-3.5' />
-              </a>
-            </div>
-          )}
-        </div>
+    <div className='max-w-7xl mx-auto space-y-6 animate-in fade-in duration-500'>
+      {/* 1. Responsive Breadcrumbs (Hide on very small mobile) */}
+      <div className='hidden sm:block'>
+        <Breadcrumb>
+          <BreadcrumbList>
+            <BreadcrumbItem>
+              <BreadcrumbHome href='/' />
+            </BreadcrumbItem>
+            <BreadcrumbSeparator />
+            <BreadcrumbItem>
+              <BreadcrumbLink href='/government/elected-officials'>
+                Elected Officials
+              </BreadcrumbLink>
+            </BreadcrumbItem>
+            <BreadcrumbSeparator />
+            <BreadcrumbItem>
+              <BreadcrumbPage>{data.chamber}</BreadcrumbPage>
+            </BreadcrumbItem>
+          </BreadcrumbList>
+        </Breadcrumb>
       </div>
 
-      <LegislativeDetailSection data={chamberData} />
+      {/* 2. Responsive Header: Text scales down for mid-size windows */}
+      <ModuleHeader
+        title={data.chamber}
+        description='Official members and standing committees of the municipal council.'
+      />
+
+      {/* 3. Main Layout: Stacks on 'lg' (1024px) to prevent squeezing on half-screens */}
+      <div className='flex flex-col xl:flex-row gap-8'>
+        {/* LEFT: Main Content (Takes full width until 1280px) */}
+        <div className='flex-1 min-w-0 space-y-8'>
+          {/* Council Members Grid: Uses auto-fit for better spacing */}
+          <DetailSection title='Council Members' icon={UsersIcon}>
+            <div className='grid grid-cols-1 md:grid-cols-2 2xl:grid-cols-3 gap-4'>
+              {data.officials?.map(member => (
+                <Card
+                  key={member.name}
+                  hover
+                  className='border-gray-100 flex flex-col'
+                >
+                  <CardContent className='flex items-center gap-4 p-4'>
+                    <CardAvatar
+                      name={member.name}
+                      size='md'
+                      className='shrink-0 bg-primary-50 text-primary-700 font-bold'
+                    />
+                    <div className='min-w-0'>
+                      <h4 className='font-bold text-gray-900 leading-tight truncate'>
+                        {member.name}
+                      </h4>
+                      <p className='text-[10px] text-primary-600 font-bold uppercase tracking-wider mt-1'>
+                        {member.role}
+                      </p>
+                    </div>
+                  </CardContent>
+                  {member.contact && member.contact !== '__' && (
+                    <div className='px-4 pb-4 mt-auto'>
+                      <p className='text-xs text-gray-400 flex items-center gap-1.5'>
+                        <PhoneIcon className='w-3 h-3' /> {member.contact}
+                      </p>
+                    </div>
+                  )}
+                </Card>
+              ))}
+            </div>
+          </DetailSection>
+
+          {/* Committees: 1 column on narrow, 2 on wide */}
+          {data.permanent_committees && (
+            <DetailSection title='Standing Committees' icon={GavelIcon}>
+              <div className='grid grid-cols-1 sm:grid-cols-2 gap-3'>
+                {data.permanent_committees.map(committee => (
+                  <div
+                    key={committee.committee}
+                    className='p-4 rounded-xl border border-gray-100 bg-gray-50/50 hover:bg-white hover:shadow-sm transition-all'
+                  >
+                    <h4 className='font-bold text-gray-900 text-sm mb-1 leading-snug'>
+                      {committee.committee}
+                    </h4>
+                    <p className='text-[11px] text-gray-500'>
+                      Chair:{' '}
+                      <span className='font-semibold text-gray-700'>
+                        {committee.chairperson || committee.name}
+                      </span>
+                    </p>
+                  </div>
+                ))}
+              </div>
+            </DetailSection>
+          )}
+        </div>
+
+        {/* RIGHT: Sidebar (Moves to bottom on half-screen windows) */}
+        <aside className='w-full xl:w-80 space-y-6'>
+          <DetailSection title='Contact & Office'>
+            <div className='grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-1 gap-4'>
+              {data.address && (
+                <div className='flex items-start gap-3 p-3 rounded-lg bg-gray-50/50'>
+                  <MapPinIcon className='w-4 h-4 text-gray-400 shrink-0 mt-1' />
+                  <div>
+                    <p className='text-[10px] font-bold text-gray-400 uppercase leading-none mb-1'>
+                      Location
+                    </p>
+                    <p className='text-sm font-medium text-gray-700 leading-snug'>
+                      {data.address}
+                    </p>
+                  </div>
+                </div>
+              )}
+              {data.trunkline && (
+                <div className='flex items-start gap-3 p-3 rounded-lg bg-gray-50/50'>
+                  <PhoneIcon className='w-4 h-4 text-gray-400 shrink-0 mt-1' />
+                  <div>
+                    <p className='text-[10px] font-bold text-gray-400 uppercase leading-none mb-1'>
+                      Phone
+                    </p>
+                    <p className='text-sm font-medium text-gray-700'>
+                      {data.trunkline}
+                    </p>
+                  </div>
+                </div>
+              )}
+            </div>
+
+            {data.website && (
+              <a
+                href={data.website}
+                target='_blank'
+                rel='noreferrer'
+                className='mt-4 flex items-center justify-between p-3 rounded-lg bg-primary-600 text-white hover:bg-primary-700 transition-colors'
+              >
+                <div className='flex items-center gap-2'>
+                  <GlobeIcon className='w-4 h-4' />
+                  <span className='text-sm font-bold'>Official Website</span>
+                </div>
+                <ChevronRight className='w-4 h-4 opacity-50' />
+              </a>
+            )}
+          </DetailSection>
+
+          {/* Action Card */}
+          <div className='p-6 rounded-2xl bg-slate-900 text-white shadow-xl relative overflow-hidden group'>
+            <div className='relative z-10'>
+              <h3 className='font-bold text-lg mb-2'>Legislative Records</h3>
+              <p className='text-xs text-slate-400 mb-6'>
+                Review official ordinances and resolutions passed by this
+                council.
+              </p>
+              <Link
+                to='/legislation'
+                className='w-full flex items-center justify-center gap-2 bg-white text-slate-900 py-2.5 rounded-xl text-xs font-bold hover:bg-primary-50 transition-all'
+              >
+                Browse Documents <ChevronRight className='w-3 h-3' />
+              </Link>
+            </div>
+            <GavelIcon className='absolute right-[-10%] bottom-[-10%] w-32 h-32 text-white/5 -rotate-12 transition-transform group-hover:scale-110' />
+          </div>
+        </aside>
+      </div>
     </div>
   );
 }
