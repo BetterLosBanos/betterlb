@@ -6,30 +6,30 @@ import {
   SiYoutube,
 } from '@icons-pack/react-simple-icons';
 import { CheckCircle2 } from 'lucide-react';
-import { FC, useEffect, useState } from 'react';
+import { FC } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Link } from 'react-router-dom';
 import { footerNavigation } from '../../data/navigation';
-import versionData from '../../version.json';
+// import versionData from '../../version.json';
 
-type Version = {
-  head_commit: string;
-};
+// type Version = {
+//   head_commit: string;
+// };
 
 const Footer: FC = () => {
   const { t } = useTranslation('common');
-  const [version, setVersion] = useState<string | null>(null);
+  // const [version, setVersion] = useState<string | null>(null);
 
-  useEffect(() => {
-    try {
-      const version = versionData as Version;
-      if (version?.head_commit) {
-        setVersion(version.head_commit.substring(0, 6)); // only first 6 chars
-      }
-    } catch (err) {
-      console.error('Error loading version.json:', err);
-    }
-  }, []);
+  // useEffect(() => {
+  //   try {
+  //     const version = versionData as Version;
+  //     if (version?.head_commit) {
+  //       setVersion(version.head_commit.substring(0, 6)); // only first 6 chars
+  //     }
+  //   } catch (err) {
+  //     console.error('Error loading version.json:', err);
+  //   }
+  // }, []);
 
   const getSocialIcon = (label: string) => {
     switch (label) {
@@ -116,14 +116,14 @@ const Footer: FC = () => {
         <div className='pt-8 mt-8 border-t border-gray-800'>
           <div className='flex flex-col justify-between items-center md:flex-row'>
             <p className='mb-4 text-sm text-gray-400 md:mb-0'>
-              {version && (
+              {/* {version && (
                 <span className='mr-4 text-gray-400'>Ver. {version}</span>
-              )}
+              )} */}
               {t('footer.copyright')}
             </p>
             <div className='flex space-x-6'>
               <Link
-                to='https://github.com/miconficker/betterlb'
+                to='hhttps://github.com/BetterLosBanos/betterlb'
                 className='text-sm text-gray-400 transition-colors hover:text-white'
               >
                 Contribute at GitHub

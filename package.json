@@ -71,7 +71,7 @@
   },
   "devDependencies": {
     "@axe-core/playwright": "^4.10.2",
-    "@cloudflare/workers-types": "^4.20250607.0",
+    "@cloudflare/workers-types": "^4.20260113.0",
     "@commitlint/cli": "^19.8.1",
     "@commitlint/config-conventional": "^19.8.1",
     "@eslint/js": "^9.9.1",
@@ -97,7 +97,7 @@
     "tailwindcss": "^4.1.13",
     "ts-node": "^10.9.2",
     "tsx": "^4.20.5",
-    "typescript": "^5.5.3",
+    "typescript": "^5.9.3",
     "typescript-eslint": "^8.3.0",
     "uuid": "^9.0.1",
     "vite": "^5.4.2"

@@ -4,6 +4,12 @@ import { useTranslation } from 'react-i18next';
 import Fuse from 'fuse.js';
 import servicesData from '@/data/services/services.json';
 import SearchInput from '@/components/ui/SearchInput';
+import {
+  FileTextIcon,
+  BriefcaseIcon,
+  BookOpenIcon,
+  HeartIcon,
+} from 'lucide-react';
 
 interface Service {
   slug: string;
@@ -13,12 +19,6 @@ interface Service {
   description?: string;
   category?: { name: string; slug: string };
   subcategory?: { name: string; slug: string };
-}
-
-interface QuickCategory {
-  name: string;
-  slug: string;
-  label: string;
 }
 
 const Hero: FC = () => {
@@ -45,40 +45,54 @@ const Hero: FC = () => {
     return fuse.search(query).map(r => r.item);
   }, [query, fuse]);
 
-  // Popular services (manually picked)
-  const popularServices = [
-    {
-      label: t('hero.nationalId'),
-      href: `/services?category=${encodeURIComponent('certificates-civil-registry')}&subcategory=${encodeURIComponent('community-tax-certificate')}`,
-    },
-    {
-      label: t('hero.birthCertificate'),
-      href: `/services?category=${encodeURIComponent('certificates-civil-registry')}&subcategory=${encodeURIComponent('birth-certificate-registration')}`,
-    },
-    {
-      label: t('hero.businessRegistration'),
-      href: `/services?category=${encodeURIComponent('business-licensing')}&subcategory=${encodeURIComponent('business-permit-new')}`,
-    },
-  ];
+  // Popular services (random 3)
+  const popularServices = useMemo(() => {
+    if (!servicesData || servicesData.length === 0) return [];
+
+    // Shuffle array
+    const shuffled = [...servicesData].sort(() => 0.5 - Math.random());
+
+    // Pick 3
+    return shuffled.slice(0, 3).map(service => ({
+      label:
+        service.service || service.office_name || service.office || 'Service',
+      href: `/services?category=${encodeURIComponent(service.category?.slug || '')}&subcategory=${encodeURIComponent(service.slug)}`,
+    }));
+  }, []);
 
   // Quick access categories
+
+  interface QuickCategory {
+    name: string;
+    slug: string;
+    label: string;
+    icon: JSX.Element;
+  }
   const quickCategories: QuickCategory[] = [
     {
       name: 'Certificates & Civil Registry',
       slug: 'certificates-civil-registry',
       label: 'Citizenship & ID',
+      icon: <FileTextIcon className='w-6 h-6 text-white' />,
     },
     {
       name: 'Business & Licensing',
       slug: 'business-licensing',
       label: 'Business',
+      icon: <BriefcaseIcon className='w-6 h-6 text-white' />,
     },
     {
       name: 'Education & Learning',
       slug: 'education-learning',
       label: 'Education',
+      icon: <BookOpenIcon className='w-6 h-6 text-white' />,
     },
-    { name: 'Health & Nutrition', slug: 'health-nutrition', label: 'Health' },
+    {
+      name: 'Health & Nutrition',
+      slug: 'health-nutrition',
+      label: 'Health',
+      icon: <HeartIcon className='w-6 h-6 text-white' />,
+    },
   ];
 
   return (
@@ -151,33 +165,20 @@ const Hero: FC = () => {
                   className='flex flex-col items-center p-4 text-center rounded-lg transition-all duration-200 bg-white/10 hover:bg-white/20'
                 >
                   <div className='p-3 mb-3 rounded-full bg-primary-500'>
-                    {/* TODO: Replace with actual SVG per category */}
-                    <svg
-                      className='w-6 h-6 text-white'
-                      viewBox='0 0 24 24'
-                      fill='none'
-                      stroke='currentColor'
-                      strokeWidth='2'
-                      strokeLinecap='round'
-                      strokeLinejoin='round'
-                    >
-                      <path d='M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2'></path>
-                      <circle cx='12' cy='7' r='4'></circle>
-                    </svg>
+                    {cat.icon}
                   </div>
                   <span className='font-medium'>{cat.label}</span>
                 </Link>
               ))}
             </div>
-
-            <div className='flex mt-4'>
-              <Link
-                className='p-4 w-full text-center text-white rounded-lg transition-all duration-500 bg-white/10 hover:bg-white/20'
-                to='/services'
-              >
-                {t('services.viewAll')}
-              </Link>
-            </div>
+          </div>
+          <div className='flex mt-4'>
+            <Link
+              className='p-4 w-full text-center text-white rounded-lg transition-all duration-500 bg-white/10 hover:bg-white/20'
+              to='/services'
+            >
+              {t('services.viewAll')}
+            </Link>
           </div>
         </div>
       </div>

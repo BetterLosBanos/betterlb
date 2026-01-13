@@ -171,7 +171,7 @@ export const footerNavigation = {
     },
     {
       label: 'GitHub',
-      href: 'https://github.com/miconficker/betterlb',
+      href: 'https://github.com/BetterLosBanos/betterlb',
       target: '_blank',
     },
   ],
