@@ -94,8 +94,7 @@ export const mainNavigation: NavigationItem[] = [
     label: 'Government',
     href: '/government',
     children: [
-      { label: 'Executive', href: '/government/executive' },
-      { label: 'Legislative', href: '/government/legislative' },
+      { label: 'Elected Officials', href: '/government/elected-officials' },
       { label: 'Departments', href: '/government/departments' },
       { label: 'Barangays', href: '/government/barangays' },
     ],
@@ -170,12 +169,12 @@ export const footerNavigation = {
       links: [
         { label: 'All Services', href: '/services' },
         { label: 'Service Directory', href: '/services' },
-        { label: 'Websites', href: '/services/websites' },
-        { label: 'Forex', href: '/data/forex' },
-        { label: 'Weather', href: '/data/weather' },
-        { label: 'Hotlines', href: '/philippines/hotlines' },
-        { label: 'Holidays', href: '/philippines/holidays' },
-        { label: 'Flood Control Projects', href: '/flood-control-projects' },
+        // { label: 'Websites', href: '/services/websites' },
+        // { label: 'Forex', href: '/data/forex' },
+        // { label: 'Weather', href: '/data/weather' },
+        // { label: 'Hotlines', href: '/philippines/hotlines' },
+        // { label: 'Holidays', href: '/philippines/holidays' },
+        // { label: 'Flood Control Projects', href: '/flood-control-projects' },
       ],
     },
     {

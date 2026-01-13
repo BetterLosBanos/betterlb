@@ -2,14 +2,12 @@ import { ReactNode } from 'react';
 import { Outlet, Link, useLocation } from 'react-router-dom';
 import {
   Building2Icon,
-  LandmarkIcon,
-  GalleryVerticalIcon,
-  // GlobeIcon,
-  // BookOpenIcon,
+  UsersIcon, // Icon for Elected Officials
   MapPinIcon,
 } from 'lucide-react';
 import { cn } from '../../lib/utils';
 import { useTranslation } from 'react-i18next';
+import { PageHero } from '@/components/layout/PageLayouts';
 
 interface GovernmentLayoutProps {
   title: string;
@@ -18,24 +16,17 @@ interface GovernmentLayoutProps {
 }
 
 export default function GovernmentLayout({ children }: GovernmentLayoutProps) {
-  // Get current path to highlight active tab
   const location = useLocation();
   const currentPath = location.pathname;
   const { t } = useTranslation('common');
 
-  // Define branch data
+  // Modified Branches Array: Merged Executive & Legislative
   const branches = [
     {
-      title: t('government.executiveTitle'),
-      description: t('government.executiveDescription'),
-      icon: <LandmarkIcon className='h-4 w-4' />,
-      path: '/government/executive',
-    },
-    {
-      title: t('government.legislativeTitle'),
-      description: t('government.legislativeDescription'),
-      icon: <GalleryVerticalIcon className='h-4 w-4' />,
-      path: '/government/legislative',
+      title: t('government.electedofficialsTitle'),
+      description: t('government.electedofficialsDescription'),
+      icon: <UsersIcon className='h-4 w-4' />,
+      path: '/government/elected-officials',
     },
     {
       title: t('government.departmentsTitle'),
@@ -51,25 +42,18 @@ export default function GovernmentLayout({ children }: GovernmentLayoutProps) {
     },
   ];
 
-  // Check if we're on the main government page
   const isMainPage =
     currentPath === '/government' || currentPath === '/government/';
 
   return (
     <div className='container mx-auto px-4 md:px-0'>
-      <div className='py-8 md:py-12 text-center flex flex-col justify-center'>
-        <h2 className='text-3xl md:text-4xl font-bold text-gray-800 mb-4'>
-          Municipal Government of Los Baños Directory
-        </h2>
-        <p className='text-sm md:text-base text-gray-800'>
-          Explore the different branches and agencies of the Municipal
-          government
-        </p>
-      </div>
-
-      {/* Card Tabs Navigation */}
+      <PageHero
+        title='Municipal Government of Los Baños Directory'
+        description='Explore the different branches and agencies of the Municipal government'
+      />
+      {/* Tabs */}
       <div className='mb-8 md:mb-12 overflow-x-auto'>
-        <div className='inline-grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-3 min-w-full md:min-w-0 px-4 py-2'>
+        <div className='inline-grid grid-cols-1 md:grid-cols-3 gap-3 min-w-full md:min-w-0 px-4 py-2'>
           {branches.map(branch => {
             const isActive = currentPath.includes(branch.path);
             return (

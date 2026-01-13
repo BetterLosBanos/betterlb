@@ -1,24 +1,5 @@
 [
   {
-    "slug": "e",
-    "office": "EXECUTIVE OFFICIALS",
-    "address": "Los Baños Municipal Hall, Jamboree Road, Brgy. Timugan, Los Baños",
-    "trunkline": "(049) 530 2818",
-    "website": "www.losbanos.gov.ph",
-    "officials": [
-      {
-        "name": "NIEL ANDREW N. NOCON",
-        "role": "Mayor",
-        "email": "mayorsoffice@losbanos.gov.ph"
-      },
-      {
-        "name": "MARLO PJ A. ALIPON",
-        "role": "Vice Mayor",
-        "email": " "
-      }
-    ]
-  },
-  {
     "slug": "office-of-the-mayor",
     "office": "OFFICE OF THE MAYOR",
     "address": "Los Baños Municipal Hall, Jamboree Road, Brgy. Timugan, Los Baños",

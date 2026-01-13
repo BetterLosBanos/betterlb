@@ -83,6 +83,8 @@
     "barangaysDescription": "Local government units within the municipality, led by elected officials who manage community-level services and programs.",
     "departmentsTitle": "Municipal Departments",
     "departmentsDescription" : "Municipal departments and agencies responsible for specific areas of governance.",
+    "electedofficialsTitle": "Elected Officials",
+    "electedofficialsDescription": "The elected leadership of the Executive and Legislative branches, responsible for policy implementation and law-making.",
     "learnMore": "Learn More",
     "directoryTitle": "Official Directory",
     "directoryDescription": "Find contact information for government officials, agencies, and offices at national and local levels.",

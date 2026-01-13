@@ -1,23 +1,27 @@
-import ServicesSidebar from './components/ServicesSidebar';
 import { useState, useEffect } from 'react';
-import { Outlet, useSearchParams } from 'react-router-dom'; // ✅ Import useSearchParams
-import SearchInput from '../../components/ui/SearchInput';
+import { Outlet, useSearchParams, useLocation } from 'react-router-dom';
 import { useQueryState } from 'nuqs';
+import ServicesSidebar from './components/ServicesSidebar';
+import SearchInput from '@/components/ui/SearchInput';
+import { PageHero } from '@/components/layout/PageLayouts';
 
 export default function ServicesLayout() {
+  const location = useLocation();
   const [sidebarOpen, setSidebarOpen] = useState(false);
   const [searchParams, setSearchParams] = useSearchParams();
+
+  const isIndexPage =
+    location.pathname === '/services' || location.pathname === '/services/';
+
   const initialCategory = searchParams.get('category') || 'all';
   const [selectedCategorySlug, setSelectedCategorySlug] =
     useState(initialCategory);
 
-  // Sync URL when Sidebar changes category
   const handleCategoryChange = (slug: string) => {
     setSelectedCategorySlug(slug);
-    setSearchParams({ category: slug }); // Update URL
+    setSearchParams({ category: slug });
   };
 
-  // Sync State when URL changes (e.g. Back button or Link click)
   useEffect(() => {
     const categoryFromUrl = searchParams.get('category');
     if (categoryFromUrl && categoryFromUrl !== selectedCategorySlug) {
@@ -25,37 +29,37 @@ export default function ServicesLayout() {
     }
   }, [searchParams, selectedCategorySlug]);
 
-  // Search state (Existing code)
   const [searchQuery, setSearchQuery] = useQueryState('search', {
     defaultValue: '',
   });
-  const [searchQueryLocal, setSearchQueryLocal] = useState(searchQuery);
-
-  useEffect(() => {
-    setSearchQueryLocal(searchQuery);
-  }, [searchQuery]);
 
   return (
-    <div className='container mx-auto px-4 py-6 md:py-12'>
-      <header className='text-center mb-8 md:mb-12'>
-        <h1 className='text-3xl md:text-4xl font-bold text-gray-900 mb-4 tracking-tight'>
-          Local Government Services
-        </h1>
-        <p className='text-base md:text-lg text-gray-600 max-w-2xl mx-auto'>
-          Access official municipal services, permits, and documents quickly.
-        </p>
+    <div className='container mx-auto px-4 md:px-0'>
+      {/* --- MATCHED LAYOUT HEADER --- */}
+      <PageHero
+        title='Local Government Services'
+        description={
+          isIndexPage
+            ? 'Explore official municipal services, permits, and documents. Choose a category to filter or search below.'
+            : undefined
+        }
+      >
+        {/* The Search Bar is passed as a child, so it appears centered beneath the title */}
+        {isIndexPage && (
+          <div className='max-w-xl mx-auto animate-in fade-in slide-in-from-top-2 duration-1000'>
+            <SearchInput
+              placeholder='Search for services (e.g., Business Permit)...'
+              value={searchQuery}
+              onChangeValue={setSearchQuery}
+              size='md'
+            />
+          </div>
+        )}
+      </PageHero>
 
-        <div className='max-w-xl mx-auto mt-8'>
-          <SearchInput
-            placeholder='Search for services (e.g., Business Permit)...'
-            value={searchQueryLocal}
-            onChange={e => setSearchQueryLocal(e.target.value)}
-            onSearch={query => setSearchQuery(query)}
-          />
-        </div>
-      </header>
-
-      <div className='flex flex-col md:flex-row md:gap-8 items-start'>
+      {/* --- SIDEBAR + CONTENT AREA --- */}
+      <div className='flex flex-col md:flex-row md:gap-8 items-start pb-12'>
+        {/* Sidebar */}
         <div className='w-full md:w-64 flex-shrink-0'>
           <ServicesSidebar
             sidebarOpen={sidebarOpen}
@@ -65,10 +69,11 @@ export default function ServicesLayout() {
           />
         </div>
 
+        {/* Content Area */}
         <main className='flex-1 min-w-0'>
           <Outlet
             context={{
-              searchQuery: searchQueryLocal,
+              searchQuery,
               selectedCategorySlug,
             }}
           />
