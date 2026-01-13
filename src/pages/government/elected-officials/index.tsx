@@ -98,7 +98,7 @@ export default function ElectedOfficialsIndex() {
                   <div className='flex items-center gap-1.5'>
                     <Mail className='w-3 h-3 text-blue-400' />
                     <span>
-                      {mayorOffice?.email || 'officeofthemayor@losbanos.gov.ph'}
+                      {/* {mayorOffice?.email || 'officeofthemayor@losbanos.gov.ph'} */}
                     </span>
                   </div>
                   <div className='flex items-center gap-1.5'>
