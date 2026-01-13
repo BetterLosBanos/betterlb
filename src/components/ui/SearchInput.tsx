@@ -1,16 +1,12 @@
+// src/components/ui/SearchInput.tsx
 import { SearchIcon, XIcon } from 'lucide-react';
-import {
-  ChangeEvent,
-  FormEvent,
-  InputHTMLAttributes,
-  ReactNode,
-  useState,
-} from 'react';
+import { InputHTMLAttributes, ReactNode } from 'react';
 import { cn } from '../../lib/utils';
 
 interface SearchInputProps
-  extends Omit<InputHTMLAttributes<HTMLInputElement>, 'onChange' | 'size'> {
-  onSearch?: (value: string) => void;
+  extends Omit<InputHTMLAttributes<HTMLInputElement>, 'size'> {
+  value: string; // Now required from parent
+  onChangeValue: (value: string) => void; // Standardized callback
   className?: string;
   placeholder?: string;
   icon?: ReactNode;
@@ -19,32 +15,17 @@ interface SearchInputProps
 }
 
 const SearchInput = ({
-  onSearch,
+  value,
+  onChangeValue,
   className,
   placeholder = 'Search...',
-  icon = <SearchIcon className='h-5 w-5 text-gray-800' />,
+  icon = <SearchIcon className='h-4 w-4 text-gray-400' />,
   size = 'md',
   clearable = true,
   ...props
 }: SearchInputProps) => {
-  const [value, setValue] = useState('');
-
-  const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
-    setValue(e.target.value);
-  };
-
-  const handleSubmit = (e: FormEvent) => {
-    e.preventDefault();
-    if (onSearch) {
-      onSearch(value);
-    }
-  };
-
   const handleClear = () => {
-    setValue('');
-    if (onSearch) {
-      onSearch('');
-    }
+    onChangeValue('');
   };
 
   const sizes = {
@@ -54,37 +35,35 @@ const SearchInput = ({
   };
 
   return (
-    <form onSubmit={handleSubmit} className={cn('relative w-full', className)}>
-      <div className='relative'>
-        <div className='absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none'>
-          {icon}
-        </div>
-        <input
-          type='text'
-          className={cn(
-            'w-full rounded-lg border border-gray-300 focus:border-primary-500 focus:ring-2 focus:ring-primary-500/20',
-            'bg-white text-gray-900 placeholder-gray-500',
-            'transition-all duration-200 ease-in-out',
-            sizes[size],
-            'pl-10',
-            clearable && value ? 'pr-10' : 'pr-4'
-          )}
-          placeholder={placeholder}
-          value={value}
-          onChange={handleChange}
-          {...props}
-        />
-        {clearable && value && (
-          <button
-            type='button'
-            className='absolute inset-y-0 right-0 flex items-center pr-3 text-gray-800 hover:text-gray-700'
-            onClick={handleClear}
-          >
-            <XIcon className='h-5 w-5' />
-          </button>
-        )}
+    <div className={cn('relative w-full', className)}>
+      <div className='absolute inset-y-0 left-0 flex items-center pl-4 pointer-events-none'>
+        {icon}
       </div>
-    </form>
+      <input
+        type='text'
+        value={value}
+        onChange={e => onChangeValue(e.target.value)}
+        className={cn(
+          'w-full rounded-xl border border-gray-200 bg-gray-50/50 transition-all duration-200',
+          'placeholder:text-gray-400 text-gray-900',
+          'focus:bg-white focus:border-primary-300 focus:ring-4 focus:ring-primary-500/5 outline-none',
+          sizes[size],
+          'pl-11',
+          clearable && value ? 'pr-10' : 'pr-4'
+        )}
+        placeholder={placeholder}
+        {...props}
+      />
+      {clearable && value && (
+        <button
+          type='button'
+          className='absolute inset-y-0 right-0 flex items-center pr-3 text-gray-400 hover:text-gray-600 transition-colors'
+          onClick={handleClear}
+        >
+          <XIcon className='h-4 w-4' />
+        </button>
+      )}
+    </div>
   );
 };
 
