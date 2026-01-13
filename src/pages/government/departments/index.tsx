@@ -5,7 +5,7 @@ import { ModuleHeader } from '@/components/layout/PageLayouts';
 import { Card, CardHeader, CardContent } from '@/components/ui/CardList';
 import departmentsData from '@/data/directory/departments.json';
 import { formatGovName } from '@/lib/stringUtils';
-import { officeIcons } from './components/DepartmentsSidebar'; // Reuse the icon map
+import { officeIcons } from '@/lib/officeIcons'; // Reuse the icon map
 import SearchInput from '@/components/ui/SearchInput';
 
 export default function DepartmentsIndex() {
