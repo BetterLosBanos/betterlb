@@ -1,198 +1,177 @@
 import { useParams, useOutletContext, Link } from 'react-router-dom';
+import { Calendar, Users, CheckCircle2, XCircle, Gavel } from 'lucide-react';
+import { getPersonName } from '@/lib/legislation';
+import { DetailSection } from '@/components/layout/PageLayouts';
+import { Badge } from '@/components/ui/Badge';
 import {
-  ArrowLeft,
-  Calendar,
-  Users,
-  CheckCircle2,
-  XCircle,
-  Gavel,
-} from 'lucide-react';
-import type { Session, Person, DocumentItem } from '../../lib/legislation';
-import { getPersonName } from '../../lib/legislation';
-
-interface ContextType {
-  sessions: Session[];
-  persons: Person[];
-  documents: DocumentItem[];
-}
+  Breadcrumb,
+  BreadcrumbItem,
+  BreadcrumbLink,
+  BreadcrumbList,
+  BreadcrumbPage,
+  BreadcrumbSeparator,
+  BreadcrumbHome,
+} from '@/components/ui/Breadcrumb';
+import type {
+  LegislationContext,
+  Person,
+  DocumentItem,
+  Session,
+} from '@/types';
 
 export default function SessionDetail() {
   const { sessionId } = useParams<{ sessionId: string }>();
-  const { sessions, persons, documents } = useOutletContext<ContextType>();
+  const { sessions, persons, documents } =
+    useOutletContext<LegislationContext>();
 
-  // 1. Find Session
-  const session = sessions.find(s => s.id === sessionId);
-
-  if (!session) {
+  const session = sessions.find((s: Session) => s.id === sessionId);
+  if (!session)
     return (
-      <div className='p-12 text-center text-gray-500'>Session not found</div>
+      <div className='p-20 text-center' role='alert'>
+        Session not found
+      </div>
     );
-  }
 
-  // 2. Resolve Attendees
   const presentMembers = session.present
-    .map(id => persons.find(p => p.id === id))
-    .filter(Boolean) as Person[];
-  const absentMembers = session.absent
-    .map(id => persons.find(p => p.id === id))
-    .filter(Boolean) as Person[];
+    .map(id => persons.find((p: Person) => p.id === id))
+    .filter((p): p is Person => Boolean(p));
 
-  // 3. Find Related Documents Enacted in this Session
-  const relatedDocs = documents.filter(d => d.session_id === session.id);
+  const absentMembers = session.absent
+    .map(id => persons.find((p: Person) => p.id === id))
+    .filter((p): p is Person => Boolean(p));
+
+  const relatedDocs = documents.filter(
+    (d: DocumentItem) => d.session_id === session.id
+  );
+
+  const isRegular = session.type === 'Regular';
 
   return (
-    <div className='max-w-5xl mx-auto space-y-6'>
-      {/* Header */}
-      <div className='bg-white rounded-xl shadow-sm border border-gray-200 p-6 md:p-8'>
-        <Link
-          to='/legislation'
-          className='group inline-flex items-center text-sm text-gray-500 hover:text-blue-600 mb-6 transition-colors'
-        >
-          <ArrowLeft className='h-4 w-4 mr-1 transition-transform group-hover:-translate-x-1' />
-          Back to Legislation
-        </Link>
+    <div className='mx-auto space-y-6 max-w-5xl duration-500 animate-in fade-in'>
+      <Breadcrumb>
+        <BreadcrumbList>
+          <BreadcrumbItem>
+            <BreadcrumbHome href='/' />
+          </BreadcrumbItem>
+          <BreadcrumbSeparator />
+          <BreadcrumbItem>
+            <BreadcrumbLink href='/legislation'>Legislation</BreadcrumbLink>
+          </BreadcrumbItem>
+          <BreadcrumbSeparator />
+          <BreadcrumbItem>
+            <BreadcrumbPage>{session.ordinal_number} Session</BreadcrumbPage>
+          </BreadcrumbItem>
+        </BreadcrumbList>
+      </Breadcrumb>
 
-        <div className='flex flex-col md:flex-row md:items-start md:justify-between gap-4'>
-          <div>
-            <div className='flex items-center gap-2 mb-2'>
-              <span
-                className={`px-2.5 py-1 rounded-md text-xs font-bold uppercase tracking-wide ${
-                  session.type === 'Regular'
-                    ? 'bg-blue-100 text-blue-800'
-                    : 'bg-amber-100 text-amber-800'
-                }`}
-              >
+      <header
+        className={`p-6 md:p-10 rounded-2xl border bg-white shadow-sm border-slate-200 border-l-[8px] ${isRegular ? 'border-l-primary-600' : 'border-l-secondary-600'}`}
+      >
+        <div className='flex flex-col gap-6 justify-between md:flex-row md:items-center'>
+          <div className='space-y-4'>
+            <div className='flex gap-3 items-center'>
+              <Badge variant={isRegular ? 'primary' : 'secondary'} dot>
                 {session.type} Session
-              </span>
-              <span className='text-xs font-mono text-gray-400'>
+              </Badge>
+              <span className='text-[10px] font-mono font-bold text-slate-400 uppercase tracking-widest'>
                 ID: {session.id}
               </span>
             </div>
-            <h1 className='text-3xl font-extrabold text-gray-900'>
+            <h1 className='text-2xl font-extrabold md:text-3xl text-slate-900'>
               {session.ordinal_number} {session.type} Session
             </h1>
           </div>
-
-          <div className='flex items-center gap-2 bg-gray-50 px-4 py-2 rounded-lg border border-gray-100'>
-            <Calendar className='h-5 w-5 text-gray-400' />
-            <div className='flex flex-col'>
-              <span className='text-[10px] font-bold uppercase text-gray-400 leading-none'>
+          <div className='flex gap-4 items-center p-4 rounded-xl border bg-slate-50 border-slate-100'>
+            <Calendar className='w-5 h-5 text-primary-600' />
+            <div>
+              <p className='text-[10px] font-bold text-slate-400 uppercase tracking-widest'>
                 Date Held
-              </span>
-              <span className='font-mono text-sm font-medium text-gray-900'>
-                {session.date}
-              </span>
+              </p>
+              <p className='text-sm font-bold text-slate-700'>{session.date}</p>
             </div>
           </div>
         </div>
-      </div>
+      </header>
 
-      <div className='grid grid-cols-1 lg:grid-cols-3 gap-6'>
-        {/* Left Column: Attendance */}
-        <div className='lg:col-span-1 space-y-6'>
-          <div className='bg-white rounded-xl shadow-sm border border-gray-200 overflow-hidden'>
-            <div className='bg-gray-50 px-4 py-3 border-b border-gray-200 flex items-center gap-2'>
-              <Users className='h-4 w-4 text-gray-500' />
-              <h2 className='text-sm font-bold text-gray-700 uppercase'>
-                Attendance
-              </h2>
-            </div>
-
-            <div className='p-4 space-y-6'>
-              {/* Present */}
+      <div className='grid grid-cols-1 gap-8 lg:grid-cols-3'>
+        <aside className='space-y-6'>
+          <DetailSection title='Attendance' icon={Users}>
+            <div className='space-y-6'>
               <div>
-                <h3 className='text-xs font-bold text-green-700 uppercase mb-3 flex items-center gap-1.5'>
-                  <CheckCircle2 className='h-3.5 w-3.5' /> Present (
+                <h3 className='text-[10px] font-bold text-emerald-600 uppercase tracking-widest mb-3 flex items-center gap-2'>
+                  <CheckCircle2 className='w-3.5 h-3.5' /> Present (
                   {presentMembers.length})
                 </h3>
                 <ul className='space-y-2'>
-                  {presentMembers.map(person => (
-                    <li key={person.id}>
+                  {presentMembers.map((p: Person) => (
+                    <li key={p.id}>
                       <Link
-                        to={`/legislation/person/${person.id}`}
-                        className='text-sm text-gray-700 flex items-center gap-2 hover:text-blue-600 hover:underline'
+                        to={`/legislation/person/${p.id}`}
+                        className='block py-1 text-sm font-medium transition-colors text-slate-600 hover:text-primary-600'
                       >
-                        <div className='w-1.5 h-1.5 rounded-full bg-green-400'></div>
-                        {getPersonName(person)}
+                        {getPersonName(p)}
                       </Link>
                     </li>
                   ))}
                 </ul>
               </div>
 
-              {/* Absent */}
               {absentMembers.length > 0 && (
-                <div className='pt-4 border-t border-gray-100'>
-                  <h3 className='text-xs font-bold text-red-700 uppercase mb-3 flex items-center gap-1.5'>
-                    <XCircle className='h-3.5 w-3.5' /> Absent (
+                <div className='pt-4 border-t border-slate-100'>
+                  <h3 className='text-[10px] font-bold text-secondary-600 uppercase tracking-widest mb-3 flex items-center gap-2'>
+                    <XCircle className='w-3.5 h-3.5' /> Absent (
                     {absentMembers.length})
                   </h3>
                   <ul className='space-y-2'>
-                    {absentMembers.map(person => (
+                    {absentMembers.map((p: Person) => (
                       <li
-                        key={person.id}
-                        className='text-sm text-gray-500 flex items-center gap-2'
+                        key={p.id}
+                        className='block py-1 text-sm font-medium text-slate-400'
                       >
-                        <div className='w-1.5 h-1.5 rounded-full bg-red-300'></div>
-                        {getPersonName(person)}
+                        {getPersonName(p)}
                       </li>
                     ))}
                   </ul>
                 </div>
               )}
             </div>
-          </div>
-        </div>
+          </DetailSection>
+        </aside>
 
-        {/* Right Column: Legislation */}
         <div className='lg:col-span-2'>
-          <div className='bg-white rounded-xl shadow-sm border border-gray-200 overflow-hidden h-full'>
-            <div className='bg-gray-50 px-6 py-4 border-b border-gray-200 flex items-center gap-2'>
-              <Gavel className='h-4 w-4 text-gray-500' />
-              <h2 className='text-sm font-bold text-gray-700 uppercase'>
-                Legislation Enacted
-              </h2>
-              <span className='ml-auto bg-white px-2 py-0.5 rounded-full text-xs font-medium border border-gray-200'>
-                {relatedDocs.length}
-              </span>
-            </div>
-
+          <DetailSection title='Legislation Enacted' icon={Gavel}>
             {relatedDocs.length === 0 ? (
-              <div className='p-12 text-center text-gray-400'>
-                No documents found for this session.
-              </div>
+              <p className='py-12 text-sm italic text-center text-slate-400'>
+                No documents enacted during this session.
+              </p>
             ) : (
-              <div className='divide-y divide-gray-100'>
-                {relatedDocs.map(doc => (
+              <div className='divide-y divide-slate-100'>
+                {relatedDocs.map((doc: DocumentItem) => (
                   <Link
                     key={doc.id}
                     to={`/legislation/${doc.type}/${doc.id}`}
-                    className='block p-4 hover:bg-gray-50 transition-colors group'
+                    className='group block py-4 hover:bg-slate-50 transition-all rounded-lg px-2 -mx-2 min-h-[44px]'
                   >
-                    <div className='flex items-start justify-between mb-1'>
-                      <span
-                        className={`text-[10px] font-bold px-2 py-0.5 rounded uppercase ${
-                          doc.type === 'ordinance'
-                            ? 'bg-blue-100 text-blue-800'
-                            : doc.type === 'resolution'
-                              ? 'bg-amber-100 text-amber-800'
-                              : 'bg-emerald-100 text-emerald-800'
-                        }`}
+                    <div className='flex gap-3 items-center mb-1'>
+                      <Badge
+                        variant={
+                          doc.type === 'ordinance' ? 'primary' : 'secondary'
+                        }
                       >
-                        {doc.type.replace('_', ' ')}
-                      </span>
-                      <span className='text-xs font-mono text-gray-400'>
+                        {doc.type}
+                      </Badge>
+                      <span className='text-[10px] font-mono font-bold text-slate-400 uppercase'>
                         {doc.number}
                       </span>
                     </div>
-                    <h3 className='text-sm font-semibold text-gray-900 group-hover:text-blue-600'>
+                    <p className='text-sm font-bold leading-relaxed text-slate-800 group-hover:text-primary-600'>
                       {doc.title}
-                    </h3>
+                    </p>
                   </Link>
                 ))}
               </div>
             )}
-          </div>
+          </DetailSection>
         </div>
       </div>
     </div>

@@ -1,10 +1,9 @@
-import { useState, useEffect } from 'react';
-import { Outlet } from 'react-router-dom';
-import SearchInput from '../../components/ui/SearchInput';
-import Button from '../../components/ui/Button';
-import { ComponentProps } from 'react';
+import { Outlet, useLocation } from 'react-router-dom';
 import { useQueryState, parseAsStringEnum } from 'nuqs';
 import useLegislation from '../../hooks/useLegislation';
+import SearchInput from '../../components/ui/SearchInput';
+import { PageHero } from '@/components/layout/PageLayouts';
+import LegislationSidebar from './components/LegislationSidebar';
 
 const filterValues = [
   'all',
@@ -12,16 +11,17 @@ const filterValues = [
   'resolution',
   'executive_order',
 ] as const;
-
 export type FilterType = (typeof filterValues)[number];
 
 export default function LegislationLayout() {
-  const [searchQuery, setSearchQuery] = useQueryState(
-    'search',
-    parseAsStringEnum(['']).withDefault('')
-  );
+  const location = useLocation();
+  const isIndexPage =
+    location.pathname === '/legislation' ||
+    location.pathname === '/legislation/';
 
-  const [searchQueryLocal, setSearchQueryLocal] = useState(searchQuery);
+  const [searchQuery, setSearchQuery] = useQueryState('search', {
+    defaultValue: '',
+  });
 
   const [filterType, setFilterType] = useQueryState(
     'type',
@@ -30,74 +30,51 @@ export default function LegislationLayout() {
       .withOptions({ clearOnDefault: true })
   );
 
-  useEffect(() => {
-    setSearchQueryLocal(searchQuery);
-  }, [searchQuery]);
-
   const legislation = useLegislation();
 
-  const getButtonProps = (type: FilterType): ComponentProps<typeof Button> => {
-    const isActive = filterType === type;
-
-    const customClass = isActive
-      ? {
-          ordinance:
-            '!bg-blue-600 hover:!bg-blue-700 border-transparent text-white',
-          resolution:
-            '!bg-amber-500 hover:!bg-amber-600 border-transparent text-white',
-          executive_order:
-            '!bg-emerald-600 hover:!bg-emerald-700 border-transparent text-white',
-          all: '!bg-zinc-900 hover:!bg-zinc-800 border-transparent text-white',
-        }[type]
-      : 'text-zinc-600 border-zinc-200 hover:bg-zinc-50 hover:text-zinc-900';
-
-    return {
-      children: null,
-      onClick: () => setFilterType(type),
-      variant: isActive ? 'primary' : 'outline',
-      size: 'sm',
-      className: customClass,
-    };
-  };
-
   return (
-    <div className='container mx-auto px-4 py-6 md:py-12'>
-      <header className='text-center mb-10'>
-        <h1 className='text-3xl md:text-4xl font-bold text-gray-900 mb-4'>
-          Municipal Legislation
-        </h1>
-        <p className='text-gray-600 max-w-2xl mx-auto mb-8'>
-          Browse local ordinances, resolutions, and executive orders.
-        </p>
+    <div className='container mx-auto px-4 md:px-0'>
+      {/* 1. Unified Centered Header */}
+      <PageHero
+        title='Municipal Legislation'
+        description={
+          isIndexPage
+            ? 'Browse official local ordinances, resolutions, and executive orders of Los Baños.'
+            : undefined
+        }
+      >
+        {isIndexPage && (
+          <div className='max-w-xl mx-auto'>
+            <SearchInput
+              placeholder='Search by title, number, or author...'
+              value={searchQuery}
+              onChangeValue={setSearchQuery}
+              size='md'
+            />
+          </div>
+        )}
+      </PageHero>
 
-        <div className='max-w-xl mx-auto mb-8'>
-          <SearchInput
-            placeholder='Search for legislation...'
-            value={searchQueryLocal}
-            onChange={e => setSearchQueryLocal(e.target.value)}
-            onSearch={query => setSearchQuery(query)}
+      <div className='flex flex-col md:flex-row md:gap-8 items-start pb-12'>
+        {/* 2. Unified Sidebar */}
+        <div className='w-full md:w-64 flex-shrink-0'>
+          <LegislationSidebar
+            filterType={filterType}
+            setFilterType={setFilterType}
           />
         </div>
 
-        <div className='flex flex-wrap justify-center gap-2'>
-          <Button {...getButtonProps('all')}>All Documents</Button>
-          <Button {...getButtonProps('ordinance')}>Ordinances</Button>
-          <Button {...getButtonProps('resolution')}>Resolutions</Button>
-          <Button {...getButtonProps('executive_order')}>
-            Executive Orders
-          </Button>
-        </div>
-      </header>
-
-      <main>
-        <Outlet
-          context={{
-            searchQuery: searchQueryLocal,
-            filterType,
-            ...legislation,
-          }}
-        />
-      </main>
+        {/* 3. Main Content Area */}
+        <main className='flex-1 min-w-0'>
+          <Outlet
+            context={{
+              searchQuery,
+              filterType,
+              ...legislation,
+            }}
+          />
+        </main>
+      </div>
     </div>
   );
 }
