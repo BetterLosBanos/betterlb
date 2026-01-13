@@ -1,6 +1,13 @@
 import { ChevronRightIcon, HomeIcon } from 'lucide-react';
-import { forwardRef, HTMLAttributes, ReactNode } from 'react';
+import {
+  forwardRef,
+  HTMLAttributes,
+  ReactNode,
+  AnchorHTMLAttributes,
+  LiHTMLAttributes,
+} from 'react';
 import { cn } from '../../lib/utils';
+import { Link } from 'react-router-dom';
 
 interface BreadcrumbProps extends HTMLAttributes<HTMLElement> {
   children: ReactNode;
@@ -20,7 +27,7 @@ interface BreadcrumbItemProps extends LiHTMLAttributes<HTMLLIElement> {
 interface BreadcrumbLinkProps extends AnchorHTMLAttributes<HTMLAnchorElement> {
   href: string;
   className?: string;
-  children: ReactNode;
+  children?: ReactNode;
 }
 
 interface BreadcrumbPageProps extends HTMLAttributes<HTMLSpanElement> {
@@ -36,10 +43,13 @@ interface BreadcrumbSeparatorProps extends HTMLAttributes<HTMLLIElement> {
 const Breadcrumb = forwardRef<HTMLElement, BreadcrumbProps>(
   ({ className, children, ...props }, ref) => {
     return (
-      <nav ref={ref} aria-label='breadcrumb' className={className} {...props}>
-        <ol className={cn('flex items-center space-x-2', className)}>
-          {children}
-        </ol>
+      <nav
+        ref={ref}
+        aria-label='breadcrumb'
+        className={cn('py-2', className)}
+        {...props}
+      >
+        {children}
       </nav>
     );
   }
@@ -51,7 +61,7 @@ const BreadcrumbList = forwardRef<HTMLOListElement, BreadcrumbListProps>(
     <ol
       ref={ref}
       className={cn(
-        'flex flex-wrap items-center gap-1.5 text-sm text-muted-foreground',
+        'flex flex-wrap items-center gap-2 text-sm text-gray-500',
         className
       )}
       {...props}
@@ -66,7 +76,7 @@ const BreadcrumbItem = forwardRef<HTMLLIElement, BreadcrumbItemProps>(
   ({ className, children, ...props }, ref) => (
     <li
       ref={ref}
-      className={cn('inline-flex items-center', className)}
+      className={cn('inline-flex items-center gap-2', className)}
       {...props}
     >
       {children}
@@ -77,17 +87,17 @@ BreadcrumbItem.displayName = 'BreadcrumbItem';
 
 const BreadcrumbLink = forwardRef<HTMLAnchorElement, BreadcrumbLinkProps>(
   ({ className, href, children, ...props }, ref) => (
-    <a
+    <Link
       ref={ref}
-      href={href}
+      to={href}
       className={cn(
-        'text-sm font-medium text-muted-foreground hover:text-foreground transition-colors',
+        'transition-colors hover:text-gray-900 font-medium text-gray-500',
         className
       )}
       {...props}
     >
       {children}
-    </a>
+    </Link>
   )
 );
 BreadcrumbLink.displayName = 'BreadcrumbLink';
@@ -99,7 +109,7 @@ const BreadcrumbPage = forwardRef<HTMLSpanElement, BreadcrumbPageProps>(
       role='link'
       aria-disabled='true'
       aria-current='page'
-      className={cn('text-sm font-medium text-foreground', className)}
+      className={cn('font-bold text-gray-900', className)}
       {...props}
     >
       {children}
@@ -116,28 +126,28 @@ const BreadcrumbSeparator = ({
   <li
     role='presentation'
     aria-hidden='true'
-    className={cn('text-muted-foreground', className)}
+    className={cn('text-gray-400', className)}
     {...props}
   >
-    {children || <ChevronRightIcon className='h-4 w-4' />}
+    {children || <ChevronRightIcon className='h-3.5 w-3.5' />}
   </li>
 );
 BreadcrumbSeparator.displayName = 'BreadcrumbSeparator';
 
 const BreadcrumbHome = forwardRef<HTMLAnchorElement, BreadcrumbLinkProps>(
   ({ className, href, children, ...props }, ref) => (
-    <a
+    <Link
       ref={ref}
-      href={href}
+      to={href}
       className={cn(
-        'flex items-center gap-1.5 text-sm font-medium text-muted-foreground hover:text-foreground transition-colors',
+        'flex items-center gap-1.5 transition-colors hover:text-gray-900 font-medium text-gray-500',
         className
       )}
       {...props}
     >
       <HomeIcon className='h-4 w-4' />
       {children}
-    </a>
+    </Link>
   )
 );
 BreadcrumbHome.displayName = 'BreadcrumbHome';
