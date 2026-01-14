@@ -53,3 +53,4 @@ src/data/unified_procurement.csv
 src/data/unified_procurement.json
 src/data/unify_procurement.py
 src/fix_services.py
+_worker.bundle
