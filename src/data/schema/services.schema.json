@@ -34,8 +34,9 @@
         "description": "External URL to access the service (can be empty)"
       },
       "officeSlug": {
-        "type": "string",
-        "description": "Slug of the department responsible for this service"
+        "type": "array",
+        "description": "Slugs of the departments involved in this service",
+        "items": { "type": "string" }
       },
       "category": {
         "type": "object",

@@ -1,0 +1,239 @@
+[
+  {
+    "service": "Community Tax Certificate (Cedula)",
+    "slug": "community-tax-certificate",
+    "type": "transaction",
+    "description": "Issuance of Community Tax Certificate for individuals and corporations.",
+    "officeSlug": ["municipal-treasurers-office"],
+    "category": {
+      "name": "Certificates & Vital Records",
+      "slug": "certificates-vital-records"
+    },
+    "steps": [
+      "Fill out the CTC application slip.",
+      "Present valid ID.",
+      "Pay the corresponding tax fee.",
+      "Sign and claim the Cedula."
+    ],
+    "requirements": [
+      "Valid ID",
+      "Proof of Income (if employed)",
+      "Payslip (optional)"
+    ],
+    "quickInfo": {
+      "processingTime": "15 minutes",
+      "fee": "Basic + Income based",
+      "whoCanApply": "Residents 18+",
+      "appointmentType": "Walk-in"
+    },
+    "updatedAt": null,
+    "sources": [
+      {
+        "name": "Republic Act No. 7160 (Local Government Code)",
+        "url": "https://www.officialgazette.gov.ph/1991/10/10/republic-act-no-7160/"
+      }
+    ]
+  },
+  {
+    "service": "Birth Certificate Registration",
+    "slug": "birth-certificate-registration",
+    "type": "transaction",
+    "description": "Timely registration of birth for newborn children.",
+    "officeSlug": ["municipal-civil-registrar"],
+    "category": {
+      "name": "Certificates & Vital Records",
+      "slug": "certificates-vital-records"
+    },
+    "steps": [
+      "Secure Certificate of Live Birth (COLB) from hospital/clinic.",
+      "Submit COLB to Civil Registrar.",
+      "Review drafted certificate.",
+      "Sign and receive registered copy."
+    ],
+    "requirements": [
+      "Certificate of Live Birth (4 copies)",
+      "Marriage Contract of Parents (if married)"
+    ],
+    "quickInfo": {
+      "processingTime": "1 hour",
+      "fee": "Free (Timely)",
+      "documents": "COLB, Marriage Cert"
+    },
+    "updatedAt": null,
+    "sources": [
+      {
+        "name": "Republic Act No. 3753 (Civil Register Law)",
+        "url": ""
+      },
+      {
+        "name": "PSA Administrative Order No. 1",
+        "url": ""
+      }
+    ]
+  },
+  {
+    "service": "Legitimation of Illegitimate Children (Art. 177, E.O. 209)",
+    "slug": "legitimation-of-illegitimate-children",
+    "type": "transaction",
+    "description": "Process for illegitimate children to be considered legitimate through the subsequent marriage of their parents.",
+    "url": "https://losbanos.gov.ph/posts/61",
+    "officeSlug": ["local-civil-registry-office"],
+    "category": {
+      "name": "Certificates & Vital Records",
+      "slug": "certificates-vital-records"
+    },
+    "steps": [
+      "Gather all required documents.",
+      "Submit requirements to the Local Civil Registry Office.",
+      "Pay the processing fee.",
+      "Wait for the processing of the Affidavit of Legitimation."
+    ],
+    "requirements": [
+      "Certificate of Marriage (PSA Copy)",
+      "Certificate of No Marriage of both Parents (CENOMAR)",
+      "Certificate of Live Birth of the Child (PSA Copy) - 6 copies",
+      "Affidavit of Legitimation (executed by both parents)"
+    ],
+    "quickInfo": {
+      "processingTime": "Varies",
+      "fee": "Php 250.00",
+      "whoCanApply": "Parents of illegitimate children"
+    },
+    "updatedAt": null,
+    "sources": [
+      {
+        "name": "https://losbanos.gov.ph/posts/86"
+      },
+      {
+        "name": "https://losbanos.gov.ph/posts/61"
+      }
+    ]
+  },
+  {
+    "service": "Delayed Registration of Birth",
+    "slug": "delayed-registration-of-birth",
+    "type": "transaction",
+    "description": "Registration of a birth that was not reported within thirty (30) days after its occurrence.",
+    "url": "https://losbanos.gov.ph/posts/91",
+    "officeSlug": ["local-civil-registry-office"],
+    "category": {
+      "name": "Certificates & Vital Records",
+      "slug": "certificates-vital-records"
+    },
+    "steps": [
+      "Secure Negative Certification of Birth from PSA.",
+      "Accomplish four (4) copies of the Certificate of Live Birth (COLB).",
+      "Prepare at least two supporting documents (Baptismal, School Records, etc.).",
+      "Submit documents and pay the processing fee."
+    ],
+    "requirements": [
+      "Negative Certification of Birth from PSA",
+      "Certificate of Live Birth (COLB) - 4 copies",
+      "Affidavit to Use the Surname of the Father (if applicable)",
+      "Affidavit of Two (2) Disinterested Persons",
+      "At least two: Baptismal Cert, Form 137, Medical Record, ITR, or Voter's Affidavit"
+    ],
+    "quickInfo": {
+      "processingTime": "10-day posting period required",
+      "fee": "Php 200.00",
+      "whoCanApply": "Individuals with unregistered births"
+    },
+    "updatedAt": null,
+    "sources": [
+      {
+        "name": "Revised Rules and Regulations Governing the Registration of Civil Registry Documents"
+      }
+    ]
+  },
+  {
+    "service": "Petition for Correction of Month/Date of Birth (R.A. 10172)",
+    "slug": "correction-of-birth-date",
+    "type": "transaction",
+    "url": "https://losbanos.gov.ph/posts/84",
+    "description": "Administrative remedy for correcting clerical or typographical errors in the day and/or month of birth in the Civil Register.",
+    "officeSlug": ["local-civil-registry-office"],
+    "category": {
+      "name": "Certificates & Vital Records",
+      "slug": "certificates-vital-records"
+    },
+    "requirements": [
+      "Document to be corrected (OCRG and LCRO Copy)",
+      "Earliest School Record / Documents",
+      "Medical Records",
+      "Baptismal Certificate",
+      "NBI and Police Clearance",
+      "Affidavit of Publication and Newspaper Clippings"
+    ],
+    "quickInfo": {
+      "fee": "Php 3,000.00 (Filing) + Php 650.00 (Processing)",
+      "whoCanApply": "Document Owner / Petitioner"
+    },
+    "updatedAt": null,
+    "sources": [
+      {
+        "name": "Republic Act No. 10172"
+      }
+    ]
+  },
+  {
+    "service": "Petition for Correction of Sex (R.A. 10172)",
+    "slug": "correction-of-sex",
+    "type": "transaction",
+    "url": "https://losbanos.gov.ph/posts/85",
+    "description": "Administrative procedure to correct an erroneous entry in the sex of a person in the Certificate of Live Birth.",
+    "officeSlug": ["local-civil-registry-office"],
+    "category": {
+      "name": "Certificates & Vital Records",
+      "slug": "certificates-vital-records"
+    },
+    "requirements": [
+      "Document to be corrected (OCRG and LCRO Copy)",
+      "Medical Certification from Government Physician (No Sex Change undergone)",
+      "Certificate of Authenticity of Medical Certification",
+      "Earliest School Documents",
+      "Baptismal Certificate",
+      "Affidavit of Publication and Newspaper Clippings"
+    ],
+    "quickInfo": {
+      "fee": "Php 3,000.00 (Filing) + Php 650.00 (Processing)",
+      "whoCanApply": "Document Owner / Petitioner"
+    },
+    "updatedAt": null,
+    "sources": [
+      {
+        "name": "Republic Act No. 10172"
+      }
+    ]
+  },
+  {
+    "service": "Marriage License Application",
+    "slug": "marriage-license-application",
+    "type": "transaction",
+    "description": "Legal requirement for two people intending to get married within the Philippines.",
+    "officeSlug": ["local-civil-registry-office"],
+    "category": {
+      "name": "Certificates & Vital Records",
+      "slug": "certificates-vital-records"
+    },
+    "requirements": [
+      "CENOMAR from PSA (2 photocopies)",
+      "Cedula / Residence Certificate (2 photocopies)",
+      "PSA Birth Certificate (2 photocopies)",
+      "Family Planning Certificate",
+      "Marriage Counseling Certificate",
+      "Barangay Residency Certification",
+      "Parental Consent (if 18-24 years old)"
+    ],
+    "quickInfo": {
+      "fee": "Php 500.00",
+      "whoCanApply": "Couples (Personal Appearance Required)",
+      "validity": "120 days from date of issue"
+    },
+    "updatedAt": null,
+    "sources": [
+      {
+        "name": "Title I, Chapter 2 of the Family Code of the Philippines"
+      }
+    ]
+  }
+]

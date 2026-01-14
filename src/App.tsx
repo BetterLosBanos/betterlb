@@ -69,6 +69,7 @@ import MunicipalIncomePage from './pages/statistics/MunicipalIncomePage';
 import CompetitivenessPage from './pages/statistics/CompetitivenessPage';
 import PopulationPage from './pages/statistics/PopulationPage';
 import ExecutiveOfficePage from './pages/government/elected-officials/ExecutiveOfficePage';
+import ContributePage from './pages/contribute';
 
 function App() {
   return (
@@ -168,6 +169,9 @@ function App() {
               <Route index element={<TransparencyIndex />} />
               <Route path='financial' element={<FinancialPage />} />
             </Route>
+
+            {/* Contribute Page */}
+            <Route path='contribute' element={<ContributePage />} />
 
             {/*Not Found/404 Page */}
             <Route path='*' element={<NotFound />} />

@@ -23,7 +23,31 @@
       {
         "name": "MARLO PJ A. ALIPON",
         "role": "Vice Mayor",
-        "email": "vp@ovp.gov.ph"
+        "email": ""
+      }
+    ]
+  },
+  {
+    "slug": "other-officials",
+    "office": "OTHER OFFICIALS",
+    "address": "Los Baños Municipal Hall, Jamboree Road, Brgy. Timugan, Los Baños",
+    "trunkline": "",
+    "website": "",
+    "officials": [
+      {
+        "name": "OLIVER D. MANAIG",
+        "role": "Municipal Assessor",
+        "email": ""
+      },
+      {
+        "name": "MARIA LUISA G. DIAZ",
+        "role": "Municipal Treasurer",
+        "email": ""
+      },
+      {
+        "name": "Anatoly P. Guinto",
+        "role": "Chief of Staff",
+        "email": ""
       }
     ]
   }

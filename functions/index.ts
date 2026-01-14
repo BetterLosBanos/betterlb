@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 // Main entry point for Cloudflare Workers
 import {
   scheduled as getWeatherScheduled,
@@ -13,8 +14,8 @@ export { scheduled as scheduled_getWeather } from './api/weather';
 export default {
   async scheduled(
     controller: ScheduledController,
-    env: Env
-    // ctx: ExecutionContext
+    env: Env,
+    ctx: ExecutionContext
   ): Promise<void> {
     console.log('Scheduled update');
     await getWeatherScheduled(controller, env);
@@ -22,8 +23,8 @@ export default {
 
   async fetch(
     request: Request,
-    env: Env
-    // ctx: ExecutionContext
+    env: Env,
+    ctx: ExecutionContext
   ): Promise<Response> {
     const url = new URL(request.url);
     const path = url.pathname;

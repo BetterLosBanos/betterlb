@@ -5,7 +5,6 @@ import {
   SiX,
   SiYoutube,
 } from '@icons-pack/react-simple-icons';
-import { CheckCircle2 } from 'lucide-react';
 import { FC } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Link } from 'react-router-dom';
@@ -54,21 +53,21 @@ const Footer: FC = () => {
         <div className='grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-6'>
           <div className='col-span-1 md:col-span-2'>
             <div className='flex items-center mb-4'>
-              <CheckCircle2 className='mr-3 w-12 h-12' />
-              {/* <img
-                src='/logos/svg/BetterGov_Icon-White.svg'
-                alt='BetterGov Logo'
+              {/* <CheckCircle2 className='mr-3 w-12 h-12' /> */}
+              <img
+                src='/logos/webp/betterlb-white-outline.webp'
+                alt='BetterLB Logo'
                 className='mr-3 w-12 h-12'
-              /> */}
+              />
 
               <div>
-                <div className='font-bold'>Better Philippines</div>
-                <div className='text-xs text-gray-400'>BetterGov.ph Portal</div>
+                <div className='font-bold'>Better Los Baños</div>
+                <div className='text-xs text-gray-400'>BetterLB.org Portal</div>
               </div>
             </div>
             <p className='mb-4 text-sm text-gray-400'>
-              A community portal providing Philippine citizens, businesses, and
-              visitors with information and services.
+              A community portal providing citizens, businesses, and visitors
+              with information and services about the Municipality of Los Baños.
             </p>
             <div className='flex space-x-4'>
               {footerNavigation.socialLinks.map(link => (
