@@ -1,35 +1,29 @@
-// 1. Define the environment variables shape
 interface Env {
   GITHUB_TOKEN: string;
   GITHUB_REPO: string;
 }
 
-// 2. Define the expected payload from your React form
-interface SubmissionPayload {
+interface RequestBody {
   title: string;
   content: string;
 }
 
-// 3. Define the minimal response we care about from GitHub's API
+// 1. Define the success response shape from GitHub
 interface GitHubIssueResponse {
   html_url: string;
   number: number;
-  id: number;
+}
+
+// 2. Define the error response shape from GitHub
+interface GitHubErrorResponse {
+  message: string;
 }
 
 export const onRequestPost: PagesFunction<Env> = async context => {
   const { env, request } = context;
 
   try {
-    // Standardize parsing with type safety
-    const payload = (await request.json()) as SubmissionPayload;
-
-    if (!payload.title || !payload.content) {
-      return new Response(
-        JSON.stringify({ error: 'Missing required fields: title or content' }),
-        { status: 400, headers: { 'Content-Type': 'application/json' } }
-      );
-    }
+    const payload = (await request.json()) as RequestBody;
 
     if (!env.GITHUB_TOKEN || !env.GITHUB_REPO) {
       return new Response(
@@ -40,14 +34,14 @@ export const onRequestPost: PagesFunction<Env> = async context => {
       );
     }
 
-    // Post to GitHub API for your Organization Repository
     const ghResponse = await fetch(
       `https://api.github.com/repos/${env.GITHUB_REPO}/issues`,
       {
         method: 'POST',
         headers: {
-          Authorization: `Bearer ${env.GITHUB_TOKEN}`,
           Accept: 'application/vnd.github+json',
+          Authorization: `Bearer ${env.GITHUB_TOKEN}`,
+          'X-GitHub-Api-Version': '2022-11-28',
           'User-Agent': 'BetterLB-Portal',
           'Content-Type': 'application/json',
         },
@@ -59,25 +53,36 @@ export const onRequestPost: PagesFunction<Env> = async context => {
       }
     );
 
-    // Parse the response using our interface instead of 'any'
-    const result = (await ghResponse.json()) as GitHubIssueResponse;
+    const result = await ghResponse.json();
 
-    return new Response(
-      JSON.stringify({
-        success: ghResponse.ok,
-        issueUrl: result.html_url,
-        issueNumber: result.number,
-      }),
-      {
-        status: ghResponse.status,
-        headers: { 'Content-Type': 'application/json' },
-      }
-    );
+    if (ghResponse.status === 201) {
+      // 3. Cast to our specific interface instead of 'any'
+      const successData = result as GitHubIssueResponse;
+      return new Response(
+        JSON.stringify({ success: true, url: successData.html_url }),
+        {
+          status: 201,
+          headers: { 'Content-Type': 'application/json' },
+        }
+      );
+    } else {
+      // 4. Cast to error interface
+      const errorData = result as GitHubErrorResponse;
+      return new Response(
+        JSON.stringify({
+          success: false,
+          error: `GitHub Error: ${errorData.message}`,
+        }),
+        {
+          status: ghResponse.status,
+          headers: { 'Content-Type': 'application/json' },
+        }
+      );
+    }
   } catch (error: unknown) {
-    const message =
+    const msg =
       error instanceof Error ? error.message : 'Internal Server Error';
-
-    return new Response(JSON.stringify({ error: message }), {
+    return new Response(JSON.stringify({ error: msg }), {
       status: 500,
       headers: { 'Content-Type': 'application/json' },
     });
