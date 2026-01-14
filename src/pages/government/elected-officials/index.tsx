@@ -7,9 +7,13 @@ import {
   Users,
   Mail,
   Phone,
+  Briefcase,
+  ArrowRight,
 } from 'lucide-react';
-import { ModuleHeader } from '@/components/layout/PageLayouts';
-import { CardAvatar } from '@/components/ui/CardList';
+
+// UI Components
+import { ModuleHeader, DetailSection } from '@/components/layout/PageLayouts';
+import { Card, CardContent, CardAvatar } from '@/components/ui/CardList';
 import {
   Breadcrumb,
   BreadcrumbItem,
@@ -18,29 +22,48 @@ import {
   BreadcrumbSeparator,
   BreadcrumbHome,
 } from '@/components/ui/Breadcrumb';
+import { Badge } from '@/components/ui/Badge';
 
-// Data Imports
+// Data & Utils
 import executiveData from '@/data/directory/executive.json';
 import legislativeData from '@/data/directory/legislative.json';
+import { toTitleCase } from '@/lib/stringUtils';
+
+// 1. Define the Interface to match your NEW flat JSON structure
+interface ExecutiveOfficial {
+  slug: string;
+  name: string;
+  role: string;
+  office: string;
+  address?: string;
+  phone?: string;
+  email?: string;
+  website?: string;
+  isElected: boolean;
+}
+
+interface OfficialCardProps {
+  href: string;
+  official: ExecutiveOfficial;
+}
 
 export default function ElectedOfficialsIndex() {
-  // 1. Extract Executive Data
-  const mayorOffice = executiveData.find(o => o.slug === 'office-of-the-mayor');
-  const mayor = mayorOffice?.officials[0];
+  const allExecutive = executiveData as ExecutiveOfficial[];
 
-  const viceMayorOffice = executiveData.find(
+  // 2. Data Extraction using the flat structure
+  const mayor = allExecutive.find(o => o.slug === 'office-of-the-mayor');
+  const viceMayor = allExecutive.find(
     o => o.slug === 'office-of-the-vice-mayor'
   );
-  const viceMayor = viceMayorOffice?.officials[0];
+  const managementTeam = allExecutive.filter(o => !o.isElected);
 
-  // 2. Extract Legislative Data
   const sbChamber = legislativeData.find(
     o => o.slug === '12th-sangguniang-bayan'
   );
   const committeeCount = sbChamber?.permanent_committees?.length || 0;
 
   return (
-    <div className='mx-auto space-y-6 max-w-7xl duration-500 animate-in fade-in'>
+    <div className='pb-20 mx-auto space-y-8 max-w-4xl duration-500 animate-in fade-in md:px-0'>
       <Breadcrumb>
         <BreadcrumbList>
           <BreadcrumbItem>
@@ -54,165 +77,173 @@ export default function ElectedOfficialsIndex() {
       </Breadcrumb>
 
       <ModuleHeader
-        title='Elected Officials'
-        description='Meet the current leadership of the Municipal Government of Los Baños.'
+        title='City Leadership'
+        description='Meet the elected leaders and appointed management of the Science and Nature City.'
       />
 
-      <div className='grid grid-cols-1 gap-8 pt-4 lg:grid-cols-2'>
-        {/* --- EXECUTIVE BRANCH --- */}
-        <div className='flex relative flex-col p-8 rounded-3xl border-2 border-blue-100 bg-blue-50/30 group'>
-          <Landmark className='absolute right-[-10px] bottom-[-10px] w-48 h-48 opacity-5 -rotate-12 pointer-events-none' />
+      <div className='space-y-12'>
+        {/* --- SECTION 1: EXECUTIVE LEADERSHIP --- */}
+        <DetailSection
+          title='Executive Leadership'
+          icon={Landmark}
+          className='border-l-4 shadow-sm border-l-primary-600'
+        >
+          <div className='grid grid-cols-1 gap-4 md:grid-cols-2'>
+            {mayor && (
+              <OfficialCard
+                href='/government/elected-officials/executive-branch'
+                official={mayor}
+              />
+            )}
+            {viceMayor && (
+              <OfficialCard
+                href='/government/elected-officials/executive-branch'
+                official={viceMayor}
+              />
+            )}
+          </div>
+        </DetailSection>
 
-          <div className='relative z-10 flex-1'>
-            <h2 className='flex gap-2 items-center mb-6 text-xs font-bold tracking-widest text-blue-600 uppercase'>
-              <span className='w-8 h-px bg-blue-200' /> Executive Branch
-            </h2>
-
-            <div className='mb-8 space-y-4'>
-              {/* Mayor Card */}
-              <Link
-                to='/government/elected-officials/office-of-the-mayor'
-                className='flex flex-col p-5 bg-white rounded-2xl border border-blue-100 shadow-sm transition-all hover:shadow-md hover:border-blue-300 group/item'
-              >
-                <div className='flex gap-4 items-center mb-4'>
-                  <CardAvatar
-                    name={mayor?.name || 'Mayor'}
-                    size='md'
-                    className='ring-2 ring-blue-50 shadow-inner'
-                  />
-                  <div className='flex-1 min-w-0'>
-                    <p className='text-[10px] font-bold text-blue-500 uppercase tracking-widest'>
-                      Municipal Mayor
-                    </p>
-                    <h3 className='text-lg font-bold text-gray-900 truncate group-hover/item:text-blue-700'>
-                      {mayor?.name}
+        {/* --- SECTION 2: LEGISLATIVE BRANCH --- */}
+        <DetailSection
+          title='Legislative Branch'
+          icon={Gavel}
+          className='border-l-4 shadow-sm border-l-secondary-600'
+        >
+          <div className='grid grid-cols-1 gap-4 md:grid-cols-2'>
+            <Link
+              to='/government/elected-officials/12th-sangguniang-bayan'
+              className='group min-h-[44px]'
+            >
+              <Card hover className='h-full border-slate-100'>
+                <CardContent className='flex gap-5 items-center p-6'>
+                  <div className='flex justify-center items-center w-12 h-12 text-white rounded-2xl shadow-lg bg-secondary-600 shadow-secondary-900/10'>
+                    <Users className='w-6 h-6' />
+                  </div>
+                  <div className='flex-1'>
+                    <h3 className='font-bold leading-tight transition-colors text-slate-900 group-hover:text-secondary-700'>
+                      12th Sangguniang Bayan
                     </h3>
-                  </div>
-                  <div className='p-2 text-blue-600 bg-blue-50 rounded-lg transition-colors group-hover/item:bg-blue-600 group-hover/item:text-white'>
-                    <ChevronRight className='w-4 h-4' />
-                  </div>
-                </div>
-
-                {/* Dynamic Contact Row from JSON */}
-                <div className='flex flex-wrap items-center gap-x-6 gap-y-2 pt-4 border-t border-gray-50 text-[11px] font-medium text-gray-500'>
-                  <div className='flex items-center gap-1.5'>
-                    <Mail className='w-3 h-3 text-blue-400' />
-                    <span>
-                      {/* {mayorOffice?.email || 'officeofthemayor@losbanos.gov.ph'} */}
-                    </span>
-                  </div>
-                  <div className='flex items-center gap-1.5'>
-                    <Phone className='w-3 h-3 text-blue-400' />
-                    <span>
-                      {Array.isArray(mayorOffice?.trunkline)
-                        ? mayorOffice.trunkline[0]
-                        : mayorOffice?.trunkline}
-                    </span>
-                  </div>
-                </div>
-              </Link>
-
-              {/* Vice Mayor Card */}
-              <Link
-                to='/government/elected-officials/office-of-the-vice-mayor'
-                className='flex flex-col p-5 bg-white rounded-2xl border border-blue-100 shadow-sm transition-all hover:shadow-md hover:border-blue-300 group/item'
-              >
-                <div className='flex gap-4 items-center mb-4'>
-                  <CardAvatar
-                    name={viceMayor?.name || 'Vice Mayor'}
-                    size='md'
-                    className='ring-2 ring-blue-50 shadow-inner'
-                  />
-                  <div className='flex-1 min-w-0'>
-                    <p className='text-[10px] font-bold text-blue-500 uppercase tracking-widest'>
-                      Municipal Vice Mayor
+                    <p className='mt-1 text-xs font-medium text-slate-500'>
+                      Council Members & Profiles
                     </p>
-                    <h3 className='text-lg font-bold text-gray-900 truncate group-hover/item:text-blue-700'>
-                      {viceMayor?.name}
-                    </h3>
                   </div>
-                  <div className='p-2 text-blue-600 bg-blue-50 rounded-lg transition-colors group-hover/item:bg-blue-600 group-hover/item:text-white'>
-                    <ChevronRight className='w-4 h-4' />
-                  </div>
-                </div>
+                  <ChevronRight className='w-5 h-5 transition-all text-slate-300 group-hover:text-secondary-600 group-hover:translate-x-1' />
+                </CardContent>
+              </Card>
+            </Link>
 
-                <div className='flex flex-wrap items-center gap-x-6 gap-y-2 pt-4 border-t border-gray-50 text-[11px] font-medium text-gray-500'>
-                  <div className='flex items-center gap-1.5'>
-                    <Mail className='w-3 h-3 text-blue-400' />
-                    <span>
-                      {viceMayorOffice?.email || 'vmo@losbanos.gov.ph'}
-                    </span>
+            <Link
+              to='/government/elected-officials/municipal-committees'
+              className='group min-h-[44px]'
+            >
+              <Card hover className='h-full border-slate-100'>
+                <CardContent className='flex gap-5 items-center p-6'>
+                  <div className='flex justify-center items-center w-12 h-12 rounded-2xl border bg-secondary-50 text-secondary-600 border-secondary-100'>
+                    <BookOpen className='w-6 h-6' />
                   </div>
-                  <div className='flex items-center gap-1.5'>
-                    <Phone className='w-3 h-3 text-blue-400' />
-                    <span>
-                      {Array.isArray(viceMayorOffice?.trunkline)
-                        ? viceMayorOffice.trunkline[0]
-                        : viceMayorOffice?.trunkline}
-                    </span>
+                  <div className='flex-1'>
+                    <h3 className='font-bold leading-tight transition-colors text-slate-900 group-hover:text-secondary-700'>
+                      Municipal Committees
+                    </h3>
+                    <p className='mt-1 text-xs font-medium text-slate-500'>
+                      {committeeCount} Standing Committees
+                    </p>
                   </div>
-                </div>
+                  <ChevronRight className='w-5 h-5 transition-all text-slate-300 group-hover:text-secondary-600 group-hover:translate-x-1' />
+                </CardContent>
+              </Card>
+            </Link>
+          </div>
+        </DetailSection>
+
+        {/* --- SECTION 3: MUNICIPAL MANAGEMENT --- */}
+        {managementTeam.length > 0 && (
+          <DetailSection
+            title='Municipal Management'
+            icon={Briefcase}
+            className='border-l-4 shadow-sm border-l-slate-400'
+          >
+            <div className='grid grid-cols-1 gap-4 sm:grid-cols-2'>
+              {managementTeam.map((official: ExecutiveOfficial) => (
+                <Card
+                  key={official.slug}
+                  className='border-slate-100 bg-slate-50/30'
+                >
+                  <CardContent className='flex gap-4 items-center p-4'>
+                    <CardAvatar
+                      name={official.name}
+                      size='sm'
+                      className='font-bold bg-white border border-slate-200 text-slate-400 shadow-xs'
+                    />
+                    <div className='flex-1 min-w-0'>
+                      <h4 className='text-sm font-bold leading-tight truncate text-slate-900'>
+                        {toTitleCase(official.name)}
+                      </h4>
+                      <Badge variant='slate' className='mt-1'>
+                        {official.role}
+                      </Badge>
+                    </div>
+                  </CardContent>
+                </Card>
+              ))}
+            </div>
+            <div className='pt-6 mt-8 text-center border-t border-slate-100'>
+              <Link
+                to='/government/departments'
+                className='text-[10px] font-bold text-primary-600 uppercase tracking-widest hover:text-primary-700 flex items-center justify-center gap-1.5 transition-all group'
+              >
+                Browse all Government Departments
+                <ArrowRight className='w-3 h-3 transition-transform group-hover:translate-x-1' />
               </Link>
             </div>
-          </div>
-        </div>
-
-        {/* --- LEGISLATIVE BRANCH --- */}
-        <div className='flex relative flex-col p-8 rounded-3xl border-2 border-indigo-100 bg-indigo-50/30 group'>
-          <Gavel className='absolute right-[-10px] bottom-[-10px] w-48 h-48 opacity-5 -rotate-12 pointer-events-none' />
-
-          <div className='relative z-10 flex-1'>
-            <h2 className='flex gap-2 items-center mb-6 text-xs font-bold tracking-widest text-indigo-600 uppercase'>
-              <span className='w-8 h-px bg-indigo-200' /> Legislative Branch
-            </h2>
-
-            <div className='mb-8 space-y-4'>
-              {/* Sangguniang Bayan Link */}
-              <Link
-                to='/government/elected-officials/12th-sangguniang-bayan'
-                className='flex gap-4 items-center p-6 bg-white rounded-2xl border border-indigo-100 shadow-sm transition-all hover:shadow-md hover:border-indigo-300 group/item'
-              >
-                <div className='flex justify-center items-center w-12 h-12 text-white bg-indigo-600 rounded-xl shadow-lg'>
-                  <Users className='w-6 h-6' />
-                </div>
-                <div className='flex-1'>
-                  <h3 className='text-lg font-bold text-gray-900 group-hover/item:text-indigo-700'>
-                    12th Sangguniang Bayan
-                  </h3>
-                  <p className='text-xs text-gray-500'>
-                    Official Council Members & Sangguniang Bayan Secretary
-                  </p>
-                </div>
-                <ChevronRight className='w-5 h-5 text-gray-300 group-hover/item:text-indigo-600' />
-              </Link>
-
-              {/* Committees Link */}
-              <Link
-                to='/government/elected-officials/municipal-committees'
-                className='flex gap-4 items-center p-6 bg-white rounded-2xl border border-indigo-100 shadow-sm transition-all hover:shadow-md hover:border-indigo-300 group/item'
-              >
-                <div className='flex justify-center items-center w-12 h-12 text-indigo-600 bg-indigo-100 rounded-xl border border-indigo-200'>
-                  <BookOpen className='w-6 h-6' />
-                </div>
-                <div className='flex-1'>
-                  <h3 className='text-lg font-bold text-gray-900 group-hover/item:text-indigo-700'>
-                    Municipal Committees
-                  </h3>
-                  <p className='text-xs text-gray-500'>
-                    View {committeeCount} Standing Committees & Chairpersons
-                  </p>
-                </div>
-                <ChevronRight className='w-5 h-5 text-gray-300 group-hover/item:text-indigo-600' />
-              </Link>
-            </div>
-
-            <p className='mt-auto text-xs italic font-medium text-indigo-600/70'>
-              Headed by the Presiding Officer, the SB is responsible for local
-              legislation.
-            </p>
-          </div>
-        </div>
+          </DetailSection>
+        )}
       </div>
     </div>
+  );
+}
+
+function OfficialCard({ href, official }: OfficialCardProps) {
+  return (
+    <Link to={href} className='group min-h-[48px]'>
+      <Card hover className='flex flex-col h-full border-slate-100 shadow-xs'>
+        <CardContent className='flex flex-col p-5 h-full'>
+          <div className='flex gap-4 items-center mb-4'>
+            <CardAvatar
+              name={official.name}
+              size='md'
+              className='font-bold ring-2 ring-white shadow-sm bg-primary-50 text-primary-800'
+            />
+            <div className='flex-1 min-w-0'>
+              <p className='text-[10px] font-bold text-primary-600 uppercase tracking-widest leading-none mb-1'>
+                {official.role}
+              </p>
+              <h3 className='text-lg font-bold truncate transition-colors text-slate-900 group-hover:text-primary-700'>
+                {toTitleCase(official.name)}
+              </h3>
+            </div>
+            <div className='p-1.5 rounded-lg bg-slate-50 text-slate-300 group-hover:bg-primary-50 group-hover:text-primary-600 transition-all'>
+              <ChevronRight className='w-4 h-4' />
+            </div>
+          </div>
+
+          <div className='pt-4 mt-auto space-y-1.5 border-t border-slate-50'>
+            {official.email && (
+              <div className='flex items-center gap-2 text-[10px] font-medium text-slate-500'>
+                <Mail className='w-3.5 h-3.5 text-primary-400' />
+                <span className='truncate'>{official.email}</span>
+              </div>
+            )}
+            {official.phone && (
+              <div className='flex items-center gap-2 text-[10px] font-medium text-slate-500'>
+                <Phone className='w-3.5 h-3.5 text-primary-400' />
+                <span>{official.phone}</span>
+              </div>
+            )}
+          </div>
+        </CardContent>
+      </Card>
+    </Link>
   );
 }

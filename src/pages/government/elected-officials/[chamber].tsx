@@ -6,8 +6,9 @@ import {
   UsersIcon,
   GavelIcon,
   ChevronRight,
+  ShieldCheck,
 } from 'lucide-react';
-
+import { SiFacebook } from '@icons-pack/react-simple-icons';
 import legislativeData from '@/data/directory/legislative.json';
 import { ModuleHeader, DetailSection } from '@/components/layout/PageLayouts';
 import { Card, CardContent, CardAvatar } from '@/components/ui/CardList';
@@ -21,9 +22,11 @@ import {
   BreadcrumbHome,
 } from '@/components/ui/Breadcrumb';
 import { EmptyState } from '@/components/ui/EmptyState';
+import { toTitleCase } from '@/lib/stringUtils';
+import { Badge } from '@/components/ui/Badge';
 
 export default function LegislativeChamber() {
-  const { chamber: slug } = useParams();
+  const { chamber: slug } = useParams<{ chamber: string }>();
   const data = legislativeData.find(item => item.slug === slug);
 
   if (!data) {
@@ -37,67 +40,85 @@ export default function LegislativeChamber() {
   }
 
   return (
-    <div className='max-w-7xl mx-auto space-y-6 animate-in fade-in duration-500'>
-      {/* 1. Responsive Breadcrumbs (Hide on very small mobile) */}
-      <div className='hidden sm:block'>
-        <Breadcrumb>
-          <BreadcrumbList>
-            <BreadcrumbItem>
-              <BreadcrumbHome href='/' />
-            </BreadcrumbItem>
-            <BreadcrumbSeparator />
-            <BreadcrumbItem>
-              <BreadcrumbLink href='/government/elected-officials'>
-                Elected Officials
-              </BreadcrumbLink>
-            </BreadcrumbItem>
-            <BreadcrumbSeparator />
-            <BreadcrumbItem>
-              <BreadcrumbPage>{data.chamber}</BreadcrumbPage>
-            </BreadcrumbItem>
-          </BreadcrumbList>
-        </Breadcrumb>
-      </div>
+    <div className='mx-auto space-y-6 max-w-7xl duration-500 animate-in fade-in'>
+      <Breadcrumb>
+        <BreadcrumbList>
+          <BreadcrumbItem>
+            <BreadcrumbHome href='/' />
+          </BreadcrumbItem>
+          <BreadcrumbSeparator />
+          <BreadcrumbItem>
+            <BreadcrumbLink href='/government/elected-officials'>
+              Elected Officials
+            </BreadcrumbLink>
+          </BreadcrumbItem>
+          <BreadcrumbSeparator />
+          <BreadcrumbItem>
+            <BreadcrumbPage>{data.chamber}</BreadcrumbPage>
+          </BreadcrumbItem>
+        </BreadcrumbList>
+      </Breadcrumb>
 
-      {/* 2. Responsive Header: Text scales down for mid-size windows */}
       <ModuleHeader
         title={data.chamber}
-        description='Official members and standing committees of the municipal council.'
+        description={`Official members and standing committees of the municipal council.`}
       />
 
-      {/* 3. Main Layout: Stacks on 'lg' (1024px) to prevent squeezing on half-screens */}
-      <div className='flex flex-col xl:flex-row gap-8'>
-        {/* LEFT: Main Content (Takes full width until 1280px) */}
-        <div className='flex-1 min-w-0 space-y-8'>
-          {/* Council Members Grid: Uses auto-fit for better spacing */}
+      <div className='flex flex-col gap-8 xl:flex-row'>
+        {/* LEFT: Main Content */}
+        <div className='flex-1 space-y-8 min-w-0'>
           <DetailSection title='Council Members' icon={UsersIcon}>
-            <div className='grid grid-cols-1 md:grid-cols-2 2xl:grid-cols-3 gap-4'>
+            <div
+              className='grid grid-cols-1 gap-4 md:grid-cols-2 2xl:grid-cols-3'
+              role='list'
+            >
               {data.officials?.map(member => (
                 <Card
                   key={member.name}
                   hover
-                  className='border-gray-100 flex flex-col'
+                  className='flex flex-col shadow-sm border-slate-200'
                 >
-                  <CardContent className='flex items-center gap-4 p-4'>
+                  <CardContent className='flex gap-4 items-center p-5'>
                     <CardAvatar
                       name={member.name}
                       size='md'
-                      className='shrink-0 bg-primary-50 text-primary-700 font-bold'
+                      className='font-bold border bg-primary-50 text-primary-800 shrink-0 border-primary-100'
                     />
                     <div className='min-w-0'>
-                      <h4 className='font-bold text-gray-900 leading-tight truncate'>
-                        {member.name}
+                      <h4 className='font-bold leading-tight truncate text-slate-900'>
+                        {toTitleCase(member.name)}
                       </h4>
-                      <p className='text-[10px] text-primary-600 font-bold uppercase tracking-wider mt-1'>
+                      <p className='text-[10px] font-bold tracking-widest uppercase text-primary-600 mt-1'>
                         {member.role}
                       </p>
                     </div>
                   </CardContent>
-                  {member.contact && member.contact !== '__' && (
-                    <div className='px-4 pb-4 mt-auto'>
-                      <p className='text-xs text-gray-400 flex items-center gap-1.5'>
-                        <PhoneIcon className='w-3 h-3' /> {member.contact}
-                      </p>
+
+                  {/* FOOTER: Contact & Social Logic */}
+                  {(member.contact || member.website) && (
+                    <div className='flex justify-between items-center px-5 pt-3 pb-4 mt-auto border-t border-slate-50'>
+                      <div className='flex-1 min-w-0'>
+                        {member.contact && member.contact !== '__' && (
+                          <p className='flex gap-1.5 items-center text-[11px] text-slate-500 font-bold uppercase tracking-tight'>
+                            <PhoneIcon className='w-3 h-3 text-slate-300' />{' '}
+                            {member.contact}
+                          </p>
+                        )}
+                      </div>
+
+                      {/* SOCIAL/WEBSITE LINK: 44px touch target */}
+                      {member.website && (
+                        <a
+                          href={member.website}
+                          target='_blank'
+                          rel='noreferrer'
+                          title={`Visit ${toTitleCase(member.name)}'s official page`}
+                          className='flex items-center justify-center p-2 -m-2 rounded-lg text-primary-600 hover:bg-primary-50 transition-all min-w-[44px] min-h-[44px]'
+                        >
+                          <SiFacebook className='w-4 h-4' />
+                          <span className='sr-only'>Official Website</span>
+                        </a>
+                      )}
                     </div>
                   )}
                 </Card>
@@ -105,24 +126,25 @@ export default function LegislativeChamber() {
             </div>
           </DetailSection>
 
-          {/* Committees: 1 column on narrow, 2 on wide */}
           {data.permanent_committees && (
             <DetailSection title='Standing Committees' icon={GavelIcon}>
-              <div className='grid grid-cols-1 sm:grid-cols-2 gap-3'>
+              <div className='grid grid-cols-1 gap-3 sm:grid-cols-2'>
                 {data.permanent_committees.map(committee => (
                   <div
                     key={committee.committee}
-                    className='p-4 rounded-xl border border-gray-100 bg-gray-50/50 hover:bg-white hover:shadow-sm transition-all'
+                    className='p-5 bg-white rounded-2xl border transition-all border-slate-100 hover:border-secondary-300 group shadow-xs'
                   >
-                    <h4 className='font-bold text-gray-900 text-sm mb-1 leading-snug'>
+                    <h4 className='mb-2 text-sm font-bold leading-snug transition-colors text-slate-900 group-hover:text-secondary-700'>
                       {committee.committee}
                     </h4>
-                    <p className='text-[11px] text-gray-500'>
-                      Chair:{' '}
-                      <span className='font-semibold text-gray-700'>
-                        {committee.chairperson || committee.name}
+                    <div className='flex gap-2 items-center pt-2 border-t border-slate-50'>
+                      <span className='text-[10px] font-bold text-slate-400 uppercase tracking-widest leading-none'>
+                        Chair:
                       </span>
-                    </p>
+                      <span className='text-xs font-bold truncate text-slate-700'>
+                        {toTitleCase(committee.chairperson)}
+                      </span>
+                    </div>
                   </div>
                 ))}
               </div>
@@ -130,70 +152,67 @@ export default function LegislativeChamber() {
           )}
         </div>
 
-        {/* RIGHT: Sidebar (Moves to bottom on half-screen windows) */}
-        <aside className='w-full xl:w-80 space-y-6'>
-          <DetailSection title='Contact & Office'>
-            <div className='grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-1 gap-4'>
+        {/* RIGHT: Sidebar */}
+        <aside className='space-y-6 w-full xl:w-80'>
+          <DetailSection title='Contact Information' icon={ShieldCheck}>
+            <div className='space-y-4'>
               {data.address && (
-                <div className='flex items-start gap-3 p-3 rounded-lg bg-gray-50/50'>
-                  <MapPinIcon className='w-4 h-4 text-gray-400 shrink-0 mt-1' />
+                <div className='flex gap-3 items-start p-4 rounded-xl border bg-slate-50 border-slate-100'>
+                  <MapPinIcon className='mt-1 w-4 h-4 shrink-0 text-slate-400' />
                   <div>
-                    <p className='text-[10px] font-bold text-gray-400 uppercase leading-none mb-1'>
-                      Location
+                    <p className='mb-1 text-[10px] font-bold tracking-widest text-slate-400 uppercase leading-none'>
+                      Office Location
                     </p>
-                    <p className='text-sm font-medium text-gray-700 leading-snug'>
+                    <p className='text-sm font-bold leading-snug text-slate-700'>
                       {data.address}
                     </p>
                   </div>
                 </div>
               )}
-              {data.trunkline && (
-                <div className='flex items-start gap-3 p-3 rounded-lg bg-gray-50/50'>
-                  <PhoneIcon className='w-4 h-4 text-gray-400 shrink-0 mt-1' />
-                  <div>
-                    <p className='text-[10px] font-bold text-gray-400 uppercase leading-none mb-1'>
-                      Phone
-                    </p>
-                    <p className='text-sm font-medium text-gray-700'>
-                      {data.trunkline}
-                    </p>
+              {data.website && (
+                <a
+                  href={
+                    data.website.startsWith('http')
+                      ? data.website
+                      : `https://${data.website}`
+                  }
+                  target='_blank'
+                  rel='noreferrer'
+                  className='flex justify-between items-center p-4 w-full font-bold text-white rounded-xl shadow-lg transition-all bg-primary-600 hover:bg-primary-700 shadow-primary-900/10 group min-h-[48px]'
+                >
+                  <div className='flex gap-3 items-center'>
+                    <GlobeIcon className='w-4 h-4' />
+                    <span className='text-sm tracking-tight'>
+                      Visit Council Portal
+                    </span>
                   </div>
-                </div>
+                  <ChevronRight className='w-4 h-4 opacity-50 transition-transform group-hover:translate-x-1' />
+                </a>
               )}
             </div>
-
-            {data.website && (
-              <a
-                href={data.website}
-                target='_blank'
-                rel='noreferrer'
-                className='mt-4 flex items-center justify-between p-3 rounded-lg bg-primary-600 text-white hover:bg-primary-700 transition-colors'
-              >
-                <div className='flex items-center gap-2'>
-                  <GlobeIcon className='w-4 h-4' />
-                  <span className='text-sm font-bold'>Official Website</span>
-                </div>
-                <ChevronRight className='w-4 h-4 opacity-50' />
-              </a>
-            )}
           </DetailSection>
 
-          {/* Action Card */}
-          <div className='p-6 rounded-2xl bg-slate-900 text-white shadow-xl relative overflow-hidden group'>
-            <div className='relative z-10'>
-              <h3 className='font-bold text-lg mb-2'>Legislative Records</h3>
-              <p className='text-xs text-slate-400 mb-6'>
-                Review official ordinances and resolutions passed by this
-                council.
+          {/* Records CTA: Secondary Orange Theme */}
+          <div className='overflow-hidden relative p-8 text-white rounded-3xl shadow-xl bg-slate-900 group'>
+            <div className='relative z-10 space-y-6'>
+              <div className='space-y-2'>
+                <Badge variant='secondary' dot>
+                  Legislative Archive
+                </Badge>
+                <h3 className='text-xl font-bold'>Municipal Records</h3>
+              </div>
+              <p className='text-xs leading-relaxed text-slate-400'>
+                Access the verified directory of local ordinances and
+                resolutions passed by this 12th Sangguniang Bayan.
               </p>
               <Link
                 to='/legislation'
-                className='w-full flex items-center justify-center gap-2 bg-white text-slate-900 py-2.5 rounded-xl text-xs font-bold hover:bg-primary-50 transition-all'
+                className='flex gap-2 justify-center items-center py-3 w-full text-sm font-bold text-slate-900 bg-white rounded-xl transition-all hover:bg-secondary-50 min-h-[48px] shadow-sm'
               >
-                Browse Documents <ChevronRight className='w-3 h-3' />
+                Browse Documents <ChevronRight className='w-4 h-4' />
               </Link>
             </div>
-            <GavelIcon className='absolute right-[-10%] bottom-[-10%] w-32 h-32 text-white/5 -rotate-12 transition-transform group-hover:scale-110' />
+            <GavelIcon className='absolute right-[-10%] bottom-[-10%] w-40 h-40 text-white/5 -rotate-12 transition-transform group-hover:scale-110' />
           </div>
         </aside>
       </div>
