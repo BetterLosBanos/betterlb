@@ -1,3 +1,11 @@
+export interface Committee {
+  id: string;
+  name: string;
+  type: string;
+  terms: string[];
+  committee: string;
+}
+
 export interface Person {
   id: string;
   first_name: string;
@@ -53,5 +61,6 @@ export interface LegislationContext {
   documents: DocumentItem[];
   persons: Person[];
   sessions: Session[];
+  committees: Committee[];
   term: Term;
 }

@@ -8,10 +8,36 @@ import {
   FileText,
   BookOpen,
 } from 'lucide-react';
+
+// Use the library types as the source of truth to ensure compatibility with helpers
+import type {
+  Person,
+  DocumentItem,
+  Session,
+  Committee,
+} from '@/lib/legislation';
+
 import { getPersonName } from '@/lib/legislation';
 import { DetailSection } from '@/components/layout/PageLayouts';
 import { Badge } from '@/components/ui/Badge';
-import type { LegislationContext } from '@/types/legislationTypes';
+import {
+  Breadcrumb,
+  BreadcrumbItem,
+  BreadcrumbLink,
+  BreadcrumbList,
+  BreadcrumbPage,
+  BreadcrumbSeparator,
+  BreadcrumbHome,
+} from '@/components/ui/Breadcrumb';
+import { toTitleCase } from '@/lib/stringUtils';
+
+// Define the exact shape of the context provided by the Legislation Layout
+interface LegislationContext {
+  documents: DocumentItem[];
+  persons: Person[];
+  sessions: Session[];
+  committees: Committee[];
+}
 
 const ROLE_PRIORITY: Record<string, number> = {
   Chairperson: 1,
@@ -21,24 +47,36 @@ const ROLE_PRIORITY: Record<string, number> = {
 };
 
 export default function PersonDetail() {
-  const { personId } = useParams();
-  const { persons, documents, sessions } =
+  const { personId } = useParams<{ personId: string }>();
+
+  // 1. Strictly typed destructuring from context
+  const { persons, documents, committees, sessions } =
     useOutletContext<LegislationContext>();
 
-  const person = persons.find(p => p.id === personId);
-  if (!person)
+  const person = persons.find((p: Person) => p.id === personId);
+
+  if (!person) {
     return (
-      <div className='p-12 text-center' role='alert'>
+      <div
+        className='p-12 font-bold tracking-widest text-center uppercase text-slate-500'
+        role='alert'
+      >
         Official not found
       </div>
     );
+  }
 
-  const authoredDocs = documents.filter(d => d.author_ids.includes(person.id));
+  // 2. Data Logic without 'any'
+  const officialName = getPersonName(person);
+  const authoredDocs = documents.filter((d: DocumentItem) =>
+    d.author_ids.includes(person.id)
+  );
   const ordCount = authoredDocs.filter(d => d.type === 'ordinance').length;
   const resCount = authoredDocs.filter(d => d.type === 'resolution').length;
 
   const attendanceRecords = sessions.filter(
-    s => s.present.includes(person.id) || s.absent.includes(person.id)
+    (s: Session) =>
+      s.present.includes(person.id) || s.absent.includes(person.id)
   );
   const presentCount = attendanceRecords.filter(s =>
     s.present.includes(person.id)
@@ -48,7 +86,8 @@ export default function PersonDetail() {
       ? Math.round((presentCount / attendanceRecords.length) * 100)
       : 0;
 
-  const sortedCommittees = [...(person.memberships[0]?.committees || [])].sort(
+  const currentMembership = person.memberships[person.memberships.length - 1];
+  const sortedCommittees = [...(currentMembership?.committees || [])].sort(
     (a, b) => {
       const pA = ROLE_PRIORITY[a.role] ?? 99;
       const pB = ROLE_PRIORITY[b.role] ?? 99;
@@ -57,7 +96,24 @@ export default function PersonDetail() {
   );
 
   return (
-    <div className='mx-auto space-y-6 max-w-5xl duration-500 animate-in fade-in'>
+    <div className='px-4 pb-20 mx-auto space-y-6 max-w-5xl duration-500 animate-in fade-in md:px-0'>
+      {/* Breadcrumbs */}
+      <Breadcrumb>
+        <BreadcrumbList>
+          <BreadcrumbItem>
+            <BreadcrumbHome href='/' />
+          </BreadcrumbItem>
+          <BreadcrumbSeparator />
+          <BreadcrumbItem>
+            <BreadcrumbLink href='/legislation'>Legislation</BreadcrumbLink>
+          </BreadcrumbItem>
+          <BreadcrumbSeparator />
+          <BreadcrumbItem>
+            <BreadcrumbPage>{officialName}</BreadcrumbPage>
+          </BreadcrumbItem>
+        </BreadcrumbList>
+      </Breadcrumb>
+
       {/* Profile Header */}
       <header className='flex flex-col gap-6 items-center p-6 bg-white rounded-2xl border shadow-sm border-slate-200 md:flex-row'>
         <div
@@ -69,10 +125,10 @@ export default function PersonDetail() {
         </div>
         <div className='flex-1 text-center md:text-left'>
           <h1 className='text-2xl font-bold text-slate-900'>
-            Hon. {getPersonName(person)}
+            Hon. {officialName}
           </h1>
           <div className='flex flex-wrap gap-2 justify-center mt-2 md:justify-start'>
-            {person.roles.map((role: string) => (
+            {person.roles.map(role => (
               <Badge key={role} variant='slate'>
                 {role}
               </Badge>
@@ -96,15 +152,11 @@ export default function PersonDetail() {
         </div>
       </header>
 
-      {/* High Contrast Stats Grid */}
-      <div
-        className='grid grid-cols-2 gap-4'
-        role='region'
-        aria-label='Legislation counts'
-      >
+      {/* High Contrast Stats Grid (Blue & Orange) */}
+      <div className='grid grid-cols-2 gap-4'>
         <div className='flex gap-4 items-center p-5 bg-white rounded-2xl border-b-4 shadow-sm border-primary-600'>
           <div className='p-2 rounded-lg bg-primary-50 text-primary-600'>
-            <FileText className='w-5 h-5' />
+            <FileText className='w-5 h-5' aria-hidden='true' />
           </div>
           <div>
             <span className='block text-2xl font-bold leading-none text-slate-900'>
@@ -117,7 +169,7 @@ export default function PersonDetail() {
         </div>
         <div className='flex gap-4 items-center p-5 bg-white rounded-2xl border-b-4 shadow-sm border-secondary-600'>
           <div className='p-2 rounded-lg bg-secondary-50 text-secondary-600'>
-            <BookOpen className='w-5 h-5' />
+            <BookOpen className='w-5 h-5' aria-hidden='true' />
           </div>
           <div>
             <span className='block text-2xl font-bold leading-none text-slate-900'>
@@ -135,7 +187,12 @@ export default function PersonDetail() {
           <DetailSection title='Committees' icon={Briefcase}>
             <ul className='space-y-4'>
               {sortedCommittees.map(c => {
+                const globalComm = committees.find(gc => gc.id === c.id);
+                const displayName = globalComm
+                  ? globalComm.name
+                  : toTitleCase(c.id.replace(/-/g, ' '));
                 const isLeader = c.role.includes('Chair');
+
                 return (
                   <li
                     key={c.id}
@@ -147,7 +204,7 @@ export default function PersonDetail() {
                       {c.role}
                     </p>
                     <p className='text-sm font-bold leading-tight text-slate-700'>
-                      {c.id.replace(/-/g, ' ')}
+                      {displayName}
                     </p>
                   </li>
                 );
@@ -195,7 +252,9 @@ export default function PersonDetail() {
                 >
                   <div className='flex gap-3 items-center mb-2'>
                     <Badge
-                      variant={doc.type === 'ordinance' ? 'primary' : 'warning'}
+                      variant={
+                        doc.type === 'ordinance' ? 'primary' : 'secondary'
+                      }
                     >
                       {doc.type}
                     </Badge>

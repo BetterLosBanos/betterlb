@@ -31,9 +31,9 @@ export interface PersonCommitteeRole {
 
 export interface PersonMembership {
   term_id: string;
-  chamber: string;
+  chamber?: string;
   role: string;
-  rank: number;
+  rank?: number;
   committees: PersonCommitteeRole[];
 }
 

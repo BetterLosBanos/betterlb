@@ -48,10 +48,13 @@ export const mainNavigation: NavigationItem[] = [
     children: [
       { label: 'Financial Reports', href: '/transparency/financial' },
       {
-        label: 'Infrastructure Projects',
-        href: '/transparency/infrastructure-projects',
+        label: 'Procurement',
+        href: 'https://transparency.bettergov.ph/organizations/MUNICIPALITY%20OF%20LOS%20BA%C3%91OS%2C%20LAGUNA',
       },
-      { label: 'DPWH Projects', href: '/transparency/dpwh-projects' },
+      {
+        label: 'DPWH Projects',
+        href: 'https://bisto.ph/?search=los+ba%C3%B1os&region=Region+IV-A&province=LAGUNA',
+      },
     ],
   },
 ];
