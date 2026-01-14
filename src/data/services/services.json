@@ -38,8 +38,14 @@
     },
     "updatedAt": null,
     "sources": [
-      { "name": "Municipal Revenue Code", "url": "" },
-      { "name": "BPLO Regulatory Guidelines", "url": "" }
+      {
+        "name": "Municipal Revenue Code",
+        "url": ""
+      },
+      {
+        "name": "BPLO Regulatory Guidelines",
+        "url": ""
+      }
     ]
   },
   {
@@ -73,8 +79,14 @@
     },
     "updatedAt": null,
     "sources": [
-      { "name": "Municipal Ordinance No. 2023-01", "url": "" },
-      { "name": "LGOO Memorandum Circular 12", "url": "" }
+      {
+        "name": "Municipal Ordinance No. 2023-01",
+        "url": ""
+      },
+      {
+        "name": "LGOO Memorandum Circular 12",
+        "url": ""
+      }
     ]
   },
   {
@@ -84,8 +96,8 @@
     "description": "Issuance of Community Tax Certificate for individuals and corporations.",
     "officeSlug": "municipal-treasurers-office",
     "category": {
-      "name": "Certificates & Civil Registry",
-      "slug": "certificates-civil-registry"
+      "name": "Certificates & Vital Records",
+      "slug": "certificates-vital-records"
     },
     "steps": [
       "Fill out the CTC application slip.",
@@ -137,8 +149,14 @@
     },
     "updatedAt": null,
     "sources": [
-      { "name": "Municipal Tax Ordinance", "url": "" },
-      { "name": "Bureau of Local Government Finance Guidelines", "url": "" }
+      {
+        "name": "Municipal Tax Ordinance",
+        "url": ""
+      },
+      {
+        "name": "Bureau of Local Government Finance Guidelines",
+        "url": ""
+      }
     ]
   },
   {
@@ -148,8 +166,8 @@
     "description": "Timely registration of birth for newborn children.",
     "officeSlug": "municipal-civil-registrar",
     "category": {
-      "name": "Certificates & Civil Registry",
-      "slug": "certificates-civil-registry"
+      "name": "Certificates & Vital Records",
+      "slug": "certificates-vital-records"
     },
     "steps": [
       "Secure Certificate of Live Birth (COLB) from hospital/clinic.",
@@ -168,8 +186,14 @@
     },
     "updatedAt": null,
     "sources": [
-      { "name": "Republic Act No. 3753 (Civil Register Law)", "url": "" },
-      { "name": "PSA Administrative Order No. 1", "url": "" }
+      {
+        "name": "Republic Act No. 3753 (Civil Register Law)",
+        "url": ""
+      },
+      {
+        "name": "PSA Administrative Order No. 1",
+        "url": ""
+      }
     ]
   },
   {
@@ -206,7 +230,10 @@
         "name": "P.D. 1096 (National Building Code of the Philippines)",
         "url": ""
       },
-      { "name": "Municipal Engineering Regulatory Manual", "url": "" }
+      {
+        "name": "Municipal Engineering Regulatory Manual",
+        "url": ""
+      }
     ]
   },
   {
@@ -216,8 +243,8 @@
     "description": "Annual renewal of franchise for tricycle operators.",
     "officeSlug": "tricycle-regulatory-unit",
     "category": {
-      "name": "Public Safety & Transport",
-      "slug": "public-safety-transport"
+      "name": "Public Safety",
+      "slug": "public-safety"
     },
     "steps": [
       "Submit unit for roadworthiness inspection.",
@@ -238,7 +265,10 @@
     },
     "updatedAt": null,
     "sources": [
-      { "name": "Municipal Tricycle Franchising Ordinance", "url": "" }
+      {
+        "name": "Municipal Tricycle Franchising Ordinance",
+        "url": ""
+      }
     ]
   },
   {
@@ -248,8 +278,8 @@
     "description": "A comprehensive list of public elementary and secondary schools in the municipality.",
     "officeSlug": "department-of-education",
     "category": {
-      "name": "Education & Learning",
-      "slug": "education-learning"
+      "name": "Education & Scholarship",
+      "slug": "education-scholarship"
     },
     "steps": [
       "Los Baños Central Elementary School (Timugan)",
@@ -270,7 +300,12 @@
       }
     ],
     "updatedAt": null,
-    "sources": [{ "name": "DepEd Schools Division Office List", "url": "" }]
+    "sources": [
+      {
+        "name": "DepEd Schools Division Office List",
+        "url": ""
+      }
+    ]
   },
   {
     "service": "Scholarship Application",
@@ -279,8 +314,8 @@
     "description": "Financial assistance program for deserving college students.",
     "officeSlug": "office-of-the-mayor",
     "category": {
-      "name": "Education & Learning",
-      "slug": "education-learning"
+      "name": "Education & Scholarship",
+      "slug": "education-scholarship"
     },
     "steps": [
       "Submit application form with grades.",
@@ -300,7 +335,12 @@
       "documents": "Grades, Indigency"
     },
     "updatedAt": null,
-    "sources": [{ "name": "Municipal Scholarship Ordinance", "url": "" }]
+    "sources": [
+      {
+        "name": "Municipal Scholarship Ordinance",
+        "url": ""
+      }
+    ]
   },
   {
     "service": "Garbage Collection Schedule",
@@ -333,7 +373,10 @@
         "name": "Republic Act No. 9003 (Ecological Solid Waste Management Act)",
         "url": ""
       },
-      { "name": "MENRO Garbage Collection Policy", "url": "" }
+      {
+        "name": "MENRO Garbage Collection Policy",
+        "url": ""
+      }
     ]
   },
   {
@@ -343,8 +386,8 @@
     "description": "Locations of health centers providing free primary care, immunization, and maternal services.",
     "officeSlug": "municipal-health-office",
     "category": {
-      "name": "Health & Nutrition",
-      "slug": "health-nutrition"
+      "name": "Health & Wellness",
+      "slug": "health-wellness"
     },
     "steps": [
       "RHU 1: Main Health Center, Municipal Hall Compound, Brgy. Timugan",
@@ -355,7 +398,12 @@
     "requirements": [],
     "relatedServices": ["health-certificate"],
     "updatedAt": null,
-    "sources": [{ "name": "Municipal Health Office Registry", "url": "" }]
+    "sources": [
+      {
+        "name": "Municipal Health Office Registry",
+        "url": ""
+      }
+    ]
   },
   {
     "service": "Health Certificate",
@@ -364,8 +412,8 @@
     "description": "Required for food handlers and employees in business establishments.",
     "officeSlug": "municipal-health-office",
     "category": {
-      "name": "Health & Nutrition",
-      "slug": "health-nutrition"
+      "name": "Health & Wellness",
+      "slug": "health-wellness"
     },
     "steps": [
       "Submit chest x-ray and stool exam results.",
@@ -386,8 +434,14 @@
     },
     "updatedAt": null,
     "sources": [
-      { "name": "P.D. 856 (Code on Sanitation of the Philippines)", "url": "" },
-      { "name": "Sanitary Office Guidelines", "url": "" }
+      {
+        "name": "P.D. 856 (Code on Sanitation of the Philippines)",
+        "url": ""
+      },
+      {
+        "name": "Sanitary Office Guidelines",
+        "url": ""
+      }
     ]
   },
   {
@@ -397,8 +451,8 @@
     "description": "Assistance to Individuals in Crisis Situations for medical needs.",
     "officeSlug": "municipal-social-welfare-and-development-office",
     "category": {
-      "name": "Social Welfare",
-      "slug": "social-welfare"
+      "name": "Social Services",
+      "slug": "social-services"
     },
     "steps": [
       "Submit requirements for screening.",
@@ -418,8 +472,14 @@
     },
     "updatedAt": null,
     "sources": [
-      { "name": "DSWD Memorandum Circular No. 02 Series of 2014", "url": "" },
-      { "name": "MSWDO Guidelines on Financial Assistance", "url": "" }
+      {
+        "name": "DSWD Memorandum Circular No. 02 Series of 2014",
+        "url": ""
+      },
+      {
+        "name": "MSWDO Guidelines on Financial Assistance",
+        "url": ""
+      }
     ]
   },
   {
@@ -429,8 +489,8 @@
     "description": "Issuance of ID and purchase booklet for senior citizens (60 years old and above).",
     "officeSlug": "municipal-social-welfare-and-development-office",
     "category": {
-      "name": "Social Welfare",
-      "slug": "social-welfare"
+      "name": "Social Services",
+      "slug": "social-services"
     },
     "steps": [
       "Fill out application form.",
@@ -464,8 +524,8 @@
     "description": "Availability of free vegetable seeds and subsidized fertilizers for local farmers.",
     "officeSlug": "municipal-agriculture-office",
     "category": {
-      "name": "Agriculture & Veterinary",
-      "slug": "agriculture-veterinary"
+      "name": "Agriculture & Livelihood",
+      "slug": "agriculture-livelihood"
     },
     "steps": [
       "Available Seeds: Eggplant, Tomato, Pechay, Mustard, Sitaw",
@@ -478,7 +538,751 @@
     ],
     "updatedAt": null,
     "sources": [
-      { "name": "Municipal Agriculture Office Extension Program", "url": "" }
+      {
+        "name": "Municipal Agriculture Office Extension Program",
+        "url": ""
+      }
     ]
+  },
+  {
+    "service": "Legitimation of Illegitimate Children (Art. 177, E.O. 209)",
+    "slug": "legitimation-of-illegitimate-children",
+    "type": "transaction",
+    "description": "Process for illegitimate children to be considered legitimate through the subsequent marriage of their parents.",
+    "url": "https://losbanos.gov.ph/posts/61",
+    "officeSlug": "local-civil-registry-office",
+    "category": {
+      "name": "Certificates & Vital Records",
+      "slug": "certificates-vital-records"
+    },
+    "steps": [
+      "Gather all required documents.",
+      "Submit requirements to the Local Civil Registry Office.",
+      "Pay the processing fee.",
+      "Wait for the processing of the Affidavit of Legitimation."
+    ],
+    "requirements": [
+      "Certificate of Marriage (PSA Copy)",
+      "Certificate of No Marriage of both Parents (CENOMAR)",
+      "Certificate of Live Birth of the Child (PSA Copy) - 6 copies",
+      "Affidavit of Legitimation (executed by both parents)"
+    ],
+    "quickInfo": {
+      "processingTime": "Varies",
+      "fee": "Php 250.00",
+      "whoCanApply": "Parents of illegitimate children"
+    },
+    "updatedAt": null,
+    "sources": [
+      {
+        "name": "https://losbanos.gov.ph/posts/86"
+      },
+      {
+        "name": "https://losbanos.gov.ph/posts/61"
+      }
+    ]
+  },
+  {
+    "service": "Delayed Registration of Birth",
+    "slug": "delayed-registration-of-birth",
+    "type": "transaction",
+    "description": "Registration of a birth that was not reported within thirty (30) days after its occurrence.",
+    "url": "https://losbanos.gov.ph/posts/91",
+    "officeSlug": "local-civil-registry-office",
+    "category": {
+      "name": "Certificates & Vital Records",
+      "slug": "certificates-vital-records"
+    },
+    "steps": [
+      "Secure Negative Certification of Birth from PSA.",
+      "Accomplish four (4) copies of the Certificate of Live Birth (COLB).",
+      "Prepare at least two supporting documents (Baptismal, School Records, etc.).",
+      "Submit documents and pay the processing fee."
+    ],
+    "requirements": [
+      "Negative Certification of Birth from PSA",
+      "Certificate of Live Birth (COLB) - 4 copies",
+      "Affidavit to Use the Surname of the Father (if applicable)",
+      "Affidavit of Two (2) Disinterested Persons",
+      "At least two: Baptismal Cert, Form 137, Medical Record, ITR, or Voter's Affidavit"
+    ],
+    "quickInfo": {
+      "processingTime": "10-day posting period required",
+      "fee": "Php 200.00",
+      "whoCanApply": "Individuals with unregistered births"
+    },
+    "updatedAt": null,
+    "sources": [
+      {
+        "name": "Revised Rules and Regulations Governing the Registration of Civil Registry Documents"
+      }
+    ]
+  },
+  {
+    "service": "Petition for Correction of Month/Date of Birth (R.A. 10172)",
+    "slug": "correction-of-birth-date",
+    "type": "transaction",
+    "url": "https://losbanos.gov.ph/posts/84",
+    "description": "Administrative remedy for correcting clerical or typographical errors in the day and/or month of birth in the Civil Register.",
+    "officeSlug": "local-civil-registry-office",
+    "category": {
+      "name": "Certificates & Vital Records",
+      "slug": "certificates-vital-records"
+    },
+    "requirements": [
+      "Document to be corrected (OCRG and LCRO Copy)",
+      "Earliest School Record / Documents",
+      "Medical Records",
+      "Baptismal Certificate",
+      "NBI and Police Clearance",
+      "Affidavit of Publication and Newspaper Clippings"
+    ],
+    "quickInfo": {
+      "fee": "Php 3,000.00 (Filing) + Php 650.00 (Processing)",
+      "whoCanApply": "Document Owner / Petitioner"
+    },
+    "updatedAt": null,
+    "sources": [
+      {
+        "name": "Republic Act No. 10172"
+      }
+    ]
+  },
+  {
+    "service": "Petition for Correction of Sex (R.A. 10172)",
+    "slug": "correction-of-sex",
+    "type": "transaction",
+    "url": "https://losbanos.gov.ph/posts/85",
+    "description": "Administrative procedure to correct an erroneous entry in the sex of a person in the Certificate of Live Birth.",
+    "officeSlug": "local-civil-registry-office",
+    "category": {
+      "name": "Certificates & Vital Records",
+      "slug": "certificates-vital-records"
+    },
+    "requirements": [
+      "Document to be corrected (OCRG and LCRO Copy)",
+      "Medical Certification from Government Physician (No Sex Change undergone)",
+      "Certificate of Authenticity of Medical Certification",
+      "Earliest School Documents",
+      "Baptismal Certificate",
+      "Affidavit of Publication and Newspaper Clippings"
+    ],
+    "quickInfo": {
+      "fee": "Php 3,000.00 (Filing) + Php 650.00 (Processing)",
+      "whoCanApply": "Document Owner / Petitioner"
+    },
+    "updatedAt": null,
+    "sources": [
+      {
+        "name": "Republic Act No. 10172"
+      }
+    ]
+  },
+  {
+    "service": "Marriage License Application",
+    "slug": "marriage-license-application",
+    "type": "transaction",
+    "description": "Legal requirement for two people intending to get married within the Philippines.",
+    "officeSlug": "local-civil-registry-office",
+    "category": {
+      "name": "Certificates & Vital Records",
+      "slug": "certificates-vital-records"
+    },
+    "requirements": [
+      "CENOMAR from PSA (2 photocopies)",
+      "Cedula / Residence Certificate (2 photocopies)",
+      "PSA Birth Certificate (2 photocopies)",
+      "Family Planning Certificate",
+      "Marriage Counseling Certificate",
+      "Barangay Residency Certification",
+      "Parental Consent (if 18-24 years old)"
+    ],
+    "quickInfo": {
+      "fee": "Php 500.00",
+      "whoCanApply": "Couples (Personal Appearance Required)",
+      "validity": "120 days from date of issue"
+    },
+    "updatedAt": null,
+    "sources": [
+      {
+        "name": "Title I, Chapter 2 of the Family Code of the Philippines"
+      }
+    ]
+  },
+  {
+    "service": "Cash Subsidy for Solo Parents",
+    "slug": "solo-parents-cash-subsidy",
+    "type": "transaction",
+    "description": "Financial assistance provided semi-annually to qualified solo parents in the municipality.",
+    "officeSlug": "municipal-social-welfare-and-development-office",
+    "category": {
+      "name": "Social Services",
+      "slug": "social-services"
+    },
+    "steps": [
+      "Register as a Solo Parent with the MSWDO.",
+      "Submit required documents during the designated payout period.",
+      "Receive cash subsidy (Php 1,000 per month or as allocated)."
+    ],
+    "requirements": [
+      "Valid Solo Parent ID",
+      "Barangay Certification of Residency",
+      "Affidavit of Solo Parent status"
+    ],
+    "quickInfo": {
+      "fee": "Free",
+      "whoCanApply": "Registered Solo Parents",
+      "documents": "Solo Parent ID"
+    },
+    "updatedAt": null,
+    "sources": [
+      {
+        "name": "Republic Act No. 11861 (Expanded Solo Parents Welfare Act of 2022)"
+      }
+    ]
+  },
+  {
+    "service": "Educational Assistance Program",
+    "slug": "educational-assistance",
+    "type": "transaction",
+    "description": "Financial grant for students from Junior High School to College levels to assist with educational expenses.",
+    "officeSlug": "local-youth-and-development-office",
+    "category": {
+      "name": "Education & Scholarship",
+      "slug": "education-scholarship"
+    },
+    "steps": [
+      "Submit application form with academic grades to LYDO.",
+      "Wait for verification and posting of qualified grantees.",
+      "Attend the scheduled payout ceremony."
+    ],
+    "requirements": [
+      "School ID",
+      "Certificate of Enrollment",
+      "Recent Report Card / Transcript of Records",
+      "Indigency Certificate from Barangay"
+    ],
+    "quickInfo": {
+      "processingTime": "Seasonal (Per Semester)",
+      "whoCanApply": "JHS, SHS, and College Students"
+    },
+    "updatedAt": null,
+    "sources": []
+  },
+  {
+    "service": "Certificate of Electrical Inspection (CEI)",
+    "slug": "certificate-electrical-inspection",
+    "type": "transaction",
+    "description": "Required for new kWhr meter applications, reconnections, or relocations to ensure electrical safety compliance.",
+    "url": "https://www.facebook.com/media/set/?set=a.109696514078279&type=3",
+    "officeSlug": "municipal-engineering-office",
+    "category": {
+      "name": "Infrastructure & Engineering",
+      "slug": "infrastructure-engineering"
+    },
+    "steps": [
+      "Secure and fill up the Certificate of Final Electrical Inspection form.",
+      "Gather requirements based on application type (Old/New building or Reconnection).",
+      "Submit documents at the Municipal Engineering Office.",
+      "Undergo site inspection by the Engineering Office.",
+      "Claim certificate after approval."
+    ],
+    "requirements": [
+      "Properly filled-up Certificate of Final Electrical Inspection form (Signed by EE or Master Electrician)",
+      "Photocopy of Proof of Property (TCT, Tax Declaration, MUDHO, or Business Permit)",
+      "Yellow card (obtained from Meralco)",
+      "Barangay Clearance (Purpose: Meralco Application)",
+      "Site Inspection report"
+    ],
+    "quickInfo": {
+      "processingTime": "4 working days",
+      "fee": "Based on electrical load",
+      "whoCanApply": "Property Owners / Tenants",
+      "appointmentType": "Walk-in"
+    },
+    "updatedAt": null,
+    "sources": [
+      {
+        "name": "Municipal Engineering Office CEI Guidelines"
+      }
+    ]
+  },
+  {
+    "service": "Certificate of Occupancy",
+    "slug": "certificate-occupancy",
+    "type": "transaction",
+    "description": "Certifies that a newly constructed or renovated structure is safe for use and complies with the National Building Code.",
+    "url": "https://www.facebook.com/media/set/?set=a.182383407412293&type=3",
+    "officeSlug": "municipal-engineering-office",
+    "category": {
+      "name": "Infrastructure & Engineering",
+      "slug": "infrastructure-engineering"
+    },
+    "requirements": [
+      "3 copies of Certificate of Completion (Notarized)",
+      "Construction Logbook (Signed/sealed by Owner's Architect or Civil Engineer)",
+      "As-Built Plans (Signed/sealed by Architect or Civil Engineer)",
+      "Photocopy of valid PRC licenses of all involved professionals",
+      "Captioned photographs of front, sides, rear, and septic tank",
+      "Yellow Card from Electrical Service Provider"
+    ],
+    "quickInfo": {
+      "processingTime": "4 working days",
+      "documents": "As-built plans, Logbook",
+      "whoCanApply": "Building Owners"
+    },
+    "updatedAt": null,
+    "sources": [
+      {
+        "name": "Unified Application Form for Certificate of Occupancy"
+      }
+    ]
+  },
+  {
+    "service": "Fire Safety Inspection Certificate (FSIC)",
+    "slug": "fire-safety-inspection-certificate",
+    "type": "transaction",
+    "description": "Required for occupancy and business permits to ensure the structure meets fire safety standards.",
+    "officeSlug": "bureau-fire-protection",
+    "category": {
+      "name": "Public Safety",
+      "slug": "public-safety"
+    },
+    "requirements": [
+      "Unified Application Form",
+      "Building Permit Number and Date Issued",
+      "FSEC Number and Date Issued",
+      "Site Inspection by BFP personnel"
+    ],
+    "quickInfo": {
+      "processingTime": "3-5 days",
+      "whoCanApply": "Building Owners / Business Operators"
+    },
+    "updatedAt": null,
+    "sources": [
+      {
+        "name": "BFP Fire Safety Regulations"
+      }
+    ]
+  },
+  {
+    "service": "Building Permit (General)",
+    "slug": "building-permit",
+    "type": "transaction",
+    "description": "The primary legal authorization required before starting construction, alteration, or repair of any building.",
+    "url": "https://www.facebook.com/media/set/?set=a.182362044081096&type=3",
+    "officeSlug": "municipal-engineering-office",
+    "category": {
+      "name": "Infrastructure & Engineering",
+      "slug": "infrastructure-engineering"
+    },
+    "requirements": [
+      "5 copies of filled-up Notarized Unified Application Form for Building Permit",
+      "3 photocopies of Valid PRC Licenses of involved professionals",
+      "Notarized estimated value of building structure",
+      "4 sets of Drawing Plans (Signed/sealed by Engineers)",
+      "3 sets of Lot Plan (Signed/sealed by Geodetic Engineer)",
+      "Structural/Electrical/Soil Boring Analysis (if applicable)",
+      "Proof of Ownership (OCT/TCT/Deed of Absolute Sale)"
+    ],
+    "quickInfo": {
+      "processingTime": "Within 4 working days",
+      "fee": "Based on project scope",
+      "documents": "Lot plans, Notarized forms"
+    },
+    "updatedAt": null,
+    "sources": [
+      {
+        "name": "OBO Building Permit Checklist"
+      }
+    ]
+  },
+  {
+    "service": "Electronics Permit",
+    "slug": "electronics-permit",
+    "type": "transaction",
+    "description": "A technical sub-permit required for the installation of electronic systems within a building structure.",
+    "url": "https://www.facebook.com/media/set/?set=a.182380010745966&type=3",
+    "officeSlug": "municipal-engineering-office",
+    "category": {
+      "name": "Infrastructure & Engineering",
+      "slug": "infrastructure-engineering"
+    },
+    "requirements": [
+      "4 copies of filled-up Application Form for Electronics Permit",
+      "Valid PRC Licenses of involved Electronics Engineers",
+      "4 sets of Electronics Drawing Plans",
+      "Electronics Design Analysis (Signed/sealed by PECE)"
+    ],
+    "quickInfo": {
+      "processingTime": "4 working days",
+      "whoCanApply": "Property Owners / Electronics Engineers"
+    },
+    "updatedAt": null,
+    "sources": [
+      {
+        "name": "Electronics Permit Documentary Requirements"
+      }
+    ]
+  },
+  {
+    "service": "Sign Permit",
+    "slug": "sign-permit",
+    "type": "transaction",
+    "description": "Permit for the installation of outdoor signs, billboards, or business identifiers.",
+    "url": "https://www.facebook.com/media/set/?set=a.182381717412462&type=3",
+    "officeSlug": "municipal-engineering-office",
+    "category": {
+      "name": "Infrastructure & Engineering",
+      "slug": "infrastructure-engineering"
+    },
+    "requirements": [
+      "4 copies of Properly filled-up Sign Permit Form",
+      "Drawing Plans (4 sets) and General Specifications",
+      "Notarized estimated value of the structure",
+      "Medical Certificate of Workers"
+    ],
+    "quickInfo": {
+      "processingTime": "4 working days"
+    },
+    "updatedAt": null,
+    "sources": []
+  },
+  {
+    "service": "Demolition Permit",
+    "slug": "demolition-permit",
+    "type": "transaction",
+    "description": "Required before the total or partial destruction of any building or structure.",
+    "url": "https://www.facebook.com/media/set/?set=a.182380830745884&type=3",
+    "officeSlug": "municipal-engineering-office",
+    "category": {
+      "name": "Infrastructure & Engineering",
+      "slug": "infrastructure-engineering"
+    },
+    "requirements": [
+      "4 copies of filled-up Demolition Permit Form",
+      "Drawing Plans (2 sets) and Lot Plan (1 set)",
+      "Proof of Ownership",
+      "Affidavit of Undertaking"
+    ],
+    "quickInfo": {
+      "processingTime": "4 working days"
+    },
+    "updatedAt": null,
+    "sources": []
+  },
+  {
+    "service": "Fencing Permit",
+    "slug": "fencing-permit",
+    "type": "transaction",
+    "description": "Permit for the construction of perimeter fences or walls.",
+    "url": "https://www.facebook.com/media/set/?set=a.182363280747639&type=3",
+    "officeSlug": "municipal-engineering-office",
+    "category": {
+      "name": "Infrastructure & Engineering",
+      "slug": "infrastructure-engineering"
+    },
+    "requirements": [
+      "4 copies of filled-up Fencing Permit Form",
+      "Drawing Plans (4 sets) and Lot Plan (3 sets)",
+      "Construction Safety and Health Program (CSHP - DOLE)",
+      "Medical Certificate of Workers"
+    ],
+    "quickInfo": {
+      "processingTime": "4 working days"
+    },
+    "updatedAt": null,
+    "sources": []
+  },
+  {
+    "service": "Medical and Surgical Services",
+    "slug": "medical-surgical-services",
+    "type": "transaction",
+    "description": "General medical consultations and minor surgical procedures provided by the Municipal Health Office.",
+    "url": "",
+    "officeSlug": "municipal-health-office",
+    "category": {
+      "name": "Health & Wellness",
+      "slug": "health-wellness"
+    },
+    "steps": [
+      "Registration and triage at the RHU entrance.",
+      "Initial assessment of vital signs by nursing staff.",
+      "Consultation with a medical officer.",
+      "Laboratory testing if required.",
+      "Issuance of prescriptions or referral for surgical procedures."
+    ],
+    "requirements": [
+      "Valid ID / Barangay Certification",
+      "PhilHealth ID (if available)"
+    ],
+    "quickInfo": {
+      "processingTime": "1-3 hours",
+      "fee": "Free for indigent residents",
+      "whoCanApply": "Residents in need of medical attention",
+      "appointmentType": "Walk-in"
+    },
+    "updatedAt": null,
+    "sources": [
+      {
+        "name": "Municipal Health Office Manual of Operations"
+      }
+    ]
+  },
+  {
+    "service": "Dental Services",
+    "slug": "dental-services",
+    "type": "transaction",
+    "description": "Oral health services including tooth extraction, cleaning, and consultations.",
+    "officeSlug": "municipal-health-office",
+    "category": {
+      "name": "Health & Wellness",
+      "slug": "health-wellness"
+    },
+    "updatedAt": null,
+    "quickInfo": {
+      "processingTime": "1-2 hours",
+      "fee": "Free / Minimal supply cost",
+      "appointmentType": "Scheduled / Walk-in"
+    },
+    "sources": []
+  },
+  {
+    "service": "Laboratory Services",
+    "slug": "laboratory-services",
+    "type": "transaction",
+    "description": "Diagnostic laboratory tests including blood chemistry, urinalysis, and fecalysis.",
+    "officeSlug": "municipal-health-office",
+    "category": {
+      "name": "Health & Wellness",
+      "slug": "health-wellness"
+    },
+    "updatedAt": null,
+    "quickInfo": {
+      "processingTime": "Same day for basic tests",
+      "documents": "Doctor's request"
+    },
+    "sources": []
+  },
+  {
+    "service": "Sanitation Services",
+    "slug": "sanitation-services",
+    "type": "transaction",
+    "description": "Environmental health services and inspection of establishments for sanitary compliance.",
+    "officeSlug": "municipal-health-office",
+    "category": {
+      "name": "Health & Wellness",
+      "slug": "health-wellness"
+    },
+    "updatedAt": null,
+    "quickInfo": {
+      "whoCanApply": "Establishment Owners / Households"
+    },
+    "sources": []
+  },
+  {
+    "service": "Child Health Services",
+    "slug": "child-health-services",
+    "type": "transaction",
+    "description": "Immunization, nutrition monitoring, and pediatric consultations for infants and children.",
+    "officeSlug": "municipal-health-office",
+    "category": {
+      "name": "Health & Wellness",
+      "slug": "health-wellness"
+    },
+    "updatedAt": null,
+    "quickInfo": {
+      "whoCanApply": "Parents/Guardians of children 0-5 years old"
+    },
+    "sources": []
+  },
+  {
+    "service": "Maternal Health Services",
+    "slug": "maternal-health-services",
+    "type": "transaction",
+    "description": "Prenatal and postnatal care for expectant and new mothers.",
+    "officeSlug": "municipal-health-office",
+    "category": {
+      "name": "Health & Wellness",
+      "slug": "health-wellness"
+    },
+    "updatedAt": null,
+    "sources": []
+  },
+  {
+    "service": "Birthing Home Services",
+    "slug": "birthing-home-services",
+    "type": "transaction",
+    "description": "24/7 facility-based delivery services for low-risk pregnancies.",
+    "officeSlug": "municipal-health-office",
+    "category": {
+      "name": "Health & Wellness",
+      "slug": "health-wellness"
+    },
+    "updatedAt": null,
+    "sources": []
+  },
+  {
+    "service": "Family Planning Services",
+    "slug": "family-planning-services",
+    "type": "information",
+    "description": "Consultation and provision of various family planning methods.",
+    "officeSlug": "municipal-health-office",
+    "category": {
+      "name": "Health & Wellness",
+      "slug": "health-wellness"
+    },
+    "updatedAt": null,
+    "sources": []
+  },
+  {
+    "service": "Reproductive Health Services",
+    "slug": "reproductive-health-services",
+    "type": "information",
+    "description": "Comprehensive care related to reproductive wellness and STI prevention.",
+    "officeSlug": "municipal-health-office",
+    "category": {
+      "name": "Health & Wellness",
+      "slug": "health-wellness"
+    },
+    "updatedAt": null,
+    "sources": []
+  },
+  {
+    "service": "Animal Bite Treatment Center",
+    "slug": "animal-bite-treatment-center",
+    "type": "transaction",
+    "description": "Anti-rabies vaccination and wound management for individuals bitten by animals.",
+    "officeSlug": "municipal-health-office",
+    "category": {
+      "name": "Health & Wellness",
+      "slug": "health-wellness"
+    },
+    "updatedAt": null,
+    "quickInfo": {
+      "processingTime": "Immediate",
+      "appointmentType": "Walk-in (Urgent)"
+    },
+    "sources": []
+  },
+  {
+    "service": "TB Prevention and Control Program",
+    "slug": "tb-prevention-control-program",
+    "type": "information",
+    "description": "Sputum examination and DOTS (Directly Observed Treatment Short-course) for Tuberculosis.",
+    "officeSlug": "municipal-health-office",
+    "category": {
+      "name": "Health & Wellness",
+      "slug": "health-wellness"
+    },
+    "updatedAt": null,
+    "sources": []
+  },
+  {
+    "service": "Programmatic Management of Drug Resistant Tuberculosis (PMDT)",
+    "slug": "pmdt-services",
+    "type": "information",
+    "description": "Specialized care and medication management for drug-resistant TB strains.",
+    "officeSlug": "municipal-health-office",
+    "category": {
+      "name": "Health & Wellness",
+      "slug": "health-wellness"
+    },
+    "updatedAt": null,
+    "sources": []
+  },
+  {
+    "service": "Mental Health",
+    "slug": "mental-health-services",
+    "type": "information",
+    "description": "Psychological support, counseling, and referral services for mental wellness.",
+    "officeSlug": "municipal-health-office",
+    "category": {
+      "name": "Health & Wellness",
+      "slug": "health-wellness"
+    },
+    "updatedAt": null,
+    "sources": []
+  },
+  {
+    "service": "Infection Control Program",
+    "slug": "infection-control-program",
+    "type": "information",
+    "description": "Surveillance and mitigation strategies for communicable diseases within the municipality.",
+    "officeSlug": "municipal-health-office",
+    "category": {
+      "name": "Health & Wellness",
+      "slug": "health-wellness"
+    },
+    "updatedAt": null,
+    "sources": []
+  },
+  {
+    "service": "Blood Program",
+    "slug": "blood-program",
+    "type": "information",
+    "description": "Blood donation drives and assistance in sourcing blood for patients in need.",
+    "officeSlug": "municipal-health-office",
+    "category": {
+      "name": "Health & Wellness",
+      "slug": "health-wellness"
+    },
+    "updatedAt": null,
+    "sources": []
+  },
+  {
+    "service": "Adolescent and Youth Health Program",
+    "slug": "adolescent-youth-health-program",
+    "type": "information",
+    "description": "Health education and clinical services specifically tailored for teens and young adults.",
+    "officeSlug": "municipal-health-office",
+    "category": {
+      "name": "Health & Wellness",
+      "slug": "health-wellness"
+    },
+    "updatedAt": null,
+    "sources": []
+  },
+  {
+    "service": "Medical Outreach Program",
+    "slug": "medical-outreach-program",
+    "type": "information",
+    "description": "Mobile medical clinics conducted in various barangays for far-flung communities.",
+    "officeSlug": "municipal-health-office",
+    "category": {
+      "name": "Health & Wellness",
+      "slug": "health-wellness"
+    },
+    "updatedAt": null,
+    "sources": []
+  },
+  {
+    "service": "Certification Services",
+    "slug": "certification-services",
+    "type": "transaction",
+    "description": "Issuance of medical certificates, health cards, and sanitary permits.",
+    "officeSlug": "municipal-health-office",
+    "category": {
+      "name": "Health & Wellness",
+      "slug": "health-wellness"
+    },
+    "steps": [
+      "Present required medical exam results (X-ray, etc.)",
+      "Payment of fees at the window.",
+      "Review by health officer.",
+      "Issuance of signed certificate."
+    ],
+    "requirements": [
+      "Valid ID",
+      "Official Receipt of payment",
+      "Required lab test results"
+    ],
+    "quickInfo": {
+      "processingTime": "1 day",
+      "fee": "Varies by type",
+      "validity": "1 Year"
+    },
+    "updatedAt": null,
+    "sources": []
   }
 ]
