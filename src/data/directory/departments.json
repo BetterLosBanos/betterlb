@@ -30,7 +30,7 @@
     "trunkline": [""],
     "website": "https://losbanos.gov.ph/8",
     "department_head": {
-      "name": "",
+      "name": "TWILA T. TORRES",
       "contact": "[REDACTED]",
       "email": ""
     }
@@ -42,7 +42,7 @@
     "trunkline": [""],
     "website": "https://www.facebook.com/EngineeringOfficeLB",
     "department_head": {
-      "name": "",
+      "name": "Ricky R. Estopace",
       "contact": "[REDACTED]",
       "email": ""
     }
@@ -66,7 +66,7 @@
     "trunkline": [""],
     "website": "https://losbanos.gov.ph/11",
     "department_head": {
-      "name": "",
+      "name": "HANNA ERIKA E. LAVIÑA",
       "contact": "[REDACTED]",
       "email": ""
     }
@@ -102,7 +102,7 @@
     "trunkline": [""],
     "website": "https://losbanos.gov.ph/14",
     "department_head": {
-      "name": "",
+      "name": "JOHN MARVIN S. CANARIA",
       "contact": "[REDACTED]",
       "email": ""
     }
@@ -138,7 +138,7 @@
     "trunkline": [""],
     "website": "https://losbanos.gov.ph/17",
     "department_head": {
-      "name": "",
+      "name": "MIRAFLOR O. TADO",
       "contact": "[REDACTED]",
       "email": ""
     }
@@ -150,7 +150,7 @@
     "trunkline": [""],
     "website": "https://losbanos.gov.ph/18",
     "department_head": {
-      "name": "",
+      "name": "EDMARIE Z. CALUNGSOD",
       "contact": "[REDACTED]",
       "email": ""
     }
@@ -162,7 +162,7 @@
     "trunkline": [""],
     "website": "https://losbanos.gov.ph/19",
     "department_head": {
-      "name": "",
+      "name": "ANTONIO L. ADILLE IV",
       "contact": "[REDACTED]",
       "email": ""
     }
@@ -186,7 +186,7 @@
     "trunkline": [""],
     "website": "https://losbanos.gov.ph/21",
     "department_head": {
-      "name": "",
+      "name": "Cheryl L. Gonzales",
       "contact": "[REDACTED]",
       "email": ""
     }
@@ -222,7 +222,7 @@
     "trunkline": ["049 536 3857"],
     "website": "https://www.facebook.com/LBMHO",
     "department_head": {
-      "name": "",
+      "name": "ALVIN A. ISIDORO",
       "contact": "[REDACTED]",
       "email": "rhu@losbanos.gov.ph"
     }
@@ -247,6 +247,42 @@
     "website": "",
     "department_head": {
       "name": "",
+      "contact": "[REDACTED]",
+      "email": ""
+    }
+  },
+  {
+    "slug": "municipal-general-services-office",
+    "office_name": "MUNICIPAL GENERAL SERVICES OFFICE",
+    "address": "",
+    "trunkline": [""],
+    "website": "",
+    "department_head": {
+      "name": "Raymond Joseph B. Paraiso",
+      "contact": "[REDACTED]",
+      "email": ""
+    }
+  },
+  {
+    "slug": "anti-drug-abuse-office",
+    "office_name": "ANTI DRUG ABUSE OFFICE",
+    "address": "",
+    "trunkline": [""],
+    "website": "",
+    "department_head": {
+      "name": "SHIRLEY D. ANDRADE",
+      "contact": "[REDACTED]",
+      "email": ""
+    }
+  },
+  {
+    "slug": "municipal-urban-development-and-housing-office",
+    "office_name": "MUNICIPAL URBAN DEVELOPMENT AND HOUSING OFFICE",
+    "address": "",
+    "trunkline": [""],
+    "website": "",
+    "department_head": {
+      "name": "Raymond Joseph B. Paraiso",
       "contact": "[REDACTED]",
       "email": ""
     }

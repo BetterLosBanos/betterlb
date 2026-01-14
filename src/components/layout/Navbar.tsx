@@ -121,7 +121,7 @@ const Navbar: FC = () => {
             </Link>
             <a
               href='https://losbanos.gov.ph'
-              className='text-xs leading-12 text-gray-800 hover:text-primary-600 transition-colors'
+              className='text-xs text-gray-800 transition-colors leading-12 hover:text-primary-600'
               target='_blank'
               rel='noreferrer'
             >
@@ -129,13 +129,13 @@ const Navbar: FC = () => {
             </a>
             <Link
               to='/contact'
-              className='text-xs leading-12 text-gray-800 hover:text-primary-600 transition-colors'
+              className='text-xs text-gray-800 transition-colors leading-12 hover:text-primary-600'
             >
               Contact Us
             </Link>
             <Link
               to='/philippines/hotlines'
-              className='text-xs leading-12 text-gray-800 hover:text-primary-600 transition-colors'
+              className='text-xs text-gray-800 transition-colors leading-12 hover:text-primary-600'
             >
               Hotlines
             </Link>
@@ -143,7 +143,7 @@ const Navbar: FC = () => {
               <select
                 value={i18n.language}
                 onChange={e => changeLanguage(e.target.value as LanguageType)}
-                className='text-xs border border-gray-300 rounded-sm px-2 py-1 bg-white text-gray-700 hover:border-primary-600 focus:outline-hidden focus:ring-1 focus:ring-primary-600 focus:border-primary-600'
+                className='px-2 py-1 text-xs text-gray-700 bg-white rounded-sm border border-gray-300 hover:border-primary-600 focus:outline-hidden focus:ring-1 focus:ring-primary-600 focus:border-primary-600'
               >
                 {Object.entries(LANGUAGES).map(([code, lang]) => (
                   <option key={code} value={code}>
@@ -157,18 +157,18 @@ const Navbar: FC = () => {
       </div>
 
       {/* Main navigation */}
-      <div className='container mx-auto px-4'>
+      <div className='container px-4 mx-auto'>
         <div className='flex justify-between items-center py-4'>
           <div className='flex items-center'>
             <Link to='/' className='flex items-center'>
-              <CheckCircle2 className='h-12 w-12 mr-3' />
+              <CheckCircle2 className='mr-3 w-12 h-12' />
               {/* <img
                 src='/logos/svg/BetterGov_Icon-Primary.svg'
                 alt='BetterGov Logo'
-                className='h-12 w-12 mr-3'
+                className='mr-3 w-12 h-12'
               /> */}
               <div>
-                <div className='text-black font-bold'>BetterLB</div>
+                <div className='font-bold text-black'>BetterLB</div>
                 <div className='text-xs text-gray-800'>
                   A community-run portal for the Municipality of Los Baños
                 </div>
@@ -177,7 +177,7 @@ const Navbar: FC = () => {
           </div>
 
           {/* Desktop navigation */}
-          <div className='hidden lg:flex items-center lg:space-x-4 xl:space-x-8 lg:pr-6 xl:pr-24 lg:leading-10'>
+          <div className='hidden items-center lg:flex lg:space-x-4 xl:space-x-8 lg:pr-6 xl:pr-24 lg:leading-10'>
             {mainNavigation.map(item => {
               const isActive = isActiveRoute(item.href);
               return (
@@ -192,7 +192,7 @@ const Navbar: FC = () => {
                     className={`flex items-center font-medium transition-colors pb-1 border-b-2 whitespace-nowrap ${
                       isActive
                         ? 'text-primary-600 border-primary-600'
-                        : 'text-gray-700 hover:text-primary-600 border-transparent'
+                        : 'text-gray-700 border-transparent hover:text-primary-600'
                     }`}
                   >
                     {t(`navbar.${item.label.toLowerCase()}`)}
@@ -241,10 +241,10 @@ const Navbar: FC = () => {
               );
             })}
           </div>
-          <div className='hidden lg:flex items-center lg:space-x-4 xl:space-x-8 lg:pr-6 xl:pr-24 lg:leading-10'>
+          <div className='hidden items-center lg:flex lg:space-x-4 xl:space-x-8 lg:pr-6 xl:pr-24 lg:leading-10'>
             <Link
               to='/search'
-              className='flex items-center text-gray-700 hover:text-primary-600 font-semibold text-lg transition-colors px-3 py-2 rounded-lg hover:bg-gray-50'
+              className='flex items-center px-3 py-2 text-lg font-semibold text-gray-700 rounded-lg transition-colors hover:text-primary-600 hover:bg-gray-50'
             >
               <SearchIcon className='h-5 w-5 mr-2' />
               Search
@@ -329,13 +329,13 @@ const Navbar: FC = () => {
           >
             About
           </Link>
-          <Link
+          {/* <Link
             to='/contact'
             onClick={closeMenu}
             className='flex items-center px-4 py-2 text-base font-medium text-gray-700 hover:bg-gray-50 hover:text-primary-500'
           >
             Contact Us
-          </Link>
+          </Link> */}
           <Link
             to='/search'
             onClick={closeMenu}
