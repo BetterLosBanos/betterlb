@@ -58,6 +58,7 @@
     "react": "19.1.0",
     "react-dom": "19.1.0",
     "react-helmet-async": "^2.0.5",
+    "react-hook-form": "^7.71.1",
     "react-i18next": "^15.7.3",
     "react-instantsearch": "^7.15.8",
     "react-leaflet": "^5.0.0",
