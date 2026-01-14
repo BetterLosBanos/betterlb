@@ -1,0 +1,92 @@
+[
+  {
+    "service": "Business Permit (New)",
+    "slug": "business-permit-new",
+    "type": "transaction",
+    "description": "Application for a new Mayor's Permit to conduct business within the municipality.",
+    "url": "",
+    "officeSlug": ["business-permit-and-licensing-office"],
+    "category": {
+      "name": "Business & Licensing",
+      "slug": "business-licensing"
+    },
+    "steps": [
+      "Prepare all required documents.",
+      "Submit application form and requirements at the BPLO one-stop shop or online.",
+      "Wait for assessment of taxes and fees.",
+      "Pay the assessed fees at the Treasurer's Office.",
+      "Claim your Business Permit and plates."
+    ],
+    "requirements": [
+      "DTI/SEC/CDA Registration",
+      "Barangay Business Clearance",
+      "Community Tax Certificate (Cedula)",
+      "Contract of Lease (if lessee) or Tax Declaration (if owner)",
+      "Locational Clearance",
+      "Fire Safety Inspection Certificate (FSIC)",
+      "Sanitary Permit"
+    ],
+    "relatedServices": [
+      "business-permit-renewal",
+      "barangay-business-clearance"
+    ],
+    "quickInfo": {
+      "processingTime": "1-3 days",
+      "fee": "Based on capital investment",
+      "whoCanApply": "Business Owners",
+      "appointmentType": "Walk-in / Online"
+    },
+    "updatedAt": null,
+    "sources": [
+      {
+        "name": "Municipal Revenue Code",
+        "url": ""
+      },
+      {
+        "name": "BPLO Regulatory Guidelines",
+        "url": ""
+      }
+    ]
+  },
+  {
+    "service": "Business Permit (Renewal)",
+    "slug": "business-permit-renewal",
+    "type": "transaction",
+    "description": "Annual renewal of Mayor's Permit for existing businesses.",
+    "officeSlug": ["business-permit-and-licensing-office"],
+    "category": {
+      "name": "Business & Licensing",
+      "slug": "business-licensing"
+    },
+    "steps": [
+      "Present previous year's permit and official receipt.",
+      "Submit renewal application form.",
+      "Pay regulatory fees and business taxes.",
+      "Receive renewed Business Permit."
+    ],
+    "requirements": [
+      "Previous Year's Mayor's Permit",
+      "Barangay Business Clearance (Current Year)",
+      "BIR Income Tax Return (Previous Year)",
+      "Financial Statement"
+    ],
+    "relatedServices": ["business-permit-new"],
+    "quickInfo": {
+      "processingTime": "1 day",
+      "fee": "Based on gross sales",
+      "whoCanApply": "Business Owners",
+      "validity": "1 Year"
+    },
+    "updatedAt": null,
+    "sources": [
+      {
+        "name": "Municipal Ordinance No. 2023-01",
+        "url": ""
+      },
+      {
+        "name": "LGOO Memorandum Circular 12",
+        "url": ""
+      }
+    ]
+  }
+]

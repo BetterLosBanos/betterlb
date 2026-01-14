@@ -1,5 +1,70 @@
 [
   {
+    "service": "Rural Health Unit (RHU) Locations",
+    "slug": "rhu-locations",
+    "type": "information",
+    "description": "Locations of health centers providing free primary care, immunization, and maternal services.",
+    "officeSlug": ["municipal-health-office"],
+    "category": {
+      "name": "Health & Wellness",
+      "slug": "health-wellness"
+    },
+    "steps": [
+      "RHU 1: Main Health Center, Municipal Hall Compound, Brgy. Timugan",
+      "RHU 2: Brgy. Batong Malake (Near Barangay Hall)",
+      "RHU 3: Brgy. Mayondon (Purok 3)",
+      "Animal Bite Center: Municipal Hall Compound"
+    ],
+    "requirements": [],
+    "relatedServices": ["health-certificate"],
+    "updatedAt": null,
+    "sources": [
+      {
+        "name": "Municipal Health Office Registry",
+        "url": ""
+      }
+    ]
+  },
+  {
+    "service": "Health Certificate",
+    "slug": "health-certificate",
+    "type": "transaction",
+    "description": "Required for food handlers and employees in business establishments.",
+    "officeSlug": ["municipal-health-office"],
+    "category": {
+      "name": "Health & Wellness",
+      "slug": "health-wellness"
+    },
+    "steps": [
+      "Submit chest x-ray and stool exam results.",
+      "Attend food handler's seminar (if applicable).",
+      "Pay health fee.",
+      "Claim Health Certificate."
+    ],
+    "requirements": [
+      "Chest X-Ray Result (within 6 months)",
+      "Stool Exam Result",
+      "1x1 ID Picture",
+      "Community Tax Certificate"
+    ],
+    "quickInfo": {
+      "processingTime": "1 day",
+      "fee": "₱100",
+      "validity": "1 Year"
+    },
+    "updatedAt": null,
+    "sources": [
+      {
+        "name": "P.D. 856 (Code on Sanitation of the Philippines)",
+        "url": ""
+      },
+      {
+        "name": "Sanitary Office Guidelines",
+        "url": ""
+      }
+    ]
+  },
+  {
     "service": "Medical and Surgical Services",
     "slug": "medical-surgical-services",
     "type": "transaction",
@@ -7,8 +72,8 @@
     "url": "",
     "officeSlug": ["municipal-health-office"],
     "category": {
-      "name": "Health & Nutrition",
-      "slug": "health-nutrition"
+      "name": "Health & Wellness",
+      "slug": "health-wellness"
     },
     "steps": [
       "Registration and triage at the RHU entrance.",
@@ -28,7 +93,11 @@
       "appointmentType": "Walk-in"
     },
     "updatedAt": null,
-    "sources": [{ "name": "Municipal Health Office Manual of Operations" }]
+    "sources": [
+      {
+        "name": "Municipal Health Office Manual of Operations"
+      }
+    ]
   },
   {
     "service": "Dental Services",
@@ -37,15 +106,16 @@
     "description": "Oral health services including tooth extraction, cleaning, and consultations.",
     "officeSlug": ["municipal-health-office"],
     "category": {
-      "name": "Health & Nutrition",
-      "slug": "health-nutrition"
+      "name": "Health & Wellness",
+      "slug": "health-wellness"
     },
     "updatedAt": null,
     "quickInfo": {
       "processingTime": "1-2 hours",
       "fee": "Free / Minimal supply cost",
       "appointmentType": "Scheduled / Walk-in"
-    }
+    },
+    "sources": []
   },
   {
     "service": "Laboratory Services",
@@ -54,14 +124,15 @@
     "description": "Diagnostic laboratory tests including blood chemistry, urinalysis, and fecalysis.",
     "officeSlug": ["municipal-health-office"],
     "category": {
-      "name": "Health & Nutrition",
-      "slug": "health-nutrition"
+      "name": "Health & Wellness",
+      "slug": "health-wellness"
     },
     "updatedAt": null,
     "quickInfo": {
       "processingTime": "Same day for basic tests",
       "documents": "Doctor's request"
-    }
+    },
+    "sources": []
   },
   {
     "service": "Sanitation Services",
@@ -70,13 +141,14 @@
     "description": "Environmental health services and inspection of establishments for sanitary compliance.",
     "officeSlug": ["municipal-health-office"],
     "category": {
-      "name": "Health & Nutrition",
-      "slug": "health-nutrition"
+      "name": "Health & Wellness",
+      "slug": "health-wellness"
     },
     "updatedAt": null,
     "quickInfo": {
       "whoCanApply": "Establishment Owners / Households"
-    }
+    },
+    "sources": []
   },
   {
     "service": "Child Health Services",
@@ -85,13 +157,14 @@
     "description": "Immunization, nutrition monitoring, and pediatric consultations for infants and children.",
     "officeSlug": ["municipal-health-office"],
     "category": {
-      "name": "Health & Nutrition",
-      "slug": "health-nutrition"
+      "name": "Health & Wellness",
+      "slug": "health-wellness"
     },
     "updatedAt": null,
     "quickInfo": {
       "whoCanApply": "Parents/Guardians of children 0-5 years old"
-    }
+    },
+    "sources": []
   },
   {
     "service": "Maternal Health Services",
@@ -100,10 +173,11 @@
     "description": "Prenatal and postnatal care for expectant and new mothers.",
     "officeSlug": ["municipal-health-office"],
     "category": {
-      "name": "Health & Nutrition",
-      "slug": "health-nutrition"
+      "name": "Health & Wellness",
+      "slug": "health-wellness"
     },
-    "updatedAt": null
+    "updatedAt": null,
+    "sources": []
   },
   {
     "service": "Birthing Home Services",
@@ -112,10 +186,11 @@
     "description": "24/7 facility-based delivery services for low-risk pregnancies.",
     "officeSlug": ["municipal-health-office"],
     "category": {
-      "name": "Health & Nutrition",
-      "slug": "health-nutrition"
+      "name": "Health & Wellness",
+      "slug": "health-wellness"
     },
-    "updatedAt": null
+    "updatedAt": null,
+    "sources": []
   },
   {
     "service": "Family Planning Services",
@@ -124,10 +199,11 @@
     "description": "Consultation and provision of various family planning methods.",
     "officeSlug": ["municipal-health-office"],
     "category": {
-      "name": "Health & Nutrition",
-      "slug": "health-nutrition"
+      "name": "Health & Wellness",
+      "slug": "health-wellness"
     },
-    "updatedAt": null
+    "updatedAt": null,
+    "sources": []
   },
   {
     "service": "Reproductive Health Services",
@@ -136,10 +212,11 @@
     "description": "Comprehensive care related to reproductive wellness and STI prevention.",
     "officeSlug": ["municipal-health-office"],
     "category": {
-      "name": "Health & Nutrition",
-      "slug": "health-nutrition"
+      "name": "Health & Wellness",
+      "slug": "health-wellness"
     },
-    "updatedAt": null
+    "updatedAt": null,
+    "sources": []
   },
   {
     "service": "Animal Bite Treatment Center",
@@ -148,14 +225,15 @@
     "description": "Anti-rabies vaccination and wound management for individuals bitten by animals.",
     "officeSlug": ["municipal-health-office"],
     "category": {
-      "name": "Health & Nutrition",
-      "slug": "health-nutrition"
+      "name": "Health & Wellness",
+      "slug": "health-wellness"
     },
     "updatedAt": null,
     "quickInfo": {
       "processingTime": "Immediate",
       "appointmentType": "Walk-in (Urgent)"
-    }
+    },
+    "sources": []
   },
   {
     "service": "TB Prevention and Control Program",
@@ -164,10 +242,11 @@
     "description": "Sputum examination and DOTS (Directly Observed Treatment Short-course) for Tuberculosis.",
     "officeSlug": ["municipal-health-office"],
     "category": {
-      "name": "Health & Nutrition",
-      "slug": "health-nutrition"
+      "name": "Health & Wellness",
+      "slug": "health-wellness"
     },
-    "updatedAt": null
+    "updatedAt": null,
+    "sources": []
   },
   {
     "service": "Programmatic Management of Drug Resistant Tuberculosis (PMDT)",
@@ -176,10 +255,11 @@
     "description": "Specialized care and medication management for drug-resistant TB strains.",
     "officeSlug": ["municipal-health-office"],
     "category": {
-      "name": "Health & Nutrition",
-      "slug": "health-nutrition"
+      "name": "Health & Wellness",
+      "slug": "health-wellness"
     },
-    "updatedAt": null
+    "updatedAt": null,
+    "sources": []
   },
   {
     "service": "Mental Health",
@@ -188,10 +268,11 @@
     "description": "Psychological support, counseling, and referral services for mental wellness.",
     "officeSlug": ["municipal-health-office"],
     "category": {
-      "name": "Health & Nutrition",
-      "slug": "health-nutrition"
+      "name": "Health & Wellness",
+      "slug": "health-wellness"
     },
-    "updatedAt": null
+    "updatedAt": null,
+    "sources": []
   },
   {
     "service": "Infection Control Program",
@@ -200,10 +281,11 @@
     "description": "Surveillance and mitigation strategies for communicable diseases within the municipality.",
     "officeSlug": ["municipal-health-office"],
     "category": {
-      "name": "Health & Nutrition",
-      "slug": "health-nutrition"
+      "name": "Health & Wellness",
+      "slug": "health-wellness"
     },
-    "updatedAt": null
+    "updatedAt": null,
+    "sources": []
   },
   {
     "service": "Blood Program",
@@ -212,10 +294,11 @@
     "description": "Blood donation drives and assistance in sourcing blood for patients in need.",
     "officeSlug": ["municipal-health-office"],
     "category": {
-      "name": "Health & Nutrition",
-      "slug": "health-nutrition"
+      "name": "Health & Wellness",
+      "slug": "health-wellness"
     },
-    "updatedAt": null
+    "updatedAt": null,
+    "sources": []
   },
   {
     "service": "Adolescent and Youth Health Program",
@@ -224,10 +307,11 @@
     "description": "Health education and clinical services specifically tailored for teens and young adults.",
     "officeSlug": ["municipal-health-office"],
     "category": {
-      "name": "Health & Nutrition",
-      "slug": "health-nutrition"
+      "name": "Health & Wellness",
+      "slug": "health-wellness"
     },
-    "updatedAt": null
+    "updatedAt": null,
+    "sources": []
   },
   {
     "service": "Medical Outreach Program",
@@ -236,10 +320,11 @@
     "description": "Mobile medical clinics conducted in various barangays for far-flung communities.",
     "officeSlug": ["municipal-health-office"],
     "category": {
-      "name": "Health & Nutrition",
-      "slug": "health-nutrition"
+      "name": "Health & Wellness",
+      "slug": "health-wellness"
     },
-    "updatedAt": null
+    "updatedAt": null,
+    "sources": []
   },
   {
     "service": "Certification Services",
@@ -248,8 +333,8 @@
     "description": "Issuance of medical certificates, health cards, and sanitary permits.",
     "officeSlug": ["municipal-health-office"],
     "category": {
-      "name": "Health & Nutrition",
-      "slug": "health-nutrition"
+      "name": "Health & Wellness",
+      "slug": "health-wellness"
     },
     "steps": [
       "Present required medical exam results (X-ray, etc.)",
@@ -267,6 +352,7 @@
       "fee": "Varies by type",
       "validity": "1 Year"
     },
-    "updatedAt": null
+    "updatedAt": null,
+    "sources": []
   }
 ]

@@ -1,0 +1,39 @@
+[
+  {
+    "service": "Garbage Collection Schedule",
+    "slug": "garbage-collection-schedule",
+    "type": "information",
+    "description": "Weekly schedule for waste collection per barangay. Please segregate biodegradable and non-biodegradable waste.",
+    "officeSlug": ["municipal-environment-and-natural-resources-office"],
+    "category": {
+      "name": "Environment & Waste",
+      "slug": "environment-waste"
+    },
+    "steps": [
+      "Monday & Thursday: Batong Malake, San Antonio, Maahas (Biodegradable)",
+      "Tuesday & Friday: Bayog, Mayondon, Malinta (Biodegradable)",
+      "Wednesday: All Barangays (Non-Biodegradable / Recyclables)",
+      "Saturday: Special collection for Market area",
+      "Sunday: No Collection"
+    ],
+    "requirements": [
+      "Please ensure waste is segregated before putting it out.",
+      "Bring out trash only between 6:00 AM - 8:00 AM."
+    ],
+    "quickInfo": {
+      "processingTime": "Weekly",
+      "whoCanApply": "All Residents"
+    },
+    "updatedAt": null,
+    "sources": [
+      {
+        "name": "Republic Act No. 9003 (Ecological Solid Waste Management Act)",
+        "url": ""
+      },
+      {
+        "name": "MENRO Garbage Collection Policy",
+        "url": ""
+      }
+    ]
+  }
+]

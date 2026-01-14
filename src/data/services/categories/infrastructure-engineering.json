@@ -1,5 +1,45 @@
 [
   {
+    "service": "Building Permit Application",
+    "slug": "building-permit",
+    "type": "transaction",
+    "description": "Permit required before constructing, altering, or repairing any building.",
+    "officeSlug": ["municipal-engineering-office"],
+    "category": {
+      "name": "Infrastructure & Engineering",
+      "slug": "infrastructure-engineering"
+    },
+    "steps": [
+      "Submit technical documents for evaluation.",
+      "Wait for order of payment.",
+      "Pay building permit fees.",
+      "Claim Building Permit."
+    ],
+    "requirements": [
+      "5 Sets of Building Plans",
+      "Bill of Materials & Cost Estimates",
+      "Land Title / Deed of Sale",
+      "Tax Declaration",
+      "Locational Clearance"
+    ],
+    "quickInfo": {
+      "processingTime": "5-10 days",
+      "fee": "Based on floor area",
+      "whoCanApply": "Property Owners"
+    },
+    "updatedAt": null,
+    "sources": [
+      {
+        "name": "P.D. 1096 (National Building Code of the Philippines)",
+        "url": ""
+      },
+      {
+        "name": "Municipal Engineering Regulatory Manual",
+        "url": ""
+      }
+    ]
+  },
+  {
     "service": "Certificate of Electrical Inspection (CEI)",
     "slug": "certificate-electrical-inspection",
     "type": "transaction",
@@ -31,7 +71,11 @@
       "appointmentType": "Walk-in"
     },
     "updatedAt": null,
-    "sources": [{ "name": "Municipal Engineering Office CEI Guidelines" }]
+    "sources": [
+      {
+        "name": "Municipal Engineering Office CEI Guidelines"
+      }
+    ]
   },
   {
     "service": "Certificate of Occupancy",
@@ -59,31 +103,10 @@
     },
     "updatedAt": null,
     "sources": [
-      { "name": "Unified Application Form for Certificate of Occupancy" }
+      {
+        "name": "Unified Application Form for Certificate of Occupancy"
+      }
     ]
-  },
-  {
-    "service": "Fire Safety Inspection Certificate (FSIC)",
-    "slug": "fire-safety-inspection-certificate",
-    "type": "transaction",
-    "description": "Required for occupancy and business permits to ensure the structure meets fire safety standards.",
-    "officeSlug": ["bureau-fire-protection"],
-    "category": {
-      "name": "Public Safety & Transport",
-      "slug": "public-safety-transport"
-    },
-    "requirements": [
-      "Unified Application Form",
-      "Building Permit Number and Date Issued",
-      "FSEC Number and Date Issued",
-      "Site Inspection by BFP personnel"
-    ],
-    "quickInfo": {
-      "processingTime": "3-5 days",
-      "whoCanApply": "Building Owners / Business Operators"
-    },
-    "updatedAt": null,
-    "sources": [{ "name": "BFP Fire Safety Regulations" }]
   },
   {
     "service": "Building Permit (General)",
@@ -111,7 +134,11 @@
       "documents": "Lot plans, Notarized forms"
     },
     "updatedAt": null,
-    "sources": [{ "name": "OBO Building Permit Checklist" }]
+    "sources": [
+      {
+        "name": "OBO Building Permit Checklist"
+      }
+    ]
   },
   {
     "service": "Electronics Permit",
@@ -135,7 +162,11 @@
       "whoCanApply": "Property Owners / Electronics Engineers"
     },
     "updatedAt": null,
-    "sources": [{ "name": "Electronics Permit Documentary Requirements" }]
+    "sources": [
+      {
+        "name": "Electronics Permit Documentary Requirements"
+      }
+    ]
   },
   {
     "service": "Sign Permit",
@@ -154,8 +185,11 @@
       "Notarized estimated value of the structure",
       "Medical Certificate of Workers"
     ],
-    "quickInfo": { "processingTime": "4 working days" },
-    "updatedAt": null
+    "quickInfo": {
+      "processingTime": "4 working days"
+    },
+    "updatedAt": null,
+    "sources": []
   },
   {
     "service": "Demolition Permit",
@@ -174,8 +208,11 @@
       "Proof of Ownership",
       "Affidavit of Undertaking"
     ],
-    "quickInfo": { "processingTime": "4 working days" },
-    "updatedAt": null
+    "quickInfo": {
+      "processingTime": "4 working days"
+    },
+    "updatedAt": null,
+    "sources": []
   },
   {
     "service": "Fencing Permit",
@@ -194,7 +231,10 @@
       "Construction Safety and Health Program (CSHP - DOLE)",
       "Medical Certificate of Workers"
     ],
-    "quickInfo": { "processingTime": "4 working days" },
-    "updatedAt": null
+    "quickInfo": {
+      "processingTime": "4 working days"
+    },
+    "updatedAt": null,
+    "sources": []
   }
 ]

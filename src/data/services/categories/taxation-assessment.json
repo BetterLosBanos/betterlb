@@ -1,0 +1,37 @@
+[
+  {
+    "service": "Real Property Tax Payment",
+    "slug": "real-property-tax-payment",
+    "type": "transaction",
+    "description": "Payment of taxes on land, buildings, and machinery (Amilyar).",
+    "officeSlug": ["municipal-treasurers-office"],
+    "category": {
+      "name": "Taxation & Assessment",
+      "slug": "taxation-assessment"
+    },
+    "steps": [
+      "Present latest Official Receipt or Tax Declaration.",
+      "Get assessment from the Assessor's window.",
+      "Proceed to Treasurer's window for payment.",
+      "Receive Official Receipt."
+    ],
+    "requirements": ["Previous Official Receipt", "Tax Declaration Number"],
+    "quickInfo": {
+      "processingTime": "30 minutes",
+      "fee": "1% of Assessed Value",
+      "whoCanApply": "Property Owners",
+      "appointmentType": "Walk-in"
+    },
+    "updatedAt": null,
+    "sources": [
+      {
+        "name": "Municipal Tax Ordinance",
+        "url": ""
+      },
+      {
+        "name": "Bureau of Local Government Finance Guidelines",
+        "url": ""
+      }
+    ]
+  }
+]
