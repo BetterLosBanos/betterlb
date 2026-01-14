@@ -1,0 +1,101 @@
+[
+  {
+    "service": "Public School Directory",
+    "slug": "public-school-directory",
+    "type": "information",
+    "description": "A comprehensive list of public elementary and secondary schools in the municipality.",
+    "officeSlug": ["department-of-education"],
+    "category": {
+      "name": "Education & Scholarship",
+      "slug": "education-scholarship"
+    },
+    "steps": [
+      "Los Baños Central Elementary School (Timugan)",
+      "Mayondon Elementary School",
+      "Bayog Elementary School",
+      "Lalakay Elementary School",
+      "Los Baños National High School (Poblacion)",
+      "Bernardo F. San Juan National High School",
+      "South Hill School (Private)",
+      "University of the Philippines Rural High School"
+    ],
+    "requirements": [],
+    "relatedServices": ["scholarship-application"],
+    "faqs": [
+      {
+        "question": "When does enrollment start?",
+        "answer": "Enrollment typically begins in July. Please follow the official DepEd page for announcements."
+      }
+    ],
+    "updatedAt": null,
+    "sources": [
+      {
+        "name": "DepEd Schools Division Office List",
+        "url": ""
+      }
+    ]
+  },
+  {
+    "service": "Scholarship Application",
+    "slug": "scholarship-application",
+    "type": "transaction",
+    "description": "Financial assistance program for deserving college students.",
+    "officeSlug": ["office-of-the-mayor"],
+    "category": {
+      "name": "Education & Scholarship",
+      "slug": "education-scholarship"
+    },
+    "steps": [
+      "Submit application form with grades.",
+      "Undergo interview/screening.",
+      "Wait for posting of qualified scholars.",
+      "Attend orientation and contract signing."
+    ],
+    "requirements": [
+      "Certificate of Grades (GWA 2.0 or higher)",
+      "Certificate of Indigency",
+      "Photocopy of School ID",
+      "Registration Form"
+    ],
+    "quickInfo": {
+      "processingTime": "Seasonal",
+      "whoCanApply": "College Students",
+      "documents": "Grades, Indigency"
+    },
+    "updatedAt": null,
+    "sources": [
+      {
+        "name": "Municipal Scholarship Ordinance",
+        "url": ""
+      }
+    ]
+  },
+  {
+    "service": "Educational Assistance Program",
+    "slug": "educational-assistance",
+    "type": "transaction",
+    "description": "Financial grant for students from Junior High School to College levels to assist with educational expenses.",
+    "officeSlug": ["local-youth-and-development-office"],
+    "category": {
+      "name": "Education & Scholarship",
+      "slug": "education-scholarship"
+    },
+    "steps": [
+      "Submit application form with academic grades to LYDO.",
+      "Wait for verification and posting of qualified grantees.",
+      "Attend the scheduled payout ceremony."
+    ],
+    "requirements": [
+      "School ID",
+      "Certificate of Enrollment",
+      "Recent Report Card / Transcript of Records",
+      "Indigency Certificate from Barangay"
+    ],
+    "quickInfo": {
+      "processingTime": "Seasonal (Per Semester)",
+      "whoCanApply": "JHS, SHS, and College Students"
+    },
+    "updatedAt": null,
+    "sources": []
+  }
+]

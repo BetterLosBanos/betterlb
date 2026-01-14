@@ -1,0 +1,29 @@
+[
+  {
+    "service": "Seed & Fertilizer Distribution",
+    "slug": "seed-fertilizer-distribution",
+    "type": "information",
+    "description": "Availability of free vegetable seeds and subsidized fertilizers for local farmers.",
+    "officeSlug": ["municipal-agriculture-office"],
+    "category": {
+      "name": "Agriculture & Livelihood",
+      "slug": "agriculture-livelihood"
+    },
+    "steps": [
+      "Available Seeds: Eggplant, Tomato, Pechay, Mustard, Sitaw",
+      "Location: Municipal Agriculture Office, Hall Compound",
+      "Schedule: Monday to Friday, 8:00 AM - 5:00 PM"
+    ],
+    "requirements": [
+      "Must be a registered farmer (RSBSA) for fertilizer subsidies.",
+      "Walk-ins allowed for seed packets."
+    ],
+    "updatedAt": null,
+    "sources": [
+      {
+        "name": "Municipal Agriculture Office Extension Program",
+        "url": ""
+      }
+    ]
+  }
+]

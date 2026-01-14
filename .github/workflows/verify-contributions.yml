@@ -1,0 +1,84 @@
+﻿name: Verify and Commit Service
+on:
+  issues:
+    types: [labeled]
+
+permissions:
+  contents: write # Allows the bot to push code changes
+
+jobs:
+  update-data:
+    if: github.event.label.name == 'verified'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Setup Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.x'
+
+      - name: Process Contribution and Rebuild Master File
+        shell: python
+        run: |
+          import json
+          import re
+          import os
+
+          # 1. PARSE ISSUE BODY
+          issue_body = """${{ github.event.issue.body }}"""
+          match = re.search(r'<!-- DATA_START -->.*?```json\n(.*?)\n```.*?<!-- DATA_END -->', issue_body, re.DOTALL)
+
+          if not match:
+              print("❌ No valid JSON block found.")
+              exit(1)
+
+          new_service = json.loads(match.group(1))
+          cat_slug = new_service['category']['slug']
+
+          # Paths
+          base_dir = 'src/data/services/categories'
+          cat_file = f"{base_dir}/{cat_slug}.json"
+          master_file = 'src/data/services/services.json'
+
+          # Ensure categories directory exists
+          if not os.path.exists(base_dir):
+              os.makedirs(base_dir)
+
+          # 2. UPDATE CATEGORY FILE (UPSERT)
+          cat_list = []
+          if os.path.exists(cat_file):
+              with open(cat_file, 'r', encoding='utf-8') as f:
+                  cat_list = json.load(f)
+
+          # Convert to dict for easy update, then back to sorted list
+          db = { item['slug']: item for item in cat_list }
+          db[new_service['slug']] = new_service
+          final_cat_list = sorted(db.values(), key=lambda x: x['service'])
+
+          with open(cat_file, 'w', encoding='utf-8') as f:
+              json.dump(final_cat_list, f, indent=2, ensure_ascii=False)
+
+          # 3. REBUILD MONOLITHIC MASTER FILE (MERGE)
+          all_services = []
+          for filename in os.listdir(base_dir):
+              if filename.endswith('.json'):
+                  with open(os.path.join(base_dir, filename), 'r', encoding='utf-8') as f:
+                      all_services.extend(json.load(f))
+
+          # Final sort by name for frontend consistency
+          all_services.sort(key=lambda x: x['service'])
+
+          with open(master_file, 'w', encoding='utf-8') as f:
+              json.dump(all_services, f, indent=2, ensure_ascii=False)
+
+          print(f"✅ Successfully updated {cat_slug}.json and rebuilt services.json")
+
+      - name: Commit and Push Changes
+        run: |
+          git config --local user.email "action@github.com"
+          git config --local user.name "BetterLB Auditor Bot"
+          git add src/data/services/categories/*.json src/data/services/services.json
+
+          # Standardized BetterGov commit message format
+          git diff --quiet && git diff --staged --quiet || (git commit -m "data: update service directory from verified issue #${{ github.event.issue.number }}" && git push)

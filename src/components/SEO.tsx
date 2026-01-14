@@ -25,7 +25,7 @@ interface SEOProps {
 export default function SEO({
   title,
   description,
-  ogImage = '/logos/jpg/BetterGov_Vertical-White.jpg',
+  ogImage = '/logos/png/betterlb-white.jpg',
   ogType = 'website',
   noIndex = false,
   keywords = [],
