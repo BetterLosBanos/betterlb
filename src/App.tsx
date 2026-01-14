@@ -5,71 +5,69 @@ import {
   Navigate,
 } from 'react-router-dom';
 import { NuqsAdapter } from 'nuqs/adapters/react-router/v6';
+
+// --- Layouts ---
 import Navbar from '@/components/layout/Navbar';
 import Ticker from '@/components/ui/Ticker';
 import Footer from '@/components/layout/Footer';
 import SEO from '@/components/SEO';
-import Home from '@/pages/Home';
-import DesignGuide from '@/pages/DesignGuide';
+import ScrollToTop from '@/components/ui/ScrollToTop';
 
-// Services Imports
-import Services from '@/pages/services';
-import ServiceDetail from '@/pages/services/[service]';
+import GovernmentLayout from '@/pages/government/layout';
+import ElectedOfficialsLayout from '@/pages/government/elected-officials/layout';
+import DepartmentsLayout from '@/pages/government/departments/layout';
+import BarangaysLayout from '@/pages/government/barangays/layout';
 import ServicesLayout from '@/pages/services/layout';
+import StatisticsLayout from '@/pages/statistics/layout';
+import LegislationLayout from '@/pages/legislation/layout';
+import TransparencyLayout from '@/pages/transparency/layout';
 
+// --- Pages ---
+import Home from '@/pages/Home';
 import AboutPage from '@/pages/about';
 import AccessibilityPage from '@/pages/accessibility';
 import ContactUs from '@/pages/ContactUs';
-import DepartmentsIndex from '@/pages/government/departments';
-import DepartmentDetail from '@/pages/government/departments/[department]';
-import DepartmentsLayout from '@/pages/government/departments/layout';
-import GovernmentLayout from '@/pages/government/layout';
-
-// Legislative Branch
-import LegislativeChamber from '@/pages/government/elected-officials/[chamber]';
-import MunicipalCommitteesPage from '@/pages/government/elected-officials/municipal-committees';
-
-import ElectedOfficialsIndex from './pages/government/elected-officials';
-import ElectedOfficialsLayout from './pages/government/elected-officials/layout';
-import BarangaysIndex from '@/pages/government/barangays';
-import BarangayDetail from '@/pages/government/barangays/[barangay]';
-import BarangaysLayout from '@/pages/government/barangays/layout';
-// Search Page
 import SearchPage from '@/pages/Search';
+import SitemapPage from '@/pages/sitemap';
+import Ideas from '@/pages/Ideas';
+import JoinUs from '@/pages/JoinUs';
+import TermsOfService from '@/pages/TermsOfService';
+import Discord from '@/pages/Discord';
+import NotFound from '@/pages/NotFound';
+import ContributePage from './pages/contribute';
 
-// Data Pages
+// --- Data Pages ---
 import WeatherPage from '@/pages/data/weather';
 import ForexPage from '@/pages/data/forex';
 
-// Statistics Pages
+// --- Directory Modules ---
+import ElectedOfficialsIndex from './pages/government/elected-officials';
+import ExecutiveBranchPage from '@/pages/government/elected-officials/executive-branch';
+import LegislativeChamber from '@/pages/government/elected-officials/[chamber]';
+import MunicipalCommitteesPage from '@/pages/government/elected-officials/municipal-committees';
 
-// Legislation Pages
-import LegislationLayout from '@/pages/legislation/layout';
+import DepartmentsIndex from '@/pages/government/departments';
+import DepartmentDetail from '@/pages/government/departments/[department]';
+
+import BarangaysIndex from '@/pages/government/barangays';
+import BarangayDetail from '@/pages/government/barangays/[barangay]';
+
+// --- Services & Legislation ---
+import Services from '@/pages/services';
+import ServiceDetail from '@/pages/services/[service]';
+
 import LegislationIndex from '@/pages/legislation/index';
 import LegislationDetail from '@/pages/legislation/[document]';
 import SessionDetail from '@/pages/legislation/[session]';
 import PersonDetail from '@/pages/legislation/[person]';
 import TermDetail from '@/pages/legislation/[term]';
 
-// Transparency Pages
-import TransparencyLayout from '@/pages/transparency/layout';
 import TransparencyIndex from '@/pages/transparency/index';
 import FinancialPage from '@/pages/transparency/financial';
 
-// Sitemap Page
-import SitemapPage from '@/pages/sitemap';
-import Ideas from '@/pages/Ideas';
-import JoinUs from '@/pages/JoinUs';
-import TermsOfService from '@/pages/TermsOfService';
-import ScrollToTop from '@/components/ui/ScrollToTop';
-import Discord from '@/pages/Discord';
-import NotFound from '@/pages/NotFound';
-import StatisticsLayout from './pages/statistics/layout';
-import MunicipalIncomePage from './pages/statistics/MunicipalIncomePage';
-import CompetitivenessPage from './pages/statistics/CompetitivenessPage';
 import PopulationPage from './pages/statistics/PopulationPage';
-import ExecutiveOfficePage from './pages/government/elected-officials/ExecutiveOfficePage';
-import ContributePage from './pages/contribute';
+import CompetitivenessPage from './pages/statistics/CompetitivenessPage';
+import MunicipalIncomePage from './pages/statistics/MunicipalIncomePage';
 
 function App() {
   return (
@@ -80,9 +78,10 @@ function App() {
           <Navbar />
           <Ticker />
           <ScrollToTop />
+
           <Routes>
+            {/* Standard Global Pages */}
             <Route path='/' element={<Home />} />
-            <Route path='/design' element={<DesignGuide />} />
             <Route path='/about' element={<AboutPage />} />
             <Route path='/contact' element={<ContactUs />} />
             <Route path='/accessibility' element={<AccessibilityPage />} />
@@ -93,59 +92,71 @@ function App() {
             <Route path='/sitemap' element={<SitemapPage />} />
             <Route path='/discord' Component={Discord} />
 
-            {/* Data Routes */}
+            {/* Data Utilities */}
             <Route path='/data/weather' element={<WeatherPage />} />
             <Route path='/data/forex' element={<ForexPage />} />
 
-            {/* Services Routes */}
+            {/* Services Module (Detail nested in Layout for Sidebar persistence) */}
             <Route path='/services' element={<ServicesLayout />}>
               <Route index element={<Services />} />
+              <Route path=':service' element={<ServiceDetail />} />
             </Route>
-            <Route path='/services/:service' element={<ServiceDetail />} />
 
-            {/* Government Routes */}
+            {/* Government Directory Hub */}
             <Route
               path='/government'
               element={<GovernmentLayout title='Government' />}
             >
-              <Route index element={<Navigate to='executive' replace />} />
+              <Route
+                index
+                element={<Navigate to='elected-officials' replace />}
+              />
 
+              {/* 1. Elected Officials & Executive Branch */}
               <Route
                 path='elected-officials'
                 element={<ElectedOfficialsLayout />}
               >
                 <Route index element={<ElectedOfficialsIndex />} />
 
-                {/* Executive Pages moved here */}
+                {/* Unified Executive Route */}
                 <Route
-                  path='office-of-the-mayor'
-                  element={
-                    <ExecutiveOfficePage officeType='OFFICE OF THE MAYOR' />
-                  }
+                  path='executive-branch'
+                  element={<ExecutiveBranchPage />}
                 />
-                <Route
-                  path='office-of-the-vice-mayor'
-                  element={
-                    <ExecutiveOfficePage officeType='OFFICE OF THE VICE MAYOR' />
-                  }
-                />
+
+                {/* Legislative Chamber Details */}
                 <Route path=':chamber' element={<LegislativeChamber />} />
                 <Route
                   path='municipal-committees'
                   element={<MunicipalCommitteesPage />}
                 />
+
+                {/* Legacy Redirection for old bookmarks */}
+                <Route
+                  path='office-of-the-mayor'
+                  element={<Navigate to='../executive' replace />}
+                />
+                <Route
+                  path='office-of-the-vice-mayor'
+                  element={<Navigate to='../executive' replace />}
+                />
               </Route>
 
+              {/* 2. Municipal Departments */}
               <Route path='departments' element={<DepartmentsLayout />}>
                 <Route index element={<DepartmentsIndex />} />
                 <Route path=':department' element={<DepartmentDetail />} />
               </Route>
 
+              {/* 3. Barangay Directory */}
               <Route path='barangays' element={<BarangaysLayout />}>
                 <Route index element={<BarangaysIndex />} />
                 <Route path=':barangay' element={<BarangayDetail />} />
               </Route>
             </Route>
+
+            {/* Statistics Dashboard */}
             <Route path='statistics' element={<StatisticsLayout />}>
               <Route index element={<PopulationPage />} />
               <Route path='population' element={<PopulationPage />} />
@@ -155,9 +166,9 @@ function App() {
               />
               <Route path='competitiveness' element={<CompetitivenessPage />} />
             </Route>
-            {/* Legislation section */}
+
+            {/* Legislation Archive */}
             <Route path='legislation' element={<LegislationLayout />}>
-              {/* List page */}
               <Route index element={<LegislationIndex />} />
               <Route path=':type/:document' element={<LegislationDetail />} />
               <Route path='session/:sessionId' element={<SessionDetail />} />
@@ -165,17 +176,19 @@ function App() {
               <Route path='term/:termId' element={<TermDetail />} />
             </Route>
 
+            {/* Transparency Portal */}
             <Route path='/transparency' element={<TransparencyLayout />}>
               <Route index element={<TransparencyIndex />} />
               <Route path='financial' element={<FinancialPage />} />
             </Route>
 
-            {/* Contribute Page */}
+            {/* Community Contribution Flow */}
             <Route path='contribute' element={<ContributePage />} />
 
-            {/*Not Found/404 Page */}
+            {/* Catch-all 404 */}
             <Route path='*' element={<NotFound />} />
           </Routes>
+
           <Footer />
         </div>
       </NuqsAdapter>
