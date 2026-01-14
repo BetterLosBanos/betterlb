@@ -51,7 +51,10 @@ export const mainNavigation: NavigationItem[] = [
         label: 'Infrastructure Projects',
         href: '/transparency/infrastructure-projects',
       },
-      { label: 'DPWH Projects', href: '/transparency/dpwh-projects' },
+      {
+        label: 'DPWH Projects',
+        href: 'https://bisto.ph/?search=los+ba%C3%B1os&region=Region+IV-A&province=LAGUNA',
+      },
     ],
   },
 ];
