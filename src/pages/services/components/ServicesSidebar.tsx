@@ -9,7 +9,6 @@ import {
   BookOpen,
   Shield,
   LucideIcon,
-  Link,
   PlusCircle,
 } from 'lucide-react';
 import {
@@ -18,7 +17,7 @@ import {
 } from '@/components/ui/SidebarNavigation';
 import serviceCategories from '@/data/service_categories.json';
 import { scrollToTop } from '@/lib/scrollUtils';
-
+import { Link } from 'react-router-dom';
 const categoryIcons: Record<string, LucideIcon> = {
   'certificates-vital-records': FileText,
   'business-licensing': Briefcase,
@@ -90,7 +89,7 @@ export default function ServicesSidebar({
         </p>
 
         <Link
-          to='contribute'
+          to='/contribute'
           onClick={() => console.log('Link was clicked!')}
           className='flex items-center justify-center w-full gap-2 px-4 py-2.5 text-xs font-bold transition-all bg-secondary-600 text-white rounded-xl hover:bg-secondary-700 shadow-md shadow-secondary-900/10 min-h-[44px]'
         >
