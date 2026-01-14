@@ -1,9 +1,4 @@
-import {
-  BuildingIcon,
-  UserCheckIcon,
-  UsersIcon,
-  BookOpenIcon,
-} from 'lucide-react';
+import { BuildingIcon, UsersIcon, BookOpenIcon } from 'lucide-react';
 import {
   SidebarContainer,
   SidebarGroup,
@@ -16,14 +11,9 @@ export default function ElectedOfficialsSidebar() {
       title: 'Executive',
       items: [
         {
-          label: 'Office of the Mayor',
+          label: 'Leadership & Management',
           icon: BuildingIcon,
-          path: '/government/elected-officials/office-of-the-mayor',
-        },
-        {
-          label: 'Office of the Vice Mayor',
-          icon: UserCheckIcon,
-          path: '/government/elected-officials/office-of-the-vice-mayor',
+          path: '/government/elected-officials/executive-branch',
         },
       ],
     },
@@ -31,7 +21,7 @@ export default function ElectedOfficialsSidebar() {
       title: 'Legislative',
       items: [
         {
-          label: '12th Sangguniang Bayan',
+          label: 'Municipal Council',
           icon: UsersIcon,
           path: '/government/elected-officials/12th-sangguniang-bayan',
         },
