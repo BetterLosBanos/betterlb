@@ -1,20 +1,21 @@
 import { useMemo, useState } from 'react';
 import { useForm } from 'react-hook-form';
-import { useSearchParams } from 'react-router-dom';
+import { useSearchParams, Link } from 'react-router-dom';
 import {
   ClipboardList,
   Eye,
   AlertTriangle,
   RotateCcw,
-  Github,
   Globe,
   FileText,
+  CheckCircle2,
   CheckSquare,
   Square,
   Search,
+  Send,
+  Loader2,
 } from 'lucide-react';
 
-// UI & Layouts
 import { ModuleHeader, DetailSection } from '@/components/layout/PageLayouts';
 import { Badge } from '@/components/ui/Badge';
 import {
@@ -27,29 +28,18 @@ import {
   BreadcrumbHome,
 } from '@/components/ui/Breadcrumb';
 
-// Data & Utils
 import servicesData from '@/data/services/services.json';
 import departmentsData from '@/data/directory/departments.json';
 import categoryData from '@/data/service_categories.json';
 import { toTitleCase } from '@/lib/stringUtils';
 import { cn } from '@/lib/utils';
 
-interface ContributionFormData {
-  service: string;
-  description: string;
-  type: 'transaction' | 'information';
-  categorySlug: string;
-  officeSlug: string[]; // Changed to array
-  steps: string;
-  requirements: string;
-  url: string;
-  source: string;
-  notes: string;
-}
+type SubmissionStatus = 'idle' | 'loading' | 'success' | 'error';
 
 export default function ContributePage() {
   const [searchParams] = useSearchParams();
   const [officeSearch, setOfficeSearch] = useState('');
+  const [status, setStatus] = useState<SubmissionStatus>('idle');
   const editSlug = searchParams.get('edit');
 
   const existingService = useMemo(
@@ -87,15 +77,11 @@ export default function ContributePage() {
   const formData = watch();
   const selectedOffices = watch('officeSlug') || [];
 
-  // Helper to handle multi-office selection
   const toggleOffice = (slug: string) => {
     const current = [...selectedOffices];
     const index = current.indexOf(slug);
-    if (index > -1) {
-      current.splice(index, 1);
-    } else {
-      current.push(slug);
-    }
+    if (index > -1) current.splice(index, 1);
+    else current.push(slug);
     setValue('officeSlug', current);
   };
 
@@ -103,7 +89,8 @@ export default function ContributePage() {
     d.office_name.toLowerCase().includes(officeSearch.toLowerCase())
   );
 
-  const onSubmit = (data: ContributionFormData) => {
+  const onSubmit = async (data: ContributionFormData) => {
+    setStatus('loading');
     const selectedCategory = categoryData.categories.find(
       c => c.slug === data.categorySlug
     );
@@ -141,27 +128,62 @@ export default function ContributePage() {
       2
     );
 
-    const issueBody = `
-### Proposed ${existingService ? 'Update' : 'Addition'}
-<!-- DATA_START -->
-\`\`\`json
-${jsonBlock}
-\`\`\`
-<!-- DATA_END -->
+    const content = `### Proposed ${existingService ? 'Update' : 'Addition'}\n<!-- DATA_START -->\n\`\`\`json\n${jsonBlock}\n\`\`\`\n<!-- DATA_END -->\n\n**Reason:** ${data.notes || 'N/A'}\n**Source:** ${data.source}`;
 
-**Reason for change:**
-${data.notes || 'No notes provided.'}
+    try {
+      const response = await fetch('/api/submit-contribution', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          title: `${existingService ? 'Update' : 'New'}: ${data.service}`,
+          content,
+        }),
+      });
 
-**Proof / Official Source:**
-${data.source || 'No source provided.'}
-
----
-*Generated via Better LB Contribution Portal*`;
-
-    const githubUrl = `https://github.com/bettergovph/betterlb/issues/new?title=${encodeURIComponent((existingService ? 'Update: ' : 'New: ') + data.service)}&body=${encodeURIComponent(issueBody)}&labels=contribution`;
-
-    window.open(githubUrl, '_blank');
+      if (response.ok) {
+        setStatus('success');
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      } else {
+        setStatus('error');
+      }
+    } catch {
+      setStatus('error');
+    }
   };
+
+  if (status === 'success') {
+    return (
+      <div className='py-20 mx-auto max-w-2xl text-center duration-500 animate-in zoom-in-95'>
+        <div className='flex justify-center mb-6'>
+          <div className='p-4 bg-emerald-50 rounded-full ring-8 ring-emerald-50/50'>
+            <CheckCircle2 className='w-12 h-12 text-emerald-600' />
+          </div>
+        </div>
+        <h2 className='mb-4 text-3xl font-extrabold text-slate-900'>
+          Submission Received
+        </h2>
+        <p className='mb-10 text-lg leading-relaxed text-slate-600'>
+          Your contribution has been successfully queued for audit. Once
+          verified by our team, the data will go live on the portal
+          automatically.
+        </p>
+        <div className='flex flex-col gap-4 justify-center sm:flex-row'>
+          <Link
+            to='/services'
+            className='px-8 py-3 bg-primary-600 text-white rounded-xl font-bold shadow-lg hover:bg-primary-700 transition-all min-h-[48px] flex items-center justify-center'
+          >
+            Back to Services
+          </Link>
+          <button
+            onClick={() => setStatus('idle')}
+            className='px-8 py-3 bg-white border border-slate-200 text-slate-600 rounded-xl font-bold hover:bg-slate-50 transition-all min-h-[48px]'
+          >
+            Submit Another
+          </button>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div className='px-4 pb-20 mx-auto space-y-6 max-w-7xl duration-500 animate-in fade-in md:px-0'>
@@ -244,7 +266,6 @@ ${data.source || 'No source provided.'}
                 </div>
               </div>
 
-              {/* MULTI-OFFICE SELECTOR */}
               <div className='space-y-3'>
                 <label className='block heading-label'>
                   Responsible Offices
@@ -254,7 +275,7 @@ ${data.source || 'No source provided.'}
                   <input
                     type='text'
                     placeholder='Filter offices...'
-                    className='py-2 pr-4 pl-10 w-full text-sm italic border-b outline-none border-slate-100'
+                    className='py-2 pr-4 pl-10 w-full text-sm italic bg-transparent border-b outline-none border-slate-100'
                     onChange={e => setOfficeSearch(e.target.value)}
                   />
                 </div>
@@ -290,11 +311,6 @@ ${data.source || 'No source provided.'}
                     );
                   })}
                 </div>
-                <div className='flex justify-end pt-2'>
-                  <Badge variant='primary'>
-                    {selectedOffices.length} Office(s) Selected
-                  </Badge>
-                </div>
               </div>
             </div>
           </DetailSection>
@@ -306,7 +322,7 @@ ${data.source || 'No source provided.'}
                   className='block mb-2 heading-label'
                   htmlFor='description'
                 >
-                  Short Description
+                  Description
                 </label>
                 <textarea
                   id='description'
@@ -317,7 +333,7 @@ ${data.source || 'No source provided.'}
               <div className='grid grid-cols-1 gap-4 md:grid-cols-2'>
                 <div>
                   <label className='block mb-2 heading-label' htmlFor='steps'>
-                    Steps (New line per step)
+                    Steps (New line per item)
                   </label>
                   <textarea
                     id='steps'
@@ -342,28 +358,28 @@ ${data.source || 'No source provided.'}
             </div>
           </DetailSection>
 
-          <DetailSection title='Source & Audit' icon={Globe}>
+          <DetailSection title='Verification Info' icon={Globe}>
             <div className='space-y-4'>
               <div>
                 <label className='block mb-2 heading-label' htmlFor='source'>
-                  Source URL (FB/Website)
+                  Official Source Link
                 </label>
                 <input
                   id='source'
                   {...register('source', { required: true })}
                   className='p-3 w-full text-sm rounded-xl border outline-none border-slate-200'
-                  placeholder='Required for verification'
+                  placeholder='Required for audit'
                 />
               </div>
               <div>
                 <label className='block mb-2 heading-label' htmlFor='notes'>
-                  Contribution Notes
+                  Notes
                 </label>
                 <textarea
                   id='notes'
                   {...register('notes')}
                   className='p-3 w-full h-20 text-sm rounded-xl border outline-none border-slate-200'
-                  placeholder='Anything else our auditors should know?'
+                  placeholder='e.g. Verified from latest LGU post'
                 />
               </div>
             </div>
@@ -372,21 +388,29 @@ ${data.source || 'No source provided.'}
           <div className='flex flex-col gap-4 sm:flex-row'>
             <button
               type='submit'
-              className='flex-1 py-4 bg-primary-600 text-white rounded-2xl font-bold flex items-center justify-center gap-2 hover:bg-primary-700 shadow-xl transition-all min-h-[48px]'
+              disabled={status === 'loading'}
+              className='flex-1 py-4 bg-primary-600 text-white rounded-2xl font-bold flex items-center justify-center gap-2 hover:bg-primary-700 shadow-xl transition-all min-h-[48px] disabled:opacity-50'
             >
-              Review on GitHub <Github className='w-4 h-4' />
+              {status === 'loading' ? (
+                <>
+                  <Loader2 className='w-4 h-4 animate-spin' /> Sending...
+                </>
+              ) : (
+                <>
+                  <Send className='w-4 h-4' /> Submit for Review
+                </>
+              )}
             </button>
             <button
               type='button'
               onClick={() => reset()}
-              className='flex gap-2 justify-center items-center px-6 py-4 rounded-2xl border transition-all border-slate-200 text-slate-400 hover:bg-slate-50'
+              className='flex gap-2 justify-center items-center px-6 py-4 rounded-2xl border transition-all border-slate-200 text-slate-400 hover:bg-slate-50 min-h-[48px]'
             >
               <RotateCcw className='w-4 h-4' /> Reset
             </button>
           </div>
         </form>
 
-        {/* --- PREVIEW COLUMN --- */}
         <div className='space-y-6 lg:col-span-5 lg:sticky lg:top-32 h-fit'>
           <h3 className='flex gap-2 items-center heading-label'>
             <Eye className='w-3 h-3' /> Live Preview
@@ -409,7 +433,7 @@ ${data.source || 'No source provided.'}
               <p className='text-sm italic leading-relaxed text-slate-400'>
                 &quot;
                 {formData.description ||
-                  'Describe the service to see the preview...'}
+                  'Preview of the service description...'}
                 &quot;
               </p>
             </div>
@@ -418,13 +442,25 @@ ${data.source || 'No source provided.'}
           <div className='flex gap-4 p-5 bg-amber-50 rounded-2xl border border-amber-100'>
             <AlertTriangle className='w-6 h-6 text-amber-600 shrink-0' />
             <p className='text-xs leading-relaxed text-amber-800'>
-              <strong>Public Trust Notice:</strong> All submissions must include
-              an official source link. Our auditors will verify the data before
-              it appears on the live site.
+              <strong>Audit Notice:</strong> Submissions are verified by humans
+              before going live. Please ensure source links are provided.
             </p>
           </div>
         </div>
       </div>
     </div>
   );
+}
+
+interface ContributionFormData {
+  service: string;
+  description: string;
+  type: 'transaction' | 'information';
+  categorySlug: string;
+  officeSlug: string[];
+  steps: string;
+  requirements: string;
+  url: string;
+  source: string;
+  notes: string;
 }
