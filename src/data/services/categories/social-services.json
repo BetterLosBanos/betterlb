@@ -1,0 +1,160 @@
+[
+  {
+    "service": "Medical Assistance (AICS)",
+    "slug": "medical-assistance-aics",
+    "type": "transaction",
+    "description": "Assistance to Individuals in Crisis Situations for medical needs.",
+    "officeSlug": ["municipal-social-welfare-and-development-office"],
+    "category": {
+      "name": "Social Services",
+      "slug": "social-services"
+    },
+    "steps": [
+      "Submit requirements for screening.",
+      "Undergo interview by Social Worker.",
+      "Receive Guarantee Letter or Cash Assistance."
+    ],
+    "requirements": [
+      "Medical Certificate / Abstract",
+      "Hospital Bill / Prescription",
+      "Barangay Certificate of Indigency",
+      "Valid ID of claimant"
+    ],
+    "quickInfo": {
+      "processingTime": "1-2 days",
+      "whoCanApply": "Indigent Residents",
+      "appointmentType": "Walk-in"
+    },
+    "updatedAt": null,
+    "sources": [
+      {
+        "name": "DSWD Memorandum Circular No. 02 Series of 2014",
+        "url": ""
+      },
+      {
+        "name": "MSWDO Guidelines on Financial Assistance",
+        "url": ""
+      }
+    ]
+  },
+  {
+    "service": "Senior Citizen ID Application",
+    "slug": "senior-citizen-id",
+    "type": "transaction",
+    "description": "Issuance of ID and purchase booklet for senior citizens (60 years old and above).",
+    "officeSlug": ["municipal-social-welfare-and-development-office"],
+    "category": {
+      "name": "Social Services",
+      "slug": "social-services"
+    },
+    "steps": [
+      "Fill out application form.",
+      "Submit requirements.",
+      "ID processing and printing.",
+      "Claim ID and booklets."
+    ],
+    "requirements": [
+      "Birth Certificate",
+      "1x1 ID Picture",
+      "Valid ID with address"
+    ],
+    "quickInfo": {
+      "processingTime": "Same day",
+      "fee": "Free",
+      "whoCanApply": "60 years old+",
+      "validity": "Lifetime"
+    },
+    "updatedAt": null,
+    "sources": [
+      {
+        "name": "Republic Act No. 9994 (Expanded Senior Citizens Act)",
+        "url": ""
+      }
+    ]
+  },
+  {
+    "service": "Cash Subsidy for Solo Parents",
+    "slug": "solo-parents-cash-subsidy",
+    "type": "transaction",
+    "description": "Financial assistance provided semi-annually to qualified solo parents in the municipality.",
+    "officeSlug": ["municipal-social-welfare-and-development-office"],
+    "category": {
+      "name": "Social Services",
+      "slug": "social-services"
+    },
+    "steps": [
+      "Register as a Solo Parent with the MSWDO.",
+      "Submit required documents during the designated payout period.",
+      "Receive cash subsidy (Php 1,000 per month or as allocated)."
+    ],
+    "requirements": [
+      "Valid Solo Parent ID",
+      "Barangay Certification of Residency",
+      "Affidavit of Solo Parent status"
+    ],
+    "quickInfo": {
+      "fee": "Free",
+      "whoCanApply": "Registered Solo Parents",
+      "documents": "Solo Parent ID"
+    },
+    "updatedAt": null,
+    "sources": [
+      {
+        "name": "Republic Act No. 11861 (Expanded Solo Parents Welfare Act of 2022)"
+      }
+    ]
+  },
+  {
+    "service": "Expanded Centenarian Program Payout (Ages 80, 85, 90, 95)",
+    "slug": "expanded-centenarian-payout",
+    "type": "transaction",
+    "description": "Provision of cash incentives for elderly residents reaching milestone ages of 80, 85, 90, and 95, facilitated by the National Commission of Senior Citizens (NCSC).",
+    "url": "",
+    "officeSlug": ["municipal-treasurers-office"],
+    "category": {
+      "name": "Social Services",
+      "slug": "social-services"
+    },
+    "steps": [
+      "Verify if the senior's name is included in the official NCSC Masterlist (January to June 2025 batch).",
+      "Secure required templates (Authorization, SPA, or Warranty & Release forms) from the OSCA Office between 8:00 AM and 5:00 PM.",
+      "Prepare the specific set of documents based on the claimant's status (Personal, Representative, or Deceased).",
+      "Proceed to the Municipal Treasury Office on the designated payout date and time.",
+      "Submit documents for verification and receive the cash incentive."
+    ],
+    "requirements": [
+      "FOR PERSONAL CLAIM: 2 copies of valid ID with signature or thumbmark.",
+      "FOR REPRESENTATIVE: Authorization Letter (NCSC template), Physical ID of grantee (original + photocopy), Physical ID of claimant (original + photocopy).",
+      "FOR REPRESENTATIVE (BEDRIDDEN): Barangay Certification signed by Captain and BHW or Medical Certificate.",
+      "FOR REPRESENTATIVE (PROOF OF LIFE): Half-body photo of the grantee holding a current calendar or newspaper.",
+      "FOR DECEASED GRANTEE: Special Power of Attorney (SPA template), Warranty and Release from Liability form, Original or CTC of Death Certificate, Claimant ID with 3 signatures, and Proof of Relationship."
+    ],
+    "faqs": [
+      {
+        "question": "Where can I get the SPA or Authorization templates?",
+        "answer": "Templates are available at the Office of the Senior Citizens Affairs (OSCA) from 8:00 AM to 5:00 PM."
+      },
+      {
+        "question": "Who is eligible for this specific payout?",
+        "answer": "Seniors who are part of the qualified beneficiaries list from January to June 2025 provided by the NCSC."
+      }
+    ],
+    "quickInfo": {
+      "processingTime": "Scheduled Payout (Dec 18, 2025)",
+      "fee": "Free",
+      "whoCanApply": "Seniors aged 80, 85, 90, 95",
+      "appointmentType": "Walk-in (Treasury Office)",
+      "documents": "Valid IDs, SPA/Authorization, Proof of Life"
+    },
+    "updatedAt": "2026-01-13T20:44:00Z",
+    "sources": [
+      {
+        "name": "National Commission of Senior Citizens (NCSC)",
+        "url": "https://ncsc.gov.ph"
+      },
+      {
+        "name": "Office of the Senior Citizens Affairs (OSCA) Los Baños"
+      }
+    ]
+  }
+]

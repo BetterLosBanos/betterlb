@@ -5,7 +5,7 @@
     "type": "transaction",
     "description": "Application for a new Mayor's Permit to conduct business within the municipality.",
     "url": "",
-    "officeSlug": "business-permit-and-licensing-office",
+    "officeSlug": ["business-permit-and-licensing-office"],
     "category": {
       "name": "Business & Licensing",
       "slug": "business-licensing"
@@ -53,7 +53,7 @@
     "slug": "business-permit-renewal",
     "type": "transaction",
     "description": "Annual renewal of Mayor's Permit for existing businesses.",
-    "officeSlug": "business-permit-and-licensing-office",
+    "officeSlug": ["business-permit-and-licensing-office"],
     "category": {
       "name": "Business & Licensing",
       "slug": "business-licensing"
@@ -94,7 +94,7 @@
     "slug": "community-tax-certificate",
     "type": "transaction",
     "description": "Issuance of Community Tax Certificate for individuals and corporations.",
-    "officeSlug": "municipal-treasurers-office",
+    "officeSlug": ["municipal-treasurers-office"],
     "category": {
       "name": "Certificates & Vital Records",
       "slug": "certificates-vital-records"
@@ -129,7 +129,7 @@
     "slug": "real-property-tax-payment",
     "type": "transaction",
     "description": "Payment of taxes on land, buildings, and machinery (Amilyar).",
-    "officeSlug": "municipal-treasurers-office",
+    "officeSlug": ["municipal-treasurers-office"],
     "category": {
       "name": "Taxation & Assessment",
       "slug": "taxation-assessment"
@@ -164,7 +164,7 @@
     "slug": "birth-certificate-registration",
     "type": "transaction",
     "description": "Timely registration of birth for newborn children.",
-    "officeSlug": "municipal-civil-registrar",
+    "officeSlug": ["municipal-civil-registrar"],
     "category": {
       "name": "Certificates & Vital Records",
       "slug": "certificates-vital-records"
@@ -201,7 +201,7 @@
     "slug": "building-permit",
     "type": "transaction",
     "description": "Permit required before constructing, altering, or repairing any building.",
-    "officeSlug": "municipal-engineering-office",
+    "officeSlug": ["municipal-engineering-office"],
     "category": {
       "name": "Infrastructure & Engineering",
       "slug": "infrastructure-engineering"
@@ -241,7 +241,7 @@
     "slug": "tricycle-franchise-renewal",
     "type": "transaction",
     "description": "Annual renewal of franchise for tricycle operators.",
-    "officeSlug": "tricycle-regulatory-unit",
+    "officeSlug": ["tricycle-regulatory-unit"],
     "category": {
       "name": "Public Safety",
       "slug": "public-safety"
@@ -276,7 +276,7 @@
     "slug": "public-school-directory",
     "type": "information",
     "description": "A comprehensive list of public elementary and secondary schools in the municipality.",
-    "officeSlug": "department-of-education",
+    "officeSlug": ["department-of-education"],
     "category": {
       "name": "Education & Scholarship",
       "slug": "education-scholarship"
@@ -312,7 +312,7 @@
     "slug": "scholarship-application",
     "type": "transaction",
     "description": "Financial assistance program for deserving college students.",
-    "officeSlug": "office-of-the-mayor",
+    "officeSlug": ["office-of-the-mayor"],
     "category": {
       "name": "Education & Scholarship",
       "slug": "education-scholarship"
@@ -347,7 +347,7 @@
     "slug": "garbage-collection-schedule",
     "type": "information",
     "description": "Weekly schedule for waste collection per barangay. Please segregate biodegradable and non-biodegradable waste.",
-    "officeSlug": "municipal-environment-and-natural-resources-office",
+    "officeSlug": ["municipal-environment-and-natural-resources-office"],
     "category": {
       "name": "Environment & Waste",
       "slug": "environment-waste"
@@ -384,7 +384,7 @@
     "slug": "rhu-locations",
     "type": "information",
     "description": "Locations of health centers providing free primary care, immunization, and maternal services.",
-    "officeSlug": "municipal-health-office",
+    "officeSlug": ["municipal-health-office"],
     "category": {
       "name": "Health & Wellness",
       "slug": "health-wellness"
@@ -410,7 +410,7 @@
     "slug": "health-certificate",
     "type": "transaction",
     "description": "Required for food handlers and employees in business establishments.",
-    "officeSlug": "municipal-health-office",
+    "officeSlug": ["municipal-health-office"],
     "category": {
       "name": "Health & Wellness",
       "slug": "health-wellness"
@@ -449,7 +449,7 @@
     "slug": "medical-assistance-aics",
     "type": "transaction",
     "description": "Assistance to Individuals in Crisis Situations for medical needs.",
-    "officeSlug": "municipal-social-welfare-and-development-office",
+    "officeSlug": ["municipal-social-welfare-and-development-office"],
     "category": {
       "name": "Social Services",
       "slug": "social-services"
@@ -487,7 +487,7 @@
     "slug": "senior-citizen-id",
     "type": "transaction",
     "description": "Issuance of ID and purchase booklet for senior citizens (60 years old and above).",
-    "officeSlug": "municipal-social-welfare-and-development-office",
+    "officeSlug": ["municipal-social-welfare-and-development-office"],
     "category": {
       "name": "Social Services",
       "slug": "social-services"
@@ -522,7 +522,7 @@
     "slug": "seed-fertilizer-distribution",
     "type": "information",
     "description": "Availability of free vegetable seeds and subsidized fertilizers for local farmers.",
-    "officeSlug": "municipal-agriculture-office",
+    "officeSlug": ["municipal-agriculture-office"],
     "category": {
       "name": "Agriculture & Livelihood",
       "slug": "agriculture-livelihood"
@@ -550,7 +550,7 @@
     "type": "transaction",
     "description": "Process for illegitimate children to be considered legitimate through the subsequent marriage of their parents.",
     "url": "https://losbanos.gov.ph/posts/61",
-    "officeSlug": "local-civil-registry-office",
+    "officeSlug": ["local-civil-registry-office"],
     "category": {
       "name": "Certificates & Vital Records",
       "slug": "certificates-vital-records"
@@ -588,7 +588,7 @@
     "type": "transaction",
     "description": "Registration of a birth that was not reported within thirty (30) days after its occurrence.",
     "url": "https://losbanos.gov.ph/posts/91",
-    "officeSlug": "local-civil-registry-office",
+    "officeSlug": ["local-civil-registry-office"],
     "category": {
       "name": "Certificates & Vital Records",
       "slug": "certificates-vital-records"
@@ -624,7 +624,7 @@
     "type": "transaction",
     "url": "https://losbanos.gov.ph/posts/84",
     "description": "Administrative remedy for correcting clerical or typographical errors in the day and/or month of birth in the Civil Register.",
-    "officeSlug": "local-civil-registry-office",
+    "officeSlug": ["local-civil-registry-office"],
     "category": {
       "name": "Certificates & Vital Records",
       "slug": "certificates-vital-records"
@@ -654,7 +654,7 @@
     "type": "transaction",
     "url": "https://losbanos.gov.ph/posts/85",
     "description": "Administrative procedure to correct an erroneous entry in the sex of a person in the Certificate of Live Birth.",
-    "officeSlug": "local-civil-registry-office",
+    "officeSlug": ["local-civil-registry-office"],
     "category": {
       "name": "Certificates & Vital Records",
       "slug": "certificates-vital-records"
@@ -683,7 +683,7 @@
     "slug": "marriage-license-application",
     "type": "transaction",
     "description": "Legal requirement for two people intending to get married within the Philippines.",
-    "officeSlug": "local-civil-registry-office",
+    "officeSlug": ["local-civil-registry-office"],
     "category": {
       "name": "Certificates & Vital Records",
       "slug": "certificates-vital-records"
@@ -714,7 +714,7 @@
     "slug": "solo-parents-cash-subsidy",
     "type": "transaction",
     "description": "Financial assistance provided semi-annually to qualified solo parents in the municipality.",
-    "officeSlug": "municipal-social-welfare-and-development-office",
+    "officeSlug": ["municipal-social-welfare-and-development-office"],
     "category": {
       "name": "Social Services",
       "slug": "social-services"
@@ -746,7 +746,7 @@
     "slug": "educational-assistance",
     "type": "transaction",
     "description": "Financial grant for students from Junior High School to College levels to assist with educational expenses.",
-    "officeSlug": "local-youth-and-development-office",
+    "officeSlug": ["local-youth-and-development-office"],
     "category": {
       "name": "Education & Scholarship",
       "slug": "education-scholarship"
@@ -775,7 +775,7 @@
     "type": "transaction",
     "description": "Required for new kWhr meter applications, reconnections, or relocations to ensure electrical safety compliance.",
     "url": "https://www.facebook.com/media/set/?set=a.109696514078279&type=3",
-    "officeSlug": "municipal-engineering-office",
+    "officeSlug": ["municipal-engineering-office"],
     "category": {
       "name": "Infrastructure & Engineering",
       "slug": "infrastructure-engineering"
@@ -813,7 +813,7 @@
     "type": "transaction",
     "description": "Certifies that a newly constructed or renovated structure is safe for use and complies with the National Building Code.",
     "url": "https://www.facebook.com/media/set/?set=a.182383407412293&type=3",
-    "officeSlug": "municipal-engineering-office",
+    "officeSlug": ["municipal-engineering-office"],
     "category": {
       "name": "Infrastructure & Engineering",
       "slug": "infrastructure-engineering"
@@ -843,7 +843,7 @@
     "slug": "fire-safety-inspection-certificate",
     "type": "transaction",
     "description": "Required for occupancy and business permits to ensure the structure meets fire safety standards.",
-    "officeSlug": "bureau-fire-protection",
+    "officeSlug": ["bureau-fire-protection"],
     "category": {
       "name": "Public Safety",
       "slug": "public-safety"
@@ -871,7 +871,7 @@
     "type": "transaction",
     "description": "The primary legal authorization required before starting construction, alteration, or repair of any building.",
     "url": "https://www.facebook.com/media/set/?set=a.182362044081096&type=3",
-    "officeSlug": "municipal-engineering-office",
+    "officeSlug": ["municipal-engineering-office"],
     "category": {
       "name": "Infrastructure & Engineering",
       "slug": "infrastructure-engineering"
@@ -903,7 +903,7 @@
     "type": "transaction",
     "description": "A technical sub-permit required for the installation of electronic systems within a building structure.",
     "url": "https://www.facebook.com/media/set/?set=a.182380010745966&type=3",
-    "officeSlug": "municipal-engineering-office",
+    "officeSlug": ["municipal-engineering-office"],
     "category": {
       "name": "Infrastructure & Engineering",
       "slug": "infrastructure-engineering"
@@ -931,7 +931,7 @@
     "type": "transaction",
     "description": "Permit for the installation of outdoor signs, billboards, or business identifiers.",
     "url": "https://www.facebook.com/media/set/?set=a.182381717412462&type=3",
-    "officeSlug": "municipal-engineering-office",
+    "officeSlug": ["municipal-engineering-office"],
     "category": {
       "name": "Infrastructure & Engineering",
       "slug": "infrastructure-engineering"
@@ -954,7 +954,7 @@
     "type": "transaction",
     "description": "Required before the total or partial destruction of any building or structure.",
     "url": "https://www.facebook.com/media/set/?set=a.182380830745884&type=3",
-    "officeSlug": "municipal-engineering-office",
+    "officeSlug": ["municipal-engineering-office"],
     "category": {
       "name": "Infrastructure & Engineering",
       "slug": "infrastructure-engineering"
@@ -977,7 +977,7 @@
     "type": "transaction",
     "description": "Permit for the construction of perimeter fences or walls.",
     "url": "https://www.facebook.com/media/set/?set=a.182363280747639&type=3",
-    "officeSlug": "municipal-engineering-office",
+    "officeSlug": ["municipal-engineering-office"],
     "category": {
       "name": "Infrastructure & Engineering",
       "slug": "infrastructure-engineering"
@@ -1000,7 +1000,7 @@
     "type": "transaction",
     "description": "General medical consultations and minor surgical procedures provided by the Municipal Health Office.",
     "url": "",
-    "officeSlug": "municipal-health-office",
+    "officeSlug": ["municipal-health-office"],
     "category": {
       "name": "Health & Wellness",
       "slug": "health-wellness"
@@ -1034,7 +1034,7 @@
     "slug": "dental-services",
     "type": "transaction",
     "description": "Oral health services including tooth extraction, cleaning, and consultations.",
-    "officeSlug": "municipal-health-office",
+    "officeSlug": ["municipal-health-office"],
     "category": {
       "name": "Health & Wellness",
       "slug": "health-wellness"
@@ -1052,7 +1052,7 @@
     "slug": "laboratory-services",
     "type": "transaction",
     "description": "Diagnostic laboratory tests including blood chemistry, urinalysis, and fecalysis.",
-    "officeSlug": "municipal-health-office",
+    "officeSlug": ["municipal-health-office"],
     "category": {
       "name": "Health & Wellness",
       "slug": "health-wellness"
@@ -1069,7 +1069,7 @@
     "slug": "sanitation-services",
     "type": "transaction",
     "description": "Environmental health services and inspection of establishments for sanitary compliance.",
-    "officeSlug": "municipal-health-office",
+    "officeSlug": ["municipal-health-office"],
     "category": {
       "name": "Health & Wellness",
       "slug": "health-wellness"
@@ -1085,7 +1085,7 @@
     "slug": "child-health-services",
     "type": "transaction",
     "description": "Immunization, nutrition monitoring, and pediatric consultations for infants and children.",
-    "officeSlug": "municipal-health-office",
+    "officeSlug": ["municipal-health-office"],
     "category": {
       "name": "Health & Wellness",
       "slug": "health-wellness"
@@ -1101,7 +1101,7 @@
     "slug": "maternal-health-services",
     "type": "transaction",
     "description": "Prenatal and postnatal care for expectant and new mothers.",
-    "officeSlug": "municipal-health-office",
+    "officeSlug": ["municipal-health-office"],
     "category": {
       "name": "Health & Wellness",
       "slug": "health-wellness"
@@ -1114,7 +1114,7 @@
     "slug": "birthing-home-services",
     "type": "transaction",
     "description": "24/7 facility-based delivery services for low-risk pregnancies.",
-    "officeSlug": "municipal-health-office",
+    "officeSlug": ["municipal-health-office"],
     "category": {
       "name": "Health & Wellness",
       "slug": "health-wellness"
@@ -1127,7 +1127,7 @@
     "slug": "family-planning-services",
     "type": "information",
     "description": "Consultation and provision of various family planning methods.",
-    "officeSlug": "municipal-health-office",
+    "officeSlug": ["municipal-health-office"],
     "category": {
       "name": "Health & Wellness",
       "slug": "health-wellness"
@@ -1140,7 +1140,7 @@
     "slug": "reproductive-health-services",
     "type": "information",
     "description": "Comprehensive care related to reproductive wellness and STI prevention.",
-    "officeSlug": "municipal-health-office",
+    "officeSlug": ["municipal-health-office"],
     "category": {
       "name": "Health & Wellness",
       "slug": "health-wellness"
@@ -1153,7 +1153,7 @@
     "slug": "animal-bite-treatment-center",
     "type": "transaction",
     "description": "Anti-rabies vaccination and wound management for individuals bitten by animals.",
-    "officeSlug": "municipal-health-office",
+    "officeSlug": ["municipal-health-office"],
     "category": {
       "name": "Health & Wellness",
       "slug": "health-wellness"
@@ -1170,7 +1170,7 @@
     "slug": "tb-prevention-control-program",
     "type": "information",
     "description": "Sputum examination and DOTS (Directly Observed Treatment Short-course) for Tuberculosis.",
-    "officeSlug": "municipal-health-office",
+    "officeSlug": ["municipal-health-office"],
     "category": {
       "name": "Health & Wellness",
       "slug": "health-wellness"
@@ -1183,7 +1183,7 @@
     "slug": "pmdt-services",
     "type": "information",
     "description": "Specialized care and medication management for drug-resistant TB strains.",
-    "officeSlug": "municipal-health-office",
+    "officeSlug": ["municipal-health-office"],
     "category": {
       "name": "Health & Wellness",
       "slug": "health-wellness"
@@ -1196,7 +1196,7 @@
     "slug": "mental-health-services",
     "type": "information",
     "description": "Psychological support, counseling, and referral services for mental wellness.",
-    "officeSlug": "municipal-health-office",
+    "officeSlug": ["municipal-health-office"],
     "category": {
       "name": "Health & Wellness",
       "slug": "health-wellness"
@@ -1209,7 +1209,7 @@
     "slug": "infection-control-program",
     "type": "information",
     "description": "Surveillance and mitigation strategies for communicable diseases within the municipality.",
-    "officeSlug": "municipal-health-office",
+    "officeSlug": ["municipal-health-office"],
     "category": {
       "name": "Health & Wellness",
       "slug": "health-wellness"
@@ -1222,7 +1222,7 @@
     "slug": "blood-program",
     "type": "information",
     "description": "Blood donation drives and assistance in sourcing blood for patients in need.",
-    "officeSlug": "municipal-health-office",
+    "officeSlug": ["municipal-health-office"],
     "category": {
       "name": "Health & Wellness",
       "slug": "health-wellness"
@@ -1235,7 +1235,7 @@
     "slug": "adolescent-youth-health-program",
     "type": "information",
     "description": "Health education and clinical services specifically tailored for teens and young adults.",
-    "officeSlug": "municipal-health-office",
+    "officeSlug": ["municipal-health-office"],
     "category": {
       "name": "Health & Wellness",
       "slug": "health-wellness"
@@ -1248,7 +1248,7 @@
     "slug": "medical-outreach-program",
     "type": "information",
     "description": "Mobile medical clinics conducted in various barangays for far-flung communities.",
-    "officeSlug": "municipal-health-office",
+    "officeSlug": ["municipal-health-office"],
     "category": {
       "name": "Health & Wellness",
       "slug": "health-wellness"
@@ -1261,7 +1261,7 @@
     "slug": "certification-services",
     "type": "transaction",
     "description": "Issuance of medical certificates, health cards, and sanitary permits.",
-    "officeSlug": "municipal-health-office",
+    "officeSlug": ["municipal-health-office"],
     "category": {
       "name": "Health & Wellness",
       "slug": "health-wellness"
@@ -1284,5 +1284,58 @@
     },
     "updatedAt": null,
     "sources": []
+  },
+  {
+    "service": "Expanded Centenarian Program Payout (Ages 80, 85, 90, 95)",
+    "slug": "expanded-centenarian-payout",
+    "type": "transaction",
+    "description": "Provision of cash incentives for elderly residents reaching milestone ages of 80, 85, 90, and 95, facilitated by the National Commission of Senior Citizens (NCSC).",
+    "url": "",
+    "officeSlug": ["municipal-treasurers-office"],
+    "category": {
+      "name": "Social Services",
+      "slug": "social-services"
+    },
+    "steps": [
+      "Verify if the senior's name is included in the official NCSC Masterlist (January to June 2025 batch).",
+      "Secure required templates (Authorization, SPA, or Warranty & Release forms) from the OSCA Office between 8:00 AM and 5:00 PM.",
+      "Prepare the specific set of documents based on the claimant's status (Personal, Representative, or Deceased).",
+      "Proceed to the Municipal Treasury Office on the designated payout date and time.",
+      "Submit documents for verification and receive the cash incentive."
+    ],
+    "requirements": [
+      "FOR PERSONAL CLAIM: 2 copies of valid ID with signature or thumbmark.",
+      "FOR REPRESENTATIVE: Authorization Letter (NCSC template), Physical ID of grantee (original + photocopy), Physical ID of claimant (original + photocopy).",
+      "FOR REPRESENTATIVE (BEDRIDDEN): Barangay Certification signed by Captain and BHW or Medical Certificate.",
+      "FOR REPRESENTATIVE (PROOF OF LIFE): Half-body photo of the grantee holding a current calendar or newspaper.",
+      "FOR DECEASED GRANTEE: Special Power of Attorney (SPA template), Warranty and Release from Liability form, Original or CTC of Death Certificate, Claimant ID with 3 signatures, and Proof of Relationship."
+    ],
+    "faqs": [
+      {
+        "question": "Where can I get the SPA or Authorization templates?",
+        "answer": "Templates are available at the Office of the Senior Citizens Affairs (OSCA) from 8:00 AM to 5:00 PM."
+      },
+      {
+        "question": "Who is eligible for this specific payout?",
+        "answer": "Seniors who are part of the qualified beneficiaries list from January to June 2025 provided by the NCSC."
+      }
+    ],
+    "quickInfo": {
+      "processingTime": "Scheduled Payout (Dec 18, 2025)",
+      "fee": "Free",
+      "whoCanApply": "Seniors aged 80, 85, 90, 95",
+      "appointmentType": "Walk-in (Treasury Office)",
+      "documents": "Valid IDs, SPA/Authorization, Proof of Life"
+    },
+    "updatedAt": "2026-01-13T20:44:00Z",
+    "sources": [
+      {
+        "name": "National Commission of Senior Citizens (NCSC)",
+        "url": "https://ncsc.gov.ph"
+      },
+      {
+        "name": "Office of the Senior Citizens Affairs (OSCA) Los Baños"
+      }
+    ]
   }
 ]
