@@ -14,7 +14,6 @@ import {
   Search,
   Loader2,
   AlertCircle,
-  Link2,
   CheckCircle2,
 } from 'lucide-react';
 
@@ -36,7 +35,9 @@ import categoryData from '@/data/service_categories.json';
 import { toTitleCase } from '@/lib/stringUtils';
 import { cn } from '@/lib/utils';
 
-// Define strict typing for the form
+// --- Types ---
+type SubmissionStatus = 'idle' | 'loading' | 'success' | 'error';
+
 interface ContributionFormData {
   service: string;
   description: string;
@@ -62,37 +63,46 @@ export default function ContributePage() {
     [editSlug]
   );
 
-  const { register, handleSubmit, watch, reset, setValue } =
-    useForm<ContributionFormData>({
-      defaultValues: useMemo(() => {
-        if (existingService) {
-          return {
-            service: existingService.service,
-            description: existingService.description || '',
-            type:
-              (existingService.type as 'transaction' | 'information') ||
-              'transaction',
-            categorySlug: existingService.category.slug,
-            officeSlug: Array.isArray(existingService.officeSlug)
-              ? existingService.officeSlug
-              : [existingService.officeSlug],
-            steps: existingService.steps?.join('\n') || '',
-            requirements: existingService.requirements?.join('\n') || '',
-            url: existingService.url || '',
-            source: '',
-            notes: '',
-          };
-        }
+  const {
+    register,
+    handleSubmit,
+    watch,
+    reset,
+    setValue,
+    formState: { errors },
+  } = useForm<ContributionFormData>({
+    defaultValues: useMemo(() => {
+      if (existingService) {
         return {
-          type: 'transaction',
-          categorySlug: 'certificates-vital-records',
-          officeSlug: ['municipal-hall'],
-          url: '',
+          service: existingService.service,
+          description: existingService.description || '',
+          type:
+            (existingService.type as 'transaction' | 'information') ||
+            'transaction',
+          categorySlug: existingService.category.slug,
+          officeSlug: Array.isArray(existingService.officeSlug)
+            ? existingService.officeSlug
+            : [existingService.officeSlug],
+          steps: existingService.steps?.join('\n') || '',
+          requirements: existingService.requirements?.join('\n') || '',
+          url: existingService.url || '',
+          source: '',
+          notes: '',
         };
-      }, [existingService]),
-    });
+      }
+      return {
+        type: 'transaction',
+        categorySlug: 'certificates-vital-records',
+        officeSlug: ['municipal-hall'],
+        url: '',
+      };
+    }, [existingService]),
+  });
 
-  const formData = watch();
+  // FIXED: Explicitly watching fields needed for the preview to satisfy ESLint
+  const previewService = watch('service');
+  const previewDescription = watch('description');
+  const previewCategorySlug = watch('categorySlug');
   const selectedOffices = watch('officeSlug') || [];
 
   const toggleOffice = (slug: string) => {
@@ -124,8 +134,7 @@ export default function ContributePage() {
             .toLowerCase()
             .trim()
             .replace(/[^\w\s-]/g, '')
-            .replace(/[\s_-]+/g, '-')
-            .replace(/^-+|-+$/g, ''),
+            .replace(/[\s_-]+/g, '-'),
         type: data.type,
         description: data.description,
         url: data.url,
@@ -145,7 +154,7 @@ export default function ContributePage() {
         updatedAt: new Date().toISOString(),
       };
 
-      const content = `### Proposed ${existingService ? 'Update' : 'Addition'}\n<!-- DATA_START -->\n\`\`\`json\n${JSON.stringify(jsonBlock, null, 2)}\n\`\`\`\n<!-- DATA_END -->\n\n**Reason:** ${data.notes || 'N/A'}\n**Source:** ${data.source}`;
+      const content = `### Contribution Form Proposed ${existingService ? 'Update' : 'Addition'}\n<!-- DATA_START -->\n\`\`\`json\n${JSON.stringify(jsonBlock, null, 2)}\n\`\`\`\n<!-- DATA_END -->\n\n**Reason:** ${data.notes || 'N/A'}\n**Source:** ${data.source}`;
 
       const response = await fetch('/api/submit-contribution', {
         method: 'POST',
@@ -158,14 +167,13 @@ export default function ContributePage() {
 
       const result = await response.json();
 
-      if (response.ok && result.success) {
+      if (response.status === 201 && result.success) {
         setStatus('success');
         window.scrollTo({ top: 0, behavior: 'smooth' });
       } else {
-        throw new Error(result.error || 'Failed to submit to GitHub');
+        throw new Error(result.error || 'The contribution could not be sent.');
       }
     } catch (err) {
-      console.error('Submission error:', err);
       setErrorMessage(err instanceof Error ? err.message : 'Connection failed');
       setStatus('error');
     }
@@ -246,13 +254,23 @@ export default function ContributePage() {
               <div className='grid grid-cols-1 gap-4 md:grid-cols-2'>
                 <div className='md:col-span-2'>
                   <label className='block mb-2 heading-label' htmlFor='service'>
-                    Service Name
+                    Service Name <span className='text-secondary-600'>*</span>
                   </label>
                   <input
                     id='service'
-                    {...register('service', { required: true })}
-                    className='p-3 w-full rounded-xl border outline-none border-slate-200 focus:ring-4 focus:ring-primary-500/5'
+                    {...register('service', { required: 'Name is required' })}
+                    className={cn(
+                      'p-3 w-full rounded-xl border outline-none transition-all',
+                      errors.service
+                        ? 'border-rose-500 ring-rose-500/10'
+                        : 'border-slate-200'
+                    )}
                   />
+                  {errors.service && (
+                    <p className='mt-1 text-xs font-bold text-rose-600'>
+                      {errors.service.message}
+                    </p>
+                  )}
                 </div>
                 <div>
                   <label className='block mb-2 heading-label' htmlFor='type'>
@@ -286,25 +304,12 @@ export default function ContributePage() {
                     ))}
                   </select>
                 </div>
-                <div className='md:col-span-2'>
-                  <label className='block mb-2 heading-label' htmlFor='url'>
-                    Online Portal URL (Optional)
-                  </label>
-                  <div className='relative'>
-                    <Link2 className='absolute left-3 top-1/2 w-4 h-4 -translate-y-1/2 text-slate-400' />
-                    <input
-                      id='url'
-                      {...register('url')}
-                      placeholder='https://...'
-                      className='p-3 pl-10 w-full rounded-xl border outline-none border-slate-200 focus:ring-4 focus:ring-primary-500/5'
-                    />
-                  </div>
-                </div>
               </div>
 
               <div className='space-y-3'>
                 <label className='block heading-label'>
-                  Responsible Offices
+                  Responsible Offices{' '}
+                  <span className='text-secondary-600'>*</span>
                 </label>
                 <div className='relative mb-2'>
                   <Search className='absolute left-3 top-1/2 w-4 h-4 -translate-y-1/2 text-slate-400' />
@@ -316,10 +321,18 @@ export default function ContributePage() {
                   />
                 </div>
                 <div
-                  className='grid overflow-y-auto grid-cols-1 gap-2 p-4 max-h-64 rounded-2xl border md:grid-cols-2 bg-slate-50 border-slate-200 scrollbar-thin'
-                  role='group'
-                  aria-label='Offices'
+                  className={cn(
+                    'grid overflow-y-auto grid-cols-1 gap-2 p-4 max-h-64 rounded-2xl border md:grid-cols-2 bg-slate-50 border-slate-200 scrollbar-thin',
+                    errors.officeSlug && 'border-rose-500'
+                  )}
                 >
+                  <input
+                    type='hidden'
+                    {...register('officeSlug', {
+                      validate: val =>
+                        val.length > 0 || 'Select at least one office',
+                    })}
+                  />
                   {filteredOffices.map(dept => {
                     const isChecked = selectedOffices.includes(dept.slug);
                     return (
@@ -373,7 +386,7 @@ export default function ContributePage() {
               <div className='grid grid-cols-1 gap-4 md:grid-cols-2'>
                 <div>
                   <label className='block mb-2 heading-label' htmlFor='steps'>
-                    Steps (One per line)
+                    Steps (New line per item)
                   </label>
                   <textarea
                     id='steps'
@@ -386,7 +399,7 @@ export default function ContributePage() {
                     className='block mb-2 heading-label'
                     htmlFor='requirements'
                   >
-                    Requirements (One per line)
+                    Requirements (New line per item)
                   </label>
                   <textarea
                     id='requirements'
@@ -402,13 +415,16 @@ export default function ContributePage() {
             <div className='space-y-4'>
               <div>
                 <label className='block mb-2 heading-label' htmlFor='source'>
-                  Source Link (Official Facebook or Website)
+                  Official Source Link{' '}
+                  <span className='text-secondary-600'>*</span>
                 </label>
                 <input
                   id='source'
-                  {...register('source', { required: true })}
-                  className='p-3 w-full text-sm rounded-xl border outline-none border-slate-200'
-                  placeholder='How can we verify this?'
+                  {...register('source', { required: 'Link required' })}
+                  className={cn(
+                    'p-3 w-full text-sm rounded-xl border outline-none border-slate-200',
+                    errors.source && 'border-rose-500'
+                  )}
                 />
               </div>
               <div>
@@ -419,7 +435,6 @@ export default function ContributePage() {
                   id='notes'
                   {...register('notes')}
                   className='p-3 w-full h-20 text-sm rounded-xl border outline-none border-slate-200'
-                  placeholder='What did you change?'
                 />
               </div>
             </div>
@@ -454,7 +469,7 @@ export default function ContributePage() {
             <div className='flex gap-3 items-center p-4 text-rose-800 bg-rose-50 rounded-xl border border-rose-100'>
               <AlertCircle className='w-5 h-5 shrink-0' />
               <p className='text-sm font-bold'>
-                Error: {errorMessage || 'Connection failed'}
+                Error: {errorMessage || 'Submission failed'}
               </p>
             </div>
           )}
@@ -466,16 +481,21 @@ export default function ContributePage() {
           </h3>
           <div className='p-8 text-white rounded-3xl ring-4 shadow-2xl bg-slate-900 ring-primary-500/10 min-h-[200px]'>
             <div className='relative z-10 space-y-4'>
-              <Badge variant='primary'>
-                {categoryData.categories.find(
-                  c => c.slug === formData.categorySlug
-                )?.name || 'Category'}
-              </Badge>
+              <div className='flex gap-2'>
+                <Badge variant='primary'>
+                  {categoryData.categories.find(
+                    c => c.slug === previewCategorySlug
+                  )?.name || 'Category'}
+                </Badge>
+                <Badge variant='success' dot>
+                  Audit Pending
+                </Badge>
+              </div>
               <h4 className='text-2xl font-bold leading-tight'>
-                {formData.service || 'Service Title'}
+                {previewService || 'Service Title'}
               </h4>
               <p className='text-sm italic leading-relaxed text-slate-400'>
-                &quot;{formData.description || 'Description preview...'}&quot;
+                &quot;{previewDescription || 'Description preview...'}&quot;
               </p>
             </div>
           </div>
@@ -483,8 +503,7 @@ export default function ContributePage() {
             <AlertTriangle className='w-6 h-6 text-amber-600 shrink-0' />
             <p className='text-xs leading-relaxed text-amber-800'>
               <strong>Note:</strong> All submissions are reviewed manually.
-              Ensure you provided a source link or the submission will be
-              rejected.
+              Provide an official source link to avoid rejection.
             </p>
           </div>
         </aside>
@@ -492,5 +511,3 @@ export default function ContributePage() {
     </div>
   );
 }
-
-type SubmissionStatus = 'idle' | 'loading' | 'success' | 'error';
