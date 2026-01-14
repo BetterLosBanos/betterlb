@@ -1,7 +1,7 @@
 {
   "name": "betterlb",
   "pages_build_output_dir": "dist",
-  "account_id": "39c1422dc87080bcec58fcc5ff4593a7",
+  // "account_id": "39c1422dc87080bcec58fcc5ff4593a7",
   "compatibility_date": "2026-01-13",
   "kv_namespaces": [
     {
