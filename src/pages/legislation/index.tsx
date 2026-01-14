@@ -58,10 +58,10 @@ export default function LegislationIndex() {
 
   return (
     <section className='space-y-4 duration-500 animate-in fade-in'>
-      <div className='flex justify-between items-center px-1 mb-2'>
-        <p className='text-[10px] font-bold text-slate-400 uppercase tracking-widest'>
-          Showing {filteredDocs.length} Results
-        </p>
+      <div className='flex justify-start'>
+        <Badge variant='slate' className='bg-slate-50 border-slate-200'>
+          {filteredDocs.length} Results
+        </Badge>
       </div>
       {filteredDocs.slice(0, visibleCount).map(doc => {
         const authors = doc.author_ids

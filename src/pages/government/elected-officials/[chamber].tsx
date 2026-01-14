@@ -142,7 +142,7 @@ export default function LegislativeChamber() {
                         Chair:
                       </span>
                       <span className='text-xs font-bold truncate text-slate-700'>
-                        {toTitleCase(committee.chairperson || committee.name)}
+                        {toTitleCase(committee.chairperson)}
                       </span>
                     </div>
                   </div>
