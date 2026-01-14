@@ -1,54 +1,48 @@
 [
   {
     "slug": "office-of-the-mayor",
-    "office": "OFFICE OF THE MAYOR",
-    "address": "Los Baños Municipal Hall, Jamboree Road, Brgy. Timugan, Los Baños",
-    "trunkline": "(049) 530 2818",
-    "website": "www.losbanos.gov.ph",
-    "officials": [
-      {
-        "name": "NIEL ANDREW N. NOCON",
-        "role": "Mayor",
-        "email": "mayorsoffice@losbanos.gov.ph"
-      }
-    ]
+    "name": "Niel Andrew N. Nocon",
+    "role": "Mayor",
+    "office": "Office of the Mayor",
+    "address": "Municipal Hall, Los Baños",
+    "phone": "(049) 530 2818",
+    "email": "mayorsoffice@losbanos.gov.ph",
+    "website": "https://www.facebook.com/alagangNOCON",
+    "isElected": true
   },
   {
     "slug": "office-of-the-vice-mayor",
-    "office": "OFFICE OF THE VICE MAYOR",
-    "address": "Los Baños Municipal Hall, Jamboree Road, Brgy. Timugan, Los Baños",
-    "trunkline": "(049) 530 0818",
-    "website": "www.ovp.gov.ph",
-    "officials": [
-      {
-        "name": "MARLO PJ A. ALIPON",
-        "role": "Vice Mayor",
-        "email": ""
-      }
-    ]
+    "name": "Marlo PJ A. Alipon",
+    "role": "Vice Mayor",
+    "office": "Office of the Vice Mayor",
+    "address": "Municipal Hall, Los Baños",
+    "phone": "(049) 530 0818",
+    "email": "",
+    "website": "https://www.facebook.com/profile.php?id=100064361905801",
+    "isElected": true
   },
   {
-    "slug": "other-officials",
-    "office": "OTHER OFFICIALS",
-    "address": "Los Baños Municipal Hall, Jamboree Road, Brgy. Timugan, Los Baños",
-    "trunkline": "",
-    "website": "",
-    "officials": [
-      {
-        "name": "OLIVER D. MANAIG",
-        "role": "Municipal Assessor",
-        "email": ""
-      },
-      {
-        "name": "MARIA LUISA G. DIAZ",
-        "role": "Municipal Treasurer",
-        "email": ""
-      },
-      {
-        "name": "Anatoly P. Guinto",
-        "role": "Chief of Staff",
-        "email": ""
-      }
-    ]
+    "slug": "municipal-treasurer",
+    "name": "Maria Luisa G. Diaz",
+    "role": "Municipal Treasurer",
+    "phone": "",
+    "email": "",
+    "isElected": false
+  },
+  {
+    "slug": "municipal-assessor",
+    "name": "Oliver D. Manaig",
+    "role": "Municipal Assessor",
+    "phone": "",
+    "email": "",
+    "isElected": false
+  },
+  {
+    "slug": "chief-of-staff",
+    "name": "Anatoly P. Guinto",
+    "role": "Chief of Staff",
+    "phone": "",
+    "email": "",
+    "isElected": false
   }
 ]
