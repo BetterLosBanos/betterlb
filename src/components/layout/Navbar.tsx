@@ -4,7 +4,6 @@ import {
   MenuIcon,
   SearchIcon,
   XIcon,
-  CheckCircle2,
 } from 'lucide-react';
 import { FC, useState } from 'react';
 import { useTranslation } from 'react-i18next';
@@ -102,26 +101,26 @@ const Navbar: FC = () => {
   };
 
   return (
-    <nav className='bg-white shadow-xs sticky top-0 z-50'>
+    <nav className='sticky top-0 z-50 bg-white shadow-xs'>
       {/* Top bar with language switcher and additional links */}
       <div className='border-b border-gray-200'>
-        <div className='container mx-auto px-4 flex justify-end items-center h-10'>
+        <div className='container flex justify-end items-center px-4 mx-auto h-10'>
           <div className='flex items-center space-x-4'>
             <Link
               to='/join-us'
-              className='text-xs leading-12 text-primary-600 hover:text-primary-700 font-semibold transition-colors'
+              className='text-xs font-semibold transition-colors leading-12 text-primary-600 hover:text-primary-700'
             >
               🚀 Join Us
             </Link>
             <Link
               to='/about'
-              className='text-xs leading-12 text-gray-800 hover:text-primary-600 transition-colors'
+              className='text-xs text-gray-800 transition-colors leading-12 hover:text-primary-600'
             >
               About <span className='hidden md:inline'>BetterGov.ph</span>
             </Link>
             <a
               href='https://losbanos.gov.ph'
-              className='text-xs leading-12 text-gray-800 hover:text-primary-600 transition-colors'
+              className='text-xs text-gray-800 transition-colors leading-12 hover:text-primary-600'
               target='_blank'
               rel='noreferrer'
             >
@@ -129,13 +128,13 @@ const Navbar: FC = () => {
             </a>
             <Link
               to='/contact'
-              className='text-xs leading-12 text-gray-800 hover:text-primary-600 transition-colors'
+              className='text-xs text-gray-800 transition-colors leading-12 hover:text-primary-600'
             >
               Contact Us
             </Link>
             <Link
               to='/philippines/hotlines'
-              className='text-xs leading-12 text-gray-800 hover:text-primary-600 transition-colors'
+              className='text-xs text-gray-800 transition-colors leading-12 hover:text-primary-600'
             >
               Hotlines
             </Link>
@@ -143,7 +142,7 @@ const Navbar: FC = () => {
               <select
                 value={i18n.language}
                 onChange={e => changeLanguage(e.target.value as LanguageType)}
-                className='text-xs border border-gray-300 rounded-sm px-2 py-1 bg-white text-gray-700 hover:border-primary-600 focus:outline-hidden focus:ring-1 focus:ring-primary-600 focus:border-primary-600'
+                className='px-2 py-1 text-xs text-gray-700 bg-white rounded-sm border border-gray-300 hover:border-primary-600 focus:outline-hidden focus:ring-1 focus:ring-primary-600 focus:border-primary-600'
               >
                 {Object.entries(LANGUAGES).map(([code, lang]) => (
                   <option key={code} value={code}>
@@ -157,18 +156,18 @@ const Navbar: FC = () => {
       </div>
 
       {/* Main navigation */}
-      <div className='container mx-auto px-4'>
+      <div className='container px-4 mx-auto'>
         <div className='flex justify-between items-center py-4'>
           <div className='flex items-center'>
             <Link to='/' className='flex items-center'>
-              <CheckCircle2 className='h-12 w-12 mr-3' />
-              {/* <img
-                src='/logos/svg/BetterGov_Icon-Primary.svg'
-                alt='BetterGov Logo'
-                className='h-12 w-12 mr-3'
-              /> */}
+              {/* <CheckCircle2 className='mr-3 w-12 h-12' /> */}
+              <img
+                src='/logos/webp/betterlb-blue-outline.webp'
+                alt='BetterLB Logo'
+                className='mr-3 w-12 h-12'
+              />
               <div>
-                <div className='text-black font-bold'>BetterLB</div>
+                <div className='font-bold text-black'>BetterLB</div>
                 <div className='text-xs text-gray-800'>
                   A community-run portal for the Municipality of Los Baños
                 </div>
@@ -177,7 +176,7 @@ const Navbar: FC = () => {
           </div>
 
           {/* Desktop navigation */}
-          <div className='hidden lg:flex items-center lg:space-x-4 xl:space-x-8 lg:pr-6 xl:pr-24 lg:leading-10'>
+          <div className='hidden items-center lg:flex lg:space-x-4 xl:space-x-8 lg:pr-6 xl:pr-24 lg:leading-10'>
             {mainNavigation.map(item => {
               const isActive = isActiveRoute(item.href);
               return (
@@ -192,7 +191,7 @@ const Navbar: FC = () => {
                     className={`flex items-center font-medium transition-colors pb-1 border-b-2 whitespace-nowrap ${
                       isActive
                         ? 'text-primary-600 border-primary-600'
-                        : 'text-gray-700 hover:text-primary-600 border-transparent'
+                        : 'text-gray-700 border-transparent hover:text-primary-600'
                     }`}
                   >
                     {t(`navbar.${item.label.toLowerCase()}`)}
@@ -241,33 +240,33 @@ const Navbar: FC = () => {
               );
             })}
           </div>
-          <div className='hidden lg:flex items-center lg:space-x-4 xl:space-x-8 lg:pr-6 xl:pr-24 lg:leading-10'>
+          <div className='hidden items-center lg:flex lg:space-x-4 xl:space-x-8 lg:pr-6 xl:pr-24 lg:leading-10'>
             <Link
               to='/search'
-              className='flex items-center text-gray-700 hover:text-primary-600 font-semibold text-lg transition-colors px-3 py-2 rounded-lg hover:bg-gray-50'
+              className='flex items-center px-3 py-2 text-lg font-semibold text-gray-700 rounded-lg transition-colors hover:text-primary-600 hover:bg-gray-50'
             >
-              <SearchIcon className='h-5 w-5 mr-2' />
+              <SearchIcon className='mr-2 w-5 h-5' />
               Search
             </Link>
             {/* <Link
               to="/sitemap"
-              className="flex items-center text-gray-700 hover:text-primary-600 font-medium transition-colors"
+              className="flex items-center font-medium text-gray-700 transition-colors hover:text-primary-600"
             >
               Sitemap
             </Link> */}
           </div>
 
           {/* Mobile menu button */}
-          <div className='lg:hidden flex items-center'>
+          <div className='flex items-center lg:hidden'>
             <button
               onClick={toggleMenu}
-              className='inline-flex items-center justify-center p-2 rounded-md text-gray-700 hover:text-primary-500 hover:bg-gray-100 focus:outline-hidden focus:ring-2 focus:ring-inset focus:ring-primary-500'
+              className='inline-flex justify-center items-center p-2 text-gray-700 rounded-md hover:text-primary-500 hover:bg-gray-100 focus:outline-hidden focus:ring-2 focus:ring-inset focus:ring-primary-500'
             >
               <span className='sr-only'>Open main menu</span>
               {isOpen ? (
-                <XIcon className='block h-6 w-6' aria-hidden='true' />
+                <XIcon className='block w-6 h-6' aria-hidden='true' />
               ) : (
-                <MenuIcon className='block h-6 w-6' aria-hidden='true' />
+                <MenuIcon className='block w-6 h-6' aria-hidden='true' />
               )}
             </button>
           </div>
@@ -276,7 +275,7 @@ const Navbar: FC = () => {
 
       {/* Mobile menu */}
       <div className={`lg:hidden ${isOpen ? 'block' : 'hidden'}`}>
-        <div className='container mx-auto px-2 pt-2 pb-4 space-y-1 border-t border-gray-200 bg-white'>
+        <div className='container px-2 pt-2 pb-4 mx-auto space-y-1 bg-white border-t border-gray-200'>
           {mainNavigation.map(item => {
             const isActive = isActiveRoute(item.href);
             return (
@@ -299,7 +298,7 @@ const Navbar: FC = () => {
                   )}
                 </button>
                 {item.children && activeMenu === item.label && (
-                  <div className='pl-6 py-2 space-y-1 bg-gray-50'>
+                  <div className='py-2 pl-6 space-y-1 bg-gray-50'>
                     {item.children.map(child => (
                       <Link
                         key={child.label}
@@ -329,28 +328,28 @@ const Navbar: FC = () => {
           >
             About
           </Link>
-          <Link
+          {/* <Link
             to='/contact'
             onClick={closeMenu}
             className='flex items-center px-4 py-2 text-base font-medium text-gray-700 hover:bg-gray-50 hover:text-primary-500'
           >
             Contact Us
-          </Link>
+          </Link> */}
           <Link
             to='/search'
             onClick={closeMenu}
             className='flex items-center px-4 py-2 text-base font-semibold text-gray-700 hover:bg-gray-50 hover:text-primary-600'
           >
-            <SearchIcon className='h-5 w-5 mr-2' />
+            <SearchIcon className='mr-2 w-5 h-5' />
             Search
           </Link>
           <div className='px-4 py-3 border-t border-gray-200'>
             <div className='flex items-center'>
-              <GlobeIcon className='h-5 w-5 text-gray-800 mr-2' />
+              <GlobeIcon className='mr-2 w-5 h-5 text-gray-800' />
               <select
                 value={i18n.language}
                 onChange={e => changeLanguage(e.target.value as LanguageType)}
-                className='text-sm border border-gray-300 rounded-sm px-2 py-1 bg-white text-gray-700 hover:border-primary-600 focus:outline-hidden focus:ring-1 focus:ring-primary-600 focus:border-primary-600'
+                className='px-2 py-1 text-sm text-gray-700 bg-white rounded-sm border border-gray-300 hover:border-primary-600 focus:outline-hidden focus:ring-1 focus:ring-primary-600 focus:border-primary-600'
               >
                 {Object.entries(LANGUAGES).map(([code, lang]) => (
                   <option key={code} value={code}>

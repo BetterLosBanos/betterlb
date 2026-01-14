@@ -1,0 +1,64 @@
+[
+  {
+    "service": "Tricycle Franchise Renewal",
+    "slug": "tricycle-franchise-renewal",
+    "type": "transaction",
+    "description": "Annual renewal of franchise for tricycle operators.",
+    "officeSlug": ["tricycle-regulatory-unit"],
+    "category": {
+      "name": "Public Safety",
+      "slug": "public-safety"
+    },
+    "steps": [
+      "Submit unit for roadworthiness inspection.",
+      "Present insurance and registration papers.",
+      "Pay franchise fee.",
+      "Get sticker and permit."
+    ],
+    "requirements": [
+      "LTO OR/CR",
+      "TPL Insurance",
+      "Previous Franchise",
+      "Voter's ID / Certification"
+    ],
+    "quickInfo": {
+      "processingTime": "1 day",
+      "fee": "₱700",
+      "validity": "1 Year"
+    },
+    "updatedAt": null,
+    "sources": [
+      {
+        "name": "Municipal Tricycle Franchising Ordinance",
+        "url": ""
+      }
+    ]
+  },
+  {
+    "service": "Fire Safety Inspection Certificate (FSIC)",
+    "slug": "fire-safety-inspection-certificate",
+    "type": "transaction",
+    "description": "Required for occupancy and business permits to ensure the structure meets fire safety standards.",
+    "officeSlug": ["bureau-fire-protection"],
+    "category": {
+      "name": "Public Safety",
+      "slug": "public-safety"
+    },
+    "requirements": [
+      "Unified Application Form",
+      "Building Permit Number and Date Issued",
+      "FSEC Number and Date Issued",
+      "Site Inspection by BFP personnel"
+    ],
+    "quickInfo": {
+      "processingTime": "3-5 days",
+      "whoCanApply": "Building Owners / Business Operators"
+    },
+    "updatedAt": null,
+    "sources": [
+      {
+        "name": "BFP Fire Safety Regulations"
+      }
+    ]
+  }
+]
