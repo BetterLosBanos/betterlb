@@ -137,15 +137,15 @@ export const footerNavigation = {
       title: 'Resources',
       links: [
         {
-          label: 'Official Gov.ph',
-          href: 'https://www.gov.ph',
+          label: 'Official Los Baños Gov.ph',
+          href: 'https://www.losbanos.gov.ph',
           target: '_blank',
         },
-        {
-          label: 'Official Gazette',
-          href: 'https://www.officialgazette.gov.ph',
-          target: '_blank',
-        },
+        // {
+        //   label: 'Official Gazette',
+        //   href: 'https://www.officialgazette.gov.ph',
+        //   target: '_blank',
+        // },
         {
           label: 'Freedom of Information',
           href: 'https://www.foi.gov.ph',
@@ -156,8 +156,8 @@ export const footerNavigation = {
           href: 'https://laguna.gov.ph',
           target: '_blank',
         },
-        { label: 'Privacy Policy', href: '/privacy' },
-        { label: 'Accessibility', href: '/accessibility' },
+        // { label: 'Privacy Policy', href: '/privacy' },
+        // { label: 'Accessibility', href: '/accessibility' },
       ],
     },
   ],

@@ -4,7 +4,7 @@
     "slug": "business-permit-new",
     "type": "transaction",
     "description": "Application for a new Mayor's Permit to conduct business within the municipality.",
-    "url": "",
+    "url": null,
     "officeSlug": ["business-permit-and-licensing-office"],
     "category": {
       "name": "Business & Licensing",
@@ -40,11 +40,11 @@
     "sources": [
       {
         "name": "Municipal Revenue Code",
-        "url": ""
+        "url": null
       },
       {
         "name": "BPLO Regulatory Guidelines",
-        "url": ""
+        "url": null
       }
     ]
   },
@@ -81,11 +81,11 @@
     "sources": [
       {
         "name": "Municipal Ordinance No. 2023-01",
-        "url": ""
+        "url": null
       },
       {
         "name": "LGOO Memorandum Circular 12",
-        "url": ""
+        "url": null
       }
     ]
   },
@@ -151,11 +151,11 @@
     "sources": [
       {
         "name": "Municipal Tax Ordinance",
-        "url": ""
+        "url": null
       },
       {
         "name": "Bureau of Local Government Finance Guidelines",
-        "url": ""
+        "url": null
       }
     ]
   },
@@ -188,11 +188,11 @@
     "sources": [
       {
         "name": "Republic Act No. 3753 (Civil Register Law)",
-        "url": ""
+        "url": null
       },
       {
         "name": "PSA Administrative Order No. 1",
-        "url": ""
+        "url": null
       }
     ]
   },
@@ -228,11 +228,11 @@
     "sources": [
       {
         "name": "P.D. 1096 (National Building Code of the Philippines)",
-        "url": ""
+        "url": null
       },
       {
         "name": "Municipal Engineering Regulatory Manual",
-        "url": ""
+        "url": null
       }
     ]
   },
@@ -267,7 +267,7 @@
     "sources": [
       {
         "name": "Municipal Tricycle Franchising Ordinance",
-        "url": ""
+        "url": null
       }
     ]
   },
@@ -303,7 +303,7 @@
     "sources": [
       {
         "name": "DepEd Schools Division Office List",
-        "url": ""
+        "url": null
       }
     ]
   },
@@ -338,7 +338,7 @@
     "sources": [
       {
         "name": "Municipal Scholarship Ordinance",
-        "url": ""
+        "url": null
       }
     ]
   },
@@ -371,11 +371,11 @@
     "sources": [
       {
         "name": "Republic Act No. 9003 (Ecological Solid Waste Management Act)",
-        "url": ""
+        "url": null
       },
       {
         "name": "MENRO Garbage Collection Policy",
-        "url": ""
+        "url": null
       }
     ]
   },
@@ -401,7 +401,7 @@
     "sources": [
       {
         "name": "Municipal Health Office Registry",
-        "url": ""
+        "url": null
       }
     ]
   },
@@ -436,11 +436,11 @@
     "sources": [
       {
         "name": "P.D. 856 (Code on Sanitation of the Philippines)",
-        "url": ""
+        "url": null
       },
       {
         "name": "Sanitary Office Guidelines",
-        "url": ""
+        "url": null
       }
     ]
   },
@@ -474,11 +474,11 @@
     "sources": [
       {
         "name": "DSWD Memorandum Circular No. 02 Series of 2014",
-        "url": ""
+        "url": null
       },
       {
         "name": "MSWDO Guidelines on Financial Assistance",
-        "url": ""
+        "url": null
       }
     ]
   },
@@ -513,7 +513,7 @@
     "sources": [
       {
         "name": "Republic Act No. 9994 (Expanded Senior Citizens Act)",
-        "url": ""
+        "url": null
       }
     ]
   },
@@ -540,7 +540,7 @@
     "sources": [
       {
         "name": "Municipal Agriculture Office Extension Program",
-        "url": ""
+        "url": null
       }
     ]
   },
@@ -999,7 +999,7 @@
     "slug": "medical-surgical-services",
     "type": "transaction",
     "description": "General medical consultations and minor surgical procedures provided by the Municipal Health Office.",
-    "url": "",
+    "url": null,
     "officeSlug": ["municipal-health-office"],
     "category": {
       "name": "Health & Wellness",
@@ -1290,7 +1290,7 @@
     "slug": "expanded-centenarian-payout",
     "type": "transaction",
     "description": "Provision of cash incentives for elderly residents reaching milestone ages of 80, 85, 90, and 95, facilitated by the National Commission of Senior Citizens (NCSC).",
-    "url": "",
+    "url": null,
     "officeSlug": ["municipal-treasurers-office"],
     "category": {
       "name": "Social Services",
