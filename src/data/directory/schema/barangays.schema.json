@@ -1,0 +1,31 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Barangay Directory",
+  "description": "Schema for component barangay unit data",
+  "type": "array",
+  "items": {
+    "type": "object",
+    "required": ["slug", "barangay_name"],
+    "properties": {
+      "slug": { "type": "string" },
+      "barangay_name": { "type": "string" },
+      "address": { "type": "string" },
+      "trunkline": {
+        "type": "array",
+        "items": { "type": "string" }
+      },
+      "website": { "type": "string" },
+      "officials": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "required": ["role", "name"],
+          "properties": {
+            "role": { "type": "string" },
+            "name": { "type": "string" }
+          }
+        }
+      }
+    }
+  }
+}
