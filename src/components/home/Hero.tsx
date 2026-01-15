@@ -54,8 +54,7 @@ const Hero: FC = () => {
 
     // Pick 3
     return shuffled.slice(0, 3).map(service => ({
-      label:
-        service.service || service.office_name || service.office || 'Service',
+      label: service.service || 'Service',
       href: `/services?category=${encodeURIComponent(service.category?.slug || '')}&subcategory=${encodeURIComponent(service.slug)}`,
     }));
   }, []);
@@ -171,14 +170,14 @@ const Hero: FC = () => {
                 </Link>
               ))}
             </div>
-          </div>
-          <div className='flex mt-4'>
-            <Link
-              className='p-4 w-full text-center text-white rounded-lg transition-all duration-500 bg-white/10 hover:bg-white/20'
-              to='/services'
-            >
-              {t('services.viewAll')}
-            </Link>
+            <div className='flex mt-4'>
+              <Link
+                className='p-4 w-full text-center text-white rounded-lg transition-all duration-500 bg-white/10 hover:bg-white/20'
+                to='/services'
+              >
+                {t('services.viewAll')}
+              </Link>
+            </div>
           </div>
         </div>
       </div>
