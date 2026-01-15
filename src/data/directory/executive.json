@@ -17,7 +17,7 @@
     "office": "Office of the Vice Mayor",
     "address": "Municipal Hall, Los Baños",
     "phone": "(049) 530 0818",
-    "email": "",
+    "email": null,
     "website": "https://www.facebook.com/profile.php?id=100064361905801",
     "isElected": true
   },
@@ -25,24 +25,24 @@
     "slug": "municipal-treasurer",
     "name": "Maria Luisa G. Diaz",
     "role": "Municipal Treasurer",
-    "phone": "",
-    "email": "",
+    "phone": null,
+    "email": null,
     "isElected": false
   },
   {
     "slug": "municipal-assessor",
     "name": "Oliver D. Manaig",
     "role": "Municipal Assessor",
-    "phone": "",
-    "email": "",
+    "phone": null,
+    "email": null,
     "isElected": false
   },
   {
     "slug": "chief-of-staff",
     "name": "Anatoly P. Guinto",
     "role": "Chief of Staff",
-    "phone": "",
-    "email": "",
+    "phone": null,
+    "email": null,
     "isElected": false
   }
 ]
