@@ -1,6 +1,5 @@
 import { useMemo } from 'react';
 
-import { formatMillions } from '@/utils/format';
 import { Coins, Landmark, Wallet } from 'lucide-react';
 
 import {
@@ -11,6 +10,8 @@ import {
 import { DetailSection } from '@/components/layout/PageLayouts';
 
 import FinancialPieChart from '@/pages/transparency/components/FinancialPieChart';
+
+import { formatMillions } from '@/lib/format';
 
 import ariData from '@/data/statistics/ari.json';
 
