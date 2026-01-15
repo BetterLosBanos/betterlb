@@ -1,6 +1,5 @@
 import { useMemo, useState } from 'react';
 
-import { formatMillions } from '@/utils/format';
 import {
   ChevronDown,
   ChevronUp,
@@ -19,6 +18,8 @@ import {
 } from 'recharts';
 
 import { Card, CardContent, CardHeader } from '@/components/ui/Card';
+
+import { formatMillions } from '@/lib/format';
 
 // --- Types ---
 

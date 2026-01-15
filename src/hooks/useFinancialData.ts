@@ -1,6 +1,6 @@
 import { useMemo, useState } from 'react';
 
-import { aggregateExpenditures, aggregateIncome } from '@/utils/budgetUtils';
+import { aggregateExpenditures, aggregateIncome } from '@/lib/budgetUtils';
 
 // Removed useEffect
 import budgetData from '@/data/transparency/budgetData';

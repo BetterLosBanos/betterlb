@@ -1,4 +1,3 @@
-import { formatLabel } from '@/utils/budgetUtils';
 import {
   BarChart2Icon,
   Info,
@@ -26,6 +25,8 @@ import QuarterToggle from '@/pages/transparency/components/QuarterToggle';
 import SummaryCards from '@/pages/transparency/components/SummaryCards';
 
 import { useFinancialData } from '@/hooks/useFinancialData';
+
+import { formatLabel } from '@/lib/budgetUtils';
 
 export default function FinancialPage() {
   const {
