@@ -1,79 +1,74 @@
 import {
+  Navigate,
+  Route,
   BrowserRouter as Router,
   Routes,
-  Route,
-  Navigate,
 } from 'react-router-dom';
+
 import { NuqsAdapter } from 'nuqs/adapters/react-router/v6';
 
+import SEO from '@/components/SEO';
+import Footer from '@/components/layout/Footer';
 // --- Layouts ---
 import Navbar from '@/components/layout/Navbar';
-import Ticker from '@/components/ui/Ticker';
-import Footer from '@/components/layout/Footer';
-import SEO from '@/components/SEO';
 import ScrollToTop from '@/components/ui/ScrollToTop';
+import Ticker from '@/components/ui/Ticker';
 
-import GovernmentLayout from '@/pages/government/layout';
-import ElectedOfficialsLayout from '@/pages/government/elected-officials/layout';
-import DepartmentsLayout from '@/pages/government/departments/layout';
-import BarangaysLayout from '@/pages/government/barangays/layout';
-import ServicesLayout from '@/pages/services/layout';
-import StatisticsLayout from '@/pages/statistics/layout';
-import LegislationLayout from '@/pages/legislation/layout';
-import TransparencyLayout from '@/pages/transparency/layout';
-
+import ContactUs from '@/pages/ContactUs';
+import Discord from '@/pages/Discord';
 // --- Pages ---
 import Home from '@/pages/Home';
-import AboutPage from '@/pages/about';
-import AccessibilityPage from '@/pages/accessibility';
-import ContactUs from '@/pages/ContactUs';
-import SearchPage from '@/pages/Search';
-import SitemapPage from '@/pages/sitemap';
 import Ideas from '@/pages/Ideas';
 import JoinUs from '@/pages/JoinUs';
-import TermsOfService from '@/pages/TermsOfService';
-import Discord from '@/pages/Discord';
 import NotFound from '@/pages/NotFound';
-import ContributePage from './pages/contribute';
-
+import SearchPage from '@/pages/Search';
+import TermsOfService from '@/pages/TermsOfService';
+import AboutPage from '@/pages/about';
+import AccessibilityPage from '@/pages/accessibility';
+import ForexPage from '@/pages/data/forex';
 // --- Data Pages ---
 import WeatherPage from '@/pages/data/weather';
-import ForexPage from '@/pages/data/forex';
-
-// --- Directory Modules ---
-import ElectedOfficialsIndex from './pages/government/elected-officials';
-import ExecutiveBranchPage from '@/pages/government/elected-officials/executive-branch';
-import LegislativeChamber from '@/pages/government/elected-officials/[chamber]';
-import MunicipalCommitteesPage from '@/pages/government/elected-officials/municipal-committees';
-
-import DepartmentsIndex from '@/pages/government/departments';
-import DepartmentDetail from '@/pages/government/departments/[department]';
-
 import BarangaysIndex from '@/pages/government/barangays';
 import BarangayDetail from '@/pages/government/barangays/[barangay]';
-
+import BarangaysLayout from '@/pages/government/barangays/layout';
+import DepartmentsIndex from '@/pages/government/departments';
+import DepartmentDetail from '@/pages/government/departments/[department]';
+import DepartmentsLayout from '@/pages/government/departments/layout';
+import LegislativeChamber from '@/pages/government/elected-officials/[chamber]';
+import ExecutiveBranchPage from '@/pages/government/elected-officials/executive-branch';
+import ElectedOfficialsLayout from '@/pages/government/elected-officials/layout';
+import MunicipalCommitteesPage from '@/pages/government/elected-officials/municipal-committees';
+import GovernmentLayout from '@/pages/government/layout';
+import LegislationDetail from '@/pages/legislation/[document]';
+import PersonDetail from '@/pages/legislation/[person]';
+import SessionDetail from '@/pages/legislation/[session]';
+import TermDetail from '@/pages/legislation/[term]';
+import LegislationIndex from '@/pages/legislation/index';
+import LegislationLayout from '@/pages/legislation/layout';
 // --- Services & Legislation ---
 import Services from '@/pages/services';
 import ServiceDetail from '@/pages/services/[service]';
-
-import LegislationIndex from '@/pages/legislation/index';
-import LegislationDetail from '@/pages/legislation/[document]';
-import SessionDetail from '@/pages/legislation/[session]';
-import PersonDetail from '@/pages/legislation/[person]';
-import TermDetail from '@/pages/legislation/[term]';
-
-import TransparencyIndex from '@/pages/transparency/index';
+import ServicesLayout from '@/pages/services/layout';
+import SitemapPage from '@/pages/sitemap';
+import StatisticsLayout from '@/pages/statistics/layout';
 import FinancialPage from '@/pages/transparency/financial';
+import TransparencyIndex from '@/pages/transparency/index';
+import TransparencyLayout from '@/pages/transparency/layout';
 
-import PopulationPage from './pages/statistics/PopulationPage';
+import ContributePage from './pages/contribute';
+// --- Directory Modules ---
+import ElectedOfficialsIndex from './pages/government/elected-officials';
 import CompetitivenessPage from './pages/statistics/CompetitivenessPage';
 import MunicipalIncomePage from './pages/statistics/MunicipalIncomePage';
+import PopulationPage from './pages/statistics/PopulationPage';
+import InfrastructurePage from './pages/transparency/infrastructure';
+import ProcurementPage from './pages/transparency/procurement';
 
 function App() {
   return (
     <Router>
       <NuqsAdapter>
-        <div className='flex flex-col min-h-screen'>
+        <div className='flex min-h-screen flex-col'>
           <SEO />
           <Navbar />
           <Ticker />
@@ -180,6 +175,8 @@ function App() {
             <Route path='/transparency' element={<TransparencyLayout />}>
               <Route index element={<TransparencyIndex />} />
               <Route path='financial' element={<FinancialPage />} />
+              <Route path='procurement' element={<ProcurementPage />} />
+              <Route path='infrastructure' element={<InfrastructurePage />} />
             </Route>
 
             {/* Community Contribution Flow */}

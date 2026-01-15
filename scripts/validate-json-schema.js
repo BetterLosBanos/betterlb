@@ -11,14 +11,14 @@
  *   node validate-json-schema.js schema.json data/*.json
  *   node validate-json-schema.js schema.json file1.json file2.json
  */
-
 import { readFileSync, statSync } from 'fs';
-import { resolve, basename } from 'path';
-import { createRequire } from 'module';
 import { glob } from 'glob';
+import { createRequire } from 'module';
+import { basename, resolve } from 'path';
 
 const require = createRequire(import.meta.url);
 const Ajv = require('ajv');
+const addFormats = require('ajv-formats'); // 1. Added requirement for formats
 
 // Parse command line arguments
 const args = process.argv.slice(2);
@@ -27,14 +27,6 @@ if (args.length < 2) {
   console.error('Error: Missing required arguments\n');
   console.error('Usage:');
   console.error('  node validate-json-schema.js <schema-path> <files-pattern>');
-  console.error(
-    '  node validate-json-schema.js <schema-path> <file1> <file2> ...\n'
-  );
-  console.error('Examples:');
-  console.error('  node validate-json-schema.js schema.json "data/*.json"');
-  console.error(
-    '  node validate-json-schema.js schema.json file1.json file2.json'
-  );
   process.exit(1);
 }
 
@@ -51,7 +43,16 @@ try {
   process.exit(1);
 }
 
-const ajv = new Ajv({ allErrors: true, verbose: true });
+// 2. Initialize Ajv with allowUnionTypes: true (Required for ["string", "null"])
+const ajv = new Ajv({
+  allErrors: true,
+  verbose: true,
+  allowUnionTypes: true,
+});
+
+// 3. Enable formats (Required for "email", "uri", etc.)
+addFormats(ajv);
+
 let validate;
 try {
   validate = ajv.compile(schema);
@@ -65,27 +66,22 @@ try {
 const files = [];
 for (const pattern of filePatterns) {
   const resolvedPattern = resolve(pattern);
-
   try {
     const stats = statSync(resolvedPattern);
     if (stats.isFile()) {
       files.push(resolvedPattern);
     }
   } catch {
-    // Not a direct file path, try glob
     const matches = glob.sync(pattern, { nodir: true });
-    if (matches.length === 0) {
-      console.error(`Warning: No files found matching pattern: ${pattern}`);
-    } else {
+    if (matches.length > 0) {
       files.push(...matches.map(f => resolve(f)));
     }
   }
 }
 
 const uniqueFiles = [...new Set(files)];
-
 if (uniqueFiles.length === 0) {
-  console.error('Error: No files to validate');
+  console.error('Error: No files found to validate');
   process.exit(1);
 }
 
@@ -115,7 +111,7 @@ for (const filePath of uniqueFiles) {
   } else {
     console.log(`✗ ${basename(filePath)}`);
     console.log(`  Errors:`);
-    validate.errors.forEach(err => {
+    validate.errors?.forEach(err => {
       const path = err.instancePath || '(root)';
       console.log(`    - ${path}: ${err.message}`);
       if (err.params && Object.keys(err.params).length > 0) {

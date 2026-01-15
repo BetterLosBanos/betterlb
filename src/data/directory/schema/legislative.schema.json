@@ -12,7 +12,10 @@
       "chamber": { "type": "string" },
       "address": { "type": ["string", "null"] },
       "trunkline": { "type": ["string", "null"] },
-      "website": { "type": ["string", "null"] },
+      "website": {
+        "type": ["string", "null"],
+        "format": "uri"
+      },
       "officials": {
         "type": "array",
         "items": {
@@ -22,7 +25,10 @@
             "role": { "type": "string" },
             "name": { "type": "string" },
             "contact": { "type": ["string", "null"] },
-            "website": { "type": ["string", "null"] }
+            "website": {
+              "type": ["string", "null"],
+              "format": "uri"
+            }
           }
         }
       },

@@ -1,8 +1,11 @@
 import { Outlet, useLocation } from 'react-router-dom';
-import { useQueryState, parseAsStringEnum } from 'nuqs';
-import useLegislation from '../../hooks/useLegislation';
-import SearchInput from '../../components/ui/SearchInput';
+
+import { parseAsStringEnum, useQueryState } from 'nuqs';
+
 import { PageHero } from '@/components/layout/PageLayouts';
+
+import SearchInput from '../../components/ui/SearchInput';
+import useLegislation from '../../hooks/useLegislation';
 import LegislationSidebar from './components/LegislationSidebar';
 
 const filterValues = [
@@ -44,7 +47,7 @@ export default function LegislationLayout() {
         }
       >
         {isIndexPage && (
-          <div className='max-w-xl mx-auto'>
+          <div className='mx-auto max-w-xl'>
             <SearchInput
               placeholder='Search by title, number, or author...'
               value={searchQuery}
@@ -55,9 +58,9 @@ export default function LegislationLayout() {
         )}
       </PageHero>
 
-      <div className='flex flex-col md:flex-row md:gap-8 items-start pb-12'>
+      <div className='flex flex-col items-start pb-12 md:flex-row md:gap-8'>
         {/* 2. Unified Sidebar */}
-        <div className='w-full md:w-64 flex-shrink-0'>
+        <div className='w-full flex-shrink-0 md:w-64'>
           <LegislationSidebar
             filterType={filterType}
             setFilterType={setFilterType}
@@ -65,7 +68,7 @@ export default function LegislationLayout() {
         </div>
 
         {/* 3. Main Content Area */}
-        <main className='flex-1 min-w-0'>
+        <main className='min-w-0 flex-1'>
           <Outlet
             context={{
               searchQuery,

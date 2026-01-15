@@ -1,5 +1,6 @@
 // src/components/ui/MobileSidebar.tsx
 import { useState } from 'react';
+
 import { Menu, X } from 'lucide-react';
 
 export function MobileSidebarTrigger({
@@ -10,29 +11,29 @@ export function MobileSidebarTrigger({
   const [isOpen, setIsOpen] = useState(false);
 
   return (
-    <div className='md:hidden mb-4'>
+    <div className='mb-4 md:hidden'>
       <button
         onClick={() => setIsOpen(!isOpen)}
-        className='flex items-center justify-between w-full px-4 py-3 bg-white rounded-xl border border-gray-200 shadow-sm text-gray-900 font-bold'
+        className='flex w-full items-center justify-between rounded-xl border border-gray-200 bg-white px-4 py-3 font-bold text-gray-900 shadow-sm'
       >
-        <span className='flex items-center gap-2 text-sm uppercase tracking-wider'>
-          <Menu className='w-4 h-4 text-primary-600' /> Page Navigation
+        <span className='flex items-center gap-2 text-sm tracking-wider uppercase'>
+          <Menu className='text-primary-600 h-4 w-4' /> Page Navigation
         </span>
-        {isOpen ? <X className='w-5 h-5' /> : <Menu className='w-5 h-5' />}
+        {isOpen ? <X className='h-5 w-5' /> : <Menu className='h-5 w-5' />}
       </button>
 
       {isOpen && (
-        <div className='fixed inset-0 z-50 bg-slate-900/60 backdrop-blur-sm animate-in fade-in duration-200'>
-          <div className='absolute right-0 top-0 h-full w-[280px] bg-white p-6 shadow-2xl animate-in slide-in-from-right duration-300'>
-            <div className='flex justify-between items-center mb-8'>
-              <h2 className='font-bold text-gray-900 uppercase tracking-widest text-xs'>
+        <div className='animate-in fade-in fixed inset-0 z-50 bg-slate-900/60 backdrop-blur-sm duration-200'>
+          <div className='animate-in slide-in-from-right absolute top-0 right-0 h-full w-[280px] bg-white p-6 shadow-2xl duration-300'>
+            <div className='mb-8 flex items-center justify-between'>
+              <h2 className='text-xs font-bold tracking-widest text-gray-900 uppercase'>
                 Menu
               </h2>
               <button
                 onClick={() => setIsOpen(false)}
-                className='p-2 bg-gray-100 rounded-full'
+                className='rounded-full bg-gray-100 p-2'
               >
-                <X className='w-4 h-4' />
+                <X className='h-4 w-4' />
               </button>
             </div>
             {/* When a user clicks a link in the sidebar, we want it to close */}

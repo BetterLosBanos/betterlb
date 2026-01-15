@@ -1,6 +1,7 @@
 import { Outlet } from 'react-router-dom';
-import ElectedOfficialsSidebar from './components/ElectedOfficialsSidebar';
+
 import GovernmentPageContainer from '../GovernmentPageContainer';
+import ElectedOfficialsSidebar from './components/ElectedOfficialsSidebar';
 
 export default function ElectedOfficialsLayout() {
   return (

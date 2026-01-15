@@ -2,7 +2,6 @@
  * Weather endpoint that queries the KV store directly
  * This endpoint is a simplified version that only reads from KV
  */
-
 import { Env } from './types';
 
 export async function onRequest(context: {

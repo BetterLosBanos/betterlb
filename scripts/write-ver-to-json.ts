@@ -1,8 +1,8 @@
-import fs from 'fs';
 import { execSync } from 'child_process';
+import dotenv from 'dotenv';
+import fs from 'fs';
 import path from 'path';
 import { fileURLToPath } from 'url';
-import dotenv from 'dotenv';
 
 // Load environment variables
 dotenv.config();

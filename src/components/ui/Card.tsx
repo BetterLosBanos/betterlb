@@ -1,4 +1,5 @@
 import { HTMLAttributes, ImgHTMLAttributes, ReactNode } from 'react';
+
 import { cn } from '@/lib/utils';
 
 interface CardProps extends HTMLAttributes<HTMLDivElement> {
@@ -16,9 +17,9 @@ const Card = ({
   return (
     <div
       className={cn(
-        'bg-white rounded-lg border border-gray-200 shadow-xs overflow-hidden',
+        'overflow-hidden rounded-lg border border-gray-200 bg-white shadow-xs',
         hoverable &&
-          'transition-all duration-300 hover:shadow-md hover:-translate-y-1',
+          'transition-all duration-300 hover:-translate-y-1 hover:shadow-md',
         className
       )}
       role='article'
@@ -38,7 +39,7 @@ interface CardHeaderProps extends HTMLAttributes<HTMLDivElement> {
 const CardHeader = ({ children, className, ...props }: CardHeaderProps) => {
   return (
     <div
-      className={cn('p-4 md:p-6 border-b border-gray-200', className)}
+      className={cn('border-b border-gray-200 p-4 md:p-6', className)}
       role='heading'
       aria-level={2}
       {...props}
@@ -75,7 +76,7 @@ const CardFooter = ({ children, className, ...props }: CardFooterProps) => {
   return (
     <div
       className={cn(
-        'p-4 md:p-6 border-t border-gray-200 bg-gray-50',
+        'border-t border-gray-200 bg-gray-50 p-4 md:p-6',
         className
       )}
       {...props}
@@ -91,9 +92,9 @@ interface CardImageProps extends ImgHTMLAttributes<HTMLImageElement> {
 
 const CardImage = ({ className, ...props }: CardImageProps) => {
   return (
-    <div className='relative w-full h-48 overflow-hidden'>
+    <div className='relative h-48 w-full overflow-hidden'>
       <img
-        className={cn('w-full h-full object-cover', className)}
+        className={cn('h-full w-full object-cover', className)}
         {...props}
         alt={props.alt || 'Card image'}
       />

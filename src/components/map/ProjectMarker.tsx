@@ -1,6 +1,7 @@
 import { FC } from 'react';
-import { Marker, Popup } from 'react-leaflet';
+
 import L from 'leaflet';
+import { Marker, Popup } from 'react-leaflet';
 
 interface FloodControlProject {
   GlobalID?: string;
@@ -33,7 +34,7 @@ const ProjectMarker: FC<ProjectMarkerProps> = ({ project, icon }) => {
           <h3 className='font-bold text-gray-900'>
             {project.ProjectDescription || 'Unnamed Project'}
           </h3>
-          <p className='text-sm text-gray-800 mt-1'>
+          <p className='mt-1 text-sm text-gray-800'>
             <strong>Region:</strong> {project.Region || 'N/A'}
           </p>
           <p className='text-sm text-gray-800'>

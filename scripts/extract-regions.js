@@ -1,6 +1,6 @@
 import { readFile, writeFile } from 'fs/promises';
-import { fileURLToPath } from 'url';
 import { dirname, join } from 'path';
+import { fileURLToPath } from 'url';
 
 // Get the current file and directory paths
 const __filename = fileURLToPath(import.meta.url);

@@ -23,11 +23,13 @@
       },
       "email": {
         "oneOf": [{ "type": "string", "format": "email" }, { "type": "null" }],
-        "description": "Valid email address or null"
+        "description": "Valid email address or null",
+        "format": "email"
       },
       "website": {
         "oneOf": [{ "type": "string", "format": "uri" }, { "type": "null" }],
-        "description": "Valid URL starting with http/https or null"
+        "description": "Valid URL starting with http/https or null",
+        "format": "uri"
       }
     }
   }

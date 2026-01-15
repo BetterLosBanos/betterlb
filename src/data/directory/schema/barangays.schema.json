@@ -14,7 +14,10 @@
         "type": "array",
         "items": { "type": "string" }
       },
-      "website": { "type": "string" },
+      "website": {
+        "type": ["string", "null"],
+        "format": "uri"
+      },
       "officials": {
         "type": "array",
         "items": {

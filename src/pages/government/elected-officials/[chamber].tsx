@@ -1,29 +1,33 @@
-import { useParams, Link } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
+
+import { SiFacebook } from '@icons-pack/react-simple-icons';
 import {
+  ChevronRight,
+  GavelIcon,
+  GlobeIcon,
   MapPinIcon,
   PhoneIcon,
-  GlobeIcon,
-  UsersIcon,
-  GavelIcon,
-  ChevronRight,
   ShieldCheck,
+  UsersIcon,
 } from 'lucide-react';
-import { SiFacebook } from '@icons-pack/react-simple-icons';
-import legislativeData from '@/data/directory/legislative.json';
-import { ModuleHeader, DetailSection } from '@/components/layout/PageLayouts';
-import { Card, CardContent, CardAvatar } from '@/components/ui/CardList';
+
+import { DetailSection, ModuleHeader } from '@/components/layout/PageLayouts';
+import { Badge } from '@/components/ui/Badge';
 import {
   Breadcrumb,
+  BreadcrumbHome,
   BreadcrumbItem,
   BreadcrumbLink,
   BreadcrumbList,
   BreadcrumbPage,
   BreadcrumbSeparator,
-  BreadcrumbHome,
 } from '@/components/ui/Breadcrumb';
+import { Card, CardAvatar, CardContent } from '@/components/ui/CardList';
 import { EmptyState } from '@/components/ui/EmptyState';
+
 import { toTitleCase } from '@/lib/stringUtils';
-import { Badge } from '@/components/ui/Badge';
+
+import legislativeData from '@/data/directory/legislative.json';
 
 export default function LegislativeChamber() {
   const { chamber: slug } = useParams<{ chamber: string }>();
@@ -40,7 +44,7 @@ export default function LegislativeChamber() {
   }
 
   return (
-    <div className='mx-auto space-y-6 max-w-7xl duration-500 animate-in fade-in'>
+    <div className='animate-in fade-in mx-auto max-w-7xl space-y-6 duration-500'>
       <Breadcrumb>
         <BreadcrumbList>
           <BreadcrumbItem>
@@ -66,7 +70,7 @@ export default function LegislativeChamber() {
 
       <div className='flex flex-col gap-8 xl:flex-row'>
         {/* LEFT: Main Content */}
-        <div className='flex-1 space-y-8 min-w-0'>
+        <div className='min-w-0 flex-1 space-y-8'>
           <DetailSection title='Council Members' icon={UsersIcon}>
             <div
               className='grid grid-cols-1 gap-4 md:grid-cols-2 2xl:grid-cols-3'
@@ -76,19 +80,19 @@ export default function LegislativeChamber() {
                 <Card
                   key={member.name}
                   hover
-                  className='flex flex-col shadow-sm border-slate-200'
+                  className='flex flex-col border-slate-200 shadow-sm'
                 >
-                  <CardContent className='flex gap-4 items-center p-5'>
+                  <CardContent className='flex items-center gap-4 p-5'>
                     <CardAvatar
                       name={member.name}
                       size='md'
-                      className='font-bold border bg-primary-50 text-primary-800 shrink-0 border-primary-100'
+                      className='bg-primary-50 text-primary-800 border-primary-100 shrink-0 border font-bold'
                     />
                     <div className='min-w-0'>
-                      <h4 className='font-bold leading-tight truncate text-slate-900'>
+                      <h4 className='truncate leading-tight font-bold text-slate-900'>
                         {toTitleCase(member.name)}
                       </h4>
-                      <p className='text-[10px] font-bold tracking-widest uppercase text-primary-600 mt-1'>
+                      <p className='text-primary-600 mt-1 text-[10px] font-bold tracking-widest uppercase'>
                         {member.role}
                       </p>
                     </div>
@@ -96,11 +100,11 @@ export default function LegislativeChamber() {
 
                   {/* FOOTER: Contact & Social Logic */}
                   {(member.contact || member.website) && (
-                    <div className='flex justify-between items-center px-5 pt-3 pb-4 mt-auto border-t border-slate-50'>
-                      <div className='flex-1 min-w-0'>
+                    <div className='mt-auto flex items-center justify-between border-t border-slate-50 px-5 pt-3 pb-4'>
+                      <div className='min-w-0 flex-1'>
                         {member.contact && member.contact !== '__' && (
-                          <p className='flex gap-1.5 items-center text-[11px] text-slate-500 font-bold uppercase tracking-tight'>
-                            <PhoneIcon className='w-3 h-3 text-slate-300' />{' '}
+                          <p className='flex items-center gap-1.5 text-[11px] font-bold tracking-tight text-slate-500 uppercase'>
+                            <PhoneIcon className='h-3 w-3 text-slate-300' />{' '}
                             {member.contact}
                           </p>
                         )}
@@ -113,9 +117,9 @@ export default function LegislativeChamber() {
                           target='_blank'
                           rel='noreferrer'
                           title={`Visit ${toTitleCase(member.name)}'s official page`}
-                          className='flex items-center justify-center p-2 -m-2 rounded-lg text-primary-600 hover:bg-primary-50 transition-all min-w-[44px] min-h-[44px]'
+                          className='text-primary-600 hover:bg-primary-50 -m-2 flex min-h-[44px] min-w-[44px] items-center justify-center rounded-lg p-2 transition-all'
                         >
-                          <SiFacebook className='w-4 h-4' />
+                          <SiFacebook className='h-4 w-4' />
                           <span className='sr-only'>Official Website</span>
                         </a>
                       )}
@@ -132,16 +136,16 @@ export default function LegislativeChamber() {
                 {data.permanent_committees.map(committee => (
                   <div
                     key={committee.committee}
-                    className='p-5 bg-white rounded-2xl border transition-all border-slate-100 hover:border-secondary-300 group shadow-xs'
+                    className='hover:border-secondary-300 group rounded-2xl border border-slate-100 bg-white p-5 shadow-xs transition-all'
                   >
-                    <h4 className='mb-2 text-sm font-bold leading-snug transition-colors text-slate-900 group-hover:text-secondary-700'>
+                    <h4 className='group-hover:text-secondary-700 mb-2 text-sm leading-snug font-bold text-slate-900 transition-colors'>
                       {committee.committee}
                     </h4>
-                    <div className='flex gap-2 items-center pt-2 border-t border-slate-50'>
-                      <span className='text-[10px] font-bold text-slate-400 uppercase tracking-widest leading-none'>
+                    <div className='flex items-center gap-2 border-t border-slate-50 pt-2'>
+                      <span className='text-[10px] leading-none font-bold tracking-widest text-slate-400 uppercase'>
                         Chair:
                       </span>
-                      <span className='text-xs font-bold truncate text-slate-700'>
+                      <span className='truncate text-xs font-bold text-slate-700'>
                         {toTitleCase(committee.chairperson)}
                       </span>
                     </div>
@@ -153,17 +157,17 @@ export default function LegislativeChamber() {
         </div>
 
         {/* RIGHT: Sidebar */}
-        <aside className='space-y-6 w-full xl:w-80'>
+        <aside className='w-full space-y-6 xl:w-80'>
           <DetailSection title='Contact Information' icon={ShieldCheck}>
             <div className='space-y-4'>
               {data.address && (
-                <div className='flex gap-3 items-start p-4 rounded-xl border bg-slate-50 border-slate-100'>
-                  <MapPinIcon className='mt-1 w-4 h-4 shrink-0 text-slate-400' />
+                <div className='flex items-start gap-3 rounded-xl border border-slate-100 bg-slate-50 p-4'>
+                  <MapPinIcon className='mt-1 h-4 w-4 shrink-0 text-slate-400' />
                   <div>
-                    <p className='mb-1 text-[10px] font-bold tracking-widest text-slate-400 uppercase leading-none'>
+                    <p className='mb-1 text-[10px] leading-none font-bold tracking-widest text-slate-400 uppercase'>
                       Office Location
                     </p>
-                    <p className='text-sm font-bold leading-snug text-slate-700'>
+                    <p className='text-sm leading-snug font-bold text-slate-700'>
                       {data.address}
                     </p>
                   </div>
@@ -178,22 +182,22 @@ export default function LegislativeChamber() {
                   }
                   target='_blank'
                   rel='noreferrer'
-                  className='flex justify-between items-center p-4 w-full font-bold text-white rounded-xl shadow-lg transition-all bg-primary-600 hover:bg-primary-700 shadow-primary-900/10 group min-h-[48px]'
+                  className='bg-primary-600 hover:bg-primary-700 shadow-primary-900/10 group flex min-h-[48px] w-full items-center justify-between rounded-xl p-4 font-bold text-white shadow-lg transition-all'
                 >
-                  <div className='flex gap-3 items-center'>
-                    <GlobeIcon className='w-4 h-4' />
+                  <div className='flex items-center gap-3'>
+                    <GlobeIcon className='h-4 w-4' />
                     <span className='text-sm tracking-tight'>
                       Visit Council Portal
                     </span>
                   </div>
-                  <ChevronRight className='w-4 h-4 opacity-50 transition-transform group-hover:translate-x-1' />
+                  <ChevronRight className='h-4 w-4 opacity-50 transition-transform group-hover:translate-x-1' />
                 </a>
               )}
             </div>
           </DetailSection>
 
           {/* Records CTA: Secondary Orange Theme */}
-          <div className='overflow-hidden relative p-8 text-white rounded-3xl shadow-xl bg-slate-900 group'>
+          <div className='group relative overflow-hidden rounded-3xl bg-slate-900 p-8 text-white shadow-xl'>
             <div className='relative z-10 space-y-6'>
               <div className='space-y-2'>
                 <Badge variant='secondary' dot>
@@ -207,12 +211,12 @@ export default function LegislativeChamber() {
               </p>
               <Link
                 to='/legislation'
-                className='flex gap-2 justify-center items-center py-3 w-full text-sm font-bold text-slate-900 bg-white rounded-xl transition-all hover:bg-secondary-50 min-h-[48px] shadow-sm'
+                className='hover:bg-secondary-50 flex min-h-[48px] w-full items-center justify-center gap-2 rounded-xl bg-white py-3 text-sm font-bold text-slate-900 shadow-sm transition-all'
               >
-                Browse Documents <ChevronRight className='w-4 h-4' />
+                Browse Documents <ChevronRight className='h-4 w-4' />
               </Link>
             </div>
-            <GavelIcon className='absolute right-[-10%] bottom-[-10%] w-40 h-40 text-white/5 -rotate-12 transition-transform group-hover:scale-110' />
+            <GavelIcon className='absolute right-[-10%] bottom-[-10%] h-40 w-40 -rotate-12 text-white/5 transition-transform group-hover:scale-110' />
           </div>
         </aside>
       </div>

@@ -1,3 +1,5 @@
+import { FC, ReactNode, useState } from 'react';
+
 import {
   GithubIcon,
   LightbulbIcon,
@@ -6,8 +8,8 @@ import {
   TrendingUpIcon,
   UsersIcon,
 } from 'lucide-react';
-import { FC, ReactNode, useState } from 'react';
 import { Helmet } from 'react-helmet-async';
+
 import { Card, CardContent } from '../components/ui/Card';
 
 interface ProjectIdea {
@@ -139,16 +141,16 @@ const Ideas: FC = () => {
 
       <div className='container mx-auto px-4 py-6 md:py-12'>
         {/* Header */}
-        <header className='text-center mb-8 md:mb-12'>
-          <div className='flex items-center justify-center mb-4'>
-            <div className='p-3 rounded-full bg-primary-50 text-primary-600 mr-4'>
+        <header className='mb-8 text-center md:mb-12'>
+          <div className='mb-4 flex items-center justify-center'>
+            <div className='bg-primary-50 text-primary-600 mr-4 rounded-full p-3'>
               <LightbulbIcon className='h-8 w-8' />
             </div>
-            <h1 className='text-3xl md:text-4xl font-bold text-gray-900'>
+            <h1 className='text-3xl font-bold text-gray-900 md:text-4xl'>
               Project Ideas
             </h1>
           </div>
-          <p className='text-sm md:text-lg text-gray-800 max-w-3xl mx-auto'>
+          <p className='mx-auto max-w-3xl text-sm text-gray-800 md:text-lg'>
             Innovative concepts to enhance government transparency,
             accountability, and citizen engagement. These ideas aim to bridge
             the gap between citizens and government through technology and
@@ -157,32 +159,32 @@ const Ideas: FC = () => {
         </header>
 
         {/* Stats */}
-        <div className='grid grid-cols-2 md:grid-cols-5 gap-4 mb-8 md:mb-12'>
-          <div className='bg-white rounded-lg p-4 text-center shadow-xs'>
-            <div className='text-2xl font-bold text-primary-600'>
+        <div className='mb-8 grid grid-cols-2 gap-4 md:mb-12 md:grid-cols-5'>
+          <div className='rounded-lg bg-white p-4 text-center shadow-xs'>
+            <div className='text-primary-600 text-2xl font-bold'>
               {projectIdeas.length}
             </div>
             <div className='text-sm text-gray-600'>Total Ideas</div>
           </div>
-          <div className='bg-white rounded-lg p-4 text-center shadow-xs'>
+          <div className='rounded-lg bg-white p-4 text-center shadow-xs'>
             <div className='text-2xl font-bold text-red-600'>
               {projectIdeas.filter(idea => idea.priority === 'high').length}
             </div>
             <div className='text-sm text-gray-600'>High Priority</div>
           </div>
-          <div className='bg-white rounded-lg p-4 text-center shadow-xs'>
+          <div className='rounded-lg bg-white p-4 text-center shadow-xs'>
             <div className='text-2xl font-bold text-blue-600'>
               {new Set(projectIdeas.map(idea => idea.category)).size}
             </div>
             <div className='text-sm text-gray-600'>Categories</div>
           </div>
-          <div className='bg-white rounded-lg p-4 text-center shadow-xs'>
+          <div className='rounded-lg bg-white p-4 text-center shadow-xs'>
             <div className='text-2xl font-bold text-green-600'>
               {projectIdeas.filter(idea => idea.complexity === 'simple').length}
             </div>
             <div className='text-sm text-gray-600'>Simple Projects</div>
           </div>
-          <div className='bg-white rounded-lg p-4 text-center shadow-xs'>
+          <div className='rounded-lg bg-white p-4 text-center shadow-xs'>
             <div className='text-2xl font-bold text-purple-600'>
               {projectIdeas.reduce((sum, idea) => sum + idea.upvotes, 0)}
             </div>
@@ -191,20 +193,20 @@ const Ideas: FC = () => {
         </div>
 
         {/* Submit New Idea Button */}
-        <div className='flex justify-center mb-8'>
-          <div className='flex flex-col sm:flex-row gap-3'>
+        <div className='mb-8 flex justify-center'>
+          <div className='flex flex-col gap-3 sm:flex-row'>
             <button
               onClick={handleSubmitIdea}
-              className='inline-flex items-center justify-center px-6 py-3 border border-transparent text-base font-medium rounded-md text-white bg-primary-600 hover:bg-primary-700 transition-colors'
+              className='bg-primary-600 hover:bg-primary-700 inline-flex items-center justify-center rounded-md border border-transparent px-6 py-3 text-base font-medium text-white transition-colors'
             >
-              <GithubIcon className='h-5 w-5 mr-2' />
+              <GithubIcon className='mr-2 h-5 w-5' />
               Submit Idea
             </button>
             <button
               onClick={handleSubmitPR}
-              className='inline-flex items-center justify-center px-6 py-3 border border-gray-300 text-base font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50 transition-colors'
+              className='inline-flex items-center justify-center rounded-md border border-gray-300 bg-white px-6 py-3 text-base font-medium text-gray-700 transition-colors hover:bg-gray-50'
             >
-              <PlusIcon className='h-5 w-5 mr-2' />
+              <PlusIcon className='mr-2 h-5 w-5' />
               Contribute a Pull Request
             </button>
           </div>
@@ -212,40 +214,40 @@ const Ideas: FC = () => {
 
         {/* Project Ideas List */}
         <main>
-          <h2 className='text-2xl font-bold text-gray-900 mb-6'>
+          <h2 className='mb-6 text-2xl font-bold text-gray-900'>
             All Project Ideas
           </h2>
-          <div className='grid grid-cols-1 lg:grid-cols-2 gap-6'>
+          <div className='grid grid-cols-1 gap-6 lg:grid-cols-2'>
             {projectIdeas
               .sort(
                 (a, b) => b.upvotes - b.downvotes - (a.upvotes - a.downvotes)
               )
               .map(idea => (
-                <Card key={idea.id} hoverable className='bg-white h-full'>
+                <Card key={idea.id} hoverable className='h-full bg-white'>
                   <CardContent className='p-6'>
-                    <div className='flex items-start justify-between mb-4'>
-                      <div className='flex items-center flex-1'>
-                        <div className='p-2 rounded-lg bg-primary-50 text-primary-600 mr-3'>
+                    <div className='mb-4 flex items-start justify-between'>
+                      <div className='flex flex-1 items-center'>
+                        <div className='bg-primary-50 text-primary-600 mr-3 rounded-lg p-2'>
                           {idea.icon}
                         </div>
                         <div className='flex-1'>
-                          <h3 className='text-xl font-semibold text-gray-900 mb-1'>
+                          <h3 className='mb-1 text-xl font-semibold text-gray-900'>
                             {idea.title}
                           </h3>
-                          <span className='inline-block px-2 py-1 text-xs font-medium rounded-sm bg-gray-100 text-gray-800'>
+                          <span className='inline-block rounded-sm bg-gray-100 px-2 py-1 text-xs font-medium text-gray-800'>
                             {idea.category}
                           </span>
                         </div>
                       </div>
                     </div>
 
-                    <p className='text-gray-700 mb-4 leading-relaxed'>
+                    <p className='mb-4 leading-relaxed text-gray-700'>
                       {idea.description}
                     </p>
 
-                    <div className='flex flex-wrap gap-2 mb-3'>
+                    <div className='mb-3 flex flex-wrap gap-2'>
                       <span
-                        className={`inline-block px-2 py-1 text-xs font-medium rounded ${getPriorityColor(
+                        className={`inline-block rounded px-2 py-1 text-xs font-medium ${getPriorityColor(
                           idea.priority
                         )}`}
                       >
@@ -254,7 +256,7 @@ const Ideas: FC = () => {
                         Priority
                       </span>
                       <span
-                        className={`inline-block px-2 py-1 text-xs font-medium rounded ${getComplexityColor(
+                        className={`inline-block rounded px-2 py-1 text-xs font-medium ${getComplexityColor(
                           idea.complexity
                         )}`}
                       >
@@ -270,26 +272,26 @@ const Ideas: FC = () => {
         </main>
 
         {/* Call to Action */}
-        <section className='mt-12 text-center bg-white rounded-lg p-8 shadow-xs'>
-          <h2 className='text-2xl font-bold text-gray-900 mb-4'>
+        <section className='mt-12 rounded-lg bg-white p-8 text-center shadow-xs'>
+          <h2 className='mb-4 text-2xl font-bold text-gray-900'>
             Have an Idea?
           </h2>
-          <p className='text-gray-700 mb-6 max-w-2xl mx-auto'>
+          <p className='mx-auto mb-6 max-w-2xl text-gray-700'>
             We&apos;re always looking for innovative ways to improve government
             services and citizen engagement. Submit your ideas via GitHub or
             learn more about our mission.
           </p>
-          <div className='flex flex-col sm:flex-row gap-4 justify-center'>
+          <div className='flex flex-col justify-center gap-4 sm:flex-row'>
             <button
               onClick={handleSubmitIdea}
-              className='inline-flex items-center justify-center px-6 py-3 border border-transparent text-base font-medium rounded-md text-white bg-primary-600 hover:bg-primary-700 transition-colors'
+              className='bg-primary-600 hover:bg-primary-700 inline-flex items-center justify-center rounded-md border border-transparent px-6 py-3 text-base font-medium text-white transition-colors'
             >
-              <GithubIcon className='h-5 w-5 mr-2' />
+              <GithubIcon className='mr-2 h-5 w-5' />
               Submit via GitHub
             </button>
             <a
               href='/about'
-              className='inline-flex items-center justify-center px-6 py-3 border border-gray-300 text-base font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50 transition-colors'
+              className='inline-flex items-center justify-center rounded-md border border-gray-300 bg-white px-6 py-3 text-base font-medium text-gray-700 transition-colors hover:bg-gray-50'
             >
               Learn More About Us
             </a>

@@ -1,4 +1,5 @@
-import { Users, Trophy, Wallet } from 'lucide-react';
+import { Trophy, Users, Wallet } from 'lucide-react';
+
 import {
   SidebarContainer,
   SidebarItem,

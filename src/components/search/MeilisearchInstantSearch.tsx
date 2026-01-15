@@ -1,16 +1,21 @@
-import { useState, useEffect, useRef, FC } from 'react';
+import { FC, useEffect, useRef, useState } from 'react';
+
+import { instantMeiliSearch } from '@meilisearch/instant-meilisearch';
+import 'instantsearch.css/themes/satellite.css';
 import {
+  Configure,
+  Highlight,
+  Hits,
   InstantSearch,
   SearchBox,
-  Hits,
-  Highlight,
   Snippet,
-  Configure,
   Stats,
 } from 'react-instantsearch';
-import { instantMeiliSearch } from '@meilisearch/instant-meilisearch';
-import 'instantsearch.css/themes/satellite.css'; // Or your preferred theme
-import './MeilisearchInstantSearch.css'; // For custom styles
+
+// Or your preferred theme
+import './MeilisearchInstantSearch.css';
+
+// For custom styles
 
 interface SearchHit {
   objectID: string;
@@ -99,7 +104,7 @@ const Hit: FC<HitProps> = ({ hit }) => {
   const link = hit.url || `/directory/${hit.slug}`;
 
   return (
-    <article className='hit-item p-4 border-b border-gray-200 hover:bg-gray-50'>
+    <article className='hit-item border-b border-gray-200 p-4 hover:bg-gray-50'>
       <a
         href={link}
         target='_blank'
@@ -122,7 +127,7 @@ const Hit: FC<HitProps> = ({ hit }) => {
           /> */}
         </h2>
         {hit.description && (
-          <p className='text-sm text-gray-800 mt-1'>
+          <p className='mt-1 text-sm text-gray-800'>
             <Snippet attribute='description' hit={hit as SearchHit} />
           </p>
         )}
@@ -154,7 +159,7 @@ const Hit: FC<HitProps> = ({ hit }) => {
           )}
         </div>
         {(hit.url || hit.website) && (
-          <p className='text-xs text-blue-500 mt-1 truncate'>
+          <p className='mt-1 truncate text-xs text-blue-500'>
             {hit.url || hit.website}
           </p>
         )}
@@ -227,7 +232,7 @@ const MeilisearchInstantSearch: FC = () => {
           />
 
           {hasInteracted && (
-            <div className='bg-white rounded-lg shadow-sm overflow-y-scroll h-96 absolute z-30 w-[calc(100%-2rem)] max-w-[calc(100%-4rem)] lg:w-1/2'>
+            <div className='absolute z-30 h-96 w-[calc(100%-2rem)] max-w-[calc(100%-4rem)] overflow-y-scroll rounded-lg bg-white shadow-sm lg:w-1/2'>
               <Stats
                 classNames={{
                   root: 'text-sm text-gray-800 p-2 text-right text-xs',
