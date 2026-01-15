@@ -1,33 +1,36 @@
 import { useMemo } from 'react';
+
 import { Link } from 'react-router-dom';
+
 import {
-  Mail,
-  Phone,
-  Globe,
-  Landmark,
-  Gavel,
-  ShieldCheck,
   ArrowRight,
   Briefcase,
+  Gavel,
+  Globe,
+  Landmark,
+  Mail,
+  Phone,
+  ShieldCheck,
 } from 'lucide-react';
 
 // UI & Layouts
-import { ModuleHeader, DetailSection } from '@/components/layout/PageLayouts';
-import { Card, CardAvatar, CardContent } from '@/components/ui/CardList';
+import { DetailSection, ModuleHeader } from '@/components/layout/PageLayouts';
+import { Badge } from '@/components/ui/Badge';
 import {
   Breadcrumb,
+  BreadcrumbHome,
   BreadcrumbItem,
   BreadcrumbLink,
   BreadcrumbList,
   BreadcrumbPage,
   BreadcrumbSeparator,
-  BreadcrumbHome,
 } from '@/components/ui/Breadcrumb';
-import { Badge } from '@/components/ui/Badge';
+import { Card, CardAvatar, CardContent } from '@/components/ui/CardList';
+
+import { toTitleCase } from '@/lib/stringUtils';
 
 // Logic & Data
 import executiveData from '@/data/directory/executive.json';
-import { toTitleCase } from '@/lib/stringUtils';
 
 // Strict typing for the flattened JSON structure
 interface ExecutiveOfficial {
@@ -50,7 +53,7 @@ export default function ExecutiveBranchPage() {
   const managementTeam = useMemo(() => data.filter(o => !o.isElected), [data]);
 
   return (
-    <div className='px-4 pb-20 mx-auto space-y-8 max-w-5xl duration-500 animate-in fade-in md:px-0'>
+    <div className='animate-in fade-in mx-auto max-w-5xl space-y-8 px-4 pb-20 duration-500 md:px-0'>
       {/* --- BREADCRUMBS --- */}
       <Breadcrumb>
         <BreadcrumbList>
@@ -89,7 +92,7 @@ export default function ExecutiveBranchPage() {
               icon={Icon}
               className={
                 isMayor
-                  ? 'border-l-4 shadow-sm border-l-primary-600'
+                  ? 'border-l-primary-600 border-l-4 shadow-sm'
                   : 'bg-slate-50/30'
               }
             >
@@ -98,17 +101,17 @@ export default function ExecutiveBranchPage() {
                   <CardAvatar
                     name={leader.name}
                     size='lg'
-                    className={`ring-4 shadow-lg ${isMayor ? 'ring-primary-50' : 'ring-white'}`}
+                    className={`shadow-lg ring-4 ${isMayor ? 'ring-primary-50' : 'ring-white'}`}
                   />
                   {isMayor && (
-                    <div className='absolute -right-1 -bottom-1 p-1.5 text-white rounded-full border-2 border-white shadow-md bg-primary-600'>
-                      <ShieldCheck className='w-3 h-3' aria-hidden='true' />
+                    <div className='bg-primary-600 absolute -right-1 -bottom-1 rounded-full border-2 border-white p-1.5 text-white shadow-md'>
+                      <ShieldCheck className='h-3 w-3' aria-hidden='true' />
                     </div>
                   )}
                 </div>
 
                 <div className='min-w-0'>
-                  <h2 className='text-2xl font-black leading-tight text-slate-900'>
+                  <h2 className='text-2xl leading-tight font-black text-slate-900'>
                     Hon. {toTitleCase(leader.name)}
                   </h2>
                   <Badge
@@ -120,20 +123,20 @@ export default function ExecutiveBranchPage() {
                 </div>
 
                 {/* Contact Row: High Contrast & Large Touch Targets */}
-                <div className='pt-4 w-full border-t border-slate-100 space-y-2 text-[11px] font-bold uppercase tracking-widest text-slate-500'>
+                <div className='w-full space-y-2 border-t border-slate-100 pt-4 text-[11px] font-bold tracking-widest text-slate-500 uppercase'>
                   {leader.email && (
-                    <div className='flex gap-2 justify-center items-center'>
+                    <div className='flex items-center justify-center gap-2'>
                       <Mail
-                        className='w-3.5 h-3.5 text-primary-500'
+                        className='text-primary-500 h-3.5 w-3.5'
                         aria-hidden='true'
                       />
                       <span className='truncate'>{leader.email}</span>
                     </div>
                   )}
                   {leader.phone && (
-                    <div className='flex gap-2 justify-center items-center'>
+                    <div className='flex items-center justify-center gap-2'>
                       <Phone
-                        className='w-3.5 h-3.5 text-primary-500'
+                        className='text-primary-500 h-3.5 w-3.5'
                         aria-hidden='true'
                       />
                       <span>{leader.phone}</span>
@@ -144,9 +147,9 @@ export default function ExecutiveBranchPage() {
                       href={leader.website}
                       target='_blank'
                       rel='noreferrer'
-                      className='inline-flex items-center gap-1.5 text-primary-600 hover:text-primary-800 hover:underline mt-1 transition-all min-h-[32px]'
+                      className='text-primary-600 hover:text-primary-800 mt-1 inline-flex min-h-[32px] items-center gap-1.5 transition-all hover:underline'
                     >
-                      <Globe className='w-3.5 h-3.5' /> Official Facebook
+                      <Globe className='h-3.5 w-3.5' /> Official Facebook
                     </a>
                   )}
                 </div>
@@ -167,41 +170,41 @@ export default function ExecutiveBranchPage() {
             {managementTeam.map(official => (
               <Card
                 key={official.slug}
-                className='bg-white border-slate-100 shadow-xs'
+                className='border-slate-100 bg-white shadow-xs'
               >
-                <CardContent className='flex flex-col p-5 h-full'>
-                  <div className='flex gap-4 items-center mb-4'>
+                <CardContent className='flex h-full flex-col p-5'>
+                  <div className='mb-4 flex items-center gap-4'>
                     <div
-                      className='flex justify-center items-center w-12 h-12 text-lg font-black rounded-xl border bg-slate-50 text-slate-400 border-slate-100 shrink-0'
+                      className='flex h-12 w-12 shrink-0 items-center justify-center rounded-xl border border-slate-100 bg-slate-50 text-lg font-black text-slate-400'
                       aria-hidden='true'
                     >
                       {official.name[0]}
                     </div>
                     <div className='min-w-0'>
-                      <h4 className='text-base font-bold leading-tight truncate text-slate-900'>
+                      <h4 className='truncate text-base leading-tight font-bold text-slate-900'>
                         {toTitleCase(official.name)}
                       </h4>
-                      <p className='text-[10px] font-bold text-primary-600 uppercase tracking-widest mt-0.5'>
+                      <p className='text-primary-600 mt-0.5 text-[10px] font-bold tracking-widest uppercase'>
                         {official.role}
                       </p>
                     </div>
                   </div>
 
                   {/* RESTORED: Contact details for Management Officials */}
-                  <div className='mt-auto pt-3 border-t border-slate-50 space-y-1.5'>
+                  <div className='mt-auto space-y-1.5 border-t border-slate-50 pt-3'>
                     {official.email && (
-                      <div className='flex items-center gap-2 text-[10px] font-bold text-slate-400 uppercase tracking-widest'>
+                      <div className='flex items-center gap-2 text-[10px] font-bold tracking-widest text-slate-400 uppercase'>
                         <Mail
-                          className='w-3 h-3 text-slate-300'
+                          className='h-3 w-3 text-slate-300'
                           aria-hidden='true'
                         />
                         <span className='truncate'>{official.email}</span>
                       </div>
                     )}
                     {official.phone && (
-                      <div className='flex items-center gap-2 text-[10px] font-bold text-slate-400 uppercase tracking-widest'>
+                      <div className='flex items-center gap-2 text-[10px] font-bold tracking-widest text-slate-400 uppercase'>
                         <Phone
-                          className='w-3 h-3 text-slate-300'
+                          className='h-3 w-3 text-slate-300'
                           aria-hidden='true'
                         />
                         <span>{official.phone}</span>
@@ -214,17 +217,17 @@ export default function ExecutiveBranchPage() {
           </div>
 
           {/* Directory Bridge Button */}
-          <div className='flex flex-col gap-4 justify-between items-center p-5 mt-8 rounded-2xl border md:flex-row bg-slate-50/50 border-slate-200'>
-            <p className='text-xs italic font-medium text-center text-slate-500 md:text-left'>
+          <div className='mt-8 flex flex-col items-center justify-between gap-4 rounded-2xl border border-slate-200 bg-slate-50/50 p-5 md:flex-row'>
+            <p className='text-center text-xs font-medium text-slate-500 italic md:text-left'>
               For technical inquiries, contact the specific administrative
               offices directly.
             </p>
             <Link
               to='/government/departments'
-              className='flex gap-2 items-center text-[10px] font-bold text-primary-600 uppercase tracking-widest hover:text-primary-800 transition-all group bg-white px-4 py-2 rounded-xl border border-slate-200 shadow-sm min-h-[44px]'
+              className='text-primary-600 hover:text-primary-800 group flex min-h-[44px] items-center gap-2 rounded-xl border border-slate-200 bg-white px-4 py-2 text-[10px] font-bold tracking-widest uppercase shadow-sm transition-all'
             >
               View All Departments{' '}
-              <ArrowRight className='w-3.5 h-3.5 transition-transform group-hover:translate-x-1' />
+              <ArrowRight className='h-3.5 w-3.5 transition-transform group-hover:translate-x-1' />
             </Link>
           </div>
         </DetailSection>
@@ -232,12 +235,12 @@ export default function ExecutiveBranchPage() {
 
       {/* --- FOOTER: ACCESSIBILITY TRUST --- */}
       <footer className='pt-12 text-center'>
-        <div className='inline-flex gap-2 items-center px-5 py-2.5 bg-white rounded-full border shadow-sm border-slate-200'>
+        <div className='inline-flex items-center gap-2 rounded-full border border-slate-200 bg-white px-5 py-2.5 shadow-sm'>
           <ShieldCheck
-            className='w-4 h-4 text-emerald-600'
+            className='h-4 w-4 text-emerald-600'
             aria-hidden='true'
           />
-          <span className='text-[10px] font-bold text-slate-500 uppercase tracking-widest'>
+          <span className='text-[10px] font-bold tracking-widest text-slate-500 uppercase'>
             Verified Executive Registry • Municipality of Los Baños
           </span>
         </div>

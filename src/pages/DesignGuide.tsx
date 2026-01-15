@@ -1,3 +1,5 @@
+import { FC } from 'react';
+
 import {
   AwardIcon,
   BuildingIcon,
@@ -6,7 +8,7 @@ import {
   MailIcon,
   PhoneIcon,
 } from 'lucide-react';
-import { FC } from 'react';
+
 import Button from '../components/ui/Button';
 import {
   Card,
@@ -25,7 +27,7 @@ const ColorBlock = ({
   value: string;
 }) => (
   <div className='flex items-center space-x-2'>
-    <div className={`w-12 h-12 rounded-sm ${color}`} />
+    <div className={`h-12 w-12 rounded-sm ${color}`} />
     <div>
       <div className='font-medium'>{name}</div>
       <div className='text-sm text-gray-800'>{value}</div>
@@ -42,7 +44,7 @@ const TypographyExample = ({
 }) => (
   <div className='mb-4'>
     <div className={className}>The quick brown fox jumps over the lazy dog</div>
-    <div className='text-sm text-gray-800 mt-1'>{label}</div>
+    <div className='mt-1 text-sm text-gray-800'>{label}</div>
   </div>
 );
 
@@ -87,7 +89,7 @@ const DesignGuide: FC = () => {
   return (
     <div className='min-h-screen bg-gray-50 py-12'>
       <div className='container mx-auto px-4'>
-        <h1 className='text-3xl font-bold text-gray-900 mb-8'>
+        <h1 className='mb-8 text-3xl font-bold text-gray-900'>
           Design Guidelines
         </h1>
 
@@ -128,9 +130,9 @@ const DesignGuide: FC = () => {
             <p className='text-gray-800'>Our color palette</p>
           </CardHeader>
           <CardContent>
-            <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6'>
+            <div className='grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-4'>
               <div>
-                <h3 className='font-medium mb-4'>Primary (Blue)</h3>
+                <h3 className='mb-4 font-medium'>Primary (Blue)</h3>
                 <div className='space-y-4'>
                   <ColorBlock
                     color='bg-primary-500'
@@ -150,7 +152,7 @@ const DesignGuide: FC = () => {
                 </div>
               </div>
               <div>
-                <h3 className='font-medium mb-4'>CivicTech (Orange)</h3>
+                <h3 className='mb-4 font-medium'>CivicTech (Orange)</h3>
                 <div className='space-y-4'>
                   <ColorBlock
                     color='bg-orange-500'
@@ -170,7 +172,7 @@ const DesignGuide: FC = () => {
                 </div>
               </div>
               <div>
-                <h3 className='font-medium mb-4'>Accent (Pink)</h3>
+                <h3 className='mb-4 font-medium'>Accent (Pink)</h3>
                 <div className='space-y-4'>
                   <ColorBlock
                     color='bg-pink-500'
@@ -190,7 +192,7 @@ const DesignGuide: FC = () => {
                 </div>
               </div>
               <div>
-                <h3 className='font-medium mb-4'>Neutral</h3>
+                <h3 className='mb-4 font-medium'>Neutral</h3>
                 <div className='space-y-4'>
                   <ColorBlock
                     color='bg-gray-500'
@@ -225,19 +227,19 @@ const DesignGuide: FC = () => {
             <div className='space-y-8'>
               {/* Search Results List */}
               <div>
-                <h3 className='font-medium mb-4'>Search Results</h3>
+                <h3 className='mb-4 font-medium'>Search Results</h3>
                 <div className='space-y-4'>
                   {searchResults.map(result => (
                     <div
                       key={result.id}
-                      className='p-4 bg-white border border-gray-200 rounded-lg hover:border-primary-500 transition-colors'
+                      className='hover:border-primary-500 rounded-lg border border-gray-200 bg-white p-4 transition-colors'
                     >
                       <div className='flex items-start justify-between'>
                         <div>
                           <h4 className='text-lg font-medium text-gray-900'>
                             {result.title}
                           </h4>
-                          <span className='inline-block px-2 py-1 mt-2 text-xs font-medium rounded-sm bg-gray-100 text-gray-800'>
+                          <span className='mt-2 inline-block rounded-sm bg-gray-100 px-2 py-1 text-xs font-medium text-gray-800'>
                             {result.category}
                           </span>
                         </div>
@@ -265,21 +267,21 @@ const DesignGuide: FC = () => {
               <table className='min-w-full divide-y divide-gray-200'>
                 <thead className='bg-gray-50'>
                   <tr>
-                    <th className='px-6 py-3 text-left text-xs font-medium text-gray-800 uppercase tracking-wider'>
+                    <th className='px-6 py-3 text-left text-xs font-medium tracking-wider text-gray-800 uppercase'>
                       Name
                     </th>
-                    <th className='px-6 py-3 text-left text-xs font-medium text-gray-800 uppercase tracking-wider'>
+                    <th className='px-6 py-3 text-left text-xs font-medium tracking-wider text-gray-800 uppercase'>
                       Email
                     </th>
-                    <th className='px-6 py-3 text-left text-xs font-medium text-gray-800 uppercase tracking-wider'>
+                    <th className='px-6 py-3 text-left text-xs font-medium tracking-wider text-gray-800 uppercase'>
                       Status
                     </th>
-                    <th className='px-6 py-3 text-right text-xs font-medium text-gray-800 uppercase tracking-wider'>
+                    <th className='px-6 py-3 text-right text-xs font-medium tracking-wider text-gray-800 uppercase'>
                       Actions
                     </th>
                   </tr>
                 </thead>
-                <tbody className='bg-white divide-y divide-gray-200'>
+                <tbody className='divide-y divide-gray-200 bg-white'>
                   {tableData.map(row => (
                     <tr key={row.id} className='hover:bg-gray-50'>
                       <td className='px-6 py-4 whitespace-nowrap'>
@@ -292,7 +294,7 @@ const DesignGuide: FC = () => {
                       </td>
                       <td className='px-6 py-4 whitespace-nowrap'>
                         <span
-                          className={`inline-flex px-2 py-1 text-xs font-medium rounded-full ${
+                          className={`inline-flex rounded-full px-2 py-1 text-xs font-medium ${
                             row.status === 'Active'
                               ? 'bg-green-100 text-green-800'
                               : row.status === 'Pending'
@@ -303,7 +305,7 @@ const DesignGuide: FC = () => {
                           {row.status}
                         </span>
                       </td>
-                      <td className='px-6 py-4 whitespace-nowrap text-right text-sm font-medium'>
+                      <td className='px-6 py-4 text-right text-sm font-medium whitespace-nowrap'>
                         <Button variant='ghost' size='sm'>
                           Edit
                         </Button>
@@ -326,21 +328,21 @@ const DesignGuide: FC = () => {
             <div className='space-y-8'>
               {/* Article Card */}
               <div>
-                <h3 className='font-medium mb-4'>Article Card</h3>
-                <div className='grid grid-cols-1 md:grid-cols-2 gap-6'>
+                <h3 className='mb-4 font-medium'>Article Card</h3>
+                <div className='grid grid-cols-1 gap-6 md:grid-cols-2'>
                   <Card>
                     <CardImage
                       src='https://images.pexels.com/photos/2774556/pexels-photo-2774556.jpeg'
                       alt='Article thumbnail'
                     />
                     <CardContent>
-                      <span className='inline-block px-2 py-1 text-xs font-medium rounded-sm bg-primary-100 text-primary-800 mb-2'>
+                      <span className='bg-primary-100 text-primary-800 mb-2 inline-block rounded-sm px-2 py-1 text-xs font-medium'>
                         News
                       </span>
-                      <h3 className='text-xl font-semibold mb-2'>
+                      <h3 className='mb-2 text-xl font-semibold'>
                         Digital Government Initiatives
                       </h3>
-                      <p className='text-gray-800 mb-4'>
+                      <p className='mb-4 text-gray-800'>
                         Latest updates on the government&apos;s digital
                         transformation projects and e-services.
                       </p>
@@ -354,12 +356,12 @@ const DesignGuide: FC = () => {
                         src='https://images.pexels.com/photos/1268855/pexels-photo-1268855.jpeg'
                         alt='Article with overlay'
                       />
-                      <div className='absolute inset-0 bg-linear-to-t from-black/75 to-transparent flex items-end p-6'>
+                      <div className='absolute inset-0 flex items-end bg-linear-to-t from-black/75 to-transparent p-6'>
                         <div className='text-white'>
-                          <span className='inline-block px-2 py-1 text-xs font-medium rounded-sm bg-white/20 mb-2'>
+                          <span className='mb-2 inline-block rounded-sm bg-white/20 px-2 py-1 text-xs font-medium'>
                             Tourism
                           </span>
-                          <h3 className='text-xl font-semibold mb-2'>
+                          <h3 className='mb-2 text-xl font-semibold'>
                             Exploring Philippine Islands
                           </h3>
                           <p className='text-white/80'>
@@ -374,18 +376,18 @@ const DesignGuide: FC = () => {
 
               {/* Article Content */}
               <div>
-                <h3 className='font-medium mb-4'>Article Content</h3>
+                <h3 className='mb-4 font-medium'>Article Content</h3>
                 <div className='prose max-w-none'>
-                  <h1 className='text-3xl font-bold mb-4'>Article Title</h1>
-                  <p className='text-gray-800 mb-6'>
+                  <h1 className='mb-4 text-3xl font-bold'>Article Title</h1>
+                  <p className='mb-6 text-gray-800'>
                     Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed
                     do eiusmod tempor incididunt ut labore et dolore magna
                     aliqua.
                   </p>
-                  <h2 className='text-2xl font-semibold mb-3'>
+                  <h2 className='mb-3 text-2xl font-semibold'>
                     Section Heading
                   </h2>
-                  <p className='text-gray-800 mb-4'>
+                  <p className='mb-4 text-gray-800'>
                     Ut enim ad minim veniam, quis nostrud exercitation ullamco
                     laboris nisi ut aliquip ex ea commodo consequat.
                   </p>
@@ -407,21 +409,21 @@ const DesignGuide: FC = () => {
             <div className='space-y-8'>
               {/* Strip Banner */}
               <div>
-                <h3 className='font-medium mb-4'>Strip Banner</h3>
-                <div className='relative overflow-hidden bg-linear-to-r from-orange-500 via-red-500 to-pink-500 text-white py-3 rounded-lg'>
+                <h3 className='mb-4 font-medium'>Strip Banner</h3>
+                <div className='relative overflow-hidden rounded-lg bg-linear-to-r from-orange-500 via-red-500 to-pink-500 py-3 text-white'>
                   <div className='container mx-auto px-4'>
-                    <div className='flex flex-col sm:flex-row items-center justify-between gap-2'>
+                    <div className='flex flex-col items-center justify-between gap-2 sm:flex-row'>
                       <div className='flex items-center gap-3'>
-                        <span className='font-bold text-sm'>
+                        <span className='text-sm font-bold'>
                           🚀 Join the #CivicTech Revolution
                         </span>
-                        <span className='hidden md:inline text-sm text-orange-100'>
+                        <span className='hidden text-sm text-orange-100 md:inline'>
                           Help build the future of the Philippines and
                           governance through technology
                         </span>
                       </div>
                       <div className='flex items-center gap-3'>
-                        <button className='bg-gray-100 text-gray-800 px-4 py-1.5 rounded-full text-sm font-semibold hover:bg-gray-200'>
+                        <button className='rounded-full bg-gray-100 px-4 py-1.5 text-sm font-semibold text-gray-800 hover:bg-gray-200'>
                           Join Now
                         </button>
                         <span className='text-xs text-orange-200 underline'>
@@ -435,15 +437,15 @@ const DesignGuide: FC = () => {
 
               {/* Full Banner */}
               <div>
-                <h3 className='font-medium mb-4'>Full CivicTech Banner</h3>
-                <div className='relative overflow-hidden bg-linear-to-br from-orange-500 via-red-500 to-pink-600 text-white py-12 rounded-lg'>
+                <h3 className='mb-4 font-medium'>Full CivicTech Banner</h3>
+                <div className='relative overflow-hidden rounded-lg bg-linear-to-br from-orange-500 via-red-500 to-pink-600 py-12 text-white'>
                   <div className='container mx-auto px-4 text-center'>
-                    <h2 className='text-2xl md:text-3xl font-bold mb-4'>
+                    <h2 className='mb-4 text-2xl font-bold md:text-3xl'>
                       Join the{' '}
                       <span className='text-yellow-200'>#CivicTech</span>{' '}
                       Revolution
                     </h2>
-                    <p className='text-lg mb-6 text-orange-100 max-w-2xl mx-auto'>
+                    <p className='mx-auto mb-6 max-w-2xl text-lg text-orange-100'>
                       Help build the future of the Philippines and governance
                       through technology.
                       <strong className='text-yellow-200'>
@@ -451,11 +453,11 @@ const DesignGuide: FC = () => {
                         Volunteer-led. Open source. Community-driven.
                       </strong>
                     </p>
-                    <div className='flex flex-col sm:flex-row gap-4 justify-center'>
-                      <button className='bg-white text-gray-900 px-6 py-3 rounded-lg font-bold hover:bg-gray-100'>
+                    <div className='flex flex-col justify-center gap-4 sm:flex-row'>
+                      <button className='rounded-lg bg-white px-6 py-3 font-bold text-gray-900 hover:bg-gray-100'>
                         Join Our Movement
                       </button>
-                      <button className='border-2 border-white text-white px-6 py-3 rounded-lg font-semibold hover:bg-white hover:text-gray-900'>
+                      <button className='rounded-lg border-2 border-white px-6 py-3 font-semibold text-white hover:bg-white hover:text-gray-900'>
                         Join Discord
                       </button>
                     </div>
@@ -475,30 +477,30 @@ const DesignGuide: FC = () => {
             </p>
           </CardHeader>
           <CardContent>
-            <div className='max-w-4xl mx-auto'>
-              <div className='bg-white rounded-xl shadow-xs overflow-hidden'>
+            <div className='mx-auto max-w-4xl'>
+              <div className='overflow-hidden rounded-xl bg-white shadow-xs'>
                 {/* Header Section */}
-                <div className='relative h-64 bg-primary-700'>
+                <div className='bg-primary-700 relative h-64'>
                   <div className='absolute inset-0'>
                     <img
                       src='https://images.pexels.com/photos/1714455/pexels-photo-1714455.jpeg'
                       alt='Office'
-                      className='w-full h-full object-cover opacity-20'
+                      className='h-full w-full object-cover opacity-20'
                     />
                   </div>
-                  <div className='absolute inset-0 bg-linear-to-b from-primary-900/50 to-primary-900/90' />
-                  <div className='relative h-full container mx-auto px-6 flex items-center'>
+                  <div className='from-primary-900/50 to-primary-900/90 absolute inset-0 bg-linear-to-b' />
+                  <div className='relative container mx-auto flex h-full items-center px-6'>
                     <div className='flex items-center space-x-8'>
                       <img
                         src='https://images.pexels.com/photos/2379005/pexels-photo-2379005.jpeg'
                         alt='Ferdinand Marcos Jr.'
-                        className='w-40 h-40 rounded-full border-4 border-white shadow-xl object-cover'
+                        className='h-40 w-40 rounded-full border-4 border-white object-cover shadow-xl'
                       />
                       <div className='text-white'>
-                        <div className='text-sm font-medium text-primary-200 mb-1'>
+                        <div className='text-primary-200 mb-1 text-sm font-medium'>
                           17th President of the Republic of the Philippines
                         </div>
-                        <h1 className='text-4xl font-bold mb-2'>
+                        <h1 className='mb-2 text-4xl font-bold'>
                           Ferdinand Marcos Jr.
                         </h1>
                         <p className='text-primary-100'>
@@ -511,16 +513,16 @@ const DesignGuide: FC = () => {
 
                 {/* Content Section */}
                 <div className='container mx-auto px-6 py-8'>
-                  <div className='grid grid-cols-1 lg:grid-cols-3 gap-8'>
+                  <div className='grid grid-cols-1 gap-8 lg:grid-cols-3'>
                     {/* Left Column - Contact & Basic Info */}
                     <div className='space-y-6'>
-                      <div className='bg-gray-50 rounded-lg p-6'>
-                        <h3 className='text-lg font-semibold mb-4'>
+                      <div className='rounded-lg bg-gray-50 p-6'>
+                        <h3 className='mb-4 text-lg font-semibold'>
                           Contact Information
                         </h3>
                         <div className='space-y-4'>
                           <div className='flex items-center text-gray-800'>
-                            <BuildingIcon className='h-5 w-5 mr-3 text-primary-600' />
+                            <BuildingIcon className='text-primary-600 mr-3 h-5 w-5' />
                             <div>
                               <div className='font-medium'>Office</div>
                               <div className='text-sm'>
@@ -529,21 +531,21 @@ const DesignGuide: FC = () => {
                             </div>
                           </div>
                           <div className='flex items-center text-gray-800'>
-                            <PhoneIcon className='h-5 w-5 mr-3 text-primary-600' />
+                            <PhoneIcon className='text-primary-600 mr-3 h-5 w-5' />
                             <div>
                               <div className='font-medium'>Phone</div>
                               <div className='text-sm'>+63 (2) 8736 8645</div>
                             </div>
                           </div>
                           <div className='flex items-center text-gray-800'>
-                            <MailIcon className='h-5 w-5 mr-3 text-primary-600' />
+                            <MailIcon className='text-primary-600 mr-3 h-5 w-5' />
                             <div>
                               <div className='font-medium'>Email</div>
                               <div className='text-sm'>op@president.gov.ph</div>
                             </div>
                           </div>
                           <div className='flex items-center text-gray-800'>
-                            <GlobeIcon className='h-5 w-5 mr-3 text-primary-600' />
+                            <GlobeIcon className='text-primary-600 mr-3 h-5 w-5' />
                             <div>
                               <div className='font-medium'>Website</div>
                               <div className='text-sm'>
@@ -554,15 +556,15 @@ const DesignGuide: FC = () => {
                         </div>
                       </div>
 
-                      <div className='bg-gray-50 rounded-lg p-6'>
-                        <h3 className='text-lg font-semibold mb-4'>
+                      <div className='rounded-lg bg-gray-50 p-6'>
+                        <h3 className='mb-4 text-lg font-semibold'>
                           Education
                         </h3>
                         <div className='space-y-4'>
                           {education.map((edu, index) => (
                             <div
                               key={index}
-                              className='border-l-2 border-primary-500 pl-4'
+                              className='border-primary-500 border-l-2 pl-4'
                             >
                               <div className='font-medium'>{edu.degree}</div>
                               <div className='text-sm text-gray-800'>
@@ -578,13 +580,13 @@ const DesignGuide: FC = () => {
                     </div>
 
                     {/* Right Column - Bio & Achievements */}
-                    <div className='lg:col-span-2 space-y-6'>
+                    <div className='space-y-6 lg:col-span-2'>
                       <div>
-                        <h3 className='text-xl font-semibold mb-4'>
+                        <h3 className='mb-4 text-xl font-semibold'>
                           Biography
                         </h3>
                         <div className='prose max-w-none'>
-                          <p className='text-gray-800 leading-relaxed'>
+                          <p className='leading-relaxed text-gray-800'>
                             Ferdinand &ldquo;Bongbong&rdquo; Romualdez Marcos
                             Jr. serves as the 17th President of the Philippines,
                             assuming office on June 30, 2022. As the
@@ -592,7 +594,7 @@ const DesignGuide: FC = () => {
                             implementation of laws and policies aimed at
                             national development and public welfare.
                           </p>
-                          <p className='text-gray-800 leading-relaxed mt-4'>
+                          <p className='mt-4 leading-relaxed text-gray-800'>
                             Prior to his presidency, he served in various
                             government positions including as a Senator of the
                             Philippines from 2010 to 2016, and as Governor of
@@ -604,29 +606,29 @@ const DesignGuide: FC = () => {
                       </div>
 
                       <div>
-                        <h3 className='text-xl font-semibold mb-4'>
+                        <h3 className='mb-4 text-xl font-semibold'>
                           Key Achievements
                         </h3>
                         <div className='grid gap-4'>
                           {achievements.map((achievement, index) => (
                             <div key={index} className='flex items-start'>
-                              <AwardIcon className='h-5 w-5 text-primary-600 mt-1 mr-3 flex-shrink-0' />
+                              <AwardIcon className='text-primary-600 mt-1 mr-3 h-5 w-5 flex-shrink-0' />
                               <p className='text-gray-800'>{achievement}</p>
                             </div>
                           ))}
                         </div>
                       </div>
 
-                      <div className='flex space-x-4 mt-8'>
+                      <div className='mt-8 flex space-x-4'>
                         <Button className='bg-primary-600 hover:bg-primary-700 text-white'>
-                          <MailIcon className='h-4 w-4 mr-2' />
+                          <MailIcon className='mr-2 h-4 w-4' />
                           Contact Office
                         </Button>
                         <Button
                           variant='outline'
                           className='border-gray-300 text-gray-700 hover:bg-gray-50'
                         >
-                          <GlobeIcon className='h-4 w-4 mr-2' />
+                          <GlobeIcon className='mr-2 h-4 w-4' />
                           Visit Website
                         </Button>
                       </div>

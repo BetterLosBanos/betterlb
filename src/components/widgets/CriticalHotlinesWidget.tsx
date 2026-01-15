@@ -1,6 +1,9 @@
 import { FC } from 'react';
+
 import { Link } from 'react-router-dom';
-import { PhoneIcon, ChevronRightIcon, AlertCircleIcon } from 'lucide-react';
+
+import { AlertCircleIcon, ChevronRightIcon, PhoneIcon } from 'lucide-react';
+
 import hotlinesData from '../../data/philippines_hotlines.json';
 
 interface Hotline {
@@ -23,22 +26,22 @@ const CriticalHotlinesWidget: FC<CriticalHotlinesWidgetProps> = ({
   );
 
   return (
-    <div className='bg-white rounded-lg shadow-md overflow-hidden border border-gray-200'>
-      <div className='bg-red-600 px-4 py-3 flex items-center justify-between'>
+    <div className='overflow-hidden rounded-lg border border-gray-200 bg-white shadow-md'>
+      <div className='flex items-center justify-between bg-red-600 px-4 py-3'>
         <div className='flex items-center'>
-          <AlertCircleIcon className='h-5 w-5 text-white mr-2' />
+          <AlertCircleIcon className='mr-2 h-5 w-5 text-white' />
           <h3 className='font-bold text-white'>Critical Emergency Hotlines</h3>
         </div>
         <Link
           to='/philippines/hotlines'
-          className='text-white text-sm hover:underline flex items-center'
+          className='flex items-center text-sm text-white hover:underline'
         >
-          View all <ChevronRightIcon className='h-4 w-4 ml-1' />
+          View all <ChevronRightIcon className='ml-1 h-4 w-4' />
         </Link>
       </div>
 
       <div className='p-4'>
-        <div className='grid grid-cols-1 sm:grid-cols-2 gap-4'>
+        <div className='grid grid-cols-1 gap-4 sm:grid-cols-2'>
           {displayedHotlines.map((hotline, index) => (
             <div key={index} className='flex flex-col'>
               <span className='font-medium text-gray-900'>{hotline.name}</span>
@@ -49,7 +52,7 @@ const CriticalHotlinesWidget: FC<CriticalHotlinesWidgetProps> = ({
                     href={`tel:${number.replace(/\D/g, '')}`}
                     className='flex items-center text-blue-600 hover:underline'
                   >
-                    <PhoneIcon className='h-3 w-3 mr-1' />
+                    <PhoneIcon className='mr-1 h-3 w-3' />
                     <span className='text-sm'>{number}</span>
                   </a>
                 ))}
@@ -58,13 +61,13 @@ const CriticalHotlinesWidget: FC<CriticalHotlinesWidgetProps> = ({
           ))}
         </div>
 
-        <div className='mt-4 pt-3 border-t border-gray-200 text-center'>
+        <div className='mt-4 border-t border-gray-200 pt-3 text-center'>
           <Link
             to='/philippines/hotlines'
             className='inline-flex items-center text-sm font-medium text-blue-600 hover:text-blue-800'
           >
             See all emergency hotlines
-            <ChevronRightIcon className='h-4 w-4 ml-1' />
+            <ChevronRightIcon className='ml-1 h-4 w-4' />
           </Link>
         </div>
       </div>

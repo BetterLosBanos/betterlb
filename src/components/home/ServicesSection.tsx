@@ -1,9 +1,12 @@
 import { FC } from 'react';
-import * as LucideIcons from 'lucide-react';
-import { Card, CardContent } from '../ui/Card';
-import serviceCategories from '../../data/service_categories.json';
+
 import { Link } from 'react-router-dom';
+
+import * as LucideIcons from 'lucide-react';
 import { useTranslation } from 'react-i18next';
+
+import serviceCategories from '../../data/service_categories.json';
+import { Card, CardContent } from '../ui/Card';
 
 interface Category {
   name: string;
@@ -42,18 +45,18 @@ const ServicesSection: FC = () => {
   const displayedCategories = categories.slice(0, 8);
 
   return (
-    <section className='py-12 bg-white'>
+    <section className='bg-white py-12'>
       <div className='container mx-auto px-4'>
-        <div className='text-center mb-12'>
-          <h2 className='text-2xl md:text-3xl font-bold text-gray-900 mb-4'>
+        <div className='mb-12 text-center'>
+          <h2 className='mb-4 text-2xl font-bold text-gray-900 md:text-3xl'>
             {t('services.governmentServices')}
           </h2>
-          <p className='text-gray-800 max-w-2xl mx-auto'>
+          <p className='mx-auto max-w-2xl text-gray-800'>
             {t('services.description')}
           </p>
         </div>
 
-        <div className='grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6'>
+        <div className='grid grid-cols-1 gap-6 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4'>
           {displayedCategories.map(category => (
             <Link
               key={category.slug}
@@ -62,24 +65,24 @@ const ServicesSection: FC = () => {
             >
               <Card
                 hoverable
-                className='h-full border-t-4 border-primary-500 transition-all hover:-translate-y-1'
+                className='border-primary-500 h-full border-t-4 transition-all hover:-translate-y-1'
               >
-                <CardContent className='flex flex-col h-full p-6'>
-                  <div className='flex items-start justify-between mb-4'>
-                    <div className='bg-primary-50 text-primary-600 p-3 rounded-lg group-hover:bg-primary-600 group-hover:text-white transition-colors'>
+                <CardContent className='flex h-full flex-col p-6'>
+                  <div className='mb-4 flex items-start justify-between'>
+                    <div className='bg-primary-50 text-primary-600 group-hover:bg-primary-600 rounded-lg p-3 transition-colors group-hover:text-white'>
                       {getIcon(category.name)}
                     </div>
                   </div>
 
-                  <h3 className='text-lg font-bold mb-2 text-gray-900 group-hover:text-primary-700'>
+                  <h3 className='group-hover:text-primary-700 mb-2 text-lg font-bold text-gray-900'>
                     {category.name}
                   </h3>
 
-                  <p className='text-sm text-gray-600 line-clamp-3 mb-6 flex-grow'>
+                  <p className='mb-6 line-clamp-3 flex-grow text-sm text-gray-600'>
                     {category.description}
                   </p>
 
-                  <div className='text-primary-600 font-medium text-sm flex items-center group-hover:underline'>
+                  <div className='text-primary-600 flex items-center text-sm font-medium group-hover:underline'>
                     View Services
                     <LucideIcons.ArrowRight className='ml-1 h-4 w-4 transition-transform group-hover:translate-x-1' />
                   </div>
@@ -89,10 +92,10 @@ const ServicesSection: FC = () => {
           ))}
         </div>
 
-        <div className='text-center mt-10'>
+        <div className='mt-10 text-center'>
           <Link
             to='/services?category=all'
-            className='inline-flex items-center justify-center rounded-lg font-medium transition-colors px-6 py-3 bg-primary-600 text-white hover:bg-primary-700 focus:outline-hidden focus:ring-2 focus:ring-offset-2 focus:ring-primary-500 shadow-sm'
+            className='bg-primary-600 hover:bg-primary-700 focus:ring-primary-500 inline-flex items-center justify-center rounded-lg px-6 py-3 font-medium text-white shadow-sm transition-colors focus:ring-2 focus:ring-offset-2 focus:outline-hidden'
           >
             {t('services.viewAll')}
           </Link>

@@ -1,34 +1,35 @@
-import { useParams, useOutletContext, Link } from 'react-router-dom';
+import { Link, useOutletContext, useParams } from 'react-router-dom';
+
 import {
+  BookOpen,
   Briefcase,
-  ScrollText,
   CalendarCheck,
   CheckCircle2,
-  XCircle,
   FileText,
-  BookOpen,
+  ScrollText,
+  XCircle,
 } from 'lucide-react';
 
-// Use the library types as the source of truth to ensure compatibility with helpers
-import type {
-  Person,
-  DocumentItem,
-  Session,
-  Committee,
-} from '@/lib/legislation';
-
-import { getPersonName } from '@/lib/legislation';
 import { DetailSection } from '@/components/layout/PageLayouts';
 import { Badge } from '@/components/ui/Badge';
 import {
   Breadcrumb,
+  BreadcrumbHome,
   BreadcrumbItem,
   BreadcrumbLink,
   BreadcrumbList,
   BreadcrumbPage,
   BreadcrumbSeparator,
-  BreadcrumbHome,
 } from '@/components/ui/Breadcrumb';
+
+// Use the library types as the source of truth to ensure compatibility with helpers
+import type {
+  Committee,
+  DocumentItem,
+  Person,
+  Session,
+} from '@/lib/legislation';
+import { getPersonName } from '@/lib/legislation';
 import { toTitleCase } from '@/lib/stringUtils';
 
 // Define the exact shape of the context provided by the Legislation Layout
@@ -58,7 +59,7 @@ export default function PersonDetail() {
   if (!person) {
     return (
       <div
-        className='p-12 font-bold tracking-widest text-center uppercase text-slate-500'
+        className='p-12 text-center font-bold tracking-widest text-slate-500 uppercase'
         role='alert'
       >
         Official not found
@@ -96,7 +97,7 @@ export default function PersonDetail() {
   );
 
   return (
-    <div className='px-4 pb-20 mx-auto space-y-6 max-w-5xl duration-500 animate-in fade-in md:px-0'>
+    <div className='animate-in fade-in mx-auto max-w-5xl space-y-6 px-4 pb-20 duration-500 md:px-0'>
       {/* Breadcrumbs */}
       <Breadcrumb>
         <BreadcrumbList>
@@ -115,9 +116,9 @@ export default function PersonDetail() {
       </Breadcrumb>
 
       {/* Profile Header */}
-      <header className='flex flex-col gap-6 items-center p-6 bg-white rounded-2xl border shadow-sm border-slate-200 md:flex-row'>
+      <header className='flex flex-col items-center gap-6 rounded-2xl border border-slate-200 bg-white p-6 shadow-sm md:flex-row'>
         <div
-          className='flex justify-center items-center w-20 h-20 text-2xl font-black text-white rounded-2xl bg-primary-600 shrink-0'
+          className='bg-primary-600 flex h-20 w-20 shrink-0 items-center justify-center rounded-2xl text-2xl font-black text-white'
           aria-hidden='true'
         >
           {person.first_name[0]}
@@ -127,7 +128,7 @@ export default function PersonDetail() {
           <h1 className='text-2xl font-bold text-slate-900'>
             Hon. {officialName}
           </h1>
-          <div className='flex flex-wrap gap-2 justify-center mt-2 md:justify-start'>
+          <div className='mt-2 flex flex-wrap justify-center gap-2 md:justify-start'>
             {person.roles.map(role => (
               <Badge key={role} variant='slate'>
                 {role}
@@ -136,16 +137,16 @@ export default function PersonDetail() {
           </div>
         </div>
         <div
-          className='flex gap-4 items-center pl-6 border-l border-slate-100'
+          className='flex items-center gap-4 border-l border-slate-100 pl-6'
           aria-label={`Attendance rate: ${attendanceRate}%`}
         >
           <div className='text-center'>
             <p
-              className={`text-2xl font-black leading-none ${attendanceRate >= 90 ? 'text-emerald-600' : 'text-secondary-600'}`}
+              className={`text-2xl leading-none font-black ${attendanceRate >= 90 ? 'text-emerald-600' : 'text-secondary-600'}`}
             >
               {attendanceRate}%
             </p>
-            <p className='text-[10px] font-bold text-slate-400 uppercase tracking-widest mt-1'>
+            <p className='mt-1 text-[10px] font-bold tracking-widest text-slate-400 uppercase'>
               Attendance
             </p>
           </div>
@@ -154,28 +155,28 @@ export default function PersonDetail() {
 
       {/* High Contrast Stats Grid (Blue & Orange) */}
       <div className='grid grid-cols-2 gap-4'>
-        <div className='flex gap-4 items-center p-5 bg-white rounded-2xl border-b-4 shadow-sm border-primary-600'>
-          <div className='p-2 rounded-lg bg-primary-50 text-primary-600'>
-            <FileText className='w-5 h-5' aria-hidden='true' />
+        <div className='border-primary-600 flex items-center gap-4 rounded-2xl border-b-4 bg-white p-5 shadow-sm'>
+          <div className='bg-primary-50 text-primary-600 rounded-lg p-2'>
+            <FileText className='h-5 w-5' aria-hidden='true' />
           </div>
           <div>
-            <span className='block text-2xl font-bold leading-none text-slate-900'>
+            <span className='block text-2xl leading-none font-bold text-slate-900'>
               {ordCount}
             </span>
-            <span className='text-[10px] font-bold text-slate-400 uppercase tracking-widest'>
+            <span className='text-[10px] font-bold tracking-widest text-slate-400 uppercase'>
               Ordinances
             </span>
           </div>
         </div>
-        <div className='flex gap-4 items-center p-5 bg-white rounded-2xl border-b-4 shadow-sm border-secondary-600'>
-          <div className='p-2 rounded-lg bg-secondary-50 text-secondary-600'>
-            <BookOpen className='w-5 h-5' aria-hidden='true' />
+        <div className='border-secondary-600 flex items-center gap-4 rounded-2xl border-b-4 bg-white p-5 shadow-sm'>
+          <div className='bg-secondary-50 text-secondary-600 rounded-lg p-2'>
+            <BookOpen className='h-5 w-5' aria-hidden='true' />
           </div>
           <div>
-            <span className='block text-2xl font-bold leading-none text-slate-900'>
+            <span className='block text-2xl leading-none font-bold text-slate-900'>
               {resCount}
             </span>
-            <span className='text-[10px] font-bold text-slate-400 uppercase tracking-widest'>
+            <span className='text-[10px] font-bold tracking-widest text-slate-400 uppercase'>
               Resolutions
             </span>
           </div>
@@ -196,14 +197,14 @@ export default function PersonDetail() {
                 return (
                   <li
                     key={c.id}
-                    className='pb-3 border-b border-slate-50 last:border-0'
+                    className='border-b border-slate-50 pb-3 last:border-0'
                   >
                     <p
-                      className={`text-[10px] font-bold uppercase tracking-widest mb-1 ${isLeader ? 'text-secondary-600' : 'text-slate-400'}`}
+                      className={`mb-1 text-[10px] font-bold tracking-widest uppercase ${isLeader ? 'text-secondary-600' : 'text-slate-400'}`}
                     >
                       {c.role}
                     </p>
-                    <p className='text-sm font-bold leading-tight text-slate-700'>
+                    <p className='text-sm leading-tight font-bold text-slate-700'>
                       {displayName}
                     </p>
                   </li>
@@ -214,23 +215,23 @@ export default function PersonDetail() {
 
           <DetailSection title='Attendance Log' icon={CalendarCheck}>
             <div
-              className='overflow-y-auto pr-2 space-y-2 max-h-64 scrollbar-thin'
+              className='scrollbar-thin max-h-64 space-y-2 overflow-y-auto pr-2'
               tabIndex={0}
             >
               {attendanceRecords.map(s => (
                 <div
                   key={s.id}
-                  className='flex items-center justify-between text-[11px] p-2.5 rounded-lg bg-slate-50 border border-slate-100'
+                  className='flex items-center justify-between rounded-lg border border-slate-100 bg-slate-50 p-2.5 text-[11px]'
                 >
                   <span className='font-bold text-slate-600'>{s.date}</span>
                   {s.present.includes(person.id) ? (
                     <CheckCircle2
-                      className='w-4 h-4 text-emerald-600'
+                      className='h-4 w-4 text-emerald-600'
                       aria-label='Present'
                     />
                   ) : (
                     <XCircle
-                      className='w-4 h-4 text-secondary-600'
+                      className='text-secondary-600 h-4 w-4'
                       aria-label='Absent'
                     />
                   )}
@@ -247,10 +248,10 @@ export default function PersonDetail() {
                 <Link
                   key={doc.id}
                   to={`/legislation/${doc.type}/${doc.id}`}
-                  className='block py-4 hover:bg-slate-50 transition-colors group min-h-[44px]'
+                  className='group block min-h-[44px] py-4 transition-colors hover:bg-slate-50'
                   aria-label={`View details for ${doc.type} ${doc.number}: ${doc.title}`}
                 >
-                  <div className='flex gap-3 items-center mb-2'>
+                  <div className='mb-2 flex items-center gap-3'>
                     <Badge
                       variant={
                         doc.type === 'ordinance' ? 'primary' : 'secondary'
@@ -258,17 +259,17 @@ export default function PersonDetail() {
                     >
                       {doc.type}
                     </Badge>
-                    <span className='text-[10px] font-mono font-bold text-slate-400 uppercase'>
+                    <span className='font-mono text-[10px] font-bold text-slate-400 uppercase'>
                       {doc.date_enacted}
                     </span>
                   </div>
-                  <p className='text-sm font-bold leading-relaxed transition-colors text-slate-800 group-hover:text-primary-600 line-clamp-2'>
+                  <p className='group-hover:text-primary-600 line-clamp-2 text-sm leading-relaxed font-bold text-slate-800 transition-colors'>
                     {doc.title}
                   </p>
                 </Link>
               ))}
               {authoredDocs.length > 8 && (
-                <p className='pt-6 text-xs italic text-center border-t text-slate-400 border-slate-50'>
+                <p className='border-t border-slate-50 pt-6 text-center text-xs text-slate-400 italic'>
                   Showing latest 8 of {authoredDocs.length} documents.
                 </p>
               )}

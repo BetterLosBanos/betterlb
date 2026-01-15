@@ -1,24 +1,27 @@
-import { useState, useMemo } from 'react';
+import { useMemo, useState } from 'react';
+
 import {
-  TrendingUp,
+  ArrowDown,
+  ArrowUp,
+  ArrowUpRight,
   Award,
   BarChart3,
   Target,
-  ArrowUp,
-  ArrowDown,
-  ArrowUpRight,
+  TrendingUp,
 } from 'lucide-react';
 import {
-  LineChart,
+  CartesianGrid,
+  Legend,
   Line,
+  LineChart,
+  ResponsiveContainer,
+  Tooltip,
   XAxis,
   YAxis,
-  CartesianGrid,
-  Tooltip,
-  ResponsiveContainer,
-  Legend,
 } from 'recharts';
+
 import { Badge } from '@/components/ui/Badge';
+
 import { cn } from '@/lib/utils';
 
 // Data Import
@@ -101,7 +104,7 @@ export default function CompetitivenessPage() {
   return (
     <div className='space-y-8'>
       {/* Hero Header */}
-      <div className='overflow-hidden relative p-8 text-white rounded-2xl bg-slate-900'>
+      <div className='relative overflow-hidden rounded-2xl bg-slate-900 p-8 text-white'>
         <div className='relative z-10 space-y-2'>
           <Badge variant='primary' dot>
             CMCI Index {latestYear}
@@ -114,23 +117,23 @@ export default function CompetitivenessPage() {
             pillars of governance, resiliency, and innovation.
           </p>
         </div>
-        <Award className='absolute right-[-20px] bottom-[-20px] w-48 h-48 text-white/5 -rotate-12' />
+        <Award className='absolute right-[-20px] bottom-[-20px] h-48 w-48 -rotate-12 text-white/5' />
       </div>
 
       {/* KPI Cards */}
       <div className='grid grid-cols-1 gap-4 md:grid-cols-3'>
-        <div className='p-6 space-y-2 bg-white rounded-2xl border-b-4 shadow-sm border-primary-600'>
-          <p className='text-[10px] font-bold text-slate-400 uppercase tracking-widest'>
+        <div className='border-primary-600 space-y-2 rounded-2xl border-b-4 bg-white p-6 shadow-sm'>
+          <p className='text-[10px] font-bold tracking-widest text-slate-400 uppercase'>
             Overall Score
           </p>
           <div className='text-3xl font-black text-slate-900'>
             {latestScore.toFixed(2)}
           </div>
-          <div className='flex gap-1 items-center text-xs font-bold text-emerald-600'>
+          <div className='flex items-center gap-1 text-xs font-bold text-emerald-600'>
             {scoreDiff > 0 ? (
-              <ArrowUpRight className='w-3 h-3' />
+              <ArrowUpRight className='h-3 w-3' />
             ) : (
-              <ArrowDown className='w-3 h-3' />
+              <ArrowDown className='h-3 w-3' />
             )}
             <span>
               {scoreDiff > 0 ? '+' : ''}
@@ -139,21 +142,21 @@ export default function CompetitivenessPage() {
           </div>
         </div>
 
-        <div className='p-6 space-y-2 bg-white rounded-2xl border-b-4 shadow-sm border-secondary-600'>
-          <p className='text-[10px] font-bold text-slate-400 uppercase tracking-widest'>
+        <div className='border-secondary-600 space-y-2 rounded-2xl border-b-4 bg-white p-6 shadow-sm'>
+          <p className='text-[10px] font-bold tracking-widest text-slate-400 uppercase'>
             Official Rank
           </p>
-          <div className='flex gap-1 items-center text-3xl font-black text-slate-900'>
+          <div className='flex items-center gap-1 text-3xl font-black text-slate-900'>
             33
-            <ArrowUp className='w-4 h-4 text-emerald-600' />
+            <ArrowUp className='h-4 w-4 text-emerald-600' />
           </div>
           <p className='text-xs font-medium text-slate-400'>
             1st Class Municipality
           </p>
         </div>
 
-        <div className='p-6 space-y-2 bg-white rounded-2xl border-b-4 shadow-sm border-slate-900'>
-          <p className='text-[10px] font-bold text-slate-400 uppercase tracking-widest'>
+        <div className='space-y-2 rounded-2xl border-b-4 border-slate-900 bg-white p-6 shadow-sm'>
+          <p className='text-[10px] font-bold tracking-widest text-slate-400 uppercase'>
             Pillars Tracked
           </p>
           <div className='text-3xl font-black text-slate-900'>
@@ -166,21 +169,21 @@ export default function CompetitivenessPage() {
       </div>
 
       {/* Tabs */}
-      <div className='flex gap-1 p-1 rounded-xl bg-slate-100'>
+      <div className='flex gap-1 rounded-xl bg-slate-100 p-1'>
         {(['trends', 'pillars'] as const).map(tab => (
           <button
             key={tab}
             onClick={() => setActiveTab(tab)}
-            className={`flex-1 py-2 rounded-lg text-xs font-bold uppercase tracking-widest transition-all min-h-[44px] ${
+            className={`min-h-[44px] flex-1 rounded-lg py-2 text-xs font-bold tracking-widest uppercase transition-all ${
               activeTab === tab
-                ? 'bg-white text-primary-700 shadow-sm'
+                ? 'text-primary-700 bg-white shadow-sm'
                 : 'text-slate-500 hover:text-slate-700'
             }`}
           >
             {tab === 'trends' ? (
-              <TrendingUp className='inline mr-2 w-3 h-3' />
+              <TrendingUp className='mr-2 inline h-3 w-3' />
             ) : (
-              <BarChart3 className='inline mr-2 w-3 h-3' />
+              <BarChart3 className='mr-2 inline h-3 w-3' />
             )}
             {tab}
           </button>
@@ -188,7 +191,7 @@ export default function CompetitivenessPage() {
       </div>
 
       {/* Chart Section */}
-      <div className='p-6 rounded-2xl border bg-slate-50 border-slate-100'>
+      <div className='rounded-2xl border border-slate-100 bg-slate-50 p-6'>
         {activeTab === 'trends' ? (
           <div className='h-[400px] w-full'>
             <ResponsiveContainer width='100%' height='100%'>
@@ -261,7 +264,7 @@ export default function CompetitivenessPage() {
           <div className='grid grid-cols-1 gap-6 lg:grid-cols-12'>
             {/* Left: Pillar Selection */}
             <div className='space-y-3 lg:col-span-5'>
-              <h3 className='text-[10px] font-bold text-slate-400 uppercase tracking-widest mb-4'>
+              <h3 className='mb-4 text-[10px] font-bold tracking-widest text-slate-400 uppercase'>
                 Pillar Performance Summary
               </h3>
               {pillarPerformance.map(pillar => (
@@ -269,22 +272,22 @@ export default function CompetitivenessPage() {
                   key={pillar.name}
                   onClick={() => setSelectedPillarName(pillar.name)}
                   className={cn(
-                    'w-full flex items-center justify-between p-4 rounded-2xl border transition-all text-left min-h-[56px] group',
+                    'group flex min-h-[56px] w-full items-center justify-between rounded-2xl border p-4 text-left transition-all',
                     selectedPillarName === pillar.name
                       ? 'bg-primary-50 border-primary-200 shadow-sm'
-                      : 'bg-white border-slate-200 hover:border-slate-300'
+                      : 'border-slate-200 bg-white hover:border-slate-300'
                   )}
                 >
-                  <div className='flex gap-3 items-center'>
+                  <div className='flex items-center gap-3'>
                     <div
                       className={cn(
-                        'p-2 rounded-xl transition-colors',
+                        'rounded-xl p-2 transition-colors',
                         selectedPillarName === pillar.name
                           ? 'bg-primary-600 text-white'
                           : 'bg-slate-50 text-slate-400'
                       )}
                     >
-                      <Target className='w-4 h-4' />
+                      <Target className='h-4 w-4' />
                     </div>
                     <div>
                       <p
@@ -297,23 +300,23 @@ export default function CompetitivenessPage() {
                       >
                         {pillar.name}
                       </p>
-                      <p className='text-[10px] text-slate-400 font-bold uppercase mt-0.5'>
+                      <p className='mt-0.5 text-[10px] font-bold text-slate-400 uppercase'>
                         Score: {pillar.score.toFixed(2)}
                       </p>
                     </div>
                   </div>
                   <div
                     className={cn(
-                      'flex items-center gap-1 text-[10px] font-black px-2 py-1 rounded-md',
+                      'flex items-center gap-1 rounded-md px-2 py-1 text-[10px] font-black',
                       pillar.trend === 'up'
                         ? 'bg-emerald-50 text-emerald-700'
                         : 'bg-orange-50 text-orange-700'
                     )}
                   >
                     {pillar.trend === 'up' ? (
-                      <ArrowUp className='w-3 h-3' />
+                      <ArrowUp className='h-3 w-3' />
                     ) : (
-                      <ArrowDown className='w-3 h-3' />
+                      <ArrowDown className='h-3 w-3' />
                     )}
                     {Math.abs(pillar.changePct).toFixed(1)}%
                   </div>
@@ -323,7 +326,7 @@ export default function CompetitivenessPage() {
 
             {/* Right: Indicators Breakdown */}
             <div className='lg:col-span-7'>
-              <h3 className='text-[10px] font-bold text-slate-400 uppercase tracking-widest mb-4'>
+              <h3 className='mb-4 text-[10px] font-bold tracking-widest text-slate-400 uppercase'>
                 {selectedPillarName} - Indicators
               </h3>
               <div className='grid grid-cols-1 gap-3 sm:grid-cols-2'>
@@ -336,27 +339,27 @@ export default function CompetitivenessPage() {
                   return (
                     <div
                       key={idx}
-                      className='flex flex-col justify-between p-4 bg-white rounded-xl border border-slate-100 shadow-xs'
+                      className='flex flex-col justify-between rounded-xl border border-slate-100 bg-white p-4 shadow-xs'
                     >
-                      <span className='text-[10px] font-bold text-slate-400 uppercase tracking-widest mb-3 leading-tight'>
+                      <span className='mb-3 text-[10px] leading-tight font-bold tracking-widest text-slate-400 uppercase'>
                         {indicator.name}
                       </span>
-                      <div className='flex justify-between items-end'>
+                      <div className='flex items-end justify-between'>
                         <span className='text-xl font-black text-slate-900'>
                           {current.toFixed(4)}
                         </span>
                         <div
                           className={cn(
-                            'flex items-center gap-0.5 text-[9px] font-black px-1.5 py-0.5 rounded border',
+                            'flex items-center gap-0.5 rounded border px-1.5 py-0.5 text-[9px] font-black',
                             diff > 0
-                              ? 'bg-emerald-50 text-emerald-700 border-emerald-100'
-                              : 'bg-orange-50 text-orange-700 border-orange-100'
+                              ? 'border-emerald-100 bg-emerald-50 text-emerald-700'
+                              : 'border-orange-100 bg-orange-50 text-orange-700'
                           )}
                         >
                           {diff > 0 ? (
-                            <ArrowUp className='w-2.5 h-2.5' />
+                            <ArrowUp className='h-2.5 w-2.5' />
                           ) : (
-                            <ArrowDown className='w-2.5 h-2.5' />
+                            <ArrowDown className='h-2.5 w-2.5' />
                           )}
                           {Math.abs(pct).toFixed(1)}%
                         </div>
@@ -370,13 +373,13 @@ export default function CompetitivenessPage() {
         )}
       </div>
 
-      <p className='text-center text-[10px] font-bold text-slate-400 uppercase tracking-widest'>
+      <p className='text-center text-[10px] font-bold tracking-widest text-slate-400 uppercase'>
         Source:{' '}
         <a
           href='https://cmci.dti.gov.ph/data-portal.php'
           target='_blank'
           rel='noopener noreferrer'
-          className='underline hover:text-primary-600'
+          className='hover:text-primary-600 underline'
         >
           DTI Data Portal
         </a>

@@ -1,25 +1,28 @@
 import { useState } from 'react';
+
 import {
-  Wallet,
-  PieChart as PieIcon,
   Building2,
   DollarSign,
   Landmark,
+  PieChart as PieIcon,
+  Wallet,
 } from 'lucide-react';
 import {
-  PieChart,
-  Pie,
-  Cell,
-  Tooltip,
-  ResponsiveContainer,
-  Legend,
-  BarChart,
   Bar,
+  BarChart,
+  CartesianGrid,
+  Cell,
+  Legend,
+  Pie,
+  PieChart,
+  ResponsiveContainer,
+  Tooltip,
   XAxis,
   YAxis,
-  CartesianGrid,
 } from 'recharts';
+
 import { Badge } from '@/components/ui/Badge';
+
 import ariData from '@/data/statistics/ari.json';
 
 export default function MunicipalIncomePage() {
@@ -128,7 +131,7 @@ export default function MunicipalIncomePage() {
   return (
     <div className='space-y-8'>
       {/* Hero Header */}
-      <div className='overflow-hidden relative p-8 text-white rounded-2xl bg-slate-900'>
+      <div className='relative overflow-hidden rounded-2xl bg-slate-900 p-8 text-white'>
         <div className='relative z-10 space-y-2'>
           <Badge variant='primary' dot>
             {data.period} Audit
@@ -141,13 +144,13 @@ export default function MunicipalIncomePage() {
             {data.location_info.lgu_name}, {data.location_info.province}.
           </p>
         </div>
-        <Wallet className='absolute right-[-20px] bottom-[-20px] w-48 h-48 text-white/5 -rotate-12' />
+        <Wallet className='absolute right-[-20px] bottom-[-20px] h-48 w-48 -rotate-12 text-white/5' />
       </div>
 
       {/* KPI Cards */}
       <div className='grid grid-cols-1 gap-4 md:grid-cols-3'>
-        <div className='p-6 space-y-2 bg-white rounded-2xl border-b-4 shadow-sm border-primary-600'>
-          <p className='text-[10px] font-bold text-slate-400 uppercase tracking-widest'>
+        <div className='border-primary-600 space-y-2 rounded-2xl border-b-4 bg-white p-6 shadow-sm'>
+          <p className='text-[10px] font-bold tracking-widest text-slate-400 uppercase'>
             Total Regular Income
           </p>
           <div className='text-3xl font-black text-slate-900'>
@@ -158,8 +161,8 @@ export default function MunicipalIncomePage() {
           </p>
         </div>
 
-        <div className='p-6 space-y-2 bg-white rounded-2xl border-b-4 shadow-sm border-secondary-600'>
-          <p className='text-[10px] font-bold text-slate-400 uppercase tracking-widest'>
+        <div className='border-secondary-600 space-y-2 rounded-2xl border-b-4 bg-white p-6 shadow-sm'>
+          <p className='text-[10px] font-bold tracking-widest text-slate-400 uppercase'>
             Locally Sourced Revenue
           </p>
           <div className='text-3xl font-black text-slate-900'>
@@ -175,8 +178,8 @@ export default function MunicipalIncomePage() {
           </p>
         </div>
 
-        <div className='p-6 space-y-2 bg-white rounded-2xl border-b-4 shadow-sm border-slate-900'>
-          <p className='text-[10px] font-bold text-slate-400 uppercase tracking-widest'>
+        <div className='space-y-2 rounded-2xl border-b-4 border-slate-900 bg-white p-6 shadow-sm'>
+          <p className='text-[10px] font-bold tracking-widest text-slate-400 uppercase'>
             NTA Dependency
           </p>
           <div className='text-3xl font-black text-slate-900'>
@@ -191,21 +194,21 @@ export default function MunicipalIncomePage() {
       </div>
 
       {/* Tabs */}
-      <div className='flex gap-1 p-1 rounded-xl bg-slate-100'>
+      <div className='flex gap-1 rounded-xl bg-slate-100 p-1'>
         {(['overview', 'breakdown'] as const).map(tab => (
           <button
             key={tab}
             onClick={() => setActiveTab(tab)}
-            className={`flex-1 py-2 rounded-lg text-xs font-bold uppercase tracking-widest transition-all min-h-[44px] ${
+            className={`min-h-[44px] flex-1 rounded-lg py-2 text-xs font-bold tracking-widest uppercase transition-all ${
               activeTab === tab
-                ? 'bg-white text-primary-700 shadow-sm'
+                ? 'text-primary-700 bg-white shadow-sm'
                 : 'text-slate-500 hover:text-slate-700'
             }`}
           >
             {tab === 'overview' ? (
-              <PieIcon className='inline mr-2 w-3 h-3' />
+              <PieIcon className='mr-2 inline h-3 w-3' />
             ) : (
-              <Building2 className='inline mr-2 w-3 h-3' />
+              <Building2 className='mr-2 inline h-3 w-3' />
             )}
             {tab}
           </button>
@@ -214,12 +217,12 @@ export default function MunicipalIncomePage() {
 
       {/* Content */}
       {activeTab === 'overview' ? (
-        <div className='p-6 rounded-2xl border bg-slate-50 border-slate-100'>
+        <div className='rounded-2xl border border-slate-100 bg-slate-50 p-6'>
           <div className='grid grid-cols-1 gap-8 lg:grid-cols-2'>
             {/* Income Sources Pie Chart */}
             <div className='space-y-4'>
-              <h3 className='text-[10px] font-bold text-slate-400 uppercase tracking-widest flex items-center gap-2'>
-                <PieIcon className='w-4 h-4 text-primary-600' /> Income
+              <h3 className='flex items-center gap-2 text-[10px] font-bold tracking-widest text-slate-400 uppercase'>
+                <PieIcon className='text-primary-600 h-4 w-4' /> Income
                 Composition
               </h3>
               <div className='h-[320px]'>
@@ -263,20 +266,20 @@ export default function MunicipalIncomePage() {
 
             {/* Revenue Summary Cards */}
             <div className='space-y-4'>
-              <h3 className='text-[10px] font-bold text-slate-400 uppercase tracking-widest'>
+              <h3 className='text-[10px] font-bold tracking-widest text-slate-400 uppercase'>
                 Revenue Summary
               </h3>
               <div className='space-y-3'>
-                <div className='p-4 bg-white rounded-xl border shadow-sm border-slate-100'>
-                  <div className='flex justify-between items-start mb-2'>
-                    <Landmark className='w-5 h-5 text-primary-600' />
+                <div className='rounded-xl border border-slate-100 bg-white p-4 shadow-sm'>
+                  <div className='mb-2 flex items-start justify-between'>
+                    <Landmark className='text-primary-600 h-5 w-5' />
                     <span className='text-lg font-black text-slate-900'>
                       {formatMillions(
                         data.other_income_sources.national_tax_allotment
                       )}
                     </span>
                   </div>
-                  <p className='text-[10px] font-bold text-slate-400 uppercase tracking-widest'>
+                  <p className='text-[10px] font-bold tracking-widest text-slate-400 uppercase'>
                     National Tax Allotment
                   </p>
                   <p className='mt-1 text-xs text-slate-500'>
@@ -287,9 +290,9 @@ export default function MunicipalIncomePage() {
                   </p>
                 </div>
 
-                <div className='p-4 bg-white rounded-xl border shadow-sm border-slate-100'>
-                  <div className='flex justify-between items-start mb-2'>
-                    <Building2 className='w-5 h-5 text-secondary-600' />
+                <div className='rounded-xl border border-slate-100 bg-white p-4 shadow-sm'>
+                  <div className='mb-2 flex items-start justify-between'>
+                    <Building2 className='text-secondary-600 h-5 w-5' />
                     <span className='text-lg font-black text-slate-900'>
                       {formatMillions(
                         data.locally_sourced_revenue
@@ -297,12 +300,12 @@ export default function MunicipalIncomePage() {
                       )}
                     </span>
                   </div>
-                  <p className='text-[10px] font-bold text-slate-400 uppercase tracking-widest'>
+                  <p className='text-[10px] font-bold tracking-widest text-slate-400 uppercase'>
                     Locally Sourced Revenue
                   </p>
-                  <div className='flex gap-4 mt-2'>
+                  <div className='mt-2 flex gap-4'>
                     <div>
-                      <p className='text-[9px] text-slate-400 font-bold uppercase'>
+                      <p className='text-[9px] font-bold text-slate-400 uppercase'>
                         Tax Revenue
                       </p>
                       <p className='text-xs font-black text-slate-900'>
@@ -313,7 +316,7 @@ export default function MunicipalIncomePage() {
                       </p>
                     </div>
                     <div>
-                      <p className='text-[9px] text-slate-400 font-bold uppercase'>
+                      <p className='text-[9px] font-bold text-slate-400 uppercase'>
                         Non-Tax Revenue
                       </p>
                       <p className='text-xs font-black text-slate-900'>
@@ -326,9 +329,9 @@ export default function MunicipalIncomePage() {
                   </div>
                 </div>
 
-                <div className='p-4 bg-white rounded-xl border shadow-sm border-slate-100'>
-                  <div className='flex justify-between items-start mb-2'>
-                    <DollarSign className='w-5 h-5 text-emerald-600' />
+                <div className='rounded-xl border border-slate-100 bg-white p-4 shadow-sm'>
+                  <div className='mb-2 flex items-start justify-between'>
+                    <DollarSign className='h-5 w-5 text-emerald-600' />
                     <span className='text-lg font-black text-slate-900'>
                       {formatMillions(
                         data.other_shares_from_national_tax_collection
@@ -336,7 +339,7 @@ export default function MunicipalIncomePage() {
                       )}
                     </span>
                   </div>
-                  <p className='text-[10px] font-bold text-slate-400 uppercase tracking-widest'>
+                  <p className='text-[10px] font-bold tracking-widest text-slate-400 uppercase'>
                     Other National Shares
                   </p>
                   <p className='mt-1 text-xs text-slate-500'>
@@ -354,8 +357,8 @@ export default function MunicipalIncomePage() {
       ) : (
         <div className='space-y-6'>
           {/* Tax Revenue Breakdown */}
-          <div className='p-6 rounded-2xl border bg-slate-50 border-slate-100'>
-            <h3 className='text-[10px] font-bold text-slate-400 uppercase tracking-widest mb-4'>
+          <div className='rounded-2xl border border-slate-100 bg-slate-50 p-6'>
+            <h3 className='mb-4 text-[10px] font-bold tracking-widest text-slate-400 uppercase'>
               Tax Revenue Breakdown
             </h3>
             <div className='h-[300px]'>
@@ -391,7 +394,7 @@ export default function MunicipalIncomePage() {
               </ResponsiveContainer>
             </div>
             <div className='mt-4 text-center'>
-              <span className='text-xs font-bold uppercase text-slate-500'>
+              <span className='text-xs font-bold text-slate-500 uppercase'>
                 Total Tax Revenue:{' '}
               </span>
               <span className='text-sm font-black text-slate-900'>
@@ -403,8 +406,8 @@ export default function MunicipalIncomePage() {
           </div>
 
           {/* Non-Tax Revenue Breakdown */}
-          <div className='p-6 rounded-2xl border bg-slate-50 border-slate-100'>
-            <h3 className='text-[10px] font-bold text-slate-400 uppercase tracking-widest mb-4'>
+          <div className='rounded-2xl border border-slate-100 bg-slate-50 p-6'>
+            <h3 className='mb-4 text-[10px] font-bold tracking-widest text-slate-400 uppercase'>
               Non-Tax Revenue Breakdown
             </h3>
             <div className='h-[300px]'>
@@ -440,7 +443,7 @@ export default function MunicipalIncomePage() {
               </ResponsiveContainer>
             </div>
             <div className='mt-4 text-center'>
-              <span className='text-xs font-bold uppercase text-slate-500'>
+              <span className='text-xs font-bold text-slate-500 uppercase'>
                 Total Non-Tax Revenue:{' '}
               </span>
               <span className='text-sm font-black text-slate-900'>
@@ -454,17 +457,17 @@ export default function MunicipalIncomePage() {
 
           {/* Other National Shares - Only show if there's data */}
           {otherSharesData.length > 0 && (
-            <div className='p-6 rounded-2xl border bg-slate-50 border-slate-100'>
-              <h3 className='text-[10px] font-bold text-slate-400 uppercase tracking-widest mb-4'>
+            <div className='rounded-2xl border border-slate-100 bg-slate-50 p-6'>
+              <h3 className='mb-4 text-[10px] font-bold tracking-widest text-slate-400 uppercase'>
                 Other Shares from National Tax Collection
               </h3>
               <div className='grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-3'>
                 {otherSharesData.map((item, idx) => (
                   <div
                     key={idx}
-                    className='p-4 bg-white rounded-xl border shadow-sm border-slate-100'
+                    className='rounded-xl border border-slate-100 bg-white p-4 shadow-sm'
                   >
-                    <p className='text-[10px] font-bold text-slate-400 uppercase tracking-widest mb-2'>
+                    <p className='mb-2 text-[10px] font-bold tracking-widest text-slate-400 uppercase'>
                       {item.name}
                     </p>
                     <p className='text-xl font-black text-slate-900'>
@@ -474,7 +477,7 @@ export default function MunicipalIncomePage() {
                 ))}
               </div>
               <div className='mt-4 text-center'>
-                <span className='text-xs font-bold uppercase text-slate-500'>
+                <span className='text-xs font-bold text-slate-500 uppercase'>
                   Total Other Shares:{' '}
                 </span>
                 <span className='text-sm font-black text-slate-900'>
@@ -489,13 +492,13 @@ export default function MunicipalIncomePage() {
         </div>
       )}
 
-      <p className='text-center text-[10px] font-bold text-slate-400 uppercase tracking-widest'>
+      <p className='text-center text-[10px] font-bold tracking-widest text-slate-400 uppercase'>
         Source:{' '}
         <a
           href='https://data.bettergov.ph/datasets/9/resources/31'
           target='_blank'
           rel='noopener noreferrer'
-          className='underline hover:text-primary-600'
+          className='hover:text-primary-600 underline'
         >
           BLFG via BetterGov.ph Open Data Portal
         </a>

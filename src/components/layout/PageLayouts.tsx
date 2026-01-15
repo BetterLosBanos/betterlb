@@ -1,4 +1,5 @@
 import { ComponentType, ReactNode } from 'react';
+
 import { cn } from '@/lib/utils';
 
 /**
@@ -15,12 +16,12 @@ export function PageHero({
   children?: ReactNode;
 }) {
   return (
-    <header className='py-8 md:py-12 text-center flex flex-col justify-center animate-in fade-in duration-700'>
-      <h1 className='text-3xl md:text-4xl font-bold text-slate-900 tracking-tight mb-4'>
+    <header className='animate-in fade-in flex flex-col justify-center py-8 text-center duration-700 md:py-12'>
+      <h1 className='mb-4 text-3xl font-bold tracking-tight text-slate-900 md:text-4xl'>
         {title}
       </h1>
       {description && (
-        <p className='text-sm md:text-base text-slate-600 max-w-2xl mx-auto leading-relaxed'>
+        <p className='mx-auto max-w-2xl text-sm leading-relaxed text-slate-600 md:text-base'>
           {description}
         </p>
       )}
@@ -44,19 +45,19 @@ export function ModuleHeader({
 }) {
   return (
     <div className='mb-8 border-b border-slate-100 pb-6'>
-      <div className='flex flex-col md:flex-row md:items-end justify-between gap-4'>
+      <div className='flex flex-col justify-between gap-4 md:flex-row md:items-end'>
         <div className='max-w-2xl'>
-          <h2 className='text-2xl font-extrabold text-slate-900 tracking-tight'>
+          <h2 className='text-2xl font-extrabold tracking-tight text-slate-900'>
             {title}
           </h2>
           {description && (
-            <p className='mt-1 text-slate-500 text-sm md:text-base'>
+            <p className='mt-1 text-sm text-slate-500 md:text-base'>
               {description}
             </p>
           )}
         </div>
         {children && (
-          <div className='shrink-0 w-full md:w-auto'>{children}</div>
+          <div className='w-full shrink-0 md:w-auto'>{children}</div>
         )}
       </div>
     </div>
@@ -84,13 +85,13 @@ export function DetailSection({
   return (
     <section
       className={cn(
-        'bg-white rounded-2xl border border-slate-200 shadow-sm overflow-hidden',
+        'overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-sm',
         className
       )}
     >
-      <div className='px-6 py-4 border-b border-slate-100 bg-slate-50/50 flex items-center gap-2'>
-        {Icon && <Icon className='w-4 h-4 text-primary-600' />}
-        <h3 className='text-[10px] font-bold text-slate-400 uppercase tracking-widest'>
+      <div className='flex items-center gap-2 border-b border-slate-100 bg-slate-50/50 px-6 py-4'>
+        {Icon && <Icon className='text-primary-600 h-4 w-4' />}
+        <h3 className='text-[10px] font-bold tracking-widest text-slate-400 uppercase'>
           {title}
         </h3>
       </div>

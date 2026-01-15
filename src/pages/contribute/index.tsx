@@ -1,39 +1,42 @@
 import { useMemo, useState } from 'react';
-import { useForm } from 'react-hook-form';
-import { useSearchParams, Link } from 'react-router-dom';
+
+import { Link, useSearchParams } from 'react-router-dom';
+
 import {
+  AlertCircle,
+  AlertTriangle,
+  CheckCircle2,
+  CheckSquare,
   ClipboardList,
   Eye,
-  AlertTriangle,
-  RotateCcw,
+  FileText,
   Github,
   Globe,
-  FileText,
-  CheckSquare,
-  Square,
-  Search,
   Loader2,
-  AlertCircle,
-  CheckCircle2,
+  RotateCcw,
+  Search,
+  Square,
 } from 'lucide-react';
+import { useForm } from 'react-hook-form';
 
-import { ModuleHeader, DetailSection } from '@/components/layout/PageLayouts';
+import { DetailSection, ModuleHeader } from '@/components/layout/PageLayouts';
 import { Badge } from '@/components/ui/Badge';
 import {
   Breadcrumb,
+  BreadcrumbHome,
   BreadcrumbItem,
   BreadcrumbLink,
   BreadcrumbList,
   BreadcrumbPage,
   BreadcrumbSeparator,
-  BreadcrumbHome,
 } from '@/components/ui/Breadcrumb';
 
-import servicesData from '@/data/services/services.json';
-import departmentsData from '@/data/directory/departments.json';
-import categoryData from '@/data/service_categories.json';
 import { toTitleCase } from '@/lib/stringUtils';
 import { cn } from '@/lib/utils';
+
+import departmentsData from '@/data/directory/departments.json';
+import categoryData from '@/data/service_categories.json';
+import servicesData from '@/data/services/services.json';
 
 // --- Types ---
 type SubmissionStatus = 'idle' | 'loading' | 'success' | 'error';
@@ -181,10 +184,10 @@ export default function ContributePage() {
 
   if (status === 'success') {
     return (
-      <div className='py-20 mx-auto max-w-2xl text-center duration-500 animate-in zoom-in-95'>
-        <div className='flex justify-center mb-6'>
-          <div className='p-4 bg-emerald-50 rounded-full ring-8 ring-emerald-50/50'>
-            <CheckCircle2 className='w-12 h-12 text-emerald-600' />
+      <div className='animate-in zoom-in-95 mx-auto max-w-2xl py-20 text-center duration-500'>
+        <div className='mb-6 flex justify-center'>
+          <div className='rounded-full bg-emerald-50 p-4 ring-8 ring-emerald-50/50'>
+            <CheckCircle2 className='h-12 w-12 text-emerald-600' />
           </div>
         </div>
         <h2 className='mb-4 text-3xl font-extrabold text-slate-900'>
@@ -194,10 +197,10 @@ export default function ContributePage() {
           Thank you for helping improve Better LB. Your contribution has been
           sent to our auditors for verification.
         </p>
-        <div className='flex flex-col gap-4 justify-center sm:flex-row'>
+        <div className='flex flex-col justify-center gap-4 sm:flex-row'>
           <Link
             to='/services'
-            className='px-8 py-3 bg-primary-600 text-white rounded-xl font-bold shadow-lg hover:bg-primary-700 transition-all min-h-[48px] flex items-center justify-center'
+            className='bg-primary-600 hover:bg-primary-700 flex min-h-[48px] items-center justify-center rounded-xl px-8 py-3 font-bold text-white shadow-lg transition-all'
           >
             Back to Services
           </Link>
@@ -206,7 +209,7 @@ export default function ContributePage() {
               setStatus('idle');
               reset();
             }}
-            className='px-8 py-3 bg-white border border-slate-200 text-slate-600 rounded-xl font-bold hover:bg-slate-50 transition-all min-h-[48px]'
+            className='min-h-[48px] rounded-xl border border-slate-200 bg-white px-8 py-3 font-bold text-slate-600 transition-all hover:bg-slate-50'
           >
             Submit Another
           </button>
@@ -216,7 +219,7 @@ export default function ContributePage() {
   }
 
   return (
-    <div className='px-4 pb-20 mx-auto space-y-6 max-w-7xl duration-500 animate-in fade-in md:px-0'>
+    <div className='animate-in fade-in mx-auto max-w-7xl space-y-6 px-4 pb-20 duration-500 md:px-0'>
       <Breadcrumb>
         <BreadcrumbList>
           <BreadcrumbItem>
@@ -253,14 +256,14 @@ export default function ContributePage() {
             <div className='space-y-6'>
               <div className='grid grid-cols-1 gap-4 md:grid-cols-2'>
                 <div className='md:col-span-2'>
-                  <label className='block mb-2 heading-label' htmlFor='service'>
+                  <label className='heading-label mb-2 block' htmlFor='service'>
                     Service Name <span className='text-secondary-600'>*</span>
                   </label>
                   <input
                     id='service'
                     {...register('service', { required: 'Name is required' })}
                     className={cn(
-                      'p-3 w-full rounded-xl border outline-none transition-all',
+                      'w-full rounded-xl border p-3 transition-all outline-none',
                       errors.service
                         ? 'border-rose-500 ring-rose-500/10'
                         : 'border-slate-200'
@@ -273,13 +276,13 @@ export default function ContributePage() {
                   )}
                 </div>
                 <div>
-                  <label className='block mb-2 heading-label' htmlFor='type'>
+                  <label className='heading-label mb-2 block' htmlFor='type'>
                     Type
                   </label>
                   <select
                     id='type'
                     {...register('type')}
-                    className='p-3 w-full bg-white rounded-xl border outline-none border-slate-200'
+                    className='w-full rounded-xl border border-slate-200 bg-white p-3 outline-none'
                   >
                     <option value='transaction'>Transactional</option>
                     <option value='information'>Informational</option>
@@ -287,7 +290,7 @@ export default function ContributePage() {
                 </div>
                 <div>
                   <label
-                    className='block mb-2 heading-label'
+                    className='heading-label mb-2 block'
                     htmlFor='categorySlug'
                   >
                     Category
@@ -295,7 +298,7 @@ export default function ContributePage() {
                   <select
                     id='categorySlug'
                     {...register('categorySlug')}
-                    className='p-3 w-full bg-white rounded-xl border outline-none border-slate-200'
+                    className='w-full rounded-xl border border-slate-200 bg-white p-3 outline-none'
                   >
                     {categoryData.categories.map(cat => (
                       <option key={cat.slug} value={cat.slug}>
@@ -307,22 +310,22 @@ export default function ContributePage() {
               </div>
 
               <div className='space-y-3'>
-                <label className='block heading-label'>
+                <label className='heading-label block'>
                   Responsible Offices{' '}
                   <span className='text-secondary-600'>*</span>
                 </label>
                 <div className='relative mb-2'>
-                  <Search className='absolute left-3 top-1/2 w-4 h-4 -translate-y-1/2 text-slate-400' />
+                  <Search className='absolute top-1/2 left-3 h-4 w-4 -translate-y-1/2 text-slate-400' />
                   <input
                     type='text'
                     placeholder='Search departments...'
-                    className='py-2 pr-4 pl-10 w-full text-sm italic bg-transparent border-b outline-none border-slate-100'
+                    className='w-full border-b border-slate-100 bg-transparent py-2 pr-4 pl-10 text-sm italic outline-none'
                     onChange={e => setOfficeSearch(e.target.value)}
                   />
                 </div>
                 <div
                   className={cn(
-                    'grid overflow-y-auto grid-cols-1 gap-2 p-4 max-h-64 rounded-2xl border md:grid-cols-2 bg-slate-50 border-slate-200 scrollbar-thin',
+                    'scrollbar-thin grid max-h-64 grid-cols-1 gap-2 overflow-y-auto rounded-2xl border border-slate-200 bg-slate-50 p-4 md:grid-cols-2',
                     errors.officeSlug && 'border-rose-500'
                   )}
                 >
@@ -341,20 +344,20 @@ export default function ContributePage() {
                         type='button'
                         onClick={() => toggleOffice(dept.slug)}
                         className={cn(
-                          'flex gap-3 items-center p-3 text-left rounded-xl border transition-all min-h-[44px]',
+                          'flex min-h-[44px] items-center gap-3 rounded-xl border p-3 text-left transition-all',
                           isChecked
-                            ? 'bg-white ring-2 shadow-sm border-primary-600 ring-primary-500/5'
-                            : 'bg-transparent border-slate-200 hover:border-slate-300'
+                            ? 'border-primary-600 ring-primary-500/5 bg-white shadow-sm ring-2'
+                            : 'border-slate-200 bg-transparent hover:border-slate-300'
                         )}
                       >
                         {isChecked ? (
-                          <CheckSquare className='w-4 h-4 text-primary-600 shrink-0' />
+                          <CheckSquare className='text-primary-600 h-4 w-4 shrink-0' />
                         ) : (
-                          <Square className='w-4 h-4 text-slate-300 shrink-0' />
+                          <Square className='h-4 w-4 shrink-0 text-slate-300' />
                         )}
                         <span
                           className={cn(
-                            'text-xs font-bold leading-tight',
+                            'text-xs leading-tight font-bold',
                             isChecked ? 'text-primary-900' : 'text-slate-600'
                           )}
                         >
@@ -372,7 +375,7 @@ export default function ContributePage() {
             <div className='space-y-4'>
               <div>
                 <label
-                  className='block mb-2 heading-label'
+                  className='heading-label mb-2 block'
                   htmlFor='description'
                 >
                   Description
@@ -380,23 +383,23 @@ export default function ContributePage() {
                 <textarea
                   id='description'
                   {...register('description')}
-                  className='p-3 w-full h-24 text-sm rounded-xl border outline-none border-slate-200'
+                  className='h-24 w-full rounded-xl border border-slate-200 p-3 text-sm outline-none'
                 />
               </div>
               <div className='grid grid-cols-1 gap-4 md:grid-cols-2'>
                 <div>
-                  <label className='block mb-2 heading-label' htmlFor='steps'>
+                  <label className='heading-label mb-2 block' htmlFor='steps'>
                     Steps (New line per item)
                   </label>
                   <textarea
                     id='steps'
                     {...register('steps')}
-                    className='p-3 w-full h-48 font-mono text-xs rounded-xl border outline-none border-slate-200'
+                    className='h-48 w-full rounded-xl border border-slate-200 p-3 font-mono text-xs outline-none'
                   />
                 </div>
                 <div>
                   <label
-                    className='block mb-2 heading-label'
+                    className='heading-label mb-2 block'
                     htmlFor='requirements'
                   >
                     Requirements (New line per item)
@@ -404,7 +407,7 @@ export default function ContributePage() {
                   <textarea
                     id='requirements'
                     {...register('requirements')}
-                    className='p-3 w-full h-48 font-mono text-xs rounded-xl border outline-none border-slate-200'
+                    className='h-48 w-full rounded-xl border border-slate-200 p-3 font-mono text-xs outline-none'
                   />
                 </div>
               </div>
@@ -414,7 +417,7 @@ export default function ContributePage() {
           <DetailSection title='Verification Info' icon={Globe}>
             <div className='space-y-4'>
               <div>
-                <label className='block mb-2 heading-label' htmlFor='source'>
+                <label className='heading-label mb-2 block' htmlFor='source'>
                   Official Source Link{' '}
                   <span className='text-secondary-600'>*</span>
                 </label>
@@ -422,19 +425,19 @@ export default function ContributePage() {
                   id='source'
                   {...register('source', { required: 'Link required' })}
                   className={cn(
-                    'p-3 w-full text-sm rounded-xl border outline-none border-slate-200',
+                    'w-full rounded-xl border border-slate-200 p-3 text-sm outline-none',
                     errors.source && 'border-rose-500'
                   )}
                 />
               </div>
               <div>
-                <label className='block mb-2 heading-label' htmlFor='notes'>
+                <label className='heading-label mb-2 block' htmlFor='notes'>
                   Internal Notes
                 </label>
                 <textarea
                   id='notes'
                   {...register('notes')}
-                  className='p-3 w-full h-20 text-sm rounded-xl border outline-none border-slate-200'
+                  className='h-20 w-full rounded-xl border border-slate-200 p-3 text-sm outline-none'
                 />
               </div>
             </div>
@@ -444,30 +447,30 @@ export default function ContributePage() {
             <button
               type='submit'
               disabled={status === 'loading'}
-              className='flex-1 py-4 bg-primary-600 text-white rounded-2xl font-bold flex items-center justify-center gap-2 hover:bg-primary-700 shadow-xl transition-all min-h-[48px] disabled:opacity-50'
+              className='bg-primary-600 hover:bg-primary-700 flex min-h-[48px] flex-1 items-center justify-center gap-2 rounded-2xl py-4 font-bold text-white shadow-xl transition-all disabled:opacity-50'
             >
               {status === 'loading' ? (
                 <>
-                  <Loader2 className='w-4 h-4 animate-spin' /> Sending...
+                  <Loader2 className='h-4 w-4 animate-spin' /> Sending...
                 </>
               ) : (
                 <>
-                  <Github className='w-4 h-4' /> Submit to Audit
+                  <Github className='h-4 w-4' /> Submit to Audit
                 </>
               )}
             </button>
             <button
               type='button'
               onClick={() => reset()}
-              className='flex gap-2 justify-center items-center px-6 py-4 rounded-2xl border transition-all border-slate-200 text-slate-400 hover:bg-slate-50 min-h-[48px]'
+              className='flex min-h-[48px] items-center justify-center gap-2 rounded-2xl border border-slate-200 px-6 py-4 text-slate-400 transition-all hover:bg-slate-50'
             >
-              <RotateCcw className='w-4 h-4' /> Reset
+              <RotateCcw className='h-4 w-4' /> Reset
             </button>
           </div>
 
           {status === 'error' && (
-            <div className='flex gap-3 items-center p-4 text-rose-800 bg-rose-50 rounded-xl border border-rose-100'>
-              <AlertCircle className='w-5 h-5 shrink-0' />
+            <div className='flex items-center gap-3 rounded-xl border border-rose-100 bg-rose-50 p-4 text-rose-800'>
+              <AlertCircle className='h-5 w-5 shrink-0' />
               <p className='text-sm font-bold'>
                 Error: {errorMessage || 'Submission failed'}
               </p>
@@ -475,11 +478,11 @@ export default function ContributePage() {
           )}
         </form>
 
-        <aside className='space-y-6 lg:col-span-5 lg:sticky lg:top-32 h-fit'>
-          <h3 className='flex gap-2 items-center heading-label'>
-            <Eye className='w-3 h-3' /> Live Preview
+        <aside className='h-fit space-y-6 lg:sticky lg:top-32 lg:col-span-5'>
+          <h3 className='heading-label flex items-center gap-2'>
+            <Eye className='h-3 w-3' /> Live Preview
           </h3>
-          <div className='p-8 text-white rounded-3xl ring-4 shadow-2xl bg-slate-900 ring-primary-500/10 min-h-[200px]'>
+          <div className='ring-primary-500/10 min-h-[200px] rounded-3xl bg-slate-900 p-8 text-white shadow-2xl ring-4'>
             <div className='relative z-10 space-y-4'>
               <div className='flex gap-2'>
                 <Badge variant='primary'>
@@ -491,16 +494,16 @@ export default function ContributePage() {
                   Audit Pending
                 </Badge>
               </div>
-              <h4 className='text-2xl font-bold leading-tight'>
+              <h4 className='text-2xl leading-tight font-bold'>
                 {previewService || 'Service Title'}
               </h4>
-              <p className='text-sm italic leading-relaxed text-slate-400'>
+              <p className='text-sm leading-relaxed text-slate-400 italic'>
                 &quot;{previewDescription || 'Description preview...'}&quot;
               </p>
             </div>
           </div>
-          <div className='flex gap-4 p-5 bg-amber-50 rounded-2xl border border-amber-100'>
-            <AlertTriangle className='w-6 h-6 text-amber-600 shrink-0' />
+          <div className='flex gap-4 rounded-2xl border border-amber-100 bg-amber-50 p-5'>
+            <AlertTriangle className='h-6 w-6 shrink-0 text-amber-600' />
             <p className='text-xs leading-relaxed text-amber-800'>
               <strong>Note:</strong> All submissions are reviewed manually.
               Provide an official source link to avoid rejection.

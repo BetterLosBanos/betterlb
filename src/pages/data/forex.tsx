@@ -1,18 +1,19 @@
-import { useState, useEffect, ComponentType, FC } from 'react';
-import * as LucideIcons from 'lucide-react';
-import { fetchForexData, getCurrencyIconName } from '../../lib/forex';
-import { ForexRate } from '../../types';
+import { ComponentType, FC, useEffect, useState } from 'react';
 
+import * as LucideIcons from 'lucide-react';
 import {
-  LineChart,
+  CartesianGrid,
+  Legend,
   Line,
+  LineChart,
+  ResponsiveContainer,
+  Tooltip,
   XAxis,
   YAxis,
-  CartesianGrid,
-  Tooltip,
-  ResponsiveContainer,
-  Legend,
 } from 'recharts';
+
+import { fetchForexData, getCurrencyIconName } from '../../lib/forex';
+import { ForexRate } from '../../types';
 
 const ForexPage: FC = () => {
   const [forexRates, setForexRates] = useState<ForexRate[]>([]);
@@ -185,21 +186,21 @@ const ForexPage: FC = () => {
 
   return (
     <div className='min-h-screen bg-gray-50'>
-      <div className='container mx-auto py-8 px-4'>
+      <div className='container mx-auto px-4 py-8'>
         {isLoading ? (
-          <div className='flex justify-center items-center h-64'>
-            <div className='animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-primary-600'></div>
+          <div className='flex h-64 items-center justify-center'>
+            <div className='border-primary-600 h-12 w-12 animate-spin rounded-full border-t-2 border-b-2'></div>
           </div>
         ) : error ? (
-          <div className='bg-red-100 border-l-4 border-red-500 text-red-700 p-4 rounded-sm shadow-md'>
+          <div className='rounded-sm border-l-4 border-red-500 bg-red-100 p-4 text-red-700 shadow-md'>
             <p className='font-bold'>Error</p>
             <p>{error}</p>
           </div>
         ) : (
-          <div className='grid grid-cols-1 lg:grid-cols-4 gap-8'>
+          <div className='grid grid-cols-1 gap-8 lg:grid-cols-4'>
             {/* Currency Selection Panel */}
-            <div className='bg-white rounded-lg shadow-md overflow-hidden'>
-              <div className='sticky top-0 bg-white p-6 pb-4 border-b border-gray-100 z-10'>
+            <div className='overflow-hidden rounded-lg bg-white shadow-md'>
+              <div className='sticky top-0 z-10 border-b border-gray-100 bg-white p-6 pb-4'>
                 {!isSearchOpen ? (
                   <div className='flex items-center justify-between'>
                     <h2 className='text-xl font-bold text-gray-800'>
@@ -207,14 +208,14 @@ const ForexPage: FC = () => {
                     </h2>
                     <button
                       onClick={() => setIsSearchOpen(true)}
-                      className='p-2 text-gray-500 hover:text-gray-700 hover:bg-gray-100 rounded-md transition-colors'
+                      className='rounded-md p-2 text-gray-500 transition-colors hover:bg-gray-100 hover:text-gray-700'
                     >
                       <LucideIcons.Search className='h-5 w-5' />
                     </button>
                   </div>
                 ) : (
                   <div className='relative'>
-                    <div className='absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none'>
+                    <div className='pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3'>
                       <LucideIcons.Search className='h-5 w-5 text-gray-400' />
                     </div>
                     <input
@@ -228,9 +229,9 @@ const ForexPage: FC = () => {
                         }
                       }}
                       autoFocus
-                      className='block w-full pl-10 pr-10 py-2 border border-gray-300 rounded-md leading-5 bg-white placeholder-gray-500 focus:outline-none focus:placeholder-gray-400 focus:ring-1 focus:ring-primary-500 focus:border-primary-500 sm:text-sm'
+                      className='focus:ring-primary-500 focus:border-primary-500 block w-full rounded-md border border-gray-300 bg-white py-2 pr-10 pl-10 leading-5 placeholder-gray-500 focus:placeholder-gray-400 focus:ring-1 focus:outline-none sm:text-sm'
                     />
-                    <div className='absolute inset-y-0 right-0 pr-3 flex items-center'>
+                    <div className='absolute inset-y-0 right-0 flex items-center pr-3'>
                       <button
                         onClick={() => {
                           setSearchTerm('');
@@ -244,14 +245,14 @@ const ForexPage: FC = () => {
                   </div>
                 )}
               </div>
-              <div className='h-[520px] overflow-y-auto scrollbar-thin px-6 pb-6'>
+              <div className='scrollbar-thin h-[520px] overflow-y-auto px-6 pb-6'>
                 {filteredForexRates.length > 0 ? (
                   <div className='space-y-2 pt-2'>
                     {filteredForexRates.map(rate => (
                       <button
                         key={rate.code}
                         onClick={() => setSelectedCurrency(rate.code)}
-                        className={`w-full text-left px-4 py-3 rounded-md transition-all flex items-center justify-between cursor-pointer ${
+                        className={`flex w-full cursor-pointer items-center justify-between rounded-md px-4 py-3 text-left transition-all ${
                           selectedCurrency === rate.code
                             ? 'bg-primary-100 text-primary-800'
                             : 'hover:bg-gray-100'
@@ -275,12 +276,12 @@ const ForexPage: FC = () => {
                     ))}
                   </div>
                 ) : (
-                  <div className='flex flex-col items-center justify-center h-full text-center pt-8'>
-                    <LucideIcons.SearchX className='h-12 w-12 text-gray-400 mb-4' />
-                    <h3 className='text-lg font-medium text-gray-600 mb-2'>
+                  <div className='flex h-full flex-col items-center justify-center pt-8 text-center'>
+                    <LucideIcons.SearchX className='mb-4 h-12 w-12 text-gray-400' />
+                    <h3 className='mb-2 text-lg font-medium text-gray-600'>
                       No currencies found
                     </h3>
-                    <p className='text-sm text-gray-500 mb-4'>
+                    <p className='mb-4 text-sm text-gray-500'>
                       {searchTerm
                         ? `No currencies match "${searchTerm}"`
                         : 'No currencies available'}
@@ -301,10 +302,10 @@ const ForexPage: FC = () => {
             {/* Currency Details and Chart */}
             {selectedCurrencyData && (
               <div className='lg:col-span-3'>
-                <div className='bg-white rounded-lg shadow-md p-6 mb-8'>
-                  <div className='flex flex-col md:flex-row justify-between items-start md:items-center mb-6'>
-                    <div className='flex items-center mb-4 md:mb-0'>
-                      <div className='bg-primary-100 p-3 rounded-full mr-4'>
+                <div className='mb-8 rounded-lg bg-white p-6 shadow-md'>
+                  <div className='mb-6 flex flex-col items-start justify-between md:flex-row md:items-center'>
+                    <div className='mb-4 flex items-center md:mb-0'>
+                      <div className='bg-primary-100 mr-4 rounded-full p-3'>
                         {getCurrencyIcon(
                           selectedCurrencyData.code,
                           'h-8 w-8 text-primary-600'
@@ -319,8 +320,8 @@ const ForexPage: FC = () => {
                         </p>
                       </div>
                     </div>
-                    <div className='bg-gray-100 rounded-lg p-4'>
-                      <div className='text-sm text-gray-800 mb-1'>
+                    <div className='rounded-lg bg-gray-100 p-4'>
+                      <div className='mb-1 text-sm text-gray-800'>
                         Current Rate
                       </div>
                       <div className='text-3xl font-bold text-gray-800'>
@@ -335,12 +336,12 @@ const ForexPage: FC = () => {
                   </div>
 
                   {/* Timeframe Selection */}
-                  <div className='flex space-x-2 mb-4'>
+                  <div className='mb-4 flex space-x-2'>
                     {(['1W', '1M', '3M', '6M', '1Y'] as const).map(period => (
                       <button
                         key={period}
                         onClick={() => setTimeframe(period)}
-                        className={`px-3 py-1 text-sm rounded-md ${
+                        className={`rounded-md px-3 py-1 text-sm ${
                           timeframe === period
                             ? 'bg-primary-600 text-white'
                             : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
@@ -352,7 +353,7 @@ const ForexPage: FC = () => {
                   </div>
 
                   {/* Chart */}
-                  <div className='h-80 hidden'>
+                  <div className='hidden h-80'>
                     <ResponsiveContainer width='100%' height='100%'>
                       <LineChart
                         data={historicalData}
@@ -406,22 +407,22 @@ const ForexPage: FC = () => {
                 </div>
 
                 {/* Conversion Calculator */}
-                <div className='bg-white rounded-lg shadow-md p-6'>
-                  <h3 className='text-xl font-bold mb-4 text-gray-800'>
+                <div className='rounded-lg bg-white p-6 shadow-md'>
+                  <h3 className='mb-4 text-xl font-bold text-gray-800'>
                     Currency Converter
                   </h3>
-                  <div className='grid grid-cols-1 md:grid-cols-2 gap-6'>
+                  <div className='grid grid-cols-1 gap-6 md:grid-cols-2'>
                     <div>
-                      <label className='block text-sm font-medium text-gray-700 mb-2'>
+                      <label className='mb-2 block text-sm font-medium text-gray-700'>
                         Philippine Peso (PHP)
                       </label>
                       <div className='relative rounded-md shadow-xs'>
-                        <div className='absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none'>
+                        <div className='pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3'>
                           <span className='text-gray-800 sm:text-sm'>₱</span>
                         </div>
                         <input
                           type='number'
-                          className='focus:ring-primary-500 focus:border-primary-500 block w-full pl-7 pr-12 sm:text-sm border-gray-300 rounded-md py-3'
+                          className='focus:ring-primary-500 focus:border-primary-500 block w-full rounded-md border-gray-300 py-3 pr-12 pl-7 sm:text-sm'
                           placeholder='0.00'
                           value={phpAmount}
                           onChange={e => setPhpAmount(e.target.value)}
@@ -429,12 +430,12 @@ const ForexPage: FC = () => {
                       </div>
                     </div>
                     <div>
-                      <label className='block text-sm font-medium text-gray-700 mb-2'>
+                      <label className='mb-2 block text-sm font-medium text-gray-700'>
                         {selectedCurrencyData.code} (
                         {formatCurrencyName(selectedCurrencyData.currency)})
                       </label>
                       <div className='relative rounded-md shadow-xs'>
-                        <div className='absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none'>
+                        <div className='pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3'>
                           <span className='text-gray-800 sm:text-sm'>
                             {selectedCurrencyData.code === 'USD'
                               ? '$'
@@ -449,7 +450,7 @@ const ForexPage: FC = () => {
                         </div>
                         <input
                           type='text'
-                          className='focus:ring-primary-500 focus:border-primary-500 block w-full pl-7 pr-12 sm:text-sm border-gray-300 rounded-md py-3 bg-gray-50'
+                          className='focus:ring-primary-500 focus:border-primary-500 block w-full rounded-md border-gray-300 bg-gray-50 py-3 pr-12 pl-7 sm:text-sm'
                           readOnly
                           value={
                             selectedCurrencyData.rate && phpAmount
@@ -481,19 +482,19 @@ const ForexPage: FC = () => {
         )}
 
         {/* Forex Information Section */}
-        <div className='mt-12 bg-white rounded-lg shadow-md p-6'>
-          <h2 className='text-2xl font-bold mb-4 text-gray-800'>
+        <div className='mt-12 rounded-lg bg-white p-6 shadow-md'>
+          <h2 className='mb-4 text-2xl font-bold text-gray-800'>
             About Foreign Exchange Rates
           </h2>
-          <p className='text-gray-800 mb-4'>
+          <p className='mb-4 text-gray-800'>
             The foreign exchange rates displayed on this page are sourced from
             the Bangko Sentral ng Pilipinas (BSP), the central bank of the
             Philippines. These rates represent the official reference rates for
             the Philippine Peso against major world currencies.
           </p>
-          <div className='grid grid-cols-1 md:grid-cols-2 gap-6 mt-6'>
-            <div className='border-l-4 border-primary-500 pl-4'>
-              <h3 className='text-lg font-semibold text-gray-800 mb-2'>
+          <div className='mt-6 grid grid-cols-1 gap-6 md:grid-cols-2'>
+            <div className='border-primary-500 border-l-4 pl-4'>
+              <h3 className='mb-2 text-lg font-semibold text-gray-800'>
                 Understanding Exchange Rates
               </h3>
               <p className='text-gray-800'>
@@ -503,8 +504,8 @@ const ForexPage: FC = () => {
                 foreign currency.
               </p>
             </div>
-            <div className='border-l-4 border-primary-500 pl-4'>
-              <h3 className='text-lg font-semibold text-gray-800 mb-2'>
+            <div className='border-primary-500 border-l-4 pl-4'>
+              <h3 className='mb-2 text-lg font-semibold text-gray-800'>
                 Official BSP Rates
               </h3>
               <p className='text-gray-800'>

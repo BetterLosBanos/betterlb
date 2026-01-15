@@ -1,4 +1,5 @@
 import { Page } from '@playwright/test';
+
 import { mobileCheck } from './device';
 
 /**

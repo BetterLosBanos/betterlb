@@ -1,6 +1,8 @@
-import { ReactNode, useState, useEffect } from 'react';
-import { MenuIcon, XIcon } from 'lucide-react';
+import { ReactNode, useEffect, useState } from 'react';
+
 import { useLocation } from 'react-router-dom';
+
+import { MenuIcon, XIcon } from 'lucide-react';
 
 interface GovernmentPageHeaderProps {
   title: string;
@@ -17,14 +19,14 @@ export function GovernmentPageHeader({
 }: GovernmentPageHeaderProps) {
   return (
     <div
-      className={`flex flex-col md:flex-row md:items-center md:justify-between gap-4 mb-6 md:mb-8 ${className}`}
+      className={`mb-6 flex flex-col gap-4 md:mb-8 md:flex-row md:items-center md:justify-between ${className}`}
     >
       <div>
-        <h1 className='text-2xl md:text-3xl font-bold text-gray-900 mb-2'>
+        <h1 className='mb-2 text-2xl font-bold text-gray-900 md:text-3xl'>
           {title}
         </h1>
         {subtitle && (
-          <p className='text-sm md:text-base text-gray-800'>{subtitle}</p>
+          <p className='text-sm text-gray-800 md:text-base'>{subtitle}</p>
         )}
       </div>
       {actions && <div className='shrink-0'>{actions}</div>}
@@ -72,13 +74,13 @@ export default function GovernmentIndexPageContainer({
 
   return (
     <div className={`min-h-screen md:bg-gray-50 ${className}`}>
-      <div className='container mx-auto sm:px-4 py-6 md:py-8'>
+      <div className='container mx-auto py-6 sm:px-4 md:py-8'>
         {/* Mobile Sidebar Toggle */}
         {sidebar && (
-          <div className='md:hidden mb-4'>
+          <div className='mb-4 md:hidden'>
             <button
               onClick={() => setSidebarOpen(!sidebarOpen)}
-              className='flex items-center justify-between w-full px-4 py-3 bg-white rounded-lg shadow-xs text-gray-900 font-medium border'
+              className='flex w-full items-center justify-between rounded-lg border bg-white px-4 py-3 font-medium text-gray-900 shadow-xs'
             >
               <span>Menu</span>
               {sidebarOpen ? (
@@ -94,15 +96,15 @@ export default function GovernmentIndexPageContainer({
             <aside
               className={`${
                 sidebarOpen ? 'block' : 'hidden'
-              } md:block mb-6 md:mb-0 shrink-0 md:sticky md:top-[8.25rem] md:self-start`}
+              } mb-6 shrink-0 md:sticky md:top-[8.25rem] md:mb-0 md:block md:self-start`}
             >
               {sidebar}
             </aside>
           )}
-          <main className='flex-1 min-w-0'>
+          <main className='min-w-0 flex-1'>
             <div
               id='government-content'
-              className='bg-white rounded-lg border shadow-xs p-4 md:p-8'
+              className='rounded-lg border bg-white p-4 shadow-xs md:p-8'
             >
               {children}
             </div>

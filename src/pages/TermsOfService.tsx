@@ -1,13 +1,14 @@
 import { FC } from 'react';
-import { Helmet } from 'react-helmet-async';
+
 import {
+  AlertTriangle,
+  ExternalLink,
+  FileText,
+  Mail,
   Scale,
   Shield,
-  FileText,
-  AlertTriangle,
-  Mail,
-  ExternalLink,
 } from 'lucide-react';
+import { Helmet } from 'react-helmet-async';
 
 const TermsOfService: FC = () => {
   const currentDate = new Date().toLocaleDateString('en-US', {
@@ -39,15 +40,15 @@ const TermsOfService: FC = () => {
       </Helmet>
 
       {/* Header Section */}
-      <section className='bg-gradient-to-r from-primary-600 to-blue-700 text-white py-16'>
+      <section className='from-primary-600 bg-gradient-to-r to-blue-700 py-16 text-white'>
         <div className='container mx-auto px-4'>
-          <div className='text-center max-w-4xl mx-auto'>
-            <div className='flex justify-center mb-6'>
-              <div className='p-4 bg-white/20 rounded-full backdrop-blur-sm'>
+          <div className='mx-auto max-w-4xl text-center'>
+            <div className='mb-6 flex justify-center'>
+              <div className='rounded-full bg-white/20 p-4 backdrop-blur-sm'>
                 <Scale className='h-12 w-12 text-white' />
               </div>
             </div>
-            <h1 className='text-4xl md:text-5xl font-bold mb-4'>
+            <h1 className='mb-4 text-4xl font-bold md:text-5xl'>
               Terms of Service
             </h1>
             <p className='text-xl opacity-90'>Last Updated: {currentDate}</p>
@@ -56,17 +57,17 @@ const TermsOfService: FC = () => {
       </section>
 
       {/* Main Content */}
-      <div className='container mx-auto px-4 py-12 max-w-4xl'>
-        <div className='bg-white rounded-lg shadow-lg p-8 space-y-8'>
+      <div className='container mx-auto max-w-4xl px-4 py-12'>
+        <div className='space-y-8 rounded-lg bg-white p-8 shadow-lg'>
           {/* Acceptance of Terms */}
           <section>
-            <div className='flex items-center gap-3 mb-4'>
-              <FileText className='h-6 w-6 text-primary-600' />
+            <div className='mb-4 flex items-center gap-3'>
+              <FileText className='text-primary-600 h-6 w-6' />
               <h2 className='text-2xl font-bold text-gray-900'>
                 Acceptance of Terms
               </h2>
             </div>
-            <p className='text-gray-700 leading-relaxed'>
+            <p className='leading-relaxed text-gray-700'>
               By accessing and using this website, you accept and agree to be
               bound by the terms and provisions of this agreement.
             </p>
@@ -74,13 +75,13 @@ const TermsOfService: FC = () => {
 
           {/* Public Domain Content */}
           <section>
-            <div className='flex items-center gap-3 mb-4'>
-              <Shield className='h-6 w-6 text-primary-600' />
+            <div className='mb-4 flex items-center gap-3'>
+              <Shield className='text-primary-600 h-6 w-6' />
               <h2 className='text-2xl font-bold text-gray-900'>
                 Public Domain Content and Volunteer Operation
               </h2>
             </div>
-            <div className='space-y-4 text-gray-700 leading-relaxed'>
+            <div className='space-y-4 leading-relaxed text-gray-700'>
               <p>
                 This website and all its content are in the public domain and
                 operated entirely by volunteers. All information, data,
@@ -98,19 +99,19 @@ const TermsOfService: FC = () => {
 
           {/* "AS IS" Disclaimer */}
           <section>
-            <div className='flex items-center gap-3 mb-4'>
+            <div className='mb-4 flex items-center gap-3'>
               <AlertTriangle className='h-6 w-6 text-amber-600' />
               <h2 className='text-2xl font-bold text-gray-900'>
                 &quot;AS IS&quot; Disclaimer
               </h2>
             </div>
-            <div className='bg-amber-50 border-l-4 border-amber-400 p-4 mb-4'>
-              <p className='font-semibold text-amber-800 mb-2'>
+            <div className='mb-4 border-l-4 border-amber-400 bg-amber-50 p-4'>
+              <p className='mb-2 font-semibold text-amber-800'>
                 ALL INFORMATION ON THIS WEBSITE IS PROVIDED &quot;AS IS&quot;
                 WITHOUT WARRANTY OF ANY KIND, EITHER EXPRESS OR IMPLIED,
                 INCLUDING BUT NOT LIMITED TO:
               </p>
-              <ul className='list-disc list-inside space-y-1 text-amber-700'>
+              <ul className='list-inside list-disc space-y-1 text-amber-700'>
                 <li>Warranties of merchantability</li>
                 <li>Fitness for a particular purpose</li>
                 <li>Non-infringement of intellectual property rights</li>
@@ -124,17 +125,17 @@ const TermsOfService: FC = () => {
 
           {/* Limitation of Liability */}
           <section>
-            <h2 className='text-2xl font-bold text-gray-900 mb-4'>
+            <h2 className='mb-4 text-2xl font-bold text-gray-900'>
               Limitation of Liability
             </h2>
-            <div className='space-y-4 text-gray-700 leading-relaxed'>
+            <div className='space-y-4 leading-relaxed text-gray-700'>
               <p>
                 Under no circumstances shall the website operators,
                 contributors, or affiliated parties be liable for any direct,
                 indirect, incidental, special, consequential, or punitive
                 damages arising from:
               </p>
-              <ul className='list-disc list-inside space-y-1 ml-4'>
+              <ul className='ml-4 list-inside list-disc space-y-1'>
                 <li>Your use of this website</li>
                 <li>Any errors or omissions in the content</li>
                 <li>
@@ -154,12 +155,12 @@ const TermsOfService: FC = () => {
 
           {/* User Responsibilities */}
           <section>
-            <h2 className='text-2xl font-bold text-gray-900 mb-4'>
+            <h2 className='mb-4 text-2xl font-bold text-gray-900'>
               User Responsibilities and Research Guidelines
             </h2>
-            <div className='space-y-4 text-gray-700 leading-relaxed'>
+            <div className='space-y-4 leading-relaxed text-gray-700'>
               <p className='font-semibold'>Users are solely responsible for:</p>
-              <ul className='list-disc list-inside space-y-1 ml-4'>
+              <ul className='ml-4 list-inside list-disc space-y-1'>
                 <li>
                   <strong>Independent Verification:</strong> Conducting their
                   own research and verification of all information obtained from
@@ -185,11 +186,11 @@ const TermsOfService: FC = () => {
                 </li>
               </ul>
 
-              <div className='bg-blue-50 border-l-4 border-blue-400 p-4 mt-4'>
-                <p className='font-semibold text-blue-800 mb-2'>
+              <div className='mt-4 border-l-4 border-blue-400 bg-blue-50 p-4'>
+                <p className='mb-2 font-semibold text-blue-800'>
                   We strongly encourage users to:
                 </p>
-                <ul className='list-disc list-inside space-y-1 text-blue-700'>
+                <ul className='list-inside list-disc space-y-1 text-blue-700'>
                   <li>
                     Use the source links and references provided on each page to
                     access primary documents and official sources
@@ -213,10 +214,10 @@ const TermsOfService: FC = () => {
 
           {/* No Professional Advice */}
           <section>
-            <h2 className='text-2xl font-bold text-gray-900 mb-4'>
+            <h2 className='mb-4 text-2xl font-bold text-gray-900'>
               No Professional Advice
             </h2>
-            <p className='text-gray-700 leading-relaxed'>
+            <p className='leading-relaxed text-gray-700'>
               Information on this website is not intended as professional advice
               (legal, medical, financial, or otherwise). Users should consult
               qualified professionals for specific advice related to their
@@ -226,19 +227,19 @@ const TermsOfService: FC = () => {
 
           {/* Source Links */}
           <section>
-            <div className='flex items-center gap-3 mb-4'>
-              <ExternalLink className='h-6 w-6 text-primary-600' />
+            <div className='mb-4 flex items-center gap-3'>
+              <ExternalLink className='text-primary-600 h-6 w-6' />
               <h2 className='text-2xl font-bold text-gray-900'>
                 Source Links and External References
               </h2>
             </div>
-            <div className='space-y-4 text-gray-700 leading-relaxed'>
+            <div className='space-y-4 leading-relaxed text-gray-700'>
               <p>
                 This website provides links to official sources, government
                 documents, and other authoritative materials. Users are strongly
                 encouraged to:
               </p>
-              <ul className='list-disc list-inside space-y-1 ml-4'>
+              <ul className='ml-4 list-inside list-disc space-y-1'>
                 <li>Click through and review all source links provided</li>
                 <li>
                   Access primary documents and official publications referenced
@@ -256,12 +257,12 @@ const TermsOfService: FC = () => {
 
           {/* Website Availability */}
           <section>
-            <h2 className='text-2xl font-bold text-gray-900 mb-4'>
+            <h2 className='mb-4 text-2xl font-bold text-gray-900'>
               Website Availability
             </h2>
-            <div className='space-y-4 text-gray-700 leading-relaxed'>
+            <div className='space-y-4 leading-relaxed text-gray-700'>
               <p>We make no guarantee that this website will be:</p>
-              <ul className='list-disc list-inside space-y-1 ml-4'>
+              <ul className='ml-4 list-inside list-disc space-y-1'>
                 <li>Available at all times</li>
                 <li>Error-free or uninterrupted</li>
                 <li>Free from technical problems</li>
@@ -272,10 +273,10 @@ const TermsOfService: FC = () => {
 
           {/* Indemnification */}
           <section>
-            <h2 className='text-2xl font-bold text-gray-900 mb-4'>
+            <h2 className='mb-4 text-2xl font-bold text-gray-900'>
               Indemnification
             </h2>
-            <p className='text-gray-700 leading-relaxed'>
+            <p className='leading-relaxed text-gray-700'>
               Users agree to indemnify and hold harmless the website operators
               from any claims, damages, losses, or expenses arising from their
               use of the website.
@@ -284,10 +285,10 @@ const TermsOfService: FC = () => {
 
           {/* Modifications */}
           <section>
-            <h2 className='text-2xl font-bold text-gray-900 mb-4'>
+            <h2 className='mb-4 text-2xl font-bold text-gray-900'>
               Modifications
             </h2>
-            <p className='text-gray-700 leading-relaxed'>
+            <p className='leading-relaxed text-gray-700'>
               These terms may be modified at any time without notice. Continued
               use of the website constitutes acceptance of any modifications.
             </p>
@@ -295,10 +296,10 @@ const TermsOfService: FC = () => {
 
           {/* Governing Law */}
           <section>
-            <h2 className='text-2xl font-bold text-gray-900 mb-4'>
+            <h2 className='mb-4 text-2xl font-bold text-gray-900'>
               Governing Law
             </h2>
-            <p className='text-gray-700 leading-relaxed'>
+            <p className='leading-relaxed text-gray-700'>
               These terms are governed by the laws of the Republic of the
               Philippines without regard to conflict of law principles.
             </p>
@@ -306,10 +307,10 @@ const TermsOfService: FC = () => {
 
           {/* Severability */}
           <section>
-            <h2 className='text-2xl font-bold text-gray-900 mb-4'>
+            <h2 className='mb-4 text-2xl font-bold text-gray-900'>
               Severability
             </h2>
-            <p className='text-gray-700 leading-relaxed'>
+            <p className='leading-relaxed text-gray-700'>
               If any provision of these terms is found to be unenforceable, the
               remaining provisions will continue in full force and effect.
             </p>
@@ -317,24 +318,24 @@ const TermsOfService: FC = () => {
 
           {/* Content Concerns */}
           <section>
-            <h2 className='text-2xl font-bold text-gray-900 mb-4'>
+            <h2 className='mb-4 text-2xl font-bold text-gray-900'>
               Content Concerns and Takedown Requests
             </h2>
-            <div className='space-y-4 text-gray-700 leading-relaxed'>
+            <div className='space-y-4 leading-relaxed text-gray-700'>
               <p>
                 While we strive to provide accurate public domain information,
                 we recognize that errors, outdated information, or other
                 concerns may arise.
               </p>
 
-              <div className='bg-gray-50 border border-gray-200 rounded-lg p-4'>
-                <h3 className='font-semibold text-gray-900 mb-2'>
+              <div className='rounded-lg border border-gray-200 bg-gray-50 p-4'>
+                <h3 className='mb-2 font-semibold text-gray-900'>
                   Reporting Concerning Content:
                 </h3>
                 <p className='mb-2'>
                   If you believe content on this website is:
                 </p>
-                <ul className='list-disc list-inside space-y-1 ml-4 mb-4'>
+                <ul className='mb-4 ml-4 list-inside list-disc space-y-1'>
                   <li>Factually incorrect or misleading</li>
                   <li>Potentially harmful or dangerous</li>
                   <li>Violates applicable laws</li>
@@ -344,8 +345,8 @@ const TermsOfService: FC = () => {
                   <li>Infringes on legitimate rights</li>
                 </ul>
 
-                <div className='flex items-center gap-2 mb-2'>
-                  <Mail className='h-5 w-5 text-primary-600' />
+                <div className='mb-2 flex items-center gap-2'>
+                  <Mail className='text-primary-600 h-5 w-5' />
                   <p className='font-semibold'>
                     Please contact us at:{' '}
                     <a
@@ -358,7 +359,7 @@ const TermsOfService: FC = () => {
                 </div>
 
                 <p className='mb-2'>Please include:</p>
-                <ul className='list-disc list-inside space-y-1 ml-4'>
+                <ul className='ml-4 list-inside list-disc space-y-1'>
                   <li>Specific URL or page location</li>
                   <li>Clear description of the concern</li>
                   <li>Supporting documentation or evidence where applicable</li>
@@ -366,11 +367,11 @@ const TermsOfService: FC = () => {
                 </ul>
               </div>
 
-              <div className='bg-green-50 border border-green-200 rounded-lg p-4'>
-                <h3 className='font-semibold text-green-900 mb-2'>
+              <div className='rounded-lg border border-green-200 bg-green-50 p-4'>
+                <h3 className='mb-2 font-semibold text-green-900'>
                   Our Response Process:
                 </h3>
-                <ul className='list-disc list-inside space-y-1 text-green-800'>
+                <ul className='list-inside list-disc space-y-1 text-green-800'>
                   <li>We will review all legitimate concerns in good faith</li>
                   <li>Response time may vary due to our volunteer nature</li>
                   <li>
@@ -388,7 +389,7 @@ const TermsOfService: FC = () => {
                 </ul>
               </div>
 
-              <div className='bg-red-50 border border-red-200 rounded-lg p-4'>
+              <div className='rounded-lg border border-red-200 bg-red-50 p-4'>
                 <p className='text-red-800'>
                   <strong>False or Frivolous Complaints:</strong> Submitting
                   knowingly false takedown requests or complaints may result in
@@ -400,17 +401,17 @@ const TermsOfService: FC = () => {
 
           {/* Contact Information */}
           <section className='border-t pt-8'>
-            <div className='flex items-center gap-3 mb-4'>
-              <Mail className='h-6 w-6 text-primary-600' />
+            <div className='mb-4 flex items-center gap-3'>
+              <Mail className='text-primary-600 h-6 w-6' />
               <h2 className='text-2xl font-bold text-gray-900'>
                 Contact Information
               </h2>
             </div>
-            <div className='bg-primary-50 border border-primary-200 rounded-lg p-6'>
+            <div className='bg-primary-50 border-primary-200 rounded-lg border p-6'>
               <p className='text-primary-800 mb-2'>
                 For questions about these terms or content concerns, contact:
               </p>
-              <p className='text-xl font-semibold text-primary-900'>
+              <p className='text-primary-900 text-xl font-semibold'>
                 <a
                   href='mailto:volunteers@bettergov.ph'
                   className='hover:text-primary-700 transition-colors'
@@ -424,7 +425,7 @@ const TermsOfService: FC = () => {
               </p>
             </div>
             <div>
-              <p className='text-gray-900 font-semibold mt-4'>
+              <p className='mt-4 font-semibold text-gray-900'>
                 Effective as of September 23, 2025
               </p>
             </div>

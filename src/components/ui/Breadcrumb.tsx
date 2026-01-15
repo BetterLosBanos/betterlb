@@ -1,13 +1,16 @@
-import { ChevronRightIcon, HomeIcon } from 'lucide-react';
 import {
-  forwardRef,
-  HTMLAttributes,
-  ReactNode,
   AnchorHTMLAttributes,
+  HTMLAttributes,
   LiHTMLAttributes,
+  ReactNode,
+  forwardRef,
 } from 'react';
-import { cn } from '../../lib/utils';
+
 import { Link } from 'react-router-dom';
+
+import { ChevronRightIcon, HomeIcon } from 'lucide-react';
+
+import { cn } from '../../lib/utils';
 
 interface BreadcrumbProps extends HTMLAttributes<HTMLElement> {
   children: ReactNode;
@@ -91,7 +94,7 @@ const BreadcrumbLink = forwardRef<HTMLAnchorElement, BreadcrumbLinkProps>(
       ref={ref}
       to={href}
       className={cn(
-        'transition-colors hover:text-gray-900 font-medium text-gray-500',
+        'font-medium text-gray-500 transition-colors hover:text-gray-900',
         className
       )}
       {...props}
@@ -140,7 +143,7 @@ const BreadcrumbHome = forwardRef<HTMLAnchorElement, BreadcrumbLinkProps>(
       ref={ref}
       to={href}
       className={cn(
-        'flex items-center gap-1.5 transition-colors hover:text-gray-900 font-medium text-gray-500',
+        'flex items-center gap-1.5 font-medium text-gray-500 transition-colors hover:text-gray-900',
         className
       )}
       {...props}

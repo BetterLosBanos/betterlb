@@ -1,23 +1,26 @@
-import { useParams, useOutletContext, Link } from 'react-router-dom';
-import { Calendar, Users, CheckCircle2, XCircle, Gavel } from 'lucide-react';
-import { getPersonName } from '@/lib/legislation';
+import { Link, useOutletContext, useParams } from 'react-router-dom';
+
+import type {
+  DocumentItem,
+  LegislationContext,
+  Person,
+  Session,
+} from '@/types';
+import { Calendar, CheckCircle2, Gavel, Users, XCircle } from 'lucide-react';
+
 import { DetailSection } from '@/components/layout/PageLayouts';
 import { Badge } from '@/components/ui/Badge';
 import {
   Breadcrumb,
+  BreadcrumbHome,
   BreadcrumbItem,
   BreadcrumbLink,
   BreadcrumbList,
   BreadcrumbPage,
   BreadcrumbSeparator,
-  BreadcrumbHome,
 } from '@/components/ui/Breadcrumb';
-import type {
-  LegislationContext,
-  Person,
-  DocumentItem,
-  Session,
-} from '@/types';
+
+import { getPersonName } from '@/lib/legislation';
 
 export default function SessionDetail() {
   const { sessionId } = useParams<{ sessionId: string }>();
@@ -47,7 +50,7 @@ export default function SessionDetail() {
   const isRegular = session.type === 'Regular';
 
   return (
-    <div className='mx-auto space-y-6 max-w-5xl duration-500 animate-in fade-in'>
+    <div className='animate-in fade-in mx-auto max-w-5xl space-y-6 duration-500'>
       <Breadcrumb>
         <BreadcrumbList>
           <BreadcrumbItem>
@@ -65,26 +68,26 @@ export default function SessionDetail() {
       </Breadcrumb>
 
       <header
-        className={`p-6 md:p-10 rounded-2xl border bg-white shadow-sm border-slate-200 border-l-[8px] ${isRegular ? 'border-l-primary-600' : 'border-l-secondary-600'}`}
+        className={`rounded-2xl border border-l-[8px] border-slate-200 bg-white p-6 shadow-sm md:p-10 ${isRegular ? 'border-l-primary-600' : 'border-l-secondary-600'}`}
       >
-        <div className='flex flex-col gap-6 justify-between md:flex-row md:items-center'>
+        <div className='flex flex-col justify-between gap-6 md:flex-row md:items-center'>
           <div className='space-y-4'>
-            <div className='flex gap-3 items-center'>
+            <div className='flex items-center gap-3'>
               <Badge variant={isRegular ? 'primary' : 'secondary'} dot>
                 {session.type} Session
               </Badge>
-              <span className='text-[10px] font-mono font-bold text-slate-400 uppercase tracking-widest'>
+              <span className='font-mono text-[10px] font-bold tracking-widest text-slate-400 uppercase'>
                 ID: {session.id}
               </span>
             </div>
-            <h1 className='text-2xl font-extrabold md:text-3xl text-slate-900'>
+            <h1 className='text-2xl font-extrabold text-slate-900 md:text-3xl'>
               {session.ordinal_number} {session.type} Session
             </h1>
           </div>
-          <div className='flex gap-4 items-center p-4 rounded-xl border bg-slate-50 border-slate-100'>
-            <Calendar className='w-5 h-5 text-primary-600' />
+          <div className='flex items-center gap-4 rounded-xl border border-slate-100 bg-slate-50 p-4'>
+            <Calendar className='text-primary-600 h-5 w-5' />
             <div>
-              <p className='text-[10px] font-bold text-slate-400 uppercase tracking-widest'>
+              <p className='text-[10px] font-bold tracking-widest text-slate-400 uppercase'>
                 Date Held
               </p>
               <p className='text-sm font-bold text-slate-700'>{session.date}</p>
@@ -98,8 +101,8 @@ export default function SessionDetail() {
           <DetailSection title='Attendance' icon={Users}>
             <div className='space-y-6'>
               <div>
-                <h3 className='text-[10px] font-bold text-emerald-600 uppercase tracking-widest mb-3 flex items-center gap-2'>
-                  <CheckCircle2 className='w-3.5 h-3.5' /> Present (
+                <h3 className='mb-3 flex items-center gap-2 text-[10px] font-bold tracking-widest text-emerald-600 uppercase'>
+                  <CheckCircle2 className='h-3.5 w-3.5' /> Present (
                   {presentMembers.length})
                 </h3>
                 <ul className='space-y-2'>
@@ -107,7 +110,7 @@ export default function SessionDetail() {
                     <li key={p.id}>
                       <Link
                         to={`/legislation/person/${p.id}`}
-                        className='block py-1 text-sm font-medium transition-colors text-slate-600 hover:text-primary-600'
+                        className='hover:text-primary-600 block py-1 text-sm font-medium text-slate-600 transition-colors'
                       >
                         {getPersonName(p)}
                       </Link>
@@ -117,9 +120,9 @@ export default function SessionDetail() {
               </div>
 
               {absentMembers.length > 0 && (
-                <div className='pt-4 border-t border-slate-100'>
-                  <h3 className='text-[10px] font-bold text-secondary-600 uppercase tracking-widest mb-3 flex items-center gap-2'>
-                    <XCircle className='w-3.5 h-3.5' /> Absent (
+                <div className='border-t border-slate-100 pt-4'>
+                  <h3 className='text-secondary-600 mb-3 flex items-center gap-2 text-[10px] font-bold tracking-widest uppercase'>
+                    <XCircle className='h-3.5 w-3.5' /> Absent (
                     {absentMembers.length})
                   </h3>
                   <ul className='space-y-2'>
@@ -141,7 +144,7 @@ export default function SessionDetail() {
         <div className='lg:col-span-2'>
           <DetailSection title='Legislation Enacted' icon={Gavel}>
             {relatedDocs.length === 0 ? (
-              <p className='py-12 text-sm italic text-center text-slate-400'>
+              <p className='py-12 text-center text-sm text-slate-400 italic'>
                 No documents enacted during this session.
               </p>
             ) : (
@@ -150,9 +153,9 @@ export default function SessionDetail() {
                   <Link
                     key={doc.id}
                     to={`/legislation/${doc.type}/${doc.id}`}
-                    className='group block py-4 hover:bg-slate-50 transition-all rounded-lg px-2 -mx-2 min-h-[44px]'
+                    className='group -mx-2 block min-h-[44px] rounded-lg px-2 py-4 transition-all hover:bg-slate-50'
                   >
-                    <div className='flex gap-3 items-center mb-1'>
+                    <div className='mb-1 flex items-center gap-3'>
                       <Badge
                         variant={
                           doc.type === 'ordinance' ? 'primary' : 'secondary'
@@ -160,11 +163,11 @@ export default function SessionDetail() {
                       >
                         {doc.type}
                       </Badge>
-                      <span className='text-[10px] font-mono font-bold text-slate-400 uppercase'>
+                      <span className='font-mono text-[10px] font-bold text-slate-400 uppercase'>
                         {doc.number}
                       </span>
                     </div>
-                    <p className='text-sm font-bold leading-relaxed text-slate-800 group-hover:text-primary-600'>
+                    <p className='group-hover:text-primary-600 text-sm leading-relaxed font-bold text-slate-800'>
                       {doc.title}
                     </p>
                   </Link>

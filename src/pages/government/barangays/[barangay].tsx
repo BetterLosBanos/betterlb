@@ -1,25 +1,28 @@
 import { useParams } from 'react-router-dom';
+
 import {
+  GlobeIcon,
+  GraduationCapIcon,
+  MailIcon,
   MapPinIcon,
   PhoneIcon,
-  GlobeIcon,
-  MailIcon,
+  ShieldCheckIcon,
   UserIcon,
   UsersIcon,
-  ShieldCheckIcon,
-  GraduationCapIcon,
 } from 'lucide-react';
+
 import { DetailSection } from '@/components/layout/PageLayouts';
 import {
   Breadcrumb,
+  BreadcrumbHome,
   BreadcrumbItem,
   BreadcrumbLink,
   BreadcrumbList,
   BreadcrumbPage,
   BreadcrumbSeparator,
-  BreadcrumbHome,
 } from '@/components/ui/Breadcrumb';
 import { CardAvatar } from '@/components/ui/CardList';
+
 import barangaysData from '@/data/directory/barangays.json';
 
 export default function BarangayDetail() {
@@ -41,7 +44,7 @@ export default function BarangayDetail() {
   const treasurer = barangay.officials?.find(o => o.role.includes('Treasurer'));
 
   return (
-    <div className='space-y-6 duration-500 animate-in fade-in'>
+    <div className='animate-in fade-in space-y-6 duration-500'>
       {/* Breadcrumbs Integration */}
       <Breadcrumb>
         <BreadcrumbList>
@@ -64,27 +67,27 @@ export default function BarangayDetail() {
       </Breadcrumb>
 
       {/* Hero Header */}
-      <header className='overflow-hidden relative p-8 text-white bg-gradient-to-br rounded-2xl shadow-xl from-slate-900 to-slate-800'>
+      <header className='relative overflow-hidden rounded-2xl bg-gradient-to-br from-slate-900 to-slate-800 p-8 text-white shadow-xl'>
         <div className='relative z-10 max-w-3xl'>
-          <div className='flex gap-2 items-center mb-2'>
-            <ShieldCheckIcon className='w-5 h-5 text-primary-400' />
-            <span className='text-xs font-bold tracking-widest uppercase text-primary-400'>
+          <div className='mb-2 flex items-center gap-2'>
+            <ShieldCheckIcon className='text-primary-400 h-5 w-5' />
+            <span className='text-primary-400 text-xs font-bold tracking-widest uppercase'>
               Official Barangay Profile
             </span>
           </div>
           <h1 className='mb-4 text-4xl font-extrabold'>
             {barangay.barangay_name}
           </h1>
-          <div className='flex flex-wrap gap-y-2 gap-x-6 text-sm text-slate-300'>
+          <div className='flex flex-wrap gap-x-6 gap-y-2 text-sm text-slate-300'>
             {barangay.address && (
-              <span className='flex gap-2 items-center'>
-                <MapPinIcon className='w-4 h-4 text-primary-400' />{' '}
+              <span className='flex items-center gap-2'>
+                <MapPinIcon className='text-primary-400 h-4 w-4' />{' '}
                 {barangay.address}
               </span>
             )}
           </div>
         </div>
-        <UsersIcon className='absolute right-[-20px] bottom-[-20px] w-64 h-64 text-white/5 rotate-12' />
+        <UsersIcon className='absolute right-[-20px] bottom-[-20px] h-64 w-64 rotate-12 text-white/5' />
       </header>
 
       <div className='grid grid-cols-1 gap-8 lg:grid-cols-3'>
@@ -93,23 +96,23 @@ export default function BarangayDetail() {
           {/* Executive Leadership */}
           {punongBarangay && (
             <DetailSection title='Chief Executive' icon={UserIcon}>
-              <div className='flex flex-col gap-6 items-center p-6 rounded-2xl border md:flex-row bg-primary-50/50 border-primary-100'>
+              <div className='bg-primary-50/50 border-primary-100 flex flex-col items-center gap-6 rounded-2xl border p-6 md:flex-row'>
                 <CardAvatar
                   name={punongBarangay.name}
                   size='lg'
-                  className='ring-4 ring-white shadow-lg'
+                  className='shadow-lg ring-4 ring-white'
                 />
                 <div className='text-center md:text-left'>
                   <h3 className='text-2xl font-bold text-gray-900'>
                     {punongBarangay.name}
                   </h3>
-                  <p className='text-sm font-bold tracking-wider uppercase text-primary-700'>
+                  <p className='text-primary-700 text-sm font-bold tracking-wider uppercase'>
                     Punong Barangay
                   </p>
-                  <div className='flex flex-wrap gap-4 justify-center mt-4 text-sm text-gray-600 md:justify-start'>
+                  <div className='mt-4 flex flex-wrap justify-center gap-4 text-sm text-gray-600 md:justify-start'>
                     {barangay.email && (
-                      <span className='flex gap-1 items-center'>
-                        <MailIcon className='w-4 h-4' /> {barangay.email}
+                      <span className='flex items-center gap-1'>
+                        <MailIcon className='h-4 w-4' /> {barangay.email}
                       </span>
                     )}
                   </div>
@@ -124,14 +127,14 @@ export default function BarangayDetail() {
               {kagawads?.map(member => (
                 <div
                   key={member.name}
-                  className='flex gap-4 items-center p-4 rounded-xl border border-gray-100 transition-colors hover:bg-gray-50'
+                  className='flex items-center gap-4 rounded-xl border border-gray-100 p-4 transition-colors hover:bg-gray-50'
                 >
                   <CardAvatar name={member.name} size='sm' />
                   <div>
-                    <p className='font-bold leading-tight text-gray-900'>
+                    <p className='leading-tight font-bold text-gray-900'>
                       {member.name}
                     </p>
-                    <p className='text-[10px] text-gray-400 font-bold uppercase tracking-tighter'>
+                    <p className='text-[10px] font-bold tracking-tighter text-gray-400 uppercase'>
                       {member.role}
                     </p>
                   </div>
@@ -150,16 +153,16 @@ export default function BarangayDetail() {
               {skOfficials?.map(sk => (
                 <div
                   key={sk.name}
-                  className='flex gap-4 items-center p-4 rounded-xl border border-indigo-50 bg-indigo-50/20'
+                  className='flex items-center gap-4 rounded-xl border border-indigo-50 bg-indigo-50/20 p-4'
                 >
-                  <div className='flex justify-center items-center w-10 h-10 text-sm font-bold text-indigo-700 bg-indigo-100 rounded-full'>
+                  <div className='flex h-10 w-10 items-center justify-center rounded-full bg-indigo-100 text-sm font-bold text-indigo-700'>
                     {sk.name[0]}
                   </div>
                   <div>
-                    <p className='text-sm font-bold leading-tight text-gray-900'>
+                    <p className='text-sm leading-tight font-bold text-gray-900'>
                       {sk.name}
                     </p>
-                    <p className='text-[10px] text-indigo-500 font-bold uppercase'>
+                    <p className='text-[10px] font-bold text-indigo-500 uppercase'>
                       {sk.role}
                     </p>
                   </div>
@@ -177,10 +180,10 @@ export default function BarangayDetail() {
                 <a
                   key={i}
                   href={`tel:${line}`}
-                  className='flex gap-3 items-center p-3 rounded-lg border border-gray-100 transition-all hover:bg-primary-50 hover:border-primary-200 group'
+                  className='hover:bg-primary-50 hover:border-primary-200 group flex items-center gap-3 rounded-lg border border-gray-100 p-3 transition-all'
                 >
-                  <div className='p-2 text-gray-400 bg-gray-100 rounded-md transition-colors group-hover:bg-primary-100 group-hover:text-primary-600'>
-                    <PhoneIcon className='w-4 h-4' />
+                  <div className='group-hover:bg-primary-100 group-hover:text-primary-600 rounded-md bg-gray-100 p-2 text-gray-400 transition-colors'>
+                    <PhoneIcon className='h-4 w-4' />
                   </div>
                   <span className='text-sm font-medium text-gray-700'>
                     {line}
@@ -192,10 +195,11 @@ export default function BarangayDetail() {
                 <a
                   href={barangay.website}
                   target='_blank'
-                  className='flex gap-3 items-center p-3 text-white rounded-lg transition-colors bg-slate-800 hover:bg-slate-700' rel="noreferrer"
+                  className='flex items-center gap-3 rounded-lg bg-slate-800 p-3 text-white transition-colors hover:bg-slate-700'
+                  rel='noreferrer'
                 >
-                  <div className='p-2 rounded-md bg-slate-700'>
-                    <GlobeIcon className='w-4 h-4' />
+                  <div className='rounded-md bg-slate-700 p-2'>
+                    <GlobeIcon className='h-4 w-4' />
                   </div>
                   <span className='text-sm font-medium'>Official Facebook</span>
                 </a>
@@ -214,7 +218,7 @@ export default function BarangayDetail() {
                   {secretary?.name || '---'}
                 </p>
               </div>
-              <div className='pt-2 border-t border-gray-100'>
+              <div className='border-t border-gray-100 pt-2'>
                 <p className='text-[10px] font-bold text-gray-400 uppercase'>
                   Treasurer
                 </p>

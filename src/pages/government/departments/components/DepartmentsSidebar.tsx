@@ -1,12 +1,16 @@
-import { Building2Icon } from 'lucide-react';
 import { useNavigate, useParams } from 'react-router-dom';
+
+import { Building2Icon } from 'lucide-react';
+
 import {
   SidebarContainer,
   SidebarItem,
 } from '@/components/ui/SidebarNavigation';
-import departmentsData from '@/data/directory/departments.json';
-import { formatGovName } from '@/lib/stringUtils';
+
 import { officeIcons } from '@/lib/officeIcons';
+import { formatGovName } from '@/lib/stringUtils';
+
+import departmentsData from '@/data/directory/departments.json';
 
 export default function DepartmentsSidebar() {
   const { department: activeSlug } = useParams();

@@ -1,3 +1,5 @@
+import { FC } from 'react';
+
 import {
   AlertCircleIcon,
   CheckCircleIcon,
@@ -11,7 +13,7 @@ import {
   SmartphoneIcon,
   Volume2Icon,
 } from 'lucide-react';
-import { FC } from 'react';
+
 import SEO from '../../components/SEO';
 
 const AccessibilityPage: FC = () => {
@@ -143,11 +145,11 @@ const AccessibilityPage: FC = () => {
       />
 
       <div className='container mx-auto px-4'>
-        <div className='max-w-4xl mx-auto'>
+        <div className='mx-auto max-w-4xl'>
           {/* Header */}
-          <div className='bg-white rounded-xl shadow-xs overflow-hidden mb-8'>
-            <div className='p-6 md:p-8 border-b border-gray-200'>
-              <h1 className='text-3xl font-bold text-gray-900 mb-4'>
+          <div className='mb-8 overflow-hidden rounded-xl bg-white shadow-xs'>
+            <div className='border-b border-gray-200 p-6 md:p-8'>
+              <h1 className='mb-4 text-3xl font-bold text-gray-900'>
                 Accessibility Statement
               </h1>
               <p className='text-lg text-gray-800'>
@@ -160,9 +162,9 @@ const AccessibilityPage: FC = () => {
           </div>
 
           {/* Commitment Section */}
-          <div className='bg-white rounded-xl shadow-xs overflow-hidden mb-8'>
+          <div className='mb-8 overflow-hidden rounded-xl bg-white shadow-xs'>
             <div className='p-6 md:p-8'>
-              <h2 className='text-2xl font-bold text-gray-900 mb-4'>
+              <h2 className='mb-4 text-2xl font-bold text-gray-900'>
                 Our Commitment
               </h2>
               <div className='prose prose-lg text-gray-800'>
@@ -183,19 +185,19 @@ const AccessibilityPage: FC = () => {
           </div>
 
           {/* Accessibility Features */}
-          <div className='bg-white rounded-xl shadow-xs overflow-hidden mb-8'>
+          <div className='mb-8 overflow-hidden rounded-xl bg-white shadow-xs'>
             <div className='p-6 md:p-8'>
-              <h2 className='text-2xl font-bold text-gray-900 mb-6'>
+              <h2 className='mb-6 text-2xl font-bold text-gray-900'>
                 Accessibility Features
               </h2>
-              <div className='grid grid-cols-1 md:grid-cols-2 gap-6'>
+              <div className='grid grid-cols-1 gap-6 md:grid-cols-2'>
                 {accessibilityFeatures.map((feature, index) => (
                   <div
                     key={index}
-                    className='border border-gray-200 rounded-lg p-6'
+                    className='rounded-lg border border-gray-200 p-6'
                   >
-                    <div className='flex items-center mb-4'>
-                      <div className='p-2 rounded-md bg-primary-50 text-primary-600 mr-3'>
+                    <div className='mb-4 flex items-center'>
+                      <div className='bg-primary-50 text-primary-600 mr-3 rounded-md p-2'>
                         {feature.icon}
                       </div>
                       <h3 className='text-lg font-semibold text-gray-900'>
@@ -205,7 +207,7 @@ const AccessibilityPage: FC = () => {
                     <ul className='space-y-2'>
                       {feature.features.map((item, itemIndex) => (
                         <li key={itemIndex} className='flex items-start'>
-                          <CheckCircleIcon className='h-4 w-4 text-green-600 mt-0.5 mr-2 flex-shrink-0' />
+                          <CheckCircleIcon className='mt-0.5 mr-2 h-4 w-4 flex-shrink-0 text-green-600' />
                           <span className='text-sm text-gray-800'>{item}</span>
                         </li>
                       ))}
@@ -217,22 +219,22 @@ const AccessibilityPage: FC = () => {
           </div>
 
           {/* Standards Compliance */}
-          <div className='bg-white rounded-xl shadow-xs overflow-hidden mb-8'>
+          <div className='mb-8 overflow-hidden rounded-xl bg-white shadow-xs'>
             <div className='p-6 md:p-8'>
-              <h2 className='text-2xl font-bold text-gray-900 mb-6'>
+              <h2 className='mb-6 text-2xl font-bold text-gray-900'>
                 Standards Compliance
               </h2>
               <div className='space-y-4'>
                 {wcagCompliance.map((standard, index) => (
                   <div
                     key={index}
-                    className={`border rounded-lg p-4 ${getStatusColor(
+                    className={`rounded-lg border p-4 ${getStatusColor(
                       standard.status
                     )}`}
                   >
-                    <div className='flex items-center mb-2'>
+                    <div className='mb-2 flex items-center'>
                       {getStatusIcon(standard.status)}
-                      <h3 className='text-lg font-semibold text-gray-900 ml-2'>
+                      <h3 className='ml-2 text-lg font-semibold text-gray-900'>
                         {standard.level}
                       </h3>
                     </div>
@@ -244,58 +246,58 @@ const AccessibilityPage: FC = () => {
           </div>
 
           {/* Keyboard Shortcuts */}
-          <div className='bg-white rounded-xl shadow-xs overflow-hidden mb-8'>
+          <div className='mb-8 overflow-hidden rounded-xl bg-white shadow-xs'>
             <div className='p-6 md:p-8'>
-              <h2 className='text-2xl font-bold text-gray-900 mb-6'>
+              <h2 className='mb-6 text-2xl font-bold text-gray-900'>
                 Keyboard Shortcuts
               </h2>
-              <div className='grid grid-cols-1 md:grid-cols-2 gap-4'>
+              <div className='grid grid-cols-1 gap-4 md:grid-cols-2'>
                 <div className='space-y-3'>
-                  <div className='flex justify-between items-center p-3 bg-gray-50 rounded-lg'>
+                  <div className='flex items-center justify-between rounded-lg bg-gray-50 p-3'>
                     <span className='font-medium text-gray-900'>
                       Skip to main content
                     </span>
-                    <kbd className='px-2 py-1 bg-gray-200 rounded-sm text-sm font-mono'>
+                    <kbd className='rounded-sm bg-gray-200 px-2 py-1 font-mono text-sm'>
                       Tab
                     </kbd>
                   </div>
-                  <div className='flex justify-between items-center p-3 bg-gray-50 rounded-lg'>
+                  <div className='flex items-center justify-between rounded-lg bg-gray-50 p-3'>
                     <span className='font-medium text-gray-900'>
                       Navigate links
                     </span>
-                    <kbd className='px-2 py-1 bg-gray-200 rounded-sm text-sm font-mono'>
+                    <kbd className='rounded-sm bg-gray-200 px-2 py-1 font-mono text-sm'>
                       Tab / Shift+Tab
                     </kbd>
                   </div>
-                  <div className='flex justify-between items-center p-3 bg-gray-50 rounded-lg'>
+                  <div className='flex items-center justify-between rounded-lg bg-gray-50 p-3'>
                     <span className='font-medium text-gray-900'>
                       Activate link/button
                     </span>
-                    <kbd className='px-2 py-1 bg-gray-200 rounded-sm text-sm font-mono'>
+                    <kbd className='rounded-sm bg-gray-200 px-2 py-1 font-mono text-sm'>
                       Enter / Space
                     </kbd>
                   </div>
                 </div>
                 <div className='space-y-3'>
-                  <div className='flex justify-between items-center p-3 bg-gray-50 rounded-lg'>
+                  <div className='flex items-center justify-between rounded-lg bg-gray-50 p-3'>
                     <span className='font-medium text-gray-900'>Search</span>
-                    <kbd className='px-2 py-1 bg-gray-200 rounded-sm text-sm font-mono'>
+                    <kbd className='rounded-sm bg-gray-200 px-2 py-1 font-mono text-sm'>
                       Ctrl+K
                     </kbd>
                   </div>
-                  <div className='flex justify-between items-center p-3 bg-gray-50 rounded-lg'>
+                  <div className='flex items-center justify-between rounded-lg bg-gray-50 p-3'>
                     <span className='font-medium text-gray-900'>
                       Close modal/menu
                     </span>
-                    <kbd className='px-2 py-1 bg-gray-200 rounded-sm text-sm font-mono'>
+                    <kbd className='rounded-sm bg-gray-200 px-2 py-1 font-mono text-sm'>
                       Escape
                     </kbd>
                   </div>
-                  <div className='flex justify-between items-center p-3 bg-gray-50 rounded-lg'>
+                  <div className='flex items-center justify-between rounded-lg bg-gray-50 p-3'>
                     <span className='font-medium text-gray-900'>
                       Navigate menu items
                     </span>
-                    <kbd className='px-2 py-1 bg-gray-200 rounded-sm text-sm font-mono'>
+                    <kbd className='rounded-sm bg-gray-200 px-2 py-1 font-mono text-sm'>
                       Arrow Keys
                     </kbd>
                   </div>
@@ -305,12 +307,12 @@ const AccessibilityPage: FC = () => {
           </div>
 
           {/* Feedback and Support */}
-          <div className='bg-white rounded-xl shadow-xs overflow-hidden mb-8'>
+          <div className='mb-8 overflow-hidden rounded-xl bg-white shadow-xs'>
             <div className='p-6 md:p-8'>
-              <h2 className='text-2xl font-bold text-gray-900 mb-6'>
+              <h2 className='mb-6 text-2xl font-bold text-gray-900'>
                 Feedback and Support
               </h2>
-              <div className='prose prose-lg text-gray-800 mb-6'>
+              <div className='prose prose-lg mb-6 text-gray-800'>
                 <p>
                   We welcome your feedback on the accessibility of BetterGov.ph.
                   If you encounter accessibility barriers or have suggestions
@@ -318,15 +320,15 @@ const AccessibilityPage: FC = () => {
                 </p>
               </div>
 
-              <div className='grid grid-cols-1 md:grid-cols-2 gap-6'>
-                <div className='border border-gray-200 rounded-lg p-6'>
-                  <div className='flex items-center mb-4'>
-                    <MailIcon className='h-6 w-6 text-primary-600 mr-3' />
+              <div className='grid grid-cols-1 gap-6 md:grid-cols-2'>
+                <div className='rounded-lg border border-gray-200 p-6'>
+                  <div className='mb-4 flex items-center'>
+                    <MailIcon className='text-primary-600 mr-3 h-6 w-6' />
                     <h3 className='text-lg font-semibold text-gray-900'>
                       Email Support
                     </h3>
                   </div>
-                  <p className='text-gray-800 mb-3'>
+                  <p className='mb-3 text-gray-800'>
                     Send us your accessibility feedback or request assistance.
                   </p>
                   <a
@@ -337,14 +339,14 @@ const AccessibilityPage: FC = () => {
                   </a>
                 </div>
 
-                <div className='border border-gray-200 rounded-lg p-6'>
-                  <div className='flex items-center mb-4'>
-                    <PhoneIcon className='h-6 w-6 text-primary-600 mr-3' />
+                <div className='rounded-lg border border-gray-200 p-6'>
+                  <div className='mb-4 flex items-center'>
+                    <PhoneIcon className='text-primary-600 mr-3 h-6 w-6' />
                     <h3 className='text-lg font-semibold text-gray-900'>
                       Phone Support
                     </h3>
                   </div>
-                  <p className='text-gray-800 mb-3'>
+                  <p className='mb-3 text-gray-800'>
                     Call us for immediate accessibility assistance.
                   </p>
                   <a
@@ -359,9 +361,9 @@ const AccessibilityPage: FC = () => {
           </div>
 
           {/* Alternative Formats */}
-          <div className='bg-white rounded-xl shadow-xs overflow-hidden mb-8'>
+          <div className='mb-8 overflow-hidden rounded-xl bg-white shadow-xs'>
             <div className='p-6 md:p-8'>
-              <h2 className='text-2xl font-bold text-gray-900 mb-6'>
+              <h2 className='mb-6 text-2xl font-bold text-gray-900'>
                 Alternative Formats
               </h2>
               <div className='prose prose-lg text-gray-800'>
@@ -386,13 +388,13 @@ const AccessibilityPage: FC = () => {
           </div>
 
           {/* Last Updated */}
-          <div className='bg-white rounded-xl shadow-xs overflow-hidden'>
-            <div className='p-6 md:p-8 text-center'>
+          <div className='overflow-hidden rounded-xl bg-white shadow-xs'>
+            <div className='p-6 text-center md:p-8'>
               <p className='text-sm text-gray-800'>
                 This accessibility statement was last updated on{' '}
                 <time dateTime='2025-09-08'>September 8, 2025</time>.
               </p>
-              <p className='text-sm text-gray-800 mt-2'>
+              <p className='mt-2 text-sm text-gray-800'>
                 We review and update this statement regularly to ensure it
                 remains accurate and current.
               </p>

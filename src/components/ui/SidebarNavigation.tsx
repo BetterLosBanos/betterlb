@@ -1,5 +1,7 @@
 import { ReactNode } from 'react';
+
 import { Link, useLocation } from 'react-router-dom';
+
 import { LucideIcon } from 'lucide-react';
 
 // 1. The Outer Wrapper
@@ -11,16 +13,16 @@ export function SidebarContainer({
   title?: string;
 }) {
   return (
-    <aside className='w-full md:w-64 shrink-0'>
-      <div className='sticky top-32 bg-white rounded-lg border border-gray-200 shadow-sm overflow-hidden'>
+    <aside className='w-full shrink-0 md:w-64'>
+      <div className='sticky top-32 overflow-hidden rounded-lg border border-gray-200 bg-white shadow-sm'>
         {title && (
-          <div className='px-4 py-3 border-b border-gray-100 bg-gray-50/50'>
-            <h2 className='font-semibold text-gray-900 text-[11px] uppercase tracking-widest'>
+          <div className='border-b border-gray-100 bg-gray-50/50 px-4 py-3'>
+            <h2 className='text-[11px] font-semibold tracking-widest text-gray-900 uppercase'>
               {title}
             </h2>
           </div>
         )}
-        <nav className='p-2 max-h-[calc(100vh-200px)] overflow-y-auto scrollbar-thin'>
+        <nav className='scrollbar-thin max-h-[calc(100vh-200px)] overflow-y-auto p-2'>
           {children}
         </nav>
       </div>
@@ -38,7 +40,7 @@ export function SidebarGroup({
 }) {
   return (
     <div className='mb-4 last:mb-0'>
-      <h3 className='px-3 py-2 text-[10px] font-bold text-gray-400 uppercase tracking-widest'>
+      <h3 className='px-3 py-2 text-[10px] font-bold tracking-widest text-gray-400 uppercase'>
         {title}
       </h3>
       <ul className='space-y-1'>{children}</ul>
@@ -83,10 +85,10 @@ export function SidebarItem({
     <>
       {Icon && (
         <Icon
-          className={`w-4 h-4 mt-0.5 shrink-0 ${active ? 'text-primary-600' : 'text-gray-400 group-hover:text-gray-600'}`}
+          className={`mt-0.5 h-4 w-4 shrink-0 ${active ? 'text-primary-600' : 'text-gray-400 group-hover:text-gray-600'}`}
         />
       )}
-      <div className='flex flex-col text-left overflow-hidden'>
+      <div className='flex flex-col overflow-hidden text-left'>
         <span className='truncate'>{label}</span>
         {description && (
           <span

@@ -1,10 +1,11 @@
+import { ReactNode } from 'react';
+
 import {
   ExternalLinkIcon,
   MailIcon,
   MapPinIcon,
   PhoneIcon,
 } from 'lucide-react';
-import { ReactNode } from 'react';
 
 interface ContactInfo {
   address?: string;
@@ -147,7 +148,7 @@ export function CardDescription({
   className = '',
 }: CardDescriptionProps) {
   return (
-    <p className={`text-gray-800 text-sm mt-1 ${className}`}>{children}</p>
+    <p className={`mt-1 text-sm text-gray-800 ${className}`}>{children}</p>
   );
 }
 
@@ -164,7 +165,7 @@ export function CardContactInfo({
       {contact.address && (
         <div className='flex items-start'>
           <MapPinIcon
-            className={`${iconSize} text-gray-400 mr-2 mt-0.5 flex-shrink-0`}
+            className={`${iconSize} mt-0.5 mr-2 flex-shrink-0 text-gray-400`}
           />
           <span className={`text-gray-800 ${textSize}`}>{contact.address}</span>
         </div>
@@ -173,7 +174,7 @@ export function CardContactInfo({
       {contact.phone && (
         <div className='flex items-start'>
           <PhoneIcon
-            className={`${iconSize} text-gray-400 mr-2 mt-0.5 flex-shrink-0`}
+            className={`${iconSize} mt-0.5 mr-2 flex-shrink-0 text-gray-400`}
           />
           <a
             href={`tel:${contact.phone}`}
@@ -187,7 +188,7 @@ export function CardContactInfo({
       {contact.email && (
         <div className='flex items-start'>
           <MailIcon
-            className={`${iconSize} text-gray-400 mr-2 mt-0.5 flex-shrink-0`}
+            className={`${iconSize} mt-0.5 mr-2 flex-shrink-0 text-gray-400`}
           />
           <a
             href={`mailto:${contact.email}`}
@@ -208,7 +209,7 @@ export function CardContactInfo({
           return (
             <div className='flex items-start'>
               <ExternalLinkIcon
-                className={`${iconSize} text-gray-400 mr-2 mt-0.5 flex-shrink-0`}
+                className={`${iconSize} mt-0.5 mr-2 flex-shrink-0 text-gray-400`}
               />
               <a
                 href={href}
@@ -269,7 +270,7 @@ export function CardAvatar({
 
   return (
     <div
-      className={`rounded-full bg-gray-100 flex items-center justify-center ${sizeClasses[size]} ${className}`}
+      className={`flex items-center justify-center rounded-full bg-gray-100 ${sizeClasses[size]} ${className}`}
       aria-label={`${name} avatar`}
     >
       <span className='font-bold text-gray-400'>

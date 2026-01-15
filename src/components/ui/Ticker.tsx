@@ -1,3 +1,5 @@
+import { FC, useEffect, useState } from 'react';
+
 import {
   DollarSignIcon,
   EuroIcon,
@@ -5,7 +7,7 @@ import {
   LoaderIcon,
   PoundSterlingIcon,
 } from 'lucide-react';
-import { FC, useEffect, useState } from 'react';
+
 import { fetchForexData, getCurrencyIconName } from '../../lib/forex';
 import { fetchWeatherData } from '../../lib/weather';
 import { ForexRate, WeatherData } from '../../types';
@@ -109,9 +111,9 @@ const Ticker: FC = () => {
   // If loading or error, show appropriate content
   if (isLoading && weatherLoading) {
     return (
-      <div className='bg-primary-600 text-white py-1 px-4'>
+      <div className='bg-primary-600 px-4 py-1 text-white'>
         <div className='container mx-auto flex items-center justify-center'>
-          <LoaderIcon className='h-4 w-4 animate-spin mr-2' />
+          <LoaderIcon className='mr-2 h-4 w-4 animate-spin' />
           <span className='text-xs'>Loading data...</span>
         </div>
       </div>
@@ -131,17 +133,17 @@ const Ticker: FC = () => {
   if (!currentRate) return null;
 
   return (
-    <div className='bg-blue-950 text-white py-1.5'>
-      <div className='container mx-auto px-4 flex justify-end'>
-        <div className='flex justify-end items-center'>
+    <div className='bg-blue-950 py-1.5 text-white'>
+      <div className='container mx-auto flex justify-end px-4'>
+        <div className='flex items-center justify-end'>
           {/* Forex ticker */}
           <div className='flex-1 overflow-hidden pr-4'>
-            <div className='relative h-6 flex items-center'>
+            <div className='relative flex h-6 items-center'>
               <div
                 className={`flex items-center transition-all duration-200 ${
                   isAnimating
-                    ? 'opacity-0 translate-y-2'
-                    : 'opacity-100 translate-y-0'
+                    ? 'translate-y-2 opacity-0'
+                    : 'translate-y-0 opacity-100'
                 }`}
               >
                 <div className='inline-flex items-center space-x-1'>
@@ -151,7 +153,7 @@ const Ticker: FC = () => {
                   <span className='text-xs font-medium'>
                     {currentRate.code}
                   </span>
-                  <span className='text-xs text-accent-100'>
+                  <span className='text-accent-100 text-xs'>
                     ₱{currentRate.rate.toFixed(2)}
                   </span>
                 </div>
@@ -160,17 +162,17 @@ const Ticker: FC = () => {
           </div>
 
           {/* Weather information */}
-          <div className='flex items-center space-x-6 pl-4 border-l border-accent-500'>
+          <div className='border-accent-500 flex items-center space-x-6 border-l pl-4'>
             {weatherLoading ? (
               <div className='flex items-center space-x-2'>
-                <LoaderIcon className='h-3 w-3 animate-spin text-accent-100' />
-                <span className='text-xs text-accent-100'>
+                <LoaderIcon className='text-accent-100 h-3 w-3 animate-spin' />
+                <span className='text-accent-100 text-xs'>
                   Loading weather...
                 </span>
               </div>
             ) : weatherError ? (
               <div className='flex items-center space-x-2'>
-                <span className='text-xs text-accent-100'>
+                <span className='text-accent-100 text-xs'>
                   Weather unavailable
                 </span>
               </div>
@@ -178,9 +180,9 @@ const Ticker: FC = () => {
               weatherData.slice(0, 1).map(data => (
                 <div
                   key={data.location}
-                  className='flex flex-col items-center justify-center uppercase space-x-0 sm:flex-row sm:space-x-2'
+                  className='flex flex-col items-center justify-center space-x-0 uppercase sm:flex-row sm:space-x-2'
                 >
-                  <span className='text-xs font-medium text-accent-100'>
+                  <span className='text-accent-100 text-xs font-medium'>
                     {data.location}
                   </span>
                   <span className='text-xs text-white'>

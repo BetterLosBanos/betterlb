@@ -1,5 +1,6 @@
-import { SearchX, ArrowLeft, LucideIcon, PlusCircle } from 'lucide-react';
 import { Link } from 'react-router-dom';
+
+import { ArrowLeft, LucideIcon, PlusCircle, SearchX } from 'lucide-react';
 
 interface EmptyStateProps {
   title?: string;
@@ -22,14 +23,14 @@ export function EmptyState({
     actionLabel.toLowerCase().includes('add');
 
   return (
-    <div className='flex flex-col justify-center items-center py-20 text-center duration-500 animate-in fade-in zoom-in-95'>
+    <div className='animate-in fade-in zoom-in-95 flex flex-col items-center justify-center py-20 text-center duration-500'>
       {/* Icon Wrapper */}
-      <div className='p-4 mb-4 rounded-full ring-8 bg-slate-50 ring-slate-50/50'>
-        <Icon className='w-12 h-12 text-slate-300' aria-hidden='true' />
+      <div className='mb-4 rounded-full bg-slate-50 p-4 ring-8 ring-slate-50/50'>
+        <Icon className='h-12 w-12 text-slate-300' aria-hidden='true' />
       </div>
 
       {/* Text Content */}
-      <h3 className='text-xl font-bold leading-tight text-slate-900'>
+      <h3 className='text-xl leading-tight font-bold text-slate-900'>
         {title}
       </h3>
       <p className='mx-auto mt-2 max-w-sm text-sm leading-relaxed text-slate-500'>
@@ -40,12 +41,12 @@ export function EmptyState({
       {actionHref && (
         <Link
           to={actionHref}
-          className='mt-8 inline-flex items-center gap-2 px-6 py-3 bg-white border border-slate-200 rounded-xl text-sm font-bold text-slate-700 hover:bg-slate-50 hover:border-slate-300 hover:shadow-md transition-all min-h-[48px]'
+          className='mt-8 inline-flex min-h-[48px] items-center gap-2 rounded-xl border border-slate-200 bg-white px-6 py-3 text-sm font-bold text-slate-700 transition-all hover:border-slate-300 hover:bg-slate-50 hover:shadow-md'
         >
           {isContribution ? (
-            <PlusCircle className='w-4 h-4 text-primary-600' />
+            <PlusCircle className='text-primary-600 h-4 w-4' />
           ) : (
-            <ArrowLeft className='w-4 h-4 text-slate-400' />
+            <ArrowLeft className='h-4 w-4 text-slate-400' />
           )}
           {actionLabel}
         </Link>

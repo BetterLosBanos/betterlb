@@ -1,23 +1,28 @@
+import { Link } from 'react-router-dom';
+
 import {
-  FileText,
+  BookOpen,
   Briefcase,
   DollarSign,
+  FileText,
   Hammer,
-  Users,
   Heart,
   Leaf,
-  BookOpen,
-  Shield,
   LucideIcon,
   PlusCircle,
+  Shield,
+  Users,
 } from 'lucide-react';
+
 import {
   SidebarContainer,
   SidebarItem,
 } from '@/components/ui/SidebarNavigation';
-import serviceCategories from '@/data/service_categories.json';
+
 import { scrollToTop } from '@/lib/scrollUtils';
-import { Link } from 'react-router-dom';
+
+import serviceCategories from '@/data/service_categories.json';
+
 const categoryIcons: Record<string, LucideIcon> = {
   'certificates-vital-records': FileText,
   'business-licensing': Briefcase,
@@ -45,7 +50,7 @@ export default function ServicesSidebar({
   return (
     // We wrap the container in a div that handles the mobile "sidebarOpen" toggle
     <div
-      className={`${sidebarOpen ? 'block' : 'hidden'} md:block w-full mb-6 md:mb-0`}
+      className={`${sidebarOpen ? 'block' : 'hidden'} mb-6 w-full md:mb-0 md:block`}
     >
       <SidebarContainer title='Categories'>
         {/* Special "All Services" item */}
@@ -73,12 +78,12 @@ export default function ServicesSidebar({
           />
         ))}
       </SidebarContainer>
-      <div className='p-5 mt-8 space-y-4 rounded-2xl border-2 shadow-sm border-secondary-100 bg-secondary-50/30'>
-        <div className='flex gap-3 items-center'>
-          <div className='p-2 rounded-lg bg-secondary-100 text-secondary-600'>
-            <PlusCircle className='w-5 h-5' />
+      <div className='border-secondary-100 bg-secondary-50/30 mt-8 space-y-4 rounded-2xl border-2 p-5 shadow-sm'>
+        <div className='flex items-center gap-3'>
+          <div className='bg-secondary-100 text-secondary-600 rounded-lg p-2'>
+            <PlusCircle className='h-5 w-5' />
           </div>
-          <h4 className='text-sm font-bold leading-tight text-slate-900'>
+          <h4 className='text-sm leading-tight font-bold text-slate-900'>
             Missing a service?
           </h4>
         </div>
@@ -91,7 +96,7 @@ export default function ServicesSidebar({
         <Link
           to='/contribute'
           onClick={() => console.log('Link was clicked!')}
-          className='flex items-center justify-center w-full gap-2 px-4 py-2.5 text-xs font-bold transition-all bg-secondary-600 text-white rounded-xl hover:bg-secondary-700 shadow-md shadow-secondary-900/10 min-h-[44px]'
+          className='bg-secondary-600 hover:bg-secondary-700 shadow-secondary-900/10 flex min-h-[44px] w-full items-center justify-center gap-2 rounded-xl px-4 py-2.5 text-xs font-bold text-white shadow-md transition-all'
         >
           Suggest New Service
         </Link>

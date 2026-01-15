@@ -1,6 +1,10 @@
-import { useMemo, useState } from 'react'; // Removed useEffect
+import { useMemo, useState } from 'react';
+
+import { aggregateExpenditures, aggregateIncome } from '@/utils/budgetUtils';
+
+// Removed useEffect
 import budgetData from '@/data/transparency/budgetData';
-import { aggregateIncome, aggregateExpenditures } from '@/utils/budgetUtils';
+
 import { FinancialQuarter } from '@/types/budgetTypes';
 
 const getYear = (period: string) => period.split('-')[1];

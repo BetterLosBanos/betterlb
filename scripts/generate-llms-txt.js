@@ -4,7 +4,6 @@
  * Script to generate llms.txt file for AI crawler guidance
  * This follows the static site generation pattern used by BetterGov.ph
  */
-
 import fs from 'fs';
 import path from 'path';
 import { fileURLToPath } from 'url';

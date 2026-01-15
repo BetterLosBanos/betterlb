@@ -29,7 +29,8 @@
         "description": "Array of phone numbers (items can be null) or null"
       },
       "website": {
-        "type": ["string", "null"]
+        "type": ["string", "null"],
+        "format": "uri"
       },
       "department_head": {
         "oneOf": [
@@ -38,7 +39,10 @@
             "properties": {
               "name": { "type": ["string", "null"] },
               "contact": { "type": ["string", "null"] },
-              "email": { "type": ["string", "null"] }
+              "email": {
+                "type": ["string", "null"],
+                "format": "email"
+              }
             }
           },
           { "type": "null" }

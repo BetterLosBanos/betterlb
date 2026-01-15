@@ -1,11 +1,16 @@
-import { MapPinIcon } from 'lucide-react'; // Changed icon for variety
+// Changed icon for variety
 import { useNavigate, useParams } from 'react-router-dom';
+
+import { MapPinIcon } from 'lucide-react';
+
 import {
   SidebarContainer,
   SidebarItem,
 } from '@/components/ui/SidebarNavigation';
-import barangaysData from '@/data/directory/barangays.json';
+
 import { formatGovName } from '@/lib/stringUtils';
+
+import barangaysData from '@/data/directory/barangays.json';
 
 export default function BarangaysSidebar() {
   const { barangay: activeSlug } = useParams(); // URL param: /barangays/:barangay

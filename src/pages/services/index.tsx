@@ -1,25 +1,28 @@
-import { useState, useMemo, useRef, useCallback, useEffect } from 'react';
-import { useOutletContext, Link } from 'react-router-dom';
+import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
+
+import { Link, useOutletContext } from 'react-router-dom';
+
+import { format, isValid } from 'date-fns';
 import {
   ArrowRightIcon,
-  ClockIcon,
-  SearchXIcon,
-  FileTextIcon,
+  BookOpenIcon,
   BriefcaseIcon,
+  ClockIcon,
   DollarSignIcon,
+  FileTextIcon,
   HammerIcon,
-  UsersIcon,
   HeartIcon,
   LeafIcon,
-  BookOpenIcon,
-  ShieldIcon,
   LucideIcon,
+  SearchXIcon,
+  ShieldIcon,
+  UsersIcon,
 } from 'lucide-react';
-import { format, isValid } from 'date-fns';
 
-import { Card, CardContent } from '@/components/ui/CardList';
 import { Badge } from '@/components/ui/Badge';
+import { Card, CardContent } from '@/components/ui/CardList';
 import { EmptyState } from '@/components/ui/EmptyState';
+
 import servicesData from '@/data/services/services.json';
 
 // --- Types ---
@@ -117,9 +120,9 @@ export default function ServicesPage() {
   }
 
   return (
-    <div className='space-y-6 duration-500 animate-in fade-in'>
+    <div className='animate-in fade-in space-y-6 duration-500'>
       <div className='flex justify-start'>
-        <Badge variant='slate' className='bg-slate-50 border-slate-200'>
+        <Badge variant='slate' className='border-slate-200 bg-slate-50'>
           {filteredServices.length} Results
         </Badge>
       </div>
@@ -142,13 +145,13 @@ export default function ServicesPage() {
               >
                 <Card
                   hover
-                  className='flex flex-col h-full shadow-sm border-slate-200'
+                  className='flex h-full flex-col border-slate-200 shadow-sm'
                 >
-                  <CardContent className='flex flex-col p-6 h-full'>
+                  <CardContent className='flex h-full flex-col p-6'>
                     {/* Icon & Online Tag */}
-                    <div className='flex justify-between items-start mb-4'>
-                      <div className='p-2.5 rounded-xl bg-primary-50 text-primary-600 border border-primary-100 shadow-xs'>
-                        <CategoryIcon className='w-5 h-5' />
+                    <div className='mb-4 flex items-start justify-between'>
+                      <div className='bg-primary-50 text-primary-600 border-primary-100 rounded-xl border p-2.5 shadow-xs'>
+                        <CategoryIcon className='h-5 w-5' />
                       </div>
                       <Badge
                         variant={service.url ? 'success' : 'secondary'}
@@ -160,36 +163,36 @@ export default function ServicesPage() {
 
                     {/* Title & Category Label */}
                     <div className='flex-1'>
-                      <h3 className='mb-1 font-bold leading-snug transition-colors text-slate-900 group-hover:text-primary-600'>
+                      <h3 className='group-hover:text-primary-600 mb-1 leading-snug font-bold text-slate-900 transition-colors'>
                         {service.service}
                       </h3>
-                      <p className='text-[10px] font-bold text-slate-400 uppercase tracking-widest'>
+                      <p className='text-[10px] font-bold tracking-widest text-slate-400 uppercase'>
                         {service.category.name}
                       </p>
                     </div>
 
                     {/* Verification Row */}
-                    <div className='flex justify-between items-center pt-4 mt-6 border-t border-slate-50'>
-                      <div className='flex items-center gap-1.5 text-[10px] font-bold uppercase tracking-widest'>
+                    <div className='mt-6 flex items-center justify-between border-t border-slate-50 pt-4'>
+                      <div className='flex items-center gap-1.5 text-[10px] font-bold tracking-widest uppercase'>
                         {hasValidDate ? (
                           <>
-                            <ClockIcon className='w-3 h-3 text-emerald-600' />
+                            <ClockIcon className='h-3 w-3 text-emerald-600' />
                             <span className='text-slate-500'>
                               {format(new Date(service.updatedAt!), 'MMM yyyy')}
                             </span>
                           </>
                         ) : (
                           <>
-                            <span className='w-1.5 h-1.5 rounded-full bg-slate-300 shrink-0' />
-                            <span className='italic font-bold text-slate-300'>
+                            <span className='h-1.5 w-1.5 shrink-0 rounded-full bg-slate-300' />
+                            <span className='font-bold text-slate-300 italic'>
                               Unverified
                             </span>
                           </>
                         )}
                       </div>
 
-                      <span className='flex gap-1 items-center text-xs font-bold transition-transform text-primary-600 group-hover:translate-x-1'>
-                        View <ArrowRightIcon className='w-3 h-3' />
+                      <span className='text-primary-600 flex items-center gap-1 text-xs font-bold transition-transform group-hover:translate-x-1'>
+                        View <ArrowRightIcon className='h-3 w-3' />
                       </span>
                     </div>
                   </CardContent>
@@ -202,7 +205,7 @@ export default function ServicesPage() {
       {/* Infinite Scroll Loader */}
       {filteredServices.length > currentPage * ITEMS_PER_PAGE && (
         <div ref={loadMoreRef} className='flex justify-center py-12'>
-          <div className='w-6 h-6 rounded-full border-2 animate-spin border-primary-600 border-t-transparent' />
+          <div className='border-primary-600 h-6 w-6 animate-spin rounded-full border-2 border-t-transparent' />
         </div>
       )}
     </div>

@@ -1,16 +1,18 @@
+import { FC, useState } from 'react';
+
+import { Link } from 'react-router-dom';
+
 import {
+  ArrowRightIcon,
+  ChevronDownIcon,
+  ChevronUpIcon,
+  GlobeIcon,
+  HeartHandshakeIcon,
   MailIcon,
   MessageCircleIcon,
   UsersIcon,
-  GlobeIcon,
-  ArrowRightIcon,
-  HeartHandshakeIcon,
-  ChevronDownIcon,
-  ChevronUpIcon,
 } from 'lucide-react';
-import { FC, useState } from 'react';
 import { Helmet } from 'react-helmet-async';
-import { Link } from 'react-router-dom';
 
 const ContactUs: FC = () => {
   const contactMethods = [
@@ -110,17 +112,17 @@ const ContactUs: FC = () => {
 
       <div className='container mx-auto px-4 py-6 md:py-8'>
         {/* Header Section */}
-        <div className='bg-white rounded-lg border shadow-xs p-6 md:p-8 md:py-16 mt-4'>
-          <div className='max-w-4xl mx-auto text-center'>
-            <div className='flex justify-center mb-6'>
-              <div className='p-4 bg-blue-100 rounded-full'>
+        <div className='mt-4 rounded-lg border bg-white p-6 shadow-xs md:p-8 md:py-16'>
+          <div className='mx-auto max-w-4xl text-center'>
+            <div className='mb-6 flex justify-center'>
+              <div className='rounded-full bg-blue-100 p-4'>
                 <HeartHandshakeIcon className='h-12 w-12 text-blue-600' />
               </div>
             </div>
-            <h1 className='text-3xl md:text-5xl font-bold text-gray-900 mb-6'>
+            <h1 className='mb-6 text-3xl font-bold text-gray-900 md:text-5xl'>
               Connect with Us
             </h1>
-            <p className='text-lg md:text-xl text-gray-600 max-w-3xl mx-auto mb-8'>
+            <p className='mx-auto mb-8 max-w-3xl text-lg text-gray-600 md:text-xl'>
               We&apos;re a passionate community of volunteers, developers, and
               designers dedicated to improving digital public services in the
               Philippines. Whether you have a question, a suggestion, or want to
@@ -130,22 +132,22 @@ const ContactUs: FC = () => {
         </div>
 
         {/* Contact Methods Grid */}
-        <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mt-8'>
+        <div className='mt-8 grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-4'>
           {contactMethods.map((method, index) => (
             <div
               key={index}
-              className='bg-white rounded-lg border shadow-xs hover:shadow-md transition-shadow p-6'
+              className='rounded-lg border bg-white p-6 shadow-xs transition-shadow hover:shadow-md'
             >
-              <div className={`${method.color} rounded-lg p-3 w-fit mb-4`}>
+              <div className={`${method.color} mb-4 w-fit rounded-lg p-3`}>
                 {method.icon}
               </div>
-              <h3 className='text-lg font-semibold text-gray-900 mb-2'>
+              <h3 className='mb-2 text-lg font-semibold text-gray-900'>
                 {method.title}
               </h3>
-              <p className='text-gray-600 text-sm mb-4'>{method.description}</p>
+              <p className='mb-4 text-sm text-gray-600'>{method.description}</p>
               <a
                 href={method.action}
-                className='text-blue-600 hover:text-blue-800 font-medium text-sm inline-flex items-center group'
+                className='group inline-flex items-center text-sm font-medium text-blue-600 hover:text-blue-800'
                 target={method.action.startsWith('http') ? '_blank' : '_self'}
                 rel={
                   method.action.startsWith('http')
@@ -154,17 +156,17 @@ const ContactUs: FC = () => {
                 }
               >
                 {method.contact}
-                <ArrowRightIcon className='w-4 h-4 ml-1 transition-transform group-hover:translate-x-1' />
+                <ArrowRightIcon className='ml-1 h-4 w-4 transition-transform group-hover:translate-x-1' />
               </a>
             </div>
           ))}
         </div>
 
         {/* FAQ Section */}
-        <div className='bg-white rounded-lg border shadow-xs p-6 md:p-8 mt-8'>
-          <div className='max-w-4xl mx-auto'>
-            <div className='text-center mb-8'>
-              <h2 className='text-2xl md:text-3xl font-bold text-gray-900 mb-4'>
+        <div className='mt-8 rounded-lg border bg-white p-6 shadow-xs md:p-8'>
+          <div className='mx-auto max-w-4xl'>
+            <div className='mb-8 text-center'>
+              <h2 className='mb-4 text-2xl font-bold text-gray-900 md:text-3xl'>
                 Frequently Asked Questions
               </h2>
               <p className='text-gray-600'>
@@ -174,12 +176,12 @@ const ContactUs: FC = () => {
 
             <div className='space-y-4'>
               {faqs.map((faq, index) => (
-                <div key={index} className='border rounded-lg'>
+                <div key={index} className='rounded-lg border'>
                   <button
                     onClick={() => setOpenFaq(openFaq === index ? null : index)}
-                    className='w-full flex justify-between items-center p-4 text-left'
+                    className='flex w-full items-center justify-between p-4 text-left'
                   >
-                    <h3 className='font-semibold text-gray-800 flex-1'>
+                    <h3 className='flex-1 font-semibold text-gray-800'>
                       {faq.question}
                     </h3>
                     {openFaq === index ? (
@@ -189,7 +191,7 @@ const ContactUs: FC = () => {
                     )}
                   </button>
                   {openFaq === index && (
-                    <div className='p-4 pt-0 text-gray-600 text-sm leading-relaxed'>
+                    <div className='p-4 pt-0 text-sm leading-relaxed text-gray-600'>
                       <p>
                         {faq.answer}
                         {faq.link && (
@@ -197,7 +199,7 @@ const ContactUs: FC = () => {
                             {' '}
                             <Link
                               to={faq.link.href}
-                              className='text-blue-600 hover:text-blue-800 font-medium'
+                              className='font-medium text-blue-600 hover:text-blue-800'
                               target={
                                 faq.link.href.startsWith('http')
                                   ? '_blank'
@@ -224,20 +226,20 @@ const ContactUs: FC = () => {
         </div>
 
         {/* Call to Action */}
-        <div className='bg-gradient-to-r from-blue-600 to-purple-600 rounded-lg p-8 mt-8 text-center'>
-          <h3 className='text-2xl font-bold text-white mb-4'>
+        <div className='mt-8 rounded-lg bg-gradient-to-r from-blue-600 to-purple-600 p-8 text-center'>
+          <h3 className='mb-4 text-2xl font-bold text-white'>
             Ready to Make a Difference?
           </h3>
-          <p className='text-blue-100 mb-6 max-w-2xl mx-auto'>
+          <p className='mx-auto mb-6 max-w-2xl text-blue-100'>
             Join our community of volunteers building better digital services
             for the Philippines.
           </p>
           <Link
             to='/join-us'
-            className='inline-flex items-center bg-white text-blue-600 px-6 py-3 rounded-lg font-semibold hover:bg-gray-50 transition-colors'
+            className='inline-flex items-center rounded-lg bg-white px-6 py-3 font-semibold text-blue-600 transition-colors hover:bg-gray-50'
           >
             Become a Volunteer
-            <ArrowRightIcon className='w-5 h-5 ml-2' />
+            <ArrowRightIcon className='ml-2 h-5 w-5' />
           </Link>
         </div>
       </div>

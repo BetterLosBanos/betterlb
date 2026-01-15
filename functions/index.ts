@@ -4,8 +4,8 @@ import {
   scheduled as getWeatherScheduled,
   onRequest as weatherRequest,
 } from './api/weather';
-import { onRequest as weatherKVRequest } from './weather';
 import { Env } from './types';
+import { onRequest as weatherKVRequest } from './weather';
 
 // Export the scheduled handlers
 export { scheduled as scheduled_getWeather } from './api/weather';

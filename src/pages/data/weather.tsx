@@ -1,5 +1,7 @@
-import { useState, useEffect, FC } from 'react';
+import { FC, useEffect, useState } from 'react';
+
 import * as LucideIcons from 'lucide-react';
+
 import { fetchWeatherData } from '../../lib/weather';
 import { WeatherData } from '../../types';
 
@@ -78,27 +80,27 @@ const WeatherPage: FC = () => {
 
   return (
     <div className='min-h-screen bg-gray-50'>
-      <div className='container mx-auto py-8 px-4'>
+      <div className='container mx-auto px-4 py-8'>
         {isLoading ? (
-          <div className='flex justify-center items-center h-64'>
-            <div className='animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-primary-600'></div>
+          <div className='flex h-64 items-center justify-center'>
+            <div className='border-primary-600 h-12 w-12 animate-spin rounded-full border-t-2 border-b-2'></div>
           </div>
         ) : error ? (
-          <div className='bg-red-100 border-l-4 border-red-500 text-red-700 p-4 rounded-sm shadow-md'>
+          <div className='rounded-sm border-l-4 border-red-500 bg-red-100 p-4 text-red-700 shadow-md'>
             <p className='font-bold'>Error</p>
             <p>{error}</p>
           </div>
         ) : (
-          <div className='grid grid-cols-1 lg:grid-cols-3 gap-8'>
+          <div className='grid grid-cols-1 gap-8 lg:grid-cols-3'>
             {/* City Selection Panel */}
-            <div className='bg-white rounded-lg shadow-md p-6'>
-              <h2 className='text-xl font-bold mb-4 text-gray-800'>Cities</h2>
+            <div className='rounded-lg bg-white p-6 shadow-md'>
+              <h2 className='mb-4 text-xl font-bold text-gray-800'>Cities</h2>
               <div className='space-y-2'>
                 {weatherData.map(city => (
                   <button
                     key={city.location}
                     onClick={() => setSelectedCity(city.location)}
-                    className={`w-full text-left px-4 py-3 rounded-md transition-all flex items-center justify-between ${
+                    className={`flex w-full items-center justify-between rounded-md px-4 py-3 text-left transition-all ${
                       selectedCity === city.location
                         ? 'bg-primary-100 text-primary-800'
                         : 'hover:bg-gray-100'
@@ -124,48 +126,48 @@ const WeatherPage: FC = () => {
             {selectedCityData && (
               <div className='lg:col-span-2'>
                 <div
-                  className={`rounded-lg shadow-lg p-8 ${getWeatherBackground(
+                  className={`rounded-lg p-8 shadow-lg ${getWeatherBackground(
                     selectedCityData.condition
                   )}`}
                 >
-                  <div className='flex flex-col md:flex-row justify-between items-center mb-8'>
+                  <div className='mb-8 flex flex-col items-center justify-between md:flex-row'>
                     <div>
-                      <h2 className='text-3xl font-bold uppercase mb-1'>
+                      <h2 className='mb-1 text-3xl font-bold uppercase'>
                         {selectedCityData.location}
                       </h2>
                       <p className='text-xl opacity-90'>
                         {getWeatherDescription(selectedCityData.condition)}
                       </p>
                     </div>
-                    <div className='flex items-center mt-4 md:mt-0'>
+                    <div className='mt-4 flex items-center md:mt-0'>
                       {getWeatherIcon(selectedCityData.icon, 'h-16 w-16')}
-                      <span className='text-6xl font-bold ml-4'>
+                      <span className='ml-4 text-6xl font-bold'>
                         {selectedCityData.temperature}°C
                       </span>
                     </div>
                   </div>
 
-                  <div className='grid grid-cols-2 md:grid-cols-4 gap-4 text-center'>
-                    <div className='bg-white/20 backdrop-blur-xs rounded-lg p-4'>
-                      <div className='text-black/80 mb-1'>Humidity</div>
+                  <div className='grid grid-cols-2 gap-4 text-center md:grid-cols-4'>
+                    <div className='rounded-lg bg-white/20 p-4 backdrop-blur-xs'>
+                      <div className='mb-1 text-black/80'>Humidity</div>
                       <div className='text-xl font-semibold'>
                         {selectedCityData.humidity}%
                       </div>
                     </div>
-                    <div className='bg-white/20 backdrop-blur-xs rounded-lg p-4'>
-                      <div className='text-black/80 mb-1'>Wind</div>
+                    <div className='rounded-lg bg-white/20 p-4 backdrop-blur-xs'>
+                      <div className='mb-1 text-black/80'>Wind</div>
                       <div className='text-xl font-semibold'>
                         {Math.round(selectedCityData.windSpeed * 3.6)} km/h
                       </div>
                     </div>
-                    <div className='bg-white/20 backdrop-blur-xs rounded-lg p-4'>
-                      <div className='text-black/80 mb-1'>Pressure</div>
+                    <div className='rounded-lg bg-white/20 p-4 backdrop-blur-xs'>
+                      <div className='mb-1 text-black/80'>Pressure</div>
                       <div className='text-xl font-semibold'>
                         {selectedCityData.pressure} hPa
                       </div>
                     </div>
-                    <div className='bg-white/20 backdrop-blur-xs rounded-lg p-4'>
-                      <div className='text-black/80 mb-1'>Visibility</div>
+                    <div className='rounded-lg bg-white/20 p-4 backdrop-blur-xs'>
+                      <div className='mb-1 text-black/80'>Visibility</div>
                       <div className='text-xl font-semibold'>
                         {selectedCityData.visibility} km
                       </div>
@@ -174,11 +176,11 @@ const WeatherPage: FC = () => {
                 </div>
 
                 {/* Weather Forecast */}
-                <div className='mt-8 bg-white rounded-lg shadow-md p-6 hidden'>
-                  <h3 className='text-xl font-bold mb-4 text-gray-800'>
+                <div className='mt-8 hidden rounded-lg bg-white p-6 shadow-md'>
+                  <h3 className='mb-4 text-xl font-bold text-gray-800'>
                     5-Day Forecast
                   </h3>
-                  <div className='grid grid-cols-1 sm:grid-cols-5 gap-4'>
+                  <div className='grid grid-cols-1 gap-4 sm:grid-cols-5'>
                     {[...Array(5)].map((_, index) => {
                       const date = new Date();
                       date.setDate(date.getDate() + index);
@@ -197,11 +199,11 @@ const WeatherPage: FC = () => {
                       return (
                         <div
                           key={index}
-                          className='bg-gray-50 rounded-lg p-4 text-center'
+                          className='rounded-lg bg-gray-50 p-4 text-center'
                         >
                           <p className='font-medium text-gray-800'>{dayName}</p>
-                          <p className='text-sm text-gray-800 mb-2'>{dayNum}</p>
-                          <div className='flex justify-center my-2'>
+                          <p className='mb-2 text-sm text-gray-800'>{dayNum}</p>
+                          <div className='my-2 flex justify-center'>
                             {getWeatherIcon(mockIcon, 'h-8 w-8 text-gray-700')}
                           </div>
                           <p className='text-lg font-semibold text-gray-800'>
@@ -218,11 +220,11 @@ const WeatherPage: FC = () => {
         )}
 
         {/* Weather Information Section */}
-        <div className='mt-12 bg-white rounded-lg shadow-md p-6'>
-          <h2 className='text-2xl font-bold mb-4 text-gray-800'>
+        <div className='mt-12 rounded-lg bg-white p-6 shadow-md'>
+          <h2 className='mb-4 text-2xl font-bold text-gray-800'>
             About Weather Data
           </h2>
-          <p className='text-gray-800 mb-4'>
+          <p className='mb-4 text-gray-800'>
             The weather data displayed on this page is sourced from the
             Philippine Atmospheric, Geophysical and Astronomical Services
             Administration (PAGASA) and other reliable weather services. The
@@ -230,9 +232,9 @@ const WeatherPage: FC = () => {
             accurate and current weather conditions across major Philippine
             cities.
           </p>
-          <div className='grid grid-cols-1 md:grid-cols-2 gap-6 mt-6'>
-            <div className='border-l-4 border-primary-500 pl-4'>
-              <h3 className='text-lg font-semibold text-gray-800 mb-2'>
+          <div className='mt-6 grid grid-cols-1 gap-6 md:grid-cols-2'>
+            <div className='border-primary-500 border-l-4 pl-4'>
+              <h3 className='mb-2 text-lg font-semibold text-gray-800'>
                 Understanding the Data
               </h3>
               <p className='text-gray-800'>
@@ -241,8 +243,8 @@ const WeatherPage: FC = () => {
                 forecast provides a 5-day outlook to help you plan ahead.
               </p>
             </div>
-            <div className='border-l-4 border-primary-500 pl-4'>
-              <h3 className='text-lg font-semibold text-gray-800 mb-2'>
+            <div className='border-primary-500 border-l-4 pl-4'>
+              <h3 className='mb-2 text-lg font-semibold text-gray-800'>
                 Weather Advisories
               </h3>
               <p className='text-gray-800'>
@@ -260,11 +262,11 @@ const WeatherPage: FC = () => {
               </p>
             </div>
           </div>
-          <p className='text-sm text-gray-700 mt-4 text-right'>
+          <p className='mt-4 text-right text-sm text-gray-700'>
             Weather data provided by{' '}
             <a
               href='https://openweathermap.org/'
-              className='text-gray-800 hover:text-gray-900 underline'
+              className='text-gray-800 underline hover:text-gray-900'
               target='_blank'
               rel='noopener noreferrer'
             >

@@ -1,15 +1,33 @@
-import { BarChart2Icon, Landmark, ReceiptText, Info } from 'lucide-react';
-import SummaryCards from '@/pages/transparency/components/SummaryCards';
-// ... rest of imports and component logic (no other changes needed)
-import QuarterToggle from '@/pages/transparency/components/QuarterToggle';
+import { formatLabel } from '@/utils/budgetUtils';
+import {
+  BarChart2Icon,
+  Info,
+  Landmark,
+  ReceiptText,
+  ShieldCheck,
+} from 'lucide-react';
+
+// UI Components
+import { Badge } from '@/components/ui/Badge';
+import {
+  Breadcrumb,
+  BreadcrumbHome,
+  BreadcrumbItem,
+  BreadcrumbLink,
+  BreadcrumbList,
+  BreadcrumbPage,
+  BreadcrumbSeparator,
+} from '@/components/ui/Breadcrumb';
+
 import FinancialPieChart, {
   ChartDataPoint,
 } from '@/pages/transparency/components/FinancialPieChart';
+import QuarterToggle from '@/pages/transparency/components/QuarterToggle';
+import SummaryCards from '@/pages/transparency/components/SummaryCards';
+
 import { useFinancialData } from '@/hooks/useFinancialData';
-import { formatLabel } from '@/utils/budgetUtils';
 
 export default function FinancialPage() {
-  // ... component implementation
   const {
     years,
     selectedYear,
@@ -27,15 +45,11 @@ export default function FinancialPage() {
   } = useFinancialData();
 
   // --- Transform Data for Charts ---
-
-  // Helper: Safe Percentage Calculation (0.0 to 1.0)
   const calcPct = (val: number, total: number) => (total > 0 ? val / total : 0);
 
   // ---------------- INCOME DATA PREP ---------------- //
-
   const localTotal = displayedIncome.local_sources.total_local_sources;
   const externalTotal = displayedIncome.external_sources.total_external_sources;
-  // FIX: Calculate Grand Total for Income to generate Tier 1 percentages
   const grandTotalIncome =
     displayedIncome.total_current_operating_income ||
     localTotal + externalTotal;
@@ -44,7 +58,6 @@ export default function FinancialPage() {
     {
       name: 'Local Sources',
       value: localTotal,
-      // FIX: Add percent property here for Tier 1 Tooltip
       percent: calcPct(localTotal, grandTotalIncome),
       details: [
         {
@@ -105,7 +118,6 @@ export default function FinancialPage() {
     {
       name: 'External Sources',
       value: externalTotal,
-      // FIX: Add percent property here for Tier 1 Tooltip
       percent: calcPct(externalTotal, grandTotalIncome),
       details: [
         {
@@ -143,10 +155,8 @@ export default function FinancialPage() {
   ];
 
   // ---------------- EXPENDITURE DATA PREP ---------------- //
-
   const socialTotal =
     displayedExpenditure.social_services.total_social_services;
-  // FIX: Calculate Grand Total for Expenditure
   const grandTotalExp =
     displayedExpenditure.total_current_operating_expenditures ||
     displayedExpenditure.general_public_services +
@@ -158,7 +168,6 @@ export default function FinancialPage() {
     {
       name: 'General Public Services',
       value: displayedExpenditure.general_public_services,
-      // FIX: Add percent
       percent: calcPct(
         displayedExpenditure.general_public_services,
         grandTotalExp
@@ -167,7 +176,6 @@ export default function FinancialPage() {
     {
       name: 'Social Services',
       value: socialTotal,
-      // FIX: Add percent
       percent: calcPct(socialTotal, grandTotalExp),
       details: Object.entries(displayedExpenditure.social_services)
         .filter(([key]) => key !== 'total_social_services')
@@ -180,13 +188,11 @@ export default function FinancialPage() {
     {
       name: 'Economic Services',
       value: displayedExpenditure.economic_services,
-      // FIX: Add percent
       percent: calcPct(displayedExpenditure.economic_services, grandTotalExp),
     },
     {
       name: 'Debt Service',
       value: displayedExpenditure.debt_service_interest_expense,
-      // FIX: Add percent
       percent: calcPct(
         displayedExpenditure.debt_service_interest_expense,
         grandTotalExp
@@ -195,67 +201,104 @@ export default function FinancialPage() {
   ];
 
   return (
-    <div className='space-y-6 p-4 md:p-6'>
-      {/* Header */}
-      <div className='bg-white rounded-lg shadow p-4 md:p-6 flex flex-col md:flex-row md:justify-between md:items-center gap-4'>
-        <div>
-          <h1 className='text-2xl font-bold flex items-center gap-2 text-slate-900'>
-            <BarChart2Icon className='w-6 h-6 text-emerald-600' />
-            Financial Report
-          </h1>
+    <div className='animate-in fade-in mx-auto max-w-7xl space-y-6 pb-20 duration-500'>
+      {/* 1. Standardized Breadcrumbs */}
+      <Breadcrumb>
+        <BreadcrumbList>
+          <BreadcrumbItem>
+            <BreadcrumbHome href='/' />
+          </BreadcrumbItem>
+          <BreadcrumbSeparator />
+          <BreadcrumbItem>
+            <BreadcrumbLink href='/transparency'>Transparency</BreadcrumbLink>
+          </BreadcrumbItem>
+          <BreadcrumbSeparator />
+          <BreadcrumbItem>
+            <BreadcrumbPage>Financial Report</BreadcrumbPage>
+          </BreadcrumbItem>
+        </BreadcrumbList>
+      </Breadcrumb>
 
-          <div className='flex flex-wrap items-center gap-3 mt-2'>
-            <p className='text-slate-500 text-sm'>
-              FY {selectedYear} •{' '}
-              {viewMode === 'quarter' ? 'Quarterly' : 'Annual'} Performance
-            </p>
-
-            <div className='flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-slate-100 border border-slate-200 text-xs font-medium text-slate-600'>
-              <Info className='w-3.5 h-3.5 text-slate-400' />
-              <span>Figures in Million PHP (PHP)</span>
+      {/* 2. Unified Header with Controls */}
+      <div className='flex flex-col gap-8 rounded-3xl border border-slate-200 bg-white p-8 shadow-sm xl:flex-row xl:items-center xl:justify-between'>
+        <div className='space-y-4'>
+          <div className='flex flex-wrap items-center gap-2'>
+            <Badge variant='primary' dot>
+              Verified Audit
+            </Badge>
+            <Badge variant='slate'>FY {selectedYear}</Badge>
+            <div className='flex items-center gap-1.5 rounded-md border border-slate-100 bg-slate-50 px-2.5 py-1 text-[10px] font-bold tracking-widest text-slate-500 uppercase'>
+              <Info className='h-3.5 w-3.5 text-slate-400' />
+              <span>Millions (PHP)</span>
             </div>
           </div>
+          <h1 className='flex items-center gap-3 text-3xl font-black tracking-tight text-slate-900 md:text-4xl'>
+            <BarChart2Icon className='h-8 w-8 text-emerald-600' />
+            Financial Performance
+          </h1>
+          <p className='max-w-xl text-sm leading-relaxed font-medium text-slate-500'>
+            Independent visualization of the municipal budget, including current
+            operating income and expenditures.
+          </p>
         </div>
 
-        <QuarterToggle
-          quarters={quartersInYear.map(q => getQuarter(q.period))}
-          years={years}
-          viewMode={viewMode}
-          selectedYear={selectedYear}
-          selectedQuarter={getQuarter(selectedQuarter.period)}
-          onYearChange={setSelectedYear}
-          onViewModeChange={setViewMode}
-          onQuarterChange={q => {
-            const found = quartersInYear.find(x => getQuarter(x.period) === q);
-            if (found) setSelectedQuarter(found);
-          }}
+        <div className='shrink-0 rounded-2xl border border-slate-100 bg-slate-50 p-4'>
+          <QuarterToggle
+            quarters={quartersInYear.map(q => getQuarter(q.period))}
+            years={years}
+            viewMode={viewMode}
+            selectedYear={selectedYear}
+            selectedQuarter={getQuarter(selectedQuarter.period)}
+            onYearChange={setSelectedYear}
+            onViewModeChange={setViewMode}
+            onQuarterChange={q => {
+              const found = quartersInYear.find(
+                x => getQuarter(x.period) === q
+              );
+              if (found) setSelectedQuarter(found);
+            }}
+          />
+        </div>
+      </div>
+
+      {/* 3. KPI Cards - Uses established card patterns inside SummaryCards */}
+      <div role='region' aria-label='Financial Summary Cards'>
+        <SummaryCards
+          income={displayedIncome}
+          expenditure={displayedExpenditure}
+          fundSummary={displayedFundSummary}
+          prevYear={comparisonBaseline}
         />
       </div>
 
-      {/* KPI Cards */}
-      <SummaryCards
-        income={displayedIncome}
-        expenditure={displayedExpenditure}
-        fundSummary={displayedFundSummary}
-        prevYear={comparisonBaseline}
-      />
-
-      {/* Charts Grid */}
-      <div className='grid grid-cols-1 lg:grid-cols-2 gap-6'>
+      {/* 4. Charts Grid - Standardized Color Palettes */}
+      <div className='grid grid-cols-1 gap-8 lg:grid-cols-2'>
         <FinancialPieChart
           title='Income Composition'
           icon={Landmark}
           data={incomeChartData}
-          colors={['#10b981', '#0ea5e9', '#6366f1', '#64748b']}
+          // BetterGov: Emerald for local, Blue for national, Slate for others
+          colors={['#059669', '#0066eb', '#64748b', '#94a3b8']}
         />
 
         <FinancialPieChart
           title='Expenditure Allocation'
           icon={ReceiptText}
           data={expenditureChartData}
-          colors={['#f43f5e', '#f97316', '#eab308', '#3b82f6']}
+          // BetterGov: Rose for services, Orange for economic, Amber for debt
+          colors={['#dc2626', '#cc3e00', '#d97706', '#0066eb']}
         />
       </div>
+
+      {/* 5. Accessibility Footer */}
+      <footer className='pt-10 text-center'>
+        <div className='inline-flex items-center gap-2 rounded-full border border-slate-200 bg-white px-4 py-2 shadow-sm'>
+          <ShieldCheck className='h-4 w-4 text-emerald-600' />
+          <span className='text-[10px] font-bold tracking-widest text-slate-500 uppercase'>
+            Source: LGU SRE via BLGF and Full Disclosure Policy Portal
+          </span>
+        </div>
+      </footer>
     </div>
   );
 }

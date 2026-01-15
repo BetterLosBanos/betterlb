@@ -1,19 +1,20 @@
-import raw from './sre.json';
 import {
   FinancialQuarter,
-  RawFinancialQuarter,
+  FundSummary,
   NonIncomeReceipts,
   NonOperatingExpenditures,
-  FundSummary,
-  emptyCurrentOperatingIncome,
-  emptyCurrentOperatingExpenditures,
-  emptySocialServices,
+  RawFinancialQuarter,
+  emptyCapitalInvestmentExpenditures,
   // Removed unused imports here
   emptyCapitalInvestmentReceipts,
-  emptyReceiptsFromLoansAndBorrowings,
-  emptyCapitalInvestmentExpenditures,
+  emptyCurrentOperatingExpenditures,
+  emptyCurrentOperatingIncome,
   emptyDebtServicePrincipalCost,
+  emptyReceiptsFromLoansAndBorrowings,
+  emptySocialServices,
 } from '@/types/budgetTypes';
+
+import raw from './sre.json';
 
 // 1. Cast raw JSON to the Raw interface
 const rawData = raw as unknown as RawFinancialQuarter[];
