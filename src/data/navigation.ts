@@ -10,7 +10,7 @@ export const mainNavigation: NavigationItem[] = [
   {
     label: 'Services',
     href: '/services',
-    children: (serviceCategories.categories as Category[]).map(category => ({
+    children: (serviceCategories.categories as Category[]).map((category) => ({
       label: category.name,
       href: `/services?category=${category.slug}`,
     })),
