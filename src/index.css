@@ -4,6 +4,12 @@
   /* Fonts */
   --font-sans: 'Figtree', ui-sans-serif, sans-serif;
 
+  /* Semantic Aliases */
+  --color-brand-executive: var(--color-primary-600);
+  --color-brand-legislative: var(--color-secondary-600);
+  --color-status-verified: var(--color-emerald-600);
+  --color-status-audit: var(--color-slate-400);
+
   /* Primary (blue) */
   --color-primary-50: #e6f0fd;
   --color-primary-100: #cce0fb;
