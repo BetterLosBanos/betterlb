@@ -53,7 +53,7 @@ export const mainNavigation: NavigationItem[] = [
       },
       {
         label: 'DPWH Projects',
-        href: 'https://bisto.ph/?search=los+ba%C3%B1os&region=Region+IV-A&province=LAGUNA',
+        href: 'https://bisto.ph/projects?search=los+ba%C3%B1os&region=Region+IV-A&province=LAGUNA',
       },
     ],
   },

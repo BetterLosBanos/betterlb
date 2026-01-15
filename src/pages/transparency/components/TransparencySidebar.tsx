@@ -7,17 +7,17 @@ import {
 const sections = [
   {
     name: 'Budget & Finances',
-    slug: 'transparency/financial',
+    slug: 'financial',
     icon: CreditCard,
   },
   {
     name: 'Procurement',
-    slug: 'https://transparency.bettergov.ph/organizations/MUNICIPALITY%20OF%20LOS%20BA%C3%91OS%2C%20LAGUNA',
+    slug: 'procurement',
     icon: Hammer,
   },
   {
     name: 'DPWH Projects',
-    slug: 'https://bisto.ph/?search=los+ba%C3%B1os&region=Region+IV-A&province=LAGUNA',
+    slug: 'infrastructure',
     icon: Truck,
   },
 ];

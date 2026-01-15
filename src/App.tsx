@@ -68,6 +68,8 @@ import FinancialPage from '@/pages/transparency/financial';
 import PopulationPage from './pages/statistics/PopulationPage';
 import CompetitivenessPage from './pages/statistics/CompetitivenessPage';
 import MunicipalIncomePage from './pages/statistics/MunicipalIncomePage';
+import InfrastructurePage from './pages/transparency/infrastructure';
+import ProcurementPage from './pages/transparency/procurement';
 
 function App() {
   return (
@@ -180,6 +182,8 @@ function App() {
             <Route path='/transparency' element={<TransparencyLayout />}>
               <Route index element={<TransparencyIndex />} />
               <Route path='financial' element={<FinancialPage />} />
+              <Route path='procurement' element={<ProcurementPage />} />
+              <Route path='infrastructure' element={<InfrastructurePage />} />
             </Route>
 
             {/* Community Contribution Flow */}
