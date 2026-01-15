@@ -77,7 +77,7 @@ export default function ElectedOfficialsIndex() {
       </Breadcrumb>
 
       <ModuleHeader
-        title='City Leadership'
+        title='Municipal Leadership'
         description='Meet the elected leaders and appointed management of the Science and Nature City.'
       />
 
