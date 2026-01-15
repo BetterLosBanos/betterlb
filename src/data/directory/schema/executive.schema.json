@@ -10,12 +10,25 @@
       "slug": { "type": "string" },
       "name": { "type": "string" },
       "role": { "type": "string" },
-      "office": { "type": "string" },
-      "address": { "type": "string" },
-      "phone": { "type": "string" },
-      "email": { "type": "string", "format": "email" },
-      "website": { "type": "string", "format": "uri" },
-      "isElected": { "type": "boolean" }
+      "isElected": { "type": "boolean" },
+      "office": {
+        "type": ["string", "null"],
+        "description": "The specific office name or null"
+      },
+      "address": {
+        "type": ["string", "null"]
+      },
+      "phone": {
+        "type": ["string", "null"]
+      },
+      "email": {
+        "oneOf": [{ "type": "string", "format": "email" }, { "type": "null" }],
+        "description": "Valid email address or null"
+      },
+      "website": {
+        "oneOf": [{ "type": "string", "format": "uri" }, { "type": "null" }],
+        "description": "Valid URL starting with http/https or null"
+      }
     }
   }
 }
