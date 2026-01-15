@@ -30,7 +30,7 @@
         "description": "Short summary or description of the service"
       },
       "url": {
-        "type": "string",
+        "type": ["string", "null"],
         "description": "External URL to access the service (can be empty)"
       },
       "officeSlug": {
@@ -115,7 +115,7 @@
           "required": ["name"],
           "properties": {
             "name": { "type": "string", "minLength": 1 },
-            "url": { "type": "string" }
+            "url": { "type": ["string", "null"] }
           },
           "additionalProperties": false
         }

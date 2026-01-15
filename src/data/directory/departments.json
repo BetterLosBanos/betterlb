@@ -2,301 +2,301 @@
   {
     "slug": "gad",
     "office_name": "GENDER AND DEVELOPMENT OFFICE",
-    "address": "",
-    "trunkline": [""],
+    "address": null,
+    "trunkline": [null],
     "website": "https://losbanos.gov.ph/3",
     "department_head": {
-      "name": "",
-      "contact": "[REDACTED]",
-      "email": ""
+      "name": null,
+      "contact": null,
+      "email": null
     }
   },
   {
     "slug": "local-civil-registry-office",
     "office_name": "LOCAL CIVIL REGISTRY OFFICE",
-    "address": "",
-    "trunkline": [""],
+    "address": null,
+    "trunkline": [null],
     "website": "https://losbanos.gov.ph/7",
     "department_head": {
-      "name": "",
-      "contact": "[REDACTED]",
-      "email": ""
+      "name": null,
+      "contact": null,
+      "email": null
     }
   },
   {
     "slug": "municipal-planning-and-development-office",
     "office_name": "MUNICIPAL PLANNING AND DEVELOPMENT OFFICE",
-    "address": "",
-    "trunkline": [""],
+    "address": null,
+    "trunkline": [null],
     "website": "https://losbanos.gov.ph/8",
     "department_head": {
       "name": "TWILA T. TORRES",
-      "contact": "[REDACTED]",
-      "email": ""
+      "contact": null,
+      "email": null
     }
   },
   {
     "slug": "municipal-engineering-office",
     "office_name": "MUNICIPAL ENGINEERING OFFICE",
-    "address": "",
-    "trunkline": [""],
+    "address": null,
+    "trunkline": [null],
     "website": "https://www.facebook.com/EngineeringOfficeLB",
     "department_head": {
       "name": "Ricky R. Estopace",
-      "contact": "[REDACTED]",
-      "email": ""
+      "contact": null,
+      "email": null
     }
   },
   {
     "slug": "municipal-assessors-office",
     "office_name": "MUNICIPAL ASSESSOR'S OFFICE",
-    "address": "",
-    "trunkline": [""],
+    "address": null,
+    "trunkline": [null],
     "website": "https://losbanos.gov.ph/10",
     "department_head": {
-      "name": "",
-      "contact": "[REDACTED]",
-      "email": ""
+      "name": null,
+      "contact": null,
+      "email": null
     }
   },
   {
     "slug": "municipal-social-welfare-development-office",
     "office_name": "MUNICIPAL SOCIAL WELFARE DEVELOPMENT OFFICE",
-    "address": "",
-    "trunkline": [""],
+    "address": null,
+    "trunkline": [null],
     "website": "https://losbanos.gov.ph/11",
     "department_head": {
       "name": "HANNA ERIKA E. LAVIÑA",
-      "contact": "[REDACTED]",
-      "email": ""
+      "contact": null,
+      "email": null
     }
   },
   {
     "slug": "municipal-environment-and-natural-resources-office",
     "office_name": "MUNICIPAL ENVIRONMENT AND NATURAL RESOURCES OFFICE",
-    "address": "",
-    "trunkline": [""],
+    "address": null,
+    "trunkline": [null],
     "website": "https://losbanos.gov.ph/12",
     "department_head": {
-      "name": "",
-      "contact": "[REDACTED]",
-      "email": ""
+      "name": null,
+      "contact": null,
+      "email": null
     }
   },
   {
     "slug": "municipal-treasurers-office",
     "office_name": "MUNICIPAL TREASURER'S OFFICE",
-    "address": "",
-    "trunkline": [""],
+    "address": null,
+    "trunkline": [null],
     "website": "https://losbanos.gov.ph/13",
     "department_head": {
-      "name": "",
-      "contact": "[REDACTED]",
-      "email": ""
+      "name": null,
+      "contact": null,
+      "email": null
     }
   },
   {
     "slug": "public-information-office",
     "office_name": "PUBLIC INFORMATION OFFICE",
-    "address": "",
-    "trunkline": [""],
+    "address": null,
+    "trunkline": [null],
     "website": "https://losbanos.gov.ph/14",
     "department_head": {
       "name": "JOHN MARVIN S. CANARIA",
-      "contact": "[REDACTED]",
-      "email": ""
+      "contact": null,
+      "email": null
     }
   },
   {
     "slug": "municipal-budget-office",
     "office_name": "MUNICIPAL BUDGET OFFICE",
-    "address": "",
-    "trunkline": [""],
+    "address": null,
+    "trunkline": [null],
     "website": "https://losbanos.gov.ph/15",
     "department_head": {
-      "name": "",
-      "contact": "[REDACTED]",
-      "email": ""
+      "name": null,
+      "contact": null,
+      "email": null
     }
   },
   {
     "slug": "municipal-accounting-office",
     "office_name": "MUNICIPAL ACCOUNTING OFFICE",
-    "address": "",
-    "trunkline": [""],
+    "address": null,
+    "trunkline": [null],
     "website": "https://losbanos.gov.ph/16",
     "department_head": {
-      "name": "",
-      "contact": "[REDACTED]",
-      "email": ""
+      "name": null,
+      "contact": null,
+      "email": null
     }
   },
   {
     "slug": "municipal-human-resource-management-office",
     "office_name": "MUNICIPAL HUMAN RESOURCE MANAGEMENT OFFICE",
-    "address": "",
-    "trunkline": [""],
+    "address": null,
+    "trunkline": [null],
     "website": "https://losbanos.gov.ph/17",
     "department_head": {
       "name": "MIRAFLOR O. TADO",
-      "contact": "[REDACTED]",
-      "email": ""
+      "contact": null,
+      "email": null
     }
   },
   {
     "slug": "municipal-tourism-office",
     "office_name": "MUNICIPAL TOURISM OFFICE",
-    "address": "",
-    "trunkline": [""],
+    "address": null,
+    "trunkline": [null],
     "website": "https://losbanos.gov.ph/18",
     "department_head": {
       "name": "EDMARIE Z. CALUNGSOD",
-      "contact": "[REDACTED]",
-      "email": ""
+      "contact": null,
+      "email": null
     }
   },
   {
     "slug": "information-and-communication-systems-office",
     "office_name": "INFORMATION AND COMMUNICATION SYSTEMS OFFICE",
-    "address": "",
-    "trunkline": [""],
+    "address": null,
+    "trunkline": [null],
     "website": "https://losbanos.gov.ph/19",
     "department_head": {
       "name": "ANTONIO L. ADILLE IV",
-      "contact": "[REDACTED]",
-      "email": ""
+      "contact": null,
+      "email": null
     }
   },
   {
     "slug": "local-youth-and-development-office",
     "office_name": "LOCAL YOUTH AND DEVELOPMENT OFFICE",
-    "address": "",
-    "trunkline": [""],
+    "address": null,
+    "trunkline": [null],
     "website": "https://losbanos.gov.ph/20",
     "department_head": {
-      "name": "",
-      "contact": "[REDACTED]",
-      "email": ""
+      "name": null,
+      "contact": null,
+      "email": null
     }
   },
   {
     "slug": "municipal-agriculture-office",
     "office_name": "MUNICIPAL AGRICULTURE OFFICE",
-    "address": "",
-    "trunkline": [""],
+    "address": null,
+    "trunkline": [null],
     "website": "https://losbanos.gov.ph/21",
     "department_head": {
       "name": "Cheryl L. Gonzales",
-      "contact": "[REDACTED]",
-      "email": ""
+      "contact": null,
+      "email": null
     }
   },
   {
     "slug": "municipal-mdrrmo-office",
     "office_name": "MUNICIPAL DISASTER RISK REDUCTION AND MANAGEMENT OFFICE",
-    "address": "",
+    "address": null,
     "trunkline": ["0977 204 9641"],
     "website": "https://losbanos.gov.ph/21",
     "department_head": {
-      "name": "",
-      "contact": "[REDACTED]",
-      "email": ""
+      "name": null,
+      "contact": null,
+      "email": null
     }
   },
   {
     "slug": "municipal-police-station",
     "office_name": "Municipal Police Station",
-    "address": "",
+    "address": null,
     "trunkline": ["0927 509 1198"],
     "website": "https://www.facebook.com/losbanospnpwebsite",
     "department_head": {
-      "name": "",
-      "contact": "[REDACTED]",
-      "email": ""
+      "name": null,
+      "contact": null,
+      "email": null
     }
   },
   {
     "slug": "municipal-health-office",
     "office_name": "Municipal Health Office",
-    "address": "",
+    "address": null,
     "trunkline": ["049 536 3857"],
     "website": "https://www.facebook.com/LBMHO",
     "department_head": {
       "name": "ALVIN A. ISIDORO",
-      "contact": "[REDACTED]",
+      "contact": null,
       "email": "rhu@losbanos.gov.ph"
     }
   },
   {
     "slug": "bureau-fire-protection",
     "office_name": "Bureau of Fire Protection",
-    "address": "",
+    "address": null,
     "trunkline": ["049 536 7965", "049 310 9572", "0939 432 5837"],
     "website": "https://www.facebook.com/lbfirestation",
     "department_head": {
-      "name": "",
-      "contact": "[REDACTED]",
-      "email": ""
+      "name": null,
+      "contact": null,
+      "email": null
     }
   },
   {
     "slug": "business-permit-and-licensing-office",
     "office_name": "Business Permit and Licensing Office",
-    "address": "",
-    "trunkline": [""],
-    "website": "",
+    "address": null,
+    "trunkline": [null],
+    "website": null,
     "department_head": {
-      "name": "",
-      "contact": "[REDACTED]",
-      "email": ""
+      "name": null,
+      "contact": null,
+      "email": null
     }
   },
   {
     "slug": "municipal-general-services-office",
     "office_name": "MUNICIPAL GENERAL SERVICES OFFICE",
-    "address": "",
-    "trunkline": [""],
-    "website": "",
+    "address": null,
+    "trunkline": [null],
+    "website": null,
     "department_head": {
       "name": "Raymond Joseph B. Paraiso",
-      "contact": "[REDACTED]",
-      "email": ""
+      "contact": null,
+      "email": null
     }
   },
   {
     "slug": "anti-drug-abuse-office",
     "office_name": "ANTI DRUG ABUSE OFFICE",
-    "address": "",
-    "trunkline": [""],
-    "website": "",
+    "address": null,
+    "trunkline": [null],
+    "website": null,
     "department_head": {
       "name": "SHIRLEY D. ANDRADE",
-      "contact": "[REDACTED]",
-      "email": ""
+      "contact": null,
+      "email": null
     }
   },
   {
     "slug": "municipal-urban-development-and-housing-office",
     "office_name": "MUNICIPAL URBAN DEVELOPMENT AND HOUSING OFFICE",
-    "address": "",
-    "trunkline": [""],
-    "website": "",
+    "address": null,
+    "trunkline": [null],
+    "website": null,
     "department_head": {
       "name": "Raymond Joseph B. Paraiso",
-      "contact": "[REDACTED]",
-      "email": ""
+      "contact": null,
+      "email": null
     }
   },
   {
     "slug": "office-senior-citizens-affairs",
     "office_name": "OFFICE FOR THE SENIOR CITIZENS' AFFAIRS",
-    "address": "",
-    "trunkline": [""],
+    "address": null,
+    "trunkline": [null],
     "website": "https://www.facebook.com/profile.php?id=61559573828843",
     "department_head": {
-      "name": "",
-      "contact": "[REDACTED]",
-      "email": ""
+      "name": null,
+      "contact": null,
+      "email": null
     }
   }
 ]
