@@ -7,21 +7,42 @@
     "type": "object",
     "required": ["slug", "office_name"],
     "properties": {
-      "slug": { "type": "string" },
-      "office_name": { "type": "string" },
-      "address": { "type": "string" },
-      "trunkline": {
-        "type": "array",
-        "items": { "type": "string" }
+      "slug": {
+        "type": "string",
+        "description": "URL-friendly identifier"
       },
-      "website": { "type": "string" },
+      "office_name": {
+        "type": "string",
+        "description": "Official name of the office"
+      },
+      "address": {
+        "type": ["string", "null"]
+      },
+      "trunkline": {
+        "oneOf": [
+          {
+            "type": "array",
+            "items": { "type": ["string", "null"] }
+          },
+          { "type": "null" }
+        ],
+        "description": "Array of phone numbers (items can be null) or null"
+      },
+      "website": {
+        "type": ["string", "null"]
+      },
       "department_head": {
-        "type": "object",
-        "properties": {
-          "name": { "type": "string" },
-          "contact": { "type": "string" },
-          "email": { "type": "string" }
-        }
+        "oneOf": [
+          {
+            "type": "object",
+            "properties": {
+              "name": { "type": ["string", "null"] },
+              "contact": { "type": ["string", "null"] },
+              "email": { "type": ["string", "null"] }
+            }
+          },
+          { "type": "null" }
+        ]
       }
     }
   }
