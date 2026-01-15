@@ -52,7 +52,7 @@ export default function GovernmentLayout({ title }: GovernmentLayoutProps) {
     currentPath === '/government' || currentPath === '/government/';
 
   return (
-    <div className='animate-in fade-in mx-auto max-w-7xl space-y-12 pb-20 duration-700 md:pb-32'>
+    <div className='pb-20 mx-auto space-y-12 max-w-7xl duration-700 animate-in fade-in md:pb-32'>
       {/* 1. Unified Page Header */}
       <PageHero
         title={title} // Uses the title passed from the route
@@ -75,15 +75,15 @@ export default function GovernmentLayout({ title }: GovernmentLayoutProps) {
                 key={branch.path}
                 to={branch.path}
                 className={cn(
-                  'group relative flex min-h-[160px] flex-col justify-between rounded-2xl border-2 p-6 transition-all duration-300',
+                  'flex relative flex-col justify-between p-6 rounded-2xl border-2 transition-all duration-300 group min-h-[160px]',
                   isActive
-                    ? 'bg-primary-600 border-primary-600 shadow-primary-900/20 text-white shadow-xl'
-                    : 'hover:border-primary-400 border-slate-200 bg-white text-slate-900 shadow-sm'
+                    ? 'text-white shadow-xl bg-primary-600 border-primary-600 shadow-primary-900/20'
+                    : 'bg-white shadow-sm hover:border-primary-400 border-slate-200 text-slate-900'
                 )}
                 state={{ scrollToContent: true }}
               >
                 <div>
-                  <div className='mb-4 flex items-center justify-between'>
+                  <div className='flex justify-between items-center mb-4'>
                     <div
                       className={cn(
                         'rounded-xl p-2.5 shadow-sm transition-colors',
@@ -92,7 +92,7 @@ export default function GovernmentLayout({ title }: GovernmentLayoutProps) {
                           : 'bg-primary-50 text-primary-600 border-primary-100 border'
                       )}
                     >
-                      <Icon className='h-5 w-5' />
+                      <Icon className='w-5 h-5' />
                     </div>
                     <p
                       className={cn(
@@ -106,7 +106,7 @@ export default function GovernmentLayout({ title }: GovernmentLayoutProps) {
 
                   <h3
                     className={cn(
-                      'text-xl leading-tight font-extrabold tracking-tight',
+                      'text-xl font-extrabold tracking-tight leading-tight',
                       isActive ? 'text-white' : 'text-slate-900'
                     )}
                   >
@@ -114,10 +114,10 @@ export default function GovernmentLayout({ title }: GovernmentLayoutProps) {
                   </h3>
                 </div>
 
-                <div className='mt-6 flex items-center justify-between'>
+                <div className='flex justify-between items-center mt-6'>
                   <p
                     className={cn(
-                      'line-clamp-2 pr-6 text-xs leading-relaxed font-medium',
+                      'pr-6 text-xs font-medium leading-relaxed line-clamp-2',
                       isActive ? 'text-primary-50' : 'text-slate-500'
                     )}
                   >
@@ -125,7 +125,7 @@ export default function GovernmentLayout({ title }: GovernmentLayoutProps) {
                   </p>
                   <ChevronRight
                     className={cn(
-                      'h-5 w-5 shrink-0 transition-transform group-hover:translate-x-1',
+                      'w-5 h-5 transition-transform shrink-0 group-hover:translate-x-1',
                       isActive ? 'text-white' : 'text-slate-300'
                     )}
                   />
@@ -138,7 +138,7 @@ export default function GovernmentLayout({ title }: GovernmentLayoutProps) {
 
       {/* 3. Sub-route rendering (The Content) */}
       {!isMainPage && (
-        <div className='animate-in slide-in-from-bottom-2 px-4 duration-500 md:px-0'>
+        <div className='px-4 duration-500 animate-in slide-in-from-bottom-2 md:px-0'>
           {/* Outlet handles the rendering of child components automatically */}
           <Outlet />
         </div>

@@ -8,6 +8,7 @@
     "build": "tsc && npm run merge:data && vite build",
     "lint": "eslint . --max-warnings 0",
     "format": "prettier --write .",
+    "format:check": "prettier --check .",
     "test:e2e": "playwright test",
     "merge:data": "python3 scripts/merge_services.py",
     "wrangler": "wrangler",
