@@ -1,148 +1,84 @@
-import {
-  ChevronDownIcon,
-  GlobeIcon,
-  MenuIcon,
-  SearchIcon,
-  XIcon,
-} from 'lucide-react';
+import { ChevronDownIcon, MenuIcon, SearchIcon, XIcon } from 'lucide-react';
 import { FC, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Link, useLocation } from 'react-router-dom';
 import { mainNavigation } from '../../data/navigation';
 import { LANGUAGES } from '../../i18n/languages';
 import { LanguageType } from '../../types';
+import { cn } from '@/lib/utils';
 
 const Navbar: FC = () => {
   const [isOpen, setIsOpen] = useState(false);
-  const [activeMenu, setActiveMenu] = useState<string | null>(null);
+  const [activeMobileSubmenu, setActiveMobileSubmenu] = useState<string | null>(
+    null
+  );
   const [hoveredDropdown, setHoveredDropdown] = useState<string | null>(null);
   const { t, i18n } = useTranslation('common');
   const location = useLocation();
 
   const toggleMenu = () => {
     setIsOpen(!isOpen);
-    if (isOpen) {
-      setActiveMenu(null);
-    }
+    if (isOpen) setActiveMobileSubmenu(null);
   };
 
   const closeMenu = () => {
     setIsOpen(false);
-    setActiveMenu(null);
-  };
-
-  const toggleSubmenu = (label: string) => {
-    setActiveMenu(activeMenu === label ? null : label);
+    setActiveMobileSubmenu(null);
+    setHoveredDropdown(null);
   };
 
   const changeLanguage = (newLanguage: LanguageType) => {
     i18n.changeLanguage(newLanguage);
   };
 
-  const normalizePath = (path: string): string => path.replace(/\/$/, '');
-
-  const buildFullPath = (href: string): string => {
-    let fullPath = location.pathname;
-
-    // Edge case: for /government/*
-    // Example:
-    //    nav href: /government/legislative
-    //    actual address: /government/legislative/senate-of-the-philippines-20th-congress
-    if (href.startsWith('/government')) {
-      const parts = fullPath.split('/');
-      // ["", "government", "legislative", "senate-of-the-philippines-20th-congress"]
-      if (parts.length > 3) {
-        // Remove the last segment
-        parts.pop();
-        fullPath = parts.join('/');
-      }
-    }
-
-    // We include the search queries because of /services
-    return fullPath + location.search;
-  };
-
   const isActiveRoute = (href: string) => {
-    // Handle edge cases: null, undefined, or empty href
-    if (!href) return false;
-
-    // Normalize paths by removing trailing slashes
-    const normalizedPath = normalizePath(location.pathname);
-    const normalizedHref = normalizePath(href);
-
-    // Check exact match or if current path starts with href
-    return (
-      normalizedPath === normalizedHref ||
-      (normalizedHref !== '/' &&
-        normalizedPath.startsWith(normalizedHref + '/'))
-    );
-  };
-
-  const isActiveChildRoute = (href: string): boolean => {
-    // Handle edge cases: null, undefined, or empty href
-    if (!href) return false;
-
-    const fullPath = buildFullPath(href);
-
-    // Normalize paths by removing trailing slashes
-    const normalizedPath = normalizePath(fullPath);
-    const normalizedHref = normalizePath(href);
-
-    // Check exact match or if current path equals href
-    return normalizedHref !== '/' && normalizedPath === normalizedHref;
-  };
-
-  const handleDropdownMouseEnter = (label: string) => {
-    setHoveredDropdown(label);
-  };
-
-  const handleDropdownMouseLeave = () => {
-    setHoveredDropdown(null);
+    const path = location.pathname.replace(/\/$/, '');
+    const target = href.replace(/\/$/, '');
+    return path === target || (target !== '' && path.startsWith(target + '/'));
   };
 
   return (
-    <nav className='sticky top-0 z-50 bg-white shadow-xs'>
-      {/* Top bar with language switcher and additional links */}
-      <div className='border-b border-gray-200'>
-        <div className='container flex justify-end items-center px-4 mx-auto h-10'>
-          <div className='flex items-center space-x-4'>
+    <nav
+      className='sticky top-0 z-50 bg-white border-b border-slate-200 shadow-xs'
+      role='navigation'
+    >
+      {/* 1. TOP BAR: Responsive & Aligned Right */}
+      <div className='border-b bg-slate-50 border-slate-200'>
+        <div className='container px-4 mx-auto'>
+          <div className='flex gap-3 justify-end items-center h-10 sm:gap-4 md:gap-6'>
             <Link
               to='/join-us'
-              className='text-xs font-semibold transition-colors leading-12 text-primary-600 hover:text-primary-700'
+              className='hidden md:inline-flex text-[10px] md:text-xs font-bold uppercase tracking-widest text-primary-600 hover:text-primary-700 whitespace-nowrap'
             >
               🚀 Join Us
             </Link>
             <Link
               to='/about'
-              className='text-xs text-gray-800 transition-colors leading-12 hover:text-primary-600'
+              className='hidden md:inline-flex text-[10px] md:text-xs font-bold uppercase tracking-widest text-slate-500 hover:text-primary-600 whitespace-nowrap'
             >
-              About <span className='hidden md:inline'>BetterGov.ph</span>
+              About
             </Link>
             <a
               href='https://losbanos.gov.ph'
-              className='text-xs text-gray-800 transition-colors leading-12 hover:text-primary-600'
               target='_blank'
               rel='noreferrer'
+              className='inline-flex text-[9px] sm:text-[10px] md:text-xs font-bold uppercase tracking-widest text-slate-500 hover:text-primary-600 whitespace-nowrap'
             >
-              Official Gov.ph
+              <span className='inline sm:hidden'>Gov.ph</span>
+              <span className='hidden sm:inline'>Official Gov.ph</span>
             </a>
             <Link
-              to='/contact'
-              className='text-xs text-gray-800 transition-colors leading-12 hover:text-primary-600'
-            >
-              Contact Us
-            </Link>
-            <Link
               to='/philippines/hotlines'
-              className='text-xs text-gray-800 transition-colors leading-12 hover:text-primary-600'
+              className='inline-flex text-[9px] sm:text-[10px] md:text-xs font-bold uppercase tracking-widest text-slate-500 hover:text-primary-600 whitespace-nowrap'
             >
               Hotlines
             </Link>
-            <div className='hidden md:block'>
+            <div className='flex items-center pl-2 border-l border-slate-200 shrink-0'>
               <select
+                aria-label='Select Language'
                 value={i18n.language}
                 onChange={e => changeLanguage(e.target.value as LanguageType)}
-                className='px-2 py-1 text-xs text-gray-700 bg-white rounded-sm border border-gray-300 hover:border-primary-600 focus:outline-hidden focus:ring-1 focus:ring-primary-600 focus:border-primary-600'
+                className='bg-transparent text-[9px] sm:text-[10px] md:text-xs font-bold uppercase tracking-widest text-slate-500 outline-none cursor-pointer'
               >
                 {Object.entries(LANGUAGES).map(([code, lang]) => (
                   <option key={code} value={code}>
@@ -155,212 +91,206 @@ const Navbar: FC = () => {
         </div>
       </div>
 
-      {/* Main navigation */}
+      {/* 2. MAIN NAV: Desktop Dropdowns + Mobile Toggle */}
       <div className='container px-4 mx-auto'>
-        <div className='flex justify-between items-center py-4'>
-          <div className='flex items-center'>
-            <Link to='/' className='flex items-center'>
-              {/* <CheckCircle2 className='mr-3 w-12 h-12' /> */}
-              <img
-                src='/logos/webp/betterlb-blue-outline.webp'
-                alt='BetterLB Logo'
-                className='mr-3 w-12 h-12'
-              />
-              <div>
-                <div className='font-bold text-black'>BetterLB</div>
-                <div className='text-xs text-gray-800'>
-                  A community-run portal for the Municipality of Los Baños
-                </div>
+        <div className='flex justify-between items-center h-16 md:h-20'>
+          {/* Brand/Logo Section (Constrained) */}
+          <Link
+            to='/'
+            className='flex items-center group min-w-0 max-w-[60%] md:max-w-md'
+            onClick={closeMenu}
+          >
+            <img
+              src='/logos/webp/betterlb-blue-outline.webp'
+              alt='BetterLB Logo'
+              className='mr-3 w-10 h-10 transition-transform shrink-0 md:w-12 md:h-12 group-hover:scale-105'
+            />
+            <div className='flex flex-col justify-center min-w-0'>
+              <div className='text-lg font-black tracking-tighter leading-none md:text-xl text-slate-900'>
+                BetterLB
               </div>
-            </Link>
-          </div>
+              <div className='text-[9px] md:text-xs text-slate-500 font-medium leading-tight md:leading-normal line-clamp-2 md:line-clamp-1'>
+                A Community-run portal for the Municipality of Los Baños
+              </div>
+            </div>
+          </Link>
 
-          {/* Desktop navigation */}
-          <div className='hidden items-center lg:flex lg:space-x-4 xl:space-x-8 lg:pr-6 xl:pr-24 lg:leading-10'>
+          {/* Desktop Menu */}
+          <div className='hidden items-center space-x-1 lg:flex xl:space-x-4'>
             {mainNavigation.map(item => {
-              const isActive = isActiveRoute(item.href);
+              const active = isActiveRoute(item.href);
+              const hasChildren = item.children && item.children.length > 0;
+
               return (
                 <div
                   key={item.label}
-                  className='relative group'
-                  onMouseEnter={() => handleDropdownMouseEnter(item.label)}
-                  onMouseLeave={handleDropdownMouseLeave}
+                  className='flex relative items-center h-full'
+                  onMouseEnter={() =>
+                    hasChildren && setHoveredDropdown(item.label)
+                  }
+                  onMouseLeave={() => setHoveredDropdown(null)}
                 >
                   <Link
                     to={item.href}
-                    className={`flex items-center font-medium transition-colors pb-1 border-b-2 whitespace-nowrap ${
-                      isActive
+                    className={cn(
+                      'flex gap-1 items-center px-3 py-2 text-sm font-bold tracking-widest uppercase border-b-2 transition-all',
+                      active
                         ? 'text-primary-600 border-primary-600'
-                        : 'text-gray-700 border-transparent hover:text-primary-600'
-                    }`}
+                        : 'border-transparent text-slate-600 hover:text-primary-600'
+                    )}
                   >
                     {t(`navbar.${item.label.toLowerCase()}`)}
-                    {item.children && (
+                    {hasChildren && (
                       <ChevronDownIcon
-                        className={`ml-1 h-4 w-4 transition-colors ${
-                          isActive
-                            ? 'text-primary-600'
-                            : 'text-gray-800 group-hover:text-primary-600'
-                        }`}
+                        className={cn(
+                          'w-3 h-3 transition-transform',
+                          hoveredDropdown === item.label && 'rotate-180'
+                        )}
                       />
                     )}
                   </Link>
-                  {item.children && (
-                    <div
-                      className={`absolute left-0 mt-2 lg:mt-0 w-56 rounded-md shadow-lg bg-white ring-1 ring-black/5 transition-all duration-200 z-50 ${
-                        hoveredDropdown === item.label
-                          ? 'opacity-100 visible'
-                          : 'opacity-0 invisible'
-                      }`}
-                    >
-                      <div
-                        className='py-1'
-                        role='menu'
-                        aria-orientation='vertical'
-                      >
-                        {item.children.map(child => (
-                          <Link
-                            key={child.label}
-                            to={child.href}
-                            className={`text-left block px-4 py-2 text-sm ${
-                              isActiveChildRoute(child.href)
-                                ? 'bg-primary-500 text-primary-50 hover:bg-primary-500 hover:text-primary-50'
-                                : 'text-gray-700 hover:bg-primary-50 hover:text-primary-600'
-                            }`}
-                            role='menuitem'
-                            target={child.target}
-                          >
-                            {child.label}
-                          </Link>
-                        ))}
-                      </div>
+
+                  {/* Desktop Dropdown Menu */}
+                  {hasChildren && hoveredDropdown === item.label && (
+                    <div className='absolute left-0 top-full py-2 w-64 bg-white rounded-b-xl border shadow-xl duration-200 border-slate-100 animate-in fade-in slide-in-from-top-2'>
+                      {item.children?.map(child => (
+                        <Link
+                          key={child.label}
+                          to={child.href}
+                          className='block px-5 py-3 text-xs font-bold tracking-wider uppercase transition-colors text-slate-600 hover:bg-primary-50 hover:text-primary-700'
+                          onClick={closeMenu}
+                        >
+                          {child.label}
+                        </Link>
+                      ))}
                     </div>
                   )}
                 </div>
               );
             })}
-          </div>
-          <div className='hidden items-center lg:flex lg:space-x-4 xl:space-x-8 lg:pr-6 xl:pr-24 lg:leading-10'>
             <Link
               to='/search'
-              className='flex items-center px-3 py-2 text-lg font-semibold text-gray-700 rounded-lg transition-colors hover:text-primary-600 hover:bg-gray-50'
+              className='p-3 ml-4 transition-colors text-slate-600 hover:text-primary-600'
+              aria-label='Search'
             >
-              <SearchIcon className='mr-2 w-5 h-5' />
-              Search
+              <SearchIcon className='w-5 h-5' />
             </Link>
-            {/* <Link
-              to="/sitemap"
-              className="flex items-center font-medium text-gray-700 transition-colors hover:text-primary-600"
-            >
-              Sitemap
-            </Link> */}
           </div>
 
-          {/* Mobile menu button */}
-          <div className='flex items-center lg:hidden'>
+          {/* Mobile Buttons */}
+          <div className='flex gap-1 items-center lg:hidden'>
+            <Link
+              to='/search'
+              className='p-3 text-slate-600'
+              aria-label='Search'
+            >
+              <SearchIcon className='w-6 h-6' />
+            </Link>
             <button
               onClick={toggleMenu}
-              className='inline-flex justify-center items-center p-2 text-gray-700 rounded-md hover:text-primary-500 hover:bg-gray-100 focus:outline-hidden focus:ring-2 focus:ring-inset focus:ring-primary-500'
+              className='p-3 rounded-xl text-slate-900 bg-slate-50'
+              aria-label='Toggle Menu'
             >
-              <span className='sr-only'>Open main menu</span>
               {isOpen ? (
-                <XIcon className='block w-6 h-6' aria-hidden='true' />
+                <XIcon className='w-6 h-6' />
               ) : (
-                <MenuIcon className='block w-6 h-6' aria-hidden='true' />
+                <MenuIcon className='w-6 h-6' />
               )}
             </button>
           </div>
         </div>
       </div>
 
-      {/* Mobile menu */}
-      <div className={`lg:hidden ${isOpen ? 'block' : 'hidden'}`}>
-        <div className='container px-2 pt-2 pb-4 mx-auto space-y-1 bg-white border-t border-gray-200'>
-          {mainNavigation.map(item => {
-            const isActive = isActiveRoute(item.href);
-            return (
-              <div key={item.label}>
-                <button
-                  onClick={() => toggleSubmenu(item.label)}
-                  className={`w-full flex justify-between items-center px-4 py-2 text-base font-medium transition-colors ${
-                    isActive
-                      ? 'text-primary-600 bg-primary-50'
-                      : 'text-gray-700 hover:bg-gray-50 hover:text-primary-500'
-                  }`}
+      {/* 3. MOBILE MENU OVERLAY: RESTORED NESTING */}
+      {isOpen && (
+        <div className='fixed inset-0 top-[104px] z-40 bg-white lg:hidden overflow-y-auto animate-in slide-in-from-right duration-300'>
+          <div className='flex flex-col p-4 pb-20'>
+            {mainNavigation.map(item => {
+              const hasChildren = item.children && item.children.length > 0;
+              const isSubOpen = activeMobileSubmenu === item.label;
+
+              return (
+                <div
+                  key={item.label}
+                  className='border-b border-slate-50 last:border-0'
                 >
-                  {t(`navbar.${item.label.toLowerCase()}`)}
-                  {item.children && (
-                    <ChevronDownIcon
-                      className={`h-5 w-5 transition-transform ${
-                        activeMenu === item.label ? 'transform rotate-180' : ''
-                      } ${isActive ? 'text-primary-600' : ''}`}
-                    />
-                  )}
-                </button>
-                {item.children && activeMenu === item.label && (
-                  <div className='py-2 pl-6 space-y-1 bg-gray-50'>
-                    {item.children.map(child => (
-                      <Link
-                        key={child.label}
-                        to={child.href}
-                        onClick={closeMenu}
-                        className='block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-primary-500'
+                  <div className='flex items-center'>
+                    <Link
+                      to={item.href}
+                      onClick={closeMenu}
+                      className={cn(
+                        'flex-1 p-4 text-lg font-bold transition-colors',
+                        isActiveRoute(item.href)
+                          ? 'text-primary-600'
+                          : 'text-slate-900'
+                      )}
+                    >
+                      {t(`navbar.${item.label.toLowerCase()}`)}
+                    </Link>
+                    {hasChildren && (
+                      <button
+                        onClick={e => {
+                          e.preventDefault();
+                          setActiveMobileSubmenu(isSubOpen ? null : item.label);
+                        }}
+                        className='p-4 text-slate-400'
                       >
-                        {child.label}
-                      </Link>
-                    ))}
+                        <ChevronDownIcon
+                          className={cn(
+                            'w-6 h-6 transition-transform',
+                            isSubOpen && 'rotate-180'
+                          )}
+                        />
+                      </button>
+                    )}
                   </div>
-                )}
-              </div>
-            );
-          })}
-          <Link
-            to='/join-us'
-            onClick={closeMenu}
-            className='block px-4 py-2 text-base font-semibold text-primary-600 hover:bg-primary-50 hover:text-primary-700'
-          >
-            🚀 Join Us
-          </Link>
-          <Link
-            to='/about'
-            onClick={closeMenu}
-            className='flex items-center px-4 py-2 text-base font-medium text-gray-700 hover:bg-gray-50 hover:text-primary-500'
-          >
-            About
-          </Link>
-          {/* <Link
-            to='/contact'
-            onClick={closeMenu}
-            className='flex items-center px-4 py-2 text-base font-medium text-gray-700 hover:bg-gray-50 hover:text-primary-500'
-          >
-            Contact Us
-          </Link> */}
-          <Link
-            to='/search'
-            onClick={closeMenu}
-            className='flex items-center px-4 py-2 text-base font-semibold text-gray-700 hover:bg-gray-50 hover:text-primary-600'
-          >
-            <SearchIcon className='mr-2 w-5 h-5' />
-            Search
-          </Link>
-          <div className='px-4 py-3 border-t border-gray-200'>
-            <div className='flex items-center'>
-              <GlobeIcon className='mr-2 w-5 h-5 text-gray-800' />
-              <select
-                value={i18n.language}
-                onChange={e => changeLanguage(e.target.value as LanguageType)}
-                className='px-2 py-1 text-sm text-gray-700 bg-white rounded-sm border border-gray-300 hover:border-primary-600 focus:outline-hidden focus:ring-1 focus:ring-primary-600 focus:border-primary-600'
+
+                  {/* Mobile Submenu Items */}
+                  {hasChildren && isSubOpen && (
+                    <div className='overflow-hidden mx-2 mb-2 rounded-2xl bg-slate-50 animate-in slide-in-from-top-2'>
+                      {item.children?.map(child => (
+                        <Link
+                          key={child.label}
+                          to={child.href}
+                          onClick={closeMenu}
+                          className='block p-4 text-sm font-bold border-b border-white text-slate-600 last:border-0'
+                        >
+                          {child.label}
+                        </Link>
+                      ))}
+                    </div>
+                  )}
+                </div>
+              );
+            })}
+
+            {/* Mobile-only additional links */}
+            <div className='pt-4 mt-4 space-y-1 border-t border-slate-100'>
+              <Link
+                to='/join-us'
+                onClick={closeMenu}
+                className='block p-4 text-xs font-black tracking-widest uppercase text-primary-600'
               >
-                {Object.entries(LANGUAGES).map(([code, lang]) => (
-                  <option key={code} value={code}>
-                    {lang.nativeName}
-                  </option>
-                ))}
-              </select>
+                🚀 Join the Revolution
+              </Link>
+              <Link
+                to='/about'
+                onClick={closeMenu}
+                className='block p-4 text-xs font-bold tracking-widest uppercase text-slate-500'
+              >
+                About Better LB
+              </Link>
+              <Link
+                to='/contact'
+                onClick={closeMenu}
+                className='block p-4 text-xs font-bold tracking-widest uppercase text-slate-500'
+              >
+                Contact Us
+              </Link>
             </div>
           </div>
         </div>
-      </div>
+      )}
     </nav>
   );
 };
