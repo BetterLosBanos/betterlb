@@ -1,4 +1,3 @@
-import { ChevronDownIcon, SearchIcon, XIcon } from 'lucide-react';
 import {
   ChangeEvent,
   KeyboardEvent,
@@ -7,6 +6,9 @@ import {
   useRef,
   useState,
 } from 'react';
+
+import { ChevronDownIcon, SearchIcon, XIcon } from 'lucide-react';
+
 import { cn } from '../../lib/utils';
 
 interface SelectPickerOption {
@@ -181,15 +183,15 @@ const SelectPicker = ({
         ref={triggerRef}
         type='button'
         className={cn(
-          'w-full flex items-center justify-between rounded-lg border border-gray-300 bg-white text-left',
-          'focus:outline-hidden focus:ring-2 focus:ring-primary-500/20 focus:border-primary-500',
+          'flex w-full items-center justify-between rounded-lg border border-gray-300 bg-white text-left',
+          'focus:ring-primary-500/20 focus:border-primary-500 focus:ring-2 focus:outline-hidden',
           'transition-all duration-200 ease-in-out',
           sizes[size],
           'px-3',
           disabled
-            ? 'opacity-60 cursor-not-allowed bg-gray-50'
+            ? 'cursor-not-allowed bg-gray-50 opacity-60'
             : 'hover:border-gray-400',
-          isOpen && 'border-primary-500 ring-2 ring-primary-500/20'
+          isOpen && 'border-primary-500 ring-primary-500/20 ring-2'
         )}
         onClick={handleToggle}
         disabled={disabled}
@@ -208,7 +210,7 @@ const SelectPicker = ({
           {clearable && selectedOption && !disabled && (
             <button
               type='button'
-              className='p-1 hover:bg-gray-100 rounded-full transition-colors'
+              className='rounded-full p-1 transition-colors hover:bg-gray-100'
               onClick={handleClear}
               aria-label='Clear selection'
             >
@@ -228,19 +230,19 @@ const SelectPicker = ({
       {isOpen && (
         <div
           className={cn(
-            'absolute z-50 w-full bg-white border border-gray-300 rounded-lg shadow-lg max-h-60 overflow-hidden',
+            'absolute z-50 max-h-60 w-full overflow-hidden rounded-lg border border-gray-300 bg-white shadow-lg',
             dropdownPosition === 'top' ? 'bottom-full mb-1' : 'top-full mt-1'
           )}
         >
           {/* Search Input */}
           {searchable && (
-            <div className='p-2 border-b border-gray-200'>
+            <div className='border-b border-gray-200 p-2'>
               <div className='relative'>
-                <SearchIcon className='absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-gray-500' />
+                <SearchIcon className='absolute top-1/2 left-3 h-4 w-4 -translate-y-1/2 transform text-gray-500' />
                 <input
                   ref={searchInputRef}
                   type='text'
-                  className='w-full pl-9 pr-3 py-2 text-sm border border-gray-300 rounded-md focus:outline-hidden focus:ring-2 focus:ring-primary-500/20 focus:border-primary-500'
+                  className='focus:ring-primary-500/20 focus:border-primary-500 w-full rounded-md border border-gray-300 py-2 pr-3 pl-9 text-sm focus:ring-2 focus:outline-hidden'
                   placeholder='Search options...'
                   value={searchTerm}
                   onChange={handleSearchChange}
@@ -258,7 +260,7 @@ const SelectPicker = ({
                   <li
                     key={option.value}
                     className={cn(
-                      'px-3 py-2 cursor-pointer text-sm transition-colors',
+                      'cursor-pointer px-3 py-2 text-sm transition-colors',
                       'hover:bg-primary-50 hover:text-primary-700',
                       selectedOption?.value === option.value &&
                         'bg-primary-100 text-primary-700'
@@ -272,7 +274,7 @@ const SelectPicker = ({
                 ))}
               </ul>
             ) : (
-              <div className='px-3 py-2 text-sm text-gray-500 text-center'>
+              <div className='px-3 py-2 text-center text-sm text-gray-500'>
                 No options found
               </div>
             )}

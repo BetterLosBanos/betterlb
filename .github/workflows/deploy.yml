@@ -8,7 +8,7 @@ on:
 # Necessary for showing "Deployed" status in GitHub UI
 permissions:
   contents: read
-  deployments: write 
+  deployments: write
 
 jobs:
   deploy:

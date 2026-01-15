@@ -1,4 +1,5 @@
 import { ButtonHTMLAttributes, ReactNode } from 'react';
+
 import { cn } from '../../lib/utils';
 
 interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
@@ -46,11 +47,11 @@ const Button = ({
     <button
       className={cn(
         'inline-flex items-center justify-center rounded-md font-medium transition-colors',
-        'focus:outline-hidden focus:ring-2 focus:ring-offset-2',
+        'focus:ring-2 focus:ring-offset-2 focus:outline-hidden',
         variants[variant],
         sizes[size],
         fullWidth ? 'w-full' : '',
-        isDisabled ? 'opacity-60 cursor-not-allowed' : '',
+        isDisabled ? 'cursor-not-allowed opacity-60' : '',
         variant !== 'link' && 'shadow-xs',
         className
       )}
@@ -59,7 +60,7 @@ const Button = ({
     >
       {isLoading && (
         <svg
-          className='animate-spin -ml-1 mr-2 h-4 w-4 text-current'
+          className='mr-2 -ml-1 h-4 w-4 animate-spin text-current'
           xmlns='http://www.w3.org/2000/svg'
           fill='none'
           viewBox='0 0 24 24'

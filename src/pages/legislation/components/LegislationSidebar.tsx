@@ -1,4 +1,5 @@
-import { Scale, Scroll, Signature, LayoutGrid } from 'lucide-react';
+import { LayoutGrid, Scale, Scroll, Signature } from 'lucide-react';
+
 import {
   SidebarContainer,
   SidebarItem,

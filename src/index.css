@@ -207,21 +207,21 @@
 @layer components {
   /* The BetterGov Header Style */
   .heading-hero {
-    @apply text-3xl md:text-5xl font-extrabold text-slate-900 tracking-tight leading-tight;
+    @apply text-3xl leading-tight font-extrabold tracking-tight text-slate-900 md:text-5xl;
   }
 
   /* The BetterGov Small Label Style */
   .heading-label {
-    @apply text-[10px] font-bold text-slate-400 uppercase tracking-widest;
+    @apply text-[10px] font-bold tracking-widest text-slate-400 uppercase;
   }
 
   /* The BetterGov Card Style */
   .card-better {
-    @apply bg-white rounded-2xl border border-slate-200 shadow-sm transition-all duration-200;
+    @apply rounded-2xl border border-slate-200 bg-white shadow-sm transition-all duration-200;
   }
 
   /* The BetterGov Sidebar Active Style */
   .sidebar-active {
-    @apply bg-primary-50 text-primary-700 font-semibold border-l-2 border-primary-600;
+    @apply bg-primary-50 text-primary-700 border-primary-600 border-l-2 font-semibold;
   }
 }

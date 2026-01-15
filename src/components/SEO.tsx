@@ -1,11 +1,15 @@
 import { useEffect, useState } from 'react';
+
 import { useLocation } from 'react-router-dom';
+
 import { Helmet } from 'react-helmet-async';
-import routeMeta from '../data/seo-metadata.json';
+
 import {
   formatStandardDescription,
   formatStandardTitle,
 } from '@/lib/seoTemplates';
+
+import routeMeta from '../data/seo-metadata.json';
 
 interface SEOProps {
   title?: string;

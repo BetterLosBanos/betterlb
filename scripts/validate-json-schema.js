@@ -11,11 +11,10 @@
  *   node validate-json-schema.js schema.json data/*.json
  *   node validate-json-schema.js schema.json file1.json file2.json
  */
-
 import { readFileSync, statSync } from 'fs';
-import { resolve, basename } from 'path';
-import { createRequire } from 'module';
 import { glob } from 'glob';
+import { createRequire } from 'module';
+import { basename, resolve } from 'path';
 
 const require = createRequire(import.meta.url);
 const Ajv = require('ajv');

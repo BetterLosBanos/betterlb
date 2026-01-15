@@ -1,15 +1,18 @@
 import { FC, ReactNode } from 'react';
+
 import { Link } from 'react-router-dom';
+
 import {
-  ChevronRight,
-  Home,
+  Briefcase,
   Building2,
+  ChevronRight,
+  FileCheck,
   FileText,
   Globe,
-  Briefcase,
-  FileCheck,
+  Home,
   Waves,
 } from 'lucide-react';
+
 import SEO from '../../components/SEO';
 
 interface SitemapSection {
@@ -328,9 +331,9 @@ const SitemapPage: FC = () => {
       />
 
       <div className='container mx-auto px-4'>
-        <div className='max-w-5xl mx-auto'>
-          <div className='bg-white rounded-xl shadow-xs overflow-hidden'>
-            <div className='p-6 md:p-8 border-b border-gray-200'>
+        <div className='mx-auto max-w-5xl'>
+          <div className='overflow-hidden rounded-xl bg-white shadow-xs'>
+            <div className='border-b border-gray-200 p-6 md:p-8'>
               <h1 className='text-3xl font-bold text-gray-900'>Sitemap</h1>
               <p className='mt-2 text-gray-800'>
                 A complete guide to all pages and services available on
@@ -342,8 +345,8 @@ const SitemapPage: FC = () => {
               <div className='space-y-12'>
                 {sitemapSections.map((section, index) => (
                   <div key={index}>
-                    <div className='flex items-center mb-4'>
-                      <div className='p-2 rounded-md bg-primary-50 text-primary-600 mr-3'>
+                    <div className='mb-4 flex items-center'>
+                      <div className='bg-primary-50 text-primary-600 mr-3 rounded-md p-2'>
                         {section.icon}
                       </div>
                       <h2 className='text-xl font-bold text-gray-900'>
@@ -351,18 +354,18 @@ const SitemapPage: FC = () => {
                       </h2>
                     </div>
 
-                    <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4'>
+                    <div className='grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3'>
                       {section.links.map((link, linkIndex) => (
                         <Link
                           key={linkIndex}
                           to={link.url}
-                          className='group flex flex-col p-4 border border-gray-200 rounded-lg hover:border-primary-300 hover:bg-primary-50 transition-colors'
+                          className='group hover:border-primary-300 hover:bg-primary-50 flex flex-col rounded-lg border border-gray-200 p-4 transition-colors'
                         >
-                          <div className='flex items-center justify-between mb-2'>
-                            <h3 className='font-medium text-gray-900 group-hover:text-primary-700'>
+                          <div className='mb-2 flex items-center justify-between'>
+                            <h3 className='group-hover:text-primary-700 font-medium text-gray-900'>
                               {link.title}
                             </h3>
-                            <ChevronRight className='h-4 w-4 text-gray-400 group-hover:text-primary-500' />
+                            <ChevronRight className='group-hover:text-primary-500 h-4 w-4 text-gray-400' />
                           </div>
                           {link.description && (
                             <p className='text-sm text-gray-800'>

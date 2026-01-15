@@ -1,15 +1,19 @@
-import { FC, useState, useMemo } from 'react';
+import { FC, useMemo, useState } from 'react';
+
 import { Link } from 'react-router-dom';
-import { useTranslation } from 'react-i18next';
+
 import Fuse from 'fuse.js';
-import servicesData from '@/data/services/services.json';
-import SearchInput from '@/components/ui/SearchInput';
 import {
-  FileTextIcon,
-  BriefcaseIcon,
   BookOpenIcon,
+  BriefcaseIcon,
+  FileTextIcon,
   HeartIcon,
 } from 'lucide-react';
+import { useTranslation } from 'react-i18next';
+
+import SearchInput from '@/components/ui/SearchInput';
+
+import servicesData from '@/data/services/services.json';
 
 interface Service {
   slug: string;
@@ -72,35 +76,35 @@ const Hero: FC = () => {
       name: 'Certificates & Civil Registry',
       slug: 'certificates-civil-registry',
       label: 'Citizenship & ID',
-      icon: <FileTextIcon className='w-6 h-6 text-white' />,
+      icon: <FileTextIcon className='h-6 w-6 text-white' />,
     },
     {
       name: 'Business & Licensing',
       slug: 'business-licensing',
       label: 'Business',
-      icon: <BriefcaseIcon className='w-6 h-6 text-white' />,
+      icon: <BriefcaseIcon className='h-6 w-6 text-white' />,
     },
     {
       name: 'Education & Learning',
       slug: 'education-learning',
       label: 'Education',
-      icon: <BookOpenIcon className='w-6 h-6 text-white' />,
+      icon: <BookOpenIcon className='h-6 w-6 text-white' />,
     },
     {
       name: 'Health & Nutrition',
       slug: 'health-nutrition',
       label: 'Health',
-      icon: <HeartIcon className='w-6 h-6 text-white' />,
+      icon: <HeartIcon className='h-6 w-6 text-white' />,
     },
   ];
 
   return (
-    <div className='py-12 text-white bg-linear-to-r from-primary-600 to-primary-700 md:py-24'>
-      <div className='container px-4 mx-auto'>
-        <div className='grid grid-cols-1 gap-8 items-center lg:grid-cols-2'>
+    <div className='from-primary-600 to-primary-700 bg-linear-to-r py-12 text-white md:py-24'>
+      <div className='container mx-auto px-4'>
+        <div className='grid grid-cols-1 items-center gap-8 lg:grid-cols-2'>
           {/* Left section: title + search + popular */}
           <div className='animate-fade-in'>
-            <h1 className='mb-4 text-3xl font-bold leading-tight md:text-4xl lg:text-5xl'>
+            <h1 className='mb-4 text-3xl leading-tight font-bold md:text-4xl lg:text-5xl'>
               {t('hero.title')}
             </h1>
             <p className='mb-8 max-w-lg text-lg text-blue-200'>
@@ -119,12 +123,12 @@ const Hero: FC = () => {
 
             {/* Top 5 search results */}
             {query && results.length > 0 && (
-              <div className='overflow-y-auto max-h-80 text-gray-900 rounded-lg shadow-md bg-white/90'>
+              <div className='max-h-80 overflow-y-auto rounded-lg bg-white/90 text-gray-900 shadow-md'>
                 {results.slice(0, 5).map(hit => (
                   <Link
                     key={hit.slug}
                     to={`/services/${hit.slug}`}
-                    className='block p-3 border-b last:border-none hover:bg-gray-100'
+                    className='block border-b p-3 last:border-none hover:bg-gray-100'
                   >
                     <strong>
                       {hit.service || hit.office_name || hit.office}
@@ -138,11 +142,11 @@ const Hero: FC = () => {
             )}
 
             {/* Popular services */}
-            <div className='flex flex-wrap gap-2 mt-4'>
+            <div className='mt-4 flex flex-wrap gap-2'>
               {popularServices.map(service => (
                 <Link
                   key={service.label}
-                  className='px-4 py-2 text-sm text-white rounded-xl bg-white/10 border-white/20 hover:bg-white/20'
+                  className='rounded-xl border-white/20 bg-white/10 px-4 py-2 text-sm text-white hover:bg-white/20'
                   to={service.href}
                 >
                   {service.label}
@@ -152,7 +156,7 @@ const Hero: FC = () => {
           </div>
 
           {/* Right section: quick access */}
-          <div className='p-6 rounded-xl shadow-lg backdrop-blur-sm bg-white/10 animate-slide-in'>
+          <div className='animate-slide-in rounded-xl bg-white/10 p-6 shadow-lg backdrop-blur-sm'>
             <h2 className='mb-4 text-2xl font-semibold'>
               {t('services.title')}
             </h2>
@@ -161,18 +165,18 @@ const Hero: FC = () => {
                 <Link
                   key={cat.slug}
                   to={`/services?category=${encodeURIComponent(cat.slug)}`}
-                  className='flex flex-col items-center p-4 text-center rounded-lg transition-all duration-200 bg-white/10 hover:bg-white/20'
+                  className='flex flex-col items-center rounded-lg bg-white/10 p-4 text-center transition-all duration-200 hover:bg-white/20'
                 >
-                  <div className='p-3 mb-3 rounded-full bg-primary-500'>
+                  <div className='bg-primary-500 mb-3 rounded-full p-3'>
                     {cat.icon}
                   </div>
                   <span className='font-medium'>{cat.label}</span>
                 </Link>
               ))}
             </div>
-            <div className='flex mt-4'>
+            <div className='mt-4 flex'>
               <Link
-                className='p-4 w-full text-center text-white rounded-lg transition-all duration-500 bg-white/10 hover:bg-white/20'
+                className='w-full rounded-lg bg-white/10 p-4 text-center text-white transition-all duration-500 hover:bg-white/20'
                 to='/services'
               >
                 {t('services.viewAll')}

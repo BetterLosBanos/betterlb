@@ -1,11 +1,11 @@
 import type {
-  CurrentOperatingIncome,
   CurrentOperatingExpenditures,
-  LocalSources,
+  CurrentOperatingIncome,
   ExternalSources,
+  LocalSources,
+  NonTaxRevenue,
   SocialServices,
   TaxRevenue,
-  NonTaxRevenue,
 } from '@/types/budgetTypes';
 
 /* ---------------- Totals for Summary Cards ---------------- */

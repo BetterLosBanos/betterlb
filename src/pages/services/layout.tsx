@@ -1,9 +1,13 @@
-import { useState, useEffect } from 'react';
-import { Outlet, useSearchParams, useLocation } from 'react-router-dom';
+import { useEffect, useState } from 'react';
+
+import { Outlet, useLocation, useSearchParams } from 'react-router-dom';
+
 import { useQueryState } from 'nuqs';
-import ServicesSidebar from './components/ServicesSidebar';
-import SearchInput from '@/components/ui/SearchInput';
+
 import { PageHero } from '@/components/layout/PageLayouts';
+import SearchInput from '@/components/ui/SearchInput';
+
+import ServicesSidebar from './components/ServicesSidebar';
 
 export default function ServicesLayout() {
   const location = useLocation();
@@ -46,7 +50,7 @@ export default function ServicesLayout() {
       >
         {/* The Search Bar is passed as a child, so it appears centered beneath the title */}
         {isIndexPage && (
-          <div className='max-w-xl mx-auto animate-in fade-in slide-in-from-top-2 duration-1000'>
+          <div className='animate-in fade-in slide-in-from-top-2 mx-auto max-w-xl duration-1000'>
             <SearchInput
               placeholder='Search for services (e.g., Business Permit)...'
               value={searchQuery}
@@ -58,9 +62,9 @@ export default function ServicesLayout() {
       </PageHero>
 
       {/* --- SIDEBAR + CONTENT AREA --- */}
-      <div className='flex flex-col md:flex-row md:gap-8 items-start pb-12'>
+      <div className='flex flex-col items-start pb-12 md:flex-row md:gap-8'>
         {/* Sidebar */}
-        <div className='w-full md:w-64 flex-shrink-0'>
+        <div className='w-full flex-shrink-0 md:w-64'>
           <ServicesSidebar
             sidebarOpen={sidebarOpen}
             setSidebarOpen={setSidebarOpen}
@@ -70,7 +74,7 @@ export default function ServicesLayout() {
         </div>
 
         {/* Content Area */}
-        <main className='flex-1 min-w-0'>
+        <main className='min-w-0 flex-1'>
           <Outlet
             context={{
               searchQuery,

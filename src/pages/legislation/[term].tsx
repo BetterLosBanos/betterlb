@@ -1,34 +1,38 @@
-import { useState, useMemo } from 'react';
-import { useParams, useOutletContext, Link } from 'react-router-dom';
+import { useMemo, useState } from 'react';
+
+import { Link, useOutletContext, useParams } from 'react-router-dom';
+
+import type {
+  DocumentItem,
+  LegislationContext,
+  Person,
+  Session,
+} from '@/types';
 import {
+  BookOpen,
   Calendar,
-  Users,
-  Landmark,
-  Gavel,
+  ChevronDown,
   Crown,
   FileText,
-  BookOpen,
+  Gavel,
+  Landmark,
   ScrollText,
-  ChevronDown,
+  Users,
 } from 'lucide-react';
-import { getPersonName } from '@/lib/legislation';
+
 import { DetailSection } from '@/components/layout/PageLayouts';
 import { Badge } from '@/components/ui/Badge';
 import {
   Breadcrumb,
+  BreadcrumbHome,
   BreadcrumbItem,
   BreadcrumbLink,
   BreadcrumbList,
   BreadcrumbPage,
   BreadcrumbSeparator,
-  BreadcrumbHome,
 } from '@/components/ui/Breadcrumb';
-import type {
-  LegislationContext,
-  Person,
-  DocumentItem,
-  Session,
-} from '@/types';
+
+import { getPersonName } from '@/lib/legislation';
 
 export default function TermDetail() {
   const { termId } = useParams<{ termId: string }>();
@@ -74,7 +78,7 @@ export default function TermDetail() {
   ).length;
 
   return (
-    <div className='pb-20 mx-auto space-y-8 max-w-5xl duration-500 animate-in fade-in'>
+    <div className='animate-in fade-in mx-auto max-w-5xl space-y-8 pb-20 duration-500'>
       <Breadcrumb>
         <BreadcrumbList>
           <BreadcrumbItem>
@@ -91,7 +95,7 @@ export default function TermDetail() {
         </BreadcrumbList>
       </Breadcrumb>
 
-      <header className='overflow-hidden relative p-8 text-white rounded-3xl shadow-xl md:p-12 bg-slate-900'>
+      <header className='relative overflow-hidden rounded-3xl bg-slate-900 p-8 text-white shadow-xl md:p-12'>
         <div className='relative z-10 space-y-4'>
           <Badge variant='primary' dot>
             {term.year_range}
@@ -99,25 +103,25 @@ export default function TermDetail() {
           <h1 className='text-3xl font-extrabold tracking-tight md:text-5xl'>
             {term.name}
           </h1>
-          <p className='flex gap-2 items-center text-xs font-bold tracking-widest uppercase text-slate-400'>
-            <Calendar className='w-4 h-4' /> {term.start_date} — {term.end_date}
+          <p className='flex items-center gap-2 text-xs font-bold tracking-widest text-slate-400 uppercase'>
+            <Calendar className='h-4 w-4' /> {term.start_date} — {term.end_date}
           </p>
         </div>
-        <Landmark className='absolute right-[-20px] bottom-[-20px] w-64 h-64 text-white/5 -rotate-12' />
+        <Landmark className='absolute right-[-20px] bottom-[-20px] h-64 w-64 -rotate-12 text-white/5' />
       </header>
 
       <div className='grid grid-cols-1 gap-4 md:grid-cols-2'>
-        <div className='p-6 space-y-4 bg-white rounded-2xl border shadow-sm border-slate-200'>
-          <p className='text-[10px] font-bold text-slate-400 uppercase tracking-widest flex items-center gap-2'>
-            <Crown className='w-3.5 h-3.5 text-secondary-500' /> Municipal Mayor
+        <div className='space-y-4 rounded-2xl border border-slate-200 bg-white p-6 shadow-sm'>
+          <p className='flex items-center gap-2 text-[10px] font-bold tracking-widest text-slate-400 uppercase'>
+            <Crown className='text-secondary-500 h-3.5 w-3.5' /> Municipal Mayor
           </p>
           <p className='text-xl font-bold text-slate-900'>
             {term.executive.mayor}
           </p>
         </div>
-        <div className='p-6 space-y-4 bg-white rounded-2xl border shadow-sm border-slate-200'>
-          <p className='text-[10px] font-bold text-slate-400 uppercase tracking-widest flex items-center gap-2'>
-            <Gavel className='w-3.5 h-3.5 text-primary-500' /> Vice Mayor /
+        <div className='space-y-4 rounded-2xl border border-slate-200 bg-white p-6 shadow-sm'>
+          <p className='flex items-center gap-2 text-[10px] font-bold tracking-widest text-slate-400 uppercase'>
+            <Gavel className='text-primary-500 h-3.5 w-3.5' /> Vice Mayor /
             Presiding Officer
           </p>
           <p className='text-xl font-bold text-slate-900'>
@@ -139,19 +143,19 @@ export default function TermDetail() {
                   <Link
                     key={person.id}
                     to={`/legislation/person/${person.id}`}
-                    className='flex items-center gap-3 p-2 rounded-xl hover:bg-slate-50 transition-all border border-transparent hover:border-slate-100 min-h-[44px]'
+                    className='flex min-h-[44px] items-center gap-3 rounded-xl border border-transparent p-2 transition-all hover:border-slate-100 hover:bg-slate-50'
                   >
                     <div
-                      className={`w-8 h-8 rounded-lg flex items-center justify-center text-[10px] font-bold ${isVM ? 'text-white bg-primary-600' : 'bg-slate-100 text-slate-500'}`}
+                      className={`flex h-8 w-8 items-center justify-center rounded-lg text-[10px] font-bold ${isVM ? 'bg-primary-600 text-white' : 'bg-slate-100 text-slate-500'}`}
                     >
                       {person.first_name[0]}
                       {person.last_name[0]}
                     </div>
                     <div>
-                      <p className='text-sm font-bold leading-none text-slate-700'>
+                      <p className='text-sm leading-none font-bold text-slate-700'>
                         {getPersonName(person)}
                       </p>
-                      <p className='text-[10px] text-slate-400 font-medium mt-1'>
+                      <p className='mt-1 text-[10px] font-medium text-slate-400'>
                         {membership?.role}
                       </p>
                     </div>
@@ -164,24 +168,24 @@ export default function TermDetail() {
 
         <div className='space-y-6 lg:col-span-2'>
           <div className='grid grid-cols-2 gap-4'>
-            <div className='flex gap-4 items-center p-4 rounded-2xl border bg-primary-50 border-primary-100'>
-              <FileText className='w-6 h-6 text-primary-600' />
+            <div className='bg-primary-50 border-primary-100 flex items-center gap-4 rounded-2xl border p-4'>
+              <FileText className='text-primary-600 h-6 w-6' />
               <div>
-                <span className='block text-2xl font-black leading-none text-primary-700'>
+                <span className='text-primary-700 block text-2xl leading-none font-black'>
                   {ordCount}
                 </span>
-                <span className='text-[10px] font-bold text-primary-500 uppercase tracking-widest'>
+                <span className='text-primary-500 text-[10px] font-bold tracking-widest uppercase'>
                   Ordinances
                 </span>
               </div>
             </div>
-            <div className='flex gap-4 items-center p-4 rounded-2xl border bg-secondary-50 border-secondary-100'>
-              <BookOpen className='w-6 h-6 text-secondary-600' />
+            <div className='bg-secondary-50 border-secondary-100 flex items-center gap-4 rounded-2xl border p-4'>
+              <BookOpen className='text-secondary-600 h-6 w-6' />
               <div>
-                <span className='block text-2xl font-black leading-none text-secondary-700'>
+                <span className='text-secondary-700 block text-2xl leading-none font-black'>
                   {resCount}
                 </span>
-                <span className='text-[10px] font-bold text-secondary-500 uppercase tracking-widest'>
+                <span className='text-secondary-500 text-[10px] font-bold tracking-widest uppercase'>
                   Resolutions
                 </span>
               </div>
@@ -194,9 +198,9 @@ export default function TermDetail() {
                 <Link
                   key={doc.id}
                   to={`/legislation/${doc.type}/${doc.id}`}
-                  className='block py-4 hover:bg-slate-50 transition-all min-h-[44px]'
+                  className='block min-h-[44px] py-4 transition-all hover:bg-slate-50'
                 >
-                  <div className='flex gap-3 items-center mb-1'>
+                  <div className='mb-1 flex items-center gap-3'>
                     <Badge
                       variant={
                         doc.type === 'ordinance' ? 'primary' : 'secondary'
@@ -204,11 +208,11 @@ export default function TermDetail() {
                     >
                       {doc.type}
                     </Badge>
-                    <span className='text-[10px] font-mono font-bold text-slate-400 uppercase'>
+                    <span className='font-mono text-[10px] font-bold text-slate-400 uppercase'>
                       {doc.date_enacted}
                     </span>
                   </div>
-                  <p className='text-sm font-bold leading-relaxed text-slate-800 line-clamp-2'>
+                  <p className='line-clamp-2 text-sm leading-relaxed font-bold text-slate-800'>
                     {doc.title}
                   </p>
                 </Link>
@@ -216,9 +220,9 @@ export default function TermDetail() {
               {visibleDocs < termDocuments.length && (
                 <button
                   onClick={() => setVisibleDocs(prev => prev + 15)}
-                  className='w-full py-4 text-xs font-bold text-primary-600 hover:text-primary-700 uppercase tracking-widest flex items-center justify-center gap-2 min-h-[48px]'
+                  className='text-primary-600 hover:text-primary-700 flex min-h-[48px] w-full items-center justify-center gap-2 py-4 text-xs font-bold tracking-widest uppercase'
                 >
-                  Load More <ChevronDown className='w-4 h-4' />
+                  Load More <ChevronDown className='h-4 w-4' />
                 </button>
               )}
             </div>

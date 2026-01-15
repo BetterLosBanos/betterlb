@@ -1,13 +1,14 @@
-import { ExternalLink, HardHat, AlertCircle } from 'lucide-react';
-import { ModuleHeader, DetailSection } from '@/components/layout/PageLayouts';
+import { AlertCircle, ExternalLink, HardHat } from 'lucide-react';
+
+import { DetailSection, ModuleHeader } from '@/components/layout/PageLayouts';
 import {
   Breadcrumb,
+  BreadcrumbHome,
   BreadcrumbItem,
   BreadcrumbLink,
   BreadcrumbList,
   BreadcrumbPage,
   BreadcrumbSeparator,
-  BreadcrumbHome,
 } from '@/components/ui/Breadcrumb';
 import { SeamlessIframe } from '@/components/ui/SeamlessIframe';
 
@@ -16,7 +17,7 @@ export default function InfrastructurePage() {
     'https://bisto.ph/projects?search=los+ba%C3%B1os&region=Region+IV-A&province=LAGUNA';
 
   return (
-    <div className='pb-20 mx-auto space-y-6 max-w-7xl duration-500 animate-in fade-in'>
+    <div className='animate-in fade-in mx-auto max-w-7xl space-y-6 pb-20 duration-500'>
       <Breadcrumb>
         <BreadcrumbList>
           <BreadcrumbItem>
@@ -41,21 +42,21 @@ export default function InfrastructurePage() {
           href={bistoUrl}
           target='_blank'
           rel='noopener noreferrer'
-          className='inline-flex items-center gap-2 px-6 py-3 font-bold text-white transition-all bg-secondary-600 rounded-xl shadow-lg hover:bg-secondary-700 min-h-[48px]'
+          className='bg-secondary-600 hover:bg-secondary-700 inline-flex min-h-[48px] items-center gap-2 rounded-xl px-6 py-3 font-bold text-white shadow-lg transition-all'
         >
-          View on Bisto.ph <ExternalLink className='w-4 h-4' />
+          View on Bisto.ph <ExternalLink className='h-4 w-4' />
         </a>
       </ModuleHeader>
 
       <DetailSection
         title='Project Tracking'
         icon={HardHat}
-        className='border-l-4 border-l-secondary-600'
+        className='border-l-secondary-600 border-l-4'
       >
         <div className='space-y-6'>
-          <div className='flex gap-3 items-start p-4 text-orange-800 bg-orange-50 rounded-xl border border-orange-100'>
-            <AlertCircle className='w-5 h-5 shrink-0 mt-0.5' />
-            <p className='text-sm font-medium leading-relaxed'>
+          <div className='flex items-start gap-3 rounded-xl border border-orange-100 bg-orange-50 p-4 text-orange-800'>
+            <AlertCircle className='mt-0.5 h-5 w-5 shrink-0' />
+            <p className='text-sm leading-relaxed font-medium'>
               Interactive monitoring of ongoing local and national projects in
               the municipality.
             </p>

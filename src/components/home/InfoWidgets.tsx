@@ -1,11 +1,13 @@
-import { useState, useEffect, FC } from 'react';
+import { FC, useEffect, useState } from 'react';
+
 import * as LucideIcons from 'lucide-react';
-import { Card, CardHeader, CardContent } from '../ui/Card';
-import { WeatherData, ForexRate } from '../../types';
 import { useTranslation } from 'react-i18next';
-import CriticalHotlinesWidget from '../widgets/CriticalHotlinesWidget';
-import { fetchWeatherData } from '../../lib/weather';
+
 import { fetchForexData } from '../../lib/forex';
+import { fetchWeatherData } from '../../lib/weather';
+import { ForexRate, WeatherData } from '../../types';
+import { Card, CardContent, CardHeader } from '../ui/Card';
+import CriticalHotlinesWidget from '../widgets/CriticalHotlinesWidget';
 
 const InfoWidgets: FC = () => {
   const { t } = useTranslation('common');
@@ -77,64 +79,64 @@ const InfoWidgets: FC = () => {
   }, []);
 
   return (
-    <section className='py-12 bg-gray-50'>
+    <section className='bg-gray-50 py-12'>
       <div className='container mx-auto px-4'>
-        <div className='text-center mb-12'>
-          <h2 className='text-3xl font-bold text-gray-900 mb-4'>
+        <div className='mb-12 text-center'>
+          <h2 className='mb-4 text-3xl font-bold text-gray-900'>
             {t('data.title')}
           </h2>
-          <p className='text-lg text-gray-800 max-w-2xl mx-auto'>
+          <p className='mx-auto max-w-2xl text-lg text-gray-800'>
             {t('data.description')}
           </p>
         </div>
-        <div className='grid grid-cols-1 lg:grid-cols-3 gap-6'>
+        <div className='grid grid-cols-1 gap-6 lg:grid-cols-3'>
           {/* Weather Widget */}
           <Card>
             <CardHeader className='bg-primary-50'>
-              <h3 className='text-xl font-semibold text-gray-900 flex items-center'>
-                <LucideIcons.Cloud className='h-5 w-5 mr-2 text-primary-600' />
+              <h3 className='flex items-center text-xl font-semibold text-gray-900'>
+                <LucideIcons.Cloud className='text-primary-600 mr-2 h-5 w-5' />
                 {t('weather.title')}
               </h3>
             </CardHeader>
             <CardContent className='@container'>
               {isLoadingWeather ? (
-                <div className='flex justify-center items-center h-40'>
-                  <LucideIcons.Loader className='h-8 w-8 animate-spin text-primary-600' />
+                <div className='flex h-40 items-center justify-center'>
+                  <LucideIcons.Loader className='text-primary-600 h-8 w-8 animate-spin' />
                 </div>
               ) : weatherError ? (
-                <div className='text-center p-4 text-red-500'>
-                  <LucideIcons.AlertCircle className='h-8 w-8 mx-auto mb-2' />
+                <div className='p-4 text-center text-red-500'>
+                  <LucideIcons.AlertCircle className='mx-auto mb-2 h-8 w-8' />
                   <p>{weatherError}</p>
                 </div>
               ) : (
-                <div className='grid grid-cols-2 @md:grid-cols-4 gap-4'>
+                <div className='grid grid-cols-2 gap-4 @md:grid-cols-4'>
                   {weatherData.map(location => (
                     <div
                       key={location.location}
-                      className='flex flex-col items-center p-3 rounded-lg border border-gray-100 bg-white uppercase'
+                      className='flex flex-col items-center rounded-lg border border-gray-100 bg-white p-3 uppercase'
                     >
                       <div className='text-accent-500 mb-1'>
                         {getWeatherIcon(location.icon)}
                       </div>
-                      <div className='font-semibold text-lg'>
+                      <div className='text-lg font-semibold'>
                         {location.location}
                       </div>
                       <div className='text-2xl font-bold'>
                         {location.temperature}°C
                       </div>
-                      <div className='text-sm text-gray-800 text-center'>
+                      <div className='text-center text-sm text-gray-800'>
                         {location.condition}
                       </div>
                     </div>
                   ))}
                 </div>
               )}
-              <div className='flex space-between w-full items-center'>
-                <p className='text-sm text-gray-700 mt-4 text-right'>
+              <div className='space-between flex w-full items-center'>
+                <p className='mt-4 text-right text-sm text-gray-700'>
                   Weather data provided by{' '}
                   <a
                     href='https://openweathermap.org/'
-                    className='text-gray-800 hover:text-gray-900 underline'
+                    className='text-gray-800 underline hover:text-gray-900'
                     target='_blank'
                     rel='noopener noreferrer'
                   >
@@ -156,8 +158,8 @@ const InfoWidgets: FC = () => {
           {/* Forex Widget */}
           <Card>
             <CardHeader className='bg-primary-50'>
-              <h3 className='text-xl font-semibold text-gray-900 flex items-center'>
-                <LucideIcons.BarChart3 className='h-5 w-5 mr-2 text-primary-600' />
+              <h3 className='flex items-center text-xl font-semibold text-gray-900'>
+                <LucideIcons.BarChart3 className='text-primary-600 mr-2 h-5 w-5' />
                 {t('forex.title')}
               </h3>
             </CardHeader>
@@ -166,19 +168,19 @@ const InfoWidgets: FC = () => {
                 <table className='min-w-full divide-y divide-gray-200'>
                   <thead className='bg-gray-50'>
                     <tr>
-                      <th className='px-3 py-3 text-left text-xs font-medium text-gray-800 uppercase tracking-wider'>
+                      <th className='px-3 py-3 text-left text-xs font-medium tracking-wider text-gray-800 uppercase'>
                         Currency
                       </th>
-                      <th className='px-3 py-3 text-right text-xs font-medium text-gray-800 uppercase tracking-wider'>
+                      <th className='px-3 py-3 text-right text-xs font-medium tracking-wider text-gray-800 uppercase'>
                         ₱ Rate
                       </th>
                     </tr>
                   </thead>
-                  <tbody className='bg-white divide-y divide-gray-200'>
+                  <tbody className='divide-y divide-gray-200 bg-white'>
                     {isLoadingForex ? (
                       <tr>
                         <td colSpan={3} className='px-3 py-8 text-center'>
-                          <LucideIcons.Loader className='h-6 w-6 animate-spin mx-auto text-primary-600' />
+                          <LucideIcons.Loader className='text-primary-600 mx-auto h-6 w-6 animate-spin' />
                         </td>
                       </tr>
                     ) : forexError ? (
@@ -187,7 +189,7 @@ const InfoWidgets: FC = () => {
                           colSpan={3}
                           className='px-3 py-4 text-center text-red-500'
                         >
-                          <LucideIcons.AlertCircle className='h-6 w-6 mx-auto mb-2' />
+                          <LucideIcons.AlertCircle className='mx-auto mb-2 h-6 w-6' />
                           <p>{forexError}</p>
                         </td>
                       </tr>
@@ -208,12 +210,12 @@ const InfoWidgets: FC = () => {
                               <div className='font-medium text-gray-900'>
                                 {rate.code}
                               </div>
-                              <div className='text-gray-800 text-sm ml-2'>
+                              <div className='ml-2 text-sm text-gray-800'>
                                 {rate.currency}
                               </div>
                             </div>
                           </td>
-                          <td className='px-3 py-2 whitespace-nowrap text-right text-sm font-medium'>
+                          <td className='px-3 py-2 text-right text-sm font-medium whitespace-nowrap'>
                             ₱{rate.rate.toFixed(2)}
                           </td>
                         </tr>
@@ -222,7 +224,7 @@ const InfoWidgets: FC = () => {
                   </tbody>
                 </table>
               </div>
-              <div className='text-right mt-4'>
+              <div className='mt-4 text-right'>
                 <a
                   href='/data/forex'
                   className='text-primary-600 text-sm hover:underline'

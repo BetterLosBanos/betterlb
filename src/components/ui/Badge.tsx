@@ -1,4 +1,5 @@
 import { ReactNode } from 'react';
+
 import { cn } from '@/lib/utils';
 
 // Unified Variants aligned with Municipal Branding
@@ -49,7 +50,7 @@ export function Badge({
     <span
       className={cn(
         // text-[10px] with font-bold ensures legibility while remaining compact
-        'inline-flex items-center gap-1.5 px-2 py-0.5 rounded-md border text-[10px] font-bold uppercase tracking-widest transition-all',
+        'inline-flex items-center gap-1.5 rounded-md border px-2 py-0.5 text-[10px] font-bold tracking-widest uppercase transition-all',
         variants[variant],
         className
       )}
@@ -57,7 +58,7 @@ export function Badge({
       {dot && (
         <span
           className={cn(
-            'w-1.5 h-1.5 rounded-full shrink-0',
+            'h-1.5 w-1.5 shrink-0 rounded-full',
             dotColors[variant]
           )}
           aria-hidden='true'

@@ -1,13 +1,18 @@
 import { ReactNode } from 'react';
-import { Outlet, Link, useLocation } from 'react-router-dom';
+
+import { Link, Outlet, useLocation } from 'react-router-dom';
+
 import {
   Building2Icon,
-  UsersIcon, // Icon for Elected Officials
+  // Icon for Elected Officials
   MapPinIcon,
+  UsersIcon,
 } from 'lucide-react';
-import { cn } from '../../lib/utils';
 import { useTranslation } from 'react-i18next';
+
 import { PageHero } from '@/components/layout/PageLayouts';
+
+import { cn } from '../../lib/utils';
 
 interface GovernmentLayoutProps {
   title: string;
@@ -52,8 +57,8 @@ export default function GovernmentLayout({ children }: GovernmentLayoutProps) {
         description='Explore the different branches and agencies of the Municipal government'
       />
       {/* Tabs */}
-      <div className='mb-8 md:mb-12 overflow-x-auto'>
-        <div className='inline-grid grid-cols-1 md:grid-cols-3 gap-3 min-w-full md:min-w-0 px-4 py-2'>
+      <div className='mb-8 overflow-x-auto md:mb-12'>
+        <div className='inline-grid min-w-full grid-cols-1 gap-3 px-4 py-2 md:min-w-0 md:grid-cols-3'>
           {branches.map(branch => {
             const isActive = currentPath.includes(branch.path);
             return (
@@ -61,19 +66,19 @@ export default function GovernmentLayout({ children }: GovernmentLayoutProps) {
                 key={branch.path}
                 to={branch.path}
                 className={cn(
-                  'group flex flex-col p-3 md:p-4 rounded-md shadow-sm ring-1 ring-neutral-300',
+                  'group flex flex-col rounded-md p-3 shadow-sm ring-1 ring-neutral-300 md:p-4',
                   'hover:bg-primary-500/95',
-                  isActive && 'text-neutral-50  bg-primary-500'
+                  isActive && 'bg-primary-500 text-neutral-50'
                 )}
                 state={{ scrollToContent: true }}
               >
-                <div className='flex items-center gap-1 mb-1 group-hover:text-neutral-200'>
+                <div className='mb-1 flex items-center gap-1 group-hover:text-neutral-200'>
                   <div className='mr-2 text-xs md:text-sm'>{branch.icon}</div>
                   {branch.title}
                 </div>
                 <div
                   className={cn(
-                    'text-neutral-500 group-hover:text-neutral-200 text-xs md:text-sm',
+                    'text-xs text-neutral-500 group-hover:text-neutral-200 md:text-sm',
                     isActive && 'text-neutral-200'
                   )}
                 >
@@ -86,7 +91,7 @@ export default function GovernmentLayout({ children }: GovernmentLayoutProps) {
       </div>
 
       {!isMainPage && (
-        <div className='px-4 md:px-0 pb-12'>{children || <Outlet />}</div>
+        <div className='px-4 pb-12 md:px-0'>{children || <Outlet />}</div>
       )}
     </div>
   );

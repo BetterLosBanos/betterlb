@@ -1,29 +1,31 @@
+import { formatLabel } from '@/utils/budgetUtils';
 import {
   BarChart2Icon,
+  Info,
   Landmark,
   ReceiptText,
-  Info,
   ShieldCheck,
 } from 'lucide-react';
-import SummaryCards from '@/pages/transparency/components/SummaryCards';
-import QuarterToggle from '@/pages/transparency/components/QuarterToggle';
-import FinancialPieChart, {
-  ChartDataPoint,
-} from '@/pages/transparency/components/FinancialPieChart';
-import { useFinancialData } from '@/hooks/useFinancialData';
-import { formatLabel } from '@/utils/budgetUtils';
 
 // UI Components
 import { Badge } from '@/components/ui/Badge';
 import {
   Breadcrumb,
+  BreadcrumbHome,
   BreadcrumbItem,
   BreadcrumbLink,
   BreadcrumbList,
   BreadcrumbPage,
   BreadcrumbSeparator,
-  BreadcrumbHome,
 } from '@/components/ui/Breadcrumb';
+
+import FinancialPieChart, {
+  ChartDataPoint,
+} from '@/pages/transparency/components/FinancialPieChart';
+import QuarterToggle from '@/pages/transparency/components/QuarterToggle';
+import SummaryCards from '@/pages/transparency/components/SummaryCards';
+
+import { useFinancialData } from '@/hooks/useFinancialData';
 
 export default function FinancialPage() {
   const {
@@ -199,7 +201,7 @@ export default function FinancialPage() {
   ];
 
   return (
-    <div className='pb-20 mx-auto space-y-6 max-w-7xl duration-500 animate-in fade-in'>
+    <div className='animate-in fade-in mx-auto max-w-7xl space-y-6 pb-20 duration-500'>
       {/* 1. Standardized Breadcrumbs */}
       <Breadcrumb>
         <BreadcrumbList>
@@ -218,29 +220,29 @@ export default function FinancialPage() {
       </Breadcrumb>
 
       {/* 2. Unified Header with Controls */}
-      <div className='flex flex-col gap-8 p-8 bg-white rounded-3xl border shadow-sm border-slate-200 xl:flex-row xl:items-center xl:justify-between'>
+      <div className='flex flex-col gap-8 rounded-3xl border border-slate-200 bg-white p-8 shadow-sm xl:flex-row xl:items-center xl:justify-between'>
         <div className='space-y-4'>
-          <div className='flex flex-wrap gap-2 items-center'>
+          <div className='flex flex-wrap items-center gap-2'>
             <Badge variant='primary' dot>
               Verified Audit
             </Badge>
             <Badge variant='slate'>FY {selectedYear}</Badge>
-            <div className='flex items-center gap-1.5 px-2.5 py-1 rounded-md bg-slate-50 border border-slate-100 text-[10px] font-bold text-slate-500 uppercase tracking-widest'>
-              <Info className='w-3.5 h-3.5 text-slate-400' />
+            <div className='flex items-center gap-1.5 rounded-md border border-slate-100 bg-slate-50 px-2.5 py-1 text-[10px] font-bold tracking-widest text-slate-500 uppercase'>
+              <Info className='h-3.5 w-3.5 text-slate-400' />
               <span>Millions (PHP)</span>
             </div>
           </div>
-          <h1 className='flex gap-3 items-center text-3xl font-black tracking-tight text-slate-900 md:text-4xl'>
-            <BarChart2Icon className='w-8 h-8 text-emerald-600' />
+          <h1 className='flex items-center gap-3 text-3xl font-black tracking-tight text-slate-900 md:text-4xl'>
+            <BarChart2Icon className='h-8 w-8 text-emerald-600' />
             Financial Performance
           </h1>
-          <p className='max-w-xl text-sm font-medium leading-relaxed text-slate-500'>
+          <p className='max-w-xl text-sm leading-relaxed font-medium text-slate-500'>
             Independent visualization of the municipal budget, including current
             operating income and expenditures.
           </p>
         </div>
 
-        <div className='p-4 rounded-2xl border bg-slate-50 border-slate-100 shrink-0'>
+        <div className='shrink-0 rounded-2xl border border-slate-100 bg-slate-50 p-4'>
           <QuarterToggle
             quarters={quartersInYear.map(q => getQuarter(q.period))}
             years={years}
@@ -290,9 +292,9 @@ export default function FinancialPage() {
 
       {/* 5. Accessibility Footer */}
       <footer className='pt-10 text-center'>
-        <div className='inline-flex gap-2 items-center px-4 py-2 bg-white rounded-full border shadow-sm border-slate-200'>
-          <ShieldCheck className='w-4 h-4 text-emerald-600' />
-          <span className='text-[10px] font-bold text-slate-500 uppercase tracking-widest'>
+        <div className='inline-flex items-center gap-2 rounded-full border border-slate-200 bg-white px-4 py-2 shadow-sm'>
+          <ShieldCheck className='h-4 w-4 text-emerald-600' />
+          <span className='text-[10px] font-bold tracking-widest text-slate-500 uppercase'>
             Source: LGU SRE via BLGF and Full Disclosure Policy Portal
           </span>
         </div>

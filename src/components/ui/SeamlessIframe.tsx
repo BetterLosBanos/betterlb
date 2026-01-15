@@ -1,5 +1,7 @@
 import { useState } from 'react';
-import { Loader2, ExternalLink, RefreshCcw } from 'lucide-react';
+
+import { ExternalLink, Loader2, RefreshCcw } from 'lucide-react';
+
 import { cn } from '@/lib/utils';
 
 interface SeamlessIframeProps {
@@ -22,38 +24,38 @@ export function SeamlessIframe({
   };
 
   return (
-    <div className='flex overflow-hidden flex-col w-full rounded-2xl border shadow-sm border-slate-200 bg-slate-50'>
+    <div className='flex w-full flex-col overflow-hidden rounded-2xl border border-slate-200 bg-slate-50 shadow-sm'>
       {/* 1. Iframe Toolbar (Accessibility & Control) */}
-      <div className='flex justify-between items-center px-4 py-2 bg-white border-b border-slate-100'>
-        <div className='flex gap-2 items-center'>
+      <div className='flex items-center justify-between border-b border-slate-100 bg-white px-4 py-2'>
+        <div className='flex items-center gap-2'>
           <div
             className={cn(
-              'w-2 h-2 rounded-full',
-              isLoading ? 'bg-amber-400 animate-pulse' : 'bg-emerald-500'
+              'h-2 w-2 rounded-full',
+              isLoading ? 'animate-pulse bg-amber-400' : 'bg-emerald-500'
             )}
           />
-          <span className='text-[10px] font-bold text-slate-400 uppercase tracking-widest'>
+          <span className='text-[10px] font-bold tracking-widest text-slate-400 uppercase'>
             {title}
           </span>
         </div>
-        <div className='flex gap-1 items-center'>
+        <div className='flex items-center gap-1'>
           <button
             onClick={handleRefresh}
-            className='p-2 rounded-lg transition-colors text-slate-400 hover:text-primary-600 hover:bg-slate-50'
+            className='hover:text-primary-600 rounded-lg p-2 text-slate-400 transition-colors hover:bg-slate-50'
             title='Refresh data'
           >
             <RefreshCcw
-              className={cn('w-3.5 h-3.5', isLoading && 'animate-spin')}
+              className={cn('h-3.5 w-3.5', isLoading && 'animate-spin')}
             />
           </button>
           <a
             href={src}
             target='_blank'
             rel='noreferrer'
-            className='p-2 rounded-lg transition-colors text-slate-400 hover:text-primary-600 hover:bg-slate-50'
+            className='hover:text-primary-600 rounded-lg p-2 text-slate-400 transition-colors hover:bg-slate-50'
             title='Open in new window'
           >
-            <ExternalLink className='w-3.5 h-3.5' />
+            <ExternalLink className='h-3.5 w-3.5' />
           </a>
         </div>
       </div>
@@ -62,9 +64,9 @@ export function SeamlessIframe({
       <div className='relative w-full' style={{ height }}>
         {/* Loading Overlay */}
         {isLoading && (
-          <div className='flex absolute inset-0 z-10 flex-col justify-center items-center bg-slate-50 animate-in fade-in'>
-            <Loader2 className='mb-2 w-8 h-8 animate-spin text-primary-600' />
-            <p className='text-[10px] font-bold text-slate-400 uppercase tracking-widest'>
+          <div className='animate-in fade-in absolute inset-0 z-10 flex flex-col items-center justify-center bg-slate-50'>
+            <Loader2 className='text-primary-600 mb-2 h-8 w-8 animate-spin' />
+            <p className='text-[10px] font-bold tracking-widest text-slate-400 uppercase'>
               Synchronizing Records...
             </p>
           </div>
@@ -76,7 +78,7 @@ export function SeamlessIframe({
           title={title}
           onLoad={() => setIsLoading(false)}
           className={cn(
-            'w-full h-full border-0 transition-opacity duration-700',
+            'h-full w-full border-0 transition-opacity duration-700',
             isLoading ? 'opacity-0' : 'opacity-100'
           )}
           allowFullScreen

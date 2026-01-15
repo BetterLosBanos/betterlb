@@ -1,25 +1,27 @@
-import { Card, CardContent } from '@/components/ui/Card';
 import { calculateYoY } from '@/utils/budgetUtils';
 import {
-  computeTotalIncome,
-  computeTotalExpenditure,
   computeNetIncome,
+  computeTotalExpenditure,
+  computeTotalIncome,
 } from '@/utils/budgetUtils';
+import { formatPesoParts } from '@/utils/format';
 import {
+  ArrowDownRight,
+  ArrowUpRight,
   Landmark,
+  LucideIcon,
   ReceiptText,
   Scale,
   Vault,
-  ArrowUpRight,
-  ArrowDownRight,
-  LucideIcon,
 } from 'lucide-react';
+
+import { Card, CardContent } from '@/components/ui/Card';
+
 import type {
-  CurrentOperatingIncome,
   CurrentOperatingExpenditures,
+  CurrentOperatingIncome,
   FundSummary,
 } from '@/types/budgetTypes';
-import { formatPesoParts } from '@/utils/format';
 
 // --- Types ---
 interface SummaryCardsProps {
@@ -39,15 +41,15 @@ interface SummaryCardsProps {
 const CurrencyDisplay = ({ value }: { value: number }) => {
   const { symbol, integer, decimal, fraction, unit } = formatPesoParts(value);
   return (
-    <div className='flex items-baseline font-bold text-2xl text-slate-900 tracking-tight'>
-      <span className='text-lg text-slate-400 mr-1 font-medium'>{symbol}</span>
+    <div className='flex items-baseline text-2xl font-bold tracking-tight text-slate-900'>
+      <span className='mr-1 text-lg font-medium text-slate-400'>{symbol}</span>
       {integer}
-      <span className='text-lg text-slate-400 font-medium'>
+      <span className='text-lg font-medium text-slate-400'>
         {decimal}
         {fraction}
       </span>
       {/* Added Unit Indicator */}
-      <span className='ml-1 text-sm text-slate-500 font-semibold'>{unit}</span>
+      <span className='ml-1 text-sm font-semibold text-slate-500'>{unit}</span>
     </div>
   );
 };
@@ -75,27 +77,27 @@ const StatCard = ({
   const TrendIcon = isPositive ? ArrowUpRight : ArrowDownRight;
 
   return (
-    <Card className='border-slate-200 shadow-sm hover:shadow-md transition-shadow duration-200'>
-      <CardContent className='p-5 flex items-start justify-between'>
+    <Card className='border-slate-200 shadow-sm transition-shadow duration-200 hover:shadow-md'>
+      <CardContent className='flex items-start justify-between p-5'>
         <div>
-          <p className='text-sm font-medium text-slate-500 mb-1'>{title}</p>
+          <p className='mb-1 text-sm font-medium text-slate-500'>{title}</p>
           <CurrencyDisplay value={value} />
 
           {yoy && (
             <div
-              className={`flex items-center mt-2 text-xs font-medium ${trendColor}`}
+              className={`mt-2 flex items-center text-xs font-medium ${trendColor}`}
             >
-              <TrendIcon className='w-3 h-3 mr-1' />
+              <TrendIcon className='mr-1 h-3 w-3' />
               <span>{Math.abs(yoy.pct).toFixed(1)}%</span>
-              <span className='text-slate-400 ml-1 font-normal'>
+              <span className='ml-1 font-normal text-slate-400'>
                 vs last year
               </span>
             </div>
           )}
         </div>
 
-        <div className={`p-3 rounded-xl ${colorClass}`}>
-          <Icon className='w-6 h-6' />
+        <div className={`rounded-xl p-3 ${colorClass}`}>
+          <Icon className='h-6 w-6' />
         </div>
       </CardContent>
     </Card>
@@ -114,7 +116,7 @@ export default function SummaryCards({
   const fundBalance = fundSummary?.fund_cash_balance_end ?? 0;
 
   return (
-    <div className='grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4'>
+    <div className='grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4'>
       <StatCard
         title='Total Revenue'
         value={totalIncome}
