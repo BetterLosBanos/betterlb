@@ -1,7 +1,7 @@
 {
   "$schema": "http://json-schema.org/draft-07/schema#",
   "title": "Legislative Branch",
-  "description": "Schema for municipal legislative council data",
+  "description": "Schema for municipal legislative council data allowing null for optional fields",
   "type": "array",
   "items": {
     "type": "object",
@@ -10,9 +10,9 @@
       "slug": { "type": "string" },
       "branch": { "type": "string" },
       "chamber": { "type": "string" },
-      "address": { "type": "string" },
-      "trunkline": { "type": "string" },
-      "website": { "type": "string" },
+      "address": { "type": ["string", "null"] },
+      "trunkline": { "type": ["string", "null"] },
+      "website": { "type": ["string", "null"] },
       "officials": {
         "type": "array",
         "items": {
@@ -21,8 +21,8 @@
           "properties": {
             "role": { "type": "string" },
             "name": { "type": "string" },
-            "contact": { "type": "string" },
-            "website": { "type": "string" }
+            "contact": { "type": ["string", "null"] },
+            "website": { "type": ["string", "null"] }
           }
         }
       },
@@ -39,8 +39,8 @@
               "items": {
                 "type": "object",
                 "properties": {
-                  "name": { "type": "string" },
-                  "role": { "type": "string" }
+                  "name": { "type": ["string", "null"] },
+                  "role": { "type": ["string", "null"] }
                 }
               }
             }
