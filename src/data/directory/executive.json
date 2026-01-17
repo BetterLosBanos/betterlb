@@ -22,22 +22,6 @@
     "isElected": true
   },
   {
-    "slug": "municipal-treasurer",
-    "name": "Maria Luisa G. Diaz",
-    "role": "Municipal Treasurer",
-    "phone": null,
-    "email": null,
-    "isElected": false
-  },
-  {
-    "slug": "municipal-assessor",
-    "name": "Oliver D. Manaig",
-    "role": "Municipal Assessor",
-    "phone": null,
-    "email": null,
-    "isElected": false
-  },
-  {
     "slug": "chief-of-staff",
     "name": "Anatoly P. Guinto",
     "role": "Chief of Staff",
