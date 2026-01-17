@@ -61,7 +61,7 @@ export const Card = forwardRef<HTMLElement, CardProps>(
       <article
         ref={ref}
         className={cn(
-          'overflow-hidden rounded-2xl border transition-all duration-300',
+          'w-full overflow-hidden rounded-2xl border transition-all duration-300',
           variants[variant],
           hover &&
             'hover:border-primary-300 hover:-translate-y-0.5 hover:shadow-lg',
@@ -85,7 +85,7 @@ export const CardHeader = ({
   ...props
 }: HTMLAttributes<HTMLDivElement>) => (
   <header
-    className={cn('border-b border-slate-100 p-5 md:p-6', className)}
+    className={cn('border-b border-slate-100 p-4 md:p-6', className)}
     {...props}
   >
     {children}
@@ -97,7 +97,7 @@ export const CardContent = ({
   className,
   ...props
 }: HTMLAttributes<HTMLDivElement>) => (
-  <div className={cn('p-5 md:p-6', className)} {...props}>
+  <div className={cn('p-4 md:p-6', className)} {...props}>
     {children}
   </div>
 );
@@ -149,8 +149,8 @@ export const CardAvatar = ({
 }) => {
   const sizes = {
     sm: 'w-10 h-10 text-xs',
-    md: 'w-16 h-16 text-lg',
-    lg: 'w-24 h-24 text-2xl',
+    md: 'w-12 h-12 md:w-16 md:h-16 text-sm md:text-lg',
+    lg: 'w-20 h-20 md:w-24 md:h-24 text-xl md:text-2xl',
   };
   return (
     <div

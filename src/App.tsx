@@ -38,7 +38,7 @@ import LegislativeChamber from '@/pages/government/elected-officials/[chamber]';
 import ExecutiveBranchPage from '@/pages/government/elected-officials/executive-branch';
 import ElectedOfficialsLayout from '@/pages/government/elected-officials/layout';
 import MunicipalCommitteesPage from '@/pages/government/elected-officials/municipal-committees';
-import GovernmentLayout from '@/pages/government/layout';
+import GovernmentRootLayout from '@/pages/government/layout';
 import LegislationDetail from '@/pages/legislation/[document]';
 import PersonDetail from '@/pages/legislation/[person]';
 import SessionDetail from '@/pages/legislation/[session]';
@@ -100,7 +100,7 @@ function App() {
             {/* Government Directory Hub */}
             <Route
               path='/government'
-              element={<GovernmentLayout title='Government' />}
+              element={<GovernmentRootLayout title='Government' />}
             >
               <Route
                 index

@@ -4,21 +4,17 @@ import { Link } from 'react-router-dom';
 
 import { ArrowRight, MapPinIcon, Phone, User2 } from 'lucide-react';
 
-// UI Components
 import { ModuleHeader } from '@/components/layout/PageLayouts';
-import { Badge } from '@/components/ui/Badge';
 import { Card, CardContent } from '@/components/ui/Card';
 import SearchInput from '@/components/ui/SearchInput';
 
 import { toTitleCase } from '@/lib/stringUtils';
 
-// Logic & Data
 import barangaysData from '@/data/directory/barangays.json';
 
 export default function BarangaysIndex() {
   const [search, setSearch] = useState('');
 
-  // 1. Filter and sort logic
   const filtered = barangaysData
     .filter(b => b.barangay_name.toLowerCase().includes(search.toLowerCase()))
     .sort((a, b) => a.barangay_name.localeCompare(b.barangay_name));
@@ -31,7 +27,7 @@ export default function BarangaysIndex() {
       >
         <SearchInput
           value={search}
-          onChangeValue={setSearch}
+          onChangeValue={setSearchTerm => setSearch(setSearchTerm)}
           placeholder='Search by name (e.g. Mayondon)...'
           className='md:w-72'
         />
@@ -57,6 +53,7 @@ export default function BarangaysIndex() {
                 <CardContent className='flex h-full flex-col space-y-4 p-4'>
                   {/* Top Row: Icon and Title */}
                   <div className='flex items-start gap-3'>
+                    {/* Consistent Icon Styling (Primary) */}
                     <div className='bg-primary-50 text-primary-600 border-primary-100 group-hover:bg-primary-600 shrink-0 rounded-lg border p-2 shadow-sm transition-colors group-hover:text-white'>
                       <MapPinIcon className='h-5 w-5' />
                     </div>
@@ -73,19 +70,16 @@ export default function BarangaysIndex() {
                     <ArrowRight className='group-hover:text-primary-500 mt-1 h-4 w-4 text-slate-200 transition-all' />
                   </div>
 
-                  {/* Middle Row: Punong Barangay (Condensed Leader Section) */}
-                  <div className='flex items-center gap-3 rounded-xl border border-slate-100 bg-slate-50/50 px-3 py-2'>
-                    <div
-                      className='flex h-8 w-8 shrink-0 items-center justify-center rounded-full border border-slate-200 bg-white text-slate-400 shadow-xs'
-                      aria-hidden='true'
-                    >
-                      <User2 className='h-4 w-4' />
+                  {/* Middle Row: Punong Barangay (Standardized Highlight Box) */}
+                  <div className='flex items-center gap-2 rounded-xl border border-slate-100 bg-slate-50/50 px-3 py-2'>
+                    <div className='shrink-0 rounded-full border border-slate-200 bg-white p-1 text-slate-400 shadow-sm'>
+                      <User2 className='h-3.5 w-3.5' />
                     </div>
                     <div className='min-w-0'>
                       <p className='mb-0.5 text-[9px] leading-none font-bold tracking-tighter text-slate-400 uppercase'>
                         Punong Barangay
                       </p>
-                      <p className='truncate text-[11px] leading-tight font-bold text-slate-700'>
+                      <p className='truncate text-xs leading-tight font-bold text-slate-700'>
                         {punong ? toTitleCase(punong.name) : 'Awaiting Data'}
                       </p>
                     </div>
@@ -114,16 +108,6 @@ export default function BarangaysIndex() {
           );
         })}
       </div>
-
-      {/* Footer Accessibility Note */}
-      <footer className='pt-8 text-center'>
-        <Badge
-          variant='slate'
-          className='border-slate-200 bg-slate-50 text-slate-400'
-        >
-          Source: Official LGU Los Baños Directory 2024
-        </Badge>
-      </footer>
     </div>
   );
 }
