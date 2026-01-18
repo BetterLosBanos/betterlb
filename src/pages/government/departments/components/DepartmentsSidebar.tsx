@@ -5,7 +5,7 @@ import { Building2Icon } from 'lucide-react';
 import {
   SidebarContainer,
   SidebarItem,
-} from '@/components/ui/SidebarNavigation';
+} from '@/components/navigation/SidebarNavigation';
 
 import { officeIcons } from '@/lib/officeIcons';
 import { formatGovName } from '@/lib/stringUtils';

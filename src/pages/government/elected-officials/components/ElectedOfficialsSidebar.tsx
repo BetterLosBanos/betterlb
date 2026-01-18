@@ -4,7 +4,7 @@ import {
   SidebarContainer,
   SidebarGroup,
   SidebarItem,
-} from '@/components/ui/SidebarNavigation';
+} from '@/components/navigation/SidebarNavigation';
 
 export default function ElectedOfficialsSidebar() {
   const groups = [

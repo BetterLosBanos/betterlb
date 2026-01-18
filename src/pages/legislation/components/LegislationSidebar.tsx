@@ -3,7 +3,7 @@ import { LayoutGrid, Scale, Scroll, Signature } from 'lucide-react';
 import {
   SidebarContainer,
   SidebarItem,
-} from '@/components/ui/SidebarNavigation';
+} from '@/components/navigation/SidebarNavigation';
 
 interface LegislationSidebarProps {
   filterType: string;

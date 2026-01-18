@@ -20,7 +20,7 @@ import {
 } from 'lucide-react';
 
 import { Badge } from '@/components/ui/Badge';
-import { Card, CardContent } from '@/components/ui/CardList';
+import { Card, CardContent } from '@/components/ui/Card';
 import { EmptyState } from '@/components/ui/EmptyState';
 
 import servicesData from '@/data/services/services.json';

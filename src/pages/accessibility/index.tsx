@@ -14,7 +14,7 @@ import {
   Volume2Icon,
 } from 'lucide-react';
 
-import SEO from '../../components/SEO';
+import SEO from '@/components/layout/SEO';
 
 const AccessibilityPage: FC = () => {
   const accessibilityFeatures = [

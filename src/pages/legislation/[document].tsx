@@ -13,7 +13,6 @@ import {
 } from 'lucide-react';
 
 import { DetailSection } from '@/components/layout/PageLayouts';
-import { Badge } from '@/components/ui/Badge';
 import {
   Breadcrumb,
   BreadcrumbHome,
@@ -22,7 +21,8 @@ import {
   BreadcrumbList,
   BreadcrumbPage,
   BreadcrumbSeparator,
-} from '@/components/ui/Breadcrumb';
+} from '@/components/navigation/Breadcrumb';
+import { Badge } from '@/components/ui/Badge';
 
 import { getPersonName } from '@/lib/legislation';
 

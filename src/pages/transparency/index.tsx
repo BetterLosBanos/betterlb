@@ -14,7 +14,7 @@ import {
 
 import { DetailSection, ModuleHeader } from '@/components/layout/PageLayouts';
 import { Badge } from '@/components/ui/Badge';
-import { Card, CardContent } from '@/components/ui/CardList';
+import { Card, CardContent } from '@/components/ui/Card';
 
 export default function TransparencyIndex() {
   const sections = [

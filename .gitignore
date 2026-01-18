@@ -42,15 +42,6 @@ wrangler.toml
 # Dev
 .cursor/*
 .dev.vars
-src/data/bacresolution.txt
-src/data/bidcontract.txt
-src/data/biddinginvite.txt
-src/data/cmci.csv
-src/data/cmci.json
-src/data/noticeofaward.txt
-src/data/noticetoproceed.txt
-src/data/unified_procurement.csv
-src/data/unified_procurement.json
-src/data/unify_procurement.py
-src/fix_services.py
+/raw_data
 _worker.bundle
+/pipeline/
