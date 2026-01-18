@@ -54,9 +54,9 @@ export default function InfrastructurePage() {
         className='border-l-secondary-600 border-l-4'
       >
         <div className='space-y-6'>
-          <div className='flex gap-3 items-start p-4 text-orange-800 bg-orange-50 rounded-xl border border-orange-100'>
+          <div className='flex items-start gap-3 rounded-xl border border-orange-100 bg-orange-50 p-4 text-orange-800'>
             <AlertCircle className='mt-0.5 h-5 w-5 shrink-0' />
-            <p className='text-sm font-medium leading-relaxed'>
+            <p className='text-sm leading-relaxed font-medium'>
               Interactive monitoring of ongoing local and national projects in
               the municipality.
             </p>

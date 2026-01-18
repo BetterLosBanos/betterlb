@@ -133,14 +133,6 @@ export default function GovernmentRootLayout() {
       <div className='animate-in fade-in slide-in-from-bottom-4 duration-500'>
         <Outlet />
       </div>
-
-      {/* 3. Sub-route rendering (The Content) */}
-      {!isMainPage && (
-        <div className='animate-in slide-in-from-bottom-2 px-4 duration-500 md:px-0'>
-          {/* Outlet handles the rendering of child components automatically */}
-          <Outlet />
-        </div>
-      )}
     </div>
   );
 }
