@@ -44,3 +44,4 @@ wrangler.toml
 .dev.vars
 /raw_data
 _worker.bundle
+/pipeline/
