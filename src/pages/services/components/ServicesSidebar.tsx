@@ -17,7 +17,7 @@ import {
 import {
   SidebarContainer,
   SidebarItem,
-} from '@/components/ui/SidebarNavigation';
+} from '@/components/navigation/SidebarNavigation';
 
 import { scrollToTop } from '@/lib/scrollUtils';
 

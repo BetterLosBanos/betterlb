@@ -1,5 +1,6 @@
 import { ExternalLink, Info, ShoppingBag } from 'lucide-react';
 
+import { SeamlessIframe } from '@/components/data-display/SeamlessIframe';
 import { DetailSection, ModuleHeader } from '@/components/layout/PageLayouts';
 import {
   Breadcrumb,
@@ -9,8 +10,7 @@ import {
   BreadcrumbList,
   BreadcrumbPage,
   BreadcrumbSeparator,
-} from '@/components/ui/Breadcrumb';
-import { SeamlessIframe } from '@/components/ui/SeamlessIframe';
+} from '@/components/navigation/Breadcrumb';
 
 export default function ProcurementPage() {
   const procurementUrl =

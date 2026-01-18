@@ -7,11 +7,11 @@ import {
 
 import { NuqsAdapter } from 'nuqs/adapters/react-router/v6';
 
-import SEO from '@/components/SEO';
 import Footer from '@/components/layout/Footer';
 // --- Layouts ---
 import Navbar from '@/components/layout/Navbar';
-import ScrollToTop from '@/components/ui/ScrollToTop';
+import SEO from '@/components/layout/SEO';
+import ScrollToTop from '@/components/layout/ScrollToTop';
 import Ticker from '@/components/ui/Ticker';
 
 import ContactUs from '@/pages/ContactUs';
@@ -38,7 +38,7 @@ import LegislativeChamber from '@/pages/government/elected-officials/[chamber]';
 import ExecutiveBranchPage from '@/pages/government/elected-officials/executive-branch';
 import ElectedOfficialsLayout from '@/pages/government/elected-officials/layout';
 import MunicipalCommitteesPage from '@/pages/government/elected-officials/municipal-committees';
-import GovernmentLayout from '@/pages/government/layout';
+import GovernmentRootLayout from '@/pages/government/layout';
 import LegislationDetail from '@/pages/legislation/[document]';
 import PersonDetail from '@/pages/legislation/[person]';
 import SessionDetail from '@/pages/legislation/[session]';
@@ -98,10 +98,7 @@ function App() {
             </Route>
 
             {/* Government Directory Hub */}
-            <Route
-              path='/government'
-              element={<GovernmentLayout title='Government' />}
-            >
+            <Route path='/government' element={<GovernmentRootLayout />}>
               <Route
                 index
                 element={<Navigate to='elected-officials' replace />}

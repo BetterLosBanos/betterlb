@@ -6,7 +6,7 @@ import { MapPinIcon } from 'lucide-react';
 import {
   SidebarContainer,
   SidebarItem,
-} from '@/components/ui/SidebarNavigation';
+} from '@/components/navigation/SidebarNavigation';
 
 import { formatGovName } from '@/lib/stringUtils';
 

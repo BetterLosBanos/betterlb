@@ -3,7 +3,7 @@ import { Trophy, Users, Wallet } from 'lucide-react';
 import {
   SidebarContainer,
   SidebarItem,
-} from '@/components/ui/SidebarNavigation';
+} from '@/components/navigation/SidebarNavigation';
 
 export default function StatisticsSidebar() {
   const sections = [

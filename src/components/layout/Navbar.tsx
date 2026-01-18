@@ -72,7 +72,7 @@ const Navbar: FC = () => {
               <span className='hidden sm:inline'>Official Gov.ph</span>
             </a>
             <Link
-              to='/philippines/hotlines'
+              to='https://hotlines.bettergov.ph/'
               className='hover:text-primary-600 inline-flex text-[9px] font-bold tracking-widest whitespace-nowrap text-slate-500 uppercase sm:text-[10px] md:text-xs'
             >
               Hotlines

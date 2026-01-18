@@ -1,0 +1,735 @@
+
+          <div class="card-body" style="color:rgb(65, 65, 65);">
+            <div class="table-responsive">
+              <br><div id="dataTable_wrapper" class="dataTables_wrapper form-inline dt-bootstrap no-footer" data-protonpass-form=""><div class="row"><div class="col-sm-6"><div class="dataTables_length" id="dataTable_length"><label>Show <select name="dataTable_length" aria-controls="dataTable" class="form-control input-sm"><option value="10">10</option><option value="25">25</option><option value="50">50</option><option value="100">100</option></select> entries</label></div></div><div class="col-sm-6"><div id="dataTable_filter" class="dataTables_filter"><label>Search:<input type="search" class="form-control input-sm" placeholder="" aria-controls="dataTable"></label></div></div></div><div class="row"><div class="col-sm-12"><table style="color: rgb(65, 65, 65); width: 100%;" class="table table-bordered dataTable no-footer" id="dataTable" width="100%" cellspacing="0" role="grid" aria-describedby="dataTable_info">
+                <thead>
+                  <tr role="row"><th class="sorting_asc" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" style="width: 126px;" aria-sort="ascending" aria-label="Reference no.: activate to sort column descending">Reference no.</th><th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" style="width: 301px;" aria-label="Project Title: activate to sort column ascending">Project Title</th><th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" style="width: 126px;" aria-label="ABC: activate to sort column ascending">ABC</th><th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" style="width: 98px;" aria-label="Invitation File: activate to sort column ascending">Invitation File</th><th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" style="width: 98px;" aria-label="Bid Docs: activate to sort column ascending">Bid Docs</th><th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" style="width: 114px;" aria-label="Requirements: activate to sort column ascending">Requirements</th></tr>
+                </thead>
+                <tbody>
+                                        
+          
+                  
+          
+                  
+          
+                  
+          
+                  
+          
+                  
+          
+                  
+          
+                  
+          
+                  
+          
+                  
+          
+                  
+          
+                  
+          
+                  
+          
+                  
+          
+                  
+          
+                  
+          
+                  
+          
+                  
+          
+                  
+          
+                  
+          
+                  
+          
+                  
+          
+                  
+          
+                  
+          
+                  
+          
+                  
+          
+                  
+          
+                  
+          
+                  
+          
+                  
+          
+                  
+          
+                  
+          
+                  
+          
+                  
+          
+                  
+          
+                  
+          
+                  
+          
+                  
+          
+                  
+          
+                  
+          
+                  
+          
+                  
+          
+                  
+          
+                  
+          
+                  
+          
+                  
+          
+                  
+          
+                  
+          
+                  
+          
+                  
+          
+                  
+          
+                  
+          
+                  
+          
+                  
+          
+                  
+          
+                  
+          
+                  
+          
+                  
+          
+                  
+          
+                  
+          
+                  
+          
+                  
+          
+                  
+          
+                  
+          
+                  
+          
+                  
+          
+                  
+          
+                  
+          
+                  
+          
+                  
+          
+                  
+          
+                  
+          
+                  
+          
+                  
+          
+                  
+          
+                  
+          
+                  
+          
+                  
+          
+                  
+          
+                  
+          
+                            
+          
+                      <tr role="row" class="odd">
+              <td style="width: 15%" class="sorting_1"><a>00000</a></td>
+              <td style="width: 30%">NOTICE OF POSTPONEMENT - NOVEMBER 9, 2025</td>
+              <td style="width: 15%">0.00</td>
+              <td style="width: 10%; text-align: center;"><a class="button" href="public/storage/bidinvitations/invitation_file/Notice-of-Postponement (1)_1762656421.pdf" download=""><i class="fa fa-download"></i>&nbsp;PDF File/Download</a></td>
+                            <td style="width: 10%"><a class="button" href="public/storage/bidinvitations/bid_docs/Notice-of-Postponement (1)_1762656421.pdf" download=""><i class="fa fa-download"></i>&nbsp;PDF File/Download</a></td>
+                            <td style="width: 10%; text-align: center;"><a class="button" href="public/storage/bidinvitations/requirements/Notice-of-Postponement (1)_1762656421.pdf" download=""><i class="fa fa-download"></i>&nbsp;PDF File/Download</a></td>
+            </tr><tr role="row" class="even">
+              <td style="width: 15%" class="sorting_1"><a>8340758</a></td>
+              <td style="width: 30%">Upgrading of Waste Water Treatment Facility at Slaughterhouse, Los Baños, Laguna</td>
+              <td style="width: 15%">2,499,658.44</td>
+              <td style="width: 10%; text-align: center;"><a class="button" href="public/storage/bidinvitations/invitation_file/22-INFRA-02_1643160059.pdf" download=""><i class="fa fa-download"></i>&nbsp;PDF File/Download</a></td>
+                            <td style="width: 10%"><a class="button" href="public/storage/bidinvitations/bid_docs/22-INFRA-02 UPGRADING OF WASTE WATER TREATMENT FACILITY, BAYOG,  LOS BANOS, LAGUNA (1)_1643160059.pdf" download=""><i class="fa fa-download"></i>&nbsp;PDF File/Download</a></td>
+                            <td style="width: 10%; text-align: center;"><a class="button" href="public/storage/bidinvitations/requirements/CHECKLIST OF  REQUIREMENTS- INFRA_1643160059.pdf" download=""><i class="fa fa-download"></i>&nbsp;PDF File/Download</a></td>
+            </tr><tr role="row" class="odd">
+              <td style="width: 15%" class="sorting_1"><a>8340792</a></td>
+              <td style="width: 30%">Supply and Delivery of Food and Non-food Supplies for Supplemental Feeding for Day Care Children, Los Baños, Laguna</td>
+              <td style="width: 15%">1,439,731.55</td>
+              <td style="width: 10%; text-align: center;"><a class="button" href="public/storage/bidinvitations/invitation_file/22-GOODS-01_1643159808.pdf" download=""><i class="fa fa-download"></i>&nbsp;PDF File/Download</a></td>
+                            <td style="width: 10%"><a class="button" href="public/storage/bidinvitations/bid_docs/22-GOODS-01 SUPPLY AND DELIVERY OF FOOD AND NON-FOOD FOR SUPPLEMENTAL FEEDING FOR DAY CARE CHILDREN , LOS BANOS, LAGUNA_1643159808.pdf" download=""><i class="fa fa-download"></i>&nbsp;PDF File/Download</a></td>
+                            <td style="width: 10%; text-align: center;"><a class="button" href="public/storage/bidinvitations/requirements/CHECKLIST OF  REQUIREMENTS GOODS_1643159808.pdf" download=""><i class="fa fa-download"></i>&nbsp;PDF File/Download</a></td>
+            </tr><tr role="row" class="even">
+              <td style="width: 15%" class="sorting_1"><a>8347451</a></td>
+              <td style="width: 30%">Rehabilitation of Slaughterhouse (Repainting of Wall, Ceiling, Roof and Floor, Repair of Doors), Bayog, Los Baños, Laguna</td>
+              <td style="width: 15%">764,240.60</td>
+              <td style="width: 10%; text-align: center;"><a class="button" href="public/storage/bidinvitations/invitation_file/22-INFRA-03 (1)_1643160158.pdf" download=""><i class="fa fa-download"></i>&nbsp;PDF File/Download</a></td>
+                            <td style="width: 10%"><a class="button" href="public/storage/bidinvitations/bid_docs/22-INFRA-03 REHABILITATION OF SLAUGHTERHOUSE,  LOS BANOS, LAGUNA_1643160158.pdf" download=""><i class="fa fa-download"></i>&nbsp;PDF File/Download</a></td>
+                            <td style="width: 10%; text-align: center;"><a class="button" href="public/storage/bidinvitations/requirements/CHECKLIST OF  REQUIREMENTS- INFRA_1643160158.pdf" download=""><i class="fa fa-download"></i>&nbsp;PDF File/Download</a></td>
+            </tr><tr role="row" class="odd">
+              <td style="width: 15%" class="sorting_1"><a>8347510</a></td>
+              <td style="width: 30%">Rehabilitation of Barangay MRF (Concreting, Fencing, Roofing) Phase II, Los Baños, Laguna</td>
+              <td style="width: 15%">357,539.66</td>
+              <td style="width: 10%; text-align: center;"><a class="button" href="public/storage/bidinvitations/invitation_file/22-INFRA-04_1643160248.pdf" download=""><i class="fa fa-download"></i>&nbsp;PDF File/Download</a></td>
+                            <td style="width: 10%"><a class="button" href="public/storage/bidinvitations/bid_docs/22-INFRA-04 REHABILITATION OF BARANGAY MRF,  LOS BANOS, LAGUNA_1643160248.pdf" download=""><i class="fa fa-download"></i>&nbsp;PDF File/Download</a></td>
+                            <td style="width: 10%; text-align: center;"><a class="button" href="public/storage/bidinvitations/requirements/CHECKLIST OF  REQUIREMENTS- INFRA_1643160248.pdf" download=""><i class="fa fa-download"></i>&nbsp;PDF File/Download</a></td>
+            </tr><tr role="row" class="even">
+              <td style="width: 15%" class="sorting_1"><a>8347540</a></td>
+              <td style="width: 30%">Construction of Drainage Canal at CSAP Maahas, Los Baños, Laguna</td>
+              <td style="width: 15%">267,345.57</td>
+              <td style="width: 10%; text-align: center;"><a class="button" href="public/storage/bidinvitations/invitation_file/22-INFRA-05_1643160312.pdf" download=""><i class="fa fa-download"></i>&nbsp;PDF File/Download</a></td>
+                            <td style="width: 10%"><a class="button" href="public/storage/bidinvitations/bid_docs/22-INFRA-05 CONSTRUCTION OF DRAINAGE CANAL, CSAP MAAHAS,  LOS BANOS, LAGUNA_1643160312.pdf" download=""><i class="fa fa-download"></i>&nbsp;PDF File/Download</a></td>
+                            <td style="width: 10%; text-align: center;"><a class="button" href="public/storage/bidinvitations/requirements/CHECKLIST OF  REQUIREMENTS- INFRA_1643160312.pdf" download=""><i class="fa fa-download"></i>&nbsp;PDF File/Download</a></td>
+            </tr><tr role="row" class="odd">
+              <td style="width: 15%" class="sorting_1"><a>8484475</a></td>
+              <td style="width: 30%">Annual Physical Examination of Municipal Officials and Employees, Los Baños, Laguna</td>
+              <td style="width: 15%">336,000.00</td>
+              <td style="width: 10%; text-align: center;"><a class="button" href="public/storage/bidinvitations/invitation_file/22-GOODS-02_1647916759.pdf" download=""><i class="fa fa-download"></i>&nbsp;PDF File/Download</a></td>
+                            <td style="width: 10%"><a class="button" href="public/storage/bidinvitations/bid_docs/22-GOODS-02 ANNUAL PHYSICAL EXAMINATION OF MUNICIPAL OFFICIALS AND EMPLOYEES  , LOS BANOS, LAGUNA_1647916759.pdf" download=""><i class="fa fa-download"></i>&nbsp;PDF File/Download</a></td>
+                            <td style="width: 10%; text-align: center;"><a class="button" href="public/storage/bidinvitations/requirements/CHECKLIST OF  REQUIREMENTS  GOODS_1647220107_1647916759.pdf" download=""><i class="fa fa-download"></i>&nbsp;PDF File/Download</a></td>
+            </tr><tr role="row" class="even">
+              <td style="width: 15%" class="sorting_1"><a>8489975</a></td>
+              <td style="width: 30%">Supply and Delivery of Drugs and Medicines for 1st Qtr 2022, Los Baños, Laguna</td>
+              <td style="width: 15%">1,150,019.00</td>
+              <td style="width: 10%; text-align: center;"><a class="button" href="public/storage/bidinvitations/invitation_file/22-GOODS-03_1647916402.pdf" download=""><i class="fa fa-download"></i>&nbsp;PDF File/Download</a></td>
+                            <td style="width: 10%"><a class="button" href="public/storage/bidinvitations/bid_docs/22-GOODS-03 SUPPLY AND DELIVERY OF DRUGS AND MEDICINE FOR 1ST QTR , LOS BANOS, LAGUNA_1647916402.pdf" download=""><i class="fa fa-download"></i>&nbsp;PDF File/Download</a></td>
+                            <td style="width: 10%; text-align: center;"><a class="button" href="public/storage/bidinvitations/requirements/CHECKLIST OF  REQUIREMENTS  GOODS_1647220107_1647916402.pdf" download=""><i class="fa fa-download"></i>&nbsp;PDF File/Download</a></td>
+            </tr><tr role="row" class="odd">
+              <td style="width: 15%" class="sorting_1"><a>8490021</a></td>
+              <td style="width: 30%">Supply and Delivery of 22 Units Laptop for DEPED District Office, Los Baños, Laguna</td>
+              <td style="width: 15%">1,100,000.00</td>
+              <td style="width: 10%; text-align: center;"><a class="button" href="public/storage/bidinvitations/invitation_file/22-GOODS-04_1647220107.pdf" download=""><i class="fa fa-download"></i>&nbsp;PDF File/Download</a></td>
+                            <td style="width: 10%"><a class="button" href="public/storage/bidinvitations/bid_docs/22-GOODS-04 SUPPLY AND DELIVERY OF LAPTOP FOR DEPED DISTRICT OFFICE , LOS BANOS, LAGUNA_1647220107.pdf" download=""><i class="fa fa-download"></i>&nbsp;PDF File/Download</a></td>
+                            <td style="width: 10%; text-align: center;"><a class="button" href="public/storage/bidinvitations/requirements/CHECKLIST OF  REQUIREMENTS  GOODS_1647220107.pdf" download=""><i class="fa fa-download"></i>&nbsp;PDF File/Download</a></td>
+            </tr><tr role="row" class="even">
+              <td style="width: 15%" class="sorting_1"><a>8495032</a></td>
+              <td style="width: 30%">Supply and Delivery of Rice for Damayan sa Kapwa Laban sa COVID-19, Los Baños, Laguna</td>
+              <td style="width: 15%">918,000.00</td>
+              <td style="width: 10%; text-align: center;"><a class="button" href="public/storage/bidinvitations/invitation_file/22-GOODS-05_1647916893.pdf" download=""><i class="fa fa-download"></i>&nbsp;PDF File/Download</a></td>
+                            <td style="width: 10%"><a class="button" href="public/storage/bidinvitations/bid_docs/22-GOODS-05-SUPPLY AND DELIVERY OF RICE FOR DAMAYAN SA KAPWA LABAN SA COVID -19 , LOS BANOS, LAGUNA_1647916893.pdf" download=""><i class="fa fa-download"></i>&nbsp;PDF File/Download</a></td>
+                            <td style="width: 10%; text-align: center;"><a class="button" href="public/storage/bidinvitations/requirements/CHECKLIST OF  REQUIREMENTS  GOODS_1647220107_1647916893.pdf" download=""><i class="fa fa-download"></i>&nbsp;PDF File/Download</a></td>
+            </tr><tr role="row" class="odd">
+              <td style="width: 15%" class="sorting_1"><a>8542595</a></td>
+              <td style="width: 30%">Rebid - Annual Physical Examination of Municipal Officials and Employees</td>
+              <td style="width: 15%">336,000.00</td>
+              <td style="width: 10%; text-align: center;"><a class="button" href="public/storage/bidinvitations/invitation_file/REBID 22-GOODS-02_1647916587.pdf" download=""><i class="fa fa-download"></i>&nbsp;PDF File/Download</a></td>
+                            <td style="width: 10%"><a class="button" href="public/storage/bidinvitations/bid_docs/22-GOODS-02 ANNUAL PHYSICAL EXAMINATION OF MUNICIPAL OFFICIALS AND EMPLOYEES  , LOS BANOS, LAGUNA_1647916587.pdf" download=""><i class="fa fa-download"></i>&nbsp;PDF File/Download</a></td>
+                            <td style="width: 10%; text-align: center;"><a class="button" href="public/storage/bidinvitations/requirements/CHECKLIST OF  REQUIREMENTS  GOODS_1647220107_1647916587.pdf" download=""><i class="fa fa-download"></i>&nbsp;PDF File/Download</a></td>
+            </tr><tr role="row" class="even">
+              <td style="width: 15%" class="sorting_1"><a>8545863</a></td>
+              <td style="width: 30%">Supply and Delivery of School Supplies, Los Baños, Laguna</td>
+              <td style="width: 15%">299,754.00</td>
+              <td style="width: 10%; text-align: center;"><a class="button" href="public/storage/bidinvitations/invitation_file/22-GOODS-07_1648086969.pdf" download=""><i class="fa fa-download"></i>&nbsp;PDF File/Download</a></td>
+                            <td style="width: 10%"><a class="button" href="public/storage/bidinvitations/bid_docs/22-GOODS-07 SUPPLY AND DELIVERY OF SCHOOL SUPPLIES  , LOS BANOS, LAGUNA_1648086969.pdf" download=""><i class="fa fa-download"></i>&nbsp;PDF File/Download</a></td>
+                            <td style="width: 10%; text-align: center;"><a class="button" href="public/storage/bidinvitations/requirements/CHECKLIST OF  REQUIREMENTS GOODS_1648086969.pdf" download=""><i class="fa fa-download"></i>&nbsp;PDF File/Download</a></td>
+            </tr><tr role="row" class="odd">
+              <td style="width: 15%" class="sorting_1"><a>8547192</a></td>
+              <td style="width: 30%">Supply and Installation of Air Conditioning Unit for Various Offices, Los Baños, Laguna</td>
+              <td style="width: 15%">317,800.00</td>
+              <td style="width: 10%; text-align: center;"><a class="button" href="public/storage/bidinvitations/invitation_file/22-GOODS-08_1648086868.pdf" download=""><i class="fa fa-download"></i>&nbsp;PDF File/Download</a></td>
+                            <td style="width: 10%"><a class="button" href="public/storage/bidinvitations/bid_docs/22-GOODS-08 SUPPLY AND INSTALLATION OF AIR-CONDITIONING UNIT , LOS BANOS, LAGUNA_1648086868.pdf" download=""><i class="fa fa-download"></i>&nbsp;PDF File/Download</a></td>
+                            <td style="width: 10%; text-align: center;"><a class="button" href="public/storage/bidinvitations/requirements/CHECKLIST OF  REQUIREMENTS GOODS_1648086868.pdf" download=""><i class="fa fa-download"></i>&nbsp;PDF File/Download</a></td>
+            </tr><tr role="row" class="even">
+              <td style="width: 15%" class="sorting_1"><a>8550265</a></td>
+              <td style="width: 30%">Disposal of Residual Waste at Sanitary Landfill (SLF) CY 2022-2023, Los Baños, Laguna</td>
+              <td style="width: 15%">12,000,000.00</td>
+              <td style="width: 10%; text-align: center;"><a class="button" href="public/storage/bidinvitations/invitation_file/22-GOODS-06_1648087120.pdf" download=""><i class="fa fa-download"></i>&nbsp;PDF File/Download</a></td>
+                            <td style="width: 10%"><a class="button" href="public/storage/bidinvitations/bid_docs/22-GOODS-06 DISPOSAL OF RESIDUAL WASTE AT SANITARY LANDFILL (SLF) , LOS BANOS, LAGUNA_1648087120.pdf" download=""><i class="fa fa-download"></i>&nbsp;PDF File/Download</a></td>
+                            <td style="width: 10%; text-align: center;"><a class="button" href="public/storage/bidinvitations/requirements/CHECKLIST OF  REQUIREMENTS GOODS_1648087120.pdf" download=""><i class="fa fa-download"></i>&nbsp;PDF File/Download</a></td>
+            </tr><tr role="row" class="odd">
+              <td style="width: 15%" class="sorting_1"><a>8552788</a></td>
+              <td style="width: 30%">Supply and Delivery of 2 Units of 6-Wheeler Mini-Dump Truck, Los Baños, Laguna</td>
+              <td style="width: 15%">3,000,000.00</td>
+              <td style="width: 10%; text-align: center;"><a class="button" href="public/storage/bidinvitations/invitation_file/22-GOODS-09_1648087348.pdf" download=""><i class="fa fa-download"></i>&nbsp;PDF File/Download</a></td>
+                            <td style="width: 10%"><a class="button" href="public/storage/bidinvitations/bid_docs/22-GOODS-09 SUPPLY AND DELIVERY OF 2 UNITS 6 WHEELER DUMPTRUCK , LOS BANOS, LAGUNA_1648087348.pdf" download=""><i class="fa fa-download"></i>&nbsp;PDF File/Download</a></td>
+                            <td style="width: 10%; text-align: center;"><a class="button" href="public/storage/bidinvitations/requirements/CHECKLIST OF  REQUIREMENTS GOODS_1648087348.pdf" download=""><i class="fa fa-download"></i>&nbsp;PDF File/Download</a></td>
+            </tr><tr role="row" class="even">
+              <td style="width: 15%" class="sorting_1"><a>8553317</a></td>
+              <td style="width: 30%">Supply and Delivery of 2 Units of 10-Wheeler Dump Truck, Los Baños, Laguna</td>
+              <td style="width: 15%">8,400,000.00</td>
+              <td style="width: 10%; text-align: center;"><a class="button" href="public/storage/bidinvitations/invitation_file/22-GOODS-10_1648087254.pdf" download=""><i class="fa fa-download"></i>&nbsp;PDF File/Download</a></td>
+                            <td style="width: 10%"><a class="button" href="public/storage/bidinvitations/bid_docs/22-GOODS-10 SUPPLY AND DELIVERY OF 2 UNITS 10 WHEELER DUMPTRUCK , LOS BANOS, LAGUNA_1648087254.pdf" download=""><i class="fa fa-download"></i>&nbsp;PDF File/Download</a></td>
+                            <td style="width: 10%; text-align: center;"><a class="button" href="public/storage/bidinvitations/requirements/CHECKLIST OF  REQUIREMENTS GOODS_1648087254.pdf" download=""><i class="fa fa-download"></i>&nbsp;PDF File/Download</a></td>
+            </tr><tr role="row" class="odd">
+              <td style="width: 15%" class="sorting_1"><a>8577079</a></td>
+              <td style="width: 30%">Rebid - Supply and Delivery of 22 Units Laptop for DEPED District Office, Los Baños, Laguna</td>
+              <td style="width: 15%">1,100,000.00</td>
+              <td style="width: 10%; text-align: center;"><a class="button" href="public/storage/bidinvitations/invitation_file/REBID 22-GOODS-04_1649139059.pdf" download=""><i class="fa fa-download"></i>&nbsp;PDF File/Download</a></td>
+                            <td style="width: 10%"><a class="button" href="public/storage/bidinvitations/bid_docs/22-GOODS-04 SUPPLY AND DELIVERY OF LAPTOP FOR DEPED DISTRICT OFFICE , LOS BANOS, LAGUNA_1649139059.pdf" download=""><i class="fa fa-download"></i>&nbsp;PDF File/Download</a></td>
+                            <td style="width: 10%; text-align: center;"><a class="button" href="public/storage/bidinvitations/requirements/CHECKLIST OF  REQUIREMENTS  GOODS_1649139059.pdf" download=""><i class="fa fa-download"></i>&nbsp;PDF File/Download</a></td>
+            </tr><tr role="row" class="even">
+              <td style="width: 15%" class="sorting_1"><a>8577200</a></td>
+              <td style="width: 30%">Supply and Delivery of CCTV Materials for ICSO, Los Baños, Laguna</td>
+              <td style="width: 15%">265,000.00</td>
+              <td style="width: 10%; text-align: center;"><a class="button" href="public/storage/bidinvitations/invitation_file/22-GOODS-11_1649144426.pdf" download=""><i class="fa fa-download"></i>&nbsp;PDF File/Download</a></td>
+                            <td style="width: 10%"><a class="button" href="public/storage/bidinvitations/bid_docs/22-GOODS-11 SUPPLY AND DELIVERY OF CCTV MATERIALS FOR ICSO , LOS BANOS, LAGUNA_1649144426.pdf" download=""><i class="fa fa-download"></i>&nbsp;PDF File/Download</a></td>
+                            <td style="width: 10%; text-align: center;"><a class="button" href="public/storage/bidinvitations/requirements/CHECKLIST OF  REQUIREMENTS GOODS_1649144426.pdf" download=""><i class="fa fa-download"></i>&nbsp;PDF File/Download</a></td>
+            </tr><tr role="row" class="odd">
+              <td style="width: 15%" class="sorting_1"><a>8581940</a></td>
+              <td style="width: 30%">Construction of Plant Boxes and Installation of Solar Powered Streetlights at General Paciano Park, Baybayin, Los Baños, Laguna</td>
+              <td style="width: 15%">1,297,814.31</td>
+              <td style="width: 10%; text-align: center;"><a class="button" href="public/storage/bidinvitations/invitation_file/22-INFRA-06_1649208919.pdf" download=""><i class="fa fa-download"></i>&nbsp;PDF File/Download</a></td>
+                            <td style="width: 10%"><a class="button" href="public/storage/bidinvitations/bid_docs/22-INFRA-06_1649208919.pdf" download=""><i class="fa fa-download"></i>&nbsp;PDF File/Download</a></td>
+                            <td style="width: 10%; text-align: center;"><a class="button" href="public/storage/bidinvitations/requirements/CHECKLIST OF  REQUIREMENTS- INFRA_1649208919.pdf" download=""><i class="fa fa-download"></i>&nbsp;PDF File/Download</a></td>
+            </tr><tr role="row" class="even">
+              <td style="width: 15%" class="sorting_1"><a>8582146</a></td>
+              <td style="width: 30%">Rehabilitation / Improvement of Roads and Drainage Canal Along Kitanlad St. and Garnet St., Batong Malake, Los Baños, Laguna</td>
+              <td style="width: 15%">1,908,851.80</td>
+              <td style="width: 10%; text-align: center;"><a class="button" href="public/storage/bidinvitations/invitation_file/22-INFRA-07_1649209062.pdf" download=""><i class="fa fa-download"></i>&nbsp;PDF File/Download</a></td>
+                            <td style="width: 10%"><a class="button" href="public/storage/bidinvitations/bid_docs/22-INFRA-07_1649209062.pdf" download=""><i class="fa fa-download"></i>&nbsp;PDF File/Download</a></td>
+                            <td style="width: 10%; text-align: center;"><a class="button" href="public/storage/bidinvitations/requirements/CHECKLIST OF  REQUIREMENTS- INFRA_1649209062.pdf" download=""><i class="fa fa-download"></i>&nbsp;PDF File/Download</a></td>
+            </tr><tr role="row" class="odd">
+              <td style="width: 15%" class="sorting_1"><a>8593117</a></td>
+              <td style="width: 30%">Supply and Delivery of Furniture and Fixtures for Various Offices, Los Baños, Laguna</td>
+              <td style="width: 15%">894,050.00</td>
+              <td style="width: 10%; text-align: center;"><a class="button" href="public/storage/bidinvitations/invitation_file/22-GOODS-12_1649383446.pdf" download=""><i class="fa fa-download"></i>&nbsp;PDF File/Download</a></td>
+                            <td style="width: 10%"><a class="button" href="public/storage/bidinvitations/bid_docs/22-GOODS-12 SUPPLY AND DELIVERY OF FURNITURES AND FIXTURES FOR VARIOUS OFFICES, LOS BANOS, LAGUNA_1649383446.pdf" download=""><i class="fa fa-download"></i>&nbsp;PDF File/Download</a></td>
+                            <td style="width: 10%; text-align: center;"><a class="button" href="public/storage/bidinvitations/requirements/CHECKLIST OF  REQUIREMENTS GOODS_1649383446.pdf" download=""><i class="fa fa-download"></i>&nbsp;PDF File/Download</a></td>
+            </tr><tr role="row" class="even">
+              <td style="width: 15%" class="sorting_1"><a>8593277</a></td>
+              <td style="width: 30%">Supply and Delivery of Materials for the Repair and Maintenance for Electrical Facilities of Various Schools, Los Baños, Laguna</td>
+              <td style="width: 15%">599,570.18</td>
+              <td style="width: 10%; text-align: center;"><a class="button" href="public/storage/bidinvitations/invitation_file/22-GOODS-13_1649383522.pdf" download=""><i class="fa fa-download"></i>&nbsp;PDF File/Download</a></td>
+                            <td style="width: 10%"><a class="button" href="public/storage/bidinvitations/bid_docs/22-GOODS-13 SUPPLY AND DELIVERY OF MATERIALS FOR THE REPAIR AND MAINTENANCE OF ELECTRICAL FACILITIES_1649383522.pdf" download=""><i class="fa fa-download"></i>&nbsp;PDF File/Download</a></td>
+                            <td style="width: 10%; text-align: center;"><a class="button" href="public/storage/bidinvitations/requirements/CHECKLIST OF  REQUIREMENTS GOODS_1649383522.pdf" download=""><i class="fa fa-download"></i>&nbsp;PDF File/Download</a></td>
+            </tr><tr role="row" class="odd">
+              <td style="width: 15%" class="sorting_1"><a>8624929</a></td>
+              <td style="width: 30%">Supply and Delivery of Paper Supplies for Various Offices, Los Baños, Laguna</td>
+              <td style="width: 15%">364,966.50</td>
+              <td style="width: 10%; text-align: center;"><a class="button" href="public/storage/bidinvitations/invitation_file/22-GOODS-14_1651800450.pdf" download=""><i class="fa fa-download"></i>&nbsp;PDF File/Download</a></td>
+                            <td style="width: 10%"><a class="button" href="public/storage/bidinvitations/bid_docs/22-GOODS-14 SUPPLY AND DELIVERY OF PAPER SUPPLIES FOR VARIOUS OFFICES , LOS BANOS, LAGUNA_1651800450.pdf" download=""><i class="fa fa-download"></i>&nbsp;PDF File/Download</a></td>
+                            <td style="width: 10%; text-align: center;"><a class="button" href="public/storage/bidinvitations/requirements/CHECKLIST OF  REQUIREMENTS GOODS_1651800450.pdf" download=""><i class="fa fa-download"></i>&nbsp;PDF File/Download</a></td>
+            </tr><tr role="row" class="even">
+              <td style="width: 15%" class="sorting_1"><a>8625192</a></td>
+              <td style="width: 30%">Supply and Delivery of Computer Supplies for 1st and 2nd Qtr., Los Baños, Laguna</td>
+              <td style="width: 15%">618,820.00</td>
+              <td style="width: 10%; text-align: center;"><a class="button" href="public/storage/bidinvitations/invitation_file/22-GOODS-15_1651800534.pdf" download=""><i class="fa fa-download"></i>&nbsp;PDF File/Download</a></td>
+                            <td style="width: 10%"><a class="button" href="public/storage/bidinvitations/bid_docs/22-GOODS-15 SUPPLY AND DELIVERY OF COMPUTER SUPPLIES FOR 1ST AND 2ND QTR , LOS BANOS, LAGUNA_1651800534.pdf" download=""><i class="fa fa-download"></i>&nbsp;PDF File/Download</a></td>
+                            <td style="width: 10%; text-align: center;"><a class="button" href="public/storage/bidinvitations/requirements/CHECKLIST OF  REQUIREMENTS GOODS_1651800534.pdf" download=""><i class="fa fa-download"></i>&nbsp;PDF File/Download</a></td>
+            </tr><tr role="row" class="odd">
+              <td style="width: 15%" class="sorting_1"><a>8625219</a></td>
+              <td style="width: 30%">Supply and Delivery of Janitorial Supplies for Various Offices (1st and 2nd Qtr.), Los Baños, Laguna</td>
+              <td style="width: 15%">598,899.91</td>
+              <td style="width: 10%; text-align: center;"><a class="button" href="public/storage/bidinvitations/invitation_file/22-GOODS-16_1652228539.pdf" download=""><i class="fa fa-download"></i>&nbsp;PDF File/Download</a></td>
+                            <td style="width: 10%"><a class="button" href="public/storage/bidinvitations/bid_docs/22-GOODS-16 SUPPLY AND DELIVERY OF JANITORIAL SUPPLIES FOR VARIOUS OFFICE FOR 1ST AND 2ND QTR , LOS BANOS, LAGUNA_1652228539.pdf" download=""><i class="fa fa-download"></i>&nbsp;PDF File/Download</a></td>
+                            <td style="width: 10%; text-align: center;"><a class="button" href="public/storage/bidinvitations/requirements/CHECKLIST OF  REQUIREMENTS GOODS_1652228539.pdf" download=""><i class="fa fa-download"></i>&nbsp;PDF File/Download</a></td>
+            </tr><tr role="row" class="even">
+              <td style="width: 15%" class="sorting_1"><a>8625419</a></td>
+              <td style="width: 30%">Supply and Delivery of Common Office Supplies for 1st and 2nd Qtr. 2022, Los Baños, Laguna</td>
+              <td style="width: 15%">522,664.29</td>
+              <td style="width: 10%; text-align: center;"><a class="button" href="public/storage/bidinvitations/invitation_file/22-GOODS-17_1651800618.pdf" download=""><i class="fa fa-download"></i>&nbsp;PDF File/Download</a></td>
+                            <td style="width: 10%"><a class="button" href="public/storage/bidinvitations/bid_docs/22-GOODS-17 SUPPLY AND DELIVERY OF COMMON OFFICE SUPPLIES FOR 1ST AND 2ND QTR 2022  , LOS BANOS, LAGUNA_1651800618.pdf" download=""><i class="fa fa-download"></i>&nbsp;PDF File/Download</a></td>
+                            <td style="width: 10%; text-align: center;"><a class="button" href="public/storage/bidinvitations/requirements/CHECKLIST OF  REQUIREMENTS GOODS_1651800618.pdf" download=""><i class="fa fa-download"></i>&nbsp;PDF File/Download</a></td>
+            </tr><tr role="row" class="odd">
+              <td style="width: 15%" class="sorting_1"><a>8625615</a></td>
+              <td style="width: 30%">Supply and Delivery of Large Format Printer/Scanner for the Office of the Municipal Engineer, Los Baños, Laguna</td>
+              <td style="width: 15%">380,000.00</td>
+              <td style="width: 10%; text-align: center;"><a class="button" href="public/storage/bidinvitations/invitation_file/22-GOODS-18_1651800700.pdf" download=""><i class="fa fa-download"></i>&nbsp;PDF File/Download</a></td>
+                            <td style="width: 10%"><a class="button" href="public/storage/bidinvitations/bid_docs/22-GOODS-18 SUPPLY AND DELIVERY LARGE FORMAT PRINTER SCANNER , LOS BANOS, LAGUNA_1651800700.pdf" download=""><i class="fa fa-download"></i>&nbsp;PDF File/Download</a></td>
+                            <td style="width: 10%; text-align: center;"><a class="button" href="public/storage/bidinvitations/requirements/CHECKLIST OF  REQUIREMENTS GOODS_1651800700.pdf" download=""><i class="fa fa-download"></i>&nbsp;PDF File/Download</a></td>
+            </tr><tr role="row" class="even">
+              <td style="width: 15%" class="sorting_1"><a>8625927</a></td>
+              <td style="width: 30%">Supply and Delivery of Semi-Expendable Equipment for Various Offices, Los Baños, Laguna</td>
+              <td style="width: 15%">270,980.00</td>
+              <td style="width: 10%; text-align: center;"><a class="button" href="public/storage/bidinvitations/invitation_file/22-GOODS-19_1651800864.pdf" download=""><i class="fa fa-download"></i>&nbsp;PDF File/Download</a></td>
+                            <td style="width: 10%"><a class="button" href="public/storage/bidinvitations/bid_docs/22-GOODS-19 SUPPLY AND DELIVERY OF SEMI-EXPENDABLE EQUIPMENT FOR VARIOUS OFFICES  , LOS BANOS, LAGUNA_1651800864.pdf" download=""><i class="fa fa-download"></i>&nbsp;PDF File/Download</a></td>
+                            <td style="width: 10%; text-align: center;"><a class="button" href="public/storage/bidinvitations/requirements/CHECKLIST OF  REQUIREMENTS GOODS_1651800864.pdf" download=""><i class="fa fa-download"></i>&nbsp;PDF File/Download</a></td>
+            </tr><tr role="row" class="odd">
+              <td style="width: 15%" class="sorting_1"><a>8626004</a></td>
+              <td style="width: 30%">Supply and Delivery of Office Equipment for Various Offices, Los Baños, Laguna</td>
+              <td style="width: 15%">301,500.00</td>
+              <td style="width: 10%; text-align: center;"><a class="button" href="public/storage/bidinvitations/invitation_file/22-GOODS-20_1651800993.pdf" download=""><i class="fa fa-download"></i>&nbsp;PDF File/Download</a></td>
+                            <td style="width: 10%"><a class="button" href="public/storage/bidinvitations/bid_docs/22-GOODS-20 SUPPLY AND DELIVERY OF OFFICE EQUIPMENT EQUIPMENT FOR VARIOUS OFFICES  , LOS BANOS, LAGUNA_1651800993.pdf" download=""><i class="fa fa-download"></i>&nbsp;PDF File/Download</a></td>
+                            <td style="width: 10%; text-align: center;"><a class="button" href="public/storage/bidinvitations/requirements/CHECKLIST OF  REQUIREMENTS GOODS_1651800993.pdf" download=""><i class="fa fa-download"></i>&nbsp;PDF File/Download</a></td>
+            </tr><tr role="row" class="even">
+              <td style="width: 15%" class="sorting_1"><a>8626985</a></td>
+              <td style="width: 30%">Supply and Delivery of Franchise Plate for Tricycle/Pedicab, Los Baños, Laguna</td>
+              <td style="width: 15%">349,920.00</td>
+              <td style="width: 10%; text-align: center;"><a class="button" href="public/storage/bidinvitations/invitation_file/22-GOODS-21_1651801090.pdf" download=""><i class="fa fa-download"></i>&nbsp;PDF File/Download</a></td>
+                            <td style="width: 10%"><a class="button" href="public/storage/bidinvitations/bid_docs/22-GOODS-21 SUPPLY AND DELIVERY OF FRANCHISE PLATE FOR TRICYCLE AND PEDICAB , LOS BANOS, LAGUNA_1651801090.pdf" download=""><i class="fa fa-download"></i>&nbsp;PDF File/Download</a></td>
+                            <td style="width: 10%; text-align: center;"><a class="button" href="public/storage/bidinvitations/requirements/CHECKLIST OF  REQUIREMENTS GOODS_1651801090.pdf" download=""><i class="fa fa-download"></i>&nbsp;PDF File/Download</a></td>
+            </tr><tr role="row" class="odd">
+              <td style="width: 15%" class="sorting_1"><a>8644166</a></td>
+              <td style="width: 30%">Rebid - Supply and Delivery of CCTV Materials for ICSO, Los Baños, Laguna</td>
+              <td style="width: 15%">265,000.00</td>
+              <td style="width: 10%; text-align: center;"><a class="button" href="public/storage/bidinvitations/invitation_file/REBID 22-GOODS-11_1652228688.pdf" download=""><i class="fa fa-download"></i>&nbsp;PDF File/Download</a></td>
+                            <td style="width: 10%"><a class="button" href="public/storage/bidinvitations/bid_docs/22-GOODS-11 SUPPLY AND DELIVERY OF CCTV MATERIALS FOR ICSO , LOS BANOS, LAGUNA_1652228688.pdf" download=""><i class="fa fa-download"></i>&nbsp;PDF File/Download</a></td>
+                            <td style="width: 10%; text-align: center;"><a class="button" href="public/storage/bidinvitations/requirements/CHECKLIST OF  REQUIREMENTS GOODS_1652228688.pdf" download=""><i class="fa fa-download"></i>&nbsp;PDF File/Download</a></td>
+            </tr><tr role="row" class="even">
+              <td style="width: 15%" class="sorting_1"><a>8644369</a></td>
+              <td style="width: 30%">Supply and Delivery of One (1) Unit Rescue Vehicle for MDRRMO, Los Baños, Laguna</td>
+              <td style="width: 15%">1,394,000.00</td>
+              <td style="width: 10%; text-align: center;"><a class="button" href="public/storage/bidinvitations/invitation_file/22-GOODS-22_1652228925.pdf" download=""><i class="fa fa-download"></i>&nbsp;PDF File/Download</a></td>
+                            <td style="width: 10%"><a class="button" href="public/storage/bidinvitations/bid_docs/22-GOODS-22  SUPPLY AND DELIVERY OF ONE (1) UNIT RESCUE VEHICLE FOR MDRRMO , LOS BANOS, LAGUNA_1652228925.pdf" download=""><i class="fa fa-download"></i>&nbsp;PDF File/Download</a></td>
+                            <td style="width: 10%; text-align: center;"><a class="button" href="public/storage/bidinvitations/requirements/CHECKLIST OF  REQUIREMENTS GOODS_1652228925.pdf" download=""><i class="fa fa-download"></i>&nbsp;PDF File/Download</a></td>
+            </tr><tr role="row" class="odd">
+              <td style="width: 15%" class="sorting_1"><a>8644552</a></td>
+              <td style="width: 30%">Site Development of Los Baños Public Cemetery (Construction of 112 Units Apartment and Concreting of Roads and Pathway), Brgy. Anos, Los Baños, Laguna</td>
+              <td style="width: 15%">1,502,497.43</td>
+              <td style="width: 10%; text-align: center;"><a class="button" href="public/storage/bidinvitations/invitation_file/22-INFRA-08_1652229075.pdf" download=""><i class="fa fa-download"></i>&nbsp;PDF File/Download</a></td>
+                            <td style="width: 10%"><a class="button" href="public/storage/bidinvitations/bid_docs/22-INFRA-08  SITE DEVELOPMENT OF LOS BANOS CEMETERY (CONSTRUCTION OF 112 UNITS APARTMENT),  LOS BANOS, LAGUNA_1652229075.pdf" download=""><i class="fa fa-download"></i>&nbsp;PDF File/Download</a></td>
+                            <td style="width: 10%; text-align: center;"><a class="button" href="public/storage/bidinvitations/requirements/CHECKLIST OF  REQUIREMENTS- INFRA_1652229075.pdf" download=""><i class="fa fa-download"></i>&nbsp;PDF File/Download</a></td>
+            </tr><tr role="row" class="even">
+              <td style="width: 15%" class="sorting_1"><a>8682471</a></td>
+              <td style="width: 30%">Improvement / Rehabilitation of Drainage System at Batong Malake Public Market, Batong Malake, Los Baños, Laguna</td>
+              <td style="width: 15%">1,498,815.28</td>
+              <td style="width: 10%; text-align: center;"><a class="button" href="public/storage/bidinvitations/invitation_file/22-INFRA-09_1654244343.pdf" download=""><i class="fa fa-download"></i>&nbsp;PDF File/Download</a></td>
+                            <td style="width: 10%"><a class="button" href="public/storage/bidinvitations/bid_docs/Bidding Docs_1654244343.pdf" download=""><i class="fa fa-download"></i>&nbsp;PDF File/Download</a></td>
+                            <td style="width: 10%; text-align: center;"><a class="button" href="public/storage/bidinvitations/requirements/CHECKLIST OF  REQUIREMENTS- INFRA_1654244343.pdf" download=""><i class="fa fa-download"></i>&nbsp;PDF File/Download</a></td>
+            </tr><tr role="row" class="odd">
+              <td style="width: 15%" class="sorting_1"><a>8718435</a></td>
+              <td style="width: 30%">Supply and Installation of Air Conditioning Units for Yakap Bayan Center, Los Baños, Laguna</td>
+              <td style="width: 15%">206,750.00</td>
+              <td style="width: 10%; text-align: center;"><a class="button" href="public/storage/bidinvitations/invitation_file/22-GOODS-24_1654244055.pdf" download=""><i class="fa fa-download"></i>&nbsp;PDF File/Download</a></td>
+                            <td style="width: 10%"><a class="button" href="public/storage/bidinvitations/bid_docs/22-GOODS-24 SUPPLY AND INSTALLATION OF AIRCONDITIONING UNIT FOR YAKAP BAYAN CENTER , LOS BANOS, LAGUNA_1654244055.pdf" download=""><i class="fa fa-download"></i>&nbsp;PDF File/Download</a></td>
+                            <td style="width: 10%; text-align: center;"><a class="button" href="public/storage/bidinvitations/requirements/CHECKLIST OF  REQUIREMENTS GOODS_1654244055.pdf" download=""><i class="fa fa-download"></i>&nbsp;PDF File/Download</a></td>
+            </tr><tr role="row" class="even">
+              <td style="width: 15%" class="sorting_1"><a>8718477</a></td>
+              <td style="width: 30%">Supply and Installation of Air Conditioning Units for Various Schools, Los Baños, Laguna</td>
+              <td style="width: 15%">653,400.00</td>
+              <td style="width: 10%; text-align: center;"><a class="button" href="public/storage/bidinvitations/invitation_file/22-GOODS-25_1654244177.pdf" download=""><i class="fa fa-download"></i>&nbsp;PDF File/Download</a></td>
+                            <td style="width: 10%"><a class="button" href="public/storage/bidinvitations/bid_docs/22-GOODS-25 SUPPLY AND INSTALLATION OF AIRCONDITIONING UNIT FOR VARIOUS SCHOOLS , LOS BANOS, LAGUNA_1654244177.pdf" download=""><i class="fa fa-download"></i>&nbsp;PDF File/Download</a></td>
+                            <td style="width: 10%; text-align: center;"><a class="button" href="public/storage/bidinvitations/requirements/CHECKLIST OF  REQUIREMENTS GOODS_1654244177.pdf" download=""><i class="fa fa-download"></i>&nbsp;PDF File/Download</a></td>
+            </tr><tr role="row" class="odd">
+              <td style="width: 15%" class="sorting_1"><a>8742862</a></td>
+              <td style="width: 30%">Supply and Delivery of Materials for the Rehabilitation of Mayor's and Vice Mayor's Office (Repainting and Retiling), Los Baños, Laguna</td>
+              <td style="width: 15%">427,358.61</td>
+              <td style="width: 10%; text-align: center;"><a class="button" href="public/storage/bidinvitations/invitation_file/22-GOODS-26_1655280190.pdf" download=""><i class="fa fa-download"></i>&nbsp;PDF File/Download</a></td>
+                            <td style="width: 10%"><a class="button" href="public/storage/bidinvitations/bid_docs/Bidding Docs for the Rehab of MO &amp; VM Office_1655280190.pdf" download=""><i class="fa fa-download"></i>&nbsp;PDF File/Download</a></td>
+                            <td style="width: 10%; text-align: center;"><a class="button" href="public/storage/bidinvitations/requirements/CHECKLIST OF  REQUIREMENTS GOODS_1655280190.pdf" download=""><i class="fa fa-download"></i>&nbsp;PDF File/Download</a></td>
+            </tr><tr role="row" class="even">
+              <td style="width: 15%" class="sorting_1"><a>8869517</a></td>
+              <td style="width: 30%">Supply and Installation of Air Conditioning Unit for General Services Office, Los Baños, Laguna</td>
+              <td style="width: 15%">351,100.00</td>
+              <td style="width: 10%; text-align: center;"><a class="button" href="public/storage/bidinvitations/invitation_file/22-GOODS-27_1659333800.pdf" download=""><i class="fa fa-download"></i>&nbsp;PDF File/Download</a></td>
+                            <td style="width: 10%"><a class="button" href="public/storage/bidinvitations/bid_docs/22-GOODS-27 SUPPLY AND INSTALLATION OF AIRCONDITIONING UNIT FOR GENERAL SERVICES OFFICE , LOS BANOS, LAGUNA_1659333800.pdf" download=""><i class="fa fa-download"></i>&nbsp;PDF File/Download</a></td>
+                            <td style="width: 10%; text-align: center;"><a class="button" href="public/storage/bidinvitations/requirements/CHECKLIST OF  REQUIREMENTS GOODS_1659333800.pdf" download=""><i class="fa fa-download"></i>&nbsp;PDF File/Download</a></td>
+            </tr><tr role="row" class="odd">
+              <td style="width: 15%" class="sorting_1"><a>8869552</a></td>
+              <td style="width: 30%">Supply and Delivery of Materials for the Power Supply of New RHU Building (Installation of Main Feederline and Upgrading of Main Circuit Breaker), Los Baños, Laguna</td>
+              <td style="width: 15%">348,067.20</td>
+              <td style="width: 10%; text-align: center;"><a class="button" href="public/storage/bidinvitations/invitation_file/22-GOODS-28_1659322548.pdf" download=""><i class="fa fa-download"></i>&nbsp;PDF File/Download</a></td>
+                            <td style="width: 10%"><a class="button" href="public/storage/bidinvitations/bid_docs/22-GOODS-28 SUPPLY AND DELIVERY OF MATERIALS FOR THE POWER SUPPLY OF NEW RHU BUILDING , LOS BANOS, LAGUNA_1659322548.pdf" download=""><i class="fa fa-download"></i>&nbsp;PDF File/Download</a></td>
+                            <td style="width: 10%; text-align: center;"><a class="button" href="public/storage/bidinvitations/requirements/CHECKLIST OF  REQUIREMENTS GOODS_1659322548.pdf" download=""><i class="fa fa-download"></i>&nbsp;PDF File/Download</a></td>
+            </tr><tr role="row" class="even">
+              <td style="width: 15%" class="sorting_1"><a>8873017</a></td>
+              <td style="width: 30%">Negotiated Procurement-Two Failed Biddings: Construction of Drainage Canal at CSAP Maahas, Los Baños, Laguna</td>
+              <td style="width: 15%">267,345.57</td>
+              <td style="width: 10%; text-align: center;"><a class="button" href="public/storage/bidinvitations/invitation_file/NEGOTIATED PROCUREMENT INFRA _1659429570.pdf" download=""><i class="fa fa-download"></i>&nbsp;PDF File/Download</a></td>
+                            <td style="width: 10%"><a class="button" href="public/storage/bidinvitations/bid_docs/NEGOTIATED PROCUREMENT INFRA _1659429570.pdf" download=""><i class="fa fa-download"></i>&nbsp;PDF File/Download</a></td>
+                            <td style="width: 10%; text-align: center;"><a class="button" href="public/storage/bidinvitations/requirements/CHECKLIST OF  REQUIREMENTS- INFRA_1659429570.pdf" download=""><i class="fa fa-download"></i>&nbsp;PDF File/Download</a></td>
+            </tr><tr role="row" class="odd">
+              <td style="width: 15%" class="sorting_1"><a>8938689</a></td>
+              <td style="width: 30%">Supply and Delivery of Common Office Supplies for Various Offices, Los Baños, Laguna</td>
+              <td style="width: 15%">351,120.36</td>
+              <td style="width: 10%; text-align: center;"><a class="button" href="public/storage/bidinvitations/invitation_file/22-GOODS-30_1662356729.pdf" download=""><i class="fa fa-download"></i>&nbsp;PDF File/Download</a></td>
+                            <td style="width: 10%"><a class="button" href="public/storage/bidinvitations/bid_docs/22-GOODS- 30  SUPPLY AND DELIVERY OF  COMMON OFFICE SUPPLIES FOR VARIOUS OFFICES , LOS BANOS, LAGUNA_1662356729.pdf" download=""><i class="fa fa-download"></i>&nbsp;PDF File/Download</a></td>
+                            <td style="width: 10%; text-align: center;"><a class="button" href="public/storage/bidinvitations/requirements/CHECKLIST OF  REQUIREMENTS GOODS_1662356729.pdf" download=""><i class="fa fa-download"></i>&nbsp;PDF File/Download</a></td>
+            </tr><tr role="row" class="even">
+              <td style="width: 15%" class="sorting_1"><a>8939028</a></td>
+              <td style="width: 30%">Supply and Delivery of Copier Machines for Various Offices, Los Baños, Laguna</td>
+              <td style="width: 15%">281,000.00</td>
+              <td style="width: 10%; text-align: center;"><a class="button" href="public/storage/bidinvitations/invitation_file/22-GOODS-31_1662356548.pdf" download=""><i class="fa fa-download"></i>&nbsp;PDF File/Download</a></td>
+                            <td style="width: 10%"><a class="button" href="public/storage/bidinvitations/bid_docs/22-GOODS-32  SUPPLY AND DELIVERY OF COPIER MACHINE FOR VARIOUS OFFICES , LOS BANOS, LAGUNA_1662356548.pdf" download=""><i class="fa fa-download"></i>&nbsp;PDF File/Download</a></td>
+                            <td style="width: 10%; text-align: center;"><a class="button" href="public/storage/bidinvitations/requirements/CHECKLIST OF  REQUIREMENTS GOODS_1662356548.pdf" download=""><i class="fa fa-download"></i>&nbsp;PDF File/Download</a></td>
+            </tr><tr role="row" class="odd">
+              <td style="width: 15%" class="sorting_1"><a>8939100</a></td>
+              <td style="width: 30%">Rebid - Supply and Delivery of 22 Units Laptop for DEPED District Office, Los Baños, Laguna</td>
+              <td style="width: 15%">1,100,000.00</td>
+              <td style="width: 10%; text-align: center;"><a class="button" href="public/storage/bidinvitations/invitation_file/REBID-22-GOODS-04_1662356959.pdf" download=""><i class="fa fa-download"></i>&nbsp;PDF File/Download</a></td>
+                            <td style="width: 10%"><a class="button" href="public/storage/bidinvitations/bid_docs/22-GOODS-04 SUPPLY AND DELIVERY OF LAPTOP FOR DEPED DISTRICT OFFICE , LOS BANOS, LAGUNA_1662356959.pdf" download=""><i class="fa fa-download"></i>&nbsp;PDF File/Download</a></td>
+                            <td style="width: 10%; text-align: center;"><a class="button" href="public/storage/bidinvitations/requirements/CHECKLIST OF  REQUIREMENTS GOODS_1662356959.pdf" download=""><i class="fa fa-download"></i>&nbsp;PDF File/Download</a></td>
+            </tr><tr role="row" class="even">
+              <td style="width: 15%" class="sorting_1"><a>8979596</a></td>
+              <td style="width: 30%">Supply and Delivery of Janitorial Supplies for Various Offices,</td>
+              <td style="width: 15%">307,030.32</td>
+              <td style="width: 10%; text-align: center;"><a class="button" href="public/storage/bidinvitations/invitation_file/22-GOODS-31_1663041171.pdf" download=""><i class="fa fa-download"></i>&nbsp;PDF File/Download</a></td>
+                            <td style="width: 10%"><a class="button" href="public/storage/bidinvitations/bid_docs/22-GOODS- 31  SUPPLY AND DELIVERY OF  JANITORIAL SUPPLIES FOR VARIOUS OFFICES , LOS BANOS, LAGUNA_1663041171.pdf" download=""><i class="fa fa-download"></i>&nbsp;PDF File/Download</a></td>
+                            <td style="width: 10%; text-align: center;"><a class="button" href="public/storage/bidinvitations/requirements/CHECKLIST OF  REQUIREMENTS GOODS_1663041171.pdf" download=""><i class="fa fa-download"></i>&nbsp;PDF File/Download</a></td>
+            </tr><tr role="row" class="odd">
+              <td style="width: 15%" class="sorting_1"><a>8980209</a></td>
+              <td style="width: 30%">Installation of Solar Net Metering (Rewiring of Main Service Entrance for Net Metering Application), Los Baños, Laguna</td>
+              <td style="width: 15%">389,925.00</td>
+              <td style="width: 10%; text-align: center;"><a class="button" href="public/storage/bidinvitations/invitation_file/22-INFRA-10_1663041302.pdf" download=""><i class="fa fa-download"></i>&nbsp;PDF File/Download</a></td>
+                            <td style="width: 10%"><a class="button" href="public/storage/bidinvitations/bid_docs/22-INFRA-10 INSTALLATION OF SOLAR NET METERING (REWIRING OF MAIN SERVICE ENTRANCE FOR NET METERING APPLICATION),  LOS BANOS, LAGUNA_1663041302.pdf" download=""><i class="fa fa-download"></i>&nbsp;PDF File/Download</a></td>
+                            <td style="width: 10%; text-align: center;"><a class="button" href="public/storage/bidinvitations/requirements/CHECKLIST OF  REQUIREMENTS- INFRA_1663041302.pdf" download=""><i class="fa fa-download"></i>&nbsp;PDF File/Download</a></td>
+            </tr><tr role="row" class="even">
+              <td style="width: 15%" class="sorting_1"><a>8982687</a></td>
+              <td style="width: 30%">Supply and Delivery of One (1) Unit Rescue Vehicle for MDRRMO, Los Baños, Laguna</td>
+              <td style="width: 15%">1,394,000.00</td>
+              <td style="width: 10%; text-align: center;"><a class="button" href="public/storage/bidinvitations/invitation_file/22-GOODS-22_1663041396.pdf" download=""><i class="fa fa-download"></i>&nbsp;PDF File/Download</a></td>
+                            <td style="width: 10%"><a class="button" href="public/storage/bidinvitations/bid_docs/22-GOODS-22  SUPPLY AND DELIVERY OF ONE (1) UNIT RESCUE VEHICLE FOR MDRRMO , LOS BANOS, LAGUNA_1663041396.pdf" download=""><i class="fa fa-download"></i>&nbsp;PDF File/Download</a></td>
+                            <td style="width: 10%; text-align: center;"><a class="button" href="public/storage/bidinvitations/requirements/CHECKLIST OF  REQUIREMENTS GOODS_1663041396.pdf" download=""><i class="fa fa-download"></i>&nbsp;PDF File/Download</a></td>
+            </tr><tr role="row" class="odd">
+              <td style="width: 15%" class="sorting_1"><a>8983943</a></td>
+              <td style="width: 30%">Supply and Delivery of One (1) Unit Sports Utility Vehicle, Los Baños, Laguna</td>
+              <td style="width: 15%">2,824,800.00</td>
+              <td style="width: 10%; text-align: center;"><a class="button" href="public/storage/bidinvitations/invitation_file/22-GOODS-33_1663041501.pdf" download=""><i class="fa fa-download"></i>&nbsp;PDF File/Download</a></td>
+                            <td style="width: 10%"><a class="button" href="public/storage/bidinvitations/bid_docs/22-GOODS- 33  SUPPLY AND DELIVERY OF ONE(1) UNIT SPORTS UTILITY VEHICLE , LOS BANOS, LAGUNA_1663041501.pdf" download=""><i class="fa fa-download"></i>&nbsp;PDF File/Download</a></td>
+                            <td style="width: 10%; text-align: center;"><a class="button" href="public/storage/bidinvitations/requirements/CHECKLIST OF  REQUIREMENTS GOODS_1663041501.pdf" download=""><i class="fa fa-download"></i>&nbsp;PDF File/Download</a></td>
+            </tr><tr role="row" class="even">
+              <td style="width: 15%" class="sorting_1"><a>8984110</a></td>
+              <td style="width: 30%">Supply and Delivery of One (1) Unit Commuter Van, Los Baños, Laguna</td>
+              <td style="width: 15%">2,256,450.00</td>
+              <td style="width: 10%; text-align: center;"><a class="button" href="public/storage/bidinvitations/invitation_file/22-GOODS-34_1663041574.pdf" download=""><i class="fa fa-download"></i>&nbsp;PDF File/Download</a></td>
+                            <td style="width: 10%"><a class="button" href="public/storage/bidinvitations/bid_docs/22-GOODS- 34  SUPPLY AND DELIVERY OF ONE(1) UNIT COMMUTER VAN , LOS BANOS, LAGUNA_1663041574.pdf" download=""><i class="fa fa-download"></i>&nbsp;PDF File/Download</a></td>
+                            <td style="width: 10%; text-align: center;"><a class="button" href="public/storage/bidinvitations/requirements/CHECKLIST OF  REQUIREMENTS GOODS_1663041574.pdf" download=""><i class="fa fa-download"></i>&nbsp;PDF File/Download</a></td>
+            </tr><tr role="row" class="odd">
+              <td style="width: 15%" class="sorting_1"><a>8987980</a></td>
+              <td style="width: 30%">Supply and Delivery of ICT Equipment for Various Offices, Los Baños, Laguna</td>
+              <td style="width: 15%">2,162,000.00</td>
+              <td style="width: 10%; text-align: center;"><a class="button" href="public/storage/bidinvitations/invitation_file/22-GOODS-35_1664244393.pdf" download=""><i class="fa fa-download"></i>&nbsp;PDF File/Download</a></td>
+                            <td style="width: 10%"><a class="button" href="public/storage/bidinvitations/bid_docs/22-GOODS- 35  SUPPLY AND DELIVERY OF ICT EQUIPMENT FOR VARIOUS OFFICES , LOS BANOS, LAGUNA_1664244393.pdf" download=""><i class="fa fa-download"></i>&nbsp;PDF File/Download</a></td>
+                            <td style="width: 10%; text-align: center;"><a class="button" href="public/storage/bidinvitations/requirements/CHECKLIST OF  REQUIREMENTS GOODS_1664244393.pdf" download=""><i class="fa fa-download"></i>&nbsp;PDF File/Download</a></td>
+            </tr><tr role="row" class="even">
+              <td style="width: 15%" class="sorting_1"><a>9030849</a></td>
+              <td style="width: 30%">Supply and Delivery of Furniture and Fixtures for the Office of the Mayor, Los Baños, Laguna</td>
+              <td style="width: 15%">666,920.00</td>
+              <td style="width: 10%; text-align: center;"><a class="button" href="public/storage/bidinvitations/invitation_file/22-GOODS-36_1664244491.pdf" download=""><i class="fa fa-download"></i>&nbsp;PDF File/Download</a></td>
+                            <td style="width: 10%"><a class="button" href="public/storage/bidinvitations/bid_docs/22-GOODS- 36  SUPPLY AND DELIVERY OF  FURNITURES AND FIXTURES FOR OFFICE OF THE MAYOR , LOS BANOS, LAGUNA_1664244491.pdf" download=""><i class="fa fa-download"></i>&nbsp;PDF File/Download</a></td>
+                            <td style="width: 10%; text-align: center;"><a class="button" href="public/storage/bidinvitations/requirements/CHECKLIST OF  REQUIREMENTS GOODS_1664244491.pdf" download=""><i class="fa fa-download"></i>&nbsp;PDF File/Download</a></td>
+            </tr><tr role="row" class="odd">
+              <td style="width: 15%" class="sorting_1"><a>9031200</a></td>
+              <td style="width: 30%">Supply and Delivery of Pneumo Vaccine for Municipal Employees, Los Baños, Laguna</td>
+              <td style="width: 15%">500,000.00</td>
+              <td style="width: 10%; text-align: center;"><a class="button" href="public/storage/bidinvitations/invitation_file/22-GOODS-37_1664244616.pdf" download=""><i class="fa fa-download"></i>&nbsp;PDF File/Download</a></td>
+                            <td style="width: 10%"><a class="button" href="public/storage/bidinvitations/bid_docs/22-GOODS- 37 SUPPLY AND DELIVERY OF PNEUMO VACCINE FOR MUNICIPAL EMPLOYEES , LOS BANOS, LAGUNA_1664244616.pdf" download=""><i class="fa fa-download"></i>&nbsp;PDF File/Download</a></td>
+                            <td style="width: 10%; text-align: center;"><a class="button" href="public/storage/bidinvitations/requirements/CHECKLIST OF  REQUIREMENTS GOODS_1664244616.pdf" download=""><i class="fa fa-download"></i>&nbsp;PDF File/Download</a></td>
+            </tr><tr role="row" class="even">
+              <td style="width: 15%" class="sorting_1"><a>9087502</a></td>
+              <td style="width: 30%">Supply and Delivery of One (1) Unit Sports Utility Vehicle, Los Baños, Laguna</td>
+              <td style="width: 15%">2,824,800.00</td>
+              <td style="width: 10%; text-align: center;"><a class="button" href="public/storage/bidinvitations/invitation_file/ITB 22-GOODS-33_1669266197.pdf" download=""><i class="fa fa-download"></i>&nbsp;PDF File/Download</a></td>
+                            <td style="width: 10%"><a class="button" href="public/storage/bidinvitations/bid_docs/22-GOODS- 33  SUPPLY AND DELIVERY OF ONE(1) UNIT SPORTS UTILITY VEHICLE , LOS BANOS, LAGUNA_1669266197.pdf" download=""><i class="fa fa-download"></i>&nbsp;PDF File/Download</a></td>
+                            <td style="width: 10%; text-align: center;"><a class="button" href="public/storage/bidinvitations/requirements/CHECKLIST OF  REQUIREMENTS GOODS_1669266197.pdf" download=""><i class="fa fa-download"></i>&nbsp;PDF File/Download</a></td>
+            </tr><tr role="row" class="odd">
+              <td style="width: 15%" class="sorting_1"><a>9087915</a></td>
+              <td style="width: 30%">Rebid - Supply and Delivery of Furniture and Fixtures for the Office of the Mayor, Los Baños, Laguna</td>
+              <td style="width: 15%">666,920.00</td>
+              <td style="width: 10%; text-align: center;"><a class="button" href="public/storage/bidinvitations/invitation_file/REBID 22-GOODS-36_1666138528.pdf" download=""><i class="fa fa-download"></i>&nbsp;PDF File/Download</a></td>
+                            <td style="width: 10%"><a class="button" href="public/storage/bidinvitations/bid_docs/22-GOODS- 36  SUPPLY AND DELIVERY OF  FURNITURES AND FIXTURES FOR OFFICE OF THE MAYOR , LOS BANOS, LAGUNA_1666138528.pdf" download=""><i class="fa fa-download"></i>&nbsp;PDF File/Download</a></td>
+                            <td style="width: 10%; text-align: center;"><a class="button" href="public/storage/bidinvitations/requirements/CHECKLIST OF  REQUIREMENTS GOODS_1666138528.pdf" download=""><i class="fa fa-download"></i>&nbsp;PDF File/Download</a></td>
+            </tr><tr role="row" class="even">
+              <td style="width: 15%" class="sorting_1"><a>9088184</a></td>
+              <td style="width: 30%">Supply and Delivery of One (1) Unit Van, Los Baños, Laguna</td>
+              <td style="width: 15%">2,310,000.00</td>
+              <td style="width: 10%; text-align: center;"><a class="button" href="public/storage/bidinvitations/invitation_file/22-GOODS-38_1666256518.pdf" download=""><i class="fa fa-download"></i>&nbsp;PDF File/Download</a></td>
+                            <td style="width: 10%"><a class="button" href="public/storage/bidinvitations/bid_docs/22-GOODS-38 , SUPPLY AND DELIVERY OF ONE (1) UNIT VAN, LOS BANOS, LAGUNA_1666256518.pdf" download=""><i class="fa fa-download"></i>&nbsp;PDF File/Download</a></td>
+                            <td style="width: 10%; text-align: center;"><a class="button" href="public/storage/bidinvitations/requirements/CHECKLIST OF  REQUIREMENTS GOODS_1666256518.pdf" download=""><i class="fa fa-download"></i>&nbsp;PDF File/Download</a></td>
+            </tr><tr role="row" class="odd">
+              <td style="width: 15%" class="sorting_1"><a>9088217</a></td>
+              <td style="width: 30%">Rebid - Supply and Delivery of Pneumo Vaccine for Municipal Employees, Los Baños, Laguna</td>
+              <td style="width: 15%">500,000.00</td>
+              <td style="width: 10%; text-align: center;"><a class="button" href="public/storage/bidinvitations/invitation_file/ITB 22-GOODS-37_1669265879.pdf" download=""><i class="fa fa-download"></i>&nbsp;PDF File/Download</a></td>
+                            <td style="width: 10%"><a class="button" href="public/storage/bidinvitations/bid_docs/22-GOODS- 37 SUPPLY AND DELIVERY OF PNEUMO VACCINE FOR MUNICIPAL EMPLOYEES , LOS BANOS, LAGUNA_1669265879.pdf" download=""><i class="fa fa-download"></i>&nbsp;PDF File/Download</a></td>
+                            <td style="width: 10%; text-align: center;"><a class="button" href="public/storage/bidinvitations/requirements/CHECKLIST OF  REQUIREMENTS GOODS_1669265879.pdf" download=""><i class="fa fa-download"></i>&nbsp;PDF File/Download</a></td>
+            </tr><tr role="row" class="even">
+              <td style="width: 15%" class="sorting_1"><a>9088259</a></td>
+              <td style="width: 30%">Supply and Delivery of CCTV Materials for the Municipal Hall, Los Baños, Laguna</td>
+              <td style="width: 15%">524,644.00</td>
+              <td style="width: 10%; text-align: center;"><a class="button" href="public/storage/bidinvitations/invitation_file/22-GOODS-41_1666256590.pdf" download=""><i class="fa fa-download"></i>&nbsp;PDF File/Download</a></td>
+                            <td style="width: 10%"><a class="button" href="public/storage/bidinvitations/bid_docs/22-GOODS- 41 SUPPLY AND DELIVERY OF CCTV MATERIALS FOR THE MUNICIPAL HALL , LOS BANOS, LAGUNA_1666256590.pdf" download=""><i class="fa fa-download"></i>&nbsp;PDF File/Download</a></td>
+                            <td style="width: 10%; text-align: center;"><a class="button" href="public/storage/bidinvitations/requirements/CHECKLIST OF  REQUIREMENTS GOODS_1666256590.pdf" download=""><i class="fa fa-download"></i>&nbsp;PDF File/Download</a></td>
+            </tr><tr role="row" class="odd">
+              <td style="width: 15%" class="sorting_1"><a>9088357</a></td>
+              <td style="width: 30%">Rebid - Supply and Delivery of Semi-Expendable Equipment for Various Offices, Los Baños, Laguna</td>
+              <td style="width: 15%">270,980.00</td>
+              <td style="width: 10%; text-align: center;"><a class="button" href="public/storage/bidinvitations/invitation_file/REBID 22-GOODS-19_1666138670.pdf" download=""><i class="fa fa-download"></i>&nbsp;PDF File/Download</a></td>
+                            <td style="width: 10%"><a class="button" href="public/storage/bidinvitations/bid_docs/22-GOODS-19 SUPPLY AND DELIVERY OF SEMI-EXPENDABLE EQUIPMENT FOR VARIOUS OFFICES  , LOS BANOS, LAGUNA_1666138670.pdf" download=""><i class="fa fa-download"></i>&nbsp;PDF File/Download</a></td>
+                            <td style="width: 10%; text-align: center;"><a class="button" href="public/storage/bidinvitations/requirements/CHECKLIST OF  REQUIREMENTS GOODS_1666138670.pdf" download=""><i class="fa fa-download"></i>&nbsp;PDF File/Download</a></td>
+            </tr><tr role="row" class="even">
+              <td style="width: 15%" class="sorting_1"><a>9133471</a></td>
+              <td style="width: 30%">Supply and Delivery of Food and Non-Food for Stockpiling, Los Baños, Laguna</td>
+              <td style="width: 15%">850,090.00</td>
+              <td style="width: 10%; text-align: center;"><a class="button" href="public/storage/bidinvitations/invitation_file/ITB 22-GOODS-39_1669266827.pdf" download=""><i class="fa fa-download"></i>&nbsp;PDF File/Download</a></td>
+                            <td style="width: 10%"><a class="button" href="public/storage/bidinvitations/bid_docs/22-GOODS-39 , SUPPLY AND DELIVERY OF FOOD AND NON-FOOD FOR STOCKPILING, LOS BANOS, LAGUNA_1669266827.pdf" download=""><i class="fa fa-download"></i>&nbsp;PDF File/Download</a></td>
+                            <td style="width: 10%; text-align: center;"><a class="button" href="public/storage/bidinvitations/requirements/CHECKLIST OF  REQUIREMENTS GOODS_1669266827.pdf" download=""><i class="fa fa-download"></i>&nbsp;PDF File/Download</a></td>
+            </tr><tr role="row" class="odd">
+              <td style="width: 15%" class="sorting_1"><a>9133522</a></td>
+              <td style="width: 30%">Supply and Delivery of Materials for Brigada Eskwela 2022, Los Baños, Laguna</td>
+              <td style="width: 15%">240,375.65</td>
+              <td style="width: 10%; text-align: center;"><a class="button" href="public/storage/bidinvitations/invitation_file/22-GOODS-40_1666769634.pdf" download=""><i class="fa fa-download"></i>&nbsp;PDF File/Download</a></td>
+                            <td style="width: 10%"><a class="button" href="public/storage/bidinvitations/bid_docs/22-GOODS-40 SUPPLY AND DELIVERY OF MATERIALS FOR BRIGADA ESKWELA 2022  , LOS BANOS, LAGUNA_1666769634.pdf" download=""><i class="fa fa-download"></i>&nbsp;PDF File/Download</a></td>
+                            <td style="width: 10%; text-align: center;"><a class="button" href="public/storage/bidinvitations/requirements/CHECKLIST OF  REQUIREMENTS GOODS_1666769634.pdf" download=""><i class="fa fa-download"></i>&nbsp;PDF File/Download</a></td>
+            </tr><tr role="row" class="even">
+              <td style="width: 15%" class="sorting_1"><a>9133545</a></td>
+              <td style="width: 30%">Supply and Delivery of Franchise Plate for Tricycle/Pedicab, Los Baños, Laguna</td>
+              <td style="width: 15%">349,500.00</td>
+              <td style="width: 10%; text-align: center;"><a class="button" href="public/storage/bidinvitations/invitation_file/22-GOODS-42_1666769346.pdf" download=""><i class="fa fa-download"></i>&nbsp;PDF File/Download</a></td>
+                            <td style="width: 10%"><a class="button" href="public/storage/bidinvitations/bid_docs/22-GOODS-42 SUPPLY AND DELIVERY OF FRANCHISE PLATE FOR TRICYCLEPEDICAB  , LOS BANOS, LAGUNA_1666769346.pdf" download=""><i class="fa fa-download"></i>&nbsp;PDF File/Download</a></td>
+                            <td style="width: 10%; text-align: center;"><a class="button" href="public/storage/bidinvitations/requirements/CHECKLIST OF  REQUIREMENTS GOODS_1666769346.pdf" download=""><i class="fa fa-download"></i>&nbsp;PDF File/Download</a></td>
+            </tr><tr role="row" class="odd">
+              <td style="width: 15%" class="sorting_1"><a>9135086</a></td>
+              <td style="width: 30%">Supply and Delivery of Janitorial Supplies for 3rd and 4th Quarter 2022, Los Baños, Laguna</td>
+              <td style="width: 15%">458,239.15</td>
+              <td style="width: 10%; text-align: center;"><a class="button" href="public/storage/bidinvitations/invitation_file/22-GOODS-44_1666765066.pdf" download=""><i class="fa fa-download"></i>&nbsp;PDF File/Download</a></td>
+                            <td style="width: 10%"><a class="button" href="public/storage/bidinvitations/bid_docs/22-GOODS-43 SUPPLY AND DELIVERY OF JANITORIAL SUPPLIES FOR 3RD AND 4TH QTR 2022  , LOS BANOS, LAGUNA_1666765066.pdf" download=""><i class="fa fa-download"></i>&nbsp;PDF File/Download</a></td>
+                            <td style="width: 10%; text-align: center;"><a class="button" href="public/storage/bidinvitations/requirements/CHECKLIST OF  REQUIREMENTS GOODS_1666765066.pdf" download=""><i class="fa fa-download"></i>&nbsp;PDF File/Download</a></td>
+            </tr><tr role="row" class="even">
+              <td style="width: 15%" class="sorting_1"><a>9135260</a></td>
+              <td style="width: 30%">Supply and Delivery of Common Office Supplies for 3rd and 4th Quarter 2022, Los Baños, Laguna</td>
+              <td style="width: 15%">223,932.40</td>
+              <td style="width: 10%; text-align: center;"><a class="button" href="public/storage/bidinvitations/invitation_file/22-GOODS-43_1666764964.pdf" download=""><i class="fa fa-download"></i>&nbsp;PDF File/Download</a></td>
+                            <td style="width: 10%"><a class="button" href="public/storage/bidinvitations/bid_docs/22-GOODS-43 SUPPLY AND DELIVERY OF COMMON OFFICE SUPPLIES FOR 3RD AND 4TH QTR 2022  , LOS BANOS, LAGUNA_1666764964.pdf" download=""><i class="fa fa-download"></i>&nbsp;PDF File/Download</a></td>
+                            <td style="width: 10%; text-align: center;"><a class="button" href="public/storage/bidinvitations/requirements/CHECKLIST OF  REQUIREMENTS GOODS_1666764964.pdf" download=""><i class="fa fa-download"></i>&nbsp;PDF File/Download</a></td>
+            </tr><tr role="row" class="odd">
+              <td style="width: 15%" class="sorting_1"><a>9137930</a></td>
+              <td style="width: 30%">Supply and Delivery of Live Animals for the Agriculture's Office, Los Baños, Laguna</td>
+              <td style="width: 15%">370,000.00</td>
+              <td style="width: 10%; text-align: center;"><a class="button" href="public/storage/bidinvitations/invitation_file/ITB 22-GOODS-45_1669266458.pdf" download=""><i class="fa fa-download"></i>&nbsp;PDF File/Download</a></td>
+                            <td style="width: 10%"><a class="button" href="public/storage/bidinvitations/bid_docs/22-GOODS-45 SUPPLY AND DELIVERY OF LIVE ANIMALS FOR THE AGRICULTURE'S OFFICE  , LOS BANOS, LAGUNA_1669266458.pdf" download=""><i class="fa fa-download"></i>&nbsp;PDF File/Download</a></td>
+                            <td style="width: 10%; text-align: center;"><a class="button" href="public/storage/bidinvitations/requirements/CHECKLIST OF  REQUIREMENTS GOODS_1669266458.pdf" download=""><i class="fa fa-download"></i>&nbsp;PDF File/Download</a></td>
+            </tr><tr role="row" class="even">
+              <td style="width: 15%" class="sorting_1"><a>9138056</a></td>
+              <td style="width: 30%">Supply and Delivery of Furniture and Fixtures for Various Offices, Los Baños, Laguna</td>
+              <td style="width: 15%">880,550.00</td>
+              <td style="width: 10%; text-align: center;"><a class="button" href="public/storage/bidinvitations/invitation_file/ITB 22-GOODS-46_1669266634.pdf" download=""><i class="fa fa-download"></i>&nbsp;PDF File/Download</a></td>
+                            <td style="width: 10%"><a class="button" href="public/storage/bidinvitations/bid_docs/22-GOODS-46 SUPPLY AND DELIVERY OF FURNITURES AND FIXTURES FOR VARIOUS OFFICES  , LOS BANOS, LAGUNA_1669266634.pdf" download=""><i class="fa fa-download"></i>&nbsp;PDF File/Download</a></td>
+                            <td style="width: 10%; text-align: center;"><a class="button" href="public/storage/bidinvitations/requirements/CHECKLIST OF  REQUIREMENTS GOODS_1669266634.pdf" download=""><i class="fa fa-download"></i>&nbsp;PDF File/Download</a></td>
+            </tr><tr role="row" class="odd">
+              <td style="width: 15%" class="sorting_1"><a>9156470</a></td>
+              <td style="width: 30%">Rebid - Installation of Solar Net Metering (Rewiring of Main Service Entrance for Net Metering Application), Los Baños, Laguna</td>
+              <td style="width: 15%">389,925.00</td>
+              <td style="width: 10%; text-align: center;"><a class="button" href="public/storage/bidinvitations/invitation_file/ITB 22-INFRA-10_1669267439.pdf" download=""><i class="fa fa-download"></i>&nbsp;PDF File/Download</a></td>
+                            <td style="width: 10%"><a class="button" href="public/storage/bidinvitations/bid_docs/22-INFRA-10 INSTALLATION OF SOLAR NET METERING (REWIRING OF MAIN SERVICE ENTRANCE FOR NET METERING APPLICATION),  LOS BANOS, LAGUNA_1669267439.pdf" download=""><i class="fa fa-download"></i>&nbsp;PDF File/Download</a></td>
+                            <td style="width: 10%; text-align: center;"><a class="button" href="public/storage/bidinvitations/requirements/CHECKLIST OF  REQUIREMENTS- INFRA_1669267439.pdf" download=""><i class="fa fa-download"></i>&nbsp;PDF File/Download</a></td>
+            </tr><tr role="row" class="even">
+              <td style="width: 15%" class="sorting_1"><a>9156641</a></td>
+              <td style="width: 30%">Supply and Delivery of Lanterns for the "Disyembre na sa Bagong Los Baños", Los Baños, Laguna</td>
+              <td style="width: 15%">999,000.00</td>
+              <td style="width: 10%; text-align: center;"><a class="button" href="public/storage/bidinvitations/invitation_file/ITB 22-GOODS-47_1669267139.pdf" download=""><i class="fa fa-download"></i>&nbsp;PDF File/Download</a></td>
+                            <td style="width: 10%"><a class="button" href="public/storage/bidinvitations/bid_docs/22-GOODS-47 SUPPLY AND DELIVERY OF LANTERNS  FOR THE DISYEMBRE NA SA BAGONG LB, LOS BANOS, LAGUNA_1669267139.pdf" download=""><i class="fa fa-download"></i>&nbsp;PDF File/Download</a></td>
+                            <td style="width: 10%; text-align: center;"><a class="button" href="public/storage/bidinvitations/requirements/CHECKLIST OF  REQUIREMENTS GOODS_1669267139.pdf" download=""><i class="fa fa-download"></i>&nbsp;PDF File/Download</a></td>
+            </tr><tr role="row" class="odd">
+              <td style="width: 15%" class="sorting_1"><a>9157690</a></td>
+              <td style="width: 30%">Supply and Delivery of Copier Machines for Various Offices, Los Baños, Laguna</td>
+              <td style="width: 15%">221,000.00</td>
+              <td style="width: 10%; text-align: center;"><a class="button" href="public/storage/bidinvitations/invitation_file/ITB 22-GOODS-48_1669266994.pdf" download=""><i class="fa fa-download"></i>&nbsp;PDF File/Download</a></td>
+                            <td style="width: 10%"><a class="button" href="public/storage/bidinvitations/bid_docs/22-GOODS-48  SUPPLY AND DELIVERY OF COPIER MACHINE FOR VARIOUS OFFICES , LOS BANOS, LAGUNA_1669266994.pdf" download=""><i class="fa fa-download"></i>&nbsp;PDF File/Download</a></td>
+                            <td style="width: 10%; text-align: center;"><a class="button" href="public/storage/bidinvitations/requirements/CHECKLIST OF  REQUIREMENTS GOODS_1669266994.pdf" download=""><i class="fa fa-download"></i>&nbsp;PDF File/Download</a></td>
+            </tr><tr role="row" class="even">
+              <td style="width: 15%" class="sorting_1"><a>9172540</a></td>
+              <td style="width: 30%">Negotiated Procurement-Two Failed Biddings: Supply and Delivery of Janitorial Supplies for Various Offices, Los Baños, Laguna</td>
+              <td style="width: 15%">307,030.32</td>
+              <td style="width: 10%; text-align: center;"><a class="button" href="public/storage/bidinvitations/invitation_file/NEGO SUPPLY AND DELIVERY OF JANITORIAL SUPPLIES FOR VARIOUS OFFICES, LOS BANOS, LAGUNA_1669268192.pdf" download=""><i class="fa fa-download"></i>&nbsp;PDF File/Download</a></td>
+                            <td style="width: 10%"><a class="button" href="public/storage/bidinvitations/bid_docs/NEGO SUPPLY AND DELIVERY OF JANITORIAL SUPPLIES FOR VARIOUS OFFICES, LOS BANOS, LAGUNA_1669268192.pdf" download=""><i class="fa fa-download"></i>&nbsp;PDF File/Download</a></td>
+                            <td style="width: 10%; text-align: center;"><a class="button" href="public/storage/bidinvitations/requirements/CHECKLIST OF  REQUIREMENTS GOODS_1669268192.pdf" download=""><i class="fa fa-download"></i>&nbsp;PDF File/Download</a></td>
+            </tr><tr role="row" class="odd">
+              <td style="width: 15%" class="sorting_1"><a>9172628</a></td>
+              <td style="width: 30%">Negotiated Procurement-Two Failed Biddings: Supply and Delivery of Furniture and Fixtures for the Office of the Mayor, Los Baños, Laguna</td>
+              <td style="width: 15%">666,920.00</td>
+              <td style="width: 10%; text-align: center;"><a class="button" href="public/storage/bidinvitations/invitation_file/NEGO SUPPLY AND DELIVERY OF FURNITURES AND FIXTURES FOR MAYOR'S OFFICE, LOS BANOS, LAGUNA_1669268015.pdf" download=""><i class="fa fa-download"></i>&nbsp;PDF File/Download</a></td>
+                            <td style="width: 10%"><a class="button" href="public/storage/bidinvitations/bid_docs/NEGO SUPPLY AND DELIVERY OF FURNITURES AND FIXTURES FOR MAYOR'S OFFICE, LOS BANOS, LAGUNA_1669268015.pdf" download=""><i class="fa fa-download"></i>&nbsp;PDF File/Download</a></td>
+                            <td style="width: 10%; text-align: center;"><a class="button" href="public/storage/bidinvitations/requirements/CHECKLIST OF  REQUIREMENTS GOODS_1669268015.pdf" download=""><i class="fa fa-download"></i>&nbsp;PDF File/Download</a></td>
+            </tr><tr role="row" class="even">
+              <td style="width: 15%" class="sorting_1"><a>9172713</a></td>
+              <td style="width: 30%">Negotiated Procurement-Two Failed Biddings: Supply and Delivery of One (1) Unit Rescue Vehicle for MDRRMO, Los Baños, Laguna</td>
+              <td style="width: 15%">1,394,000.00</td>
+              <td style="width: 10%; text-align: center;"><a class="button" href="public/storage/bidinvitations/invitation_file/NEGO SUPPLY AND DELIVERY OF ONE UNIT RESCUE VEHICLE FOR MDRRMO, LOS BANOS, LAGUNA_1669267859.pdf" download=""><i class="fa fa-download"></i>&nbsp;PDF File/Download</a></td>
+                            <td style="width: 10%"><a class="button" href="public/storage/bidinvitations/bid_docs/BID DOCS 22-NNP-04_1669267859.pdf" download=""><i class="fa fa-download"></i>&nbsp;PDF File/Download</a></td>
+                            <td style="width: 10%; text-align: center;"><a class="button" href="public/storage/bidinvitations/requirements/CHECKLIST OF  REQUIREMENTS GOODS_1669267859.pdf" download=""><i class="fa fa-download"></i>&nbsp;PDF File/Download</a></td>
+            </tr><tr role="row" class="odd">
+              <td style="width: 15%" class="sorting_1"><a>9187157</a></td>
+              <td style="width: 30%">Supply and Delivery of Materials for the "Disyembre na sa Bagong Los Baños" at Municipal Building, Los Baños, Laguna</td>
+              <td style="width: 15%">241,700.00</td>
+              <td style="width: 10%; text-align: center;"><a class="button" href="public/storage/bidinvitations/invitation_file/Invitation to Bid Materials for Disyembre na sa bagong los banos at Boundary, Lalakay_1669268702.pdf" download=""><i class="fa fa-download"></i>&nbsp;PDF File/Download</a></td>
+                            <td style="width: 10%"><a class="button" href="public/storage/bidinvitations/bid_docs/22-GOODS-50 SUPPLY AND DELIVERY OF MATERIALS FOR DISYEMBRE NA SA BAGONG LB AT BOUNDARY, LALAKAY, LOS BANOS, LAGUNA_1669268702.pdf" download=""><i class="fa fa-download"></i>&nbsp;PDF File/Download</a></td>
+                            <td style="width: 10%; text-align: center;"><a class="button" href="public/storage/bidinvitations/requirements/CHECKLIST OF  REQUIREMENTS GOODS_1669268702.pdf" download=""><i class="fa fa-download"></i>&nbsp;PDF File/Download</a></td>
+            </tr><tr role="row" class="even">
+              <td style="width: 15%" class="sorting_1"><a>9187220</a></td>
+              <td style="width: 30%">Supply and Delivery of Materials for the "Disyembre na sa Bagong Los Baños" at Boundary, Lalakay, Los Baños, Laguna</td>
+              <td style="width: 15%">202,400.00</td>
+              <td style="width: 10%; text-align: center;"><a class="button" href="public/storage/bidinvitations/invitation_file/Invitation to Bid Materials for Disyembre na sa bagong los banos at Boundary, Lalakay_1669268492.pdf" download=""><i class="fa fa-download"></i>&nbsp;PDF File/Download</a></td>
+                            <td style="width: 10%"><a class="button" href="public/storage/bidinvitations/bid_docs/22-GOODS-50 SUPPLY AND DELIVERY OF MATERIALS FOR DISYEMBRE NA SA BAGONG LB AT BOUNDARY, LALAKAY, LOS BANOS, LAGUNA_1669268492.pdf" download=""><i class="fa fa-download"></i>&nbsp;PDF File/Download</a></td>
+                            <td style="width: 10%; text-align: center;"><a class="button" href="public/storage/bidinvitations/requirements/CHECKLIST OF  REQUIREMENTS GOODS_1669268492.pdf" download=""><i class="fa fa-download"></i>&nbsp;PDF File/Download</a></td>
+            </tr><tr role="row" class="odd">
+              <td style="width: 15%" class="sorting_1"><a>9187242</a></td>
+              <td style="width: 30%">Supply and Delivery of Materials for the "Disyembre na sa Bagong Los Baños" at General Paciano Rizal Park, Los Baños, Laguna</td>
+              <td style="width: 15%">966,956.71</td>
+              <td style="width: 10%; text-align: center;"><a class="button" href="public/storage/bidinvitations/invitation_file/Invitation to Bid Materials for Disyembre na sa bagong los banos at Gen. Paciano Park_1669268384.pdf" download=""><i class="fa fa-download"></i>&nbsp;PDF File/Download</a></td>
+                            <td style="width: 10%"><a class="button" href="public/storage/bidinvitations/bid_docs/22-GOODS-51 SUPPLY AND DELIVERY OF MATERIALS FOR DISYEMBRE NA SA BAGONG LB AT GEN. PACIANO PARK, LOS BANOS, LAGUNA_1669268384.pdf" download=""><i class="fa fa-download"></i>&nbsp;PDF File/Download</a></td>
+                            <td style="width: 10%; text-align: center;"><a class="button" href="public/storage/bidinvitations/requirements/CHECKLIST OF  REQUIREMENTS GOODS_1669268384.pdf" download=""><i class="fa fa-download"></i>&nbsp;PDF File/Download</a></td>
+            </tr><tr role="row" class="even">
+              <td style="width: 15%" class="sorting_1"><a>9215579</a></td>
+              <td style="width: 30%">Supply and Delivery of One (1) Unit Van, Los Baños, Laguna</td>
+              <td style="width: 15%">2,379,200.00</td>
+              <td style="width: 10%; text-align: center;"><a class="button" href="public/storage/bidinvitations/invitation_file/22-GOODS-52_1669443767.pdf" download=""><i class="fa fa-download"></i>&nbsp;PDF File/Download</a></td>
+                            <td style="width: 10%"><a class="button" href="public/storage/bidinvitations/bid_docs/22-GOODS-52  SUPPLY AND DELIVERY OF ONE (1) UNIT VAN, LOS BANOS, LAGUNA_1669443767.pdf" download=""><i class="fa fa-download"></i>&nbsp;PDF File/Download</a></td>
+                            <td style="width: 10%; text-align: center;"><a class="button" href="public/storage/bidinvitations/requirements/CHECKLIST OF  REQUIREMENTS GOODS_1669443767.pdf" download=""><i class="fa fa-download"></i>&nbsp;PDF File/Download</a></td>
+            </tr><tr role="row" class="odd">
+              <td style="width: 15%" class="sorting_1"><a>9215804</a></td>
+              <td style="width: 30%">Supply and Delivery of Rice for Stockpiling, Los Baños, Laguna</td>
+              <td style="width: 15%">1,350,000.00</td>
+              <td style="width: 10%; text-align: center;"><a class="button" href="public/storage/bidinvitations/invitation_file/22-GOODS-53_1669443318.pdf" download=""><i class="fa fa-download"></i>&nbsp;PDF File/Download</a></td>
+                            <td style="width: 10%"><a class="button" href="public/storage/bidinvitations/bid_docs/22-GOODS-53 SUPPLY AND DELIVERY OF RICE FOR STOCKPILING, LOS BANOS, LAGUNA_1669443318.pdf" download=""><i class="fa fa-download"></i>&nbsp;PDF File/Download</a></td>
+                            <td style="width: 10%; text-align: center;"><a class="button" href="public/storage/bidinvitations/requirements/CHECKLIST OF  REQUIREMENTS GOODS_1669443318.pdf" download=""><i class="fa fa-download"></i>&nbsp;PDF File/Download</a></td>
+            </tr><tr role="row" class="even">
+              <td style="width: 15%" class="sorting_1"><a>9216289</a></td>
+              <td style="width: 30%">Supply and Delivery of Wastewater Treatment Chemicals for Poblacion Public Market, Los Baños, Laguna</td>
+              <td style="width: 15%">768,625.00</td>
+              <td style="width: 10%; text-align: center;"><a class="button" href="public/storage/bidinvitations/invitation_file/22-GOODS-55_1669443202.pdf" download=""><i class="fa fa-download"></i>&nbsp;PDF File/Download</a></td>
+                            <td style="width: 10%"><a class="button" href="public/storage/bidinvitations/bid_docs/22-GOODS-54 SUPPLY AND DELIVERY OF WASTE WATER TREATMENT CHEMICALS FOR POBLACION, LOS BANOS, LAGUNA_1669443202.pdf" download=""><i class="fa fa-download"></i>&nbsp;PDF File/Download</a></td>
+                            <td style="width: 10%; text-align: center;"><a class="button" href="public/storage/bidinvitations/requirements/CHECKLIST OF  REQUIREMENTS GOODS_1669443202.pdf" download=""><i class="fa fa-download"></i>&nbsp;PDF File/Download</a></td>
+            </tr><tr role="row" class="odd">
+              <td style="width: 15%" class="sorting_1"><a>9216382</a></td>
+              <td style="width: 30%">Improvement of Right of Way, Danca Road, Mayondon, Los Baños, Laguna</td>
+              <td style="width: 15%">882,630.65</td>
+              <td style="width: 10%; text-align: center;"><a class="button" href="public/storage/bidinvitations/invitation_file/22-INFRA-11_1669442953.pdf" download=""><i class="fa fa-download"></i>&nbsp;PDF File/Download</a></td>
+                            <td style="width: 10%"><a class="button" href="public/storage/bidinvitations/bid_docs/22-INFRA-11 IMPROVEMENT OF RIGHT OF WAY, DANCA ROAD, MAYONDON,  LOS BANOS, LAGUNA_1669442953.pdf" download=""><i class="fa fa-download"></i>&nbsp;PDF File/Download</a></td>
+                            <td style="width: 10%; text-align: center;"><a class="button" href="public/storage/bidinvitations/requirements/CHECKLIST OF  REQUIREMENTS- INFRA_1669442953.pdf" download=""><i class="fa fa-download"></i>&nbsp;PDF File/Download</a></td>
+            </tr><tr role="row" class="even">
+              <td style="width: 15%" class="sorting_1"><a>9216506</a></td>
+              <td style="width: 30%">Construction of Municipal Road at Purok 4, San Antonio, Los Baños, Laguna</td>
+              <td style="width: 15%">3,078,355.11</td>
+              <td style="width: 10%; text-align: center;"><a class="button" href="public/storage/bidinvitations/invitation_file/22-INFRA-12_1669443661.pdf" download=""><i class="fa fa-download"></i>&nbsp;PDF File/Download</a></td>
+                            <td style="width: 10%"><a class="button" href="public/storage/bidinvitations/bid_docs/22-INFRA-12 CONSTRUCTION OF MUN. ROAD AT PUROK 4, SAN ANTONIO,  LOS BANOS, LAGUNA_1669443661.pdf" download=""><i class="fa fa-download"></i>&nbsp;PDF File/Download</a></td>
+                            <td style="width: 10%; text-align: center;"><a class="button" href="public/storage/bidinvitations/requirements/CHECKLIST OF  REQUIREMENTS- INFRA_1669443661.pdf" download=""><i class="fa fa-download"></i>&nbsp;PDF File/Download</a></td>
+            </tr><tr role="row" class="odd">
+              <td style="width: 15%" class="sorting_1"><a>9217987</a></td>
+              <td style="width: 30%">Construction of Senior Citizen Care Facility (Construction of One (1) Storey Facility with Signage and Complete Finishes), Anos, Los Baños, Laguna</td>
+              <td style="width: 15%">10,248,507.21</td>
+              <td style="width: 10%; text-align: center;"><a class="button" href="public/storage/bidinvitations/invitation_file/22-INFRA-13_1669443502.pdf" download=""><i class="fa fa-download"></i>&nbsp;PDF File/Download</a></td>
+                            <td style="width: 10%"><a class="button" href="public/storage/bidinvitations/bid_docs/22-INFRA-13 CONSTRUCTION OF SENIOR CITIZEN CARE FACILITY,  LOS BANOS, LAGUNA_1669443502.pdf" download=""><i class="fa fa-download"></i>&nbsp;PDF File/Download</a></td>
+                            <td style="width: 10%; text-align: center;"><a class="button" href="public/storage/bidinvitations/requirements/CHECKLIST OF  REQUIREMENTS- INFRA_1669443502.pdf" download=""><i class="fa fa-download"></i>&nbsp;PDF File/Download</a></td>
+            </tr><tr role="row" class="even">
+              <td style="width: 15%" class="sorting_1"><a>9218464</a></td>
+              <td style="width: 30%">Supply and Delivery of Medicines for Senior Citizens, COVID-19 Patients and for the Daily Operations of Municipal Health Office, Los Baños, Laguna</td>
+              <td style="width: 15%">999,830.00</td>
+              <td style="width: 10%; text-align: center;"><a class="button" href="public/storage/bidinvitations/invitation_file/22-GOODS-54_1669442793.pdf" download=""><i class="fa fa-download"></i>&nbsp;PDF File/Download</a></td>
+                            <td style="width: 10%"><a class="button" href="public/storage/bidinvitations/bid_docs/22-GOODS-55 SUPPLY AND DELIVERY OF MEDICINE FOR SENIOR CITIZENS, COVID-19 PATIENTS AND FOR THE DAILY OPERATIONS OF MUNICIPAL HEALTH OFFICE, LOS BANOS, LAGUNA_1669442793.pdf" download=""><i class="fa fa-download"></i>&nbsp;PDF File/Download</a></td>
+                            <td style="width: 10%; text-align: center;"><a class="button" href="public/storage/bidinvitations/requirements/CHECKLIST OF  REQUIREMENTS GOODS_1669442793.pdf" download=""><i class="fa fa-download"></i>&nbsp;PDF File/Download</a></td>
+            </tr></tbody>
+                    </table></div></div><div class="row"><div class="col-sm-5"><div class="dataTables_info" id="dataTable_info" role="status" aria-live="polite">Showing 1 to 80 of 80 entries</div></div><div class="col-sm-7"><div class="dataTables_paginate paging_simple_numbers" id="dataTable_paginate"><ul class="pagination"><li class="paginate_button previous disabled" id="dataTable_previous"><a href="#" aria-controls="dataTable" data-dt-idx="0" tabindex="0">Previous</a></li><li class="paginate_button active"><a href="#" aria-controls="dataTable" data-dt-idx="1" tabindex="0">1</a></li><li class="paginate_button next disabled" id="dataTable_next"><a href="#" aria-controls="dataTable" data-dt-idx="2" tabindex="0">Next</a></li></ul></div></div></div></div>
+                </div>
+            </div>
+        

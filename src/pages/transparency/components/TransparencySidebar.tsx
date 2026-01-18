@@ -3,7 +3,7 @@ import { CreditCard, Hammer, Truck } from 'lucide-react';
 import {
   SidebarContainer,
   SidebarItem,
-} from '@/components/ui/SidebarNavigation';
+} from '@/components/navigation/SidebarNavigation';
 
 const sections = [
   {

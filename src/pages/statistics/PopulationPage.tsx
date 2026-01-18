@@ -1,217 +1,262 @@
-import { useState } from 'react';
+import { useMemo, useState } from 'react';
 
+import { CHART_THEME, standardAxisProps } from '@/constants/charts';
 import {
   ArrowUpRight,
-  PieChart as PieChartIcon,
+  Info,
+  LineChart as LineIcon,
   TrendingUp,
   Users,
 } from 'lucide-react';
 import {
-  Bar,
-  BarChart,
   CartesianGrid,
-  Cell,
+  Legend,
   Line,
   LineChart,
-  ResponsiveContainer,
   Tooltip,
   XAxis,
   YAxis,
 } from 'recharts';
 
-import { Badge } from '@/components/ui/Badge';
+import {
+  ChartContainer,
+  ChartTooltip,
+} from '@/components/data-display/ChartContainer';
+import {
+  StatsFooter,
+  StatsHero,
+  StatsKPICard,
+} from '@/components/data-display/StatsUI';
 
+import { cn } from '@/lib/utils';
+
+// Data Import
 import populationData from '@/data/statistics/population.json';
 
-export default function PopulationPage() {
-  const [activeTab, setActiveTab] = useState<'trends' | 'distribution'>(
-    'trends'
-  );
+// 14 Highly Distinct Colors (Top 3 mapped to Brand Primaries)
+const BRGY_COLORS = [
+  '#0066eb', // 1. Municipal Blue (Mayondon)
+  '#cc3e00', // 2. Brand Orange (San Antonio)
+  '#059669', // 3. Emerald Green (Batong Malake)
+  '#7c3aed', // 4. Vivid Purple
+  '#dc2626', // 5. Strong Red
+  '#0891b2', // 6. Cyan/Teal
+  '#db2777', // 7. Pink/Rose
+  '#1e40af', // 8. Navy
+  '#b45309', // 9. Amber/Brown
+  '#4f46e5', // 10. Indigo
+  '#0d9488', // 11. Dark Teal
+  '#9333ea', // 12. Violet
+  '#475569', // 13. Slate
+  '#be123c', // 14. Crimson
+];
 
-  // Data extraction
-  const history = populationData.municipality.history;
-  const latestPop = history[history.length - 1].population;
-  const growthRate = populationData.municipality.growthRates.find(
+// 1. DEFINED INTERFACES: Removes 'any' completely
+interface BarangayPopulationPoint {
+  year: number;
+  [key: string]: number | null; // Allows dynamic barangay names as keys
+}
+
+export default function PopulationPage() {
+  const [activeTab, setActiveTab] = useState<'municipality' | 'barangays'>(
+    'municipality'
+  );
+  const { municipality, barangays, meta } = populationData;
+
+  const latestMuni = municipality.history[municipality.history.length - 1];
+  const growth = municipality.growthRates.find(
     r => r.period === '2020-2024'
   )?.rate;
-  const barangayPop = populationData.barangays
-    .map(b => ({
-      name: b.name,
-      population: b.history[b.history.length - 1].population,
-    }))
-    .sort((a, b) => b.population - a.population);
+  const sortedBarangaysForLine = useMemo(() => {
+    return [...populationData.barangays].sort((a, b) => {
+      const latestA = a.history[a.history.length - 1].population;
+      const latestB = b.history[b.history.length - 1].population;
+      return latestB - latestA;
+    });
+  }, []);
 
-  const formatNumber = (num: number) =>
-    new Intl.NumberFormat('en-US').format(num);
+  // 1. PIVOT DATA: Combine all barangay histories into one array for the Multi-line chart
+  const comparativeData = useMemo<BarangayPopulationPoint[]>(() => {
+    const years = [2010, 2015, 2020, 2024];
+    return years.map(year => {
+      // Initialize with year, then type-safely add barangay counts
+      const point: BarangayPopulationPoint = { year };
+      barangays.forEach(b => {
+        point[b.name] =
+          b.history.find(h => h.year === year)?.population || null;
+      });
+      return point;
+    });
+  }, [barangays]);
 
   return (
-    <div className='space-y-8'>
-      {/* 1. Statistics Hero Header */}
-      <div className='relative overflow-hidden rounded-2xl bg-slate-900 p-8 text-white'>
-        <div className='relative z-10 space-y-2'>
-          <Badge variant='primary' dot>
-            Census Data{' '}
-            {
-              populationData.municipality.history[
-                populationData.municipality.history.length - 1
-              ].year
-            }
-          </Badge>
-          <h2 className='text-3xl font-extrabold tracking-tight'>
-            Population Profile
-          </h2>
-          <p className='max-w-xl text-sm text-slate-400'>
-            Analysis of demographic trends and distribution across the
-            municipality.
-          </p>
-        </div>
-        <Users className='absolute right-[-20px] bottom-[-20px] h-48 w-48 -rotate-12 text-white/5' />
-      </div>
+    <div className='animate-in fade-in space-y-8 pb-20 duration-500'>
+      <StatsHero
+        title='Population Profile'
+        description='Detailed demographic analysis tracking growth from the municipal level down to individual barangays.'
+        badge={`Census ${latestMuni.year}`}
+        icon={Users}
+      />
 
-      {/* 2. KPI Cards - Blue & Orange Theme */}
+      {/* KPI Cards */}
       <div className='grid grid-cols-1 gap-4 md:grid-cols-3'>
-        <div className='border-primary-600 space-y-2 rounded-2xl border-b-4 bg-white p-6 shadow-sm'>
-          <p className='text-[10px] font-bold tracking-widest text-slate-400 uppercase'>
-            Total Population
-          </p>
-          <div className='text-3xl font-black text-slate-900'>
-            {formatNumber(latestPop)}
-          </div>
+        <StatsKPICard
+          label='Total Population'
+          value={latestMuni.population.toLocaleString()}
+          subtext='Actual Resident Count'
+          variant='primary'
+        >
           <div className='flex items-center gap-1 text-xs font-bold text-emerald-600'>
-            <ArrowUpRight className='h-3 w-3' />{' '}
-            <span>+{growthRate}% growth</span>
+            <ArrowUpRight className='h-3 w-3' /> +{growth}%
           </div>
-        </div>
-        <div className='border-secondary-600 space-y-2 rounded-2xl border-b-4 bg-white p-6 shadow-sm'>
-          <p className='text-[10px] font-bold tracking-widest text-slate-400 uppercase'>
-            Growth Rate
-          </p>
-          <div className='text-3xl font-black text-slate-900'>
-            {growthRate}%
-          </div>
-          <p className='text-xs font-medium text-slate-400'>
-            Average Annual Rate (2020-2024)
-          </p>
-        </div>
-        <div className='space-y-2 rounded-2xl border-b-4 border-slate-900 bg-white p-6 shadow-sm'>
-          <p className='text-[10px] font-bold tracking-widest text-slate-400 uppercase'>
-            Total Barangays
-          </p>
-          <div className='text-3xl font-black text-slate-900'>
-            {populationData.barangays.length}
-          </div>
-          <p className='text-xs font-medium text-slate-400'>
-            Official Administrative Units
-          </p>
-        </div>
+        </StatsKPICard>
+        <StatsKPICard
+          label='Growth Rate'
+          value={`${growth}%`}
+          subtext='Annual (2020-2024)'
+          variant='secondary'
+        />
+        <StatsKPICard
+          label='Admin Units'
+          value={barangays.length}
+          subtext='Official Barangays'
+          variant='slate'
+        />
       </div>
 
-      {/* 3. Navigation Tabs (High Contrast) */}
-      <div className='flex gap-1 rounded-xl bg-slate-100 p-1'>
-        {(['trends', 'distribution'] as const).map(tab => (
-          <button
-            key={tab}
-            onClick={() => setActiveTab(tab)}
-            className={`min-h-[44px] flex-1 rounded-lg py-2 text-xs font-bold tracking-widest uppercase transition-all ${
-              activeTab === tab
-                ? 'text-primary-700 bg-white shadow-sm'
-                : 'text-slate-500 hover:text-slate-700'
-            }`}
+      {/* Unified Tab Switcher */}
+      <div className='flex gap-1.5 rounded-2xl bg-slate-100 p-1.5'>
+        <button
+          onClick={() => setActiveTab('municipality')}
+          className={cn(
+            'flex min-h-[48px] flex-1 items-center justify-center gap-2 rounded-xl py-3 text-xs font-bold tracking-widest uppercase transition-all',
+            activeTab === 'municipality'
+              ? 'text-primary-700 bg-white shadow-md'
+              : 'text-slate-500 hover:text-slate-700'
+          )}
+        >
+          <TrendingUp className='h-4 w-4' /> Municipal Growth
+        </button>
+        <button
+          onClick={() => setActiveTab('barangays')}
+          className={cn(
+            'flex min-h-[48px] flex-1 items-center justify-center gap-2 rounded-xl py-3 text-xs font-bold tracking-widest uppercase transition-all',
+            activeTab === 'barangays'
+              ? 'text-primary-700 bg-white shadow-md'
+              : 'text-slate-500 hover:text-slate-700'
+          )}
+        >
+          <LineIcon className='h-4 w-4' /> Barangay Comparison
+        </button>
+      </div>
+
+      {/* Unified Chart Logic */}
+      <ChartContainer
+        title={
+          activeTab === 'municipality'
+            ? 'Total Municipal Growth'
+            : 'Barangay Trends'
+        }
+        height={activeTab === 'barangays' ? 550 : 400} // Increase height for the complex legend
+      >
+        {activeTab === 'municipality' ? (
+          <LineChart
+            data={municipality.history}
+            margin={{ top: 10, right: 10, left: 0, bottom: 0 }}
           >
-            {tab === 'trends' ? (
-              <TrendingUp className='mr-2 inline h-3 w-3' />
-            ) : (
-              <PieChartIcon className='mr-2 inline h-3 w-3' />
-            )}
-            {tab}
-          </button>
-        ))}
-      </div>
+            <CartesianGrid
+              vertical={false}
+              stroke={CHART_THEME.grid}
+              strokeDasharray='3 3'
+            />
+            <XAxis dataKey='year' {...standardAxisProps} dy={10} />
+            <YAxis
+              {...standardAxisProps}
+              tickFormatter={val => `${val / 1000}k`}
+            />
+            <Tooltip
+              content={<ChartTooltip formatter={v => v.toLocaleString()} />}
+            />
+            <Line
+              type='monotone'
+              dataKey='population'
+              name='Total Residents'
+              stroke='var(--color-primary-600)'
+              strokeWidth={5}
+              dot={{
+                fill: 'var(--color-primary-600)',
+                r: 4,
+                strokeWidth: 2,
+                stroke: '#fff',
+              }}
+              activeDot={{ r: 8, strokeWidth: 4, stroke: '#fff' }}
+            />
+          </LineChart>
+        ) : (
+          <LineChart
+            data={comparativeData}
+            margin={{ top: 10, right: 10, left: 0, bottom: 20 }}
+          >
+            <CartesianGrid
+              vertical={false}
+              stroke={CHART_THEME.grid}
+              strokeDasharray='3 3'
+            />
+            <XAxis dataKey='year' {...standardAxisProps} dy={10} />
+            <YAxis {...standardAxisProps} />
+            <Tooltip
+              content={<ChartTooltip formatter={v => v.toLocaleString()} />}
+            />
+            <Legend
+              verticalAlign='top'
+              iconType='circle'
+              wrapperStyle={{
+                paddingBottom: '30px',
+                fontSize: '10px',
+                fontWeight: 'bold',
+                textTransform: 'uppercase',
+                letterSpacing: '1px',
+              }}
+            />
+            {sortedBarangaysForLine.map((b, i) => {
+              const isTop3 = i < 3;
 
-      {/* 4. Chart Section */}
-      <div className='rounded-2xl border border-slate-100 bg-slate-50 p-6'>
-        <div className='h-[400px] w-full'>
-          <ResponsiveContainer width='100%' height='100%'>
-            {activeTab === 'trends' ? (
-              <LineChart data={history}>
-                <CartesianGrid
-                  strokeDasharray='3 3'
-                  vertical={false}
-                  stroke='#e2e8f0'
-                />
-                <XAxis
-                  dataKey='year'
-                  axisLine={false}
-                  tickLine={false}
-                  tick={{ fontSize: 10, fontWeight: 700 }}
-                  dy={10}
-                />
-                <YAxis
-                  axisLine={false}
-                  tickLine={false}
-                  tick={{ fontSize: 10 }}
-                  tickFormatter={val => `${val / 1000}k`}
-                />
-                <Tooltip
-                  contentStyle={{
-                    borderRadius: '12px',
-                    border: 'none',
-                    boxShadow: '0 10px 15px -3px rgba(0,0,0,0.1)',
-                  }}
-                />
+              return (
                 <Line
+                  key={b.id}
                   type='monotone'
-                  dataKey='population'
-                  stroke='#0066eb'
-                  strokeWidth={4}
-                  dot={{ fill: '#0066eb', r: 4 }}
-                  activeDot={{ r: 6 }}
+                  dataKey={b.name}
+                  // 0 = Blue, 1 = Orange, 2 = Emerald
+                  stroke={BRGY_COLORS[i % BRGY_COLORS.length]}
+                  // Make the top 3 lines bolder (Accessibility: emphasis)
+                  strokeWidth={isTop3 ? 4 : 2}
+                  // Only show dots on top 3 to reduce visual clutter on 14 lines
+                  dot={
+                    isTop3 ? { r: 4, strokeWidth: 2, stroke: '#555' } : false
+                  }
+                  activeDot={{ r: 8, strokeWidth: 4, stroke: '#fff' }}
                 />
-              </LineChart>
-            ) : (
-              <BarChart
-                data={barangayPop}
-                layout='vertical'
-                margin={{ left: 40 }}
-              >
-                <CartesianGrid
-                  strokeDasharray='3 3'
-                  horizontal={false}
-                  stroke='#e2e8f0'
-                />
-                <XAxis type='number' hide />
-                <YAxis
-                  dataKey='name'
-                  type='category'
-                  axisLine={false}
-                  tickLine={false}
-                  tick={{ fontSize: 10, fontWeight: 700 }}
-                  width={100}
-                />
-                <Tooltip />
-                <Bar
-                  dataKey='population'
-                  fill='#0066eb'
-                  radius={[0, 4, 4, 0]}
-                  barSize={20}
-                >
-                  {barangayPop.map((_, index) => (
-                    <Cell
-                      key={index}
-                      fill={index < 3 ? '#0066eb' : '#cbd5e1'}
-                    />
-                  ))}
-                </Bar>
-              </BarChart>
-            )}
-          </ResponsiveContainer>
+              );
+            })}
+          </LineChart>
+        )}
+      </ChartContainer>
+
+      <div className='flex gap-4 rounded-2xl border border-slate-100 bg-slate-50 p-6 shadow-inner'>
+        <Info className='text-primary-600 mt-0.5 h-5 w-5 shrink-0' />
+        <div className='space-y-2'>
+          <p className='text-xs font-bold tracking-widest text-slate-900 uppercase'>
+            How to read this data
+          </p>
+          <p className='text-xs leading-relaxed text-slate-500 italic'>
+            {activeTab === 'municipality'
+              ? 'The municipal growth chart tracks long-term population expansion from 1960 to current estimates.'
+              : 'The comparison chart allows you to track which barangays are experiencing the fastest urban growth relative to their 2010 baseline.'}
+          </p>
         </div>
       </div>
 
-      <p className='text-center text-[10px] font-bold tracking-widest text-slate-400 uppercase'>
-        Source: {populationData.meta.source} (
-        {populationData.meta.location.municipality})
-      </p>
+      <StatsFooter source={meta.source} />
     </div>
   );
 }

@@ -33,7 +33,7 @@ const CriticalHotlinesWidget: FC<CriticalHotlinesWidgetProps> = ({
           <h3 className='font-bold text-white'>Critical Emergency Hotlines</h3>
         </div>
         <Link
-          to='/philippines/hotlines'
+          to='https://hotlines.bettergov.ph/'
           className='flex items-center text-sm text-white hover:underline'
         >
           View all <ChevronRightIcon className='ml-1 h-4 w-4' />

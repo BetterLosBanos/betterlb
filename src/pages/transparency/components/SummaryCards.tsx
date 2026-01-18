@@ -1,10 +1,3 @@
-import { calculateYoY } from '@/utils/budgetUtils';
-import {
-  computeNetIncome,
-  computeTotalExpenditure,
-  computeTotalIncome,
-} from '@/utils/budgetUtils';
-import { formatPesoParts } from '@/utils/format';
 import {
   ArrowDownRight,
   ArrowUpRight,
@@ -16,6 +9,14 @@ import {
 } from 'lucide-react';
 
 import { Card, CardContent } from '@/components/ui/Card';
+
+import { calculateYoY } from '@/lib/budgetUtils';
+import {
+  computeNetIncome,
+  computeTotalExpenditure,
+  computeTotalIncome,
+} from '@/lib/budgetUtils';
+import { formatPesoParts } from '@/lib/format';
 
 import type {
   CurrentOperatingExpenditures,

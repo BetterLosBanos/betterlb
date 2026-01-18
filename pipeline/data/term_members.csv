@@ -1,0 +1,37 @@
+term_id,person_id,role,full_name,rank
+sb_10,kalaw-antonio-l,Vice Mayor,Antonio L. Kalaw,0
+sb_10,sumangil-evangelista-josephine,Councilor,Josephine Sumangil-Evangelista,1
+sb_10,pelegrina-miko-c,Councilor,Miko C. Pelegrina,2
+sb_10,lapiz-janos-s,Councilor,Janos S. Lapiz,3
+sb_10,ciceron-jerico,Councilor,Geronimo A. Ciceron,4
+sb_10,alipon-marlo-pj-a,Councilor,Marlo PJ A. Alipon,5
+sb_10,concio-dexter-a,Councilor,Dexter A. Concio,6
+sb_10,dizon-mark-lester-b,Councilor,Mark Lester B. Dizon,7
+sb_10,bagnes-cris-dayril-b,Councilor,Cris Dayril B. Bagnes,8
+sb_10,manansala-jozlyn-n,SK Federation President,Jozlyn N. Manansala,99
+sb_10,delos-santos-arlene-p,Liga President,Arlene P. delos Santos,99
+sb_10,alborida-dona-t,Secretary,Dona T. Alborida,99
+sb_11,sumangil-evangelista-josephine,Vice Mayor,Josephine Sumangil-Evangelista,0
+sb_11,bautista-leren-mae-m,Councilor,Leren Mae M. Bautista,1
+sb_11,alipon-marlo-pj-a,Councilor,Marlo PJ A. Alipon,2
+sb_11,siytiap-jonathan-bryan-s,Councilor,Jonathan Bryan S. Siytiap,3
+sb_11,pelegrina-miko-c,Councilor,Miko C. Pelegrina,4
+sb_11,dizon-mark-lester-b,Councilor,Mark Lester B. Dizon,5
+sb_11,molinawe-julius-a,Councilor,Julius A. Moliñawe,6
+sb_11,alborida-benedicto-s,Councilor,Benedicto S. Alborida,7
+sb_11,concio-dexter-a,Councilor,Dexter A. Concio,8
+sb_11,manansala-jozlyn-n,SK Federation President,Jozlyn N. Manansala,99
+sb_11,delos-santos-arlene-p,Liga President,Arlene P. delos Santos,99
+sb_11,alborida-dizon-dona-t,Secretary,Dona T. Alborida-Dizon,99
+sb_12,alipon-marlo-pj-a,Vice Mayor,Marlo PJ A. Alipon,0
+sb_12,pelegrina-miko-c,Councilor,Miko C. Pelegrina,1
+sb_12,perez-aldous-amiel-b,Councilor,Aldous Amiel B. Perez,2
+sb_12,dizon-muriel-laisa-b,Councilor,Muriel Laisa B. Dizon,3
+sb_12,bautista-leren-mae-m,Councilor,Leren Mae M. Bautista,4
+sb_12,alborida-benedicto-s,Councilor,Benedicto S. Alborida,5
+sb_12,de-jesus-rand-edouard-r,Councilor,Rand Edouard R. De Jesus,6
+sb_12,alinsunurin-myla-e,Councilor,Myla E. Alinsunurin,7
+sb_12,rolusta-jay-g,Councilor,Jay G. Rolusta,8
+sb_12,macatangay-gaudencio-p,Liga President,Gaudencio P. Macatangay,99
+sb_12,banasihan-ortega-samantha-nicole-a,SK Federation President,Samantha Nicole A. Banasihan-Ortega,99
+sb_12,alborida-dizon-dona-t,Secretary,Dona T. Alborida-Dizon,99

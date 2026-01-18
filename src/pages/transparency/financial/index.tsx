@@ -1,4 +1,3 @@
-import { formatLabel } from '@/utils/budgetUtils';
 import {
   BarChart2Icon,
   Info,
@@ -7,8 +6,6 @@ import {
   ShieldCheck,
 } from 'lucide-react';
 
-// UI Components
-import { Badge } from '@/components/ui/Badge';
 import {
   Breadcrumb,
   BreadcrumbHome,
@@ -17,7 +14,9 @@ import {
   BreadcrumbList,
   BreadcrumbPage,
   BreadcrumbSeparator,
-} from '@/components/ui/Breadcrumb';
+} from '@/components/navigation/Breadcrumb';
+// UI Components
+import { Badge } from '@/components/ui/Badge';
 
 import FinancialPieChart, {
   ChartDataPoint,
@@ -26,6 +25,8 @@ import QuarterToggle from '@/pages/transparency/components/QuarterToggle';
 import SummaryCards from '@/pages/transparency/components/SummaryCards';
 
 import { useFinancialData } from '@/hooks/useFinancialData';
+
+import { formatLabel } from '@/lib/budgetUtils';
 
 export default function FinancialPage() {
   const {
