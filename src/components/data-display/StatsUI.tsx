@@ -4,96 +4,153 @@ import { LucideIcon, ShieldCheck } from 'lucide-react';
 
 import { Badge } from '@/components/ui/Badge';
 
+import { formatPesoAdaptive } from '@/lib/format';
 import { cn } from '@/lib/utils';
+
+// Stats Hero / Header
+interface StatsHeroProps {
+  title: string;
+  description: string;
+  badges?: string | { label: string; variant?: 'primary' | 'slate' }[];
+  icon?: LucideIcon;
+}
 
 export function StatsHero({
   title,
   description,
-  badge,
+  badges = [],
   icon: Icon,
-}: {
-  title: string;
-  description: string;
-  badge: string;
-  icon: LucideIcon;
-}) {
+}: StatsHeroProps) {
+  // Normalize badges to always be an array
+  const badgeArray =
+    typeof badges === 'string'
+      ? [{ label: badges, variant: 'primary' as const }]
+      : badges;
+
   return (
     <div className='relative overflow-hidden rounded-3xl bg-slate-900 p-8 text-white shadow-xl md:p-12'>
       <div className='relative z-10 space-y-4'>
-        <div className='flex items-center gap-2'>
-          <Badge variant='primary' dot>
-            {badge}
-          </Badge>
-          <Badge
-            variant='slate'
-            className='border-white/10 bg-white/10 text-slate-300'
-          >
-            Official Data
-          </Badge>
+        <div className='flex flex-wrap gap-2'>
+          {badgeArray.map((b, i) => (
+            <Badge key={i} variant={b.variant || 'primary'} dot={i === 0}>
+              {b.label}
+            </Badge>
+          ))}
         </div>
         <h1 className='text-3xl font-extrabold tracking-tight md:text-5xl'>
           {title}
         </h1>
-        {/* FIXED: Escaped quotes for accessibility and ESLint compliance */}
         <p className='max-w-xl text-base leading-relaxed text-slate-400 italic'>
           &quot;{description}&quot;
         </p>
       </div>
-      <Icon
-        className='absolute right-[-20px] bottom-[-20px] h-64 w-64 -rotate-12 text-white/5 opacity-50'
-        aria-hidden='true'
-      />
+      {Icon && (
+        <Icon
+          className='absolute right-[-20px] bottom-[-20px] h-64 w-64 -rotate-12 text-white/5 opacity-50'
+          aria-hidden={true}
+        />
+      )}
     </div>
   );
 }
 
-// 2. Unified KPI Card
-export function StatsKPICard({
+// Stats Card
+interface StatsCardProps {
+  label: string;
+  value: string | number;
+  subtext?: string;
+  variant?: 'primary' | 'secondary' | 'slate';
+  icon?: LucideIcon;
+  iconBg?: string;
+  children?: ReactNode;
+  alreadyInMillions?: boolean; // NEW: flag for pre-scaled data
+}
+
+export function StatsCard({
   label,
   value,
   subtext,
   variant = 'slate',
+  icon: Icon,
+  iconBg,
   children,
-}: {
-  label: string;
-  value: string | number;
-  subtext: string;
-  variant?: 'primary' | 'secondary' | 'slate';
-  children?: ReactNode;
-}) {
-  const variants = {
+  alreadyInMillions = false,
+}: StatsCardProps) {
+  const variantClasses = {
     primary: 'border-b-primary-600',
     secondary: 'border-b-secondary-600',
     slate: 'border-b-slate-900',
   };
 
+  // Determine if value should be formatted as currency
+  // Check if it's a large number (>= 1000) or if label/subtext contains currency indicators
+  const shouldFormatAsCurrency =
+    typeof value === 'number' &&
+    (value >= 1000 ||
+      label.toLowerCase().includes('budget') ||
+      label.toLowerCase().includes('income') ||
+      label.toLowerCase().includes('revenue') ||
+      label.toLowerCase().includes('allocation') ||
+      label.toLowerCase().includes('expenditure') ||
+      label.toLowerCase().includes('balance') ||
+      subtext?.toLowerCase().includes('php'));
+
+  const numericValue =
+    typeof value === 'number'
+      ? alreadyInMillions
+        ? value * 1_000_000
+        : value
+      : null;
+
+  const displayValue =
+    typeof value === 'number'
+      ? shouldFormatAsCurrency
+        ? formatPesoAdaptive(numericValue!).fullString
+        : numericValue!.toLocaleString()
+      : value;
+
   return (
     <div
       className={cn(
-        'space-y-2 rounded-2xl border border-b-4 border-slate-200 bg-white p-6 shadow-sm',
-        variants[variant]
+        'flex flex-col items-start justify-between gap-2 rounded-2xl border border-b-4 border-slate-200 bg-white p-6 shadow-sm sm:flex-row sm:items-center',
+        variantClasses[variant]
       )}
     >
-      <p className='text-[10px] font-bold tracking-widest text-slate-400 uppercase'>
-        {label}
-      </p>
-      <div className='text-3xl font-black text-slate-900'>{value}</div>
-      <div className='flex items-center gap-2'>
-        <p className='text-xs font-medium text-slate-400'>{subtext}</p>
-        {children}
+      <div className='flex min-w-0 flex-1 flex-col gap-1'>
+        <p className='truncate text-[10px] font-bold tracking-widest text-slate-400 uppercase'>
+          {label}
+        </p>
+        <div className='truncate text-3xl font-black wrap-break-word text-slate-900 sm:text-2xl md:text-2xl'>
+          {displayValue}
+        </div>
+        {subtext && (
+          <span className='truncate text-xs font-medium text-slate-400'>
+            {subtext}
+          </span>
+        )}
+        {children && <div className='mt-1'>{children}</div>}
       </div>
+      {Icon && (
+        <div
+          className={cn(
+            'flex h-10 w-10 shrink-0 items-center justify-center rounded-xl p-2',
+            iconBg || 'bg-slate-100 text-slate-900'
+          )}
+        >
+          <Icon className='h-6 w-6' />
+        </div>
+      )}
     </div>
   );
 }
 
-// 3. Unified Stats Footer
-export function StatsFooter({
-  source,
-  sourceUrl,
-}: {
+// Stats Footer
+interface StatsFooterProps {
   source: string;
   sourceUrl?: string;
-}) {
+}
+
+export function StatsFooter({ source, sourceUrl }: StatsFooterProps) {
   return (
     <footer className='space-y-4 border-t border-slate-100 pt-10 text-center'>
       <ShieldCheck className='mx-auto h-6 w-6 text-emerald-600' />
@@ -118,5 +175,54 @@ export function StatsFooter({
         </p>
       </div>
     </footer>
+  );
+}
+
+// Stats Grid
+interface StatsGridProps {
+  stats: {
+    label: string;
+    value: string | number;
+    subtext?: string;
+    icon?: LucideIcon;
+    iconBg?: string;
+    variant?: 'primary' | 'secondary' | 'slate';
+    children?: ReactNode;
+    alreadyInMillions?: boolean;
+  }[];
+  columns?: 2 | 3 | 4;
+  alreadyInMillions?: boolean; // Apply to all cards
+}
+
+export function StatsGrid({
+  stats,
+  columns = 4,
+  alreadyInMillions = false,
+}: StatsGridProps) {
+  const gridCols = {
+    2: 'lg:grid-cols-2',
+    3: 'lg:grid-cols-3',
+    4: 'lg:grid-cols-4',
+  };
+
+  return (
+    <div
+      className={cn('grid grid-cols-1 gap-4 sm:grid-cols-2', gridCols[columns])}
+    >
+      {stats.map((s, i) => (
+        <StatsCard
+          key={i}
+          label={s.label}
+          value={s.value}
+          subtext={s.subtext}
+          icon={s.icon}
+          iconBg={s.iconBg}
+          variant={s.variant}
+          alreadyInMillions={s.alreadyInMillions ?? alreadyInMillions}
+        >
+          {s.children}
+        </StatsCard>
+      ))}
+    </div>
   );
 }

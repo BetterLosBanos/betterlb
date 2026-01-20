@@ -17,9 +17,9 @@ import {
   ChartTooltip,
 } from '@/components/data-display/ChartContainer';
 import {
+  StatsCard,
   StatsFooter,
   StatsHero,
-  StatsKPICard,
 } from '@/components/data-display/StatsUI';
 import { DetailSection } from '@/components/layout/PageLayouts';
 import { Badge } from '@/components/ui/Badge';
@@ -80,29 +80,29 @@ export default function CompetitivenessPage() {
       <StatsHero
         title='Competitiveness'
         description='National evaluation of municipal progress across pillars of governance and development.'
-        badge={`CMCI ${latestYear}`}
+        badges={`CMCI ${latestYear}`}
         icon={Trophy}
       />
 
       <div className='grid grid-cols-1 gap-4 md:grid-cols-3'>
-        <StatsKPICard
+        <StatsCard
           label='Overall Score'
           value={cmciData.overall_score[latestIdx].toFixed(2)}
           subtext='CMCI Index'
           variant='primary'
         />
-        <StatsKPICard
+        <StatsCard
           label='Official Rank'
           value='33'
           subtext='1st Class Municipality'
           variant='secondary'
         >
           <div className='flex items-center gap-0.5 rounded-full border border-emerald-100 bg-emerald-50 px-2 py-0.5 text-emerald-600'>
-            <ArrowUp className='h-3 w-3 stroke-[3]' />
+            <ArrowUp className='h-3 w-3 stroke-3' />
             <span className='text-[10px] font-black uppercase'>Up</span>
           </div>
-        </StatsKPICard>
-        <StatsKPICard
+        </StatsCard>
+        <StatsCard
           label='Pillars Tracked'
           value={cmciData.pillars.length}
           subtext='DTI Standards'

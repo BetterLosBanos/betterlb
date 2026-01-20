@@ -25,6 +25,7 @@ import SearchPage from '@/pages/Search';
 import TermsOfService from '@/pages/TermsOfService';
 import AboutPage from '@/pages/about';
 import AccessibilityPage from '@/pages/accessibility';
+import ContributePage from '@/pages/contribute';
 import ForexPage from '@/pages/data/forex';
 // --- Data Pages ---
 import WeatherPage from '@/pages/data/weather';
@@ -34,6 +35,8 @@ import BarangaysLayout from '@/pages/government/barangays/layout';
 import DepartmentsIndex from '@/pages/government/departments';
 import DepartmentDetail from '@/pages/government/departments/[department]';
 import DepartmentsLayout from '@/pages/government/departments/layout';
+// --- Directory Modules ---
+import ElectedOfficialsIndex from '@/pages/government/elected-officials';
 import LegislativeChamber from '@/pages/government/elected-officials/[chamber]';
 import ExecutiveBranchPage from '@/pages/government/elected-officials/executive-branch';
 import ElectedOfficialsLayout from '@/pages/government/elected-officials/layout';
@@ -50,19 +53,16 @@ import Services from '@/pages/services';
 import ServiceDetail from '@/pages/services/[service]';
 import ServicesLayout from '@/pages/services/layout';
 import SitemapPage from '@/pages/sitemap';
+import CompetitivenessPage from '@/pages/statistics/CompetitivenessPage';
+import MunicipalIncomePage from '@/pages/statistics/MunicipalIncomePage';
+import PopulationPage from '@/pages/statistics/PopulationPage';
 import StatisticsLayout from '@/pages/statistics/layout';
 import FinancialPage from '@/pages/transparency/financial';
 import TransparencyIndex from '@/pages/transparency/index';
+import InfrastructurePage from '@/pages/transparency/infrastructure';
+import InfrastructureDetail from '@/pages/transparency/infrastructure/[project]';
 import TransparencyLayout from '@/pages/transparency/layout';
-
-import ContributePage from './pages/contribute';
-// --- Directory Modules ---
-import ElectedOfficialsIndex from './pages/government/elected-officials';
-import CompetitivenessPage from './pages/statistics/CompetitivenessPage';
-import MunicipalIncomePage from './pages/statistics/MunicipalIncomePage';
-import PopulationPage from './pages/statistics/PopulationPage';
-import InfrastructurePage from './pages/transparency/infrastructure';
-import ProcurementPage from './pages/transparency/procurement';
+import ProcurementPage from '@/pages/transparency/procurement';
 
 function App() {
   return (
@@ -123,16 +123,6 @@ function App() {
                   path='municipal-committees'
                   element={<MunicipalCommitteesPage />}
                 />
-
-                {/* Legacy Redirection for old bookmarks */}
-                <Route
-                  path='office-of-the-mayor'
-                  element={<Navigate to='../executive' replace />}
-                />
-                <Route
-                  path='office-of-the-vice-mayor'
-                  element={<Navigate to='../executive' replace />}
-                />
               </Route>
 
               {/* 2. Municipal Departments */}
@@ -173,7 +163,10 @@ function App() {
               <Route index element={<TransparencyIndex />} />
               <Route path='financial' element={<FinancialPage />} />
               <Route path='procurement' element={<ProcurementPage />} />
-              <Route path='infrastructure' element={<InfrastructurePage />} />
+              <Route path='/transparency/infrastructure'>
+                <Route index element={<InfrastructurePage />} />
+                <Route path=':contractId' element={<InfrastructureDetail />} />
+              </Route>
             </Route>
 
             {/* Community Contribution Flow */}

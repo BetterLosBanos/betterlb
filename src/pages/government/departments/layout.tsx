@@ -1,13 +1,13 @@
 import { Outlet } from 'react-router-dom';
 
-import GovernmentLayout from '@/components/layout/GovernmentLayout';
+import SidebarLayout from '@/components/layout/SidebarLayout';
 
 import DepartmentsSidebar from './components/DepartmentsSidebar';
 
 export default function DepartmentsPageLayout() {
   return (
-    <GovernmentLayout sidebar={<DepartmentsSidebar />}>
+    <SidebarLayout sidebar={<DepartmentsSidebar />}>
       <Outlet />
-    </GovernmentLayout>
+    </SidebarLayout>
   );
 }

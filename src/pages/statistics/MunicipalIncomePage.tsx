@@ -4,14 +4,14 @@ import { Coins, Landmark, Wallet } from 'lucide-react';
 
 import {
   StatsFooter,
+  StatsGrid,
   StatsHero,
-  StatsKPICard,
 } from '@/components/data-display/StatsUI';
 import { DetailSection } from '@/components/layout/PageLayouts';
 
 import FinancialPieChart from '@/pages/transparency/components/FinancialPieChart';
 
-import { formatMillions } from '@/lib/format';
+import { formatPesoAdaptive } from '@/lib/format';
 
 import ariData from '@/data/statistics/ari.json';
 
@@ -69,30 +69,34 @@ export default function MunicipalIncomePage() {
       <StatsHero
         title='Municipal Income'
         description='Detailed analysis of revenue sources, fiscal autonomy, and national tax dependency.'
-        badge={data.period}
+        badges={data.period}
         icon={Wallet}
       />
 
-      <div className='grid grid-cols-1 gap-4 md:grid-cols-3'>
-        <StatsKPICard
-          label='Total Income'
-          value={formatMillions(data.summary_indicators.annual_regular_income)}
-          subtext='Annual Revenue'
-          variant='primary'
-        />
-        <StatsKPICard
-          label='Local Sufficiency'
-          value={data.summary_indicators.dependency_rates.lsr_dependency}
-          subtext='LSR Share'
-          variant='secondary'
-        />
-        <StatsKPICard
-          label='NTA Dependency'
-          value={data.summary_indicators.dependency_rates.nta_dependency}
-          subtext='National Allotment'
-          variant='slate'
-        />
-      </div>
+      <StatsGrid
+        columns={3}
+        alreadyInMillions={true}
+        stats={[
+          {
+            label: 'Total Income',
+            value: data.summary_indicators.annual_regular_income,
+            subtext: 'Annual Revenue',
+            variant: 'primary',
+          },
+          {
+            label: 'Local Sufficiency',
+            value: `${data.summary_indicators.dependency_rates.lsr_dependency}`,
+            subtext: 'LSR Share',
+            variant: 'secondary',
+          },
+          {
+            label: 'NTA Dependency',
+            value: `${data.summary_indicators.dependency_rates.nta_dependency}`,
+            subtext: 'National Allotment',
+            variant: 'slate',
+          },
+        ]}
+      />
 
       <FinancialPieChart
         title='Revenue Composition'
@@ -111,18 +115,22 @@ export default function MunicipalIncomePage() {
               <div className='flex justify-between rounded-lg bg-slate-50 p-2'>
                 <span>Real Property</span>
                 <span>
-                  {formatMillions(
-                    data.locally_sourced_revenue.tax_revenue
-                      .real_property_tax_general_fund
-                  )}
+                  {
+                    formatPesoAdaptive(
+                      data.locally_sourced_revenue.tax_revenue
+                        .real_property_tax_general_fund
+                    ).fullString
+                  }
                 </span>
               </div>
               <div className='flex justify-between rounded-lg bg-slate-50 p-2'>
                 <span>Business Tax</span>
                 <span>
-                  {formatMillions(
-                    data.locally_sourced_revenue.tax_revenue.tax_on_business
-                  )}
+                  {
+                    formatPesoAdaptive(
+                      data.locally_sourced_revenue.tax_revenue.tax_on_business
+                    ).fullString
+                  }
                 </span>
               </div>
             </div>
@@ -135,18 +143,23 @@ export default function MunicipalIncomePage() {
               <div className='flex justify-between rounded-lg bg-slate-50 p-2'>
                 <span>Fees</span>
                 <span>
-                  {formatMillions(
-                    data.locally_sourced_revenue.non_tax_revenue.regulatory_fees
-                  )}
+                  {
+                    formatPesoAdaptive(
+                      data.locally_sourced_revenue.non_tax_revenue
+                        .regulatory_fees
+                    ).fullString
+                  }
                 </span>
               </div>
               <div className='flex justify-between rounded-lg bg-slate-50 p-2'>
                 <span>Enterprises</span>
                 <span>
-                  {formatMillions(
-                    data.locally_sourced_revenue.non_tax_revenue
-                      .receipts_from_economic_enterprises
-                  )}
+                  {
+                    formatPesoAdaptive(
+                      data.locally_sourced_revenue.non_tax_revenue
+                        .receipts_from_economic_enterprises
+                    ).fullString
+                  }
                 </span>
               </div>
             </div>
@@ -159,18 +172,22 @@ export default function MunicipalIncomePage() {
               <div className='flex justify-between rounded-lg bg-slate-50 p-2'>
                 <span>Allotment</span>
                 <span>
-                  {formatMillions(
-                    data.other_income_sources.national_tax_allotment
-                  )}
+                  {
+                    formatPesoAdaptive(
+                      data.other_income_sources.national_tax_allotment
+                    ).fullString
+                  }
                 </span>
               </div>
               <div className='flex justify-between rounded-lg bg-slate-50 p-2'>
                 <span>Other Shares</span>
                 <span>
-                  {formatMillions(
-                    data.other_shares_from_national_tax_collection
-                      .total_other_shares
-                  )}
+                  {
+                    formatPesoAdaptive(
+                      data.other_shares_from_national_tax_collection
+                        .total_other_shares
+                    ).fullString
+                  }
                 </span>
               </div>
             </div>
