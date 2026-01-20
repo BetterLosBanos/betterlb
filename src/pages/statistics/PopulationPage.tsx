@@ -23,9 +23,9 @@ import {
   ChartTooltip,
 } from '@/components/data-display/ChartContainer';
 import {
+  StatsCard,
   StatsFooter,
   StatsHero,
-  StatsKPICard,
 } from '@/components/data-display/StatsUI';
 
 import { cn } from '@/lib/utils';
@@ -94,13 +94,13 @@ export default function PopulationPage() {
       <StatsHero
         title='Population Profile'
         description='Detailed demographic analysis tracking growth from the municipal level down to individual barangays.'
-        badge={`Census ${latestMuni.year}`}
+        badges={`Census ${latestMuni.year}`}
         icon={Users}
       />
 
       {/* KPI Cards */}
       <div className='grid grid-cols-1 gap-4 md:grid-cols-3'>
-        <StatsKPICard
+        <StatsCard
           label='Total Population'
           value={latestMuni.population.toLocaleString()}
           subtext='Actual Resident Count'
@@ -109,14 +109,14 @@ export default function PopulationPage() {
           <div className='flex items-center gap-1 text-xs font-bold text-emerald-600'>
             <ArrowUpRight className='h-3 w-3' /> +{growth}%
           </div>
-        </StatsKPICard>
-        <StatsKPICard
+        </StatsCard>
+        <StatsCard
           label='Growth Rate'
           value={`${growth}%`}
           subtext='Annual (2020-2024)'
           variant='secondary'
         />
-        <StatsKPICard
+        <StatsCard
           label='Admin Units'
           value={barangays.length}
           subtext='Official Barangays'

@@ -40,7 +40,7 @@ const TermsOfService: FC = () => {
       </Helmet>
 
       {/* Header Section */}
-      <section className='from-primary-600 bg-gradient-to-r to-blue-700 py-16 text-white'>
+      <section className='from-primary-600 bg-linear-to-r to-blue-700 py-16 text-white'>
         <div className='container mx-auto px-4'>
           <div className='mx-auto max-w-4xl text-center'>
             <div className='mb-6 flex justify-center'>

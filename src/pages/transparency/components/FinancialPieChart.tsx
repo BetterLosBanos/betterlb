@@ -19,7 +19,7 @@ import {
 
 import { Card, CardContent, CardHeader } from '@/components/ui/Card';
 
-import { formatMillions } from '@/lib/format';
+import { formatPesoAdaptive } from '@/lib/format';
 
 // --- Types ---
 
@@ -69,7 +69,7 @@ const CustomTooltip = ({ active, payload }: TooltipProps<number, string>) => {
           <p className='font-semibold text-slate-800'>{data.name}</p>
         </div>
         <p className='pl-4 font-mono font-medium text-emerald-600'>
-          {formatMillions(data.value as number)}
+          {formatPesoAdaptive(data.value as number).fullString}
         </p>
         <p className='mt-1 pl-4 text-xs text-slate-500'>
           {((data.payload.percent || 0) * 100).toFixed(1)}% of total
@@ -143,7 +143,7 @@ const renderCustomizedLabel = ({
         dy={10}
         className='fill-slate-500 text-[10px]'
       >
-        {formatMillions(value)} ({(percent * 100).toFixed(0)}%)
+        {formatPesoAdaptive(value).fullString} ({(percent * 100).toFixed(0)}%)
       </text>
     </g>
   );
@@ -304,9 +304,11 @@ export default function FinancialPieChart({
                   Total
                 </span>
                 <span className='mt-1 text-xs font-bold text-slate-700'>
-                  {formatMillions(
-                    activeData.reduce((acc, curr) => acc + curr.value, 0)
-                  )}
+                  {
+                    formatPesoAdaptive(
+                      activeData.reduce((acc, curr) => acc + curr.value, 0)
+                    ).fullString
+                  }
                 </span>
               </div>
             )}
@@ -340,7 +342,7 @@ export default function FinancialPieChart({
                 >
                   <div className='flex items-center gap-2'>
                     <span
-                      className='h-2.5 w-2.5 flex-shrink-0 rounded-full'
+                      className='h-2.5 w-2.5 shrink-0 rounded-full'
                       style={{ backgroundColor: getFillColor(index) }}
                     />
                     <span
@@ -358,7 +360,7 @@ export default function FinancialPieChart({
                   </div>
                   <div className='flex items-center gap-3'>
                     <span className='font-medium text-slate-900'>
-                      {formatMillions(item.value)}
+                      {formatPesoAdaptive(item.value).fullString}
                     </span>
                     <span className='w-10 text-right text-xs text-slate-400'>
                       {percent.toFixed(1)}%

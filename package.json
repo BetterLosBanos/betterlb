@@ -28,6 +28,7 @@
     "i18next-browser-languagedetector": "^8.2.0",
     "i18next-http-backend": "^3.0.2",
     "lucide-react": "^0.470.0",
+    "meilisearch": "^0.55.0",
     "nuqs": "^2.6.0",
     "react": "19.1.0",
     "react-dom": "19.1.0",

@@ -1,3 +1,11 @@
+// --- Types ---
+export interface FormattedPeso {
+  scaledValue: number; // e.g., 1.5
+  unit: string; // e.g., "M", "B", ""
+  fullString: string; // e.g., "₱1.50 M"
+  raw: string; // e.g., "₱1,500,000.00"
+}
+
 // Standard formatter
 export const formatPeso = (amount: number): string => {
   return new Intl.NumberFormat('en-PH', {
@@ -8,27 +16,48 @@ export const formatPeso = (amount: number): string => {
   }).format(amount);
 };
 
-// Formatter with "M" suffix for charts/tooltips
-export const formatMillions = (amount: number): string => {
-  return formatPeso(amount) + ' M';
-};
+// Adaptive formatter returning an object
+export const formatPesoAdaptive = (
+  amount: number,
+  fractionDigits = 2,
+  alreadyInMillions = false
+): FormattedPeso => {
+  // If data is already in millions, multiply back to get raw value
+  const rawAmount = alreadyInMillions ? amount * 1_000_000 : amount;
 
-// Fancy formatter for the Summary Cards
-export const formatPesoParts = (amount: number) => {
-  const formatter = new Intl.NumberFormat('en-PH', {
+  const abs = Math.abs(rawAmount);
+  let scaled = rawAmount;
+  let unit = '';
+
+  if (abs >= 1_000_000_000) {
+    scaled = rawAmount / 1_000_000_000;
+    unit = 'B';
+  } else if (abs >= 1_000_000) {
+    scaled = rawAmount / 1_000_000;
+    unit = 'M';
+  }
+
+  const formattedNumber = new Intl.NumberFormat('en-PH', {
     style: 'currency',
     currency: 'PHP',
-    minimumFractionDigits: 2,
-  });
-  const parts = formatter.formatToParts(amount);
-  return {
-    symbol: parts.find(p => p.type === 'currency')?.value ?? '₱',
-    integer: parts
-      .filter(p => p.type === 'group' || p.type === 'integer')
-      .map(p => p.value)
-      .join(''),
-    decimal: parts.find(p => p.type === 'decimal')?.value ?? '.',
-    fraction: parts.find(p => p.type === 'fraction')?.value ?? '00',
-    unit: 'M', // Explicit unit
-  };
+    minimumFractionDigits: fractionDigits,
+    maximumFractionDigits: fractionDigits,
+  }).format(scaled);
+
+  // Construct fullString with unit suffix
+  const fullString = unit ? `${formattedNumber} ${unit}` : formattedNumber;
+
+  const raw = formatPeso(rawAmount);
+
+  return { scaledValue: scaled, unit, fullString, raw };
+};
+
+// Simple adaptive formatter for when you only need the string
+export const formatPesoAdaptiveString = (
+  amount: number,
+  fractionDigits = 2,
+  alreadyInMillions = false
+): string => {
+  return formatPesoAdaptive(amount, fractionDigits, alreadyInMillions)
+    .fullString;
 };
