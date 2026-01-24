@@ -8,7 +8,7 @@ import Hero from '@/components/home/Hero';
 // import JoinUsStrip from '../components/home/JoinUsStrip';
 import ServicesSection from '@/components/home/ServicesSection';
 import TimelineSection from '@/components/home/TimelineSection';
-// import WeatherMapSection from '@/components/home/WeatherMapSection';
+import WeatherMapSection from '@/components/home/WeatherMapSection';
 
 const Home: FC = () => {
   return (
@@ -17,7 +17,7 @@ const Home: FC = () => {
       <Hero />
       <ServicesSection />
       <TimelineSection />
-      {/* <WeatherMapSection /> */}
+      <WeatherMapSection />
       {/* <NewsSection /> */}
       {/* <InfoWidgets /> */}
       {/* <JoinUsBanner /> */}

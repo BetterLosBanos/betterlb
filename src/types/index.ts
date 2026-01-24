@@ -106,13 +106,20 @@ export interface Service {
   quickInfo?: QuickInfo[];
 }
 
+export interface HourlyForecast {
+  hour: string;
+  temperature: number;
+  icon: string;
+}
+
 export interface WeatherData {
   location: string;
   temperature: number;
   condition: string;
   humidity: number;
   windSpeed: number;
-  description: string;
+  icon: string;
+  hourly: HourlyForecast[];
 }
 
 export interface ForexData {

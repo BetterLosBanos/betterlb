@@ -9,7 +9,7 @@ export interface Env {
 
   // Environment variables
   WEATHER_API_KEY?: string;
-  OPENWEATHERMAP_API_KEY?: string; // Added this to match the code
+  OPENWEATHERMAP_API_KEY?: string;
   FOREX_API_KEY?: string;
   MEILISEARCH_HOST?: string;
   MEILISEARCH_API_KEY?: string;
@@ -18,81 +18,30 @@ export interface Env {
   CF_API_TOKEN?: string;
 }
 
+export interface HourlyForecast {
+  dt: number;
+  temp: number;
+  icon: string;
+}
+
 export interface WeatherData {
-  location: {
-    name: string;
-    region: string;
-    country: string;
-    lat: number;
-    lon: number;
-    localtime: string;
-  };
-  current: {
-    temp_c: number;
-    temp_f: number;
-    condition: {
-      text: string;
-      icon: string;
-      code: number;
-    };
-    humidity: number;
-    cloud: number;
-    feelslike_c: number;
-    feelslike_f: number;
-    uv: number;
-    wind_kph: number;
-    wind_dir: string;
-    precip_mm: number;
-  };
-}
-
-export interface ForexData {
-  base: string;
-  date: string;
-  rates: Record<string, number>;
-  timestamp: number;
-}
-
-export interface JinaLinkSummary {
-  url: string;
-  title: string;
-  description: string;
-}
-
-export interface JinaResponse {
-  id: string;
-  url: string;
-  title: string;
-  content: string;
-  links_summary?: JinaLinkSummary[];
-  timestamp: number;
-  status?: string;
-  error?: string;
-}
-
-export interface JinaRecord {
-  id: string;
-  url: string;
-  title: string;
-  content: string;
-  links_summary: string;
-  timestamp: number;
-  created_at: string;
-}
-
-export interface CFBrowserLink {
   name: string;
-  friendly_name?: string;
-  link?: string;
-}
-
-export interface CFBrowserResponse {
-  links: CFBrowserLink[];
-}
-
-export interface CFBrowserResult {
-  success: boolean;
-  errors: string[];
-  messages: string[];
-  result: CFBrowserResponse;
+  main: {
+    temp: number;
+    feels_like: number;
+    temp_min: number;
+    temp_max: number;
+    pressure: number;
+    humidity: number;
+  };
+  weather: Array<{
+    id: number;
+    main: string;
+    description: string;
+    icon: string;
+  }>;
+  wind: { speed: number; deg: number };
+  clouds: { all: number };
+  dt: number;
+  hourly?: HourlyForecast[];
 }

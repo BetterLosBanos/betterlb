@@ -78,7 +78,7 @@ const ServicesSection: FC = () => {
                     {category.name}
                   </h3>
 
-                  <p className='mb-6 line-clamp-3 flex-grow text-sm text-gray-600'>
+                  <p className='mb-6 line-clamp-3 grow text-sm text-gray-600'>
                     {category.description}
                   </p>
 
