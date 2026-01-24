@@ -1,4 +1,4 @@
-import { WeatherData, HourlyForecast } from '../types';
+import { HourlyForecast, WeatherData } from '../types';
 import { fetchWithCache } from './api';
 
 /**

@@ -1,11 +1,9 @@
 /**
  * Weather endpoint that fetches current weather + 3-hour forecast
  */
-import { Env, WeatherData, HourlyForecast } from '../types';
+import { Env, HourlyForecast, WeatherData } from '../types';
 
-const CITIES = [
-  { name: 'Los Baños', lat: 14.1763, lon: 121.2219 },
-];
+const CITIES = [{ name: 'Los Baños', lat: 14.1763, lon: 121.2219 }];
 
 async function fetchWeatherData(
   lat: number,
@@ -15,24 +13,24 @@ async function fetchWeatherData(
   // Fetch current weather
   const currentUrl = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&units=metric&appid=${apiKey}`;
   const currentResponse = await fetch(currentUrl);
-  
+
   if (!currentResponse.ok) {
     throw new Error(`Weather API error: ${currentResponse.statusText}`);
   }
-  
+
   const currentData: any = await currentResponse.json();
 
   // Fetch 3-hour forecast (5 day / 3 hour forecast)
   const forecastUrl = `https://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${lon}&units=metric&appid=${apiKey}`;
   const forecastResponse = await fetch(forecastUrl);
-  
+
   let hourly: HourlyForecast[] = [];
-  
+
   if (forecastResponse.ok) {
     const forecastJson: any = await forecastResponse.json();
     // Take first 4 entries (next 12 hours in 3-hour intervals)
     const forecastList = forecastJson.list?.slice(0, 4) || [];
-    
+
     hourly = forecastList.map((entry: any) => ({
       dt: entry.dt,
       temp: entry.main.temp,
@@ -64,7 +62,7 @@ export async function onRequest(context: {
     // Check if we should fetch fresh data
     if (update === 'true') {
       const apiKey = context.env.OPENWEATHERMAP_API_KEY;
-      
+
       if (!apiKey) {
         return new Response(
           JSON.stringify({
@@ -84,9 +82,9 @@ export async function onRequest(context: {
       const weatherPromises = CITIES.map(city =>
         fetchWeatherData(city.lat, city.lon, apiKey)
       );
-      
+
       const weatherResults = await Promise.all(weatherPromises);
-      
+
       // Store in KV with city name as key
       const weatherData: Record<string, WeatherData> = {};
       weatherResults.forEach((data, index) => {
