@@ -1,0 +1,26 @@
+[
+  {
+    "title": "The \"Mainit\" Legacy",
+    "description": "Before the Spaniards arrived, the settlement was known as 'Mainit' (Hot). Its thermal waters, heated by the dormant Mt. Makiling, were believed to cure ailments long before the first hospital was built.",
+    "theme": "slate",
+    "icon": "Waves"
+  },
+  {
+    "title": "Rizal's Mountain",
+    "description": "Dr. Jose Rizal frequently scoured the jungles of Mt. Makiling. Spanish authorities once suspected him of using the peak to hoist a German flag or spy for Germany.",
+    "theme": "orange",
+    "icon": "Feather"
+  },
+  {
+    "title": "Friar Lands",
+    "description": "Vast tracts of land were once owned by Dominican Friars. Don Francisco Mercado, father of Jose Rizal, leased these lands for sugarcane and rice, tying the national hero's family deep into the soil of Los Baños.",
+    "theme": "amber",
+    "icon": "Leaf"
+  },
+  {
+    "title": "Nature & Delicacies",
+    "description": "Today, the 'Special Science and Nature City' is synonymous with two things: the legendary Buko Pie and its numerous hot spring resorts, remaining a favorite sanctuary for travelers.",
+    "theme": "emerald",
+    "icon": "Mountain"
+  }
+]
