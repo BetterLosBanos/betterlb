@@ -1,170 +1,54 @@
-import { Env } from '../types';
+/**
+ * Weather endpoint that fetches current weather + 3-hour forecast
+ */
+import { Env, HourlyForecast, WeatherData } from '../types';
 
-// Interface for Philippine city coordinates
-interface CityCoordinates {
-  name: string;
-  lat: number;
-  lon: number;
-}
+const CITIES = [{ name: 'Los Baños', lat: 14.1763, lon: 121.2219 }];
 
-// Interface for city coordinates map
-interface CityCoordinatesMap {
-  [key: string]: { lat: number; lon: number };
-}
-
-// Interface for OpenWeatherMap API response
-interface OpenWeatherMapResponse {
-  name?: string;
-  coord?: { lat: number; lon: number };
-  weather?: Array<{
-    id: number;
-    main: string;
-    description: string;
-    icon: string;
-  }>;
-  main?: {
-    temp: number;
-    feels_like: number;
-    temp_min: number;
-    temp_max: number;
-    pressure: number;
-    humidity: number;
-  };
-  visibility?: number;
-  wind?: { speed: number; deg: number };
-  clouds?: { all: number };
-  rain?: Record<string, number>;
-  dt?: number;
-  sys?: Record<string, unknown>;
-  timezone?: number;
-  id?: number;
-}
-
-// Interface for weather response data
-interface WeatherResponseData {
-  [cityName: string]: {
-    city: string;
-    coordinates: { lat: number; lon: number };
-    weather: Array<{
-      id: number;
-      main: string;
-      description: string;
-      icon: string;
-    }>;
-    main: {
-      temp: number;
-      feels_like: number;
-      temp_min: number;
-      temp_max: number;
-      pressure: number;
-      humidity: number;
-    };
-    visibility: number;
-    wind: { speed: number; deg: number };
-    clouds: { all: number };
-    rain: Record<string, number>;
-    dt: number;
-    sys: Record<string, unknown>;
-    timezone: number;
-    id: number;
-    timestamp: string;
-  };
-}
-
-// Major Philippine cities with their coordinates (latitude, longitude)
-const PHILIPPINE_CITIES: CityCoordinates[] = [
-  { name: 'Los Baños', lat: 14.1763, lon: 121.2219 },
-];
-
-// Map of city names to their coordinates for quick lookup
-const CITY_COORDINATES: CityCoordinatesMap = PHILIPPINE_CITIES.reduce(
-  (map, city) => {
-    map[city.name.toLowerCase()] = { lat: city.lat, lon: city.lon };
-    return map;
-  },
-  {} as CityCoordinatesMap
-);
-
-// Core function to fetch weather data using OpenWeatherMap API
 async function fetchWeatherData(
-  env: Env,
-  specificCity: string | null = null
-): Promise<WeatherResponseData> {
-  // Get API key from environment variable
-  const apiKey = env.OPENWEATHERMAP_API_KEY;
-  if (!apiKey) {
-    throw new Error(
-      'OpenWeatherMap API key not found in environment variables'
-    );
+  lat: number,
+  lon: number,
+  apiKey: string
+): Promise<WeatherData> {
+  // Fetch current weather
+  const currentUrl = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&units=metric&appid=${apiKey}`;
+  const currentResponse = await fetch(currentUrl);
+
+  if (!currentResponse.ok) {
+    throw new Error(`Weather API error: ${currentResponse.statusText}`);
   }
 
-  // Determine which cities to fetch
-  const citiesToFetch = specificCity
-    ? [specificCity.toLowerCase()].filter(city => CITY_COORDINATES[city])
-    : PHILIPPINE_CITIES.map(city => city.name.toLowerCase());
+  const currentData: any = await currentResponse.json();
 
-  // Fetch weather data for cities
-  const weatherData: WeatherResponseData = {};
+  // Fetch 3-hour forecast (5 day / 3 hour forecast)
+  const forecastUrl = `https://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${lon}&units=metric&appid=${apiKey}`;
+  const forecastResponse = await fetch(forecastUrl);
 
-  for (const cityName of citiesToFetch) {
-    try {
-      const coords = CITY_COORDINATES[cityName];
-      if (!coords) {
-        console.error(`No coordinates found for city: ${cityName}`);
-        continue;
-      }
+  let hourly: HourlyForecast[] = [];
 
-      // Use the standard weather API with coordinates
-      const response = await fetch(
-        `https://api.openweathermap.org/data/2.5/weather?lat=${coords.lat}&lon=${coords.lon}&units=metric&appid=${apiKey}`
-      );
+  if (forecastResponse.ok) {
+    const forecastJson: any = await forecastResponse.json();
+    // Take first 4 entries (next 12 hours in 3-hour intervals)
+    const forecastList = forecastJson.list?.slice(0, 4) || [];
 
-      if (!response.ok) {
-        console.error(
-          `Failed to fetch weather data for ${cityName}: ${response.statusText}`
-        );
-        continue;
-      }
-
-      const data = (await response.json()) as OpenWeatherMapResponse;
-
-      // Format the response data based on the example format
-      weatherData[cityName] = {
-        city: data.name || cityName.charAt(0).toUpperCase() + cityName.slice(1),
-        coordinates: data.coord || { lat: coords.lat, lon: coords.lon },
-        weather: data.weather || [],
-        main: data.main || {
-          temp: 0,
-          feels_like: 0,
-          temp_min: 0,
-          temp_max: 0,
-          pressure: 0,
-          humidity: 0,
-        },
-        visibility: data.visibility || 0,
-        wind: data.wind || { speed: 0, deg: 0 },
-        clouds: data.clouds || { all: 0 },
-        rain: data.rain || {},
-        dt: data.dt || Math.floor(Date.now() / 1000),
-        sys: data.sys || {},
-        timezone: data.timezone || 0,
-        id: data.id || 0,
-        timestamp: new Date().toISOString(),
-      };
-
-      // Add a small delay to avoid rate limiting
-      if (citiesToFetch.length > 1) {
-        await new Promise(resolve => setTimeout(resolve, 100));
-      }
-    } catch (cityError) {
-      console.error(`Error fetching data for ${cityName}:`, cityError);
-    }
+    hourly = forecastList.map((entry: any) => ({
+      dt: entry.dt,
+      temp: entry.main.temp,
+      icon: entry.weather[0].icon,
+    }));
   }
 
-  return weatherData;
+  return {
+    name: currentData.name,
+    main: currentData.main,
+    weather: currentData.weather,
+    wind: currentData.wind,
+    clouds: currentData.clouds,
+    dt: currentData.dt,
+    hourly,
+  };
 }
 
-// Handler for direct HTTP requests
 export async function onRequest(context: {
   request: Request;
   env: Env;
@@ -173,62 +57,82 @@ export async function onRequest(context: {
   try {
     const url = new URL(context.request.url);
     const cityParam = url.searchParams.get('city');
-    const forceUpdate = url.searchParams.get('update') === 'true';
+    const update = url.searchParams.get('update');
 
-    // Always fetch fresh data if update=true is specified
-    if (forceUpdate) {
-      // Fetch fresh data for all cities
-      const weatherData = await fetchWeatherData(context.env, cityParam);
+    // Check if we should fetch fresh data
+    if (update === 'true') {
+      const apiKey = context.env.OPENWEATHERMAP_API_KEY;
 
-      // Store the data in KV regardless of whether a specific city was requested
-      if (!cityParam) {
-        await context.env.WEATHER_KV.put(
-          'philippines_weather',
-          JSON.stringify(weatherData),
+      if (!apiKey) {
+        return new Response(
+          JSON.stringify({
+            error: 'OpenWeatherMap API key not configured',
+          }),
           {
-            expirationTtl: 3600, // Expire after 1 hour
-          }
-        );
-      } else if (cityParam && weatherData[cityParam.toLowerCase()]) {
-        // If a specific city was requested and found, update just that city in the KV store
-        const existingData =
-          ((await context.env.WEATHER_KV.get('philippines_weather', {
-            type: 'json',
-          })) as WeatherResponseData) || {};
-        existingData[cityParam.toLowerCase()] =
-          weatherData[cityParam.toLowerCase()];
-        await context.env.WEATHER_KV.put(
-          'philippines_weather',
-          JSON.stringify(existingData),
-          {
-            expirationTtl: 3600, // Expire after 1 hour
+            status: 500,
+            headers: {
+              'Content-Type': 'application/json',
+              'Access-Control-Allow-Origin': '*',
+            },
           }
         );
       }
 
-      // Return the fresh data
+      // Fetch weather for all cities
+      const weatherPromises = CITIES.map(city =>
+        fetchWeatherData(city.lat, city.lon, apiKey)
+      );
+
+      const weatherResults = await Promise.all(weatherPromises);
+
+      // Store in KV with city name as key
+      const weatherData: Record<string, WeatherData> = {};
+      weatherResults.forEach((data, index) => {
+        const cityKey = CITIES[index].name.toLowerCase().replace(/\s+/g, '_');
+        weatherData[cityKey] = data;
+      });
+
+      // Cache for 1 hour
+      await context.env.WEATHER_KV.put(
+        'philippines_weather',
+        JSON.stringify(weatherData),
+        { expirationTtl: 3600 }
+      );
+
+      return new Response(JSON.stringify(weatherData), {
+        headers: {
+          'Content-Type': 'application/json',
+          'Access-Control-Allow-Origin': '*',
+          'Cache-Control': 'max-age=3600',
+        },
+      });
+    }
+
+    // Get data from KV store
+    const cachedData = (await context.env.WEATHER_KV.get(
+      'philippines_weather',
+      { type: 'json' }
+    )) as Record<string, unknown> | null;
+
+    if (!cachedData) {
       return new Response(
-        JSON.stringify(
-          cityParam ? weatherData[cityParam.toLowerCase()] || {} : weatherData
-        ),
+        JSON.stringify({
+          error: 'No weather data found in KV store',
+          message:
+            'Try calling /api/weather?update=true to fetch and store fresh data',
+        }),
         {
+          status: 404,
           headers: {
             'Content-Type': 'application/json',
             'Access-Control-Allow-Origin': '*',
-            'Cache-Control': 'max-age=3600',
           },
         }
       );
     }
 
-    // Check if data exists in KV and is not expired
-    const cachedData = (await context.env.WEATHER_KV.get(
-      'philippines_weather',
-      { type: 'json' }
-    )) as WeatherResponseData | null;
-
     // If city parameter is provided, filter the data
-    if (cityParam && cachedData) {
+    if (cityParam) {
       const cityKey = cityParam.toLowerCase();
       if (cachedData[cityKey]) {
         return new Response(
@@ -241,101 +145,44 @@ export async function onRequest(context: {
             },
           }
         );
+      } else {
+        return new Response(
+          JSON.stringify({
+            error: `No data found for city: ${cityParam}`,
+            availableCities: Object.keys(cachedData),
+          }),
+          {
+            status: 404,
+            headers: {
+              'Content-Type': 'application/json',
+              'Access-Control-Allow-Origin': '*',
+            },
+          }
+        );
       }
     }
 
-    // If we have cached data for all cities and no specific city is requested, return it
-    if (cachedData && !cityParam) {
-      return new Response(JSON.stringify(cachedData), {
-        headers: {
-          'Content-Type': 'application/json',
-          'Access-Control-Allow-Origin': '*',
-          'Cache-Control': 'max-age=3600',
-        },
-      });
-    }
-
-    // If we reach here, either:
-    // 1. No cached data exists
-    // 2. A specific city was requested that wasn't in the cache
-    // 3. The cached data has expired
-    // So we fetch fresh data
-    const weatherData = await fetchWeatherData(context.env, cityParam);
-
-    // Store the data in KV
-    if (!cityParam) {
-      await context.env.WEATHER_KV.put(
-        'philippines_weather',
-        JSON.stringify(weatherData),
-        {
-          expirationTtl: 3600, // Expire after 1 hour
-        }
-      );
-    } else if (cityParam && weatherData[cityParam.toLowerCase()]) {
-      // If a specific city was requested and found, update just that city in the KV store
-      const existingData =
-        ((await context.env.WEATHER_KV.get('philippines_weather', {
-          type: 'json',
-        })) as WeatherResponseData) || {};
-      existingData[cityParam.toLowerCase()] =
-        weatherData[cityParam.toLowerCase()];
-      await context.env.WEATHER_KV.put(
-        'philippines_weather',
-        JSON.stringify(existingData),
-        {
-          expirationTtl: 3600, // Expire after 1 hour
-        }
-      );
-    }
-
-    // Return the response
-    return new Response(
-      JSON.stringify(
-        cityParam ? weatherData[cityParam.toLowerCase()] || {} : weatherData
-      ),
-      {
-        headers: {
-          'Content-Type': 'application/json',
-          'Access-Control-Allow-Origin': '*',
-          'Cache-Control': 'max-age=3600',
-        },
-      }
-    );
-  } catch (error) {
-    return new Response(JSON.stringify({ error: (error as Error).message }), {
-      status: 500,
+    // Return all data if no city specified
+    return new Response(JSON.stringify(cachedData), {
       headers: {
         'Content-Type': 'application/json',
         'Access-Control-Allow-Origin': '*',
+        'Cache-Control': 'max-age=3600',
       },
     });
-  }
-}
-
-export async function scheduled(controller: ScheduledController, env: Env) {
-  try {
-    // Fetch weather data for all cities
-    const weatherData = await fetchWeatherData(env);
-
-    // Store the data in Cloudflare KV
-    await env.WEATHER_KV.put(
-      'philippines_weather',
-      JSON.stringify(weatherData),
+  } catch (error) {
+    return new Response(
+      JSON.stringify({
+        error: (error as Error).message,
+        stack: (error as Error).stack,
+      }),
       {
-        expirationTtl: 3600 * 6, // Expire after 6 hours
+        status: 500,
+        headers: {
+          'Content-Type': 'application/json',
+          'Access-Control-Allow-Origin': '*',
+        },
       }
     );
-
-    return {
-      success: true,
-      message: `Weather data updated for ${Object.keys(weatherData).length} Philippine cities`,
-      timestamp: new Date().toISOString(),
-    };
-  } catch (error) {
-    console.error('Error in weather scheduled function:', error);
-    return {
-      success: false,
-      error: (error as Error).message,
-    };
   }
 }

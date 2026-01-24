@@ -1,4 +1,5 @@
 import { Link, useParams } from 'react-router-dom';
+
 import { SiFacebook } from '@icons-pack/react-simple-icons';
 import {
   BookOpenIcon,
@@ -11,7 +12,10 @@ import {
 } from 'lucide-react';
 
 // CORRECTED IMPORT PATH
-import { ContactContainer, ContactItem } from '@/components/data-display/ContactInfo';
+import {
+  ContactContainer,
+  ContactItem,
+} from '@/components/data-display/ContactInfo';
 import { DetailSection, ModuleHeader } from '@/components/layout/PageLayouts';
 import {
   Breadcrumb,
@@ -25,7 +29,9 @@ import {
 import { Badge } from '@/components/ui/Badge';
 import { Card, CardContent } from '@/components/ui/Card';
 import { EmptyState } from '@/components/ui/EmptyState';
+
 import { toTitleCase } from '@/lib/stringUtils';
+
 import legislativeData from '@/data/directory/legislative.json';
 
 // --- Types ---
@@ -52,8 +58,10 @@ interface ChamberData {
 
 export default function LegislativeChamber() {
   const { chamber: slug } = useParams<{ chamber: string }>();
-  
-  const data = legislativeData.find(item => item.slug === slug) as ChamberData | undefined;
+
+  const data = legislativeData.find(item => item.slug === slug) as
+    | ChamberData
+    | undefined;
 
   if (!data) {
     return (
@@ -80,8 +88,7 @@ export default function LegislativeChamber() {
   };
 
   return (
-    <div className='pb-20 mx-auto space-y-8 max-w-7xl duration-500 animate-in fade-in'>
-      
+    <div className='animate-in fade-in mx-auto max-w-7xl space-y-8 pb-20 duration-500'>
       {/* --- Breadcrumbs --- */}
       <Breadcrumb>
         <BreadcrumbList>
@@ -127,7 +134,7 @@ export default function LegislativeChamber() {
 
       {/* --- COUNCIL MEMBERS GRID --- */}
       <DetailSection title='Council Members' icon={UsersIcon}>
-        <div className='grid grid-cols-1 gap-4 items-start md:grid-cols-2 xl:grid-cols-3'>
+        <div className='grid grid-cols-1 items-start gap-4 md:grid-cols-2 xl:grid-cols-3'>
           {data.officials?.map(member => {
             const chaired = getChairedCommittees(member.name);
 
@@ -135,21 +142,20 @@ export default function LegislativeChamber() {
               <Card
                 key={member.name}
                 hover
-                className='flex flex-col h-full border-slate-200 shadow-xs group'
+                className='group flex h-full flex-col border-slate-200 shadow-xs'
               >
-                <CardContent className='flex flex-col p-4 space-y-4 h-full'>
-                  
+                <CardContent className='flex h-full flex-col space-y-4 p-4'>
                   {/* Row 1: Icon, Role, Name */}
-                  <div className='flex gap-3 items-start'>
-                    <div className='p-2 rounded-lg border shadow-sm transition-colors bg-primary-50 text-primary-600 border-primary-100 group-hover:bg-primary-600 group-hover:text-white shrink-0'>
-                      <UserIcon className='w-5 h-5' />
+                  <div className='flex items-start gap-3'>
+                    <div className='bg-primary-50 text-primary-600 border-primary-100 group-hover:bg-primary-600 shrink-0 rounded-lg border p-2 shadow-sm transition-colors group-hover:text-white'>
+                      <UserIcon className='h-5 w-5' />
                     </div>
 
-                    <div className='flex-1 min-w-0'>
+                    <div className='min-w-0 flex-1'>
                       <p className='text-primary-600 mb-0.5 text-[10px] font-bold tracking-widest uppercase'>
                         {member.role}
                       </p>
-                      <h4 className='text-base font-bold leading-tight text-slate-900'>
+                      <h4 className='text-base leading-tight font-bold text-slate-900'>
                         {toTitleCase(member.name)}
                       </h4>
                     </div>
@@ -157,51 +163,53 @@ export default function LegislativeChamber() {
 
                   {/* Row 2: Committee Highlight Box */}
                   {chaired.length > 0 ? (
-                    <div className='flex flex-col gap-2 p-3 rounded-xl border border-slate-100 bg-slate-50/50'>
-                      
+                    <div className='flex flex-col gap-2 rounded-xl border border-slate-100 bg-slate-50/50 p-3'>
                       {/* Section Label */}
-                      <div className="flex gap-2 items-center mb-1">
-                         <BookOpenIcon className='w-3 h-3 text-slate-400' />
-                         <span className='text-[10px] font-bold tracking-widest text-slate-400 uppercase'>
-                            Committee Chair
-                         </span>
+                      <div className='mb-1 flex items-center gap-2'>
+                        <BookOpenIcon className='h-3 w-3 text-slate-400' />
+                        <span className='text-[10px] font-bold tracking-widest text-slate-400 uppercase'>
+                          Committee Chair
+                        </span>
                       </div>
 
                       {/* List Items with visual separation */}
                       <ul className='flex flex-col gap-2'>
-                          {chaired.map(c => (
-                            <li key={c.committee} className="flex items-start gap-2 bg-white px-2.5 py-2 rounded-lg border border-slate-100 shadow-sm">
-                                {/* Small decorative dot/line */}
-                                <div className="w-1 h-8 rounded-full bg-secondary-600 shrink-0 opacity-80 mt-0.5" />
-                                
-                                <span className="text-xs font-bold leading-snug wrap-break-word text-slate-800">
-                                    {toTitleCase(c.committee)}
-                                </span>
-                            </li>
-                          ))}
+                        {chaired.map(c => (
+                          <li
+                            key={c.committee}
+                            className='flex items-start gap-2 rounded-lg border border-slate-100 bg-white px-2.5 py-2 shadow-sm'
+                          >
+                            {/* Small decorative dot/line */}
+                            <div className='bg-secondary-600 mt-0.5 h-8 w-1 shrink-0 rounded-full opacity-80' />
+
+                            <span className='text-xs leading-snug font-bold wrap-break-word text-slate-800'>
+                              {toTitleCase(c.committee)}
+                            </span>
+                          </li>
+                        ))}
                       </ul>
                     </div>
                   ) : (
-                    <div className="flex-1" />
+                    <div className='flex-1' />
                   )}
 
                   {/* Row 3: Footer / Socials (Fixed Contrast) */}
                   {member.website && (
-                    <div className='flex justify-between items-center pt-3 mt-auto border-t border-slate-50'>
+                    <div className='mt-auto flex items-center justify-between border-t border-slate-50 pt-3'>
                       {/* Darker text for readability */}
-                      <span className='text-[10px] font-medium text-slate-400 uppercase tracking-wide'>
+                      <span className='text-[10px] font-medium tracking-wide text-slate-400 uppercase'>
                         Social Profile
                       </span>
                       <a
                         href={member.website}
                         target='_blank'
                         rel='noreferrer'
-                        className='group/link flex items-center gap-2 rounded-lg border border-slate-100 bg-white px-3 py-1.5 shadow-sm transition-all hover:border-primary-200 hover:text-primary-700'
+                        className='group/link hover:border-primary-200 hover:text-primary-700 flex items-center gap-2 rounded-lg border border-slate-100 bg-white px-3 py-1.5 shadow-sm transition-all'
                       >
                         <span className='text-[10px] font-bold tracking-wider uppercase'>
                           Visit Page
                         </span>
-                        <SiFacebook className='w-3.5 h-3.5' />
+                        <SiFacebook className='h-3.5 w-3.5' />
                       </a>
                     </div>
                   )}
@@ -213,14 +221,14 @@ export default function LegislativeChamber() {
       </DetailSection>
 
       {/* --- CTA Banner --- */}
-      <div className='overflow-hidden relative p-8 text-white rounded-3xl shadow-xl group bg-slate-900 md:p-12'>
-        <div className='flex relative z-10 flex-col gap-8 justify-between items-start md:flex-row md:items-center'>
-          <div className='space-y-4 max-w-2xl'>
-            <div className='flex gap-3 items-center'>
+      <div className='group relative overflow-hidden rounded-3xl bg-slate-900 p-8 text-white shadow-xl md:p-12'>
+        <div className='relative z-10 flex flex-col items-start justify-between gap-8 md:flex-row md:items-center'>
+          <div className='max-w-2xl space-y-4'>
+            <div className='flex items-center gap-3'>
               <Badge variant='secondary' dot>
                 Legislative Archive
               </Badge>
-              <span className='text-xs font-bold tracking-widest uppercase text-slate-400'>
+              <span className='text-xs font-bold tracking-widest text-slate-400 uppercase'>
                 Public Records
               </span>
             </div>
@@ -237,7 +245,7 @@ export default function LegislativeChamber() {
             to='/legislation'
             className='hover:bg-secondary-50 flex min-h-[56px] w-full shrink-0 items-center justify-center gap-3 rounded-xl bg-white px-8 text-sm font-bold text-slate-900 shadow-lg transition-all md:w-auto'
           >
-            Browse Documents <ChevronRight className='w-4 h-4' />
+            Browse Documents <ChevronRight className='h-4 w-4' />
           </Link>
         </div>
 
