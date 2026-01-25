@@ -1,13 +1,12 @@
 import { LayoutGrid, Scale, Scroll, Signature } from 'lucide-react';
+import { SidebarContainer, SidebarItem } from '@/components/navigation/SidebarNavigation';
 
-import {
-  SidebarContainer,
-  SidebarItem,
-} from '@/components/navigation/SidebarNavigation';
+// Define strict type for the filter
+type FilterType = 'all' | 'ordinance' | 'resolution' | 'executive_order';
 
 interface LegislationSidebarProps {
   filterType: string;
-  setFilterType: (type: Person | DocumentItem | Session) => void;
+  setFilterType: (type: FilterType) => void;
 }
 
 export default function LegislationSidebar({
@@ -29,7 +28,7 @@ export default function LegislationSidebar({
           label={cat.label}
           icon={cat.icon}
           isActive={filterType === cat.id}
-          onClick={() => setFilterType(cat.id)}
+          onClick={() => setFilterType(cat.id as FilterType)}
         />
       ))}
     </SidebarContainer>
