@@ -31,6 +31,85 @@ To empower the citizens of Los Baños with transparent access to municipal servi
 
 ---
 
+## Project Structure
+
+```
+betterlb/
+├── e2e/                         # End-to-end tests
+│   └── utils/                   # Test helpers and shared testing logic
+├── functions/                   # Serverless / backend functions
+│   └── api/                     # API endpoints and handlers
+├── pipeline/                    # Data processing pipeline (Python side)
+│   ├── data/                    # Structured source documents
+│   │   └── pdfs/                # Source legislative PDFs
+│   │       ├── executive_orders/
+│   │       ├── ordinances/
+│   │       └── resolutions/
+│   └── __pycache__/             # Python cache (auto-generated)
+├── public/                      # Static public assets
+│   ├── assets/                  # General media assets
+│   ├── locales/                 # Translation files
+│   └── logos/                   # Logo exports
+├── raw_data/                    # Unprocessed data before pipeline cleanup
+├── scripts/                     # Automation, maintenance, and build scripts
+├── src/                         # Main application source code
+│   ├── components/              # Reusable UI components
+│   │   ├── data-display/        # Tables, cards, and record viewers
+│   │   ├── home/                # Homepage-specific components
+│   │   ├── layout/              # Layout wrappers, grids, headers, footers
+│   │   ├── map/                 # Map visualizations and geospatial UI
+│   │   ├── navigation/          # Menus, navbars, breadcrumbs
+│   │   ├── search/              # Search bars, filters, query UI
+│   │   ├── ui/                  # Generic UI elements (buttons, modals, etc.)
+│   │   └── widgets/             # Small reusable info widgets
+│   ├── constants/               # App-wide constant values and config
+│   ├── data/                    # Structured frontend data layer
+│   │   ├── about/               # About page content
+│   │   ├── directory/           # Government directory datasets
+│   │   │   └── schema/          # Data schemas for directory records
+│   │   ├── legislation/         # Legislative data
+│   │   │   ├── committees/
+│   │   │   ├── documents/
+│   │   │   │   └── sb_12/       # Session-specific legislative docs
+│   │   │   │       └── resolutions/
+│   │   │   ├── persons/         # Councilors, authors, sponsors
+│   │   │   ├── sessions/        # Legislative sessions
+│   │   │   │   └── sb_12/
+│   │   │   └── term/            # Term metadata
+│   │   ├── schema/              # Global data schemas
+│   │   ├── services/            # Public service datasets
+│   │   │   └── categories/      # Service classifications
+│   │   ├── statistics/          # Municipality statistics datasets
+│   │   └── transparency/        # Transparency and governance data
+│   ├── hooks/                   # Custom reusable frontend hooks
+│   ├── i18n/                    # Internationalization setup and config
+│   ├── lib/                     # Utility libraries and helpers
+│   ├── pages/                   # Route-level pages (site sections)
+│   │   ├── about/
+│   │   ├── accessibility/
+│   │   ├── contribute/
+│   │   ├── data/                # Open data portal pages
+│   │   ├── government/          # Government structure pages
+│   │   │   ├── barangays/
+│   │   │   ├── departments/
+│   │   │   ├── elected-officials/
+│   │   │   └── executive/
+│   │   ├── legislation/         # Legislative portal for Ordinances/Resolutions/Executive Orders
+│   │   ├── services/            # Public services portal
+│   │   ├── sitemap/             # Human-readable sitemap
+│   │   ├── statistics/          # Statistics portal
+│   │   └── transparency/        # Transparency portal
+│   │       ├── bids/
+│   │       ├── components/
+│   │       ├── financial/
+│   │       ├── infrastructure/
+│   │       └── procurement/
+│   └── types/                   # Type definitions (TypeScript or schemas)
+└── (root config files)          # package.json, build configs, etc.
+
+```
+---
+
 ## 🚀 How to Run Locally
 
 ### 1. Clone and Install
