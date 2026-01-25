@@ -1,4 +1,4 @@
-import { HourlyForecast, WeatherData } from '../types';
+import { WeatherData, HourlyForecast } from '../types';
 import { fetchWithCache } from './api';
 
 /**
@@ -29,17 +29,28 @@ export const mapWeatherIconToLucide = (iconCode: string): string => {
 };
 
 /**
- * Fetch weather data from API and transform to front-end type
+ * Fetch weather data for Los Baños and transform to frontend type
  */
 export const fetchWeatherData = async (): Promise<WeatherData[]> => {
-  const data = await fetchWithCache('/api/weather');
-  const cityKey = Object.keys(data)[0]; // Only 1 city
-  const city = data[cityKey];
+  // Always fetch the specific city
+  let data = await fetchWithCache('/api/weather?city=Los%20Baños');
 
-  // Transform 3-hour forecast data
+  // If KV is empty or city missing, fallback to update
+  if (!data || Object.keys(data).length === 0 || !data['los_baños']) {
+    data = await fetchWithCache('/api/weather?update=true');
+  }
+
+  const city = data['los_baños'];
+  if (!city) {
+    // Fallback in case API completely failed
+    console.warn('No weather data returned for Los Baños');
+    return [];
+  }
+
+  // Transform 3-hour forecast (first 4 entries)
   const hourly: HourlyForecast[] = (city.hourly || [])
     .slice(0, 4)
-    .map((h: any) => ({
+    .map((h: HourlyForecast) => ({
       hour: new Date(h.dt * 1000).toLocaleTimeString([], {
         hour: 'numeric',
         hour12: true,
@@ -49,13 +60,15 @@ export const fetchWeatherData = async (): Promise<WeatherData[]> => {
     }));
 
   const weatherData: WeatherData = {
-    location: city.name || cityKey,
-    temperature: Math.round(city.main.temp),
-    condition: city.weather[0].description,
-    humidity: city.main.humidity,
-    windSpeed: city.wind.speed,
-    icon: mapWeatherIconToLucide(city.weather[0].icon),
+    location: city.name || 'Los Baños',
+    temperature: Math.round(city.main?.temp ?? 0),
+    condition: city.weather?.[0]?.description ?? 'Unknown',
+    humidity: city.main?.humidity ?? 0,
+    windSpeed: city.wind?.speed ?? 0,
+    icon: mapWeatherIconToLucide(city.weather?.[0]?.icon ?? '01d'),
     hourly,
+    pressure: city.main?.pressure ?? 0,
+    visibility: Math.round((city.visibility ?? 0) / 1000),
   };
 
   return [weatherData];

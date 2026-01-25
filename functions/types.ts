@@ -18,14 +18,62 @@ export interface Env {
   CF_API_TOKEN?: string;
 }
 
+// Interface for Philippine city coordinates
+export interface CityCoordinates {
+  name: string;
+  lat: number;
+  lon: number;
+}
+
+// Interface for OpenWeatherMap API response
+export interface OpenWeatherMapResponse {
+  name?: string;
+  coord?: { lat: number; lon: number };
+  weather?: Array<{
+    id: number;
+    main: string;
+    description: string;
+    icon: string;
+  }>;
+  main?: {
+    temp: number;
+    feels_like: number;
+    temp_min: number;
+    temp_max: number;
+    pressure: number;
+    humidity: number;
+  };
+  visibility?: number;
+  wind?: { speed: number; deg: number };
+  clouds?: { all: number };
+  rain?: Record<string, number>;
+  dt?: number;
+  sys?: Record<string, unknown>;
+  timezone?: number;
+  id?: number;
+}
+
+// Enhanced hourly forecast with detailed information
 export interface HourlyForecast {
   dt: number;
   temp: number;
+  feels_like: number;
   icon: string;
+  description: string;
+  humidity: number;
+  wind_speed: number;
 }
 
+// Comprehensive weather data structure (API response format)
 export interface WeatherData {
   name: string;
+  coordinates: { lat: number; lon: number };
+  weather: Array<{
+    id: number;
+    main: string;
+    description: string;
+    icon: string;
+  }>;
   main: {
     temp: number;
     feels_like: number;
@@ -34,14 +82,19 @@ export interface WeatherData {
     pressure: number;
     humidity: number;
   };
-  weather: Array<{
-    id: number;
-    main: string;
-    description: string;
-    icon: string;
-  }>;
+  visibility: number;
   wind: { speed: number; deg: number };
   clouds: { all: number };
+  rain?: Record<string, number>;
   dt: number;
-  hourly?: HourlyForecast[];
+  sys: Record<string, unknown>;
+  timezone: number;
+  id: number;
+  timestamp: string;
+  hourly: HourlyForecast[];
+}
+
+// Interface for weather response data (key-value map)
+export interface WeatherResponseData {
+  [cityName: string]: WeatherData;
 }
