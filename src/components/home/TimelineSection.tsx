@@ -39,11 +39,11 @@ export default function TimelineSection() {
     : highlightsData.slice(0, COLLAPSE_LIMIT);
 
   return (
-    <section className='border-t border-slate-200 bg-slate-50 py-16'>
-      <div className='container mx-auto max-w-6xl px-4'>
+    <section className='py-12 border-t border-slate-200 bg-slate-50'>
+      <div className='container px-4 mx-auto'>
         {/* Header */}
-        <div className='mb-10 text-center'>
-          <h2 className='text-2xl font-extrabold tracking-tight text-slate-900 md:text-3xl'>
+        <div className='mb-12 text-center'>
+          <h2 className='mb-4 text-2xl font-bold text-gray-900 md:text-3xl'>
             History of Los Baños
           </h2>
         </div>
@@ -56,24 +56,24 @@ export default function TimelineSection() {
               {visibleHistory.map((event, idx) => (
                 <div
                   key={idx}
-                  className='group animate-in fade-in slide-in-from-left-4 relative pl-12 duration-300'
+                  className='relative pl-12 duration-300 group animate-in fade-in slide-in-from-left-4'
                   style={{ animationDelay: `${idx * 50}ms` }}
                 >
                   {/* Dot Marker */}
-                  <div className='absolute top-3 left-0 flex h-8 w-8 items-center justify-center'>
-                    <div className='border-primary-600 group-hover:bg-primary-600 h-3 w-3 rounded-full border-2 bg-white shadow-sm transition-all duration-300 group-hover:scale-125' />
+                  <div className='flex absolute left-0 top-3 justify-center items-center w-8 h-8'>
+                    <div className='w-3 h-3 bg-white rounded-full border-2 shadow-sm transition-all duration-300 border-primary-600 group-hover:bg-primary-600 group-hover:scale-125' />
                   </div>
 
                   <Card
                     hoverable
-                    className='hover:border-primary-200 border-slate-200 shadow-sm transition-all hover:shadow-md'
+                    className='shadow-sm transition-all hover:border-primary-200 border-slate-200 hover:shadow-md'
                   >
-                    <CardContent className='flex flex-col items-start gap-4 p-4 sm:flex-row sm:p-5'>
-                      <span className='bg-primary-600 inline-flex shrink-0 items-center justify-center rounded-lg px-3 py-1 text-xs font-bold text-white shadow-sm'>
+                    <CardContent className='flex flex-col gap-4 items-start p-4 sm:flex-row sm:p-5'>
+                      <span className='inline-flex justify-center items-center px-3 py-1 text-xs font-bold text-white rounded-lg shadow-sm bg-primary-600 shrink-0'>
                         {event.year}
                       </span>
                       <div>
-                        <h3 className='mb-1 text-base leading-tight font-bold text-slate-900'>
+                        <h3 className='mb-1 text-base font-bold leading-tight text-slate-900'>
                           {event.title}
                         </h3>
                         <p className='text-xs leading-relaxed text-slate-600 sm:text-sm'>
@@ -94,19 +94,19 @@ export default function TimelineSection() {
               return (
                 <div
                   key={idx}
-                  className='group animate-in fade-in slide-in-from-right-4 duration-300'
+                  className='duration-300 group animate-in fade-in slide-in-from-right-4'
                   style={{ animationDelay: `${idx * 50}ms` }}
                 >
                   <Card
                     hoverable
-                    className='border-slate-200 bg-white shadow-sm transition-all hover:shadow-md'
+                    className='bg-white shadow-sm transition-all border-slate-200 hover:shadow-md'
                   >
                     <CardContent className='p-5'>
-                      <div className='mb-3 flex items-center gap-3'>
-                        <div className='bg-primary-600 flex h-10 w-10 items-center justify-center rounded-xl text-white shadow-sm'>
-                          <Icon className='h-5 w-5' />
+                      <div className='flex gap-3 items-center mb-3'>
+                        <div className='flex justify-center items-center w-10 h-10 text-white rounded-xl shadow-sm bg-primary-600'>
+                          <Icon className='w-5 h-5' />
                         </div>
-                        <h4 className='text-sm leading-tight font-bold text-slate-900'>
+                        <h4 className='text-sm font-bold leading-tight text-slate-900'>
                           {item.title}
                         </h4>
                       </div>
@@ -124,10 +124,10 @@ export default function TimelineSection() {
         {/* Show More / Show Less */}
         {(historyData.length > COLLAPSE_LIMIT ||
           highlightsData.length > COLLAPSE_LIMIT) && (
-          <div className='mt-8 flex justify-center'>
+          <div className='flex justify-center mt-8'>
             <button
               onClick={() => setShowAll(!showAll)}
-              className='group text-primary-600 bg-primary-50 hover:bg-primary-100 flex items-center gap-2 rounded-lg px-6 py-3 font-semibold transition-all duration-200 hover:shadow-md'
+              className='flex gap-2 items-center px-6 py-3 font-semibold rounded-lg transition-all duration-200 group text-primary-600 bg-primary-50 hover:bg-primary-100 hover:shadow-md'
             >
               <span>{showAll ? 'Show Less' : 'Show More'}</span>
               <ChevronDown

@@ -107,10 +107,16 @@ export interface Service {
 }
 
 export interface HourlyForecast {
-  hour: string;
-  temperature: number;
+  dt: number;
+  temp: number;
+  feels_like: number;
   icon: string;
+  description: string;
+  humidity: number;
+  wind_speed: number;
+  hour?: string; 
 }
+
 
 export interface WeatherData {
   location: string;
@@ -119,6 +125,8 @@ export interface WeatherData {
   humidity: number;
   windSpeed: number;
   icon: string;
+  pressure: number;
+  visibility: number;
   hourly: HourlyForecast[];
 }
 
