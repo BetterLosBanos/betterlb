@@ -1,96 +1,97 @@
 @import 'tailwindcss';
 
 @theme {
-  /* Fonts */
-  --font-sans: 'Figtree', ui-sans-serif, sans-serif;
+  /* --- TYPOGRAPHY --- */
+  /* Keeping Figtree as it is close to Inter but distinct for your brand */
+  --font-sans: 'Figtree', ui-sans-serif, system-ui, sans-serif;
 
-  /* Semantic Aliases */
+  /* --- SEMANTIC ALIASES --- */
+  /* These map your specific domain needs to the color palette below */
   --color-brand-executive: var(--color-primary-600);
-  --color-brand-legislative: var(--color-secondary-600);
+  --color-brand-legislative: var(--color-orange-600); /* Renamed to orange to match guide */
   --color-status-verified: var(--color-emerald-600);
-  --color-status-audit: var(--color-slate-400);
+  --color-status-audit: var(--color-gray-500);
 
-  /* Primary (blue) */
-  --color-primary-50: #e6f0fd;
-  --color-primary-100: #cce0fb;
-  --color-primary-200: #99c2f7;
-  --color-primary-300: #66a3f3;
-  --color-primary-400: #3385ef;
-  --color-primary-500: #0066eb;
-  --color-primary-600: #0052bc;
-  --color-primary-700: #003d8d;
-  --color-primary-800: #00295e;
-  --color-primary-900: #00142f;
+  /* --- COLOR PALETTE (From Design Guide) --- */
+  
+  /* Primary (Kapwa Blue) */
+  /* Based on 500: #3b82f6, 600: #2563eb */
+  --color-primary-50: #eff6ff;
+  --color-primary-100: #dbeafe;
+  --color-primary-200: #bfdbfe;
+  --color-primary-300: #93c5fd;
+  --color-primary-400: #60a5fa;
+  --color-primary-500: #3b82f6; /* Design Guide Standard */
+  --color-primary-600: #2563eb; /* Design Guide Standard */
+  --color-primary-700: #1d4ed8; /* Design Guide Standard */
+  --color-primary-800: #1e40af;
+  --color-primary-900: #1e3a8a;
+  --color-primary-950: #172554;
 
-  /* Secondary (orange) */
-  --color-secondary-50: #ffede6;
-  --color-secondary-100: #ffdbcc;
-  --color-secondary-200: #ffb799;
-  --color-secondary-300: #ff9466;
-  --color-secondary-400: #ff7033;
-  --color-secondary-500: #ff4d00;
-  --color-secondary-600: #cc3e00;
-  --color-secondary-700: #992e00;
-  --color-secondary-800: #661f00;
-  --color-secondary-900: #330f00;
+  /* Secondary / CivicTech (Orange) */
+  /* Based on 500: #f97316, 600: #ea580c */
+  --color-secondary-50: #fff7ed;
+  --color-secondary-100: #ffedd5;
+  --color-secondary-200: #fed7aa;
+  --color-secondary-300: #fdba74;
+  --color-secondary-400: #fb923c;
+  --color-secondary-500: #f97316; /* Design Guide Standard */
+  --color-secondary-600: #ea580c; /* Design Guide Standard */
+  --color-secondary-700: #c2410c;
+  --color-secondary-800: #9a3412;
+  --color-secondary-900: #7c2d12;
 
-  /* Accent (yellow/gold) */
-  --color-accent-50: #fef3e6;
-  --color-accent-100: #fde7cc;
-  --color-accent-200: #fbd099;
-  --color-accent-300: #f9b866;
-  --color-accent-400: #f7a133;
-  --color-accent-500: #f58900;
-  --color-accent-600: #c46e00;
-  --color-accent-700: #935200;
-  --color-accent-800: #623700;
-  --color-accent-900: #311b00;
+  /* Accent (Pink - From Guidelines) */
+  --color-accent-50: #fdf2f8;
+  --color-accent-100: #fce7f3;
+  --color-accent-200: #fbcfe8;
+  --color-accent-300: #f9a8d4;
+  --color-accent-400: #f472b6;
+  --color-accent-500: #ec4899; /* Design Guide Standard */
+  --color-accent-600: #db2777; /* Design Guide Standard */
+  --color-accent-700: #be185d;
+  --color-accent-800: #9d174d;
+  --color-accent-900: #831843;
 
-  /* Semantic */
-  --color-success-50: #e6f7ef;
-  --color-success-100: #ccefdf;
-  --color-success-200: #99dfbf;
-  --color-success-300: #66cf9f;
-  --color-success-400: #33bf7f;
-  --color-success-500: #00af5f;
-  --color-success-600: #008c4c;
-  --color-success-700: #006939;
-  --color-success-800: #004626;
-  --color-success-900: #002313;
+  /* Neutral (Gray - Matching Design Guide) */
+  /* Replaces previous Slate to align with Guide's #111827/Gray-900 */
+  --color-slate-50: #f9fafb;
+  --color-slate-100: #f3f4f6;
+  --color-slate-200: #e5e7eb;
+  --color-slate-300: #d1d5db;
+  --color-slate-400: #9ca3af;
+  --color-slate-500: #6b7280; /* Design Guide Standard */
+  --color-slate-600: #4b5563;
+  --color-slate-700: #374151; /* Design Guide Standard */
+  --color-slate-800: #1f2937;
+  --color-slate-900: #111827; /* Design Guide Standard */
+  --color-slate-950: #030712;
 
-  --color-warning-50: #fff8e6;
-  --color-warning-100: #fff1cc;
-  --color-warning-200: #ffe399;
-  --color-warning-300: #ffd566;
-  --color-warning-400: #ffc733;
-  --color-warning-500: #ffb900;
-  --color-warning-600: #cc9400;
-  --color-warning-700: #996f00;
-  --color-warning-800: #664a00;
-  --color-warning-900: #332500;
+  /* Keep legacy gray mapping for compatibility */
+  --color-gray-50: var(--color-slate-50);
+  --color-gray-100: var(--color-slate-100);
+  --color-gray-200: var(--color-slate-200);
+  --color-gray-300: var(--color-slate-300);
+  --color-gray-400: var(--color-slate-400);
+  --color-gray-500: var(--color-slate-500);
+  --color-gray-600: var(--color-slate-600);
+  --color-gray-700: var(--color-slate-700);
+  --color-gray-800: var(--color-slate-800);
+  --color-gray-900: var(--color-slate-900);
+  --color-gray-950: var(--color-slate-950);
 
-  --color-error-50: #fceaea;
-  --color-error-100: #f9d5d5;
-  --color-error-200: #f3abab;
-  --color-error-300: #ed8282;
-  --color-error-400: #e75858;
-  --color-error-500: #e12e2e;
-  --color-error-600: #b42525;
-  --color-error-700: #871c1c;
-  --color-error-800: #5a1212;
-  --color-error-900: #2d0909;
+  /* Semantic Status Colors */
+  --color-success-50: #ecfdf5;
+  --color-success-500: #10b981;
+  --color-success-600: #059669;
+  
+  --color-warning-50: #fffbeb;
+  --color-warning-500: #f59e0b;
+  --color-warning-600: #d97706;
 
-  /* Gray */
-  --color-gray-50: #f8f9fa;
-  --color-gray-100: #f1f3f5;
-  --color-gray-200: #e9ecef;
-  --color-gray-300: #dee2e6;
-  --color-gray-400: #ced4da;
-  --color-gray-500: #adb5bd;
-  --color-gray-600: #868e96;
-  --color-gray-700: #495057;
-  --color-gray-800: #343a40;
-  --color-gray-900: #212529;
+  --color-error-50: #fef2f2;
+  --color-error-500: #ef4444; /* Design Guide Red-500 */
+  --color-error-600: #dc2626;
 }
 
 @layer base {
@@ -99,134 +100,108 @@
   ::before,
   ::backdrop,
   ::file-selector-button {
-    border-color: var(--color-gray-200, currentcolor);
+    border-color: var(--color-slate-200, currentcolor);
   }
 }
 
-/* Leaflet popup fixes for Tailwind CSS conflicts */
+/* --- LEAFLET MAP OVERRIDES --- */
 .leaflet-popup-content-wrapper {
-  border-radius: 8px !important;
-  box-shadow:
-    0 4px 6px -1px rgba(0, 0, 0, 0.1),
-    0 2px 4px -1px rgba(0, 0, 0, 0.06) !important;
+  border-radius: 12px !important;
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05) !important;
 }
 
 .leaflet-popup-content {
   margin: 0 !important;
   line-height: 1.5 !important;
+  font-family: var(--font-sans) !important;
   font-size: 14px !important;
-  color: #374151 !important;
+  color: var(--color-slate-700) !important;
   padding: 16px;
-  min-width: 300px;
+  min-width: 280px;
 }
 
 .leaflet-popup-tip {
   background: white !important;
-  border: none !important;
-  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1) !important;
+  box-shadow: none !important;
 }
 
 .leaflet-popup-close-button {
-  color: #6b7280 !important;
-  font-size: 18px !important;
-  font-weight: bold !important;
-  padding: 4px 8px !important;
-  margin-right: 12px !important;
+  color: var(--color-slate-400) !important;
+  padding: 8px !important;
 }
 
-.leaflet-popup-close-button:hover {
-  color: #374151 !important;
-  background: transparent !important;
-}
-
-/* Ensure popup content displays properly */
-.leaflet-popup .leaflet-popup-content-wrapper .leaflet-popup-content {
-  width: auto !important;
-  white-space: normal !important;
-}
-
+/* --- ANIMATIONS --- */
 @keyframes marquee {
-  0% {
-    transform: translateX(100%);
-  }
-  100% {
-    transform: translateX(-100%);
-  }
+  0% { transform: translateX(100%); }
+  100% { transform: translateX(-100%); }
 }
-
 .animate-marquee {
   animation: marquee 30s linear infinite;
 }
 
 @keyframes fadeIn {
-  0% {
-    opacity: 0;
-  }
-  100% {
-    opacity: 1;
-  }
+  from { opacity: 0; }
+  to { opacity: 1; }
 }
-@keyframes slideIn {
-  0% {
-    transform: translateY(10px);
-    opacity: 0;
-  }
-  100% {
-    transform: translateY(0);
-    opacity: 1;
-  }
+@keyframes slideUp {
+  from { transform: translateY(10px); opacity: 0; }
+  to { transform: translateY(0); opacity: 1; }
 }
 
-/* Utility classes to mirror v3 `animation` map */
 @utility animate-fade-in {
   animation: fadeIn 0.5s ease-in-out;
 }
 
 @utility animate-slide-in {
-  animation: slideIn 0.5s ease-out;
+  animation: slideUp 0.5s ease-out;
 }
 
-/* Custom scrollbar styles */
+/* --- SCROLLBAR --- */
 .scrollbar-thin {
   scrollbar-width: thin;
-  scrollbar-color: var(--color-gray-300) var(--color-gray-100);
+  scrollbar-color: var(--color-slate-300) var(--color-slate-100);
 }
-
 .scrollbar-thin::-webkit-scrollbar {
-  width: 4px;
+  width: 6px;
 }
-
 .scrollbar-thin::-webkit-scrollbar-track {
-  background: var(--color-gray-100);
-  border-radius: 2px;
+  background: var(--color-slate-100);
 }
-
 .scrollbar-thin::-webkit-scrollbar-thumb {
-  background: var(--color-gray-300);
-  border-radius: 2px;
+  background: var(--color-slate-300);
+  border-radius: 4px;
 }
-
 .scrollbar-thin::-webkit-scrollbar-thumb:hover {
-  background: var(--color-gray-400);
+  background: var(--color-slate-400);
 }
 
 @layer components {
-  /* The BetterGov Header Style */
+  /* 
+     Design Guide Typography Implementation 
+     Matching: "Heading 1 - text-4xl font-bold"
+  */
+  
   .heading-hero {
-    @apply text-3xl leading-tight font-extrabold tracking-tight text-slate-900 md:text-5xl;
+    @apply text-3xl font-bold tracking-tight text-slate-900 md:text-5xl;
+  }
+  
+  .heading-section {
+    @apply text-2xl font-bold text-slate-900 md:text-3xl;
   }
 
-  /* The BetterGov Small Label Style */
+  /* Matching: "Small - text-sm" + "Caps" from previous system */
   .heading-label {
-    @apply text-[10px] font-bold tracking-widest text-slate-400 uppercase;
+    @apply text-[10px] font-bold tracking-widest text-slate-500 uppercase;
   }
 
-  /* The BetterGov Card Style */
+  /* 
+     Design Guide Card Style
+     Matching: "p-4 bg-white border border-gray-200 rounded-lg"
+  */
   .card-better {
-    @apply rounded-2xl border border-slate-200 bg-white shadow-sm transition-all duration-200;
+    @apply rounded-xl border border-slate-200 bg-white shadow-sm transition-all duration-200;
   }
 
-  /* The BetterGov Sidebar Active Style */
   .sidebar-active {
     @apply bg-primary-50 text-primary-700 border-primary-600 border-l-2 font-semibold;
   }
