@@ -14,36 +14,87 @@ import {
 
 import { cn } from '@/lib/utils';
 
-// --- Types ---
+// ============================================================================
+// TYPES
+// ============================================================================
 
+/**
+ * Contact information for display in cards.
+ *
+ * Used by CardContactInfo to display contact details with appropriate icons.
+ */
 interface ContactInfo {
+  /** Physical address location */
   address?: string | null;
+  /** Phone number(s) - supports multiple numbers as an array */
   phone?: string | string[] | null;
+  /** Email address for contact */
   email?: string | null;
+  /** Website URL (with or without protocol) */
   website?: string | null;
 }
 
+/**
+ * Props for the main Card component.
+ *
+ * Extends standard HTML attributes for flexibility in styling.
+ */
 interface CardProps extends HTMLAttributes<HTMLElement> {
+  /** Card content to be displayed */
   children: ReactNode;
+  /** Visual style variant for the card */
   variant?: 'default' | 'featured' | 'slate' | 'compact';
+  /** Enable hover effects (elevation and border color change) */
   hover?: boolean;
 }
 
+/**
+ * Props for the CardTitle component.
+ *
+ * Allows specifying the heading level for semantic HTML.
+ */
 interface CardTitleProps extends HTMLAttributes<HTMLHeadingElement> {
+  /** Title text or content */
   children: ReactNode;
+  /** Semantic heading level for accessibility */
   level?: 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6';
 }
 
+/**
+ * Props for the CardGrid component.
+ *
+ * Creates a responsive grid layout for cards.
+ */
 interface CardGridProps extends HTMLAttributes<HTMLDivElement> {
+  /** Cards to display in the grid */
   children: ReactNode;
+  /** Number of columns (responsive breakpoints applied automatically) */
   columns?: 1 | 2 | 3 | 4;
 }
 
-// --- Components ---
+// ============================================================================
+// COMPONENTS
+// ============================================================================
 
 /**
- * 1. The Main Card Container
- * Complies with WCAG AA by providing clear boundaries and focus states.
+ * Card - Main Container Component
+ *
+ * A versatile card container that provides consistent styling, hover effects,
+ * and WCAG AA compliance with proper focus states.
+ *
+ * @remarks
+ * - Uses semantic `<article>` element for accessibility
+ * - Supports multiple visual variants for different use cases
+ * - Hover effects include elevation and border color transitions
+ * - Fully responsive with mobile-first approach
+ *
+ * @example
+ * ```tsx
+ * <Card variant="featured">
+ *   <CardHeader>Header Content</CardHeader>
+ *   <CardContent>Body Content</CardContent>
+ * </Card>
+ * ```
  */
 export const Card = forwardRef<HTMLElement, CardProps>(
   (
@@ -76,8 +127,15 @@ export const Card = forwardRef<HTMLElement, CardProps>(
 );
 Card.displayName = 'Card';
 
+// ============================================================================
+// LAYOUT SUB-COMPONENTS
+// ============================================================================
+
 /**
- * 2. Layout Sub-components
+ * CardHeader - Header Section
+ *
+ * Creates a bordered header section at the top of a card.
+ * Ideal for titles, actions, or summary information.
  */
 export const CardHeader = ({
   children,
@@ -92,6 +150,12 @@ export const CardHeader = ({
   </header>
 );
 
+/**
+ * CardContent - Main Content Area
+ *
+ * The primary content container for card body content.
+ * Provides consistent padding that's responsive.
+ */
 export const CardContent = ({
   children,
   className,
@@ -102,6 +166,12 @@ export const CardContent = ({
   </div>
 );
 
+/**
+ * CardFooter - Footer Section
+ *
+ * Creates a bordered footer section with subtle background.
+ * Useful for actions, metadata, or supplementary information.
+ */
 export const CardFooter = ({
   children,
   className,
@@ -118,8 +188,21 @@ export const CardFooter = ({
   </footer>
 );
 
+// ============================================================================
+// MEDIA & VISUALS
+// ============================================================================
+
 /**
- * 3. Media & Visuals
+ * CardImage - Image Container
+ *
+ * Displays an image with a fixed aspect ratio container.
+ * Images have a subtle zoom effect on hover when in a group.
+ *
+ * @remarks
+ * - Fixed height of 192px (h-48)
+ * - Uses object-cover for proper image scaling
+ * - Lazy loading enabled for performance
+ * - Fallback alt text provided for accessibility
  */
 export const CardImage = ({
   className,
@@ -138,13 +221,31 @@ export const CardImage = ({
   </div>
 );
 
+/**
+ * CardAvatar - Avatar/Initials Display
+ *
+ * Displays initials in a styled container when no image is available.
+ * Generates initials from the first character of the provided name.
+ *
+ * @param name - Name to generate initials from
+ * @param size - Size variant affecting dimensions and text size
+ *
+ * @example
+ * ```tsx
+ * <CardAvatar name="John Doe" size="lg" />
+ * // Displays: "J" in a large container
+ * ```
+ */
 export const CardAvatar = ({
   name,
   size = 'md',
   className,
 }: {
+  /** Name to extract initial from */
   name: string;
+  /** Size of the avatar */
   size?: 'sm' | 'md' | 'lg';
+  /** Additional CSS classes */
   className?: string;
 }) => {
   const sizes = {
@@ -152,6 +253,7 @@ export const CardAvatar = ({
     md: 'w-12 h-12 md:w-16 md:h-16 text-sm md:text-lg',
     lg: 'w-20 h-20 md:w-24 md:h-24 text-xl md:text-2xl',
   };
+
   return (
     <div
       className={cn(
@@ -166,8 +268,20 @@ export const CardAvatar = ({
   );
 };
 
+// ============================================================================
+// TYPOGRAPHY
+// ============================================================================
+
 /**
- * 4. Typography
+ * CardTitle - Card Heading
+ *
+ * Semantic heading component with configurable level.
+ * Properly sized for each heading level with consistent styling.
+ *
+ * @remarks
+ * - Default level is h3 for most card use cases
+ * - Uses tracking-tight for improved readability
+ * - All levels are semantically appropriate
  */
 export const CardTitle = ({
   children,
@@ -184,6 +298,7 @@ export const CardTitle = ({
     h5: 'text-base font-bold',
     h6: 'text-sm font-bold',
   };
+
   return (
     <Tag
       className={cn(
@@ -198,11 +313,19 @@ export const CardTitle = ({
   );
 };
 
+/**
+ * CardDescription - Supporting Text
+ *
+ * Displays secondary information with muted styling.
+ * Ideal for summaries, metadata, or explanatory text.
+ */
 export const CardDescription = ({
   children,
   className,
 }: {
+  /** Description text content */
   children: ReactNode;
+  /** Additional CSS classes */
   className?: string;
 }) => (
   <p className={cn('mt-2 text-sm leading-relaxed text-slate-500', className)}>
@@ -210,14 +333,43 @@ export const CardDescription = ({
   </p>
 );
 
+// ============================================================================
+// DATA DISPLAYS
+// ============================================================================
+
 /**
- * 5. Data Displays (Contact & Grouping)
+ * CardContactInfo - Contact Information Display
+ *
+ * Displays contact details with appropriate icons for each type of information.
+ * Handles multiple phone numbers and URL protocol detection.
+ *
+ * @remarks
+ * - Uses semantic `<address>` element (with not-italic to override default)
+ * - Icons are sized according to compact/regular mode
+ * - Website links auto-detect and add https:// protocol if missing
+ * - Email and website links open in new tabs/windows
+ *
+ * @param contact - Contact information object
+ * @param compact - Reduce spacing and icon sizes for tight layouts
+ *
+ * @example
+ * ```tsx
+ * <CardContactInfo
+ *   contact={{
+ *     address: "123 Main St",
+ *     phone: ["(049) 123-4567", "(049) 765-4321"],
+ *     email: "info@losbanos.gov.ph"
+ *   }}
+ * />
+ * ```
  */
 export const CardContactInfo = ({
   contact,
   compact = false,
 }: {
+  /** Contact information to display */
   contact: ContactInfo;
+  /** Use smaller spacing and icons */
   compact?: boolean;
 }) => {
   const iconSize = compact ? 'h-3 w-3' : 'h-4 w-4';
@@ -229,6 +381,7 @@ export const CardContactInfo = ({
         <div className='flex items-start gap-2'>
           <MapPinIcon
             className={cn('mt-0.5 shrink-0 text-slate-400', iconSize)}
+            aria-hidden="true"
           />
           <span className='leading-snug'>{contact.address}</span>
         </div>
@@ -237,6 +390,7 @@ export const CardContactInfo = ({
         <div className='flex items-start gap-2'>
           <PhoneIcon
             className={cn('mt-0.5 shrink-0 text-slate-400', iconSize)}
+            aria-hidden="true"
           />
           <span className='font-medium tabular-nums'>
             {Array.isArray(contact.phone) ? contact.phone[0] : contact.phone}
@@ -247,6 +401,7 @@ export const CardContactInfo = ({
         <div className='flex items-start gap-2'>
           <MailIcon
             className={cn('mt-0.5 shrink-0 text-slate-400', iconSize)}
+            aria-hidden="true"
           />
           <a
             href={`mailto:${contact.email}`}
@@ -260,6 +415,7 @@ export const CardContactInfo = ({
         <div className='flex items-start gap-2'>
           <ExternalLinkIcon
             className={cn('mt-0.5 shrink-0 text-slate-400', iconSize)}
+            aria-hidden="true"
           />
           <a
             href={
@@ -279,6 +435,20 @@ export const CardContactInfo = ({
   );
 };
 
+/**
+ * CardGrid - Responsive Grid Layout
+ *
+ * Creates a responsive grid for displaying multiple cards.
+ * Automatically handles breakpoints based on column count.
+ *
+ * @remarks
+ * - 1 column: Always single column
+ * - 2 columns: 1 col mobile, 2 cols tablet+
+ * - 3 columns: 1 col mobile, 2 cols tablet, 3 cols desktop
+ * - 4 columns: 1 col mobile, 2 cols tablet, 4 cols desktop
+ *
+ * @param columns - Number of columns (default: 3)
+ */
 export const CardGrid = ({
   children,
   columns = 3,
@@ -290,6 +460,7 @@ export const CardGrid = ({
     3: 'grid-cols-1 md:grid-cols-2 lg:grid-cols-3',
     4: 'grid-cols-1 md:grid-cols-2 lg:grid-cols-4',
   };
+
   return (
     <div
       className={cn(
@@ -304,11 +475,19 @@ export const CardGrid = ({
   );
 };
 
+/**
+ * CardList - Vertical List Layout
+ *
+ * Displays cards in a vertical stack with consistent spacing.
+ * Alternative to CardGrid for different layout needs.
+ */
 export const CardList = ({
   children,
   className,
 }: {
+  /** Cards to display in a list */
   children: ReactNode;
+  /** Additional CSS classes */
   className?: string;
 }) => (
   <div className={cn('space-y-4', className)} role='list'>
@@ -316,6 +495,12 @@ export const CardList = ({
   </div>
 );
 
+/**
+ * CardDivider - Visual Separator
+ *
+ * Creates a horizontal divider with consistent styling.
+ * Useful for separating sections within a card.
+ */
 export const CardDivider = ({ className }: { className?: string }) => (
   <hr className={cn('border-slate-100', className)} />
 );

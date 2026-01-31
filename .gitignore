@@ -45,3 +45,4 @@ wrangler.toml
 /raw_data
 _worker.bundle
 /pipeline/
+CLAUDE.md
