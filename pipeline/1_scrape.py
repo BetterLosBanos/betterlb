@@ -3,11 +3,14 @@ import requests
 import os
 import re
 import urllib.parse
+from pathlib import Path
 from bs4 import BeautifulSoup
 from datetime import datetime
 from utils import generate_id, get_term_info
 
-os.makedirs("pipeline/data", exist_ok=True)
+# Data directory - relative to this script
+DATA_DIR = Path(__file__).parent / "data"
+DATA_DIR.mkdir(exist_ok=True)
 
 SOURCES = [
     {"type": "resolution", "url": "https://losbanos.gov.ph/municipal_resolutions"},
@@ -15,7 +18,7 @@ SOURCES = [
     {"type": "executive_order", "url": "https://losbanos.gov.ph/executive"}
 ]
 
-CSV_PATH = "pipeline/data/documents.csv"
+CSV_PATH = DATA_DIR / "documents.csv"
 HEADERS = {"User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36"}
 
 def parse_date(date_str):

@@ -4,11 +4,13 @@ import os
 import urllib3
 from concurrent.futures import ThreadPoolExecutor
 from tqdm import tqdm
+from pathlib import Path
 
 urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
 
-CSV_PATH = "pipeline/data/documents.csv"
-PDF_DIR = "pipeline/data/pdfs"
+DATA_DIR = Path(__file__).parent / "data"
+CSV_PATH = DATA_DIR / "documents.csv"
+PDF_DIR = DATA_DIR / "pdfs"
 MAX_WORKERS = 10
 HEADERS = {"User-Agent": "Mozilla/5.0"}
 
