@@ -5,7 +5,8 @@ export interface Env {
   BROWSER_KV: KVNamespace;
 
   // D1 Database
-  BETTERGOV_DB: D1Database;
+  DB: D1Database;
+  BETTERGOV_DB: D1Database; // Legacy name for backward compatibility
 
   // Environment variables
   WEATHER_API_KEY?: string;
@@ -16,6 +17,11 @@ export interface Env {
   JINA_API_KEY?: string;
   CF_ACCOUNT_ID?: string;
   CF_API_TOKEN?: string;
+
+  // Admin Authentication
+  GITHUB_CLIENT_ID?: string;
+  GITHUB_CLIENT_SECRET?: string;
+  AUTHORIZED_USERS?: string;
 }
 
 // Interface for Philippine city coordinates
