@@ -1,3 +1,12 @@
+/**
+ * Type Definitions
+ *
+ * Central TypeScript type definitions and interfaces used throughout the application.
+ * Types are organized by domain and function.
+ *
+ * @module types
+ */
+
 export type LanguageType =
   | 'en' // English
   | 'fil'; // Filipino (standardized Tagalog)
@@ -196,3 +205,10 @@ export interface ForexRate {
   code: string;
   rate: number;
 }
+
+// Re-export domain-specific types from their respective modules
+export * from './budgetTypes';
+export * from './legislationTypes';
+export * from './populationTypes';
+export * from './servicesTypes';
+export * from './visa';
