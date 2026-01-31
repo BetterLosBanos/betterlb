@@ -2,9 +2,10 @@ import pandas as pd
 import os
 import re
 from datetime import datetime
+from pathlib import Path
 from utils import generate_id, get_term_info
 
-CSV_PATH = "pipeline/data/documents.csv"
+CSV_PATH = Path(__file__).parent / "data" / "documents.csv"
 
 # --- CONFIGURATION ---
 ACRONYMS = [

@@ -4,7 +4,7 @@ import { cn } from '../../lib/utils';
 
 interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   children: ReactNode;
-  variant?: 'primary' | 'secondary' | 'outline' | 'ghost' | 'link';
+  variant?: 'primary' | 'secondary' | 'outline' | 'ghost' | 'link' | 'success';
   size?: 'sm' | 'md' | 'lg';
   fullWidth?: boolean;
   isLoading?: boolean;
@@ -29,6 +29,8 @@ const Button = ({
       'bg-primary-500 text-white hover:bg-primary-600 focus:ring-primary-500',
     secondary:
       'bg-secondary-500 text-white hover:bg-secondary-600 focus:ring-secondary-500',
+    success:
+      'bg-emerald-500 text-white hover:bg-emerald-600 focus:ring-emerald-500',
     outline:
       'bg-transparent border border-gray-300 text-gray-700 hover:bg-gray-50 focus:ring-primary-500',
     ghost: 'bg-transparent text-gray-700 hover:bg-gray-100 focus:ring-gray-500',

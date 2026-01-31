@@ -3,6 +3,7 @@ import {
   Route,
   BrowserRouter as Router,
   Routes,
+  useLocation,
 } from 'react-router-dom';
 
 import { NuqsAdapter } from 'nuqs/adapters/react-router/v6';
@@ -63,16 +64,33 @@ import InfrastructurePage from '@/pages/transparency/infrastructure';
 import InfrastructureDetail from '@/pages/transparency/infrastructure/[project]';
 import TransparencyLayout from '@/pages/transparency/layout';
 import ProcurementPage from '@/pages/transparency/procurement';
+// Admin Routes
+import AdminLayout from '@/pages/admin/layout';
+import AdminDashboard from '@/pages/admin/index';
+import AdminErrorLog from '@/pages/admin/ErrorLog';
+import AdminReviewQueue from '@/pages/admin/ReviewQueue';
+import AdminReconcile from '@/pages/admin/Reconcile';
 
 function App() {
   return (
     <Router>
       <NuqsAdapter>
-        <div className='flex min-h-screen flex-col'>
-          <SEO />
-          <Navbar />
-          <Ticker />
-          <ScrollToTop />
+        <AppContent />
+      </NuqsAdapter>
+    </Router>
+  );
+}
+
+function AppContent() {
+  const location = useLocation();
+  const isAdminRoute = location.pathname.startsWith('/admin');
+
+  return (
+    <div className='flex min-h-screen flex-col'>
+      <SEO />
+      {!isAdminRoute && <Navbar />}
+      {!isAdminRoute && <Ticker />}
+      <ScrollToTop />
 
           <Routes>
             {/* Standard Global Pages */}
@@ -172,14 +190,20 @@ function App() {
             {/* Community Contribution Flow */}
             <Route path='contribute' element={<ContributePage />} />
 
+            {/* Admin Routes */}
+            <Route path='/admin' element={<AdminLayout />}>
+              <Route index element={<AdminDashboard />} />
+              <Route path='errors' element={<AdminErrorLog />} />
+              <Route path='review-queue' element={<AdminReviewQueue />} />
+              <Route path='reconcile' element={<AdminReconcile />} />
+            </Route>
+
             {/* Catch-all 404 */}
             <Route path='*' element={<NotFound />} />
           </Routes>
 
-          <Footer />
+          {!isAdminRoute && <Footer />}
         </div>
-      </NuqsAdapter>
-    </Router>
   );
 }
 

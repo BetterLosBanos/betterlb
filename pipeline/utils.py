@@ -1,13 +1,14 @@
 import pandas as pd
 import urllib3
 import os
+from pathlib import Path
 from slugify import slugify
 from thefuzz import process
 
 # Disable SSL Warnings
 urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
 
-TERMS_CSV = "pipeline/data/terms.csv"
+TERMS_CSV = Path(__file__).parent / "data" / "terms.csv"
 _TERMS_CACHE = None
 
 def get_term_info(date_str):
