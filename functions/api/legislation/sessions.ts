@@ -59,28 +59,108 @@ async function getSessionsList(context: { request: Request; env: Env }) {
 
   const termId = url.searchParams.get('term');
   const type = url.searchParams.get('type');
-  const limit = parseInt(url.searchParams.get('limit') || '50');
+  const limit = parseInt(url.searchParams.get('limit') || '1000');
   const offset = parseInt(url.searchParams.get('offset') || '0');
 
-  let sql = 'SELECT * FROM sessions WHERE 1=1';
+  let sql = `
+    SELECT s.*, t.term_number
+    FROM sessions s
+    LEFT JOIN terms t ON s.term_id = t.id
+    WHERE 1=1
+  `;
   const params: string[] = [];
   let paramIndex = 1;
 
   if (termId) {
-    sql += ` AND term_id = ?${paramIndex++}`;
+    sql += ` AND s.term_id = ?${paramIndex++}`;
     params.push(termId);
   }
 
   if (type) {
-    sql += ` AND type = ?${paramIndex++}`;
+    sql += ` AND s.type = ?${paramIndex++}`;
     params.push(type);
   }
 
-  sql += ' ORDER BY date DESC, number DESC LIMIT ?' + paramIndex++ + ' OFFSET ?' + paramIndex++;
+  sql += ' ORDER BY t.term_number DESC, s.date DESC, s.number DESC LIMIT ?' + paramIndex++ + ' OFFSET ?' + paramIndex++;
   params.push(limit.toString(), offset.toString());
 
   try {
     const result = await env.BETTERLB_DB.prepare(sql).bind(...params).all();
+
+    // Get all session IDs to fetch attendance data
+    const sessionIds = result.results.map((r: any) => r.id).filter(Boolean);
+
+    // Get absences for all sessions
+    let presentData: any[] = [];
+    let absentData: any[] = [];
+
+    if (sessionIds.length > 0) {
+      // Get absences from session_absences table
+      const placeholders = sessionIds.map(() => '?').join(',');
+      const absencesSql = `
+        SELECT session_id, person_id
+        FROM session_absences
+        WHERE session_id IN (${placeholders})
+      `;
+      const absencesResult = await env.BETTERLB_DB.prepare(absencesSql).bind(...sessionIds).all();
+
+      const absentSet = new Map<string, string[]>(); // session_id -> array of person_ids
+      for (const row of absencesResult.results) {
+        if (!absentSet.has(row.session_id)) {
+          absentSet.set(row.session_id, []);
+        }
+        absentSet.get(row.session_id)!.push(row.person_id);
+      }
+
+      // Get term memberships to build present lists
+      const termIds = result.results.map((r: any) => r.term_id).filter((v, i, a) => a.indexOf(v) === i);
+      if (termIds.length > 0) {
+        const termPlaceholders = termIds.map(() => '?').join(',');
+        const membershipsSql = `
+          SELECT m.person_id, m.term_id
+          FROM memberships m
+          WHERE m.term_id IN (${termPlaceholders})
+        `;
+        const membershipsResult = await env.BETTERLB_DB.prepare(membershipsSql).bind(...termIds).all();
+
+        // Group memberships by term
+        const termMembersMap = new Map<string, string[]>();
+        for (const row of membershipsResult.results) {
+          if (!termMembersMap.has(row.term_id)) {
+            termMembersMap.set(row.term_id, []);
+          }
+          termMembersMap.get(row.term_id)!.push(row.person_id);
+        }
+
+        // Build present/absent arrays for each session
+        for (const session of result.results) {
+          const termMembers = termMembersMap.get(session.term_id) || [];
+          const absentIds = absentSet.get(session.id) || [];
+          const presentIds = termMembers.filter(id => !absentIds.includes(id));
+
+          presentData.push({
+            session_id: session.id,
+            present: presentIds,
+          });
+          absentData.push({
+            session_id: session.id,
+            absent: absentIds,
+          });
+        }
+      }
+    }
+
+    // Combine session data with attendance
+    const sessions = result.results.map((session: any) => {
+      const presentEntry = presentData.find(p => p.session_id === session.id);
+      const absentEntry = absentData.find(a => a.session_id === session.id);
+
+      return {
+        ...session,
+        present: presentEntry?.present || [],
+        absent: absentEntry?.absent || [],
+      };
+    });
 
     // Get count
     let countSql = 'SELECT COUNT(*) as count FROM sessions WHERE 1=1';
@@ -100,7 +180,7 @@ async function getSessionsList(context: { request: Request; env: Env }) {
     const total = countResult?.count || 0;
 
     return Response.json({
-      sessions: result.results,
+      sessions,
       pagination: {
         total,
         limit,
