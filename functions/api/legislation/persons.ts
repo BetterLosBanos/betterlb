@@ -73,7 +73,7 @@ async function getPersonsList(context: { request: Request; env: Env }) {
   params.push(limit.toString(), offset.toString());
 
   try {
-    const result = await env.DB.prepare(sql).bind(...params).all();
+    const result = await env.BETTERLB_DB.prepare(sql).bind(...params).all();
 
     return Response.json({
       persons: result.results,
@@ -100,7 +100,7 @@ async function getPersonDetail(context: { request: Request; env: Env }) {
 
   // Get person
   const personSql = 'SELECT * FROM persons WHERE id = ?';
-  const person = await env.DB.prepare(personSql).bind(personId).first();
+  const person = await env.BETTERLB_DB.prepare(personSql).bind(personId).first();
 
   if (!person) {
     return Response.json({ error: 'Person not found' }, { status: 404 });
@@ -116,7 +116,7 @@ async function getPersonDetail(context: { request: Request; env: Env }) {
     WHERE m.person_id = ?
     ORDER BY t.term_number DESC
   `;
-  const membershipsResult = await env.DB.prepare(membershipsSql).bind(personId).all();
+  const membershipsResult = await env.BETTERLB_DB.prepare(membershipsSql).bind(personId).all();
 
   // Get committee memberships for each term
   for (const membership of membershipsResult.results) {
@@ -127,7 +127,7 @@ async function getPersonDetail(context: { request: Request; env: Env }) {
       WHERE cm.person_id = ? AND cm.term_id = ?
       ORDER BY c.name ASC
     `;
-    const committeeResult = await env.DB.prepare(committeeSql)
+    const committeeResult = await env.BETTERLB_DB.prepare(committeeSql)
       .bind(personId, (membership as any).term_id)
       .all();
     (membership as any).committees = committeeResult.results;
@@ -144,7 +144,7 @@ async function getPersonDetail(context: { request: Request; env: Env }) {
     ORDER BY d.date_enacted DESC
     LIMIT 100
   `;
-  const documentsResult = await env.DB.prepare(documentsSql).bind(personId).all();
+  const documentsResult = await env.BETTERLB_DB.prepare(documentsSql).bind(personId).all();
 
   // Calculate attendance stats (absences only)
   const attendanceSql = `
@@ -156,7 +156,7 @@ async function getPersonDetail(context: { request: Request; env: Env }) {
     LEFT JOIN session_absences sa ON sa.session_id = s.id AND sa.person_id = m.person_id
     WHERE m.person_id = ?
   `;
-  const attendanceResult = await env.DB.prepare(attendanceSql).bind(personId).first<any>();
+  const attendanceResult = await env.BETTERLB_DB.prepare(attendanceSql).bind(personId).first<any>();
 
   const totalSessions = attendanceResult?.total_sessions || 0;
   const totalAbsences = attendanceResult?.absences || 0;

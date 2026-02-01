@@ -133,7 +133,7 @@ async function getDocumentsList(context: { request: Request; env: Env }) {
   params.push(limit.toString(), offset.toString());
 
   try {
-    const result = await env.DB.prepare(sql).bind(...params).all();
+    const result = await env.BETTERLB_DB.prepare(sql).bind(...params).all();
 
     // Get count for pagination
     let countSql = 'SELECT COUNT(*) as count FROM documents d LEFT JOIN sessions s ON d.session_id = s.id WHERE 1=1';
@@ -161,7 +161,7 @@ async function getDocumentsList(context: { request: Request; env: Env }) {
       countParams.push(termId);
     }
 
-    const countResult = await env.DB.prepare(countSql).bind(...countParams).first<{ count: number }>();
+    const countResult = await env.BETTERLB_DB.prepare(countSql).bind(...countParams).first<{ count: number }>();
     const total = countResult?.count || 0;
 
     // Format results
@@ -236,7 +236,7 @@ async function getDocumentDetail(context: { request: Request; env: Env }) {
   `;
 
   try {
-    const doc = await env.DB.prepare(sql).bind(documentId).first<any>();
+    const doc = await env.BETTERLB_DB.prepare(sql).bind(documentId).first<any>();
 
     if (!doc) {
       return Response.json({ error: 'Document not found' }, { status: 404 });
@@ -249,7 +249,7 @@ async function getDocumentDetail(context: { request: Request; env: Env }) {
       JOIN persons p ON da.person_id = p.id
       WHERE da.document_id = ?
     `;
-    const authorsResult = await env.DB.prepare(authorsSql).bind(documentId).all();
+    const authorsResult = await env.BETTERLB_DB.prepare(authorsSql).bind(documentId).all();
     const authors = authorsResult.results.map((row: any) => ({
       id: row.id,
       first_name: row.first_name,
@@ -264,7 +264,7 @@ async function getDocumentDetail(context: { request: Request; env: Env }) {
       JOIN subjects s ON ds.subject_id = s.id
       WHERE ds.document_id = ?
     `;
-    const subjectsResult = await env.DB.prepare(subjectsSql).bind(documentId).all();
+    const subjectsResult = await env.BETTERLB_DB.prepare(subjectsSql).bind(documentId).all();
     const subjects = subjectsResult.results.map((row: any) => row.name);
 
     return Response.json({

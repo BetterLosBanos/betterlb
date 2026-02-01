@@ -40,7 +40,7 @@ async function getTermsList(context: { request: Request; env: Env }) {
   `;
 
   try {
-    const result = await env.DB.prepare(sql).all();
+    const result = await env.BETTERLB_DB.prepare(sql).all();
 
     // Get member count and document count for each term
     const terms = await Promise.all(
@@ -50,7 +50,7 @@ async function getTermsList(context: { request: Request; env: Env }) {
           FROM memberships
           WHERE term_id = ?
         `;
-        const memberCount = await env.DB.prepare(memberCountSql)
+        const memberCount = await env.BETTERLB_DB.prepare(memberCountSql)
           .bind(term.id)
           .first<{ count: number }>();
 
@@ -60,7 +60,7 @@ async function getTermsList(context: { request: Request; env: Env }) {
           JOIN sessions s ON d.session_id = s.id
           WHERE s.term_id = ?
         `;
-        const docCount = await env.DB.prepare(docCountSql)
+        const docCount = await env.BETTERLB_DB.prepare(docCountSql)
           .bind(term.id)
           .first<{ count: number }>();
 
@@ -113,7 +113,7 @@ async function getTermDetail(context: { request: Request; env: Env }) {
     LEFT JOIN persons pv ON t.vice_mayor_id = pv.id
     WHERE t.id = ?
   `;
-  const term = await env.DB.prepare(termSql).bind(termId).first();
+  const term = await env.BETTERLB_DB.prepare(termSql).bind(termId).first();
 
   if (!term) {
     return Response.json({ error: 'Term not found' }, { status: 404 });
@@ -133,7 +133,7 @@ async function getTermDetail(context: { request: Request; env: Env }) {
     WHERE m.term_id = ?
     ORDER BY m.rank ASC, p.last_name ASC, c.name ASC
   `;
-  const membersResult = await env.DB.prepare(membersSql).bind(termId).all();
+  const membersResult = await env.BETTERLB_DB.prepare(membersSql).bind(termId).all();
 
   // Reconstruct the frontend-expected structure: persons with memberships
   const personsMap = new Map<string, any>();
@@ -180,7 +180,7 @@ async function getTermDetail(context: { request: Request; env: Env }) {
     GROUP BY c.id, c.name, c.type
     ORDER BY c.name ASC
   `;
-  const committeesResult = await env.DB.prepare(committeesSql).bind(termId).all();
+  const committeesResult = await env.BETTERLB_DB.prepare(committeesSql).bind(termId).all();
 
   // Get session statistics
   const statsSql = `
@@ -192,7 +192,7 @@ async function getTermDetail(context: { request: Request; env: Env }) {
     FROM sessions
     WHERE term_id = ?
   `;
-  const statsResult = await env.DB.prepare(statsSql).bind(termId).first<any>();
+  const statsResult = await env.BETTERLB_DB.prepare(statsSql).bind(termId).first<any>();
 
   // Get document statistics
   const docStatsSql = `
@@ -204,7 +204,7 @@ async function getTermDetail(context: { request: Request; env: Env }) {
     WHERE s.term_id = ?
     GROUP BY type
   `;
-  const docStatsResult = await env.DB.prepare(docStatsSql).bind(termId).all();
+  const docStatsResult = await env.BETTERLB_DB.prepare(docStatsSql).bind(termId).all();
 
   return Response.json({
     id: term.id,

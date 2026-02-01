@@ -80,7 +80,7 @@ async function getSessionsList(context: { request: Request; env: Env }) {
   params.push(limit.toString(), offset.toString());
 
   try {
-    const result = await env.DB.prepare(sql).bind(...params).all();
+    const result = await env.BETTERLB_DB.prepare(sql).bind(...params).all();
 
     // Get count
     let countSql = 'SELECT COUNT(*) as count FROM sessions WHERE 1=1';
@@ -96,7 +96,7 @@ async function getSessionsList(context: { request: Request; env: Env }) {
       countParams.push(type);
     }
 
-    const countResult = await env.DB.prepare(countSql).bind(...countParams).first<{ count: number }>();
+    const countResult = await env.BETTERLB_DB.prepare(countSql).bind(...countParams).first<{ count: number }>();
     const total = countResult?.count || 0;
 
     return Response.json({
@@ -126,7 +126,7 @@ async function getSessionDetail(context: { request: Request; env: Env }) {
 
   // Get session
   const sessionSql = 'SELECT * FROM sessions WHERE id = ?';
-  const session = await env.DB.prepare(sessionSql).bind(sessionId).first<Session>();
+  const session = await env.BETTERLB_DB.prepare(sessionSql).bind(sessionId).first<Session>();
 
   if (!session) {
     return Response.json({ error: 'Session not found' }, { status: 404 });
@@ -140,7 +140,7 @@ async function getSessionDetail(context: { request: Request; env: Env }) {
     WHERE m.term_id = ?
     ORDER BY m.rank ASC, p.last_name ASC
   `;
-  const membersResult = await env.DB.prepare(membersSql).bind(session.term_id).all();
+  const membersResult = await env.BETTERLB_DB.prepare(membersSql).bind(session.term_id).all();
 
   // Get absences for this session
   const absencesSql = `
@@ -148,7 +148,7 @@ async function getSessionDetail(context: { request: Request; env: Env }) {
     FROM session_absences
     WHERE session_id = ?
   `;
-  const absencesResult = await env.DB.prepare(absencesSql).bind(sessionId).all();
+  const absencesResult = await env.BETTERLB_DB.prepare(absencesSql).bind(sessionId).all();
   const absentIds = new Set(absencesResult.results.map((r: any) => r.person_id));
 
   // Build attendance list (absent-only model)
@@ -172,7 +172,7 @@ async function getSessionDetail(context: { request: Request; env: Env }) {
     WHERE session_id = ?
     ORDER BY date_enacted ASC
   `;
-  const documentsResult = await env.DB.prepare(documentsSql).bind(sessionId).all();
+  const documentsResult = await env.BETTERLB_DB.prepare(documentsSql).bind(sessionId).all();
 
   return Response.json({
     ...session,

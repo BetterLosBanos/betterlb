@@ -89,7 +89,7 @@ export async function onRequestGet(context: { request: Request; env: Env }) {
   params.push(limit.toString(), offset.toString());
 
   try {
-    const result = await env.DB.prepare(sql).bind(...params).all();
+    const result = await env.BETTERLB_DB.prepare(sql).bind(...params).all();
 
     // Get count for pagination
     let countSql = 'SELECT COUNT(*) as count FROM review_queue WHERE 1=1';
@@ -105,7 +105,7 @@ export async function onRequestGet(context: { request: Request; env: Env }) {
       countParams.push(itemTypeFilter);
     }
 
-    const countResult = await env.DB.prepare(countSql).bind(...countParams).first<{ count: number }>();
+    const countResult = await env.BETTERLB_DB.prepare(countSql).bind(...countParams).first<{ count: number }>();
     const total = countResult?.count || 0;
 
     // Format results
@@ -173,7 +173,7 @@ async function updateStatus(context: { request: Request; env: Env }) {
       WHERE id = ?2
     `;
 
-    await env.DB.prepare(updateSql).bind(status, item_id).run();
+    await env.BETTERLB_DB.prepare(updateSql).bind(status, item_id).run();
 
     return Response.json({ success: true });
   } catch (error) {
@@ -207,7 +207,7 @@ async function assignToUser(context: { request: Request; env: Env }) {
       WHERE id = ?2
     `;
 
-    await env.DB.prepare(updateSql).bind(userId, item_id).run();
+    await env.BETTERLB_DB.prepare(updateSql).bind(userId, item_id).run();
 
     return Response.json({ success: true });
   } catch (error) {

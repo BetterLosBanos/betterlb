@@ -70,7 +70,7 @@ export async function onRequestGet(context: { request: Request; env: Env }) {
   `;
 
   try {
-    const result = await env.DB.prepare(sql).bind(limit.toString(), offset.toString()).all();
+    const result = await env.BETTERLB_DB.prepare(sql).bind(limit.toString(), offset.toString()).all();
 
     // Generate conflict records from documents
     const items: ConflictRecord[] = [];
@@ -80,7 +80,7 @@ export async function onRequestGet(context: { request: Request; env: Env }) {
       // Check for moved_by conflicts (if we have Facebook data)
       if (doc.source_type === 'facebook' && doc.moved_by) {
         // Try to find corresponding PDF record
-        const pdfDoc = await env.DB.prepare(
+        const pdfDoc = await env.BETTERLB_DB.prepare(
           `SELECT moved_by, seconded_by FROM documents WHERE number = ?1 AND type = ?2 AND source_type = 'pdf'`
         ).bind(doc.number, doc.type).first();
 
@@ -155,7 +155,7 @@ async function resolveConflict(context: { request: Request; env: Env }) {
       return Response.json({ error: 'Invalid conflict type' }, { status: 400 });
     }
 
-    await env.DB.prepare(updateSql).bind(resolved_value, notes || '', documentId).run();
+    await env.BETTERLB_DB.prepare(updateSql).bind(resolved_value, notes || '', documentId).run();
 
     return Response.json({ success: true });
   } catch (error) {
