@@ -87,6 +87,8 @@ async function getDocumentsList(context: { request: Request; env: Env }) {
       d.source_type, d.needs_review, d.processed, d.created_at, d.updated_at,
       s.id as session_id, s.number as session_number, s.type as session_type,
       s.date as session_date, s.ordinal_number as session_ordinal,
+      s.term_id,
+      t.mayor_id, t.vice_mayor_id,
       (
         SELECT GROUP_CONCAT(person_id, ',')
         FROM document_authors
@@ -94,6 +96,7 @@ async function getDocumentsList(context: { request: Request; env: Env }) {
       ) as author_ids
     FROM documents d
     LEFT JOIN sessions s ON d.session_id = s.id
+    LEFT JOIN terms t ON s.term_id = t.id
     WHERE 1=1
   `;
 
@@ -178,12 +181,15 @@ async function getDocumentsList(context: { request: Request; env: Env }) {
       needs_review: row.needs_review,
       processed: row.processed,
       author_ids: row.author_ids ? row.author_ids.split(',') : [],
+      term_id: row.term_id,
+      mayor_id: row.mayor_id,
       session: row.session_id ? {
         id: row.session_id,
         number: row.session_number,
         type: row.session_type,
         date: row.session_date,
         ordinal_number: row.session_ordinal,
+        term_id: row.term_id,
       } : null,
     }));
 
@@ -221,9 +227,11 @@ async function getDocumentDetail(context: { request: Request; env: Env }) {
       d.created_at, d.updated_at,
       s.id as session_id, s.number as session_number, s.type as session_type,
       s.date as session_date, s.ordinal_number as session_ordinal,
-      s.term_id
+      s.term_id,
+      t.mayor_id, t.vice_mayor_id
     FROM documents d
     LEFT JOIN sessions s ON d.session_id = s.id
+    LEFT JOIN terms t ON s.term_id = t.id
     WHERE d.id = ?
   `;
 
@@ -277,6 +285,8 @@ async function getDocumentDetail(context: { request: Request; env: Env }) {
       processed: doc.processed,
       created_at: doc.created_at,
       updated_at: doc.updated_at,
+      term_id: doc.term_id,
+      mayor_id: doc.mayor_id,
       session: doc.session_id ? {
         id: doc.session_id,
         number: doc.session_number,

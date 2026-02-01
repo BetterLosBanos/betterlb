@@ -62,5 +62,7 @@ export interface LegislationContext {
   persons: Person[];
   sessions: Session[];
   committees: Committee[];
-  term: Term;
+  term: Term | null;
+  terms: Term[];
+  isLoading: boolean;
 }

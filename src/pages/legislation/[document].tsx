@@ -30,7 +30,7 @@ import type { LegislationContext, Person } from '@/types/legislationTypes';
 
 export default function LegislationDocument() {
   const { document: urlId } = useParams();
-  const { documents, persons, sessions, term } =
+  const { documents, persons, sessions, terms } =
     useOutletContext<LegislationContext>();
 
   const doc = documents?.find(d => d.id === urlId);
@@ -50,14 +50,15 @@ export default function LegislationDocument() {
 
   // For executive orders, show the mayor as author if no authors listed
   let displayAuthors = authors;
-  if (doc.type === 'executive_order' && authors.length === 0 && term?.executive?.mayor_id) {
-    const mayor = persons.find(p => p.id === term.executive.mayor_id);
+  if (doc.type === 'executive_order' && authors.length === 0 && (doc as any).mayor_id) {
+    const mayor = persons.find(p => p.id === (doc as any).mayor_id);
     if (mayor) {
       displayAuthors = [mayor];
     }
   }
 
   const session = sessions.find(s => s.id === doc.session_id);
+  const term = terms?.find((t: any) => t.id === (doc as any).term_id);
 
   const isOrdinance = doc.type === 'ordinance';
 

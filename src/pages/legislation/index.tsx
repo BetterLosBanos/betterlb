@@ -7,7 +7,7 @@ import { FileText } from 'lucide-react';
 import { Badge } from '@/components/ui/Badge';
 import { EmptyState } from '@/components/ui/EmptyState';
 
-import type { DocumentItem, Person, Term } from '../../lib/legislation';
+import type { DocumentItem, Person } from '../../lib/legislation';
 import { getPersonName } from '../../lib/legislation';
 import type { FilterType } from './layout';
 
@@ -16,11 +16,11 @@ interface LegislationContext {
   filterType: FilterType;
   documents: DocumentItem[];
   persons: Person[];
-  term: Term | null;
+  isLoading: boolean;
 }
 
 export default function LegislationIndex() {
-  const { searchQuery, filterType, documents, persons, term } =
+  const { searchQuery, filterType, documents, persons, isLoading } =
     useOutletContext<LegislationContext>();
   const [visibleCount, setVisibleCount] = useState(10);
   const observerTarget = useRef<HTMLDivElement>(null);
@@ -51,6 +51,24 @@ export default function LegislationIndex() {
     return () => observer.disconnect();
   }, [filteredDocs]);
 
+  // Show loading skeleton while data is being fetched
+  if (isLoading) {
+    return (
+      <section className='animate-in fade-in space-y-4 duration-500'>
+        {Array.from({ length: 10 }).map((_, i) => (
+          <div key={i} className='rounded-2xl border border-slate-200 bg-white p-5 shadow-xs animate-pulse'>
+            <div className='flex items-center gap-3 mb-2'>
+              <div className='h-6 w-16 rounded-full bg-slate-200' />
+              <div className='h-4 w-24 rounded bg-slate-200' />
+            </div>
+            <div className='h-6 w-3/4 mb-2 rounded bg-slate-200' />
+            <div className='h-4 w-1/2 rounded bg-slate-200' />
+          </div>
+        ))}
+      </section>
+    );
+  }
+
   if (filteredDocs.length === 0) {
     return (
       <EmptyState
@@ -75,8 +93,8 @@ export default function LegislationIndex() {
 
         // For executive orders, show the mayor as author if no authors listed
         let displayAuthors = authors;
-        if (doc.type === 'executive_order' && authors.length === 0 && term?.executive?.mayor_id) {
-          const mayor = persons.find(p => p.id === term.executive.mayor_id);
+        if (doc.type === 'executive_order' && authors.length === 0 && (doc as any).mayor_id) {
+          const mayor = persons.find(p => p.id === (doc as any).mayor_id);
           if (mayor) {
             displayAuthors = [mayor];
           }
