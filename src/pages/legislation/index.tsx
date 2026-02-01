@@ -7,7 +7,7 @@ import { FileText } from 'lucide-react';
 import { Badge } from '@/components/ui/Badge';
 import { EmptyState } from '@/components/ui/EmptyState';
 
-import type { DocumentItem, Person } from '../../lib/legislation';
+import type { DocumentItem, Person, Term } from '../../lib/legislation';
 import { getPersonName } from '../../lib/legislation';
 import type { FilterType } from './layout';
 
@@ -16,10 +16,11 @@ interface LegislationContext {
   filterType: FilterType;
   documents: DocumentItem[];
   persons: Person[];
+  term: Term | null;
 }
 
 export default function LegislationIndex() {
-  const { searchQuery, filterType, documents, persons } =
+  const { searchQuery, filterType, documents, persons, term } =
     useOutletContext<LegislationContext>();
   const [visibleCount, setVisibleCount] = useState(10);
   const observerTarget = useRef<HTMLDivElement>(null);
@@ -72,6 +73,15 @@ export default function LegislationIndex() {
           .map(id => persons.find(p => p.id === id))
           .filter((p): p is Person => Boolean(p));
 
+        // For executive orders, show the mayor as author if no authors listed
+        let displayAuthors = authors;
+        if (doc.type === 'executive_order' && authors.length === 0 && term?.executive?.mayor_id) {
+          const mayor = persons.find(p => p.id === term.executive.mayor_id);
+          if (mayor) {
+            displayAuthors = [mayor];
+          }
+        }
+
         return (
           <Link
             key={doc.id}
@@ -103,7 +113,7 @@ export default function LegislationIndex() {
                   </span>
                   <span className='text-slate-300'>|</span>
                   <span className='truncate'>
-                    Sponsors: {authors.map(a => getPersonName(a)).join(', ')}
+                    Authors: {displayAuthors.length > 0 ? displayAuthors.map(a => getPersonName(a)).join(', ') : 'Office of the Mayor'}
                   </span>
                 </div>
               </div>

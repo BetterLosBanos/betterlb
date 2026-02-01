@@ -66,7 +66,9 @@ export interface Term {
   end_date: string;
   year_range: string;
   executive: {
+    mayor_id?: string;
     mayor: string;
+    vice_mayor_id?: string;
     vice_mayor: string;
   };
 }

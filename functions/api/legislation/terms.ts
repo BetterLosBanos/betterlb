@@ -26,10 +26,17 @@ async function getTermsList(context: { request: Request; env: Env }) {
 
   const sql = `
     SELECT
-      id, term_number, ordinal, name, start_date, end_date, year_range,
-      mayor, vice_mayor, created_at
-    FROM terms
-    ORDER BY term_number DESC
+      t.id, t.term_number, t.ordinal, t.name, t.start_date, t.end_date, t.year_range,
+      t.mayor_id, t.vice_mayor_id,
+      pm.first_name || ' ' || pm.last_name as mayor_name,
+      pm.first_name as mayor_first_name, pm.middle_name as mayor_middle_name, pm.last_name as mayor_last_name,
+      pv.first_name || ' ' || pv.last_name as vice_mayor_name,
+      pv.first_name as vice_mayor_first_name, pv.middle_name as vice_mayor_middle_name, pv.last_name as vice_mayor_last_name,
+      t.created_at
+    FROM terms t
+    LEFT JOIN persons pm ON t.mayor_id = pm.id
+    LEFT JOIN persons pv ON t.vice_mayor_id = pv.id
+    ORDER BY t.term_number DESC
   `;
 
   try {
@@ -58,13 +65,22 @@ async function getTermsList(context: { request: Request; env: Env }) {
           .first<{ count: number }>();
 
         return {
-          ...term,
+          id: term.id,
+          term_number: term.term_number,
+          ordinal: term.ordinal,
+          name: term.name,
+          start_date: term.start_date,
+          end_date: term.end_date,
+          year_range: term.year_range,
           executive: {
-            mayor: term.mayor,
-            vice_mayor: term.vice_mayor,
+            mayor_id: term.mayor_id,
+            mayor: term.mayor_name || term.mayor_id || 'TBD',
+            vice_mayor_id: term.vice_mayor_id,
+            vice_mayor: term.vice_mayor_name || term.vice_mayor_id || 'TBD',
           },
           member_count: memberCount?.count || 0,
           document_count: docCount?.count || 0,
+          created_at: term.created_at,
         };
       })
     );
@@ -86,8 +102,17 @@ async function getTermDetail(context: { request: Request; env: Env }) {
   const pathParts = url.pathname.split('/').filter(Boolean);
   const termId = pathParts[3];
 
-  // Get term
-  const termSql = 'SELECT * FROM terms WHERE id = ?';
+  // Get term with mayor and vice mayor details
+  const termSql = `
+    SELECT
+      t.*,
+      pm.id as mayor_person_id, pm.first_name as mayor_first_name, pm.middle_name as mayor_middle_name, pm.last_name as mayor_last_name,
+      pv.id as vice_mayor_person_id, pv.first_name as vice_mayor_first_name, pv.middle_name as vice_mayor_middle_name, pv.last_name as vice_mayor_last_name
+    FROM terms t
+    LEFT JOIN persons pm ON t.mayor_id = pm.id
+    LEFT JOIN persons pv ON t.vice_mayor_id = pv.id
+    WHERE t.id = ?
+  `;
   const term = await env.DB.prepare(termSql).bind(termId).first();
 
   if (!term) {
@@ -182,10 +207,22 @@ async function getTermDetail(context: { request: Request; env: Env }) {
   const docStatsResult = await env.DB.prepare(docStatsSql).bind(termId).all();
 
   return Response.json({
-    ...term,
+    id: term.id,
+    term_number: term.term_number,
+    ordinal: term.ordinal,
+    name: term.name,
+    start_date: term.start_date,
+    end_date: term.end_date,
+    year_range: term.year_range,
     executive: {
-      mayor: term.mayor,
-      vice_mayor: term.vice_mayor,
+      mayor_id: term.mayor_id,
+      mayor: term.mayor_first_name
+        ? `${term.mayor_first_name} ${term.mayor_middle_name || ''} ${term.mayor_last_name}`.trim()
+        : term.mayor || 'TBD',
+      vice_mayor_id: term.vice_mayor_id,
+      vice_mayor: term.vice_mayor_first_name
+        ? `${term.vice_mayor_first_name} ${term.vice_mayor_middle_name || ''} ${term.vice_mayor_last_name}`.trim()
+        : term.vice_mayor || 'TBD',
     },
     persons, // Frontend expects persons array with memberships
     committees: committeesResult.results.map((c: any) => ({
