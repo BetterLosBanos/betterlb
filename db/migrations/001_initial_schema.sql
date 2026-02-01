@@ -1,6 +1,6 @@
--- Initial schema for BetterLB legislation database
+-- Permissive schema for BetterLB legislation database
+-- Allows incomplete data for admin console review and completion
 -- Migration: 001_initial_schema.sql
--- This schema supports the 12th Sangguniang Bayan legislation data
 
 -- ============================================================================
 -- TERMS
@@ -13,9 +13,10 @@ CREATE TABLE IF NOT EXISTS terms (
   start_date TEXT NOT NULL,
   end_date TEXT NOT NULL,
   year_range TEXT NOT NULL,
-  mayor TEXT NOT NULL,
-  vice_mayor TEXT NOT NULL,
-  created_at TEXT DEFAULT (datetime('now'))
+  mayor TEXT,
+  vice_mayor TEXT,
+  created_at TEXT NOT NULL DEFAULT (datetime('now')),
+  updated_at TEXT NOT NULL DEFAULT (datetime('now'))
 );
 
 CREATE INDEX IF NOT EXISTS idx_terms_year_range ON terms(year_range);
@@ -26,11 +27,14 @@ CREATE INDEX IF NOT EXISTS idx_terms_ordinal ON terms(ordinal);
 -- ============================================================================
 CREATE TABLE IF NOT EXISTS persons (
   id TEXT PRIMARY KEY,
-  first_name TEXT NOT NULL,
+  first_name TEXT,
   middle_name TEXT,
-  last_name TEXT NOT NULL,
+  last_name TEXT,
+  suffix TEXT,
+  aliases TEXT,
   photo_url TEXT,
-  created_at TEXT DEFAULT (datetime('now'))
+  created_at TEXT NOT NULL DEFAULT (datetime('now')),
+  updated_at TEXT NOT NULL DEFAULT (datetime('now'))
 );
 
 CREATE INDEX IF NOT EXISTS idx_persons_name ON persons(last_name, first_name);
@@ -40,12 +44,15 @@ CREATE INDEX IF NOT EXISTS idx_persons_name ON persons(last_name, first_name);
 -- ============================================================================
 CREATE TABLE IF NOT EXISTS memberships (
   id TEXT PRIMARY KEY,
-  person_id TEXT NOT NULL REFERENCES persons(id) ON DELETE CASCADE,
-  term_id TEXT NOT NULL REFERENCES terms(id) ON DELETE CASCADE,
+  person_id TEXT,
+  term_id TEXT,
   chamber TEXT,
-  role TEXT NOT NULL,
+  role TEXT,
   rank INTEGER,
-  created_at TEXT DEFAULT (datetime('now'))
+  start_date TEXT,
+  end_date TEXT,
+  created_at TEXT NOT NULL DEFAULT (datetime('now')),
+  updated_at TEXT NOT NULL DEFAULT (datetime('now'))
 );
 
 CREATE INDEX IF NOT EXISTS idx_memberships_person ON memberships(person_id);
@@ -56,24 +63,27 @@ CREATE INDEX IF NOT EXISTS idx_memberships_term ON memberships(term_id);
 -- ============================================================================
 CREATE TABLE IF NOT EXISTS committees (
   id TEXT PRIMARY KEY,
-  name TEXT NOT NULL,
-  type TEXT NOT NULL,
-  created_at TEXT DEFAULT (datetime('now'))
+  name TEXT,
+  type TEXT,
+  description TEXT,
+  created_at TEXT NOT NULL DEFAULT (datetime('now')),
+  updated_at TEXT NOT NULL DEFAULT (datetime('now'))
 );
 
 CREATE INDEX IF NOT EXISTS idx_committees_name ON committees(name);
 CREATE INDEX IF NOT EXISTS idx_committees_type ON committees(type);
 
 -- ============================================================================
--- COMMITTEE MEMBERSHIPS (person-committee-term relationship)
+-- COMMITTEE MEMBERSHIPS
 -- ============================================================================
 CREATE TABLE IF NOT EXISTS committee_memberships (
   id TEXT PRIMARY KEY,
-  person_id TEXT NOT NULL REFERENCES persons(id) ON DELETE CASCADE,
-  committee_id TEXT NOT NULL REFERENCES committees(id) ON DELETE CASCADE,
-  term_id TEXT NOT NULL REFERENCES terms(id) ON DELETE CASCADE,
-  role TEXT NOT NULL,
-  created_at TEXT DEFAULT (datetime('now'))
+  person_id TEXT,
+  committee_id TEXT,
+  term_id TEXT,
+  role TEXT,
+  created_at TEXT NOT NULL DEFAULT (datetime('now')),
+  updated_at TEXT NOT NULL DEFAULT (datetime('now'))
 );
 
 CREATE INDEX IF NOT EXISTS idx_committee_memberships_person ON committee_memberships(person_id);
@@ -85,86 +95,76 @@ CREATE INDEX IF NOT EXISTS idx_committee_memberships_term ON committee_membershi
 -- ============================================================================
 CREATE TABLE IF NOT EXISTS sessions (
   id TEXT PRIMARY KEY,
-  term_id TEXT NOT NULL REFERENCES terms(id) ON DELETE CASCADE,
-  number INTEGER NOT NULL,
-  type TEXT NOT NULL DEFAULT 'Regular',
-  date TEXT NOT NULL,
-  ordinal_number TEXT NOT NULL,
-  created_at TEXT DEFAULT (datetime('now'))
+  term_id TEXT,
+  number INTEGER,
+  type TEXT DEFAULT 'Regular',
+  date TEXT,
+  ordinal_number TEXT,
+  location TEXT,
+  created_at TEXT NOT NULL DEFAULT (datetime('now')),
+  updated_at TEXT NOT NULL DEFAULT (datetime('now'))
 );
 
-CREATE INDEX IF NOT EXISTS idx_sessions_date ON sessions(date);
+CREATE INDEX IF NOT EXISTS idx_sessions_date ON sessions(date DESC);
 CREATE INDEX IF NOT EXISTS idx_sessions_term ON sessions(term_id);
 CREATE INDEX IF NOT EXISTS idx_sessions_type ON sessions(type);
-CREATE INDEX IF NOT EXISTS idx_sessions_number ON sessions(number);
 
 -- ============================================================================
 -- SESSION ATTENDANCE (Absent-Only Model)
--- Only records absences. All members assumed present unless listed here.
 -- ============================================================================
 CREATE TABLE IF NOT EXISTS session_absences (
   id TEXT PRIMARY KEY,
-  session_id TEXT NOT NULL REFERENCES sessions(id) ON DELETE CASCADE,
-  person_id TEXT NOT NULL REFERENCES persons(id) ON DELETE CASCADE,
+  session_id TEXT,
+  person_id TEXT,
   reason TEXT,
-  created_at TEXT DEFAULT (datetime('now'))
+  excuse_type TEXT,
+  created_at TEXT NOT NULL DEFAULT (datetime('now'))
 );
 
 CREATE INDEX IF NOT EXISTS idx_absences_session ON session_absences(session_id);
 CREATE INDEX IF NOT EXISTS idx_absences_person ON session_absences(person_id);
-
--- Helper view to get all attendance (present = all members - absences)
-CREATE VIEW IF NOT EXISTS v_session_attendance AS
-SELECT
-  s.id as session_id,
-  p.id as person_id,
-  CASE WHEN sa.person_id IS NOT NULL THEN 'absent' ELSE 'present' END as status,
-  sa.reason
-FROM sessions s
-CROSS JOIN memberships m
-JOIN persons p ON p.id = m.person_id
-LEFT JOIN session_absences sa ON sa.session_id = s.id AND sa.person_id = p.id
-WHERE m.term_id = s.term_id;
 
 -- ============================================================================
 -- DOCUMENTS
 -- ============================================================================
 CREATE TABLE IF NOT EXISTS documents (
   id TEXT PRIMARY KEY,
-  type TEXT NOT NULL CHECK(type IN ('ordinance', 'resolution', 'executive_order')),
-  number TEXT NOT NULL,
-  title TEXT NOT NULL,
-  session_id TEXT NOT NULL REFERENCES sessions(id) ON DELETE CASCADE,
-  status TEXT NOT NULL,
-  date_enacted TEXT NOT NULL,
-  pdf_url TEXT NOT NULL,
+  type TEXT,
+  number TEXT,
+  title TEXT,
+  session_id TEXT,
+  status TEXT DEFAULT 'pending',
+  date_enacted TEXT,
+  date_filed TEXT,
+  pdf_url TEXT,
   content_preview TEXT,
-  moved_by TEXT, -- Person who introduced/moved the document (from Facebook)
-  seconded_by TEXT, -- Person who seconded (from Facebook)
-  source_type TEXT DEFAULT 'pdf' CHECK(source_type IN ('pdf', 'facebook', 'manual')),
+  full_text TEXT,
+  moved_by TEXT,
+  seconded_by TEXT,
+  source_type TEXT DEFAULT 'pdf',
   needs_review INTEGER DEFAULT 0,
   review_notes TEXT,
-  processed INTEGER DEFAULT 1, -- 1 = fully processed, 0 = pending
-  created_at TEXT DEFAULT (datetime('now')),
-  updated_at TEXT DEFAULT (datetime('now'))
+  processed INTEGER DEFAULT 1,
+  created_at TEXT NOT NULL DEFAULT (datetime('now')),
+  updated_at TEXT NOT NULL DEFAULT (datetime('now'))
 );
 
 CREATE INDEX IF NOT EXISTS idx_documents_type ON documents(type);
-CREATE INDEX IF NOT EXISTS idx_documents_date ON documents(date_enacted);
-CREATE INDEX IF NOT EXISTS idx_documents_number ON documents(number);
+CREATE INDEX IF NOT EXISTS idx_documents_date ON documents(date_enacted DESC);
 CREATE INDEX IF NOT EXISTS idx_documents_session ON documents(session_id);
-CREATE INDEX IF NOT EXISTS idx_documents_title ON documents(title);
 CREATE INDEX IF NOT EXISTS idx_documents_status ON documents(status);
 CREATE INDEX IF NOT EXISTS idx_documents_needs_review ON documents(needs_review);
 CREATE INDEX IF NOT EXISTS idx_documents_source_type ON documents(source_type);
-CREATE INDEX IF NOT EXISTS idx_documents_processed ON documents(processed);
 
 -- ============================================================================
 -- DOCUMENT AUTHORS (many-to-many)
 -- ============================================================================
 CREATE TABLE IF NOT EXISTS document_authors (
-  document_id TEXT NOT NULL REFERENCES documents(id) ON DELETE CASCADE,
-  person_id TEXT NOT NULL REFERENCES persons(id) ON DELETE CASCADE,
+  document_id TEXT,
+  person_id TEXT,
+  author_type TEXT DEFAULT 'primary',
+  author_order INTEGER,
+  created_at TEXT NOT NULL DEFAULT (datetime('now')),
   PRIMARY KEY (document_id, person_id)
 );
 
@@ -172,22 +172,27 @@ CREATE INDEX IF NOT EXISTS idx_document_authors_document ON document_authors(doc
 CREATE INDEX IF NOT EXISTS idx_document_authors_person ON document_authors(person_id);
 
 -- ============================================================================
--- SUBJECTS
+-- SUBJECTS / TAGS
 -- ============================================================================
 CREATE TABLE IF NOT EXISTS subjects (
   id TEXT PRIMARY KEY,
-  name TEXT NOT NULL UNIQUE,
-  created_at TEXT DEFAULT (datetime('now'))
+  name TEXT,
+  slug TEXT,
+  parent_id TEXT,
+  created_at TEXT NOT NULL DEFAULT (datetime('now'))
 );
 
 CREATE INDEX IF NOT EXISTS idx_subjects_name ON subjects(name);
+CREATE INDEX IF NOT EXISTS idx_subjects_slug ON subjects(slug);
 
 -- ============================================================================
 -- DOCUMENT SUBJECTS (many-to-many)
 -- ============================================================================
 CREATE TABLE IF NOT EXISTS document_subjects (
-  document_id TEXT NOT NULL REFERENCES documents(id) ON DELETE CASCADE,
-  subject_id TEXT NOT NULL REFERENCES subjects(id) ON DELETE CASCADE,
+  document_id TEXT,
+  subject_id TEXT,
+  relevance_score REAL,
+  created_at TEXT NOT NULL DEFAULT (datetime('now')),
   PRIMARY KEY (document_id, subject_id)
 );
 
@@ -195,41 +200,114 @@ CREATE INDEX IF NOT EXISTS idx_document_subjects_document ON document_subjects(d
 CREATE INDEX IF NOT EXISTS idx_document_subjects_subject ON document_subjects(subject_id);
 
 -- ============================================================================
--- REVIEW QUEUE (for manual review of problematic PDFs/data)
+-- REVIEW QUEUE
 -- ============================================================================
 CREATE TABLE IF NOT EXISTS review_queue (
   id TEXT PRIMARY KEY,
-  item_type TEXT NOT NULL CHECK(item_type IN ('document', 'session', 'attendance')),
-  item_id TEXT NOT NULL,
-  issue_type TEXT NOT NULL,
+  item_type TEXT,
+  item_id TEXT,
+  issue_type TEXT,
+  priority TEXT DEFAULT 'medium',
   description TEXT,
-  source_type TEXT NOT NULL DEFAULT 'pdf' CHECK(source_type IN ('pdf', 'facebook', 'manual', 'other')),
+  source_type TEXT DEFAULT 'pdf',
   source_url TEXT,
-  status TEXT NOT NULL DEFAULT 'pending' CHECK(status IN ('pending', 'in_progress', 'resolved', 'skipped')),
+  status TEXT DEFAULT 'pending',
   assigned_to TEXT,
   resolution TEXT,
-  created_at TEXT DEFAULT (datetime('now')),
-  resolved_at TEXT
+  created_at TEXT NOT NULL DEFAULT (datetime('now')),
+  resolved_at TEXT,
+  resolved_by TEXT
 );
 
 CREATE INDEX IF NOT EXISTS idx_review_queue_status ON review_queue(status);
 CREATE INDEX IF NOT EXISTS idx_review_queue_type ON review_queue(item_type);
-CREATE INDEX IF NOT EXISTS idx_review_queue_source_type ON review_queue(source_type);
+CREATE INDEX IF NOT EXISTS idx_review_queue_priority ON review_queue(priority, status);
 
 -- ============================================================================
--- FACEBOOK SESSION DATA (for session info from official Facebook posts)
+-- DATA RECONCILIATION
+-- ============================================================================
+CREATE TABLE IF NOT EXISTS data_conflicts (
+  id TEXT PRIMARY KEY,
+  entity_type TEXT,
+  entity_id TEXT,
+  field_name TEXT,
+  facebook_value TEXT,
+  govph_value TEXT,
+  resolved_value TEXT,
+  status TEXT DEFAULT 'unresolved',
+  resolution_notes TEXT,
+  resolved_by TEXT,
+  created_at TEXT NOT NULL DEFAULT (datetime('now')),
+  resolved_at TEXT
+);
+
+CREATE INDEX IF NOT EXISTS idx_conflicts_status ON data_conflicts(status);
+CREATE INDEX IF NOT EXISTS idx_conflicts_entity ON data_conflicts(entity_type, entity_id);
+
+-- ============================================================================
+-- FACEBOOK SESSION DATA
 -- ============================================================================
 CREATE TABLE IF NOT EXISTS facebook_session_data (
   id TEXT PRIMARY KEY,
-  session_id TEXT REFERENCES sessions(id) ON DELETE SET NULL,
-  post_url TEXT NOT NULL,
-  post_date TEXT NOT NULL,
+  session_id TEXT,
+  post_url TEXT,
+  post_id TEXT,
+  post_date TEXT,
   session_number INTEGER,
   session_type TEXT,
-  raw_content TEXT, -- Full post text for reference
-  extracted_data TEXT, -- JSON: {documents: [{number, title, author, seconded_by}], attendance: {...}}
-  created_at TEXT DEFAULT (datetime('now'))
+  raw_content TEXT,
+  extracted_data TEXT,
+  confidence_score REAL,
+  created_at TEXT NOT NULL DEFAULT (datetime('now')),
+  processed_at TEXT
 );
 
-CREATE INDEX IF NOT EXISTS fb_session_data_session ON facebook_session_data(session_id);
-CREATE INDEX IF NOT EXISTS fb_session_data_post_date ON facebook_session_data(post_date);
+CREATE INDEX IF NOT EXISTS idx_fb_session_data_session ON facebook_session_data(session_id);
+CREATE INDEX IF NOT EXISTS idx_fb_session_data_post_date ON facebook_session_data(post_date DESC);
+
+-- ============================================================================
+-- AUDIT LOG
+-- ============================================================================
+CREATE TABLE IF NOT EXISTS audit_log (
+  id TEXT PRIMARY KEY,
+  table_name TEXT,
+  record_id TEXT,
+  action TEXT,
+  old_values TEXT,
+  new_values TEXT,
+  changed_by TEXT,
+  changed_at TEXT NOT NULL DEFAULT (datetime('now'))
+);
+
+CREATE INDEX IF NOT EXISTS idx_audit_table ON audit_log(table_name);
+CREATE INDEX IF NOT EXISTS idx_audit_record ON audit_log(table_name, record_id);
+CREATE INDEX IF NOT EXISTS idx_audit_date ON audit_log(changed_at DESC);
+
+-- ============================================================================
+-- VIEWS
+-- ============================================================================
+
+-- Document statistics by type and year
+CREATE VIEW IF NOT EXISTS v_document_stats AS
+SELECT
+  type,
+  strftime('%Y', date_enacted) as year,
+  COUNT(*) as total,
+  SUM(CASE WHEN status = 'approved' THEN 1 ELSE 0 END) as approved,
+  SUM(CASE WHEN status = 'vetoed' THEN 1 ELSE 0 END) as vetoed
+FROM documents
+WHERE type IS NOT NULL
+GROUP BY type, year;
+
+-- Person productivity
+CREATE VIEW IF NOT EXISTS v_author_productivity AS
+SELECT
+  p.id as person_id,
+  p.first_name || ' ' || COALESCE(p.last_name, '') as full_name,
+  COUNT(DISTINCT da.document_id) as documents_authored,
+  COUNT(DISTINCT CASE WHEN d.type = 'ordinance' THEN da.document_id END) as ordinances,
+  COUNT(DISTINCT CASE WHEN d.type = 'resolution' THEN da.document_id END) as resolutions
+FROM persons p
+LEFT JOIN document_authors da ON da.person_id = p.id
+LEFT JOIN documents d ON d.id = da.document_id
+GROUP BY p.id;

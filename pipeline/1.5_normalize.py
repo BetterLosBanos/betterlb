@@ -151,7 +151,8 @@ def normalize():
         "dates_recovered": 0,
         "ids_updated": 0,
         "authors_cleaned": 0,
-        "authors_extracted": 0
+        "authors_extracted": 0,
+        "terms_recovered": 0
     }
 
     print("------------------------------------------------")
@@ -203,6 +204,14 @@ def normalize():
                     clean_row['term_id'] = term['id']
                     clean_row['session_id'] = f"{term['id']}_{extracted_date}"
                 is_modified = True
+        # 5b. FIX UNKNOWN TERM - if date exists but term is unknown, try to assign term
+        elif clean_row.get('term_id') == 'unknown_term' and current_date and current_date != "Check PDF":
+            term = get_term_info(current_date)
+            if term:
+                clean_row['term_id'] = term['id']
+                clean_row['session_id'] = f"{term['id']}_{current_date}"
+                stats["terms_recovered"] = stats.get("terms_recovered", 0) + 1
+                is_modified = True
 
         # 6. ID
         term_for_id = clean_row['term_id'] if clean_row['term_id'] != "unknown_term" else "legacy"
@@ -228,6 +237,7 @@ def normalize():
     print(f"   Total Records:           {total_records}")
     print(f"   Rows Optimized:          {stats['rows_cleaned']}")
     print(f"   Dates Recovered:         {stats['dates_recovered']}")
+    print(f"   Terms Recovered:         {stats['terms_recovered']}")
     print(f"   Authors Cleaned:         {stats['authors_cleaned']}")
     print(f"   Authors Extracted:       {stats['authors_extracted']}")
     print(f"   IDs Updated:             {stats['ids_updated']}")

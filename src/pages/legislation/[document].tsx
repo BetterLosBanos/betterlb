@@ -30,7 +30,7 @@ import type { LegislationContext, Person } from '@/types/legislationTypes';
 
 export default function LegislationDocument() {
   const { document: urlId } = useParams();
-  const { documents, persons, sessions, term } =
+  const { documents, persons, sessions, terms } =
     useOutletContext<LegislationContext>();
 
   const doc = documents?.find(d => d.id === urlId);
@@ -47,7 +47,18 @@ export default function LegislationDocument() {
   const authors = doc.author_ids
     .map((id: string) => persons.find(p => p.id === id))
     .filter((p): p is Person => Boolean(p));
+
+  // For executive orders, show the mayor as author if no authors listed
+  let displayAuthors = authors;
+  if (doc.type === 'executive_order' && authors.length === 0 && (doc as any).mayor_id) {
+    const mayor = persons.find(p => p.id === (doc as any).mayor_id);
+    if (mayor) {
+      displayAuthors = [mayor];
+    }
+  }
+
   const session = sessions.find(s => s.id === doc.session_id);
+  const term = terms?.find((t: any) => t.id === (doc as any).term_id);
 
   const isOrdinance = doc.type === 'ordinance';
 
@@ -94,24 +105,30 @@ export default function LegislationDocument() {
         <div className='space-y-8 lg:col-span-2'>
           <DetailSection title='Authored By' icon={Users}>
             <div className='flex flex-wrap gap-2' role='list'>
-              {authors.map(author => (
-                <Link
-                  key={author.id}
-                  to={`/legislation/person/${author.id}`}
-                  className='hover:border-primary-600 hover:bg-primary-50 inline-flex min-h-[44px] items-center gap-3 rounded-full border border-slate-200 bg-white px-4 py-2 transition-all'
-                >
-                  <div
-                    className='flex h-6 w-6 items-center justify-center rounded-full bg-slate-200 text-[10px] font-bold text-slate-600'
-                    aria-hidden='true'
+              {displayAuthors.length > 0 ? (
+                displayAuthors.map(author => (
+                  <Link
+                    key={author.id}
+                    to={`/legislation/person/${author.id}`}
+                    className='hover:border-primary-600 hover:bg-primary-50 inline-flex min-h-[44px] items-center gap-3 rounded-full border border-slate-200 bg-white px-4 py-2 transition-all'
                   >
-                    {author.first_name[0]}
-                    {author.last_name[0]}
-                  </div>
-                  <span className='text-xs font-bold text-slate-700'>
-                    {getPersonName(author)}
-                  </span>
-                </Link>
-              ))}
+                    <div
+                      className='flex h-6 w-6 items-center justify-center rounded-full bg-slate-200 text-[10px] font-bold text-slate-600'
+                      aria-hidden='true'
+                    >
+                      {author.first_name[0]}
+                      {author.last_name[0]}
+                    </div>
+                    <span className='text-xs font-bold text-slate-700'>
+                      {getPersonName(author)}
+                    </span>
+                  </Link>
+                ))
+              ) : (
+                <span className='text-sm font-bold text-slate-400 italic'>
+                  Office of the Mayor
+                </span>
+              )}
             </div>
           </DetailSection>
 
