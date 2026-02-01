@@ -35,7 +35,7 @@ async function getPersonsList(context: { request: Request; env: Env }) {
   const offset = parseInt(url.searchParams.get('offset') || '0');
 
   // Get persons with their memberships
-  const sql = `
+  let sql = `
     SELECT DISTINCT
       p.id, p.first_name, p.middle_name, p.last_name, p.photo_url, p.aliases,
       m.id as membership_id, m.term_id, m.chamber, m.role, m.rank,
