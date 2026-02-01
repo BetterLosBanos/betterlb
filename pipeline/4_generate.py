@@ -305,10 +305,8 @@ def generate_json():
     print("✅ JSON Generation Complete.")
 
 def generate():
-    """Generate both SQL and JSON files"""
+    """Generate SQL migration files"""
     generate_sql()
-    print()
-    generate_json()
 
 if __name__ == "__main__":
     generate()
