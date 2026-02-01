@@ -26,14 +26,21 @@ async function getTermsList(context: { request: Request; env: Env }) {
 
   const sql = `
     SELECT
-      id, term_number, ordinal, name, start_date, end_date, year_range,
-      mayor, vice_mayor, created_at
-    FROM terms
-    ORDER BY term_number DESC
+      t.id, t.term_number, t.ordinal, t.name, t.start_date, t.end_date, t.year_range,
+      t.mayor_id, t.vice_mayor_id,
+      pm.first_name || ' ' || pm.last_name as mayor_name,
+      pm.first_name as mayor_first_name, pm.middle_name as mayor_middle_name, pm.last_name as mayor_last_name,
+      pv.first_name || ' ' || pv.last_name as vice_mayor_name,
+      pv.first_name as vice_mayor_first_name, pv.middle_name as vice_mayor_middle_name, pv.last_name as vice_mayor_last_name,
+      t.created_at
+    FROM terms t
+    LEFT JOIN persons pm ON t.mayor_id = pm.id
+    LEFT JOIN persons pv ON t.vice_mayor_id = pv.id
+    ORDER BY t.term_number DESC
   `;
 
   try {
-    const result = await env.DB.prepare(sql).all();
+    const result = await env.BETTERLB_DB.prepare(sql).all();
 
     // Get member count and document count for each term
     const terms = await Promise.all(
@@ -43,7 +50,7 @@ async function getTermsList(context: { request: Request; env: Env }) {
           FROM memberships
           WHERE term_id = ?
         `;
-        const memberCount = await env.DB.prepare(memberCountSql)
+        const memberCount = await env.BETTERLB_DB.prepare(memberCountSql)
           .bind(term.id)
           .first<{ count: number }>();
 
@@ -53,18 +60,27 @@ async function getTermsList(context: { request: Request; env: Env }) {
           JOIN sessions s ON d.session_id = s.id
           WHERE s.term_id = ?
         `;
-        const docCount = await env.DB.prepare(docCountSql)
+        const docCount = await env.BETTERLB_DB.prepare(docCountSql)
           .bind(term.id)
           .first<{ count: number }>();
 
         return {
-          ...term,
+          id: term.id,
+          term_number: term.term_number,
+          ordinal: term.ordinal,
+          name: term.name,
+          start_date: term.start_date,
+          end_date: term.end_date,
+          year_range: term.year_range,
           executive: {
-            mayor: term.mayor,
-            vice_mayor: term.vice_mayor,
+            mayor_id: term.mayor_id,
+            mayor: term.mayor_name || term.mayor_id || 'TBD',
+            vice_mayor_id: term.vice_mayor_id,
+            vice_mayor: term.vice_mayor_name || term.vice_mayor_id || 'TBD',
           },
           member_count: memberCount?.count || 0,
           document_count: docCount?.count || 0,
+          created_at: term.created_at,
         };
       })
     );
@@ -86,9 +102,18 @@ async function getTermDetail(context: { request: Request; env: Env }) {
   const pathParts = url.pathname.split('/').filter(Boolean);
   const termId = pathParts[3];
 
-  // Get term
-  const termSql = 'SELECT * FROM terms WHERE id = ?';
-  const term = await env.DB.prepare(termSql).bind(termId).first();
+  // Get term with mayor and vice mayor details
+  const termSql = `
+    SELECT
+      t.*,
+      pm.id as mayor_person_id, pm.first_name as mayor_first_name, pm.middle_name as mayor_middle_name, pm.last_name as mayor_last_name,
+      pv.id as vice_mayor_person_id, pv.first_name as vice_mayor_first_name, pv.middle_name as vice_mayor_middle_name, pv.last_name as vice_mayor_last_name
+    FROM terms t
+    LEFT JOIN persons pm ON t.mayor_id = pm.id
+    LEFT JOIN persons pv ON t.vice_mayor_id = pv.id
+    WHERE t.id = ?
+  `;
+  const term = await env.BETTERLB_DB.prepare(termSql).bind(termId).first();
 
   if (!term) {
     return Response.json({ error: 'Term not found' }, { status: 404 });
@@ -108,7 +133,7 @@ async function getTermDetail(context: { request: Request; env: Env }) {
     WHERE m.term_id = ?
     ORDER BY m.rank ASC, p.last_name ASC, c.name ASC
   `;
-  const membersResult = await env.DB.prepare(membersSql).bind(termId).all();
+  const membersResult = await env.BETTERLB_DB.prepare(membersSql).bind(termId).all();
 
   // Reconstruct the frontend-expected structure: persons with memberships
   const personsMap = new Map<string, any>();
@@ -155,7 +180,7 @@ async function getTermDetail(context: { request: Request; env: Env }) {
     GROUP BY c.id, c.name, c.type
     ORDER BY c.name ASC
   `;
-  const committeesResult = await env.DB.prepare(committeesSql).bind(termId).all();
+  const committeesResult = await env.BETTERLB_DB.prepare(committeesSql).bind(termId).all();
 
   // Get session statistics
   const statsSql = `
@@ -167,7 +192,7 @@ async function getTermDetail(context: { request: Request; env: Env }) {
     FROM sessions
     WHERE term_id = ?
   `;
-  const statsResult = await env.DB.prepare(statsSql).bind(termId).first<any>();
+  const statsResult = await env.BETTERLB_DB.prepare(statsSql).bind(termId).first<any>();
 
   // Get document statistics
   const docStatsSql = `
@@ -179,13 +204,25 @@ async function getTermDetail(context: { request: Request; env: Env }) {
     WHERE s.term_id = ?
     GROUP BY type
   `;
-  const docStatsResult = await env.DB.prepare(docStatsSql).bind(termId).all();
+  const docStatsResult = await env.BETTERLB_DB.prepare(docStatsSql).bind(termId).all();
 
   return Response.json({
-    ...term,
+    id: term.id,
+    term_number: term.term_number,
+    ordinal: term.ordinal,
+    name: term.name,
+    start_date: term.start_date,
+    end_date: term.end_date,
+    year_range: term.year_range,
     executive: {
-      mayor: term.mayor,
-      vice_mayor: term.vice_mayor,
+      mayor_id: term.mayor_id,
+      mayor: term.mayor_first_name
+        ? `${term.mayor_first_name} ${term.mayor_middle_name || ''} ${term.mayor_last_name}`.trim()
+        : term.mayor || 'TBD',
+      vice_mayor_id: term.vice_mayor_id,
+      vice_mayor: term.vice_mayor_first_name
+        ? `${term.vice_mayor_first_name} ${term.vice_mayor_middle_name || ''} ${term.vice_mayor_last_name}`.trim()
+        : term.vice_mayor || 'TBD',
     },
     persons, // Frontend expects persons array with memberships
     committees: committeesResult.results.map((c: any) => ({

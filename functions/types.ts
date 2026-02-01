@@ -5,8 +5,8 @@ export interface Env {
   BROWSER_KV: KVNamespace;
 
   // D1 Database
-  DB: D1Database;
-  BETTERGOV_DB: D1Database; // Legacy name for backward compatibility
+  BETTERLB_DB: D1Database;
+  DB: D1Database; // Legacy name for backward compatibility
 
   // Environment variables
   WEATHER_API_KEY?: string;

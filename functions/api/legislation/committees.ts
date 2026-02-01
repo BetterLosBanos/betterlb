@@ -22,7 +22,7 @@ export async function onRequestGet(context: { request: Request; env: Env }) {
   sql += ' ORDER BY c.name ASC';
 
   try {
-    const result = await env.DB.prepare(sql).bind(...params).all();
+    const result = await env.BETTERLB_DB.prepare(sql).bind(...params).all();
 
     // Get members for each committee
     const committees = await Promise.all(
@@ -43,7 +43,7 @@ export async function onRequestGet(context: { request: Request; env: Env }) {
           membersParams.push(termId);
         }
 
-        const membersResult = await env.DB.prepare(membersSql).bind(...membersParams).all();
+        const membersResult = await env.BETTERLB_DB.prepare(membersSql).bind(...membersParams).all();
 
         return {
           ...committee,

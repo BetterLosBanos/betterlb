@@ -49,7 +49,7 @@ export async function onRequestGet(context: { request: Request; env: Env }) {
     let errors: ParseError[] = [];
 
     try {
-      const result = await env.DB.prepare(sql).bind(...params).all();
+      const result = await env.BETTERLB_DB.prepare(sql).bind(...params).all();
       errors = (result.results as any[]).map((row: any) => ({
         id: row.id,
         document_number: row.document_number,
@@ -70,7 +70,7 @@ export async function onRequestGet(context: { request: Request; env: Env }) {
       const countSql = stage
         ? `SELECT COUNT(*) as count FROM parse_errors WHERE stage = ?1`
         : `SELECT COUNT(*) as count FROM parse_errors`;
-      const countResult = await env.DB.prepare(countSql).bind(...params).first<{ count: number }>();
+      const countResult = await env.BETTERLB_DB.prepare(countSql).bind(...params).first<{ count: number }>();
       count = countResult?.count || 0;
     } catch {
       // Ignore count errors

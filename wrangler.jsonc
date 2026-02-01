@@ -6,18 +6,19 @@
 	"kv_namespaces": [
 		{
 			"binding": "WEATHER_KV",
-			"id": "a6daec9904a04769918521d0b3d836e3",
-		},
+			"id": "a6daec9904a04769918521d0b3d836e3"
+		}
 	],
 	"d1_databases": [
 		{
-			"binding": "DB",
+			"binding": "BETTERLB_DB",
 			"database_name": "betterlb_opencouncil",
-			"database_id": "f0b7e666-3b00-43a5-be3f-736b6cc5a516"
+			"database_id": "3b868cf4-3b83-4ed7-9f71-4287fe28d713",
+			"migrations_dir": "db/migrations"
 		}
 	],
 	"vars": {
 		"GITHUB_REPO": "BetterLosBanos/betterlb",
-		"AUTHORIZED_USERS": "[]",
-	},
+		"AUTHORIZED_USERS": "[]"
+	}
 }
