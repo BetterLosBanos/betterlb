@@ -4,14 +4,14 @@ import {
   loadCommitteesFromAPI,
   loadDocumentsFromAPI,
   loadSessionsFromAPI,
-  loadTerm,
+  loadTermFromAPI,
   loadPersonsFromAPI,
   loadTermsFromAPI,
 } from '../lib/openlgu';
 import type { Person } from '../lib/openlgu';
 
 export interface LegislationData {
-  term: Awaited<ReturnType<typeof loadTerm>>;
+  term: Awaited<ReturnType<typeof loadTermFromAPI>>;
   terms: Awaited<ReturnType<typeof loadTermsFromAPI>>;
   committees: Awaited<ReturnType<typeof loadCommitteesFromAPI>>;
   persons: Person[];
@@ -37,7 +37,7 @@ export default function useOpenLGU(): LegislationData {
     async function loadData() {
       try {
         const [term, terms, committees, persons, sessions, documents] = await Promise.all([
-          loadTerm(),
+          loadTermFromAPI(),
           loadTermsFromAPI(),
           loadCommitteesFromAPI(),
           loadPersonsFromAPI(),

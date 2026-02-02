@@ -229,6 +229,22 @@ export interface APIPerson {
   roles?: string[];
 }
 
+export interface APITerm {
+  id: string;
+  term_number: number;
+  ordinal: string;
+  name: string;
+  start_date: string;
+  end_date: string;
+  year_range: string;
+  mayor_id?: string;
+  vice_mayor_id?: string;
+  executive?: {
+    mayor?: string;
+    vice_mayor?: string;
+  };
+}
+
 export async function loadPersonsFromAPI(): Promise<Person[]> {
   try {
     const response = await fetch('/api/openlgu/persons?limit=100');
@@ -316,7 +332,7 @@ export async function loadTermsFromAPI(): Promise<Term[]> {
       throw new Error(`API error: ${response.status}`);
     }
     const data = await response.json();
-    return (data.terms || []).map((t: any) => ({
+    return (data.terms || []).map((t: APITerm) => ({
       id: t.id,
       term_number: t.term_number,
       ordinal: t.ordinal,
@@ -344,7 +360,7 @@ export async function loadCommitteesFromAPI(): Promise<Committee[]> {
       throw new Error(`API error: ${response.status}`);
     }
     const data = await response.json();
-    return (data.committees || []).map((c: any) => ({
+    return (data.committees || []).map((c: { id: string; name: string; type: string }) => ({
       id: c.id,
       name: c.name,
       type: c.type,
@@ -353,5 +369,47 @@ export async function loadCommitteesFromAPI(): Promise<Committee[]> {
   } catch (error) {
     console.error('Failed to load committees from API:', error);
     return [];
+  }
+}
+
+export async function loadTermFromAPI(): Promise<Term | null> {
+  try {
+    const response = await fetch('/api/openlgu/terms?limit=10');
+    if (!response.ok) {
+      throw new Error(`API error: ${response.status}`);
+    }
+    const data = await response.json();
+    const apiTerms: APITerm[] = data.terms || [];
+
+    if (apiTerms.length === 0) return null;
+
+    // Find the current/active term: highest term_number or most recent by date
+    const currentTerm = apiTerms.reduce((latest: APITerm | null, term: APITerm) => {
+      if (!latest || term.term_number > latest.term_number) {
+        return term;
+      }
+      return latest;
+    }, null);
+
+    if (!currentTerm) return null;
+
+    return {
+      id: currentTerm.id,
+      term_number: currentTerm.term_number,
+      ordinal: currentTerm.ordinal,
+      name: currentTerm.name,
+      start_date: currentTerm.start_date,
+      end_date: currentTerm.end_date,
+      year_range: currentTerm.year_range,
+      executive: {
+        mayor_id: currentTerm.mayor_id,
+        mayor: currentTerm.executive?.mayor || 'TBD',
+        vice_mayor_id: currentTerm.vice_mayor_id,
+        vice_mayor: currentTerm.executive?.vice_mayor || 'TBD',
+      },
+    };
+  } catch (error) {
+    console.error('Failed to load term from API:', error);
+    return null;
   }
 }
