@@ -37,9 +37,8 @@ async function getPersonsList(context: { request: Request; env: Env }) {
   // Get persons with their memberships
   let sql = `
     SELECT DISTINCT
-      p.id, p.first_name, p.middle_name, p.last_name, p.photo_url, p.aliases,
+      p.id, p.first_name, p.middle_name, p.last_name, p.suffix, p.aliases,
       m.id as membership_id, m.term_id, m.chamber, m.role, m.rank,
-      m.start_date as membership_start, m.end_date as membership_end,
       t.term_number, t.ordinal as term_ordinal, t.name as term_name,
       t.year_range, t.start_date as term_start, t.end_date as term_end
     FROM persons p
@@ -103,7 +102,7 @@ async function getPersonsList(context: { request: Request; env: Env }) {
           first_name: row.first_name,
           middle_name: row.middle_name,
           last_name: row.last_name,
-          photo_url: row.photo_url,
+          suffix: row.suffix,
           aliases: row.aliases ? JSON.parse(row.aliases) : null,
           memberships: [],
           roles: [],
@@ -119,8 +118,6 @@ async function getPersonsList(context: { request: Request; env: Env }) {
           chamber: row.chamber,
           role: row.role,
           rank: row.rank,
-          start_date: row.membership_start,
-          end_date: row.membership_end,
           committees: [],
         };
 

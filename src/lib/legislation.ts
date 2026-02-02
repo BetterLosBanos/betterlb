@@ -212,7 +212,21 @@ export interface APIPerson {
   middle_name?: string;
   last_name: string;
   aliases?: string[] | null;
-  photo_url?: string | null;
+  memberships?: Array<{
+    term_id: string;
+    chamber?: string;
+    role: string;
+    rank?: number;
+    committees: Array<{ id: string; role: string }>;
+    term?: {
+      id: string;
+      term_number: number;
+      ordinal: string;
+      name: string;
+      year_range: string;
+    };
+  }>;
+  roles?: string[];
 }
 
 export async function loadPersonsFromAPI(): Promise<Person[]> {
@@ -227,8 +241,17 @@ export async function loadPersonsFromAPI(): Promise<Person[]> {
       first_name: p.first_name,
       middle_name: p.middle_name || '',
       last_name: p.last_name,
-      roles: [],
-      memberships: [],
+      roles: p.roles || [],
+      memberships: (p.memberships || []).map((m: any) => ({
+        term_id: m.term_id,
+        chamber: m.chamber,
+        role: m.role,
+        rank: m.rank,
+        committees: (m.committees || []).map((c: any) => ({
+          id: c.id,
+          role: c.role,
+        })),
+      })),
     }));
   } catch (error) {
     console.error('Failed to load persons from API:', error);

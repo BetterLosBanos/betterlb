@@ -1,6 +1,14 @@
--- Permissive schema for BetterLB legislation database
+-- Refined schema for BetterLB legislation database
 -- Allows incomplete data for admin console review and completion
 -- Migration: 001_initial_schema.sql
+--
+-- Schema Changes v2:
+-- - Removed persons.photo_url (not used in this build)
+-- - Removed memberships.start_date, memberships.end_date (term_id is sufficient)
+-- - Removed sessions.location (never populated)
+-- - Removed documents.content_preview, documents.full_text (not populated, using title instead)
+-- - Removed document_authors.author_order (never populated)
+-- - Added terms.mayor_id, terms.vice_mayor_id (merged from 002)
 
 -- ============================================================================
 -- TERMS
@@ -15,6 +23,8 @@ CREATE TABLE IF NOT EXISTS terms (
   year_range TEXT NOT NULL,
   mayor TEXT,
   vice_mayor TEXT,
+  mayor_id TEXT,
+  vice_mayor_id TEXT,
   created_at TEXT NOT NULL DEFAULT (datetime('now')),
   updated_at TEXT NOT NULL DEFAULT (datetime('now'))
 );
@@ -32,7 +42,6 @@ CREATE TABLE IF NOT EXISTS persons (
   last_name TEXT,
   suffix TEXT,
   aliases TEXT,
-  photo_url TEXT,
   created_at TEXT NOT NULL DEFAULT (datetime('now')),
   updated_at TEXT NOT NULL DEFAULT (datetime('now'))
 );
@@ -49,8 +58,6 @@ CREATE TABLE IF NOT EXISTS memberships (
   chamber TEXT,
   role TEXT,
   rank INTEGER,
-  start_date TEXT,
-  end_date TEXT,
   created_at TEXT NOT NULL DEFAULT (datetime('now')),
   updated_at TEXT NOT NULL DEFAULT (datetime('now'))
 );
@@ -100,7 +107,6 @@ CREATE TABLE IF NOT EXISTS sessions (
   type TEXT DEFAULT 'Regular',
   date TEXT,
   ordinal_number TEXT,
-  location TEXT,
   created_at TEXT NOT NULL DEFAULT (datetime('now')),
   updated_at TEXT NOT NULL DEFAULT (datetime('now'))
 );
@@ -137,8 +143,6 @@ CREATE TABLE IF NOT EXISTS documents (
   date_enacted TEXT,
   date_filed TEXT,
   pdf_url TEXT,
-  content_preview TEXT,
-  full_text TEXT,
   moved_by TEXT,
   seconded_by TEXT,
   source_type TEXT DEFAULT 'pdf',
@@ -163,7 +167,6 @@ CREATE TABLE IF NOT EXISTS document_authors (
   document_id TEXT,
   person_id TEXT,
   author_type TEXT DEFAULT 'primary',
-  author_order INTEGER,
   created_at TEXT NOT NULL DEFAULT (datetime('now')),
   PRIMARY KEY (document_id, person_id)
 );
