@@ -1,7 +1,6 @@
 {
 	"name": "betterlb",
 	"pages_build_output_dir": "dist",
-	// "account_id": "39c1422dc87080bcec58fcc5ff4593a7",
 	"compatibility_date": "2026-01-13",
 	"kv_namespaces": [
 		{
@@ -12,10 +11,18 @@
 	"d1_databases": [
 		{
 			"binding": "BETTERLB_DB",
-			"database_name": "betterlb_opencouncil",
-			"database_id": "3b868cf4-3b83-4ed7-9f71-4287fe28d713",
-			"migrations_dir": "db/migrations"
+			"database_name": "betterlb_openlgu",
+			"database_id": "67f71e98-fece-4460-b3b6-40f6f8742d89",
+			"migrations_dir": "db/migrations",
+			"remote": true
 		}
+		// Old database (betterlb_opencouncil) kept for reference/backup:
+		// {
+		// 	"binding": "BETTERLB_DB",
+		// 	"database_name": "betterlb_opencouncil",
+		// 	"database_id": "3b868cf4-3b83-4ed7-9f71-4287fe28d713",
+		// 	"migrations_dir": "db/migrations"
+		// }
 	],
 	"vars": {
 		"GITHUB_REPO": "BetterLosBanos/betterlb",
