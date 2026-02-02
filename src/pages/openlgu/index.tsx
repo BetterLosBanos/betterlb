@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useMemo, useRef, useState } from 'react';
 
 import { Link, useOutletContext } from 'react-router-dom';
 
@@ -10,21 +10,66 @@ import { EmptyState } from '@/components/ui/EmptyState';
 import type { DocumentItem, Person } from '@/lib/openlgu';
 import { getPersonName } from '@/lib/openlgu';
 import type { FilterType } from './layout';
+import DocumentFilters from './components/DocumentFilters';
 
 interface LegislationContext {
   searchQuery: string;
   filterType: FilterType;
+  setFilterType: (type: FilterType) => void;
+  authorIds: string[];
+  setAuthorIds: (ids: string[]) => void;
+  year: string;
+  setYear: (year: string) => void;
   documents: DocumentItem[];
   persons: Person[];
   isLoading: boolean;
 }
 
 export default function LegislationIndex() {
-  const { searchQuery, filterType, documents, persons, isLoading } =
-    useOutletContext<LegislationContext>();
+  const {
+    searchQuery,
+    filterType,
+    setFilterType,
+    authorIds,
+    setAuthorIds,
+    year,
+    setYear,
+    documents,
+    persons,
+    isLoading,
+  } = useOutletContext<LegislationContext>();
   const [visibleCount, setVisibleCount] = useState(10);
   const observerTarget = useRef<HTMLDivElement>(null);
 
+  // Generate author options from persons
+  const authorOptions = useMemo(() => {
+    return persons
+      .filter(p =>
+        p.roles.includes('councilor') ||
+        p.roles.includes('vice_mayor') ||
+        p.roles.includes('mayor')
+      )
+      .map(person => ({
+        label: getPersonName(person),
+        value: person.id,
+      }))
+      .sort((a, b) => a.label.localeCompare(b.label));
+  }, [persons]);
+
+  // Generate year options from documents
+  const yearOptions = useMemo(() => {
+    const years = new Set(
+      documents.map(doc =>
+        new Date(doc.date_enacted).getFullYear().toString()
+      )
+    );
+    return Array.from(years).sort().reverse().map(year => ({
+      label: year,
+      value: year,
+    }));
+  }, [documents]);
+
+  // Filter documents
   const filteredDocs = documents.filter(doc => {
     const query = searchQuery.toLowerCase();
     const matchesSearch =
@@ -37,7 +82,13 @@ export default function LegislationIndex() {
           : false;
       });
     const matchesType = filterType === 'all' || doc.type === filterType;
-    return matchesSearch && matchesType;
+    const matchesAuthor =
+      authorIds.length === 0 ||
+      doc.author_ids.some(id => authorIds.includes(id));
+    const docYear = new Date(doc.date_enacted).getFullYear().toString();
+    const matchesYear = !year || docYear === year;
+
+    return matchesSearch && matchesType && matchesAuthor && matchesYear;
   });
 
   useEffect(() => {
@@ -80,12 +131,27 @@ export default function LegislationIndex() {
   }
 
   return (
-    <section className='animate-in fade-in space-y-4 duration-500'>
+    <section className='animate-in fade-in space-y-6 duration-500'>
+      {/* Filter Bar */}
+      <DocumentFilters
+        filterType={filterType}
+        setFilterType={setFilterType}
+        authorIds={authorIds}
+        setAuthorIds={setAuthorIds}
+        year={year}
+        setYear={setYear}
+        authorOptions={authorOptions}
+        yearOptions={yearOptions}
+      />
+
+      {/* Results Badge */}
       <div className='flex justify-start'>
         <Badge variant='slate' className='border-slate-200 bg-slate-50'>
           {filteredDocs.length} Results
         </Badge>
       </div>
+
+      {/* Document Cards */}
       {filteredDocs.slice(0, visibleCount).map(doc => {
         const authors = doc.author_ids
           .map(id => persons.find(p => p.id === id))
@@ -93,8 +159,13 @@ export default function LegislationIndex() {
 
         // For executive orders, show the mayor as author if no authors listed
         let displayAuthors = authors;
-        if (doc.type === 'executive_order' && authors.length === 0 && (doc as any).mayor_id) {
-          const mayor = persons.find(p => p.id === (doc as any).mayor_id);
+        if (
+          doc.type === 'executive_order' &&
+          authors.length === 0 &&
+          'mayor_id' in doc &&
+          doc.mayor_id
+        ) {
+          const mayor = persons.find(p => p.id === doc.mayor_id);
           if (mayor) {
             displayAuthors = [mayor];
           }

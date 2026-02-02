@@ -33,13 +33,25 @@ export default function OpenLGULayout() {
       .withOptions({ clearOnDefault: true })
   );
 
+  // New: Author multi-select filter (comma-separated IDs in URL)
+  const [authorIds, setAuthorIds] = useQueryState('authors', {
+    defaultValue: [] as string[],
+    parse: (value) => value ? value.split(',').filter(Boolean) : [],
+    serialize: (values) => values.join(','),
+  });
+
+  // New: Year single-select filter
+  const [year, setYear] = useQueryState('year', {
+    defaultValue: '',
+  });
+
   const legislation = useOpenLGU();
 
   return (
     <SidebarLayout
       collapsible={true}
       defaultCollapsed={!isIndexPage}
-      
+
       // HEADER LOGIC
       headerNode={
         isIndexPage ? (
@@ -78,6 +90,11 @@ export default function OpenLGULayout() {
         context={{
           searchQuery,
           filterType,
+          setFilterType,
+          authorIds,
+          setAuthorIds,
+          year,
+          setYear,
           ...legislation,
         }}
       />
