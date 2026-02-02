@@ -1,7 +1,6 @@
 /**
  * Legislation Sessions API
  * GET /api/legislation/sessions - List all sessions
- * GET /api/legislation/sessions/:id - Get session details with attendance
  */
 
 import { Env } from '../../types';
@@ -15,33 +14,7 @@ interface Session {
   ordinal_number: string;
 }
 
-interface SessionWithAttendance extends Session {
-  all_members: Array<{
-    id: string;
-    first_name: string;
-    last_name: string;
-    status: 'present' | 'absent';
-    reason?: string;
-  }>;
-  absent_count: number;
-  present_count: number;
-  documents: Array<{
-    id: string;
-    type: string;
-    number: string;
-    title: string;
-  }>;
-}
-
 export async function onRequestGet(context: { request: Request; env: Env }) {
-  const url = new URL(context.request.url);
-  const pathParts = url.pathname.split('/').filter(Boolean);
-  const isDetailRequest = pathParts.length > 3 && pathParts[3] !== 'sessions';
-
-  if (isDetailRequest) {
-    return getSessionDetail(context);
-  }
-
   return getSessionsList(context);
 }
 
@@ -90,46 +63,62 @@ async function getSessionsList(context: { request: Request; env: Env }) {
     // Get all session IDs to fetch attendance data
     const sessionIds = result.results.map((r: any) => r.id).filter(Boolean);
 
-    // Get absences for all sessions
-    let presentData: any[] = [];
-    let absentData: any[] = [];
+    // Initialize data arrays
+    const presentData: any[] = [];
+    const absentData: any[] = [];
 
     if (sessionIds.length > 0) {
-      // Get absences from session_absences table
-      const placeholders = sessionIds.map(() => '?').join(',');
-      const absencesSql = `
-        SELECT session_id, person_id
-        FROM session_absences
-        WHERE session_id IN (${placeholders})
-      `;
-      const absencesResult = await env.BETTERLB_DB.prepare(absencesSql).bind(...sessionIds).all();
+      console.log(`Processing ${sessionIds.length} sessions`);
+      
+      // SQLite has a limit of 999 variables per query
+      // Use a conservative batch size to stay well under the limit
+      const BATCH_SIZE = 200;
+      const absentSet = new Map<string, string[]>();
+      
+      // Process absences in batches
+      for (let i = 0; i < sessionIds.length; i += BATCH_SIZE) {
+        const batch = sessionIds.slice(i, i + BATCH_SIZE);
+        const placeholders = batch.map((_, idx) => `?${idx + 1}`).join(',');
+        
+        const absencesSql = `
+          SELECT session_id, person_id
+          FROM session_absences
+          WHERE session_id IN (${placeholders})
+        `;
+        
+        const absencesResult = await env.BETTERLB_DB.prepare(absencesSql).bind(...batch).all();
 
-      const absentSet = new Map<string, string[]>(); // session_id -> array of person_ids
-      for (const row of absencesResult.results) {
-        if (!absentSet.has(row.session_id)) {
-          absentSet.set(row.session_id, []);
+        for (const row of absencesResult.results) {
+          if (!absentSet.has(row.session_id)) {
+            absentSet.set(row.session_id, []);
+          }
+          absentSet.get(row.session_id)!.push(row.person_id);
         }
-        absentSet.get(row.session_id)!.push(row.person_id);
       }
 
-      // Get term memberships to build present lists
-      const termIds = result.results.map((r: any) => r.term_id).filter((v, i, a) => a.indexOf(v) === i);
+      // Get unique term IDs
+      const termIds = [...new Set(result.results.map((r: any) => r.term_id).filter(Boolean))];
+      
       if (termIds.length > 0) {
-        const termPlaceholders = termIds.map(() => '?').join(',');
-        const membershipsSql = `
-          SELECT m.person_id, m.term_id
-          FROM memberships m
-          WHERE m.term_id IN (${termPlaceholders})
-        `;
-        const membershipsResult = await env.BETTERLB_DB.prepare(membershipsSql).bind(...termIds).all();
-
-        // Group memberships by term
+        // Build memberships map
         const termMembersMap = new Map<string, string[]>();
-        for (const row of membershipsResult.results) {
-          if (!termMembersMap.has(row.term_id)) {
-            termMembersMap.set(row.term_id, []);
+        
+        // Process term memberships
+        for (const tid of termIds) {
+          const membershipsSql = `
+            SELECT person_id, term_id
+            FROM memberships
+            WHERE term_id = ?1
+          `;
+          const membershipsResult = await env.BETTERLB_DB.prepare(membershipsSql).bind(tid).all();
+          
+          if (!termMembersMap.has(tid)) {
+            termMembersMap.set(tid, []);
           }
-          termMembersMap.get(row.term_id)!.push(row.person_id);
+          
+          for (const row of membershipsResult.results) {
+            termMembersMap.get(tid)!.push(row.person_id);
+          }
         }
 
         // Build present/absent arrays for each session
@@ -192,73 +181,4 @@ async function getSessionsList(context: { request: Request; env: Env }) {
     console.error('Error fetching sessions:', error);
     return Response.json({ error: 'Failed to fetch sessions' }, { status: 500 });
   }
-}
-
-/**
- * GET /api/legislation/sessions/:id
- * Get session with attendance (absent-only model) and documents
- */
-async function getSessionDetail(context: { request: Request; env: Env }) {
-  const { env } = context;
-  const url = new URL(context.request.url);
-  const pathParts = url.pathname.split('/').filter(Boolean);
-  const sessionId = pathParts[3];
-
-  // Get session
-  const sessionSql = 'SELECT * FROM sessions WHERE id = ?';
-  const session = await env.BETTERLB_DB.prepare(sessionSql).bind(sessionId).first<Session>();
-
-  if (!session) {
-    return Response.json({ error: 'Session not found' }, { status: 404 });
-  }
-
-  // Get all members for this term
-  const membersSql = `
-    SELECT p.id, p.first_name, p.middle_name, p.last_name, m.role, m.rank
-    FROM memberships m
-    JOIN persons p ON m.person_id = p.id
-    WHERE m.term_id = ?
-    ORDER BY m.rank ASC, p.last_name ASC
-  `;
-  const membersResult = await env.BETTERLB_DB.prepare(membersSql).bind(session.term_id).all();
-
-  // Get absences for this session
-  const absencesSql = `
-    SELECT person_id, reason
-    FROM session_absences
-    WHERE session_id = ?
-  `;
-  const absencesResult = await env.BETTERLB_DB.prepare(absencesSql).bind(sessionId).all();
-  const absentIds = new Set(absencesResult.results.map((r: any) => r.person_id));
-
-  // Build attendance list (absent-only model)
-  const all_members = membersResult.results.map((member: any) => ({
-    id: member.id,
-    first_name: member.first_name,
-    middle_name: member.middle_name,
-    last_name: member.last_name,
-    role: member.role,
-    rank: member.rank,
-    status: absentIds.has(member.id) ? 'absent' as const : 'present' as const,
-    reason: absentIds.has(member.id)
-      ? absencesResult.results.find((r: any) => r.person_id === member.id)?.reason
-      : undefined,
-  }));
-
-  // Get documents for this session
-  const documentsSql = `
-    SELECT id, type, number, title, status
-    FROM documents
-    WHERE session_id = ?
-    ORDER BY date_enacted ASC
-  `;
-  const documentsResult = await env.BETTERLB_DB.prepare(documentsSql).bind(sessionId).all();
-
-  return Response.json({
-    ...session,
-    all_members,
-    absent_count: absentIds.size,
-    present_count: all_members.length - absentIds.size,
-    documents: documentsResult.results,
-  });
 }
