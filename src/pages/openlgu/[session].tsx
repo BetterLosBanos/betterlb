@@ -74,7 +74,7 @@ export default function SessionDetail() {
       </Breadcrumb>
 
       <header
-        className={`rounded-2xl border border-l-[8px] border-slate-200 bg-white p-6 shadow-sm md:p-10 ${isRegular ? 'border-l-primary-600' : 'border-l-secondary-600'}`}
+        className={`rounded-2xl border border-l-8 border-slate-200 bg-white p-6 shadow-sm md:p-10 ${isRegular ? 'border-l-primary-600' : 'border-l-secondary-600'}`}
       >
         <div className='flex flex-col justify-between gap-6 md:flex-row md:items-center'>
           <div className='space-y-4'>

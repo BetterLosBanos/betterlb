@@ -1,19 +1,24 @@
-import { useEffect, useMemo, useRef, useState } from 'react';
+import { useEffect, useMemo } from 'react';
 
 import { Link, useOutletContext } from 'react-router-dom';
 
 import { FileText } from 'lucide-react';
 
+import { parseAsInteger, useQueryState } from 'nuqs';
+
 import { Badge } from '@/components/ui/Badge';
 import { EmptyState } from '@/components/ui/EmptyState';
 
-import type { DocumentItem, Person } from '@/lib/openlgu';
+import type { Committee, DocumentItem, Person, Session, Term } from '@/lib/openlgu';
 import { getPersonName } from '@/lib/openlgu';
 import type { FilterType } from './layout';
 import DocumentFilters from './components/DocumentFilters';
+import CurrentTermCard from './components/CurrentTermCard';
+import OfficialsTeaser from './components/OfficialsTeaser';
 
 interface LegislationContext {
   searchQuery: string;
+  setSearchQuery: (query: string) => void;
   filterType: FilterType;
   setFilterType: (type: FilterType) => void;
   authorIds: string[];
@@ -22,6 +27,10 @@ interface LegislationContext {
   setYear: (year: string) => void;
   documents: DocumentItem[];
   persons: Person[];
+  term: Term | null;
+  terms: Term[];
+  sessions: Session[];
+  committees: Committee[];
   isLoading: boolean;
 }
 
@@ -36,10 +45,16 @@ export default function LegislationIndex() {
     setYear,
     documents,
     persons,
+    term,
     isLoading,
   } = useOutletContext<LegislationContext>();
-  const [visibleCount, setVisibleCount] = useState(10);
-  const observerTarget = useRef<HTMLDivElement>(null);
+
+  // Pagination state synced with URL
+  const [currentPage, setCurrentPage] = useQueryState(
+    'page',
+    parseAsInteger.withDefault(1)
+  );
+  const itemsPerPage = 12;
 
   // Generate author options from persons
   const authorOptions = useMemo(() => {
@@ -91,16 +106,22 @@ export default function LegislationIndex() {
     return matchesSearch && matchesType && matchesAuthor && matchesYear;
   });
 
+  // Calculate pagination
+  const totalPages = Math.ceil(filteredDocs.length / itemsPerPage);
+  const paginatedDocs = filteredDocs.slice(
+    (currentPage - 1) * itemsPerPage,
+    currentPage * itemsPerPage
+  );
+
+  // Reset to page 1 when filters change
   useEffect(() => {
-    const observer = new IntersectionObserver(
-      entries => {
-        if (entries[0].isIntersecting) setVisibleCount(prev => prev + 10);
-      },
-      { threshold: 0.1 }
-    );
-    if (observerTarget.current) observer.observe(observerTarget.current);
-    return () => observer.disconnect();
-  }, [filteredDocs]);
+    if (currentPage > 1 && filteredDocs.length > 0) {
+      const maxPage = Math.ceil(filteredDocs.length / itemsPerPage);
+      if (currentPage > maxPage) {
+        setCurrentPage(1);
+      }
+    }
+  }, [filterType, authorIds, year, searchQuery, filteredDocs.length, itemsPerPage, currentPage, setCurrentPage]);
 
   // Show loading skeleton while data is being fetched
   if (isLoading) {
@@ -132,6 +153,14 @@ export default function LegislationIndex() {
 
   return (
     <section className='animate-in fade-in space-y-6 duration-500'>
+      {/* Teaser Cards Section */}
+      {(term || persons.length > 0) && (
+        <div className='grid grid-cols-1 gap-4 md:grid-cols-2'>
+          {term && <CurrentTermCard term={term} documents={documents} />}
+          {persons.length > 0 && <OfficialsTeaser persons={persons} term={term} />}
+        </div>
+      )}
+
       {/* Filter Bar */}
       <DocumentFilters
         filterType={filterType}
@@ -144,15 +173,36 @@ export default function LegislationIndex() {
         yearOptions={yearOptions}
       />
 
-      {/* Results Badge */}
-      <div className='flex justify-start'>
+      {/* Results Badge + Pagination */}
+      <div className='flex flex-wrap items-center justify-between gap-4'>
         <Badge variant='slate' className='border-slate-200 bg-slate-50'>
           {filteredDocs.length} Results
         </Badge>
+        {totalPages > 1 && (
+          <nav className='flex items-center gap-2'>
+            <button
+              onClick={() => setCurrentPage(Math.max(1, currentPage - 1))}
+              disabled={currentPage === 1}
+              className='border-slate-200 bg-white text-slate-600 hover:bg-slate-50 disabled:opacity-50 disabled:cursor-not-allowed rounded-lg border px-3 py-1.5 text-xs font-bold transition-colors'
+            >
+              ← Previous
+            </button>
+            <span className='text-slate-500 text-xs font-medium'>
+              Page {currentPage} of {totalPages}
+            </span>
+            <button
+              onClick={() => setCurrentPage(Math.min(totalPages, currentPage + 1))}
+              disabled={currentPage === totalPages}
+              className='border-slate-200 bg-white text-slate-600 hover:bg-slate-50 disabled:opacity-50 disabled:cursor-not-allowed rounded-lg border px-3 py-1.5 text-xs font-bold transition-colors'
+            >
+              Next →
+            </button>
+          </nav>
+        )}
       </div>
 
       {/* Document Cards */}
-      {filteredDocs.slice(0, visibleCount).map(doc => {
+      {paginatedDocs.map(doc => {
         const authors = doc.author_ids
           .map(id => persons.find(p => p.id === id))
           .filter((p): p is Person => Boolean(p));
@@ -210,7 +260,34 @@ export default function LegislationIndex() {
           </Link>
         );
       })}
-      <div ref={observerTarget} className='h-10' />
+
+      {/* Bottom Pagination */}
+      {totalPages > 1 && (
+        <div className='border-t border-slate-200 bg-slate-50 flex flex-wrap items-center justify-between gap-4 p-4 rounded-xl'>
+          <span className='text-slate-500 text-xs font-medium'>
+            Showing {(currentPage - 1) * itemsPerPage + 1}—{Math.min(currentPage * itemsPerPage, filteredDocs.length)} of {filteredDocs.length}
+          </span>
+          <nav className='flex items-center gap-2'>
+            <button
+              onClick={() => setCurrentPage(Math.max(1, currentPage - 1))}
+              disabled={currentPage === 1}
+              className='border-slate-200 bg-white text-slate-600 hover:bg-slate-50 disabled:opacity-50 disabled:cursor-not-allowed rounded-lg border px-3 py-1.5 text-xs font-bold transition-colors'
+            >
+              ← Previous
+            </button>
+            <span className='text-slate-500 text-xs font-medium'>
+              Page {currentPage} of {totalPages}
+            </span>
+            <button
+              onClick={() => setCurrentPage(Math.min(totalPages, currentPage + 1))}
+              disabled={currentPage === totalPages}
+              className='border-slate-200 bg-white text-slate-600 hover:bg-slate-50 disabled:opacity-50 disabled:cursor-not-allowed rounded-lg border px-3 py-1.5 text-xs font-bold transition-colors'
+            >
+              Next →
+            </button>
+          </nav>
+        </div>
+      )}
     </section>
   );
 }

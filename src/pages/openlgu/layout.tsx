@@ -89,6 +89,7 @@ export default function OpenLGULayout() {
       <Outlet
         context={{
           searchQuery,
+          setSearchQuery,
           filterType,
           setFilterType,
           authorIds,

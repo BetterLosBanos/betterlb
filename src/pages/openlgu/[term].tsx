@@ -52,22 +52,27 @@ interface LegislationContext {
 
 export default function TermDetail() {
   const { termId } = useParams<{ termId: string }>();
-  const { persons, term, documents, sessions, committees, isLoading } =
+  const { persons, terms, documents, sessions, committees, isLoading } =
     useOutletContext<LegislationContext>();
   const [visibleDocs, setVisibleDocs] = useState(10);
 
+  // Find the requested term from the terms array
+  const term = useMemo(() => {
+    return terms.find(t => t.id === termId) || null;
+  }, [terms, termId]);
+
   // Filter members by role - executive vs legislative
   const executiveMembers = useMemo(() => {
-    if (!term || term.id !== termId) return [];
+    if (!term) return [];
     return persons.filter((p: Person) =>
       p.memberships.some(m =>
         m.term_id === term.id && isExecutiveRole(m.chamber)
       )
     );
-  }, [persons, term, termId]);
+  }, [persons, term]);
 
   const legislativeMembers = useMemo(() => {
-    if (!term || term.id !== termId) return [];
+    if (!term) return [];
     return persons
       .filter((p: Person) =>
         p.memberships.some(m =>
@@ -83,32 +88,32 @@ export default function TermDetail() {
         if (!isVMA && isVMB) return 1;
         return (memA.rank || 99) - (memB.rank || 99);
       });
-  }, [persons, term, termId]);
+  }, [persons, term]);
 
   // Filter term documents
   const termDocuments = useMemo(() => {
-    if (!term || term.id !== termId) return [];
+    if (!term) return [];
     return documents.filter((doc: DocumentItem) => {
       // Handle null session_id
       if (!doc.session_id) return false;
       const session = sessions.find((s: Session) => s.id === doc.session_id);
       return session?.term_id === term.id || doc.session_id.startsWith(term.id);
     });
-  }, [documents, sessions, term, termId]);
+  }, [documents, sessions, term]);
 
   // Filter sessions for this term
   const termSessions = useMemo(() => {
-    if (!term || term.id !== termId) return [];
+    if (!term) return [];
     return sessions
       .filter((s: Session) => s.term_id === term.id)
       .sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
-  }, [sessions, term, termId]);
+  }, [sessions, term]);
 
   if (isLoading) {
     return <PageLoadingState message="Loading term data..." />;
   }
 
-  if (!term || term.id !== termId) {
+  if (!term) {
     return (
       <div className='p-20 text-center font-bold text-slate-500 uppercase'>
         Term data not found
@@ -170,9 +175,9 @@ export default function TermDetail() {
                 <Link
                   key={person.id}
                   to={`/openlgu/person/${person.id}`}
-                  className='group flex items-center gap-4 rounded-xl bg-gradient-to-r from-primary-50 to-white p-4 border border-primary-100 hover:border-primary-200 hover:shadow-sm transition-all'
+                  className='group flex items-center gap-4 rounded-xl bg-linear-to-r from-primary-50 to-white p-4 border border-primary-100 hover:border-primary-200 hover:shadow-sm transition-all'
                 >
-                  <div className='bg-gradient-to-br from-primary-500 to-primary-600 flex h-12 w-12 shrink-0 items-center justify-center rounded-xl text-lg font-bold text-white shadow-sm'>
+                  <div className='bg-linear-to-br from-primary-500 to-primary-600 flex h-12 w-12 shrink-0 items-center justify-center rounded-xl text-lg font-bold text-white shadow-sm'>
                     {person.first_name[0]}
                     {person.last_name[0]}
                   </div>
@@ -269,7 +274,7 @@ export default function TermDetail() {
                             {committeesByRole.chairperson.map(c => (
                               <div
                                 key={`chair-${c.id}`}
-                                className='flex items-center gap-1.5 rounded-md bg-gradient-to-r from-amber-50 to-amber-50/50 px-2 py-1 border border-amber-200/50'
+                                className='flex items-center gap-1.5 rounded-md bg-linear-to-r from-amber-50 to-amber-50/50 px-2 py-1 border border-amber-200/50'
                               >
                                 <Crown className='h-3 w-3 text-amber-600' />
                                 <span className='text-[10px] font-medium text-amber-700 truncate max-w-[120px]'>
@@ -281,7 +286,7 @@ export default function TermDetail() {
                             {committeesByRole.viceChairperson.map(c => (
                               <div
                                 key={`vice-${c.id}`}
-                                className='flex items-center gap-1.5 rounded-md bg-gradient-to-r from-blue-50 to-blue-50/50 px-2 py-1 border border-blue-200/50'
+                                className='flex items-center gap-1.5 rounded-md bg-linear-to-r from-blue-50 to-blue-50/50 px-2 py-1 border border-blue-200/50'
                               >
                                 <Shield className='h-3 w-3 text-blue-600' />
                                 <span className='text-[10px] font-medium text-blue-700 truncate max-w-[120px]'>
