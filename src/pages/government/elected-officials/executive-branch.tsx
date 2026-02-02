@@ -45,6 +45,7 @@ interface ExecutiveOfficial {
   email?: string;
   website?: string;
   isElected: boolean;
+  personId?: string;
 }
 
 export default function ExecutiveBranchPage() {
@@ -97,7 +98,7 @@ export default function ExecutiveBranchPage() {
             leader.slug.includes('mayor') && !leader.slug.includes('vice');
           const Icon = isMayor ? Landmark : Gavel;
 
-          return (
+          const cardContent = (
             <DetailSection
               key={leader.slug}
               title={leader.office || 'Elected Official'}
@@ -157,8 +158,34 @@ export default function ExecutiveBranchPage() {
                     </ContactContainer>
                   </div>
                 )}
+
+                {/* View Profile Link */}
+                {leader.personId && (
+                  <div className='w-full border-t border-slate-100 pt-4'>
+                    <Link
+                      to={`/openlgu/person/${leader.personId}`}
+                      className='text-primary-600 hover:text-primary-800 group flex items-center justify-center gap-2 text-sm font-bold transition-colors'
+                    >
+                      View Full Profile
+                      <ArrowRight className='h-4 w-4 transition-transform group-hover:translate-x-1' />
+                    </Link>
+                  </div>
+                )}
               </div>
             </DetailSection>
+          );
+
+          // Wrap in Link if personId exists
+          return leader.personId ? (
+            <Link
+              key={leader.slug}
+              to={`/openlgu/person/${leader.personId}`}
+              className='group'
+            >
+              {cardContent}
+            </Link>
+          ) : (
+            cardContent
           );
         })}
       </div>

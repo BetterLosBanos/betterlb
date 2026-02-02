@@ -32,7 +32,7 @@ import {
   BreadcrumbSeparator,
 } from '@/components/navigation/Breadcrumb';
 import { Badge } from '@/components/ui/Badge';
-import { EmptyState } from '@/components/ui/EmptyState';
+import { EmptyState, PageLoadingState } from '@/components/ui';
 
 import { getPersonName } from '@/lib/openlgu';
 import { toTitleCase } from '@/lib/stringUtils';
@@ -52,7 +52,7 @@ interface LegislationContext {
 
 export default function TermDetail() {
   const { termId } = useParams<{ termId: string }>();
-  const { persons, term, documents, sessions, committees } =
+  const { persons, term, documents, sessions, committees, isLoading } =
     useOutletContext<LegislationContext>();
   const [visibleDocs, setVisibleDocs] = useState(10);
 
@@ -103,6 +103,10 @@ export default function TermDetail() {
       .filter((s: Session) => s.term_id === term.id)
       .sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
   }, [sessions, term, termId]);
+
+  if (isLoading) {
+    return <PageLoadingState message="Loading term data..." />;
+  }
 
   if (!term || term.id !== termId) {
     return (

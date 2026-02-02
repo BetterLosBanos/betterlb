@@ -14,7 +14,7 @@ import {
   BreadcrumbSeparator,
 } from '@/components/navigation/Breadcrumb';
 import { Badge } from '@/components/ui/Badge';
-import { EmptyState } from '@/components/ui/EmptyState';
+import { EmptyState, PageLoadingState } from '@/components/ui';
 
 import type { Person, Session } from '@/lib/openlgu';
 import { getPersonName } from '@/lib/openlgu';
@@ -24,10 +24,11 @@ interface LegislationContext {
   persons: Person[];
   sessions: Session[];
   searchQuery: string;
+  isLoading: boolean;
 }
 
 export default function OfficialsIndex() {
-  const { persons, sessions, searchQuery } = useOutletContext<LegislationContext>();
+  const { persons, sessions, searchQuery, isLoading } = useOutletContext<LegislationContext>();
 
   const filteredPersons = useMemo(() => {
     if (!searchQuery) return persons;
@@ -94,7 +95,9 @@ export default function OfficialsIndex() {
         </p>
       </header>
 
-      {filteredPersons.length === 0 ? (
+      {isLoading ? (
+        <PageLoadingState message="Loading officials..." />
+      ) : filteredPersons.length === 0 ? (
         <EmptyState
           title='No officials found'
           message={`We couldn't find any officials matching "${searchQuery}"`}

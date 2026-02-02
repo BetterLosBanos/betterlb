@@ -26,6 +26,7 @@ import {
   BreadcrumbSeparator,
 } from '@/components/navigation/Breadcrumb';
 import { Badge } from '@/components/ui/Badge';
+import { PageLoadingState } from '@/components/ui';
 
 // Use the library types as the source of truth to ensure compatibility with helpers
 import type {
@@ -54,6 +55,7 @@ interface LegislationContext {
   sessions: Session[];
   committees: Committee[];
   terms: Term[];
+  isLoading: boolean;
 }
 
 interface MembershipWithDetails {
@@ -80,10 +82,14 @@ export default function PersonDetail() {
   const { personId } = useParams<{ personId: string }>();
 
   // 1. Strictly typed destructuring from context
-  const { persons, documents, committees, sessions, terms } =
+  const { persons, documents, committees, sessions, terms, isLoading } =
     useOutletContext<LegislationContext>();
 
   const person = persons.find((p: Person) => p.id === personId);
+
+  if (isLoading) {
+    return <PageLoadingState message="Loading official profile..." />;
+  }
 
   if (!person) {
     return (

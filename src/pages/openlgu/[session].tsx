@@ -19,16 +19,21 @@ import {
   BreadcrumbSeparator,
 } from '@/components/navigation/Breadcrumb';
 import { Badge } from '@/components/ui/Badge';
-import { EmptyState } from '@/components/ui/EmptyState';
+import { EmptyState, PageLoadingState } from '@/components/ui';
 
 import { getPersonName } from '@/lib/openlgu';
 
 export default function SessionDetail() {
   const { sessionId } = useParams<{ sessionId: string }>();
-  const { sessions, persons, documents } =
+  const { sessions, persons, documents, isLoading } =
     useOutletContext<LegislationContext>();
 
   const session = sessions.find((s: Session) => s.id === sessionId);
+
+  if (isLoading) {
+    return <PageLoadingState message="Loading session..." />;
+  }
+
   if (!session)
     return (
       <div className='p-20 text-center' role='alert'>

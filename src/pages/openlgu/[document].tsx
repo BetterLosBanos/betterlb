@@ -23,6 +23,7 @@ import {
   BreadcrumbSeparator,
 } from '@/components/navigation/Breadcrumb';
 import { Badge } from '@/components/ui/Badge';
+import { PageLoadingState } from '@/components/ui';
 
 import { getPersonName } from '@/lib/openlgu';
 
@@ -30,10 +31,15 @@ import type { LegislationContext, Person } from '@/types/legislationTypes';
 
 export default function LegislationDocument() {
   const { document: urlId } = useParams();
-  const { documents, persons, sessions, terms } =
+  const { documents, persons, sessions, terms, isLoading } =
     useOutletContext<LegislationContext>();
 
   const doc = documents?.find(d => d.id === urlId);
+
+  if (isLoading) {
+    return <PageLoadingState message="Loading document..." />;
+  }
+
   if (!doc)
     return (
       <div className='p-20 text-center' role='alert'>
