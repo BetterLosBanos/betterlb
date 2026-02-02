@@ -1,0 +1,116 @@
+/**
+ * GET /api/admin/auth/callback
+ * Handle GitHub OAuth callback
+ */
+
+import { Env } from '../../../types';
+
+const GITHUB_CLIENT_ID = '__GITHUB_CLIENT_ID__';
+const GITHUB_CLIENT_SECRET = '__GITHUB_CLIENT_SECRET__';
+
+const AUTHORIZED_USERS: string[] = [];
+
+interface GitHubUser {
+  id: number;
+  login: string;
+  name: string;
+  email: string | null;
+  avatar_url: string;
+}
+
+interface AdminSession {
+  user: GitHubUser;
+  login_at: string;
+  expires_at: string;
+}
+
+export async function onRequestGet(context: { request: Request; env: Env }) {
+  const { request, env } = context;
+  const url = new URL(request.url);
+
+  const code = url.searchParams.get('code');
+  const state = url.searchParams.get('state');
+
+  if (!code || !state) {
+    return Response.json({ error: 'Missing code or state' }, { status: 400 });
+  }
+
+  // Validate state
+  const stateData = await env.WEATHER_KV.get(`oauth_state:${state}`);
+  if (!stateData) {
+    return Response.json({ error: 'Invalid state' }, { status: 400 });
+  }
+
+  // Delete state after validation
+  await env.WEATHER_KV.delete(`oauth_state:${state}`);
+
+  try {
+    // Exchange code for access token
+    const tokenResponse = await fetch('https://github.com/login/oauth/access_token', {
+      method: 'POST',
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        client_id: env.GITHUB_CLIENT_ID || GITHUB_CLIENT_ID,
+        client_secret: env.GITHUB_CLIENT_SECRET || GITHUB_CLIENT_SECRET,
+        code,
+        redirect_uri: `${url.origin}/api/admin/auth/callback`,
+      }),
+    });
+
+    const tokenData = await tokenResponse.json();
+
+    if (tokenData.error) {
+      return Response.json({ error: tokenData.error }, { status: 400 });
+    }
+
+    const accessToken = tokenData.access_token;
+
+    // Fetch user info
+    const userResponse = await fetch('https://api.github.com/user', {
+      headers: {
+        'Authorization': `Bearer ${accessToken}`,
+        'User-Agent': 'BetterLB-Admin',
+      },
+    });
+
+    const user: GitHubUser = await userResponse.json();
+
+    // Check if user is authorized
+    const authorizedList = env.AUTHORIZED_USERS
+      ? JSON.parse(env.AUTHORIZED_USERS)
+      : AUTHORIZED_USERS;
+
+    if (authorizedList.length > 0 && !authorizedList.includes(user.login)) {
+      return Response.redirect(`${url.origin}/admin?unauthorized`, 302);
+    }
+
+    // Create session
+    const sessionId = crypto.randomUUID();
+    const session: AdminSession = {
+      user,
+      login_at: new Date().toISOString(),
+      expires_at: new Date(Date.now() + 24 * 60 * 60 * 1000).toISOString(), // 24 hours
+    };
+
+    // Store session in KV
+    await env.WEATHER_KV.put(`session:${sessionId}`, JSON.stringify(session), {
+      expirationTtl: 24 * 60 * 60,
+    });
+
+    // Set cookie and redirect
+    const redirectUrl = `${url.origin}/admin`;
+    return new Response(null, {
+      status: 302,
+      headers: {
+        'Location': redirectUrl,
+        'Set-Cookie': `admin_session=${sessionId}; Path=/; HttpOnly; Secure; SameSite=Lax; Max-Age=${24 * 60 * 60}`,
+      },
+    });
+  } catch (error) {
+    console.error('OAuth error:', error);
+    return Response.json({ error: 'Authentication failed' }, { status: 500 });
+  }
+}

@@ -1,6 +1,6 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useCallback } from 'react';
 import { AlertTriangle, FileText, ExternalLink, RefreshCw } from 'lucide-react';
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/Card';
+import { Card, CardContent } from '@/components/ui/Card';
 import { Badge } from '@/components/ui/Badge';
 import Button from '@/components/ui/Button';
 import { EmptyState } from '@/components/ui/EmptyState';
@@ -13,6 +13,7 @@ interface ParseError {
   error_message: string;
   timestamp: string;
   stage: 'scrape' | 'download' | 'parse' | 'extract' | 'migrate';
+  status?: string;
 }
 
 interface ErrorResponse {
@@ -23,13 +24,10 @@ interface ErrorResponse {
 export default function ErrorLog() {
   const [errors, setErrors] = useState<ParseError[]>([]);
   const [loading, setLoading] = useState(true);
+  const [retrying, setRetrying] = useState<Set<string>>(new Set());
   const [filter, setFilter] = useState<string>('all');
 
-  useEffect(() => {
-    fetchErrors();
-  }, [filter]);
-
-  const fetchErrors = async () => {
+  const fetchErrors = useCallback(async () => {
     setLoading(true);
     try {
       const url = filter === 'all'
@@ -44,7 +42,11 @@ export default function ErrorLog() {
     } finally {
       setLoading(false);
     }
-  };
+  }, [filter]);
+
+  useEffect(() => {
+    fetchErrors();
+  }, [fetchErrors]);
 
   const getStageBadge = (stage: ParseError['stage']) => {
     const variants = {
@@ -56,6 +58,32 @@ export default function ErrorLog() {
     } as const;
 
     return <Badge variant={variants[stage]}>{stage}</Badge>;
+  };
+
+  const retryError = async (errorId: string) => {
+    setRetrying((prev) => new Set(prev).add(errorId));
+    try {
+      const response = await fetch(`/api/admin/errors/${errorId}`, {
+        method: 'POST',
+      });
+      if (!response.ok) throw new Error('Failed to retry');
+
+      // Show success feedback
+      const data = await response.json();
+      alert(`Retry queued: ${data.message || 'Processing will be attempted again.'}`);
+
+      // Refresh the error list
+      fetchErrors();
+    } catch (error) {
+      console.error('Error retrying:', error);
+      alert('Failed to queue retry. Please try again.');
+    } finally {
+      setRetrying((prev) => {
+        const next = new Set(prev);
+        next.delete(errorId);
+        return next;
+      });
+    }
   };
 
   if (loading) {
@@ -159,7 +187,11 @@ export default function ErrorLog() {
                     variant="outline"
                     size="sm"
                     onClick={() => {
-                      /* TODO: Open review modal */
+                      if (error.document_number) {
+                        window.open(`/documents/${error.document_number}`, '_blank');
+                      } else if (error.pdf_url) {
+                        window.open(error.pdf_url, '_blank');
+                      }
                     }}
                   >
                     Review
@@ -167,11 +199,11 @@ export default function ErrorLog() {
                   <Button
                     variant="primary"
                     size="sm"
-                    onClick={() => {
-                      /* TODO: Retry processing */
-                    }}
+                    leftIcon={retrying.has(error.id) ? undefined : <RefreshCw className="h-4 w-4" />}
+                    onClick={() => retryError(error.id)}
+                    disabled={retrying.has(error.id)}
                   >
-                    Retry
+                    {retrying.has(error.id) ? 'Retrying...' : 'Retry'}
                   </Button>
                 </div>
               </div>

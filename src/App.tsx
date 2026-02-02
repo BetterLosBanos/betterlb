@@ -69,9 +69,11 @@ import ProcurementPage from '@/pages/transparency/procurement';
 // Admin Routes
 import AdminLayout from '@/pages/admin/layout';
 import AdminDashboard from '@/pages/admin/index';
+import AdminDocuments from '@/pages/admin/Documents';
 import AdminErrorLog from '@/pages/admin/ErrorLog';
 import AdminReviewQueue from '@/pages/admin/ReviewQueue';
 import AdminReconcile from '@/pages/admin/Reconcile';
+import PersonMergeTool from '@/pages/admin/components/PersonMergeTool';
 
 function App() {
   return (
@@ -197,6 +199,8 @@ function AppContent() {
             {/* Admin Routes */}
             <Route path='/admin' element={<AdminLayout />}>
               <Route index element={<AdminDashboard />} />
+              <Route path='documents' element={<AdminDocuments />} />
+              <Route path='persons/merge' element={<PersonMergeTool />} />
               <Route path='errors' element={<AdminErrorLog />} />
               <Route path='review-queue' element={<AdminReviewQueue />} />
               <Route path='reconcile' element={<AdminReconcile />} />

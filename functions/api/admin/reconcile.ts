@@ -6,6 +6,7 @@
  */
 
 import { Env } from '../../types';
+import { withAuth, AuthContext } from '../../utils/admin-auth';
 
 type ReconcileStatus = 'unresolved' | 'resolved' | 'skipped';
 type ConflictType = 'moved_by' | 'seconded_by' | 'authors' | 'title' | 'none';
@@ -48,7 +49,7 @@ interface ReconcileResponse {
  * - limit: number (default 20)
  * - offset: number (default 0)
  */
-export async function onRequestGet(context: { request: Request; env: Env }) {
+async function handleGetReconcile(context: { request: Request; env: Env; auth: AuthContext }) {
   const { request, env } = context;
   const url = new URL(request.url);
 
@@ -129,7 +130,7 @@ export async function onRequestGet(context: { request: Request; env: Env }) {
  * POST /api/admin/reconcile
  * Resolve a conflict by setting the resolved value
  */
-async function resolveConflict(context: { request: Request; env: Env }) {
+async function resolveConflict(context: { request: Request; env: Env; auth: AuthContext }) {
   const { request, env } = context;
 
   try {
@@ -168,7 +169,7 @@ async function resolveConflict(context: { request: Request; env: Env }) {
  * POST /api/admin/reconcile/skip
  * Skip a conflict (mark as resolved without changes)
  */
-async function skipConflict(context: { request: Request; env: Env }) {
+async function skipConflict(context: { request: Request; env: Env; auth: AuthContext }) {
   const { request, env } = context;
 
   try {
@@ -188,15 +189,18 @@ async function skipConflict(context: { request: Request; env: Env }) {
   }
 }
 
+export const onRequestGet = withAuth(handleGetReconcile);
+
 export async function onRequestPost(context: { request: Request; env: Env }) {
   const { request } = context;
   const url = new URL(request.url);
   const pathParts = url.pathname.split('/').filter(Boolean);
 
   // Route to appropriate handler
-  if (pathParts[4] === 'skip') {
-    return skipConflict(context);
+  // /api/admin/reconcile/skip -> pathParts[3] = "skip"
+  if (pathParts[3] === 'skip') {
+    return withAuth(skipConflict)(context);
   }
 
-  return resolveConflict(context);
+  return withAuth(resolveConflict)(context);
 }

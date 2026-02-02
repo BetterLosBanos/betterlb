@@ -11,6 +11,7 @@ import {
   ShieldCheck,
   Users,
 } from 'lucide-react';
+import FlagForReviewButton from '@/components/admin/FlagForReviewButton';
 
 import { DetailSection } from '@/components/layout/PageLayouts';
 import {
@@ -247,6 +248,19 @@ export default function LegislationDocument() {
                 Sangguniang Bayan Office.
               </p>
             </div>
+          </div>
+
+          {/* Flag for Review */}
+          <div className='border-slate-200 rounded-xl border bg-slate-50 p-4'>
+            <p className='text-slate-600 mb-3 text-xs leading-relaxed'>
+              Notice an error with this document? Flag it for review by the admin team.
+            </p>
+            <FlagForReviewButton
+              itemType='document'
+              itemId={doc.id}
+              itemTitle={`${doc.type} ${doc.number}`}
+              variant='compact'
+            />
           </div>
         </aside>
       </div>

@@ -1,3 +1,4 @@
+import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import {
   AlertTriangle,
@@ -5,6 +6,7 @@ import {
   GitMerge,
   Activity,
   ArrowRight,
+  RefreshCw,
 } from 'lucide-react';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/Card';
 import { Badge } from '@/components/ui/Badge';
@@ -13,47 +15,91 @@ import Button from '@/components/ui/Button';
 
 interface StatCard {
   title: string;
-  value: string;
+  value: string | number;
   description: string;
   icon: React.ComponentType<{ className?: string }>;
   variant: 'warning' | 'error' | 'primary' | 'success';
   link: string;
 }
 
+interface DashboardStats {
+  review_queue: {
+    total: number;
+    pending: number;
+    in_progress: number;
+    resolved: number;
+  };
+  documents: {
+    total: number;
+    pending_review: number;
+    processed: number;
+  };
+  errors: {
+    total: number;
+    recent: number;
+  };
+  conflicts: {
+    active: number;
+  };
+}
+
 export default function AdminDashboard() {
-  // TODO: Fetch actual stats from API
-  const stats: StatCard[] = [
+  const [stats, setStats] = useState<DashboardStats | null>(null);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    fetchStats();
+  }, []);
+
+  const fetchStats = async () => {
+    setLoading(true);
+    try {
+      const response = await fetch('/api/admin/stats');
+      if (response.ok) {
+        const data = await response.json();
+        setStats(data);
+      }
+    } catch (error) {
+      console.error('Error fetching stats:', error);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  const statCards: StatCard[] = [
     {
       title: 'Failed Parses',
-      value: '--',
-      description: 'Documents that failed OCR/parsing',
+      value: stats?.errors.total ?? '--',
+      description: stats?.errors.recent
+        ? `${stats.errors.recent} in the last 7 days`
+        : 'Documents that failed OCR/parsing',
       icon: AlertTriangle,
       variant: 'error',
       link: '/admin/errors',
     },
     {
       title: 'Review Queue',
-      value: '--',
-      description: 'Items awaiting manual review',
+      value: stats?.review_queue.pending ?? '--',
+      description: `${stats?.review_queue.total ?? 0} total items awaiting review`,
       icon: FileText,
       variant: 'warning',
       link: '/admin/review-queue',
     },
     {
       title: 'Reconcile',
-      value: '--',
+      value: stats?.conflicts.active ?? '--',
       description: 'Facebook vs gov.ph conflicts',
       icon: GitMerge,
       variant: 'primary',
       link: '/admin/reconcile',
     },
     {
-      title: 'Pipeline Status',
-      value: 'Active',
-      description: 'Last run: --',
+      title: 'Documents',
+      value: stats?.documents.total ?? '--',
+      description: `${stats?.documents.processed ?? 0} processed`,
       icon: Activity,
       variant: 'success',
-      link: '/admin/status',
+      link: '/admin/documents',
     },
   ];
 
@@ -71,6 +117,12 @@ export default function AdminDashboard() {
       variant: 'outline' as const,
     },
     {
+      title: 'Merge Persons',
+      description: 'Fix duplicate person records',
+      link: '/admin/persons/merge',
+      variant: 'outline' as const,
+    },
+    {
       title: 'Reconcile Data',
       description: 'Merge Facebook and gov.ph records',
       link: '/admin/reconcile',
@@ -78,20 +130,31 @@ export default function AdminDashboard() {
     },
   ];
 
-  const variantColors = {
-    warning: 'bg-amber-50 text-amber-800 border-amber-200',
-    error: 'bg-rose-50 text-rose-800 border-rose-200',
-    primary: 'bg-blue-50 text-blue-800 border-blue-200',
-    success: 'bg-emerald-50 text-emerald-800 border-emerald-200',
+  const getDisplayValue = (value: string | number): string => {
+    if (typeof value === 'number') {
+      return value.toLocaleString();
+    }
+    return value;
   };
 
   return (
     <div className="space-y-8">
       {/* Stats Overview */}
       <section>
-        <h2 className="mb-4 text-xl font-bold text-slate-900">Overview</h2>
+        <div className="mb-4 flex items-center justify-between">
+          <h2 className="text-xl font-bold text-slate-900">Overview</h2>
+          <Button
+            variant="outline"
+            size="sm"
+            leftIcon={<RefreshCw className={`h-4 w-4 ${loading ? 'animate-spin' : ''}`} />}
+            onClick={fetchStats}
+            disabled={loading}
+          >
+            Refresh
+          </Button>
+        </div>
         <CardGrid columns={4}>
-          {stats.map((stat) => {
+          {statCards.map((stat) => {
             const Icon = stat.icon;
             return (
               <Link key={stat.title} to={stat.link}>
@@ -117,7 +180,7 @@ export default function AdminDashboard() {
                         variant={stat.variant}
                         className="border px-2 py-0.5"
                       >
-                        {stat.value}
+                        {getDisplayValue(stat.value)}
                       </Badge>
                     </div>
                   </CardHeader>

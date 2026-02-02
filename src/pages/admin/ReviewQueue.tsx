@@ -1,28 +1,31 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useCallback } from 'react';
 import {
   FileText,
   User,
   Calendar,
-  AlertCircle,
   Check,
-  X,
   RefreshCw,
   ChevronLeft,
   ChevronRight,
   Edit3,
+  Users,
+  CheckSquare,
+  Square,
 } from 'lucide-react';
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/Card';
+import { Card, CardContent } from '@/components/ui/Card';
 import { Badge } from '@/components/ui/Badge';
 import Button from '@/components/ui/Button';
 import { EmptyState } from '@/components/ui/EmptyState';
 import SelectPicker from '@/components/ui/SelectPicker';
+import DocumentEditModal from './components/DocumentEditModal';
+import SessionDataForm from './components/SessionDataForm';
+import AttendanceForm from './components/AttendanceForm';
 
 // Define the interface locally since it's not exported
 interface SelectPickerOption {
   label: string;
   value: string;
 }
-import DocumentEditModal from './components/DocumentEditModal';
 
 type ReviewStatus = 'pending' | 'in_progress' | 'resolved' | 'skipped';
 type ItemType = 'document' | 'session' | 'attendance';
@@ -97,6 +100,8 @@ export default function ReviewQueue() {
   );
   const [typeFilter, setTypeFilter] = useState<ItemType | 'all'>('all');
   const [page, setPage] = useState(0);
+  const [selectedItems, setSelectedItems] = useState<Set<string>>(new Set());
+  const [bulkActionLoading, setBulkActionLoading] = useState(false);
   const [pagination, setPagination] = useState({
     total: 0,
     limit: 20,
@@ -105,12 +110,12 @@ export default function ReviewQueue() {
   });
   const [editModalDocumentId, setEditModalDocumentId] = useState<string | null>(null);
   const [editModalOpen, setEditModalOpen] = useState(false);
+  const [sessionFormSessionId, setSessionFormSessionId] = useState<string | null>(null);
+  const [sessionFormOpen, setSessionFormOpen] = useState(false);
+  const [attendanceFormSessionId, setAttendanceFormSessionId] = useState<string | null>(null);
+  const [attendanceFormOpen, setAttendanceFormOpen] = useState(false);
 
-  useEffect(() => {
-    fetchQueue();
-  }, [statusFilter, typeFilter, page]);
-
-  const fetchQueue = async () => {
+  const fetchQueue = useCallback(async () => {
     setLoading(true);
     try {
       // Check if mock mode is enabled
@@ -223,7 +228,11 @@ export default function ReviewQueue() {
     } finally {
       setLoading(false);
     }
-  };
+  }, [statusFilter, typeFilter, page]);
+
+  useEffect(() => {
+    fetchQueue();
+  }, [fetchQueue]);
 
   const updateStatus = async (itemId: string, status: ReviewStatus) => {
     try {
@@ -260,7 +269,7 @@ export default function ReviewQueue() {
     setEditModalOpen(true);
   };
 
-  const saveDocument = async (data: any) => {
+  const saveDocument = async (data: Record<string, unknown>) => {
     const response = await fetch(`/api/admin/documents/${editModalDocumentId}`, {
       method: 'PATCH',
       headers: { 'Content-Type': 'application/json' },
@@ -268,6 +277,82 @@ export default function ReviewQueue() {
     });
     if (!response.ok) throw new Error('Failed to save document');
     fetchQueue();
+  };
+
+  const openSessionForm = (sessionId: string) => {
+    setSessionFormSessionId(sessionId);
+    setSessionFormOpen(true);
+  };
+
+  const saveSession = async (data: Record<string, unknown>) => {
+    const url = sessionFormSessionId
+      ? `/api/admin/sessions/${sessionFormSessionId}`
+      : '/api/admin/sessions';
+    const response = await fetch(url, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(data),
+    });
+    if (!response.ok) throw new Error('Failed to save session');
+    fetchQueue();
+  };
+
+  const openAttendanceForm = (sessionId: string) => {
+    setAttendanceFormSessionId(sessionId);
+    setAttendanceFormOpen(true);
+  };
+
+  const saveAttendance = async (absentPersonIds: string[]) => {
+    const response = await fetch(`/api/admin/attendance/${attendanceFormSessionId}`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ absent_person_ids: absentPersonIds }),
+    });
+    if (!response.ok) throw new Error('Failed to save attendance');
+    fetchQueue();
+  };
+
+  const toggleItemSelection = (itemId: string) => {
+    setSelectedItems((prev) => {
+      const next = new Set(prev);
+      if (next.has(itemId)) {
+        next.delete(itemId);
+      } else {
+        next.add(itemId);
+      }
+      return next;
+    });
+  };
+
+  const selectAllVisible = () => {
+    setSelectedItems(new Set(items.map((item) => item.id)));
+  };
+
+  const clearSelection = () => {
+    setSelectedItems(new Set());
+  };
+
+  const bulkUpdateStatus = async (newStatus: ReviewStatus) => {
+    if (selectedItems.size === 0) return;
+
+    setBulkActionLoading(true);
+    try {
+      await Promise.all(
+        Array.from(selectedItems).map((itemId) =>
+          fetch('/api/admin/review-queue/status', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ item_id: itemId, status: newStatus }),
+          })
+        )
+      );
+      setSelectedItems(new Set());
+      fetchQueue();
+    } catch (error) {
+      console.error('Error updating status:', error);
+    } finally {
+      setBulkActionLoading(false);
+    }
   };
 
   if (loading && items.length === 0) {
@@ -300,6 +385,7 @@ export default function ReviewQueue() {
           <h2 className="text-2xl font-bold text-slate-900">Review Queue</h2>
           <p className="text-slate-600">
             {pagination.total} items needing review
+            {selectedItems.size > 0 && ` (${selectedItems.size} selected)`}
           </p>
         </div>
         <div className="flex items-center gap-3">
@@ -332,6 +418,62 @@ export default function ReviewQueue() {
         </div>
       </div>
 
+      {/* Bulk Actions Bar */}
+      {selectedItems.size > 0 && (
+        <div className="flex items-center justify-between rounded-md bg-primary-50 p-4">
+          <div className="flex items-center gap-3">
+            <span className="font-medium text-primary-900">
+              {selectedItems.size} item{selectedItems.size !== 1 ? 's' : ''} selected
+            </span>
+            <Button
+              variant="ghost"
+              size="sm"
+              onClick={clearSelection}
+            >
+              Clear selection
+            </Button>
+          </div>
+          <div className="flex items-center gap-2">
+            <Button
+              variant="outline"
+              size="sm"
+              onClick={() => bulkUpdateStatus('resolved')}
+              disabled={bulkActionLoading}
+            >
+              Approve Selected
+            </Button>
+            <Button
+              variant="outline"
+              size="sm"
+              onClick={() => bulkUpdateStatus('skipped')}
+              disabled={bulkActionLoading}
+            >
+              Skip Selected
+            </Button>
+          </div>
+        </div>
+      )}
+
+      {/* Select All Bar */}
+      {items.length > 0 && (
+        <div className="flex items-center gap-2 text-sm text-slate-600">
+          <button
+            onClick={selectAllVisible}
+            className="flex items-center gap-1 hover:text-primary-600"
+          >
+            <CheckSquare className="h-4 w-4" />
+            Select all visible
+          </button>
+          <span>•</span>
+          <button
+            onClick={clearSelection}
+            className="hover:text-primary-600"
+          >
+            Clear selection
+          </button>
+        </div>
+      )}
+
       {/* Queue Items */}
       <div className="space-y-4">
         {items.map((item) => (
@@ -349,8 +491,18 @@ export default function ReviewQueue() {
             <CardContent className="p-5">
               <div className="flex flex-col gap-4 lg:flex-row lg:items-start lg:justify-between">
                 <div className="flex-1 space-y-3">
-                  {/* Header Row */}
+                  {/* Header Row with Checkbox */}
                   <div className="flex flex-wrap items-center gap-3">
+                    <button
+                      onClick={() => toggleItemSelection(item.id)}
+                      className="flex-shrink-0 text-slate-400 hover:text-primary-600"
+                    >
+                      {selectedItems.has(item.id) ? (
+                        <CheckSquare className="h-5 w-5 text-primary-600" />
+                      ) : (
+                        <Square className="h-5 w-5" />
+                      )}
+                    </button>
                     <Badge variant={statusBadgeVariant(item.status)}>
                       {item.status.replace('_', ' ')}
                     </Badge>
@@ -447,7 +599,37 @@ export default function ReviewQueue() {
                       leftIcon={<Edit3 className="h-4 w-4" />}
                       onClick={() => openEditModal(item.document.id)}
                     >
-                      Edit
+                      Edit Document
+                    </Button>
+                  )}
+                  {item.item_type === 'session' && (
+                    <>
+                      <Button
+                        variant="outline"
+                        size="sm"
+                        leftIcon={<Edit3 className="h-4 w-4" />}
+                        onClick={() => openSessionForm(item.item_id)}
+                      >
+                        Edit Session
+                      </Button>
+                      <Button
+                        variant="outline"
+                        size="sm"
+                        leftIcon={<Users className="h-4 w-4" />}
+                        onClick={() => openAttendanceForm(item.item_id)}
+                      >
+                        Attendance
+                      </Button>
+                    </>
+                  )}
+                  {item.item_type === 'attendance' && (
+                    <Button
+                      variant="outline"
+                      size="sm"
+                      leftIcon={<Users className="h-4 w-4" />}
+                      onClick={() => openAttendanceForm(item.item_id)}
+                    >
+                      Edit Attendance
                     </Button>
                   )}
                   {item.status === 'pending' && (
@@ -539,6 +721,53 @@ export default function ReviewQueue() {
           }}
           onSave={saveDocument}
         />
+      )}
+
+      {/* Session Form Modal */}
+      {sessionFormSessionId && sessionFormOpen && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 p-4">
+          <div className="max-h-[90vh] w-full max-w-3xl overflow-y-auto rounded-lg bg-white p-6">
+            <h2 className="mb-4 text-2xl font-bold text-slate-900">
+              {sessionFormSessionId ? 'Edit Session' : 'Create Session'}
+            </h2>
+            <SessionDataForm
+              sessionId={sessionFormSessionId}
+              termId="" // Will need to be determined from session data
+              onSave={async (data) => {
+                await saveSession(data);
+                setSessionFormOpen(false);
+                setSessionFormSessionId(null);
+              }}
+              onCancel={() => {
+                setSessionFormOpen(false);
+                setSessionFormSessionId(null);
+              }}
+            />
+          </div>
+        </div>
+      )}
+
+      {/* Attendance Form Modal */}
+      {attendanceFormSessionId && attendanceFormOpen && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 p-4">
+          <div className="max-h-[90vh] w-full max-w-2xl overflow-y-auto rounded-lg bg-white p-6">
+            <h2 className="mb-4 text-2xl font-bold text-slate-900">
+              Edit Attendance
+            </h2>
+            <AttendanceForm
+              sessionId={attendanceFormSessionId}
+              onSave={async (absentPersonIds) => {
+                await saveAttendance(absentPersonIds);
+                setAttendanceFormOpen(false);
+                setAttendanceFormSessionId(null);
+              }}
+              onCancel={() => {
+                setAttendanceFormOpen(false);
+                setAttendanceFormSessionId(null);
+              }}
+            />
+          </div>
+        </div>
       )}
     </div>
   );
