@@ -8,7 +8,8 @@
     "phone": "(049) 530 2818",
     "email": "mayorsoffice@losbanos.gov.ph",
     "website": "https://www.facebook.com/alagangNOCON",
-    "isElected": true
+    "isElected": true,
+    "personId": "nocon-niel-andrew-n"
   },
   {
     "slug": "office-of-the-vice-mayor",
@@ -19,7 +20,8 @@
     "phone": "(049) 530 0818",
     "email": null,
     "website": "https://www.facebook.com/profile.php?id=100064361905801",
-    "isElected": true
+    "isElected": true,
+    "personId": "alipon-marlo-pj-a"
   },
   {
     "slug": "chief-of-staff",

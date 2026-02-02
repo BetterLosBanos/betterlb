@@ -38,6 +38,7 @@ interface ExecutiveOfficial {
   email?: string;
   website?: string;
   isElected: boolean;
+  personId?: string;
 }
 
 interface OfficialCardProps {

@@ -77,7 +77,7 @@ export function DetailSection({
   children,
   className,
 }: {
-  title: string;
+  title: ReactNode;
   icon?: IconComponent;
   children: ReactNode;
   className?: string;
@@ -91,9 +91,9 @@ export function DetailSection({
     >
       <div className='flex items-center gap-2 border-b border-slate-100 bg-slate-50/50 px-6 py-4'>
         {Icon && <Icon className='text-primary-600 h-4 w-4' />}
-        <h3 className='text-[10px] font-bold tracking-widest text-slate-400 uppercase'>
+        <div className='text-[10px] font-bold tracking-widest text-slate-400 uppercase flex-1 flex items-center justify-between'>
           {title}
-        </h3>
+        </div>
       </div>
       <div className='p-6'>{children}</div>
     </section>

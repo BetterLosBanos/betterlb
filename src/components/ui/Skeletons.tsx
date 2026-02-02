@@ -20,3 +20,18 @@ export function DirectoryGridSkeleton() {
     </div>
   );
 }
+
+interface PageLoadingStateProps {
+  message?: string;
+}
+
+export function PageLoadingState({ message = 'Loading...' }: PageLoadingStateProps) {
+  return (
+    <div className='flex items-center justify-center p-20'>
+      <div className='flex items-center gap-3 text-slate-400'>
+        <div className='h-5 w-5 animate-spin rounded-full border-2 border-primary-200 border-t-primary-600' />
+        <span className='text-sm font-medium'>{message}</span>
+      </div>
+    </div>
+  );
+}
