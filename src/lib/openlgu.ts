@@ -231,7 +231,7 @@ export interface APIPerson {
 
 export async function loadPersonsFromAPI(): Promise<Person[]> {
   try {
-    const response = await fetch('/api/legislation/persons?limit=100');
+    const response = await fetch('/api/openlgu/persons?limit=100');
     if (!response.ok) {
       throw new Error(`API error: ${response.status}`);
     }
@@ -261,7 +261,7 @@ export async function loadPersonsFromAPI(): Promise<Person[]> {
 
 export async function loadDocumentsFromAPI(): Promise<DocumentItem[]> {
   try {
-    const response = await fetch('/api/legislation/documents?limit=5000');
+    const response = await fetch('/api/openlgu/documents?limit=5000');
     if (!response.ok) {
       throw new Error(`API error: ${response.status}`);
     }
@@ -288,7 +288,7 @@ export async function loadDocumentsFromAPI(): Promise<DocumentItem[]> {
 
 export async function loadSessionsFromAPI(): Promise<Session[]> {
   try {
-    const response = await fetch('/api/legislation/sessions?limit=1000');
+    const response = await fetch('/api/openlgu/sessions?limit=1000');
     if (!response.ok) {
       throw new Error(`API error: ${response.status}`);
     }
@@ -311,7 +311,7 @@ export async function loadSessionsFromAPI(): Promise<Session[]> {
 
 export async function loadTermsFromAPI(): Promise<Term[]> {
   try {
-    const response = await fetch('/api/legislation/terms?limit=10');
+    const response = await fetch('/api/openlgu/terms?limit=10');
     if (!response.ok) {
       throw new Error(`API error: ${response.status}`);
     }

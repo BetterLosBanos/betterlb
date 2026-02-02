@@ -1,4 +1,4 @@
-// src/hooks/useLegislation.ts
+// src/hooks/useOpenLGU.ts
 import { useState, useEffect } from 'react';
 import {
   loadCommittees,
@@ -7,8 +7,8 @@ import {
   loadTerm,
   loadPersonsFromAPI,
   loadTermsFromAPI,
-} from '../lib/legislation';
-import type { Person } from '../lib/legislation';
+} from '../lib/openlgu';
+import type { Person } from '../lib/openlgu';
 
 export interface LegislationData {
   term: Awaited<ReturnType<typeof loadTerm>>;
@@ -21,7 +21,7 @@ export interface LegislationData {
   error: Error | null;
 }
 
-export default function useLegislation(): LegislationData {
+export default function useOpenLGU(): LegislationData {
   const [data, setData] = useState<LegislationData>({
     term: null,
     terms: [],

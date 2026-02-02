@@ -6,7 +6,7 @@ import type {
   Person,
   Session,
 } from '@/types';
-import { Calendar, CheckCircle2, Gavel, Users, XCircle } from 'lucide-react';
+import { Calendar, CheckCircle2, Gavel, ScrollText, Users, XCircle } from 'lucide-react';
 
 import { DetailSection } from '@/components/layout/PageLayouts';
 import {
@@ -19,8 +19,9 @@ import {
   BreadcrumbSeparator,
 } from '@/components/navigation/Breadcrumb';
 import { Badge } from '@/components/ui/Badge';
+import { EmptyState } from '@/components/ui/EmptyState';
 
-import { getPersonName } from '@/lib/legislation';
+import { getPersonName } from '@/lib/openlgu';
 
 export default function SessionDetail() {
   const { sessionId } = useParams<{ sessionId: string }>();
@@ -44,7 +45,7 @@ export default function SessionDetail() {
     .filter((p): p is Person => Boolean(p));
 
   const relatedDocs = documents.filter(
-    (d: DocumentItem) => d.session_id === session.id
+    (d: DocumentItem) => d.session_id && d.session_id === session.id
   );
 
   const isRegular = session.type === 'Regular';
@@ -58,7 +59,7 @@ export default function SessionDetail() {
           </BreadcrumbItem>
           <BreadcrumbSeparator />
           <BreadcrumbItem>
-            <BreadcrumbLink href='/legislation'>Legislation</BreadcrumbLink>
+            <BreadcrumbLink href='/openlgu'>OpenLGU</BreadcrumbLink>
           </BreadcrumbItem>
           <BreadcrumbSeparator />
           <BreadcrumbItem>
@@ -99,60 +100,70 @@ export default function SessionDetail() {
       <div className='grid grid-cols-1 gap-8 lg:grid-cols-3'>
         <aside className='space-y-6'>
           <DetailSection title='Attendance' icon={Users}>
-            <div className='space-y-6'>
-              <div>
-                <h3 className='mb-3 flex items-center gap-2 text-[10px] font-bold tracking-widest text-emerald-600 uppercase'>
-                  <CheckCircle2 className='h-3.5 w-3.5' /> Present (
-                  {presentMembers.length})
-                </h3>
-                <ul className='space-y-2'>
-                  {presentMembers.map((p: Person) => (
-                    <li key={p.id}>
-                      <Link
-                        to={`/legislation/person/${p.id}`}
-                        className='hover:text-primary-600 block py-1 text-sm font-medium text-slate-600 transition-colors'
-                      >
-                        {getPersonName(p)}
-                      </Link>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-
-              {absentMembers.length > 0 && (
-                <div className='border-t border-slate-100 pt-4'>
-                  <h3 className='text-secondary-600 mb-3 flex items-center gap-2 text-[10px] font-bold tracking-widest uppercase'>
-                    <XCircle className='h-3.5 w-3.5' /> Absent (
-                    {absentMembers.length})
+            {presentMembers.length === 0 && absentMembers.length === 0 ? (
+              <EmptyState
+                title='No Attendance Records'
+                message='No attendance data is available for this session.'
+                icon={Users}
+              />
+            ) : (
+              <div className='space-y-6'>
+                <div>
+                  <h3 className='mb-3 flex items-center gap-2 text-[10px] font-bold tracking-widest text-emerald-600 uppercase'>
+                    <CheckCircle2 className='h-3.5 w-3.5' /> Present (
+                    {presentMembers.length})
                   </h3>
                   <ul className='space-y-2'>
-                    {absentMembers.map((p: Person) => (
-                      <li
-                        key={p.id}
-                        className='block py-1 text-sm font-medium text-slate-400'
-                      >
-                        {getPersonName(p)}
+                    {presentMembers.map((p: Person) => (
+                      <li key={p.id}>
+                        <Link
+                          to={`/openlgu/person/${p.id}`}
+                          className='hover:text-primary-600 block py-1 text-sm font-medium text-slate-600 transition-colors'
+                        >
+                          {getPersonName(p)}
+                        </Link>
                       </li>
                     ))}
                   </ul>
                 </div>
-              )}
-            </div>
+
+                {absentMembers.length > 0 && (
+                  <div className='border-t border-slate-100 pt-4'>
+                    <h3 className='text-secondary-600 mb-3 flex items-center gap-2 text-[10px] font-bold tracking-widest uppercase'>
+                      <XCircle className='h-3.5 w-3.5' /> Absent (
+                      {absentMembers.length})
+                    </h3>
+                    <ul className='space-y-2'>
+                      {absentMembers.map((p: Person) => (
+                        <li
+                          key={p.id}
+                          className='block py-1 text-sm font-medium text-slate-400'
+                        >
+                          {getPersonName(p)}
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                )}
+              </div>
+            )}
           </DetailSection>
         </aside>
 
         <div className='lg:col-span-2'>
           <DetailSection title='Legislation Enacted' icon={Gavel}>
             {relatedDocs.length === 0 ? (
-              <p className='py-12 text-center text-sm text-slate-400 italic'>
-                No documents enacted during this session.
-              </p>
+              <EmptyState
+                title='No Documents Enacted'
+                message='No documents were enacted during this session.'
+                icon={ScrollText}
+              />
             ) : (
               <div className='divide-y divide-slate-100'>
                 {relatedDocs.map((doc: DocumentItem) => (
                   <Link
                     key={doc.id}
-                    to={`/legislation/${doc.type}/${doc.id}`}
+                    to={`/openlgu/${doc.type}/${doc.id}`}
                     className='group -mx-2 block min-h-[44px] rounded-lg px-2 py-4 transition-all hover:bg-slate-50'
                   >
                     <div className='mb-1 flex items-center gap-3'>

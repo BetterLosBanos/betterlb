@@ -4,8 +4,8 @@ import { parseAsStringEnum, useQueryState } from 'nuqs';
 import SidebarLayout from '@/components/layout/SidebarLayout';
 import { PageHero, ModuleHeader } from '@/components/layout/PageLayouts';
 import SearchInput from '@/components/ui/SearchInput';
-import useLegislation from '@/hooks/useLegislation';
-import LegislationSidebar from './components/LegislationSidebar';
+import useOpenLGU from '@/hooks/useOpenLGU';
+import OpenLGUSidebar from './components/OpenLGUSidebar';
 
 const filterValues = [
   'all',
@@ -16,11 +16,11 @@ const filterValues = [
 
 export type FilterType = (typeof filterValues)[number];
 
-export default function LegislationLayout() {
+export default function OpenLGULayout() {
   const location = useLocation();
-  
+
   // Logic: Collapse sidebar if reading a specific document
-  const isIndexPage = location.pathname === '/legislation' || location.pathname === '/legislation/';
+  const isIndexPage = location.pathname === '/openlgu' || location.pathname === '/openlgu/';
 
   const [searchQuery, setSearchQuery] = useQueryState('search', {
     defaultValue: '',
@@ -33,7 +33,7 @@ export default function LegislationLayout() {
       .withOptions({ clearOnDefault: true })
   );
 
-  const legislation = useLegislation();
+  const legislation = useOpenLGU();
 
   return (
     <SidebarLayout
@@ -44,7 +44,7 @@ export default function LegislationLayout() {
       headerNode={
         isIndexPage ? (
           <PageHero
-            title='Municipal Legislation'
+            title='OpenLGU Portal'
             description='Browse official local ordinances, resolutions, and executive orders of Los Baños.'
           >
             <div className='mx-auto max-w-xl duration-1000 animate-in fade-in slide-in-from-top-2'>
@@ -57,18 +57,20 @@ export default function LegislationLayout() {
             </div>
           </PageHero>
         ) : (
-           <ModuleHeader 
-              title="Legislative Document" 
-              description="Official record from the Sangguniang Bayan." 
+           <ModuleHeader
+              title="OpenLGU Document"
+              description="Official record from the Sangguniang Bayan."
            />
         )
       }
 
       // SIDEBAR
       sidebar={
-        <LegislationSidebar
+        <OpenLGUSidebar
             filterType={filterType}
             setFilterType={setFilterType}
+            terms={legislation.terms}
+            persons={legislation.persons}
         />
       }
     >

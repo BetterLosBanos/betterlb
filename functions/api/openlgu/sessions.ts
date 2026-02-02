@@ -71,8 +71,9 @@ async function getSessionsList(context: { request: Request; env: Env }) {
       console.log(`Processing ${sessionIds.length} sessions`);
       
       // SQLite has a limit of 999 variables per query
-      // Use a conservative batch size to stay well under the limit
-      const BATCH_SIZE = 200;
+      // But the error indicates ?100 is the limit in practice
+      // Use a conservative batch size to stay under the limit
+      const BATCH_SIZE = 100;
       const absentSet = new Map<string, string[]>();
       
       // Process absences in batches

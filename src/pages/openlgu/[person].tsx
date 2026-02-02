@@ -34,8 +34,8 @@ import type {
   Person,
   Session,
   Term,
-} from '@/lib/legislation';
-import { getPersonName } from '@/lib/legislation';
+} from '@/lib/openlgu';
+import { getPersonName } from '@/lib/openlgu';
 import { toTitleCase } from '@/lib/stringUtils';
 
 // Helper functions to identify role types
@@ -88,7 +88,7 @@ export default function PersonDetail() {
   if (!person) {
     return (
       <div
-        className='p-12 font-bold tracking-widest text-center uppercase text-slate-500'
+        className='p-12 text-center font-bold tracking-widest text-slate-500 uppercase'
         role='alert'
       >
         Official not found
@@ -187,7 +187,7 @@ export default function PersonDetail() {
   ).slice(0, 6);
 
   return (
-    <div className='px-4 pb-20 mx-auto space-y-8 max-w-6xl duration-500 animate-in fade-in md:px-0'>
+    <div className='animate-in fade-in mx-auto max-w-6xl space-y-8 px-4 pb-20 duration-500 md:px-0'>
       {/* Breadcrumbs */}
       <Breadcrumb>
         <BreadcrumbList>
@@ -196,7 +196,7 @@ export default function PersonDetail() {
           </BreadcrumbItem>
           <BreadcrumbSeparator />
           <BreadcrumbItem>
-            <BreadcrumbLink href='/legislation'>Legislation</BreadcrumbLink>
+            <BreadcrumbLink href='/openlgu'>OpenLGU</BreadcrumbLink>
           </BreadcrumbItem>
           <BreadcrumbSeparator />
           <BreadcrumbItem>
@@ -206,12 +206,12 @@ export default function PersonDetail() {
       </Breadcrumb>
 
       {/* Unified Profile Header with Stats */}
-      <header className='p-6 bg-white rounded-2xl border shadow-sm border-slate-200 md:p-8'>
+      <header className='rounded-2xl border border-slate-200 bg-white p-6 shadow-sm md:p-8'>
         {/* Main profile row */}
-        <div className='flex flex-col gap-6 items-center md:flex-row md:items-start'>
+        <div className='flex flex-col items-center gap-6 md:flex-row md:items-start'>
           {/* Avatar */}
           <div
-            className='flex justify-center items-center w-28 h-28 text-4xl font-black text-white bg-linear-to-br rounded-2xl shadow-lg from-primary-600 to-primary-700 shrink-0'
+            className='bg-gradient-to-br from-primary-600 to-primary-700 flex h-28 w-28 shrink-0 items-center justify-center rounded-2xl text-4xl font-black text-white shadow-lg'
             aria-hidden='true'
           >
             {person.first_name[0]}
@@ -223,15 +223,15 @@ export default function PersonDetail() {
             <h1 className='text-3xl font-bold text-slate-900 md:text-4xl'>
               Hon. {officialName}
             </h1>
-            <div className='flex flex-col gap-2 mt-3 sm:flex-row sm:items-center sm:justify-between'>
-              <div className='flex flex-wrap gap-2 justify-center md:justify-start'>
+            <div className='mt-3 flex flex-col gap-2 sm:flex-row sm:items-center sm:justify-between'>
+              <div className='flex flex-wrap justify-center gap-2 md:justify-start'>
                 {latestMembership?.role && (
-                  <Badge variant='primary' className='px-3 py-1 text-sm'>
+                  <Badge variant='primary' className='text-sm px-3 py-1'>
                     {latestMembership.role}
                   </Badge>
                 )}
                 {latestMembership?.term && (
-                  <Badge variant='slate' className='px-3 py-1 text-sm'>
+                  <Badge variant='slate' className='text-sm px-3 py-1'>
                     {latestMembership.term.name}
                   </Badge>
                 )}
@@ -246,14 +246,14 @@ export default function PersonDetail() {
           </div>
 
           {/* Attendance indicator - simplified */}
-          <div className='flex flex-col gap-1 items-center px-6 py-3 rounded-xl shrink-0 bg-slate-50 md:items-end'>
-            <div className='flex gap-2 items-center'>
+          <div className='flex shrink-0 flex-col items-center gap-1 rounded-xl bg-slate-50 px-6 py-3 md:items-end'>
+            <div className='flex items-center gap-2'>
               {overallAttendanceRate >= 90 ? (
-                <CheckCircle2 className='w-5 h-5 text-emerald-600' />
+                <CheckCircle2 className='h-5 w-5 text-emerald-600' />
               ) : overallAttendanceRate >= 75 ? (
-                <CalendarCheck className='w-5 h-5 text-secondary-600' />
+                <CalendarCheck className='h-5 w-5 text-secondary-600' />
               ) : (
-                <XCircle className='w-5 h-5 text-red-600' />
+                <XCircle className='h-5 w-5 text-red-600' />
               )}
               <span
                 className={`text-3xl leading-none font-black ${
@@ -272,10 +272,10 @@ export default function PersonDetail() {
         </div>
 
         {/* Stats bar - horizontal below profile */}
-        <div className='grid grid-cols-4 gap-4 pt-6 mt-8 border-t border-slate-100'>
+        <div className='mt-8 grid grid-cols-4 gap-4 border-t border-slate-100 pt-6'>
           <div className='text-center'>
-            <div className='flex gap-2 justify-center items-center'>
-              <FileText className='w-5 h-5 text-primary-600' />
+            <div className='flex items-center justify-center gap-2'>
+              <FileText className='h-5 w-5 text-primary-600' />
               <span className='text-2xl font-bold text-slate-900'>{ordCount}</span>
             </div>
             <p className='mt-1 text-[10px] font-bold tracking-widest text-slate-400 uppercase'>
@@ -283,8 +283,8 @@ export default function PersonDetail() {
             </p>
           </div>
           <div className='text-center'>
-            <div className='flex gap-2 justify-center items-center'>
-              <BookOpen className='w-5 h-5 text-secondary-600' />
+            <div className='flex items-center justify-center gap-2'>
+              <BookOpen className='h-5 w-5 text-secondary-600' />
               <span className='text-2xl font-bold text-slate-900'>{resCount}</span>
             </div>
             <p className='mt-1 text-[10px] font-bold tracking-widest text-slate-400 uppercase'>
@@ -292,8 +292,8 @@ export default function PersonDetail() {
             </p>
           </div>
           <div className='text-center'>
-            <div className='flex gap-2 justify-center items-center'>
-              <ScrollText className='w-5 h-5 text-purple-600' />
+            <div className='flex items-center justify-center gap-2'>
+              <ScrollText className='h-5 w-5 text-purple-600' />
               <span className='text-2xl font-bold text-slate-900'>{eoCount}</span>
             </div>
             <p className='mt-1 text-[10px] font-bold tracking-widest text-slate-400 uppercase'>
@@ -302,8 +302,8 @@ export default function PersonDetail() {
           </div>
           {hasExecutiveRole && totalExecutiveOrdersSigned > 0 ? (
             <div className='text-center'>
-              <div className='flex gap-2 justify-center items-center'>
-                <ScrollText className='w-5 h-5 text-purple-600' />
+              <div className='flex items-center justify-center gap-2'>
+                <ScrollText className='h-5 w-5 text-purple-600' />
                 <span className='text-2xl font-bold text-slate-900'>
                   {totalExecutiveOrdersSigned}
                 </span>
@@ -314,8 +314,8 @@ export default function PersonDetail() {
             </div>
           ) : (
             <div className='text-center'>
-              <div className='flex gap-2 justify-center items-center'>
-                <Calendar className='w-5 h-5 text-slate-600' />
+              <div className='flex items-center justify-center gap-2'>
+                <Calendar className='h-5 w-5 text-slate-600' />
                 <span className='text-2xl font-bold text-slate-900'>
                   {allAttendanceRecords.length}
                 </span>
@@ -331,7 +331,7 @@ export default function PersonDetail() {
       {/* Two-column layout for main content */}
       <div className='grid grid-cols-1 gap-8 lg:grid-cols-3'>
         {/* Main content column - spans 2 */}
-        <div className='space-y-8 lg:col-span-2'>
+        <div className='lg:col-span-2 space-y-8'>
           {/* Service History */}
           <DetailSection title='Service History' icon={Calendar}>
             <div className='space-y-3'>
@@ -364,7 +364,7 @@ export default function PersonDetail() {
                   <div
                     key={membership.term_id}
                     className={`group relative overflow-hidden rounded-xl border bg-white p-5 shadow-sm transition-all hover:shadow-md ${
-                      isActive ? 'bg-linear-to-r to-white border-primary-400 from-primary-50/50' : 'border-slate-200'
+                      isActive ? 'border-primary-400 bg-gradient-to-r from-primary-50/50 to-white' : 'border-slate-200'
                     }`}
                   >
                     {isActive && (
@@ -375,7 +375,7 @@ export default function PersonDetail() {
                     <div className='flex flex-col gap-4 md:flex-row md:items-start md:justify-between'>
                       <div className='flex-1 space-y-4'>
                         {/* Term header */}
-                        <div className='flex flex-wrap gap-2 items-center'>
+                        <div className='flex flex-wrap items-center gap-2'>
                           <h3 className='text-xl font-bold text-slate-900'>
                             {isExecutive
                               ? (membership.term?.year_range || membership.term_id)
@@ -397,8 +397,8 @@ export default function PersonDetail() {
                         {!isExecutive && (committeesByRole.chairperson.length > 0 || committeesByRole.viceChairperson.length > 0 || committeesByRole.member.length > 0) && (
                           <div className='space-y-3'>
                             {/* Section header */}
-                            <div className='flex gap-2 items-center pb-2 border-b border-slate-100'>
-                              <Users className='w-4 h-4 text-slate-400' />
+                            <div className='flex items-center gap-2 border-b border-slate-100 pb-2'>
+                              <Users className='h-4 w-4 text-slate-400' />
                               <span className='text-[10px] font-bold tracking-widest text-slate-400 uppercase'>
                                 Committee Assignments
                               </span>
@@ -413,13 +413,13 @@ export default function PersonDetail() {
                               {committeesByRole.chairperson.map(c => (
                                 <div
                                   key={`chair-${c.id}`}
-                                  className='group flex items-center gap-3 rounded-lg bg-linear-to-r from-amber-50 to-amber-50/50 px-3 py-2.5 border border-amber-200/50 hover:border-amber-300 hover:shadow-sm transition-all'
+                                  className='group flex items-center gap-3 rounded-lg bg-gradient-to-r from-amber-50 to-amber-50/50 px-3 py-2.5 border border-amber-200/50 hover:border-amber-300 hover:shadow-sm transition-all'
                                 >
-                                  <div className='flex justify-center items-center w-8 h-8 text-amber-600 bg-amber-100 rounded-lg shadow-sm shrink-0'>
-                                    <Crown className='w-4 h-4' />
+                                  <div className='flex h-8 w-8 shrink-0 items-center justify-center rounded-lg bg-amber-100 text-amber-600 shadow-sm'>
+                                    <Crown className='h-4 w-4' />
                                   </div>
-                                  <div className='flex-1 min-w-0'>
-                                    <p className='text-sm font-semibold truncate text-slate-800'>{c.name}</p>
+                                  <div className='min-w-0 flex-1'>
+                                    <p className='text-sm font-semibold text-slate-800 truncate'>{c.name}</p>
                                     <p className='text-[10px] font-medium text-amber-600 uppercase tracking-wide'>Chairperson</p>
                                   </div>
                                 </div>
@@ -428,13 +428,13 @@ export default function PersonDetail() {
                               {committeesByRole.viceChairperson.map(c => (
                                 <div
                                   key={`vice-${c.id}`}
-                                  className='group flex items-center gap-3 rounded-lg bg-linear-to-r from-blue-50 to-blue-50/50 px-3 py-2.5 border border-blue-200/50 hover:border-blue-300 hover:shadow-sm transition-all'
+                                  className='group flex items-center gap-3 rounded-lg bg-gradient-to-r from-blue-50 to-blue-50/50 px-3 py-2.5 border border-blue-200/50 hover:border-blue-300 hover:shadow-sm transition-all'
                                 >
-                                  <div className='flex justify-center items-center w-8 h-8 text-blue-600 bg-blue-100 rounded-lg shadow-sm shrink-0'>
-                                    <Shield className='w-4 h-4' />
+                                  <div className='flex h-8 w-8 shrink-0 items-center justify-center rounded-lg bg-blue-100 text-blue-600 shadow-sm'>
+                                    <Shield className='h-4 w-4' />
                                   </div>
-                                  <div className='flex-1 min-w-0'>
-                                    <p className='text-sm font-semibold truncate text-slate-800'>{c.name}</p>
+                                  <div className='min-w-0 flex-1'>
+                                    <p className='text-sm font-semibold text-slate-800 truncate'>{c.name}</p>
                                     <p className='text-[10px] font-medium text-blue-600 uppercase tracking-wide'>Vice Chairperson</p>
                                   </div>
                                 </div>
@@ -445,11 +445,11 @@ export default function PersonDetail() {
                                   key={`member-${c.id}`}
                                   className='group flex items-center gap-3 rounded-lg bg-slate-50 px-3 py-2.5 border border-slate-200 hover:border-slate-300 hover:shadow-sm transition-all'
                                 >
-                                  <div className='flex justify-center items-center w-8 h-8 rounded-lg shrink-0 bg-slate-100 text-slate-500'>
-                                    <User className='w-4 h-4' />
+                                  <div className='flex h-8 w-8 shrink-0 items-center justify-center rounded-lg bg-slate-100 text-slate-500'>
+                                    <User className='h-4 w-4' />
                                   </div>
-                                  <div className='flex-1 min-w-0'>
-                                    <p className='text-sm font-medium truncate text-slate-700'>{c.name}</p>
+                                  <div className='min-w-0 flex-1'>
+                                    <p className='text-sm font-medium text-slate-700 truncate'>{c.name}</p>
                                     <p className='text-[10px] font-medium text-slate-400 uppercase tracking-wide'>Member</p>
                                   </div>
                                 </div>
@@ -459,14 +459,14 @@ export default function PersonDetail() {
                         )}
 
                         {/* Term stats - inline */}
-                        <div className='flex flex-wrap gap-y-2 gap-x-6 items-center pt-4 text-sm border-t border-slate-100'>
+                        <div className='flex flex-wrap items-center gap-x-6 gap-y-2 text-sm border-t border-slate-100 pt-4'>
                           {!isExecutive ? (
                             <>
-                              <div className='flex gap-2 items-center'>
+                              <div className='flex items-center gap-2'>
                                 <CalendarCheck className={`h-4 w-4 ${membership.attendanceRate >= 90 ? 'text-emerald-500' : 'text-slate-400'}`} />
                                 <span className={membership.attendanceRate >= 90 ? 'font-semibold text-emerald-600' : 'text-slate-600'}>
                                   {membership.attendanceRate}% attendance
-                                  <span className='font-normal text-slate-400'> ({membership.presentCount}/{membership.totalCount})</span>
+                                  <span className='text-slate-400 font-normal'> ({membership.presentCount}/{membership.totalCount})</span>
                                 </span>
                               </div>
                               <span className='text-slate-300'>•</span>
@@ -489,11 +489,11 @@ export default function PersonDetail() {
                       {/* Link to term */}
                       {membership.term && (
                         <Link
-                          to={`/legislation/term/${membership.term.id}`}
-                          className='transition-colors text-slate-300 group-hover:text-primary-600 shrink-0'
+                          to={`/openlgu/term/${membership.term.id}`}
+                          className='text-slate-300 group-hover:text-primary-600 shrink-0 transition-colors'
                           aria-label={`View details for ${membership.term.name}`}
                         >
-                          <ChevronRight className='w-6 h-6' />
+                          <ChevronRight className='h-6 w-6' />
                         </Link>
                       )}
                     </div>
@@ -506,12 +506,12 @@ export default function PersonDetail() {
           {/* Recent Legislation */}
           <DetailSection
             title={
-              <div className='flex gap-4 justify-between items-center'>
+              <div className='flex items-center justify-between gap-4'>
                 <span>{hasExecutiveRole && !hasLegislativeRole ? 'Recent Executive Orders' : 'Recent Legislation'}</span>
                 {authoredDocs.length > 6 && (
                   <Link
-                    to={`/legislation?search=${encodeURIComponent(officialName)}`}
-                    className='text-sm font-medium text-primary-600 hover:text-primary-700 shrink-0'
+                    to={`/openlgu?search=${encodeURIComponent(officialName)}`}
+                    className='text-primary-600 hover:text-primary-700 text-sm font-medium shrink-0'
                   >
                     View all {authoredDocs.length} →
                   </Link>
@@ -527,10 +527,10 @@ export default function PersonDetail() {
                 return (
                   <Link
                     key={doc.id}
-                    to={`/legislation/${doc.type}/${doc.id}`}
+                    to={`/openlgu/${doc.type}/${doc.id}`}
                     className='group block min-h-[44px] py-4 transition-colors hover:bg-slate-50 -mx-5 px-5'
                   >
-                    <div className='flex gap-3 items-start'>
+                    <div className='flex items-start gap-3'>
                       <Badge
                         variant={
                           doc.type === 'ordinance' ? 'primary' :
@@ -540,8 +540,8 @@ export default function PersonDetail() {
                       >
                         {doc.type === 'ordinance' ? 'ORD' : doc.type === 'executive_order' ? 'EO' : 'RES'}
                       </Badge>
-                      <div className='flex-1 min-w-0'>
-                        <div className='flex gap-2 items-center mb-1'>
+                      <div className='min-w-0 flex-1'>
+                        <div className='mb-1 flex items-center gap-2'>
                           <span className='font-mono text-[10px] font-bold text-slate-400 uppercase'>
                             {doc.number}
                           </span>
@@ -558,7 +558,7 @@ export default function PersonDetail() {
                             </>
                           )}
                         </div>
-                        <p className='text-sm font-semibold leading-relaxed transition-colors group-hover:text-primary-600 line-clamp-2 text-slate-800'>
+                        <p className='group-hover:text-primary-600 line-clamp-2 text-sm leading-relaxed font-semibold text-slate-800 transition-colors'>
                           {doc.title}
                         </p>
                       </div>
@@ -567,7 +567,7 @@ export default function PersonDetail() {
                   </Link>
                 );
               }) : (
-                <p className='py-8 text-sm italic text-center text-slate-400'>
+                <p className='py-8 text-center text-sm text-slate-400 italic'>
                   No legislation authored yet.
                 </p>
               )}
@@ -581,7 +581,7 @@ export default function PersonDetail() {
           {hasLegislativeRole ? (
             <DetailSection
             title={
-              <div className='flex gap-4 justify-between items-center'>
+              <div className='flex items-center justify-between gap-4'>
                 <span>Attendance Log</span>
                 <span className='text-xs font-medium text-slate-400 shrink-0'>
                   {allAttendanceRecords.length} sessions
@@ -591,26 +591,26 @@ export default function PersonDetail() {
             icon={CheckCircle2}
           >
             {recentAttendance.length > 0 ? (
-              <div className='overflow-y-auto pr-2 space-y-3 max-h-96 scrollbar-thin'>
+              <div className='scrollbar-thin max-h-96 space-y-3 overflow-y-auto pr-2'>
                 {recentAttendance.map(s => {
                   const isPresent = s.present.includes(person.id);
 
                   return (
                     <Link
                       key={s.id}
-                      to={`/legislation/session/${s.id}`}
-                      className='flex justify-between items-center p-3 text-xs rounded-lg border transition-all group border-slate-100 bg-slate-50 hover:border-primary-200 hover:bg-white hover:shadow-sm'
+                      to={`/openlgu/session/${s.id}`}
+                      className='group flex items-center justify-between rounded-lg border border-slate-100 bg-slate-50 p-3 text-xs transition-all hover:border-primary-200 hover:bg-white hover:shadow-sm'
                     >
-                      <div className='flex gap-3 items-center'>
+                      <div className='flex items-center gap-3'>
                         {isPresent ? (
-                          <div className='p-1 bg-emerald-100 rounded-full'>
+                          <div className='bg-emerald-100 rounded-full p-1'>
                             <CheckCircle2
                               className='h-3.5 w-3.5 text-emerald-600'
                               aria-label='Present'
                             />
                           </div>
                         ) : (
-                          <div className='p-1 rounded-full bg-secondary-100'>
+                          <div className='bg-secondary-100 rounded-full p-1'>
                             <XCircle
                               className='h-3.5 w-3.5 text-secondary-600'
                               aria-label='Absent'
@@ -622,13 +622,13 @@ export default function PersonDetail() {
                           <p className='text-[10px] text-slate-400'>{s.ordinal_number}</p>
                         </div>
                       </div>
-                      <ChevronRight className='w-4 h-4 transition-colors text-slate-300 group-hover:text-primary-600' />
+                      <ChevronRight className='h-4 w-4 text-slate-300 group-hover:text-primary-600 transition-colors' />
                     </Link>
                   );
                 })}
               </div>
             ) : (
-              <p className='py-4 text-sm italic text-center text-slate-400'>
+              <p className='py-4 text-center text-sm text-slate-400 italic'>
                 No attendance records found.
               </p>
             )}
@@ -636,7 +636,7 @@ export default function PersonDetail() {
           ) : hasExecutiveRole && (
             <DetailSection
               title={
-                <div className='flex gap-4 justify-between items-center'>
+                <div className='flex items-center justify-between gap-4'>
                   <span>Executive Orders Summary</span>
                   <span className='text-xs font-medium text-slate-400 shrink-0'>
                     {totalExecutiveOrdersSigned} total
@@ -651,8 +651,8 @@ export default function PersonDetail() {
                 </p>
                 {totalExecutiveOrdersSigned > 0 && (
                   <Link
-                    to={`/legislation?search=${encodeURIComponent(officialName)}&type=executive_order`}
-                    className='inline-flex gap-2 items-center text-sm font-medium text-primary-600 hover:text-primary-700'
+                    to={`/openlgu?search=${encodeURIComponent(officialName)}&type=executive_order`}
+                    className='inline-flex items-center gap-2 text-sm font-medium text-primary-600 hover:text-primary-700'
                   >
                     View all executive orders →
                   </Link>
@@ -662,17 +662,17 @@ export default function PersonDetail() {
           )}
 
           {/* Quick summary card */}
-          <div className='p-6 bg-linear-to-br to-white rounded-xl border border-slate-200 from-slate-50'>
-            <h3 className='mb-4 text-sm font-bold tracking-widest uppercase text-slate-400'>
+          <div className='rounded-xl border border-slate-200 bg-gradient-to-br from-slate-50 to-white p-6'>
+            <h3 className='mb-4 text-sm font-bold tracking-widest text-slate-400 uppercase'>
               Career Summary
             </h3>
             <dl className='space-y-3'>
-              <div className='flex justify-between items-center'>
+              <div className='flex items-center justify-between'>
                 <dt className='text-sm text-slate-600'>Total Terms</dt>
                 <dd className='text-lg font-bold text-slate-900'>{totalTermsServed}</dd>
               </div>
               {hasLegislativeRole && (
-                <div className='flex justify-between items-center'>
+                <div className='flex items-center justify-between'>
                   <dt className='text-sm text-slate-600'>Overall Attendance</dt>
                   <dd className={`text-lg font-bold ${
                     overallAttendanceRate >= 90 ? 'text-emerald-600' :
@@ -684,12 +684,12 @@ export default function PersonDetail() {
                 </div>
               )}
               {hasExecutiveRole && totalExecutiveOrdersSigned > 0 && (
-                <div className='flex justify-between items-center'>
+                <div className='flex items-center justify-between'>
                   <dt className='text-sm text-slate-600'>Executive Orders Signed</dt>
                   <dd className='text-lg font-bold text-purple-600'>{totalExecutiveOrdersSigned}</dd>
                 </div>
               )}
-              <div className='flex justify-between items-center'>
+              <div className='flex items-center justify-between'>
                 <dt className='text-sm text-slate-600'>Total Documents</dt>
                 <dd className='text-lg font-bold text-slate-900'>{authoredDocs.length}</dd>
               </div>

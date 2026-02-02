@@ -7,8 +7,8 @@ import { FileText } from 'lucide-react';
 import { Badge } from '@/components/ui/Badge';
 import { EmptyState } from '@/components/ui/EmptyState';
 
-import type { DocumentItem, Person } from '../../lib/legislation';
-import { getPersonName } from '../../lib/legislation';
+import type { DocumentItem, Person } from '@/lib/openlgu';
+import { getPersonName } from '@/lib/openlgu';
 import type { FilterType } from './layout';
 
 interface LegislationContext {

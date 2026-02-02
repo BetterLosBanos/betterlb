@@ -24,7 +24,7 @@ import {
 } from '@/components/navigation/Breadcrumb';
 import { Badge } from '@/components/ui/Badge';
 
-import { getPersonName } from '@/lib/legislation';
+import { getPersonName } from '@/lib/openlgu';
 
 import type { LegislationContext, Person } from '@/types/legislationTypes';
 
@@ -38,7 +38,7 @@ export default function LegislationDocument() {
     return (
       <div className='p-20 text-center' role='alert'>
         <h2 className='text-xl font-bold text-slate-900'>Document not found</h2>
-        <Link to='/legislation' className='text-primary-600 hover:underline'>
+        <Link to='/openlgu' className='text-primary-600 hover:underline'>
           Return to Archive
         </Link>
       </div>
@@ -57,7 +57,7 @@ export default function LegislationDocument() {
     }
   }
 
-  const session = sessions.find(s => s.id === doc.session_id);
+  const session = doc.session_id ? sessions.find(s => s.id === doc.session_id) : null;
   const term = terms?.find((t: any) => t.id === (doc as any).term_id);
 
   const isOrdinance = doc.type === 'ordinance';
@@ -71,7 +71,7 @@ export default function LegislationDocument() {
           </BreadcrumbItem>
           <BreadcrumbSeparator />
           <BreadcrumbItem>
-            <BreadcrumbLink href='/legislation'>Legislation</BreadcrumbLink>
+            <BreadcrumbLink href='/openlgu'>OpenLGU</BreadcrumbLink>
           </BreadcrumbItem>
           <BreadcrumbSeparator />
           <BreadcrumbPage>{doc.number}</BreadcrumbPage>
@@ -80,7 +80,7 @@ export default function LegislationDocument() {
 
       {/* Accessible Header: Dark Text on Light Background with 8px Semantic Border */}
       <header
-        className={`rounded-2xl border border-l-[8px] border-slate-200 bg-white p-6 shadow-sm md:p-10 ${isOrdinance ? 'border-l-primary-600' : 'border-l-secondary-600'}`}
+        className={`rounded-2xl border border-l-8 border-slate-200 bg-white p-6 shadow-sm md:p-10 ${isOrdinance ? 'border-l-primary-600' : 'border-l-secondary-600'}`}
         aria-labelledby='doc-title'
       >
         <div className='space-y-4'>
@@ -109,7 +109,7 @@ export default function LegislationDocument() {
                 displayAuthors.map(author => (
                   <Link
                     key={author.id}
-                    to={`/legislation/person/${author.id}`}
+                    to={`/openlgu/person/${author.id}`}
                     className='hover:border-primary-600 hover:bg-primary-50 inline-flex min-h-[44px] items-center gap-3 rounded-full border border-slate-200 bg-white px-4 py-2 transition-all'
                   >
                     <div
@@ -167,7 +167,7 @@ export default function LegislationDocument() {
                 </dt>
                 <dd>
                   <Link
-                    to={term ? `/legislation/term/${term.id}` : '#'}
+                    to={term ? `/openlgu/term/${term.id}` : '#'}
                     className='group hover:border-primary-300 block min-h-[44px] rounded-xl border border-slate-100 bg-slate-50/50 p-3 transition-all hover:bg-white'
                   >
                     <span className='group-hover:text-primary-600 block text-sm leading-tight font-bold text-slate-700'>
@@ -188,7 +188,7 @@ export default function LegislationDocument() {
                 <dd>
                   {session ? (
                     <Link
-                      to={`/legislation/session/${session.id}`}
+                      to={`/openlgu/session/${session.id}`}
                       className='group hover:border-primary-300 block min-h-[44px] rounded-xl border border-slate-100 bg-slate-50/50 p-3 transition-all hover:bg-white'
                     >
                       <span className='group-hover:text-primary-600 block text-sm leading-tight font-bold text-slate-700'>

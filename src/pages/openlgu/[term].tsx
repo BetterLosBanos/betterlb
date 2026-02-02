@@ -7,7 +7,7 @@ import type {
   DocumentItem,
   Person,
   Session,
-} from '@/lib/legislation';
+} from '@/lib/openlgu';
 import {
   BookOpen,
   Calendar,
@@ -34,7 +34,7 @@ import {
 import { Badge } from '@/components/ui/Badge';
 import { EmptyState } from '@/components/ui/EmptyState';
 
-import { getPersonName } from '@/lib/legislation';
+import { getPersonName } from '@/lib/openlgu';
 import { toTitleCase } from '@/lib/stringUtils';
 import { isExecutiveRole, isLegislativeRole } from '@/lib/roleHelpers';
 
@@ -89,14 +89,24 @@ export default function TermDetail() {
   const termDocuments = useMemo(() => {
     if (!term || term.id !== termId) return [];
     return documents.filter((doc: DocumentItem) => {
+      // Handle null session_id
+      if (!doc.session_id) return false;
       const session = sessions.find((s: Session) => s.id === doc.session_id);
       return session?.term_id === term.id || doc.session_id.startsWith(term.id);
     });
   }, [documents, sessions, term, termId]);
 
+  // Filter sessions for this term
+  const termSessions = useMemo(() => {
+    if (!term || term.id !== termId) return [];
+    return sessions
+      .filter((s: Session) => s.term_id === term.id)
+      .sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
+  }, [sessions, term, termId]);
+
   if (!term || term.id !== termId) {
     return (
-      <div className='p-20 font-bold text-center uppercase text-slate-500'>
+      <div className='p-20 text-center font-bold text-slate-500 uppercase'>
         Term data not found
       </div>
     );
@@ -113,7 +123,7 @@ export default function TermDetail() {
   ).length;
 
   return (
-    <div className='pb-20 mx-auto space-y-8 max-w-5xl duration-500 animate-in fade-in'>
+    <div className='animate-in fade-in mx-auto max-w-5xl space-y-8 pb-20 duration-500'>
       <Breadcrumb>
         <BreadcrumbList>
           <BreadcrumbItem>
@@ -131,16 +141,16 @@ export default function TermDetail() {
       </Breadcrumb>
 
       {/* New header pattern - light with left border accent */}
-      <header className='p-6 bg-white rounded-2xl border-l-8 shadow-sm border-slate-200 md:p-10 border-l-primary-600'>
-        <div className='flex flex-wrap gap-3 items-center'>
+      <header className='rounded-2xl border-l-8 border-slate-200 bg-white p-6 shadow-sm md:p-10 border-l-primary-600'>
+        <div className='flex flex-wrap items-center gap-3'>
           <Badge variant='primary' dot>{term.ordinal} Term</Badge>
           <Badge variant='slate'>{term.year_range}</Badge>
         </div>
         <h1 className='mt-3 text-2xl font-extrabold text-slate-900 md:text-3xl'>
           {term.name}
         </h1>
-        <p className='flex gap-2 items-center mt-2 text-xs font-bold text-slate-500'>
-          <Calendar className='w-4 h-4' /> {term.start_date} — {term.end_date}
+        <p className='mt-2 flex items-center gap-2 text-xs font-bold text-slate-500'>
+          <Calendar className='h-4 w-4' /> {term.start_date} — {term.end_date}
         </p>
       </header>
 
@@ -156,9 +166,9 @@ export default function TermDetail() {
                 <Link
                   key={person.id}
                   to={`/openlgu/person/${person.id}`}
-                  className='flex gap-4 items-center p-4 to-white rounded-xl border transition-all group bg-linear-to-r from-primary-50 border-primary-100 hover:border-primary-200 hover:shadow-sm'
+                  className='group flex items-center gap-4 rounded-xl bg-gradient-to-r from-primary-50 to-white p-4 border border-primary-100 hover:border-primary-200 hover:shadow-sm transition-all'
                 >
-                  <div className='flex justify-center items-center w-12 h-12 text-lg font-bold text-white rounded-xl shadow-sm bg-linear-to-br from-primary-500 to-primary-600 shrink-0'>
+                  <div className='bg-gradient-to-br from-primary-500 to-primary-600 flex h-12 w-12 shrink-0 items-center justify-center rounded-xl text-lg font-bold text-white shadow-sm'>
                     {person.first_name[0]}
                     {person.last_name[0]}
                   </div>
@@ -166,11 +176,11 @@ export default function TermDetail() {
                     <p className='text-sm font-bold text-slate-800'>
                       {getPersonName(person)}
                     </p>
-                    <p className='text-xs font-medium tracking-wide uppercase text-primary-600'>
+                    <p className='text-xs font-medium text-primary-600 uppercase tracking-wide'>
                       {membership?.role || 'Executive Official'}
                     </p>
                   </div>
-                  <ChevronRight className='w-5 h-5 transition-colors text-slate-300 group-hover:text-primary-600' />
+                  <ChevronRight className='h-5 w-5 text-slate-300 group-hover:text-primary-600 transition-colors' />
                 </Link>
               );
             })}
@@ -219,14 +229,14 @@ export default function TermDetail() {
                   return (
                     <div
                       key={person.id}
-                      className='p-4 rounded-xl border transition-all group border-slate-100 bg-slate-50/50 hover:border-slate-200 hover:bg-white'
+                      className='group rounded-xl border border-slate-100 bg-slate-50/50 p-4 hover:border-slate-200 hover:bg-white transition-all'
                     >
                       <Link
                         to={`/openlgu/person/${person.id}`}
-                        className='flex gap-3 items-center'
+                        className='flex items-center gap-3'
                       >
                         <div
-                          className={`flex h-10 w-10 shrink-0 items-center justify-center rounded-lg text-sm font-bold ${isVM ? 'text-white bg-primary-600' : 'bg-slate-200 text-slate-600'}`}
+                          className={`flex h-10 w-10 shrink-0 items-center justify-center rounded-lg text-sm font-bold ${isVM ? 'bg-primary-600 text-white' : 'bg-slate-200 text-slate-600'}`}
                         >
                           {person.first_name[0]}
                           {person.last_name[0]}
@@ -244,8 +254,8 @@ export default function TermDetail() {
                       {/* Committee cards - modern pattern */}
                       {totalCommittees > 0 && (
                         <div className='mt-3 space-y-2'>
-                          <div className='flex gap-2 items-center pt-2 border-t border-slate-100'>
-                            <Users className='w-3 h-3 text-slate-400' />
+                          <div className='flex items-center gap-2 border-t border-slate-100 pt-2'>
+                            <Users className='h-3 w-3 text-slate-400' />
                             <span className='text-[10px] font-bold tracking-widest text-slate-400 uppercase'>
                               {totalCommittees} committee{totalCommittees > 1 ? 's' : ''}
                             </span>
@@ -255,9 +265,9 @@ export default function TermDetail() {
                             {committeesByRole.chairperson.map(c => (
                               <div
                                 key={`chair-${c.id}`}
-                                className='flex items-center gap-1.5 rounded-md bg-linear-to-r from-amber-50 to-amber-50/50 px-2 py-1 border border-amber-200/50'
+                                className='flex items-center gap-1.5 rounded-md bg-gradient-to-r from-amber-50 to-amber-50/50 px-2 py-1 border border-amber-200/50'
                               >
-                                <Crown className='w-3 h-3 text-amber-600' />
+                                <Crown className='h-3 w-3 text-amber-600' />
                                 <span className='text-[10px] font-medium text-amber-700 truncate max-w-[120px]'>
                                   {c.name}
                                 </span>
@@ -267,9 +277,9 @@ export default function TermDetail() {
                             {committeesByRole.viceChairperson.map(c => (
                               <div
                                 key={`vice-${c.id}`}
-                                className='flex items-center gap-1.5 rounded-md bg-linear-to-r from-blue-50 to-blue-50/50 px-2 py-1 border border-blue-200/50'
+                                className='flex items-center gap-1.5 rounded-md bg-gradient-to-r from-blue-50 to-blue-50/50 px-2 py-1 border border-blue-200/50'
                               >
-                                <Shield className='w-3 h-3 text-blue-600' />
+                                <Shield className='h-3 w-3 text-blue-600' />
                                 <span className='text-[10px] font-medium text-blue-700 truncate max-w-[120px]'>
                                   {c.name}
                                 </span>
@@ -283,7 +293,7 @@ export default function TermDetail() {
                                   key={`member-${c.id}`}
                                   className='flex items-center gap-1.5 rounded-md bg-slate-100 px-2 py-1 border border-slate-200'
                                 >
-                                  <User className='w-3 h-3 text-slate-500' />
+                                  <User className='h-3 w-3 text-slate-500' />
                                   <span className='text-[10px] font-medium text-slate-600 truncate max-w-[120px]'>
                                     {c.name}
                                   </span>
@@ -303,10 +313,10 @@ export default function TermDetail() {
         {/* Main Content - Stats and Documents */}
         <div className={`space-y-6 ${legislativeMembers.length > 0 ? 'lg:col-span-2' : 'lg:col-span-3'}`}>
           <div className='grid grid-cols-2 gap-4'>
-            <div className='flex gap-4 items-center p-4 rounded-2xl border bg-primary-50 border-primary-100'>
-              <FileText className='w-6 h-6 text-primary-600' />
+            <div className='bg-primary-50 border-primary-100 flex items-center gap-4 rounded-2xl border p-4'>
+              <FileText className='text-primary-600 h-6 w-6' />
               <div>
-                <span className='block text-2xl font-black leading-none text-primary-700'>
+                <span className='text-primary-700 block text-2xl leading-none font-black'>
                   {ordCount}
                 </span>
                 <span className='text-primary-500 text-[10px] font-bold tracking-widest uppercase'>
@@ -314,10 +324,10 @@ export default function TermDetail() {
                 </span>
               </div>
             </div>
-            <div className='flex gap-4 items-center p-4 rounded-2xl border bg-secondary-50 border-secondary-100'>
-              <BookOpen className='w-6 h-6 text-secondary-600' />
+            <div className='bg-secondary-50 border-secondary-100 flex items-center gap-4 rounded-2xl border p-4'>
+              <BookOpen className='text-secondary-600 h-6 w-6' />
               <div>
-                <span className='block text-2xl font-black leading-none text-secondary-700'>
+                <span className='text-secondary-700 block text-2xl leading-none font-black'>
                   {resCount}
                 </span>
                 <span className='text-secondary-500 text-[10px] font-bold tracking-widest uppercase'>
@@ -326,10 +336,10 @@ export default function TermDetail() {
               </div>
             </div>
             {eoCount > 0 && (
-              <div className='flex gap-4 items-center p-4 bg-purple-50 rounded-2xl border border-purple-100'>
-                <ScrollText className='w-6 h-6 text-purple-600' />
+              <div className='bg-purple-50 border-purple-100 flex items-center gap-4 rounded-2xl border p-4'>
+                <ScrollText className='text-purple-600 h-6 w-6' />
                 <div>
-                  <span className='block text-2xl font-black leading-none text-purple-700'>
+                  <span className='text-purple-700 block text-2xl leading-none font-black'>
                     {eoCount}
                   </span>
                   <span className='text-purple-500 text-[10px] font-bold tracking-widest uppercase'>
@@ -339,6 +349,42 @@ export default function TermDetail() {
               </div>
             )}
           </div>
+
+          {/* Sessions Section */}
+          {termSessions.length > 0 && (
+            <DetailSection title='Legislative Sessions' icon={Calendar}>
+              <div className='space-y-3'>
+                {termSessions.map(session => {
+                  const sessionDocs = documents.filter((d: DocumentItem) => d.session_id === session.id);
+                  return (
+                    <Link
+                      key={session.id}
+                      to={`/openlgu/session/${session.id}`}
+                      className='group flex items-center justify-between rounded-xl border border-slate-100 bg-slate-50/50 p-4 hover:border-primary-200 hover:bg-white hover:shadow-sm transition-all'
+                    >
+                      <div className='flex items-center gap-4'>
+                        <Badge variant={session.type === 'Regular' ? 'primary' : 'secondary'}>
+                          {session.type}
+                        </Badge>
+                        <div>
+                          <p className='font-semibold text-slate-800'>
+                            {session.ordinal_number} {session.type} Session
+                          </p>
+                          <p className='text-sm text-slate-500'>{session.date}</p>
+                        </div>
+                      </div>
+                      <div className='flex items-center gap-4 text-sm'>
+                        <span className='text-slate-500'>
+                          <span className='font-semibold text-primary-600'>{sessionDocs.length}</span> docs
+                        </span>
+                        <ChevronRight className='h-5 w-5 text-slate-300 group-hover:text-primary-600' />
+                      </div>
+                    </Link>
+                  );
+                })}
+              </div>
+            </DetailSection>
+          )}
 
           <DetailSection title='Legislative Output' icon={ScrollText}>
             {termDocuments.length === 0 ? (
@@ -355,7 +401,7 @@ export default function TermDetail() {
                     to={`/openlgu/${doc.type}/${doc.id}`}
                     className='block min-h-[44px] py-4 transition-all hover:bg-slate-50'
                   >
-                    <div className='flex gap-3 items-center mb-1'>
+                    <div className='mb-1 flex items-center gap-3'>
                       <Badge
                         variant={
                           doc.type === 'ordinance'
@@ -371,7 +417,7 @@ export default function TermDetail() {
                         {doc.date_enacted}
                       </span>
                     </div>
-                    <p className='text-sm font-bold leading-relaxed line-clamp-2 text-slate-800'>
+                    <p className='line-clamp-2 text-sm leading-relaxed font-bold text-slate-800'>
                       {doc.title}
                     </p>
                   </Link>
@@ -381,7 +427,7 @@ export default function TermDetail() {
                     onClick={() => setVisibleDocs(prev => prev + 15)}
                     className='text-primary-600 hover:text-primary-700 flex min-h-[48px] w-full items-center justify-center gap-2 py-4 text-xs font-bold tracking-widest uppercase'
                   >
-                    Load More <ChevronDown className='w-4 h-4' />
+                    Load More <ChevronDown className='h-4 w-4' />
                   </button>
                 )}
               </div>
