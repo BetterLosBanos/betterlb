@@ -43,12 +43,14 @@ import ExecutiveBranchPage from '@/pages/government/elected-officials/executive-
 import ElectedOfficialsLayout from '@/pages/government/elected-officials/layout';
 import MunicipalCommitteesPage from '@/pages/government/elected-officials/municipal-committees';
 import GovernmentRootLayout from '@/pages/government/layout';
-import LegislationDetail from '@/pages/legislation/[document]';
-import PersonDetail from '@/pages/legislation/[person]';
-import SessionDetail from '@/pages/legislation/[session]';
-import TermDetail from '@/pages/legislation/[term]';
-import LegislationIndex from '@/pages/legislation/index';
-import LegislationLayout from '@/pages/legislation/layout';
+import LegislationDetail from '@/pages/openlgu/[document]';
+import PersonDetail from '@/pages/openlgu/[person]';
+import SessionDetail from '@/pages/openlgu/[session]';
+import TermDetail from '@/pages/openlgu/[term]';
+import LegislationIndex from '@/pages/openlgu/index';
+import OpenLGULayout from '@/pages/openlgu/layout';
+import OfficialsIndex from '@/pages/openlgu/officials';
+import TermsIndex from '@/pages/openlgu/terms';
 // --- Services & Legislation ---
 import Services from '@/pages/services';
 import ServiceDetail from '@/pages/services/[service]';
@@ -86,7 +88,7 @@ function AppContent() {
   const isAdminRoute = location.pathname.startsWith('/admin');
 
   return (
-    <div className='flex min-h-screen flex-col'>
+    <div className='flex flex-col min-h-screen'>
       <SEO />
       {!isAdminRoute && <Navbar />}
       {!isAdminRoute && <Ticker />}
@@ -167,9 +169,11 @@ function AppContent() {
               <Route path='competitiveness' element={<CompetitivenessPage />} />
             </Route>
 
-            {/* Legislation Archive */}
-            <Route path='legislation' element={<LegislationLayout />}>
+            {/* OpenLGU Portal */}
+            <Route path='openlgu' element={<OpenLGULayout />}>
               <Route index element={<LegislationIndex />} />
+              <Route path='officials' element={<OfficialsIndex />} />
+              <Route path='terms' element={<TermsIndex />} />
               <Route path=':type/:document' element={<LegislationDetail />} />
               <Route path='session/:sessionId' element={<SessionDetail />} />
               <Route path='person/:personId' element={<PersonDetail />} />

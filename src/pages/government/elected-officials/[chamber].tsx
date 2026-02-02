@@ -45,6 +45,7 @@ interface Official {
   role: string;
   website?: string;
   contact?: string;
+  personId?: string;
 }
 
 interface ChamberData {
@@ -138,11 +139,11 @@ export default function LegislativeChamber() {
           {data.officials?.map(member => {
             const chaired = getChairedCommittees(member.name);
 
-            return (
+            const cardContent = (
               <Card
                 key={member.name}
-                hover
-                className='group flex h-full flex-col border-slate-200 shadow-xs'
+                hover={!!member.personId}
+                className={`group flex h-full flex-col shadow-xs ${member.personId ? 'border-slate-200 cursor-pointer' : 'border-slate-200'}`}
               >
                 <CardContent className='flex h-full flex-col space-y-4 p-4'>
                   {/* Row 1: Icon, Role, Name */}
@@ -158,6 +159,11 @@ export default function LegislativeChamber() {
                       <h4 className='text-base leading-tight font-bold text-slate-900'>
                         {toTitleCase(member.name)}
                       </h4>
+                      {member.personId && (
+                        <p className='text-primary-600 mt-1 text-[10px] font-medium tracking-wide uppercase'>
+                          View Profile
+                        </p>
+                      )}
                     </div>
                   </div>
 
@@ -204,6 +210,7 @@ export default function LegislativeChamber() {
                         href={member.website}
                         target='_blank'
                         rel='noreferrer'
+                        onClick={e => member.personId && e.stopPropagation()}
                         className='group/link hover:border-primary-200 hover:text-primary-700 flex items-center gap-2 rounded-lg border border-slate-100 bg-white px-3 py-1.5 shadow-sm transition-all'
                       >
                         <span className='text-[10px] font-bold tracking-wider uppercase'>
@@ -215,6 +222,19 @@ export default function LegislativeChamber() {
                   )}
                 </CardContent>
               </Card>
+            );
+
+            // Wrap in Link if personId exists
+            return member.personId ? (
+              <Link
+                key={member.name}
+                to={`/openlgu/person/${member.personId}`}
+                className='group block'
+              >
+                {cardContent}
+              </Link>
+            ) : (
+              cardContent
             );
           })}
         </div>

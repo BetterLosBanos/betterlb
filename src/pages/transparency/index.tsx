@@ -12,7 +12,7 @@ import {
   Users,
 } from 'lucide-react';
 
-import { DetailSection, ModuleHeader } from '@/components/layout/PageLayouts';
+import { DetailSection } from '@/components/layout/PageLayouts';
 import { Badge } from '@/components/ui/Badge';
 import { Card, CardContent } from '@/components/ui/Card';
 
@@ -49,11 +49,6 @@ export default function TransparencyIndex() {
 
   return (
     <div className='animate-in fade-in mx-auto max-w-5xl space-y-10 pb-20 duration-500'>
-      <ModuleHeader
-        title='Transparency & Oversight'
-        description='A community-led initiative to make Los Baños public data accessible, readable, and verifiable for every citizen.'
-      />
-
       {/* 1. Grassroots Mission Box - Uses Brand Orange to signify "Community" */}
       <div className='flex flex-col items-center gap-6 rounded-3xl border-2 border-orange-100 bg-orange-50 p-6 shadow-sm md:flex-row'>
         <div className='text-secondary-600 rounded-2xl bg-white p-4 shadow-md'>

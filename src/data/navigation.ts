@@ -34,12 +34,12 @@ export const mainNavigation: NavigationItem[] = [
     ],
   },
   {
-    label: 'Legislation',
-    href: '/legislation',
+    label: 'OpenLGU',
+    href: '/openlgu',
     children: [
-      { label: 'Ordinances', href: '/legislation?type=ordinance' },
-      { label: 'Resolutions', href: '/legislation?type=resolution' },
-      { label: 'Executive Orders', href: '/legislation?type=executive_order' },
+      { label: 'Ordinances', href: '/openlgu?type=ordinance' },
+      { label: 'Resolutions', href: '/openlgu?type=resolution' },
+      { label: 'Executive Orders', href: '/openlgu?type=executive_order' },
     ],
   },
   {
@@ -94,7 +94,7 @@ export const footerNavigation = {
         { label: 'Elected Officials', href: '/government/elected-officials' },
         { label: 'Departments', href: '/government/departments' },
         { label: 'Barangay Directory', href: '/government/barangays' },
-        { label: 'Local Legislation', href: '/legislation' },
+        { label: 'OpenLGU Portal', href: '/openlgu' },
         { label: 'Transparency', href: '/transparency/financial' },
       ],
     },
