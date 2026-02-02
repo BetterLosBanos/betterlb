@@ -1,7 +1,7 @@
 // src/hooks/useOpenLGU.ts
 import { useState, useEffect } from 'react';
 import {
-  loadCommittees,
+  loadCommitteesFromAPI,
   loadDocumentsFromAPI,
   loadSessionsFromAPI,
   loadTerm,
@@ -13,7 +13,7 @@ import type { Person } from '../lib/openlgu';
 export interface LegislationData {
   term: Awaited<ReturnType<typeof loadTerm>>;
   terms: Awaited<ReturnType<typeof loadTermsFromAPI>>;
-  committees: Awaited<ReturnType<typeof loadCommittees>>;
+  committees: Awaited<ReturnType<typeof loadCommitteesFromAPI>>;
   persons: Person[];
   sessions: Awaited<ReturnType<typeof loadSessionsFromAPI>>;
   documents: Awaited<ReturnType<typeof loadDocumentsFromAPI>>;
@@ -39,7 +39,7 @@ export default function useOpenLGU(): LegislationData {
         const [term, terms, committees, persons, sessions, documents] = await Promise.all([
           loadTerm(),
           loadTermsFromAPI(),
-          loadCommittees(),
+          loadCommitteesFromAPI(),
           loadPersonsFromAPI(),
           loadSessionsFromAPI(),
           loadDocumentsFromAPI(),

@@ -336,3 +336,22 @@ export async function loadTermsFromAPI(): Promise<Term[]> {
     return [];
   }
 }
+
+export async function loadCommitteesFromAPI(): Promise<Committee[]> {
+  try {
+    const response = await fetch('/api/openlgu/committees');
+    if (!response.ok) {
+      throw new Error(`API error: ${response.status}`);
+    }
+    const data = await response.json();
+    return (data.committees || []).map((c: any) => ({
+      id: c.id,
+      name: c.name,
+      type: c.type,
+      terms: [],
+    }));
+  } catch (error) {
+    console.error('Failed to load committees from API:', error);
+    return [];
+  }
+}
