@@ -18,6 +18,7 @@ interface DuplicateGroup {
   persons: Person[];
   document_count: number;
   membership_count: number;
+  committee_count: number;
 }
 
 interface MergeResponse {
@@ -28,6 +29,9 @@ interface MergeResponse {
     document_authors?: number;
     session_absences?: number;
     committee_memberships?: number;
+    committee_duplicates_removed?: number;
+    absence_duplicates_removed?: number;
+    membership_duplicates_removed?: number;
   };
   deleted_ids: string[];
 }
@@ -226,6 +230,10 @@ export default function PersonMergeTool() {
                 </div>
                 <div className="flex items-center gap-2 text-sm">
                   <CheckCircle className="h-4 w-4 text-slate-500" />
+                  <span>Committee Memberships: <strong>{currentGroup.committee_count}</strong></span>
+                </div>
+                <div className="flex items-center gap-2 text-sm">
+                  <Users className="h-4 w-4 text-slate-500" />
                   <span>Documents Authored: <strong>{currentGroup.document_count}</strong></span>
                 </div>
               </div>
@@ -393,6 +401,8 @@ export default function PersonMergeTool() {
                     <span>{group.person_ids.length} records</span>
                     <span>•</span>
                     <span>{group.membership_count} memberships</span>
+                    <span>•</span>
+                    <span>{group.committee_count} committee memberships</span>
                     <span>•</span>
                     <span>{group.document_count} documents</span>
                   </div>

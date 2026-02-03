@@ -20,6 +20,7 @@ interface DuplicatePersonGroup {
   persons: Person[];
   document_count?: number;
   membership_count?: number;
+  committee_count?: number;
 }
 
 interface MergeRequest {
@@ -37,6 +38,9 @@ interface MergeResult {
     document_authors?: number;
     session_absences?: number;
     committee_memberships?: number;
+    committee_duplicates_removed?: number;
+    absence_duplicates_removed?: number;
+    membership_duplicates_removed?: number;
   };
   deleted_ids: string[];
 }
@@ -90,11 +94,16 @@ async function handleGetDuplicates(context: {
         `SELECT COUNT(*) as count FROM memberships WHERE person_id IN (${ids.map(() => '?').join(',')})`
       ).bind(...ids).first<{ count: number }>();
 
+      const committeeCount = await env.BETTERLB_DB.prepare(
+        `SELECT COUNT(*) as count FROM committee_memberships WHERE person_id IN (${ids.map(() => '?').join(',')})`
+      ).bind(...ids).first<{ count: number }>();
+
       duplicates.push({
         person_ids: ids,
         persons: personRecords,
         document_count: docCount?.count || 0,
         membership_count: memberCount?.count || 0,
+        committee_count: committeeCount?.count || 0,
       });
     }
 
@@ -131,11 +140,16 @@ async function handleGetDuplicates(context: {
           `SELECT COUNT(*) as count FROM memberships WHERE person_id IN (?1, ?2)`
         ).bind(row.id1, row.id2).first<{ count: number }>();
 
+        const committeeCount = await env.BETTERLB_DB.prepare(
+          `SELECT COUNT(*) as count FROM committee_memberships WHERE person_id IN (?1, ?2)`
+        ).bind(row.id1, row.id2).first<{ count: number }>();
+
         duplicates.push({
           person_ids: [row.id1, row.id2],
           persons: [person1, person2],
           document_count: docCount?.count || 0,
           membership_count: memberCount?.count || 0,
+          committee_count: committeeCount?.count || 0,
         });
       }
     }
@@ -221,7 +235,54 @@ async function handleMerge(context: {
 
     updatedTables.committee_memberships = committeeUpdate.meta.changes || 0;
 
-    // 5. Handle deletion based on deletion_mode
+    // 5. Detect and remove duplicate committee_memberships
+    const committeeDuplicates = await env.BETTERLB_DB.prepare(`
+      DELETE FROM committee_memberships
+      WHERE id IN (
+        SELECT cm2.id
+        FROM committee_memberships cm1
+        INNER JOIN committee_memberships cm2
+          ON cm1.committee_id = cm2.committee_id
+          AND cm1.term_id = cm2.term_id
+          AND cm1.role = cm2.role
+          AND cm1.person_id = cm2.person_id
+          AND cm1.id < cm2.id
+        WHERE cm1.person_id = ?1
+      )
+    `).bind(keep_person_id).run();
+    updatedTables.committee_duplicates_removed = committeeDuplicates.meta.changes || 0;
+
+    // 6. Detect and remove duplicate session_absences
+    const absenceDuplicates = await env.BETTERLB_DB.prepare(`
+      DELETE FROM session_absences
+      WHERE id IN (
+        SELECT sa2.id
+        FROM session_absences sa1
+        INNER JOIN session_absences sa2
+          ON sa1.session_id = sa2.session_id
+          AND sa1.person_id = sa2.person_id
+          AND sa1.id < sa2.id
+        WHERE sa1.person_id = ?1
+      )
+    `).bind(keep_person_id).run();
+    updatedTables.absence_duplicates_removed = absenceDuplicates.meta.changes || 0;
+
+    // 7. Detect and remove duplicate memberships
+    const membershipDuplicates = await env.BETTERLB_DB.prepare(`
+      DELETE FROM memberships
+      WHERE id IN (
+        SELECT m2.id
+        FROM memberships m1
+        INNER JOIN memberships m2
+          ON m1.term_id = m2.term_id
+          AND m1.person_id = m2.person_id
+          AND m1.id < m2.id
+        WHERE m1.person_id = ?1
+      )
+    `).bind(keep_person_id).run();
+    updatedTables.membership_duplicates_removed = membershipDuplicates.meta.changes || 0;
+
+    // 8. Handle deletion based on deletion_mode
     for (const id of merge_person_ids) {
       if (deletion_mode === 'delete') {
         // Immediate deletion
@@ -235,7 +296,7 @@ async function handleMerge(context: {
       // 'skip' mode - don't touch the records
     }
 
-    // 6. Log the merge action
+    // 9. Log the merge action
     await env.BETTERLB_DB.prepare(
       `INSERT INTO admin_audit_log (action, performed_by, target_type, target_id, details, created_at)
        VALUES ('merge_persons', ?1, 'person', ?2, ?3, datetime('now'))`
@@ -253,7 +314,7 @@ async function handleMerge(context: {
     const result: MergeResult = {
       success: true,
       merged_count: merge_person_ids.length,
-      updated_tables,
+      updated_tables: updatedTables,
       deleted_ids,
     };
 
