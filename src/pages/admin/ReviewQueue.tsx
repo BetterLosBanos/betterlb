@@ -93,7 +93,7 @@ export default function ReviewQueue() {
   const [items, setItems] = useState<ReviewItem[]>([]);
   const [loading, setLoading] = useState(true);
   const [statusFilter, setStatusFilter] = useState<ReviewStatus | 'all'>(
-    'all'
+    'pending'
   );
   const [typeFilter, setTypeFilter] = useState<ItemType | 'all'>('all');
   const [page, setPage] = useState(0);

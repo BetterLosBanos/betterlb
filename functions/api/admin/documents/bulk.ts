@@ -22,6 +22,13 @@ interface BulkCreateRequest {
   skip_duplicates?: boolean; // If true, skip duplicates instead of erroring
 }
 
+interface DocumentAuthor {
+  person_id: string;
+  first_name: string;
+  last_name: string;
+  full_name: string;
+}
+
 interface ExistingDocument {
   id: string;
   type: string;
@@ -30,6 +37,7 @@ interface ExistingDocument {
   date_enacted: string;
   status: string;
   session_id: string;
+  authors: DocumentAuthor[];
 }
 
 interface BulkCreateResponse {
@@ -91,13 +99,27 @@ async function handleBulkCreateDocuments(context: {
         const existing = await env.BETTERLB_DB.prepare(
           `SELECT id, type, number, title, date_enacted, status, session_id
              FROM documents WHERE number = ?1`
-        ).bind(doc.number).first<ExistingDocument>();
+        ).bind(doc.number).first<Omit<ExistingDocument, 'authors'>>();
 
         if (existing) {
+          // Fetch authors for the existing document
+          const authors = await env.BETTERLB_DB.prepare(
+            `SELECT da.person_id, p.first_name, p.last_name,
+                    p.first_name || ' ' || p.last_name as full_name
+             FROM document_authors da
+             JOIN persons p ON da.person_id = p.id
+             WHERE da.document_id = ?1`
+          ).bind(existing.id).all<DocumentAuthor>();
+
+          const existingWithAuthors: ExistingDocument = {
+            ...existing,
+            authors: authors.results || [],
+          };
+
           // Duplicate detected
           duplicates.push({
             index: i,
-            existing,
+            existing: existingWithAuthors,
             proposed: {
               type: doc.type,
               number: doc.number,

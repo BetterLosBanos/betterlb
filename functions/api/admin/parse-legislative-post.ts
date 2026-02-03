@@ -163,7 +163,8 @@ function parseLegislativeItems(content: string): ParsedLegislativeItem[] {
 
   for (const line of lines) {
     // Check if this line starts with a number pattern (e.g., "1. ORDINANCE NO.")
-    const numberedItemMatch = line.match(/^(\d+)\.\s+(ORDINANCE|RESOLUTION|EXECUTIVE\s+ORDER|KAUTUSAN)\s+(?:NO\.|BLG\.)?\s*(\d{4}-\d+)/i);
+    // Supports numbers like 2026-2464, 2026-2464-A, 2026-2464-B
+    const numberedItemMatch = line.match(/^(\d+)\.\s+(ORDINANCE|RESOLUTION|EXECUTIVE\s+ORDER|KAUTUSAN)\s+(?:NO\.|BLG\.)?\s*(\d{4}-\d+(?:-[A-Z]+)?)/i);
 
     if (numberedItemMatch) {
       // Save previous block if exists
@@ -204,7 +205,8 @@ function parseSingleBlock(block: string): ParsedLegislativeItem | null {
   // Extract type and number from first line
   const firstLine = block.split('\n')[0];
   const typeMatch = firstLine.match(/(ORDINANCE|RESOLUTION|EXECUTIVE\s+ORDER|KAUTUSAN)/i);
-  const numberMatch = block.match(/(\d{4}-\d+)/);
+  // Supports numbers like 2026-2464, 2026-2464-A, 2026-2464-B
+  const numberMatch = block.match(/(\d{4}-\d+(?:-[A-Z]+)?)/);
 
   if (!typeMatch || !numberMatch) {
     return null;
@@ -311,6 +313,19 @@ function parseSingleBlock(block: string): ParsedLegislativeItem | null {
     const movedByNames = splitNames(movedByMatch[1]);
     if (movedByNames.length > 0) {
       moved_by = movedByNames[0];
+    }
+  }
+
+  // If no authors found via Author: field, try end-of-title pattern
+  // Pattern: "...). Councilor First M. Last [MM/DD/YYYY]"
+  if (authors.length === 0 && co_authors.length === 0) {
+    const titleEndAuthorPattern = /(?:Councilor|Councilwoman|Honorable|Vice\s+Mayor|Konsehal)\s+([A-Z][a-z]+(?:\s+[A-Z]\.?\s*)?[A-Z][a-z]+(?:\s+[A-Z]\.?)?(?:\s+[A-Z][a-z]+)?)(?:\s+\d{1,2}[/-]\d{1,2}[/-]\d{2,4})?\s*$/i;
+    const endMatch = fullText.match(titleEndAuthorPattern);
+    if (endMatch) {
+      const authorName = endMatch[1].trim();
+      if (authorName.length > 3) {
+        authors.push(authorName);
+      }
     }
   }
 

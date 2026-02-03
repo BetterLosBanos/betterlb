@@ -34,6 +34,14 @@ interface Term {
   year_range: string;
 }
 
+interface Session {
+  id: string;
+  type: string;
+  number: number | null;
+  date: string;
+  term_id: string;
+}
+
 interface ParsedLegislativeItem {
   type: 'ordinance' | 'resolution' | 'executive_order';
   number: string;
@@ -70,6 +78,13 @@ interface ParseResponse {
   };
 }
 
+interface DocumentAuthor {
+  person_id: string;
+  first_name: string;
+  last_name: string;
+  full_name: string;
+}
+
 interface ExistingDocument {
   id: string;
   type: string;
@@ -78,6 +93,7 @@ interface ExistingDocument {
   date_enacted: string;
   status: string;
   session_id: string;
+  authors: DocumentAuthor[];
 }
 
 interface DuplicateInfo {
@@ -87,6 +103,14 @@ interface DuplicateInfo {
     type: string;
     number: string;
     title: string;
+  };
+}
+
+interface DuplicateResolution {
+  action: 'skip' | 'replace' | 'merge';
+  updateFields: {
+    title?: boolean;
+    authors?: boolean;
   };
 }
 
@@ -137,6 +161,7 @@ export default function LegislativePostImporter({
   const [creating, setCreating] = useState(false);
   const [createResult, setCreateResult] = useState<BulkCreateResponse | null>(null);
   const [expandedItems, setExpandedItems] = useState<Set<number>>(new Set());
+  const [duplicateResolutions, setDuplicateResolutions] = useState<Map<number, DuplicateResolution>>(new Map());
 
   // Fetch terms when dialog opens
   useEffect(() => {
@@ -354,9 +379,10 @@ export default function LegislativePostImporter({
 
       // If there are duplicates, show them
       if (result.duplicates.length > 0) {
+        setCreateResult(result);
         setStep('duplicates');
 
-        // Update edited documents with duplicate info
+        // Update edited documents with duplicate info and init resolutions
         setEditedDocuments((prev) => {
           const updated = [...prev];
           for (const dup of result.duplicates) {
@@ -365,6 +391,12 @@ export default function LegislativePostImporter({
               has_duplicate: true,
               duplicate_info: dup,
             };
+            // Default resolution: skip (don't create)
+            setDuplicateResolutions((prev) => {
+              const next = new Map(prev);
+              next.set(dup.index, { action: 'skip', updateFields: {} });
+              return next;
+            });
           }
           return updated;
         });
@@ -373,7 +405,20 @@ export default function LegislativePostImporter({
 
       // Success!
       onSuccess(result.created.length, 0);
-      handleClose();
+
+      // Reset and close
+      setStep('paste');
+      setPostContent('');
+      setParsedData(null);
+      setSessionType('Regular');
+      setSessionOrdinal(null);
+      setSessionDate('');
+      setSelectedTermId(null);
+      setEditedDocuments([]);
+      setCreateResult(null);
+      setExpandedItems(new Set());
+      setDuplicateResolutions(new Map());
+      onClose();
       return;
     } catch (error) {
       console.error('Error creating documents:', error);
@@ -382,10 +427,10 @@ export default function LegislativePostImporter({
     } finally {
       setCreating(false);
     }
-  }, [sessionType, sessionOrdinal, sessionDate, selectedTermId, editedDocuments, onSuccess]);
+  }, [sessionType, sessionOrdinal, sessionDate, selectedTermId, editedDocuments, onSuccess, onClose]);
 
-  // Skip duplicates and continue creating
-  const handleSkipDuplicates = useCallback(async () => {
+  // Apply duplicate resolutions and create remaining documents
+  const handleApplyResolutions = useCallback(async () => {
     // Validate session fields
     if (!sessionDate) {
       alert('Please enter the session date');
@@ -397,6 +442,9 @@ export default function LegislativePostImporter({
     }
 
     setCreating(true);
+    let resolvedCount = 0;
+    let skippedCount = 0;
+    let createdCount = 0;
 
     try {
       // First, try to find existing session or create a new one
@@ -438,42 +486,119 @@ export default function LegislativePostImporter({
         throw new Error('Failed to check existing sessions');
       }
 
+      // Process duplicate resolutions
+      for (const [index, resolution] of duplicateResolutions.entries()) {
+        const doc = editedDocuments[index];
+        if (!doc?.has_duplicate || !doc.duplicate_info) continue;
+
+        if (resolution.action === 'skip') {
+          skippedCount++;
+          continue;
+        }
+
+        // Map frontend action to backend action
+        const backendAction = resolution.action === 'replace'
+          ? 'replace_existing'
+          : resolution.action === 'merge'
+          ? 'merge'
+          : 'keep_existing';
+
+        // Convert updateFields to match backend format
+        const updateFields: Record<string, boolean> = {};
+        if (resolution.updateFields.title) updateFields.title = true;
+        if (resolution.updateFields.authors) updateFields.authors = true;
+
+        const resolveResponse = await fetch('/api/admin/documents/resolve-duplicate', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            existing_document_id: doc.duplicate_info.existing.id,
+            new_document: {
+              type: doc.type,
+              number: doc.number,
+              title: doc.title,
+              authors: doc.authors.map((a) => ({
+                person_id: a.id,
+                is_new: a.id.startsWith('temp_'),
+                name: a.full_name,
+              })),
+              seconded_by: doc.seconded_by?.id,
+              moved_by: doc.moved_by?.id,
+              session_id: sessionId,
+            },
+            action: backendAction,
+            update_fields: Object.keys(updateFields).length > 0 ? updateFields : undefined,
+          }),
+        });
+
+        if (!resolveResponse.ok) {
+          console.error(`Failed to resolve duplicate for ${doc.number}`);
+          continue;
+        }
+
+        resolvedCount++;
+      }
+
+      // Create non-duplicate documents
       const documentsToCreate = editedDocuments.filter((doc) => !doc.has_duplicate);
 
-      const response = await fetch('/api/admin/documents/bulk', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          session_id: sessionId,
-          documents: documentsToCreate.map((doc) => ({
-            type: doc.type,
-            number: doc.number,
-            title: doc.title,
-            authors: doc.authors.map((a) => ({
-              person_id: a.id,
-              is_new: a.id.startsWith('temp_'),
-              name: a.full_name,
+      if (documentsToCreate.length > 0) {
+        const response = await fetch('/api/admin/documents/bulk', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            session_id: sessionId,
+            documents: documentsToCreate.map((doc) => ({
+              type: doc.type,
+              number: doc.number,
+              title: doc.title,
+              authors: doc.authors.map((a) => ({
+                person_id: a.id,
+                is_new: a.id.startsWith('temp_'),
+                name: a.full_name,
+              })),
+              seconded_by: doc.seconded_by?.id,
+              moved_by: doc.moved_by?.id,
             })),
-            seconded_by: doc.seconded_by?.id,
-            moved_by: doc.moved_by?.id,
-          })),
-          skip_duplicates: true,
-        }),
-      });
+            skip_duplicates: true,
+          }),
+        });
 
-      if (!response.ok) throw new Error('Failed to create documents');
+        if (!response.ok) throw new Error('Failed to create documents');
 
-      const result: BulkCreateResponse = await response.json();
+        const result: BulkCreateResponse = await response.json();
+        createdCount = result.created.length;
+      }
 
-      onSuccess(result.created.length, editedDocuments.filter((doc) => doc.has_duplicate).length);
-      handleClose();
+      // Report success
+      const messageParts: string[] = [];
+      if (createdCount > 0) messageParts.push(`${createdCount} created`);
+      if (resolvedCount > 0) messageParts.push(`${resolvedCount} resolved`);
+      if (skippedCount > 0) messageParts.push(`${skippedCount} skipped`);
+
+      alert(`Import complete: ${messageParts.join(', ')}`);
+      onSuccess(createdCount, skippedCount);
+
+      // Reset and close
+      setStep('paste');
+      setPostContent('');
+      setParsedData(null);
+      setSessionType('Regular');
+      setSessionOrdinal(null);
+      setSessionDate('');
+      setSelectedTermId(null);
+      setEditedDocuments([]);
+      setCreateResult(null);
+      setExpandedItems(new Set());
+      setDuplicateResolutions(new Map());
+      onClose();
     } catch (error) {
-      console.error('Error creating documents:', error);
-      alert('Failed to create documents');
+      console.error('Error applying resolutions:', error);
+      alert('Failed to apply resolutions: ' + (error instanceof Error ? error.message : 'Unknown error'));
     } finally {
       setCreating(false);
     }
-  }, [sessionType, sessionOrdinal, sessionDate, selectedTermId, editedDocuments, onSuccess]);
+  }, [sessionType, sessionOrdinal, sessionDate, selectedTermId, editedDocuments, duplicateResolutions, onSuccess, onClose]);
 
   const handleClose = useCallback(() => {
     setStep('paste');
@@ -486,6 +611,7 @@ export default function LegislativePostImporter({
     setEditedDocuments([]);
     setCreateResult(null);
     setExpandedItems(new Set());
+    setDuplicateResolutions(new Map());
     onClose();
   }, [onClose]);
 
@@ -802,41 +928,193 @@ Seconded By: Hon. Miko C. Pelegrina
                       </h4>
                       <p className="text-xs text-slate-600 mt-1">
                         {createResult?.duplicates.length || 0} document(s) already exist in the database.
-                        You can skip them or go back to edit the document numbers.
+                        Choose how to resolve each duplicate below.
                       </p>
                     </div>
                   </div>
                 </CardContent>
               </Card>
 
-              <div className="space-y-3">
+              <div className="space-y-4">
                 {editedDocuments
                   .filter((doc) => doc.has_duplicate)
                   .map((doc) => {
                     const originalIndex = editedDocuments.indexOf(doc);
                     const dup = doc.duplicate_info;
+                    const resolution = duplicateResolutions.get(originalIndex) || { action: 'skip', updateFields: {} };
+
                     return (
                       <Card key={originalIndex} variant="slate">
-                        <CardContent className="p-4">
-                          <div className="flex items-start justify-between gap-4">
-                            <div className="flex-1 min-w-0">
-                              <div className="flex items-center gap-2 mb-2">
-                                <Badge variant="warning">Duplicate</Badge>
-                                <span className="font-mono text-xs text-slate-600">
-                                  {doc.number}
-                                </span>
+                        <CardContent className="p-4 space-y-4">
+                          {/* Header */}
+                          <div className="flex items-center justify-between mb-3">
+                            <div className="flex items-center gap-2">
+                              <Badge variant="warning">Duplicate</Badge>
+                              <span className="font-mono text-xs text-slate-600">
+                                {doc.number}
+                              </span>
+                            </div>
+                          </div>
+
+                          {/* Comparison */}
+                          <div className="space-y-3">
+                            {/* Title Comparison */}
+                            <div className="grid grid-cols-2 gap-4 text-sm">
+                              <div>
+                                <span className="font-medium text-slate-700 block mb-1">Existing Title</span>
+                                <span className="text-slate-600">{dup?.existing.title}</span>
                               </div>
-                              <div className="space-y-2 text-xs">
-                                <div>
-                                  <span className="font-medium text-slate-700">Existing: </span>
-                                  <span className="text-slate-600">{dup?.existing.title}</span>
+                              <div>
+                                <span className="font-medium text-slate-700 block mb-1">New Title</span>
+                                <span className="text-slate-600">{doc.title}</span>
+                              </div>
+                            </div>
+
+                            {/* Authors Comparison */}
+                            <div className="grid grid-cols-2 gap-4 text-sm">
+                              <div>
+                                <span className="font-medium text-slate-700 block mb-1">Existing Authors</span>
+                                <div className="flex flex-wrap gap-1">
+                                  {dup?.existing.authors && dup.existing.authors.length > 0 ? (
+                                    dup.existing.authors.map((author) => (
+                                      <Badge key={author.person_id} variant="slate" className="text-xs">
+                                        <User className="w-3 h-3 mr-1" />
+                                        {author.full_name}
+                                      </Badge>
+                                    ))
+                                  ) : (
+                                    <span className="text-slate-400 italic">No authors</span>
+                                  )}
                                 </div>
-                                <div>
-                                  <span className="font-medium text-slate-700">New: </span>
-                                  <span className="text-slate-600">{doc.title}</span>
+                              </div>
+                              <div>
+                                <span className="font-medium text-slate-700 block mb-1">New Authors</span>
+                                <div className="flex flex-wrap gap-1">
+                                  {doc.authors.length > 0 ? (
+                                    doc.authors.map((author) => (
+                                      <Badge key={author.id} variant="slate" className="text-xs">
+                                        <User className="w-3 h-3 mr-1" />
+                                        {author.full_name}
+                                      </Badge>
+                                    ))
+                                  ) : (
+                                    <span className="text-slate-400 italic">No authors</span>
+                                  )}
                                 </div>
                               </div>
                             </div>
+                          </div>
+
+                          {/* Resolution Options */}
+                          <div>
+                            <label className="block mb-2 text-xs font-medium text-slate-700">
+                              Resolution
+                            </label>
+                            <div className="grid grid-cols-3 gap-2 mb-3">
+                              <button
+                                onClick={() => {
+                                  setDuplicateResolutions((prev) => {
+                                    const next = new Map(prev);
+                                    next.set(originalIndex, { action: 'skip', updateFields: {} });
+                                    return next;
+                                  });
+                                }}
+                                className={`px-3 py-2 text-xs rounded-md border ${
+                                  resolution.action === 'skip'
+                                    ? 'bg-primary-500 text-white border-primary-500'
+                                    : 'border-slate-300 hover:bg-slate-50'
+                                }`}
+                              >
+                                Skip
+                              </button>
+                              <button
+                                onClick={() => {
+                                  setDuplicateResolutions((prev) => {
+                                    const next = new Map(prev);
+                                    next.set(originalIndex, { action: 'replace', updateFields: {} });
+                                    return next;
+                                  });
+                                }}
+                                className={`px-3 py-2 text-xs rounded-md border ${
+                                  resolution.action === 'replace'
+                                    ? 'bg-primary-500 text-white border-primary-500'
+                                    : 'border-slate-300 hover:bg-slate-50'
+                                }`}
+                              >
+                                Replace
+                              </button>
+                              <button
+                                onClick={() => {
+                                  setDuplicateResolutions((prev) => {
+                                    const next = new Map(prev);
+                                    next.set(originalIndex, { action: 'merge', updateFields: { title: true, authors: true } });
+                                    return next;
+                                  });
+                                }}
+                                className={`px-3 py-2 text-xs rounded-md border ${
+                                  resolution.action === 'merge'
+                                    ? 'bg-primary-500 text-white border-primary-500'
+                                    : 'border-slate-300 hover:bg-slate-50'
+                                }`}
+                              >
+                                Merge
+                              </button>
+                            </div>
+
+                            {/* Merge field options when merge or replace is selected */}
+                            {(resolution.action === 'merge' || resolution.action === 'replace') && (
+                              <div className="space-y-2 border-t border-slate-200 pt-2">
+                                <span className="text-xs font-medium text-slate-700">
+                                  {resolution.action === 'merge' ? 'Fields to merge:' : 'Fields to update:'}
+                                </span>
+                                <div className="flex flex-wrap gap-2">
+                                  <label className="flex items-center gap-1 text-xs">
+                                    <input
+                                      type="checkbox"
+                                      checked={resolution.updateFields.title || false}
+                                      onChange={(e) => {
+                                        setDuplicateResolutions((prev) => {
+                                          const next = new Map(prev);
+                                          const current = next.get(originalIndex)!;
+                                          next.set(originalIndex, {
+                                            ...current,
+                                            updateFields: {
+                                              ...current.updateFields,
+                                              title: e.target.checked,
+                                            },
+                                          });
+                                          return next;
+                                        });
+                                      }}
+                                      className="rounded border-slate-300"
+                                    />
+                                    <span>Title</span>
+                                  </label>
+                                  <label className="flex items-center gap-1 text-xs">
+                                    <input
+                                      type="checkbox"
+                                      checked={resolution.updateFields.authors || false}
+                                      onChange={(e) => {
+                                        setDuplicateResolutions((prev) => {
+                                          const next = new Map(prev);
+                                          const current = next.get(originalIndex)!;
+                                          next.set(originalIndex, {
+                                            ...current,
+                                            updateFields: {
+                                              ...current.updateFields,
+                                              authors: e.target.checked,
+                                            },
+                                          });
+                                          return next;
+                                        });
+                                      }}
+                                      className="rounded border-slate-300"
+                                    />
+                                    <span>Authors</span>
+                                  </label>
+                                </div>
+                              </div>
+                            )}
                           </div>
                         </CardContent>
                       </Card>
@@ -854,11 +1132,11 @@ Seconded By: Hon. Miko C. Pelegrina
                 </Button>
                 <Button
                   variant="primary"
-                  onClick={handleSkipDuplicates}
+                  onClick={() => handleApplyResolutions()}
                   disabled={creating}
                   fullWidth
                 >
-                  Skip Duplicates & Continue
+                  Apply Resolutions & Create
                 </Button>
               </div>
             </div>

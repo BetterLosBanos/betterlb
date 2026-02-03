@@ -7,7 +7,9 @@ import {
   Activity,
   ArrowRight,
   RefreshCw,
-  Trash2,
+  Calendar,
+  User,
+  CheckCircle,
 } from 'lucide-react';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/Card';
 import { Badge } from '@/components/ui/Badge';
@@ -47,12 +49,31 @@ interface DashboardStats {
   };
 }
 
+interface RecentActivityItem {
+  id: string;
+  item_type: string;
+  issue_type: string;
+  description: string | null;
+  resolved_at: string;
+  assigned_to: string | null;
+  resolution: string | null;
+  document?: {
+    id: string;
+    type: string;
+    number: string;
+    title: string;
+  };
+}
+
 export default function AdminDashboard() {
   const [stats, setStats] = useState<DashboardStats | null>(null);
   const [loading, setLoading] = useState(true);
+  const [recentActivity, setRecentActivity] = useState<RecentActivityItem[]>([]);
+  const [activityLoading, setActivityLoading] = useState(true);
 
   useEffect(() => {
     fetchStats();
+    fetchRecentActivity();
   }, []);
 
   const fetchStats = async () => {
@@ -67,6 +88,21 @@ export default function AdminDashboard() {
       console.error('Error fetching stats:', error);
     } finally {
       setLoading(false);
+    }
+  };
+
+  const fetchRecentActivity = async () => {
+    setActivityLoading(true);
+    try {
+      const response = await fetch('/api/admin/recent-activity');
+      if (response.ok) {
+        const data = await response.json();
+        setRecentActivity(data.items || []);
+      }
+    } catch (error) {
+      console.error('Error fetching recent activity:', error);
+    } finally {
+      setActivityLoading(false);
     }
   };
 
@@ -232,15 +268,84 @@ export default function AdminDashboard() {
 
       {/* Recent Activity */}
       <section>
-        <h2 className="mb-4 text-xl font-bold text-slate-900">Recent Activity</h2>
+        <div className="mb-4 flex items-center justify-between">
+          <h2 className="text-xl font-bold text-slate-900">Recent Activity</h2>
+          <Button
+            variant="outline"
+            size="sm"
+            leftIcon={<RefreshCw className={`h-4 w-4 ${activityLoading ? 'animate-spin' : ''}`} />}
+            onClick={fetchRecentActivity}
+            disabled={activityLoading}
+          >
+            Refresh
+          </Button>
+        </div>
         <Card variant="default">
-          <CardContent className="py-6">
-            <div className="text-center text-slate-500">
-              <p className="mb-4 text-sm">No recent activity to display</p>
-              <Button variant="outline" size="sm">
-                Refresh Status
-              </Button>
-            </div>
+          <CardContent className="p-0">
+            {activityLoading ? (
+              <div className="flex items-center justify-center py-6">
+                <RefreshCw className="h-6 w-6 animate-spin text-slate-400" />
+              </div>
+            ) : recentActivity.length === 0 ? (
+              <div className="py-6 text-center text-slate-500">
+                <CheckCircle className="mx-auto mb-2 h-8 w-8 text-slate-400" />
+                <p className="text-sm">No recent activity to display</p>
+              </div>
+            ) : (
+              <div className="divide-y divide-slate-100">
+                {recentActivity.map((item) => (
+                  <div key={item.id} className="flex items-start gap-4 p-4 hover:bg-slate-50">
+                    <div className="flex-shrink-0">
+                      <CheckCircle className="h-5 w-5 text-emerald-500" />
+                    </div>
+                    <div className="flex-1 min-w-0">
+                      <div className="flex flex-wrap items-center gap-2 mb-1">
+                        <Badge variant="slate" className="text-xs">
+                          {item.item_type}
+                        </Badge>
+                        <span className="text-sm font-medium text-slate-900">
+                          {item.issue_type.replace(/_/g, ' ')}
+                        </span>
+                      </div>
+                      {item.description && (
+                        <p className="mb-1 text-sm text-slate-600 line-clamp-2">
+                          {item.description}
+                        </p>
+                      )}
+                      {item.document && (
+                        <Link
+                          to={`/admin/documents/${item.document.id}`}
+                          className="mb-1 inline-flex items-center gap-1 text-sm font-medium text-primary-600 hover:underline"
+                        >
+                          <FileText className="h-3 w-3" />
+                          {item.document.type === 'ordinance' ? 'Ordinance' : 'Resolution'} {item.document.number}
+                          <span className="ml-1 line-clamp-1 font-normal text-slate-600">
+                            - {item.document.title}
+                          </span>
+                        </Link>
+                      )}
+                      {item.resolution && (
+                        <p className="text-sm text-slate-500 italic">
+                          &quot;{item.resolution}&quot;
+                        </p>
+                      )}
+                      <div className="mt-1 flex flex-wrap items-center gap-3 text-xs text-slate-500">
+                        <div className="flex items-center gap-1">
+                          <Calendar className="h-3 w-3" />
+                          {new Date(item.resolved_at).toLocaleDateString()}
+                        </div>
+                        {item.assigned_to && (
+                          <div className="flex items-center gap-1">
+                            <User className="h-3 w-3" />
+                            Resolved by {item.assigned_to}
+                          </div>
+                        )}
+                      </div>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            )}
           </CardContent>
         </Card>
       </section>
