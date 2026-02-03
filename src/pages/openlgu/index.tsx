@@ -221,10 +221,17 @@ export default function LegislationIndex() {
           }
         }
 
+        const queryParams = new URLSearchParams();
+        if (searchQuery) queryParams.set('search', searchQuery);
+        if (filterType !== 'all') queryParams.set('type', filterType);
+        if (authorIds.length > 0) queryParams.set('authors', authorIds.join(','));
+        if (year) queryParams.set('year', year);
+        const queryString = queryParams.toString();
+
         return (
           <Link
             key={doc.id}
-            to={`${doc.type}/${doc.id}`}
+            to={`documents/${doc.id}${queryString ? `?${queryString}` : ''}`}
             className='group block'
             aria-label={`${doc.type} ${doc.number}: ${doc.title}`}
           >

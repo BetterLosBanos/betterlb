@@ -72,7 +72,14 @@ export default function OpenLGULayout() {
            <ModuleHeader
               title="OpenLGU Document"
               description="Official record from the Sangguniang Bayan."
-           />
+           >
+              <SearchInput
+                placeholder='Search by title, number, or author...'
+                value={searchQuery}
+                onChangeValue={setSearchQuery}
+                size='sm'
+              />
+           </ModuleHeader>
         )
       }
 

@@ -1,15 +1,66 @@
-import { Outlet } from 'react-router-dom';
+import { Outlet, useLocation } from 'react-router-dom';
 import { Shield } from 'lucide-react';
 import Navbar from '@/components/layout/Navbar';
 import Footer from '@/components/layout/Footer';
 import { Badge } from '@/components/ui/Badge';
+import {
+  Breadcrumb,
+  BreadcrumbHome,
+  BreadcrumbItem,
+  BreadcrumbLink,
+  BreadcrumbList,
+  BreadcrumbPage,
+  BreadcrumbSeparator,
+} from '@/components/navigation/Breadcrumb';
 import { AdminAuthProvider } from './components/AdminAuthProvider';
 import { MockAdminAuthProvider } from './components/MockAdminAuthProvider';
 
 // Use mock mode for local development (set VITE_ADMIN_MOCK_MODE=true in .env)
 const USE_MOCK_AUTH = import.meta.env.VITE_ADMIN_MOCK_MODE === 'true';
 
+interface BreadcrumbRoute {
+  path: string;
+  title: string;
+}
+
+// Route to title mapping for breadcrumbs
+const ADMIN_ROUTES: Record<string, string> = {
+  '/admin': 'Admin',
+  '/admin/documents': 'Documents',
+  '/admin/errors': 'Error Log',
+  '/admin/review-queue': 'Review Queue',
+  '/admin/reconcile': 'Reconcile',
+  '/admin/persons': 'Persons',
+  '/admin/persons/merge': 'Merge',
+  '/admin/persons/deletion-queue': 'Deletion Queue',
+};
+
+function getBreadcrumbs(pathname: string): BreadcrumbRoute[] {
+  const breadcrumbs: BreadcrumbRoute[] = [];
+  const segments = pathname.split('/').filter(Boolean);
+
+  // Build up the path incrementally
+  let currentPath = '';
+  for (const segment of segments) {
+    currentPath += `/${segment}`;
+    const title = ADMIN_ROUTES[currentPath];
+    if (title) {
+      breadcrumbs.push({ path: currentPath, title });
+    }
+  }
+
+  // If no routes matched, just show Admin
+  if (breadcrumbs.length === 0) {
+    breadcrumbs.push({ path: '/admin', title: 'Admin' });
+  }
+
+  return breadcrumbs;
+}
+
 function AdminContent() {
+  const location = useLocation();
+  const breadcrumbs = getBreadcrumbs(location.pathname);
+
   return (
     <div className="flex min-h-screen flex-col">
       <Navbar />
@@ -30,6 +81,28 @@ function AdminContent() {
             </p>
           </div>
         </div>
+
+        <Breadcrumb>
+          <BreadcrumbList>
+            <BreadcrumbItem>
+              <BreadcrumbHome href="/" />
+            </BreadcrumbItem>
+            <BreadcrumbSeparator />
+            {breadcrumbs.map((crumb, index) => (
+              <div key={crumb.path} className="flex items-center gap-2">
+                <BreadcrumbItem>
+                  {index === breadcrumbs.length - 1 ? (
+                    <BreadcrumbPage>{crumb.title}</BreadcrumbPage>
+                  ) : (
+                    <BreadcrumbLink href={crumb.path}>{crumb.title}</BreadcrumbLink>
+                  )}
+                </BreadcrumbItem>
+                {index < breadcrumbs.length - 1 && <BreadcrumbSeparator />}
+              </div>
+            ))}
+          </BreadcrumbList>
+        </Breadcrumb>
+
         <Outlet />
       </div>
       <Footer />

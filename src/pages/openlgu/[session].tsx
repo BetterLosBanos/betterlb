@@ -168,7 +168,7 @@ export default function SessionDetail() {
                 {relatedDocs.map((doc: DocumentItem) => (
                   <Link
                     key={doc.id}
-                    to={`/openlgu/${doc.type}/${doc.id}`}
+                    to={`/openlgu/documents/${doc.id}`}
                     className='group -mx-2 block min-h-[44px] rounded-lg px-2 py-4 transition-all hover:bg-slate-50'
                   >
                     <div className='mb-1 flex items-center gap-3'>

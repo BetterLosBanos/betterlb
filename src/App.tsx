@@ -44,6 +44,7 @@ import ElectedOfficialsLayout from '@/pages/government/elected-officials/layout'
 import MunicipalCommitteesPage from '@/pages/government/elected-officials/municipal-committees';
 import GovernmentRootLayout from '@/pages/government/layout';
 import LegislationDetail from '@/pages/openlgu/[document]';
+import LegacyDocumentRedirect from '@/pages/openlgu/LegacyDocumentRedirect';
 import PersonDetail from '@/pages/openlgu/[person]';
 import SessionDetail from '@/pages/openlgu/[session]';
 import TermDetail from '@/pages/openlgu/[term]';
@@ -177,7 +178,10 @@ function AppContent() {
               <Route index element={<LegislationIndex />} />
               <Route path='officials' element={<OfficialsIndex />} />
               <Route path='terms' element={<TermsIndex />} />
-              <Route path=':type/:document' element={<LegislationDetail />} />
+              {/* Legacy redirect for backward compatibility */}
+              <Route path=':type/:document' element={<LegacyDocumentRedirect />} />
+              {/* New unified document route */}
+              <Route path='documents/:document' element={<LegislationDetail />} />
               <Route path='session/:sessionId' element={<SessionDetail />} />
               <Route path='person/:personId' element={<PersonDetail />} />
               <Route path='term/:termId' element={<TermDetail />} />

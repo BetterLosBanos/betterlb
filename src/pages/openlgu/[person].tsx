@@ -533,7 +533,7 @@ export default function PersonDetail() {
                 return (
                   <Link
                     key={doc.id}
-                    to={`/openlgu/${doc.type}/${doc.id}`}
+                    to={`/openlgu/documents/${doc.id}`}
                     className='group block min-h-[44px] py-4 transition-colors hover:bg-slate-50 -mx-5 px-5'
                   >
                     <div className='flex items-start gap-3'>

@@ -407,7 +407,7 @@ export default function TermDetail() {
                 {termDocuments.slice(0, visibleDocs).map((doc: DocumentItem) => (
                   <Link
                     key={doc.id}
-                    to={`/openlgu/${doc.type}/${doc.id}`}
+                    to={`/openlgu/documents/${doc.id}`}
                     className='block min-h-[44px] py-4 transition-all hover:bg-slate-50'
                   >
                     <div className='mb-1 flex items-center gap-3'>

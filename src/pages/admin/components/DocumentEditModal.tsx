@@ -308,11 +308,13 @@ export default function DocumentEditModal({
   };
 
   const handleAbsentChange = (personId: string, isAbsent: boolean) => {
-    if (isAbsent) {
-      setAbsentPersonIds([...absentPersonIds, personId]);
-    } else {
-      setAbsentPersonIds(absentPersonIds.filter((id) => id !== personId));
-    }
+    setAbsentPersonIds((prevIds) => {
+      if (isAbsent) {
+        return [...prevIds, personId];
+      } else {
+        return prevIds.filter((id) => id !== personId);
+      }
+    });
   };
 
   if (loading || !document) {

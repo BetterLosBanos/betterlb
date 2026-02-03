@@ -1,4 +1,4 @@
-import { Link, useOutletContext, useParams } from 'react-router-dom';
+import { Link, useOutletContext, useParams, useSearchParams } from 'react-router-dom';
 
 import {
   Activity,
@@ -8,7 +8,6 @@ import {
   Gavel,
   Hash,
   Landmark,
-  ShieldCheck,
   Users,
 } from 'lucide-react';
 import FlagForReviewButton from '@/components/admin/FlagForReviewButton';
@@ -34,6 +33,11 @@ export default function LegislationDocument() {
   const { document: urlId } = useParams();
   const { documents, persons, sessions, terms, isLoading } =
     useOutletContext<LegislationContext>();
+  const [searchParams] = useSearchParams();
+
+  // Build back link with preserved query params
+  const queryParams = searchParams.toString();
+  const backLink = `/openlgu${queryParams ? `?${queryParams}` : ''}`;
 
   const doc = documents?.find(d => d.id === urlId);
 
@@ -45,7 +49,7 @@ export default function LegislationDocument() {
     return (
       <div className='p-20 text-center' role='alert'>
         <h2 className='text-xl font-bold text-slate-900'>Document not found</h2>
-        <Link to='/openlgu' className='text-primary-600 hover:underline'>
+        <Link to={backLink} className='text-primary-600 hover:underline'>
           Return to Archive
         </Link>
       </div>
@@ -78,7 +82,7 @@ export default function LegislationDocument() {
           </BreadcrumbItem>
           <BreadcrumbSeparator />
           <BreadcrumbItem>
-            <BreadcrumbLink href='/openlgu'>OpenLGU</BreadcrumbLink>
+            <BreadcrumbLink href={backLink}>OpenLGU</BreadcrumbLink>
           </BreadcrumbItem>
           <BreadcrumbSeparator />
           <BreadcrumbPage>{doc.number}</BreadcrumbPage>
@@ -237,18 +241,6 @@ export default function LegislationDocument() {
               </div>
             </dl>
           </DetailSection>
-
-          {/* Accessibility Trust Block */}
-          <div className='bg-primary-50 border-primary-100 rounded-xl border p-4'>
-            <div className='flex gap-3'>
-              <ShieldCheck className='text-primary-600 h-5 w-5 shrink-0' />
-              <p className='text-primary-700 text-[11px] leading-relaxed'>
-                This document is an official digital mirror of the municipal
-                archives. For certified physical copies, please visit the
-                Sangguniang Bayan Office.
-              </p>
-            </div>
-          </div>
 
           {/* Flag for Review */}
           <div className='border-slate-200 rounded-xl border bg-slate-50 p-4'>

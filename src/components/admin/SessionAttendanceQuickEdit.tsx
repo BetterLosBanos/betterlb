@@ -231,7 +231,7 @@ export default function SessionAttendanceQuickEdit({
               </div>
 
               <Badge
-                variant={isAbsent ? 'danger' : 'success'}
+                variant={isAbsent ? 'error' : 'success'}
                 className="cursor-pointer select-none"
                 onClick={() => !disabled && toggleAbsent(member.id)}
               >
