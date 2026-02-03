@@ -9,16 +9,42 @@ import {
 } from '@/components/ui/Dialog';
 import { Card, CardContent } from '@/components/ui/Card';
 import { Badge } from '@/components/ui/Badge';
+import { Tabs, TabsList, TabsTrigger, TabsContent } from '@/components/ui/Tabs';
 import Button from '@/components/ui/Button';
 import PersonSearchAutocomplete from '@/components/admin/PersonSearchAutocomplete';
 import SubjectSearchAutocomplete from '@/components/admin/SubjectSearchAutocomplete';
-import { X, Save, FileText, User } from 'lucide-react';
+import SessionAttendanceQuickEdit from '@/components/admin/SessionAttendanceQuickEdit';
+import { X, Save, FileText, User, Calendar, AlertCircle, ExternalLink } from 'lucide-react';
 
 interface Person {
   id: string;
   first_name: string;
   middle_name: string | null;
   last_name: string;
+}
+
+interface SessionData {
+  id: string;
+  term_id: string;
+  session_type: string;
+  ordinal: number | null;
+  date: string;
+  source_url: string | null;
+  members: Array<{
+    id: string;
+    person_id: string;
+    first_name: string;
+    middle_name: string | null;
+    last_name: string;
+    role?: string;
+  }>;
+  absences: Array<{
+    id: string;
+    person_id: string;
+    first_name: string;
+    middle_name: string | null;
+    last_name: string;
+  }>;
 }
 
 interface DocumentData {
@@ -46,6 +72,8 @@ interface DocumentEditModalProps {
   onSave: (data: Partial<DocumentData>) => Promise<void>;
 }
 
+type TabValue = 'document' | 'session';
+
 export default function DocumentEditModal({
   documentId,
   open,
@@ -56,6 +84,61 @@ export default function DocumentEditModal({
   const [loading, setLoading] = useState(false);
   const [saving, setSaving] = useState(false);
   const [formData, setFormData] = useState<Partial<DocumentData>>({});
+
+  // Tab state
+  const [activeTab, setActiveTab] = useState<TabValue>('document');
+
+  // Session data state
+  const [sessionData, setSessionData] = useState<SessionData | null>(null);
+  const [sessionLoading, setSessionLoading] = useState(false);
+  const [sessionError, setSessionError] = useState<string | null>(null);
+
+  // Attendance state
+  const [absentPersonIds, setAbsentPersonIds] = useState<string[]>([]);
+
+  const fetchSessionData = useCallback(async (sessionId: string) => {
+    setSessionLoading(true);
+    setSessionError(null);
+    try {
+      const isMockMode = import.meta.env.VITE_ADMIN_MOCK_MODE === 'true';
+
+      if (isMockMode) {
+        // Mock session data
+        const mockSession: SessionData = {
+          id: sessionId,
+          term_id: 'term_12',
+          session_type: 'Regular',
+          ordinal: 1,
+          date: '2024-01-15',
+          source_url: null,
+          members: [
+            { id: 'm1', person_id: 'person_1', first_name: 'Juan', middle_name: null, last_name: 'Dela Cruz', role: 'Councilor' },
+            { id: 'm2', person_id: 'person_2', first_name: 'Maria', middle_name: 'Santos', last_name: 'Reyes', role: 'Councilor' },
+            { id: 'm3', person_id: 'person_3', first_name: 'Jose', middle_name: null, last_name: 'Mendoza', role: 'Councilor' },
+          ],
+          absences: [
+            { id: 'a1', person_id: 'person_3', first_name: 'Jose', middle_name: null, last_name: 'Mendoza' },
+          ],
+        };
+        setSessionData(mockSession);
+        setAbsentPersonIds(mockSession.absences.map((a) => a.person_id));
+        return;
+      }
+
+      const response = await fetch(`/api/admin/sessions/${sessionId}`);
+      if (!response.ok) {
+        throw new Error(`Failed to fetch session (HTTP ${response.status})`);
+      }
+      const data: SessionData = await response.json();
+      setSessionData(data);
+      setAbsentPersonIds(data.absences.map((a) => a.person_id));
+    } catch (error) {
+      console.error('Error fetching session:', error);
+      setSessionError(error instanceof Error ? error.message : 'Unknown error');
+    } finally {
+      setSessionLoading(false);
+    }
+  }, []);
 
   const fetchDocument = useCallback(async () => {
     setLoading(true);
@@ -70,7 +153,7 @@ export default function DocumentEditModal({
           type: 'ordinance',
           number: '2024-001',
           title: 'AN ORDINANCE ENACTING THE SUPPLEMENTAL BUDGET FOR FY 2024',
-          session_id: 'sb_12_2024-01-15',
+          session_id: 'session_123',
           status: 'Approved',
           date_enacted: '2024-01-15T00:00:00Z',
           pdf_url: 'https://example.com/document.pdf',
@@ -87,6 +170,9 @@ export default function DocumentEditModal({
         };
         setDocument(mockData);
         setFormData(mockData);
+
+        // Fetch session data for mock mode
+        fetchSessionData(mockData.session_id);
         return;
       }
 
@@ -106,13 +192,18 @@ export default function DocumentEditModal({
       const data: DocumentData = await response.json();
       setDocument(data);
       setFormData(data);
+
+      // Fetch session data if session_id exists
+      if (data.session_id) {
+        fetchSessionData(data.session_id);
+      }
     } catch (error) {
       console.error('Error fetching document:', error);
       alert(`Failed to load document: ${error instanceof Error ? error.message : 'Unknown error'}`);
     } finally {
       setLoading(false);
     }
-  }, [documentId]);
+  }, [documentId, fetchSessionData]);
 
   useEffect(() => {
     if (open && documentId) {
@@ -123,7 +214,31 @@ export default function DocumentEditModal({
   const handleSave = async () => {
     setSaving(true);
     try {
+      // Save document data
       await onSave(formData);
+
+      // Save attendance if we have session data and absences have changed
+      if (sessionData && activeTab === 'session') {
+        const currentAbsenceIds = sessionData.absences.map((a) => a.person_id);
+        const absencesChanged =
+          absentPersonIds.length !== currentAbsenceIds.length ||
+          absentPersonIds.some((id) => !currentAbsenceIds.includes(id)) ||
+          currentAbsenceIds.some((id) => !absentPersonIds.includes(id));
+
+        if (absencesChanged) {
+          try {
+            await fetch(`/api/admin/attendance/${sessionData.id}`, {
+              method: 'POST',
+              headers: { 'Content-Type': 'application/json' },
+              body: JSON.stringify({ absent_person_ids: absentPersonIds }),
+            });
+          } catch (error) {
+            console.error('Error saving attendance:', error);
+            // Continue anyway - document was saved
+          }
+        }
+      }
+
       onClose();
     } catch (error) {
       console.error('Error saving document:', error);
@@ -151,9 +266,17 @@ export default function DocumentEditModal({
     }
   };
 
+  const handleAbsentChange = (personId: string, isAbsent: boolean) => {
+    if (isAbsent) {
+      setAbsentPersonIds([...absentPersonIds, personId]);
+    } else {
+      setAbsentPersonIds(absentPersonIds.filter((id) => id !== personId));
+    }
+  };
+
   if (loading || !document) {
     return (
-      <Dialog open={open}>
+      <Dialog open={open} onOpenChange={(isOpen) => { if (!isOpen) onClose(); }}>
         <DialogContent className="max-w-3xl">
           <DialogHeader>
             <DialogTitle>Edit Document</DialogTitle>
@@ -166,9 +289,11 @@ export default function DocumentEditModal({
     );
   }
 
+  const hasLinkedSession = !!document.session_id;
+
   return (
-    <Dialog open={open}>
-      <DialogContent className="max-w-3xl max-h-[90vh] overflow-y-auto">
+    <Dialog open={open} onOpenChange={(isOpen) => { if (!isOpen) onClose(); }}>
+      <DialogContent className="max-w-3xl max-h-[90vh] overflow-hidden flex flex-col">
         <DialogHeader>
           <div>
             <DialogTitle>Edit Document</DialogTitle>
@@ -183,241 +308,338 @@ export default function DocumentEditModal({
           </div>
         </DialogHeader>
 
-        <div className="py-4 space-y-6">
-          {/* Basic Info */}
-          <Card variant="default">
-            <CardContent className="p-4 space-y-4">
-              <div>
-                <label className="block mb-1 text-sm font-medium text-slate-700">
-                  Title
-                </label>
-                <input
-                  type="text"
-                  value={formData.title || ''}
-                  onChange={(e) =>
-                    setFormData({ ...formData, title: e.target.value })
-                  }
-                  className="px-3 py-2 w-full text-sm rounded-md border border-slate-300"
-                />
-              </div>
+        {/* Tabs */}
+        <Tabs value={activeTab} onValueChange={(v) => setActiveTab(v as TabValue)} className="flex-1 overflow-hidden flex flex-col">
+          <TabsList className="w-full">
+            <TabsTrigger value="document" className="flex-1">
+              <FileText className="w-4 h-4 mr-2" />
+              Document
+            </TabsTrigger>
+            <TabsTrigger value="session" className="flex-1" disabled={!hasLinkedSession}>
+              <Calendar className="w-4 h-4 mr-2" />
+              Session & Attendance
+            </TabsTrigger>
+          </TabsList>
 
-              <div className="grid gap-4 sm:grid-cols-2">
-                <div>
-                  <label className="block mb-1 text-sm font-medium text-slate-700">
-                    Document Number
-                  </label>
-                  <input
-                    type="text"
-                    value={formData.number || ''}
+          {/* Document Tab */}
+          <TabsContent value="document" className="flex-1 overflow-y-auto -mx-1 px-1">
+            <div className="py-4 space-y-6">
+              {/* Basic Info */}
+              <Card variant="default">
+                <CardContent className="p-4 space-y-4">
+                  <div>
+                    <label className="block mb-1 text-sm font-medium text-slate-700">
+                      Title
+                    </label>
+                    <input
+                      type="text"
+                      value={formData.title || ''}
+                      onChange={(e) =>
+                        setFormData({ ...formData, title: e.target.value })
+                      }
+                      className="px-3 py-2 w-full text-sm rounded-md border border-slate-300"
+                    />
+                  </div>
+
+                  <div className="grid gap-4 sm:grid-cols-2">
+                    <div>
+                      <label className="block mb-1 text-sm font-medium text-slate-700">
+                        Document Number
+                      </label>
+                      <input
+                        type="text"
+                        value={formData.number || ''}
+                        onChange={(e) =>
+                          setFormData({ ...formData, number: e.target.value })
+                        }
+                        className="px-3 py-2 w-full text-sm rounded-md border border-slate-300"
+                      />
+                    </div>
+                    <div>
+                      <label className="block mb-1 text-sm font-medium text-slate-700">
+                        Date Enacted
+                      </label>
+                      <input
+                        type="date"
+                        value={formData.date_enacted?.split('T')[0] || ''}
+                        onChange={(e) =>
+                          setFormData({ ...formData, date_enacted: e.target.value })
+                        }
+                        className="px-3 py-2 w-full text-sm rounded-md border border-slate-300"
+                      />
+                    </div>
+                  </div>
+
+                  <div className="grid gap-4 sm:grid-cols-2">
+                    <div>
+                      <label className="block mb-1 text-sm font-medium text-slate-700">
+                        Status
+                      </label>
+                      <select
+                        value={formData.status || ''}
+                        onChange={(e) =>
+                          setFormData({ ...formData, status: e.target.value })
+                        }
+                        className="px-3 py-2 w-full text-sm rounded-md border border-slate-300"
+                      >
+                        <option value="Approved">Approved</option>
+                        <option value="Pending">Pending</option>
+                        <option value="Withdrawn">Withdrawn</option>
+                        <option value="Vetoed">Vetoed</option>
+                      </select>
+                    </div>
+                    <div>
+                      <label className="block mb-1 text-sm font-medium text-slate-700">
+                        Type
+                      </label>
+                      <select
+                        value={formData.type || ''}
+                        onChange={(e) =>
+                          setFormData({
+                            ...formData,
+                            type: e.target.value as 'ordinance' | 'resolution' | 'executive_order',
+                          })
+                        }
+                        className="px-3 py-2 w-full text-sm rounded-md border border-slate-300"
+                      >
+                        <option value="ordinance">Ordinance</option>
+                        <option value="resolution">Resolution</option>
+                        <option value="executive_order">Executive Order</option>
+                      </select>
+                    </div>
+                  </div>
+                </CardContent>
+              </Card>
+
+              {/* Authors */}
+              <Card variant="default" className="overflow-visible">
+                <CardContent className="overflow-visible p-4 space-y-4">
+                  <h4 className="font-bold text-slate-900">
+                    Authors
+                  </h4>
+                  <div className="flex flex-wrap gap-2">
+                    {formData.authors?.map((author) => (
+                      <Badge key={author.id} variant="slate">
+                        <User className="mr-1 w-3 h-3" />
+                        {author.first_name} {author.last_name}
+                        <button
+                          type="button"
+                          onClick={() => removeAuthor(author.id)}
+                          className="ml-1 hover:text-red-500"
+                        >
+                          <X className="w-3 h-3" />
+                        </button>
+                      </Badge>
+                    ))}
+                  </div>
+                  <PersonSearchAutocomplete
+                    onSelect={(result) => {
+                      if ('isNew' in result) {
+                        // Create new person (temporary)
+                        const nameParts = result.name.split(' ');
+                        const person: Person = {
+                          id: `temp_${Date.now()}`,
+                          first_name: nameParts[0] || result.name,
+                          middle_name: null,
+                          last_name: nameParts.slice(1).join(' ') || '',
+                        };
+                        setFormData({
+                          ...formData,
+                          authors: [...(formData.authors || []), person],
+                        });
+                      } else {
+                        // Add existing person
+                        setFormData({
+                          ...formData,
+                          authors: [...(formData.authors || []), result],
+                        });
+                      }
+                    }}
+                    excludeIds={formData.authors?.map((a) => a.id) || []}
+                    placeholder="Search for a person or type name to add..."
+                  />
+                </CardContent>
+              </Card>
+
+              {/* Subjects */}
+              <Card variant="default" className="overflow-visible">
+                <CardContent className="overflow-visible p-4 space-y-4">
+                  <h4 className="font-bold text-slate-900">
+                    Subjects
+                  </h4>
+                  <div className="flex flex-wrap gap-2">
+                    {formData.subjects?.map((subject) => (
+                      <Badge key={subject} variant="primary">
+                        {subject}
+                        <button
+                          type="button"
+                          onClick={() => removeSubject(subject)}
+                          className="ml-1 hover:text-red-500"
+                        >
+                          <X className="w-3 h-3" />
+                        </button>
+                      </Badge>
+                    ))}
+                  </div>
+                  <SubjectSearchAutocomplete
+                    onSelect={(result) => {
+                      if ('isNew' in result) {
+                        // Create new subject
+                        setFormData({
+                          ...formData,
+                          subjects: [...(formData.subjects || []), result.name],
+                        });
+                      } else {
+                        // Add existing subject
+                        setFormData({
+                          ...formData,
+                          subjects: [...(formData.subjects || []), result.name],
+                        });
+                      }
+                    }}
+                    excludeNames={formData.subjects || []}
+                    placeholder="Search for a subject or type name to add..."
+                  />
+                </CardContent>
+              </Card>
+
+              {/* Review Notes */}
+              <Card variant="default">
+                <CardContent className="p-4 space-y-4">
+                  <h4 className="font-bold text-slate-900">
+                    Review Notes
+                  </h4>
+                  <textarea
+                    value={formData.review_notes || ''}
                     onChange={(e) =>
-                      setFormData({ ...formData, number: e.target.value })
+                      setFormData({ ...formData, review_notes: e.target.value })
                     }
+                    placeholder="Add notes about this correction..."
+                    rows={3}
                     className="px-3 py-2 w-full text-sm rounded-md border border-slate-300"
                   />
-                </div>
-                <div>
-                  <label className="block mb-1 text-sm font-medium text-slate-700">
-                    Date Enacted
-                  </label>
-                  <input
-                    type="date"
-                    value={formData.date_enacted?.split('T')[0] || ''}
-                    onChange={(e) =>
-                      setFormData({ ...formData, date_enacted: e.target.value })
-                    }
-                    className="px-3 py-2 w-full text-sm rounded-md border border-slate-300"
-                  />
-                </div>
-              </div>
+                  <div className="flex gap-2 items-center">
+                    <input
+                      type="checkbox"
+                      id="needsReview"
+                      checked={formData.needs_review === 1}
+                      onChange={(e) =>
+                        setFormData({
+                          ...formData,
+                          needs_review: e.target.checked ? 1 : 0,
+                        })
+                      }
+                    />
+                    <label htmlFor="needsReview" className="text-sm text-slate-700">
+                      Flag for further review
+                    </label>
+                  </div>
+                </CardContent>
+              </Card>
 
-              <div className="grid gap-4 sm:grid-cols-2">
-                <div>
-                  <label className="block mb-1 text-sm font-medium text-slate-700">
-                    Status
-                  </label>
-                  <select
-                    value={formData.status || ''}
-                    onChange={(e) =>
-                      setFormData({ ...formData, status: e.target.value })
-                    }
-                    className="px-3 py-2 w-full text-sm rounded-md border border-slate-300"
-                  >
-                    <option value="Approved">Approved</option>
-                    <option value="Pending">Pending</option>
-                    <option value="Withdrawn">Withdrawn</option>
-                    <option value="Vetoed">Vetoed</option>
-                  </select>
-                </div>
-                <div>
-                  <label className="block mb-1 text-sm font-medium text-slate-700">
-                    Type
-                  </label>
-                  <select
-                    value={formData.type || ''}
-                    onChange={(e) =>
-                      setFormData({
-                        ...formData,
-                        type: e.target.value as 'ordinance' | 'resolution' | 'executive_order',
-                      })
-                    }
-                    className="px-3 py-2 w-full text-sm rounded-md border border-slate-300"
-                  >
-                    <option value="ordinance">Ordinance</option>
-                    <option value="resolution">Resolution</option>
-                    <option value="executive_order">Executive Order</option>
-                  </select>
-                </div>
-              </div>
-            </CardContent>
-          </Card>
-
-          {/* Authors */}
-          <Card variant="default">
-            <CardContent className="p-4 space-y-4">
-              <h4 className="font-bold text-slate-900">
-                Authors
-              </h4>
-              <div className="flex flex-wrap gap-2">
-                {formData.authors?.map((author) => (
-                  <Badge key={author.id} variant="slate">
-                    <User className="mr-1 w-3 h-3" />
-                    {author.first_name} {author.last_name}
-                    <button
-                      type="button"
-                      onClick={() => removeAuthor(author.id)}
-                      className="ml-1 hover:text-red-500"
+              {/* PDF Link */}
+              {formData.pdf_url && (
+                <Card variant="slate">
+                  <CardContent className="flex gap-3 items-center p-4">
+                    <FileText className="w-5 h-5 text-slate-500" />
+                    <a
+                      href={formData.pdf_url}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-sm text-primary-600 hover:underline"
                     >
-                      <X className="w-3 h-3" />
-                    </button>
-                  </Badge>
-                ))}
-              </div>
-              <div className="overflow-visible">
-                <PersonSearchAutocomplete
-                  onSelect={(result) => {
-                    if ('isNew' in result) {
-                      // Create new person (temporary)
-                      const nameParts = result.name.split(' ');
-                      const person: Person = {
-                        id: `temp_${Date.now()}`,
-                        first_name: nameParts[0] || result.name,
-                        middle_name: null,
-                        last_name: nameParts.slice(1).join(' ') || '',
-                      };
-                      setFormData({
-                        ...formData,
-                        authors: [...(formData.authors || []), person],
-                      });
-                    } else {
-                      // Add existing person
-                      setFormData({
-                        ...formData,
-                        authors: [...(formData.authors || []), result],
-                      });
-                    }
-                  }}
-                  excludeIds={formData.authors?.map((a) => a.id) || []}
-                  placeholder="Search for a person or type name to add..."
-                />
-              </div>
-            </CardContent>
-          </Card>
+                      View Original PDF
+                    </a>
+                  </CardContent>
+                </Card>
+              )}
+            </div>
+          </TabsContent>
 
-          {/* Subjects */}
-          <Card variant="default">
-            <CardContent className="p-4 space-y-4">
-              <h4 className="font-bold text-slate-900">
-                Subjects
-              </h4>
-              <div className="flex flex-wrap gap-2">
-                {formData.subjects?.map((subject) => (
-                  <Badge key={subject} variant="primary">
-                    {subject}
-                    <button
-                      type="button"
-                      onClick={() => removeSubject(subject)}
-                      className="ml-1 hover:text-red-500"
-                    >
-                      <X className="w-3 h-3" />
-                    </button>
-                  </Badge>
-                ))}
-              </div>
-              <div className="overflow-visible">
-                <SubjectSearchAutocomplete
-                onSelect={(result) => {
-                  if ('isNew' in result) {
-                    // Create new subject
-                    setFormData({
-                      ...formData,
-                      subjects: [...(formData.subjects || []), result.name],
-                    });
-                  } else {
-                    // Add existing subject
-                    setFormData({
-                      ...formData,
-                      subjects: [...(formData.subjects || []), result.name],
-                    });
-                  }
-                }}
-                excludeNames={formData.subjects || []}
-                placeholder="Search for a subject or type name to add..."
-              />
-              </div>
-            </CardContent>
-          </Card>
+          {/* Session & Attendance Tab */}
+          <TabsContent value="session" className="flex-1 overflow-y-auto -mx-1 px-1">
+            <div className="py-4 space-y-6">
+              {!hasLinkedSession ? (
+                <Card variant="slate">
+                  <CardContent className="flex gap-3 items-center p-4">
+                    <AlertCircle className="w-5 h-5 text-amber-500" />
+                    <p className="text-sm text-slate-600">
+                      This document is not linked to a session.
+                    </p>
+                  </CardContent>
+                </Card>
+              ) : sessionLoading ? (
+                <div className="flex justify-center items-center py-12">
+                  <div className="w-8 h-8 rounded-full border-4 animate-spin border-slate-300 border-t-primary-500" />
+                </div>
+              ) : sessionError ? (
+                <Card variant="slate">
+                  <CardContent className="flex gap-3 items-center p-4">
+                    <AlertCircle className="w-5 h-5 text-red-500" />
+                    <p className="text-sm text-slate-600">
+                      Error loading session: {sessionError}
+                    </p>
+                  </CardContent>
+                </Card>
+              ) : sessionData ? (
+                <>
+                  {/* Session Info */}
+                  <Card variant="default">
+                    <CardContent className="p-4 space-y-4">
+                      <h4 className="font-bold text-slate-900">
+                        Session Details
+                      </h4>
+                      <div className="flex flex-wrap gap-3">
+                        <Badge variant="secondary">
+                          {sessionData.session_type}
+                        </Badge>
+                        {sessionData.date && (
+                          <Badge variant="slate">
+                            {new Date(sessionData.date).toLocaleDateString('en-PH', {
+                              year: 'numeric',
+                              month: 'long',
+                              day: 'numeric',
+                            })}
+                          </Badge>
+                        )}
+                        {sessionData.ordinal !== null && (
+                          <Badge variant="slate">
+                            Session #{sessionData.ordinal}
+                          </Badge>
+                        )}
+                      </div>
+                      <a
+                        href={`/admin/sessions/${sessionData.id}`}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="inline-flex items-center gap-1 text-sm text-primary-600 hover:underline"
+                      >
+                        Open full session editor
+                        <ExternalLink className="w-3 h-3" />
+                      </a>
+                    </CardContent>
+                  </Card>
 
-          {/* Review Notes */}
-          <Card variant="default">
-            <CardContent className="p-4 space-y-4">
-              <h4 className="font-bold text-slate-900">
-                Review Notes
-              </h4>
-              <textarea
-                value={formData.review_notes || ''}
-                onChange={(e) =>
-                  setFormData({ ...formData, review_notes: e.target.value })
-                }
-                placeholder="Add notes about this correction..."
-                rows={3}
-                className="px-3 py-2 w-full text-sm rounded-md border border-slate-300"
-              />
-              <div className="flex gap-2 items-center">
-                <input
-                  type="checkbox"
-                  id="needsReview"
-                  checked={formData.needs_review === 1}
-                  onChange={(e) =>
-                    setFormData({
-                      ...formData,
-                      needs_review: e.target.checked ? 1 : 0,
-                    })
-                  }
-                />
-                <label htmlFor="needsReview" className="text-sm text-slate-700">
-                  Flag for further review
-                </label>
-              </div>
-            </CardContent>
-          </Card>
-
-          {/* PDF Link */}
-          {formData.pdf_url && (
-            <Card variant="slate">
-              <CardContent className="flex gap-3 items-center p-4">
-                <FileText className="w-5 h-5 text-slate-500" />
-                <a
-                  href={formData.pdf_url}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-sm text-primary-600 hover:underline"
-                >
-                  View Original PDF
-                </a>
-              </CardContent>
-            </Card>
-          )}
-        </div>
+                  {/* Attendance */}
+                  <Card variant="default">
+                    <CardContent className="p-4 space-y-4">
+                      <h4 className="font-bold text-slate-900">
+                        Attendance
+                      </h4>
+                      <SessionAttendanceQuickEdit
+                        sessionId={sessionData.id}
+                        termId={sessionData.term_id}
+                        absentPersonIds={absentPersonIds}
+                        onAbsentChange={handleAbsentChange}
+                        disabled={saving}
+                      />
+                    </CardContent>
+                  </Card>
+                </>
+              ) : null}
+            </div>
+          </TabsContent>
+        </Tabs>
 
         <DialogFooter>
           <DialogClose asChild>
