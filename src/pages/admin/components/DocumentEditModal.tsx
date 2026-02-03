@@ -1,15 +1,18 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import {
   Dialog,
   DialogContent,
   DialogHeader,
   DialogTitle,
   DialogFooter,
+  DialogClose,
 } from '@/components/ui/Dialog';
 import { Card, CardContent } from '@/components/ui/Card';
 import { Badge } from '@/components/ui/Badge';
 import Button from '@/components/ui/Button';
-import { X, Save, FileText, User, Calendar } from 'lucide-react';
+import PersonSearchAutocomplete from '@/components/admin/PersonSearchAutocomplete';
+import SubjectSearchAutocomplete from '@/components/admin/SubjectSearchAutocomplete';
+import { X, Save, FileText, User } from 'lucide-react';
 
 interface Person {
   id: string;
@@ -28,8 +31,6 @@ interface DocumentData {
   date_enacted: string;
   pdf_url: string;
   content_preview: string | null;
-  moved_by: string | null;
-  seconded_by: string | null;
   source_type: string;
   needs_review: number;
   review_notes: string | null;
@@ -55,29 +56,69 @@ export default function DocumentEditModal({
   const [loading, setLoading] = useState(false);
   const [saving, setSaving] = useState(false);
   const [formData, setFormData] = useState<Partial<DocumentData>>({});
-  const [newAuthor, setNewAuthor] = useState('');
-  const [newSubject, setNewSubject] = useState('');
 
-  useEffect(() => {
-    if (open && documentId) {
-      fetchDocument();
-    }
-  }, [open, documentId]);
-
-  const fetchDocument = async () => {
+  const fetchDocument = useCallback(async () => {
     setLoading(true);
     try {
-      const response = await fetch(`/api/legislation/documents/${documentId}`);
-      if (!response.ok) throw new Error('Failed to fetch document');
+      // Check if mock mode is enabled
+      const isMockMode = import.meta.env.VITE_ADMIN_MOCK_MODE === 'true';
+
+      if (isMockMode) {
+        // Use mock data for local development
+        const mockData: DocumentData = {
+          id: documentId,
+          type: 'ordinance',
+          number: '2024-001',
+          title: 'AN ORDINANCE ENACTING THE SUPPLEMENTAL BUDGET FOR FY 2024',
+          session_id: 'sb_12_2024-01-15',
+          status: 'Approved',
+          date_enacted: '2024-01-15T00:00:00Z',
+          pdf_url: 'https://example.com/document.pdf',
+          content_preview: 'Sample content preview...',
+          source_type: 'pdf',
+          needs_review: 1,
+          review_notes: null,
+          processed: 0,
+          authors: [
+            { id: 'person_1', first_name: 'Juan', middle_name: null, last_name: 'Dela Cruz' },
+            { id: 'person_2', first_name: 'Maria', middle_name: 'Santos', last_name: 'Reyes' },
+          ],
+          subjects: ['Budget', 'Finance'],
+        };
+        setDocument(mockData);
+        setFormData(mockData);
+        return;
+      }
+
+      const response = await fetch(`/api/admin/documents/${documentId}`);
+      if (!response.ok) {
+        let errorMsg = `Failed to fetch document (HTTP ${response.status})`;
+        try {
+          const error = await response.json();
+          errorMsg = error.error || errorMsg;
+        } catch {
+          // Response body is empty or not JSON
+          const text = await response.text();
+          if (text) errorMsg += `: ${text}`;
+        }
+        throw new Error(errorMsg);
+      }
       const data: DocumentData = await response.json();
       setDocument(data);
       setFormData(data);
     } catch (error) {
       console.error('Error fetching document:', error);
+      alert(`Failed to load document: ${error instanceof Error ? error.message : 'Unknown error'}`);
     } finally {
       setLoading(false);
     }
-  };
+  }, [documentId]);
+
+  useEffect(() => {
+    if (open && documentId) {
+      fetchDocument();
+    }
+  }, [open, documentId, fetchDocument]);
 
   const handleSave = async () => {
     setSaving(true);
@@ -86,24 +127,9 @@ export default function DocumentEditModal({
       onClose();
     } catch (error) {
       console.error('Error saving document:', error);
+      alert(`Failed to save document: ${error instanceof Error ? error.message : 'Unknown error'}`);
     } finally {
       setSaving(false);
-    }
-  };
-
-  const addAuthor = () => {
-    if (newAuthor && formData.authors) {
-      const person: Person = {
-        id: `temp_${Date.now()}`,
-        first_name: newAuthor.split(' ')[0] || newAuthor,
-        middle_name: null,
-        last_name: newAuthor.split(' ').slice(1).join(' ') || '',
-      };
-      setFormData({
-        ...formData,
-        authors: [...formData.authors, person],
-      });
-      setNewAuthor('');
     }
   };
 
@@ -113,16 +139,6 @@ export default function DocumentEditModal({
         ...formData,
         authors: formData.authors.filter((a) => a.id !== authorId),
       });
-    }
-  };
-
-  const addSubject = () => {
-    if (newSubject && formData.subjects) {
-      setFormData({
-        ...formData,
-        subjects: [...formData.subjects, newSubject],
-      });
-      setNewSubject('');
     }
   };
 
@@ -139,8 +155,11 @@ export default function DocumentEditModal({
     return (
       <Dialog open={open}>
         <DialogContent className="max-w-3xl">
-          <div className="flex items-center justify-center py-12">
-            <div className="h-8 w-8 animate-spin rounded-full border-4 border-slate-300 border-t-primary-500" />
+          <DialogHeader>
+            <DialogTitle>Edit Document</DialogTitle>
+          </DialogHeader>
+          <div className="flex justify-center items-center py-12">
+            <div className="w-8 h-8 rounded-full border-4 animate-spin border-slate-300 border-t-primary-500" />
           </div>
         </DialogContent>
       </Dialog>
@@ -151,34 +170,25 @@ export default function DocumentEditModal({
     <Dialog open={open}>
       <DialogContent className="max-w-3xl max-h-[90vh] overflow-y-auto">
         <DialogHeader>
-          <div className="flex items-start justify-between">
-            <div>
-              <DialogTitle>Edit Document</DialogTitle>
-              <div className="mt-2 flex items-center gap-2">
-                <Badge variant={document.type === 'ordinance' ? 'primary' : 'secondary'}>
-                  {document.type}
-                </Badge>
-                <span className="font-mono text-sm text-slate-600">
-                  {document.number}
-                </span>
-              </div>
+          <div>
+            <DialogTitle>Edit Document</DialogTitle>
+            <div className="flex gap-2 items-center mt-2">
+              <Badge variant={document.type === 'ordinance' ? 'primary' : 'secondary'}>
+                {document.type}
+              </Badge>
+              <span className="font-mono text-sm text-slate-600">
+                {document.number}
+              </span>
             </div>
-            <Button
-              variant="ghost"
-              size="sm"
-              onClick={onClose}
-            >
-              <X className="h-4 w-4" />
-            </Button>
           </div>
         </DialogHeader>
 
-        <div className="space-y-6 py-4">
+        <div className="py-4 space-y-6">
           {/* Basic Info */}
           <Card variant="default">
-            <CardContent className="space-y-4 p-4">
+            <CardContent className="p-4 space-y-4">
               <div>
-                <label className="mb-1 block text-sm font-medium text-slate-700">
+                <label className="block mb-1 text-sm font-medium text-slate-700">
                   Title
                 </label>
                 <input
@@ -187,13 +197,13 @@ export default function DocumentEditModal({
                   onChange={(e) =>
                     setFormData({ ...formData, title: e.target.value })
                   }
-                  className="w-full rounded-md border border-slate-300 px-3 py-2 text-sm"
+                  className="px-3 py-2 w-full text-sm rounded-md border border-slate-300"
                 />
               </div>
 
               <div className="grid gap-4 sm:grid-cols-2">
                 <div>
-                  <label className="mb-1 block text-sm font-medium text-slate-700">
+                  <label className="block mb-1 text-sm font-medium text-slate-700">
                     Document Number
                   </label>
                   <input
@@ -202,11 +212,11 @@ export default function DocumentEditModal({
                     onChange={(e) =>
                       setFormData({ ...formData, number: e.target.value })
                     }
-                    className="w-full rounded-md border border-slate-300 px-3 py-2 text-sm"
+                    className="px-3 py-2 w-full text-sm rounded-md border border-slate-300"
                   />
                 </div>
                 <div>
-                  <label className="mb-1 block text-sm font-medium text-slate-700">
+                  <label className="block mb-1 text-sm font-medium text-slate-700">
                     Date Enacted
                   </label>
                   <input
@@ -215,14 +225,14 @@ export default function DocumentEditModal({
                     onChange={(e) =>
                       setFormData({ ...formData, date_enacted: e.target.value })
                     }
-                    className="w-full rounded-md border border-slate-300 px-3 py-2 text-sm"
+                    className="px-3 py-2 w-full text-sm rounded-md border border-slate-300"
                   />
                 </div>
               </div>
 
               <div className="grid gap-4 sm:grid-cols-2">
                 <div>
-                  <label className="mb-1 block text-sm font-medium text-slate-700">
+                  <label className="block mb-1 text-sm font-medium text-slate-700">
                     Status
                   </label>
                   <select
@@ -230,7 +240,7 @@ export default function DocumentEditModal({
                     onChange={(e) =>
                       setFormData({ ...formData, status: e.target.value })
                     }
-                    className="w-full rounded-md border border-slate-300 px-3 py-2 text-sm"
+                    className="px-3 py-2 w-full text-sm rounded-md border border-slate-300"
                   >
                     <option value="Approved">Approved</option>
                     <option value="Pending">Pending</option>
@@ -239,7 +249,7 @@ export default function DocumentEditModal({
                   </select>
                 </div>
                 <div>
-                  <label className="mb-1 block text-sm font-medium text-slate-700">
+                  <label className="block mb-1 text-sm font-medium text-slate-700">
                     Type
                   </label>
                   <select
@@ -250,7 +260,7 @@ export default function DocumentEditModal({
                         type: e.target.value as 'ordinance' | 'resolution' | 'executive_order',
                       })
                     }
-                    className="w-full rounded-md border border-slate-300 px-3 py-2 text-sm"
+                    className="px-3 py-2 w-full text-sm rounded-md border border-slate-300"
                   >
                     <option value="ordinance">Ordinance</option>
                     <option value="resolution">Resolution</option>
@@ -261,87 +271,61 @@ export default function DocumentEditModal({
             </CardContent>
           </Card>
 
-          {/* Facebook Fields */}
-          <Card variant="default">
-            <CardContent className="space-y-4 p-4">
-              <h4 className="font-bold text-slate-900">
-                Facebook Source Fields
-              </h4>
-              <div className="grid gap-4 sm:grid-cols-2">
-                <div>
-                  <label className="mb-1 block text-sm font-medium text-slate-700">
-                    Moved By
-                  </label>
-                  <input
-                    type="text"
-                    value={formData.moved_by || ''}
-                    onChange={(e) =>
-                      setFormData({ ...formData, moved_by: e.target.value })
-                    }
-                    className="w-full rounded-md border border-slate-300 px-3 py-2 text-sm"
-                  />
-                </div>
-                <div>
-                  <label className="mb-1 block text-sm font-medium text-slate-700">
-                    Seconded By
-                  </label>
-                  <input
-                    type="text"
-                    value={formData.seconded_by || ''}
-                    onChange={(e) =>
-                      setFormData({ ...formData, seconded_by: e.target.value })
-                    }
-                    className="w-full rounded-md border border-slate-300 px-3 py-2 text-sm"
-                  />
-                </div>
-              </div>
-            </CardContent>
-          </Card>
-
           {/* Authors */}
           <Card variant="default">
-            <CardContent className="space-y-4 p-4">
+            <CardContent className="p-4 space-y-4">
               <h4 className="font-bold text-slate-900">
                 Authors
               </h4>
               <div className="flex flex-wrap gap-2">
                 {formData.authors?.map((author) => (
                   <Badge key={author.id} variant="slate">
-                    <User className="mr-1 h-3 w-3" />
+                    <User className="mr-1 w-3 h-3" />
                     {author.first_name} {author.last_name}
                     <button
                       type="button"
                       onClick={() => removeAuthor(author.id)}
                       className="ml-1 hover:text-red-500"
                     >
-                      <X className="h-3 w-3" />
+                      <X className="w-3 h-3" />
                     </button>
                   </Badge>
                 ))}
               </div>
-              <div className="flex gap-2">
-                <input
-                  type="text"
-                  value={newAuthor}
-                  onChange={(e) => setNewAuthor(e.target.value)}
-                  onKeyPress={(e) => e.key === 'Enter' && addAuthor()}
-                  placeholder="Add author (e.g., Juan Dela Cruz)"
-                  className="flex-1 rounded-md border border-slate-300 px-3 py-2 text-sm"
+              <div className="overflow-visible">
+                <PersonSearchAutocomplete
+                  onSelect={(result) => {
+                    if ('isNew' in result) {
+                      // Create new person (temporary)
+                      const nameParts = result.name.split(' ');
+                      const person: Person = {
+                        id: `temp_${Date.now()}`,
+                        first_name: nameParts[0] || result.name,
+                        middle_name: null,
+                        last_name: nameParts.slice(1).join(' ') || '',
+                      };
+                      setFormData({
+                        ...formData,
+                        authors: [...(formData.authors || []), person],
+                      });
+                    } else {
+                      // Add existing person
+                      setFormData({
+                        ...formData,
+                        authors: [...(formData.authors || []), result],
+                      });
+                    }
+                  }}
+                  excludeIds={formData.authors?.map((a) => a.id) || []}
+                  placeholder="Search for a person or type name to add..."
                 />
-                <Button
-                  variant="outline"
-                  size="sm"
-                  onClick={addAuthor}
-                >
-                  Add
-                </Button>
               </div>
             </CardContent>
           </Card>
 
           {/* Subjects */}
           <Card variant="default">
-            <CardContent className="space-y-4 p-4">
+            <CardContent className="p-4 space-y-4">
               <h4 className="font-bold text-slate-900">
                 Subjects
               </h4>
@@ -354,34 +338,38 @@ export default function DocumentEditModal({
                       onClick={() => removeSubject(subject)}
                       className="ml-1 hover:text-red-500"
                     >
-                      <X className="h-3 w-3" />
+                      <X className="w-3 h-3" />
                     </button>
                   </Badge>
                 ))}
               </div>
-              <div className="flex gap-2">
-                <input
-                  type="text"
-                  value={newSubject}
-                  onChange={(e) => setNewSubject(e.target.value)}
-                  onKeyPress={(e) => e.key === 'Enter' && addSubject()}
-                  placeholder="Add subject"
-                  className="flex-1 rounded-md border border-slate-300 px-3 py-2 text-sm"
-                />
-                <Button
-                  variant="outline"
-                  size="sm"
-                  onClick={addSubject}
-                >
-                  Add
-                </Button>
+              <div className="overflow-visible">
+                <SubjectSearchAutocomplete
+                onSelect={(result) => {
+                  if ('isNew' in result) {
+                    // Create new subject
+                    setFormData({
+                      ...formData,
+                      subjects: [...(formData.subjects || []), result.name],
+                    });
+                  } else {
+                    // Add existing subject
+                    setFormData({
+                      ...formData,
+                      subjects: [...(formData.subjects || []), result.name],
+                    });
+                  }
+                }}
+                excludeNames={formData.subjects || []}
+                placeholder="Search for a subject or type name to add..."
+              />
               </div>
             </CardContent>
           </Card>
 
           {/* Review Notes */}
           <Card variant="default">
-            <CardContent className="space-y-4 p-4">
+            <CardContent className="p-4 space-y-4">
               <h4 className="font-bold text-slate-900">
                 Review Notes
               </h4>
@@ -392,9 +380,9 @@ export default function DocumentEditModal({
                 }
                 placeholder="Add notes about this correction..."
                 rows={3}
-                className="w-full rounded-md border border-slate-300 px-3 py-2 text-sm"
+                className="px-3 py-2 w-full text-sm rounded-md border border-slate-300"
               />
-              <div className="flex items-center gap-2">
+              <div className="flex gap-2 items-center">
                 <input
                   type="checkbox"
                   id="needsReview"
@@ -416,8 +404,8 @@ export default function DocumentEditModal({
           {/* PDF Link */}
           {formData.pdf_url && (
             <Card variant="slate">
-              <CardContent className="flex items-center gap-3 p-4">
-                <FileText className="h-5 w-5 text-slate-500" />
+              <CardContent className="flex gap-3 items-center p-4">
+                <FileText className="w-5 h-5 text-slate-500" />
                 <a
                   href={formData.pdf_url}
                   target="_blank"
@@ -432,18 +420,19 @@ export default function DocumentEditModal({
         </div>
 
         <DialogFooter>
-          <Button
-            variant="outline"
-            onClick={onClose}
-            disabled={saving}
-          >
-            Cancel
-          </Button>
+          <DialogClose asChild>
+            <Button
+              variant="outline"
+              disabled={saving}
+            >
+              Cancel
+            </Button>
+          </DialogClose>
           <Button
             variant="primary"
             onClick={handleSave}
             isLoading={saving}
-            leftIcon={<Save className="h-4 w-4" />}
+            leftIcon={<Save className="w-4 h-4" />}
           >
             Save Changes
           </Button>

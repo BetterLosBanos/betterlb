@@ -1,12 +1,11 @@
 /**
  * Admin Documents API
- * GET /api/admin/documents - List all documents with filtering
  * GET /api/admin/documents/:id - Get document details for editing
  * PATCH /api/admin/documents/:id - Update document data
  */
 
-import { Env } from '../../types';
-import { withAuth, AuthContext } from '../../utils/admin-auth';
+import { Env } from '../../../types';
+import { withAuth, AuthContext } from '../../../utils/admin-auth';
 
 interface Person {
   id: string;
@@ -29,116 +28,6 @@ interface DocumentUpdateData {
   subjects?: string[];
 }
 
-interface Document {
-  id: string;
-  type: string;
-  number: string;
-  title: string;
-  date_enacted: string;
-  status: string;
-  processed: number;
-  needs_review: number;
-  pdf_url: string;
-  created_at: string;
-  updated_at: string;
-}
-
-/**
- * GET /api/admin/documents
- * List all documents with filtering and pagination
- */
-async function handleListDocuments(context: {
-  request: Request;
-  env: Env;
-  auth: AuthContext;
-}) {
-  const { request, env } = context;
-  const url = new URL(request.url);
-
-  const search = url.searchParams.get('search');
-  const status = url.searchParams.get('status');
-  const type = url.searchParams.get('type');
-  const needsReview = url.searchParams.get('needs_review');
-  const limit = parseInt(url.searchParams.get('limit') || '50');
-  const offset = parseInt(url.searchParams.get('offset') || '0');
-
-  // Build query
-  let sql = `
-    SELECT
-      id, type, number, title, date_enacted, status,
-      processed, needs_review, pdf_url, created_at, updated_at
-    FROM documents
-    WHERE 1=1
-  `;
-
-  const params: (string | number)[] = [];
-  let paramIndex = 1;
-
-  if (search) {
-    sql += ` AND (number LIKE ?${paramIndex} OR title LIKE ?${paramIndex + 1})`;
-    params.push(`%${search}%`, `%${search}%`);
-    paramIndex += 2;
-  }
-
-  if (status && ['active', 'pending', 'suspended', 'inactive'].includes(status)) {
-    sql += ` AND status = ?${paramIndex++}`;
-    params.push(status);
-  }
-
-  if (type && ['ordinance', 'resolution', 'executive_order'].includes(type)) {
-    sql += ` AND type = ?${paramIndex++}`;
-    params.push(type);
-  }
-
-  if (needsReview === '1' || needsReview === '0') {
-    sql += ` AND needs_review = ?${paramIndex++}`;
-    params.push(needsReview);
-  }
-
-  // Get total count
-  const countSql = sql.replace(
-    /SELECT.*?FROM/,
-    'SELECT COUNT(*) as count FROM'
-  );
-  const countResult = await env.BETTERLB_DB.prepare(countSql).bind(...params).first<{ count: number }>();
-  const total = countResult?.count || 0;
-
-  // Add pagination and ordering
-  sql += ` ORDER BY date_enacted DESC LIMIT ?${paramIndex++} OFFSET ?${paramIndex++}`;
-  params.push(limit, offset);
-
-  try {
-    const result = await env.BETTERLB_DB.prepare(sql).bind(...params).all();
-
-    const documents: Document[] = (result.results as any[]).map((row: any) => ({
-      id: row.id,
-      type: row.type,
-      number: row.number,
-      title: row.title,
-      date_enacted: row.date_enacted,
-      status: row.status,
-      processed: row.processed,
-      needs_review: row.needs_review,
-      pdf_url: row.pdf_url,
-      created_at: row.created_at,
-      updated_at: row.updated_at,
-    }));
-
-    return Response.json({
-      documents,
-      pagination: {
-        total,
-        limit,
-        offset,
-        has_more: offset + limit < total,
-      },
-    });
-  } catch (error) {
-    console.error('Error fetching documents:', error);
-    return Response.json({ error: 'Failed to fetch documents' }, { status: 500 });
-  }
-}
-
 /**
  * PATCH /api/admin/documents/:id
  * Update a document's data
@@ -147,10 +36,15 @@ async function handlePatchDocument(context: {
   request: Request;
   env: Env;
   auth: AuthContext;
-  params: { id: string };
 }) {
-  const { request, env, params } = context;
-  const documentId = params.id;
+  const { request, env } = context;
+  const url = new URL(request.url);
+  const pathParts = url.pathname.split('/').filter(Boolean);
+  const documentId = pathParts[pathParts.length - 1];
+
+  if (!documentId) {
+    return Response.json({ error: 'Missing document id' }, { status: 400 });
+  }
 
   try {
     const body = await request.json() as DocumentUpdateData;
@@ -299,16 +193,21 @@ async function handleGetDocument(context: {
   request: Request;
   env: Env;
   auth: AuthContext;
-  params: { id: string };
 }) {
-  const { env, params } = context;
-  const documentId = params.id;
+  const { env, request } = context;
+  const url = new URL(request.url);
+  const pathParts = url.pathname.split('/').filter(Boolean);
+  const documentId = pathParts[pathParts.length - 1];
+
+  if (!documentId) {
+    return Response.json({ error: 'Missing document id' }, { status: 400 });
+  }
 
   try {
     const sql = `
       SELECT
         d.id, d.type, d.number, d.title, d.session_id, d.status,
-        d.date_enacted, d.pdf_url, d.content_preview,
+        d.date_enacted, d.date_filed, d.pdf_url,
         d.moved_by, d.seconded_by, d.source_type,
         d.needs_review, d.review_notes, d.processed,
         d.created_at, d.updated_at
@@ -355,8 +254,8 @@ async function handleGetDocument(context: {
       session_id: doc.session_id,
       status: doc.status,
       date_enacted: doc.date_enacted,
+      date_filed: doc.date_filed,
       pdf_url: doc.pdf_url,
-      content_preview: doc.content_preview,
       moved_by: doc.moved_by,
       seconded_by: doc.seconded_by,
       source_type: doc.source_type,
@@ -374,16 +273,12 @@ async function handleGetDocument(context: {
   }
 }
 
-export async function onRequestGet(context: {
+export const onRequestGet = (context: {
   request: Request;
   env: Env;
-  params?: { id: string };
-}) {
-  // If there's an id param, get single document, otherwise list all
-  if (context.params?.id) {
-    return withAuth(handleGetDocument)(context as any);
-  }
-  return withAuth(handleListDocuments)(context);
-}
+}) => withAuth(handleGetDocument as any)(context as any);
 
-export const onRequestPatch = withAuth(handlePatchDocument);
+export const onRequestPatch = (context: {
+  request: Request;
+  env: Env;
+}) => withAuth(handlePatchDocument as any)(context as any);

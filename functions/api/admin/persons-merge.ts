@@ -26,6 +26,7 @@ interface MergeRequest {
   keep_person_id: string;
   merge_person_ids: string[];
   merge_strategy: 'prefer_keep' | 'prefer_merge' | 'newest' | 'most_complete';
+  deletion_mode?: 'delete' | 'flag' | 'skip';
 }
 
 interface MergeResult {
@@ -54,12 +55,13 @@ async function handleGetDuplicates(context: {
   try {
     const duplicates: DuplicatePersonGroup[] = [];
 
-    // 1. Exact duplicates (same first, middle, last name)
+    // 1. Exact duplicates (same first, middle, last name) - exclude soft-deleted
     const sql_exact = `
       SELECT
         GROUP_CONCAT(p.id) as person_ids,
         GROUP_CONCAT(p.first_name || '|' || p.middle_name || '|' || p.last_name) as names
       FROM persons p
+      WHERE p.deleted_at IS NULL
       GROUP BY p.first_name, p.last_name
       HAVING COUNT(*) > 1
       ORDER BY MIN(p.created_at) DESC
@@ -67,12 +69,8 @@ async function handleGetDuplicates(context: {
 
     const exactResults = await env.BETTERLB_DB.prepare(sql_exact).all();
 
-    for (const row of exactResults.results as any[]) {
+    for (const row of exactResults.results as Array<{ person_ids: string; names: string }>) {
       const ids = row.person_ids.split(',');
-      const names = row.names.split(',').map((n: string) => {
-        const parts = n.split('|');
-        return { first_name: parts[0], middle_name: parts[1] || null, last_name: parts[2] };
-      });
 
       // Get actual person records
       const personRecords: Person[] = [];
@@ -100,7 +98,7 @@ async function handleGetDuplicates(context: {
       });
     }
 
-    // 2. Same first/last name with different middle name
+    // 2. Same first/last name with different middle name - exclude soft-deleted
     const sql_middle = `
       SELECT p1.id as id1, p2.id as id2, p1.first_name, p1.middle_name as mn1, p1.last_name,
              p2.middle_name as mn2, p1.suffix
@@ -108,20 +106,21 @@ async function handleGetDuplicates(context: {
       JOIN persons p2 ON p1.first_name = p2.first_name AND p1.last_name = p2.last_name
         AND p1.middle_name != p2.middle_name
         AND p1.id < p2.id
+        AND p1.deleted_at IS NULL AND p2.deleted_at IS NULL
       ORDER BY p1.last_name, p1.first_name
       LIMIT 50
     `;
 
     const middleResults = await env.BETTERLB_DB.prepare(sql_middle).all();
 
-    for (const row of middleResults.results as any[]) {
+    for (const row of middleResults.results as Array<{ id1: string; id2: string; first_name: string; mn1: string | null; last_name: string; mn2: string | null; suffix: string | null }>) {
       const person1 = await env.BETTERLB_DB.prepare(
         `SELECT id, first_name, middle_name, last_name, suffix FROM persons WHERE id = ?1`
-      ).bind(row.id1).first() as any;
+      ).bind(row.id1).first<{ id: string; first_name: string; middle_name: string | null; last_name: string; suffix: string | null }>();
 
       const person2 = await env.BETTERLB_DB.prepare(
         `SELECT id, first_name, middle_name, last_name, suffix FROM persons WHERE id = ?1`
-      ).bind(row.id2).first() as any;
+      ).bind(row.id2).first<{ id: string; first_name: string; middle_name: string | null; last_name: string; suffix: string | null }>();
 
       if (person1 && person2) {
         const docCount = await env.BETTERLB_DB.prepare(
@@ -161,7 +160,7 @@ async function handleMerge(context: {
 
   try {
     const body = await request.json() as MergeRequest;
-    const { keep_person_id, merge_person_ids, merge_strategy } = body;
+    const { keep_person_id, merge_person_ids, merge_strategy, deletion_mode = 'delete' } = body;
 
     if (!keep_person_id || !merge_person_ids || merge_person_ids.length === 0) {
       return Response.json(
@@ -192,6 +191,7 @@ async function handleMerge(context: {
     // Perform the merge in a transaction-like manner
     const updatedTables: MergeResult['updated_tables'] = {};
     const deleted_ids: string[] = [];
+    const flagged_ids: string[] = [];
 
     // 1. Update memberships - change person_id to keep_person_id
     const memberUpdate = await env.BETTERLB_DB.prepare(
@@ -221,10 +221,18 @@ async function handleMerge(context: {
 
     updatedTables.committee_memberships = committeeUpdate.meta.changes || 0;
 
-    // 5. Delete the merged person records
+    // 5. Handle deletion based on deletion_mode
     for (const id of merge_person_ids) {
-      await env.BETTERLB_DB.prepare(`DELETE FROM persons WHERE id = ?1`).bind(id).run();
-      deleted_ids.push(id);
+      if (deletion_mode === 'delete') {
+        // Immediate deletion
+        await env.BETTERLB_DB.prepare(`DELETE FROM persons WHERE id = ?1`).bind(id).run();
+        deleted_ids.push(id);
+      } else if (deletion_mode === 'flag') {
+        // Soft delete - set deleted_at timestamp
+        await env.BETTERLB_DB.prepare(`UPDATE persons SET deleted_at = datetime('now') WHERE id = ?1`).bind(id).run();
+        flagged_ids.push(id);
+      }
+      // 'skip' mode - don't touch the records
     }
 
     // 6. Log the merge action
@@ -237,6 +245,7 @@ async function handleMerge(context: {
       JSON.stringify({
         merged_ids: merge_person_ids,
         strategy: merge_strategy,
+        deletion_mode,
         updated_tables: updatedTables,
       })
     ).run();

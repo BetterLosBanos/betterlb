@@ -1,10 +1,9 @@
 import { useState, useEffect } from 'react';
-import { Users, GitMerge, CheckCircle, AlertCircle, RefreshCw, ChevronRight, ChevronLeft } from 'lucide-react';
+import { Users, GitMerge, CheckCircle, RefreshCw, ChevronRight, Trash2, Flag, SkipForward } from 'lucide-react';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/Card';
 import { Badge } from '@/components/ui/Badge';
 import Button from '@/components/ui/Button';
 import { EmptyState } from '@/components/ui/EmptyState';
-import { useAdminAuth } from './AdminAuthProvider';
 
 interface Person {
   id: string;
@@ -33,6 +32,8 @@ interface MergeResponse {
   deleted_ids: string[];
 }
 
+type DeletionMode = 'delete' | 'flag' | 'skip';
+
 const getPersonName = (person: Person) => {
   const parts = [person.first_name, person.middle_name, person.last_name];
   if (person.suffix) parts.push(person.suffix);
@@ -40,12 +41,12 @@ const getPersonName = (person: Person) => {
 };
 
 export default function PersonMergeTool() {
-  const { user } = useAdminAuth();
   const [duplicates, setDuplicates] = useState<DuplicateGroup[]>([]);
   const [loading, setLoading] = useState(true);
   const [merging, setMerging] = useState(false);
   const [selectedGroup, setSelectedGroup] = useState<number | null>(null);
   const [keepPersonId, setKeepPersonId] = useState<string | null>(null);
+  const [deletionMode, setDeletionMode] = useState<DeletionMode>('delete');
   const [mergeResults, setMergeResults] = useState<MergeResponse | null>(null);
 
   useEffect(() => {
@@ -55,7 +56,7 @@ export default function PersonMergeTool() {
   const fetchDuplicates = async () => {
     setLoading(true);
     try {
-      const response = await fetch('/api/admin/persons/duplicates');
+      const response = await fetch('/api/admin/persons-merge');
       if (!response.ok) throw new Error('Failed to fetch duplicates');
 
       const data = await response.json();
@@ -72,13 +73,14 @@ export default function PersonMergeTool() {
     setMergeResults(null);
 
     try {
-      const response = await fetch('/api/admin/persons/merge', {
+      const response = await fetch('/api/admin/persons-merge', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
           keep_person_id: keepId,
           merge_person_ids: mergeIds,
           merge_strategy: 'prefer_keep',
+          deletion_mode: deletionMode,
         }),
       });
 
@@ -96,6 +98,7 @@ export default function PersonMergeTool() {
         setDuplicates((prev) => prev.filter((_, idx) => idx !== selectedGroup));
         setSelectedGroup(null);
         setKeepPersonId(null);
+        setDeletionMode('delete');
       }
     } catch (error) {
       console.error('Error merging persons:', error);
@@ -161,6 +164,7 @@ export default function PersonMergeTool() {
                 onClick={() => {
                   setSelectedGroup(null);
                   setKeepPersonId(null);
+                  setDeletionMode('delete');
                   setMergeResults(null);
                 }}
                 disabled={merging}
@@ -240,11 +244,85 @@ export default function PersonMergeTool() {
                 disabled
                 className="w-full rounded-md border border-slate-300 bg-slate-100 px-3 py-2 text-sm"
               >
-                <option value="prefer_keep">Keep selected person's data (most conservative)</option>
+                <option value="prefer_keep">Keep selected person&apos;s data (most conservative)</option>
               </select>
               <p className="mt-1 text-xs text-slate-500">
                 More strategies coming soon. Currently uses all data from the kept person record.
               </p>
+            </div>
+
+            {/* Deletion Mode Selection */}
+            <div>
+              <label className="mb-2 block text-sm font-medium text-slate-700">
+                Deletion Mode
+              </label>
+              <div className="space-y-2">
+                <label className={`flex cursor-pointer items-start gap-3 rounded-md border p-3 transition-colors ${
+                  deletionMode === 'delete' ? 'border-red-300 bg-red-50' : 'border-slate-200 hover:border-slate-300'
+                }`}>
+                  <input
+                    type="radio"
+                    name="deletionMode"
+                    value="delete"
+                    checked={deletionMode === 'delete'}
+                    onChange={() => setDeletionMode('delete')}
+                    className="mt-0.5"
+                  />
+                  <div className="flex-1">
+                    <div className="flex items-center gap-2">
+                      <Trash2 className="h-4 w-4 text-red-600" />
+                      <span className="font-medium text-slate-900">Delete immediately</span>
+                    </div>
+                    <p className="mt-1 text-xs text-slate-600">
+                      Permanently remove merged person records from the database. This cannot be undone.
+                    </p>
+                  </div>
+                </label>
+
+                <label className={`flex cursor-pointer items-start gap-3 rounded-md border p-3 transition-colors ${
+                  deletionMode === 'flag' ? 'border-amber-300 bg-amber-50' : 'border-slate-200 hover:border-slate-300'
+                }`}>
+                  <input
+                    type="radio"
+                    name="deletionMode"
+                    value="flag"
+                    checked={deletionMode === 'flag'}
+                    onChange={() => setDeletionMode('flag')}
+                    className="mt-0.5"
+                  />
+                  <div className="flex-1">
+                    <div className="flex items-center gap-2">
+                      <Flag className="h-4 w-4 text-amber-600" />
+                      <span className="font-medium text-slate-900">Flag for deletion</span>
+                    </div>
+                    <p className="mt-1 text-xs text-slate-600">
+                      Mark records for later review and permanent deletion. They won&apos;t appear in future duplicate checks.
+                    </p>
+                  </div>
+                </label>
+
+                <label className={`flex cursor-pointer items-start gap-3 rounded-md border p-3 transition-colors ${
+                  deletionMode === 'skip' ? 'border-blue-300 bg-blue-50' : 'border-slate-200 hover:border-slate-300'
+                }`}>
+                  <input
+                    type="radio"
+                    name="deletionMode"
+                    value="skip"
+                    checked={deletionMode === 'skip'}
+                    onChange={() => setDeletionMode('skip')}
+                    className="mt-0.5"
+                  />
+                  <div className="flex-1">
+                    <div className="flex items-center gap-2">
+                      <SkipForward className="h-4 w-4 text-blue-600" />
+                      <span className="font-medium text-slate-900">Skip deletion</span>
+                    </div>
+                    <p className="mt-1 text-xs text-slate-600">
+                      Keep all records. Only updates foreign key references to point to the kept person.
+                    </p>
+                  </div>
+                </label>
+              </div>
             </div>
 
             {/* Merge Action */}

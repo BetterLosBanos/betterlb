@@ -2,12 +2,10 @@
  * Admin Review Queue API
  * GET /api/admin/review-queue - List items needing review
  * POST /api/admin/review-queue - Add new item to review queue
- * POST /api/admin/review-queue/status - Update item status
- * POST /api/admin/review-queue/assign - Assign item to current user
  */
 
-import { Env } from '../../types';
-import { withAuth, AuthContext } from '../../utils/admin-auth';
+import { Env } from '../../../types';
+import { withAuth, AuthContext } from '../../../utils/admin-auth';
 
 type ReviewStatus = 'pending' | 'in_progress' | 'resolved' | 'skipped';
 type ItemType = 'document' | 'session' | 'attendance';
@@ -149,75 +147,6 @@ async function handleGetReviewQueue(context: { request: Request; env: Env; auth:
 }
 
 /**
- * POST /api/admin/review-queue/status
- * Update the status of a review queue item
- */
-async function updateStatus(context: { request: Request; env: Env; auth: AuthContext }) {
-  const { request, env } = context;
-
-  try {
-    const body = await request.json();
-    const { item_id, status } = body;
-
-    if (!item_id || !status) {
-      return Response.json({ error: 'Missing required fields' }, { status: 400 });
-    }
-
-    const validStatuses = ['pending', 'in_progress', 'resolved', 'skipped'];
-    if (!validStatuses.includes(status)) {
-      return Response.json({ error: 'Invalid status' }, { status: 400 });
-    }
-
-    const updateSql = `
-      UPDATE review_queue
-      SET status = ?1,
-          resolved_at = CASE WHEN ?1 = 'resolved' THEN datetime('now') ELSE resolved_at END
-      WHERE id = ?2
-    `;
-
-    await env.BETTERLB_DB.prepare(updateSql).bind(status, item_id).run();
-
-    return Response.json({ success: true });
-  } catch (error) {
-    console.error('Error updating status:', error);
-    return Response.json({ error: 'Failed to update status' }, { status: 500 });
-  }
-}
-
-/**
- * POST /api/admin/review-queue/assign
- * Assign a review queue item to the current user
- */
-async function assignToUser(context: { request: Request; env: Env; auth: AuthContext }) {
-  const { request, env, auth } = context;
-
-  try {
-    const body = await request.json();
-    const { item_id } = body;
-
-    if (!item_id) {
-      return Response.json({ error: 'Missing item_id' }, { status: 400 });
-    }
-
-    // Get user from session
-    const userId = auth.user.login;
-
-    const updateSql = `
-      UPDATE review_queue
-      SET assigned_to = ?1, status = 'in_progress'
-      WHERE id = ?2
-    `;
-
-    await env.BETTERLB_DB.prepare(updateSql).bind(userId, item_id).run();
-
-    return Response.json({ success: true });
-  } catch (error) {
-    console.error('Error assigning item:', error);
-    return Response.json({ error: 'Failed to assign item' }, { status: 500 });
-  }
-}
-
-/**
  * POST /api/admin/review-queue
  * Add a new item to the review queue
  */
@@ -302,24 +231,4 @@ async function createReviewItem(context: { request: Request; env: Env; auth: Aut
 }
 
 export const onRequestGet = withAuth(handleGetReviewQueue);
-
-export async function onRequestPost(context: { request: Request; env: Env }) {
-  const { request } = context;
-  const url = new URL(request.url);
-  const pathParts = url.pathname.split('/').filter(Boolean);
-
-  // Route to appropriate handler
-  // /api/admin/review-queue -> pathParts[3] = undefined (CREATE)
-  // /api/admin/review-queue/status -> pathParts[3] = "status"
-  // /api/admin/review-queue/assign -> pathParts[3] = "assign"
-  if (!pathParts[3]) {
-    // POST to /api/admin/review-queue creates a new item
-    return withAuth(createReviewItem)(context);
-  } else if (pathParts[3] === 'status') {
-    return withAuth(updateStatus)(context);
-  } else if (pathParts[3] === 'assign') {
-    return withAuth(assignToUser)(context);
-  }
-
-  return Response.json({ error: 'Invalid endpoint' }, { status: 404 });
-}
+export const onRequestPost = withAuth(createReviewItem);

@@ -16,19 +16,30 @@ import { Card, CardContent } from '@/components/ui/Card';
 import { Badge } from '@/components/ui/Badge';
 import Button from '@/components/ui/Button';
 import { EmptyState } from '@/components/ui/EmptyState';
-import SelectPicker from '@/components/ui/SelectPicker';
 import DocumentEditModal from './components/DocumentEditModal';
 import SessionDataForm from './components/SessionDataForm';
 import AttendanceForm from './components/AttendanceForm';
 
-// Define the interface locally since it's not exported
-interface SelectPickerOption {
-  label: string;
-  value: string;
-}
-
 type ReviewStatus = 'pending' | 'in_progress' | 'resolved' | 'skipped';
 type ItemType = 'document' | 'session' | 'attendance';
+
+type StatusOption = { value: ReviewStatus | 'all'; label: string };
+type TypeOption = { value: ItemType | 'all'; label: string };
+
+const statusOptions: StatusOption[] = [
+  { value: 'all', label: 'All Statuses' },
+  { value: 'pending', label: 'Pending' },
+  { value: 'in_progress', label: 'In Progress' },
+  { value: 'resolved', label: 'Resolved' },
+  { value: 'skipped', label: 'Skipped' },
+];
+
+const typeOptions: TypeOption[] = [
+  { value: 'all', label: 'All Types' },
+  { value: 'document', label: 'Documents' },
+  { value: 'session', label: 'Sessions' },
+  { value: 'attendance', label: 'Attendance' },
+];
 
 interface ReviewItem {
   id: string;
@@ -62,20 +73,6 @@ interface ReviewQueueResponse {
     has_more: boolean;
   };
 }
-
-const statusOptions: SelectPickerOption<ReviewStatus>[] = [
-  { value: 'pending', label: 'Pending' },
-  { value: 'in_progress', label: 'In Progress' },
-  { value: 'resolved', label: 'Resolved' },
-  { value: 'skipped', label: 'Skipped' },
-];
-
-const typeOptions: SelectPickerOption<ItemType | 'all'>[] = [
-  { value: 'all', label: 'All Types' },
-  { value: 'document', label: 'Documents' },
-  { value: 'session', label: 'Sessions' },
-  { value: 'attendance', label: 'Attendance' },
-];
 
 const statusBadgeVariant = (status: ReviewStatus) => {
   switch (status) {
@@ -242,10 +239,20 @@ export default function ReviewQueue() {
         body: JSON.stringify({ item_id: itemId, status }),
       });
 
-      if (!response.ok) throw new Error('Failed to update status');
+      if (!response.ok) {
+        let errorMsg = `Failed to update status (HTTP ${response.status})`;
+        try {
+          const error = await response.json();
+          errorMsg = error.error || errorMsg;
+        } catch {
+          // Response body is empty or not JSON
+        }
+        throw new Error(errorMsg);
+      }
       fetchQueue();
     } catch (error) {
       console.error('Error updating status:', error);
+      alert(`Failed to update status: ${error instanceof Error ? error.message : 'Unknown error'}`);
     }
   };
 
@@ -257,10 +264,20 @@ export default function ReviewQueue() {
         body: JSON.stringify({ item_id: itemId }),
       });
 
-      if (!response.ok) throw new Error('Failed to assign');
+      if (!response.ok) {
+        let errorMsg = `Failed to assign (HTTP ${response.status})`;
+        try {
+          const error = await response.json();
+          errorMsg = error.error || errorMsg;
+        } catch {
+          // Response body is empty or not JSON
+        }
+        throw new Error(errorMsg);
+      }
       fetchQueue();
     } catch (error) {
       console.error('Error assigning item:', error);
+      alert(`Failed to assign: ${error instanceof Error ? error.message : 'Unknown error'}`);
     }
   };
 
@@ -270,12 +287,30 @@ export default function ReviewQueue() {
   };
 
   const saveDocument = async (data: Record<string, unknown>) => {
+    // Check if mock mode is enabled
+    const isMockMode = import.meta.env.VITE_ADMIN_MOCK_MODE === 'true';
+
+    if (isMockMode) {
+      // Mock save - just log and simulate success
+      console.log('Mock save document:', editModalDocumentId, data);
+      return;
+    }
+
     const response = await fetch(`/api/admin/documents/${editModalDocumentId}`, {
       method: 'PATCH',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(data),
     });
-    if (!response.ok) throw new Error('Failed to save document');
+    if (!response.ok) {
+      let errorMsg = `Failed to save document (HTTP ${response.status})`;
+      try {
+        const error = await response.json();
+        errorMsg = error.error || errorMsg;
+      } catch {
+        // Response body is empty or not JSON
+      }
+      throw new Error(errorMsg);
+    }
     fetchQueue();
   };
 
@@ -389,24 +424,34 @@ export default function ReviewQueue() {
           </p>
         </div>
         <div className="flex items-center gap-3">
-          <SelectPicker
+          <select
             value={typeFilter}
-            onChange={(v) => {
-              setTypeFilter(v as ItemType | 'all');
+            onChange={(e) => {
+              setTypeFilter(e.target.value as ItemType | 'all');
               setPage(0);
             }}
-            options={typeOptions}
-            className="w-40"
-          />
-          <SelectPicker
+            className="h-9 rounded-md border border-slate-300 bg-white px-3 py-1 text-sm shadow-sm focus:border-primary-500 focus:ring-2 focus:ring-primary-500/20 focus:outline-none"
+          >
+            {typeOptions.map((opt) => (
+              <option key={opt.value} value={opt.value}>
+                {opt.label}
+              </option>
+            ))}
+          </select>
+          <select
             value={statusFilter}
-            onChange={(v) => {
-              setStatusFilter(v as ReviewStatus | 'all');
+            onChange={(e) => {
+              setStatusFilter(e.target.value as ReviewStatus | 'all');
               setPage(0);
             }}
-            options={statusOptions}
-            className="w-40"
-          />
+            className="h-9 rounded-md border border-slate-300 bg-white px-3 py-1 text-sm shadow-sm focus:border-primary-500 focus:ring-2 focus:ring-primary-500/20 focus:outline-none"
+          >
+            {statusOptions.map((opt) => (
+              <option key={opt.value} value={opt.value}>
+                {opt.label}
+              </option>
+            ))}
+          </select>
           <Button
             variant="outline"
             size="sm"

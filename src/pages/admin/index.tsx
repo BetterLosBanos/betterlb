@@ -7,6 +7,7 @@ import {
   Activity,
   ArrowRight,
   RefreshCw,
+  Trash2,
 } from 'lucide-react';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/Card';
 import { Badge } from '@/components/ui/Badge';
@@ -40,6 +41,9 @@ interface DashboardStats {
   };
   conflicts: {
     active: number;
+  };
+  deletion_queue: {
+    total: number;
   };
 }
 
@@ -120,6 +124,12 @@ export default function AdminDashboard() {
       title: 'Merge Persons',
       description: 'Fix duplicate person records',
       link: '/admin/persons/merge',
+      variant: 'outline' as const,
+    },
+    {
+      title: 'Deletion Queue',
+      description: `Review ${stats?.deletion_queue.total ?? 0} flagged persons`,
+      link: '/admin/persons/deletion-queue',
       variant: 'outline' as const,
     },
     {

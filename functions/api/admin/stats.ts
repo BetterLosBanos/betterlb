@@ -25,6 +25,9 @@ interface DashboardStats {
   conflicts: {
     active: number;
   };
+  deletion_queue: {
+    total: number;
+  };
 }
 
 /**
@@ -89,6 +92,19 @@ async function handleGetStats(context: {
       // Table doesn't exist yet
     }
 
+    // Get deletion queue stats
+    let deletionQueueTotal = 0;
+
+    try {
+      const deletionQueueStats = await env.BETTERLB_DB.prepare(
+        `SELECT COUNT(*) as total FROM persons WHERE deleted_at IS NOT NULL`
+      ).first<{ total: number }>();
+
+      deletionQueueTotal = deletionQueueStats?.total || 0;
+    } catch {
+      // Column doesn't exist yet
+    }
+
     const stats: DashboardStats = {
       review_queue: {
         total: reviewQueueStats?.total || 0,
@@ -107,6 +123,9 @@ async function handleGetStats(context: {
       },
       conflicts: {
         active: conflictActive,
+      },
+      deletion_queue: {
+        total: deletionQueueTotal,
       },
     };
 

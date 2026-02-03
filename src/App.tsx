@@ -74,6 +74,7 @@ import AdminErrorLog from '@/pages/admin/ErrorLog';
 import AdminReviewQueue from '@/pages/admin/ReviewQueue';
 import AdminReconcile from '@/pages/admin/Reconcile';
 import PersonMergeTool from '@/pages/admin/components/PersonMergeTool';
+import DeletionQueue from '@/pages/admin/components/DeletionQueue';
 
 function App() {
   return (
@@ -201,6 +202,7 @@ function AppContent() {
               <Route index element={<AdminDashboard />} />
               <Route path='documents' element={<AdminDocuments />} />
               <Route path='persons/merge' element={<PersonMergeTool />} />
+              <Route path='persons/deletion-queue' element={<DeletionQueue />} />
               <Route path='errors' element={<AdminErrorLog />} />
               <Route path='review-queue' element={<AdminReviewQueue />} />
               <Route path='reconcile' element={<AdminReconcile />} />
