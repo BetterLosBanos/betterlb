@@ -61,7 +61,8 @@ export async function verifyAdminSession(
     ? JSON.parse(env.AUTHORIZED_USERS)
     : [];
 
-  if (authorizedList.length > 0 && !authorizedList.includes(session.user.login)) {
+  // Always enforce authorization - empty list means NO ONE is authorized
+  if (authorizedList.length === 0 || !authorizedList.includes(session.user.login)) {
     throw new AuthError('User no longer authorized', 403);
   }
 
@@ -73,15 +74,23 @@ export async function verifyAdminSession(
 
 /**
  * Parse cookie header into an object
+ * Handles quoted values and URL-encoded content properly
  */
 function parseCookies(cookieHeader: string | null): Record<string, string> {
   if (!cookieHeader) {
     return {};
   }
 
-  return cookieHeader.split('; ').reduce((acc, cookie) => {
-    const [name, value] = cookie.split('=');
-    acc[name] = value;
+  return cookieHeader.split(';').reduce((acc, cookie) => {
+    const trimmed = cookie.trim();
+    const firstEq = trimmed.indexOf('=');
+    if (firstEq === -1) {
+      acc[trimmed] = '';
+    } else {
+      const name = trimmed.slice(0, firstEq);
+      const value = decodeURIComponent(trimmed.slice(firstEq + 1));
+      acc[name] = value.replace(/^"(.*)"$/, '$1');
+    }
     return acc;
   }, {} as Record<string, string>);
 }

@@ -83,7 +83,8 @@ export async function onRequestGet(context: { request: Request; env: Env }) {
       ? JSON.parse(env.AUTHORIZED_USERS)
       : AUTHORIZED_USERS;
 
-    if (authorizedList.length > 0 && !authorizedList.includes(user.login)) {
+    // Always enforce authorization - empty list means NO ONE is authorized
+    if (authorizedList.length === 0 || !authorizedList.includes(user.login)) {
       return Response.redirect(`${url.origin}/admin?unauthorized`, 302);
     }
 

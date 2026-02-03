@@ -7,6 +7,7 @@
 import { Env } from '../../types';
 import { cachedJson } from '../../utils/cache';
 import { createKVCache, CACHE_TTL } from '../../utils/kv-cache';
+import { checkRateLimit, getClientIdentifier, createRateLimitResponse } from '../../utils/rate-limit';
 
 export async function onRequestGet(context: { request: Request; env: Env }) {
   const url = new URL(context.request.url);
@@ -57,8 +58,19 @@ interface CommitteeMembershipRow {
  * - limit, offset
  */
 async function getPersonsList(context: { request: Request; env: Env }) {
-  const { env } = context;
+  const { env, request } = context;
   const url = new URL(context.request.url);
+
+  // Apply rate limiting - 100 requests per minute per client
+  const clientId = getClientIdentifier(request);
+  const rateLimitResult = await checkRateLimit(env.WEATHER_KV, `api:persons:${clientId}`, {
+    limit: 100,
+    window: 60
+  });
+
+  if (!rateLimitResult.allowed) {
+    return createRateLimitResponse(rateLimitResult);
+  }
 
   const termId = url.searchParams.get('term');
   const committeeId = url.searchParams.get('committee');
@@ -105,7 +117,7 @@ async function getPersonsList(context: { request: Request; env: Env }) {
           params.push(committeeId);
         }
 
-        sql += ' ORDER BY t.term_number DESC, p.last_name ASC LIMIT ?' + paramIndex++ + ' OFFSET ?' + paramIndex++;
+        sql += ' ORDER BY t.term_number DESC, p.last_name ASC LIMIT ? OFFSET ?';
         params.push(limit.toString(), offset.toString());
 
         const result = await env.BETTERLB_DB.prepare(sql).bind(...params).all();

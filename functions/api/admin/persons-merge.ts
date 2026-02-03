@@ -6,6 +6,7 @@
 
 import { Env } from '../../types';
 import { withAuth, AuthContext } from '../../utils/admin-auth';
+import { parseJsonBody } from '../../utils/request';
 
 interface Person {
   id: string;
@@ -173,7 +174,8 @@ async function handleMerge(context: {
   const { request, env, auth } = context;
 
   try {
-    const body = await request.json() as MergeRequest;
+    // Parse JSON body with size limit validation (max 1MB)
+    const body = await parseJsonBody<MergeRequest>(request, 1_000_000) as MergeRequest;
     const { keep_person_id, merge_person_ids, merge_strategy, deletion_mode = 'delete' } = body;
 
     if (!keep_person_id || !merge_person_ids || merge_person_ids.length === 0) {

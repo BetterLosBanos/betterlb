@@ -7,6 +7,7 @@
 import { Env } from '../../types';
 import { cachedJson } from '../../utils/cache';
 import { createKVCache, CACHE_TTL } from '../../utils/kv-cache';
+import { checkRateLimit, getClientIdentifier, createRateLimitResponse } from '../../utils/rate-limit';
 
 export async function onRequestGet(context: { request: Request; env: Env }) {
   const url = new URL(context.request.url);
@@ -34,8 +35,19 @@ export async function onRequestGet(context: { request: Request; env: Env }) {
  * - offset: number (default 0)
  */
 async function getDocumentsList(context: { request: Request; env: Env }) {
-  const { env } = context;
+  const { env, request } = context;
   const url = new URL(context.request.url);
+
+  // Apply rate limiting - 100 requests per minute per client
+  const clientId = getClientIdentifier(request);
+  const rateLimitResult = await checkRateLimit(env.WEATHER_KV, `api:documents:${clientId}`, {
+    limit: 100,
+    window: 60
+  });
+
+  if (!rateLimitResult.allowed) {
+    return createRateLimitResponse(rateLimitResult);
+  }
 
   const type = url.searchParams.get('type');
   const termId = url.searchParams.get('term');
@@ -44,6 +56,16 @@ async function getDocumentsList(context: { request: Request; env: Env }) {
   const needsReview = url.searchParams.get('needs_review');
   const limit = parseInt(url.searchParams.get('limit') || '100');
   const offset = parseInt(url.searchParams.get('offset') || '0');
+
+  // Input validation: Limit query length to prevent DoS
+  if (query && query.length > 100) {
+    return cachedJson({ error: 'Query too long (max 100 characters)' }, 'none', 400);
+  }
+
+  // Sanitize LIKE wildcards to prevent SQL injection
+  const sanitizedQuery = query
+    ? query.replace(/\\/g, '\\\\').replace(/%/g, '\\%').replace(/_/g, '\\_')
+    : null;
 
   const kvCache = createKVCache(env);
   const cacheKey = kvCache.documentsKey({
@@ -89,9 +111,9 @@ async function getDocumentsList(context: { request: Request; env: Env }) {
           params.push(sessionId);
         }
 
-        if (query) {
-          sql += ` AND d.title LIKE ?${paramIndex++}`;
-          params.push(`%${query}%`);
+        if (sanitizedQuery) {
+          sql += ` AND d.title LIKE ?${paramIndex++} ESCAPE '\\'`;
+          params.push(`%${sanitizedQuery}%`);
         }
 
         if (needsReview !== null) {
@@ -162,9 +184,9 @@ async function getDocumentsList(context: { request: Request; env: Env }) {
           countSql += ` AND d.session_id = ?${countParamIndex++}`;
           countParams.push(sessionId);
         }
-        if (query) {
-          countSql += ` AND d.title LIKE ?${countParamIndex++}`;
-          countParams.push(`%${query}%`);
+        if (sanitizedQuery) {
+          countSql += ` AND d.title LIKE ?${countParamIndex++} ESCAPE '\\'`;
+          countParams.push(`%${sanitizedQuery}%`);
         }
         if (needsReview !== null) {
           countSql += ` AND d.needs_review = ?${countParamIndex++}`;

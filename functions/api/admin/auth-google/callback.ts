@@ -104,9 +104,10 @@ export async function onRequestGet(context: { request: Request; env: Env }) {
       ? JSON.parse(env.AUTHORIZED_USERS)
       : [];
 
-    if (authorizedList.length > 0 &&
-        !authorizedList.includes(googleUser.email) &&
-        !authorizedList.includes(user.login)) {
+    // Always enforce authorization - empty list means NO ONE is authorized
+    // Support both GitHub usernames and Google emails in the authorized list
+    if (authorizedList.length === 0 ||
+        !authorizedList.includes(googleUser.email)) {
       return Response.redirect(`${url.origin}/admin?unauthorized`, 302);
     }
 
