@@ -1,120 +1,10 @@
 /**
- * Admin Documents API
- * GET /api/admin/documents - List all documents with filtering
+ * Admin Documents Bulk API
+ * POST /api/admin/documents/bulk - Bulk create documents with authors
  */
 
 import { Env } from '../../../types';
 import { withAuth, AuthContext } from '../../../utils/admin-auth';
-
-interface Document {
-  id: string;
-  type: string;
-  number: string;
-  title: string;
-  date_enacted: string;
-  status: string;
-  processed: number;
-  needs_review: number;
-  pdf_url: string;
-  created_at: string;
-  updated_at: string;
-}
-
-/**
- * GET /api/admin/documents
- * List all documents with filtering and pagination
- */
-async function handleListDocuments(context: {
-  request: Request;
-  env: Env;
-  auth: AuthContext;
-}) {
-  const { request, env } = context;
-  const url = new URL(request.url);
-
-  const search = url.searchParams.get('search');
-  const status = url.searchParams.get('status');
-  const type = url.searchParams.get('type');
-  const needsReview = url.searchParams.get('needs_review');
-  const limit = parseInt(url.searchParams.get('limit') || '50');
-  const offset = parseInt(url.searchParams.get('offset') || '0');
-
-  // Build query
-  let sql = `
-    SELECT
-      id, type, number, title, date_enacted, status,
-      processed, needs_review, pdf_url, created_at, updated_at
-    FROM documents
-    WHERE 1=1
-  `;
-
-  const params: (string | number)[] = [];
-  let paramIndex = 1;
-
-  if (search) {
-    sql += ` AND (number LIKE ?${paramIndex} OR title LIKE ?${paramIndex + 1})`;
-    params.push(`%${search}%`, `%${search}%`);
-    paramIndex += 2;
-  }
-
-  if (status && ['active', 'pending', 'suspended', 'inactive'].includes(status)) {
-    sql += ` AND status = ?${paramIndex++}`;
-    params.push(status);
-  }
-
-  if (type && ['ordinance', 'resolution', 'executive_order'].includes(type)) {
-    sql += ` AND type = ?${paramIndex++}`;
-    params.push(type);
-  }
-
-  if (needsReview === '1' || needsReview === '0') {
-    sql += ` AND needs_review = ?${paramIndex++}`;
-    params.push(needsReview);
-  }
-
-  // Get total count
-  const countSql = sql.replace(
-    /SELECT.*?FROM/,
-    'SELECT COUNT(*) as count FROM'
-  );
-  const countResult = await env.BETTERLB_DB.prepare(countSql).bind(...params).first<{ count: number }>();
-  const total = countResult?.count || 0;
-
-  // Add pagination and ordering
-  sql += ` ORDER BY date_enacted DESC LIMIT ?${paramIndex++} OFFSET ?${paramIndex++}`;
-  params.push(limit, offset);
-
-  try {
-    const result = await env.BETTERLB_DB.prepare(sql).bind(...params).all();
-
-    const documents: Document[] = (result.results as any[]).map((row: any) => ({
-      id: row.id,
-      type: row.type,
-      number: row.number,
-      title: row.title,
-      date_enacted: row.date_enacted,
-      status: row.status,
-      processed: row.processed,
-      needs_review: row.needs_review,
-      pdf_url: row.pdf_url,
-      created_at: row.created_at,
-      updated_at: row.updated_at,
-    }));
-
-    return Response.json({
-      documents,
-      pagination: {
-        total,
-        limit,
-        offset,
-        has_more: offset + limit < total,
-      },
-    });
-  } catch (error) {
-    console.error('Error fetching documents:', error);
-    return Response.json({ error: 'Failed to fetch documents' }, { status: 500 });
-  }
-}
 
 /**
  * Bulk Create Request Interface
@@ -129,11 +19,31 @@ interface BulkCreateRequest {
     seconded_by?: string;  // person_id or null
     moved_by?: string;     // person_id or null
   }>;
+  skip_duplicates?: boolean; // If true, skip duplicates instead of erroring
+}
+
+interface ExistingDocument {
+  id: string;
+  type: string;
+  number: string;
+  title: string;
+  date_enacted: string;
+  status: string;
+  session_id: string;
 }
 
 interface BulkCreateResponse {
   success: boolean;
   created: Array<{ document_id: string; number: string }>;
+  duplicates: Array<{
+    index: number;
+    existing: ExistingDocument;
+    proposed: {
+      type: string;
+      number: string;
+      title: string;
+    };
+  }>;
   errors: Array<{ index: number; message: string }>;
 }
 
@@ -159,6 +69,11 @@ async function handleBulkCreateDocuments(context: {
     }
 
     const created: Array<{ document_id: string; number: string }> = [];
+    const duplicates: Array<{
+      index: number;
+      existing: ExistingDocument;
+      proposed: { type: string; number: string; title: string };
+    }> = [];
     const errors: Array<{ index: number; message: string }> = [];
 
     // Process each document
@@ -174,11 +89,26 @@ async function handleBulkCreateDocuments(context: {
 
         // Check if document with this number already exists
         const existing = await env.BETTERLB_DB.prepare(
-          `SELECT id FROM documents WHERE number = ?1`
-        ).bind(doc.number).first();
+          `SELECT id, type, number, title, date_enacted, status, session_id
+             FROM documents WHERE number = ?1`
+        ).bind(doc.number).first<ExistingDocument>();
 
         if (existing) {
-          errors.push({ index: i, message: `Document ${doc.number} already exists` });
+          // Duplicate detected
+          duplicates.push({
+            index: i,
+            existing,
+            proposed: {
+              type: doc.type,
+              number: doc.number,
+              title: doc.title,
+            },
+          });
+
+          // If skip_duplicates is true, don't add to errors
+          if (!body.skip_duplicates) {
+            errors.push({ index: i, message: `Document ${doc.number} already exists` });
+          }
           continue;
         }
 
@@ -224,6 +154,7 @@ async function handleBulkCreateDocuments(context: {
     return Response.json({
       success: true,
       created,
+      duplicates,
       errors,
     } satisfies BulkCreateResponse);
   } catch (error) {
@@ -232,5 +163,4 @@ async function handleBulkCreateDocuments(context: {
   }
 }
 
-export const onRequestGet = withAuth(handleListDocuments);
 export const onRequestPost = withAuth(handleBulkCreateDocuments);

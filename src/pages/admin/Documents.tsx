@@ -1,21 +1,20 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useCallback, lazy, Suspense } from 'react';
 import {
   FileText,
   Search,
-  Filter,
-  Calendar,
   CheckCircle,
-  XCircle,
   AlertCircle,
   ExternalLink,
   RefreshCw,
-  Edit3,
+  Facebook,
 } from 'lucide-react';
-import { Card, CardContent } from '@/components/ui/Card';
+import { Card } from '@/components/ui/Card';
 import { Badge } from '@/components/ui/Badge';
 import Button from '@/components/ui/Button';
 import { EmptyState } from '@/components/ui/EmptyState';
 import { useAdminAuth } from './components/AdminAuthProvider';
+
+const LegislativePostImporter = lazy(() => import('./components/LegislativePostImporter'));
 
 interface Document {
   id: string;
@@ -46,7 +45,7 @@ type TypeFilter = 'all' | 'ordinance' | 'resolution' | 'executive_order';
 type ReviewFilter = 'all' | 'needs_review' | 'reviewed';
 
 export default function AdminDocuments() {
-  const { user } = useAdminAuth();
+  useAdminAuth();
   const [documents, setDocuments] = useState<Document[]>([]);
   const [loading, setLoading] = useState(true);
   const [searchQuery, setSearchQuery] = useState('');
@@ -61,11 +60,10 @@ export default function AdminDocuments() {
     has_more: false,
   });
 
-  useEffect(() => {
-    fetchDocuments();
-  }, [statusFilter, typeFilter, reviewFilter, page]);
+  // Legislative Post Importer state
+  const [importerOpen, setImporterOpen] = useState(false);
 
-  const fetchDocuments = async () => {
+  const fetchDocuments = useCallback(async () => {
     setLoading(true);
     try {
       const params = new URLSearchParams({
@@ -90,6 +88,23 @@ export default function AdminDocuments() {
       console.error('Error fetching documents:', error);
     } finally {
       setLoading(false);
+    }
+  }, [statusFilter, typeFilter, reviewFilter, page, searchQuery]);
+
+  useEffect(() => {
+    fetchDocuments();
+  }, [fetchDocuments]);
+
+  const handleImportSuccess = (created: number, skipped: number) => {
+    // Refresh the documents list
+    fetchDocuments();
+
+    // Show a success message
+    if (created > 0 || skipped > 0) {
+      const message = [];
+      if (created > 0) message.push(`${created} document${created !== 1 ? 's' : ''} created`);
+      if (skipped > 0) message.push(`${skipped} duplicate${skipped !== 1 ? 's' : ''} skipped`);
+      alert(`Import complete: ${message.join(', ')}`);
     }
   };
 
@@ -139,6 +154,14 @@ export default function AdminDocuments() {
           onClick={fetchDocuments}
         >
           Refresh
+        </Button>
+        <Button
+          variant="primary"
+          size="sm"
+          leftIcon={<Facebook className="h-4 w-4" />}
+          onClick={() => setImporterOpen(true)}
+        >
+          Import from Facebook
         </Button>
       </div>
 
@@ -319,6 +342,15 @@ export default function AdminDocuments() {
           )}
         </>
       )}
+
+      {/* Legislative Post Importer Modal */}
+      <Suspense fallback={null}>
+        <LegislativePostImporter
+          open={importerOpen}
+          onClose={() => setImporterOpen(false)}
+          onSuccess={handleImportSuccess}
+        />
+      </Suspense>
     </div>
   );
 }
