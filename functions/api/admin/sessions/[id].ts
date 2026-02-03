@@ -1,12 +1,11 @@
 /**
- * Admin Sessions API
- * GET /api/admin/sessions/:id - Get session with attendees
+ * Admin Sessions API - Individual Session
+ * GET /api/admin/sessions/:id - Get session with attendees and absences
  * POST /api/admin/sessions/:id - Update session data
- * POST /api/admin/sessions - Create new session
  */
 
-import { Env } from '../../types';
-import { withAuth, AuthContext } from '../../utils/admin-auth';
+import { Env } from '../../../types';
+import { withAuth, AuthContext } from '../../../utils/admin-auth';
 
 interface SessionMember {
   id: string;
@@ -20,20 +19,20 @@ interface SessionMember {
 interface SessionDetails {
   id: string;
   term_id: string;
-  session_type: 'regular' | 'special' | 'inaugural';
+  session_type: string;
   ordinal: number | null;
   date: string;
   source_url: string | null;
   created_at: string;
   updated_at: string;
   members: SessionMember[];
-  absences: {
+  absences: Array<{
     id: string;
     person_id: string;
     first_name: string;
     middle_name: string | null;
     last_name: string;
-  }[];
+  }>;
 }
 
 /**
@@ -50,9 +49,9 @@ async function handleGetSession(context: {
   const sessionId = params.id;
 
   try {
-    // Get session details
+    // Get session details - use correct column names from schema
     const session = await env.BETTERLB_DB.prepare(
-      `SELECT id, term_id, session_type, ordinal, date, source_url, created_at, updated_at
+      `SELECT id, term_id, type, number, date, ordinal_number, source_url, created_at, updated_at
        FROM sessions WHERE id = ?1`
     ).bind(sessionId).first<any>();
 
@@ -105,11 +104,13 @@ async function handleGetSession(context: {
       last_name: row.last_name,
     }));
 
+    // Map database column names to match expected interface
+    // type -> session_type, number -> ordinal
     return Response.json({
       id: session.id,
       term_id: session.term_id,
-      session_type: session.session_type,
-      ordinal: session.ordinal,
+      session_type: session.type,  // Map 'type' to 'session_type'
+      ordinal: session.number,  // Map 'number' to 'ordinal'
       date: session.date,
       source_url: session.source_url,
       created_at: session.created_at,
@@ -124,7 +125,7 @@ async function handleGetSession(context: {
 }
 
 interface UpdateSessionData {
-  session_type?: 'regular' | 'special' | 'inaugural';
+  session_type?: string;
   ordinal?: number | null;
   date?: string;
   source_url?: string | null;
@@ -151,11 +152,11 @@ async function handleUpdateSession(context: {
     let paramIndex = 1;
 
     if (body.session_type !== undefined) {
-      updateFields.push(`session_type = ?${paramIndex++}`);
+      updateFields.push(`type = ?${paramIndex++}`);  // Map to 'type'
       updateValues.push(body.session_type);
     }
     if (body.ordinal !== undefined) {
-      updateFields.push(`ordinal = ?${paramIndex++}`);
+      updateFields.push(`number = ?${paramIndex++}`);  // Map to 'number'
       updateValues.push(body.ordinal);
     }
     if (body.date !== undefined) {
@@ -196,81 +197,12 @@ async function handleUpdateSession(context: {
   }
 }
 
-interface CreateSessionData {
-  term_id: string;
-  session_type: 'regular' | 'special' | 'inaugural';
-  ordinal: number | null;
-  date: string;
-  source_url?: string | null;
-  absent_person_ids?: string[];
-}
-
-/**
- * POST /api/admin/sessions
- * Create new session
- */
-async function handleCreateSession(context: {
+export const onRequestGet = (context: {
   request: Request;
   env: Env;
-  auth: AuthContext;
-}) {
-  const { request, env } = context;
+}) => withAuth(handleGetSession as any)(context as any);
 
-  try {
-    const body = await request.json() as CreateSessionData;
-
-    if (!body.term_id || !body.session_type || !body.date) {
-      return Response.json(
-        { error: 'Missing required fields: term_id, session_type, date' },
-        { status: 400 }
-      );
-    }
-
-    // Generate session ID
-    const sessionId = `session_${Date.now()}_${Math.random().toString(36).substr(2, 9)}`;
-
-    // Insert session
-    await env.BETTERLB_DB.prepare(
-      `INSERT INTO sessions (id, term_id, session_type, ordinal, date, source_url)
-       VALUES (?1, ?2, ?3, ?4, ?5, ?6)`
-    ).bind(
-      sessionId,
-      body.term_id,
-      body.session_type,
-      body.ordinal || null,
-      body.date,
-      body.source_url || null
-    ).run();
-
-    // Add absences if provided
-    if (body.absent_person_ids && body.absent_person_ids.length > 0) {
-      for (const personId of body.absent_person_ids) {
-        await env.BETTERLB_DB.prepare(
-          `INSERT INTO session_absences (session_id, person_id) VALUES (?1, ?2)`
-        ).bind(sessionId, personId).run();
-      }
-    }
-
-    return Response.json({
-      success: true,
-      session_id: sessionId,
-    });
-  } catch (error) {
-    console.error('Error creating session:', error);
-    return Response.json({ error: 'Failed to create session' }, { status: 500 });
-  }
-}
-
-export const onRequestGet = withAuth(handleGetSession);
-
-export async function onRequestPost(context: {
+export const onRequestPost = (context: {
   request: Request;
   env: Env;
-  params: { id: string };
-}) {
-  // If there's an id parameter, it's an update, otherwise it's a create
-  if (context.params?.id) {
-    return withAuth(handleUpdateSession)(context);
-  }
-  return withAuth(handleCreateSession)(context);
-}
+}) => withAuth(handleUpdateSession as any)(context as any);

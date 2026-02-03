@@ -93,7 +93,7 @@ export default function SessionAttendanceQuickEdit({
         return;
       }
 
-      const response = await fetch(`/api/admin/terms/${termId}/members`);
+      const response = await fetch(`/api/admin/terms/${termId}`);
       if (!response.ok) {
         throw new Error(`Failed to fetch term members (HTTP ${response.status})`);
       }
