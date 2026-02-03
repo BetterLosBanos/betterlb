@@ -96,6 +96,13 @@ export default function DocumentEditModal({
   // Attendance state
   const [absentPersonIds, setAbsentPersonIds] = useState<string[]>([]);
 
+  // Session form state for editing
+  const [sessionForm, setSessionForm] = useState<Partial<{
+    session_type: string;
+    date: string;
+    ordinal: number | null;
+  }>>({});
+
   const fetchSessionData = useCallback(async (sessionId: string) => {
     setSessionLoading(true);
     setSessionError(null);
@@ -122,6 +129,12 @@ export default function DocumentEditModal({
         };
         setSessionData(mockSession);
         setAbsentPersonIds(mockSession.absences.map((a) => a.person_id));
+        // Initialize session form for mock mode
+        setSessionForm({
+          session_type: mockSession.session_type,
+          date: mockSession.date,
+          ordinal: mockSession.ordinal,
+        });
         return;
       }
 
@@ -132,6 +145,12 @@ export default function DocumentEditModal({
       const data: SessionData = await response.json();
       setSessionData(data);
       setAbsentPersonIds(data.absences.map((a) => a.person_id));
+      // Initialize session form
+      setSessionForm({
+        session_type: data.session_type,
+        date: data.date,
+        ordinal: data.ordinal,
+      });
     } catch (error) {
       console.error('Error fetching session:', error);
       setSessionError(error instanceof Error ? error.message : 'Unknown error');
@@ -217,15 +236,37 @@ export default function DocumentEditModal({
       // Save document data
       await onSave(formData);
 
-      // Save attendance if we have session data and absences have changed
-      if (sessionData && activeTab === 'session') {
+      // Save session data and attendance if we have session data
+      if (sessionData) {
+        const isMockMode = import.meta.env.VITE_ADMIN_MOCK_MODE === 'true';
+
+        // Save session details (type, date, ordinal) if changed
+        const sessionChanged =
+          (sessionForm.session_type !== undefined && sessionForm.session_type !== sessionData.session_type) ||
+          (sessionForm.date !== undefined && sessionForm.date !== sessionData.date) ||
+          (sessionForm.ordinal !== undefined && sessionForm.ordinal !== sessionData.ordinal);
+
+        if (sessionChanged && !isMockMode) {
+          try {
+            await fetch(`/api/admin/sessions/${sessionData.id}`, {
+              method: 'POST',
+              headers: { 'Content-Type': 'application/json' },
+              body: JSON.stringify(sessionForm),
+            });
+          } catch (error) {
+            console.error('Error saving session:', error);
+            // Continue anyway - document was saved
+          }
+        }
+
+        // Save attendance if absences have changed
         const currentAbsenceIds = sessionData.absences.map((a) => a.person_id);
         const absencesChanged =
           absentPersonIds.length !== currentAbsenceIds.length ||
           absentPersonIds.some((id) => !currentAbsenceIds.includes(id)) ||
           currentAbsenceIds.some((id) => !absentPersonIds.includes(id));
 
-        if (absencesChanged) {
+        if (absencesChanged && !isMockMode) {
           try {
             await fetch(`/api/admin/attendance/${sessionData.id}`, {
               method: 'POST',
@@ -583,40 +624,81 @@ export default function DocumentEditModal({
                 </Card>
               ) : sessionData ? (
                 <>
-                  {/* Session Info */}
+                  {/* Session Info - EDITABLE */}
                   <Card variant="default">
                     <CardContent className="p-4 space-y-4">
-                      <h4 className="font-bold text-slate-900">
-                        Session Details
-                      </h4>
-                      <div className="flex flex-wrap gap-3">
-                        <Badge variant="secondary">
-                          {sessionData.session_type}
-                        </Badge>
-                        {sessionData.date && (
-                          <Badge variant="slate">
-                            {new Date(sessionData.date).toLocaleDateString('en-PH', {
-                              year: 'numeric',
-                              month: 'long',
-                              day: 'numeric',
-                            })}
-                          </Badge>
-                        )}
-                        {sessionData.ordinal !== null && (
-                          <Badge variant="slate">
-                            Session #{sessionData.ordinal}
-                          </Badge>
-                        )}
+                      <div className="flex items-center justify-between">
+                        <h4 className="font-bold text-slate-900">
+                          Session Details
+                        </h4>
+                        <a
+                          href={`/admin/sessions/${sessionData.id}`}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="inline-flex items-center gap-1 text-sm text-primary-600 hover:underline"
+                        >
+                          Open full session editor
+                          <ExternalLink className="w-3 h-3" />
+                        </a>
                       </div>
-                      <a
-                        href={`/admin/sessions/${sessionData.id}`}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="inline-flex items-center gap-1 text-sm text-primary-600 hover:underline"
-                      >
-                        Open full session editor
-                        <ExternalLink className="w-3 h-3" />
-                      </a>
+
+                      {/* Session Type Dropdown */}
+                      <div>
+                        <label className="block mb-1 text-sm font-medium text-slate-700">
+                          Session Type
+                        </label>
+                        <select
+                          value={sessionForm.session_type || sessionData.session_type || 'Regular'}
+                          onChange={(e) =>
+                            setSessionForm({ ...sessionForm, session_type: e.target.value })
+                          }
+                          disabled={saving}
+                          className="px-3 py-2 w-full sm:w-auto text-sm rounded-md border border-slate-300 disabled:opacity-50"
+                        >
+                          <option value="Regular">Regular</option>
+                          <option value="Inaugural">Inaugural</option>
+                          <option value="Special">Special</option>
+                        </select>
+                      </div>
+
+                      {/* Date and Ordinal Row */}
+                      <div className="grid gap-4 sm:grid-cols-2">
+                        {/* Date Input */}
+                        <div>
+                          <label className="block mb-1 text-sm font-medium text-slate-700">
+                            Date
+                          </label>
+                          <input
+                            type="date"
+                            value={sessionForm.date || sessionData.date || ''}
+                            onChange={(e) =>
+                              setSessionForm({ ...sessionForm, date: e.target.value })
+                            }
+                            disabled={saving}
+                            className="px-3 py-2 w-full text-sm rounded-md border border-slate-300 disabled:opacity-50"
+                          />
+                        </div>
+
+                        {/* Ordinal (Session Number) */}
+                        <div>
+                          <label className="block mb-1 text-sm font-medium text-slate-700">
+                            Session Number
+                          </label>
+                          <input
+                            type="number"
+                            value={sessionForm.ordinal ?? sessionData.ordinal ?? ''}
+                            onChange={(e) =>
+                              setSessionForm({
+                                ...sessionForm,
+                                ordinal: e.target.value ? parseInt(e.target.value) || null : null,
+                              })
+                            }
+                            disabled={saving}
+                            placeholder="Optional"
+                            className="px-3 py-2 w-full text-sm rounded-md border border-slate-300 disabled:opacity-50"
+                          />
+                        </div>
+                      </div>
                     </CardContent>
                   </Card>
 

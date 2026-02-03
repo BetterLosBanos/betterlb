@@ -119,9 +119,9 @@ export default function SessionAttendanceQuickEdit({
   };
 
   const handleMarkAllAbsent = () => {
-    // Mark all members as absent
+    // Mark all non-mayor members as absent (mayors don't attend sessions)
     members.forEach((member) => {
-      if (!absentPersonIds.includes(member.id)) {
+      if (member.role !== 'Mayor' && !absentPersonIds.includes(member.id)) {
         onAbsentChange(member.id, true);
       }
     });
@@ -157,8 +157,16 @@ export default function SessionAttendanceQuickEdit({
     );
   }
 
-  const presentCount = members.length - absentPersonIds.length;
-  const absentCount = absentPersonIds.length;
+  // Filter out mayors - they don't attend council sessions
+  const nonMayorMembers = members.filter((m) => m.role !== 'Mayor');
+  const eligibleMemberIds = nonMayorMembers.map((m) => m.id);
+
+  // Count attendance among eligible members (excluding mayors)
+  const absentEligibleCount = absentPersonIds.filter((id) =>
+    eligibleMemberIds.includes(id)
+  ).length;
+  const presentCount = nonMayorMembers.length - absentEligibleCount;
+  const absentCount = absentEligibleCount;
 
   return (
     <div className="space-y-4">
@@ -190,7 +198,7 @@ export default function SessionAttendanceQuickEdit({
             variant="outline"
             size="sm"
             onClick={handleMarkAllAbsent}
-            disabled={disabled || absentCount === members.length}
+            disabled={disabled || absentCount === nonMayorMembers.length}
             className="text-xs"
           >
             All Absent
@@ -200,7 +208,8 @@ export default function SessionAttendanceQuickEdit({
 
       {/* Member List */}
       <div className="border rounded-md divide-y max-h-64 overflow-y-auto">
-        {members.map((member) => {
+        {/* Filter out mayors - they don't attend council sessions */}
+        {members.filter((m) => m.role !== 'Mayor').map((member) => {
           const isAbsent = absentPersonIds.includes(member.id);
           return (
             <div

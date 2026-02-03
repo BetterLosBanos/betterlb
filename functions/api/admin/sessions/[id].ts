@@ -22,7 +22,6 @@ interface SessionDetails {
   session_type: string;
   ordinal: number | null;
   date: string;
-  source_url: string | null;
   created_at: string;
   updated_at: string;
   members: SessionMember[];
@@ -51,7 +50,7 @@ async function handleGetSession(context: {
   try {
     // Get session details - use correct column names from schema
     const session = await env.BETTERLB_DB.prepare(
-      `SELECT id, term_id, type, number, date, ordinal_number, source_url, created_at, updated_at
+      `SELECT id, term_id, type, number, date, ordinal_number, created_at, updated_at
        FROM sessions WHERE id = ?1`
     ).bind(sessionId).first<any>();
 
@@ -112,7 +111,6 @@ async function handleGetSession(context: {
       session_type: session.type,  // Map 'type' to 'session_type'
       ordinal: session.number,  // Map 'number' to 'ordinal'
       date: session.date,
-      source_url: session.source_url,
       created_at: session.created_at,
       updated_at: session.updated_at,
       members,
@@ -128,7 +126,6 @@ interface UpdateSessionData {
   session_type?: string;
   ordinal?: number | null;
   date?: string;
-  source_url?: string | null;
 }
 
 /**
@@ -162,10 +159,6 @@ async function handleUpdateSession(context: {
     if (body.date !== undefined) {
       updateFields.push(`date = ?${paramIndex++}`);
       updateValues.push(body.date);
-    }
-    if (body.source_url !== undefined) {
-      updateFields.push(`source_url = ?${paramIndex++}`);
-      updateValues.push(body.source_url);
     }
 
     if (updateFields.length > 0) {

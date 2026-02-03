@@ -4,15 +4,14 @@
  * POST /api/admin/sessions - Create new session
  */
 
-import { Env } from '../../types';
-import { withAuth, AuthContext } from '../../utils/admin-auth';
+import { Env } from '../../../types';
+import { withAuth, AuthContext } from '../../../utils/admin-auth';
 
 interface CreateSessionData {
   term_id: string;
   session_type?: string;
   ordinal?: number | null;
   date?: string;
-  source_url?: string | null;
   absent_person_ids?: string[];
 }
 
@@ -35,7 +34,7 @@ async function handleListSessions(context: {
   try {
     let sql = `
       SELECT
-        s.id, s.term_id, s.type, s.number, s.date, s.ordinal_number, s.source_url,
+        s.id, s.term_id, s.type, s.number, s.date, s.ordinal_number,
         s.created_at, s.updated_at
       FROM sessions s
       WHERE 1=1
@@ -94,15 +93,14 @@ async function handleCreateSession(context: {
 
     // Insert session - use correct column name 'type' and 'number'
     await env.BETTERLB_DB.prepare(
-      `INSERT INTO sessions (id, term_id, type, number, date, source_url)
-       VALUES (?1, ?2, ?3, ?4, ?5, ?6)`
+      `INSERT INTO sessions (id, term_id, type, number, date)
+       VALUES (?1, ?2, ?3, ?4, ?5)`
     ).bind(
       sessionId,
       body.term_id,
       body.session_type || 'Regular',
       body.ordinal || null,
-      body.date,
-      body.source_url || null
+      body.date
     ).run();
 
     // Add absences if provided
