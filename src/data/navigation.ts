@@ -57,6 +57,13 @@ export const mainNavigation: NavigationItem[] = [
       },
     ],
   },
+  {
+    label: 'Map',
+    href: '/map',
+    children: [
+      { label: 'Public Transit Map', href: '/map' },
+    ],
+  },
 ];
 
 export const footerNavigation = {
