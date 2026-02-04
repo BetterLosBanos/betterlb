@@ -44,3 +44,5 @@ wrangler.toml
 _worker.bundle
 pipeline/*
 CLAUDE.md
+.local/
+pipeline/__pycache__/
