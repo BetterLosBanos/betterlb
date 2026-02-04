@@ -2,9 +2,8 @@
  * Admin Terms API
  * GET /api/admin/terms/:id/members - Get members for a term
  */
-
 import { Env } from '../../../types';
-import { withAuth, AuthContext } from '../../../utils/admin-auth';
+import { AuthContext, withAuth } from '../../../utils/admin-auth';
 
 interface TermMember {
   id: string;
@@ -45,7 +44,9 @@ async function handleGetTermMembers(context: {
        JOIN persons p ON m.person_id = p.id
        WHERE m.term_id = ?1
        ORDER BY p.last_name, p.first_name`
-    ).bind(termId).all();
+    )
+      .bind(termId)
+      .all();
 
     const members: TermMember[] = membersResult.results.map((row: any) => ({
       id: row.id,
@@ -65,11 +66,12 @@ async function handleGetTermMembers(context: {
     });
   } catch (error) {
     console.error('Error fetching term members:', error);
-    return Response.json({ error: 'Failed to fetch term members' }, { status: 500 });
+    return Response.json(
+      { error: 'Failed to fetch term members' },
+      { status: 500 }
+    );
   }
 }
 
-export const onRequestGet = (context: {
-  request: Request;
-  env: Env;
-}) => withAuth(handleGetTermMembers as any)(context as any);
+export const onRequestGet = (context: { request: Request; env: Env }) =>
+  withAuth(handleGetTermMembers as any)(context as any);

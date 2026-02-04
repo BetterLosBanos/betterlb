@@ -2,9 +2,8 @@
  * Admin Documents API
  * GET /api/admin/documents - List all documents with filtering
  */
-
 import { Env } from '../../../types';
-import { withAuth, AuthContext } from '../../../utils/admin-auth';
+import { AuthContext, withAuth } from '../../../utils/admin-auth';
 
 interface Document {
   id: string;
@@ -57,7 +56,10 @@ async function handleListDocuments(context: {
     paramIndex += 2;
   }
 
-  if (status && ['active', 'pending', 'suspended', 'inactive'].includes(status)) {
+  if (
+    status &&
+    ['active', 'pending', 'suspended', 'inactive'].includes(status)
+  ) {
     sql += ` AND status = ?${paramIndex++}`;
     params.push(status);
   }
@@ -77,7 +79,9 @@ async function handleListDocuments(context: {
     /SELECT.*?FROM/,
     'SELECT COUNT(*) as count FROM'
   );
-  const countResult = await env.BETTERLB_DB.prepare(countSql).bind(...params).first<{ count: number }>();
+  const countResult = await env.BETTERLB_DB.prepare(countSql)
+    .bind(...params)
+    .first<{ count: number }>();
   const total = countResult?.count || 0;
 
   // Add pagination and ordering
@@ -85,7 +89,9 @@ async function handleListDocuments(context: {
   params.push(limit, offset);
 
   try {
-    const result = await env.BETTERLB_DB.prepare(sql).bind(...params).all();
+    const result = await env.BETTERLB_DB.prepare(sql)
+      .bind(...params)
+      .all();
 
     const documents: Document[] = (result.results as any[]).map((row: any) => ({
       id: row.id,
@@ -112,7 +118,10 @@ async function handleListDocuments(context: {
     });
   } catch (error) {
     console.error('Error fetching documents:', error);
-    return Response.json({ error: 'Failed to fetch documents' }, { status: 500 });
+    return Response.json(
+      { error: 'Failed to fetch documents' },
+      { status: 500 }
+    );
   }
 }
 
@@ -126,8 +135,8 @@ interface BulkCreateRequest {
     number: string;
     title: string;
     authors: Array<{ person_id: string; is_new?: boolean; name?: string }>;
-    seconded_by?: string;  // person_id or null
-    moved_by?: string;     // person_id or null
+    seconded_by?: string; // person_id or null
+    moved_by?: string; // person_id or null
   }>;
 }
 
@@ -149,7 +158,7 @@ async function handleBulkCreateDocuments(context: {
   const { request, env } = context;
 
   try {
-    const body = await request.json() as BulkCreateRequest;
+    const body = (await request.json()) as BulkCreateRequest;
 
     if (!body.session_id || !body.documents || body.documents.length === 0) {
       return Response.json(
@@ -168,17 +177,25 @@ async function handleBulkCreateDocuments(context: {
       try {
         // Validate required fields
         if (!doc.type || !doc.number || !doc.title) {
-          errors.push({ index: i, message: 'Missing required fields: type, number, title' });
+          errors.push({
+            index: i,
+            message: 'Missing required fields: type, number, title',
+          });
           continue;
         }
 
         // Check if document with this number already exists
         const existing = await env.BETTERLB_DB.prepare(
           `SELECT id FROM documents WHERE number = ?1`
-        ).bind(doc.number).first();
+        )
+          .bind(doc.number)
+          .first();
 
         if (existing) {
-          errors.push({ index: i, message: `Document ${doc.number} already exists` });
+          errors.push({
+            index: i,
+            message: `Document ${doc.number} already exists`,
+          });
           continue;
         }
 
@@ -189,18 +206,20 @@ async function handleBulkCreateDocuments(context: {
         await env.BETTERLB_DB.prepare(
           `INSERT INTO documents (id, type, number, title, session_id, status, source_type, moved_by, seconded_by, processed)
            VALUES (?1, ?2, ?3, ?4, ?5, ?6, ?7, ?8, ?9, ?10)`
-        ).bind(
-          documentId,
-          doc.type,
-          doc.number,
-          doc.title,
-          body.session_id,
-          'pending',
-          'facebook',
-          doc.moved_by || null,
-          doc.seconded_by || null,
-          0
-        ).run();
+        )
+          .bind(
+            documentId,
+            doc.type,
+            doc.number,
+            doc.title,
+            body.session_id,
+            'pending',
+            'facebook',
+            doc.moved_by || null,
+            doc.seconded_by || null,
+            0
+          )
+          .run();
 
         // Insert authors
         if (doc.authors && doc.authors.length > 0) {
@@ -209,7 +228,9 @@ async function handleBulkCreateDocuments(context: {
               await env.BETTERLB_DB.prepare(
                 `INSERT INTO document_authors (document_id, person_id, author_type)
                  VALUES (?1, ?2, ?3)`
-              ).bind(documentId, author.person_id, 'primary').run();
+              )
+                .bind(documentId, author.person_id, 'primary')
+                .run();
             }
           }
         }
@@ -217,7 +238,10 @@ async function handleBulkCreateDocuments(context: {
         created.push({ document_id: documentId, number: doc.number });
       } catch (error) {
         console.error(`Error creating document at index ${i}:`, error);
-        errors.push({ index: i, message: error instanceof Error ? error.message : 'Unknown error' });
+        errors.push({
+          index: i,
+          message: error instanceof Error ? error.message : 'Unknown error',
+        });
       }
     }
 
@@ -228,7 +252,10 @@ async function handleBulkCreateDocuments(context: {
     } satisfies BulkCreateResponse);
   } catch (error) {
     console.error('Error in bulk create:', error);
-    return Response.json({ error: 'Failed to bulk create documents' }, { status: 500 });
+    return Response.json(
+      { error: 'Failed to bulk create documents' },
+      { status: 500 }
+    );
   }
 }
 

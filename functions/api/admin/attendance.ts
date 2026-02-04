@@ -2,9 +2,8 @@
  * Admin Attendance API
  * POST /api/admin/attendance/:sessionId - Update attendance records for a session
  */
-
 import { Env } from '../../types';
-import { withAuth, AuthContext } from '../../utils/admin-auth';
+import { AuthContext, withAuth } from '../../utils/admin-auth';
 
 interface AttendanceUpdateData {
   absent_person_ids: string[];
@@ -25,7 +24,7 @@ async function handleUpdateAttendance(context: {
   const sessionId = params.sessionId;
 
   try {
-    const body = await request.json() as AttendanceUpdateData;
+    const body = (await request.json()) as AttendanceUpdateData;
     const { absent_person_ids } = body;
 
     if (!Array.isArray(absent_person_ids)) {
@@ -39,19 +38,25 @@ async function handleUpdateAttendance(context: {
     // 1. Delete all existing absences for this session
     await env.BETTERLB_DB.prepare(
       `DELETE FROM session_absences WHERE session_id = ?1`
-    ).bind(sessionId).run();
+    )
+      .bind(sessionId)
+      .run();
 
     // 2. Insert new absences
     for (const personId of absent_person_ids) {
       await env.BETTERLB_DB.prepare(
         `INSERT INTO session_absences (session_id, person_id) VALUES (?1, ?2)`
-      ).bind(sessionId, personId).run();
+      )
+        .bind(sessionId, personId)
+        .run();
     }
 
     // 3. Update the session's updated_at timestamp
     await env.BETTERLB_DB.prepare(
       `UPDATE sessions SET updated_at = ?1 WHERE id = ?2`
-    ).bind(new Date().toISOString(), sessionId).run();
+    )
+      .bind(new Date().toISOString(), sessionId)
+      .run();
 
     return Response.json({
       success: true,
@@ -59,7 +64,10 @@ async function handleUpdateAttendance(context: {
     });
   } catch (error) {
     console.error('Error updating attendance:', error);
-    return Response.json({ error: 'Failed to update attendance' }, { status: 500 });
+    return Response.json(
+      { error: 'Failed to update attendance' },
+      { status: 500 }
+    );
   }
 }
 

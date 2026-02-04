@@ -2,7 +2,6 @@
  * GET /api/admin/auth/session
  * Get current session
  */
-
 import { Env } from '../../../types';
 
 interface GitHubUser {
@@ -43,7 +42,10 @@ export async function onRequestGet(context: { request: Request; env: Env }) {
   // Check if session is expired
   if (new Date(session.expires_at) < new Date()) {
     await env.WEATHER_KV.delete(`session:${sessionId}`);
-    return Response.json({ authenticated: false, expired: true }, { status: 401 });
+    return Response.json(
+      { authenticated: false, expired: true },
+      { status: 401 }
+    );
   }
 
   return Response.json({
@@ -57,9 +59,12 @@ function parseCookies(cookieHeader: string | null): Record<string, string> {
     return {};
   }
 
-  return cookieHeader.split('; ').reduce((acc, cookie) => {
-    const [name, value] = cookie.split('=');
-    acc[name] = value;
-    return acc;
-  }, {} as Record<string, string>);
+  return cookieHeader.split('; ').reduce(
+    (acc, cookie) => {
+      const [name, value] = cookie.split('=');
+      acc[name] = value;
+      return acc;
+    },
+    {} as Record<string, string>
+  );
 }

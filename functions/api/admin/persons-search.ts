@@ -2,9 +2,8 @@
  * Admin Person Search API
  * GET /api/admin/persons-search - Search for persons by name
  */
-
 import { Env } from '../../types';
-import { withAuth, AuthContext } from '../../utils/admin-auth';
+import { AuthContext, withAuth } from '../../utils/admin-auth';
 
 interface Person {
   id: string;
@@ -55,7 +54,13 @@ async function handleSearch(context: {
 
     const persons: Array<Person & { full_name: string }> = [];
 
-    for (const row of results.results as Array<{ id: string; first_name: string; middle_name: string | null; last_name: string; suffix: string | null }>) {
+    for (const row of results.results as Array<{
+      id: string;
+      first_name: string;
+      middle_name: string | null;
+      last_name: string;
+      suffix: string | null;
+    }>) {
       const parts = [row.first_name, row.middle_name, row.last_name];
       if (row.suffix) parts.push(row.suffix);
       persons.push({
@@ -71,7 +76,10 @@ async function handleSearch(context: {
     return Response.json({ persons } satisfies SearchResponse);
   } catch (error) {
     console.error('Error searching persons:', error);
-    return Response.json({ error: 'Failed to search persons' }, { status: 500 });
+    return Response.json(
+      { error: 'Failed to search persons' },
+      { status: 500 }
+    );
   }
 }
 

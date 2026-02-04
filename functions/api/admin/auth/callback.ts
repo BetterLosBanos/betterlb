@@ -2,7 +2,6 @@
  * GET /api/admin/auth/callback
  * Handle GitHub OAuth callback
  */
-
 import { Env } from '../../../types';
 
 const GITHUB_CLIENT_ID = '__GITHUB_CLIENT_ID__';
@@ -46,19 +45,22 @@ export async function onRequestGet(context: { request: Request; env: Env }) {
 
   try {
     // Exchange code for access token
-    const tokenResponse = await fetch('https://github.com/login/oauth/access_token', {
-      method: 'POST',
-      headers: {
-        'Accept': 'application/json',
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({
-        client_id: env.GITHUB_CLIENT_ID || GITHUB_CLIENT_ID,
-        client_secret: env.GITHUB_CLIENT_SECRET || GITHUB_CLIENT_SECRET,
-        code,
-        redirect_uri: `${url.origin}/api/admin/auth/callback`,
-      }),
-    });
+    const tokenResponse = await fetch(
+      'https://github.com/login/oauth/access_token',
+      {
+        method: 'POST',
+        headers: {
+          Accept: 'application/json',
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          client_id: env.GITHUB_CLIENT_ID || GITHUB_CLIENT_ID,
+          client_secret: env.GITHUB_CLIENT_SECRET || GITHUB_CLIENT_SECRET,
+          code,
+          redirect_uri: `${url.origin}/api/admin/auth/callback`,
+        }),
+      }
+    );
 
     const tokenData = await tokenResponse.json();
 
@@ -71,7 +73,7 @@ export async function onRequestGet(context: { request: Request; env: Env }) {
     // Fetch user info
     const userResponse = await fetch('https://api.github.com/user', {
       headers: {
-        'Authorization': `Bearer ${accessToken}`,
+        Authorization: `Bearer ${accessToken}`,
         'User-Agent': 'BetterLB-Admin',
       },
     });
@@ -106,7 +108,7 @@ export async function onRequestGet(context: { request: Request; env: Env }) {
     return new Response(null, {
       status: 302,
       headers: {
-        'Location': redirectUrl,
+        Location: redirectUrl,
         'Set-Cookie': `admin_session=${sessionId}; Path=/; HttpOnly; Secure; SameSite=Lax; Max-Age=${24 * 60 * 60}`,
       },
     });

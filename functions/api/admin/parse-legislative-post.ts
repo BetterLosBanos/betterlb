@@ -2,9 +2,8 @@
  * Legislative Post Parser API
  * POST /api/admin/parse-legislative-post - Parse Facebook post content to extract legislative items
  */
-
 import { Env } from '../../types';
-import { withAuth, AuthContext } from '../../utils/admin-auth';
+import { AuthContext, withAuth } from '../../utils/admin-auth';
 
 interface ParsedLegislativeItem {
   type: 'ordinance' | 'resolution' | 'executive_order';
@@ -44,16 +43,16 @@ interface ParseLegislativePostResponse {
 
 // Unicode mathematical bold digits to regular digits mapping
 const BOLD_DIGIT_MAP: Record<string, string> = {
-  '\ud835\udfce': '0',  // 𝟎
-  '\ud835\udfcf': '1',  // 𝟏
-  '\ud835\udfd0': '2',  // 𝟐
-  '\ud835\udfd1': '3',  // 𝟑
-  '\ud835\udfd2': '4',  // 𝟒
-  '\ud835\udfd3': '5',  // 𝟓
-  '\ud835\udfd4': '6',  // 𝟔
-  '\ud835\udfd5': '7',  // 𝟕
-  '\ud835\udfd6': '8',  // 𝟖
-  '\ud835\udfd7': '9',  // 𝟗
+  '\ud835\udfce': '0', // 𝟎
+  '\ud835\udfcf': '1', // 𝟏
+  '\ud835\udfd0': '2', // 𝟐
+  '\ud835\udfd1': '3', // 𝟑
+  '\ud835\udfd2': '4', // 𝟒
+  '\ud835\udfd3': '5', // 𝟓
+  '\ud835\udfd4': '6', // 𝟔
+  '\ud835\udfd5': '7', // 𝟕
+  '\ud835\udfd6': '8', // 𝟖
+  '\ud835\udfd7': '9', // 𝟗
 };
 
 // Normalizes Unicode mathematical bold digits and other special characters to regular text
@@ -102,7 +101,10 @@ function splitNames(namesStr: string): string[] {
 
   // Try " and "
   if (/\s+and\s+/i.test(trimmed)) {
-    return trimmed.split(/\s+and\s+/i).map(cleanName).filter(Boolean);
+    return trimmed
+      .split(/\s+and\s+/i)
+      .map(cleanName)
+      .filter(Boolean);
   }
 
   // Try " & "
@@ -126,14 +128,19 @@ function parseSessionInfo(content: string): ParsedSessionInfo {
   const normalized = normalizeText(content);
 
   // Matches: "100th Regular Session", "5th Special", "Inaugural Session"
-  const sessionPattern = /(\d+)(?:st|nd|rd|th)\s+(Regular|Special|Inaugural)\s+(?:Session|)?/i;
+  const sessionPattern =
+    /(\d+)(?:st|nd|rd|th)\s+(Regular|Special|Inaugural)\s+(?:Session|)?/i;
   const sessionMatch = normalized.match(sessionPattern);
 
   if (sessionMatch) {
     result.ordinal = parseInt(sessionMatch[1], 10);
     const typeStr = sessionMatch[2].toLowerCase();
-    result.type = typeStr === 'regular' ? 'regular' :
-                  typeStr === 'special' ? 'special' : 'inaugural';
+    result.type =
+      typeStr === 'regular'
+        ? 'regular'
+        : typeStr === 'special'
+          ? 'special'
+          : 'inaugural';
   } else {
     // Try to find session type without ordinal
     if (/\bRegular\s+Session\b/i.test(normalized)) {
@@ -164,7 +171,9 @@ function parseLegislativeItems(content: string): ParsedLegislativeItem[] {
   for (const line of lines) {
     // Check if this line starts with a number pattern (e.g., "1. ORDINANCE NO.")
     // Supports numbers like 2026-2464, 2026-2464-A, 2026-2464-B
-    const numberedItemMatch = line.match(/^(\d+)\.\s+(ORDINANCE|RESOLUTION|EXECUTIVE\s+ORDER|KAUTUSAN)\s+(?:NO\.|BLG\.)?\s*(\d{4}-\d+(?:-[A-Z]+)?)/i);
+    const numberedItemMatch = line.match(
+      /^(\d+)\.\s+(ORDINANCE|RESOLUTION|EXECUTIVE\s+ORDER|KAUTUSAN)\s+(?:NO\.|BLG\.)?\s*(\d{4}-\d+(?:-[A-Z]+)?)/i
+    );
 
     if (numberedItemMatch) {
       // Save previous block if exists
@@ -204,7 +213,9 @@ function parseLegislativeItems(content: string): ParsedLegislativeItem[] {
 function parseSingleBlock(block: string): ParsedLegislativeItem | null {
   // Extract type and number from first line
   const firstLine = block.split('\n')[0];
-  const typeMatch = firstLine.match(/(ORDINANCE|RESOLUTION|EXECUTIVE\s+ORDER|KAUTUSAN)/i);
+  const typeMatch = firstLine.match(
+    /(ORDINANCE|RESOLUTION|EXECUTIVE\s+ORDER|KAUTUSAN)/i
+  );
   // Supports numbers like 2026-2464, 2026-2464-A, 2026-2464-B
   const numberMatch = block.match(/(\d{4}-\d+(?:-[A-Z]+)?)/);
 
@@ -241,10 +252,14 @@ function parseSingleBlock(block: string): ParsedLegislativeItem | null {
     const line = lines[i].trim();
 
     // Check if this line starts an author field
-    if (/^(?:Authors?|Author|May\s+Akda|Co-Author|Pinangalawahan)\s*:/i.test(line) ||
-        /^Seconded\s+By\s*:/i.test(line) ||
-        /^Moved\s+By\s*:/i.test(line) ||
-        /^Author\(s\)\s*:/i.test(line)) {
+    if (
+      /^(?:Authors?|Author|May\s+Akda|Co-Author|Pinangalawahan)\s*:/i.test(
+        line
+      ) ||
+      /^Seconded\s+By\s*:/i.test(line) ||
+      /^Moved\s+By\s*:/i.test(line) ||
+      /^Author\(s\)\s*:/i.test(line)
+    ) {
       break;
     }
 
@@ -319,7 +334,8 @@ function parseSingleBlock(block: string): ParsedLegislativeItem | null {
   // If no authors found via Author: field, try end-of-title pattern
   // Pattern: "...). Councilor First M. Last [MM/DD/YYYY]"
   if (authors.length === 0 && co_authors.length === 0) {
-    const titleEndAuthorPattern = /(?:Councilor|Councilwoman|Honorable|Vice\s+Mayor|Konsehal)\s+([A-Z][a-z]+(?:\s+[A-Z]\.?\s*)?[A-Z][a-z]+(?:\s+[A-Z]\.?)?(?:\s+[A-Z][a-z]+)?)(?:\s+\d{1,2}[/-]\d{1,2}[/-]\d{2,4})?\s*$/i;
+    const titleEndAuthorPattern =
+      /(?:Councilor|Councilwoman|Honorable|Vice\s+Mayor|Konsehal)\s+([A-Z][a-z]+(?:\s+[A-Z]\.?\s*)?[A-Z][a-z]+(?:\s+[A-Z]\.?)?(?:\s+[A-Z][a-z]+)?)(?:\s+\d{1,2}[/-]\d{1,2}[/-]\d{2,4})?\s*$/i;
     const endMatch = fullText.match(titleEndAuthorPattern);
     if (endMatch) {
       const authorName = endMatch[1].trim();
@@ -380,7 +396,15 @@ async function matchPersonsToDatabase(
       `SELECT id, first_name, middle_name, last_name, suffix
        FROM persons
        WHERE LOWER(first_name) = LOWER(?1) AND LOWER(last_name) = LOWER(?2)`
-    ).bind(firstName, lastName).first<{ id: string; first_name: string; middle_name: string | null; last_name: string; suffix: string | null }>();
+    )
+      .bind(firstName, lastName)
+      .first<{
+        id: string;
+        first_name: string;
+        middle_name: string | null;
+        last_name: string;
+        suffix: string | null;
+      }>();
 
     // If no exact match, try fuzzy search
     if (!match) {
@@ -389,7 +413,15 @@ async function matchPersonsToDatabase(
          FROM persons
          WHERE LOWER(first_name) LIKE LOWER(?1) OR LOWER(last_name) LIKE LOWER(?2)
          LIMIT 1`
-      ).bind(`${firstName}%`, `${lastName}%`).first<{ id: string; first_name: string; middle_name: string | null; last_name: string; suffix: string | null }>();
+      )
+        .bind(`${firstName}%`, `${lastName}%`)
+        .first<{
+          id: string;
+          first_name: string;
+          middle_name: string | null;
+          last_name: string;
+          suffix: string | null;
+        }>();
     }
 
     // If still no match, try searching full name
@@ -399,7 +431,15 @@ async function matchPersonsToDatabase(
          FROM persons
          WHERE first_name || ' ' || last_name LIKE ?1
          LIMIT 1`
-      ).bind(`%${cleanedName}%`).first<{ id: string; first_name: string; middle_name: string | null; last_name: string; suffix: string | null }>();
+      )
+        .bind(`%${cleanedName}%`)
+        .first<{
+          id: string;
+          first_name: string;
+          middle_name: string | null;
+          last_name: string;
+          suffix: string | null;
+        }>();
     }
 
     if (match) {
@@ -456,7 +496,10 @@ async function handleParseLegislativePost(context: {
     }
 
     // Match names to database persons
-    const matchedPersonsMap = await matchPersonsToDatabase(Array.from(allNames), env);
+    const matchedPersonsMap = await matchPersonsToDatabase(
+      Array.from(allNames),
+      env
+    );
 
     // Convert Map to object for JSON serialization
     const matched_persons: { [raw_name: string]: MatchedPerson | null } = {};
@@ -472,13 +515,13 @@ async function handleParseLegislativePost(context: {
     } satisfies ParseLegislativePostResponse);
   } catch (error) {
     console.error('Error parsing legislative post:', error);
-    return Response.json({ error: 'Failed to parse legislative post' }, { status: 500 });
+    return Response.json(
+      { error: 'Failed to parse legislative post' },
+      { status: 500 }
+    );
   }
 }
 
-export async function onRequestPost(context: {
-  request: Request;
-  env: Env;
-}) {
+export async function onRequestPost(context: { request: Request; env: Env }) {
   return withAuth(handleParseLegislativePost)(context);
 }

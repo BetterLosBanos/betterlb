@@ -2,7 +2,6 @@
  * POST /api/admin/auth/logout
  * Logout and clear session
  */
-
 import { Env } from '../../../types';
 
 export async function onRequestPost(context: { request: Request; env: Env }) {
@@ -22,8 +21,9 @@ export async function onRequestPost(context: { request: Request; env: Env }) {
   return new Response(null, {
     status: 302,
     headers: {
-      'Location': `${url.origin}/admin`,
-      'Set-Cookie': 'admin_session=; Path=/; HttpOnly; Secure; SameSite=Lax; Max-Age=0',
+      Location: `${url.origin}/admin`,
+      'Set-Cookie':
+        'admin_session=; Path=/; HttpOnly; Secure; SameSite=Lax; Max-Age=0',
     },
   });
 }
@@ -33,9 +33,12 @@ function parseCookies(cookieHeader: string | null): Record<string, string> {
     return {};
   }
 
-  return cookieHeader.split('; ').reduce((acc, cookie) => {
-    const [name, value] = cookie.split('=');
-    acc[name] = value;
-    return acc;
-  }, {} as Record<string, string>);
+  return cookieHeader.split('; ').reduce(
+    (acc, cookie) => {
+      const [name, value] = cookie.split('=');
+      acc[name] = value;
+      return acc;
+    },
+    {} as Record<string, string>
+  );
 }

@@ -2,7 +2,6 @@
  * GET /api/admin/auth/google/login
  * Redirect to Google OAuth
  */
-
 import { Env } from '../../../types';
 
 export async function onRequestGet(context: { request: Request; env: Env }) {
@@ -12,13 +11,18 @@ export async function onRequestGet(context: { request: Request; env: Env }) {
   const state = crypto.randomUUID();
 
   // Store state in KV for validation later (5 minute expiry)
-  await env.WEATHER_KV.put(`oauth_state:${state}`, JSON.stringify({
-    created_at: Date.now(),
-    provider: 'google',
-  }), { expirationTtl: 300 });
+  await env.WEATHER_KV.put(
+    `oauth_state:${state}`,
+    JSON.stringify({
+      created_at: Date.now(),
+      provider: 'google',
+    }),
+    { expirationTtl: 300 }
+  );
 
   // Get redirect URI from env or construct from request
-  const redirectUri = env.GOOGLE_REDIRECT_URI ||
+  const redirectUri =
+    env.GOOGLE_REDIRECT_URI ||
     `${new URL(context.request.url).origin}/api/admin/auth-google/callback`;
 
   // Construct Google OAuth URL

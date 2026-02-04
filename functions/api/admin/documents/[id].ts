@@ -3,9 +3,8 @@
  * GET /api/admin/documents/:id - Get document details for editing
  * PATCH /api/admin/documents/:id - Update document data
  */
-
 import { Env } from '../../../types';
-import { withAuth, AuthContext } from '../../../utils/admin-auth';
+import { AuthContext, withAuth } from '../../../utils/admin-auth';
 
 interface Person {
   id: string;
@@ -47,7 +46,7 @@ async function handlePatchDocument(context: {
   }
 
   try {
-    const body = await request.json() as DocumentUpdateData;
+    const body = (await request.json()) as DocumentUpdateData;
 
     // Update main document fields
     const updateFields: string[] = [];
@@ -102,7 +101,9 @@ async function handlePatchDocument(context: {
         WHERE id = ?${paramIndex}
       `;
 
-      await env.BETTERLB_DB.prepare(updateSql).bind(...updateValues).run();
+      await env.BETTERLB_DB.prepare(updateSql)
+        .bind(...updateValues)
+        .run();
     }
 
     // Update authors if provided
@@ -110,7 +111,9 @@ async function handlePatchDocument(context: {
       // Delete existing authors
       await env.BETTERLB_DB.prepare(
         `DELETE FROM document_authors WHERE document_id = ?1`
-      ).bind(documentId).run();
+      )
+        .bind(documentId)
+        .run();
 
       // Add new authors
       for (const author of body.authors) {
@@ -121,7 +124,9 @@ async function handlePatchDocument(context: {
           // Try to find existing person
           const existingPerson = await env.BETTERLB_DB.prepare(
             `SELECT id FROM persons WHERE first_name = ?1 AND last_name = ?2`
-          ).bind(author.first_name, author.last_name).first();
+          )
+            .bind(author.first_name, author.last_name)
+            .first();
 
           if (existingPerson) {
             personId = existingPerson.id;
@@ -130,14 +135,23 @@ async function handlePatchDocument(context: {
             personId = `person_${Date.now()}_${Math.random().toString(36).substr(2, 9)}`;
             await env.BETTERLB_DB.prepare(
               `INSERT INTO persons (id, first_name, middle_name, last_name) VALUES (?1, ?2, ?3, ?4)`
-            ).bind(personId, author.first_name, author.middle_name || null, author.last_name).run();
+            )
+              .bind(
+                personId,
+                author.first_name,
+                author.middle_name || null,
+                author.last_name
+              )
+              .run();
           }
         }
 
         // Add document-author relationship
         await env.BETTERLB_DB.prepare(
           `INSERT OR IGNORE INTO document_authors (document_id, person_id) VALUES (?1, ?2)`
-        ).bind(documentId, personId).run();
+        )
+          .bind(documentId, personId)
+          .run();
       }
     }
 
@@ -146,34 +160,44 @@ async function handlePatchDocument(context: {
       // Delete existing subjects
       await env.BETTERLB_DB.prepare(
         `DELETE FROM document_subjects WHERE document_id = ?1`
-      ).bind(documentId).run();
+      )
+        .bind(documentId)
+        .run();
 
       // Add new subjects
       for (const subjectName of body.subjects) {
         // Find or create subject
         let subject = await env.BETTERLB_DB.prepare(
           `SELECT id FROM subjects WHERE name = ?1`
-        ).bind(subjectName).first();
+        )
+          .bind(subjectName)
+          .first();
 
         if (!subject) {
           const subjectId = `subject_${Date.now()}_${Math.random().toString(36).substr(2, 9)}`;
           await env.BETTERLB_DB.prepare(
             `INSERT INTO subjects (id, name) VALUES (?1, ?2)`
-          ).bind(subjectId, subjectName).run();
+          )
+            .bind(subjectId, subjectName)
+            .run();
           subject = { id: subjectId };
         }
 
         // Add document-subject relationship
         await env.BETTERLB_DB.prepare(
           `INSERT OR IGNORE INTO document_subjects (document_id, subject_id) VALUES (?1, ?2)`
-        ).bind(documentId, subject.id).run();
+        )
+          .bind(documentId, subject.id)
+          .run();
       }
     }
 
     // Fetch and return updated document
     const doc = await env.BETTERLB_DB.prepare(
       `SELECT * FROM documents WHERE id = ?1`
-    ).bind(documentId).first<any>();
+    )
+      .bind(documentId)
+      .first<any>();
 
     return Response.json({
       success: true,
@@ -181,7 +205,10 @@ async function handlePatchDocument(context: {
     });
   } catch (error) {
     console.error('Error updating document:', error);
-    return Response.json({ error: 'Failed to update document' }, { status: 500 });
+    return Response.json(
+      { error: 'Failed to update document' },
+      { status: 500 }
+    );
   }
 }
 
@@ -215,7 +242,9 @@ async function handleGetDocument(context: {
       WHERE d.id = ?
     `;
 
-    const doc = await env.BETTERLB_DB.prepare(sql).bind(documentId).first<any>();
+    const doc = await env.BETTERLB_DB.prepare(sql)
+      .bind(documentId)
+      .first<any>();
 
     if (!doc) {
       return Response.json({ error: 'Document not found' }, { status: 404 });
@@ -228,7 +257,9 @@ async function handleGetDocument(context: {
       JOIN persons p ON da.person_id = p.id
       WHERE da.document_id = ?
     `;
-    const authorsResult = await env.BETTERLB_DB.prepare(authorsSql).bind(documentId).all();
+    const authorsResult = await env.BETTERLB_DB.prepare(authorsSql)
+      .bind(documentId)
+      .all();
     const authors = authorsResult.results.map((row: any) => ({
       id: row.id,
       first_name: row.first_name,
@@ -243,7 +274,9 @@ async function handleGetDocument(context: {
       JOIN subjects s ON ds.subject_id = s.id
       WHERE ds.document_id = ?
     `;
-    const subjectsResult = await env.BETTERLB_DB.prepare(subjectsSql).bind(documentId).all();
+    const subjectsResult = await env.BETTERLB_DB.prepare(subjectsSql)
+      .bind(documentId)
+      .all();
     const subjects = subjectsResult.results.map((row: any) => row.name);
 
     return Response.json({
@@ -269,16 +302,15 @@ async function handleGetDocument(context: {
     });
   } catch (error) {
     console.error('Error fetching document:', error);
-    return Response.json({ error: 'Failed to fetch document' }, { status: 500 });
+    return Response.json(
+      { error: 'Failed to fetch document' },
+      { status: 500 }
+    );
   }
 }
 
-export const onRequestGet = (context: {
-  request: Request;
-  env: Env;
-}) => withAuth(handleGetDocument as any)(context as any);
+export const onRequestGet = (context: { request: Request; env: Env }) =>
+  withAuth(handleGetDocument as any)(context as any);
 
-export const onRequestPatch = (context: {
-  request: Request;
-  env: Env;
-}) => withAuth(handlePatchDocument as any)(context as any);
+export const onRequestPatch = (context: { request: Request; env: Env }) =>
+  withAuth(handlePatchDocument as any)(context as any);

@@ -3,9 +3,8 @@
  * GET /api/admin/review-queue - List items needing review
  * POST /api/admin/review-queue - Add new item to review queue
  */
-
 import { Env } from '../../../types';
-import { withAuth, AuthContext } from '../../../utils/admin-auth';
+import { AuthContext, withAuth } from '../../../utils/admin-auth';
 
 type ReviewStatus = 'pending' | 'in_progress' | 'resolved' | 'skipped';
 type ItemType = 'document' | 'session' | 'attendance';
@@ -50,7 +49,11 @@ interface ReviewQueueResponse {
  * - limit: number (default 20)
  * - offset: number (default 0)
  */
-async function handleGetReviewQueue(context: { request: Request; env: Env; auth: AuthContext }) {
+async function handleGetReviewQueue(context: {
+  request: Request;
+  env: Env;
+  auth: AuthContext;
+}) {
   const { request, env } = context;
   const url = new URL(request.url);
 
@@ -75,12 +78,18 @@ async function handleGetReviewQueue(context: { request: Request; env: Env; auth:
   const params: string[] = [];
   let paramIndex = 1;
 
-  if (statusFilter && ['pending', 'in_progress', 'resolved', 'skipped'].includes(statusFilter)) {
+  if (
+    statusFilter &&
+    ['pending', 'in_progress', 'resolved', 'skipped'].includes(statusFilter)
+  ) {
     sql += ` AND rq.status = ?${paramIndex++}`;
     params.push(statusFilter);
   }
 
-  if (itemTypeFilter && ['document', 'session', 'attendance'].includes(itemTypeFilter)) {
+  if (
+    itemTypeFilter &&
+    ['document', 'session', 'attendance'].includes(itemTypeFilter)
+  ) {
     sql += ` AND rq.item_type = ?${paramIndex++}`;
     params.push(itemTypeFilter);
   }
@@ -89,7 +98,9 @@ async function handleGetReviewQueue(context: { request: Request; env: Env; auth:
   params.push(limit.toString(), offset.toString());
 
   try {
-    const result = await env.BETTERLB_DB.prepare(sql).bind(...params).all();
+    const result = await env.BETTERLB_DB.prepare(sql)
+      .bind(...params)
+      .all();
 
     // Get count for pagination
     let countSql = 'SELECT COUNT(*) as count FROM review_queue WHERE 1=1';
@@ -105,7 +116,9 @@ async function handleGetReviewQueue(context: { request: Request; env: Env; auth:
       countParams.push(itemTypeFilter);
     }
 
-    const countResult = await env.BETTERLB_DB.prepare(countSql).bind(...countParams).first<{ count: number }>();
+    const countResult = await env.BETTERLB_DB.prepare(countSql)
+      .bind(...countParams)
+      .first<{ count: number }>();
     const total = countResult?.count || 0;
 
     // Format results
@@ -122,13 +135,15 @@ async function handleGetReviewQueue(context: { request: Request; env: Env; auth:
       resolution: row.resolution,
       created_at: row.created_at,
       resolved_at: row.resolved_at,
-      document: row.doc_id ? {
-        id: row.doc_id,
-        type: row.doc_type,
-        number: row.doc_number,
-        title: row.doc_title,
-        pdf_url: row.doc_pdf_url,
-      } : undefined,
+      document: row.doc_id
+        ? {
+            id: row.doc_id,
+            type: row.doc_type,
+            number: row.doc_number,
+            title: row.doc_title,
+            pdf_url: row.doc_pdf_url,
+          }
+        : undefined,
     }));
 
     return Response.json({
@@ -142,7 +157,10 @@ async function handleGetReviewQueue(context: { request: Request; env: Env; auth:
     } as ReviewQueueResponse);
   } catch (error) {
     console.error('Error fetching review queue:', error);
-    return Response.json({ error: 'Failed to fetch review queue' }, { status: 500 });
+    return Response.json(
+      { error: 'Failed to fetch review queue' },
+      { status: 500 }
+    );
   }
 }
 
@@ -150,12 +168,23 @@ async function handleGetReviewQueue(context: { request: Request; env: Env; auth:
  * POST /api/admin/review-queue
  * Add a new item to the review queue
  */
-async function createReviewItem(context: { request: Request; env: Env; auth: AuthContext }) {
+async function createReviewItem(context: {
+  request: Request;
+  env: Env;
+  auth: AuthContext;
+}) {
   const { request, env, auth } = context;
 
   try {
     const body = await request.json();
-    const { item_type, item_id, issue_type, description, source_type, source_url } = body as {
+    const {
+      item_type,
+      item_id,
+      issue_type,
+      description,
+      source_type,
+      source_url,
+    } = body as {
       item_type: ItemType;
       item_id: string;
       issue_type: string;
@@ -175,7 +204,10 @@ async function createReviewItem(context: { request: Request; env: Env; auth: Aut
     // Validate item_type
     if (!['document', 'session', 'attendance'].includes(item_type)) {
       return Response.json(
-        { error: 'Invalid item_type. Must be one of: document, session, attendance' },
+        {
+          error:
+            'Invalid item_type. Must be one of: document, session, attendance',
+        },
         { status: 400 }
       );
     }
@@ -183,11 +215,16 @@ async function createReviewItem(context: { request: Request; env: Env; auth: Aut
     // Check if item already exists in review queue
     const existing = await env.BETTERLB_DB.prepare(
       `SELECT id FROM review_queue WHERE item_id = ?1 AND item_type = ?2`
-    ).bind(item_id, item_type).first();
+    )
+      .bind(item_id, item_type)
+      .first();
 
     if (existing) {
       return Response.json(
-        { error: 'Item already exists in review queue', existing_id: existing.id },
+        {
+          error: 'Item already exists in review queue',
+          existing_id: existing.id,
+        },
         { status: 409 }
       );
     }
@@ -202,31 +239,41 @@ async function createReviewItem(context: { request: Request; env: Env; auth: Aut
         source_type, source_url, status, assigned_to,
         created_by, created_at
       ) VALUES (?1, ?2, ?3, ?4, ?5, ?6, ?7, ?8, ?9, ?10, datetime('now'))`
-    ).bind(
-      reviewItemId,
-      item_type,
-      item_id,
-      issue_type,
-      description || null,
-      source_type || 'manual',
-      source_url || null,
-      'pending',
-      auth.user.login,
-      auth.user.login
-    ).run();
+    )
+      .bind(
+        reviewItemId,
+        item_type,
+        item_id,
+        issue_type,
+        description || null,
+        source_type || 'manual',
+        source_url || null,
+        'pending',
+        auth.user.login,
+        auth.user.login
+      )
+      .run();
 
     // Fetch and return the created item
     const newItem = await env.BETTERLB_DB.prepare(
       `SELECT * FROM review_queue WHERE id = ?1`
-    ).bind(reviewItemId).first();
+    )
+      .bind(reviewItemId)
+      .first();
 
-    return Response.json({
-      success: true,
-      item: newItem,
-    }, { status: 201 });
+    return Response.json(
+      {
+        success: true,
+        item: newItem,
+      },
+      { status: 201 }
+    );
   } catch (error) {
     console.error('Error creating review item:', error);
-    return Response.json({ error: 'Failed to create review item' }, { status: 500 });
+    return Response.json(
+      { error: 'Failed to create review item' },
+      { status: 500 }
+    );
   }
 }
 

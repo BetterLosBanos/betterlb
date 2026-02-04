@@ -4,9 +4,8 @@
  * POST /api/admin/persons-deletion-queue/restore - Restore a soft-deleted person
  * POST /api/admin/persons-deletion-queue/permanent-delete - Permanently delete a person
  */
-
 import { Env } from '../../types';
-import { withAuth, AuthContext } from '../../utils/admin-auth';
+import { AuthContext, withAuth } from '../../utils/admin-auth';
 
 interface Person {
   id: string;
@@ -50,9 +49,12 @@ async function handleGetQueue(context: {
 
     const results = await env.BETTERLB_DB.prepare(sql).bind(limit).all();
 
-    const persons: Array<Person & { full_name: string; deleted_by?: string }> = [];
+    const persons: Array<Person & { full_name: string; deleted_by?: string }> =
+      [];
 
-    for (const row of results.results as Array<typeof results.results extends (infer T)[] ? T : never>) {
+    for (const row of results.results as Array<
+      typeof results.results extends (infer T)[] ? T : never
+    >) {
       const parts = [row.first_name, row.middle_name, row.last_name];
       if (row.suffix) parts.push(row.suffix);
       persons.push({
@@ -70,7 +72,10 @@ async function handleGetQueue(context: {
     return Response.json({ persons } satisfies QueueResponse);
   } catch (error) {
     console.error('Error fetching deletion queue:', error);
-    return Response.json({ error: 'Failed to fetch deletion queue' }, { status: 500 });
+    return Response.json(
+      { error: 'Failed to fetch deletion queue' },
+      { status: 500 }
+    );
   }
 }
 
@@ -90,7 +95,7 @@ async function handleRestore(context: {
   const { request, env, auth } = context;
 
   try {
-    const body = await request.json() as RestoreRequest;
+    const body = (await request.json()) as RestoreRequest;
     const { person_id } = body;
 
     if (!person_id) {
@@ -100,35 +105,47 @@ async function handleRestore(context: {
     // Check if person exists and is soft-deleted
     const person = await env.BETTERLB_DB.prepare(
       `SELECT id, deleted_at FROM persons WHERE id = ?1`
-    ).bind(person_id).first();
+    )
+      .bind(person_id)
+      .first();
 
     if (!person) {
       return Response.json({ error: 'Person not found' }, { status: 404 });
     }
 
     if (!person.deleted_at) {
-      return Response.json({ error: 'Person is not flagged for deletion' }, { status: 400 });
+      return Response.json(
+        { error: 'Person is not flagged for deletion' },
+        { status: 400 }
+      );
     }
 
     // Restore the person
     await env.BETTERLB_DB.prepare(
       `UPDATE persons SET deleted_at = NULL WHERE id = ?1`
-    ).bind(person_id).run();
+    )
+      .bind(person_id)
+      .run();
 
     // Log the action
     await env.BETTERLB_DB.prepare(
       `INSERT INTO admin_audit_log (action, performed_by, target_type, target_id, details, created_at)
        VALUES ('restore_person', ?1, 'person', ?2, ?3, datetime('now'))`
-    ).bind(
-      auth.user.login,
-      person_id,
-      JSON.stringify({ restored_at: new Date().toISOString() })
-    ).run();
+    )
+      .bind(
+        auth.user.login,
+        person_id,
+        JSON.stringify({ restored_at: new Date().toISOString() })
+      )
+      .run();
 
     return Response.json({ success: true });
   } catch (error) {
     console.error('Error restoring person:', error);
-    return Response.json({ error: 'Failed to restore person' }, { status: 500 });
+    return Response.json(
+      { error: 'Failed to restore person' },
+      { status: 500 }
+    );
   }
 }
 
@@ -148,7 +165,7 @@ async function handlePermanentDelete(context: {
   const { request, env, auth } = context;
 
   try {
-    const body = await request.json() as PermanentDeleteRequest;
+    const body = (await request.json()) as PermanentDeleteRequest;
     const { person_id } = body;
 
     if (!person_id) {
@@ -158,7 +175,9 @@ async function handlePermanentDelete(context: {
     // Check if person exists
     const person = await env.BETTERLB_DB.prepare(
       `SELECT id FROM persons WHERE id = ?1`
-    ).bind(person_id).first();
+    )
+      .bind(person_id)
+      .first();
 
     if (!person) {
       return Response.json({ error: 'Person not found' }, { status: 404 });
@@ -167,41 +186,53 @@ async function handlePermanentDelete(context: {
     // Check for remaining references
     const memberCount = await env.BETTERLB_DB.prepare(
       `SELECT COUNT(*) as count FROM memberships WHERE person_id = ?1`
-    ).bind(person_id).first<{ count: number }>();
+    )
+      .bind(person_id)
+      .first<{ count: number }>();
 
     const authorCount = await env.BETTERLB_DB.prepare(
       `SELECT COUNT(*) as count FROM document_authors WHERE person_id = ?1`
-    ).bind(person_id).first<{ count: number }>();
+    )
+      .bind(person_id)
+      .first<{ count: number }>();
 
     if ((memberCount?.count || 0) > 0 || (authorCount?.count || 0) > 0) {
-      return Response.json({
-        error: 'Cannot delete person with remaining references',
-        details: {
-          memberships: memberCount?.count || 0,
-          document_authors: authorCount?.count || 0,
-        }
-      }, { status: 400 });
+      return Response.json(
+        {
+          error: 'Cannot delete person with remaining references',
+          details: {
+            memberships: memberCount?.count || 0,
+            document_authors: authorCount?.count || 0,
+          },
+        },
+        { status: 400 }
+      );
     }
 
     // Permanently delete the person
-    await env.BETTERLB_DB.prepare(
-      `DELETE FROM persons WHERE id = ?1`
-    ).bind(person_id).run();
+    await env.BETTERLB_DB.prepare(`DELETE FROM persons WHERE id = ?1`)
+      .bind(person_id)
+      .run();
 
     // Log the action
     await env.BETTERLB_DB.prepare(
       `INSERT INTO admin_audit_log (action, performed_by, target_type, target_id, details, created_at)
        VALUES ('permanent_delete_person', ?1, 'person', ?2, ?3, datetime('now'))`
-    ).bind(
-      auth.user.login,
-      person_id,
-      JSON.stringify({ deleted_at: new Date().toISOString() })
-    ).run();
+    )
+      .bind(
+        auth.user.login,
+        person_id,
+        JSON.stringify({ deleted_at: new Date().toISOString() })
+      )
+      .run();
 
     return Response.json({ success: true });
   } catch (error) {
     console.error('Error permanently deleting person:', error);
-    return Response.json({ error: 'Failed to permanently delete person' }, { status: 500 });
+    return Response.json(
+      { error: 'Failed to permanently delete person' },
+      { status: 500 }
+    );
   }
 }
 
@@ -221,7 +252,7 @@ async function handleBulkRestore(context: {
   const { request, env, auth } = context;
 
   try {
-    const body = await request.json() as BulkRestoreRequest;
+    const body = (await request.json()) as BulkRestoreRequest;
     const { person_ids } = body;
 
     if (!person_ids || person_ids.length === 0) {
@@ -233,7 +264,9 @@ async function handleBulkRestore(context: {
     for (const person_id of person_ids) {
       await env.BETTERLB_DB.prepare(
         `UPDATE persons SET deleted_at = NULL WHERE id = ?1 AND deleted_at IS NOT NULL`
-      ).bind(person_id).run();
+      )
+        .bind(person_id)
+        .run();
 
       restoredCount++;
     }
@@ -242,16 +275,21 @@ async function handleBulkRestore(context: {
     await env.BETTERLB_DB.prepare(
       `INSERT INTO admin_audit_log (action, performed_by, target_type, target_id, details, created_at)
        VALUES ('bulk_restore_persons', ?1, 'person', ?2, ?3, datetime('now'))`
-    ).bind(
-      auth.user.login,
-      'bulk',
-      JSON.stringify({ restored_count: restoredCount, ids: person_ids })
-    ).run();
+    )
+      .bind(
+        auth.user.login,
+        'bulk',
+        JSON.stringify({ restored_count: restoredCount, ids: person_ids })
+      )
+      .run();
 
     return Response.json({ success: true, restored_count: restoredCount });
   } catch (error) {
     console.error('Error bulk restoring persons:', error);
-    return Response.json({ error: 'Failed to bulk restore persons' }, { status: 500 });
+    return Response.json(
+      { error: 'Failed to bulk restore persons' },
+      { status: 500 }
+    );
   }
 }
 
@@ -271,7 +309,7 @@ async function handleBulkPermanentDelete(context: {
   const { request, env, auth } = context;
 
   try {
-    const body = await request.json() as BulkPermanentDeleteRequest;
+    const body = (await request.json()) as BulkPermanentDeleteRequest;
     const { person_ids } = body;
 
     if (!person_ids || person_ids.length === 0) {
@@ -285,11 +323,15 @@ async function handleBulkPermanentDelete(context: {
       // Check for remaining references
       const memberCount = await env.BETTERLB_DB.prepare(
         `SELECT COUNT(*) as count FROM memberships WHERE person_id = ?1`
-      ).bind(person_id).first<{ count: number }>();
+      )
+        .bind(person_id)
+        .first<{ count: number }>();
 
       const authorCount = await env.BETTERLB_DB.prepare(
         `SELECT COUNT(*) as count FROM document_authors WHERE person_id = ?1`
-      ).bind(person_id).first<{ count: number }>();
+      )
+        .bind(person_id)
+        .first<{ count: number }>();
 
       if ((memberCount?.count || 0) > 0 || (authorCount?.count || 0) > 0) {
         errors.push({
@@ -300,9 +342,9 @@ async function handleBulkPermanentDelete(context: {
       }
 
       // Permanently delete the person
-      await env.BETTERLB_DB.prepare(
-        `DELETE FROM persons WHERE id = ?1`
-      ).bind(person_id).run();
+      await env.BETTERLB_DB.prepare(`DELETE FROM persons WHERE id = ?1`)
+        .bind(person_id)
+        .run();
 
       deletedCount++;
     }
@@ -311,11 +353,13 @@ async function handleBulkPermanentDelete(context: {
     await env.BETTERLB_DB.prepare(
       `INSERT INTO admin_audit_log (action, performed_by, target_type, target_id, details, created_at)
        VALUES ('bulk_permanent_delete_persons', ?1, 'person', ?2, ?3, datetime('now'))`
-    ).bind(
-      auth.user.login,
-      'bulk',
-      JSON.stringify({ deleted_count: deletedCount, errors, ids: person_ids })
-    ).run();
+    )
+      .bind(
+        auth.user.login,
+        'bulk',
+        JSON.stringify({ deleted_count: deletedCount, errors, ids: person_ids })
+      )
+      .run();
 
     return Response.json({
       success: true,
@@ -325,12 +369,15 @@ async function handleBulkPermanentDelete(context: {
     });
   } catch (error) {
     console.error('Error bulk permanently deleting persons:', error);
-    return Response.json({ error: 'Failed to bulk permanently delete persons' }, { status: 500 });
+    return Response.json(
+      { error: 'Failed to bulk permanently delete persons' },
+      { status: 500 }
+    );
   }
 }
 
 export const onRequestGet = withAuth(handleGetQueue);
-export const onRequestPost = withAuth(async (context) => {
+export const onRequestPost = withAuth(async context => {
   const { request } = context;
   const url = new URL(request.url);
   const action = url.searchParams.get('action');

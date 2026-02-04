@@ -3,11 +3,14 @@
  * GET /api/legislation/persons - List all persons
  * GET /api/legislation/persons/:id - Get person details with memberships
  */
-
 import { Env } from '../../types';
 import { cachedJson } from '../../utils/cache';
-import { createKVCache, CACHE_TTL } from '../../utils/kv-cache';
-import { checkRateLimit, getClientIdentifier, createRateLimitResponse } from '../../utils/rate-limit';
+import { CACHE_TTL, createKVCache } from '../../utils/kv-cache';
+import {
+  checkRateLimit,
+  createRateLimitResponse,
+  getClientIdentifier,
+} from '../../utils/rate-limit';
 
 export async function onRequestGet(context: { request: Request; env: Env }) {
   const url = new URL(context.request.url);
@@ -63,10 +66,14 @@ async function getPersonsList(context: { request: Request; env: Env }) {
 
   // Apply rate limiting - 100 requests per minute per client
   const clientId = getClientIdentifier(request);
-  const rateLimitResult = await checkRateLimit(env.WEATHER_KV, `api:persons:${clientId}`, {
-    limit: 100,
-    window: 60
-  });
+  const rateLimitResult = await checkRateLimit(
+    env.WEATHER_KV,
+    `api:persons:${clientId}`,
+    {
+      limit: 100,
+      window: 60,
+    }
+  );
 
   if (!rateLimitResult.allowed) {
     return createRateLimitResponse(rateLimitResult);
@@ -120,7 +127,9 @@ async function getPersonsList(context: { request: Request; env: Env }) {
         sql += ' ORDER BY t.term_number DESC, p.last_name ASC LIMIT ? OFFSET ?';
         params.push(limit.toString(), offset.toString());
 
-        const result = await env.BETTERLB_DB.prepare(sql).bind(...params).all();
+        const result = await env.BETTERLB_DB.prepare(sql)
+          .bind(...params)
+          .all();
 
         // Get committee memberships for all persons
         const personIds = result.results
@@ -145,31 +154,34 @@ async function getPersonsList(context: { request: Request; env: Env }) {
         }
 
         // Group by person and structure the response
-        const personsMap = new Map<string, {
-          id: string;
-          first_name: string;
-          middle_name: string | null;
-          last_name: string;
-          suffix: string | null;
-          aliases: string[] | null;
-          memberships: Array<{
-            term_id: string;
-            chamber: string | null;
-            role: string | null;
-            rank: number | null;
-            term?: {
-              id: string;
-              term_number: number | null;
-              ordinal: number | null;
-              name: string | null;
-              year_range: string | null;
-              start_date: string | null;
-              end_date: string | null;
-            };
-            committees: Array<{ id: string; role: string }>;
-          }>;
-          roles: string[];
-        }>();
+        const personsMap = new Map<
+          string,
+          {
+            id: string;
+            first_name: string;
+            middle_name: string | null;
+            last_name: string;
+            suffix: string | null;
+            aliases: string[] | null;
+            memberships: Array<{
+              term_id: string;
+              chamber: string | null;
+              role: string | null;
+              rank: number | null;
+              term?: {
+                id: string;
+                term_number: number | null;
+                ordinal: number | null;
+                name: string | null;
+                year_range: string | null;
+                start_date: string | null;
+                end_date: string | null;
+              };
+              committees: Array<{ id: string; role: string }>;
+            }>;
+            roles: string[];
+          }
+        >();
 
         for (const row of result.results) {
           const personId = row.id;
@@ -241,9 +253,10 @@ async function getPersonsList(context: { request: Request; env: Env }) {
           const person = personsMap.get(personId)!;
           for (const membership of person.memberships) {
             const termCommittees = committeeMemberships.filter(
-              (cm) => cm.person_id === personId && cm.term_id === membership.term_id
+              cm =>
+                cm.person_id === personId && cm.term_id === membership.term_id
             );
-            membership.committees = termCommittees.map((cm) => ({
+            membership.committees = termCommittees.map(cm => ({
               id: cm.committee_id,
               role: cm.committee_role,
             }));
@@ -271,7 +284,9 @@ async function getPersonsList(context: { request: Request; env: Env }) {
           countParams.push(termId);
         }
 
-        const countResult = await env.BETTERLB_DB.prepare(countSql).bind(...countParams).first<{ count: number }>();
+        const countResult = await env.BETTERLB_DB.prepare(countSql)
+          .bind(...countParams)
+          .first<{ count: number }>();
         const total = countResult?.count || 0;
 
         return {
@@ -313,7 +328,9 @@ async function getPersonDetail(context: { request: Request; env: Env }) {
       async () => {
         // Get person
         const personSql = 'SELECT * FROM persons WHERE id = ?';
-        const person = await env.BETTERLB_DB.prepare(personSql).bind(personId).first();
+        const person = await env.BETTERLB_DB.prepare(personSql)
+          .bind(personId)
+          .first();
 
         if (!person) {
           return { error: 'Person not found' };
@@ -329,7 +346,9 @@ async function getPersonDetail(context: { request: Request; env: Env }) {
           WHERE m.person_id = ?
           ORDER BY t.term_number DESC
         `;
-        const membershipsResult = await env.BETTERLB_DB.prepare(membershipsSql).bind(personId).all();
+        const membershipsResult = await env.BETTERLB_DB.prepare(membershipsSql)
+          .bind(personId)
+          .all();
 
         // Get all term IDs for batch fetching committee memberships (fixes N+1)
         const termIds = membershipsResult.results
@@ -337,12 +356,15 @@ async function getPersonDetail(context: { request: Request; env: Env }) {
           .filter(Boolean);
 
         // Fetch all committee memberships in a single query
-        const committeeMembershipsByTerm = new Map<string, Array<{
-          id: string;
-          name: string;
-          type: string;
-          role: string;
-        }>>();
+        const committeeMembershipsByTerm = new Map<
+          string,
+          Array<{
+            id: string;
+            name: string;
+            type: string;
+            role: string;
+          }>
+        >();
         if (termIds.length > 0) {
           const placeholders = termIds.map(() => '?').join(',');
           const committeeSql = `
@@ -372,7 +394,9 @@ async function getPersonDetail(context: { request: Request; env: Env }) {
             }
             // eslint-disable-next-line @typescript-eslint/no-unused-vars
             const { term_id, ...committeeData } = committeeRow;
-            committeeMembershipsByTerm.get(committeeRow.term_id)!.push(committeeData);
+            committeeMembershipsByTerm
+              .get(committeeRow.term_id)!
+              .push(committeeData);
           }
         }
 
@@ -394,7 +418,9 @@ async function getPersonDetail(context: { request: Request; env: Env }) {
           ORDER BY d.date_enacted DESC
           LIMIT 100
         `;
-        const documentsResult = await env.BETTERLB_DB.prepare(documentsSql).bind(personId).all();
+        const documentsResult = await env.BETTERLB_DB.prepare(documentsSql)
+          .bind(personId)
+          .all();
 
         // Calculate attendance stats (absences only)
         const attendanceSql = `
@@ -406,10 +432,12 @@ async function getPersonDetail(context: { request: Request; env: Env }) {
           LEFT JOIN session_absences sa ON sa.session_id = s.id AND sa.person_id = m.person_id
           WHERE m.person_id = ?
         `;
-        const attendanceResult = await env.BETTERLB_DB.prepare(attendanceSql).bind(personId).first<{
-          total_sessions: number;
-          absences: number;
-        }>();
+        const attendanceResult = await env.BETTERLB_DB.prepare(attendanceSql)
+          .bind(personId)
+          .first<{
+            total_sessions: number;
+            absences: number;
+          }>();
 
         const totalSessions = attendanceResult?.total_sessions || 0;
         const totalAbsences = attendanceResult?.absences || 0;
@@ -422,9 +450,13 @@ async function getPersonDetail(context: { request: Request; env: Env }) {
             total_sessions: totalSessions,
             absences: totalAbsences,
             present: totalSessions - totalAbsences,
-            attendance_rate: totalSessions > 0
-              ? ((totalSessions - totalAbsences) / totalSessions * 100).toFixed(1)
-              : null,
+            attendance_rate:
+              totalSessions > 0
+                ? (
+                    ((totalSessions - totalAbsences) / totalSessions) *
+                    100
+                  ).toFixed(1)
+                : null,
           },
         };
       },

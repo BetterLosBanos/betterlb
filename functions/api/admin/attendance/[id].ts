@@ -2,9 +2,8 @@
  * Admin Attendance API
  * POST /api/admin/attendance/:id - Update attendance (absences) for a session
  */
-
 import { Env } from '../../../types';
-import { withAuth, AuthContext } from '../../../utils/admin-auth';
+import { AuthContext, withAuth } from '../../../utils/admin-auth';
 
 interface UpdateAttendanceData {
   absent_person_ids: string[];
@@ -24,7 +23,7 @@ async function handleUpdateAttendance(context: {
   const sessionId = params.id;
 
   try {
-    const body = await request.json() as UpdateAttendanceData;
+    const body = (await request.json()) as UpdateAttendanceData;
     const { absent_person_ids } = body;
 
     // Validate input
@@ -39,17 +38,26 @@ async function handleUpdateAttendance(context: {
     // 1. Delete all existing absences for this session
     await env.BETTERLB_DB.prepare(
       `DELETE FROM session_absences WHERE session_id = ?1`
-    ).bind(sessionId).run();
+    )
+      .bind(sessionId)
+      .run();
 
     // 2. Insert new absences
     if (absent_person_ids.length > 0) {
       // Build INSERT statement with multiple values
-      const placeholders = absent_person_ids.map((_, index) => `(?${index * 2 + 1}, ?${index * 2 + 2})`).join(', ');
-      const values = absent_person_ids.flatMap(personId => [sessionId, personId]);
+      const placeholders = absent_person_ids
+        .map((_, index) => `(?${index * 2 + 1}, ?${index * 2 + 2})`)
+        .join(', ');
+      const values = absent_person_ids.flatMap(personId => [
+        sessionId,
+        personId,
+      ]);
 
       await env.BETTERLB_DB.prepare(
         `INSERT INTO session_absences (session_id, person_id) VALUES ${placeholders}`
-      ).bind(...values).run();
+      )
+        .bind(...values)
+        .run();
     }
 
     return Response.json({
@@ -65,7 +73,5 @@ async function handleUpdateAttendance(context: {
   }
 }
 
-export const onRequestPost = (context: {
-  request: Request;
-  env: Env;
-}) => withAuth(handleUpdateAttendance as any)(context as any); // eslint-disable-line @typescript-eslint/no-explicit-any
+export const onRequestPost = (context: { request: Request; env: Env }) =>
+  withAuth(handleUpdateAttendance as any)(context as any); // eslint-disable-line @typescript-eslint/no-explicit-any

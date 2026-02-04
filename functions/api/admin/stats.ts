@@ -2,9 +2,8 @@
  * Admin Dashboard Stats API
  * GET /api/admin/stats - Get dashboard statistics
  */
-
 import { Env } from '../../types';
-import { withAuth, AuthContext } from '../../utils/admin-auth';
+import { AuthContext, withAuth } from '../../utils/admin-auth';
 
 interface DashboardStats {
   review_queue: {
@@ -50,7 +49,12 @@ async function handleGetStats(context: {
         SUM(CASE WHEN status = 'in_progress' THEN 1 ELSE 0 END) as in_progress,
         SUM(CASE WHEN status = 'resolved' THEN 1 ELSE 0 END) as resolved
        FROM review_queue`
-    ).first<{ total: number; pending: number; in_progress: number; resolved: number }>();
+    ).first<{
+      total: number;
+      pending: number;
+      in_progress: number;
+      resolved: number;
+    }>();
 
     // Get document stats
     const documentStats = await env.BETTERLB_DB.prepare(

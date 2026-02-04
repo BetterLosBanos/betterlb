@@ -29,13 +29,16 @@ export async function checkRateLimit(
   const { limit, window } = config;
   const now = Date.now();
 
-  const record = await kv.get(key, 'json') as { count: number; resetAt: number } | null;
+  const record = (await kv.get(key, 'json')) as {
+    count: number;
+    resetAt: number;
+  } | null;
 
   // No existing record or window expired - start fresh
   if (!record || now > record.resetAt) {
     const resetAt = now + window * 1000;
     await kv.put(key, JSON.stringify({ count: 1, resetAt }), {
-      expirationTtl: window
+      expirationTtl: window,
     });
     return { allowed: true, remaining: limit - 1, resetAt };
   }
@@ -47,11 +50,19 @@ export async function checkRateLimit(
 
   // Increment counter
   const newCount = record.count + 1;
-  await kv.put(key, JSON.stringify({ count: newCount, resetAt: record.resetAt }), {
-    expirationTtl: Math.ceil((record.resetAt - now) / 1000)
-  });
+  await kv.put(
+    key,
+    JSON.stringify({ count: newCount, resetAt: record.resetAt }),
+    {
+      expirationTtl: Math.ceil((record.resetAt - now) / 1000),
+    }
+  );
 
-  return { allowed: true, remaining: limit - newCount, resetAt: record.resetAt };
+  return {
+    allowed: true,
+    remaining: limit - newCount,
+    resetAt: record.resetAt,
+  };
 }
 
 /**
@@ -66,17 +77,22 @@ export function getClientIdentifier(request: Request): string {
  * Create a 429 Too Many Requests response with proper headers
  */
 export function createRateLimitResponse(result: RateLimitResult): Response {
-  return Response.json({
-    error: 'Too many requests',
-    retryAfter: Math.ceil((result.resetAt - Date.now()) / 1000)
-  }, {
-    status: 429,
-    headers: {
-      'Content-Type': 'application/json',
-      'Retry-After': Math.ceil((result.resetAt - Date.now()) / 1000).toString(),
-      'X-RateLimit-Limit': '100',
-      'X-RateLimit-Remaining': '0',
-      'X-RateLimit-Reset': new Date(result.resetAt).toISOString()
+  return Response.json(
+    {
+      error: 'Too many requests',
+      retryAfter: Math.ceil((result.resetAt - Date.now()) / 1000),
+    },
+    {
+      status: 429,
+      headers: {
+        'Content-Type': 'application/json',
+        'Retry-After': Math.ceil(
+          (result.resetAt - Date.now()) / 1000
+        ).toString(),
+        'X-RateLimit-Limit': '100',
+        'X-RateLimit-Remaining': '0',
+        'X-RateLimit-Reset': new Date(result.resetAt).toISOString(),
+      },
     }
-  });
+  );
 }

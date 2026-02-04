@@ -2,7 +2,6 @@
  * Admin Authentication Middleware
  * Verifies admin session and authorization for protected API routes
  */
-
 import { Env } from '../types';
 
 export interface GitHubUser {
@@ -62,7 +61,10 @@ export async function verifyAdminSession(
     : [];
 
   // Always enforce authorization - empty list means NO ONE is authorized
-  if (authorizedList.length === 0 || !authorizedList.includes(session.user.login)) {
+  if (
+    authorizedList.length === 0 ||
+    !authorizedList.includes(session.user.login)
+  ) {
     throw new AuthError('User no longer authorized', 403);
   }
 
@@ -81,18 +83,21 @@ function parseCookies(cookieHeader: string | null): Record<string, string> {
     return {};
   }
 
-  return cookieHeader.split(';').reduce((acc, cookie) => {
-    const trimmed = cookie.trim();
-    const firstEq = trimmed.indexOf('=');
-    if (firstEq === -1) {
-      acc[trimmed] = '';
-    } else {
-      const name = trimmed.slice(0, firstEq);
-      const value = decodeURIComponent(trimmed.slice(firstEq + 1));
-      acc[name] = value.replace(/^"(.*)"$/, '$1');
-    }
-    return acc;
-  }, {} as Record<string, string>);
+  return cookieHeader.split(';').reduce(
+    (acc, cookie) => {
+      const trimmed = cookie.trim();
+      const firstEq = trimmed.indexOf('=');
+      if (firstEq === -1) {
+        acc[trimmed] = '';
+      } else {
+        const name = trimmed.slice(0, firstEq);
+        const value = decodeURIComponent(trimmed.slice(firstEq + 1));
+        acc[name] = value.replace(/^"(.*)"$/, '$1');
+      }
+      return acc;
+    },
+    {} as Record<string, string>
+  );
 }
 
 /**
@@ -130,10 +135,7 @@ export function withAuth<T extends { request: Request; env: Env }>(
         );
       }
       console.error('Auth middleware error:', error);
-      return Response.json(
-        { error: 'Authentication failed' },
-        { status: 500 }
-      );
+      return Response.json({ error: 'Authentication failed' }, { status: 500 });
     }
   };
 }

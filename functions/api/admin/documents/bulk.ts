@@ -2,9 +2,8 @@
  * Admin Documents Bulk API
  * POST /api/admin/documents/bulk - Bulk create documents with authors
  */
-
 import { Env } from '../../../types';
-import { withAuth, AuthContext } from '../../../utils/admin-auth';
+import { AuthContext, withAuth } from '../../../utils/admin-auth';
 
 /**
  * Bulk Create Request Interface
@@ -16,8 +15,8 @@ interface BulkCreateRequest {
     number: string;
     title: string;
     authors: Array<{ person_id: string; is_new?: boolean; name?: string }>;
-    seconded_by?: string;  // person_id or null
-    moved_by?: string;     // person_id or null
+    seconded_by?: string; // person_id or null
+    moved_by?: string; // person_id or null
   }>;
   skip_duplicates?: boolean; // If true, skip duplicates instead of erroring
 }
@@ -67,7 +66,7 @@ async function handleBulkCreateDocuments(context: {
   const { request, env } = context;
 
   try {
-    const body = await request.json() as BulkCreateRequest;
+    const body = (await request.json()) as BulkCreateRequest;
 
     if (!body.session_id || !body.documents || body.documents.length === 0) {
       return Response.json(
@@ -91,7 +90,10 @@ async function handleBulkCreateDocuments(context: {
       try {
         // Validate required fields
         if (!doc.type || !doc.number || !doc.title) {
-          errors.push({ index: i, message: 'Missing required fields: type, number, title' });
+          errors.push({
+            index: i,
+            message: 'Missing required fields: type, number, title',
+          });
           continue;
         }
 
@@ -99,7 +101,9 @@ async function handleBulkCreateDocuments(context: {
         const existing = await env.BETTERLB_DB.prepare(
           `SELECT id, type, number, title, date_enacted, status, session_id
              FROM documents WHERE number = ?1`
-        ).bind(doc.number).first<Omit<ExistingDocument, 'authors'>>();
+        )
+          .bind(doc.number)
+          .first<Omit<ExistingDocument, 'authors'>>();
 
         if (existing) {
           // Fetch authors for the existing document
@@ -109,7 +113,9 @@ async function handleBulkCreateDocuments(context: {
              FROM document_authors da
              JOIN persons p ON da.person_id = p.id
              WHERE da.document_id = ?1`
-          ).bind(existing.id).all<DocumentAuthor>();
+          )
+            .bind(existing.id)
+            .all<DocumentAuthor>();
 
           const existingWithAuthors: ExistingDocument = {
             ...existing,
@@ -129,7 +135,10 @@ async function handleBulkCreateDocuments(context: {
 
           // If skip_duplicates is true, don't add to errors
           if (!body.skip_duplicates) {
-            errors.push({ index: i, message: `Document ${doc.number} already exists` });
+            errors.push({
+              index: i,
+              message: `Document ${doc.number} already exists`,
+            });
           }
           continue;
         }
@@ -141,18 +150,20 @@ async function handleBulkCreateDocuments(context: {
         await env.BETTERLB_DB.prepare(
           `INSERT INTO documents (id, type, number, title, session_id, status, source_type, moved_by, seconded_by, processed)
            VALUES (?1, ?2, ?3, ?4, ?5, ?6, ?7, ?8, ?9, ?10)`
-        ).bind(
-          documentId,
-          doc.type,
-          doc.number,
-          doc.title,
-          body.session_id,
-          'pending',
-          'facebook',
-          doc.moved_by || null,
-          doc.seconded_by || null,
-          0
-        ).run();
+        )
+          .bind(
+            documentId,
+            doc.type,
+            doc.number,
+            doc.title,
+            body.session_id,
+            'pending',
+            'facebook',
+            doc.moved_by || null,
+            doc.seconded_by || null,
+            0
+          )
+          .run();
 
         // Insert authors
         if (doc.authors && doc.authors.length > 0) {
@@ -161,7 +172,9 @@ async function handleBulkCreateDocuments(context: {
               await env.BETTERLB_DB.prepare(
                 `INSERT INTO document_authors (document_id, person_id, author_type)
                  VALUES (?1, ?2, ?3)`
-              ).bind(documentId, author.person_id, 'primary').run();
+              )
+                .bind(documentId, author.person_id, 'primary')
+                .run();
             }
           }
         }
@@ -169,7 +182,10 @@ async function handleBulkCreateDocuments(context: {
         created.push({ document_id: documentId, number: doc.number });
       } catch (error) {
         console.error(`Error creating document at index ${i}:`, error);
-        errors.push({ index: i, message: error instanceof Error ? error.message : 'Unknown error' });
+        errors.push({
+          index: i,
+          message: error instanceof Error ? error.message : 'Unknown error',
+        });
       }
     }
 
@@ -181,7 +197,10 @@ async function handleBulkCreateDocuments(context: {
     } satisfies BulkCreateResponse);
   } catch (error) {
     console.error('Error in bulk create:', error);
-    return Response.json({ error: 'Failed to bulk create documents' }, { status: 500 });
+    return Response.json(
+      { error: 'Failed to bulk create documents' },
+      { status: 500 }
+    );
   }
 }
 

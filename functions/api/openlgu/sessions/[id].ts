@@ -2,7 +2,6 @@
  * Legislation Session Detail API
  * GET /api/legislation/sessions/:id - Get session details with attendance
  */
-
 import { Env } from '../../../types';
 
 interface Session {
@@ -22,7 +21,9 @@ export async function onRequestGet(context: { request: Request; env: Env }) {
 
   // Get session
   const sessionSql = 'SELECT * FROM sessions WHERE id = ?';
-  const session = await env.BETTERLB_DB.prepare(sessionSql).bind(sessionId).first<Session>();
+  const session = await env.BETTERLB_DB.prepare(sessionSql)
+    .bind(sessionId)
+    .first<Session>();
 
   if (!session) {
     return Response.json({ error: 'Session not found' }, { status: 404 });
@@ -36,7 +37,9 @@ export async function onRequestGet(context: { request: Request; env: Env }) {
     WHERE m.term_id = ?
     ORDER BY m.rank ASC, p.last_name ASC
   `;
-  const membersResult = await env.BETTERLB_DB.prepare(membersSql).bind(session.term_id).all();
+  const membersResult = await env.BETTERLB_DB.prepare(membersSql)
+    .bind(session.term_id)
+    .all();
 
   // Get absences for this session
   const absencesSql = `
@@ -44,8 +47,12 @@ export async function onRequestGet(context: { request: Request; env: Env }) {
     FROM session_absences
     WHERE session_id = ?
   `;
-  const absencesResult = await env.BETTERLB_DB.prepare(absencesSql).bind(sessionId).all();
-  const absentIds = new Set(absencesResult.results.map((r: any) => r.person_id));
+  const absencesResult = await env.BETTERLB_DB.prepare(absencesSql)
+    .bind(sessionId)
+    .all();
+  const absentIds = new Set(
+    absencesResult.results.map((r: any) => r.person_id)
+  );
 
   // Build attendance list (absent-only model)
   const all_members = membersResult.results.map((member: any) => ({
@@ -55,9 +62,12 @@ export async function onRequestGet(context: { request: Request; env: Env }) {
     last_name: member.last_name,
     role: member.role,
     rank: member.rank,
-    status: absentIds.has(member.id) ? 'absent' as const : 'present' as const,
+    status: absentIds.has(member.id)
+      ? ('absent' as const)
+      : ('present' as const),
     reason: absentIds.has(member.id)
-      ? absencesResult.results.find((r: any) => r.person_id === member.id)?.reason
+      ? absencesResult.results.find((r: any) => r.person_id === member.id)
+          ?.reason
       : undefined,
   }));
 
@@ -68,7 +78,9 @@ export async function onRequestGet(context: { request: Request; env: Env }) {
     WHERE session_id = ?
     ORDER BY date_enacted ASC
   `;
-  const documentsResult = await env.BETTERLB_DB.prepare(documentsSql).bind(sessionId).all();
+  const documentsResult = await env.BETTERLB_DB.prepare(documentsSql)
+    .bind(sessionId)
+    .all();
 
   return Response.json({
     ...session,

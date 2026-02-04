@@ -2,9 +2,8 @@
  * Facebook Post Parser API
  * POST /api/admin/parse-facebook-post - Parse Facebook post content to extract session data
  */
-
 import { Env } from '../../types';
-import { withAuth, AuthContext } from '../../utils/admin-auth';
+import { AuthContext, withAuth } from '../../utils/admin-auth';
 
 interface ParsedSessionData {
   session_type: 'regular' | 'special' | 'inaugural' | null;
@@ -47,14 +46,19 @@ function parseFacebookPostContent(content: string): ParsedSessionData {
 
   // Parse session type and ordinal
   // Matches: "100th Regular Session", "5th Special", "Inaugural Session"
-  const sessionPattern = /(\d+)(?:st|nd|rd|th)\s+(Regular|Special|Inaugural)\s+(?:Session|)?/i;
+  const sessionPattern =
+    /(\d+)(?:st|nd|rd|th)\s+(Regular|Special|Inaugural)\s+(?:Session|)?/i;
   const sessionMatch = normalized.match(sessionPattern);
 
   if (sessionMatch) {
     result.ordinal = parseInt(sessionMatch[1], 10);
     const typeStr = sessionMatch[2].toLowerCase();
-    result.session_type = typeStr === 'regular' ? 'regular' :
-                         typeStr === 'special' ? 'special' : 'inaugural';
+    result.session_type =
+      typeStr === 'regular'
+        ? 'regular'
+        : typeStr === 'special'
+          ? 'special'
+          : 'inaugural';
     result.confidence.session_type = 0.9;
     result.confidence.ordinal = 0.9;
   } else {
@@ -96,12 +100,16 @@ function parseFacebookPostContent(content: string): ParsedSessionData {
   for (const line of lines) {
     const trimmed = line.trim();
     // Skip if it contains session info or date
-    if (trimmed.length < 3 ||
-        /session|meeting|ordinal|date|time|agenda/i.test(trimmed)) {
+    if (
+      trimmed.length < 3 ||
+      /session|meeting|ordinal|date|time|agenda/i.test(trimmed)
+    ) {
       continue;
     }
     // Basic name pattern: Title (optional) + Name
-    const nameMatch = trimmed.match(/^(?:Hon\.?|Mayor|Vice Mayor|Councilor)?\s+([A-Z][a-z]+(?:\s+[A-Z][a-z]+)+)/);
+    const nameMatch = trimmed.match(
+      /^(?:Hon\.?|Mayor|Vice Mayor|Councilor)?\s+([A-Z][a-z]+(?:\s+[A-Z][a-z]+)+)/
+    );
     if (nameMatch) {
       result.attendee_names.push(nameMatch[1]);
     }
@@ -159,7 +167,9 @@ async function handleParsePost(context: {
             `SELECT id, first_name, middle_name, last_name
              FROM persons
              WHERE first_name = ?1 AND last_name = ?2`
-          ).bind(firstName, lastName).first();
+          )
+            .bind(firstName, lastName)
+            .first();
 
           // If no exact match, try fuzzy search
           if (!match) {
@@ -168,7 +178,9 @@ async function handleParsePost(context: {
                FROM persons
                WHERE first_name LIKE ?1 OR last_name LIKE ?2
                LIMIT 5`
-            ).bind(`${firstName}%`, `${lastName}%`).first();
+            )
+              .bind(`${firstName}%`, `${lastName}%`)
+              .first();
           }
 
           if (match) {
@@ -193,9 +205,6 @@ async function handleParsePost(context: {
   }
 }
 
-export async function onRequestPost(context: {
-  request: Request;
-  env: Env;
-}) {
+export async function onRequestPost(context: { request: Request; env: Env }) {
   return withAuth(handleParsePost)(context);
 }

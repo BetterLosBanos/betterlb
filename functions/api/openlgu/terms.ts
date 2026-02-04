@@ -3,10 +3,9 @@
  * GET /api/legislation/terms - List all terms
  * GET /api/legislation/terms/:id - Get term details with members
  */
-
 import { Env } from '../../types';
 import { cachedJson } from '../../utils/cache';
-import { createKVCache, CACHE_TTL } from '../../utils/kv-cache';
+import { CACHE_TTL, createKVCache } from '../../utils/kv-cache';
 
 interface TermResultRow {
   id: string;
@@ -95,7 +94,9 @@ async function getTermsList(context: { request: Request; env: Env }) {
           WHERE term_id IN (${placeholders})
           GROUP BY term_id
         `;
-        const memberCountsResult = await env.BETTERLB_DB.prepare(memberCountsSql)
+        const memberCountsResult = await env.BETTERLB_DB.prepare(
+          memberCountsSql
+        )
           .bind(...termIds)
           .all<MemberCountRow>();
 
@@ -220,7 +221,9 @@ async function getTermDetail(context: { request: Request; env: Env }) {
           LEFT JOIN persons pv ON t.vice_mayor_id = pv.id
           WHERE t.id = ?
         `;
-        const term = await env.BETTERLB_DB.prepare(termSql).bind(termId).first<TermDetailRow>();
+        const term = await env.BETTERLB_DB.prepare(termSql)
+          .bind(termId)
+          .first<TermDetailRow>();
 
         if (!term) {
           return { error: 'Term not found' };
@@ -240,22 +243,27 @@ async function getTermDetail(context: { request: Request; env: Env }) {
           WHERE m.term_id = ?
           ORDER BY m.rank ASC, p.last_name ASC, c.name ASC
         `;
-        const membersResult = await env.BETTERLB_DB.prepare(membersSql).bind(termId).all();
+        const membersResult = await env.BETTERLB_DB.prepare(membersSql)
+          .bind(termId)
+          .all();
 
         // Reconstruct the frontend-expected structure: persons with memberships
-        const personsMap = new Map<string, {
-          id: string;
-          first_name: string;
-          middle_name: string | null;
-          last_name: string;
-          memberships: Array<{
-            term_id: string;
-            chamber: string | null;
-            role: string | null;
-            rank: number | null;
-            committees: Array<{ id: string; role: string }>;
-          }>;
-        }>();
+        const personsMap = new Map<
+          string,
+          {
+            id: string;
+            first_name: string;
+            middle_name: string | null;
+            last_name: string;
+            memberships: Array<{
+              term_id: string;
+              chamber: string | null;
+              role: string | null;
+              rank: number | null;
+              committees: Array<{ id: string; role: string }>;
+            }>;
+          }
+        >();
         for (const row of membersResult.results) {
           const rowTyped = row as {
             id: string;
@@ -273,13 +281,15 @@ async function getTermDetail(context: { request: Request; env: Env }) {
               first_name: rowTyped.first_name,
               middle_name: rowTyped.middle_name,
               last_name: rowTyped.last_name,
-              memberships: [{
-                term_id: termId,
-                chamber: rowTyped.chamber,
-                role: rowTyped.m_role,
-                rank: rowTyped.rank,
-                committees: [],
-              }],
+              memberships: [
+                {
+                  term_id: termId,
+                  chamber: rowTyped.chamber,
+                  role: rowTyped.m_role,
+                  rank: rowTyped.rank,
+                  committees: [],
+                },
+              ],
             });
           }
           // Add committee if present
@@ -310,7 +320,9 @@ async function getTermDetail(context: { request: Request; env: Env }) {
           GROUP BY c.id, c.name, c.type
           ORDER BY c.name ASC
         `;
-        const committeesResult = await env.BETTERLB_DB.prepare(committeesSql).bind(termId).all<CommitteeResultRow>();
+        const committeesResult = await env.BETTERLB_DB.prepare(committeesSql)
+          .bind(termId)
+          .all<CommitteeResultRow>();
 
         // Get session statistics
         const statsSql = `
@@ -322,7 +334,9 @@ async function getTermDetail(context: { request: Request; env: Env }) {
           FROM sessions
           WHERE term_id = ?
         `;
-        const statsResult = await env.BETTERLB_DB.prepare(statsSql).bind(termId).first<StatsResultRow>();
+        const statsResult = await env.BETTERLB_DB.prepare(statsSql)
+          .bind(termId)
+          .first<StatsResultRow>();
 
         // Get document statistics
         const docStatsSql = `
@@ -334,7 +348,9 @@ async function getTermDetail(context: { request: Request; env: Env }) {
           WHERE s.term_id = ?
           GROUP BY type
         `;
-        const docStatsResult = await env.BETTERLB_DB.prepare(docStatsSql).bind(termId).all<DocStatsResultRow>();
+        const docStatsResult = await env.BETTERLB_DB.prepare(docStatsSql)
+          .bind(termId)
+          .all<DocStatsResultRow>();
 
         return {
           id: term.id,
@@ -355,7 +371,7 @@ async function getTermDetail(context: { request: Request; env: Env }) {
               : term.vice_mayor || 'TBD',
           },
           persons, // Frontend expects persons array with memberships
-          committees: committeesResult.results.map((c) => ({
+          committees: committeesResult.results.map(c => ({
             id: c.id,
             name: c.name,
             type: c.type,
@@ -368,10 +384,13 @@ async function getTermDetail(context: { request: Request; env: Env }) {
               special: statsResult?.special_sessions || 0,
               inaugural: statsResult?.inaugural_sessions || 0,
             },
-            documents: docStatsResult.results.reduce((acc: Record<string, number>, doc: DocStatsResultRow) => {
-              acc[doc.type] = doc.count;
-              return acc;
-            }, {}),
+            documents: docStatsResult.results.reduce(
+              (acc: Record<string, number>, doc: DocStatsResultRow) => {
+                acc[doc.type] = doc.count;
+                return acc;
+              },
+              {}
+            ),
           },
         };
       },

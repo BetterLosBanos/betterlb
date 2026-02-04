@@ -3,9 +3,8 @@
  * POST /api/admin/persons/merge - Merge duplicate person records
  * GET /api/admin/persons/duplicates - Get list of duplicate persons
  */
-
 import { Env } from '../../types';
-import { withAuth, AuthContext } from '../../utils/admin-auth';
+import { AuthContext, withAuth } from '../../utils/admin-auth';
 import { parseJsonBody } from '../../utils/request';
 
 interface Person {
@@ -74,7 +73,10 @@ async function handleGetDuplicates(context: {
 
     const exactResults = await env.BETTERLB_DB.prepare(sql_exact).all();
 
-    for (const row of exactResults.results as Array<{ person_ids: string; names: string }>) {
+    for (const row of exactResults.results as Array<{
+      person_ids: string;
+      names: string;
+    }>) {
       const ids = row.person_ids.split(',');
 
       // Get actual person records
@@ -82,22 +84,30 @@ async function handleGetDuplicates(context: {
       for (const id of ids) {
         const person = await env.BETTERLB_DB.prepare(
           `SELECT id, first_name, middle_name, last_name, suffix FROM persons WHERE id = ?1`
-        ).bind(id).first();
+        )
+          .bind(id)
+          .first();
         if (person) personRecords.push(person as unknown as Person);
       }
 
       // Count related records for the first person
       const docCount = await env.BETTERLB_DB.prepare(
         `SELECT COUNT(*) as count FROM document_authors WHERE person_id IN (${ids.map(() => '?').join(',')})`
-      ).bind(...ids).first<{ count: number }>();
+      )
+        .bind(...ids)
+        .first<{ count: number }>();
 
       const memberCount = await env.BETTERLB_DB.prepare(
         `SELECT COUNT(*) as count FROM memberships WHERE person_id IN (${ids.map(() => '?').join(',')})`
-      ).bind(...ids).first<{ count: number }>();
+      )
+        .bind(...ids)
+        .first<{ count: number }>();
 
       const committeeCount = await env.BETTERLB_DB.prepare(
         `SELECT COUNT(*) as count FROM committee_memberships WHERE person_id IN (${ids.map(() => '?').join(',')})`
-      ).bind(...ids).first<{ count: number }>();
+      )
+        .bind(...ids)
+        .first<{ count: number }>();
 
       duplicates.push({
         person_ids: ids,
@@ -123,27 +133,57 @@ async function handleGetDuplicates(context: {
 
     const middleResults = await env.BETTERLB_DB.prepare(sql_middle).all();
 
-    for (const row of middleResults.results as Array<{ id1: string; id2: string; first_name: string; mn1: string | null; last_name: string; mn2: string | null; suffix: string | null }>) {
+    for (const row of middleResults.results as Array<{
+      id1: string;
+      id2: string;
+      first_name: string;
+      mn1: string | null;
+      last_name: string;
+      mn2: string | null;
+      suffix: string | null;
+    }>) {
       const person1 = await env.BETTERLB_DB.prepare(
         `SELECT id, first_name, middle_name, last_name, suffix FROM persons WHERE id = ?1`
-      ).bind(row.id1).first<{ id: string; first_name: string; middle_name: string | null; last_name: string; suffix: string | null }>();
+      )
+        .bind(row.id1)
+        .first<{
+          id: string;
+          first_name: string;
+          middle_name: string | null;
+          last_name: string;
+          suffix: string | null;
+        }>();
 
       const person2 = await env.BETTERLB_DB.prepare(
         `SELECT id, first_name, middle_name, last_name, suffix FROM persons WHERE id = ?1`
-      ).bind(row.id2).first<{ id: string; first_name: string; middle_name: string | null; last_name: string; suffix: string | null }>();
+      )
+        .bind(row.id2)
+        .first<{
+          id: string;
+          first_name: string;
+          middle_name: string | null;
+          last_name: string;
+          suffix: string | null;
+        }>();
 
       if (person1 && person2) {
         const docCount = await env.BETTERLB_DB.prepare(
           `SELECT COUNT(*) as count FROM document_authors WHERE person_id IN (?1, ?2)`
-        ).bind(row.id1, row.id2).first<{ count: number }>();
+        )
+          .bind(row.id1, row.id2)
+          .first<{ count: number }>();
 
         const memberCount = await env.BETTERLB_DB.prepare(
           `SELECT COUNT(*) as count FROM memberships WHERE person_id IN (?1, ?2)`
-        ).bind(row.id1, row.id2).first<{ count: number }>();
+        )
+          .bind(row.id1, row.id2)
+          .first<{ count: number }>();
 
         const committeeCount = await env.BETTERLB_DB.prepare(
           `SELECT COUNT(*) as count FROM committee_memberships WHERE person_id IN (?1, ?2)`
-        ).bind(row.id1, row.id2).first<{ count: number }>();
+        )
+          .bind(row.id1, row.id2)
+          .first<{ count: number }>();
 
         duplicates.push({
           person_ids: [row.id1, row.id2],
@@ -158,7 +198,10 @@ async function handleGetDuplicates(context: {
     return Response.json({ duplicates });
   } catch (error) {
     console.error('Error fetching duplicates:', error);
-    return Response.json({ error: 'Failed to fetch duplicates' }, { status: 500 });
+    return Response.json(
+      { error: 'Failed to fetch duplicates' },
+      { status: 500 }
+    );
   }
 }
 
@@ -175,8 +218,16 @@ async function handleMerge(context: {
 
   try {
     // Parse JSON body with size limit validation (max 1MB)
-    const body = await parseJsonBody<MergeRequest>(request, 1_000_000) as MergeRequest;
-    const { keep_person_id, merge_person_ids, merge_strategy, deletion_mode = 'delete' } = body;
+    const body = (await parseJsonBody<MergeRequest>(
+      request,
+      1_000_000
+    )) as MergeRequest;
+    const {
+      keep_person_id,
+      merge_person_ids,
+      merge_strategy,
+      deletion_mode = 'delete',
+    } = body;
 
     if (!keep_person_id || !merge_person_ids || merge_person_ids.length === 0) {
       return Response.json(
@@ -188,7 +239,9 @@ async function handleMerge(context: {
     // Validate that keep_person_id exists
     const keepPerson = await env.BETTERLB_DB.prepare(
       `SELECT id FROM persons WHERE id = ?1`
-    ).bind(keep_person_id).first();
+    )
+      .bind(keep_person_id)
+      .first();
 
     if (!keepPerson) {
       return Response.json({ error: 'Keep person not found' }, { status: 404 });
@@ -198,9 +251,14 @@ async function handleMerge(context: {
     for (const id of merge_person_ids) {
       const person = await env.BETTERLB_DB.prepare(
         `SELECT id FROM persons WHERE id = ?1`
-      ).bind(id).first();
+      )
+        .bind(id)
+        .first();
       if (!person) {
-        return Response.json({ error: `Merge person ${id} not found` }, { status: 404 });
+        return Response.json(
+          { error: `Merge person ${id} not found` },
+          { status: 404 }
+        );
       }
     }
 
@@ -212,33 +270,42 @@ async function handleMerge(context: {
     // 1. Update memberships - change person_id to keep_person_id
     const memberUpdate = await env.BETTERLB_DB.prepare(
       `UPDATE memberships SET person_id = ?1 WHERE person_id IN (${merge_person_ids.map(() => '?').join(',')})`
-    ).bind(keep_person_id, ...merge_person_ids).run();
+    )
+      .bind(keep_person_id, ...merge_person_ids)
+      .run();
 
     updatedTables.memberships = memberUpdate.meta.changes || 0;
 
     // 2. Update document_authors
     const authorUpdate = await env.BETTERLB_DB.prepare(
       `UPDATE document_authors SET person_id = ?1 WHERE person_id IN (${merge_person_ids.map(() => '?').join(',')})`
-    ).bind(keep_person_id, ...merge_person_ids).run();
+    )
+      .bind(keep_person_id, ...merge_person_ids)
+      .run();
 
     updatedTables.document_authors = authorUpdate.meta.changes || 0;
 
     // 3. Update session_absences
     const absenceUpdate = await env.BETTERLB_DB.prepare(
       `UPDATE session_absences SET person_id = ?1 WHERE person_id IN (${merge_person_ids.map(() => '?').join(',')})`
-    ).bind(keep_person_id, ...merge_person_ids).run();
+    )
+      .bind(keep_person_id, ...merge_person_ids)
+      .run();
 
     updatedTables.session_absences = absenceUpdate.meta.changes || 0;
 
     // 4. Update committee_memberships
     const committeeUpdate = await env.BETTERLB_DB.prepare(
       `UPDATE committee_memberships SET person_id = ?1 WHERE person_id IN (${merge_person_ids.map(() => '?').join(',')})`
-    ).bind(keep_person_id, ...merge_person_ids).run();
+    )
+      .bind(keep_person_id, ...merge_person_ids)
+      .run();
 
     updatedTables.committee_memberships = committeeUpdate.meta.changes || 0;
 
     // 5. Detect and remove duplicate committee_memberships
-    const committeeDuplicates = await env.BETTERLB_DB.prepare(`
+    const committeeDuplicates = await env.BETTERLB_DB.prepare(
+      `
       DELETE FROM committee_memberships
       WHERE id IN (
         SELECT cm2.id
@@ -251,11 +318,16 @@ async function handleMerge(context: {
           AND cm1.id < cm2.id
         WHERE cm1.person_id = ?1
       )
-    `).bind(keep_person_id).run();
-    updatedTables.committee_duplicates_removed = committeeDuplicates.meta.changes || 0;
+    `
+    )
+      .bind(keep_person_id)
+      .run();
+    updatedTables.committee_duplicates_removed =
+      committeeDuplicates.meta.changes || 0;
 
     // 6. Detect and remove duplicate session_absences
-    const absenceDuplicates = await env.BETTERLB_DB.prepare(`
+    const absenceDuplicates = await env.BETTERLB_DB.prepare(
+      `
       DELETE FROM session_absences
       WHERE id IN (
         SELECT sa2.id
@@ -266,11 +338,16 @@ async function handleMerge(context: {
           AND sa1.id < sa2.id
         WHERE sa1.person_id = ?1
       )
-    `).bind(keep_person_id).run();
-    updatedTables.absence_duplicates_removed = absenceDuplicates.meta.changes || 0;
+    `
+    )
+      .bind(keep_person_id)
+      .run();
+    updatedTables.absence_duplicates_removed =
+      absenceDuplicates.meta.changes || 0;
 
     // 7. Detect and remove duplicate memberships
-    const membershipDuplicates = await env.BETTERLB_DB.prepare(`
+    const membershipDuplicates = await env.BETTERLB_DB.prepare(
+      `
       DELETE FROM memberships
       WHERE id IN (
         SELECT m2.id
@@ -281,18 +358,28 @@ async function handleMerge(context: {
           AND m1.id < m2.id
         WHERE m1.person_id = ?1
       )
-    `).bind(keep_person_id).run();
-    updatedTables.membership_duplicates_removed = membershipDuplicates.meta.changes || 0;
+    `
+    )
+      .bind(keep_person_id)
+      .run();
+    updatedTables.membership_duplicates_removed =
+      membershipDuplicates.meta.changes || 0;
 
     // 8. Handle deletion based on deletion_mode
     for (const id of merge_person_ids) {
       if (deletion_mode === 'delete') {
         // Immediate deletion
-        await env.BETTERLB_DB.prepare(`DELETE FROM persons WHERE id = ?1`).bind(id).run();
+        await env.BETTERLB_DB.prepare(`DELETE FROM persons WHERE id = ?1`)
+          .bind(id)
+          .run();
         deleted_ids.push(id);
       } else if (deletion_mode === 'flag') {
         // Soft delete - set deleted_at timestamp
-        await env.BETTERLB_DB.prepare(`UPDATE persons SET deleted_at = datetime('now') WHERE id = ?1`).bind(id).run();
+        await env.BETTERLB_DB.prepare(
+          `UPDATE persons SET deleted_at = datetime('now') WHERE id = ?1`
+        )
+          .bind(id)
+          .run();
         flagged_ids.push(id);
       }
       // 'skip' mode - don't touch the records
@@ -302,16 +389,18 @@ async function handleMerge(context: {
     await env.BETTERLB_DB.prepare(
       `INSERT INTO admin_audit_log (action, performed_by, target_type, target_id, details, created_at)
        VALUES ('merge_persons', ?1, 'person', ?2, ?3, datetime('now'))`
-    ).bind(
-      auth.user.login,
-      keep_person_id,
-      JSON.stringify({
-        merged_ids: merge_person_ids,
-        strategy: merge_strategy,
-        deletion_mode,
-        updated_tables: updatedTables,
-      })
-    ).run();
+    )
+      .bind(
+        auth.user.login,
+        keep_person_id,
+        JSON.stringify({
+          merged_ids: merge_person_ids,
+          strategy: merge_strategy,
+          deletion_mode,
+          updated_tables: updatedTables,
+        })
+      )
+      .run();
 
     const result: MergeResult = {
       success: true,

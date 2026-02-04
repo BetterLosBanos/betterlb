@@ -2,7 +2,6 @@
  * GET /api/admin/auth-google/callback
  * Handle Google OAuth callback
  */
-
 import { Env } from '../../../types';
 
 interface GoogleUser {
@@ -51,8 +50,8 @@ export async function onRequestGet(context: { request: Request; env: Env }) {
 
   try {
     // Get redirect URI from env or construct from request
-    const redirectUri = env.GOOGLE_REDIRECT_URI ||
-      `${url.origin}/api/admin/auth-google/callback`;
+    const redirectUri =
+      env.GOOGLE_REDIRECT_URI || `${url.origin}/api/admin/auth-google/callback`;
 
     // Exchange code for access token
     const tokenResponse = await fetch('https://oauth2.googleapis.com/token', {
@@ -73,7 +72,10 @@ export async function onRequestGet(context: { request: Request; env: Env }) {
 
     if (tokenData.error) {
       console.error('Google token error:', tokenData);
-      return Response.json({ error: tokenData.error_description || tokenData.error }, { status: 400 });
+      return Response.json(
+        { error: tokenData.error_description || tokenData.error },
+        { status: 400 }
+      );
     }
 
     const accessToken = tokenData.access_token;
@@ -83,7 +85,7 @@ export async function onRequestGet(context: { request: Request; env: Env }) {
       `https://www.googleapis.com/oauth2/v2/userinfo?access_token=${accessToken}`,
       {
         headers: {
-          'Authorization': `Bearer ${accessToken}`,
+          Authorization: `Bearer ${accessToken}`,
         },
       }
     );
@@ -106,8 +108,10 @@ export async function onRequestGet(context: { request: Request; env: Env }) {
 
     // Always enforce authorization - empty list means NO ONE is authorized
     // Support both GitHub usernames and Google emails in the authorized list
-    if (authorizedList.length === 0 ||
-        !authorizedList.includes(googleUser.email)) {
+    if (
+      authorizedList.length === 0 ||
+      !authorizedList.includes(googleUser.email)
+    ) {
       return Response.redirect(`${url.origin}/admin?unauthorized`, 302);
     }
 
@@ -129,7 +133,7 @@ export async function onRequestGet(context: { request: Request; env: Env }) {
     return new Response(null, {
       status: 302,
       headers: {
-        'Location': redirectUrl,
+        Location: redirectUrl,
         'Set-Cookie': `admin_session=${sessionId}; Path=/; HttpOnly; Secure; SameSite=Lax; Max-Age=${24 * 60 * 60}`,
       },
     });

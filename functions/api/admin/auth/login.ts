@@ -2,7 +2,6 @@
  * GET /api/admin/auth/login
  * Redirect to GitHub OAuth
  */
-
 import { Env } from '../../../types';
 
 const GITHUB_CLIENT_ID = '__GITHUB_CLIENT_ID__';
@@ -14,9 +13,13 @@ export async function onRequestGet(context: { request: Request; env: Env }) {
   const state = crypto.randomUUID();
 
   // Store state in KV for validation later (5 minute expiry)
-  await env.WEATHER_KV.put(`oauth_state:${state}`, JSON.stringify({
-    created_at: Date.now(),
-  }), { expirationTtl: 300 });
+  await env.WEATHER_KV.put(
+    `oauth_state:${state}`,
+    JSON.stringify({
+      created_at: Date.now(),
+    }),
+    { expirationTtl: 300 }
+  );
 
   // Construct GitHub OAuth URL
   const params = new URLSearchParams({

@@ -4,9 +4,8 @@
  * POST /api/admin/reconcile - Resolve a conflict
  * POST /api/admin/reconcile/skip - Skip a conflict
  */
-
 import { Env } from '../../types';
-import { withAuth, AuthContext } from '../../utils/admin-auth';
+import { AuthContext, withAuth } from '../../utils/admin-auth';
 
 type ReconcileStatus = 'unresolved' | 'resolved' | 'skipped';
 type ConflictType = 'moved_by' | 'seconded_by' | 'authors' | 'title' | 'none';
@@ -49,7 +48,11 @@ interface ReconcileResponse {
  * - limit: number (default 20)
  * - offset: number (default 0)
  */
-async function handleGetReconcile(context: { request: Request; env: Env; auth: AuthContext }) {
+async function handleGetReconcile(context: {
+  request: Request;
+  env: Env;
+  auth: AuthContext;
+}) {
   const { request, env } = context;
   const url = new URL(request.url);
 
@@ -71,7 +74,9 @@ async function handleGetReconcile(context: { request: Request; env: Env; auth: A
   `;
 
   try {
-    const result = await env.BETTERLB_DB.prepare(sql).bind(limit.toString(), offset.toString()).all();
+    const result = await env.BETTERLB_DB.prepare(sql)
+      .bind(limit.toString(), offset.toString())
+      .all();
 
     // Generate conflict records from documents
     const items: ConflictRecord[] = [];
@@ -83,7 +88,9 @@ async function handleGetReconcile(context: { request: Request; env: Env; auth: A
         // Try to find corresponding PDF record
         const pdfDoc = await env.BETTERLB_DB.prepare(
           `SELECT moved_by, seconded_by FROM documents WHERE number = ?1 AND type = ?2 AND source_type = 'pdf'`
-        ).bind(doc.number, doc.type).first();
+        )
+          .bind(doc.number, doc.type)
+          .first();
 
         if (pdfDoc && pdfDoc.moved_by !== doc.moved_by) {
           items.push({
@@ -122,7 +129,10 @@ async function handleGetReconcile(context: { request: Request; env: Env; auth: A
     } as ReconcileResponse);
   } catch (error) {
     console.error('Error fetching conflicts:', error);
-    return Response.json({ error: 'Failed to fetch conflicts' }, { status: 500 });
+    return Response.json(
+      { error: 'Failed to fetch conflicts' },
+      { status: 500 }
+    );
   }
 }
 
@@ -130,7 +140,11 @@ async function handleGetReconcile(context: { request: Request; env: Env; auth: A
  * POST /api/admin/reconcile
  * Resolve a conflict by setting the resolved value
  */
-async function resolveConflict(context: { request: Request; env: Env; auth: AuthContext }) {
+async function resolveConflict(context: {
+  request: Request;
+  env: Env;
+  auth: AuthContext;
+}) {
   const { request, env } = context;
 
   try {
@@ -138,7 +152,10 @@ async function resolveConflict(context: { request: Request; env: Env; auth: Auth
     const { conflict_id, resolved_value, notes } = body;
 
     if (!conflict_id || resolved_value === undefined) {
-      return Response.json({ error: 'Missing required fields' }, { status: 400 });
+      return Response.json(
+        { error: 'Missing required fields' },
+        { status: 400 }
+      );
     }
 
     // Extract document_id from conflict_id
@@ -156,12 +173,17 @@ async function resolveConflict(context: { request: Request; env: Env; auth: Auth
       return Response.json({ error: 'Invalid conflict type' }, { status: 400 });
     }
 
-    await env.BETTERLB_DB.prepare(updateSql).bind(resolved_value, notes || '', documentId).run();
+    await env.BETTERLB_DB.prepare(updateSql)
+      .bind(resolved_value, notes || '', documentId)
+      .run();
 
     return Response.json({ success: true });
   } catch (error) {
     console.error('Error resolving conflict:', error);
-    return Response.json({ error: 'Failed to resolve conflict' }, { status: 500 });
+    return Response.json(
+      { error: 'Failed to resolve conflict' },
+      { status: 500 }
+    );
   }
 }
 
@@ -169,7 +191,11 @@ async function resolveConflict(context: { request: Request; env: Env; auth: Auth
  * POST /api/admin/reconcile/skip
  * Skip a conflict (mark as resolved without changes)
  */
-async function skipConflict(context: { request: Request; env: Env; auth: AuthContext }) {
+async function skipConflict(context: {
+  request: Request;
+  env: Env;
+  auth: AuthContext;
+}) {
   const { request, env } = context;
 
   try {

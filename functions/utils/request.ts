@@ -2,7 +2,6 @@
  * Request Parsing Utilities
  * Safe JSON parsing with size limits and validation
  */
-
 import { Env } from '../types';
 
 /**
@@ -12,15 +11,22 @@ import { Env } from '../types';
  * @returns Parsed JSON body
  * @throws Error if body is too large or invalid JSON
  */
-export async function parseJsonBody<T>(request: Request, maxSize: number = 1_000_000): Promise<T> {
+export async function parseJsonBody<T>(
+  request: Request,
+  maxSize: number = 1_000_000
+): Promise<T> {
   const contentLength = request.headers.get('Content-Length');
   if (contentLength && parseInt(contentLength) > maxSize) {
-    throw new Error(`Request body too large: ${contentLength} bytes exceeds limit of ${maxSize} bytes`);
+    throw new Error(
+      `Request body too large: ${contentLength} bytes exceeds limit of ${maxSize} bytes`
+    );
   }
 
   const body = await request.text();
   if (body.length > maxSize) {
-    throw new Error(`Request body too large: ${body.length} bytes exceeds limit of ${maxSize} bytes`);
+    throw new Error(
+      `Request body too large: ${body.length} bytes exceeds limit of ${maxSize} bytes`
+    );
   }
 
   try {

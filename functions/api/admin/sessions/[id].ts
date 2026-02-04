@@ -3,9 +3,8 @@
  * GET /api/admin/sessions/:id - Get session with attendees and absences
  * POST /api/admin/sessions/:id - Update session data
  */
-
 import { Env } from '../../../types';
-import { withAuth, AuthContext } from '../../../utils/admin-auth';
+import { AuthContext, withAuth } from '../../../utils/admin-auth';
 
 interface SessionMember {
   id: string;
@@ -52,7 +51,9 @@ async function handleGetSession(context: {
     const session = await env.BETTERLB_DB.prepare(
       `SELECT id, term_id, type, number, date, ordinal_number, created_at, updated_at
        FROM sessions WHERE id = ?1`
-    ).bind(sessionId).first<any>();
+    )
+      .bind(sessionId)
+      .first<any>();
 
     if (!session) {
       return Response.json({ error: 'Session not found' }, { status: 404 });
@@ -71,7 +72,9 @@ async function handleGetSession(context: {
        JOIN persons p ON m.person_id = p.id
        WHERE m.term_id = ?1
        ORDER BY p.last_name, p.first_name`
-    ).bind(session.term_id).all();
+    )
+      .bind(session.term_id)
+      .all();
 
     const members: SessionMember[] = membersResult.results.map((row: any) => ({
       id: row.id,
@@ -93,7 +96,9 @@ async function handleGetSession(context: {
        FROM session_absences sa
        JOIN persons p ON sa.person_id = p.id
        WHERE sa.session_id = ?1`
-    ).bind(sessionId).all();
+    )
+      .bind(sessionId)
+      .all();
 
     const absences = absencesResult.results.map((row: any) => ({
       id: row.id,
@@ -108,8 +113,8 @@ async function handleGetSession(context: {
     return Response.json({
       id: session.id,
       term_id: session.term_id,
-      session_type: session.type,  // Map 'type' to 'session_type'
-      ordinal: session.number,  // Map 'number' to 'ordinal'
+      session_type: session.type, // Map 'type' to 'session_type'
+      ordinal: session.number, // Map 'number' to 'ordinal'
       date: session.date,
       created_at: session.created_at,
       updated_at: session.updated_at,
@@ -142,18 +147,18 @@ async function handleUpdateSession(context: {
   const sessionId = params.id;
 
   try {
-    const body = await request.json() as UpdateSessionData;
+    const body = (await request.json()) as UpdateSessionData;
 
     const updateFields: string[] = [];
     const updateValues: (string | number | null)[] = [];
     let paramIndex = 1;
 
     if (body.session_type !== undefined) {
-      updateFields.push(`type = ?${paramIndex++}`);  // Map to 'type'
+      updateFields.push(`type = ?${paramIndex++}`); // Map to 'type'
       updateValues.push(body.session_type);
     }
     if (body.ordinal !== undefined) {
-      updateFields.push(`number = ?${paramIndex++}`);  // Map to 'number'
+      updateFields.push(`number = ?${paramIndex++}`); // Map to 'number'
       updateValues.push(body.ordinal);
     }
     if (body.date !== undefined) {
@@ -172,13 +177,17 @@ async function handleUpdateSession(context: {
         WHERE id = ?${paramIndex}
       `;
 
-      await env.BETTERLB_DB.prepare(updateSql).bind(...updateValues).run();
+      await env.BETTERLB_DB.prepare(updateSql)
+        .bind(...updateValues)
+        .run();
     }
 
     // Fetch and return updated session
     const updated = await env.BETTERLB_DB.prepare(
       `SELECT * FROM sessions WHERE id = ?1`
-    ).bind(sessionId).first();
+    )
+      .bind(sessionId)
+      .first();
 
     return Response.json({
       success: true,
@@ -186,16 +195,15 @@ async function handleUpdateSession(context: {
     });
   } catch (error) {
     console.error('Error updating session:', error);
-    return Response.json({ error: 'Failed to update session' }, { status: 500 });
+    return Response.json(
+      { error: 'Failed to update session' },
+      { status: 500 }
+    );
   }
 }
 
-export const onRequestGet = (context: {
-  request: Request;
-  env: Env;
-}) => withAuth(handleGetSession as any)(context as any);
+export const onRequestGet = (context: { request: Request; env: Env }) =>
+  withAuth(handleGetSession as any)(context as any);
 
-export const onRequestPost = (context: {
-  request: Request;
-  env: Env;
-}) => withAuth(handleUpdateSession as any)(context as any);
+export const onRequestPost = (context: { request: Request; env: Env }) =>
+  withAuth(handleUpdateSession as any)(context as any);

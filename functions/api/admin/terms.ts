@@ -2,9 +2,8 @@
  * Admin Terms API
  * GET /api/admin/terms - List all terms
  */
-
 import { Env } from '../../types';
-import { withAuth, AuthContext } from '../../utils/admin-auth';
+import { AuthContext, withAuth } from '../../utils/admin-auth';
 
 async function handleListTerms(context: {
   request: Request;

@@ -3,9 +3,8 @@
  * GET /api/admin/sessions - List all sessions
  * POST /api/admin/sessions - Create new session
  */
-
 import { Env } from '../../../types';
-import { withAuth, AuthContext } from '../../../utils/admin-auth';
+import { AuthContext, withAuth } from '../../../utils/admin-auth';
 
 interface CreateSessionData {
   term_id: string;
@@ -51,7 +50,9 @@ async function handleListSessions(context: {
     sql += ` ORDER BY s.date DESC LIMIT ?${paramIndex++} OFFSET ?${paramIndex++}`;
     params.push(limit.toString(), offset.toString());
 
-    const result = await env.BETTERLB_DB.prepare(sql).bind(...params).all();
+    const result = await env.BETTERLB_DB.prepare(sql)
+      .bind(...params)
+      .all();
 
     return Response.json({
       sessions: result.results,
@@ -63,7 +64,10 @@ async function handleListSessions(context: {
     });
   } catch (error) {
     console.error('Error fetching sessions:', error);
-    return Response.json({ error: 'Failed to fetch sessions' }, { status: 500 });
+    return Response.json(
+      { error: 'Failed to fetch sessions' },
+      { status: 500 }
+    );
   }
 }
 
@@ -79,7 +83,7 @@ async function handleCreateSession(context: {
   const { request, env } = context;
 
   try {
-    const body = await request.json() as CreateSessionData;
+    const body = (await request.json()) as CreateSessionData;
 
     if (!body.term_id || !body.date) {
       return Response.json(
@@ -95,20 +99,24 @@ async function handleCreateSession(context: {
     await env.BETTERLB_DB.prepare(
       `INSERT INTO sessions (id, term_id, type, number, date)
        VALUES (?1, ?2, ?3, ?4, ?5)`
-    ).bind(
-      sessionId,
-      body.term_id,
-      body.session_type || 'Regular',
-      body.ordinal || null,
-      body.date
-    ).run();
+    )
+      .bind(
+        sessionId,
+        body.term_id,
+        body.session_type || 'Regular',
+        body.ordinal || null,
+        body.date
+      )
+      .run();
 
     // Add absences if provided
     if (body.absent_person_ids && body.absent_person_ids.length > 0) {
       for (const personId of body.absent_person_ids) {
         await env.BETTERLB_DB.prepare(
           `INSERT INTO session_absences (session_id, person_id) VALUES (?1, ?2)`
-        ).bind(sessionId, personId).run();
+        )
+          .bind(sessionId, personId)
+          .run();
       }
     }
 
@@ -118,7 +126,10 @@ async function handleCreateSession(context: {
     });
   } catch (error) {
     console.error('Error creating session:', error);
-    return Response.json({ error: 'Failed to create session' }, { status: 500 });
+    return Response.json(
+      { error: 'Failed to create session' },
+      { status: 500 }
+    );
   }
 }
 

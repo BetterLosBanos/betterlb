@@ -2,9 +2,8 @@
  * Admin Subject Search API
  * GET /api/admin/subjects-search - Search for subjects by name
  */
-
 import { Env } from '../../types';
-import { withAuth, AuthContext } from '../../utils/admin-auth';
+import { AuthContext, withAuth } from '../../utils/admin-auth';
 
 interface Subject {
   id: string;
@@ -50,7 +49,9 @@ async function handleSearch(context: {
       .bind(searchPattern, searchPattern)
       .all();
 
-    const subjects: Subject[] = (results.results as Array<{ id: string; name: string; slug: string }>).map(row => ({
+    const subjects: Subject[] = (
+      results.results as Array<{ id: string; name: string; slug: string }>
+    ).map(row => ({
       id: row.id,
       name: row.name,
       slug: row.slug,
@@ -59,7 +60,10 @@ async function handleSearch(context: {
     return Response.json({ subjects } satisfies SearchResponse);
   } catch (error) {
     console.error('Error searching subjects:', error);
-    return Response.json({ error: 'Failed to search subjects' }, { status: 500 });
+    return Response.json(
+      { error: 'Failed to search subjects' },
+      { status: 500 }
+    );
   }
 }
 

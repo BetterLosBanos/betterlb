@@ -2,9 +2,8 @@
  * GET /api/admin/recent-activity
  * Returns recently resolved review queue items for the admin dashboard
  */
-
 import { Env } from '../../types';
-import { withAuth, AuthContext } from '../../utils/admin-auth';
+import { AuthContext, withAuth } from '../../utils/admin-auth';
 
 type ItemType = 'document' | 'session' | 'attendance';
 
@@ -29,7 +28,11 @@ interface RecentActivityResponse {
   items: RecentActivityItem[];
 }
 
-async function handleGetRecentActivity(context: { request: Request; env: Env; auth: AuthContext }) {
+async function handleGetRecentActivity(context: {
+  request: Request;
+  env: Env;
+  auth: AuthContext;
+}) {
   const { env } = context;
 
   const sql = `
@@ -47,7 +50,9 @@ async function handleGetRecentActivity(context: { request: Request; env: Env; au
   try {
     const result = await env.BETTERLB_DB.prepare(sql).all();
 
-    const items: RecentActivityItem[] = (result.results as Array<Record<string, unknown>>).map((row: Record<string, unknown>) => ({
+    const items: RecentActivityItem[] = (
+      result.results as Array<Record<string, unknown>>
+    ).map((row: Record<string, unknown>) => ({
       id: String(row.id),
       item_type: String(row.item_type) as ItemType,
       item_id: String(row.item_id),
@@ -56,18 +61,23 @@ async function handleGetRecentActivity(context: { request: Request; env: Env; au
       resolved_at: String(row.resolved_at),
       assigned_to: row.assigned_to ? String(row.assigned_to) : null,
       resolution: row.resolution ? String(row.resolution) : null,
-      document: row.doc_id ? {
-        id: String(row.doc_id),
-        type: String(row.doc_type),
-        number: String(row.doc_number),
-        title: String(row.doc_title),
-      } : undefined,
+      document: row.doc_id
+        ? {
+            id: String(row.doc_id),
+            type: String(row.doc_type),
+            number: String(row.doc_number),
+            title: String(row.doc_title),
+          }
+        : undefined,
     }));
 
     return Response.json({ items } as RecentActivityResponse);
   } catch (error) {
     console.error('Error fetching recent activity:', error);
-    return Response.json({ error: 'Failed to fetch recent activity' }, { status: 500 });
+    return Response.json(
+      { error: 'Failed to fetch recent activity' },
+      { status: 500 }
+    );
   }
 }
 
