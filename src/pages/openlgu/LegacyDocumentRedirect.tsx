@@ -1,4 +1,4 @@
-import { useParams, Navigate } from 'react-router-dom';
+import { Navigate, useParams } from 'react-router-dom';
 
 /**
  * Legacy redirect component for old document URLs.

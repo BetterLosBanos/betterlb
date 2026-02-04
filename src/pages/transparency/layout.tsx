@@ -1,6 +1,6 @@
 import { Outlet, useLocation } from 'react-router-dom';
 
-import { PageHero, ModuleHeader } from '@/components/layout/PageLayouts';
+import { ModuleHeader, PageHero } from '@/components/layout/PageLayouts';
 import SidebarLayout from '@/components/layout/SidebarLayout';
 
 import TransparencySidebar from './components/TransparencySidebar';

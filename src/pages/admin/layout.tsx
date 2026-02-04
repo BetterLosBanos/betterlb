@@ -1,8 +1,9 @@
 import { Outlet, useLocation } from 'react-router-dom';
+
 import { Shield } from 'lucide-react';
-import Navbar from '@/components/layout/Navbar';
+
 import Footer from '@/components/layout/Footer';
-import { Badge } from '@/components/ui/Badge';
+import Navbar from '@/components/layout/Navbar';
 import {
   Breadcrumb,
   BreadcrumbHome,
@@ -12,6 +13,8 @@ import {
   BreadcrumbPage,
   BreadcrumbSeparator,
 } from '@/components/navigation/Breadcrumb';
+import { Badge } from '@/components/ui/Badge';
+
 import { AdminAuthProvider } from './components/AdminAuthProvider';
 import { MockAdminAuthProvider } from './components/MockAdminAuthProvider';
 
@@ -62,21 +65,21 @@ function AdminContent() {
   const breadcrumbs = getBreadcrumbs(location.pathname);
 
   return (
-    <div className="flex min-h-screen flex-col">
+    <div className='flex min-h-screen flex-col'>
       <Navbar />
-      <div className="mx-auto w-full max-w-7xl px-4 py-8 sm:px-6 lg:px-8">
-        <div className="mb-8 flex items-center justify-between">
+      <div className='mx-auto w-full max-w-7xl px-4 py-8 sm:px-6 lg:px-8'>
+        <div className='mb-8 flex items-center justify-between'>
           <div>
-            <div className="mb-2 flex items-center gap-3">
-              <Shield className="h-8 w-8 text-primary-500" />
-              <h1 className="text-3xl font-extrabold text-slate-900">
+            <div className='mb-2 flex items-center gap-3'>
+              <Shield className='text-primary-500 h-8 w-8' />
+              <h1 className='text-3xl font-extrabold text-slate-900'>
                 Admin Dashboard
               </h1>
               <Badge variant={USE_MOCK_AUTH ? 'info' : 'warning'}>
                 {USE_MOCK_AUTH ? 'Mock Mode' : 'Admin Only'}
               </Badge>
             </div>
-            <p className="text-slate-600">
+            <p className='text-slate-600'>
               Review and manage legislative data pipeline issues
             </p>
           </div>
@@ -85,16 +88,18 @@ function AdminContent() {
         <Breadcrumb>
           <BreadcrumbList>
             <BreadcrumbItem>
-              <BreadcrumbHome href="/" />
+              <BreadcrumbHome href='/' />
             </BreadcrumbItem>
             <BreadcrumbSeparator />
             {breadcrumbs.map((crumb, index) => (
-              <div key={crumb.path} className="flex items-center gap-2">
+              <div key={crumb.path} className='flex items-center gap-2'>
                 <BreadcrumbItem>
                   {index === breadcrumbs.length - 1 ? (
                     <BreadcrumbPage>{crumb.title}</BreadcrumbPage>
                   ) : (
-                    <BreadcrumbLink href={crumb.path}>{crumb.title}</BreadcrumbLink>
+                    <BreadcrumbLink href={crumb.path}>
+                      {crumb.title}
+                    </BreadcrumbLink>
                   )}
                 </BreadcrumbItem>
                 {index < breadcrumbs.length - 1 && <BreadcrumbSeparator />}
@@ -111,7 +116,9 @@ function AdminContent() {
 }
 
 export default function AdminLayout() {
-  const AuthProvider = USE_MOCK_AUTH ? MockAdminAuthProvider : AdminAuthProvider;
+  const AuthProvider = USE_MOCK_AUTH
+    ? MockAdminAuthProvider
+    : AdminAuthProvider;
 
   return (
     <AuthProvider mockMode={USE_MOCK_AUTH}>

@@ -1,4 +1,9 @@
-import { Link, useOutletContext, useParams, useSearchParams } from 'react-router-dom';
+import {
+  Link,
+  useOutletContext,
+  useParams,
+  useSearchParams,
+} from 'react-router-dom';
 
 import {
   Activity,
@@ -10,8 +15,8 @@ import {
   Landmark,
   Users,
 } from 'lucide-react';
-import FlagForReviewButton from '@/components/admin/FlagForReviewButton';
 
+import FlagForReviewButton from '@/components/admin/FlagForReviewButton';
 import { DetailSection } from '@/components/layout/PageLayouts';
 import {
   Breadcrumb,
@@ -22,8 +27,8 @@ import {
   BreadcrumbPage,
   BreadcrumbSeparator,
 } from '@/components/navigation/Breadcrumb';
-import { Badge } from '@/components/ui/Badge';
 import { PageLoadingState } from '@/components/ui';
+import { Badge } from '@/components/ui/Badge';
 
 import { getPersonName } from '@/lib/openlgu';
 
@@ -42,7 +47,7 @@ export default function LegislationDocument() {
   const doc = documents?.find(d => d.id === urlId);
 
   if (isLoading) {
-    return <PageLoadingState message="Loading document..." />;
+    return <PageLoadingState message='Loading document...' />;
   }
 
   if (!doc)
@@ -61,14 +66,20 @@ export default function LegislationDocument() {
 
   // For executive orders, show the mayor as author if no authors listed
   let displayAuthors = authors;
-  if (doc.type === 'executive_order' && authors.length === 0 && (doc as any).mayor_id) {
+  if (
+    doc.type === 'executive_order' &&
+    authors.length === 0 &&
+    (doc as any).mayor_id
+  ) {
     const mayor = persons.find(p => p.id === (doc as any).mayor_id);
     if (mayor) {
       displayAuthors = [mayor];
     }
   }
 
-  const session = doc.session_id ? sessions.find(s => s.id === doc.session_id) : null;
+  const session = doc.session_id
+    ? sessions.find(s => s.id === doc.session_id)
+    : null;
   const term = terms?.find((t: any) => t.id === (doc as any).term_id);
 
   const isOrdinance = doc.type === 'ordinance';
@@ -243,9 +254,10 @@ export default function LegislationDocument() {
           </DetailSection>
 
           {/* Flag for Review */}
-          <div className='border-slate-200 rounded-xl border bg-slate-50 p-4'>
-            <p className='text-slate-600 mb-3 text-xs leading-relaxed'>
-              Notice an error with this document? Flag it for review by the admin team.
+          <div className='rounded-xl border border-slate-200 bg-slate-50 p-4'>
+            <p className='mb-3 text-xs leading-relaxed text-slate-600'>
+              Notice an error with this document? Flag it for review by the
+              admin team.
             </p>
             <FlagForReviewButton
               itemType='document'

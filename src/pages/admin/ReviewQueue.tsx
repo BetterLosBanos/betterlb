@@ -1,24 +1,27 @@
-import { useEffect, useState, useCallback } from 'react';
+import { useCallback, useEffect, useState } from 'react';
+
 import {
-  FileText,
-  User,
   Calendar,
   Check,
-  RefreshCw,
+  CheckSquare,
   ChevronLeft,
   ChevronRight,
   Edit3,
-  Users,
-  CheckSquare,
+  FileText,
+  RefreshCw,
   Square,
+  User,
+  Users,
 } from 'lucide-react';
-import { Card, CardContent } from '@/components/ui/Card';
+
 import { Badge } from '@/components/ui/Badge';
 import Button from '@/components/ui/Button';
+import { Card, CardContent } from '@/components/ui/Card';
 import { EmptyState } from '@/components/ui/EmptyState';
+
+import AttendanceForm from './components/AttendanceForm';
 import DocumentEditModal from './components/DocumentEditModal';
 import SessionDataForm from './components/SessionDataForm';
-import AttendanceForm from './components/AttendanceForm';
 
 type ReviewStatus = 'pending' | 'in_progress' | 'resolved' | 'skipped';
 type ItemType = 'document' | 'session' | 'attendance';
@@ -105,11 +108,17 @@ export default function ReviewQueue() {
     offset: 0,
     has_more: false,
   });
-  const [editModalDocumentId, setEditModalDocumentId] = useState<string | null>(null);
+  const [editModalDocumentId, setEditModalDocumentId] = useState<string | null>(
+    null
+  );
   const [editModalOpen, setEditModalOpen] = useState(false);
-  const [sessionFormSessionId, setSessionFormSessionId] = useState<string | null>(null);
+  const [sessionFormSessionId, setSessionFormSessionId] = useState<
+    string | null
+  >(null);
   const [sessionFormOpen, setSessionFormOpen] = useState(false);
-  const [attendanceFormSessionId, setAttendanceFormSessionId] = useState<string | null>(null);
+  const [attendanceFormSessionId, setAttendanceFormSessionId] = useState<
+    string | null
+  >(null);
   const [attendanceFormOpen, setAttendanceFormOpen] = useState(false);
 
   const fetchQueue = useCallback(async () => {
@@ -252,7 +261,9 @@ export default function ReviewQueue() {
       fetchQueue();
     } catch (error) {
       console.error('Error updating status:', error);
-      alert(`Failed to update status: ${error instanceof Error ? error.message : 'Unknown error'}`);
+      alert(
+        `Failed to update status: ${error instanceof Error ? error.message : 'Unknown error'}`
+      );
     }
   };
 
@@ -277,7 +288,9 @@ export default function ReviewQueue() {
       fetchQueue();
     } catch (error) {
       console.error('Error assigning item:', error);
-      alert(`Failed to assign: ${error instanceof Error ? error.message : 'Unknown error'}`);
+      alert(
+        `Failed to assign: ${error instanceof Error ? error.message : 'Unknown error'}`
+      );
     }
   };
 
@@ -296,11 +309,14 @@ export default function ReviewQueue() {
       return;
     }
 
-    const response = await fetch(`/api/admin/documents/${editModalDocumentId}`, {
-      method: 'PATCH',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(data),
-    });
+    const response = await fetch(
+      `/api/admin/documents/${editModalDocumentId}`,
+      {
+        method: 'PATCH',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(data),
+      }
+    );
     if (!response.ok) {
       let errorMsg = `Failed to save document (HTTP ${response.status})`;
       try {
@@ -338,17 +354,20 @@ export default function ReviewQueue() {
   };
 
   const saveAttendance = async (absentPersonIds: string[]) => {
-    const response = await fetch(`/api/admin/attendance/${attendanceFormSessionId}`, {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ absent_person_ids: absentPersonIds }),
-    });
+    const response = await fetch(
+      `/api/admin/attendance/${attendanceFormSessionId}`,
+      {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ absent_person_ids: absentPersonIds }),
+      }
+    );
     if (!response.ok) throw new Error('Failed to save attendance');
     fetchQueue();
   };
 
   const toggleItemSelection = (itemId: string) => {
-    setSelectedItems((prev) => {
+    setSelectedItems(prev => {
       const next = new Set(prev);
       if (next.has(itemId)) {
         next.delete(itemId);
@@ -360,7 +379,7 @@ export default function ReviewQueue() {
   };
 
   const selectAllVisible = () => {
-    setSelectedItems(new Set(items.map((item) => item.id)));
+    setSelectedItems(new Set(items.map(item => item.id)));
   };
 
   const clearSelection = () => {
@@ -373,7 +392,7 @@ export default function ReviewQueue() {
     setBulkActionLoading(true);
     try {
       await Promise.all(
-        Array.from(selectedItems).map((itemId) =>
+        Array.from(selectedItems).map(itemId =>
           fetch('/api/admin/review-queue/status', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
@@ -392,8 +411,8 @@ export default function ReviewQueue() {
 
   if (loading && items.length === 0) {
     return (
-      <div className="flex items-center justify-center py-12">
-        <RefreshCw className="h-8 w-8 animate-spin text-slate-400" />
+      <div className='flex items-center justify-center py-12'>
+        <RefreshCw className='h-8 w-8 animate-spin text-slate-400' />
       </div>
     );
   }
@@ -401,7 +420,7 @@ export default function ReviewQueue() {
   if (items.length === 0 && !loading) {
     return (
       <EmptyState
-        title="No items in review queue"
+        title='No items in review queue'
         message={
           statusFilter !== 'all'
             ? `No items with status "${statusFilter}"`
@@ -413,26 +432,26 @@ export default function ReviewQueue() {
   }
 
   return (
-    <div className="space-y-6">
+    <div className='space-y-6'>
       {/* Header */}
-      <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
+      <div className='flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between'>
         <div>
-          <h2 className="text-2xl font-bold text-slate-900">Review Queue</h2>
-          <p className="text-slate-600">
+          <h2 className='text-2xl font-bold text-slate-900'>Review Queue</h2>
+          <p className='text-slate-600'>
             {pagination.total} items needing review
             {selectedItems.size > 0 && ` (${selectedItems.size} selected)`}
           </p>
         </div>
-        <div className="flex items-center gap-3">
+        <div className='flex items-center gap-3'>
           <select
             value={typeFilter}
-            onChange={(e) => {
+            onChange={e => {
               setTypeFilter(e.target.value as ItemType | 'all');
               setPage(0);
             }}
-            className="h-9 rounded-md border border-slate-300 bg-white px-3 py-1 text-sm shadow-sm focus:border-primary-500 focus:ring-2 focus:ring-primary-500/20 focus:outline-none"
+            className='focus:border-primary-500 focus:ring-primary-500/20 h-9 rounded-md border border-slate-300 bg-white px-3 py-1 text-sm shadow-sm focus:ring-2 focus:outline-none'
           >
-            {typeOptions.map((opt) => (
+            {typeOptions.map(opt => (
               <option key={opt.value} value={opt.value}>
                 {opt.label}
               </option>
@@ -440,22 +459,22 @@ export default function ReviewQueue() {
           </select>
           <select
             value={statusFilter}
-            onChange={(e) => {
+            onChange={e => {
               setStatusFilter(e.target.value as ReviewStatus | 'all');
               setPage(0);
             }}
-            className="h-9 rounded-md border border-slate-300 bg-white px-3 py-1 text-sm shadow-sm focus:border-primary-500 focus:ring-2 focus:ring-primary-500/20 focus:outline-none"
+            className='focus:border-primary-500 focus:ring-primary-500/20 h-9 rounded-md border border-slate-300 bg-white px-3 py-1 text-sm shadow-sm focus:ring-2 focus:outline-none'
           >
-            {statusOptions.map((opt) => (
+            {statusOptions.map(opt => (
               <option key={opt.value} value={opt.value}>
                 {opt.label}
               </option>
             ))}
           </select>
           <Button
-            variant="outline"
-            size="sm"
-            leftIcon={<RefreshCw className="h-4 w-4" />}
+            variant='outline'
+            size='sm'
+            leftIcon={<RefreshCw className='h-4 w-4' />}
             onClick={() => fetchQueue()}
           >
             Refresh
@@ -465,31 +484,28 @@ export default function ReviewQueue() {
 
       {/* Bulk Actions Bar */}
       {selectedItems.size > 0 && (
-        <div className="flex items-center justify-between rounded-md bg-primary-50 p-4">
-          <div className="flex items-center gap-3">
-            <span className="font-medium text-primary-900">
-              {selectedItems.size} item{selectedItems.size !== 1 ? 's' : ''} selected
+        <div className='bg-primary-50 flex items-center justify-between rounded-md p-4'>
+          <div className='flex items-center gap-3'>
+            <span className='text-primary-900 font-medium'>
+              {selectedItems.size} item{selectedItems.size !== 1 ? 's' : ''}{' '}
+              selected
             </span>
-            <Button
-              variant="ghost"
-              size="sm"
-              onClick={clearSelection}
-            >
+            <Button variant='ghost' size='sm' onClick={clearSelection}>
               Clear selection
             </Button>
           </div>
-          <div className="flex items-center gap-2">
+          <div className='flex items-center gap-2'>
             <Button
-              variant="outline"
-              size="sm"
+              variant='outline'
+              size='sm'
               onClick={() => bulkUpdateStatus('resolved')}
               disabled={bulkActionLoading}
             >
               Approve Selected
             </Button>
             <Button
-              variant="outline"
-              size="sm"
+              variant='outline'
+              size='sm'
               onClick={() => bulkUpdateStatus('skipped')}
               disabled={bulkActionLoading}
             >
@@ -501,70 +517,67 @@ export default function ReviewQueue() {
 
       {/* Select All Bar */}
       {items.length > 0 && (
-        <div className="flex items-center gap-2 text-sm text-slate-600">
+        <div className='flex items-center gap-2 text-sm text-slate-600'>
           <button
             onClick={selectAllVisible}
-            className="flex items-center gap-1 hover:text-primary-600"
+            className='hover:text-primary-600 flex items-center gap-1'
           >
-            <CheckSquare className="h-4 w-4" />
+            <CheckSquare className='h-4 w-4' />
             Select all visible
           </button>
           <span>•</span>
-          <button
-            onClick={clearSelection}
-            className="hover:text-primary-600"
-          >
+          <button onClick={clearSelection} className='hover:text-primary-600'>
             Clear selection
           </button>
         </div>
       )}
 
       {/* Queue Items */}
-      <div className="space-y-4">
-        {items.map((item) => (
+      <div className='space-y-4'>
+        {items.map(item => (
           <Card
             key={item.id}
-            variant="default"
+            variant='default'
             className={
               item.status === 'pending'
                 ? 'border-l-4 border-l-amber-500'
                 : item.status === 'in_progress'
-                ? 'border-l-4 border-l-blue-500'
-                : ''
+                  ? 'border-l-4 border-l-blue-500'
+                  : ''
             }
           >
-            <CardContent className="p-5">
-              <div className="flex flex-col gap-4 lg:flex-row lg:items-start lg:justify-between">
-                <div className="flex-1 space-y-3">
+            <CardContent className='p-5'>
+              <div className='flex flex-col gap-4 lg:flex-row lg:items-start lg:justify-between'>
+                <div className='flex-1 space-y-3'>
                   {/* Header Row with Checkbox */}
-                  <div className="flex flex-wrap items-center gap-3">
+                  <div className='flex flex-wrap items-center gap-3'>
                     <button
                       onClick={() => toggleItemSelection(item.id)}
-                      className="flex-shrink-0 text-slate-400 hover:text-primary-600"
+                      className='hover:text-primary-600 flex-shrink-0 text-slate-400'
                     >
                       {selectedItems.has(item.id) ? (
-                        <CheckSquare className="h-5 w-5 text-primary-600" />
+                        <CheckSquare className='text-primary-600 h-5 w-5' />
                       ) : (
-                        <Square className="h-5 w-5" />
+                        <Square className='h-5 w-5' />
                       )}
                     </button>
                     <Badge variant={statusBadgeVariant(item.status)}>
                       {item.status.replace('_', ' ')}
                     </Badge>
-                    <Badge variant="slate">{item.item_type}</Badge>
-                    <Badge variant="outline">{item.source_type}</Badge>
-                    <span className="text-xs text-slate-500">
+                    <Badge variant='slate'>{item.item_type}</Badge>
+                    <Badge variant='outline'>{item.source_type}</Badge>
+                    <span className='text-xs text-slate-500'>
                       ID: {item.item_id}
                     </span>
                   </div>
 
                   {/* Description */}
                   <div>
-                    <h3 className="font-bold text-slate-900">
+                    <h3 className='font-bold text-slate-900'>
                       {item.issue_type}
                     </h3>
                     {item.description && (
-                      <p className="mt-1 text-sm text-slate-600">
+                      <p className='mt-1 text-sm text-slate-600'>
                         {item.description}
                       </p>
                     )}
@@ -572,26 +585,32 @@ export default function ReviewQueue() {
 
                   {/* Document Details (if applicable) */}
                   {item.document && (
-                    <div className="rounded-md bg-slate-50 p-3">
-                      <div className="flex items-center gap-2 text-sm">
-                        <Badge variant={item.document.type === 'ordinance' ? 'primary' : 'secondary'}>
+                    <div className='rounded-md bg-slate-50 p-3'>
+                      <div className='flex items-center gap-2 text-sm'>
+                        <Badge
+                          variant={
+                            item.document.type === 'ordinance'
+                              ? 'primary'
+                              : 'secondary'
+                          }
+                        >
                           {item.document.type}
                         </Badge>
-                        <span className="font-mono font-bold text-slate-700">
+                        <span className='font-mono font-bold text-slate-700'>
                           {item.document.number}
                         </span>
                       </div>
-                      <p className="mt-1 text-sm text-slate-600">
+                      <p className='mt-1 text-sm text-slate-600'>
                         {item.document.title}
                       </p>
                       {item.document.pdf_url && (
                         <a
                           href={item.document.pdf_url}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="mt-2 inline-flex items-center gap-1 text-xs text-primary-600 hover:underline"
+                          target='_blank'
+                          rel='noopener noreferrer'
+                          className='text-primary-600 mt-2 inline-flex items-center gap-1 text-xs hover:underline'
                         >
-                          <FileText className="h-3 w-3" />
+                          <FileText className='h-3 w-3' />
                           View PDF
                         </a>
                       )}
@@ -599,23 +618,23 @@ export default function ReviewQueue() {
                   )}
 
                   {/* Metadata */}
-                  <div className="flex flex-wrap gap-4 text-xs text-slate-500">
-                    <div className="flex items-center gap-1">
-                      <Calendar className="h-3 w-3" />
+                  <div className='flex flex-wrap gap-4 text-xs text-slate-500'>
+                    <div className='flex items-center gap-1'>
+                      <Calendar className='h-3 w-3' />
                       Created {new Date(item.created_at).toLocaleString()}
                     </div>
                     {item.assigned_to && (
-                      <div className="flex items-center gap-1">
-                        <User className="h-3 w-3" />
+                      <div className='flex items-center gap-1'>
+                        <User className='h-3 w-3' />
                         Assigned to {item.assigned_to}
                       </div>
                     )}
                     {item.source_url && (
                       <a
                         href={item.source_url}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="text-primary-600 hover:underline"
+                        target='_blank'
+                        rel='noopener noreferrer'
+                        className='text-primary-600 hover:underline'
                       >
                         Source
                       </a>
@@ -624,11 +643,11 @@ export default function ReviewQueue() {
 
                   {/* Resolution (if resolved) */}
                   {item.resolution && (
-                    <div className="rounded-md bg-emerald-50 p-3">
-                      <p className="text-xs font-bold text-emerald-900 uppercase">
+                    <div className='rounded-md bg-emerald-50 p-3'>
+                      <p className='text-xs font-bold text-emerald-900 uppercase'>
                         Resolution
                       </p>
-                      <p className="mt-1 text-sm text-emerald-700">
+                      <p className='mt-1 text-sm text-emerald-700'>
                         {item.resolution}
                       </p>
                     </div>
@@ -636,12 +655,12 @@ export default function ReviewQueue() {
                 </div>
 
                 {/* Actions */}
-                <div className="flex flex-col gap-2 lg:min-w-[140px]">
+                <div className='flex flex-col gap-2 lg:min-w-[140px]'>
                   {item.item_type === 'document' && item.document && (
                     <Button
-                      variant="outline"
-                      size="sm"
-                      leftIcon={<Edit3 className="h-4 w-4" />}
+                      variant='outline'
+                      size='sm'
+                      leftIcon={<Edit3 className='h-4 w-4' />}
                       onClick={() => openEditModal(item.document.id)}
                     >
                       Edit Document
@@ -650,17 +669,17 @@ export default function ReviewQueue() {
                   {item.item_type === 'session' && (
                     <>
                       <Button
-                        variant="outline"
-                        size="sm"
-                        leftIcon={<Edit3 className="h-4 w-4" />}
+                        variant='outline'
+                        size='sm'
+                        leftIcon={<Edit3 className='h-4 w-4' />}
                         onClick={() => openSessionForm(item.item_id)}
                       >
                         Edit Session
                       </Button>
                       <Button
-                        variant="outline"
-                        size="sm"
-                        leftIcon={<Users className="h-4 w-4" />}
+                        variant='outline'
+                        size='sm'
+                        leftIcon={<Users className='h-4 w-4' />}
                         onClick={() => openAttendanceForm(item.item_id)}
                       >
                         Attendance
@@ -669,9 +688,9 @@ export default function ReviewQueue() {
                   )}
                   {item.item_type === 'attendance' && (
                     <Button
-                      variant="outline"
-                      size="sm"
-                      leftIcon={<Users className="h-4 w-4" />}
+                      variant='outline'
+                      size='sm'
+                      leftIcon={<Users className='h-4 w-4' />}
                       onClick={() => openAttendanceForm(item.item_id)}
                     >
                       Edit Attendance
@@ -680,8 +699,8 @@ export default function ReviewQueue() {
                   {item.status === 'pending' && (
                     <>
                       <Button
-                        variant="primary"
-                        size="sm"
+                        variant='primary'
+                        size='sm'
                         onClick={() => {
                           updateStatus(item.id, 'in_progress');
                           assignToSelf(item.id);
@@ -690,8 +709,8 @@ export default function ReviewQueue() {
                         Start Review
                       </Button>
                       <Button
-                        variant="outline"
-                        size="sm"
+                        variant='outline'
+                        size='sm'
                         onClick={() => updateStatus(item.id, 'skipped')}
                       >
                         Skip
@@ -701,16 +720,16 @@ export default function ReviewQueue() {
                   {item.status === 'in_progress' && (
                     <>
                       <Button
-                        variant="success"
-                        size="sm"
-                        leftIcon={<Check className="h-4 w-4" />}
+                        variant='success'
+                        size='sm'
+                        leftIcon={<Check className='h-4 w-4' />}
                         onClick={() => updateStatus(item.id, 'resolved')}
                       >
                         Approve
                       </Button>
                       <Button
-                        variant="outline"
-                        size="sm"
+                        variant='outline'
+                        size='sm'
                         onClick={() => updateStatus(item.id, 'pending')}
                       >
                         Release
@@ -726,28 +745,28 @@ export default function ReviewQueue() {
 
       {/* Pagination */}
       {pagination.total > pagination.limit && (
-        <div className="flex items-center justify-between">
-          <p className="text-sm text-slate-600">
+        <div className='flex items-center justify-between'>
+          <p className='text-sm text-slate-600'>
             Showing {pagination.offset + 1}-
             {Math.min(pagination.offset + pagination.limit, pagination.total)}{' '}
             of {pagination.total}
           </p>
-          <div className="flex gap-2">
+          <div className='flex gap-2'>
             <Button
-              variant="outline"
-              size="sm"
+              variant='outline'
+              size='sm'
               disabled={page === 0}
-              onClick={() => setPage((p) => p - 1)}
-              leftIcon={<ChevronLeft className="h-4 w-4" />}
+              onClick={() => setPage(p => p - 1)}
+              leftIcon={<ChevronLeft className='h-4 w-4' />}
             >
               Previous
             </Button>
             <Button
-              variant="outline"
-              size="sm"
+              variant='outline'
+              size='sm'
               disabled={!pagination.has_more}
-              onClick={() => setPage((p) => p + 1)}
-              rightIcon={<ChevronRight className="h-4 w-4" />}
+              onClick={() => setPage(p => p + 1)}
+              rightIcon={<ChevronRight className='h-4 w-4' />}
             >
               Next
             </Button>
@@ -770,15 +789,15 @@ export default function ReviewQueue() {
 
       {/* Session Form Modal */}
       {sessionFormSessionId && sessionFormOpen && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 p-4">
-          <div className="max-h-[90vh] w-full max-w-3xl overflow-y-auto rounded-lg bg-white p-6">
-            <h2 className="mb-4 text-2xl font-bold text-slate-900">
+        <div className='fixed inset-0 z-50 flex items-center justify-center bg-black/50 p-4'>
+          <div className='max-h-[90vh] w-full max-w-3xl overflow-y-auto rounded-lg bg-white p-6'>
+            <h2 className='mb-4 text-2xl font-bold text-slate-900'>
               {sessionFormSessionId ? 'Edit Session' : 'Create Session'}
             </h2>
             <SessionDataForm
               sessionId={sessionFormSessionId}
-              termId="" // Will need to be determined from session data
-              onSave={async (data) => {
+              termId='' // Will need to be determined from session data
+              onSave={async data => {
                 await saveSession(data);
                 setSessionFormOpen(false);
                 setSessionFormSessionId(null);
@@ -794,14 +813,14 @@ export default function ReviewQueue() {
 
       {/* Attendance Form Modal */}
       {attendanceFormSessionId && attendanceFormOpen && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 p-4">
-          <div className="max-h-[90vh] w-full max-w-2xl overflow-y-auto rounded-lg bg-white p-6">
-            <h2 className="mb-4 text-2xl font-bold text-slate-900">
+        <div className='fixed inset-0 z-50 flex items-center justify-center bg-black/50 p-4'>
+          <div className='max-h-[90vh] w-full max-w-2xl overflow-y-auto rounded-lg bg-white p-6'>
+            <h2 className='mb-4 text-2xl font-bold text-slate-900'>
               Edit Attendance
             </h2>
             <AttendanceForm
               sessionId={attendanceFormSessionId}
-              onSave={async (absentPersonIds) => {
+              onSave={async absentPersonIds => {
                 await saveAttendance(absentPersonIds);
                 setAttendanceFormOpen(false);
                 setAttendanceFormSessionId(null);

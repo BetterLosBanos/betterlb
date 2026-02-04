@@ -1,4 +1,4 @@
-import { ReactNode, HTMLAttributes } from 'react';
+import { HTMLAttributes, ReactNode } from 'react';
 
 import { cn } from '@/lib/utils';
 
@@ -12,7 +12,10 @@ type BadgeVariant =
   | 'slate' // Neutral (Admin / Metadata)
   | 'outline'; // Border only
 
-interface BadgeProps extends Omit<HTMLAttributes<HTMLSpanElement>, 'className'> {
+interface BadgeProps extends Omit<
+  HTMLAttributes<HTMLSpanElement>,
+  'className'
+> {
   children: ReactNode;
   variant?: BadgeVariant;
   className?: string;

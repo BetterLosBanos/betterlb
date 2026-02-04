@@ -1,8 +1,10 @@
-import { useState, useEffect } from 'react';
-import { Users, Calendar, Check, X, RefreshCw } from 'lucide-react';
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/Card';
+import { useEffect, useState } from 'react';
+
+import { Calendar, Check, RefreshCw, Users, X } from 'lucide-react';
+
 import { Badge } from '@/components/ui/Badge';
 import Button from '@/components/ui/Button';
+import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/Card';
 import { EmptyState } from '@/components/ui/EmptyState';
 
 interface Person {
@@ -28,12 +30,18 @@ interface AttendanceFormProps {
   onCancel: () => void;
 }
 
-export default function AttendanceForm({ sessionId, onSave, onCancel }: AttendanceFormProps) {
+export default function AttendanceForm({
+  sessionId,
+  onSave,
+  onCancel,
+}: AttendanceFormProps) {
   const [loading, setLoading] = useState(true);
   const [saving, setSaving] = useState(false);
   const [session, setSession] = useState<Session | null>(null);
   const [members, setMembers] = useState<Person[]>([]);
-  const [absentPersonIds, setAbsentPersonIds] = useState<Set<string>>(new Set());
+  const [absentPersonIds, setAbsentPersonIds] = useState<Set<string>>(
+    new Set()
+  );
 
   useEffect(() => {
     const loadData = async () => {
@@ -49,7 +57,9 @@ export default function AttendanceForm({ sessionId, onSave, onCancel }: Attendan
 
         // Set initial absences
         const absentIds = new Set(
-          (sessionData.absences || []).map((a: { person_id: string }) => a.person_id)
+          (sessionData.absences || []).map(
+            (a: { person_id: string }) => a.person_id
+          )
         );
         setAbsentPersonIds(absentIds);
       } catch (error) {
@@ -77,7 +87,7 @@ export default function AttendanceForm({ sessionId, onSave, onCancel }: Attendan
   };
 
   const markAllAbsent = () => {
-    setAbsentPersonIds(new Set(members.map((m) => m.person_id)));
+    setAbsentPersonIds(new Set(members.map(m => m.person_id)));
   };
 
   const handleSave = async () => {
@@ -94,8 +104,8 @@ export default function AttendanceForm({ sessionId, onSave, onCancel }: Attendan
 
   if (loading) {
     return (
-      <div className="flex items-center justify-center py-12">
-        <RefreshCw className="h-8 w-8 animate-spin text-slate-400" />
+      <div className='flex items-center justify-center py-12'>
+        <RefreshCw className='h-8 w-8 animate-spin text-slate-400' />
       </div>
     );
   }
@@ -103,73 +113,83 @@ export default function AttendanceForm({ sessionId, onSave, onCancel }: Attendan
   if (!session) {
     return (
       <EmptyState
-        title="Session not found"
-        message="Unable to load session details."
+        title='Session not found'
+        message='Unable to load session details.'
         icon={Users}
       />
     );
   }
 
   return (
-    <div className="space-y-6">
+    <div className='space-y-6'>
       {/* Session Info */}
-      <Card variant="default">
+      <Card variant='default'>
         <CardHeader>
-          <CardTitle className="flex items-center gap-2">
-            <Calendar className="h-5 w-5" />
+          <CardTitle className='flex items-center gap-2'>
+            <Calendar className='h-5 w-5' />
             Session Information
           </CardTitle>
         </CardHeader>
         <CardContent>
-          <div className="flex flex-wrap gap-4">
+          <div className='flex flex-wrap gap-4'>
             <div>
-              <p className="text-xs text-slate-500">Session Type</p>
-              <p className="font-medium text-slate-900 capitalize">{session.session_type}</p>
+              <p className='text-xs text-slate-500'>Session Type</p>
+              <p className='font-medium text-slate-900 capitalize'>
+                {session.session_type}
+              </p>
             </div>
             {session.ordinal && (
               <div>
-                <p className="text-xs text-slate-500">Number</p>
-                <p className="font-medium text-slate-900">{session.ordinal}</p>
+                <p className='text-xs text-slate-500'>Number</p>
+                <p className='font-medium text-slate-900'>{session.ordinal}</p>
               </div>
             )}
             <div>
-              <p className="text-xs text-slate-500">Date</p>
-              <p className="font-medium text-slate-900">{new Date(session.date).toLocaleDateString()}</p>
+              <p className='text-xs text-slate-500'>Date</p>
+              <p className='font-medium text-slate-900'>
+                {new Date(session.date).toLocaleDateString()}
+              </p>
             </div>
           </div>
         </CardContent>
       </Card>
 
       {/* Attendance List */}
-      <Card variant="default">
+      <Card variant='default'>
         <CardHeader>
-          <CardTitle className="flex items-center gap-2">
-            <Users className="h-5 w-5" />
+          <CardTitle className='flex items-center gap-2'>
+            <Users className='h-5 w-5' />
             Council Members
           </CardTitle>
         </CardHeader>
-        <CardContent className="space-y-4">
+        <CardContent className='space-y-4'>
           {/* Summary */}
-          <div className="flex items-center justify-between rounded-md bg-slate-50 p-4">
-            <div className="flex gap-4">
+          <div className='flex items-center justify-between rounded-md bg-slate-50 p-4'>
+            <div className='flex gap-4'>
               <div>
-                <p className="text-xs text-slate-500">Total Members</p>
-                <p className="text-lg font-bold text-slate-900">{members.length}</p>
+                <p className='text-xs text-slate-500'>Total Members</p>
+                <p className='text-lg font-bold text-slate-900'>
+                  {members.length}
+                </p>
               </div>
               <div>
-                <p className="text-xs text-slate-500">Present</p>
-                <p className="text-lg font-bold text-emerald-600">{presentCount}</p>
+                <p className='text-xs text-slate-500'>Present</p>
+                <p className='text-lg font-bold text-emerald-600'>
+                  {presentCount}
+                </p>
               </div>
               <div>
-                <p className="text-xs text-slate-500">Absent</p>
-                <p className="text-lg font-bold text-amber-600">{absentCount}</p>
+                <p className='text-xs text-slate-500'>Absent</p>
+                <p className='text-lg font-bold text-amber-600'>
+                  {absentCount}
+                </p>
               </div>
             </div>
-            <div className="flex gap-2">
-              <Button variant="outline" size="sm" onClick={markAllPresent}>
+            <div className='flex gap-2'>
+              <Button variant='outline' size='sm' onClick={markAllPresent}>
                 All Present
               </Button>
-              <Button variant="outline" size="sm" onClick={markAllAbsent}>
+              <Button variant='outline' size='sm' onClick={markAllAbsent}>
                 All Absent
               </Button>
             </div>
@@ -178,13 +198,13 @@ export default function AttendanceForm({ sessionId, onSave, onCancel }: Attendan
           {/* Member List */}
           {members.length === 0 ? (
             <EmptyState
-              title="No members found"
-              message="No council members found for this session."
+              title='No members found'
+              message='No council members found for this session.'
               icon={Users}
             />
           ) : (
-            <div className="max-h-96 space-y-2 overflow-y-auto">
-              {members.map((member) => {
+            <div className='max-h-96 space-y-2 overflow-y-auto'>
+              {members.map(member => {
                 const isAbsent = absentPersonIds.has(member.person_id);
                 return (
                   <div
@@ -196,24 +216,27 @@ export default function AttendanceForm({ sessionId, onSave, onCancel }: Attendan
                     }`}
                     onClick={() => toggleAttendance(member.person_id)}
                   >
-                    <div className="flex items-center gap-3">
+                    <div className='flex items-center gap-3'>
                       <div
                         className={`flex h-10 w-10 items-center justify-center rounded-full ${
                           isAbsent ? 'bg-amber-200' : 'bg-emerald-200'
                         }`}
                       >
                         {isAbsent ? (
-                          <X className="h-5 w-5 text-amber-700" />
+                          <X className='h-5 w-5 text-amber-700' />
                         ) : (
-                          <Check className="h-5 w-5 text-emerald-700" />
+                          <Check className='h-5 w-5 text-emerald-700' />
                         )}
                       </div>
                       <div>
-                        <p className="text-sm font-medium text-slate-900">
-                          {member.first_name} {member.middle_name} {member.last_name}
+                        <p className='text-sm font-medium text-slate-900'>
+                          {member.first_name} {member.middle_name}{' '}
+                          {member.last_name}
                         </p>
                         {member.role && (
-                          <p className="text-xs text-slate-500">{member.role}</p>
+                          <p className='text-xs text-slate-500'>
+                            {member.role}
+                          </p>
                         )}
                       </div>
                     </div>
@@ -229,11 +252,11 @@ export default function AttendanceForm({ sessionId, onSave, onCancel }: Attendan
       </Card>
 
       {/* Actions */}
-      <div className="flex justify-end gap-3">
-        <Button variant="outline" onClick={onCancel} disabled={saving}>
+      <div className='flex justify-end gap-3'>
+        <Button variant='outline' onClick={onCancel} disabled={saving}>
           Cancel
         </Button>
-        <Button variant="primary" onClick={handleSave} disabled={saving}>
+        <Button variant='primary' onClick={handleSave} disabled={saving}>
           {saving ? 'Saving...' : 'Save Attendance'}
         </Button>
       </div>

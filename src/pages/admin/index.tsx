@@ -1,20 +1,23 @@
-import { useState, useEffect } from 'react';
+import { useEffect, useState } from 'react';
+
 import { Link } from 'react-router-dom';
+
 import {
+  Activity,
   AlertTriangle,
+  ArrowRight,
+  Calendar,
+  CheckCircle,
   FileText,
   GitMerge,
-  Activity,
-  ArrowRight,
   RefreshCw,
-  Calendar,
   User,
-  CheckCircle,
 } from 'lucide-react';
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/Card';
+
 import { Badge } from '@/components/ui/Badge';
-import { CardGrid } from '@/components/ui/Card';
 import Button from '@/components/ui/Button';
+import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/Card';
+import { CardGrid } from '@/components/ui/Card';
 
 interface StatCard {
   title: string;
@@ -68,7 +71,9 @@ interface RecentActivityItem {
 export default function AdminDashboard() {
   const [stats, setStats] = useState<DashboardStats | null>(null);
   const [loading, setLoading] = useState(true);
-  const [recentActivity, setRecentActivity] = useState<RecentActivityItem[]>([]);
+  const [recentActivity, setRecentActivity] = useState<RecentActivityItem[]>(
+    []
+  );
   const [activityLoading, setActivityLoading] = useState(true);
 
   useEffect(() => {
@@ -184,15 +189,19 @@ export default function AdminDashboard() {
   };
 
   return (
-    <div className="space-y-8">
+    <div className='space-y-8'>
       {/* Stats Overview */}
       <section>
-        <div className="flex justify-between items-center mb-4">
-          <h2 className="text-xl font-bold text-slate-900">Overview</h2>
+        <div className='mb-4 flex items-center justify-between'>
+          <h2 className='text-xl font-bold text-slate-900'>Overview</h2>
           <Button
-            variant="outline"
-            size="sm"
-            leftIcon={<RefreshCw className={`h-4 w-4 ${loading ? 'animate-spin' : ''}`} />}
+            variant='outline'
+            size='sm'
+            leftIcon={
+              <RefreshCw
+                className={`h-4 w-4 ${loading ? 'animate-spin' : ''}`}
+              />
+            }
             onClick={fetchStats}
             disabled={loading}
           >
@@ -200,41 +209,41 @@ export default function AdminDashboard() {
           </Button>
         </div>
         <CardGrid columns={4}>
-          {statCards.map((stat) => {
+          {statCards.map(stat => {
             const Icon = stat.icon;
             return (
               <Link key={stat.title} to={stat.link}>
                 <Card
-                  variant="default"
+                  variant='default'
                   hover
-                  className="h-full cursor-pointer group"
+                  className='group h-full cursor-pointer'
                 >
-                  <CardHeader className="pb-3">
-                    <div className="flex justify-between items-center">
+                  <CardHeader className='pb-3'>
+                    <div className='flex items-center justify-between'>
                       <Icon
                         className={`h-6 w-6 ${
                           stat.variant === 'error'
                             ? 'text-rose-500'
                             : stat.variant === 'warning'
-                            ? 'text-amber-500'
-                            : stat.variant === 'success'
-                            ? 'text-emerald-500'
-                            : 'text-blue-500'
+                              ? 'text-amber-500'
+                              : stat.variant === 'success'
+                                ? 'text-emerald-500'
+                                : 'text-blue-500'
                         }`}
                       />
                       <Badge
                         variant={stat.variant}
-                        className="border px-2 py-0.5"
+                        className='border px-2 py-0.5'
                       >
                         {getDisplayValue(stat.value)}
                       </Badge>
                     </div>
                   </CardHeader>
                   <CardContent>
-                    <CardTitle level="h3" className="mb-1">
+                    <CardTitle level='h3' className='mb-1'>
                       {stat.title}
                     </CardTitle>
-                    <p className="text-sm text-slate-500">{stat.description}</p>
+                    <p className='text-sm text-slate-500'>{stat.description}</p>
                   </CardContent>
                 </Card>
               </Link>
@@ -245,21 +254,21 @@ export default function AdminDashboard() {
 
       {/* Quick Actions */}
       <section>
-        <h2 className="mb-4 text-xl font-bold text-slate-900">Quick Actions</h2>
-        <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-          {quickActions.map((action) => (
+        <h2 className='mb-4 text-xl font-bold text-slate-900'>Quick Actions</h2>
+        <div className='grid gap-4 sm:grid-cols-2 lg:grid-cols-3'>
+          {quickActions.map(action => (
             <Card
               key={action.title}
-              variant="slate"
+              variant='slate'
               hover
-              className="flex justify-between items-center"
+              className='flex items-center justify-between'
             >
-              <CardContent className="flex-1 py-4">
-                <h3 className="font-bold text-slate-900">{action.title}</h3>
-                <p className="text-sm text-slate-500">{action.description}</p>
+              <CardContent className='flex-1 py-4'>
+                <h3 className='font-bold text-slate-900'>{action.title}</h3>
+                <p className='text-sm text-slate-500'>{action.description}</p>
               </CardContent>
-              <Link to={action.link} className="px-4">
-                <ArrowRight className="w-5 h-5 text-slate-400" />
+              <Link to={action.link} className='px-4'>
+                <ArrowRight className='h-5 w-5 text-slate-400' />
               </Link>
             </Card>
           ))}
@@ -268,75 +277,85 @@ export default function AdminDashboard() {
 
       {/* Recent Activity */}
       <section>
-        <div className="flex justify-between items-center mb-4">
-          <h2 className="text-xl font-bold text-slate-900">Recent Activity</h2>
+        <div className='mb-4 flex items-center justify-between'>
+          <h2 className='text-xl font-bold text-slate-900'>Recent Activity</h2>
           <Button
-            variant="outline"
-            size="sm"
-            leftIcon={<RefreshCw className={`h-4 w-4 ${activityLoading ? 'animate-spin' : ''}`} />}
+            variant='outline'
+            size='sm'
+            leftIcon={
+              <RefreshCw
+                className={`h-4 w-4 ${activityLoading ? 'animate-spin' : ''}`}
+              />
+            }
             onClick={fetchRecentActivity}
             disabled={activityLoading}
           >
             Refresh
           </Button>
         </div>
-        <Card variant="default">
-          <CardContent className="p-0">
+        <Card variant='default'>
+          <CardContent className='p-0'>
             {activityLoading ? (
-              <div className="flex justify-center items-center py-6">
-                <RefreshCw className="w-6 h-6 animate-spin text-slate-400" />
+              <div className='flex items-center justify-center py-6'>
+                <RefreshCw className='h-6 w-6 animate-spin text-slate-400' />
               </div>
             ) : recentActivity.length === 0 ? (
-              <div className="py-6 text-center text-slate-500">
-                <CheckCircle className="mx-auto mb-2 w-8 h-8 text-slate-400" />
-                <p className="text-sm">No recent activity to display</p>
+              <div className='py-6 text-center text-slate-500'>
+                <CheckCircle className='mx-auto mb-2 h-8 w-8 text-slate-400' />
+                <p className='text-sm'>No recent activity to display</p>
               </div>
             ) : (
-              <div className="divide-y divide-slate-100">
-                {recentActivity.map((item) => (
-                  <div key={item.id} className="flex gap-4 items-start p-4 hover:bg-slate-50">
-                    <div className="flex-shrink-0">
-                      <CheckCircle className="w-5 h-5 text-emerald-500" />
+              <div className='divide-y divide-slate-100'>
+                {recentActivity.map(item => (
+                  <div
+                    key={item.id}
+                    className='flex items-start gap-4 p-4 hover:bg-slate-50'
+                  >
+                    <div className='flex-shrink-0'>
+                      <CheckCircle className='h-5 w-5 text-emerald-500' />
                     </div>
-                    <div className="flex-1 min-w-0">
-                      <div className="flex flex-wrap gap-2 items-center mb-1">
-                        <Badge variant="slate" className="text-xs">
+                    <div className='min-w-0 flex-1'>
+                      <div className='mb-1 flex flex-wrap items-center gap-2'>
+                        <Badge variant='slate' className='text-xs'>
                           {item.item_type}
                         </Badge>
-                        <span className="text-sm font-medium text-slate-900">
+                        <span className='text-sm font-medium text-slate-900'>
                           {item.issue_type.replace(/_/g, ' ')}
                         </span>
                       </div>
                       {item.description && (
-                        <p className="mb-1 text-sm text-slate-600 line-clamp-2">
+                        <p className='mb-1 line-clamp-2 text-sm text-slate-600'>
                           {item.description}
                         </p>
                       )}
                       {item.document && (
                         <Link
                           to={`/openlgu/documents/${item.document.id}`}
-                          className="inline-flex gap-1 items-center mb-1 text-sm font-medium text-primary-600 hover:underline"
+                          className='text-primary-600 mb-1 inline-flex items-center gap-1 text-sm font-medium hover:underline'
                         >
-                          <FileText className="w-3 h-3" />
-                          {item.document.type === 'ordinance' ? 'Ordinance' : 'Resolution'} {item.document.number}
-                          <span className="ml-1 font-normal line-clamp-1 text-slate-600">
+                          <FileText className='h-3 w-3' />
+                          {item.document.type === 'ordinance'
+                            ? 'Ordinance'
+                            : 'Resolution'}{' '}
+                          {item.document.number}
+                          <span className='ml-1 line-clamp-1 font-normal text-slate-600'>
                             - {item.document.title}
                           </span>
                         </Link>
                       )}
                       {item.resolution && (
-                        <p className="text-sm italic text-slate-500">
+                        <p className='text-sm text-slate-500 italic'>
                           &quot;{item.resolution}&quot;
                         </p>
                       )}
-                      <div className="flex flex-wrap gap-3 items-center mt-1 text-xs text-slate-500">
-                        <div className="flex gap-1 items-center">
-                          <Calendar className="w-3 h-3" />
+                      <div className='mt-1 flex flex-wrap items-center gap-3 text-xs text-slate-500'>
+                        <div className='flex items-center gap-1'>
+                          <Calendar className='h-3 w-3' />
                           {new Date(item.resolved_at).toLocaleDateString()}
                         </div>
                         {item.assigned_to && (
-                          <div className="flex gap-1 items-center">
-                            <User className="w-3 h-3" />
+                          <div className='flex items-center gap-1'>
+                            <User className='h-3 w-3' />
                             Resolved by {item.assigned_to}
                           </div>
                         )}

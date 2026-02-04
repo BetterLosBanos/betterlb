@@ -1,13 +1,16 @@
 import { useMemo, useState } from 'react';
+
 import { Link } from 'react-router-dom';
+
 import { Crown, Shield, User } from 'lucide-react';
 
+import { PageLoadingState } from '@/components/ui';
 import { Badge } from '@/components/ui/Badge';
 import { Card, CardContent } from '@/components/ui/Card';
-import { PageLoadingState } from '@/components/ui';
+
 import { getPersonName } from '@/lib/openlgu';
-import { isExecutiveRole, isLegislativeRole } from '@/lib/roleHelpers';
 import type { Person, Term } from '@/lib/openlgu';
+import { isExecutiveRole, isLegislativeRole } from '@/lib/roleHelpers';
 
 interface OfficialsTeaserProps {
   persons: Person[];
@@ -15,51 +18,64 @@ interface OfficialsTeaserProps {
   isLoading?: boolean;
 }
 
-export default function OfficialsTeaser({ persons, term, isLoading }: OfficialsTeaserProps) {
+export default function OfficialsTeaser({
+  persons,
+  term,
+  isLoading,
+}: OfficialsTeaserProps) {
   // Session-based seed for stable randomness during navigation
   const [sessionSeed] = useState(() => Math.random());
 
   // Get mayor
-  const mayor = useMemo(
-    () => {
-      if (!term?.id || !Array.isArray(persons) || persons.length === 0) return null;
-      return persons.find(p =>
-        p?.memberships?.some(m =>
-          m?.term_id === term.id && isExecutiveRole(m?.chamber) && m?.role?.toLowerCase().includes('mayor') && !m?.role?.toLowerCase().includes('vice')
+  const mayor = useMemo(() => {
+    if (!term?.id || !Array.isArray(persons) || persons.length === 0)
+      return null;
+    return (
+      persons.find(p =>
+        p?.memberships?.some(
+          m =>
+            m?.term_id === term.id &&
+            isExecutiveRole(m?.chamber) &&
+            m?.role?.toLowerCase().includes('mayor') &&
+            !m?.role?.toLowerCase().includes('vice')
         )
-      ) ?? null;
-    },
-    [persons, term]
-  );
+      ) ?? null
+    );
+  }, [persons, term]);
 
   // Get vice mayor
-  const viceMayor = useMemo(
-    () => {
-      if (!term?.id || !Array.isArray(persons) || persons.length === 0) return null;
-      return persons.find(p =>
+  const viceMayor = useMemo(() => {
+    if (!term?.id || !Array.isArray(persons) || persons.length === 0)
+      return null;
+    return (
+      persons.find(p =>
         p?.memberships?.some(
           m => m?.term_id === term.id && m?.role?.includes('Vice Mayor')
         )
-      ) ?? null;
-    },
-    [persons, term]
-  );
+      ) ?? null
+    );
+  }, [persons, term]);
 
   // Pick 2 random councilors (stable per session, changes per reload)
   const randomCouncilors = useMemo(() => {
     if (!term?.id || !Array.isArray(persons) || persons.length === 0) return [];
-    
+
     const currentCouncilors = persons.filter(p =>
       p?.memberships?.some(
-        m => m?.term_id === term.id && isLegislativeRole(m?.chamber) && !m?.role?.includes('Vice Mayor')
+        m =>
+          m?.term_id === term.id &&
+          isLegislativeRole(m?.chamber) &&
+          !m?.role?.includes('Vice Mayor')
       )
     );
-    
+
     if (currentCouncilors.length <= 2) return currentCouncilors;
 
     // Combine term.id with session seed for session-stable randomness
     const shuffled = [...currentCouncilors];
-    let seed = term.id.split('').reduce((acc, char) => acc + char.charCodeAt(0), 0) + sessionSeed * 10000;
+    let seed =
+      term.id.split('').reduce((acc, char) => acc + char.charCodeAt(0), 0) +
+      sessionSeed * 10000;
 
     for (let i = shuffled.length - 1; i > 0; i--) {
       const j = Math.floor(seed % (i + 1));
@@ -81,7 +97,7 @@ export default function OfficialsTeaser({ persons, term, isLoading }: OfficialsT
 
   // Show loading state while data is being fetched
   if (isLoading) {
-    return <PageLoadingState message="Loading officials..." />;
+    return <PageLoadingState message='Loading officials...' />;
   }
 
   // Early return if data is not available
@@ -101,16 +117,20 @@ export default function OfficialsTeaser({ persons, term, isLoading }: OfficialsT
 
     const role = membership.role?.toLowerCase() ?? '';
     if (role.includes('mayor') && !role.includes('vice')) {
-      return <Badge variant='warning' dot>Mayor</Badge>;
+      return (
+        <Badge variant='warning' dot>
+          Mayor
+        </Badge>
+      );
     }
     if (role.includes('vice mayor')) {
-      return <Badge variant='secondary' dot>Vice Mayor</Badge>;
+      return (
+        <Badge variant='secondary' dot>
+          Vice Mayor
+        </Badge>
+      );
     }
-    return (
-      <Badge variant='slate'>
-        {membership.role}
-      </Badge>
-    );
+    return <Badge variant='slate'>{membership.role}</Badge>;
   };
 
   const getRoleIcon = (person: Person) => {
@@ -126,13 +146,13 @@ export default function OfficialsTeaser({ persons, term, isLoading }: OfficialsT
 
   return (
     <div className='space-y-4'>
-      <div className='flex justify-between items-center'>
-        <h2 className='text-sm font-bold tracking-widest uppercase text-slate-400'>
+      <div className='flex items-center justify-between'>
+        <h2 className='text-sm font-bold tracking-widest text-slate-400 uppercase'>
           Officials
         </h2>
         <Link
           to='/openlgu/officials'
-          className='text-xs font-bold text-primary-600 hover:text-primary-700'
+          className='text-primary-600 hover:text-primary-700 text-xs font-bold'
         >
           View all →
         </Link>
@@ -150,17 +170,20 @@ export default function OfficialsTeaser({ persons, term, isLoading }: OfficialsT
             >
               <Card variant='slate' hover={true} className='h-full'>
                 <CardContent className='p-4'>
-                  <div className='flex gap-3 items-start'>
-                    <div className='flex justify-center items-center w-10 h-10 text-sm font-bold text-white rounded-xl shadow-sm bg-linear-to-br from-primary-500 to-primary-600 shrink-0'>
+                  <div className='flex items-start gap-3'>
+                    <div className='from-primary-500 to-primary-600 flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-linear-to-br text-sm font-bold text-white shadow-sm'>
                       {initials}
                     </div>
-                    <div className='flex-1 min-w-0'>
+                    <div className='min-w-0 flex-1'>
                       <div className='mb-1'>{getRoleBadge(person)}</div>
-                      <p className='text-sm font-bold truncate transition-colors group-hover:text-primary-600 text-slate-900'>
+                      <p className='group-hover:text-primary-600 truncate text-sm font-bold text-slate-900 transition-colors'>
                         {getPersonName(person)}
                       </p>
                     </div>
-                    <RoleIcon className='w-4 h-4 transition-colors shrink-0 text-slate-300 group-hover:text-primary-600' aria-hidden='true' />
+                    <RoleIcon
+                      className='group-hover:text-primary-600 h-4 w-4 shrink-0 text-slate-300 transition-colors'
+                      aria-hidden='true'
+                    />
                   </div>
                 </CardContent>
               </Card>

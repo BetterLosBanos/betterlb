@@ -1,8 +1,12 @@
 import { ReactNode, useEffect, useState } from 'react';
+
 import { useLocation } from 'react-router-dom';
-import { Menu, X, PanelLeftClose, PanelLeftOpen } from 'lucide-react';
-import { ModuleHeader } from './PageLayouts';
+
+import { Menu, PanelLeftClose, PanelLeftOpen, X } from 'lucide-react';
+
 import { cn } from '@/lib/utils';
+
+import { ModuleHeader } from './PageLayouts';
 
 interface SidebarLayoutProps {
   children: ReactNode;
@@ -14,7 +18,7 @@ interface SidebarLayoutProps {
     actions?: ReactNode;
   };
   // Option B: Custom Component (Overrides Option A)
-  headerNode?: ReactNode; 
+  headerNode?: ReactNode;
   collapsible?: boolean;
   defaultCollapsed?: boolean;
   className?: string;
@@ -53,86 +57,85 @@ export default function SidebarLayout({
 
   return (
     <div className={`min-h-screen md:bg-slate-50 ${className}`}>
-      <div className='container py-6 mx-auto sm:px-4 md:py-8'>
-        
+      <div className='container mx-auto py-6 sm:px-4 md:py-8'>
         {/* HEADER LOGIC: Custom Node OR Default ModuleHeader */}
         {headerNode ? (
-            <div className="mb-8">
-                {headerNode}
-            </div>
+          <div className='mb-8'>{headerNode}</div>
         ) : header ? (
-            <div className="mb-6 md:mb-8">
-                <ModuleHeader 
-                    title={header.title} 
-                    description={header.subtitle}
-                >
-                    {header.actions}
-                </ModuleHeader>
-            </div>
+          <div className='mb-6 md:mb-8'>
+            <ModuleHeader title={header.title} description={header.subtitle}>
+              {header.actions}
+            </ModuleHeader>
+          </div>
         ) : null}
 
         {/* Mobile Sidebar Toggle */}
         <div className='mb-4 md:hidden'>
           <button
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-            className='flex justify-between items-center px-4 py-3 w-full font-bold bg-white rounded-xl border shadow-sm border-slate-200 text-slate-700 active:bg-slate-50'
+            className='flex w-full items-center justify-between rounded-xl border border-slate-200 bg-white px-4 py-3 font-bold text-slate-700 shadow-sm active:bg-slate-50'
           >
-            <span className="text-sm tracking-widest uppercase">Menu</span>
-            {mobileMenuOpen ? <X className='w-5 h-5' /> : <Menu className='w-5 h-5' />}
+            <span className='text-sm tracking-widest uppercase'>Menu</span>
+            {mobileMenuOpen ? (
+              <X className='h-5 w-5' />
+            ) : (
+              <Menu className='h-5 w-5' />
+            )}
           </button>
         </div>
 
-        <div className='flex relative flex-col md:flex-row'>
-          
+        <div className='relative flex flex-col md:flex-row'>
           {/* Desktop Expand Button */}
-          <div 
+          <div
             className={cn(
-                "hidden md:block absolute left-0 top-[6rem] z-10 transition-all duration-500 ease-in-out",
-                collapsible && isCollapsed ? "opacity-100 translate-x-0" : "opacity-0 -translate-x-4 pointer-events-none"
+              'absolute top-[6rem] left-0 z-10 hidden transition-all duration-500 ease-in-out md:block',
+              collapsible && isCollapsed
+                ? 'translate-x-0 opacity-100'
+                : 'pointer-events-none -translate-x-4 opacity-0'
             )}
           >
-             <button
-                onClick={() => setIsCollapsed(false)}
-                className='p-2 bg-white rounded-lg border shadow-sm transition-colors hover:text-primary-600 hover:border-primary-200 border-slate-200 text-slate-400'
-                title="Expand Menu"
+            <button
+              onClick={() => setIsCollapsed(false)}
+              className='hover:text-primary-600 hover:border-primary-200 rounded-lg border border-slate-200 bg-white p-2 text-slate-400 shadow-sm transition-colors'
+              title='Expand Menu'
             >
-                <PanelLeftOpen className="w-5 h-5" />
+              <PanelLeftOpen className='h-5 w-5' />
             </button>
           </div>
 
           {/* Sidebar */}
           <aside
             className={cn(
-                'shrink-0',
-                mobileMenuOpen ? 'block' : 'hidden',
-                'md:block md:self-start md:sticky md:top-[6rem]',
-                'transition-all duration-500 ease-[cubic-bezier(0.4,0,0.2,1)]',
-                'overflow-hidden', 
-                (collapsible && isCollapsed) 
-                    ? 'md:w-0 md:opacity-0 md:mr-12' 
-                    : 'md:w-64 lg:w-72 md:opacity-100 md:mr-8'
+              'shrink-0',
+              mobileMenuOpen ? 'block' : 'hidden',
+              'md:sticky md:top-[6rem] md:block md:self-start',
+              'transition-all duration-500 ease-[cubic-bezier(0.4,0,0.2,1)]',
+              'overflow-hidden',
+              collapsible && isCollapsed
+                ? 'md:mr-12 md:w-0 md:opacity-0'
+                : 'md:mr-8 md:w-64 md:opacity-100 lg:w-72'
             )}
           >
-            <div className="w-64 lg:w-72">
-                {collapsible && (
-                    <div className="hidden justify-end mb-2 md:flex">
-                        <button 
-                            onClick={() => setIsCollapsed(true)}
-                            className="flex items-center gap-1 text-[10px] font-bold uppercase tracking-widest text-slate-400 hover:text-primary-600 transition-colors"
-                        >
-                            Hide Menu <PanelLeftClose className="w-3.5 h-3.5" />
-                        </button>
-                    </div>
-                )}
-                {sidebar}
+            <div className='w-64 lg:w-72'>
+              {collapsible && (
+                <div className='mb-2 hidden justify-end md:flex'>
+                  <button
+                    onClick={() => setIsCollapsed(true)}
+                    className='hover:text-primary-600 flex items-center gap-1 text-[10px] font-bold tracking-widest text-slate-400 uppercase transition-colors'
+                  >
+                    Hide Menu <PanelLeftClose className='h-3.5 w-3.5' />
+                  </button>
+                </div>
+              )}
+              {sidebar}
             </div>
           </aside>
 
           {/* Main Content */}
-          <main className='flex-1 min-w-0 transition-all duration-500 ease-in-out'>
+          <main className='min-w-0 flex-1 transition-all duration-500 ease-in-out'>
             <div
               id='layout-content'
-              className='rounded-2xl border border-slate-200 bg-white p-4 shadow-sm md:p-8 min-h-[50vh]'
+              className='min-h-[50vh] rounded-2xl border border-slate-200 bg-white p-4 shadow-sm md:p-8'
             >
               {children}
             </div>

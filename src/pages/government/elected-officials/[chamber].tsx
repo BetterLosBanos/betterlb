@@ -143,7 +143,7 @@ export default function LegislativeChamber() {
               <Card
                 key={member.name}
                 hover={!!member.personId}
-                className={`group flex h-full flex-col shadow-xs ${member.personId ? 'border-slate-200 cursor-pointer' : 'border-slate-200'}`}
+                className={`group flex h-full flex-col shadow-xs ${member.personId ? 'cursor-pointer border-slate-200' : 'border-slate-200'}`}
               >
                 <CardContent className='flex h-full flex-col space-y-4 p-4'>
                   {/* Row 1: Icon, Role, Name */}

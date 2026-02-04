@@ -1,8 +1,11 @@
-import { useState, useEffect } from 'react';
-import { FileText, Users, Calendar, Check } from 'lucide-react';
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/Card';
+import { useEffect, useState } from 'react';
+
+import { Calendar, Check, FileText, Users } from 'lucide-react';
+import { X } from 'lucide-react';
+
 import { Badge } from '@/components/ui/Badge';
 import Button from '@/components/ui/Button';
+import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/Card';
 import { EmptyState } from '@/components/ui/EmptyState';
 
 type SessionType = 'regular' | 'special' | 'inaugural';
@@ -70,16 +73,22 @@ export default function SessionDataForm({
   const [sessionType, setSessionType] = useState<SessionType>(
     initialData?.session_type || 'regular'
   );
-  const [ordinal, setOrdinal] = useState<number | null>(initialData?.ordinal || null);
+  const [ordinal, setOrdinal] = useState<number | null>(
+    initialData?.ordinal || null
+  );
   const [date, setDate] = useState(initialData?.date || '');
   const [sourceUrl, setSourceUrl] = useState(initialData?.source_url || '');
   const [facebookPost, setFacebookPost] = useState('');
   const [loading, setLoading] = useState(false);
   const [saving, setSaving] = useState(false);
   const [members, setMembers] = useState<Person[]>([]);
-  const [absentPersonIds, setAbsentPersonIds] = useState<Set<string>>(new Set());
+  const [absentPersonIds, setAbsentPersonIds] = useState<Set<string>>(
+    new Set()
+  );
   const [parsedData, setParsedData] = useState<ParsedSessionData | null>(null);
-  const [matchedAttendees, setMatchedAttendees] = useState<MatchedAttendee[]>([]);
+  const [matchedAttendees, setMatchedAttendees] = useState<MatchedAttendee[]>(
+    []
+  );
 
   // Load members for this term
   useEffect(() => {
@@ -142,7 +151,10 @@ export default function SessionDataForm({
         setParsedData(data.parsed);
 
         // Auto-fill form fields with high confidence data
-        if (data.parsed.session_type && data.parsed.confidence.session_type > 0.8) {
+        if (
+          data.parsed.session_type &&
+          data.parsed.confidence.session_type > 0.8
+        ) {
           setSessionType(data.parsed.session_type);
         }
         if (data.parsed.ordinal && data.parsed.confidence.ordinal > 0.8) {
@@ -155,8 +167,12 @@ export default function SessionDataForm({
         // Set matched attendees as present (everyone not matched is absent)
         if (data.matched_attendees && data.matched_attendees.length > 0) {
           setMatchedAttendees(data.matched_attendees);
-          const presentIds = new Set(data.matched_attendees.map((a: MatchedAttendee) => a.person_id));
-          const newAbsentIds = new Set(members.map((m) => m.person_id).filter((id) => !presentIds.has(id)));
+          const presentIds = new Set(
+            data.matched_attendees.map((a: MatchedAttendee) => a.person_id)
+          );
+          const newAbsentIds = new Set(
+            members.map(m => m.person_id).filter(id => !presentIds.has(id))
+          );
           setAbsentPersonIds(newAbsentIds);
         }
       }
@@ -182,7 +198,7 @@ export default function SessionDataForm({
   };
 
   const markAllAbsent = () => {
-    setAbsentPersonIds(new Set(members.map((m) => m.person_id)));
+    setAbsentPersonIds(new Set(members.map(m => m.person_id)));
   };
 
   const handleSave = async () => {
@@ -212,31 +228,31 @@ export default function SessionDataForm({
   const absentCount = absentPersonIds.size;
 
   return (
-    <div className="space-y-6">
+    <div className='space-y-6'>
       {/* Facebook Post Parser */}
-      <Card variant="default">
+      <Card variant='default'>
         <CardHeader>
-          <CardTitle className="flex items-center gap-2">
-            <FileText className="h-5 w-5" />
+          <CardTitle className='flex items-center gap-2'>
+            <FileText className='h-5 w-5' />
             Import from Facebook Post
           </CardTitle>
         </CardHeader>
-        <CardContent className="space-y-4">
+        <CardContent className='space-y-4'>
           <div>
-            <label className="mb-2 block text-sm font-medium text-slate-700">
+            <label className='mb-2 block text-sm font-medium text-slate-700'>
               Paste Facebook Post Content
             </label>
             <textarea
               value={facebookPost}
-              onChange={(e) => setFacebookPost(e.target.value)}
-              placeholder="Paste the Facebook post content here... The parser will extract session type, number, date, and attendees."
-              className="w-full rounded-md border border-slate-300 px-3 py-2 text-sm focus:border-primary-500 focus:outline-none focus:ring-1 focus:ring-primary-500"
+              onChange={e => setFacebookPost(e.target.value)}
+              placeholder='Paste the Facebook post content here... The parser will extract session type, number, date, and attendees.'
+              className='focus:border-primary-500 focus:ring-primary-500 w-full rounded-md border border-slate-300 px-3 py-2 text-sm focus:ring-1 focus:outline-none'
               rows={5}
             />
           </div>
           <Button
-            variant="outline"
-            size="sm"
+            variant='outline'
+            size='sm'
             onClick={parseFacebookPost}
             disabled={!facebookPost.trim() || loading}
           >
@@ -244,12 +260,23 @@ export default function SessionDataForm({
           </Button>
 
           {parsedData && (
-            <div className="rounded-md bg-blue-50 p-4">
-              <p className="mb-2 text-sm font-bold text-blue-900">Parsed Data:</p>
-              <div className="space-y-1 text-sm text-blue-700">
-                <p>Session Type: {parsedData.session_type || 'Not detected'} ({Math.round(parsedData.confidence.session_type * 100)}%)</p>
-                <p>Ordinal: {parsedData.ordinal || 'Not detected'} ({Math.round(parsedData.confidence.ordinal * 100)}%)</p>
-                <p>Date: {parsedData.date || 'Not detected'} ({Math.round(parsedData.confidence.date * 100)}%)</p>
+            <div className='rounded-md bg-blue-50 p-4'>
+              <p className='mb-2 text-sm font-bold text-blue-900'>
+                Parsed Data:
+              </p>
+              <div className='space-y-1 text-sm text-blue-700'>
+                <p>
+                  Session Type: {parsedData.session_type || 'Not detected'} (
+                  {Math.round(parsedData.confidence.session_type * 100)}%)
+                </p>
+                <p>
+                  Ordinal: {parsedData.ordinal || 'Not detected'} (
+                  {Math.round(parsedData.confidence.ordinal * 100)}%)
+                </p>
+                <p>
+                  Date: {parsedData.date || 'Not detected'} (
+                  {Math.round(parsedData.confidence.date * 100)}%)
+                </p>
                 <p>Attendees Found: {parsedData.attendee_names.length}</p>
                 {matchedAttendees.length > 0 && (
                   <p>Matched to Database: {matchedAttendees.length}</p>
@@ -261,25 +288,25 @@ export default function SessionDataForm({
       </Card>
 
       {/* Session Details Form */}
-      <Card variant="default">
+      <Card variant='default'>
         <CardHeader>
-          <CardTitle className="flex items-center gap-2">
-            <Calendar className="h-5 w-5" />
+          <CardTitle className='flex items-center gap-2'>
+            <Calendar className='h-5 w-5' />
             Session Details
           </CardTitle>
         </CardHeader>
-        <CardContent className="space-y-4">
-          <div className="grid gap-4 sm:grid-cols-2">
+        <CardContent className='space-y-4'>
+          <div className='grid gap-4 sm:grid-cols-2'>
             <div>
-              <label className="mb-2 block text-sm font-medium text-slate-700">
+              <label className='mb-2 block text-sm font-medium text-slate-700'>
                 Session Type
               </label>
               <select
                 value={sessionType}
-                onChange={(e) => setSessionType(e.target.value as SessionType)}
-                className="w-full rounded-md border border-slate-300 px-3 py-2 text-sm focus:border-primary-500 focus:outline-none focus:ring-1 focus:ring-primary-500"
+                onChange={e => setSessionType(e.target.value as SessionType)}
+                className='focus:border-primary-500 focus:ring-primary-500 w-full rounded-md border border-slate-300 px-3 py-2 text-sm focus:ring-1 focus:outline-none'
               >
-                {sessionTypeOptions.map((option) => (
+                {sessionTypeOptions.map(option => (
                   <option key={option.value} value={option.value}>
                     {option.label}
                   </option>
@@ -288,81 +315,87 @@ export default function SessionDataForm({
             </div>
 
             <div>
-              <label className="mb-2 block text-sm font-medium text-slate-700">
+              <label className='mb-2 block text-sm font-medium text-slate-700'>
                 Ordinal Number
               </label>
               <input
-                type="number"
+                type='number'
                 value={ordinal || ''}
-                onChange={(e) => setOrdinal(e.target.value ? parseInt(e.target.value, 10) : null)}
-                placeholder="e.g., 100"
-                className="w-full rounded-md border border-slate-300 px-3 py-2 text-sm focus:border-primary-500 focus:outline-none focus:ring-1 focus:ring-primary-500"
+                onChange={e =>
+                  setOrdinal(
+                    e.target.value ? parseInt(e.target.value, 10) : null
+                  )
+                }
+                placeholder='e.g., 100'
+                className='focus:border-primary-500 focus:ring-primary-500 w-full rounded-md border border-slate-300 px-3 py-2 text-sm focus:ring-1 focus:outline-none'
               />
             </div>
           </div>
 
           <div>
-            <label className="mb-2 block text-sm font-medium text-slate-700">
+            <label className='mb-2 block text-sm font-medium text-slate-700'>
               Date
             </label>
             <input
-              type="date"
+              type='date'
               value={date}
-              onChange={(e) => setDate(e.target.value)}
-              className="w-full rounded-md border border-slate-300 px-3 py-2 text-sm focus:border-primary-500 focus:outline-none focus:ring-1 focus:ring-primary-500"
+              onChange={e => setDate(e.target.value)}
+              className='focus:border-primary-500 focus:ring-primary-500 w-full rounded-md border border-slate-300 px-3 py-2 text-sm focus:ring-1 focus:outline-none'
             />
           </div>
 
           <div>
-            <label className="mb-2 block text-sm font-medium text-slate-700">
+            <label className='mb-2 block text-sm font-medium text-slate-700'>
               Source URL
             </label>
             <input
-              type="url"
+              type='url'
               value={sourceUrl}
-              onChange={(e) => setSourceUrl(e.target.value)}
-              placeholder="https://facebook.com/..."
-              className="w-full rounded-md border border-slate-300 px-3 py-2 text-sm focus:border-primary-500 focus:outline-none focus:ring-1 focus:ring-primary-500"
+              onChange={e => setSourceUrl(e.target.value)}
+              placeholder='https://facebook.com/...'
+              className='focus:border-primary-500 focus:ring-primary-500 w-full rounded-md border border-slate-300 px-3 py-2 text-sm focus:ring-1 focus:outline-none'
             />
           </div>
         </CardContent>
       </Card>
 
       {/* Attendance Form */}
-      <Card variant="default">
+      <Card variant='default'>
         <CardHeader>
-          <CardTitle className="flex items-center gap-2">
-            <Users className="h-5 w-5" />
+          <CardTitle className='flex items-center gap-2'>
+            <Users className='h-5 w-5' />
             Attendance
           </CardTitle>
         </CardHeader>
-        <CardContent className="space-y-4">
-          <div className="flex items-center justify-between">
-            <div className="flex gap-2">
-              <Badge variant="success">Present: {presentCount}</Badge>
-              <Badge variant="warning">Absent: {absentCount}</Badge>
+        <CardContent className='space-y-4'>
+          <div className='flex items-center justify-between'>
+            <div className='flex gap-2'>
+              <Badge variant='success'>Present: {presentCount}</Badge>
+              <Badge variant='warning'>Absent: {absentCount}</Badge>
             </div>
-            <div className="flex gap-2">
-              <Button variant="outline" size="sm" onClick={markAllPresent}>
+            <div className='flex gap-2'>
+              <Button variant='outline' size='sm' onClick={markAllPresent}>
                 All Present
               </Button>
-              <Button variant="outline" size="sm" onClick={markAllAbsent}>
+              <Button variant='outline' size='sm' onClick={markAllAbsent}>
                 All Absent
               </Button>
             </div>
           </div>
 
           {loading ? (
-            <div className="py-8 text-center text-slate-500">Loading members...</div>
+            <div className='py-8 text-center text-slate-500'>
+              Loading members...
+            </div>
           ) : members.length === 0 ? (
             <EmptyState
-              title="No members found"
-              message="No council members found for this term."
+              title='No members found'
+              message='No council members found for this term.'
               icon={Users}
             />
           ) : (
-            <div className="max-h-96 space-y-2 overflow-y-auto">
-              {members.map((member) => {
+            <div className='max-h-96 space-y-2 overflow-y-auto'>
+              {members.map(member => {
                 const isAbsent = absentPersonIds.has(member.person_id);
                 return (
                   <div
@@ -374,24 +407,27 @@ export default function SessionDataForm({
                     }`}
                     onClick={() => toggleAttendance(member.person_id)}
                   >
-                    <div className="flex items-center gap-3">
+                    <div className='flex items-center gap-3'>
                       <div
                         className={`flex h-8 w-8 items-center justify-center rounded-full ${
                           isAbsent ? 'bg-amber-200' : 'bg-emerald-200'
                         }`}
                       >
                         {isAbsent ? (
-                          <X className="h-4 w-4 text-amber-700" />
+                          <X className='h-4 w-4 text-amber-700' />
                         ) : (
-                          <Check className="h-4 w-4 text-emerald-700" />
+                          <Check className='h-4 w-4 text-emerald-700' />
                         )}
                       </div>
                       <div>
-                        <p className="text-sm font-medium text-slate-900">
-                          {member.first_name} {member.middle_name} {member.last_name}
+                        <p className='text-sm font-medium text-slate-900'>
+                          {member.first_name} {member.middle_name}{' '}
+                          {member.last_name}
                         </p>
                         {member.role && (
-                          <p className="text-xs text-slate-500">{member.role}</p>
+                          <p className='text-xs text-slate-500'>
+                            {member.role}
+                          </p>
                         )}
                       </div>
                     </div>
@@ -407,16 +443,22 @@ export default function SessionDataForm({
       </Card>
 
       {/* Actions */}
-      <div className="flex justify-end gap-3">
-        <Button variant="outline" onClick={onCancel} disabled={saving}>
+      <div className='flex justify-end gap-3'>
+        <Button variant='outline' onClick={onCancel} disabled={saving}>
           Cancel
         </Button>
-        <Button variant="primary" onClick={handleSave} disabled={saving || !date}>
-          {saving ? 'Saving...' : sessionId ? 'Update Session' : 'Create Session'}
+        <Button
+          variant='primary'
+          onClick={handleSave}
+          disabled={saving || !date}
+        >
+          {saving
+            ? 'Saving...'
+            : sessionId
+              ? 'Update Session'
+              : 'Create Session'}
         </Button>
       </div>
     </div>
   );
 }
-
-import { X } from 'lucide-react';

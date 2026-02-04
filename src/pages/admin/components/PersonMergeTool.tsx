@@ -1,8 +1,19 @@
-import { useState, useEffect } from 'react';
-import { Users, GitMerge, CheckCircle, RefreshCw, ChevronRight, Trash2, Flag, SkipForward } from 'lucide-react';
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/Card';
+import { useEffect, useState } from 'react';
+
+import {
+  CheckCircle,
+  ChevronRight,
+  Flag,
+  GitMerge,
+  RefreshCw,
+  SkipForward,
+  Trash2,
+  Users,
+} from 'lucide-react';
+
 import { Badge } from '@/components/ui/Badge';
 import Button from '@/components/ui/Button';
+import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/Card';
 import { EmptyState } from '@/components/ui/EmptyState';
 
 interface Person {
@@ -99,7 +110,7 @@ export default function PersonMergeTool() {
       // Refresh the duplicates list after successful merge
       if (result.success) {
         // Remove the merged group from the list
-        setDuplicates((prev) => prev.filter((_, idx) => idx !== selectedGroup));
+        setDuplicates(prev => prev.filter((_, idx) => idx !== selectedGroup));
         setSelectedGroup(null);
         setKeepPersonId(null);
         setDeletionMode('delete');
@@ -112,12 +123,13 @@ export default function PersonMergeTool() {
     }
   };
 
-  const currentGroup = selectedGroup !== null ? duplicates[selectedGroup] : null;
+  const currentGroup =
+    selectedGroup !== null ? duplicates[selectedGroup] : null;
 
   if (loading) {
     return (
-      <div className="flex items-center justify-center py-12">
-        <RefreshCw className="h-8 w-8 animate-spin text-slate-400" />
+      <div className='flex items-center justify-center py-12'>
+        <RefreshCw className='h-8 w-8 animate-spin text-slate-400' />
       </div>
     );
   }
@@ -125,27 +137,30 @@ export default function PersonMergeTool() {
   if (duplicates.length === 0) {
     return (
       <EmptyState
-        title="No duplicate persons found"
-        message="All person records are unique!"
+        title='No duplicate persons found'
+        message='All person records are unique!'
         icon={Users}
       />
     );
   }
 
   return (
-    <div className="space-y-6">
+    <div className='space-y-6'>
       {/* Header */}
-      <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
+      <div className='flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between'>
         <div>
-          <h2 className="text-2xl font-bold text-slate-900">Person Merge Tool</h2>
-          <p className="text-slate-600">
-            {duplicates.length} group{duplicates.length !== 1 ? 's' : ''} of duplicate person records found
+          <h2 className='text-2xl font-bold text-slate-900'>
+            Person Merge Tool
+          </h2>
+          <p className='text-slate-600'>
+            {duplicates.length} group{duplicates.length !== 1 ? 's' : ''} of
+            duplicate person records found
           </p>
         </div>
         <Button
-          variant="outline"
-          size="sm"
-          leftIcon={<RefreshCw className="h-4 w-4" />}
+          variant='outline'
+          size='sm'
+          leftIcon={<RefreshCw className='h-4 w-4' />}
           onClick={fetchDuplicates}
           disabled={merging}
         >
@@ -155,16 +170,16 @@ export default function PersonMergeTool() {
 
       {/* Selected Group Details */}
       {currentGroup ? (
-        <Card variant="default" className="border-l-4 border-l-amber-500">
+        <Card variant='default' className='border-l-4 border-l-amber-500'>
           <CardHeader>
-            <div className="flex items-center justify-between">
-              <CardTitle className="flex items-center gap-2">
-                <GitMerge className="h-5 w-5" />
+            <div className='flex items-center justify-between'>
+              <CardTitle className='flex items-center gap-2'>
+                <GitMerge className='h-5 w-5' />
                 Merge Duplicate Persons
               </CardTitle>
               <Button
-                variant="ghost"
-                size="sm"
+                variant='ghost'
+                size='sm'
                 onClick={() => {
                   setSelectedGroup(null);
                   setKeepPersonId(null);
@@ -177,10 +192,10 @@ export default function PersonMergeTool() {
               </Button>
             </div>
           </CardHeader>
-          <CardContent className="space-y-6">
+          <CardContent className='space-y-6'>
             {/* Person Cards */}
-            <div className="grid gap-4 sm:grid-cols-2">
-              {currentGroup.persons.map((person) => {
+            <div className='grid gap-4 sm:grid-cols-2'>
+              {currentGroup.persons.map(person => {
                 const isKeep = person.id === keepPersonId;
                 const isMerge = currentGroup.person_ids.includes(person.id);
 
@@ -190,29 +205,31 @@ export default function PersonMergeTool() {
                     onClick={() => setKeepPersonId(person.id)}
                     className={`cursor-pointer rounded-lg border-2 p-4 transition-all ${
                       isKeep
-                        ? 'border-primary-500 bg-primary-50 ring-2 ring-primary-200'
+                        ? 'border-primary-500 bg-primary-50 ring-primary-200 ring-2'
                         : isMerge
-                        ? 'border-amber-300 bg-amber-50 hover:border-amber-400'
-                        : 'border-slate-200 hover:border-slate-300 bg-white'
+                          ? 'border-amber-300 bg-amber-50 hover:border-amber-400'
+                          : 'border-slate-200 bg-white hover:border-slate-300'
                     }`}
                   >
-                    <div className="mb-3 flex items-center justify-between">
-                      <span className="text-xs font-bold uppercase text-slate-500">
+                    <div className='mb-3 flex items-center justify-between'>
+                      <span className='text-xs font-bold text-slate-500 uppercase'>
                         {person.id}
                       </span>
                       {isKeep && (
-                        <Badge variant="primary" size="sm">
-                          <CheckCircle className="h-3 w-3" /> Keep
+                        <Badge variant='primary' size='sm'>
+                          <CheckCircle className='h-3 w-3' /> Keep
                         </Badge>
                       )}
                     </div>
-                    <h3 className="font-bold text-slate-900">
+                    <h3 className='font-bold text-slate-900'>
                       {getPersonName(person)}
                     </h3>
                     {person.suffix && (
-                      <p className="text-xs text-slate-500">Suffix: {person.suffix}</p>
+                      <p className='text-xs text-slate-500'>
+                        Suffix: {person.suffix}
+                      </p>
                     )}
-                    <div className="mt-2 text-xs text-slate-500">
+                    <div className='mt-2 text-xs text-slate-500'>
                       ID: {person.id}
                     </div>
                   </div>
@@ -221,112 +238,148 @@ export default function PersonMergeTool() {
             </div>
 
             {/* Related Records Summary */}
-            <div className="rounded-md bg-slate-50 p-4">
-              <h4 className="mb-3 text-sm font-bold text-slate-900">Related Records</h4>
-              <div className="grid gap-2 sm:grid-cols-2">
-                <div className="flex items-center gap-2 text-sm">
-                  <Users className="h-4 w-4 text-slate-500" />
-                  <span>Memberships: <strong>{currentGroup.membership_count}</strong></span>
+            <div className='rounded-md bg-slate-50 p-4'>
+              <h4 className='mb-3 text-sm font-bold text-slate-900'>
+                Related Records
+              </h4>
+              <div className='grid gap-2 sm:grid-cols-2'>
+                <div className='flex items-center gap-2 text-sm'>
+                  <Users className='h-4 w-4 text-slate-500' />
+                  <span>
+                    Memberships:{' '}
+                    <strong>{currentGroup.membership_count}</strong>
+                  </span>
                 </div>
-                <div className="flex items-center gap-2 text-sm">
-                  <CheckCircle className="h-4 w-4 text-slate-500" />
-                  <span>Committee Memberships: <strong>{currentGroup.committee_count}</strong></span>
+                <div className='flex items-center gap-2 text-sm'>
+                  <CheckCircle className='h-4 w-4 text-slate-500' />
+                  <span>
+                    Committee Memberships:{' '}
+                    <strong>{currentGroup.committee_count}</strong>
+                  </span>
                 </div>
-                <div className="flex items-center gap-2 text-sm">
-                  <Users className="h-4 w-4 text-slate-500" />
-                  <span>Documents Authored: <strong>{currentGroup.document_count}</strong></span>
+                <div className='flex items-center gap-2 text-sm'>
+                  <Users className='h-4 w-4 text-slate-500' />
+                  <span>
+                    Documents Authored:{' '}
+                    <strong>{currentGroup.document_count}</strong>
+                  </span>
                 </div>
               </div>
-              <p className="mt-2 text-xs text-slate-500">
-                When merged, all records will be transferred to the person you select to keep.
+              <p className='mt-2 text-xs text-slate-500'>
+                When merged, all records will be transferred to the person you
+                select to keep.
               </p>
             </div>
 
             {/* Merge Strategy Selection */}
             <div>
-              <label className="mb-2 block text-sm font-medium text-slate-700">
+              <label className='mb-2 block text-sm font-medium text-slate-700'>
                 Merge Strategy
               </label>
               <select
-                value="prefer_keep"
+                value='prefer_keep'
                 disabled
-                className="w-full rounded-md border border-slate-300 bg-slate-100 px-3 py-2 text-sm"
+                className='w-full rounded-md border border-slate-300 bg-slate-100 px-3 py-2 text-sm'
               >
-                <option value="prefer_keep">Keep selected person&apos;s data (most conservative)</option>
+                <option value='prefer_keep'>
+                  Keep selected person&apos;s data (most conservative)
+                </option>
               </select>
-              <p className="mt-1 text-xs text-slate-500">
-                More strategies coming soon. Currently uses all data from the kept person record.
+              <p className='mt-1 text-xs text-slate-500'>
+                More strategies coming soon. Currently uses all data from the
+                kept person record.
               </p>
             </div>
 
             {/* Deletion Mode Selection */}
             <div>
-              <label className="mb-2 block text-sm font-medium text-slate-700">
+              <label className='mb-2 block text-sm font-medium text-slate-700'>
                 Deletion Mode
               </label>
-              <div className="space-y-2">
-                <label className={`flex cursor-pointer items-start gap-3 rounded-md border p-3 transition-colors ${
-                  deletionMode === 'delete' ? 'border-red-300 bg-red-50' : 'border-slate-200 hover:border-slate-300'
-                }`}>
+              <div className='space-y-2'>
+                <label
+                  className={`flex cursor-pointer items-start gap-3 rounded-md border p-3 transition-colors ${
+                    deletionMode === 'delete'
+                      ? 'border-red-300 bg-red-50'
+                      : 'border-slate-200 hover:border-slate-300'
+                  }`}
+                >
                   <input
-                    type="radio"
-                    name="deletionMode"
-                    value="delete"
+                    type='radio'
+                    name='deletionMode'
+                    value='delete'
                     checked={deletionMode === 'delete'}
                     onChange={() => setDeletionMode('delete')}
-                    className="mt-0.5"
+                    className='mt-0.5'
                   />
-                  <div className="flex-1">
-                    <div className="flex items-center gap-2">
-                      <Trash2 className="h-4 w-4 text-red-600" />
-                      <span className="font-medium text-slate-900">Delete immediately</span>
+                  <div className='flex-1'>
+                    <div className='flex items-center gap-2'>
+                      <Trash2 className='h-4 w-4 text-red-600' />
+                      <span className='font-medium text-slate-900'>
+                        Delete immediately
+                      </span>
                     </div>
-                    <p className="mt-1 text-xs text-slate-600">
-                      Permanently remove merged person records from the database. This cannot be undone.
+                    <p className='mt-1 text-xs text-slate-600'>
+                      Permanently remove merged person records from the
+                      database. This cannot be undone.
                     </p>
                   </div>
                 </label>
 
-                <label className={`flex cursor-pointer items-start gap-3 rounded-md border p-3 transition-colors ${
-                  deletionMode === 'flag' ? 'border-amber-300 bg-amber-50' : 'border-slate-200 hover:border-slate-300'
-                }`}>
+                <label
+                  className={`flex cursor-pointer items-start gap-3 rounded-md border p-3 transition-colors ${
+                    deletionMode === 'flag'
+                      ? 'border-amber-300 bg-amber-50'
+                      : 'border-slate-200 hover:border-slate-300'
+                  }`}
+                >
                   <input
-                    type="radio"
-                    name="deletionMode"
-                    value="flag"
+                    type='radio'
+                    name='deletionMode'
+                    value='flag'
                     checked={deletionMode === 'flag'}
                     onChange={() => setDeletionMode('flag')}
-                    className="mt-0.5"
+                    className='mt-0.5'
                   />
-                  <div className="flex-1">
-                    <div className="flex items-center gap-2">
-                      <Flag className="h-4 w-4 text-amber-600" />
-                      <span className="font-medium text-slate-900">Flag for deletion</span>
+                  <div className='flex-1'>
+                    <div className='flex items-center gap-2'>
+                      <Flag className='h-4 w-4 text-amber-600' />
+                      <span className='font-medium text-slate-900'>
+                        Flag for deletion
+                      </span>
                     </div>
-                    <p className="mt-1 text-xs text-slate-600">
-                      Mark records for later review and permanent deletion. They won&apos;t appear in future duplicate checks.
+                    <p className='mt-1 text-xs text-slate-600'>
+                      Mark records for later review and permanent deletion. They
+                      won&apos;t appear in future duplicate checks.
                     </p>
                   </div>
                 </label>
 
-                <label className={`flex cursor-pointer items-start gap-3 rounded-md border p-3 transition-colors ${
-                  deletionMode === 'skip' ? 'border-blue-300 bg-blue-50' : 'border-slate-200 hover:border-slate-300'
-                }`}>
+                <label
+                  className={`flex cursor-pointer items-start gap-3 rounded-md border p-3 transition-colors ${
+                    deletionMode === 'skip'
+                      ? 'border-blue-300 bg-blue-50'
+                      : 'border-slate-200 hover:border-slate-300'
+                  }`}
+                >
                   <input
-                    type="radio"
-                    name="deletionMode"
-                    value="skip"
+                    type='radio'
+                    name='deletionMode'
+                    value='skip'
                     checked={deletionMode === 'skip'}
                     onChange={() => setDeletionMode('skip')}
-                    className="mt-0.5"
+                    className='mt-0.5'
                   />
-                  <div className="flex-1">
-                    <div className="flex items-center gap-2">
-                      <SkipForward className="h-4 w-4 text-blue-600" />
-                      <span className="font-medium text-slate-900">Skip deletion</span>
+                  <div className='flex-1'>
+                    <div className='flex items-center gap-2'>
+                      <SkipForward className='h-4 w-4 text-blue-600' />
+                      <span className='font-medium text-slate-900'>
+                        Skip deletion
+                      </span>
                     </div>
-                    <p className="mt-1 text-xs text-slate-600">
-                      Keep all records. Only updates foreign key references to point to the kept person.
+                    <p className='mt-1 text-xs text-slate-600'>
+                      Keep all records. Only updates foreign key references to
+                      point to the kept person.
                     </p>
                   </div>
                 </label>
@@ -334,37 +387,41 @@ export default function PersonMergeTool() {
             </div>
 
             {/* Merge Action */}
-            <div className="flex items-center justify-between rounded-md border border-slate-200 bg-slate-50 p-4">
-              <div className="text-sm text-slate-600">
+            <div className='flex items-center justify-between rounded-md border border-slate-200 bg-slate-50 p-4'>
+              <div className='text-sm text-slate-600'>
                 {mergeResults ? (
-                  <div className="space-y-1">
-                    <p className="font-bold text-emerald-700">Merge completed successfully!</p>
-                    <p className="text-xs text-slate-500">
+                  <div className='space-y-1'>
+                    <p className='font-bold text-emerald-700'>
+                      Merge completed successfully!
+                    </p>
+                    <p className='text-xs text-slate-500'>
                       {mergeResults.merged_count} person(s) merged
                     </p>
-                    {Object.entries(mergeResults.updated_tables).map(([table, count]) =>
-                      count > 0 ? (
-                        <p key={table} className="text-xs text-slate-500">
-                          {count} {table.replace('_', ' ')} updated
-                        </p>
-                      ) : null
+                    {Object.entries(mergeResults.updated_tables).map(
+                      ([table, count]) =>
+                        count > 0 ? (
+                          <p key={table} className='text-xs text-slate-500'>
+                            {count} {table.replace('_', ' ')} updated
+                          </p>
+                        ) : null
                     )}
                   </div>
                 ) : (
-                  <p className="text-sm text-slate-600">
-                    Select the person record to keep, then click merge to combine all records.
+                  <p className='text-sm text-slate-600'>
+                    Select the person record to keep, then click merge to
+                    combine all records.
                   </p>
                 )}
               </div>
               <Button
-                variant="primary"
-                size="lg"
-                leftIcon={<GitMerge className="h-4 w-4" />}
+                variant='primary'
+                size='lg'
+                leftIcon={<GitMerge className='h-4 w-4' />}
                 onClick={() =>
                   keepPersonId &&
                   handleMerge(
                     keepPersonId,
-                    currentGroup.person_ids.filter((id) => id !== keepPersonId)
+                    currentGroup.person_ids.filter(id => id !== keepPersonId)
                   )
                 }
                 disabled={!keepPersonId || merging}
@@ -374,30 +431,32 @@ export default function PersonMergeTool() {
             </div>
 
             {mergeResults?.deleted_ids && (
-              <div className="rounded-md bg-emerald-50 p-3 text-sm">
-                <p className="font-bold text-emerald-900">Deleted IDs: {mergeResults.deleted_ids.join(', ')}</p>
+              <div className='rounded-md bg-emerald-50 p-3 text-sm'>
+                <p className='font-bold text-emerald-900'>
+                  Deleted IDs: {mergeResults.deleted_ids.join(', ')}
+                </p>
               </div>
             )}
           </CardContent>
         </Card>
       ) : (
         /* List of duplicate groups */
-        <Card variant="default">
+        <Card variant='default'>
           <CardHeader>
             <CardTitle>Select a Duplicate Group to Merge</CardTitle>
           </CardHeader>
-          <CardContent className="space-y-3">
+          <CardContent className='space-y-3'>
             {duplicates.map((group, index) => (
               <div
                 key={index}
                 onClick={() => setSelectedGroup(index)}
-                className="flex cursor-pointer items-center justify-between rounded-lg border border-slate-200 p-4 hover:border-slate-300 hover:bg-slate-50 transition-all"
+                className='flex cursor-pointer items-center justify-between rounded-lg border border-slate-200 p-4 transition-all hover:border-slate-300 hover:bg-slate-50'
               >
                 <div>
-                  <p className="font-medium text-slate-900">
-                    {group.persons.map((p) => getPersonName(p)).join(' vs ')}
+                  <p className='font-medium text-slate-900'>
+                    {group.persons.map(p => getPersonName(p)).join(' vs ')}
                   </p>
-                  <div className="mt-1 flex flex gap-3 text-xs text-slate-500">
+                  <div className='mt-1 flex gap-3 text-xs text-slate-500'>
                     <span>{group.person_ids.length} records</span>
                     <span>•</span>
                     <span>{group.membership_count} memberships</span>
@@ -407,7 +466,7 @@ export default function PersonMergeTool() {
                     <span>{group.document_count} documents</span>
                   </div>
                 </div>
-                <ChevronRight className="h-5 w-5 text-slate-400" />
+                <ChevronRight className='h-5 w-5 text-slate-400' />
               </div>
             ))}
           </CardContent>

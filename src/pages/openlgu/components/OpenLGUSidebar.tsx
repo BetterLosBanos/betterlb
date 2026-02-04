@@ -1,10 +1,30 @@
-import { LayoutGrid, Landmark, Scale, Scroll, Signature, Users } from 'lucide-react';
-import { SidebarContainer, SidebarGroup, SidebarItem } from '@/components/navigation/SidebarNavigation';
+import {
+  Landmark,
+  LayoutGrid,
+  Scale,
+  Scroll,
+  Signature,
+  Users,
+} from 'lucide-react';
+
+import {
+  SidebarContainer,
+  SidebarGroup,
+  SidebarItem,
+} from '@/components/navigation/SidebarNavigation';
 
 interface OpenLGUSidebarProps {
   filterType: string;
-  setFilterType: (type: 'all' | 'ordinance' | 'resolution' | 'executive_order') => void;
-  terms: Array<{ id: string; ordinal: string; name: string; year_range: string; term_number: number }>;
+  setFilterType: (
+    type: 'all' | 'ordinance' | 'resolution' | 'executive_order'
+  ) => void;
+  terms: Array<{
+    id: string;
+    ordinal: string;
+    name: string;
+    year_range: string;
+    term_number: number;
+  }>;
   persons: Array<{ id: string }>;
 }
 
@@ -41,7 +61,8 @@ export default function OpenLGUSidebar({
       {/* Group 2: Document Types */}
       <SidebarGroup title='Document Types'>
         {categories.map(cat => {
-          const path = cat.id === 'all' ? '/openlgu' : `/openlgu?type=${cat.id}`;
+          const path =
+            cat.id === 'all' ? '/openlgu' : `/openlgu?type=${cat.id}`;
           return (
             <SidebarItem
               key={cat.id}

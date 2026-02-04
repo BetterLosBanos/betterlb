@@ -1,11 +1,12 @@
 // src/hooks/useOpenLGU.ts
-import { useState, useEffect } from 'react';
+import { useEffect, useState } from 'react';
+
 import {
   loadCommitteesFromAPI,
   loadDocumentsFromAPI,
+  loadPersonsFromAPI,
   loadSessionsFromAPI,
   loadTermFromAPI,
-  loadPersonsFromAPI,
   loadTermsFromAPI,
 } from '../lib/openlgu';
 import type { Person } from '../lib/openlgu';
@@ -36,14 +37,15 @@ export default function useOpenLGU(): LegislationData {
   useEffect(() => {
     async function loadData() {
       try {
-        const [term, terms, committees, persons, sessions, documents] = await Promise.all([
-          loadTermFromAPI(),
-          loadTermsFromAPI(),
-          loadCommitteesFromAPI(),
-          loadPersonsFromAPI(),
-          loadSessionsFromAPI(),
-          loadDocumentsFromAPI(),
-        ]);
+        const [term, terms, committees, persons, sessions, documents] =
+          await Promise.all([
+            loadTermFromAPI(),
+            loadTermsFromAPI(),
+            loadCommitteesFromAPI(),
+            loadPersonsFromAPI(),
+            loadSessionsFromAPI(),
+            loadDocumentsFromAPI(),
+          ]);
 
         setData({
           term,

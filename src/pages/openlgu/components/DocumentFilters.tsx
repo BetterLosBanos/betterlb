@@ -3,6 +3,7 @@ import { X } from 'lucide-react';
 import { Badge } from '@/components/ui/Badge';
 import Button from '@/components/ui/Button';
 import SelectPicker from '@/components/ui/SelectPicker';
+
 import type { FilterType } from '../layout';
 
 interface DocumentFiltersProps {
@@ -33,7 +34,8 @@ export default function DocumentFilters({
   authorOptions,
   yearOptions,
 }: DocumentFiltersProps) {
-  const hasActiveFilters = filterType !== 'all' || authorIds.length > 0 || year !== '';
+  const hasActiveFilters =
+    filterType !== 'all' || authorIds.length > 0 || year !== '';
 
   const handleClearAll = () => {
     setFilterType('all');
@@ -49,7 +51,7 @@ export default function DocumentFilters({
           <SelectPicker
             options={typeOptions}
             selectedValues={[filterType]}
-            onSelect={(selected) => setFilterType(selected[0]?.value || 'all')}
+            onSelect={selected => setFilterType(selected[0]?.value || 'all')}
             placeholder='Type'
             size='md'
             searchable={false}
@@ -62,7 +64,7 @@ export default function DocumentFilters({
           <SelectPicker
             options={authorOptions}
             selectedValues={authorIds}
-            onSelect={(selected) => setAuthorIds(selected.map(s => s.value))}
+            onSelect={selected => setAuthorIds(selected.map(s => s.value))}
             placeholder='Authors'
             size='md'
             searchable={true}
@@ -75,7 +77,7 @@ export default function DocumentFilters({
           <SelectPicker
             options={yearOptions}
             selectedValues={year ? [year] : []}
-            onSelect={(selected) => setYear(selected[0]?.value || '')}
+            onSelect={selected => setYear(selected[0]?.value || '')}
             placeholder='Year'
             size='md'
             searchable={true}
@@ -100,17 +102,29 @@ export default function DocumentFilters({
       {hasActiveFilters && (
         <div className='flex flex-wrap gap-2'>
           {filterType !== 'all' && (
-            <Badge variant='primary' className='cursor-pointer hover:opacity-80' onClick={() => setFilterType('all')}>
+            <Badge
+              variant='primary'
+              className='cursor-pointer hover:opacity-80'
+              onClick={() => setFilterType('all')}
+            >
               Type: {typeOptions.find(o => o.value === filterType)?.label}
             </Badge>
           )}
           {authorIds.length > 0 && (
-            <Badge variant='secondary' className='cursor-pointer hover:opacity-80' onClick={() => setAuthorIds([])}>
+            <Badge
+              variant='secondary'
+              className='cursor-pointer hover:opacity-80'
+              onClick={() => setAuthorIds([])}
+            >
               {authorIds.length} Author{authorIds.length > 1 ? 's' : ''}
             </Badge>
           )}
           {year && (
-            <Badge variant='slate' className='cursor-pointer hover:opacity-80' onClick={() => setYear('')}>
+            <Badge
+              variant='slate'
+              className='cursor-pointer hover:opacity-80'
+              onClick={() => setYear('')}
+            >
               Year: {year}
             </Badge>
           )}

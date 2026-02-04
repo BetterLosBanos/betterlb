@@ -1,23 +1,25 @@
-import { useState, useCallback, useEffect } from 'react';
-import {
-  Dialog,
-  DialogContent,
-  DialogHeader,
-  DialogTitle,
-  DialogFooter,
-  DialogClose,
-} from '@/components/ui/Dialog';
-import { Card, CardContent } from '@/components/ui/Card';
-import { Badge } from '@/components/ui/Badge';
-import Button from '@/components/ui/Button';
+import { useCallback, useEffect, useState } from 'react';
+
 import {
   AlertTriangle,
-  User,
   Calendar,
-  Trash2,
   ChevronDown,
   ChevronUp,
+  Trash2,
+  User,
 } from 'lucide-react';
+
+import { Badge } from '@/components/ui/Badge';
+import Button from '@/components/ui/Button';
+import { Card, CardContent } from '@/components/ui/Card';
+import {
+  Dialog,
+  DialogClose,
+  DialogContent,
+  DialogFooter,
+  DialogHeader,
+  DialogTitle,
+} from '@/components/ui/Dialog';
 
 // Types
 interface Person {
@@ -150,7 +152,9 @@ export default function LegislativePostImporter({
   const [parsedData, setParsedData] = useState<ParseResponse | null>(null);
 
   // Session info state (editable)
-  const [sessionType, setSessionType] = useState<'Regular' | 'Special' | 'Inaugural'>('Regular');
+  const [sessionType, setSessionType] = useState<
+    'Regular' | 'Special' | 'Inaugural'
+  >('Regular');
   const [sessionOrdinal, setSessionOrdinal] = useState<number | null>(null);
   const [sessionDate, setSessionDate] = useState('');
   const [terms, setTerms] = useState<Term[]>([]);
@@ -159,9 +163,13 @@ export default function LegislativePostImporter({
 
   const [editedDocuments, setEditedDocuments] = useState<EditedDocument[]>([]);
   const [creating, setCreating] = useState(false);
-  const [createResult, setCreateResult] = useState<BulkCreateResponse | null>(null);
+  const [createResult, setCreateResult] = useState<BulkCreateResponse | null>(
+    null
+  );
   const [expandedItems, setExpandedItems] = useState<Set<number>>(new Set());
-  const [duplicateResolutions, setDuplicateResolutions] = useState<Map<number, DuplicateResolution>>(new Map());
+  const [duplicateResolutions, setDuplicateResolutions] = useState<
+    Map<number, DuplicateResolution>
+  >(new Map());
 
   // Fetch terms when dialog opens
   useEffect(() => {
@@ -208,8 +216,14 @@ export default function LegislativePostImporter({
 
       // Populate session fields from parsed data
       if (data.session_info.type) {
-        const capitalized = data.session_info.type.charAt(0).toUpperCase() + data.session_info.type.slice(1);
-        if (capitalized === 'Regular' || capitalized === 'Special' || capitalized === 'Inaugural') {
+        const capitalized =
+          data.session_info.type.charAt(0).toUpperCase() +
+          data.session_info.type.slice(1);
+        if (
+          capitalized === 'Regular' ||
+          capitalized === 'Special' ||
+          capitalized === 'Inaugural'
+        ) {
           setSessionType(capitalized);
         }
       }
@@ -218,12 +232,12 @@ export default function LegislativePostImporter({
       }
 
       // Convert parsed items to edited documents
-      const docs: EditedDocument[] = data.items.map((item) => ({
+      const docs: EditedDocument[] = data.items.map(item => ({
         type: item.type,
         number: item.number,
         title: item.title,
         authors: item.authors
-          .map((name) => {
+          .map(name => {
             const matched = data.matched_persons[name];
             if (matched) {
               return {
@@ -251,40 +265,48 @@ export default function LegislativePostImporter({
   }, [postContent]);
 
   // Handle person selection for authors
-  const handleAddAuthor = useCallback((docIndex: number, person: Person | { isNew: true; name: string }) => {
-    setEditedDocuments((prev) => {
-      const updated = [...prev];
-      if ('isNew' in person) {
-        const nameParts = person.name.split(' ');
-        const tempPerson: Person = {
-          id: `temp_${Date.now()}`,
-          first_name: nameParts[0] || person.name,
-          middle_name: null,
-          last_name: nameParts.slice(1).join(' ') || '',
-          full_name: person.name,
-        };
-        updated[docIndex].authors.push(tempPerson);
-      } else {
-        updated[docIndex].authors.push(person);
-      }
-      return updated;
-    });
-  }, []);
+  const handleAddAuthor = useCallback(
+    (docIndex: number, person: Person | { isNew: true; name: string }) => {
+      setEditedDocuments(prev => {
+        const updated = [...prev];
+        if ('isNew' in person) {
+          const nameParts = person.name.split(' ');
+          const tempPerson: Person = {
+            id: `temp_${Date.now()}`,
+            first_name: nameParts[0] || person.name,
+            middle_name: null,
+            last_name: nameParts.slice(1).join(' ') || '',
+            full_name: person.name,
+          };
+          updated[docIndex].authors.push(tempPerson);
+        } else {
+          updated[docIndex].authors.push(person);
+        }
+        return updated;
+      });
+    },
+    []
+  );
 
-  const handleRemoveAuthor = useCallback((docIndex: number, authorId: string) => {
-    setEditedDocuments((prev) => {
-      const updated = [...prev];
-      updated[docIndex].authors = updated[docIndex].authors.filter((a) => a.id !== authorId);
-      return updated;
-    });
-  }, []);
+  const handleRemoveAuthor = useCallback(
+    (docIndex: number, authorId: string) => {
+      setEditedDocuments(prev => {
+        const updated = [...prev];
+        updated[docIndex].authors = updated[docIndex].authors.filter(
+          a => a.id !== authorId
+        );
+        return updated;
+      });
+    },
+    []
+  );
 
   const handleRemoveDocument = useCallback((index: number) => {
-    setEditedDocuments((prev) => prev.filter((_, i) => i !== index));
+    setEditedDocuments(prev => prev.filter((_, i) => i !== index));
   }, []);
 
   const toggleExpanded = useCallback((index: number) => {
-    setExpandedItems((prev) => {
+    setExpandedItems(prev => {
       const next = new Set(prev);
       if (next.has(index)) {
         next.delete(index);
@@ -315,13 +337,16 @@ export default function LegislativePostImporter({
       let sessionId: string;
 
       // Check if session with matching info exists
-      const checkResponse = await fetch(`/api/admin/sessions?term=${selectedTermId}&limit=100`);
+      const checkResponse = await fetch(
+        `/api/admin/sessions?term=${selectedTermId}&limit=100`
+      );
       if (checkResponse.ok) {
         const sessionsData = await checkResponse.json();
-        const existingSession = sessionsData.sessions?.find((s: Session) =>
-          s.type === sessionType &&
-          s.number === sessionOrdinal &&
-          s.date === sessionDate
+        const existingSession = sessionsData.sessions?.find(
+          (s: Session) =>
+            s.type === sessionType &&
+            s.number === sessionOrdinal &&
+            s.date === sessionDate
         );
 
         if (existingSession) {
@@ -356,11 +381,11 @@ export default function LegislativePostImporter({
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
           session_id: sessionId,
-          documents: editedDocuments.map((doc) => ({
+          documents: editedDocuments.map(doc => ({
             type: doc.type,
             number: doc.number,
             title: doc.title,
-            authors: doc.authors.map((a) => ({
+            authors: doc.authors.map(a => ({
               person_id: a.id,
               is_new: a.id.startsWith('temp_'),
               name: a.full_name,
@@ -383,7 +408,7 @@ export default function LegislativePostImporter({
         setStep('duplicates');
 
         // Update edited documents with duplicate info and init resolutions
-        setEditedDocuments((prev) => {
+        setEditedDocuments(prev => {
           const updated = [...prev];
           for (const dup of result.duplicates) {
             updated[dup.index] = {
@@ -392,7 +417,7 @@ export default function LegislativePostImporter({
               duplicate_info: dup,
             };
             // Default resolution: skip (don't create)
-            setDuplicateResolutions((prev) => {
+            setDuplicateResolutions(prev => {
               const next = new Map(prev);
               next.set(dup.index, { action: 'skip', updateFields: {} });
               return next;
@@ -422,12 +447,23 @@ export default function LegislativePostImporter({
       return;
     } catch (error) {
       console.error('Error creating documents:', error);
-      alert('Failed to create documents: ' + (error instanceof Error ? error.message : 'Unknown error'));
+      alert(
+        'Failed to create documents: ' +
+          (error instanceof Error ? error.message : 'Unknown error')
+      );
       setStep('review');
     } finally {
       setCreating(false);
     }
-  }, [sessionType, sessionOrdinal, sessionDate, selectedTermId, editedDocuments, onSuccess, onClose]);
+  }, [
+    sessionType,
+    sessionOrdinal,
+    sessionDate,
+    selectedTermId,
+    editedDocuments,
+    onSuccess,
+    onClose,
+  ]);
 
   // Apply duplicate resolutions and create remaining documents
   const handleApplyResolutions = useCallback(async () => {
@@ -451,13 +487,16 @@ export default function LegislativePostImporter({
       let sessionId: string;
 
       // Check if session with matching info exists
-      const checkResponse = await fetch(`/api/admin/sessions?term=${selectedTermId}&limit=100`);
+      const checkResponse = await fetch(
+        `/api/admin/sessions?term=${selectedTermId}&limit=100`
+      );
       if (checkResponse.ok) {
         const sessionsData = await checkResponse.json();
-        const existingSession = sessionsData.sessions?.find((s: Session) =>
-          s.type === sessionType &&
-          s.number === sessionOrdinal &&
-          s.date === sessionDate
+        const existingSession = sessionsData.sessions?.find(
+          (s: Session) =>
+            s.type === sessionType &&
+            s.number === sessionOrdinal &&
+            s.date === sessionDate
         );
 
         if (existingSession) {
@@ -497,39 +536,44 @@ export default function LegislativePostImporter({
         }
 
         // Map frontend action to backend action
-        const backendAction = resolution.action === 'replace'
-          ? 'replace_existing'
-          : resolution.action === 'merge'
-          ? 'merge'
-          : 'keep_existing';
+        const backendAction =
+          resolution.action === 'replace'
+            ? 'replace_existing'
+            : resolution.action === 'merge'
+              ? 'merge'
+              : 'keep_existing';
 
         // Convert updateFields to match backend format
         const updateFields: Record<string, boolean> = {};
         if (resolution.updateFields.title) updateFields.title = true;
         if (resolution.updateFields.authors) updateFields.authors = true;
 
-        const resolveResponse = await fetch('/api/admin/documents/resolve-duplicate', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({
-            existing_document_id: doc.duplicate_info.existing.id,
-            new_document: {
-              type: doc.type,
-              number: doc.number,
-              title: doc.title,
-              authors: doc.authors.map((a) => ({
-                person_id: a.id,
-                is_new: a.id.startsWith('temp_'),
-                name: a.full_name,
-              })),
-              seconded_by: doc.seconded_by?.id,
-              moved_by: doc.moved_by?.id,
-              session_id: sessionId,
-            },
-            action: backendAction,
-            update_fields: Object.keys(updateFields).length > 0 ? updateFields : undefined,
-          }),
-        });
+        const resolveResponse = await fetch(
+          '/api/admin/documents/resolve-duplicate',
+          {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+              existing_document_id: doc.duplicate_info.existing.id,
+              new_document: {
+                type: doc.type,
+                number: doc.number,
+                title: doc.title,
+                authors: doc.authors.map(a => ({
+                  person_id: a.id,
+                  is_new: a.id.startsWith('temp_'),
+                  name: a.full_name,
+                })),
+                seconded_by: doc.seconded_by?.id,
+                moved_by: doc.moved_by?.id,
+                session_id: sessionId,
+              },
+              action: backendAction,
+              update_fields:
+                Object.keys(updateFields).length > 0 ? updateFields : undefined,
+            }),
+          }
+        );
 
         if (!resolveResponse.ok) {
           console.error(`Failed to resolve duplicate for ${doc.number}`);
@@ -540,7 +584,9 @@ export default function LegislativePostImporter({
       }
 
       // Create non-duplicate documents
-      const documentsToCreate = editedDocuments.filter((doc) => !doc.has_duplicate);
+      const documentsToCreate = editedDocuments.filter(
+        doc => !doc.has_duplicate
+      );
 
       if (documentsToCreate.length > 0) {
         const response = await fetch('/api/admin/documents/bulk', {
@@ -548,11 +594,11 @@ export default function LegislativePostImporter({
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({
             session_id: sessionId,
-            documents: documentsToCreate.map((doc) => ({
+            documents: documentsToCreate.map(doc => ({
               type: doc.type,
               number: doc.number,
               title: doc.title,
-              authors: doc.authors.map((a) => ({
+              authors: doc.authors.map(a => ({
                 person_id: a.id,
                 is_new: a.id.startsWith('temp_'),
                 name: a.full_name,
@@ -594,11 +640,23 @@ export default function LegislativePostImporter({
       onClose();
     } catch (error) {
       console.error('Error applying resolutions:', error);
-      alert('Failed to apply resolutions: ' + (error instanceof Error ? error.message : 'Unknown error'));
+      alert(
+        'Failed to apply resolutions: ' +
+          (error instanceof Error ? error.message : 'Unknown error')
+      );
     } finally {
       setCreating(false);
     }
-  }, [sessionType, sessionOrdinal, sessionDate, selectedTermId, editedDocuments, duplicateResolutions, onSuccess, onClose]);
+  }, [
+    sessionType,
+    sessionOrdinal,
+    sessionDate,
+    selectedTermId,
+    editedDocuments,
+    duplicateResolutions,
+    onSuccess,
+    onClose,
+  ]);
 
   const handleClose = useCallback(() => {
     setStep('paste');
@@ -629,26 +687,31 @@ export default function LegislativePostImporter({
   };
 
   return (
-    <Dialog open={open} onOpenChange={(isOpen) => { if (!isOpen) handleClose(); }}>
-      <DialogContent className="max-w-4xl max-h-screen overflow-y-auto">
+    <Dialog
+      open={open}
+      onOpenChange={isOpen => {
+        if (!isOpen) handleClose();
+      }}
+    >
+      <DialogContent className='max-h-screen max-w-4xl overflow-y-auto'>
         <DialogHeader>
           <DialogTitle>Import Legislative Documents from Facebook</DialogTitle>
         </DialogHeader>
 
-        <div className="py-4">
+        <div className='py-4'>
           {/* Step 1: Paste Post */}
           {step === 'paste' && (
-            <div className="space-y-4 py-4">
-              <Card variant="default">
-                <CardContent className="p-4 space-y-4">
+            <div className='space-y-4 py-4'>
+              <Card variant='default'>
+                <CardContent className='space-y-4 p-4'>
                   <div>
-                    <label className="block mb-2 text-sm font-medium text-slate-700">
+                    <label className='mb-2 block text-sm font-medium text-slate-700'>
                       Paste Facebook Post Content
                     </label>
                     <textarea
                       value={postContent}
-                      onChange={(e) => setPostContent(e.target.value)}
-                      placeholder="Paste the Facebook post content here...
+                      onChange={e => setPostContent(e.target.value)}
+                      placeholder='Paste the Facebook post content here...
 Example:
 25TH REGULAR SESSION
 
@@ -658,12 +721,12 @@ Author: Hon. Rand Edouard R. De Jesus
 Seconded By: Hon. Miko C. Pelegrina
 
 2. ORDINANCE NO. 2026-2470
-..."
-                      className="w-full h-64 px-3 py-2 text-sm rounded-md border border-slate-300 font-mono"
+...'
+                      className='h-64 w-full rounded-md border border-slate-300 px-3 py-2 font-mono text-sm'
                     />
                   </div>
                   <Button
-                    variant="primary"
+                    variant='primary'
                     onClick={handleParse}
                     disabled={!postContent.trim() || creating}
                     fullWidth
@@ -674,14 +737,15 @@ Seconded By: Hon. Miko C. Pelegrina
                 </CardContent>
               </Card>
 
-              <Card variant="slate">
-                <CardContent className="p-4">
-                  <h4 className="font-semibold text-sm text-slate-900 mb-2">
+              <Card variant='slate'>
+                <CardContent className='p-4'>
+                  <h4 className='mb-2 text-sm font-semibold text-slate-900'>
                     Supported Format
                   </h4>
-                  <p className="text-xs text-slate-600">
-                    The parser expects numbered items with document type, number, title, and author information.
-                    Session info should be at the top (e.g., &quot;25TH REGULAR SESSION&quot;).
+                  <p className='text-xs text-slate-600'>
+                    The parser expects numbered items with document type,
+                    number, title, and author information. Session info should
+                    be at the top (e.g., &quot;25TH REGULAR SESSION&quot;).
                   </p>
                 </CardContent>
               </Card>
@@ -690,58 +754,79 @@ Seconded By: Hon. Miko C. Pelegrina
 
           {/* Step 2: Review & Edit */}
           {step === 'review' && (
-            <div className="space-y-4 py-4">
+            <div className='space-y-4 py-4'>
               {/* Session Info */}
-              <Card variant="default">
-                <CardContent className="p-4 space-y-4">
-                  <div className="flex items-center gap-2">
-                    <Calendar className="w-4 h-4 text-slate-500" />
-                    <h4 className="font-semibold text-sm text-slate-900">
+              <Card variant='default'>
+                <CardContent className='space-y-4 p-4'>
+                  <div className='flex items-center gap-2'>
+                    <Calendar className='h-4 w-4 text-slate-500' />
+                    <h4 className='text-sm font-semibold text-slate-900'>
                       Session Information (Required)
                     </h4>
                   </div>
-                  <div className="grid gap-4 sm:grid-cols-2">
+                  <div className='grid gap-4 sm:grid-cols-2'>
                     <div>
-                      <label className="block mb-1 text-xs text-slate-600">Session Type</label>
+                      <label className='mb-1 block text-xs text-slate-600'>
+                        Session Type
+                      </label>
                       <select
                         value={sessionType}
-                        onChange={(e) => setSessionType(e.target.value as 'Regular' | 'Special' | 'Inaugural')}
-                        className="w-full px-3 py-2 text-sm rounded-md border border-slate-300 bg-white"
+                        onChange={e =>
+                          setSessionType(
+                            e.target.value as
+                              | 'Regular'
+                              | 'Special'
+                              | 'Inaugural'
+                          )
+                        }
+                        className='w-full rounded-md border border-slate-300 bg-white px-3 py-2 text-sm'
                       >
-                        <option value="Regular">Regular</option>
-                        <option value="Special">Special</option>
-                        <option value="Inaugural">Inaugural</option>
+                        <option value='Regular'>Regular</option>
+                        <option value='Special'>Special</option>
+                        <option value='Inaugural'>Inaugural</option>
                       </select>
                     </div>
                     <div>
-                      <label className="block mb-1 text-xs text-slate-600">Session Number (Ordinal)</label>
+                      <label className='mb-1 block text-xs text-slate-600'>
+                        Session Number (Ordinal)
+                      </label>
                       <input
-                        type="number"
+                        type='number'
                         value={sessionOrdinal ?? ''}
-                        onChange={(e) => setSessionOrdinal(e.target.value ? parseInt(e.target.value) : null)}
-                        placeholder="e.g., 25"
-                        className="w-full px-3 py-2 text-sm rounded-md border border-slate-300"
+                        onChange={e =>
+                          setSessionOrdinal(
+                            e.target.value ? parseInt(e.target.value) : null
+                          )
+                        }
+                        placeholder='e.g., 25'
+                        className='w-full rounded-md border border-slate-300 px-3 py-2 text-sm'
                       />
                     </div>
                     <div>
-                      <label className="block mb-1 text-xs text-slate-600">Session Date</label>
+                      <label className='mb-1 block text-xs text-slate-600'>
+                        Session Date
+                      </label>
                       <input
-                        type="date"
+                        type='date'
                         value={sessionDate}
-                        onChange={(e) => setSessionDate(e.target.value)}
-                        className="w-full px-3 py-2 text-sm rounded-md border border-slate-300"
+                        onChange={e => setSessionDate(e.target.value)}
+                        className='w-full rounded-md border border-slate-300 px-3 py-2 text-sm'
                         required
                       />
                     </div>
                     <div>
-                      <label className="block mb-1 text-xs text-slate-600">Term</label>
+                      <label className='mb-1 block text-xs text-slate-600'>
+                        Term
+                      </label>
                       <select
                         value={selectedTermId || ''}
-                        onChange={(e) => setSelectedTermId(e.target.value || null)}
+                        onChange={e =>
+                          setSelectedTermId(e.target.value || null)
+                        }
                         disabled={termsLoading}
-                        className="w-full px-3 py-2 text-sm rounded-md border border-slate-300 bg-white disabled:bg-slate-100"
+                        className='w-full rounded-md border border-slate-300 bg-white px-3 py-2 text-sm disabled:bg-slate-100'
                       >
-                        {terms.map((term) => (
+                        {terms.map(term => (
                           <option key={term.id} value={term.id}>
                             {term.name} ({term.year_range})
                           </option>
@@ -750,135 +835,161 @@ Seconded By: Hon. Miko C. Pelegrina
                     </div>
                   </div>
                   {parsedData?.session_info.type && (
-                    <p className="text-xs text-slate-500">
-                      Detected from post: {parsedData.session_info.ordinal}th {parsedData.session_info.type} session
+                    <p className='text-xs text-slate-500'>
+                      Detected from post: {parsedData.session_info.ordinal}th{' '}
+                      {parsedData.session_info.type} session
                     </p>
                   )}
                 </CardContent>
               </Card>
 
               {/* Documents List */}
-              <div className="space-y-3">
-                <h4 className="font-semibold text-sm text-slate-900">
+              <div className='space-y-3'>
+                <h4 className='text-sm font-semibold text-slate-900'>
                   Parsed Documents ({editedDocuments.length})
                 </h4>
 
                 {editedDocuments.map((doc, index) => (
-                  <Card key={index} variant="default">
-                    <CardContent className="p-4">
-                      <div className="flex items-start justify-between gap-4">
-                        <div className="flex-1 min-w-0">
-                          <div className="flex items-center gap-2 mb-2">
-                            <Badge variant={doc.type === 'ordinance' ? 'primary' : 'secondary'}>
+                  <Card key={index} variant='default'>
+                    <CardContent className='p-4'>
+                      <div className='flex items-start justify-between gap-4'>
+                        <div className='min-w-0 flex-1'>
+                          <div className='mb-2 flex items-center gap-2'>
+                            <Badge
+                              variant={
+                                doc.type === 'ordinance'
+                                  ? 'primary'
+                                  : 'secondary'
+                              }
+                            >
                               {getDocumentTypeLabel(doc.type)}
                             </Badge>
-                            <span className="font-mono text-xs text-slate-600">
+                            <span className='font-mono text-xs text-slate-600'>
                               {doc.number}
                             </span>
                           </div>
-                          <p className="text-sm text-slate-900 font-medium line-clamp-2">
+                          <p className='line-clamp-2 text-sm font-medium text-slate-900'>
                             {doc.title}
                           </p>
-                          <div className="flex flex-wrap gap-1 mt-2">
-                            {doc.authors.map((author) => (
-                              <Badge key={author.id} variant="slate" className="text-xs">
-                                <User className="w-3 h-3 mr-1" />
+                          <div className='mt-2 flex flex-wrap gap-1'>
+                            {doc.authors.map(author => (
+                              <Badge
+                                key={author.id}
+                                variant='slate'
+                                className='text-xs'
+                              >
+                                <User className='mr-1 h-3 w-3' />
                                 {author.full_name}
                               </Badge>
                             ))}
                           </div>
                         </div>
 
-                        <div className="flex items-center gap-2">
+                        <div className='flex items-center gap-2'>
                           <button
                             onClick={() => toggleExpanded(index)}
-                            className="p-1 text-slate-400 hover:text-slate-600"
+                            className='p-1 text-slate-400 hover:text-slate-600'
                           >
                             {expandedItems.has(index) ? (
-                              <ChevronUp className="w-4 h-4" />
+                              <ChevronUp className='h-4 w-4' />
                             ) : (
-                              <ChevronDown className="w-4 h-4" />
+                              <ChevronDown className='h-4 w-4' />
                             )}
                           </button>
                           <button
                             onClick={() => handleRemoveDocument(index)}
-                            className="p-1 text-red-400 hover:text-red-600"
-                            title="Remove document"
+                            className='p-1 text-red-400 hover:text-red-600'
+                            title='Remove document'
                           >
-                            <Trash2 className="w-4 h-4" />
+                            <Trash2 className='h-4 w-4' />
                           </button>
                         </div>
                       </div>
 
                       {/* Expanded Details */}
                       {expandedItems.has(index) && (
-                        <div className="mt-4 pt-4 border-t border-slate-200 space-y-4">
+                        <div className='mt-4 space-y-4 border-t border-slate-200 pt-4'>
                           {/* Type */}
                           <div>
-                            <label className="block mb-1 text-xs text-slate-600">Document Type</label>
+                            <label className='mb-1 block text-xs text-slate-600'>
+                              Document Type
+                            </label>
                             <select
                               value={doc.type}
-                              onChange={(e) => {
-                                setEditedDocuments((prev) => {
+                              onChange={e => {
+                                setEditedDocuments(prev => {
                                   const updated = [...prev];
-                                  updated[index].type = e.target.value as 'ordinance' | 'resolution' | 'executive_order';
+                                  updated[index].type = e.target.value as
+                                    | 'ordinance'
+                                    | 'resolution'
+                                    | 'executive_order';
                                   return updated;
                                 });
                               }}
-                              className="w-full px-3 py-2 text-sm rounded-md border border-slate-300"
+                              className='w-full rounded-md border border-slate-300 px-3 py-2 text-sm'
                             >
-                              <option value="ordinance">Ordinance</option>
-                              <option value="resolution">Resolution</option>
-                              <option value="executive_order">Executive Order</option>
+                              <option value='ordinance'>Ordinance</option>
+                              <option value='resolution'>Resolution</option>
+                              <option value='executive_order'>
+                                Executive Order
+                              </option>
                             </select>
                           </div>
 
                           {/* Number */}
                           <div>
-                            <label className="block mb-1 text-xs text-slate-600">Document Number</label>
+                            <label className='mb-1 block text-xs text-slate-600'>
+                              Document Number
+                            </label>
                             <input
-                              type="text"
+                              type='text'
                               value={doc.number}
-                              onChange={(e) => {
-                                setEditedDocuments((prev) => {
+                              onChange={e => {
+                                setEditedDocuments(prev => {
                                   const updated = [...prev];
                                   updated[index].number = e.target.value;
                                   return updated;
                                 });
                               }}
-                              className="w-full px-3 py-2 text-sm rounded-md border border-slate-300 font-mono"
+                              className='w-full rounded-md border border-slate-300 px-3 py-2 font-mono text-sm'
                             />
                           </div>
 
                           {/* Title */}
                           <div>
-                            <label className="block mb-1 text-xs text-slate-600">Title</label>
+                            <label className='mb-1 block text-xs text-slate-600'>
+                              Title
+                            </label>
                             <textarea
                               value={doc.title}
-                              onChange={(e) => {
-                                setEditedDocuments((prev) => {
+                              onChange={e => {
+                                setEditedDocuments(prev => {
                                   const updated = [...prev];
                                   updated[index].title = e.target.value;
                                   return updated;
                                 });
                               }}
                               rows={3}
-                              className="w-full px-3 py-2 text-sm rounded-md border border-slate-300"
+                              className='w-full rounded-md border border-slate-300 px-3 py-2 text-sm'
                             />
                           </div>
 
                           {/* Authors */}
                           <div>
-                            <label className="block mb-1 text-xs text-slate-600">Authors</label>
-                            <div className="flex flex-wrap gap-2 mb-2">
-                              {doc.authors.map((author) => (
-                                <Badge key={author.id} variant="slate">
-                                  <User className="w-3 h-3 mr-1" />
+                            <label className='mb-1 block text-xs text-slate-600'>
+                              Authors
+                            </label>
+                            <div className='mb-2 flex flex-wrap gap-2'>
+                              {doc.authors.map(author => (
+                                <Badge key={author.id} variant='slate'>
+                                  <User className='mr-1 h-3 w-3' />
                                   {author.full_name}
                                   <button
-                                    type="button"
-                                    onClick={() => handleRemoveAuthor(index, author.id)}
-                                    className="ml-1 hover:text-red-500"
+                                    type='button'
+                                    onClick={() =>
+                                      handleRemoveAuthor(index, author.id)
+                                    }
+                                    className='ml-1 hover:text-red-500'
                                   >
                                     ×
                                   </button>
@@ -886,18 +997,22 @@ Seconded By: Hon. Miko C. Pelegrina
                               ))}
                             </div>
                             <input
-                              type="text"
-                              placeholder="Add author (type name)..."
-                              className="w-full px-3 py-2 text-sm rounded-md border border-slate-300"
-                              onKeyDown={(e) => {
-                                if (e.key === 'Enter' && e.currentTarget.value.trim()) {
+                              type='text'
+                              placeholder='Add author (type name)...'
+                              className='w-full rounded-md border border-slate-300 px-3 py-2 text-sm'
+                              onKeyDown={e => {
+                                if (
+                                  e.key === 'Enter' &&
+                                  e.currentTarget.value.trim()
+                                ) {
                                   const name = e.currentTarget.value.trim();
                                   const nameParts = name.split(' ');
                                   const newPerson: Person = {
                                     id: `temp_${Date.now()}_${Math.random().toString(36).substr(2, 9)}`,
                                     first_name: nameParts[0] || name,
                                     middle_name: null,
-                                    last_name: nameParts.slice(1).join(' ') || '',
+                                    last_name:
+                                      nameParts.slice(1).join(' ') || '',
                                     full_name: name,
                                   };
                                   handleAddAuthor(index, newPerson);
@@ -917,88 +1032,116 @@ Seconded By: Hon. Miko C. Pelegrina
 
           {/* Step 3: Duplicates Found */}
           {step === 'duplicates' && (
-            <div className="space-y-4 py-4">
-              <Card variant="warning">
-                <CardContent className="p-4">
-                  <div className="flex items-start gap-3">
-                    <AlertTriangle className="w-5 h-5 text-amber-500 flex-shrink-0 mt-0.5" />
+            <div className='space-y-4 py-4'>
+              <Card variant='warning'>
+                <CardContent className='p-4'>
+                  <div className='flex items-start gap-3'>
+                    <AlertTriangle className='mt-0.5 h-5 w-5 flex-shrink-0 text-amber-500' />
                     <div>
-                      <h4 className="font-semibold text-sm text-slate-900">
+                      <h4 className='text-sm font-semibold text-slate-900'>
                         Duplicates Found
                       </h4>
-                      <p className="text-xs text-slate-600 mt-1">
-                        {createResult?.duplicates.length || 0} document(s) already exist in the database.
-                        Choose how to resolve each duplicate below.
+                      <p className='mt-1 text-xs text-slate-600'>
+                        {createResult?.duplicates.length || 0} document(s)
+                        already exist in the database. Choose how to resolve
+                        each duplicate below.
                       </p>
                     </div>
                   </div>
                 </CardContent>
               </Card>
 
-              <div className="space-y-4">
+              <div className='space-y-4'>
                 {editedDocuments
-                  .filter((doc) => doc.has_duplicate)
-                  .map((doc) => {
+                  .filter(doc => doc.has_duplicate)
+                  .map(doc => {
                     const originalIndex = editedDocuments.indexOf(doc);
                     const dup = doc.duplicate_info;
-                    const resolution = duplicateResolutions.get(originalIndex) || { action: 'skip', updateFields: {} };
+                    const resolution = duplicateResolutions.get(
+                      originalIndex
+                    ) || { action: 'skip', updateFields: {} };
 
                     return (
-                      <Card key={originalIndex} variant="slate">
-                        <CardContent className="p-4 space-y-4">
+                      <Card key={originalIndex} variant='slate'>
+                        <CardContent className='space-y-4 p-4'>
                           {/* Header */}
-                          <div className="flex items-center justify-between mb-3">
-                            <div className="flex items-center gap-2">
-                              <Badge variant="warning">Duplicate</Badge>
-                              <span className="font-mono text-xs text-slate-600">
+                          <div className='mb-3 flex items-center justify-between'>
+                            <div className='flex items-center gap-2'>
+                              <Badge variant='warning'>Duplicate</Badge>
+                              <span className='font-mono text-xs text-slate-600'>
                                 {doc.number}
                               </span>
                             </div>
                           </div>
 
                           {/* Comparison */}
-                          <div className="space-y-3">
+                          <div className='space-y-3'>
                             {/* Title Comparison */}
-                            <div className="grid grid-cols-2 gap-4 text-sm">
+                            <div className='grid grid-cols-2 gap-4 text-sm'>
                               <div>
-                                <span className="font-medium text-slate-700 block mb-1">Existing Title</span>
-                                <span className="text-slate-600">{dup?.existing.title}</span>
+                                <span className='mb-1 block font-medium text-slate-700'>
+                                  Existing Title
+                                </span>
+                                <span className='text-slate-600'>
+                                  {dup?.existing.title}
+                                </span>
                               </div>
                               <div>
-                                <span className="font-medium text-slate-700 block mb-1">New Title</span>
-                                <span className="text-slate-600">{doc.title}</span>
+                                <span className='mb-1 block font-medium text-slate-700'>
+                                  New Title
+                                </span>
+                                <span className='text-slate-600'>
+                                  {doc.title}
+                                </span>
                               </div>
                             </div>
 
                             {/* Authors Comparison */}
-                            <div className="grid grid-cols-2 gap-4 text-sm">
+                            <div className='grid grid-cols-2 gap-4 text-sm'>
                               <div>
-                                <span className="font-medium text-slate-700 block mb-1">Existing Authors</span>
-                                <div className="flex flex-wrap gap-1">
-                                  {dup?.existing.authors && dup.existing.authors.length > 0 ? (
-                                    dup.existing.authors.map((author) => (
-                                      <Badge key={author.person_id} variant="slate" className="text-xs">
-                                        <User className="w-3 h-3 mr-1" />
+                                <span className='mb-1 block font-medium text-slate-700'>
+                                  Existing Authors
+                                </span>
+                                <div className='flex flex-wrap gap-1'>
+                                  {dup?.existing.authors &&
+                                  dup.existing.authors.length > 0 ? (
+                                    dup.existing.authors.map(author => (
+                                      <Badge
+                                        key={author.person_id}
+                                        variant='slate'
+                                        className='text-xs'
+                                      >
+                                        <User className='mr-1 h-3 w-3' />
                                         {author.full_name}
                                       </Badge>
                                     ))
                                   ) : (
-                                    <span className="text-slate-400 italic">No authors</span>
+                                    <span className='text-slate-400 italic'>
+                                      No authors
+                                    </span>
                                   )}
                                 </div>
                               </div>
                               <div>
-                                <span className="font-medium text-slate-700 block mb-1">New Authors</span>
-                                <div className="flex flex-wrap gap-1">
+                                <span className='mb-1 block font-medium text-slate-700'>
+                                  New Authors
+                                </span>
+                                <div className='flex flex-wrap gap-1'>
                                   {doc.authors.length > 0 ? (
-                                    doc.authors.map((author) => (
-                                      <Badge key={author.id} variant="slate" className="text-xs">
-                                        <User className="w-3 h-3 mr-1" />
+                                    doc.authors.map(author => (
+                                      <Badge
+                                        key={author.id}
+                                        variant='slate'
+                                        className='text-xs'
+                                      >
+                                        <User className='mr-1 h-3 w-3' />
                                         {author.full_name}
                                       </Badge>
                                     ))
                                   ) : (
-                                    <span className="text-slate-400 italic">No authors</span>
+                                    <span className='text-slate-400 italic'>
+                                      No authors
+                                    </span>
                                   )}
                                 </div>
                               </div>
@@ -1007,21 +1150,24 @@ Seconded By: Hon. Miko C. Pelegrina
 
                           {/* Resolution Options */}
                           <div>
-                            <label className="block mb-2 text-xs font-medium text-slate-700">
+                            <label className='mb-2 block text-xs font-medium text-slate-700'>
                               Resolution
                             </label>
-                            <div className="grid grid-cols-3 gap-2 mb-3">
+                            <div className='mb-3 grid grid-cols-3 gap-2'>
                               <button
                                 onClick={() => {
-                                  setDuplicateResolutions((prev) => {
+                                  setDuplicateResolutions(prev => {
                                     const next = new Map(prev);
-                                    next.set(originalIndex, { action: 'skip', updateFields: {} });
+                                    next.set(originalIndex, {
+                                      action: 'skip',
+                                      updateFields: {},
+                                    });
                                     return next;
                                   });
                                 }}
-                                className={`px-3 py-2 text-xs rounded-md border ${
+                                className={`rounded-md border px-3 py-2 text-xs ${
                                   resolution.action === 'skip'
-                                    ? 'bg-primary-500 text-white border-primary-500'
+                                    ? 'bg-primary-500 border-primary-500 text-white'
                                     : 'border-slate-300 hover:bg-slate-50'
                                 }`}
                               >
@@ -1029,15 +1175,18 @@ Seconded By: Hon. Miko C. Pelegrina
                               </button>
                               <button
                                 onClick={() => {
-                                  setDuplicateResolutions((prev) => {
+                                  setDuplicateResolutions(prev => {
                                     const next = new Map(prev);
-                                    next.set(originalIndex, { action: 'replace', updateFields: {} });
+                                    next.set(originalIndex, {
+                                      action: 'replace',
+                                      updateFields: {},
+                                    });
                                     return next;
                                   });
                                 }}
-                                className={`px-3 py-2 text-xs rounded-md border ${
+                                className={`rounded-md border px-3 py-2 text-xs ${
                                   resolution.action === 'replace'
-                                    ? 'bg-primary-500 text-white border-primary-500'
+                                    ? 'bg-primary-500 border-primary-500 text-white'
                                     : 'border-slate-300 hover:bg-slate-50'
                                 }`}
                               >
@@ -1045,15 +1194,21 @@ Seconded By: Hon. Miko C. Pelegrina
                               </button>
                               <button
                                 onClick={() => {
-                                  setDuplicateResolutions((prev) => {
+                                  setDuplicateResolutions(prev => {
                                     const next = new Map(prev);
-                                    next.set(originalIndex, { action: 'merge', updateFields: { title: true, authors: true } });
+                                    next.set(originalIndex, {
+                                      action: 'merge',
+                                      updateFields: {
+                                        title: true,
+                                        authors: true,
+                                      },
+                                    });
                                     return next;
                                   });
                                 }}
-                                className={`px-3 py-2 text-xs rounded-md border ${
+                                className={`rounded-md border px-3 py-2 text-xs ${
                                   resolution.action === 'merge'
-                                    ? 'bg-primary-500 text-white border-primary-500'
+                                    ? 'bg-primary-500 border-primary-500 text-white'
                                     : 'border-slate-300 hover:bg-slate-50'
                                 }`}
                               >
@@ -1062,20 +1217,26 @@ Seconded By: Hon. Miko C. Pelegrina
                             </div>
 
                             {/* Merge field options when merge or replace is selected */}
-                            {(resolution.action === 'merge' || resolution.action === 'replace') && (
-                              <div className="space-y-2 border-t border-slate-200 pt-2">
-                                <span className="text-xs font-medium text-slate-700">
-                                  {resolution.action === 'merge' ? 'Fields to merge:' : 'Fields to update:'}
+                            {(resolution.action === 'merge' ||
+                              resolution.action === 'replace') && (
+                              <div className='space-y-2 border-t border-slate-200 pt-2'>
+                                <span className='text-xs font-medium text-slate-700'>
+                                  {resolution.action === 'merge'
+                                    ? 'Fields to merge:'
+                                    : 'Fields to update:'}
                                 </span>
-                                <div className="flex flex-wrap gap-2">
-                                  <label className="flex items-center gap-1 text-xs">
+                                <div className='flex flex-wrap gap-2'>
+                                  <label className='flex items-center gap-1 text-xs'>
                                     <input
-                                      type="checkbox"
-                                      checked={resolution.updateFields.title || false}
-                                      onChange={(e) => {
-                                        setDuplicateResolutions((prev) => {
+                                      type='checkbox'
+                                      checked={
+                                        resolution.updateFields.title || false
+                                      }
+                                      onChange={e => {
+                                        setDuplicateResolutions(prev => {
                                           const next = new Map(prev);
-                                          const current = next.get(originalIndex)!;
+                                          const current =
+                                            next.get(originalIndex)!;
                                           next.set(originalIndex, {
                                             ...current,
                                             updateFields: {
@@ -1086,18 +1247,21 @@ Seconded By: Hon. Miko C. Pelegrina
                                           return next;
                                         });
                                       }}
-                                      className="rounded border-slate-300"
+                                      className='rounded border-slate-300'
                                     />
                                     <span>Title</span>
                                   </label>
-                                  <label className="flex items-center gap-1 text-xs">
+                                  <label className='flex items-center gap-1 text-xs'>
                                     <input
-                                      type="checkbox"
-                                      checked={resolution.updateFields.authors || false}
-                                      onChange={(e) => {
-                                        setDuplicateResolutions((prev) => {
+                                      type='checkbox'
+                                      checked={
+                                        resolution.updateFields.authors || false
+                                      }
+                                      onChange={e => {
+                                        setDuplicateResolutions(prev => {
                                           const next = new Map(prev);
-                                          const current = next.get(originalIndex)!;
+                                          const current =
+                                            next.get(originalIndex)!;
                                           next.set(originalIndex, {
                                             ...current,
                                             updateFields: {
@@ -1108,7 +1272,7 @@ Seconded By: Hon. Miko C. Pelegrina
                                           return next;
                                         });
                                       }}
-                                      className="rounded border-slate-300"
+                                      className='rounded border-slate-300'
                                     />
                                     <span>Authors</span>
                                   </label>
@@ -1122,16 +1286,16 @@ Seconded By: Hon. Miko C. Pelegrina
                   })}
               </div>
 
-              <div className="flex gap-3">
+              <div className='flex gap-3'>
                 <Button
-                  variant="outline"
+                  variant='outline'
                   onClick={() => setStep('review')}
                   fullWidth
                 >
                   Go Back to Edit
                 </Button>
                 <Button
-                  variant="primary"
+                  variant='primary'
                   onClick={() => handleApplyResolutions()}
                   disabled={creating}
                   fullWidth
@@ -1144,9 +1308,9 @@ Seconded By: Hon. Miko C. Pelegrina
 
           {/* Step 4: Creating */}
           {step === 'creating' && (
-            <div className="flex flex-col items-center justify-center py-12 space-y-4">
-              <div className="w-12 h-12 rounded-full border-4 border-slate-200 border-t-primary-500 animate-spin" />
-              <p className="text-sm text-slate-600">Creating documents...</p>
+            <div className='flex flex-col items-center justify-center space-y-4 py-12'>
+              <div className='border-t-primary-500 h-12 w-12 animate-spin rounded-full border-4 border-slate-200' />
+              <p className='text-sm text-slate-600'>Creating documents...</p>
             </div>
           )}
         </div>
@@ -1155,18 +1319,19 @@ Seconded By: Hon. Miko C. Pelegrina
         {step !== 'duplicates' && step !== 'creating' && (
           <DialogFooter>
             <DialogClose asChild>
-              <Button variant="outline" disabled={creating}>
+              <Button variant='outline' disabled={creating}>
                 Cancel
               </Button>
             </DialogClose>
             {step === 'review' && (
               <Button
-                variant="primary"
+                variant='primary'
                 onClick={handleCreate}
                 disabled={creating || editedDocuments.length === 0}
                 isLoading={creating}
               >
-                Create {editedDocuments.length} Document{editedDocuments.length !== 1 ? 's' : ''}
+                Create {editedDocuments.length} Document
+                {editedDocuments.length !== 1 ? 's' : ''}
               </Button>
             )}
           </DialogFooter>
