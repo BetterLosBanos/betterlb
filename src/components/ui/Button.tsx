@@ -1,8 +1,8 @@
-import { ButtonHTMLAttributes, ReactNode } from 'react';
+import { AnchorHTMLAttributes, ButtonHTMLAttributes, ReactNode } from 'react';
 
 import { cn } from '../../lib/utils';
 
-interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
+type BaseButtonProps = {
   children: ReactNode;
   variant?: 'primary' | 'secondary' | 'outline' | 'ghost' | 'link' | 'success';
   size?: 'sm' | 'md' | 'lg';
@@ -10,7 +10,21 @@ interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   isLoading?: boolean;
   leftIcon?: ReactNode;
   rightIcon?: ReactNode;
-}
+};
+
+type ButtonAsButton = BaseButtonProps &
+  ButtonHTMLAttributes<HTMLButtonElement> & {
+    href?: never;
+  };
+
+type ButtonAsAnchor = BaseButtonProps &
+  AnchorHTMLAttributes<HTMLAnchorElement> & {
+    href: string;
+    target?: string;
+    rel?: string;
+  };
+
+type ButtonProps = ButtonAsButton | ButtonAsAnchor;
 
 const Button = ({
   children,
@@ -45,21 +59,19 @@ const Button = ({
 
   const isDisabled = disabled || isLoading;
 
-  return (
-    <button
-      className={cn(
-        'inline-flex items-center justify-center rounded-md font-medium transition-colors',
-        'focus:ring-2 focus:ring-offset-2 focus:outline-hidden',
-        variants[variant],
-        sizes[size],
-        fullWidth ? 'w-full' : '',
-        isDisabled ? 'cursor-not-allowed opacity-60' : '',
-        variant !== 'link' && 'shadow-xs',
-        className
-      )}
-      disabled={isDisabled}
-      {...props}
-    >
+  const sharedClassName = cn(
+    'inline-flex items-center justify-center rounded-md font-medium transition-colors',
+    'focus:ring-2 focus:ring-offset-2 focus:outline-hidden',
+    variants[variant],
+    sizes[size],
+    fullWidth ? 'w-full' : '',
+    isDisabled ? 'cursor-not-allowed opacity-60' : '',
+    variant !== 'link' && 'shadow-xs',
+    className
+  );
+
+  const content = (
+    <>
       {isLoading && (
         <svg
           className='mr-2 -ml-1 h-4 w-4 animate-spin text-current'
@@ -85,6 +97,33 @@ const Button = ({
       {!isLoading && leftIcon && <span className='mr-2'>{leftIcon}</span>}
       {children}
       {!isLoading && rightIcon && <span className='ml-2'>{rightIcon}</span>}
+    </>
+  );
+
+  // If href is provided, render as an anchor tag
+  if ('href' in props) {
+    const { href, target, rel, ...anchorProps } = props;
+    return (
+      <a
+        href={href}
+        target={target}
+        rel={rel}
+        className={sharedClassName}
+        {...anchorProps}
+      >
+        {content}
+      </a>
+    );
+  }
+
+  // Otherwise render as a button
+  return (
+    <button
+      className={sharedClassName}
+      disabled={isDisabled}
+      {...(props as ButtonHTMLAttributes<HTMLButtonElement>)}
+    >
+      {content}
     </button>
   );
 };

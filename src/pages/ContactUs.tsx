@@ -14,6 +14,8 @@ import {
 } from 'lucide-react';
 import { Helmet } from 'react-helmet-async';
 
+import Button from '@/components/ui/Button';
+
 const ContactUs: FC = () => {
   const contactMethods = [
     {
@@ -145,10 +147,12 @@ const ContactUs: FC = () => {
                 {method.title}
               </h3>
               <p className='mb-4 text-sm text-gray-600'>{method.description}</p>
-              <a
+              <Button
                 href={method.action}
-                className='group inline-flex items-center text-sm font-medium text-blue-600 hover:text-blue-800'
-                target={method.action.startsWith('http') ? '_blank' : '_self'}
+                variant='link'
+                size='sm'
+                rightIcon={<ArrowRightIcon className='h-4 w-4' />}
+                target={method.action.startsWith('http') ? '_blank' : undefined}
                 rel={
                   method.action.startsWith('http')
                     ? 'noopener noreferrer'
@@ -156,8 +160,7 @@ const ContactUs: FC = () => {
                 }
               >
                 {method.contact}
-                <ArrowRightIcon className='ml-1 h-4 w-4 transition-transform group-hover:translate-x-1' />
-              </a>
+              </Button>
             </div>
           ))}
         </div>

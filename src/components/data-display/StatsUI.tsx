@@ -3,6 +3,7 @@ import { ReactNode } from 'react';
 import { LucideIcon, ShieldCheck } from 'lucide-react';
 
 import { Badge } from '@/components/ui/Badge';
+import { Card, CardContent } from '@/components/ui/Card';
 
 import { formatPesoAdaptive } from '@/lib/format';
 import { cn } from '@/lib/utils';
@@ -110,37 +111,39 @@ export function StatsCard({
       : value;
 
   return (
-    <div
-      className={cn(
-        'flex flex-col items-start justify-between gap-2 rounded-2xl border border-b-4 border-slate-200 bg-white p-6 shadow-sm sm:flex-row sm:items-center',
-        variantClasses[variant]
-      )}
-    >
-      <div className='flex min-w-0 flex-1 flex-col gap-1'>
-        <p className='truncate text-[10px] font-bold tracking-widest text-slate-400 uppercase'>
-          {label}
-        </p>
-        <div className='truncate text-3xl font-black wrap-break-word text-slate-900 sm:text-2xl md:text-2xl'>
-          {displayValue}
-        </div>
-        {subtext && (
-          <span className='truncate text-xs font-medium text-slate-400'>
-            {subtext}
-          </span>
+    <Card variant='default' hover={false} className='overflow-hidden'>
+      <CardContent
+        className={cn(
+          'flex flex-col items-start justify-between gap-2 border-b-4 sm:flex-row sm:items-center',
+          variantClasses[variant]
         )}
-        {children && <div className='mt-1'>{children}</div>}
-      </div>
-      {Icon && (
-        <div
-          className={cn(
-            'flex h-10 w-10 shrink-0 items-center justify-center rounded-xl p-2',
-            iconBg || 'bg-slate-100 text-slate-900'
+      >
+        <div className='flex min-w-0 flex-1 flex-col gap-1'>
+          <p className='truncate text-[10px] font-bold tracking-widest text-slate-400 uppercase'>
+            {label}
+          </p>
+          <div className='truncate text-3xl font-black wrap-break-word text-slate-900 sm:text-2xl md:text-2xl'>
+            {displayValue}
+          </div>
+          {subtext && (
+            <span className='truncate text-xs font-medium text-slate-400'>
+              {subtext}
+            </span>
           )}
-        >
-          <Icon className='h-6 w-6' />
+          {children && <div className='mt-1'>{children}</div>}
         </div>
-      )}
-    </div>
+        {Icon && (
+          <div
+            className={cn(
+              'flex h-10 w-10 shrink-0 items-center justify-center rounded-xl p-2',
+              iconBg || 'bg-slate-100 text-slate-900'
+            )}
+          >
+            <Icon className='h-6 w-6' />
+          </div>
+        )}
+      </CardContent>
+    </Card>
   );
 }
 
