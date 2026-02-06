@@ -68,7 +68,21 @@ export async function onRequestGet(context: { request: Request; env: Env }) {
       }),
     });
 
-    const tokenData = await tokenResponse.json();
+    let tokenData;
+    try {
+      tokenData = await tokenResponse.json();
+    } catch (error) {
+      console.error(
+        'Failed to parse Google OAuth token response:',
+        error,
+        'Status:',
+        tokenResponse.status
+      );
+      return Response.json(
+        { error: 'Invalid OAuth response' },
+        { status: 500 }
+      );
+    }
 
     if (tokenData.error) {
       console.error('Google token error:', tokenData);
@@ -90,7 +104,32 @@ export async function onRequestGet(context: { request: Request; env: Env }) {
       }
     );
 
-    const googleUser: GoogleUser = await userResponse.json();
+    let userData;
+    try {
+      userData = await userResponse.json();
+    } catch (error) {
+      console.error(
+        'Failed to parse Google user response:',
+        error,
+        'Status:',
+        userResponse.status
+      );
+      return Response.json(
+        { error: 'Invalid OAuth response' },
+        { status: 500 }
+      );
+    }
+
+    // Validate response structure
+    if (!userData.id || !userData.email) {
+      console.error('Google user response missing required fields:', userData);
+      return Response.json(
+        { error: 'Invalid user data from Google' },
+        { status: 500 }
+      );
+    }
+
+    const googleUser: GoogleUser = userData;
 
     // Convert Google user to GitHub user format for consistency
     const user: GitHubUser = {
@@ -102,9 +141,23 @@ export async function onRequestGet(context: { request: Request; env: Env }) {
     };
 
     // Check if user is authorized (support both GitHub usernames and Google emails)
-    const authorizedList = env.AUTHORIZED_USERS
-      ? JSON.parse(env.AUTHORIZED_USERS)
-      : [];
+    let authorizedList: string[] = [];
+    if (env.AUTHORIZED_USERS) {
+      try {
+        const parsed = JSON.parse(env.AUTHORIZED_USERS);
+        if (!Array.isArray(parsed)) {
+          console.error('AUTHORIZED_USERS is not an array:', typeof parsed);
+          return Response.redirect(`${url.origin}/admin?error=config`, 302);
+        }
+        authorizedList = parsed;
+      } catch (error) {
+        console.error(
+          'Failed to parse AUTHORIZED_USERS environment variable:',
+          error
+        );
+        return Response.redirect(`${url.origin}/admin?error=config`, 302);
+      }
+    }
 
     // Always enforce authorization - empty list means NO ONE is authorized
     // Support both GitHub usernames and Google emails in the authorized list

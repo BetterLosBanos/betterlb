@@ -3,6 +3,7 @@
  * Logout and clear session
  */
 import { Env } from '../../../types';
+import { parseCookies } from '../../../utils/cookies';
 
 export async function onRequestPost(context: { request: Request; env: Env }) {
   const { request, env } = context;
@@ -13,7 +14,13 @@ export async function onRequestPost(context: { request: Request; env: Env }) {
   const sessionId = cookies.admin_session;
 
   if (sessionId) {
-    await env.WEATHER_KV.delete(`session:${sessionId}`);
+    try {
+      await env.WEATHER_KV.delete(`session:${sessionId}`);
+    } catch (error) {
+      console.error('Failed to delete session during logout:', error);
+      // Continue with redirect - cookie clearing will effectively log user out
+      // But log the error for monitoring
+    }
   }
 
   const url = new URL(request.url);
@@ -26,19 +33,4 @@ export async function onRequestPost(context: { request: Request; env: Env }) {
         'admin_session=; Path=/; HttpOnly; Secure; SameSite=Lax; Max-Age=0',
     },
   });
-}
-
-function parseCookies(cookieHeader: string | null): Record<string, string> {
-  if (!cookieHeader) {
-    return {};
-  }
-
-  return cookieHeader.split('; ').reduce(
-    (acc, cookie) => {
-      const [name, value] = cookie.split('=');
-      acc[name] = value;
-      return acc;
-    },
-    {} as Record<string, string>
-  );
 }

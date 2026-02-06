@@ -3,6 +3,7 @@
  * Verifies admin session and authorization for protected API routes
  */
 import { Env } from '../types';
+import { parseCookies } from './cookies';
 
 export interface GitHubUser {
   id: number;
@@ -47,7 +48,15 @@ export async function verifyAdminSession(
     throw new AuthError('Invalid session', 401);
   }
 
-  const session: AdminSession = JSON.parse(sessionData);
+  let session: AdminSession;
+  try {
+    session = JSON.parse(sessionData);
+  } catch (error) {
+    console.error('Failed to parse session data:', error);
+    // Invalidate corrupted session
+    await env.WEATHER_KV.delete(`session:${sessionId}`);
+    throw new AuthError('Invalid session format', 401);
+  }
 
   // Check if session is expired
   if (new Date(session.expires_at) < new Date()) {
@@ -56,9 +65,29 @@ export async function verifyAdminSession(
   }
 
   // Check if user is still authorized
-  const authorizedList = env.AUTHORIZED_USERS
-    ? JSON.parse(env.AUTHORIZED_USERS)
-    : [];
+  let authorizedList: string[] = [];
+  if (env.AUTHORIZED_USERS) {
+    try {
+      const parsed = JSON.parse(env.AUTHORIZED_USERS);
+      if (!Array.isArray(parsed)) {
+        console.error('AUTHORIZED_USERS is not an array:', typeof parsed);
+        throw new AuthError(
+          'Server configuration error - authentication unavailable',
+          500
+        );
+      }
+      authorizedList = parsed;
+    } catch (error) {
+      console.error(
+        'Failed to parse AUTHORIZED_USERS environment variable:',
+        error
+      );
+      throw new AuthError(
+        'Server configuration error - authentication unavailable',
+        500
+      );
+    }
+  }
 
   // Always enforce authorization - empty list means NO ONE is authorized
   if (
@@ -72,32 +101,6 @@ export async function verifyAdminSession(
     user: session.user,
     sessionId,
   };
-}
-
-/**
- * Parse cookie header into an object
- * Handles quoted values and URL-encoded content properly
- */
-function parseCookies(cookieHeader: string | null): Record<string, string> {
-  if (!cookieHeader) {
-    return {};
-  }
-
-  return cookieHeader.split(';').reduce(
-    (acc, cookie) => {
-      const trimmed = cookie.trim();
-      const firstEq = trimmed.indexOf('=');
-      if (firstEq === -1) {
-        acc[trimmed] = '';
-      } else {
-        const name = trimmed.slice(0, firstEq);
-        const value = decodeURIComponent(trimmed.slice(firstEq + 1));
-        acc[name] = value.replace(/^"(.*)"$/, '$1');
-      }
-      return acc;
-    },
-    {} as Record<string, string>
-  );
 }
 
 /**

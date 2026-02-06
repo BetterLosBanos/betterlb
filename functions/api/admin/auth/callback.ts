@@ -62,7 +62,21 @@ export async function onRequestGet(context: { request: Request; env: Env }) {
       }
     );
 
-    const tokenData = await tokenResponse.json();
+    let tokenData;
+    try {
+      tokenData = await tokenResponse.json();
+    } catch (error) {
+      console.error(
+        'Failed to parse OAuth token response:',
+        error,
+        'Status:',
+        tokenResponse.status
+      );
+      return Response.json(
+        { error: 'Invalid OAuth response' },
+        { status: 500 }
+      );
+    }
 
     if (tokenData.error) {
       return Response.json({ error: tokenData.error }, { status: 400 });
@@ -78,12 +92,51 @@ export async function onRequestGet(context: { request: Request; env: Env }) {
       },
     });
 
-    const user: GitHubUser = await userResponse.json();
+    let userData;
+    try {
+      userData = await userResponse.json();
+    } catch (error) {
+      console.error(
+        'Failed to parse OAuth user response:',
+        error,
+        'Status:',
+        userResponse.status
+      );
+      return Response.json(
+        { error: 'Invalid OAuth response' },
+        { status: 500 }
+      );
+    }
+
+    // Validate response structure
+    if (!userData.id || !userData.login) {
+      console.error('OAuth user response missing required fields:', userData);
+      return Response.json(
+        { error: 'Invalid user data from OAuth provider' },
+        { status: 500 }
+      );
+    }
+
+    const user: GitHubUser = userData;
 
     // Check if user is authorized
-    const authorizedList = env.AUTHORIZED_USERS
-      ? JSON.parse(env.AUTHORIZED_USERS)
-      : AUTHORIZED_USERS;
+    let authorizedList: string[] = AUTHORIZED_USERS;
+    if (env.AUTHORIZED_USERS) {
+      try {
+        const parsed = JSON.parse(env.AUTHORIZED_USERS);
+        if (!Array.isArray(parsed)) {
+          console.error('AUTHORIZED_USERS is not an array:', typeof parsed);
+          return Response.redirect(`${url.origin}/admin?error=config`, 302);
+        }
+        authorizedList = parsed;
+      } catch (error) {
+        console.error(
+          'Failed to parse AUTHORIZED_USERS environment variable:',
+          error
+        );
+        return Response.redirect(`${url.origin}/admin?error=config`, 302);
+      }
+    }
 
     // Always enforce authorization - empty list means NO ONE is authorized
     if (authorizedList.length === 0 || !authorizedList.includes(user.login)) {

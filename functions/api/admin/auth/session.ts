@@ -3,6 +3,7 @@
  * Get current session
  */
 import { Env } from '../../../types';
+import { parseCookies } from '../../../utils/cookies';
 
 interface GitHubUser {
   id: number;
@@ -37,7 +38,18 @@ export async function onRequestGet(context: { request: Request; env: Env }) {
     return Response.json({ authenticated: false }, { status: 401 });
   }
 
-  const session: AdminSession = JSON.parse(sessionData);
+  let session: AdminSession;
+  try {
+    session = JSON.parse(sessionData);
+  } catch (error) {
+    console.error('Failed to parse session data:', error);
+    // Invalidate corrupted session
+    await env.WEATHER_KV.delete(`session:${sessionId}`);
+    return Response.json(
+      { authenticated: false, expired: false },
+      { status: 401 }
+    );
+  }
 
   // Check if session is expired
   if (new Date(session.expires_at) < new Date()) {
@@ -52,19 +64,4 @@ export async function onRequestGet(context: { request: Request; env: Env }) {
     authenticated: true,
     user: session.user,
   });
-}
-
-function parseCookies(cookieHeader: string | null): Record<string, string> {
-  if (!cookieHeader) {
-    return {};
-  }
-
-  return cookieHeader.split('; ').reduce(
-    (acc, cookie) => {
-      const [name, value] = cookie.split('=');
-      acc[name] = value;
-      return acc;
-    },
-    {} as Record<string, string>
-  );
 }
