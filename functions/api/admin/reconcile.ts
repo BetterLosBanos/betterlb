@@ -56,8 +56,9 @@ async function handleGetReconcile(context: {
   const { request, env } = context;
   const url = new URL(request.url);
 
-  const statusFilter = url.searchParams.get('status');
-  const conflictTypeFilter = url.searchParams.get('conflict_type');
+  // TODO: Implement status and conflict_type filters
+  // const statusFilter = url.searchParams.get('status');
+  // const conflictTypeFilter = url.searchParams.get('conflict_type');
   const limit = parseInt(url.searchParams.get('limit') || '20');
   const offset = parseInt(url.searchParams.get('offset') || '0');
 

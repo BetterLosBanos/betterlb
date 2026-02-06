@@ -4,6 +4,9 @@
  */
 import { Env } from '../../../types';
 import { AuthContext, withAuth } from '../../../utils/admin-auth';
+import { parseJsonBody, validateJsonContentType } from '../../../utils/request';
+
+const MAX_BATCH_SIZE = 100;
 
 /**
  * Bulk Create Request Interface
@@ -63,14 +66,32 @@ async function handleBulkCreateDocuments(context: {
   env: Env;
   auth: AuthContext;
 }) {
-  const { request, env } = context;
+  const { request, env, auth } = context;
+
+  // Validate Content-Type
+  if (!validateJsonContentType(request)) {
+    return Response.json(
+      { error: 'Content-Type must be application/json' },
+      { status: 415 }
+    );
+  }
 
   try {
-    const body = (await request.json()) as BulkCreateRequest;
+    const body = await parseJsonBody<BulkCreateRequest>(request, 1_000_000);
 
     if (!body.session_id || !body.documents || body.documents.length === 0) {
       return Response.json(
         { error: 'Missing required fields: session_id, documents' },
+        { status: 400 }
+      );
+    }
+
+    // Validate array size to prevent DoS
+    if (body.documents.length > MAX_BATCH_SIZE) {
+      return Response.json(
+        {
+          error: `Cannot process more than ${MAX_BATCH_SIZE} documents at once`,
+        },
         { status: 400 }
       );
     }
@@ -107,34 +128,36 @@ async function handleBulkCreateDocuments(context: {
 
         if (existing) {
           // Fetch authors for the existing document
-          const authors = await env.BETTERLB_DB.prepare(
-            `SELECT da.person_id, p.first_name, p.last_name,
-                    p.first_name || ' ' || p.last_name as full_name
-             FROM document_authors da
-             JOIN persons p ON da.person_id = p.id
-             WHERE da.document_id = ?1`
+          const authorsResult = await env.BETTERLB_DB.prepare(
+            `SELECT p.id, p.first_name, p.last_name, p.first_name || ' ' || p.last_name as full_name
+               FROM document_authors da
+               JOIN persons p ON da.person_id = p.id
+               WHERE da.document_id = ?1`
           )
             .bind(existing.id)
-            .all<DocumentAuthor>();
+            .all();
 
           const existingWithAuthors: ExistingDocument = {
             ...existing,
-            authors: authors.results || [],
+            authors: authorsResult.results.map(row => ({
+              person_id: row.id,
+              first_name: row.first_name,
+              last_name: row.last_name,
+              full_name: row.full_name,
+            })),
           };
 
-          // Duplicate detected
-          duplicates.push({
-            index: i,
-            existing: existingWithAuthors,
-            proposed: {
-              type: doc.type,
-              number: doc.number,
-              title: doc.title,
-            },
-          });
-
-          // If skip_duplicates is true, don't add to errors
-          if (!body.skip_duplicates) {
+          if (body.skip_duplicates) {
+            duplicates.push({
+              index: i,
+              existing: existingWithAuthors,
+              proposed: {
+                type: doc.type,
+                number: doc.number,
+                title: doc.title,
+              },
+            });
+          } else {
             errors.push({
               index: i,
               message: `Document ${doc.number} already exists`,
@@ -146,8 +169,8 @@ async function handleBulkCreateDocuments(context: {
         // Generate document ID
         const documentId = `doc_${Date.now()}_${Math.random().toString(36).substr(2, 9)}`;
 
-        // Insert document
-        await env.BETTERLB_DB.prepare(
+        // Insert document with success checking
+        const insertResult = await env.BETTERLB_DB.prepare(
           `INSERT INTO documents (id, type, number, title, session_id, status, source_type, moved_by, seconded_by, processed)
            VALUES (?1, ?2, ?3, ?4, ?5, ?6, ?7, ?8, ?9, ?10)`
         )
@@ -165,16 +188,26 @@ async function handleBulkCreateDocuments(context: {
           )
           .run();
 
+        if (!insertResult.success || insertResult.meta.changes === 0) {
+          throw new Error(`Failed to insert document ${doc.number}`);
+        }
+
         // Insert authors
         if (doc.authors && doc.authors.length > 0) {
           for (const author of doc.authors) {
             if (author.person_id && !author.is_new) {
-              await env.BETTERLB_DB.prepare(
+              const authorResult = await env.BETTERLB_DB.prepare(
                 `INSERT INTO document_authors (document_id, person_id, author_type)
                  VALUES (?1, ?2, ?3)`
               )
                 .bind(documentId, author.person_id, 'primary')
                 .run();
+
+              if (!authorResult.success) {
+                console.error(
+                  `Failed to insert author ${author.person_id} for document ${doc.number}`
+                );
+              }
             }
           }
         }
@@ -189,6 +222,28 @@ async function handleBulkCreateDocuments(context: {
       }
     }
 
+    // Log to audit trail
+    try {
+      await env.BETTERLB_DB.prepare(
+        `INSERT INTO admin_audit_log (action, performed_by, target_type, target_id, details, created_at)
+         VALUES (?1, ?2, ?3, ?4, ?5, datetime('now'))`
+      )
+        .bind(
+          'bulk_create_documents',
+          auth.user.login,
+          'batch',
+          body.session_id,
+          JSON.stringify({
+            created_count: created.length,
+            duplicate_count: duplicates.length,
+            error_count: errors.length,
+          })
+        )
+        .run();
+    } catch (logError) {
+      console.error('Failed to write audit log:', logError);
+    }
+
     return Response.json({
       success: true,
       created,
@@ -197,6 +252,12 @@ async function handleBulkCreateDocuments(context: {
     } satisfies BulkCreateResponse);
   } catch (error) {
     console.error('Error in bulk create:', error);
+    if (error instanceof Error && error.message.includes('JSON')) {
+      return Response.json(
+        { error: 'Invalid JSON in request body' },
+        { status: 400 }
+      );
+    }
     return Response.json(
       { error: 'Failed to bulk create documents' },
       { status: 500 }

@@ -187,13 +187,34 @@ async function getPersonsList(context: { request: Request; env: Env }) {
           const personId = row.id;
 
           if (!personsMap.has(personId)) {
+            // Parse aliases safely
+            let aliases: string[] | null = null;
+            if (row.aliases) {
+              try {
+                const parsed = JSON.parse(row.aliases);
+                if (Array.isArray(parsed)) {
+                  aliases = parsed;
+                } else {
+                  console.error(
+                    `Person ${row.id} aliases is not an array:`,
+                    typeof parsed
+                  );
+                }
+              } catch (error) {
+                console.error(
+                  `Failed to parse person ${row.id} aliases:`,
+                  error
+                );
+              }
+            }
+
             personsMap.set(personId, {
               id: row.id,
               first_name: row.first_name,
               middle_name: row.middle_name,
               last_name: row.last_name,
               suffix: row.suffix,
-              aliases: row.aliases ? JSON.parse(row.aliases) : null,
+              aliases,
               memberships: [],
               roles: [],
             });

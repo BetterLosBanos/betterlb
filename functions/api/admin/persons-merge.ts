@@ -244,7 +244,7 @@ async function handleMerge(context: {
       .first();
 
     if (!keepPerson) {
-      return Response.json({ error: 'Keep person not found' }, { status: 404 });
+      return Response.json({ error: 'Person not found' }, { status: 404 });
     }
 
     // Validate all merge_person_ids exist
@@ -256,7 +256,7 @@ async function handleMerge(context: {
         .first();
       if (!person) {
         return Response.json(
-          { error: `Merge person ${id} not found` },
+          { error: 'One or more persons to merge not found' },
           { status: 404 }
         );
       }
