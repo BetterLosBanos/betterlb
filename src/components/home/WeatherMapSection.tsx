@@ -167,21 +167,21 @@ export default function WeatherMapSection() {
   const WeatherIcon = weather ? lucideIconMap[weather.icon || 'Sun'] : Sun;
 
   return (
-    <section className='py-12 border-t border-slate-200 bg-slate-50'>
-      <div className='container px-4 mx-auto'>
+    <section className='border-t border-slate-200 bg-slate-50 py-12'>
+      <div className='container mx-auto px-4'>
         <div className='mb-12 text-center'>
           <h2 className='mb-4 text-2xl font-bold text-gray-900 md:text-3xl'>
             Weather and Map of Los Baños
           </h2>
         </div>
 
-        <div className='flex flex-col gap-6 items-stretch md:flex-row'>
+        <div className='flex flex-col items-stretch gap-6 md:flex-row'>
           {/* Weather Card */}
-          <div className='w-full md:min-w-[200px] flex-1'>
-            <div className='flex flex-col gap-2 p-4 bg-white rounded-xl border shadow-sm md:gap-4 md:p-6 border-slate-200 hover:shadow-md'>
+          <div className='w-full flex-1 md:min-w-[200px]'>
+            <div className='flex flex-col gap-2 rounded-xl border border-slate-200 bg-white p-4 shadow-sm hover:shadow-md md:gap-4 md:p-6'>
               {loading ? (
-                <div className='flex gap-2 items-center text-slate-500'>
-                  <LoaderIcon className='w-5 h-5 animate-spin' />
+                <div className='flex items-center gap-2 text-slate-500'>
+                  <LoaderIcon className='h-5 w-5 animate-spin' />
                   Loading weather...
                 </div>
               ) : error ? (
@@ -189,43 +189,43 @@ export default function WeatherMapSection() {
               ) : weather ? (
                 <>
                   {/* Top: Temp & Condition */}
-                  <div className='flex gap-4 items-center'>
-                    <WeatherIcon className='w-14 h-14 text-primary-600 shrink-0' />
+                  <div className='flex items-center gap-4'>
+                    <WeatherIcon className='text-primary-600 h-14 w-14 shrink-0' />
                     <div className='flex flex-col gap-1'>
                       <div className='text-5xl font-bold text-slate-900'>
                         {weather.temperature}°C
                       </div>
-                      <div className='text-base text-center capitalize text-slate-600'>
+                      <div className='text-center text-base text-slate-600 capitalize'>
                         {weather.condition}
                       </div>
-                      <div className='flex gap-2 items-center mt-1 text-sm text-slate-500'>
-                        <MapPin className='w-4 h-4' />
+                      <div className='mt-1 flex items-center gap-2 text-sm text-slate-500'>
+                        <MapPin className='h-4 w-4' />
                         Los Baños, Laguna
                       </div>
                     </div>
                   </div>
                   {/* Middle: Humidity & Wind */}
-                  <div className='flex gap-8 justify-center mt-2 text-sm text-slate-700'>
-                    <div className='flex gap-2 items-center'>
-                      <Droplet className='w-4 h-4 text-blue-500' />
+                  <div className='mt-2 flex justify-center gap-8 text-sm text-slate-700'>
+                    <div className='flex items-center gap-2'>
+                      <Droplet className='h-4 w-4 text-blue-500' />
                       {weather.humidity}%
                     </div>
-                    <div className='flex gap-2 items-center'>
-                      <Wind className='w-4 h-4 text-slate-400' />
+                    <div className='flex items-center gap-2'>
+                      <Wind className='h-4 w-4 text-slate-400' />
                       {weather.windSpeed} m/s
                     </div>
                   </div>
 
                   {/* Bottom: Hourly forecast */}
-                  <div className='flex gap-2 justify-between mt-4'>
+                  <div className='mt-4 flex justify-between gap-2'>
                     {hourlyForecast.map((h, idx) => {
                       const IconComp = lucideIconMap[h.icon] || Sun;
                       return (
                         <div
                           key={idx}
-                          className='hover:bg-primary-50 flex w-full sm:flex-1 flex-col items-center gap-1.5 rounded-xl bg-slate-100 p-2 sm:p-3 transition-all duration-200 hover:-translate-y-0.5'
+                          className='hover:bg-primary-50 flex w-full flex-col items-center gap-1.5 rounded-xl bg-slate-100 p-2 transition-all duration-200 hover:-translate-y-0.5 sm:flex-1 sm:p-3'
                         >
-                          <IconComp className='w-6 h-6 text-primary-600' />
+                          <IconComp className='text-primary-600 h-6 w-6' />
                           <div className='text-base font-bold'>
                             {h.temperature}°
                           </div>
@@ -242,11 +242,11 @@ export default function WeatherMapSection() {
           </div>
 
           {/* Map Card with Bottom Attribution */}
-          <div className='w-full md:flex-[2.5] flex flex-col overflow-hidden rounded-xl shadow-sm hover:shadow-md'>
+          <div className='flex w-full flex-col overflow-hidden rounded-xl shadow-sm hover:shadow-md md:flex-[2.5]'>
             {/* Map Container */}
             <div
               id='map-container'
-              className='w-full h-64 md:flex-1'
+              className='h-64 w-full md:flex-1'
               role='application'
               aria-label='Interactive map of Los Baños Municipal Hall'
             >
@@ -257,15 +257,15 @@ export default function WeatherMapSection() {
                     href='https://www.openstreetmap.org/?mlat=14.1647&mlon=121.2436#map=15/14.1647/121.2436'
                     target='_blank'
                     rel='noopener noreferrer'
-                    className='ml-1 underline text-primary-600'
+                    className='text-primary-600 ml-1 underline'
                   >
                     View Los Baños Municipal Hall on OpenStreetMap
                   </a>
                 </div>
               </noscript>
             </div>
-            <div className='flex gap-2 items-center p-3 bg-white border-t border-slate-300'>
-              <MapPin className='w-5 h-5 text-primary-600' />
+            <div className='flex items-center gap-2 border-t border-slate-300 bg-white p-3'>
+              <MapPin className='text-primary-600 h-5 w-5' />
               <span className='text-sm font-medium text-slate-700'>
                 Los Baños Municipal Hall
               </span>

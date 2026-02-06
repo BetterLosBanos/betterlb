@@ -1,10 +1,13 @@
 import { Outlet, useLocation } from 'react-router-dom';
+
 import { parseAsStringEnum, useQueryState } from 'nuqs';
 
+import { ModuleHeader, PageHero } from '@/components/layout/PageLayouts';
 import SidebarLayout from '@/components/layout/SidebarLayout';
-import { PageHero, ModuleHeader } from '@/components/layout/PageLayouts';
 import SearchInput from '@/components/ui/SearchInput';
+
 import useOpenLGU from '@/hooks/useOpenLGU';
+
 import OpenLGUSidebar from './components/OpenLGUSidebar';
 
 const filterValues = [
@@ -20,7 +23,8 @@ export default function OpenLGULayout() {
   const location = useLocation();
 
   // Logic: Collapse sidebar if reading a specific document
-  const isIndexPage = location.pathname === '/openlgu' || location.pathname === '/openlgu/';
+  const isIndexPage =
+    location.pathname === '/openlgu' || location.pathname === '/openlgu/';
 
   const [searchQuery, setSearchQuery] = useQueryState('search', {
     defaultValue: '',
@@ -36,8 +40,8 @@ export default function OpenLGULayout() {
   // New: Author multi-select filter (comma-separated IDs in URL)
   const [authorIds, setAuthorIds] = useQueryState('authors', {
     defaultValue: [] as string[],
-    parse: (value) => value ? value.split(',').filter(Boolean) : [],
-    serialize: (values) => values.join(','),
+    parse: value => (value ? value.split(',').filter(Boolean) : []),
+    serialize: values => values.join(','),
   });
 
   // New: Year single-select filter
@@ -51,7 +55,6 @@ export default function OpenLGULayout() {
     <SidebarLayout
       collapsible={true}
       defaultCollapsed={!isIndexPage}
-
       // HEADER LOGIC
       headerNode={
         isIndexPage ? (
@@ -59,30 +62,36 @@ export default function OpenLGULayout() {
             title='OpenLGU Portal'
             description='Browse official local ordinances, resolutions, and executive orders of Los Baños.'
           >
-            <div className='mx-auto max-w-xl duration-1000 animate-in fade-in slide-in-from-top-2'>
-                <SearchInput
-                  placeholder='Search by title, number, or author...'
-                  value={searchQuery}
-                  onChangeValue={setSearchQuery}
-                  size='md'
-                />
+            <div className='animate-in fade-in slide-in-from-top-2 mx-auto max-w-xl duration-1000'>
+              <SearchInput
+                placeholder='Search by title, number, or author...'
+                value={searchQuery}
+                onChangeValue={setSearchQuery}
+                size='md'
+              />
             </div>
           </PageHero>
         ) : (
-           <ModuleHeader
-              title="OpenLGU Document"
-              description="Official record from the Sangguniang Bayan."
-           />
+          <ModuleHeader
+            title='OpenLGU Document'
+            description='Official record from the Sangguniang Bayan.'
+          >
+            <SearchInput
+              placeholder='Search by title, number, or author...'
+              value={searchQuery}
+              onChangeValue={setSearchQuery}
+              size='sm'
+            />
+          </ModuleHeader>
         )
       }
-
       // SIDEBAR
       sidebar={
         <OpenLGUSidebar
-            filterType={filterType}
-            setFilterType={setFilterType}
-            terms={legislation.terms}
-            persons={legislation.persons}
+          filterType={filterType}
+          setFilterType={setFilterType}
+          terms={legislation.terms}
+          persons={legislation.persons}
         />
       }
     >

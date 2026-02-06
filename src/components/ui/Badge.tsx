@@ -1,4 +1,4 @@
-import { ReactNode } from 'react';
+import { HTMLAttributes, ReactNode } from 'react';
 
 import { cn } from '@/lib/utils';
 
@@ -12,7 +12,10 @@ type BadgeVariant =
   | 'slate' // Neutral (Admin / Metadata)
   | 'outline'; // Border only
 
-interface BadgeProps {
+interface BadgeProps extends Omit<
+  HTMLAttributes<HTMLSpanElement>,
+  'className'
+> {
   children: ReactNode;
   variant?: BadgeVariant;
   className?: string;
@@ -24,6 +27,7 @@ export function Badge({
   variant = 'primary',
   className,
   dot = false,
+  ...props
 }: BadgeProps) {
   // High-contrast color mapping (WCAG 2.1 Level AA Compliant)
   const variants = {
@@ -48,6 +52,7 @@ export function Badge({
 
   return (
     <span
+      {...props}
       className={cn(
         // text-[10px] with font-bold ensures legibility while remaining compact
         'inline-flex items-center gap-1.5 rounded-md border px-2 py-0.5 text-[10px] font-bold tracking-widest uppercase transition-all',

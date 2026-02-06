@@ -123,9 +123,8 @@ export interface HourlyForecast {
   description: string;
   humidity: number;
   wind_speed: number;
-  hour?: string; 
+  hour?: string;
 }
-
 
 export interface WeatherData {
   location: string;

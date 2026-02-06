@@ -2,10 +2,10 @@
 // Merges forecast capability with robust error handling
 // Supports single city focus with easy configuration for other municipalities
 import type {
-  Env,
   CityCoordinates,
-  OpenWeatherMapResponse,
+  Env,
   HourlyForecast,
+  OpenWeatherMapResponse,
   WeatherData,
   WeatherResponseData,
 } from '../types';
@@ -55,7 +55,8 @@ async function fetchCityWeather(
       return null;
     }
 
-    const currentData = (await currentResponse.json()) as OpenWeatherMapResponse;
+    const currentData =
+      (await currentResponse.json()) as OpenWeatherMapResponse;
 
     // Fetch 3-hour forecast (5 day / 3 hour forecast)
     const forecastUrl = `https://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${lon}&units=metric&appid=${apiKey}`;
@@ -85,7 +86,9 @@ async function fetchCityWeather(
 
     // Format the response data based on the comprehensive structure
     return {
-      name: currentData.name || cityName.charAt(0).toUpperCase() + cityName.slice(1),
+      name:
+        currentData.name ||
+        cityName.charAt(0).toUpperCase() + cityName.slice(1),
       coordinates: currentData.coord || { lat, lon },
       weather: currentData.weather || [],
       main: currentData.main || {

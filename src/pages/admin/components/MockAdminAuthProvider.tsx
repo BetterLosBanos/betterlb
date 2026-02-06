@@ -2,8 +2,13 @@
  * Mock Admin Auth Provider for local development
  * Bypasses GitHub OAuth and simulates an authenticated user
  */
-
-import { createContext, useContext, useState, useEffect, ReactNode } from 'react';
+import {
+  ReactNode,
+  createContext,
+  useContext,
+  useEffect,
+  useState,
+} from 'react';
 
 interface MockUser {
   id: string;
@@ -22,7 +27,9 @@ interface AdminAuthContextType {
   logout: () => void;
 }
 
-const AdminAuthContext = createContext<AdminAuthContextType | undefined>(undefined);
+const AdminAuthContext = createContext<AdminAuthContextType | undefined>(
+  undefined
+);
 
 export function useAdminAuth() {
   const context = useContext(AdminAuthContext);
@@ -37,7 +44,10 @@ interface AdminAuthProviderProps {
   mockMode?: boolean;
 }
 
-export function MockAdminAuthProvider({ children, mockMode = true }: AdminAuthProviderProps) {
+export function MockAdminAuthProvider({
+  children,
+  mockMode = true,
+}: AdminAuthProviderProps) {
   const [user, setUser] = useState<MockUser | null>(null);
   const [isLoading, setIsLoading] = useState(true);
 

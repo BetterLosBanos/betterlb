@@ -11,28 +11,32 @@
 export const CACHE_CONFIGS = {
   /** Static data that rarely changes (1 hour) */
   static: {
-    'Cache-Control': 'public, max-age=3600, s-maxage=3600, stale-while-revalidate=86400',
-    'ETag': true,
+    'Cache-Control':
+      'public, max-age=3600, s-maxage=3600, stale-while-revalidate=86400',
+    ETag: true,
   },
   /** List endpoints that change periodically (15 minutes) */
   list: {
-    'Cache-Control': 'public, max-age=900, s-maxage=900, stale-while-revalidate=3600',
-    'ETag': true,
+    'Cache-Control':
+      'public, max-age=900, s-maxage=900, stale-while-revalidate=3600',
+    ETag: true,
   },
   /** Detail endpoints that may change more frequently (5 minutes) */
   detail: {
-    'Cache-Control': 'public, max-age=300, s-maxage=300, stale-while-revalidate=600',
-    'ETag': true,
+    'Cache-Control':
+      'public, max-age=300, s-maxage=300, stale-while-revalidate=600',
+    ETag: true,
   },
   /** Count/query results (2 minutes) */
   count: {
-    'Cache-Control': 'public, max-age=120, s-maxage=120, stale-while-revalidate=300',
-    'ETag': true,
+    'Cache-Control':
+      'public, max-age=120, s-maxage=120, stale-while-revalidate=300',
+    ETag: true,
   },
   /** No caching for dynamic/personalized content */
   none: {
     'Cache-Control': 'no-store, no-cache, must-revalidate',
-    'ETag': false,
+    ETag: false,
   },
 } as const;
 
@@ -48,7 +52,7 @@ function generateETag(data: unknown): string {
   let hash = 0;
   for (let i = 0; i < str.length; i++) {
     const char = str.charCodeAt(i);
-    hash = ((hash << 5) - hash) + char;
+    hash = (hash << 5) - hash + char;
     hash = hash & hash; // Convert to 32bit integer
   }
   return `"${Math.abs(hash).toString(16)}"`;
@@ -107,7 +111,10 @@ export function cachedJson<T>(
  * @param currentETag - Current ETag for the resource
  * @returns Response if not modified, null otherwise
  */
-export function checkETag(request: Request, currentETag: string): Response | null {
+export function checkETag(
+  request: Request,
+  currentETag: string
+): Response | null {
   const ifNoneMatch = request.headers.get('If-None-Match');
   if (ifNoneMatch && ifNoneMatch === currentETag) {
     return new Response(null, { status: 304 });

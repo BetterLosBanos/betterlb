@@ -3,18 +3,24 @@ import { useEffect, useMemo } from 'react';
 import { Link, useOutletContext } from 'react-router-dom';
 
 import { FileText } from 'lucide-react';
-
 import { parseAsInteger, useQueryState } from 'nuqs';
 
 import { Badge } from '@/components/ui/Badge';
 import { EmptyState } from '@/components/ui/EmptyState';
 
-import type { Committee, DocumentItem, Person, Session, Term } from '@/lib/openlgu';
+import type {
+  Committee,
+  DocumentItem,
+  Person,
+  Session,
+  Term,
+} from '@/lib/openlgu';
 import { getPersonName } from '@/lib/openlgu';
-import type { FilterType } from './layout';
-import DocumentFilters from './components/DocumentFilters';
+
 import CurrentTermCard from './components/CurrentTermCard';
+import DocumentFilters from './components/DocumentFilters';
 import OfficialsTeaser from './components/OfficialsTeaser';
+import type { FilterType } from './layout';
 
 interface LegislationContext {
   searchQuery: string;
@@ -59,10 +65,11 @@ export default function LegislationIndex() {
   // Generate author options from persons
   const authorOptions = useMemo(() => {
     return persons
-      .filter(p =>
-        p.roles.includes('councilor') ||
-        p.roles.includes('vice_mayor') ||
-        p.roles.includes('mayor')
+      .filter(
+        p =>
+          p.roles.includes('councilor') ||
+          p.roles.includes('vice_mayor') ||
+          p.roles.includes('mayor')
       )
       .map(person => ({
         label: getPersonName(person),
@@ -74,14 +81,15 @@ export default function LegislationIndex() {
   // Generate year options from documents
   const yearOptions = useMemo(() => {
     const years = new Set(
-      documents.map(doc =>
-        new Date(doc.date_enacted).getFullYear().toString()
-      )
+      documents.map(doc => new Date(doc.date_enacted).getFullYear().toString())
     );
-    return Array.from(years).sort().reverse().map(year => ({
-      label: year,
-      value: year,
-    }));
+    return Array.from(years)
+      .sort()
+      .reverse()
+      .map(year => ({
+        label: year,
+        value: year,
+      }));
   }, [documents]);
 
   // Filter documents
@@ -121,19 +129,31 @@ export default function LegislationIndex() {
         setCurrentPage(1);
       }
     }
-  }, [filterType, authorIds, year, searchQuery, filteredDocs.length, itemsPerPage, currentPage, setCurrentPage]);
+  }, [
+    filterType,
+    authorIds,
+    year,
+    searchQuery,
+    filteredDocs.length,
+    itemsPerPage,
+    currentPage,
+    setCurrentPage,
+  ]);
 
   // Show loading skeleton while data is being fetched
   if (isLoading) {
     return (
       <section className='animate-in fade-in space-y-4 duration-500'>
         {Array.from({ length: 10 }).map((_, i) => (
-          <div key={i} className='rounded-2xl border border-slate-200 bg-white p-5 shadow-xs animate-pulse'>
-            <div className='flex items-center gap-3 mb-2'>
+          <div
+            key={i}
+            className='animate-pulse rounded-2xl border border-slate-200 bg-white p-5 shadow-xs'
+          >
+            <div className='mb-2 flex items-center gap-3'>
               <div className='h-6 w-16 rounded-full bg-slate-200' />
               <div className='h-4 w-24 rounded bg-slate-200' />
             </div>
-            <div className='h-6 w-3/4 mb-2 rounded bg-slate-200' />
+            <div className='mb-2 h-6 w-3/4 rounded bg-slate-200' />
             <div className='h-4 w-1/2 rounded bg-slate-200' />
           </div>
         ))}
@@ -157,7 +177,9 @@ export default function LegislationIndex() {
       {(term || persons.length > 0) && (
         <div className='grid grid-cols-1 gap-4 md:grid-cols-2'>
           {term && <CurrentTermCard term={term} documents={documents} />}
-          {persons.length > 0 && <OfficialsTeaser persons={persons} term={term} />}
+          {persons.length > 0 && (
+            <OfficialsTeaser persons={persons} term={term} />
+          )}
         </div>
       )}
 
@@ -183,17 +205,19 @@ export default function LegislationIndex() {
             <button
               onClick={() => setCurrentPage(Math.max(1, currentPage - 1))}
               disabled={currentPage === 1}
-              className='border-slate-200 bg-white text-slate-600 hover:bg-slate-50 disabled:opacity-50 disabled:cursor-not-allowed rounded-lg border px-3 py-1.5 text-xs font-bold transition-colors'
+              className='rounded-lg border border-slate-200 bg-white px-3 py-1.5 text-xs font-bold text-slate-600 transition-colors hover:bg-slate-50 disabled:cursor-not-allowed disabled:opacity-50'
             >
               ← Previous
             </button>
-            <span className='text-slate-500 text-xs font-medium'>
+            <span className='text-xs font-medium text-slate-500'>
               Page {currentPage} of {totalPages}
             </span>
             <button
-              onClick={() => setCurrentPage(Math.min(totalPages, currentPage + 1))}
+              onClick={() =>
+                setCurrentPage(Math.min(totalPages, currentPage + 1))
+              }
               disabled={currentPage === totalPages}
-              className='border-slate-200 bg-white text-slate-600 hover:bg-slate-50 disabled:opacity-50 disabled:cursor-not-allowed rounded-lg border px-3 py-1.5 text-xs font-bold transition-colors'
+              className='rounded-lg border border-slate-200 bg-white px-3 py-1.5 text-xs font-bold text-slate-600 transition-colors hover:bg-slate-50 disabled:cursor-not-allowed disabled:opacity-50'
             >
               Next →
             </button>
@@ -221,10 +245,18 @@ export default function LegislationIndex() {
           }
         }
 
+        const queryParams = new URLSearchParams();
+        if (searchQuery) queryParams.set('search', searchQuery);
+        if (filterType !== 'all') queryParams.set('type', filterType);
+        if (authorIds.length > 0)
+          queryParams.set('authors', authorIds.join(','));
+        if (year) queryParams.set('year', year);
+        const queryString = queryParams.toString();
+
         return (
           <Link
             key={doc.id}
-            to={`${doc.type}/${doc.id}`}
+            to={`documents/${doc.id}${queryString ? `?${queryString}` : ''}`}
             className='group block'
             aria-label={`${doc.type} ${doc.number}: ${doc.title}`}
           >
@@ -252,7 +284,10 @@ export default function LegislationIndex() {
                   </span>
                   <span className='text-slate-300'>|</span>
                   <span className='truncate'>
-                    Authors: {displayAuthors.length > 0 ? displayAuthors.map(a => getPersonName(a)).join(', ') : 'Office of the Mayor'}
+                    Authors:{' '}
+                    {displayAuthors.length > 0
+                      ? displayAuthors.map(a => getPersonName(a)).join(', ')
+                      : 'Office of the Mayor'}
                   </span>
                 </div>
               </div>
@@ -263,25 +298,29 @@ export default function LegislationIndex() {
 
       {/* Bottom Pagination */}
       {totalPages > 1 && (
-        <div className='border-t border-slate-200 bg-slate-50 flex flex-wrap items-center justify-between gap-4 p-4 rounded-xl'>
-          <span className='text-slate-500 text-xs font-medium'>
-            Showing {(currentPage - 1) * itemsPerPage + 1}—{Math.min(currentPage * itemsPerPage, filteredDocs.length)} of {filteredDocs.length}
+        <div className='flex flex-wrap items-center justify-between gap-4 rounded-xl border-t border-slate-200 bg-slate-50 p-4'>
+          <span className='text-xs font-medium text-slate-500'>
+            Showing {(currentPage - 1) * itemsPerPage + 1}—
+            {Math.min(currentPage * itemsPerPage, filteredDocs.length)} of{' '}
+            {filteredDocs.length}
           </span>
           <nav className='flex items-center gap-2'>
             <button
               onClick={() => setCurrentPage(Math.max(1, currentPage - 1))}
               disabled={currentPage === 1}
-              className='border-slate-200 bg-white text-slate-600 hover:bg-slate-50 disabled:opacity-50 disabled:cursor-not-allowed rounded-lg border px-3 py-1.5 text-xs font-bold transition-colors'
+              className='rounded-lg border border-slate-200 bg-white px-3 py-1.5 text-xs font-bold text-slate-600 transition-colors hover:bg-slate-50 disabled:cursor-not-allowed disabled:opacity-50'
             >
               ← Previous
             </button>
-            <span className='text-slate-500 text-xs font-medium'>
+            <span className='text-xs font-medium text-slate-500'>
               Page {currentPage} of {totalPages}
             </span>
             <button
-              onClick={() => setCurrentPage(Math.min(totalPages, currentPage + 1))}
+              onClick={() =>
+                setCurrentPage(Math.min(totalPages, currentPage + 1))
+              }
               disabled={currentPage === totalPages}
-              className='border-slate-200 bg-white text-slate-600 hover:bg-slate-50 disabled:opacity-50 disabled:cursor-not-allowed rounded-lg border px-3 py-1.5 text-xs font-bold transition-colors'
+              className='rounded-lg border border-slate-200 bg-white px-3 py-1.5 text-xs font-bold text-slate-600 transition-colors hover:bg-slate-50 disabled:cursor-not-allowed disabled:opacity-50'
             >
               Next →
             </button>

@@ -264,12 +264,14 @@ export async function loadCommitteesFromAPI(): Promise<Committee[]> {
       throw new Error(`API error: ${response.status}`);
     }
     const data = await response.json();
-    return (data.committees || []).map((c: { id: string; name: string; type: string }) => ({
-      id: c.id,
-      name: c.name,
-      type: c.type,
-      terms: [],
-    }));
+    return (data.committees || []).map(
+      (c: { id: string; name: string; type: string }) => ({
+        id: c.id,
+        name: c.name,
+        type: c.type,
+        terms: [],
+      })
+    );
   } catch (error) {
     console.error('Failed to load committees from API:', error);
     return [];
@@ -288,12 +290,15 @@ export async function loadTermFromAPI(): Promise<Term | null> {
     if (apiTerms.length === 0) return null;
 
     // Find the current/active term: highest term_number or most recent by date
-    const currentTerm = apiTerms.reduce((latest: APITerm | null, term: APITerm) => {
-      if (!latest || term.term_number > latest.term_number) {
-        return term;
-      }
-      return latest;
-    }, null);
+    const currentTerm = apiTerms.reduce(
+      (latest: APITerm | null, term: APITerm) => {
+        if (!latest || term.term_number > latest.term_number) {
+          return term;
+        }
+        return latest;
+      },
+      null
+    );
 
     if (!currentTerm) return null;
 

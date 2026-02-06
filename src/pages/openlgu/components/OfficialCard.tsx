@@ -1,9 +1,16 @@
-import { ChevronDown, ChevronRight, Calendar, FileText } from 'lucide-react';
+import { Calendar, ChevronDown, ChevronRight, FileText } from 'lucide-react';
 
 import { Badge } from '@/components/ui/Badge';
 
-import type { DocumentItem, Person, PersonMembership, Session, Term } from '@/lib/openlgu';
+import type {
+  DocumentItem,
+  Person,
+  PersonMembership,
+  Session,
+  Term,
+} from '@/lib/openlgu';
 import { getPersonName } from '@/lib/openlgu';
+
 import ServiceTimeline from './ServiceTimeline';
 
 interface OfficialCardProps {
@@ -28,13 +35,16 @@ export default function OfficialCard({
   onToggle,
 }: OfficialCardProps) {
   const personName = getPersonName(person);
-  const initials = `${person.first_name[0]}${person.last_name[0]}`.toUpperCase();
+  const initials =
+    `${person.first_name[0]}${person.last_name[0]}`.toUpperCase();
 
   // Calculate stats for the latest term
   const calculateAttendanceRate = (): number => {
     const termSessions = sessions.filter(s => s.term_id === latestTerm.id);
     if (termSessions.length === 0) return 0;
-    const presentCount = termSessions.filter(s => s.present.includes(person.id)).length;
+    const presentCount = termSessions.filter(s =>
+      s.present.includes(person.id)
+    ).length;
     return Math.round((presentCount / termSessions.length) * 100);
   };
 
@@ -46,7 +56,10 @@ export default function OfficialCard({
 
   const countExecOrders = (): number => {
     return documents.filter(
-      doc => doc.term_id === latestTerm.id && doc.type === 'executive_order' && doc.mayor_id === person.id
+      doc =>
+        doc.term_id === latestTerm.id &&
+        doc.type === 'executive_order' &&
+        doc.mayor_id === person.id
     ).length;
   };
 
@@ -87,35 +100,37 @@ export default function OfficialCard({
       {/* Collapsed Card Content */}
       <button
         onClick={onToggle}
-        className="w-full text-left"
+        className='w-full text-left'
         aria-expanded={isExpanded}
         aria-label={`Toggle details for ${personName}`}
       >
-        <div className="flex items-center gap-4 p-4">
+        <div className='flex items-center gap-4 p-4'>
           {/* Avatar with initials */}
-          <div className={`flex h-12 w-12 shrink-0 items-center justify-center rounded-xl text-lg font-bold text-white shadow-sm ${getAvatarColor()}`}>
+          <div
+            className={`flex h-12 w-12 shrink-0 items-center justify-center rounded-xl text-lg font-bold text-white shadow-sm ${getAvatarColor()}`}
+          >
             {initials}
           </div>
 
           {/* Main content */}
-          <div className="flex-1 min-w-0">
+          <div className='min-w-0 flex-1'>
             {/* Name */}
-            <p className="font-semibold text-slate-800 truncate">
+            <p className='truncate font-semibold text-slate-800'>
               {personName}
             </p>
 
             {/* Term and Role Badge */}
-            <div className="flex flex-wrap items-center gap-2 mt-1">
+            <div className='mt-1 flex flex-wrap items-center gap-2'>
               <Badge variant={getRoleVariant()}>
                 {latestTerm.year_range} | {latestMembership.role}
               </Badge>
             </div>
 
             {/* Mini stats row */}
-            <div className="flex flex-wrap items-center gap-3 mt-2 text-xs text-slate-600">
+            <div className='mt-2 flex flex-wrap items-center gap-3 text-xs text-slate-600'>
               {!isExecutive && (
-                <div className="flex items-center gap-1">
-                  <Calendar className="h-3 w-3" />
+                <div className='flex items-center gap-1'>
+                  <Calendar className='h-3 w-3' />
                   <span
                     className={
                       attendanceRate >= 90
@@ -130,33 +145,38 @@ export default function OfficialCard({
                 </div>
               )}
               {!isExecutive && docsCount > 0 && (
-                <div className="flex items-center gap-1">
-                  <FileText className="h-3 w-3" />
-                  <span>{docsCount} document{docsCount !== 1 ? 's' : ''}</span>
+                <div className='flex items-center gap-1'>
+                  <FileText className='h-3 w-3' />
+                  <span>
+                    {docsCount} document{docsCount !== 1 ? 's' : ''}
+                  </span>
                 </div>
               )}
               {isExecutive && execOrdersCount > 0 && (
-                <div className="flex items-center gap-1">
-                  <FileText className="h-3 w-3" />
-                  <span>{execOrdersCount} executive order{execOrdersCount !== 1 ? 's' : ''}</span>
+                <div className='flex items-center gap-1'>
+                  <FileText className='h-3 w-3' />
+                  <span>
+                    {execOrdersCount} executive order
+                    {execOrdersCount !== 1 ? 's' : ''}
+                  </span>
                 </div>
               )}
             </div>
           </div>
 
           {/* Expand/collapse indicator */}
-          <div className="flex items-center gap-2 text-slate-400">
+          <div className='flex items-center gap-2 text-slate-400'>
             {!isExpanded && (
-              <span className="text-xs text-slate-400 hidden sm:inline">
+              <span className='hidden text-xs text-slate-400 sm:inline'>
                 {totalTermsServed > 1
                   ? `served in ${totalTermsServed} term${totalTermsServed > 1 ? 's' : ''}`
                   : 'view details'}
               </span>
             )}
             {isExpanded ? (
-              <ChevronDown className="h-5 w-5 text-primary-500" />
+              <ChevronDown className='text-primary-500 h-5 w-5' />
             ) : (
-              <ChevronRight className="h-5 w-5 group-hover:text-slate-500 transition-colors" />
+              <ChevronRight className='h-5 w-5 transition-colors group-hover:text-slate-500' />
             )}
           </div>
         </div>
@@ -164,8 +184,8 @@ export default function OfficialCard({
 
       {/* Expanded Service Timeline */}
       {isExpanded && (
-        <div className="border-t border-slate-200 p-4 bg-slate-50/50 rounded-b-xl animate-in fade-in slide-in-from-top-2 duration-200">
-          <div className="text-xs font-semibold text-slate-500 uppercase tracking-wide mb-3">
+        <div className='animate-in fade-in slide-in-from-top-2 rounded-b-xl border-t border-slate-200 bg-slate-50/50 p-4 duration-200'>
+          <div className='mb-3 text-xs font-semibold tracking-wide text-slate-500 uppercase'>
             Service History
           </div>
           <ServiceTimeline

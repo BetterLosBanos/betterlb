@@ -35,8 +35,6 @@ dist-ssr
 functions/wrangler.toml
 functions/.wrangler
 .wrangler/
-src/data/flood_control/lookups/contractors
-contractor_fetch_log.csv
 wrangler.toml
 
 # Dev
@@ -44,5 +42,7 @@ wrangler.toml
 .dev.vars
 /raw_data
 _worker.bundle
-/pipeline/
+pipeline/*
 CLAUDE.md
+.local/
+pipeline/__pycache__/

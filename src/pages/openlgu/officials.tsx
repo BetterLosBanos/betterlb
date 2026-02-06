@@ -1,15 +1,16 @@
-import { useMemo, useState, useCallback } from 'react';
+import { useCallback, useMemo, useState } from 'react';
+
 import { useOutletContext } from 'react-router-dom';
 
 import { Users } from 'lucide-react';
 
 import { EmptyState, PageLoadingState } from '@/components/ui';
 
-import OfficialsFilterBar from './components/OfficialsFilterBar';
-import OfficialCard from './components/OfficialCard';
-
 import type { DocumentItem, Person, Session, Term } from '@/lib/openlgu';
 import { getPersonName } from '@/lib/openlgu';
+
+import OfficialCard from './components/OfficialCard';
+import OfficialsFilterBar from './components/OfficialsFilterBar';
 
 interface LegislationContext {
   persons: Person[];
@@ -22,7 +23,10 @@ interface LegislationContext {
 }
 
 // Get the most recent membership for a person
-function getLatestMembership(person: Person, terms: Term[]): PersonMembership | null {
+function getLatestMembership(
+  person: Person,
+  terms: Term[]
+): PersonMembership | null {
   if (person.memberships.length === 0) return null;
 
   // Sort memberships by term number (most recent first)
@@ -48,20 +52,24 @@ function servedInTerm(person: Person, termFilter: string): boolean {
 }
 
 export default function OfficialsIndex() {
-  const { persons, sessions, searchQuery, setSearchQuery, terms, documents, isLoading } =
-    useOutletContext<LegislationContext>();
+  const {
+    persons,
+    sessions,
+    searchQuery,
+    setSearchQuery,
+    terms,
+    documents,
+    isLoading,
+  } = useOutletContext<LegislationContext>();
 
   // Local state for filters
   const [roleFilter, setRoleFilter] = useState('');
   const [termFilter, setTermFilter] = useState('');
   const [expandedPersonId, setExpandedPersonId] = useState<string | null>(null);
 
-  const toggleExpanded = useCallback(
-    (personId: string) => {
-      setExpandedPersonId(prev => (prev === personId ? null : personId));
-    },
-    []
-  );
+  const toggleExpanded = useCallback((personId: string) => {
+    setExpandedPersonId(prev => (prev === personId ? null : personId));
+  }, []);
 
   // Filter and sort persons
   const filteredPersons = useMemo(() => {
@@ -97,14 +105,15 @@ export default function OfficialsIndex() {
   }, [personsByLetter]);
 
   return (
-    <div className="animate-in fade-in mx-auto max-w-5xl space-y-8 pb-20 duration-500">
+    <div className='animate-in fade-in mx-auto max-w-5xl space-y-8 pb-20 duration-500'>
       {/* Header */}
-      <div className="rounded-2xl border-l-8 border-primary-600 bg-white p-6 shadow-sm md:p-10">
-        <h1 className="text-2xl font-extrabold text-slate-900 md:text-3xl">
+      <div className='border-primary-600 rounded-2xl border-l-8 bg-white p-6 shadow-sm md:p-10'>
+        <h1 className='text-2xl font-extrabold text-slate-900 md:text-3xl'>
           Officials of Los Baños
         </h1>
-        <p className="mt-2 text-slate-600">
-          Browse the historical collection of all LGU politicians who have served Los Baños.
+        <p className='mt-2 text-slate-600'>
+          Browse the historical collection of all LGU politicians who have
+          served Los Baños.
         </p>
       </div>
 
@@ -121,39 +130,44 @@ export default function OfficialsIndex() {
 
       {/* Loading State */}
       {isLoading ? (
-        <PageLoadingState message="Loading officials..." />
+        <PageLoadingState message='Loading officials...' />
       ) : filteredPersons.length === 0 ? (
         <EmptyState
-          title="No officials found"
+          title='No officials found'
           message={`We couldn't find any officials matching your filters`}
           icon={Users}
         />
       ) : (
         <>
           {/* Results count */}
-          <div className="text-sm text-slate-500">
+          <div className='text-sm text-slate-500'>
             Showing {filteredPersons.length} official
             {filteredPersons.length !== 1 ? 's' : ''}
           </div>
 
           {/* A-Z grouped list */}
-          <div className="space-y-8">
+          <div className='space-y-8'>
             {sortedLetters.map(letter => {
               const personsInLetter = personsByLetter.get(letter)!;
               return (
                 <div key={letter}>
                   {/* Letter header */}
-                  <h2 className="text-lg font-bold text-primary-600 mb-3 sticky top-0 bg-white/95 backdrop-blur-sm py-2 border-b border-slate-100">
+                  <h2 className='text-primary-600 sticky top-0 mb-3 border-b border-slate-100 bg-white/95 py-2 text-lg font-bold backdrop-blur-sm'>
                     {letter}
                   </h2>
 
                   {/* Persons in this letter group */}
-                  <div className="space-y-3">
+                  <div className='space-y-3'>
                     {personsInLetter.map(person => {
-                      const latestMembership = getLatestMembership(person, terms);
+                      const latestMembership = getLatestMembership(
+                        person,
+                        terms
+                      );
                       if (!latestMembership) return null;
 
-                      const latestTerm = terms.find(t => t.id === latestMembership.term_id);
+                      const latestTerm = terms.find(
+                        t => t.id === latestMembership.term_id
+                      );
                       if (!latestTerm) return null;
 
                       return (
