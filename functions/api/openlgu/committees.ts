@@ -2,10 +2,9 @@
  * Legislation Committees API
  * GET /api/legislation/committees - List all committees
  */
-
 import { Env } from '../../types';
 import { cachedJson } from '../../utils/cache';
-import { createKVCache, CACHE_TTL } from '../../utils/kv-cache';
+import { CACHE_TTL, createKVCache } from '../../utils/kv-cache';
 
 export async function onRequestGet(context: { request: Request; env: Env }) {
   const { env } = context;
@@ -25,16 +24,21 @@ export async function onRequestGet(context: { request: Request; env: Env }) {
         const params: string[] = [];
 
         if (termId) {
-          sql += ' JOIN committee_memberships cm ON cm.committee_id = c.id WHERE cm.term_id = ?';
+          sql +=
+            ' JOIN committee_memberships cm ON cm.committee_id = c.id WHERE cm.term_id = ?';
           params.push(termId);
         }
 
         sql += ' ORDER BY c.name ASC';
 
-        const committeesResult = await env.BETTERLB_DB.prepare(sql).bind(...params).all();
+        const committeesResult = await env.BETTERLB_DB.prepare(sql)
+          .bind(...params)
+          .all();
 
         // Get all committee IDs for batch fetching members
-        const committeeIds = committeesResult.results.map((c: { id: string }) => c.id);
+        const committeeIds = committeesResult.results.map(
+          (c: { id: string }) => c.id
+        );
 
         if (committeeIds.length === 0) {
           return { committees: [] };
@@ -59,19 +63,25 @@ export async function onRequestGet(context: { request: Request; env: Env }) {
           membersParams.push(termId);
         }
 
-        membersSql += ' ORDER BY cm.committee_id, cm.term_id DESC, p.last_name ASC';
+        membersSql +=
+          ' ORDER BY cm.committee_id, cm.term_id DESC, p.last_name ASC';
 
-        const membersResult = await env.BETTERLB_DB.prepare(membersSql).bind(...membersParams).all();
+        const membersResult = await env.BETTERLB_DB.prepare(membersSql)
+          .bind(...membersParams)
+          .all();
 
         // Group members by committee_id
-        const membersByCommittee = new Map<string, Array<{
-          id: string;
-          first_name: string;
-          middle_name: string | null;
-          last_name: string;
-          term_id: string;
-          role: string;
-        }>>();
+        const membersByCommittee = new Map<
+          string,
+          Array<{
+            id: string;
+            first_name: string;
+            middle_name: string | null;
+            last_name: string;
+            term_id: string;
+            role: string;
+          }>
+        >();
         for (const member of membersResult.results) {
           const memberRow = member as {
             committee_id: string;
@@ -90,10 +100,12 @@ export async function onRequestGet(context: { request: Request; env: Env }) {
         }
 
         // Combine committees with their members
-        const committees = committeesResult.results.map((committee: { id: string; name: string; type: string }) => ({
-          ...committee,
-          members: membersByCommittee.get(committee.id) || [],
-        }));
+        const committees = committeesResult.results.map(
+          (committee: { id: string; name: string; type: string }) => ({
+            ...committee,
+            members: membersByCommittee.get(committee.id) || [],
+          })
+        );
 
         return { committees };
       },

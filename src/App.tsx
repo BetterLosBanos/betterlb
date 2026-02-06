@@ -26,6 +26,15 @@ import SearchPage from '@/pages/Search';
 import TermsOfService from '@/pages/TermsOfService';
 import AboutPage from '@/pages/about';
 import AccessibilityPage from '@/pages/accessibility';
+import AdminDocuments from '@/pages/admin/Documents';
+import AdminErrorLog from '@/pages/admin/ErrorLog';
+import AdminReconcile from '@/pages/admin/Reconcile';
+import AdminReviewQueue from '@/pages/admin/ReviewQueue';
+import DeletionQueue from '@/pages/admin/components/DeletionQueue';
+import PersonMergeTool from '@/pages/admin/components/PersonMergeTool';
+import AdminDashboard from '@/pages/admin/index';
+// Admin Routes
+import AdminLayout from '@/pages/admin/layout';
 import ContributePage from '@/pages/contribute';
 import ForexPage from '@/pages/data/forex';
 // --- Data Pages ---
@@ -43,6 +52,7 @@ import ExecutiveBranchPage from '@/pages/government/elected-officials/executive-
 import ElectedOfficialsLayout from '@/pages/government/elected-officials/layout';
 import MunicipalCommitteesPage from '@/pages/government/elected-officials/municipal-committees';
 import GovernmentRootLayout from '@/pages/government/layout';
+import LegacyDocumentRedirect from '@/pages/openlgu/LegacyDocumentRedirect';
 import LegislationDetail from '@/pages/openlgu/[document]';
 import PersonDetail from '@/pages/openlgu/[person]';
 import SessionDetail from '@/pages/openlgu/[session]';
@@ -66,12 +76,6 @@ import InfrastructurePage from '@/pages/transparency/infrastructure';
 import InfrastructureDetail from '@/pages/transparency/infrastructure/[project]';
 import TransparencyLayout from '@/pages/transparency/layout';
 import ProcurementPage from '@/pages/transparency/procurement';
-// Admin Routes
-import AdminLayout from '@/pages/admin/layout';
-import AdminDashboard from '@/pages/admin/index';
-import AdminErrorLog from '@/pages/admin/ErrorLog';
-import AdminReviewQueue from '@/pages/admin/ReviewQueue';
-import AdminReconcile from '@/pages/admin/Reconcile';
 
 function App() {
   return (
@@ -88,126 +92,120 @@ function AppContent() {
   const isAdminRoute = location.pathname.startsWith('/admin');
 
   return (
-    <div className='flex flex-col min-h-screen'>
+    <div className='flex min-h-screen flex-col'>
       <SEO />
       {!isAdminRoute && <Navbar />}
       {!isAdminRoute && <Ticker />}
       <ScrollToTop />
 
-          <Routes>
-            {/* Standard Global Pages */}
-            <Route path='/' element={<Home />} />
-            <Route path='/about' element={<AboutPage />} />
-            <Route path='/contact' element={<ContactUs />} />
-            <Route path='/accessibility' element={<AccessibilityPage />} />
-            <Route path='/search' element={<SearchPage />} />
-            <Route path='/ideas' element={<Ideas />} />
-            <Route path='/join-us' element={<JoinUs />} />
-            <Route path='/terms-of-service' element={<TermsOfService />} />
-            <Route path='/sitemap' element={<SitemapPage />} />
-            <Route path='/discord' Component={Discord} />
+      <Routes>
+        {/* Standard Global Pages */}
+        <Route path='/' element={<Home />} />
+        <Route path='/about' element={<AboutPage />} />
+        <Route path='/contact' element={<ContactUs />} />
+        <Route path='/accessibility' element={<AccessibilityPage />} />
+        <Route path='/search' element={<SearchPage />} />
+        <Route path='/ideas' element={<Ideas />} />
+        <Route path='/join-us' element={<JoinUs />} />
+        <Route path='/terms-of-service' element={<TermsOfService />} />
+        <Route path='/sitemap' element={<SitemapPage />} />
+        <Route path='/discord' Component={Discord} />
 
-            {/* Data Utilities */}
-            <Route path='/data/weather' element={<WeatherPage />} />
-            <Route path='/data/forex' element={<ForexPage />} />
+        {/* Data Utilities */}
+        <Route path='/data/weather' element={<WeatherPage />} />
+        <Route path='/data/forex' element={<ForexPage />} />
 
-            {/* Services Module (Detail nested in Layout for Sidebar persistence) */}
-            <Route path='/services' element={<ServicesLayout />}>
-              <Route index element={<Services />} />
-              <Route path=':service' element={<ServiceDetail />} />
-            </Route>
+        {/* Services Module (Detail nested in Layout for Sidebar persistence) */}
+        <Route path='/services' element={<ServicesLayout />}>
+          <Route index element={<Services />} />
+          <Route path=':service' element={<ServiceDetail />} />
+        </Route>
 
-            {/* Government Directory Hub */}
-            <Route path='/government' element={<GovernmentRootLayout />}>
-              <Route
-                index
-                element={<Navigate to='elected-officials' replace />}
-              />
+        {/* Government Directory Hub */}
+        <Route path='/government' element={<GovernmentRootLayout />}>
+          <Route index element={<Navigate to='elected-officials' replace />} />
 
-              {/* 1. Elected Officials & Executive Branch */}
-              <Route
-                path='elected-officials'
-                element={<ElectedOfficialsLayout />}
-              >
-                <Route index element={<ElectedOfficialsIndex />} />
+          {/* 1. Elected Officials & Executive Branch */}
+          <Route path='elected-officials' element={<ElectedOfficialsLayout />}>
+            <Route index element={<ElectedOfficialsIndex />} />
 
-                {/* Unified Executive Route */}
-                <Route
-                  path='executive-branch'
-                  element={<ExecutiveBranchPage />}
-                />
+            {/* Unified Executive Route */}
+            <Route path='executive-branch' element={<ExecutiveBranchPage />} />
 
-                {/* Legislative Chamber Details */}
-                <Route path=':chamber' element={<LegislativeChamber />} />
-                <Route
-                  path='municipal-committees'
-                  element={<MunicipalCommitteesPage />}
-                />
-              </Route>
+            {/* Legislative Chamber Details */}
+            <Route path=':chamber' element={<LegislativeChamber />} />
+            <Route
+              path='municipal-committees'
+              element={<MunicipalCommitteesPage />}
+            />
+          </Route>
 
-              {/* 2. Municipal Departments */}
-              <Route path='departments' element={<DepartmentsLayout />}>
-                <Route index element={<DepartmentsIndex />} />
-                <Route path=':department' element={<DepartmentDetail />} />
-              </Route>
+          {/* 2. Municipal Departments */}
+          <Route path='departments' element={<DepartmentsLayout />}>
+            <Route index element={<DepartmentsIndex />} />
+            <Route path=':department' element={<DepartmentDetail />} />
+          </Route>
 
-              {/* 3. Barangay Directory */}
-              <Route path='barangays' element={<BarangaysLayout />}>
-                <Route index element={<BarangaysIndex />} />
-                <Route path=':barangay' element={<BarangayDetail />} />
-              </Route>
-            </Route>
+          {/* 3. Barangay Directory */}
+          <Route path='barangays' element={<BarangaysLayout />}>
+            <Route index element={<BarangaysIndex />} />
+            <Route path=':barangay' element={<BarangayDetail />} />
+          </Route>
+        </Route>
 
-            {/* Statistics Dashboard */}
-            <Route path='statistics' element={<StatisticsLayout />}>
-              <Route index element={<PopulationPage />} />
-              <Route path='population' element={<PopulationPage />} />
-              <Route
-                path='municipal-income'
-                element={<MunicipalIncomePage />}
-              />
-              <Route path='competitiveness' element={<CompetitivenessPage />} />
-            </Route>
+        {/* Statistics Dashboard */}
+        <Route path='statistics' element={<StatisticsLayout />}>
+          <Route index element={<PopulationPage />} />
+          <Route path='population' element={<PopulationPage />} />
+          <Route path='municipal-income' element={<MunicipalIncomePage />} />
+          <Route path='competitiveness' element={<CompetitivenessPage />} />
+        </Route>
 
-            {/* OpenLGU Portal */}
-            <Route path='openlgu' element={<OpenLGULayout />}>
-              <Route index element={<LegislationIndex />} />
-              <Route path='officials' element={<OfficialsIndex />} />
-              <Route path='terms' element={<TermsIndex />} />
-              <Route path=':type/:document' element={<LegislationDetail />} />
-              <Route path='session/:sessionId' element={<SessionDetail />} />
-              <Route path='person/:personId' element={<PersonDetail />} />
-              <Route path='term/:termId' element={<TermDetail />} />
-            </Route>
+        {/* OpenLGU Portal */}
+        <Route path='openlgu' element={<OpenLGULayout />}>
+          <Route index element={<LegislationIndex />} />
+          <Route path='officials' element={<OfficialsIndex />} />
+          <Route path='terms' element={<TermsIndex />} />
+          {/* Legacy redirect for backward compatibility */}
+          <Route path=':type/:document' element={<LegacyDocumentRedirect />} />
+          {/* New unified document route */}
+          <Route path='documents/:document' element={<LegislationDetail />} />
+          <Route path='session/:sessionId' element={<SessionDetail />} />
+          <Route path='person/:personId' element={<PersonDetail />} />
+          <Route path='term/:termId' element={<TermDetail />} />
+        </Route>
 
-            {/* Transparency Portal */}
-            <Route path='/transparency' element={<TransparencyLayout />}>
-              <Route index element={<TransparencyIndex />} />
-              <Route path='financial' element={<FinancialPage />} />
-              <Route path='procurement' element={<ProcurementPage />} />
-              <Route path='/transparency/infrastructure'>
-                <Route index element={<InfrastructurePage />} />
-                <Route path=':contractId' element={<InfrastructureDetail />} />
-              </Route>
-            </Route>
+        {/* Transparency Portal */}
+        <Route path='/transparency' element={<TransparencyLayout />}>
+          <Route index element={<TransparencyIndex />} />
+          <Route path='financial' element={<FinancialPage />} />
+          <Route path='procurement' element={<ProcurementPage />} />
+          <Route path='/transparency/infrastructure'>
+            <Route index element={<InfrastructurePage />} />
+            <Route path=':contractId' element={<InfrastructureDetail />} />
+          </Route>
+        </Route>
 
-            {/* Community Contribution Flow */}
-            <Route path='contribute' element={<ContributePage />} />
+        {/* Community Contribution Flow */}
+        <Route path='contribute' element={<ContributePage />} />
 
-            {/* Admin Routes */}
-            <Route path='/admin' element={<AdminLayout />}>
-              <Route index element={<AdminDashboard />} />
-              <Route path='errors' element={<AdminErrorLog />} />
-              <Route path='review-queue' element={<AdminReviewQueue />} />
-              <Route path='reconcile' element={<AdminReconcile />} />
-            </Route>
+        {/* Admin Routes */}
+        <Route path='/admin' element={<AdminLayout />}>
+          <Route index element={<AdminDashboard />} />
+          <Route path='documents' element={<AdminDocuments />} />
+          <Route path='persons/merge' element={<PersonMergeTool />} />
+          <Route path='persons/deletion-queue' element={<DeletionQueue />} />
+          <Route path='errors' element={<AdminErrorLog />} />
+          <Route path='review-queue' element={<AdminReviewQueue />} />
+          <Route path='reconcile' element={<AdminReconcile />} />
+        </Route>
 
-            {/* Catch-all 404 */}
-            <Route path='*' element={<NotFound />} />
-          </Routes>
+        {/* Catch-all 404 */}
+        <Route path='*' element={<NotFound />} />
+      </Routes>
 
-          {!isAdminRoute && <Footer />}
-        </div>
+      {!isAdminRoute && <Footer />}
+    </div>
   );
 }
 

@@ -6,7 +6,14 @@ import type {
   Person,
   Session,
 } from '@/types';
-import { Calendar, CheckCircle2, Gavel, ScrollText, Users, XCircle } from 'lucide-react';
+import {
+  Calendar,
+  CheckCircle2,
+  Gavel,
+  ScrollText,
+  Users,
+  XCircle,
+} from 'lucide-react';
 
 import { DetailSection } from '@/components/layout/PageLayouts';
 import {
@@ -18,8 +25,8 @@ import {
   BreadcrumbPage,
   BreadcrumbSeparator,
 } from '@/components/navigation/Breadcrumb';
-import { Badge } from '@/components/ui/Badge';
 import { EmptyState, PageLoadingState } from '@/components/ui';
+import { Badge } from '@/components/ui/Badge';
 
 import { getPersonName } from '@/lib/openlgu';
 
@@ -31,7 +38,7 @@ export default function SessionDetail() {
   const session = sessions.find((s: Session) => s.id === sessionId);
 
   if (isLoading) {
-    return <PageLoadingState message="Loading session..." />;
+    return <PageLoadingState message='Loading session...' />;
   }
 
   if (!session)
@@ -168,7 +175,7 @@ export default function SessionDetail() {
                 {relatedDocs.map((doc: DocumentItem) => (
                   <Link
                     key={doc.id}
-                    to={`/openlgu/${doc.type}/${doc.id}`}
+                    to={`/openlgu/documents/${doc.id}`}
                     className='group -mx-2 block min-h-[44px] rounded-lg px-2 py-4 transition-all hover:bg-slate-50'
                   >
                     <div className='mb-1 flex items-center gap-3'>

@@ -1,31 +1,36 @@
 {
-	"name": "betterlb",
-	"pages_build_output_dir": "dist",
-	"compatibility_date": "2026-01-13",
-	"kv_namespaces": [
-		{
-			"binding": "WEATHER_KV",
-			"id": "a6daec9904a04769918521d0b3d836e3"
-		}
-	],
-	"d1_databases": [
-		{
-			"binding": "BETTERLB_DB",
-			"database_name": "betterlb_openlgu",
-			"database_id": "67f71e98-fece-4460-b3b6-40f6f8742d89",
-			"migrations_dir": "db/migrations",
-			"remote": true
-		}
-		// Old database (betterlb_opencouncil) kept for reference/backup:
-		// {
-		// 	"binding": "BETTERLB_DB",
-		// 	"database_name": "betterlb_opencouncil",
-		// 	"database_id": "3b868cf4-3b83-4ed7-9f71-4287fe28d713",
-		// 	"migrations_dir": "db/migrations"
-		// }
-	],
-	"vars": {
-		"GITHUB_REPO": "BetterLosBanos/betterlb",
-		"AUTHORIZED_USERS": "[]"
-	}
+  "name": "betterlb",
+  "pages_build_output_dir": "dist",
+  "compatibility_date": "2026-01-13",
+  "kv_namespaces": [
+    {
+      "binding": "WEATHER_KV",
+      "id": "a6daec9904a04769918521d0b3d836e3"
+    }
+  ],
+  "d1_databases": [
+    {
+      "binding": "BETTERLB_DB",
+      "database_name": "betterlb_openlgu",
+      "database_id": "67f71e98-fece-4460-b3b6-40f6f8742d89",
+      "migrations_dir": "db/migrations",
+      "remote": true
+    }
+    // Old database (betterlb_opencouncil) kept for reference/backup:
+    // {
+    // 	"binding": "BETTERLB_DB",
+    // 	"database_name": "betterlb_opencouncil",
+    // 	"database_id": "3b868cf4-3b83-4ed7-9f71-4287fe28d713",
+    // 	"migrations_dir": "db/migrations"
+    // }
+  ],
+  "vars": {
+    "GITHUB_REPO": "BetterLosBanos/betterlb",
+    "GITHUB_CLIENT_ID": "__GITHUB_CLIENT_ID__",
+    "GITHUB_CLIENT_SECRET": "__GITHUB_CLIENT_SECRET__",
+    "GOOGLE_CLIENT_ID": "__GOOGLE_CLIENT_ID__",
+    "GOOGLE_CLIENT_SECRET": "__GOOGLE_CLIENT_SECRET__",
+    "GOOGLE_REDIRECT_URI": "__GOOGLE_REDIRECT_URI__",
+    "AUTHORIZED_USERS": "__AUTHORIZED_USERS__"
+  }
 }

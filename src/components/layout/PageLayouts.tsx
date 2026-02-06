@@ -91,7 +91,7 @@ export function DetailSection({
     >
       <div className='flex items-center gap-2 border-b border-slate-100 bg-slate-50/50 px-6 py-4'>
         {Icon && <Icon className='text-primary-600 h-4 w-4' />}
-        <div className='text-[10px] font-bold tracking-widest text-slate-400 uppercase flex-1 flex items-center justify-between'>
+        <div className='flex flex-1 items-center justify-between text-[10px] font-bold tracking-widest text-slate-400 uppercase'>
           {title}
         </div>
       </div>

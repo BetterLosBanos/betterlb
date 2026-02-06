@@ -381,7 +381,7 @@ export const CardContactInfo = ({
         <div className='flex items-start gap-2'>
           <MapPinIcon
             className={cn('mt-0.5 shrink-0 text-slate-400', iconSize)}
-            aria-hidden="true"
+            aria-hidden='true'
           />
           <span className='leading-snug'>{contact.address}</span>
         </div>
@@ -390,7 +390,7 @@ export const CardContactInfo = ({
         <div className='flex items-start gap-2'>
           <PhoneIcon
             className={cn('mt-0.5 shrink-0 text-slate-400', iconSize)}
-            aria-hidden="true"
+            aria-hidden='true'
           />
           <span className='font-medium tabular-nums'>
             {Array.isArray(contact.phone) ? contact.phone[0] : contact.phone}
@@ -401,7 +401,7 @@ export const CardContactInfo = ({
         <div className='flex items-start gap-2'>
           <MailIcon
             className={cn('mt-0.5 shrink-0 text-slate-400', iconSize)}
-            aria-hidden="true"
+            aria-hidden='true'
           />
           <a
             href={`mailto:${contact.email}`}
@@ -415,7 +415,7 @@ export const CardContactInfo = ({
         <div className='flex items-start gap-2'>
           <ExternalLinkIcon
             className={cn('mt-0.5 shrink-0 text-slate-400', iconSize)}
-            aria-hidden="true"
+            aria-hidden='true'
           />
           <a
             href={

@@ -1,23 +1,25 @@
 import { useEffect, useState } from 'react';
+
 import {
-  GitMerge,
-  FileText,
-  Facebook,
-  Globe,
   AlertCircle,
   Check,
-  X,
-  RefreshCw,
   ChevronLeft,
   ChevronRight,
   Edit3,
+  Facebook,
+  FileText,
+  GitMerge,
+  Globe,
+  RefreshCw,
   Save,
   Undo,
   User,
+  X,
 } from 'lucide-react';
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/Card';
+
 import { Badge } from '@/components/ui/Badge';
 import Button from '@/components/ui/Button';
+import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/Card';
 import { EmptyState } from '@/components/ui/EmptyState';
 import SelectPicker from '@/components/ui/SelectPicker';
 
@@ -127,7 +129,9 @@ export default function Reconcile() {
   const [statusFilter, setStatusFilter] = useState<ReconcileStatus | 'all'>(
     'unresolved'
   );
-  const [conflictTypeFilter, setConflictTypeFilter] = useState<ConflictType | 'all'>('all');
+  const [conflictTypeFilter, setConflictTypeFilter] = useState<
+    ConflictType | 'all'
+  >('all');
   const [page, setPage] = useState(0);
   const [pagination, setPagination] = useState({
     total: 0,
@@ -136,7 +140,9 @@ export default function Reconcile() {
     has_more: false,
   });
   const [selectedItem, setSelectedItem] = useState<ConflictRecord | null>(null);
-  const [documentDetail, setDocumentDetail] = useState<DocumentDetail | null>(null);
+  const [documentDetail, setDocumentDetail] = useState<DocumentDetail | null>(
+    null
+  );
   const [editMode, setEditMode] = useState(false);
   const [editedValue, setEditedValue] = useState('');
 
@@ -186,7 +192,9 @@ export default function Reconcile() {
   const selectItem = async (item: ConflictRecord) => {
     setSelectedItem(item);
     setEditMode(false);
-    setEditedValue(item.resolved_value || item.govph_value || item.facebook_value || '');
+    setEditedValue(
+      item.resolved_value || item.govph_value || item.facebook_value || ''
+    );
     await fetchDocumentDetail(item.document_id);
   };
 
@@ -238,8 +246,8 @@ export default function Reconcile() {
 
   if (loading && items.length === 0) {
     return (
-      <div className="flex items-center justify-center py-12">
-        <RefreshCw className="h-8 w-8 animate-spin text-slate-400" />
+      <div className='flex items-center justify-center py-12'>
+        <RefreshCw className='h-8 w-8 animate-spin text-slate-400' />
       </div>
     );
   }
@@ -247,7 +255,7 @@ export default function Reconcile() {
   if (items.length === 0 && !loading) {
     return (
       <EmptyState
-        title="No conflicts to reconcile"
+        title='No conflicts to reconcile'
         message={
           statusFilter !== 'all'
             ? `No conflicts with status "${statusFilter}"`
@@ -259,40 +267,40 @@ export default function Reconcile() {
   }
 
   return (
-    <div className="space-y-6">
+    <div className='space-y-6'>
       {/* Header */}
-      <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
+      <div className='flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between'>
         <div>
-          <h2 className="text-2xl font-bold text-slate-900">
+          <h2 className='text-2xl font-bold text-slate-900'>
             Data Reconciliation
           </h2>
-          <p className="text-slate-600">
+          <p className='text-slate-600'>
             {pagination.total} conflicts between Facebook and gov.ph sources
           </p>
         </div>
-        <div className="flex items-center gap-3">
+        <div className='flex items-center gap-3'>
           <SelectPicker
             value={conflictTypeFilter}
-            onChange={(v) => {
+            onChange={v => {
               setConflictTypeFilter(v as ConflictType | 'all');
               setPage(0);
             }}
             options={conflictTypeOptions}
-            className="w-40"
+            className='w-40'
           />
           <SelectPicker
             value={statusFilter}
-            onChange={(v) => {
+            onChange={v => {
               setStatusFilter(v as ReconcileStatus | 'all');
               setPage(0);
             }}
             options={statusOptions}
-            className="w-40"
+            className='w-40'
           />
           <Button
-            variant="outline"
-            size="sm"
-            leftIcon={<RefreshCw className="h-4 w-4" />}
+            variant='outline'
+            size='sm'
+            leftIcon={<RefreshCw className='h-4 w-4' />}
             onClick={() => fetchConflicts()}
           >
             Refresh
@@ -301,45 +309,42 @@ export default function Reconcile() {
       </div>
 
       {/* Main Content Area */}
-      <div className="grid gap-6 lg:grid-cols-3">
+      <div className='grid gap-6 lg:grid-cols-3'>
         {/* Conflict List */}
-        <div className="space-y-4 lg:col-span-1">
-          <h3 className="font-bold text-slate-900">Conflicts</h3>
-          <div className="space-y-3">
-            {items.map((item) => (
+        <div className='space-y-4 lg:col-span-1'>
+          <h3 className='font-bold text-slate-900'>Conflicts</h3>
+          <div className='space-y-3'>
+            {items.map(item => (
               <Card
                 key={item.id}
-                variant="default"
+                variant='default'
                 className={
                   selectedItem?.id === item.id
-                    ? 'border-l-4 border-l-primary-500 bg-primary-50/30'
+                    ? 'border-l-primary-500 bg-primary-50/30 border-l-4'
                     : item.status === 'unresolved'
-                    ? 'border-l-4 border-l-amber-500'
-                    : ''
+                      ? 'border-l-4 border-l-amber-500'
+                      : ''
                 }
                 hover
               >
-                <CardContent className="p-4">
-                  <div className="flex cursor-pointer items-start justify-between">
-                    <div
-                      className="flex-1"
-                      onClick={() => selectItem(item)}
-                    >
-                      <div className="mb-2 flex flex-wrap items-center gap-2">
+                <CardContent className='p-4'>
+                  <div className='flex cursor-pointer items-start justify-between'>
+                    <div className='flex-1' onClick={() => selectItem(item)}>
+                      <div className='mb-2 flex flex-wrap items-center gap-2'>
                         <Badge variant={statusBadgeVariant(item.status)}>
                           {item.status}
                         </Badge>
-                        <Badge variant="outline">
+                        <Badge variant='outline'>
                           {conflictTypeLabel(item.conflict_type)}
                         </Badge>
                       </div>
                       {item.document && (
                         <>
-                          <p className="text-sm font-bold text-slate-900">
+                          <p className='text-sm font-bold text-slate-900'>
                             {item.document.type === 'ordinance' ? 'O' : 'R'} -{' '}
                             {item.document.number}
                           </p>
-                          <p className="mt-1 line-clamp-2 text-xs text-slate-600">
+                          <p className='mt-1 line-clamp-2 text-xs text-slate-600'>
                             {item.document.title}
                           </p>
                         </>
@@ -347,9 +352,9 @@ export default function Reconcile() {
                     </div>
                     {item.status === 'unresolved' && (
                       <Button
-                        variant="ghost"
-                        size="sm"
-                        onClick={(e) => {
+                        variant='ghost'
+                        size='sm'
+                        onClick={e => {
                           e.stopPropagation();
                           resolveConflict(
                             item.id,
@@ -357,7 +362,7 @@ export default function Reconcile() {
                           );
                         }}
                       >
-                        <Check className="h-4 w-4" />
+                        <Check className='h-4 w-4' />
                       </Button>
                     )}
                   </div>
@@ -368,60 +373,71 @@ export default function Reconcile() {
         </div>
 
         {/* Detail Panel */}
-        <div className="lg:col-span-2">
+        <div className='lg:col-span-2'>
           {selectedItem ? (
-            <div className="space-y-4">
+            <div className='space-y-4'>
               {/* Document Info */}
               {documentDetail && (
-                <Card variant="default">
+                <Card variant='default'>
                   <CardHeader>
-                    <CardTitle level="h3">Document Details</CardTitle>
+                    <CardTitle level='h3'>Document Details</CardTitle>
                   </CardHeader>
-                  <CardContent className="space-y-3">
-                    <div className="flex items-center gap-3">
-                      <Badge variant={documentDetail.type === 'ordinance' ? 'primary' : 'secondary'}>
+                  <CardContent className='space-y-3'>
+                    <div className='flex items-center gap-3'>
+                      <Badge
+                        variant={
+                          documentDetail.type === 'ordinance'
+                            ? 'primary'
+                            : 'secondary'
+                        }
+                      >
                         {documentDetail.type}
                       </Badge>
-                      <span className="font-mono font-bold text-slate-700">
+                      <span className='font-mono font-bold text-slate-700'>
                         {documentDetail.number}
                       </span>
                       <a
                         href={documentDetail.pdf_url}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="ml-auto text-sm text-primary-600 hover:underline"
+                        target='_blank'
+                        rel='noopener noreferrer'
+                        className='text-primary-600 ml-auto text-sm hover:underline'
                       >
-                        <FileText className="mr-1 inline h-4 w-4" />
+                        <FileText className='mr-1 inline h-4 w-4' />
                         View PDF
                       </a>
                     </div>
-                    <p className="text-slate-700">{documentDetail.title}</p>
-                    {documentDetail.authors && documentDetail.authors.length > 0 && (
-                      <div className="flex flex-wrap gap-2">
-                        {documentDetail.authors.map((author) => (
-                          <Badge key={author.id} variant="slate" className="text-xs">
-                            <User className="mr-1 h-3 w-3" />
-                            {author.first_name} {author.last_name}
-                          </Badge>
-                        ))}
-                      </div>
-                    )}
+                    <p className='text-slate-700'>{documentDetail.title}</p>
+                    {documentDetail.authors &&
+                      documentDetail.authors.length > 0 && (
+                        <div className='flex flex-wrap gap-2'>
+                          {documentDetail.authors.map(author => (
+                            <Badge
+                              key={author.id}
+                              variant='slate'
+                              className='text-xs'
+                            >
+                              <User className='mr-1 h-3 w-3' />
+                              {author.first_name} {author.last_name}
+                            </Badge>
+                          ))}
+                        </div>
+                      )}
                   </CardContent>
                 </Card>
               )}
 
               {/* Conflict Comparison */}
-              <Card variant="default" className="border-l-4 border-l-amber-500">
+              <Card variant='default' className='border-l-4 border-l-amber-500'>
                 <CardHeader>
-                  <div className="flex items-center justify-between">
-                    <CardTitle level="h3">
+                  <div className='flex items-center justify-between'>
+                    <CardTitle level='h3'>
                       Conflict: {conflictTypeLabel(selectedItem.conflict_type)}
                     </CardTitle>
                     {editMode ? (
-                      <div className="flex gap-2">
+                      <div className='flex gap-2'>
                         <Button
-                          variant="ghost"
-                          size="sm"
+                          variant='ghost'
+                          size='sm'
                           onClick={() => {
                             setEditMode(false);
                             setEditedValue(
@@ -432,24 +448,28 @@ export default function Reconcile() {
                             );
                           }}
                         >
-                          <Undo className="h-4 w-4" />
+                          <Undo className='h-4 w-4' />
                         </Button>
                         <Button
-                          variant="success"
-                          size="sm"
+                          variant='success'
+                          size='sm'
                           onClick={() => {
-                            resolveConflict(selectedItem.id, editedValue, 'Manual correction');
+                            resolveConflict(
+                              selectedItem.id,
+                              editedValue,
+                              'Manual correction'
+                            );
                             setEditMode(false);
                           }}
                         >
-                          <Save className="h-4 w-4" />
+                          <Save className='h-4 w-4' />
                         </Button>
                       </div>
                     ) : (
                       <Button
-                        variant="outline"
-                        size="sm"
-                        leftIcon={<Edit3 className="h-4 w-4" />}
+                        variant='outline'
+                        size='sm'
+                        leftIcon={<Edit3 className='h-4 w-4' />}
                         onClick={() => setEditMode(true)}
                         disabled={selectedItem.status === 'resolved'}
                       >
@@ -458,61 +478,65 @@ export default function Reconcile() {
                     )}
                   </div>
                 </CardHeader>
-                <CardContent className="space-y-4">
+                <CardContent className='space-y-4'>
                   {/* Facebook Value */}
-                  <div className="rounded-md bg-blue-50 p-4">
-                    <div className="mb-2 flex items-center gap-2">
-                      <Facebook className="h-4 w-4 text-blue-600" />
-                      <span className="text-sm font-bold text-blue-900">
+                  <div className='rounded-md bg-blue-50 p-4'>
+                    <div className='mb-2 flex items-center gap-2'>
+                      <Facebook className='h-4 w-4 text-blue-600' />
+                      <span className='text-sm font-bold text-blue-900'>
                         Facebook Source
                       </span>
                     </div>
                     {editMode && selectedItem.conflict_type !== 'authors' ? (
                       <input
-                        type="text"
+                        type='text'
                         value={
                           editedValue ||
                           selectedItem.resolved_value ||
                           selectedItem.facebook_value ||
                           ''
                         }
-                        onChange={(e) => setEditedValue(e.target.value)}
-                        className="w-full rounded-md border border-blue-300 bg-white px-3 py-2 text-sm"
+                        onChange={e => setEditedValue(e.target.value)}
+                        className='w-full rounded-md border border-blue-300 bg-white px-3 py-2 text-sm'
                       />
                     ) : (
-                      <p className="text-sm text-blue-800">
+                      <p className='text-sm text-blue-800'>
                         {selectedItem.facebook_value || (
-                          <span className="italic text-blue-400">Not available</span>
+                          <span className='text-blue-400 italic'>
+                            Not available
+                          </span>
                         )}
                       </p>
                     )}
                   </div>
 
                   {/* gov.ph Value */}
-                  <div className="rounded-md bg-emerald-50 p-4">
-                    <div className="mb-2 flex items-center gap-2">
-                      <Globe className="h-4 w-4 text-emerald-600" />
-                      <span className="text-sm font-bold text-emerald-900">
+                  <div className='rounded-md bg-emerald-50 p-4'>
+                    <div className='mb-2 flex items-center gap-2'>
+                      <Globe className='h-4 w-4 text-emerald-600' />
+                      <span className='text-sm font-bold text-emerald-900'>
                         gov.ph Source
                       </span>
                     </div>
-                    <p className="text-sm text-emerald-800">
+                    <p className='text-sm text-emerald-800'>
                       {selectedItem.govph_value || (
-                        <span className="italic text-emerald-400">Not available</span>
+                        <span className='text-emerald-400 italic'>
+                          Not available
+                        </span>
                       )}
                     </p>
                   </div>
 
                   {/* Resolved Value */}
                   {selectedItem.resolved_value && (
-                    <div className="rounded-md bg-slate-100 p-4">
-                      <div className="mb-2 flex items-center gap-2">
-                        <Check className="h-4 w-4 text-slate-600" />
-                        <span className="text-sm font-bold text-slate-900">
+                    <div className='rounded-md bg-slate-100 p-4'>
+                      <div className='mb-2 flex items-center gap-2'>
+                        <Check className='h-4 w-4 text-slate-600' />
+                        <span className='text-sm font-bold text-slate-900'>
                           Resolved Value
                         </span>
                       </div>
-                      <p className="text-sm text-slate-700">
+                      <p className='text-sm text-slate-700'>
                         {selectedItem.resolved_value}
                       </p>
                     </div>
@@ -520,10 +544,10 @@ export default function Reconcile() {
 
                   {/* Actions */}
                   {selectedItem.status === 'unresolved' && !editMode && (
-                    <div className="flex flex-wrap gap-2">
+                    <div className='flex flex-wrap gap-2'>
                       <Button
-                        variant="primary"
-                        size="sm"
+                        variant='primary'
+                        size='sm'
                         onClick={() =>
                           resolveConflict(
                             selectedItem.id,
@@ -536,8 +560,8 @@ export default function Reconcile() {
                         Use Facebook
                       </Button>
                       <Button
-                        variant="success"
-                        size="sm"
+                        variant='success'
+                        size='sm'
                         onClick={() =>
                           resolveConflict(
                             selectedItem.id,
@@ -550,8 +574,8 @@ export default function Reconcile() {
                         Use gov.ph
                       </Button>
                       <Button
-                        variant="outline"
-                        size="sm"
+                        variant='outline'
+                        size='sm'
                         onClick={() => skipConflict(selectedItem.id)}
                       >
                         Skip
@@ -561,11 +585,11 @@ export default function Reconcile() {
 
                   {/* Notes */}
                   {selectedItem.notes && (
-                    <div className="rounded-md bg-slate-50 p-3">
-                      <p className="text-xs font-bold text-slate-900 uppercase">
+                    <div className='rounded-md bg-slate-50 p-3'>
+                      <p className='text-xs font-bold text-slate-900 uppercase'>
                         Notes
                       </p>
-                      <p className="mt-1 text-sm text-slate-600">
+                      <p className='mt-1 text-sm text-slate-600'>
                         {selectedItem.notes}
                       </p>
                     </div>
@@ -574,10 +598,10 @@ export default function Reconcile() {
               </Card>
             </div>
           ) : (
-            <Card variant="slate">
-              <CardContent className="py-12 text-center">
-                <GitMerge className="mx-auto mb-4 h-12 w-12 text-slate-400" />
-                <p className="text-slate-600">
+            <Card variant='slate'>
+              <CardContent className='py-12 text-center'>
+                <GitMerge className='mx-auto mb-4 h-12 w-12 text-slate-400' />
+                <p className='text-slate-600'>
                   Select a conflict from the list to view details and resolve
                 </p>
               </CardContent>
@@ -588,28 +612,28 @@ export default function Reconcile() {
 
       {/* Pagination */}
       {pagination.total > pagination.limit && (
-        <div className="flex items-center justify-between">
-          <p className="text-sm text-slate-600">
+        <div className='flex items-center justify-between'>
+          <p className='text-sm text-slate-600'>
             Showing {pagination.offset + 1}-
             {Math.min(pagination.offset + pagination.limit, pagination.total)}{' '}
             of {pagination.total}
           </p>
-          <div className="flex gap-2">
+          <div className='flex gap-2'>
             <Button
-              variant="outline"
-              size="sm"
+              variant='outline'
+              size='sm'
               disabled={page === 0}
-              onClick={() => setPage((p) => p - 1)}
-              leftIcon={<ChevronLeft className="h-4 w-4" />}
+              onClick={() => setPage(p => p - 1)}
+              leftIcon={<ChevronLeft className='h-4 w-4' />}
             >
               Previous
             </Button>
             <Button
-              variant="outline"
-              size="sm"
+              variant='outline'
+              size='sm'
               disabled={!pagination.has_more}
-              onClick={() => setPage((p) => p + 1)}
-              rightIcon={<ChevronRight className="h-4 w-4" />}
+              onClick={() => setPage(p => p + 1)}
+              rightIcon={<ChevronRight className='h-4 w-4' />}
             >
               Next
             </Button>

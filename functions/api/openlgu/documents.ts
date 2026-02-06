@@ -3,10 +3,14 @@
  * GET /api/legislation/documents - List all documents with filtering
  * GET /api/legislation/documents/:id - Get document details
  */
-
 import { Env } from '../../types';
 import { cachedJson } from '../../utils/cache';
-import { createKVCache, CACHE_TTL } from '../../utils/kv-cache';
+import { CACHE_TTL, createKVCache } from '../../utils/kv-cache';
+import {
+  checkRateLimit,
+  createRateLimitResponse,
+  getClientIdentifier,
+} from '../../utils/rate-limit';
 
 export async function onRequestGet(context: { request: Request; env: Env }) {
   const url = new URL(context.request.url);
@@ -34,8 +38,23 @@ export async function onRequestGet(context: { request: Request; env: Env }) {
  * - offset: number (default 0)
  */
 async function getDocumentsList(context: { request: Request; env: Env }) {
-  const { env } = context;
+  const { env, request } = context;
   const url = new URL(context.request.url);
+
+  // Apply rate limiting - 100 requests per minute per client
+  const clientId = getClientIdentifier(request);
+  const rateLimitResult = await checkRateLimit(
+    env.WEATHER_KV,
+    `api:documents:${clientId}`,
+    {
+      limit: 100,
+      window: 60,
+    }
+  );
+
+  if (!rateLimitResult.allowed) {
+    return createRateLimitResponse(rateLimitResult);
+  }
 
   const type = url.searchParams.get('type');
   const termId = url.searchParams.get('term');
@@ -44,6 +63,20 @@ async function getDocumentsList(context: { request: Request; env: Env }) {
   const needsReview = url.searchParams.get('needs_review');
   const limit = parseInt(url.searchParams.get('limit') || '100');
   const offset = parseInt(url.searchParams.get('offset') || '0');
+
+  // Input validation: Limit query length to prevent DoS
+  if (query && query.length > 100) {
+    return cachedJson(
+      { error: 'Query too long (max 100 characters)' },
+      'none',
+      400
+    );
+  }
+
+  // Sanitize LIKE wildcards to prevent SQL injection
+  const sanitizedQuery = query
+    ? query.replace(/\\/g, '\\\\').replace(/%/g, '\\%').replace(/_/g, '\\_')
+    : null;
 
   const kvCache = createKVCache(env);
   const cacheKey = kvCache.documentsKey({
@@ -89,9 +122,9 @@ async function getDocumentsList(context: { request: Request; env: Env }) {
           params.push(sessionId);
         }
 
-        if (query) {
-          sql += ` AND d.title LIKE ?${paramIndex++}`;
-          params.push(`%${query}%`);
+        if (sanitizedQuery) {
+          sql += ` AND d.title LIKE ?${paramIndex++} ESCAPE '\\'`;
+          params.push(`%${sanitizedQuery}%`);
         }
 
         if (needsReview !== null) {
@@ -108,10 +141,14 @@ async function getDocumentsList(context: { request: Request; env: Env }) {
         sql += ` ORDER BY d.date_enacted DESC LIMIT ?${paramIndex++} OFFSET ?${paramIndex++}`;
         params.push(limit.toString(), offset.toString());
 
-        const result = await env.BETTERLB_DB.prepare(sql).bind(...params).all();
+        const result = await env.BETTERLB_DB.prepare(sql)
+          .bind(...params)
+          .all();
 
         // Get document IDs for batch fetching author IDs
-        const documentIds = result.results.map((r: { id: string }) => r.id).filter(Boolean);
+        const documentIds = result.results
+          .map((r: { id: string }) => r.id)
+          .filter(Boolean);
 
         // Batch fetch all author IDs with batching to avoid SQLite variable limit
         const authorIdsMap = new Map<string, string[]>();
@@ -138,7 +175,10 @@ async function getDocumentsList(context: { request: Request; env: Env }) {
 
             // Group by document_id
             for (const row of authorsResult.results) {
-              const rowTyped = row as { document_id: string; person_id: string };
+              const rowTyped = row as {
+                document_id: string;
+                person_id: string;
+              };
               const docId = rowTyped.document_id;
               const personId = rowTyped.person_id;
               if (!authorIdsMap.has(docId)) {
@@ -150,7 +190,8 @@ async function getDocumentsList(context: { request: Request; env: Env }) {
         }
 
         // Get count for pagination
-        let countSql = 'SELECT COUNT(*) as count FROM documents d LEFT JOIN sessions s ON d.session_id = s.id WHERE 1=1';
+        let countSql =
+          'SELECT COUNT(*) as count FROM documents d LEFT JOIN sessions s ON d.session_id = s.id WHERE 1=1';
         let countParamIndex = 1;
         const countParams: string[] = [];
 
@@ -162,9 +203,9 @@ async function getDocumentsList(context: { request: Request; env: Env }) {
           countSql += ` AND d.session_id = ?${countParamIndex++}`;
           countParams.push(sessionId);
         }
-        if (query) {
-          countSql += ` AND d.title LIKE ?${countParamIndex++}`;
-          countParams.push(`%${query}%`);
+        if (sanitizedQuery) {
+          countSql += ` AND d.title LIKE ?${countParamIndex++} ESCAPE '\\'`;
+          countParams.push(`%${sanitizedQuery}%`);
         }
         if (needsReview !== null) {
           countSql += ` AND d.needs_review = ?${countParamIndex++}`;
@@ -175,7 +216,9 @@ async function getDocumentsList(context: { request: Request; env: Env }) {
           countParams.push(termId);
         }
 
-        const countResult = await env.BETTERLB_DB.prepare(countSql).bind(...countParams).first<{ count: number }>();
+        const countResult = await env.BETTERLB_DB.prepare(countSql)
+          .bind(...countParams)
+          .first<{ count: number }>();
         const total = countResult?.count || 0;
 
         // Type for document row
@@ -220,14 +263,16 @@ async function getDocumentsList(context: { request: Request; env: Env }) {
           author_ids: authorIdsMap.get(row.id) || [],
           term_id: row.term_id,
           mayor_id: row.mayor_id,
-          session: row.session_id ? {
-            id: row.session_id,
-            number: row.session_number,
-            type: row.session_type,
-            date: row.session_date,
-            ordinal_number: row.session_ordinal,
-            term_id: row.term_id,
-          } : null,
+          session: row.session_id
+            ? {
+                id: row.session_id,
+                number: row.session_number,
+                type: row.session_type,
+                date: row.session_date,
+                ordinal_number: row.session_ordinal,
+                term_id: row.term_id,
+              }
+            : null,
         }));
 
         return {
@@ -310,7 +355,9 @@ async function getDocumentDetail(context: { request: Request; env: Env }) {
           session_ordinal: string;
         }
 
-        const doc = await env.BETTERLB_DB.prepare(sql).bind(documentId).first<DocResult>();
+        const doc = await env.BETTERLB_DB.prepare(sql)
+          .bind(documentId)
+          .first<DocResult>();
 
         if (!doc) {
           return { error: 'Document not found' };
@@ -329,8 +376,10 @@ async function getDocumentDetail(context: { request: Request; env: Env }) {
           middle_name: string | null;
           last_name: string;
         }
-        const authorsResult = await env.BETTERLB_DB.prepare(authorsSql).bind(documentId).all<AuthorResult>();
-        const authors = authorsResult.results.map((row) => ({
+        const authorsResult = await env.BETTERLB_DB.prepare(authorsSql)
+          .bind(documentId)
+          .all<AuthorResult>();
+        const authors = authorsResult.results.map(row => ({
           id: row.id,
           first_name: row.first_name,
           middle_name: row.middle_name,
@@ -347,8 +396,10 @@ async function getDocumentDetail(context: { request: Request; env: Env }) {
         interface SubjectResult {
           name: string;
         }
-        const subjectsResult = await env.BETTERLB_DB.prepare(subjectsSql).bind(documentId).all<SubjectResult>();
-        const subjects = subjectsResult.results.map((row) => row.name);
+        const subjectsResult = await env.BETTERLB_DB.prepare(subjectsSql)
+          .bind(documentId)
+          .all<SubjectResult>();
+        const subjects = subjectsResult.results.map(row => row.name);
 
         return {
           id: doc.id,
@@ -370,14 +421,16 @@ async function getDocumentDetail(context: { request: Request; env: Env }) {
           updated_at: doc.updated_at,
           term_id: doc.term_id,
           mayor_id: doc.mayor_id,
-          session: doc.session_id ? {
-            id: doc.session_id,
-            number: doc.session_number,
-            type: doc.session_type,
-            date: doc.session_date,
-            ordinal_number: doc.session_ordinal,
-            term_id: doc.term_id,
-          } : null,
+          session: doc.session_id
+            ? {
+                id: doc.session_id,
+                number: doc.session_number,
+                type: doc.session_type,
+                date: doc.session_date,
+                ordinal_number: doc.session_ordinal,
+                term_id: doc.term_id,
+              }
+            : null,
           authors,
           subjects,
         };

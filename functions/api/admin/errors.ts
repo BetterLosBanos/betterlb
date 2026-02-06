@@ -1,9 +1,10 @@
 /**
  * Admin Errors API
  * GET /api/admin/errors - List all parse errors with filtering
+ * POST /api/admin/errors/:id/retry - Retry processing a failed document
  */
-
 import { Env } from '../../types';
+import { AuthContext, withAuth } from '../../utils/admin-auth';
 
 interface ParseError {
   id: string;
@@ -20,13 +21,14 @@ interface ErrorResponse {
   total: number;
 }
 
-export async function onRequestGet(context: { request: Request; env: Env }) {
+async function handleGetErrors(context: {
+  request: Request;
+  env: Env;
+  auth: AuthContext;
+}) {
   const { request, env } = context;
   const url = new URL(request.url);
   const stage = url.searchParams.get('stage');
-
-  // TODO: In production, verify admin authentication here
-  // For now, we'll return mock data or read from error files
 
   try {
     // Build query with optional stage filter
@@ -38,7 +40,10 @@ export async function onRequestGet(context: { request: Request; env: Env }) {
     `;
     const params: string[] = [];
 
-    if (stage && ['scrape', 'download', 'parse', 'extract', 'migrate'].includes(stage)) {
+    if (
+      stage &&
+      ['scrape', 'download', 'parse', 'extract', 'migrate'].includes(stage)
+    ) {
       sql += ` AND stage = ?1`;
       params.push(stage);
     }
@@ -49,7 +54,9 @@ export async function onRequestGet(context: { request: Request; env: Env }) {
     let errors: ParseError[] = [];
 
     try {
-      const result = await env.BETTERLB_DB.prepare(sql).bind(...params).all();
+      const result = await env.BETTERLB_DB.prepare(sql)
+        .bind(...params)
+        .all();
       errors = (result.results as any[]).map((row: any) => ({
         id: row.id,
         document_number: row.document_number,
@@ -70,7 +77,9 @@ export async function onRequestGet(context: { request: Request; env: Env }) {
       const countSql = stage
         ? `SELECT COUNT(*) as count FROM parse_errors WHERE stage = ?1`
         : `SELECT COUNT(*) as count FROM parse_errors`;
-      const countResult = await env.BETTERLB_DB.prepare(countSql).bind(...params).first<{ count: number }>();
+      const countResult = await env.BETTERLB_DB.prepare(countSql)
+        .bind(...params)
+        .first<{ count: number }>();
       count = countResult?.count || 0;
     } catch {
       // Ignore count errors
@@ -90,24 +99,62 @@ export async function onRequestGet(context: { request: Request; env: Env }) {
  * POST /api/admin/errors/:id/retry
  * Retry processing a failed document
  */
+async function retryError(context: {
+  request: Request;
+  env: Env;
+  auth: AuthContext;
+  params: { id: string };
+}) {
+  const { env, params } = context;
+  const errorId = params.id;
+
+  try {
+    // Get the error record to find what needs to be retried
+    const errorRecord = await env.BETTERLB_DB.prepare(
+      `SELECT * FROM parse_errors WHERE id = ?1`
+    )
+      .bind(errorId)
+      .first<any>();
+
+    if (!errorRecord) {
+      return Response.json({ error: 'Error not found' }, { status: 404 });
+    }
+
+    // Mark as retrying
+    await env.BETTERLB_DB.prepare(
+      `UPDATE parse_errors SET status = 'retrying', updated_at = datetime('now') WHERE id = ?1`
+    )
+      .bind(errorId)
+      .run();
+
+    // TODO: Implement actual retry logic based on error stage
+    // This would trigger the appropriate pipeline step:
+    // - scrape: Re-scrape the document list
+    // - download: Re-download the PDF
+    // - parse: Re-parse the PDF content
+    // - extract: Re-extract structured data
+    // - migrate: Re-migrate to database
+
+    return Response.json({
+      success: true,
+      message: `Retry queued for error ${errorId}`,
+      stage: errorRecord.stage,
+    });
+  } catch (error) {
+    console.error('Error retrying document:', error);
+    return Response.json(
+      { error: 'Failed to retry document' },
+      { status: 500 }
+    );
+  }
+}
+
+export const onRequestGet = withAuth(handleGetErrors);
+
 export async function onRequestPost(context: {
   request: Request;
   env: Env;
   params: { id: string };
 }) {
-  const { request, env, params } = context;
-  const errorId = params.id;
-
-  try {
-    // TODO: Implement retry logic
-    // This would trigger the pipeline to re-process the document
-
-    return Response.json({
-      success: true,
-      message: `Retry queued for error ${errorId}`,
-    });
-  } catch (error) {
-    console.error('Error retrying document:', error);
-    return Response.json({ error: 'Failed to retry document' }, { status: 500 });
-  }
+  return withAuth(retryError)(context);
 }

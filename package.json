@@ -10,6 +10,7 @@
     "format": "prettier --write .",
     "test:e2e": "playwright test",
     "merge:data": "python3 scripts/merge_services.py",
+    "flag:sessions": "python3 scripts/flag_sessions_for_review.py",
     "wrangler": "wrangler",
     "functions:dev": "npx wrangler pages dev --proxy 5173",
     "generate:sitemap": "node ./scripts/generate-sitemap.js"

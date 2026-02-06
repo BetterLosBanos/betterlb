@@ -46,7 +46,7 @@ export default function ServicesSidebar({
   handleCategoryChange,
 }: ServicesSidebarProps) {
   return (
-    <div className="space-y-6">
+    <div className='space-y-6'>
       <SidebarContainer title='Categories'>
         {/* Special "All Services" item */}
         <SidebarItem
@@ -73,12 +73,12 @@ export default function ServicesSidebar({
           />
         ))}
       </SidebarContainer>
-      <div className='p-5 mt-8 space-y-4 rounded-2xl border-2 shadow-sm border-secondary-100 bg-secondary-50/30'>
-        <div className='flex gap-3 items-center'>
-          <div className='p-2 rounded-lg bg-secondary-100 text-secondary-600'>
-            <PlusCircle className='w-5 h-5' />
+      <div className='border-secondary-100 bg-secondary-50/30 mt-8 space-y-4 rounded-2xl border-2 p-5 shadow-sm'>
+        <div className='flex items-center gap-3'>
+          <div className='bg-secondary-100 text-secondary-600 rounded-lg p-2'>
+            <PlusCircle className='h-5 w-5' />
           </div>
-          <h4 className='text-sm font-bold leading-tight text-slate-900'>
+          <h4 className='text-sm leading-tight font-bold text-slate-900'>
             Missing a service?
           </h4>
         </div>
