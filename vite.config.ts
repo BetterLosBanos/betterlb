@@ -15,14 +15,14 @@ export default defineConfig({
         find: /^@bettergov\/kapwa(\/(?:input|label|banner|button|card|lib\/utils))?$/,
         replacement: (...match) => {
           const subpath = match[1] || '';
-          if (!subpath) return path.resolve(__dirname, 'src/kapwa/index.js');
+          if (!subpath) return path.resolve(__dirname, 'src/kapwa');
           const paths: Record<string, string> = {
-            '/input': 'src/kapwa/input/index.tsx.js',
-            '/label': 'src/kapwa/label/index.tsx.js',
-            '/banner': 'src/kapwa/banner/index.tsx.js',
-            '/button': 'src/kapwa/button/index.tsx.js',
-            '/card': 'src/kapwa/card/index.tsx.js',
-            '/lib/utils': 'src/kapwa/lib/utils.js',
+            '/input': 'src/kapwa/input/index.tsx',
+            '/label': 'src/kapwa/label/index.tsx',
+            '/banner': 'src/kapwa/banner/index.tsx',
+            '/button': 'src/kapwa/button/index.tsx',
+            '/card': 'src/kapwa/card/index.tsx',
+            '/lib/utils': 'src/kapwa/lib/utils.ts',
           };
           return path.resolve(__dirname, paths[subpath]);
         },
