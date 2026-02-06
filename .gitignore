@@ -46,3 +46,6 @@ pipeline/*
 CLAUDE.md
 .local/
 pipeline/__pycache__/
+
+# Git worktrees
+.worktrees/
