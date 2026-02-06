@@ -1,0 +1,1 @@
+{"version":3,"file":"index.ts.cjs","sources":["../../../../src/kapwa/button/hooks/index.ts"],"sourcesContent":["export const useTestHook = () => {};\n"],"names":["useTestHook"],"mappings":"gFAAO,MAAMA,EAAc,IAAM,CAAC"}
