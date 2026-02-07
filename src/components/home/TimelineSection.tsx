@@ -12,6 +12,7 @@ import {
   Waves,
 } from 'lucide-react';
 
+import Button from '@/components/ui/Button';
 import { Card, CardContent } from '@/components/ui/Card';
 
 import highlightsData from '@/data/about/highlights.json';
@@ -125,15 +126,17 @@ export default function TimelineSection() {
         {(historyData.length > COLLAPSE_LIMIT ||
           highlightsData.length > COLLAPSE_LIMIT) && (
           <div className='mt-8 flex justify-center'>
-            <button
+            <Button
               onClick={() => setShowAll(!showAll)}
-              className='group text-primary-600 bg-primary-50 hover:bg-primary-100 flex items-center gap-2 rounded-lg px-6 py-3 font-semibold transition-all duration-200 hover:shadow-md'
+              className='bg-primary-50 text-primary-600 hover:bg-primary-100'
+              rightIcon={
+                <ChevronDown
+                  className={`h-4 w-4 transition-transform duration-300 ${showAll ? 'rotate-180' : ''}`}
+                />
+              }
             >
-              <span>{showAll ? 'Show Less' : 'Show More'}</span>
-              <ChevronDown
-                className={`h-4 w-4 transition-transform duration-300 ${showAll ? 'rotate-180' : ''}`}
-              />
-            </button>
+              {showAll ? 'Show Less' : 'Show More'}
+            </Button>
           </div>
         )}
       </div>
