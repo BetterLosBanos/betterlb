@@ -3,6 +3,7 @@ import { FC } from 'react';
 import { Building2Icon, HomeIcon, UsersIcon } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
 
+import Button from '../ui/Button';
 import { Card, CardContent } from '../ui/Card';
 
 const GovernmentSection: FC = () => {
@@ -62,24 +63,27 @@ const GovernmentSection: FC = () => {
                   {branch.title}
                 </h3>
                 <p className='mb-4 text-gray-800'>{branch.description}</p>
-                <a
+                <Button
                   href={branch.link}
-                  className='text-primary-600 hover:text-primary-700 inline-flex items-center font-medium transition-colors'
+                  variant='link'
+                  size='sm'
+                  rightIcon={
+                    <svg
+                      className='h-4 w-4'
+                      viewBox='0 0 24 24'
+                      fill='none'
+                      stroke='currentColor'
+                      strokeWidth='2'
+                      strokeLinecap='round'
+                      strokeLinejoin='round'
+                    >
+                      <line x1='5' y1='12' x2='19' y2='12'></line>
+                      <polyline points='12 5 19 12 12 19'></polyline>
+                    </svg>
+                  }
                 >
                   {t('government.learnMore')}
-                  <svg
-                    className='ml-1 h-4 w-4'
-                    viewBox='0 0 24 24'
-                    fill='none'
-                    stroke='currentColor'
-                    strokeWidth='2'
-                    strokeLinecap='round'
-                    strokeLinejoin='round'
-                  >
-                    <line x1='5' y1='12' x2='19' y2='12'></line>
-                    <polyline points='12 5 19 12 12 19'></polyline>
-                  </svg>
-                </a>
+                </Button>
               </CardContent>
             </Card>
           ))}
