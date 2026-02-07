@@ -166,6 +166,17 @@ export function StatsCard({
               {subtext}
             </span>
           )}
+          {yoy && showTrend && (
+            <div
+              className={`mt-2 flex items-center text-xs font-medium ${trendColor}`}
+            >
+              <TrendIcon className='mr-1 h-3 w-3' />
+              <span>{Math.abs(yoy.pct).toFixed(1)}%</span>
+              <span className='ml-1 font-normal text-slate-400'>
+                vs last year
+              </span>
+            </div>
+          )}
           {children && <div className='mt-1'>{children}</div>}
         </div>
         {Icon && (
