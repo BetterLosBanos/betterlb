@@ -152,22 +152,19 @@ export function StatsCard({
           </p>
           <div className='truncate text-3xl font-black wrap-break-word text-slate-900 sm:text-2xl md:text-2xl'>
             {displayValue}
+            {yoy && showTrend && (
+              <span
+                className={`ml-2 inline-flex items-center text-lg font-semibold ${trendColor}`}
+              >
+                <TrendIcon className='h-4 w-4' />
+                <span className='ml-0.5'>{Math.abs(yoy.pct).toFixed(1)}%</span>
+              </span>
+            )}
           </div>
           {subtext && (
             <span className='truncate text-xs font-medium text-slate-400'>
               {subtext}
             </span>
-          )}
-          {yoy && showTrend && (
-            <div
-              className={`mt-2 flex items-center text-xs font-medium ${trendColor}`}
-            >
-              <TrendIcon className='mr-1 h-3 w-3' />
-              <span>{Math.abs(yoy.pct).toFixed(1)}%</span>
-              <span className='ml-1 font-normal text-slate-400'>
-                vs last year
-              </span>
-            </div>
           )}
           {children && <div className='mt-1'>{children}</div>}
         </div>
