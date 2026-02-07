@@ -291,12 +291,9 @@ const Ideas: FC = () => {
             >
               Submit via GitHub
             </Button>
-            <a
-              href='/about'
-              className='focus:ring-primary-500 inline-flex items-center justify-center rounded-md border border-gray-300 bg-white px-6 py-3 text-base font-medium text-gray-700 shadow-xs transition-colors hover:bg-gray-50 focus:ring-2 focus:ring-offset-2 focus:outline-hidden'
-            >
+            <Button href='/about' variant='outline' size='default'>
               Learn More About Us
-            </a>
+            </Button>
           </div>
         </section>
       </div>
