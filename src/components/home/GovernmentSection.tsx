@@ -5,8 +5,11 @@ import { useNavigate } from 'react-router-dom';
 import { Building2Icon, HomeIcon, UsersIcon } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
 
+<<<<<<< HEAD
 import { config } from '@/lib/lguConfig';
 
+=======
+>>>>>>> 283e44d (refactor: replace custom anchor with Kapwa Button link)
 import Button from '../ui/Button';
 import { Card, CardContent } from '../ui/Card';
 
@@ -66,7 +69,11 @@ const GovernmentSection: FC = () => {
                 </h3>
                 <p className='mb-4 text-gray-800'>{branch.description}</p>
                 <Button
+<<<<<<< HEAD
                   onClick={() => navigate(branch.link)}
+=======
+                  href={branch.link}
+>>>>>>> 283e44d (refactor: replace custom anchor with Kapwa Button link)
                   variant='link'
                   size='sm'
                   rightIcon={
