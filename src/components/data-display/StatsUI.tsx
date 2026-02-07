@@ -1,12 +1,25 @@
 import { ReactNode } from 'react';
 
-import { LucideIcon, ShieldCheck } from 'lucide-react';
+import {
+  ArrowDownRight,
+  ArrowUpRight,
+  LucideIcon,
+  ShieldCheck,
+} from 'lucide-react';
 
 import { Badge } from '@/components/ui/Badge';
 import { Card, CardContent } from '@/components/ui/Card';
 
 import { formatPesoAdaptive } from '@/lib/format';
 import { cn } from '@/lib/utils';
+
+// YoY calculation (simplified version of budgetUtils.calculateYoY)
+const calculateYoY = (current: number, previous?: number) => {
+  if (previous === undefined || previous === 0) return null;
+  const diff = current - previous;
+  const pct = (diff / previous) * 100;
+  return { diff, pct };
+};
 
 // Stats Hero / Header
 interface StatsHeroProps {
@@ -64,7 +77,10 @@ interface StatsCardProps {
   icon?: LucideIcon;
   iconBg?: string;
   children?: ReactNode;
-  alreadyInMillions?: boolean; // NEW: flag for pre-scaled data
+  alreadyInMillions?: boolean; // flag for pre-scaled data
+  prevValue?: number; // for YoY calculation
+  showTrend?: boolean; // force show/hide trend indicator
+  hover?: boolean; // enable hover effect
 }
 
 export function StatsCard({
@@ -76,12 +92,24 @@ export function StatsCard({
   iconBg,
   children,
   alreadyInMillions = false,
+  prevValue,
+  showTrend = true,
+  hover = false,
 }: StatsCardProps) {
   const variantClasses = {
     primary: 'border-b-primary-600',
     secondary: 'border-b-secondary-600',
     slate: 'border-b-slate-900',
   };
+
+  // Calculate YoY trend if prevValue is provided
+  const yoy =
+    prevValue !== undefined && typeof value === 'number'
+      ? calculateYoY(value, prevValue)
+      : null;
+  const isPositive = yoy ? yoy.diff >= 0 : true;
+  const trendColor = isPositive ? 'text-emerald-600' : 'text-rose-600';
+  const TrendIcon = isPositive ? ArrowUpRight : ArrowDownRight;
 
   // Determine if value should be formatted as currency
   // Check if it's a large number (>= 1000) or if label/subtext contains currency indicators
@@ -111,7 +139,7 @@ export function StatsCard({
       : value;
 
   return (
-    <Card variant='default' hover={false} className='overflow-hidden'>
+    <Card variant='default' hover={hover} className='overflow-hidden'>
       <CardContent
         className={cn(
           'flex flex-col items-start justify-between gap-2 border-b-4 sm:flex-row sm:items-center',
@@ -129,6 +157,17 @@ export function StatsCard({
             <span className='truncate text-xs font-medium text-slate-400'>
               {subtext}
             </span>
+          )}
+          {yoy && showTrend && (
+            <div
+              className={`mt-2 flex items-center text-xs font-medium ${trendColor}`}
+            >
+              <TrendIcon className='mr-1 h-3 w-3' />
+              <span>{Math.abs(yoy.pct).toFixed(1)}%</span>
+              <span className='ml-1 font-normal text-slate-400'>
+                vs last year
+              </span>
+            </div>
           )}
           {children && <div className='mt-1'>{children}</div>}
         </div>
@@ -192,15 +231,22 @@ interface StatsGridProps {
     variant?: 'primary' | 'secondary' | 'slate';
     children?: ReactNode;
     alreadyInMillions?: boolean;
+    prevValue?: number;
+    showTrend?: boolean;
+    hover?: boolean;
   }[];
   columns?: 2 | 3 | 4;
   alreadyInMillions?: boolean; // Apply to all cards
+  showTrend?: boolean; // Apply to all cards
+  hover?: boolean; // Apply to all cards
 }
 
 export function StatsGrid({
   stats,
   columns = 4,
   alreadyInMillions = false,
+  showTrend: globalShowTrend,
+  hover: globalHover,
 }: StatsGridProps) {
   const gridCols = {
     2: 'lg:grid-cols-2',
@@ -222,6 +268,9 @@ export function StatsGrid({
           iconBg={s.iconBg}
           variant={s.variant}
           alreadyInMillions={s.alreadyInMillions ?? alreadyInMillions}
+          prevValue={s.prevValue}
+          showTrend={s.showTrend ?? globalShowTrend ?? true}
+          hover={s.hover ?? globalHover ?? false}
         >
           {s.children}
         </StatsCard>
