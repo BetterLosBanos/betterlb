@@ -76,10 +76,13 @@ export async function onRequest(context: {
       },
     });
   } catch (error) {
+    // Log detailed error information on the server for debugging purposes,
+    // but do not expose stack traces or internal details to the client.
+    console.error('Error in weather endpoint:', error);
+
     return new Response(
       JSON.stringify({
-        error: (error as Error).message,
-        stack: (error as Error).stack,
+        error: 'Internal server error',
       }),
       {
         status: 500,

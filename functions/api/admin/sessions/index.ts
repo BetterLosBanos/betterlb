@@ -92,8 +92,28 @@ async function handleCreateSession(context: {
       );
     }
 
-    // Generate session ID
-    const sessionId = `session_${Date.now()}_${Math.random().toString(36).substr(2, 9)}`;
+    // Generate session ID using cryptographically secure randomness
+    const generateCryptoId = (): string => {
+      if (typeof crypto === 'undefined') {
+        throw new Error('Cryptographic random generator is not available in this environment');
+      }
+
+      if ('randomUUID' in crypto && typeof crypto.randomUUID === 'function') {
+        return crypto.randomUUID();
+      }
+
+      if ('getRandomValues' in crypto && typeof crypto.getRandomValues === 'function') {
+        const buf = new Uint8Array(16);
+        crypto.getRandomValues(buf);
+        return Array.from(buf)
+          .map((b) => b.toString(16).padStart(2, '0'))
+          .join('');
+      }
+
+      throw new Error('No suitable cryptographic random function available');
+    };
+
+    const sessionId = `session_${generateCryptoId()}`;
 
     // Insert session - use correct column name 'type' and 'number'
     await env.BETTERLB_DB.prepare(
