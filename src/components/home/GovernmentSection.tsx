@@ -1,5 +1,7 @@
 import { FC } from 'react';
 
+import { useNavigate } from 'react-router-dom';
+
 import { Building2Icon, HomeIcon, UsersIcon } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
 
@@ -10,6 +12,7 @@ import { Card, CardContent } from '../ui/Card';
 
 const GovernmentSection: FC = () => {
   const { t } = useTranslation('common');
+  const navigate = useNavigate();
 
   const branches = [
     {
@@ -63,7 +66,7 @@ const GovernmentSection: FC = () => {
                 </h3>
                 <p className='mb-4 text-gray-800'>{branch.description}</p>
                 <Button
-                  href={branch.link}
+                  onClick={() => navigate(branch.link)}
                   variant='link'
                   size='sm'
                   rightIcon={
