@@ -34,7 +34,7 @@ jobs:
           persist-credentials: false
 
       - name: Setup Node.js
-        uses: actions/setup-node@2028fbc5c25f0a0956270381628d01115582f6e7 # v6.0.0
+        uses: actions/setup-node@d02c89dce7e1ba9ef629ce0680989b3a1cc72edb # v6.0.0
         with:
           node-version-file: '.nvmrc'
           cache: 'npm'
