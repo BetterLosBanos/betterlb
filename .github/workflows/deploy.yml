@@ -35,17 +35,11 @@ jobs:
       - name: Build
         run: npm run build
 
-      # 3. PREPARE FOR PAGES DEPLOYMENT
-      - name: Prepare Pages deployment
-        run: |
-          mkdir -p dist/pages
-          cp -r dist/* dist/pages/
-
-      # 4. DEPLOY USING CLOUDFLARE WRANGLER ACTION
+      # 3. DEPLOY USING CLOUDFLARE WRANGLER ACTION
       - name: Deploy to Cloudflare Pages
         uses: cloudflare/wrangler-action@v3
         with:
           apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
-          workingDirectory: dist/pages
+          command: pages deploy dist --project-name=betterlb
           gitHubToken: ${{ secrets.GITHUB_TOKEN }}
