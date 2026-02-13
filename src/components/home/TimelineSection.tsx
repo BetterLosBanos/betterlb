@@ -15,6 +15,8 @@ import {
 import Button from '@/components/ui/Button';
 import { Card, CardContent } from '@/components/ui/Card';
 
+import { config } from '@/lib/lguConfig';
+
 import highlightsData from '@/data/about/highlights.json';
 import historyData from '@/data/about/history.json';
 
@@ -45,7 +47,7 @@ export default function TimelineSection() {
         {/* Header */}
         <div className='mb-12 text-center'>
           <h2 className='mb-4 text-2xl font-bold text-gray-900 md:text-3xl'>
-            History of Los Baños
+            History of {config.lgu.name}
           </h2>
         </div>
 

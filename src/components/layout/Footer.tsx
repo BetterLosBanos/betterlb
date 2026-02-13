@@ -11,6 +11,8 @@ import {
 } from '@icons-pack/react-simple-icons';
 import { useTranslation } from 'react-i18next';
 
+import { config } from '@/lib/lguConfig';
+
 import { footerNavigation } from '../../data/navigation';
 
 const Footer: FC = () => {
@@ -41,23 +43,23 @@ const Footer: FC = () => {
           <div className='col-span-2 space-y-6 md:col-span-3 lg:col-span-2'>
             <div className='flex items-center'>
               <img
-                src='/logos/webp/betterlb-white-outline.webp'
+                src={config.portal.logoWhitePath}
                 alt='BetterLB'
                 className='mr-4 h-12 w-12'
               />
               <div>
                 <div className='text-xl font-black tracking-tighter'>
-                  Better Los Baños
+                  {config.portal.footerBrandName}
                 </div>
                 <div className='text-[10px] font-bold tracking-widest text-slate-400 uppercase'>
-                  Community Civic Portal
+                  {config.portal.footerTagline}
                 </div>
               </div>
             </div>
             <p className='max-w-sm text-sm leading-relaxed text-slate-400'>
               An open-source initiative providing transparent access to
               municipal services, local legislation, and public data for the
-              people of Los Baños.
+              people of {config.lgu.name}.
             </p>
             <div className='flex space-x-4'>
               {footerNavigation.socialLinks.map(link => (

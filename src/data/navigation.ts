@@ -1,3 +1,4 @@
+import { config } from '../lib/lguConfig';
 import { NavigationItem } from '../types';
 import serviceCategories from './service_categories.json';
 
@@ -62,10 +63,9 @@ export const mainNavigation: NavigationItem[] = [
 export const footerNavigation = {
   // Brand Section (Matches the Solano/Bacolod mission-style text)
   brand: {
-    title: 'Better LB',
-    description:
-      'An open-source civic tech initiative making government information and municipal services accessible for the people of Los Baños.',
-    cost: 'Cost to the People of Los Baños = ₱0',
+    title: config.portal.name,
+    description: `An open-source civic tech initiative making government information and municipal services accessible for the people of ${config.lgu.name}.`,
+    cost: `Cost to the People of ${config.lgu.fullName} = ₱0`,
   },
 
   mainSections: [
@@ -137,8 +137,8 @@ export const footerNavigation = {
       title: 'Resources',
       links: [
         {
-          label: 'Official Los Baños Gov.ph',
-          href: 'https://www.losbanos.gov.ph',
+          label: `${config.lgu.name} Gov.ph`,
+          href: config.lgu.officialWebsite,
           target: '_blank',
         },
         // {
@@ -152,8 +152,8 @@ export const footerNavigation = {
           target: '_blank',
         },
         {
-          label: 'Province of Laguna',
-          href: 'https://laguna.gov.ph',
+          label: `Province of ${config.lgu.province}`,
+          href: config.lgu.provinceWebsite,
           target: '_blank',
         },
         // { label: 'Privacy Policy', href: '/privacy' },

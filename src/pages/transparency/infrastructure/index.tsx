@@ -25,12 +25,15 @@ import SearchInput from '@/components/ui/SearchInput';
 import SelectPicker from '@/components/ui/SelectPicker';
 
 import { formatPesoAdaptive } from '@/lib/format';
+import { config } from '@/lib/lguConfig';
 import { DPWHProject, INDICES, client } from '@/lib/meilisearch';
 
 export default function InfrastructurePage() {
   const navigate = useNavigate();
 
-  //  Filters & Search
+  // Get config for infrastructure filters
+
+  // Filters & Search
   const [query, setQuery] = useState('');
   const [selectedStatuses, setSelectedStatuses] = useState<string[]>([]);
   const [results, setResults] = useState<DPWHProject[]>([]);
@@ -91,15 +94,19 @@ export default function InfrastructurePage() {
       try {
         const index = client.index(INDICES.DPWH);
 
+        const provinceFilter = config.lgu.districtEngineeringOffice
+          ? `location.province = "${config.lgu.districtEngineeringOffice}" OR location.province = "${config.lgu.province}"`
+          : `location.province = "${config.lgu.province}"`;
+
         const filterConditions: string[] = [
-          'location.region = "Region IV-A"',
-          `(location.province = "Laguna 2nd DEO" OR location.province = "Laguna")`,
+          `location.region = "${config.lgu.region}"`,
+          provinceFilter,
           selectedStatuses.length > 0
             ? `(${selectedStatuses.map(s => `status = "${s}"`).join(' OR ')})`
             : '',
         ].filter(Boolean);
 
-        let searchString = 'Los Baños';
+        let searchString = config.transparency.infrastructure.searchString;
         if (query) searchString += ` ${query}`;
 
         const response = await index.search(searchString, {
@@ -112,8 +119,10 @@ export default function InfrastructurePage() {
         const exactMatches = hits.filter(h => {
           const mun = h.location.municipality?.toLowerCase() || '';
           const desc = h.description?.toLowerCase() || '';
-          const target = ['los baños', 'los banos'];
-          return target.some(t => mun.includes(t) || desc.includes(t));
+          const target = config.transparency.infrastructure.exactMatchTargets;
+          return target.some(
+            (t: string) => mun.includes(t) || desc.includes(t)
+          );
         });
 
         setResults(exactMatches);
@@ -127,7 +136,7 @@ export default function InfrastructurePage() {
 
     const timer = setTimeout(fetchData, 400);
     return () => clearTimeout(timer);
-  }, [query, selectedStatuses]);
+  }, [query, selectedStatuses, config]);
 
   //  Pagination helpers
   const [resultsPerPage, setResultsPerPage] = useState(10);
@@ -342,7 +351,7 @@ export default function InfrastructurePage() {
               </h4>
               <p className='text-xs leading-relaxed text-slate-500'>
                 View detailed budget breakdowns, regional comparisons, and
-                contractor performance charts on the BetterGov Transparency
+                contractor performance charts on BetterGov Transparency
                 Dashboard.
               </p>
             </div>
@@ -367,7 +376,7 @@ export default function InfrastructurePage() {
                 Citizen Verification
               </h4>
               <p className='text-xs leading-relaxed text-slate-500'>
-                Report issues, upload photos, and verify the actual physical
+                Report issues, upload photos, and verify actual physical
                 progress of infrastructure projects in your barangay on
                 Bisto.ph.
               </p>

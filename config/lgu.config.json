@@ -1,0 +1,56 @@
+{
+  "lgu": {
+    "name": "Los Baños",
+    "fullName": "Municipality of Los Baños",
+    "province": "Laguna",
+    "districtEngineeringOffice": "Laguna 2nd DEO",
+    "region": "Region IV-A",
+    "regionCode": "CALABARZON",
+    "type": "municipality",
+    "logoPath": "/logos/png/betterlb-blue.png",
+    "officialWebsite": "https://losbanos.gov.ph",
+    "provinceWebsite": "https://laguna.gov.ph"
+  },
+  "portal": {
+    "name": "BetterLB",
+    "domain": "betterlb.org",
+    "baseUrl": "https://betterlb.org",
+    "tagline": "Community Powered Los Baños Portal",
+    "description": "Community-powered portal of the Municipality of Los Baños.",
+    "brandColor": "#0066eb",
+    "navbarTagline": "A Community-run portal for",
+    "footerBrandName": "Better Los Baños",
+    "footerTagline": "Community Civic Portal",
+    "logoWhitePath": "/logos/webp/betterlb-white-outline.webp"
+  },
+  "location": {
+    "coordinates": {
+      "lat": 14.1763,
+      "lon": 121.2219
+    },
+    "weather": {
+      "defaultCity": "Los Baños"
+    }
+  },
+  "transparency": {
+    "procurement": {
+      "organizationName": "MUNICIPALITY OF LOS BAÑOS, LAGUNA",
+      "externalDashboard": "https://transparency.bettergov.ph/organizations/"
+    },
+    "infrastructure": {
+      "searchString": "Los Baños",
+      "exactMatchTargets": ["los baños", "los banos"]
+    }
+  },
+  "dataPaths": {
+    "departments": "src/data/lgu/losbanos/directory/departments.json",
+    "barangays": "src/data/lgu/losbanos/directory/barangays.json",
+    "services": "src/data/lgu/losbanos/services/categories"
+  },
+  "features": {
+    "openLGU": true,
+    "transparency": true,
+    "tourism": true,
+    "statistics": true
+  }
+}
