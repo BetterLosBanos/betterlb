@@ -7,6 +7,7 @@ import { useTranslation } from 'react-i18next';
 
 import Button from '@/components/ui/Button';
 
+import { config } from '@/lib/lguConfig';
 import { cn } from '@/lib/utils';
 
 import { mainNavigation } from '../../data/navigation';
@@ -65,7 +66,7 @@ const Navbar: FC = () => {
               About
             </Link>
             <a
-              href='https://losbanos.gov.ph'
+              href={config.lgu.officialWebsite}
               target='_blank'
               rel='noreferrer'
               className='hover:text-primary-600 inline-flex text-[9px] font-bold tracking-widest whitespace-nowrap text-slate-500 uppercase sm:text-[10px] md:text-xs'
@@ -113,7 +114,7 @@ const Navbar: FC = () => {
             />
             <div className='flex min-w-0 flex-col justify-center'>
               <div className='text-lg leading-none font-black tracking-tighter text-slate-900 md:text-xl'>
-                BetterLB
+                {config.portal.name}
               </div>
               <div className='line-clamp-2 text-[9px] leading-tight font-medium text-slate-500 md:line-clamp-1 md:text-xs md:leading-normal'>
                 A Community-run portal for the Municipality of Los Baños

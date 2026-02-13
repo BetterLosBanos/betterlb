@@ -22,6 +22,7 @@ import { PaginationControls } from '@/components/ui/Pagination';
 import SearchInput from '@/components/ui/SearchInput';
 
 import { formatPesoAdaptive } from '@/lib/format';
+import { config } from '@/lib/lguConfig';
 import { INDICES, PhilgepsDoc, client } from '@/lib/meilisearch';
 
 // Helper Interface for Aggregate Data (matching BetterGov structure)
@@ -54,7 +55,7 @@ export default function ProcurementPage() {
   >([]); // Full dataset for charts
 
   // Constants
-  const ORG_NAME = 'MUNICIPALITY OF LOS BAÑOS, LAGUNA';
+  const ORG_NAME = config.transparency.procurement.organizationName;
   const ORG_FILTER = `organization_name = "${ORG_NAME}"`;
 
   // --- Data Loading ---

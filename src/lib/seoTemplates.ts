@@ -1,9 +1,20 @@
-// helpers for interpolation
+import { config } from './lguConfig';
 
-export function formatStandardTitle(subject: string): string {
-  return `${subject} | BetterGov.ph`;
+// helpers for interpolation using config
+
+export function formatStandardTitle(
+  subject: string,
+  portalName?: string
+): string {
+  return `${subject} | ${portalName || config.portal.name}`;
 }
 
-export function formatStandardDescription(subject: string): string {
-  return `Learn more about ${subject} through BetterGov.ph, the Philippines’ civic information portal.`;
+export function formatStandardDescription(
+  subject: string,
+  portalName?: string,
+  lguFullName?: string
+): string {
+  const name = portalName || config.portal.name;
+  const lgu = lguFullName || config.lgu.fullName;
+  return `Learn more about ${subject} through ${name}, the Philippines' civic information portal for ${lgu}.`;
 }
