@@ -4,6 +4,7 @@ import { useLocation } from 'react-router-dom';
 
 import { Helmet } from 'react-helmet-async';
 
+import { config } from '@/lib/lguConfig';
 import {
   formatStandardDescription,
   formatStandardTitle,
@@ -121,9 +122,8 @@ export default function SEO({
   }
 
   // Default values
-  const defaultTitle = 'BetterLB | Community Powered Los Baños Portal';
-  const defaultDescription =
-    'Community-powered portal of the Municipality of Los Baños. Access government services, stay updated with the latest news, and find information about the Municipality of Los Baños.';
+  const defaultTitle = `${config.portal.name} | Community Powered ${config.lgu.name} Portal`;
+  const defaultDescription = `${config.portal.description} Access government services, stay updated with the latest news, and find information about ${config.lgu.fullName}.`;
   const defaultCanonical = location.pathname + location.search;
 
   useEffect(() => {
@@ -136,9 +136,9 @@ export default function SEO({
   const finalDescription =
     description || routeDescription || defaultDescription;
 
-  const siteTitle = 'BetterLB';
+  const siteTitle = config.portal.name;
   const fullTitle = title ? `${title} | ${siteTitle}` : finalTitle;
-  const baseUrl = 'https://bettergov.ph';
+  const baseUrl = config.portal.baseUrl;
   const fullCanonical = defaultCanonical
     ? `${baseUrl}${defaultCanonical}`
     : undefined;
@@ -193,8 +193,8 @@ export default function SEO({
       <meta name='geo.country' content='PH' />
       <meta name='geo.region' content='PH' />
       <meta name='DC.language' content='en' />
-      <meta name='DC.creator' content='BetterGov.ph' />
-      <meta name='DC.publisher' content='BetterGov.ph' />
+      <meta name='DC.creator' content={config.portal.name} />
+      <meta name='DC.publisher' content={config.portal.name} />
 
       {/* Structured Data */}
       {jsonLd && (

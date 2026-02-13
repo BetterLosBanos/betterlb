@@ -1,5 +1,6 @@
 import { HourlyForecast, WeatherData } from '../types';
 import { fetchWithCache } from './api';
+import { config } from './lguConfig';
 
 /**
  * Map OpenWeatherMap icon codes to Lucide icon names
@@ -29,21 +30,33 @@ export const mapWeatherIconToLucide = (iconCode: string): string => {
 };
 
 /**
- * Fetch weather data for Los Baños and transform to frontend type
+ * Fetch weather data for configured LGU and transform to frontend type
  */
 export const fetchWeatherData = async (): Promise<WeatherData[]> => {
-  // Always fetch the specific city
-  let data = await fetchWithCache('/api/weather?city=Los%20Baños');
+  // Normalize city name for API call (handle special characters)
+  const cityName = config.location.weather.defaultCity;
+  const cityKey = config.lgu.name
+    .toLowerCase()
+    .replace(/\s+/g, '_')
+    .replace(/ñ/g, 'n');
+
+  // Always fetch specific city
+  let data = await fetchWithCache(
+    `/api/weather?city=${encodeURIComponent(cityName)}`
+  );
 
   // If KV is empty or city missing, fallback to update
-  if (!data || Object.keys(data).length === 0 || !data['los_baños']) {
+  if (!data || Object.keys(data).length === 0) {
     data = await fetchWithCache('/api/weather?update=true');
   }
 
-  const city = data['los_baños'];
+  const city =
+    data[cityKey] ||
+    data[config.lgu.name.toLowerCase()] ||
+    data[Object.keys(data)[0]];
   if (!city) {
     // Fallback in case API completely failed
-    console.warn('No weather data returned for Los Baños');
+    console.warn(`No weather data returned for ${config.lgu.name}`);
     return [];
   }
 
@@ -60,7 +73,7 @@ export const fetchWeatherData = async (): Promise<WeatherData[]> => {
     }));
 
   const weatherData: WeatherData = {
-    location: city.name || 'Los Baños',
+    location: city.name || config.lgu.name,
     temperature: Math.round(city.main?.temp ?? 0),
     condition: city.weather?.[0]?.description ?? 'Unknown',
     humidity: city.main?.humidity ?? 0,

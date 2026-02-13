@@ -1,18 +1,23 @@
 import { FC } from 'react';
 
+import { useNavigate } from 'react-router-dom';
+
 import { Building2Icon, HomeIcon, UsersIcon } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
+
+import { config } from '@/lib/lguConfig';
 
 import Button from '../ui/Button';
 import { Card, CardContent } from '../ui/Card';
 
 const GovernmentSection: FC = () => {
   const { t } = useTranslation('common');
+  const navigate = useNavigate();
 
   const branches = [
     {
       id: 'executive',
-      title: t('government.electedofficialsTitle', 'Elected Officials'),
+      title: t('government.electedofficialsTitle'),
       description: t(
         'government.electedofficialsDescription',
         'Meet your Mayor, Vice Mayor, and Councilors.'
@@ -22,7 +27,7 @@ const GovernmentSection: FC = () => {
     },
     {
       id: 'legislative',
-      title: t('government.departmentsTitle', 'Departments'),
+      title: t('government.departmentsTitle'),
       description: t(
         'government.departmentsDescription',
         'Services and offices under the Executive branch.'
@@ -32,11 +37,8 @@ const GovernmentSection: FC = () => {
     },
     {
       id: 'barangays',
-      title: t('government.barangaysTitle', 'Barangays'),
-      description: t(
-        'government.barangaysDescription',
-        'The 14 local component units of Los Baños.'
-      ),
+      title: t('government.barangaysTitle'),
+      description: t('government.barangaysDescription'),
       icon: <HomeIcon className='text-primary-600 h-10 w-10' />,
       link: '/government/barangays',
     },
@@ -64,7 +66,7 @@ const GovernmentSection: FC = () => {
                 </h3>
                 <p className='mb-4 text-gray-800'>{branch.description}</p>
                 <Button
-                  href={branch.link}
+                  onClick={() => navigate(branch.link)}
                   variant='link'
                   size='sm'
                   rightIcon={

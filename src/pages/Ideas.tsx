@@ -1,5 +1,7 @@
 import { FC, ReactNode, useState } from 'react';
 
+import { useNavigate } from 'react-router-dom';
+
 import {
   GithubIcon,
   LightbulbIcon,
@@ -105,6 +107,7 @@ const getComplexityColor = (complexity: string) => {
 
 const Ideas: FC = () => {
   const [projectIdeas] = useState<ProjectIdea[]>(initialProjectIdeas);
+  const navigate = useNavigate();
 
   const handleSubmitIdea = () => {
     const githubUrl =
@@ -291,7 +294,11 @@ const Ideas: FC = () => {
             >
               Submit via GitHub
             </Button>
-            <Button href='/about' variant='outline' size='default'>
+            <Button
+              onClick={() => navigate('/about')}
+              variant='outline'
+              size='default'
+            >
               Learn More About Us
             </Button>
           </div>

@@ -9,21 +9,36 @@ This project is a municipal-focused fork of [BetterGov.ph](https://bettergov.ph)
 ## Why We're Building This Project
 Official government websites are often difficult to navigate on mobile devices, lack standardized accessibility features, and can be slow to update. **Better LB** provides a high-performance alternative that mirrors official data (built by BetterGov.PH volunteers) in a modern, inclusive, and community-audited format.
 
-## Our Mission
-To empower the citizens of Los Baños with transparent access to municipal services, local legislation, and public data at **₱0 cost to the people**.
+## Files to Edit
 
-## Key Features
-*   **Unified Service Directory**: A categorized list of municipal permits, certificates, and programs with step-by-step guides and requirement checklists.
-*   **Leadership Profiles**: A "People-First" directory of the Executive and Legislative branches, including contact details and committee assignments.
-*   **Citizen Contribution Portal**: A custom workflow allowing non-developers to suggest edits or new services directly via a web form.
-*   **Automated Data Pipeline**: A "Human-in-the-loop" verification system using GitHub Actions to audit and merge community data safely.
-*   **Transparency Dashboard**: Independent visualizations of public funds and infrastructure projects.
-*   **Weather Integration**: Local weather information with automatic updates and caching.
-*   **Multi-language Support**: Built-in Filipino translations with easy extension to other Philippine languages.
-*   **Search Functionality**: Fast search powered by Meilisearch with fuzzy matching.
-*   **Responsive Design**: Mobile-first approach with accessibility features.
+| File | What to Change |
+|------|------------------|
+| `/config/lgu.config.json` | All LGU settings (name, province, coordinates, branding, transparency config) |
+| `/public/locales/en/common.json` | UI text strings (hero title, footer copyright, government section) |
+| `/src/lib/lguConfig.ts` | Config loader - no changes needed, just imports config |
+| `/src/components/layout/SEO.tsx` | Uses config for portal branding/URLs |
+| `/src/pages/transparency/procurement/index.tsx` | Uses config for procurement organization filter |
+| `/src/pages/transparency/infrastructure/index.tsx` | Uses config for region/province/search filters |
 
----
+## Quick Start
+
+1. Edit `/config/lgu.config.json` with your LGU details
+2. Run `npm install && npm run build`
+
+## Config Fields to Update
+
+| Field | Your LGU | Description |
+|-------|-------------|
+| `lgu.name` | "Your Municipality" | Short name |
+| `lgu.fullName` | "Municipality of Your Municipality" | Full name |
+... (rest of table)
+
+## Notes
+- Translations use simple fallbacks - edit JSON directly for any UI text
+- Components read from `config` - no need to pass config to translation functions
+- Build verification ensures all changes work correctly
+
+See FORKING.md for more details.
 
 ## Technical Stack
 *   **Frontend**: React 19, Vite, TypeScript (Strict mode)
@@ -124,81 +139,6 @@ betterlb/
 - **Search Integration**: Meilisearch-powered search with real-time indexing
 - **Internationalization**: Multi-language support with i18next
 
-```
-betterlb/
-├── e2e/                         # End-to-end tests
-│   └── utils/                   # Test helpers and shared testing logic
-├── functions/                   # Serverless / backend functions
-│   └── api/                     # API endpoints and handlers
-├── pipeline/                    # Data processing pipeline (Python side)
-│   ├── data/                    # Structured source documents
-│   │   └── pdfs/                # Source legislative PDFs
-│   │       ├── executive_orders/
-│   │       ├── ordinances/
-│   │       └── resolutions/
-│   └── __pycache__/             # Python cache (auto-generated)
-├── public/                      # Static public assets
-│   ├── assets/                  # General media assets
-│   ├── locales/                 # Translation files
-│   └── logos/                   # Logo exports
-├── raw_data/                    # Unprocessed data before pipeline cleanup
-├── scripts/                     # Automation, maintenance, and build scripts
-├── src/                         # Main application source code
-│   ├── components/              # Reusable UI components
-│   │   ├── data-display/        # Tables, cards, and record viewers
-│   │   ├── home/                # Homepage-specific components
-│   │   ├── layout/              # Layout wrappers, grids, headers, footers
-│   │   ├── map/                 # Map visualizations and geospatial UI
-│   │   ├── navigation/          # Menus, navbars, breadcrumbs
-│   │   ├── search/              # Search bars, filters, query UI
-│   │   ├── ui/                  # Generic UI elements (buttons, modals, etc.)
-│   │   └── widgets/             # Small reusable info widgets
-│   ├── constants/               # App-wide constant values and config
-│   ├── data/                    # Structured frontend data layer
-│   │   ├── about/               # About page content
-│   │   ├── directory/           # Government directory datasets
-│   │   │   └── schema/          # Data schemas for directory records
-│   │   ├── legislation/         # Legislative data
-│   │   │   ├── committees/
-│   │   │   ├── documents/
-│   │   │   │   └── sb_12/       # Session-specific legislative docs
-│   │   │   │       └── resolutions/
-│   │   │   ├── persons/         # Councilors, authors, sponsors
-│   │   │   ├── sessions/        # Legislative sessions
-│   │   │   │   └── sb_12/
-│   │   │   └── term/            # Term metadata
-│   │   ├── schema/              # Global data schemas
-│   │   ├── services/            # Public service datasets
-│   │   │   └── categories/      # Service classifications
-│   │   ├── statistics/          # Municipality statistics datasets
-│   │   └── transparency/        # Transparency and governance data
-│   ├── hooks/                   # Custom reusable frontend hooks
-│   ├── i18n/                    # Internationalization setup and config
-│   ├── lib/                     # Utility libraries and helpers
-│   ├── pages/                   # Route-level pages (site sections)
-│   │   ├── about/
-│   │   ├── accessibility/
-│   │   ├── contribute/
-│   │   ├── data/                # Open data portal pages
-│   │   ├── government/          # Government structure pages
-│   │   │   ├── barangays/
-│   │   │   ├── departments/
-│   │   │   ├── elected-officials/
-│   │   │   └── executive/
-│   │   ├── legislation/         # Legislative portal for Ordinances/Resolutions/Executive Orders
-│   │   ├── services/            # Public services portal
-│   │   ├── sitemap/             # Human-readable sitemap
-│   │   ├── statistics/          # Statistics portal
-│   │   └── transparency/        # Transparency portal
-│   │       ├── bids/
-│   │       ├── components/
-│   │       ├── financial/
-│   │       ├── infrastructure/
-│   │       └── procurement/
-│   └── types/                   # Type definitions (TypeScript or schemas)
-└── (root config files)          # package.json, build configs, etc.
-
-```
 ---
 
 ## 🚀 How to Run Locally

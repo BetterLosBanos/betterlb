@@ -1,0 +1,2405 @@
+[
+  {
+    "id": 1,
+    "name": "1422 Hot Spring Resort",
+    "found": true,
+    "address": "Block 22 Lot 14, Geneva Lake, Lakewood Subdivision, Los Ba\u00f1os, 4030 Laguna, Philippines",
+    "latitude": 14.175005,
+    "longitude": 121.208315,
+    "google_maps_link": "https://www.google.com/maps/search/?api=1&query=1422%20Hot%20Spring%20Resort%20Los%20Ba%C3%B1os%20Laguna",
+    "search_query_used": "1422 Hot Spring Resort Los Ba\u00f1os Laguna address location",
+    "searched": true
+  },
+  {
+    "id": 2,
+    "name": "23Prime Private Resort",
+    "found": false,
+    "notes": "Rate limited during search",
+    "google_maps_link": "https://www.google.com/maps/search/?api=1&query=23Prime%20Private%20Resort%20Los%20Ba%C3%B1os%20Laguna",
+    "searched": false
+  },
+  {
+    "id": 3,
+    "name": "2Lgs Spring Resort",
+    "found": false,
+    "notes": "No exact match found. Possible match: LGS Private Hotspring Resort at Springdale Subdivision, Los Ba\u00f1os",
+    "google_maps_link": "https://www.google.com/maps/search/?api=1&query=2Lgs%20Spring%20Resort%20Los%20Ba%C3%B1os%20Laguna",
+    "searched": false
+  },
+  {
+    "id": 4,
+    "name": "38 Degrees Pool Resort Inc.",
+    "found": true,
+    "address": "Park Merced Villa, Barangay Lalakay, Los Ba\u00f1os, Laguna, Calabarzon, Philippines",
+    "notes": "Located in Brgy. Lalakay, Los Ba\u00f1os",
+    "search_query_used": "38 Degrees Pool Resort Inc Los Ba\u00f1os Laguna address location",
+    "google_maps_link": "https://www.google.com/maps/search/?api=1&query=38%20Degrees%20Pool%20Resort%20Inc.%20Los%20Ba%C3%B1os%20Laguna",
+    "searched": true
+  },
+  {
+    "id": 5,
+    "name": "8 Flags Private Resort",
+    "found": true,
+    "address": "Lexus Street, Park Merced Village, Barangay Lalakay, Los Ba\u00f1os, Laguna, Philippines 4030",
+    "notes": "Managed by private host, hot spring pool facilities",
+    "search_query_used": "8 Flags Private Resort Los Ba\u00f1os Laguna address location",
+    "google_maps_link": "https://www.google.com/maps/search/?api=1&query=8%20Flags%20Private%20Resort%20Los%20Ba%C3%B1os%20Laguna",
+    "searched": true
+  },
+  {
+    "id": 6,
+    "name": "A & A Private Resort Inc.",
+    "found": true,
+    "address": "Block 26, Lot 9 Birch Creek Street, Spring Oaks Residences, Brgy. Lalakay, Los Ba\u00f1os, Laguna",
+    "notes": "Located at Los Ba\u00f1os-Calamba boundary / In front of Max's Restaurant. Also listed as 'Arlene & Anthony' at A. Manaig St., Purok 3B, Barangay Pansol, Calamba, Laguna",
+    "search_query_used": "A & A Private Resort Los Ba\u00f1os Laguna address",
+    "google_maps_link": "https://www.google.com/maps/search/?api=1&query=A%20%26%20A%20Private%20Resort%20Inc.%20Los%20Ba%C3%B1os%20Laguna",
+    "searched": true
+  },
+  {
+    "id": 7,
+    "name": "A M G Genesis Holdings Inc. (Puhon Hotspring Villa)",
+    "found": false,
+    "notes": "Rate limited during search",
+    "google_maps_link": "https://www.google.com/maps/search/?api=1&query=A%20M%20G%20Genesis%20Holdings%20Inc.%20%28Puhon%20Hotspring%20Villa%29%20Los%20Ba%C3%B1os%20Laguna",
+    "searched": false
+  },
+  {
+    "id": 8,
+    "name": "Admira Inc.",
+    "found": true,
+    "address": "Admaria 3 & 4, Block 37, Lot 7 & 8, Stoney Creek Street, Lakewood Residences, Los Ba\u00f1os, Laguna",
+    "notes": "Name appears as 'Admiria Hotspring Resort' or 'Admiria Lakewoods Private Hotspring Resort' in listings",
+    "search_query_used": "Admira Inc Los Ba\u00f1os Laguna resort address location",
+    "google_maps_link": "https://www.google.com/maps/search/?api=1&query=Admira%20Inc.%20Los%20Ba%C3%B1os%20Laguna",
+    "searched": true
+  },
+  {
+    "id": 9,
+    "name": "Advance Tech Const. & Trading Corp.",
+    "found": false,
+    "notes": "Not searched - appears to be a construction company, not a resort",
+    "google_maps_link": "https://www.google.com/maps/search/?api=1&query=Advance%20Tech%20Const.%20%26%20Trading%20Corp.%20Los%20Ba%C3%B1os%20Laguna",
+    "searched": false
+  },
+  {
+    "id": 10,
+    "name": "Agua Paraiso Resort Inc",
+    "found": true,
+    "address": "Park Merced Village, Barangay Lalakay, Los Ba\u00f1os, Laguna, Philippines 4030",
+    "notes": "Private hot spring resort, open 24 hours",
+    "search_query_used": "Agua Paraiso Resort Inc Los Ba\u00f1os Laguna address location",
+    "google_maps_link": "https://www.google.com/maps/search/?api=1&query=Agua%20Paraiso%20Resort%20Inc%20Los%20Ba%C3%B1os%20Laguna",
+    "searched": true
+  },
+  {
+    "id": 11,
+    "name": "Aikanimiks Private Resort",
+    "found": false,
+    "notes": "Not searched due to rate limiting",
+    "google_maps_link": "https://www.google.com/maps/search/?api=1&query=Aikanimiks%20Private%20Resort%20Los%20Ba%C3%B1os%20Laguna",
+    "searched": false
+  },
+  {
+    "id": 12,
+    "name": "Alberto's Private Resort",
+    "found": false,
+    "notes": "Rate limited during search",
+    "google_maps_link": "https://www.google.com/maps/search/?api=1&query=Alberto%27s%20Private%20Resort%20Los%20Ba%C3%B1os%20Laguna",
+    "searched": false
+  },
+  {
+    "id": 13,
+    "name": "Aly Ssa Resort",
+    "found": false,
+    "notes": "Not searched",
+    "google_maps_link": "https://www.google.com/maps/search/?api=1&query=Aly%20Ssa%20Resort%20Los%20Ba%C3%B1os%20Laguna",
+    "searched": false
+  },
+  {
+    "id": 14,
+    "name": "Amare' Private Resort",
+    "found": false,
+    "notes": "Not searched",
+    "google_maps_link": "https://www.google.com/maps/search/?api=1&query=Amare%27%20Private%20Resort%20Los%20Ba%C3%B1os%20Laguna",
+    "searched": false
+  },
+  {
+    "id": 15,
+    "name": "Arabella Hot Spring Resort",
+    "found": true,
+    "address": "Lexus St., Park Merced Subdivision, Los Ba\u00f1os, Laguna, Philippines 4030",
+    "notes": "Also referenced as Brgy Lalakay, Los Ba\u00f1os, Laguna. Just under an hour from Alabang",
+    "search_query_used": "Arabella Hot Spring Resort Los Ba\u00f1os Laguna address",
+    "google_maps_link": "https://www.google.com/maps/search/?api=1&query=Arabella%20Hot%20Spring%20Resort%20Los%20Ba%C3%B1os%20Laguna",
+    "searched": true
+  },
+  {
+    "id": 16,
+    "name": "Ardeils Family Private Resort",
+    "found": false,
+    "notes": "Not searched",
+    "google_maps_link": "https://www.google.com/maps/search/?api=1&query=Ardeils%20Family%20Private%20Resort%20Los%20Ba%C3%B1os%20Laguna",
+    "searched": false
+  },
+  {
+    "id": 17,
+    "name": "Argela Private Resort",
+    "found": false,
+    "notes": "Not searched",
+    "google_maps_link": "https://www.google.com/maps/search/?api=1&query=Argela%20Private%20Resort%20Los%20Ba%C3%B1os%20Laguna",
+    "searched": false
+  },
+  {
+    "id": 18,
+    "name": "Asri Hot Spring Resort",
+    "found": true,
+    "address": "Lot 8, Block 15, Chetak Lane, Lakewood Residential Estates, Los Ba\u00f1os, Laguna, Philippines 4030",
+    "notes": "Balinese-inspired retreat. Can search 'ASRI Hot Spring Resort' on Waze. Contact: 0975-566-8761",
+    "search_query_used": "Asri Hot Spring Resort Los Ba\u00f1os Laguna address",
+    "google_maps_link": "https://www.google.com/maps/search/?api=1&query=Asri%20Hot%20Spring%20Resort%20Los%20Ba%C3%B1os%20Laguna",
+    "searched": true
+  },
+  {
+    "id": 19,
+    "name": "Attic Private Resort (The Attic At Lakewood)",
+    "found": false,
+    "notes": "Not searched but name suggests Lakewood Subdivision location",
+    "google_maps_link": "https://www.google.com/maps/search/?api=1&query=Attic%20Private%20Resort%20%28The%20Attic%20At%20Lakewood%29%20Los%20Ba%C3%B1os%20Laguna",
+    "searched": false
+  },
+  {
+    "id": 20,
+    "name": "Aurum Hot Spring Resort",
+    "found": false,
+    "notes": "Rate limited during search",
+    "google_maps_link": "https://www.google.com/maps/search/?api=1&query=Aurum%20Hot%20Spring%20Resort%20Los%20Ba%C3%B1os%20Laguna",
+    "searched": false
+  },
+  {
+    "id": 21,
+    "name": "Balai Dama Pansol Corp.",
+    "found": true,
+    "address": "Lot 2 Block 6, Tomahawk Corner Monona Street, Lakewood Subdivision, Los Ba\u00f1os, Laguna, Philippines",
+    "notes": "Also known as Balai Dama. Contact: +63 917 836 7918. Accommodates 16+ guests",
+    "search_query_used": "Balai Dama Pansol Corp Los Ba\u00f1os Laguna address",
+    "google_maps_link": "https://www.google.com/maps/search/?api=1&query=Balai%20Dama%20Pansol%20Corp.%20Los%20Ba%C3%B1os%20Laguna",
+    "searched": true
+  },
+  {
+    "id": 22,
+    "name": "Banaaw Spring Resort",
+    "found": false,
+    "notes": "No direct match found. Possible related results: Banahaw Heals Spa, Banahaw Spring in different locations",
+    "google_maps_link": "https://www.google.com/maps/search/?api=1&query=Banaaw%20Spring%20Resort%20Los%20Ba%C3%B1os%20Laguna",
+    "searched": false
+  },
+  {
+    "id": 23,
+    "name": "Beaconz Private Resort",
+    "found": false,
+    "notes": "Not searched",
+    "google_maps_link": "https://www.google.com/maps/search/?api=1&query=Beaconz%20Private%20Resort%20Los%20Ba%C3%B1os%20Laguna",
+    "searched": false
+  },
+  {
+    "id": 24,
+    "name": "Benito Hot Spring Resort",
+    "found": true,
+    "address": "Lot 8, Block 32, Gaston Street, Lakewood Subdivision, Brgy. Lalakay, Los Ba\u00f1os, Laguna, Philippines",
+    "notes": "Also known as CASA BENITO Private Hot Spring Resort. Contacts: Smart 09075527609, Globe/Viber/WhatsApp 09778293838",
+    "search_query_used": "Benito Hot Spring Resort Los Ba\u00f1os Laguna address",
+    "google_maps_link": "https://www.google.com/maps/search/?api=1&query=Benito%20Hot%20Spring%20Resort%20Los%20Ba%C3%B1os%20Laguna",
+    "searched": true
+  },
+  {
+    "id": 25,
+    "name": "Benno Hot Spring Resort",
+    "found": false,
+    "notes": "Not searched",
+    "google_maps_link": "https://www.google.com/maps/search/?api=1&query=Benno%20Hot%20Spring%20Resort%20Los%20Ba%C3%B1os%20Laguna",
+    "searched": false
+  },
+  {
+    "id": 26,
+    "name": "Bethesda Hotspring Private Pool",
+    "found": false,
+    "notes": "Rate limited during search",
+    "google_maps_link": "https://www.google.com/maps/search/?api=1&query=Bethesda%20Hotspring%20Private%20Pool%20Los%20Ba%C3%B1os%20Laguna",
+    "searched": false
+  },
+  {
+    "id": 27,
+    "name": "Bloomfield Villa Rental",
+    "found": false,
+    "notes": "Not searched",
+    "google_maps_link": "https://www.google.com/maps/search/?api=1&query=Bloomfield%20Villa%20Rental%20Los%20Ba%C3%B1os%20Laguna",
+    "searched": false
+  },
+  {
+    "id": 28,
+    "name": "Bpn Enterprises",
+    "found": false,
+    "notes": "Not searched - appears to be an enterprise/company name, not clearly a resort",
+    "google_maps_link": "https://www.google.com/maps/search/?api=1&query=Bpn%20Enterprises%20Los%20Ba%C3%B1os%20Laguna",
+    "searched": false
+  },
+  {
+    "id": 29,
+    "name": "Brion Resort",
+    "found": false,
+    "notes": "Not searched",
+    "google_maps_link": "https://www.google.com/maps/search/?api=1&query=Brion%20Resort%20Los%20Ba%C3%B1os%20Laguna",
+    "searched": false
+  },
+  {
+    "id": 30,
+    "name": "Bungalow Resort",
+    "found": false,
+    "notes": "Not searched - generic name, difficult to search",
+    "google_maps_link": "https://www.google.com/maps/search/?api=1&query=Bungalow%20Resort%20Los%20Ba%C3%B1os%20Laguna",
+    "searched": false
+  },
+  {
+    "id": 31,
+    "name": "C1And C2 Spring Resort",
+    "found": false,
+    "notes": "Rate limited during search",
+    "google_maps_link": "https://www.google.com/maps/search/?api=1&query=C1And%20C2%20Spring%20Resort%20Los%20Ba%C3%B1os%20Laguna",
+    "searched": false
+  },
+  {
+    "id": 32,
+    "name": "Calidus Laguna Resort",
+    "found": false,
+    "notes": "API error during search",
+    "google_maps_link": "https://www.google.com/maps/search/?api=1&query=Calidus%20Laguna%20Resort%20Los%20Ba%C3%B1os%20Laguna",
+    "searched": false
+  },
+  {
+    "id": 33,
+    "name": "Calyshia Spring Resort",
+    "found": false,
+    "notes": "Rate limited during search",
+    "google_maps_link": "https://www.google.com/maps/search/?api=1&query=Calyshia%20Spring%20Resort%20Los%20Ba%C3%B1os%20Laguna",
+    "searched": false
+  },
+  {
+    "id": 34,
+    "name": "Carbern Villa Private Resort",
+    "found": false,
+    "notes": "Not searched",
+    "google_maps_link": "https://www.google.com/maps/search/?api=1&query=Carbern%20Villa%20Private%20Resort%20Los%20Ba%C3%B1os%20Laguna",
+    "searched": false
+  },
+  {
+    "id": 35,
+    "name": "Casa Amor Natural Hotspring Resort 2",
+    "found": false,
+    "notes": "API error during search",
+    "google_maps_link": "https://www.google.com/maps/search/?api=1&query=Casa%20Amor%20Natural%20Hotspring%20Resort%202%20Los%20Ba%C3%B1os%20Laguna",
+    "searched": false
+  },
+  {
+    "id": 36,
+    "name": "Casa Amor Natural Hotspring Resort 3",
+    "found": false,
+    "notes": "Not searched",
+    "google_maps_link": "https://www.google.com/maps/search/?api=1&query=Casa%20Amor%20Natural%20Hotspring%20Resort%203%20Los%20Ba%C3%B1os%20Laguna",
+    "searched": false
+  },
+  {
+    "id": 37,
+    "name": "Casa Amoris Dos",
+    "found": false,
+    "notes": "Rate limited during search",
+    "google_maps_link": "https://www.google.com/maps/search/?api=1&query=Casa%20Amoris%20Dos%20Los%20Ba%C3%B1os%20Laguna",
+    "searched": false
+  },
+  {
+    "id": 38,
+    "name": "Casa Amoris Uno",
+    "found": false,
+    "notes": "Not searched",
+    "google_maps_link": "https://www.google.com/maps/search/?api=1&query=Casa%20Amoris%20Uno%20Los%20Ba%C3%B1os%20Laguna",
+    "searched": false
+  },
+  {
+    "id": 39,
+    "name": "Casa Felice Resort",
+    "found": true,
+    "address": "Brgy. Lalakay, Park Merced Village, Los Ba\u00f1os, Laguna",
+    "notes": "250sqm property, up to 16 persons, 4 bedrooms, 5 bathrooms. Phone: 09277775943",
+    "search_query_used": "Casa Felice Resort Los Ba\u00f1os Laguna address",
+    "google_maps_link": "https://www.google.com/maps/search/?api=1&query=Casa%20Felice%20Resort%20Los%20Ba%C3%B1os%20Laguna",
+    "searched": true
+  },
+  {
+    "id": 40,
+    "name": "Casa Juanita Hot Springs Resort Co.",
+    "found": false,
+    "notes": "API error during search",
+    "google_maps_link": "https://www.google.com/maps/search/?api=1&query=Casa%20Juanita%20Hot%20Springs%20Resort%20Co.%20Los%20Ba%C3%B1os%20Laguna",
+    "searched": false
+  },
+  {
+    "id": 41,
+    "name": "Casa Leon Private Resort",
+    "found": false,
+    "notes": "Rate limited during search",
+    "google_maps_link": "https://www.google.com/maps/search/?api=1&query=Casa%20Leon%20Private%20Resort%20Los%20Ba%C3%B1os%20Laguna",
+    "searched": false
+  },
+  {
+    "id": 42,
+    "name": "Casa Prudante Transient House",
+    "found": false,
+    "notes": "Monthly usage limit reached during search",
+    "google_maps_link": "https://www.google.com/maps/search/?api=1&query=Casa%20Prudante%20Transient%20House%20Los%20Ba%C3%B1os%20Laguna",
+    "searched": false
+  },
+  {
+    "id": 43,
+    "name": "Casaarabella Privatehot Spring Resort",
+    "found": false,
+    "notes": "Not searched - likely same as Arabella Hot Spring Resort (id 15)",
+    "google_maps_link": "https://www.google.com/maps/search/?api=1&query=Casaarabella%20Privatehot%20Spring%20Resort%20Los%20Ba%C3%B1os%20Laguna",
+    "searched": false
+  },
+  {
+    "id": 44,
+    "name": "Casadaluz Private Resort",
+    "found": false,
+    "notes": "Not searched",
+    "google_maps_link": "https://www.google.com/maps/search/?api=1&query=Casadaluz%20Private%20Resort%20Los%20Ba%C3%B1os%20Laguna",
+    "searched": false
+  },
+  {
+    "id": 45,
+    "name": "Casafelice Unit B Resort",
+    "found": false,
+    "notes": "Not searched - likely related to Casa Felice Resort (id 39)",
+    "google_maps_link": "https://www.google.com/maps/search/?api=1&query=Casafelice%20Unit%20B%20Resort%20Los%20Ba%C3%B1os%20Laguna",
+    "searched": false
+  },
+  {
+    "id": 46,
+    "name": "Casafelomino Hot Spring Resort",
+    "found": false,
+    "notes": "Not searched",
+    "google_maps_link": "https://www.google.com/maps/search/?api=1&query=Casafelomino%20Hot%20Spring%20Resort%20Los%20Ba%C3%B1os%20Laguna",
+    "searched": false
+  },
+  {
+    "id": 47,
+    "name": "Casama Private Resort",
+    "found": false,
+    "notes": "Monthly usage limit reached during search",
+    "google_maps_link": "https://www.google.com/maps/search/?api=1&query=Casama%20Private%20Resort%20Los%20Ba%C3%B1os%20Laguna",
+    "searched": false
+  },
+  {
+    "id": 48,
+    "name": "Casamalaya Spring Resort",
+    "found": false,
+    "notes": "Monthly usage limit reached during search",
+    "google_maps_link": "https://www.google.com/maps/search/?api=1&query=Casamalaya%20Spring%20Resort%20Los%20Ba%C3%B1os%20Laguna",
+    "searched": false
+  },
+  {
+    "id": 49,
+    "name": "Casa-Margarita Group Of Resort Corp.",
+    "found": false,
+    "notes": "Monthly usage limit reached during search",
+    "google_maps_link": "https://www.google.com/maps/search/?api=1&query=Casa-Margarita%20Group%20Of%20Resort%20Corp.%20Los%20Ba%C3%B1os%20Laguna",
+    "searched": false
+  },
+  {
+    "id": 50,
+    "name": "Casa-Peliah Group Of Resort Corp.",
+    "found": false,
+    "notes": "Monthly usage limit reached during search",
+    "google_maps_link": "https://www.google.com/maps/search/?api=1&query=Casa-Peliah%20Group%20Of%20Resort%20Corp.%20Los%20Ba%C3%B1os%20Laguna",
+    "searched": false
+  },
+  {
+    "id": 51,
+    "name": "Casasentosa Hot Spring Resort",
+    "found": false,
+    "searched": false,
+    "notes": "Not searched - agent hit rate limit",
+    "address": null,
+    "latitude": null,
+    "longitude": null,
+    "google_maps_link": "https://www.google.com/maps/search/?api=1&query=Casasentosa%20Hot%20Spring%20Resort%20Los%20Ba%C3%B1os%20Laguna"
+  },
+  {
+    "id": 52,
+    "name": "Casita De Marie Resort",
+    "found": false,
+    "searched": false,
+    "notes": "Not searched - agent hit rate limit",
+    "address": null,
+    "latitude": null,
+    "longitude": null,
+    "google_maps_link": "https://www.google.com/maps/search/?api=1&query=Casita%20De%20Marie%20Resort%20Los%20Ba%C3%B1os%20Laguna"
+  },
+  {
+    "id": 53,
+    "name": "Casita Regina Private Resort",
+    "found": false,
+    "searched": false,
+    "notes": "Not searched - agent hit rate limit",
+    "address": null,
+    "latitude": null,
+    "longitude": null,
+    "google_maps_link": "https://www.google.com/maps/search/?api=1&query=Casita%20Regina%20Private%20Resort%20Los%20Ba%C3%B1os%20Laguna"
+  },
+  {
+    "id": 54,
+    "name": "Cazalakewood Resort",
+    "found": false,
+    "searched": false,
+    "notes": "Not searched - agent hit rate limit",
+    "address": null,
+    "latitude": null,
+    "longitude": null,
+    "google_maps_link": "https://www.google.com/maps/search/?api=1&query=Cazalakewood%20Resort%20Los%20Ba%C3%B1os%20Laguna"
+  },
+  {
+    "id": 55,
+    "name": "Ceb Holdings Inc. (Mahalta Hot Spring Resort)",
+    "found": false,
+    "searched": false,
+    "notes": "Not searched - agent hit rate limit",
+    "address": null,
+    "latitude": null,
+    "longitude": null,
+    "google_maps_link": "https://www.google.com/maps/search/?api=1&query=Ceb%20Holdings%20Inc.%20%28Mahalta%20Hot%20Spring%20Resort%29%20Los%20Ba%C3%B1os%20Laguna"
+  },
+  {
+    "id": 56,
+    "name": "Cecille's Consumer Goods Store Celebration Springs Resort",
+    "found": false,
+    "searched": false,
+    "notes": "Not searched - agent hit rate limit",
+    "address": null,
+    "latitude": null,
+    "longitude": null,
+    "google_maps_link": "https://www.google.com/maps/search/?api=1&query=Cecille%27s%20Consumer%20Goods%20Store%20Celebration%20Springs%20Resort%20Los%20Ba%C3%B1os%20Laguna"
+  },
+  {
+    "id": 57,
+    "name": "Chai's Spring Resort",
+    "found": false,
+    "searched": false,
+    "notes": "Not searched - agent hit rate limit",
+    "address": null,
+    "latitude": null,
+    "longitude": null,
+    "google_maps_link": "https://www.google.com/maps/search/?api=1&query=Chai%27s%20Spring%20Resort%20Los%20Ba%C3%B1os%20Laguna"
+  },
+  {
+    "id": 58,
+    "name": "Chat 1 Hot Spring Resort",
+    "found": false,
+    "searched": false,
+    "notes": "Not searched - agent hit rate limit",
+    "address": null,
+    "latitude": null,
+    "longitude": null,
+    "google_maps_link": "https://www.google.com/maps/search/?api=1&query=Chat%201%20Hot%20Spring%20Resort%20Los%20Ba%C3%B1os%20Laguna"
+  },
+  {
+    "id": 59,
+    "name": "Chat 2 Hot Spring Resort",
+    "found": false,
+    "searched": false,
+    "notes": "Not searched - agent hit rate limit",
+    "address": null,
+    "latitude": null,
+    "longitude": null,
+    "google_maps_link": "https://www.google.com/maps/search/?api=1&query=Chat%202%20Hot%20Spring%20Resort%20Los%20Ba%C3%B1os%20Laguna"
+  },
+  {
+    "id": 60,
+    "name": "City of Springs Resort/Hotels",
+    "found": false,
+    "searched": false,
+    "notes": "Not searched - agent hit rate limit",
+    "address": null,
+    "latitude": null,
+    "longitude": null,
+    "google_maps_link": "https://www.google.com/maps/search/?api=1&query=City%20of%20Springs%20Resort/Hotels%20Los%20Ba%C3%B1os%20Laguna"
+  },
+  {
+    "id": 61,
+    "name": "Cliffhouse Private Hotspring Resort",
+    "found": false,
+    "searched": false,
+    "notes": "Not searched - agent hit rate limit",
+    "address": null,
+    "latitude": null,
+    "longitude": null,
+    "google_maps_link": "https://www.google.com/maps/search/?api=1&query=Cliffhouse%20Private%20Hotspring%20Resort%20Los%20Ba%C3%B1os%20Laguna"
+  },
+  {
+    "id": 62,
+    "name": "Cool Pool Hot Spring Resort",
+    "found": false,
+    "searched": false,
+    "notes": "Not searched - agent hit rate limit",
+    "address": null,
+    "latitude": null,
+    "longitude": null,
+    "google_maps_link": "https://www.google.com/maps/search/?api=1&query=Cool%20Pool%20Hot%20Spring%20Resort%20Los%20Ba%C3%B1os%20Laguna"
+  },
+  {
+    "id": 63,
+    "name": "Cpr Private Resort",
+    "found": false,
+    "searched": false,
+    "notes": "Not searched - agent hit rate limit",
+    "address": null,
+    "latitude": null,
+    "longitude": null,
+    "google_maps_link": "https://www.google.com/maps/search/?api=1&query=Cpr%20Private%20Resort%20Los%20Ba%C3%B1os%20Laguna"
+  },
+  {
+    "id": 64,
+    "name": "Creekside Hot Spring Resort",
+    "found": false,
+    "searched": false,
+    "notes": "Not searched - agent hit rate limit",
+    "address": null,
+    "latitude": null,
+    "longitude": null,
+    "google_maps_link": "https://www.google.com/maps/search/?api=1&query=Creekside%20Hot%20Spring%20Resort%20Los%20Ba%C3%B1os%20Laguna"
+  },
+  {
+    "id": 65,
+    "name": "Crestview 2 Spring Resort",
+    "found": false,
+    "searched": false,
+    "notes": "Not searched - agent hit rate limit",
+    "address": null,
+    "latitude": null,
+    "longitude": null,
+    "google_maps_link": "https://www.google.com/maps/search/?api=1&query=Crestview%202%20Spring%20Resort%20Los%20Ba%C3%B1os%20Laguna"
+  },
+  {
+    "id": 66,
+    "name": "Crestview 3 Spring Resort",
+    "found": false,
+    "searched": false,
+    "notes": "Not searched - agent hit rate limit",
+    "address": null,
+    "latitude": null,
+    "longitude": null,
+    "google_maps_link": "https://www.google.com/maps/search/?api=1&query=Crestview%203%20Spring%20Resort%20Los%20Ba%C3%B1os%20Laguna"
+  },
+  {
+    "id": 67,
+    "name": "Crestview Spring Resort",
+    "found": false,
+    "searched": false,
+    "notes": "Not searched - agent hit rate limit",
+    "address": null,
+    "latitude": null,
+    "longitude": null,
+    "google_maps_link": "https://www.google.com/maps/search/?api=1&query=Crestview%20Spring%20Resort%20Los%20Ba%C3%B1os%20Laguna"
+  },
+  {
+    "id": 68,
+    "name": "Crisanta Spring Resort",
+    "found": false,
+    "searched": false,
+    "notes": "Not searched - agent hit rate limit",
+    "address": null,
+    "latitude": null,
+    "longitude": null,
+    "google_maps_link": "https://www.google.com/maps/search/?api=1&query=Crisanta%20Spring%20Resort%20Los%20Ba%C3%B1os%20Laguna"
+  },
+  {
+    "id": 69,
+    "name": "Crisanta Spring Resort",
+    "found": false,
+    "searched": false,
+    "notes": "Not searched - agent hit rate limit",
+    "address": null,
+    "latitude": null,
+    "longitude": null,
+    "google_maps_link": "https://www.google.com/maps/search/?api=1&query=Crisanta%20Spring%20Resort%20Los%20Ba%C3%B1os%20Laguna"
+  },
+  {
+    "id": 70,
+    "name": "Dab3560 Property Leasing",
+    "found": false,
+    "searched": false,
+    "notes": "Not searched - agent hit rate limit",
+    "address": null,
+    "latitude": null,
+    "longitude": null,
+    "google_maps_link": "https://www.google.com/maps/search/?api=1&query=Dab3560%20Property%20Leasing%20Los%20Ba%C3%B1os%20Laguna"
+  },
+  {
+    "id": 71,
+    "name": "Dcasa Ayannah Private Resort",
+    "found": false,
+    "searched": false,
+    "notes": "Not searched - agent hit rate limit",
+    "address": null,
+    "latitude": null,
+    "longitude": null,
+    "google_maps_link": "https://www.google.com/maps/search/?api=1&query=Dcasa%20Ayannah%20Private%20Resort%20Los%20Ba%C3%B1os%20Laguna"
+  },
+  {
+    "id": 72,
+    "name": "De Jesus Hot Spring Resort",
+    "found": false,
+    "searched": false,
+    "notes": "Not searched - agent hit rate limit",
+    "address": null,
+    "latitude": null,
+    "longitude": null,
+    "google_maps_link": "https://www.google.com/maps/search/?api=1&query=De%20Jesus%20Hot%20Spring%20Resort%20Los%20Ba%C3%B1os%20Laguna"
+  },
+  {
+    "id": 73,
+    "name": "De Luna's Resort",
+    "found": false,
+    "searched": false,
+    "notes": "Not searched - agent hit rate limit",
+    "address": null,
+    "latitude": null,
+    "longitude": null,
+    "google_maps_link": "https://www.google.com/maps/search/?api=1&query=De%20Luna%27s%20Resort%20Los%20Ba%C3%B1os%20Laguna"
+  },
+  {
+    "id": 74,
+    "name": "Deberha (Palm Spring Resort), Inc.",
+    "found": false,
+    "searched": false,
+    "notes": "Not searched - agent hit rate limit",
+    "address": null,
+    "latitude": null,
+    "longitude": null,
+    "google_maps_link": "https://www.google.com/maps/search/?api=1&query=Deberha%20%28Palm%20Spring%20Resort%29%2C%20Inc.%20Los%20Ba%C3%B1os%20Laguna"
+  },
+  {
+    "id": 75,
+    "name": "Diamond Springs Resort",
+    "found": false,
+    "searched": false,
+    "notes": "Not searched - agent hit rate limit",
+    "address": null,
+    "latitude": null,
+    "longitude": null,
+    "google_maps_link": "https://www.google.com/maps/search/?api=1&query=Diamond%20Springs%20Resort%20Los%20Ba%C3%B1os%20Laguna"
+  },
+  {
+    "id": 76,
+    "name": "D'Jazz Hot Spring Resort",
+    "found": false,
+    "searched": false,
+    "notes": "Not searched - agent hit rate limit",
+    "address": null,
+    "latitude": null,
+    "longitude": null,
+    "google_maps_link": "https://www.google.com/maps/search/?api=1&query=D%27Jazz%20Hot%20Spring%20Resort%20Los%20Ba%C3%B1os%20Laguna"
+  },
+  {
+    "id": 77,
+    "name": "Dmvilla Resort",
+    "found": false,
+    "searched": false,
+    "notes": "Not searched - agent hit rate limit",
+    "address": null,
+    "latitude": null,
+    "longitude": null,
+    "google_maps_link": "https://www.google.com/maps/search/?api=1&query=Dmvilla%20Resort%20Los%20Ba%C3%B1os%20Laguna"
+  },
+  {
+    "id": 78,
+    "name": "Doc Guy Private Resort",
+    "found": false,
+    "searched": false,
+    "notes": "Not searched - agent hit rate limit",
+    "address": null,
+    "latitude": null,
+    "longitude": null,
+    "google_maps_link": "https://www.google.com/maps/search/?api=1&query=Doc%20Guy%20Private%20Resort%20Los%20Ba%C3%B1os%20Laguna"
+  },
+  {
+    "id": 79,
+    "name": "Dolcezza Hotspring Resort",
+    "found": false,
+    "searched": false,
+    "notes": "Not searched - agent hit rate limit",
+    "address": null,
+    "latitude": null,
+    "longitude": null,
+    "google_maps_link": "https://www.google.com/maps/search/?api=1&query=Dolcezza%20Hotspring%20Resort%20Los%20Ba%C3%B1os%20Laguna"
+  },
+  {
+    "id": 80,
+    "name": "Ducusin Private Resort",
+    "found": false,
+    "searched": false,
+    "notes": "Not searched - agent hit rate limit",
+    "address": null,
+    "latitude": null,
+    "longitude": null,
+    "google_maps_link": "https://www.google.com/maps/search/?api=1&query=Ducusin%20Private%20Resort%20Los%20Ba%C3%B1os%20Laguna"
+  },
+  {
+    "id": 81,
+    "name": "Duplex Laguna Private Pool",
+    "found": false,
+    "searched": false,
+    "notes": "Not searched - agent hit rate limit",
+    "address": null,
+    "latitude": null,
+    "longitude": null,
+    "google_maps_link": "https://www.google.com/maps/search/?api=1&query=Duplex%20Laguna%20Private%20Pool%20Los%20Ba%C3%B1os%20Laguna"
+  },
+  {
+    "id": 82,
+    "name": "El Grandee Pres 1 Hot Spring And Private Resort",
+    "found": false,
+    "searched": false,
+    "notes": "Not searched - agent hit rate limit",
+    "address": null,
+    "latitude": null,
+    "longitude": null,
+    "google_maps_link": "https://www.google.com/maps/search/?api=1&query=El%20Grandee%20Pres%201%20Hot%20Spring%20And%20Private%20Resort%20Los%20Ba%C3%B1os%20Laguna"
+  },
+  {
+    "id": 83,
+    "name": "Eladio's Private Resort",
+    "found": false,
+    "searched": false,
+    "notes": "Not searched - agent hit rate limit",
+    "address": null,
+    "latitude": null,
+    "longitude": null,
+    "google_maps_link": "https://www.google.com/maps/search/?api=1&query=Eladio%27s%20Private%20Resort%20Los%20Ba%C3%B1os%20Laguna"
+  },
+  {
+    "id": 84,
+    "name": "Ell Bellizsima Hot Spring Resort",
+    "found": false,
+    "searched": false,
+    "notes": "Not searched - agent hit rate limit",
+    "address": null,
+    "latitude": null,
+    "longitude": null,
+    "google_maps_link": "https://www.google.com/maps/search/?api=1&query=Ell%20Bellizsima%20Hot%20Spring%20Resort%20Los%20Ba%C3%B1os%20Laguna"
+  },
+  {
+    "id": 85,
+    "name": "Elsouth Hot Spring Resort",
+    "found": false,
+    "searched": false,
+    "notes": "Not searched - agent hit rate limit",
+    "address": null,
+    "latitude": null,
+    "longitude": null,
+    "google_maps_link": "https://www.google.com/maps/search/?api=1&query=Elsouth%20Hot%20Spring%20Resort%20Los%20Ba%C3%B1os%20Laguna"
+  },
+  {
+    "id": 86,
+    "name": "Enzo Hot Spring Resort",
+    "found": false,
+    "searched": false,
+    "notes": "Not searched - agent hit rate limit",
+    "address": null,
+    "latitude": null,
+    "longitude": null,
+    "google_maps_link": "https://www.google.com/maps/search/?api=1&query=Enzo%20Hot%20Spring%20Resort%20Los%20Ba%C3%B1os%20Laguna"
+  },
+  {
+    "id": 87,
+    "name": "Eric Glenda Hot And Cold Spring Water Private Resort",
+    "found": false,
+    "searched": false,
+    "notes": "Not searched - agent hit rate limit",
+    "address": null,
+    "latitude": null,
+    "longitude": null,
+    "google_maps_link": "https://www.google.com/maps/search/?api=1&query=Eric%20Glenda%20Hot%20And%20Cold%20Spring%20Water%20Private%20Resort%20Los%20Ba%C3%B1os%20Laguna"
+  },
+  {
+    "id": 88,
+    "name": "Espie Cc Space Rental",
+    "found": false,
+    "searched": false,
+    "notes": "Not searched - agent hit rate limit",
+    "address": null,
+    "latitude": null,
+    "longitude": null,
+    "google_maps_link": "https://www.google.com/maps/search/?api=1&query=Espie%20Cc%20Space%20Rental%20Los%20Ba%C3%B1os%20Laguna"
+  },
+  {
+    "id": 89,
+    "name": "Estraha Private Resort",
+    "found": false,
+    "searched": false,
+    "notes": "Not searched - agent hit rate limit",
+    "address": null,
+    "latitude": null,
+    "longitude": null,
+    "google_maps_link": "https://www.google.com/maps/search/?api=1&query=Estraha%20Private%20Resort%20Los%20Ba%C3%B1os%20Laguna"
+  },
+  {
+    "id": 90,
+    "name": "Eu-J's Private Pool",
+    "found": false,
+    "searched": false,
+    "notes": "Not searched - agent hit rate limit",
+    "address": null,
+    "latitude": null,
+    "longitude": null,
+    "google_maps_link": "https://www.google.com/maps/search/?api=1&query=Eu-J%27s%20Private%20Pool%20Los%20Ba%C3%B1os%20Laguna"
+  },
+  {
+    "id": 91,
+    "name": "E-Winer Travel & Tours Corp.",
+    "found": false,
+    "searched": false,
+    "notes": "Not searched - agent hit rate limit",
+    "address": null,
+    "latitude": null,
+    "longitude": null,
+    "google_maps_link": "https://www.google.com/maps/search/?api=1&query=E-Winer%20Travel%20%26%20Tours%20Corp.%20Los%20Ba%C3%B1os%20Laguna"
+  },
+  {
+    "id": 92,
+    "name": "F&F Sweet-Escape Resort",
+    "found": false,
+    "searched": false,
+    "notes": "Not searched - agent hit rate limit",
+    "address": null,
+    "latitude": null,
+    "longitude": null,
+    "google_maps_link": "https://www.google.com/maps/search/?api=1&query=F%26F%20Sweet-Escape%20Resort%20Los%20Ba%C3%B1os%20Laguna"
+  },
+  {
+    "id": 93,
+    "name": "Fides Spring Resort",
+    "found": false,
+    "searched": false,
+    "notes": "Not searched - agent hit rate limit",
+    "address": null,
+    "latitude": null,
+    "longitude": null,
+    "google_maps_link": "https://www.google.com/maps/search/?api=1&query=Fides%20Spring%20Resort%20Los%20Ba%C3%B1os%20Laguna"
+  },
+  {
+    "id": 94,
+    "name": "Five Stars Private Resort",
+    "found": false,
+    "searched": false,
+    "notes": "Not searched - agent hit rate limit",
+    "address": null,
+    "latitude": null,
+    "longitude": null,
+    "google_maps_link": "https://www.google.com/maps/search/?api=1&query=Five%20Stars%20Private%20Resort%20Los%20Ba%C3%B1os%20Laguna"
+  },
+  {
+    "id": 95,
+    "name": "Galang Private Resort",
+    "found": false,
+    "searched": false,
+    "notes": "Not searched - agent hit rate limit",
+    "address": null,
+    "latitude": null,
+    "longitude": null,
+    "google_maps_link": "https://www.google.com/maps/search/?api=1&query=Galang%20Private%20Resort%20Los%20Ba%C3%B1os%20Laguna"
+  },
+  {
+    "id": 96,
+    "name": "Gec And Gt Property Management Corp.",
+    "found": false,
+    "searched": false,
+    "notes": "Not searched - agent hit rate limit",
+    "address": null,
+    "latitude": null,
+    "longitude": null,
+    "google_maps_link": "https://www.google.com/maps/search/?api=1&query=Gec%20And%20Gt%20Property%20Management%20Corp.%20Los%20Ba%C3%B1os%20Laguna"
+  },
+  {
+    "id": 97,
+    "name": "Glendale Spring Resort",
+    "found": false,
+    "searched": false,
+    "notes": "Not searched - agent hit rate limit",
+    "address": null,
+    "latitude": null,
+    "longitude": null,
+    "google_maps_link": "https://www.google.com/maps/search/?api=1&query=Glendale%20Spring%20Resort%20Los%20Ba%C3%B1os%20Laguna"
+  },
+  {
+    "id": 98,
+    "name": "Gloriamaris Ventures",
+    "found": false,
+    "searched": false,
+    "notes": "Not searched - agent hit rate limit",
+    "address": null,
+    "latitude": null,
+    "longitude": null,
+    "google_maps_link": "https://www.google.com/maps/search/?api=1&query=Gloriamaris%20Ventures%20Los%20Ba%C3%B1os%20Laguna"
+  },
+  {
+    "id": 99,
+    "name": "Gloriamaris Ventures Corporation",
+    "found": false,
+    "searched": false,
+    "notes": "Not searched - agent hit rate limit",
+    "address": null,
+    "latitude": null,
+    "longitude": null,
+    "google_maps_link": "https://www.google.com/maps/search/?api=1&query=Gloriamaris%20Ventures%20Corporation%20Los%20Ba%C3%B1os%20Laguna"
+  },
+  {
+    "id": 100,
+    "name": "Hamurana Private Resort",
+    "found": false,
+    "searched": false,
+    "notes": "Not searched - agent hit rate limit",
+    "address": null,
+    "latitude": null,
+    "longitude": null,
+    "google_maps_link": "https://www.google.com/maps/search/?api=1&query=Hamurana%20Private%20Resort%20Los%20Ba%C3%B1os%20Laguna"
+  },
+  {
+    "id": 101,
+    "name": "Hillix Resorts",
+    "found": true,
+    "address": "Lakewood Subdivision, Lalakay, Los Ba\u00f1os, Laguna, Philippines",
+    "notes": "Also mentioned as possibly being in Pansol, Calamba City, Laguna (Kamagong St. Miramonte Village) or Sannera Subdivision, Brgy. San Antonio 2, San Pablo City, Laguna - needs verification",
+    "contact": "0965 318 4555 or 0912 697 9629",
+    "facebook": "https://www.facebook.com/Hillixresort/",
+    "search_query_used": "Hillix Resorts Los Ba\u00f1os Laguna location address coordinates",
+    "google_maps_link": "https://www.google.com/maps/search/?api=1&query=Hillix%20Resorts%20Los%20Ba%C3%B1os%20Laguna",
+    "searched": true
+  },
+  {
+    "id": 102,
+    "name": "Hillside Haven Private Pool",
+    "found": false,
+    "notes": "Search encountered rate limit error. No specific information found.",
+    "google_maps_link": "https://www.google.com/maps/search/?api=1&query=Hillside%20Haven%20Private%20Pool%20Los%20Ba%C3%B1os%20Laguna",
+    "searched": false
+  },
+  {
+    "id": 103,
+    "name": "Hillspa Resort",
+    "found": true,
+    "address": "56 National Road, Barangay Lalakay, Los Ba\u00f1os, Laguna, Philippines",
+    "notes": "Located along the National Highway in Barangay Lalakay",
+    "contact": "0998-9544937, +63 49 536 5049",
+    "email": "hillsparesortlaguna@gmail.com",
+    "facebook": "facebook.com/hillsparesortlaguna",
+    "postal_code": "4030",
+    "search_query_used": "Hillspa Resort Los Ba\u00f1os Laguna Philippines address coordinates",
+    "google_maps_link": "https://www.google.com/maps/search/?api=1&query=Hillspa%20Resort%20Los%20Ba%C3%B1os%20Laguna",
+    "searched": true
+  },
+  {
+    "id": 104,
+    "name": "Horeb Hot Spring Resort",
+    "found": true,
+    "address": "Block 1, Lot 14, Lakewood Subdivision, Brgy. Lalakay, Los Ba\u00f1os, Laguna, Philippines",
+    "notes": "Open 24 hours. Hot spring pools and accommodations",
+    "contact": "+63 967 117 7663",
+    "facebook": "https://www.facebook.com/horebhotspringresort/",
+    "google_maps_link": "https://www.google.com/maps/search/?api=1&query=Horeb%20Hot%20Spring%20Resort%20Los%20Ba%C3%B1os%20Laguna",
+    "search_query_used": "Horeb Hot Spring Resort Los Ba\u00f1os Laguna location",
+    "searched": true
+  },
+  {
+    "id": 105,
+    "name": "Isaiah And Caleb Spring Resort",
+    "found": false,
+    "notes": "Could not find specific address. Found Caleb's Private Pool Resort in Pansol, Calamba (Sampaguita St., Purok 5, Brgy. Pansol) and Caleb Green Spring Resort in Calamba, but not the exact 'Isaiah And Caleb Spring Resort' in Los Ba\u00f1os.",
+    "search_query_used": "Isaiah And Caleb Spring Resort Los Ba\u00f1os Laguna address",
+    "google_maps_link": "https://www.google.com/maps/search/?api=1&query=Isaiah%20And%20Caleb%20Spring%20Resort%20Los%20Ba%C3%B1os%20Laguna",
+    "searched": false
+  },
+  {
+    "id": 106,
+    "name": "J M G Private Resort",
+    "found": true,
+    "address": "B1 L15 Park Merced Village/Subdivision, Barangay Lalakay, Los Ba\u00f1os, Laguna",
+    "notes": "Approximately 2 minutes away from Pansol. Modern hot spring resort with natural hot spring water (no chlorine). Adult and kiddie pools.",
+    "search_query_used": "J M G Private Resort Los Ba\u00f1os Laguna location address",
+    "google_maps_link": "https://www.google.com/maps/search/?api=1&query=J%20M%20G%20Private%20Resort%20Los%20Ba%C3%B1os%20Laguna",
+    "searched": true
+  },
+  {
+    "id": 107,
+    "name": "Jaslee Private Resort",
+    "found": true,
+    "notes": "Newly opened private resort in Los Ba\u00f1os, Laguna. Has Facebook page. Features: 6 fully air-conditioned rooms with toilet & bath, 1 kiddie pool, 1 adult pool, public shower facilities.",
+    "search_query_used": "Jaslee Private Resort Los Ba\u00f1os Laguna Philippines",
+    "google_maps_link": "https://www.google.com/maps/search/?api=1&query=Jaslee%20Private%20Resort%20Los%20Ba%C3%B1os%20Laguna",
+    "searched": true
+  },
+  {
+    "id": 108,
+    "name": "Jasmine Angel Private Resort Inc.",
+    "found": true,
+    "notes": "May be spelled as 'Jasnine Angel Private Resort' (with an 'n' instead of 'm'). Contact: 0962-586-7872. It's a hotspring resort in Los Ba\u00f1os, Laguna.",
+    "contact": "0962-586-7872",
+    "search_query_used": "Jasmine Angel Private Resort Inc Los Ba\u00f1os Laguna address",
+    "google_maps_link": "https://www.google.com/maps/search/?api=1&query=Jasmine%20Angel%20Private%20Resort%20Inc.%20Los%20Ba%C3%B1os%20Laguna",
+    "searched": true
+  },
+  {
+    "id": 109,
+    "name": "Jemaflor Ville Resort",
+    "found": true,
+    "address": "National Highway, Lalakay, Los Ba\u00f1os, Laguna, Philippines",
+    "notes": "Private pool and events place/resort",
+    "contact": "09630114116, 09627723849",
+    "search_query_used": "Jemaflor Ville Resort Los Ba\u00f1os Laguna location",
+    "google_maps_link": "https://www.google.com/maps/search/?api=1&query=Jemaflor%20Ville%20Resort%20Los%20Ba%C3%B1os%20Laguna",
+    "searched": true
+  },
+  {
+    "id": 110,
+    "name": "Jen Properties , Opc",
+    "found": true,
+    "notes": "Three-decker Hot Spring Cabin Resort. Can accommodate up to 20 pax. Perfect for family gatherings, parties, company events. Associated with Villa Fe Hot Spring Resort and Events Place in Jamaica Hills Subdivision.",
+    "facebook": "https://www.facebook.com/people/Jen-Properties/100087328570497/",
+    "search_query_used": "Jen Properties OPC Los Ba\u00f1os Laguna resort",
+    "google_maps_link": "https://www.google.com/maps/search/?api=1&query=Jen%20Properties%20%2C%20Opc%20Los%20Ba%C3%B1os%20Laguna",
+    "searched": true
+  },
+  {
+    "id": 111,
+    "name": "Jen Properties Opc /",
+    "found": true,
+    "notes": "Duplicate/Same as ID 110 - Jen Properties OPC",
+    "search_query_used": "Same as ID 110",
+    "google_maps_link": "https://www.google.com/maps/search/?api=1&query=Jen%20Properties%20Opc%20/%20Los%20Ba%C3%B1os%20Laguna",
+    "searched": true
+  },
+  {
+    "id": 112,
+    "name": "La Ben Hot Spring Cabin Resort",
+    "found": true,
+    "address": "Blk 10 Lot 6 Jamaica Hills Subdivision, Los Ba\u00f1os, Laguna, Philippines",
+    "notes": "Three-decker hot spring cabin resort that can accommodate up to 20 people. Features: Hot spring pools, Jacuzzi, Bathtub, Pet-friendly, Fully air-conditioned A-frame cabins",
+    "contact": "+63 955 163 8551",
+    "facebook": "https://www.facebook.com/p/La-Ben-Hot-Spring-Cabin-Resort-61557512360241/",
+    "airbnb": "https://www.airbnb.com/rooms/1149968399536433437",
+    "search_query_used": "La Ben Hot Spring Cabin Resort Los Ba\u00f1os Laguna address",
+    "google_maps_link": "https://www.google.com/maps/search/?api=1&query=La%20Ben%20Hot%20Spring%20Cabin%20Resort%20Los%20Ba%C3%B1os%20Laguna",
+    "searched": true
+  },
+  {
+    "id": 113,
+    "name": "Jfs Resort",
+    "found": false,
+    "notes": "Could not find specific information. Search results showed other resorts but no 'JFS Resort'. May be spelled differently or have limited online presence.",
+    "search_query_used": "Jfs Resort Los Ba\u00f1os Laguna location coordinates",
+    "google_maps_link": "https://www.google.com/maps/search/?api=1&query=Jfs%20Resort%20Los%20Ba%C3%B1os%20Laguna",
+    "searched": false
+  },
+  {
+    "id": 114,
+    "name": "Joeyblue Resort",
+    "found": true,
+    "address": "West Wichita Street, Springdale Garden Subdivision, Barangay Lalakay, Los Ba\u00f1os, Laguna",
+    "notes": "Private hot spring resort. Amenities: Adult pool, Kiddie pool, Outdoor shower, Videoke, Kitchen, 4 Air-conditioned bedrooms with own toilet and bath. Newly renovated. Rates: \u20b16,000 for up to 20 persons, \u20b1300 per additional person.",
+    "google_maps_link": "https://www.google.com/maps/search/?api=1&query=Joeyblue%20Resort%20Los%20Ba%C3%B1os%20Laguna",
+    "search_query_used": "Joeyblue Resort Los Ba\u00f1os Laguna Philippines",
+    "searched": true
+  },
+  {
+    "id": 115,
+    "name": "Johnfel Escape Resort",
+    "found": false,
+    "notes": "Could not find specific information. Found similar resorts: Johnriel Private Resort in Pansol, Calamba; JMG Private Resort; Sweet Escape Resort; The SEAscape Laguna Hot Spring Resort. Name may be different or have limited online presence.",
+    "search_query_used": "Johnfel Escape Resort Los Ba\u00f1os Laguna address",
+    "google_maps_link": "https://www.google.com/maps/search/?api=1&query=Johnfel%20Escape%20Resort%20Los%20Ba%C3%B1os%20Laguna",
+    "searched": false
+  },
+  {
+    "id": 116,
+    "name": "Joint Avenue Corporation",
+    "found": false,
+    "notes": "No specific mention of 'Joint Avenue Corporation' as a resort. 'Joint Avenue' appears to be a street name in Los Ba\u00f1os. Found J&J Hot Spring Resort, MJ16 Hot Spring Resort, and other resorts in the area.",
+    "search_query_used": "Joint Avenue Corporation resort Los Ba\u00f1os Laguna",
+    "google_maps_link": "https://www.google.com/maps/search/?api=1&query=Joint%20Avenue%20Corporation%20Los%20Ba%C3%B1os%20Laguna",
+    "searched": false
+  },
+  {
+    "id": 117,
+    "name": "Jrv Private Resort",
+    "found": false,
+    "notes": "Search hit rate limit. No information found.",
+    "search_query_used": "Jrv Private Resort Los Ba\u00f1os Laguna location address",
+    "google_maps_link": "https://www.google.com/maps/search/?api=1&query=Jrv%20Private%20Resort%20Los%20Ba%C3%B1os%20Laguna",
+    "searched": false
+  },
+  {
+    "id": 118,
+    "name": "Kalima Haven Hot Spring Resort",
+    "found": false,
+    "notes": "Search hit rate limit. No information found.",
+    "search_query_used": "Kalima Haven Hot Spring Resort Los Ba\u00f1os Laguna",
+    "google_maps_link": "https://www.google.com/maps/search/?api=1&query=Kalima%20Haven%20Hot%20Spring%20Resort%20Los%20Ba%C3%B1os%20Laguna",
+    "searched": false
+  },
+  {
+    "id": 119,
+    "name": "Kimxblair Resort",
+    "found": false,
+    "notes": "Search hit rate limit. No information found.",
+    "search_query_used": "Kimxblair Resort Los Ba\u00f1os Laguna Philippines",
+    "google_maps_link": "https://www.google.com/maps/search/?api=1&query=Kimxblair%20Resort%20Los%20Ba%C3%B1os%20Laguna",
+    "searched": false
+  },
+  {
+    "id": 120,
+    "name": "King. Phillip Private Resort",
+    "found": false,
+    "notes": "Search hit rate limit before completion. No information found.",
+    "search_query_used": "King Phillip Private Resort Los Ba\u00f1os Laguna coordinates",
+    "google_maps_link": "https://www.google.com/maps/search/?api=1&query=King.%20Phillip%20Private%20Resort%20Los%20Ba%C3%B1os%20Laguna",
+    "searched": false
+  },
+  {
+    "id": 121,
+    "name": "King. Phillip II Private Resort",
+    "found": false,
+    "notes": "Not yet searched - same as ID 120, likely related property",
+    "search_query_used": "Not yet searched",
+    "google_maps_link": "https://www.google.com/maps/search/?api=1&query=King.%20Phillip%20II%20Private%20Resort%20Los%20Ba%C3%B1os%20Laguna",
+    "searched": false
+  },
+  {
+    "id": 122,
+    "name": "Kiwis Resort",
+    "found": false,
+    "notes": "Search hit rate limit. No information found.",
+    "search_query_used": "Kiwis Resort Los Ba\u00f1os Laguna address",
+    "google_maps_link": "https://www.google.com/maps/search/?api=1&query=Kiwis%20Resort%20Los%20Ba%C3%B1os%20Laguna",
+    "searched": false
+  },
+  {
+    "id": 123,
+    "name": "Kumo Villa Rental",
+    "found": false,
+    "notes": "Not yet searched",
+    "search_query_used": "Not yet searched",
+    "google_maps_link": "https://www.google.com/maps/search/?api=1&query=Kumo%20Villa%20Rental%20Los%20Ba%C3%B1os%20Laguna",
+    "searched": false
+  },
+  {
+    "id": 124,
+    "name": "L-1 Hot Spring Resort",
+    "found": false,
+    "notes": "Not yet searched",
+    "search_query_used": "Not yet searched",
+    "google_maps_link": "https://www.google.com/maps/search/?api=1&query=L-1%20Hot%20Spring%20Resort%20Los%20Ba%C3%B1os%20Laguna",
+    "searched": false
+  },
+  {
+    "id": 125,
+    "name": "La Riqueza Hot Spring Resort",
+    "found": false,
+    "notes": "Not yet searched",
+    "search_query_used": "Not yet searched",
+    "google_maps_link": "https://www.google.com/maps/search/?api=1&query=La%20Riqueza%20Hot%20Spring%20Resort%20Los%20Ba%C3%B1os%20Laguna",
+    "searched": false
+  },
+  {
+    "id": 126,
+    "name": "La Roca De Trinidad Resort Inc.",
+    "found": false,
+    "notes": "Not yet searched",
+    "search_query_used": "Not yet searched",
+    "google_maps_link": "https://www.google.com/maps/search/?api=1&query=La%20Roca%20De%20Trinidad%20Resort%20Inc.%20Los%20Ba%C3%B1os%20Laguna",
+    "searched": false
+  },
+  {
+    "id": 127,
+    "name": "La Vue Hot Spring Resort",
+    "found": false,
+    "notes": "Not yet searched",
+    "search_query_used": "Not yet searched",
+    "google_maps_link": "https://www.google.com/maps/search/?api=1&query=La%20Vue%20Hot%20Spring%20Resort%20Los%20Ba%C3%B1os%20Laguna",
+    "searched": false
+  },
+  {
+    "id": 128,
+    "name": "Ladera Spring Resort",
+    "found": false,
+    "notes": "Not yet searched",
+    "search_query_used": "Not yet searched",
+    "google_maps_link": "https://www.google.com/maps/search/?api=1&query=Ladera%20Spring%20Resort%20Los%20Ba%C3%B1os%20Laguna",
+    "searched": false
+  },
+  {
+    "id": 129,
+    "name": "Laluna Resort",
+    "found": false,
+    "notes": "Not yet searched",
+    "search_query_used": "Not yet searched",
+    "google_maps_link": "https://www.google.com/maps/search/?api=1&query=Laluna%20Resort%20Los%20Ba%C3%B1os%20Laguna",
+    "searched": false
+  },
+  {
+    "id": 130,
+    "name": "Laresio Lakeside Resort And Spa, Inc.",
+    "found": false,
+    "notes": "Not yet searched",
+    "search_query_used": "Not yet searched",
+    "google_maps_link": "https://www.google.com/maps/search/?api=1&query=Laresio%20Lakeside%20Resort%20And%20Spa%2C%20Inc.%20Los%20Ba%C3%B1os%20Laguna",
+    "searched": false
+  },
+  {
+    "id": 131,
+    "name": "Lauren's-Place Private Resort",
+    "found": false,
+    "notes": "Not yet searched",
+    "search_query_used": "Not yet searched",
+    "google_maps_link": "https://www.google.com/maps/search/?api=1&query=Lauren%27s-Place%20Private%20Resort%20Los%20Ba%C3%B1os%20Laguna",
+    "searched": false
+  },
+  {
+    "id": 132,
+    "name": "Laxus Hot Spring Resort",
+    "found": false,
+    "notes": "Not yet searched",
+    "search_query_used": "Not yet searched",
+    "google_maps_link": "https://www.google.com/maps/search/?api=1&query=Laxus%20Hot%20Spring%20Resort%20Los%20Ba%C3%B1os%20Laguna",
+    "searched": false
+  },
+  {
+    "id": 133,
+    "name": "Laxus Hotspring Resort",
+    "found": false,
+    "notes": "Not yet searched - appears to be duplicate of ID 132",
+    "search_query_used": "Not yet searched",
+    "google_maps_link": "https://www.google.com/maps/search/?api=1&query=Laxus%20Hotspring%20Resort%20Los%20Ba%C3%B1os%20Laguna",
+    "searched": false
+  },
+  {
+    "id": 134,
+    "name": "Le-Grande Private Resort",
+    "found": false,
+    "notes": "Not yet searched",
+    "search_query_used": "Not yet searched",
+    "google_maps_link": "https://www.google.com/maps/search/?api=1&query=Le-Grande%20Private%20Resort%20Los%20Ba%C3%B1os%20Laguna",
+    "searched": false
+  },
+  {
+    "id": 135,
+    "name": "Lfp Properties Corp.",
+    "found": false,
+    "notes": "Not yet searched",
+    "search_query_used": "Not yet searched",
+    "google_maps_link": "https://www.google.com/maps/search/?api=1&query=Lfp%20Properties%20Corp.%20Los%20Ba%C3%B1os%20Laguna",
+    "searched": false
+  },
+  {
+    "id": 136,
+    "name": "Liberty Private Resort",
+    "found": false,
+    "notes": "Not yet searched",
+    "search_query_used": "Not yet searched",
+    "google_maps_link": "https://www.google.com/maps/search/?api=1&query=Liberty%20Private%20Resort%20Los%20Ba%C3%B1os%20Laguna",
+    "searched": false
+  },
+  {
+    "id": 137,
+    "name": "Likas Hotspring And Garden Resort, Inc.",
+    "found": false,
+    "notes": "Not yet searched",
+    "search_query_used": "Not yet searched",
+    "google_maps_link": "https://www.google.com/maps/search/?api=1&query=Likas%20Hotspring%20And%20Garden%20Resort%2C%20Inc.%20Los%20Ba%C3%B1os%20Laguna",
+    "searched": false
+  },
+  {
+    "id": 138,
+    "name": "Lohitzer Private Resort",
+    "found": false,
+    "notes": "Not yet searched",
+    "search_query_used": "Not yet searched",
+    "google_maps_link": "https://www.google.com/maps/search/?api=1&query=Lohitzer%20Private%20Resort%20Los%20Ba%C3%B1os%20Laguna",
+    "searched": false
+  },
+  {
+    "id": 139,
+    "name": "Lolo Dad's Hot Spring Resort",
+    "found": false,
+    "notes": "Not yet searched",
+    "search_query_used": "Not yet searched",
+    "google_maps_link": "https://www.google.com/maps/search/?api=1&query=Lolo%20Dad%27s%20Hot%20Spring%20Resort%20Los%20Ba%C3%B1os%20Laguna",
+    "searched": false
+  },
+  {
+    "id": 140,
+    "name": "Lorenz Private Resort",
+    "found": false,
+    "notes": "Not yet searched",
+    "search_query_used": "Not yet searched",
+    "google_maps_link": "https://www.google.com/maps/search/?api=1&query=Lorenz%20Private%20Resort%20Los%20Ba%C3%B1os%20Laguna",
+    "searched": false
+  },
+  {
+    "id": 141,
+    "name": "Los Banos Lodge & Hot Springs, Inc.",
+    "found": false,
+    "notes": "Not yet searched",
+    "search_query_used": "Not yet searched",
+    "google_maps_link": "https://www.google.com/maps/search/?api=1&query=Los%20Banos%20Lodge%20%26%20Hot%20Springs%2C%20Inc.%20Los%20Ba%C3%B1os%20Laguna",
+    "searched": false
+  },
+  {
+    "id": 142,
+    "name": "Louie Tower-Hot Spring Resort",
+    "found": false,
+    "notes": "Not yet searched",
+    "search_query_used": "Not yet searched",
+    "google_maps_link": "https://www.google.com/maps/search/?api=1&query=Louie%20Tower-Hot%20Spring%20Resort%20Los%20Ba%C3%B1os%20Laguna",
+    "searched": false
+  },
+  {
+    "id": 143,
+    "name": "Loveland Spring Resort",
+    "found": false,
+    "notes": "Not yet searched",
+    "search_query_used": "Not yet searched",
+    "google_maps_link": "https://www.google.com/maps/search/?api=1&query=Loveland%20Spring%20Resort%20Los%20Ba%C3%B1os%20Laguna",
+    "searched": false
+  },
+  {
+    "id": 144,
+    "name": "Lucky 5 Queendom Private Resort",
+    "found": false,
+    "notes": "Not yet searched",
+    "search_query_used": "Not yet searched",
+    "google_maps_link": "https://www.google.com/maps/search/?api=1&query=Lucky%205%20Queendom%20Private%20Resort%20Los%20Ba%C3%B1os%20Laguna",
+    "searched": false
+  },
+  {
+    "id": 145,
+    "name": "Luxe Louise Hotspring Resort",
+    "found": false,
+    "notes": "Not yet searched",
+    "search_query_used": "Not yet searched",
+    "google_maps_link": "https://www.google.com/maps/search/?api=1&query=Luxe%20Louise%20Hotspring%20Resort%20Los%20Ba%C3%B1os%20Laguna",
+    "searched": false
+  },
+  {
+    "id": 146,
+    "name": "Makiling Onsen Hotel Corporation",
+    "found": false,
+    "notes": "Not yet searched",
+    "search_query_used": "Not yet searched",
+    "google_maps_link": "https://www.google.com/maps/search/?api=1&query=Makiling%20Onsen%20Hotel%20Corporation%20Los%20Ba%C3%B1os%20Laguna",
+    "searched": false
+  },
+  {
+    "id": 147,
+    "name": "Malbarr Residential House Rental",
+    "found": false,
+    "notes": "Not yet searched",
+    "search_query_used": "Not yet searched",
+    "google_maps_link": "https://www.google.com/maps/search/?api=1&query=Malbarr%20Residential%20House%20Rental%20Los%20Ba%C3%B1os%20Laguna",
+    "searched": false
+  },
+  {
+    "id": 148,
+    "name": "Mamangsparadise Resort",
+    "found": false,
+    "notes": "Not yet searched",
+    "search_query_used": "Not yet searched",
+    "google_maps_link": "https://www.google.com/maps/search/?api=1&query=Mamangsparadise%20Resort%20Los%20Ba%C3%B1os%20Laguna",
+    "searched": false
+  },
+  {
+    "id": 149,
+    "name": "Mamizu Resort",
+    "found": false,
+    "notes": "Not yet searched",
+    "search_query_used": "Not yet searched",
+    "google_maps_link": "https://www.google.com/maps/search/?api=1&query=Mamizu%20Resort%20Los%20Ba%C3%B1os%20Laguna",
+    "searched": false
+  },
+  {
+    "id": 150,
+    "name": "Mandara Villa Private Resort",
+    "found": false,
+    "notes": "Not yet searched",
+    "search_query_used": "Not yet searched",
+    "google_maps_link": "https://www.google.com/maps/search/?api=1&query=Mandara%20Villa%20Private%20Resort%20Los%20Ba%C3%B1os%20Laguna",
+    "searched": false
+  },
+  {
+    "id": 151,
+    "name": "Mandara Villa Private Resort",
+    "found": true,
+    "address": "Block 6 Lot 14, Niagara Street, Springdale Garden Subdivision, Lalakay, Los Ba\u00f1os, Laguna",
+    "latitude": null,
+    "longitude": null,
+    "google_maps_link": "https://www.google.com/maps/search/?api=1&query=Mandara%20Villa%20Private%20Resort%20Los%20Ba%C3%B1os%20Laguna",
+    "search_query_used": "Mandara Villa Private Resort Los Ba\u00f1os Laguna coordinates address",
+    "notes": "Bali-inspired private resort in Springdale Garden Subdivision. Listed on Agoda, Airbnb, and VRBO. Exact GPS coordinates not found in search results.",
+    "searched": true
+  },
+  {
+    "id": 152,
+    "name": "Man's Cavern Private Resort",
+    "found": true,
+    "address": "Lakewood Subdivision Phase 3, Block 3, Lot 5, Barangay Tadlac, Los Ba\u00f1os, Laguna",
+    "latitude": null,
+    "longitude": null,
+    "google_maps_link": "https://www.google.com/maps/search/?api=1&query=Man%27s%20Cavern%20Private%20Resort%20Los%20Ba%C3%B1os%20Laguna",
+    "search_query_used": "Man's Cavern Private Resort Los Ba\u00f1os Laguna coordinates address",
+    "notes": "Located in Lakewood Subdivision Phase 3, Brgy Tadlac. Natural hot spring resort. Exact GPS coordinates not found in search results.",
+    "searched": true
+  },
+  {
+    "id": 153,
+    "name": "Maplewood Hot Spring Resort",
+    "found": true,
+    "address": "Lakewood Subdivision, Los Ba\u00f1os, Laguna",
+    "latitude": null,
+    "longitude": null,
+    "google_maps_link": "https://www.google.com/maps/search/?api=1&query=Maplewood%20Hot%20Spring%20Resort%20Los%20Ba%C3%B1os%20Laguna",
+    "search_query_used": "Maplewood Hot Spring Resort Los Ba\u00f1os Laguna coordinates address",
+    "notes": "Located in Lakewood Subdivision. Contact: 0999-347-6693, 0917-553-8724. Newly built modern resort with hot spring facilities.",
+    "searched": true
+  },
+  {
+    "id": 154,
+    "name": "Maquiling Breeze Resort",
+    "found": true,
+    "address": "Block 7, Lot 1, Springdale Garden Subdivision, East Wechita Street, Barangay Lalakay, Los Ba\u00f1os, Laguna",
+    "latitude": null,
+    "longitude": null,
+    "google_maps_link": "https://www.google.com/maps/search/?api=1&query=Maquiling%20Breeze%20Resort%20Los%20Ba%C3%B1os%20Laguna",
+    "search_query_used": "Maquiling Breeze Resort Los Ba\u00f1os Laguna coordinates address",
+    "notes": "Also listed as Springdale Gardens Subdivision, Kilometer 58, Libis, Lalakay, Los Ba\u00f1os, Laguna.",
+    "searched": true
+  },
+  {
+    "id": 155,
+    "name": "Marahay Spring Resort",
+    "found": false,
+    "notes": "Search hit rate limit. Need to try alternative search methods.",
+    "google_maps_link": "https://www.google.com/maps/search/?api=1&query=Marahay%20Spring%20Resort%20Los%20Ba%C3%B1os%20Laguna",
+    "searched": false
+  },
+  {
+    "id": 156,
+    "name": "Marcela Resort",
+    "found": false,
+    "notes": "Likely located in Pansol area of Calamba/Los Ba\u00f1os. General coordinates for Pansol area: 14.2083\u00b0 N, 121.0833\u00b0 E. Exact coordinates not confirmed.",
+    "google_maps_link": "https://www.google.com/maps/search/?api=1&query=Marcela%20Resort%20Los%20Ba%C3%B1os%20Laguna",
+    "searched": false
+  },
+  {
+    "id": 157,
+    "name": "Maria Cynthia Canlas Private Resort",
+    "found": false,
+    "notes": "DTI registered business (BNN 2949576, registered May 31, 2021). No specific address, coordinates, or online presence found. Likely a small private resort with minimal online presence.",
+    "google_maps_link": "https://www.google.com/maps/search/?api=1&query=Maria%20Cynthia%20Canlas%20Private%20Resort%20Los%20Ba%C3%B1os%20Laguna",
+    "searched": false
+  },
+  {
+    "id": 158,
+    "name": "Marina's Private Resort",
+    "found": true,
+    "address": "Lot 2 Block 15, Phase 2, Lakewood Executive, Los Ba\u00f1os, Laguna, Philippines 4030",
+    "latitude": null,
+    "longitude": null,
+    "google_maps_link": "https://www.google.com/maps/search/?api=1&query=Marina%27s%20Private%20Resort%20Los%20Ba%C3%B1os%20Laguna",
+    "search_query_used": "Marina's Private Resort Los Ba\u00f1os Laguna coordinates address",
+    "notes": "Located in Lakewood Executive Subdivision. Facebook page: https://www.facebook.com/marinasprivateresort/",
+    "searched": true
+  },
+  {
+    "id": 159,
+    "name": "Martin's Ville Private Resort",
+    "found": true,
+    "address": "Lot 5-B Block 6, Park Merced Village, Lalakay, Los Ba\u00f1os, Laguna",
+    "latitude": null,
+    "longitude": null,
+    "google_maps_link": "https://www.google.com/maps/search/?api=1&query=Martin%27s%20Ville%20Private%20Resort%20Los%20Ba%C3%B1os%20Laguna",
+    "search_query_used": "Martin's Ville Private Resort Los Ba\u00f1os Laguna coordinates address",
+    "notes": "Natural warm water/semi hot spring pool. Contact: 0927-967-8781, 0929-288-0843, 0925-601-6211. Facebook page: Martin's Ville Private Resort",
+    "searched": true
+  },
+  {
+    "id": 160,
+    "name": "Maxville Private Resort",
+    "found": true,
+    "address": "Toms Creek Street, Lakewood Subdivision, Barangay Lalakay, Los Ba\u00f1os, Laguna, 4030 Philippines",
+    "latitude": null,
+    "longitude": null,
+    "google_maps_link": "https://www.google.com/maps/search/?api=1&query=Maxville%20Private%20Resort%20Los%20Ba%C3%B1os%20Laguna",
+    "search_query_used": "Maxville Private Resort Los Ba\u00f1os Laguna coordinates address",
+    "notes": "Contact: 09275117808, 09459950008, 0910-824-4113. Note: Multiple Maxville resorts exist (Maxville, Maxville 2, Maxville-3).",
+    "searched": true
+  },
+  {
+    "id": 161,
+    "name": "Mcm Resort",
+    "found": false,
+    "notes": "Search reached monthly usage limit. Need to try alternative search methods: Google Maps, Facebook, booking sites (Agoda, Booking.com), or contact DTI/SEC Philippines.",
+    "google_maps_link": "https://www.google.com/maps/search/?api=1&query=Mcm%20Resort%20Los%20Ba%C3%B1os%20Laguna",
+    "searched": false
+  },
+  {
+    "id": 162,
+    "name": "Meiyi Hot Spring Resort",
+    "found": false,
+    "notes": "Search reached monthly usage limit. Need to try alternative search methods: Google Maps, Facebook, booking sites (Agoda, Booking.com), or contact DTI/SEC Philippines.",
+    "google_maps_link": "https://www.google.com/maps/search/?api=1&query=Meiyi%20Hot%20Spring%20Resort%20Los%20Ba%C3%B1os%20Laguna",
+    "searched": false
+  },
+  {
+    "id": 163,
+    "name": "Mijolo Villa Rental",
+    "found": true,
+    "address": "Phase 2, Block 11, Lot 13, Timber Lake Street, Lakewood Subdivision, Los Ba\u00f1os, Laguna",
+    "latitude": null,
+    "longitude": null,
+    "google_maps_link": "https://www.google.com/maps/search/?api=1&query=Mijolo%20Villa%20Rental%20Los%20Ba%C3%B1os%20Laguna",
+    "search_query_used": "Mijolo Villa Rental Los Ba\u00f1os Laguna coordinates address",
+    "notes": "Also known as Casa Mijolo. Located in Lakewood Executive Resort Estates. Contact: +63 998 9967434, Email: casa.mijolo@gmail.com, Website: www.casamijolo.com",
+    "searched": true
+  },
+  {
+    "id": 164,
+    "name": "Miju E & C Corp",
+    "found": false,
+    "notes": "Company registered in Philippines. Found on CompanyHouse.ph but no specific address or coordinates for Los Ba\u00f1os location. May need to check CompanyHouse.ph directly or SEC Philippines records.",
+    "google_maps_link": "https://www.google.com/maps/search/?api=1&query=Miju%20E%20%26%20C%20Corp%20Los%20Ba%C3%B1os%20Laguna",
+    "searched": false
+  },
+  {
+    "id": 165,
+    "name": "Mjm Spring Resort",
+    "found": false,
+    "notes": "Search hit rate limit. Need to try alternative search methods: Google Maps, Facebook, booking sites (Agoda, Booking.com), or contact DTI/SEC Philippines.",
+    "google_maps_link": "https://www.google.com/maps/search/?api=1&query=Mjm%20Spring%20Resort%20Los%20Ba%C3%B1os%20Laguna",
+    "searched": false
+  },
+  {
+    "id": 166,
+    "name": "Mjm Spring Resort (duplicate)",
+    "found": false,
+    "notes": "Duplicate entry in source file (ids 165 and 166 are both Mjm Spring Resort). Search hit rate limit.",
+    "google_maps_link": "https://www.google.com/maps/search/?api=1&query=Mjm%20Spring%20Resort%20%28duplicate%29%20Los%20Ba%C3%B1os%20Laguna",
+    "searched": false
+  },
+  {
+    "id": 167,
+    "name": "Mommy Lou Private Resort",
+    "found": false,
+    "notes": "Search reached monthly usage limit. Need to try alternative search methods: Google Maps, Facebook, booking sites (Agoda, Booking.com), or contact DTI/SEC Philippines.",
+    "google_maps_link": "https://www.google.com/maps/search/?api=1&query=Mommy%20Lou%20Private%20Resort%20Los%20Ba%C3%B1os%20Laguna",
+    "searched": false
+  },
+  {
+    "id": 168,
+    "name": "Monona Hot Spring Resort",
+    "found": false,
+    "notes": "Not yet searched due to rate limits. Try: Google Maps, Facebook, booking sites.",
+    "google_maps_link": "https://www.google.com/maps/search/?api=1&query=Monona%20Hot%20Spring%20Resort%20Los%20Ba%C3%B1os%20Laguna",
+    "searched": false
+  },
+  {
+    "id": 169,
+    "name": "Mount View Private Pool",
+    "found": false,
+    "notes": "Not yet searched due to rate limits. Try: Google Maps, Facebook, booking sites.",
+    "google_maps_link": "https://www.google.com/maps/search/?api=1&query=Mount%20View%20Private%20Pool%20Los%20Ba%C3%B1os%20Laguna",
+    "searched": false
+  },
+  {
+    "id": 170,
+    "name": "Mountain View Hot Spring Resort",
+    "found": false,
+    "notes": "Not yet searched due to rate limits. Try: Google Maps, Facebook, booking sites.",
+    "google_maps_link": "https://www.google.com/maps/search/?api=1&query=Mountain%20View%20Hot%20Spring%20Resort%20Los%20Ba%C3%B1os%20Laguna",
+    "searched": false
+  },
+  {
+    "id": 171,
+    "name": "Narra Hot Spring Resort",
+    "found": false,
+    "notes": "Not yet searched due to rate limits. Try: Google Maps, Facebook, booking sites.",
+    "google_maps_link": "https://www.google.com/maps/search/?api=1&query=Narra%20Hot%20Spring%20Resort%20Los%20Ba%C3%B1os%20Laguna",
+    "searched": false
+  },
+  {
+    "id": 172,
+    "name": "Nila & Manny Rental Space",
+    "found": false,
+    "notes": "Not yet searched due to rate limits. Try: Google Maps, Facebook, booking sites.",
+    "google_maps_link": "https://www.google.com/maps/search/?api=1&query=Nila%20%26%20Manny%20Rental%20Space%20Los%20Ba%C3%B1os%20Laguna",
+    "searched": false
+  },
+  {
+    "id": 173,
+    "name": "Ninang's Cavern Resort",
+    "found": false,
+    "notes": "Not yet searched due to rate limits. Try: Google Maps, Facebook, booking sites.",
+    "google_maps_link": "https://www.google.com/maps/search/?api=1&query=Ninang%27s%20Cavern%20Resort%20Los%20Ba%C3%B1os%20Laguna",
+    "searched": false
+  },
+  {
+    "id": 174,
+    "name": "Ocampo Hot Spring Resort",
+    "found": false,
+    "notes": "Not yet searched due to rate limits. Try: Google Maps, Facebook, booking sites.",
+    "google_maps_link": "https://www.google.com/maps/search/?api=1&query=Ocampo%20Hot%20Spring%20Resort%20Los%20Ba%C3%B1os%20Laguna",
+    "searched": false
+  },
+  {
+    "id": 175,
+    "name": "October Twelve Private Resort",
+    "found": false,
+    "notes": "Not yet searched due to rate limits. Try: Google Maps, Facebook, booking sites.",
+    "google_maps_link": "https://www.google.com/maps/search/?api=1&query=October%20Twelve%20Private%20Resort%20Los%20Ba%C3%B1os%20Laguna",
+    "searched": false
+  },
+  {
+    "id": 176,
+    "name": "Ohana Hot Spring Resort",
+    "found": false,
+    "notes": "Not yet searched due to rate limits. Try: Google Maps, Facebook, booking sites.",
+    "google_maps_link": "https://www.google.com/maps/search/?api=1&query=Ohana%20Hot%20Spring%20Resort%20Los%20Ba%C3%B1os%20Laguna",
+    "searched": false
+  },
+  {
+    "id": 177,
+    "name": "Ohara's Hot Spring Resort",
+    "found": false,
+    "notes": "Not yet searched due to rate limits. Try: Google Maps, Facebook, booking sites.",
+    "google_maps_link": "https://www.google.com/maps/search/?api=1&query=Ohara%27s%20Hot%20Spring%20Resort%20Los%20Ba%C3%B1os%20Laguna",
+    "searched": false
+  },
+  {
+    "id": 178,
+    "name": "One Pansol Hot Spring Resort Corporation",
+    "found": false,
+    "notes": "Not yet searched due to rate limits. Try: Google Maps, Facebook, booking sites.",
+    "google_maps_link": "https://www.google.com/maps/search/?api=1&query=One%20Pansol%20Hot%20Spring%20Resort%20Corporation%20Los%20Ba%C3%B1os%20Laguna",
+    "searched": false
+  },
+  {
+    "id": 179,
+    "name": "Onsen 33 Hotspring-Private Villa Rental",
+    "found": false,
+    "notes": "Not yet searched due to rate limits. Try: Google Maps, Facebook, booking sites.",
+    "google_maps_link": "https://www.google.com/maps/search/?api=1&query=Onsen%2033%20Hotspring-Private%20Villa%20Rental%20Los%20Ba%C3%B1os%20Laguna",
+    "searched": false
+  },
+  {
+    "id": 180,
+    "name": "Optimum Leasing And Property Management Inc.",
+    "found": false,
+    "notes": "Not yet searched due to rate limits. Try: Google Maps, Facebook, booking sites.",
+    "google_maps_link": "https://www.google.com/maps/search/?api=1&query=Optimum%20Leasing%20And%20Property%20Management%20Inc.%20Los%20Ba%C3%B1os%20Laguna",
+    "searched": false
+  },
+  {
+    "id": 181,
+    "name": "Pagosa Spring Resort",
+    "found": false,
+    "notes": "Not yet searched due to rate limits. Try: Google Maps, Facebook, booking sites.",
+    "google_maps_link": "https://www.google.com/maps/search/?api=1&query=Pagosa%20Spring%20Resort%20Los%20Ba%C3%B1os%20Laguna",
+    "searched": false
+  },
+  {
+    "id": 182,
+    "name": "Palm Blissview Swimming Pool Rental",
+    "found": false,
+    "notes": "Not yet searched due to rate limits. Try: Google Maps, Facebook, booking sites.",
+    "google_maps_link": "https://www.google.com/maps/search/?api=1&query=Palm%20Blissview%20Swimming%20Pool%20Rental%20Los%20Ba%C3%B1os%20Laguna",
+    "searched": false
+  },
+  {
+    "id": 183,
+    "name": "Pasithea Private Hotspring Resort",
+    "found": false,
+    "notes": "Not yet searched due to rate limits. Try: Google Maps, Facebook, booking sites.",
+    "google_maps_link": "https://www.google.com/maps/search/?api=1&query=Pasithea%20Private%20Hotspring%20Resort%20Los%20Ba%C3%B1os%20Laguna",
+    "searched": false
+  },
+  {
+    "id": 184,
+    "name": "Patricia-Isabel Private Resort",
+    "found": false,
+    "notes": "Not yet searched due to rate limits. Try: Google Maps, Facebook, booking sites.",
+    "google_maps_link": "https://www.google.com/maps/search/?api=1&query=Patricia-Isabel%20Private%20Resort%20Los%20Ba%C3%B1os%20Laguna",
+    "searched": false
+  },
+  {
+    "id": 185,
+    "name": "Paulo Rileys Resort",
+    "found": false,
+    "notes": "Not yet searched due to rate limits. Try: Google Maps, Facebook, booking sites.",
+    "google_maps_link": "https://www.google.com/maps/search/?api=1&query=Paulo%20Rileys%20Resort%20Los%20Ba%C3%B1os%20Laguna",
+    "searched": false
+  },
+  {
+    "id": 186,
+    "name": "Pierre Resort Incorporated",
+    "found": false,
+    "notes": "Not yet searched due to rate limits. Try: Google Maps, Facebook, booking sites.",
+    "google_maps_link": "https://www.google.com/maps/search/?api=1&query=Pierre%20Resort%20Incorporated%20Los%20Ba%C3%B1os%20Laguna",
+    "searched": false
+  },
+  {
+    "id": 187,
+    "name": "Pierre Resorts Incorporated",
+    "found": false,
+    "notes": "Duplicate/similar to Pierre Resort Incorporated. Not yet searched due to rate limits. Try: Google Maps, Facebook, booking sites.",
+    "google_maps_link": "https://www.google.com/maps/search/?api=1&query=Pierre%20Resorts%20Incorporated%20Los%20Ba%C3%B1os%20Laguna",
+    "searched": false
+  },
+  {
+    "id": 188,
+    "name": "Playpool Private Resort",
+    "found": false,
+    "notes": "Not yet searched due to rate limits. Try: Google Maps, Facebook, booking sites.",
+    "google_maps_link": "https://www.google.com/maps/search/?api=1&query=Playpool%20Private%20Resort%20Los%20Ba%C3%B1os%20Laguna",
+    "searched": false
+  },
+  {
+    "id": 189,
+    "name": "Precious-Star Hot Spring Resort",
+    "found": false,
+    "notes": "Not yet searched due to rate limits. Try: Google Maps, Facebook, booking sites.",
+    "google_maps_link": "https://www.google.com/maps/search/?api=1&query=Precious-Star%20Hot%20Spring%20Resort%20Los%20Ba%C3%B1os%20Laguna",
+    "searched": false
+  },
+  {
+    "id": 190,
+    "name": "Princesa Training Center",
+    "found": false,
+    "notes": "Not yet searched due to rate limits. Try: Google Maps, Facebook, booking sites.",
+    "google_maps_link": "https://www.google.com/maps/search/?api=1&query=Princesa%20Training%20Center%20Los%20Ba%C3%B1os%20Laguna",
+    "searched": false
+  },
+  {
+    "id": 191,
+    "name": "Princess Mikaela Hotspring Resort",
+    "found": false,
+    "notes": "Not yet searched due to rate limits. Try: Google Maps, Facebook, booking sites.",
+    "google_maps_link": "https://www.google.com/maps/search/?api=1&query=Princess%20Mikaela%20Hotspring%20Resort%20Los%20Ba%C3%B1os%20Laguna",
+    "searched": false
+  },
+  {
+    "id": 192,
+    "name": "Punta Hotspring Resort",
+    "found": false,
+    "notes": "Not yet searched due to rate limits. Try: Google Maps, Facebook, booking sites.",
+    "google_maps_link": "https://www.google.com/maps/search/?api=1&query=Punta%20Hotspring%20Resort%20Los%20Ba%C3%B1os%20Laguna",
+    "searched": false
+  },
+  {
+    "id": 193,
+    "name": "Quinnlake Hotspring Resort",
+    "found": false,
+    "notes": "Not yet searched due to rate limits. Try: Google Maps, Facebook, booking sites.",
+    "google_maps_link": "https://www.google.com/maps/search/?api=1&query=Quinnlake%20Hotspring%20Resort%20Los%20Ba%C3%B1os%20Laguna",
+    "searched": false
+  },
+  {
+    "id": 194,
+    "name": "Raca Resort",
+    "found": false,
+    "notes": "Not yet searched due to rate limits. Try: Google Maps, Facebook, booking sites.",
+    "google_maps_link": "https://www.google.com/maps/search/?api=1&query=Raca%20Resort%20Los%20Ba%C3%B1os%20Laguna",
+    "searched": false
+  },
+  {
+    "id": 195,
+    "name": "Razul Private Resort",
+    "found": false,
+    "notes": "Not yet searched due to rate limits. Try: Google Maps, Facebook, booking sites.",
+    "google_maps_link": "https://www.google.com/maps/search/?api=1&query=Razul%20Private%20Resort%20Los%20Ba%C3%B1os%20Laguna",
+    "searched": false
+  },
+  {
+    "id": 196,
+    "name": "Rca5 Swimming Pool Private Resort/ Casa Rebecca Resort",
+    "found": false,
+    "notes": "Not yet searched due to rate limits. Try: Google Maps, Facebook, booking sites.",
+    "google_maps_link": "https://www.google.com/maps/search/?api=1&query=Rca5%20Swimming%20Pool%20Private%20Resort/%20Casa%20Rebecca%20Resort%20Los%20Ba%C3%B1os%20Laguna",
+    "searched": false
+  },
+  {
+    "id": 197,
+    "name": "Rehan Private Resort",
+    "found": false,
+    "notes": "Not yet searched due to rate limits. Try: Google Maps, Facebook, booking sites.",
+    "google_maps_link": "https://www.google.com/maps/search/?api=1&query=Rehan%20Private%20Resort%20Los%20Ba%C3%B1os%20Laguna",
+    "searched": false
+  },
+  {
+    "id": 198,
+    "name": "Renato Andir Private Resort",
+    "found": false,
+    "notes": "Not yet searched due to rate limits. Try: Google Maps, Facebook, booking sites.",
+    "google_maps_link": "https://www.google.com/maps/search/?api=1&query=Renato%20Andir%20Private%20Resort%20Los%20Ba%C3%B1os%20Laguna",
+    "searched": false
+  },
+  {
+    "id": 199,
+    "name": "Resort Ni Karisa",
+    "found": false,
+    "notes": "Not yet searched due to rate limits. Try: Google Maps, Facebook, booking sites.",
+    "google_maps_link": "https://www.google.com/maps/search/?api=1&query=Resort%20Ni%20Karisa%20Los%20Ba%C3%B1os%20Laguna",
+    "searched": false
+  },
+  {
+    "id": 200,
+    "name": "Rolybeck Private Hotspring Resort",
+    "found": false,
+    "notes": "Not yet searched due to rate limits. Try: Google Maps, Facebook, booking sites.",
+    "google_maps_link": "https://www.google.com/maps/search/?api=1&query=Rolybeck%20Private%20Hotspring%20Resort%20Los%20Ba%C3%B1os%20Laguna",
+    "searched": false
+  },
+  {
+    "id": 201,
+    "name": "Roma Ria Hotspring Resort",
+    "found": false,
+    "notes": "Search rate limited - unable to find address and coordinates",
+    "google_maps_link": "https://www.google.com/maps/search/?api=1&query=Roma%20Ria%20Hotspring%20Resort%20Los%20Ba%C3%B1os%20Laguna",
+    "searched": false
+  },
+  {
+    "id": 202,
+    "name": "Romchertna Private Resort",
+    "found": false,
+    "notes": "Search rate limited - unable to find address and coordinates",
+    "google_maps_link": "https://www.google.com/maps/search/?api=1&query=Romchertna%20Private%20Resort%20Los%20Ba%C3%B1os%20Laguna",
+    "searched": false
+  },
+  {
+    "id": 203,
+    "name": "Roxanne Private Resort",
+    "found": false,
+    "notes": "Search rate limited - unable to find address and coordinates",
+    "google_maps_link": "https://www.google.com/maps/search/?api=1&query=Roxanne%20Private%20Resort%20Los%20Ba%C3%B1os%20Laguna",
+    "searched": false
+  },
+  {
+    "id": 204,
+    "name": "Ruyi Private Resort",
+    "found": true,
+    "address": "Lakewood Subdivision, Los Ba\u00f1os, Laguna, Philippines",
+    "latitude": null,
+    "longitude": null,
+    "google_maps_link": "https://www.google.com/maps/search/?api=1&query=Ruyi%20Private%20Resort%20Los%20Ba%C3%B1os%20Laguna",
+    "search_query_used": "Ruyi Private Resort Los Ba\u00f1os Laguna address location",
+    "additional_info": "Also appears to have a location in Springdale Garden Subd, Brgy. Lalakay, Calamba, Philippines. Contact: 09124385172 / 09664994742. Facebook: facebook.com/ruyihotspringresort",
+    "searched": true
+  },
+  {
+    "id": 205,
+    "name": "Sababa Springs",
+    "found": true,
+    "address": "Lot 3 Block 1, Mercedes Drive, Park Merced Village, Brgy. Lalakay, Los Ba\u00f1os, Laguna, Philippines 4030",
+    "latitude": 14.1699121,
+    "longitude": 121.2440631,
+    "google_maps_link": "https://www.google.com/maps/search/?api=1&query=Sababa%20Springs%20Los%20Ba%C3%B1os%20Laguna",
+    "search_query_used": "Sababa Springs Los Ba\u00f1os Laguna address location coordinates",
+    "additional_info": "Located inside the city center area. Facebook page: @Sababasprings. 1.5 miles from Laguna Lake.",
+    "searched": true
+  },
+  {
+    "id": 206,
+    "name": "Sadulo Hotsprings",
+    "found": false,
+    "notes": "Search rate limited - unable to find address and coordinates",
+    "google_maps_link": "https://www.google.com/maps/search/?api=1&query=Sadulo%20Hotsprings%20Los%20Ba%C3%B1os%20Laguna",
+    "searched": false
+  },
+  {
+    "id": 207,
+    "name": "Salumbides Properties Opc (The Royal Manor)",
+    "found": true,
+    "address": "Blk 28 Lot 2 Timberlake Street, Brgy. Tadlac, Los Ba\u00f1os, Laguna, Philippines 4030",
+    "latitude": null,
+    "longitude": null,
+    "google_maps_link": "https://www.google.com/maps/search/?api=1&query=Salumbides%20Properties%20Opc%20%28The%20Royal%20Manor%29%20Los%20Ba%C3%B1os%20Laguna",
+    "search_query_used": "\"The Royal Manor\" Salumbides Los Ba\u00f1os Laguna address location",
+    "additional_info": "Located in Timberlake area of Barangay Tadlac. 98% recommendation rate based on 35 reviews.",
+    "searched": true
+  },
+  {
+    "id": 208,
+    "name": "Sentosa Elenita Private Resort",
+    "found": true,
+    "address": "4580 Manila S Rd (Manila South Road), Libis, Lalakay, Los Ba\u00f1os, Laguna, Philippines",
+    "latitude": null,
+    "longitude": null,
+    "google_maps_link": "https://www.google.com/maps/search/?api=1&query=Sentosa%20Elenita%20Private%20Resort%20Los%20Ba%C3%B1os%20Laguna",
+    "search_query_used": "Sentosa Elenita Private Resort Los Ba\u00f1os Laguna address location",
+    "additional_info": "Phone: +63 917 826 8244. Open 24 hours. Located along Manila South Road (National Highway).",
+    "searched": true
+  },
+  {
+    "id": 209,
+    "name": "Serenades Private Resort",
+    "found": false,
+    "notes": "Facebook page found but exact address not available in search results. Located in Los Ba\u00f1os, Laguna. Facebook: https://www.facebook.com/serenades.hot.spring.resort/",
+    "google_maps_link": "https://www.google.com/maps/search/?api=1&query=Serenades%20Private%20Resort%20Los%20Ba%C3%B1os%20Laguna",
+    "searched": false
+  },
+  {
+    "id": 210,
+    "name": "Sherie's Private Resort",
+    "found": true,
+    "address": "B-10 L-37 Mulawin St., Perpetual-6, Park Merced Subdivision, Lalakay, Los Ba\u00f1os, Laguna",
+    "latitude": null,
+    "longitude": null,
+    "google_maps_link": "https://www.google.com/maps/search/?api=1&query=Sherie%27s%20Private%20Resort%20Los%20Ba%C3%B1os%20Laguna",
+    "search_query_used": "Sherie's Private Resort Los Ba\u00f1os Laguna address location",
+    "additional_info": "Contact: Sherie Mae Pajarillon / Nald Pajarillon, Phone: 0927 967 8781 / 0929 288 0843",
+    "searched": true
+  },
+  {
+    "id": 211,
+    "name": "Shiloh Residential House Rental",
+    "found": true,
+    "address": "B2 L23 Swift Creek St cor Buffalo St, Lakewood Executive Village, Brgy. Lalakay (or Brgy. Tadlac), Los Ba\u00f1os, Laguna",
+    "latitude": null,
+    "longitude": null,
+    "google_maps_link": "https://www.google.com/maps/search/?api=1&query=Shiloh%20Residential%20House%20Rental%20Los%20Ba%C3%B1os%20Laguna",
+    "search_query_used": "Shiloh Residential House Rental Los Ba\u00f1os Laguna address location",
+    "additional_info": "Also known as Shiloh Hot Spring Resort. Contact: 0917 896 0207. Available on Airbnb.",
+    "searched": true
+  },
+  {
+    "id": 212,
+    "name": "Shiloh Shanti Resort",
+    "found": false,
+    "notes": "Search rate limited - unable to find address and coordinates",
+    "google_maps_link": "https://www.google.com/maps/search/?api=1&query=Shiloh%20Shanti%20Resort%20Los%20Ba%C3%B1os%20Laguna",
+    "searched": false
+  },
+  {
+    "id": 213,
+    "name": "Siesta 1 Resort Opc",
+    "found": false,
+    "notes": "Search rate limited - unable to find address and coordinates",
+    "google_maps_link": "https://www.google.com/maps/search/?api=1&query=Siesta%201%20Resort%20Opc%20Los%20Ba%C3%B1os%20Laguna",
+    "searched": false
+  },
+  {
+    "id": 214,
+    "name": "Sky Prime Holdings Corp. (Jewel Palace Resort)",
+    "found": false,
+    "notes": "Search rate limited - unable to find address and coordinates",
+    "google_maps_link": "https://www.google.com/maps/search/?api=1&query=Sky%20Prime%20Holdings%20Corp.%20%28Jewel%20Palace%20Resort%29%20Los%20Ba%C3%B1os%20Laguna",
+    "searched": false
+  },
+  {
+    "id": 215,
+    "name": "Soledad Villa Rental",
+    "found": false,
+    "notes": "Search rate limited - unable to find address and coordinates",
+    "google_maps_link": "https://www.google.com/maps/search/?api=1&query=Soledad%20Villa%20Rental%20Los%20Ba%C3%B1os%20Laguna",
+    "searched": false
+  },
+  {
+    "id": 216,
+    "name": "Solomon Hotspring Resort",
+    "found": false,
+    "notes": "Search rate limited - unable to find address and coordinates",
+    "google_maps_link": "https://www.google.com/maps/search/?api=1&query=Solomon%20Hotspring%20Resort%20Los%20Ba%C3%B1os%20Laguna",
+    "searched": false
+  },
+  {
+    "id": 217,
+    "name": "South 5 Hot Spring Resort",
+    "found": false,
+    "notes": "Search rate limited - unable to find address and coordinates",
+    "google_maps_link": "https://www.google.com/maps/search/?api=1&query=South%205%20Hot%20Spring%20Resort%20Los%20Ba%C3%B1os%20Laguna",
+    "searched": false
+  },
+  {
+    "id": 218,
+    "name": "Southridge Hot Spring Resort",
+    "found": false,
+    "notes": "Search rate limited - unable to find address and coordinates",
+    "google_maps_link": "https://www.google.com/maps/search/?api=1&query=Southridge%20Hot%20Spring%20Resort%20Los%20Ba%C3%B1os%20Laguna",
+    "searched": false
+  },
+  {
+    "id": 219,
+    "name": "Sparkling Hill Vacation House",
+    "found": false,
+    "notes": "Search rate limited - unable to find address and coordinates",
+    "google_maps_link": "https://www.google.com/maps/search/?api=1&query=Sparkling%20Hill%20Vacation%20House%20Los%20Ba%C3%B1os%20Laguna",
+    "searched": false
+  },
+  {
+    "id": 220,
+    "name": "Splash Mountain Resort",
+    "found": false,
+    "notes": "Search rate limited - unable to find address and coordinates",
+    "google_maps_link": "https://www.google.com/maps/search/?api=1&query=Splash%20Mountain%20Resort%20Los%20Ba%C3%B1os%20Laguna",
+    "searched": false
+  },
+  {
+    "id": 221,
+    "name": "Spmi Private Resort",
+    "found": false,
+    "notes": "Search rate limited - unable to find address and coordinates",
+    "google_maps_link": "https://www.google.com/maps/search/?api=1&query=Spmi%20Private%20Resort%20Los%20Ba%C3%B1os%20Laguna",
+    "searched": false
+  },
+  {
+    "id": 222,
+    "name": "Springdale Private Resort",
+    "found": false,
+    "notes": "Search rate limited - unable to find address and coordinates",
+    "google_maps_link": "https://www.google.com/maps/search/?api=1&query=Springdale%20Private%20Resort%20Los%20Ba%C3%B1os%20Laguna",
+    "searched": false
+  },
+  {
+    "id": 223,
+    "name": "Springfield Villa Rental",
+    "found": false,
+    "notes": "Search rate limited - unable to find address and coordinates",
+    "google_maps_link": "https://www.google.com/maps/search/?api=1&query=Springfield%20Villa%20Rental%20Los%20Ba%C3%B1os%20Laguna",
+    "searched": false
+  },
+  {
+    "id": 224,
+    "name": "Stellaluna Private Resort",
+    "found": false,
+    "notes": "Search rate limited - unable to find address and coordinates",
+    "google_maps_link": "https://www.google.com/maps/search/?api=1&query=Stellaluna%20Private%20Resort%20Los%20Ba%C3%B1os%20Laguna",
+    "searched": false
+  },
+  {
+    "id": 225,
+    "name": "Suite Sofia Resort Hotel",
+    "found": false,
+    "notes": "Search rate limited - unable to find address and coordinates",
+    "google_maps_link": "https://www.google.com/maps/search/?api=1&query=Suite%20Sofia%20Resort%20Hotel%20Los%20Ba%C3%B1os%20Laguna",
+    "searched": false
+  },
+  {
+    "id": 226,
+    "name": "Sundkiss Private Resort",
+    "found": false,
+    "notes": "Search rate limited - unable to find address and coordinates",
+    "google_maps_link": "https://www.google.com/maps/search/?api=1&query=Sundkiss%20Private%20Resort%20Los%20Ba%C3%B1os%20Laguna",
+    "searched": false
+  },
+  {
+    "id": 227,
+    "name": "Swimming Pool Republic Trading Inc.",
+    "found": false,
+    "notes": "Search rate limited - unable to find address and coordinates",
+    "google_maps_link": "https://www.google.com/maps/search/?api=1&query=Swimming%20Pool%20Republic%20Trading%20Inc.%20Los%20Ba%C3%B1os%20Laguna",
+    "searched": false
+  },
+  {
+    "id": 228,
+    "name": "Termas De Los Banos Private Resort",
+    "found": false,
+    "notes": "Search rate limited - unable to find address and coordinates",
+    "google_maps_link": "https://www.google.com/maps/search/?api=1&query=Termas%20De%20Los%20Banos%20Private%20Resort%20Los%20Ba%C3%B1os%20Laguna",
+    "searched": false
+  },
+  {
+    "id": 229,
+    "name": "Terra Palazzo Spring Resort Corp.",
+    "found": false,
+    "notes": "Search rate limited - unable to find address and coordinates",
+    "google_maps_link": "https://www.google.com/maps/search/?api=1&query=Terra%20Palazzo%20Spring%20Resort%20Corp.%20Los%20Ba%C3%B1os%20Laguna",
+    "searched": false
+  },
+  {
+    "id": 230,
+    "name": "Theleaf Hotspring Resort",
+    "found": false,
+    "notes": "Search rate limited - unable to find address and coordinates",
+    "google_maps_link": "https://www.google.com/maps/search/?api=1&query=Theleaf%20Hotspring%20Resort%20Los%20Ba%C3%B1os%20Laguna",
+    "searched": false
+  },
+  {
+    "id": 231,
+    "name": "Tirta Property Rental",
+    "found": false,
+    "notes": "Search rate limited - unable to find address and coordinates",
+    "google_maps_link": "https://www.google.com/maps/search/?api=1&query=Tirta%20Property%20Rental%20Los%20Ba%C3%B1os%20Laguna",
+    "searched": false
+  },
+  {
+    "id": 232,
+    "name": "Tirta Spring Villa Inc.",
+    "found": false,
+    "notes": "Search rate limited - unable to find address and coordinates",
+    "google_maps_link": "https://www.google.com/maps/search/?api=1&query=Tirta%20Spring%20Villa%20Inc.%20Los%20Ba%C3%B1os%20Laguna",
+    "searched": false
+  },
+  {
+    "id": 233,
+    "name": "Tripl3X Laguna Private Pool",
+    "found": false,
+    "notes": "Search rate limited - unable to find address and coordinates",
+    "google_maps_link": "https://www.google.com/maps/search/?api=1&query=Tripl3X%20Laguna%20Private%20Pool%20Los%20Ba%C3%B1os%20Laguna",
+    "searched": false
+  },
+  {
+    "id": 234,
+    "name": "Triple Ace Resort Managementopc",
+    "found": false,
+    "notes": "Not searched - name suggests management company, not a specific resort location",
+    "google_maps_link": "https://www.google.com/maps/search/?api=1&query=Triple%20Ace%20Resort%20Managementopc%20Los%20Ba%C3%B1os%20Laguna",
+    "searched": false
+  },
+  {
+    "id": 235,
+    "name": "Triple J And M Resort Opc",
+    "found": false,
+    "notes": "Not searched - name suggests corporation/management company",
+    "google_maps_link": "https://www.google.com/maps/search/?api=1&query=Triple%20J%20And%20M%20Resort%20Opc%20Los%20Ba%C3%B1os%20Laguna",
+    "searched": false
+  },
+  {
+    "id": 236,
+    "name": "Twin Palms Villas Hot Spring Resort",
+    "found": false,
+    "notes": "Search rate limited - unable to find address and coordinates",
+    "google_maps_link": "https://www.google.com/maps/search/?api=1&query=Twin%20Palms%20Villas%20Hot%20Spring%20Resort%20Los%20Ba%C3%B1os%20Laguna",
+    "searched": false
+  },
+  {
+    "id": 237,
+    "name": "Verdantsprings Resort",
+    "found": false,
+    "notes": "Search rate limited - unable to find address and coordinates",
+    "google_maps_link": "https://www.google.com/maps/search/?api=1&query=Verdantsprings%20Resort%20Los%20Ba%C3%B1os%20Laguna",
+    "searched": false
+  },
+  {
+    "id": 238,
+    "name": "Vhr Resort",
+    "found": false,
+    "notes": "Search rate limited - unable to find address and coordinates",
+    "google_maps_link": "https://www.google.com/maps/search/?api=1&query=Vhr%20Resort%20Los%20Ba%C3%B1os%20Laguna",
+    "searched": false
+  },
+  {
+    "id": 239,
+    "name": "Villa Amihan Resort",
+    "found": false,
+    "notes": "Search rate limited - unable to find address and coordinates",
+    "google_maps_link": "https://www.google.com/maps/search/?api=1&query=Villa%20Amihan%20Resort%20Los%20Ba%C3%B1os%20Laguna",
+    "searched": false
+  },
+  {
+    "id": 240,
+    "name": "Villa De Lunar Private Resort",
+    "found": false,
+    "notes": "Search rate limited - unable to find address and coordinates",
+    "google_maps_link": "https://www.google.com/maps/search/?api=1&query=Villa%20De%20Lunar%20Private%20Resort%20Los%20Ba%C3%B1os%20Laguna",
+    "searched": false
+  },
+  {
+    "id": 241,
+    "name": "Villa Fleur De Lis Resort Co. Ltd.",
+    "found": false,
+    "notes": "Search rate limited - unable to find address and coordinates",
+    "google_maps_link": "https://www.google.com/maps/search/?api=1&query=Villa%20Fleur%20De%20Lis%20Resort%20Co.%20Ltd.%20Los%20Ba%C3%B1os%20Laguna",
+    "searched": false
+  },
+  {
+    "id": 242,
+    "name": "Villa Grandiosa Resort And Garden",
+    "found": false,
+    "notes": "Search rate limited - unable to find address and coordinates",
+    "google_maps_link": "https://www.google.com/maps/search/?api=1&query=Villa%20Grandiosa%20Resort%20And%20Garden%20Los%20Ba%C3%B1os%20Laguna",
+    "searched": false
+  },
+  {
+    "id": 243,
+    "name": "Villa Judela Hotspring Resort",
+    "found": false,
+    "notes": "Search rate limited - unable to find address and coordinates",
+    "google_maps_link": "https://www.google.com/maps/search/?api=1&query=Villa%20Judela%20Hotspring%20Resort%20Los%20Ba%C3%B1os%20Laguna",
+    "searched": false
+  },
+  {
+    "id": 244,
+    "name": "Villa Jun Private Pool",
+    "found": false,
+    "notes": "Not searched - name suggests private residence/pool, may not be public resort",
+    "google_maps_link": "https://www.google.com/maps/search/?api=1&query=Villa%20Jun%20Private%20Pool%20Los%20Ba%C3%B1os%20Laguna",
+    "searched": false
+  },
+  {
+    "id": 245,
+    "name": "Villa Laria 1 Private Resort",
+    "found": false,
+    "notes": "Not searched",
+    "google_maps_link": "https://www.google.com/maps/search/?api=1&query=Villa%20Laria%201%20Private%20Resort%20Los%20Ba%C3%B1os%20Laguna",
+    "searched": false
+  },
+  {
+    "id": 246,
+    "name": "Villa Maricar Resort",
+    "found": false,
+    "notes": "Search rate limited - unable to find address and coordinates",
+    "google_maps_link": "https://www.google.com/maps/search/?api=1&query=Villa%20Maricar%20Resort%20Los%20Ba%C3%B1os%20Laguna",
+    "searched": false
+  },
+  {
+    "id": 247,
+    "name": "Villa Marie Resort",
+    "found": false,
+    "notes": "Search rate limited - unable to find address and coordinates",
+    "google_maps_link": "https://www.google.com/maps/search/?api=1&query=Villa%20Marie%20Resort%20Los%20Ba%C3%B1os%20Laguna",
+    "searched": false
+  },
+  {
+    "id": 248,
+    "name": "Villa Tolosa Resort",
+    "found": false,
+    "notes": "Search rate limited - unable to find address and coordinates",
+    "google_maps_link": "https://www.google.com/maps/search/?api=1&query=Villa%20Tolosa%20Resort%20Los%20Ba%C3%B1os%20Laguna",
+    "searched": false
+  },
+  {
+    "id": 249,
+    "name": "Villa Victoria Lb Resort",
+    "found": false,
+    "notes": "Search rate limited - unable to find address and coordinates",
+    "google_maps_link": "https://www.google.com/maps/search/?api=1&query=Villa%20Victoria%20Lb%20Resort%20Los%20Ba%C3%B1os%20Laguna",
+    "searched": false
+  },
+  {
+    "id": 250,
+    "name": "Villa Ziana Resort",
+    "found": false,
+    "notes": "Search rate limited - unable to find address and coordinates",
+    "google_maps_link": "https://www.google.com/maps/search/?api=1&query=Villa%20Ziana%20Resort%20Los%20Ba%C3%B1os%20Laguna",
+    "searched": false
+  },
+  {
+    "id": 251,
+    "name": "Villaggio Spring Resort",
+    "found": false,
+    "notes": "Search rate limited - unable to find address and coordinates",
+    "google_maps_link": "https://www.google.com/maps/search/?api=1&query=Villaggio%20Spring%20Resort%20Los%20Ba%C3%B1os%20Laguna",
+    "searched": false
+  },
+  {
+    "id": 252,
+    "name": "Vlr Property Leasing",
+    "found": false,
+    "notes": "Not searched - name suggests property leasing company, not a specific resort",
+    "google_maps_link": "https://www.google.com/maps/search/?api=1&query=Vlr%20Property%20Leasing%20Los%20Ba%C3%B1os%20Laguna",
+    "searched": false
+  },
+  {
+    "id": 253,
+    "name": "Wayan House Lb",
+    "found": false,
+    "notes": "Not searched - appears to be private house rental",
+    "google_maps_link": "https://www.google.com/maps/search/?api=1&query=Wayan%20House%20Lb%20Los%20Ba%C3%B1os%20Laguna",
+    "searched": false
+  },
+  {
+    "id": 254,
+    "name": "Weekender Hot Spring Resort 2",
+    "found": false,
+    "notes": "Not searched",
+    "google_maps_link": "https://www.google.com/maps/search/?api=1&query=Weekender%20Hot%20Spring%20Resort%202%20Los%20Ba%C3%B1os%20Laguna",
+    "searched": false
+  },
+  {
+    "id": 255,
+    "name": "Weekender Hot Spring Resort 3",
+    "found": false,
+    "notes": "Not searched",
+    "google_maps_link": "https://www.google.com/maps/search/?api=1&query=Weekender%20Hot%20Spring%20Resort%203%20Los%20Ba%C3%B1os%20Laguna",
+    "searched": false
+  },
+  {
+    "id": 256,
+    "name": "Whitegrove Spring Resort",
+    "found": false,
+    "notes": "Search rate limited - unable to find address and coordinates",
+    "google_maps_link": "https://www.google.com/maps/search/?api=1&query=Whitegrove%20Spring%20Resort%20Los%20Ba%C3%B1os%20Laguna",
+    "searched": false
+  },
+  {
+    "id": 257,
+    "name": "Wilk Hot Spring Resort",
+    "found": false,
+    "notes": "Search rate limited - unable to find address and coordinates",
+    "google_maps_link": "https://www.google.com/maps/search/?api=1&query=Wilk%20Hot%20Spring%20Resort%20Los%20Ba%C3%B1os%20Laguna",
+    "searched": false
+  },
+  {
+    "id": 258,
+    "name": "Windjammer Villa Rental",
+    "found": false,
+    "notes": "Search rate limited - unable to find address and coordinates",
+    "google_maps_link": "https://www.google.com/maps/search/?api=1&query=Windjammer%20Villa%20Rental%20Los%20Ba%C3%B1os%20Laguna",
+    "searched": false
+  },
+  {
+    "id": 259,
+    "name": "Yellow Spring Resort",
+    "found": false,
+    "notes": "Search rate limited - unable to find address and coordinates",
+    "google_maps_link": "https://www.google.com/maps/search/?api=1&query=Yellow%20Spring%20Resort%20Los%20Ba%C3%B1os%20Laguna",
+    "searched": false
+  },
+  {
+    "id": 260,
+    "name": "Yoon Private Resort",
+    "found": false,
+    "notes": "Search rate limited - unable to find address and coordinates",
+    "google_maps_link": "https://www.google.com/maps/search/?api=1&query=Yoon%20Private%20Resort%20Los%20Ba%C3%B1os%20Laguna",
+    "searched": false
+  },
+  {
+    "id": 261,
+    "name": "Zac And Ethan Property Leasing",
+    "found": false,
+    "notes": "Not searched - name suggests property leasing company",
+    "google_maps_link": "https://www.google.com/maps/search/?api=1&query=Zac%20And%20Ethan%20Property%20Leasing%20Los%20Ba%C3%B1os%20Laguna",
+    "searched": false
+  },
+  {
+    "id": 262,
+    "name": "Zakia Private Resort",
+    "found": false,
+    "notes": "Search rate limited - unable to find address and coordinates",
+    "google_maps_link": "https://www.google.com/maps/search/?api=1&query=Zakia%20Private%20Resort%20Los%20Ba%C3%B1os%20Laguna",
+    "searched": false
+  },
+  {
+    "id": 263,
+    "name": "Zobiaplace Private Resort",
+    "found": false,
+    "notes": "Search rate limited - unable to find address and coordinates",
+    "google_maps_link": "https://www.google.com/maps/search/?api=1&query=Zobiaplace%20Private%20Resort%20Los%20Ba%C3%B1os%20Laguna",
+    "searched": false
+  }
+]

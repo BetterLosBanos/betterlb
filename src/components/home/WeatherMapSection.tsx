@@ -22,6 +22,7 @@ import {
   Wind,
 } from 'lucide-react';
 
+import { config } from '@/lib/lguConfig';
 import { fetchWeatherData } from '@/lib/weather';
 
 const DefaultIcon = L.icon({
@@ -100,7 +101,10 @@ export default function WeatherMapSection() {
 
       // Create the map
       mapInstance = L.map(container, {
-        center: [14.1763, 121.2219],
+        center: [
+          config.location.coordinates.lat,
+          config.location.coordinates.lon,
+        ],
         zoom: 15,
         scrollWheelZoom: false,
         zoomControl: true,
@@ -116,9 +120,12 @@ export default function WeatherMapSection() {
       }).addTo(mapInstance);
 
       // Add marker
-      const marker = L.marker([14.1763, 121.2219]).addTo(mapInstance);
+      const marker = L.marker([
+        config.location.coordinates.lat,
+        config.location.coordinates.lon,
+      ]).addTo(mapInstance);
       marker.bindPopup(
-        '<strong>Los Baños Municipal Hall</strong><br>Laguna, Philippines'
+        '<strong>{config.lgu.fullName} Municipal Hall</strong><br>{config.lgu.province}, Philippines'
       );
 
       // Force resize after a short delay to ensure proper rendering
@@ -171,7 +178,7 @@ export default function WeatherMapSection() {
       <div className='container mx-auto px-4'>
         <div className='mb-12 text-center'>
           <h2 className='mb-4 text-2xl font-bold text-gray-900 md:text-3xl'>
-            Weather and Map of Los Baños
+            Weather and Map of {config.lgu.name}
           </h2>
         </div>
 
@@ -200,7 +207,7 @@ export default function WeatherMapSection() {
                       </div>
                       <div className='mt-1 flex items-center gap-2 text-sm text-slate-500'>
                         <MapPin className='h-4 w-4' />
-                        Los Baños, Laguna
+                        {config.lgu.name}, {config.lgu.province}
                       </div>
                     </div>
                   </div>
@@ -248,7 +255,7 @@ export default function WeatherMapSection() {
               id='map-container'
               className='h-64 w-full md:flex-1'
               role='application'
-              aria-label='Interactive map of Los Baños Municipal Hall'
+              aria-label='Interactive map of {config.lgu.fullName} Municipal Hall'
             >
               <noscript>
                 <div className='p-4 text-sm text-gray-500'>
@@ -259,7 +266,7 @@ export default function WeatherMapSection() {
                     rel='noopener noreferrer'
                     className='text-primary-600 ml-1 underline'
                   >
-                    View Los Baños Municipal Hall on OpenStreetMap
+                    View {config.lgu.fullName} Municipal Hall on OpenStreetMap
                   </a>
                 </div>
               </noscript>
@@ -267,7 +274,7 @@ export default function WeatherMapSection() {
             <div className='flex items-center gap-2 border-t border-slate-300 bg-white p-3'>
               <MapPin className='text-primary-600 h-5 w-5' />
               <span className='text-sm font-medium text-slate-700'>
-                Los Baños Municipal Hall
+                {config.lgu.fullName} Municipal Hall
               </span>
             </div>
           </div>
