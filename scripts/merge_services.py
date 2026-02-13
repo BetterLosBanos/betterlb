@@ -1,5 +1,6 @@
 import json
 import os
+import subprocess
 
 def merge_services():
     input_dir = 'src/data/services/categories'
@@ -17,8 +18,13 @@ def merge_services():
 
     with open(output_file, 'w', encoding='utf-8') as f:
         json.dump(combined, f, indent=2, ensure_ascii=False)
-    
-    print(f"Successfully merged {len(combined)} services into one file.")
+
+    # Format with Prettier to match project style
+    try:
+        subprocess.run(['npx', 'prettier', '--write', output_file], check=True)
+        print(f"Successfully merged and formatted {len(combined)} services into one file.")
+    except subprocess.CalledProcessError:
+        print(f"Successfully merged {len(combined)} services into one file (Prettier formatting skipped).")
 
 if __name__ == "__main__":
     merge_services()

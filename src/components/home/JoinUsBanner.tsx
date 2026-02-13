@@ -5,6 +5,8 @@ import { Link } from 'react-router-dom';
 import { ArrowRightIcon, UsersIcon, ZapIcon } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
 
+import Button from '@/components/ui/Button';
+
 const JoinUsBanner: FC = () => {
   const { t } = useTranslation('common');
 
@@ -43,25 +45,29 @@ const JoinUsBanner: FC = () => {
           </p>
 
           <div className='flex flex-col items-center justify-center gap-4 sm:flex-row'>
-            <Link
-              to='/join-us'
-              className='inline-flex transform items-center justify-center rounded-lg bg-white px-8 py-4 text-lg font-bold text-gray-900 shadow-lg transition-all hover:scale-105 hover:bg-gray-100'
-            >
-              <UsersIcon className='mr-2 h-5 w-5' />
-              {t('joinUs.joinMovement')}
-              <ArrowRightIcon className='ml-2 h-5 w-5' />
+            <Link to='/join-us'>
+              <Button
+                className='transform bg-white text-gray-900 shadow-lg hover:scale-105 hover:bg-gray-100'
+                size='lg'
+                leftIcon={<UsersIcon className='h-5 w-5' />}
+                rightIcon={<ArrowRightIcon className='h-5 w-5' />}
+              >
+                {t('joinUs.joinMovement')}
+              </Button>
             </Link>
 
             <div className='font-medium text-orange-100'>{t('joinUs.or')}</div>
 
-            <a
+            <Button
               href='https://discord.gg/mHtThpN8bT'
               target='_blank'
               rel='noreferrer'
-              className='inline-flex items-center justify-center rounded-lg border-2 border-white px-6 py-3 font-semibold text-white transition-all hover:bg-white hover:text-gray-900'
+              className='border-white text-white hover:bg-white hover:text-gray-900'
+              size='lg'
+              variant='outline'
             >
               {t('joinUs.joinDiscord')}
-            </a>
+            </Button>
           </div>
 
           <div className='mt-8 border-t border-white/20 pt-6'>

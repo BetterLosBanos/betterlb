@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 
+import { Banner } from '@/kapwa/banner';
 import {
   AlertCircle,
   CheckCircle,
@@ -44,6 +45,12 @@ export default function DeletionQueue() {
   const [selectedIds, setSelectedIds] = useState<Set<string>>(new Set());
   const [actionResult, setActionResult] = useState<string | null>(null);
 
+  // Banner state for error notifications
+  const [banner, setBanner] = useState<{
+    message: string;
+    type: 'success' | 'warning' | 'error' | 'info';
+  } | null>(null);
+
   useEffect(() => {
     fetchQueue();
   }, []);
@@ -87,9 +94,11 @@ export default function DeletionQueue() {
       setTimeout(() => setActionResult(null), 3000);
     } catch (error) {
       console.error('Error restoring person:', error);
-      alert(
-        error instanceof Error ? error.message : 'Failed to restore person'
-      );
+      setBanner({
+        message:
+          error instanceof Error ? error.message : 'Failed to restore person',
+        type: 'error',
+      });
     } finally {
       setActionLoading(false);
     }
@@ -124,11 +133,13 @@ export default function DeletionQueue() {
       setTimeout(() => setActionResult(null), 3000);
     } catch (error) {
       console.error('Error permanently deleting person:', error);
-      alert(
-        error instanceof Error
-          ? error.message
-          : 'Failed to permanently delete person'
-      );
+      setBanner({
+        message:
+          error instanceof Error
+            ? error.message
+            : 'Failed to permanently delete person',
+        type: 'error',
+      });
     } finally {
       setActionLoading(false);
     }
@@ -162,7 +173,11 @@ export default function DeletionQueue() {
       setTimeout(() => setActionResult(null), 3000);
     } catch (error) {
       console.error('Error bulk restoring:', error);
-      alert(error instanceof Error ? error.message : 'Failed to bulk restore');
+      setBanner({
+        message:
+          error instanceof Error ? error.message : 'Failed to bulk restore',
+        type: 'error',
+      });
     } finally {
       setActionLoading(false);
     }
@@ -205,11 +220,13 @@ export default function DeletionQueue() {
       setTimeout(() => setActionResult(null), 5000);
     } catch (error) {
       console.error('Error bulk permanently deleting:', error);
-      alert(
-        error instanceof Error
-          ? error.message
-          : 'Failed to bulk permanently delete'
-      );
+      setBanner({
+        message:
+          error instanceof Error
+            ? error.message
+            : 'Failed to bulk permanently delete',
+        type: 'error',
+      });
     } finally {
       setActionLoading(false);
     }
@@ -277,6 +294,16 @@ export default function DeletionQueue() {
       </div>
 
       {/* Action Result Message */}
+      {/* Notifications */}
+      {banner && (
+        <div className='mb-4'>
+          <Banner
+            type={banner.type}
+            description={banner.message}
+            onDismiss={() => setBanner(null)}
+          />
+        </div>
+      )}
       {actionResult && (
         <div className='flex items-center gap-2 rounded-md bg-emerald-50 p-3 text-sm'>
           <CheckCircle className='h-4 w-4 text-emerald-600' />

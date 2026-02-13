@@ -1,5 +1,6 @@
 import { Suspense, lazy, useCallback, useEffect, useState } from 'react';
 
+import { Banner } from '@/kapwa/banner';
 import {
   AlertCircle,
   CheckCircle,
@@ -68,6 +69,12 @@ export default function AdminDocuments() {
   // Legislative Post Importer state
   const [importerOpen, setImporterOpen] = useState(false);
 
+  // Banner state for notifications
+  const [banner, setBanner] = useState<{
+    message: string;
+    type: 'success' | 'warning' | 'error' | 'info';
+  } | null>(null);
+
   const fetchDocuments = useCallback(async () => {
     setLoading(true);
     try {
@@ -111,7 +118,11 @@ export default function AdminDocuments() {
         message.push(`${created} document${created !== 1 ? 's' : ''} created`);
       if (skipped > 0)
         message.push(`${skipped} duplicate${skipped !== 1 ? 's' : ''} skipped`);
-      alert(`Import complete: ${message.join(', ')}`);
+      setBanner({
+        message: `Import complete: ${message.join(', ')}`,
+        type: 'success',
+      });
+      setTimeout(() => setBanner(null), 4000);
     }
   };
 
@@ -150,6 +161,15 @@ export default function AdminDocuments() {
 
   return (
     <div className='space-y-6'>
+      {/* Notifications */}
+      {banner && (
+        <Banner
+          type={banner.type}
+          description={banner.message}
+          onDismiss={() => setBanner(null)}
+        />
+      )}
+
       {/* Header */}
       <div className='flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between'>
         <div>

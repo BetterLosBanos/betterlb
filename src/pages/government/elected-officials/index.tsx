@@ -21,6 +21,7 @@ import {
   ContactItem,
 } from '@/components/data-display/ContactInfo';
 import { DetailSection, ModuleHeader } from '@/components/layout/PageLayouts';
+import Button from '@/components/ui/Button';
 import { Card, CardContent } from '@/components/ui/Card';
 
 import { toTitleCase } from '@/lib/stringUtils';
@@ -207,12 +208,15 @@ export default function ElectedOfficialsIndex() {
                   heads in the directory.
                 </p>
               </div>
-              <Link
-                to='/government/departments'
-                className='text-primary-600 hover:text-primary-700 group inline-flex items-center justify-center gap-1.5 rounded-xl border border-slate-200 bg-white px-5 py-3 text-[10px] font-bold tracking-widest uppercase shadow-sm transition-all hover:shadow-md'
-              >
-                Go to Departments
-                <ArrowRight className='h-3 w-3 transition-transform group-hover:translate-x-1' />
+              <Link to='/government/departments'>
+                <Button
+                  variant='outline'
+                  size='sm'
+                  className='text-[10px] font-bold tracking-widest uppercase'
+                  rightIcon={<ArrowRight className='h-3 w-3' />}
+                >
+                  Go to Departments
+                </Button>
               </Link>
             </div>
           </div>

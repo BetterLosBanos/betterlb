@@ -17,6 +17,8 @@ import {
 } from 'lucide-react';
 import { Helmet } from 'react-helmet-async';
 
+import Button from '@/components/ui/Button';
+
 const JoinUs: FC = () => {
   return (
     <div className='min-h-screen bg-linear-to-br from-blue-50 via-white to-purple-50'>
@@ -57,22 +59,26 @@ const JoinUs: FC = () => {
               efficient, and accessible to every Filipino.
             </p>
             <div className='flex flex-col justify-center gap-4 sm:flex-row'>
-              <a
+              <Button
                 href='https://discord.gg/mHtThpN8bT'
                 target='_blank'
                 rel='noreferrer'
-                className='inline-flex transform items-center justify-center rounded-lg bg-yellow-400 px-8 py-4 font-bold text-gray-900 shadow-lg transition-all hover:scale-105 hover:bg-yellow-300'
+                variant='secondary'
+                size='lg'
+                leftIcon={<MessageCircleIcon className='h-5 w-5' />}
+                className='transform rounded-lg bg-yellow-200 px-8 py-4 text-gray-900 shadow-lg transition-all hover:scale-105'
               >
-                <MessageCircleIcon className='mr-2 h-5 w-5' />
                 Join Our Discord
-              </a>
-              <a
+              </Button>
+              <Button
                 href='#mission'
-                className='hover:text-primary-600 inline-flex items-center justify-center rounded-lg border-2 border-white px-8 py-4 font-semibold text-white transition-all hover:bg-white'
+                variant='outline'
+                size='lg'
+                rightIcon={<ArrowRightIcon className='h-5 w-5' />}
+                className='hover:text-primary-600 rounded-lg border-2 border-white px-8 py-4 text-white hover:bg-white'
               >
                 Learn More
-                <ArrowRightIcon className='ml-2 h-5 w-5' />
-              </a>
+              </Button>
             </div>
           </div>
         </div>
@@ -263,27 +269,31 @@ const JoinUs: FC = () => {
             </p>
 
             <div className='flex flex-col items-center justify-center gap-6 sm:flex-row'>
-              <a
+              <Button
                 href='https://discord.gg/mHtThpN8bT'
                 target='_blank'
                 rel='noreferrer'
-                className='inline-flex transform items-center justify-center rounded-lg bg-yellow-400 px-8 py-4 text-lg font-bold text-gray-900 shadow-lg transition-all hover:scale-105 hover:bg-yellow-300'
+                variant='secondary'
+                size='lg'
+                leftIcon={<MessageCircleIcon className='h-6 w-6' />}
+                className='transform rounded-lg bg-yellow-200 px-8 py-4 text-lg text-gray-900 shadow-lg transition-all hover:scale-105'
               >
-                <MessageCircleIcon className='mr-3 h-6 w-6' />
                 Join Our Discord Community
-              </a>
+              </Button>
 
               <div className='font-medium text-white'>or</div>
 
-              <a
+              <Button
                 href='https://bettergov.ph/ideas'
                 target='_blank'
                 rel='noreferrer'
-                className='hover:text-primary-600 inline-flex items-center justify-center rounded-lg border-2 border-white px-8 py-4 font-semibold text-white transition-all hover:bg-white'
+                variant='outline'
+                size='lg'
+                leftIcon={<LightbulbIcon className='h-5 w-5' />}
+                className='hover:text-primary-600 rounded-lg border-2 border-white px-8 py-4 text-white hover:bg-white'
               >
-                <LightbulbIcon className='mr-2 h-5 w-5' />
                 Explore Project Ideas
-              </a>
+              </Button>
             </div>
 
             <div className='mt-8 border-t border-white/20 pt-6'>
