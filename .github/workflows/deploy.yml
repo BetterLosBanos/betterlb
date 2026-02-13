@@ -1,4 +1,4 @@
-﻿name: Build and Deploy
+name: Build and Deploy
 on:
   push:
     branches: [main]
@@ -35,10 +35,12 @@ jobs:
       - name: Build
         run: npm run build
 
-      # 3. DEPLOY USING WRANGLER DIRECTLY (bypasses action's npx issue)
+      # 3. DEPLOY USING CLOUDFLARE WRANGLER ACTION
       - name: Deploy to Cloudflare Pages
-        run: npx wrangler pages deploy dist --project-name=betterlb --github
-        env:
-          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
-          CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        uses: cloudflare/wrangler-action@v3
+        with:
+          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          # dist is default Vite output folder
+          command: pages deploy dist --project-name=betterlb
+          gitHubToken: ${{ secrets.GITHUB_TOKEN }}
