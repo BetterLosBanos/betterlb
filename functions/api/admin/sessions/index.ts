@@ -92,8 +92,12 @@ async function handleCreateSession(context: {
       );
     }
 
-    // Generate session ID
-    const sessionId = `session_${Date.now()}_${Math.random().toString(36).substr(2, 9)}`;
+    // Generate session ID using cryptographically secure randomness
+    const sessionId = `session_${typeof crypto !== 'undefined' && 'randomUUID' in crypto ? crypto.randomUUID() : (typeof crypto !== 'undefined' && 'getRandomValues' in crypto ? (() => {
+      const buf = new Uint8Array(16);
+      crypto.getRandomValues(buf);
+      return Array.from(buf).map(b => b.toString(16).padStart(2, '0')).join('');
+    })() : `${Date.now()}_${Math.random().toString(36).substr(2, 9)}`)}`;
 
     // Insert session - use correct column name 'type' and 'number'
     await env.BETTERLB_DB.prepare(
