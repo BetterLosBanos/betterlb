@@ -1,8 +1,16 @@
 import { useState } from 'react';
 
+import { Banner } from '@/kapwa/banner';
+import { Input } from '@/kapwa/input';
+import { Label } from '@/kapwa/label';
 import { AlertTriangle, Check, Flag } from 'lucide-react';
 
 import Button from '@/components/ui/Button';
+
+interface BannerState {
+  message: string;
+  type: 'success' | 'warning' | 'error' | 'info' | 'default';
+}
 
 interface FlagForReviewButtonProps {
   itemType: 'document' | 'session' | 'attendance';
@@ -33,10 +41,20 @@ export default function FlagForReviewButton({
   const [submitted, setSubmitted] = useState(false);
   const [issueType, setIssueType] = useState('data_error');
   const [description, setDescription] = useState('');
+  const [banner, setBanner] = useState<BannerState | null>(null);
+
+  const showBanner = (message: string, type: BannerState['type']) => {
+    setBanner({ message, type });
+    // Auto-dismiss success banners after 3 seconds
+    if (type === 'success') {
+      setTimeout(() => setBanner(null), 3000);
+    }
+  };
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setSubmitting(true);
+    setBanner(null); // Clear any existing banner
 
     try {
       const response = await fetch('/api/admin/review-queue', {
@@ -54,7 +72,7 @@ export default function FlagForReviewButton({
       if (!response.ok) {
         const data = await response.json();
         if (response.status === 409) {
-          alert('This item is already in the review queue.');
+          showBanner('This item is already in the review queue.', 'warning');
         } else {
           throw new Error(data.error || 'Failed to flag for review');
         }
@@ -62,16 +80,21 @@ export default function FlagForReviewButton({
       }
 
       setSubmitted(true);
+      showBanner('Item flagged for review successfully!', 'success');
       setTimeout(() => {
         setIsOpen(false);
         setSubmitted(false);
         setDescription('');
         setIssueType('data_error');
+        setBanner(null);
         onSuccess?.();
       }, 1500);
     } catch (error) {
       console.error('Error flagging for review:', error);
-      alert('Failed to flag for review. You may need to authenticate first.');
+      showBanner(
+        'Failed to flag for review. You may need to authenticate first.',
+        'error'
+      );
     } finally {
       setSubmitting(false);
     }
@@ -92,15 +115,23 @@ export default function FlagForReviewButton({
         {isOpen && (
           <div className='fixed inset-0 z-50 flex items-center justify-center bg-black/50 p-4'>
             <div className='w-full max-w-md rounded-lg bg-white p-6 shadow-lg'>
+              {banner && (
+                <div className='mb-4'>
+                  <Banner
+                    type={banner.type}
+                    description={banner.message}
+                    onDismiss={() => setBanner(null)}
+                  />
+                </div>
+              )}
               <h3 className='mb-4 text-lg font-bold text-slate-900'>
                 Flag for Review
               </h3>
               <form onSubmit={handleSubmit} className='space-y-4'>
                 <div>
-                  <label className='mb-1 block text-sm font-medium text-slate-700'>
-                    Issue Type
-                  </label>
+                  <Label htmlFor='issue-type-compact'>Issue Type</Label>
                   <select
+                    id='issue-type-compact'
                     value={issueType}
                     onChange={e => setIssueType(e.target.value)}
                     className='w-full rounded-md border border-slate-300 px-3 py-2 text-sm'
@@ -115,10 +146,11 @@ export default function FlagForReviewButton({
                 </div>
 
                 <div>
-                  <label className='mb-1 block text-sm font-medium text-slate-700'>
+                  <Label htmlFor='description-compact'>
                     Description (optional)
-                  </label>
+                  </Label>
                   <textarea
+                    id='description-compact'
                     value={description}
                     onChange={e => setDescription(e.target.value)}
                     placeholder='Describe the issue...'
@@ -190,12 +222,21 @@ export default function FlagForReviewButton({
               </div>
             </div>
 
+            {banner && (
+              <Banner
+                type={banner.type}
+                description={banner.message}
+                onDismiss={() => setBanner(null)}
+              />
+            )}
+
             <form onSubmit={handleSubmit} className='space-y-4'>
               <div>
-                <label className='mb-1 block text-sm font-medium text-slate-700'>
+                <Label htmlFor='issue-type'>
                   Issue Type <span className='text-rose-500'>*</span>
-                </label>
+                </Label>
                 <select
+                  id='issue-type'
                   value={issueType}
                   onChange={e => setIssueType(e.target.value)}
                   className='focus:border-primary-500 focus:ring-primary-500 w-full rounded-md border border-slate-300 px-3 py-2 text-sm focus:ring-1 focus:outline-none'
@@ -211,10 +252,9 @@ export default function FlagForReviewButton({
               </div>
 
               <div>
-                <label className='mb-1 block text-sm font-medium text-slate-700'>
-                  Description
-                </label>
+                <Label htmlFor='description'>Description</Label>
                 <textarea
+                  id='description'
                   value={description}
                   onChange={e => setDescription(e.target.value)}
                   placeholder='Please describe what needs to be reviewed...'

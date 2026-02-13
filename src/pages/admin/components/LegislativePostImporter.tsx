@@ -1,5 +1,6 @@
 import { useCallback, useEffect, useState } from 'react';
 
+import { Banner } from '@/kapwa/banner';
 import {
   AlertTriangle,
   Calendar,
@@ -171,6 +172,23 @@ export default function LegislativePostImporter({
     Map<number, DuplicateResolution>
   >(new Map());
 
+  // Banner state for notifications
+  const [banner, setBanner] = useState<{
+    message: string;
+    type: 'success' | 'warning' | 'error' | 'info';
+  } | null>(null);
+
+  const showBanner = (
+    message: string,
+    type: 'success' | 'warning' | 'error' | 'info'
+  ) => {
+    setBanner({ message, type });
+    // Auto-dismiss success and info banners after 4 seconds
+    if (type === 'success' || type === 'info') {
+      setTimeout(() => setBanner(null), 4000);
+    }
+  };
+
   // Fetch terms when dialog opens
   useEffect(() => {
     if (open) {
@@ -258,7 +276,7 @@ export default function LegislativePostImporter({
       setStep('review');
     } catch (error) {
       console.error('Error parsing post:', error);
-      alert('Failed to parse post content');
+      showBanner('Failed to parse post content', 'error');
     } finally {
       setCreating(false);
     }
@@ -321,11 +339,11 @@ export default function LegislativePostImporter({
   const handleCreate = useCallback(async () => {
     // Validate session fields
     if (!sessionDate) {
-      alert('Please enter the session date');
+      showBanner('Please enter the session date', 'warning');
       return;
     }
     if (!selectedTermId) {
-      alert('Please select a term');
+      showBanner('Please select a term', 'warning');
       return;
     }
 
@@ -447,9 +465,9 @@ export default function LegislativePostImporter({
       return;
     } catch (error) {
       console.error('Error creating documents:', error);
-      alert(
-        'Failed to create documents: ' +
-          (error instanceof Error ? error.message : 'Unknown error')
+      showBanner(
+        `Failed to create documents: ${error instanceof Error ? error.message : 'Unknown error'}`,
+        'error'
       );
       setStep('review');
     } finally {
@@ -469,11 +487,11 @@ export default function LegislativePostImporter({
   const handleApplyResolutions = useCallback(async () => {
     // Validate session fields
     if (!sessionDate) {
-      alert('Please enter the session date');
+      showBanner('Please enter the session date', 'warning');
       return;
     }
     if (!selectedTermId) {
-      alert('Please select a term');
+      showBanner('Please select a term', 'warning');
       return;
     }
 
@@ -622,7 +640,7 @@ export default function LegislativePostImporter({
       if (resolvedCount > 0) messageParts.push(`${resolvedCount} resolved`);
       if (skippedCount > 0) messageParts.push(`${skippedCount} skipped`);
 
-      alert(`Import complete: ${messageParts.join(', ')}`);
+      showBanner(`Import complete: ${messageParts.join(', ')}`, 'success');
       onSuccess(createdCount, skippedCount);
 
       // Reset and close
@@ -640,9 +658,9 @@ export default function LegislativePostImporter({
       onClose();
     } catch (error) {
       console.error('Error applying resolutions:', error);
-      alert(
-        'Failed to apply resolutions: ' +
-          (error instanceof Error ? error.message : 'Unknown error')
+      showBanner(
+        `Failed to apply resolutions: ${error instanceof Error ? error.message : 'Unknown error'}`,
+        'error'
       );
     } finally {
       setCreating(false);
@@ -697,6 +715,16 @@ export default function LegislativePostImporter({
         <DialogHeader>
           <DialogTitle>Import Legislative Documents from Facebook</DialogTitle>
         </DialogHeader>
+
+        {banner && (
+          <div className='mb-4'>
+            <Banner
+              type={banner.type}
+              description={banner.message}
+              onDismiss={() => setBanner(null)}
+            />
+          </div>
+        )}
 
         <div className='py-4'>
           {/* Step 1: Paste Post */}

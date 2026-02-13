@@ -2,7 +2,7 @@
   {
     "slug": "gad",
     "office_name": "GENDER AND DEVELOPMENT OFFICE",
-    "address": null,
+    "address": "2F Municipal Hall",
     "trunkline": [null],
     "website": "https://losbanos.gov.ph/3",
     "department_head": {
@@ -14,7 +14,7 @@
   {
     "slug": "local-civil-registry-office",
     "office_name": "LOCAL CIVIL REGISTRY OFFICE",
-    "address": null,
+    "address": "1F Municipal Hall",
     "trunkline": [null],
     "website": "https://losbanos.gov.ph/7",
     "department_head": {
@@ -26,7 +26,7 @@
   {
     "slug": "municipal-planning-and-development-office",
     "office_name": "MUNICIPAL PLANNING AND DEVELOPMENT OFFICE",
-    "address": null,
+    "address": "1F Municipal Hall",
     "trunkline": [null],
     "website": "https://losbanos.gov.ph/8",
     "department_head": {
@@ -38,7 +38,7 @@
   {
     "slug": "municipal-engineering-office",
     "office_name": "MUNICIPAL ENGINEERING OFFICE",
-    "address": null,
+    "address": "1F Municipal Hall",
     "trunkline": [null],
     "website": "https://www.facebook.com/EngineeringOfficeLB",
     "department_head": {
@@ -50,7 +50,7 @@
   {
     "slug": "municipal-assessors-office",
     "office_name": "MUNICIPAL ASSESSOR'S OFFICE",
-    "address": null,
+    "address": "1F Municipal Hall",
     "trunkline": [null],
     "website": "https://losbanos.gov.ph/10",
     "department_head": {
@@ -62,7 +62,7 @@
   {
     "slug": "municipal-social-welfare-development-office",
     "office_name": "MUNICIPAL SOCIAL WELFARE DEVELOPMENT OFFICE",
-    "address": null,
+    "address": "1F Municipal Hall",
     "trunkline": [null],
     "website": "https://losbanos.gov.ph/11",
     "department_head": {
@@ -74,7 +74,7 @@
   {
     "slug": "municipal-environment-and-natural-resources-office",
     "office_name": "MUNICIPAL ENVIRONMENT AND NATURAL RESOURCES OFFICE",
-    "address": null,
+    "address": "2F Municipal Hall",
     "trunkline": [null],
     "website": "https://losbanos.gov.ph/12",
     "department_head": {
@@ -86,7 +86,7 @@
   {
     "slug": "municipal-treasurers-office",
     "office_name": "MUNICIPAL TREASURER'S OFFICE",
-    "address": null,
+    "address": "1F Municipal Hall",
     "trunkline": [null],
     "website": "https://losbanos.gov.ph/13",
     "department_head": {
@@ -98,7 +98,7 @@
   {
     "slug": "public-information-office",
     "office_name": "PUBLIC INFORMATION OFFICE",
-    "address": null,
+    "address": "3F Municipal Hall",
     "trunkline": [null],
     "website": "https://losbanos.gov.ph/14",
     "department_head": {
@@ -110,7 +110,7 @@
   {
     "slug": "municipal-budget-office",
     "office_name": "MUNICIPAL BUDGET OFFICE",
-    "address": null,
+    "address": "3F Municipal Hall",
     "trunkline": [null],
     "website": "https://losbanos.gov.ph/15",
     "department_head": {
@@ -122,7 +122,7 @@
   {
     "slug": "municipal-accounting-office",
     "office_name": "MUNICIPAL ACCOUNTING OFFICE",
-    "address": null,
+    "address": "3F Municipal Hall",
     "trunkline": [null],
     "website": "https://losbanos.gov.ph/16",
     "department_head": {
@@ -134,7 +134,7 @@
   {
     "slug": "municipal-human-resource-management-office",
     "office_name": "MUNICIPAL HUMAN RESOURCE MANAGEMENT OFFICE",
-    "address": null,
+    "address": "3F Municipal Hall",
     "trunkline": [null],
     "website": "https://losbanos.gov.ph/17",
     "department_head": {
@@ -158,7 +158,7 @@
   {
     "slug": "information-and-communication-systems-office",
     "office_name": "INFORMATION AND COMMUNICATION SYSTEMS OFFICE",
-    "address": null,
+    "address": "1F Municipal Hall",
     "trunkline": [null],
     "website": "https://losbanos.gov.ph/19",
     "department_head": {
@@ -170,7 +170,7 @@
   {
     "slug": "local-youth-and-development-office",
     "office_name": "LOCAL YOUTH AND DEVELOPMENT OFFICE",
-    "address": null,
+    "address": "3F Municipal Hall",
     "trunkline": [null],
     "website": "https://losbanos.gov.ph/20",
     "department_head": {
@@ -254,7 +254,7 @@
   {
     "slug": "municipal-general-services-office",
     "office_name": "MUNICIPAL GENERAL SERVICES OFFICE",
-    "address": null,
+    "address": "3F Municipal Hall",
     "trunkline": [null],
     "website": null,
     "department_head": {
@@ -278,7 +278,7 @@
   {
     "slug": "municipal-urban-development-and-housing-office",
     "office_name": "MUNICIPAL URBAN DEVELOPMENT AND HOUSING OFFICE",
-    "address": null,
+    "address": "3F Municipal Hall",
     "trunkline": [null],
     "website": null,
     "department_head": {
@@ -290,7 +290,7 @@
   {
     "slug": "office-senior-citizens-affairs",
     "office_name": "OFFICE FOR THE SENIOR CITIZENS' AFFAIRS",
-    "address": null,
+    "address": "1F Municipal Hall",
     "trunkline": [null],
     "website": "https://www.facebook.com/profile.php?id=61559573828843",
     "department_head": {
