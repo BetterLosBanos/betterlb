@@ -5,7 +5,6 @@ on:
   pull_request:
     branches: [main]
 
-# Necessary for showing "Deployed" status in GitHub UI
 permissions:
   contents: read
   deployments: write
@@ -16,29 +15,28 @@ jobs:
     name: Deploy to Cloudflare Pages
     steps:
       - name: Checkout
-        uses: actions/checkout@v6
-
+        uses: actions/checkout@1af3b93b6815bc44a9784bd300feb67ff0d1eeb3 # v6.0.0
+        with:
+          persist-credentials: false
       - name: Setup Node.js
-        uses: actions/setup-node@v6
+        uses: actions/setup-node@6044e13b5dc448c55e2357c09f80417699197238 # v6.2.0
         with:
           node-version: 20
-          cache: 'npm'
+          package-manager-cache: false
 
       - name: Install dependencies
         run: npm install --legacy-peer-deps
 
-      # 1. RUN DATA MERGE (Unique to your project)
       - name: Merge Service Data
         run: python3 scripts/merge_services.py
 
-      # 2. BUILD THE VITE SITE
       - name: Build
         run: npm run build
 
-      # 3. DEPLOY USING WRANGLER DIRECTLY (bypasses action's npx issue)
       - name: Deploy to Cloudflare Pages
-        run: npx wrangler pages deploy dist --project-name=betterlb --github
-        env:
-          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
-          CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        uses: cloudflare/wrangler-action@9681c2997648301493e78cacbfb790a9f19c833f # v3.9.0
+        with:
+          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          command: pages deploy dist --project-name=betterlb
+          gitHubToken: ${{ secrets.GITHUB_TOKEN }}

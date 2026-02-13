@@ -6,7 +6,6 @@ import { Building2Icon, HomeIcon, UsersIcon } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
 
 import { config } from '@/lib/lguConfig';
-
 import Button from '../ui/Button';
 import { Card, CardContent } from '../ui/Card';
 
@@ -22,7 +21,7 @@ const GovernmentSection: FC = () => {
         'government.electedofficialsDescription',
         'Meet your Mayor, Vice Mayor, and Councilors.'
       ),
-      icon: <UsersIcon className='text-primary-600 h-10 w-10' />,
+      icon: <UsersIcon className='w-10 h-10 text-primary-600' />,
       link: '/government/elected-officials',
     },
     {
@@ -32,21 +31,21 @@ const GovernmentSection: FC = () => {
         'government.departmentsDescription',
         'Services and offices under the Executive branch.'
       ),
-      icon: <Building2Icon className='text-primary-600 h-10 w-10' />,
+      icon: <Building2Icon className='w-10 h-10 text-primary-600' />,
       link: '/government/departments',
     },
     {
       id: 'barangays',
       title: t('government.barangaysTitle'),
       description: t('government.barangaysDescription'),
-      icon: <HomeIcon className='text-primary-600 h-10 w-10' />,
+      icon: <HomeIcon className='w-10 h-10 text-primary-600' />,
       link: '/government/barangays',
     },
   ];
 
   return (
-    <section className='bg-white py-12'>
-      <div className='container mx-auto px-4'>
+    <section className='py-12 bg-white'>
+      <div className='container px-4 mx-auto'>
         <div className='mb-12 text-center'>
           <h2 className='mb-4 text-2xl font-bold text-gray-900 md:text-3xl'>
             {t('government.title')}
@@ -60,7 +59,7 @@ const GovernmentSection: FC = () => {
           {branches.map(branch => (
             <Card key={branch.id} hoverable className='text-center'>
               <CardContent className='p-6'>
-                <div className='mb-4 flex justify-center'>{branch.icon}</div>
+                <div className='flex justify-center mb-4'>{branch.icon}</div>
                 <h3 className='mb-2 text-xl font-semibold text-gray-900'>
                   {branch.title}
                 </h3>
@@ -71,7 +70,7 @@ const GovernmentSection: FC = () => {
                   size='sm'
                   rightIcon={
                     <svg
-                      className='h-4 w-4'
+                      className='w-4 h-4'
                       viewBox='0 0 24 24'
                       fill='none'
                       stroke='currentColor'
@@ -91,7 +90,7 @@ const GovernmentSection: FC = () => {
           ))}
         </div>
 
-        <div className='mt-12 rounded-lg bg-gray-50 p-6'>
+        <div className='p-6 mt-12 bg-gray-50 rounded-lg'>
           <div className='items-center md:flex'>
             <div className='mb-6 md:mb-0 md:w-2/3 md:pr-8'>
               <h3 className='mb-2 text-xl font-semibold text-gray-900'>
@@ -104,7 +103,7 @@ const GovernmentSection: FC = () => {
             <div className='flex justify-center md:w-1/3 md:justify-end'>
               <a
                 href='/government/'
-                className='bg-primary-500 hover:bg-primary-600 focus:ring-primary-500 inline-flex items-center justify-center rounded-md px-6 py-3 font-medium text-white shadow-xs transition-colors focus:ring-2 focus:ring-offset-2 focus:outline-hidden'
+                className='inline-flex justify-center items-center px-6 py-3 font-medium text-white rounded-md transition-colors bg-primary-500 hover:bg-primary-600 focus:ring-primary-500 shadow-xs focus:ring-2 focus:ring-offset-2 focus:outline-hidden'
               >
                 {t('government.viewDirectory')}
               </a>

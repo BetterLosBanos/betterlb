@@ -11,22 +11,26 @@ jobs:
     if: github.event.label.name == 'verified'
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v6
-
-      - name: Setup Python
-        uses: actions/setup-python@v6
+      - uses: actions/checkout@1af3b93b6815bc44a9784bd300feb67ff0d1eeb3 # v6.0.0
         with:
-          python-version: '3.x'
+          persist-credentials: false
+      - name: Setup Python
+        uses: actions/setup-python@a309ff8b426b58ec0e2a45f0f869d46889d02405 # v6.2.0
+        with:
+          python-version: '3.11'
 
       - name: Process Contribution and Rebuild Master File
         shell: python
+        env:
+          ISSUE_BODY: ${{ github.event.issue.body }}
+          ISSUE_NUMBER: ${{ github.event.issue.number }}
         run: |
           import json
           import re
           import os
 
           # 1. PARSE ISSUE BODY
-          issue_body = """${{ github.event.issue.body }}"""
+          issue_body = os.environ['ISSUE_BODY']
           match = re.search(r'<!-- DATA_START -->.*?```json\n(.*?)\n```.*?<!-- DATA_END -->', issue_body, re.DOTALL)
 
           if not match:
@@ -75,10 +79,12 @@ jobs:
           print(f"✅ Successfully updated {cat_slug}.json and rebuilt services.json")
 
       - name: Commit and Push Changes
+        env:
+          ISSUE_NUMBER: ${{ github.event.issue.number }}
         run: |
           git config --local user.email "action@github.com"
           git config --local user.name "BetterLB Auditor Bot"
           git add src/data/services/categories/*.json src/data/services/services.json
 
           # Standardized BetterGov commit message format
-          git diff --quiet && git diff --staged --quiet || (git commit -m "data: update service directory from verified issue #${{ github.event.issue.number }}" && git push)
+          git diff --quiet && git diff --staged --quiet || (git commit -m "data: update service directory from verified issue #${ISSUE_NUMBER}" && git push)
