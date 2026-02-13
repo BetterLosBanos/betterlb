@@ -5,7 +5,6 @@ on:
   pull_request:
     branches: [main]
 
-# Necessary for showing "Deployed" status in GitHub UI
 permissions:
   contents: read
   deployments: write
@@ -16,10 +15,10 @@ jobs:
     name: Deploy to Cloudflare Pages
     steps:
       - name: Checkout
-        uses: actions/checkout@v6
+        uses: actions/checkout@1af3b93b6815bc44a9784bd300feb67ff0d1eeb3 # v6.0.0
 
       - name: Setup Node.js
-        uses: actions/setup-node@v6
+        uses: actions/setup-node@2028fbc5c25fe9cf00d9f06a71cc4710d4507903 # v4.0.0
         with:
           node-version: 20
           cache: 'npm'
@@ -27,20 +26,16 @@ jobs:
       - name: Install dependencies
         run: npm install --legacy-peer-deps
 
-      # 1. RUN DATA MERGE (Unique to your project)
       - name: Merge Service Data
         run: python3 scripts/merge_services.py
 
-      # 2. BUILD THE VITE SITE
       - name: Build
         run: npm run build
 
-      # 3. DEPLOY USING WRANGLER ACTION
       - name: Deploy to Cloudflare Pages
-        uses: cloudflare/wrangler-action@v3
+        uses: cloudflare/wrangler-action@f84a562284fc78d156ed0f0f2ebc801f0f30ff55 # v3
         with:
           apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
-          # dist is the default Vite output folder
           command: pages deploy dist --project-name=betterlb
           gitHubToken: ${{ secrets.GITHUB_TOKEN }}
