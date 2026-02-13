@@ -41,6 +41,6 @@ jobs:
         with:
           apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
-          projectId: betterlb
-          directory: dist
+          workingDirectory: dist
+          command: pages deploy --project-name=betterlb
           gitHubToken: ${{ secrets.GITHUB_TOKEN }}
