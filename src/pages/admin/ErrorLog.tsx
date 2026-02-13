@@ -1,5 +1,6 @@
 import { useCallback, useEffect, useState } from 'react';
 
+import { Banner } from '@/kapwa/banner';
 import { AlertTriangle, ExternalLink, FileText, RefreshCw } from 'lucide-react';
 
 import { Badge } from '@/components/ui/Badge';
@@ -28,6 +29,12 @@ export default function ErrorLog() {
   const [loading, setLoading] = useState(true);
   const [retrying, setRetrying] = useState<Set<string>>(new Set());
   const [filter, setFilter] = useState<string>('all');
+
+  // Banner state for notifications
+  const [banner, setBanner] = useState<{
+    message: string;
+    type: 'success' | 'warning' | 'error' | 'info';
+  } | null>(null);
 
   const fetchErrors = useCallback(async () => {
     setLoading(true);
@@ -73,15 +80,20 @@ export default function ErrorLog() {
 
       // Show success feedback
       const data = await response.json();
-      alert(
-        `Retry queued: ${data.message || 'Processing will be attempted again.'}`
-      );
+      setBanner({
+        message: `Retry queued: ${data.message || 'Processing will be attempted again.'}`,
+        type: 'success',
+      });
+      setTimeout(() => setBanner(null), 4000);
 
       // Refresh the error list
       fetchErrors();
     } catch (error) {
       console.error('Error retrying:', error);
-      alert('Failed to queue retry. Please try again.');
+      setBanner({
+        message: 'Failed to queue retry. Please try again.',
+        type: 'error',
+      });
     } finally {
       setRetrying(prev => {
         const next = new Set(prev);
@@ -111,6 +123,15 @@ export default function ErrorLog() {
 
   return (
     <div className='space-y-6'>
+      {/* Notifications */}
+      {banner && (
+        <Banner
+          type={banner.type}
+          description={banner.message}
+          onDismiss={() => setBanner(null)}
+        />
+      )}
+
       {/* Header */}
       <div className='flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between'>
         <div>

@@ -10,6 +10,8 @@ import {
 } from 'lucide-react';
 import { Helmet } from 'react-helmet-async';
 
+import Button from '@/components/ui/Button';
+
 import { Card, CardContent } from '../components/ui/Card';
 
 interface ProjectIdea {
@@ -195,20 +197,20 @@ const Ideas: FC = () => {
         {/* Submit New Idea Button */}
         <div className='mb-8 flex justify-center'>
           <div className='flex flex-col gap-3 sm:flex-row'>
-            <button
+            <Button
               onClick={handleSubmitIdea}
-              className='bg-primary-600 hover:bg-primary-700 inline-flex items-center justify-center rounded-md border border-transparent px-6 py-3 text-base font-medium text-white transition-colors'
+              variant='primary'
+              leftIcon={<GithubIcon className='h-5 w-5' />}
             >
-              <GithubIcon className='mr-2 h-5 w-5' />
               Submit Idea
-            </button>
-            <button
+            </Button>
+            <Button
               onClick={handleSubmitPR}
-              className='inline-flex items-center justify-center rounded-md border border-gray-300 bg-white px-6 py-3 text-base font-medium text-gray-700 transition-colors hover:bg-gray-50'
+              variant='outline'
+              leftIcon={<PlusIcon className='h-5 w-5' />}
             >
-              <PlusIcon className='mr-2 h-5 w-5' />
               Contribute a Pull Request
-            </button>
+            </Button>
           </div>
         </div>
 
@@ -282,19 +284,16 @@ const Ideas: FC = () => {
             learn more about our mission.
           </p>
           <div className='flex flex-col justify-center gap-4 sm:flex-row'>
-            <button
+            <Button
               onClick={handleSubmitIdea}
-              className='bg-primary-600 hover:bg-primary-700 inline-flex items-center justify-center rounded-md border border-transparent px-6 py-3 text-base font-medium text-white transition-colors'
+              variant='primary'
+              leftIcon={<GithubIcon className='h-5 w-5' />}
             >
-              <GithubIcon className='mr-2 h-5 w-5' />
               Submit via GitHub
-            </button>
-            <a
-              href='/about'
-              className='inline-flex items-center justify-center rounded-md border border-gray-300 bg-white px-6 py-3 text-base font-medium text-gray-700 transition-colors hover:bg-gray-50'
-            >
+            </Button>
+            <Button href='/about' variant='outline' size='default'>
               Learn More About Us
-            </a>
+            </Button>
           </div>
         </section>
       </div>

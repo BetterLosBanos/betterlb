@@ -1,5 +1,6 @@
 import { useCallback, useEffect, useState } from 'react';
 
+import { Banner } from '@/kapwa/banner';
 import {
   Calendar,
   Check,
@@ -108,6 +109,13 @@ export default function ReviewQueue() {
     offset: 0,
     has_more: false,
   });
+
+  // Banner state for error notifications
+  const [banner, setBanner] = useState<{
+    message: string;
+    type: 'success' | 'warning' | 'error' | 'info';
+  } | null>(null);
+
   const [editModalDocumentId, setEditModalDocumentId] = useState<string | null>(
     null
   );
@@ -261,9 +269,10 @@ export default function ReviewQueue() {
       fetchQueue();
     } catch (error) {
       console.error('Error updating status:', error);
-      alert(
-        `Failed to update status: ${error instanceof Error ? error.message : 'Unknown error'}`
-      );
+      setBanner({
+        message: `Failed to update status: ${error instanceof Error ? error.message : 'Unknown error'}`,
+        type: 'error',
+      });
     }
   };
 
@@ -288,9 +297,10 @@ export default function ReviewQueue() {
       fetchQueue();
     } catch (error) {
       console.error('Error assigning item:', error);
-      alert(
-        `Failed to assign: ${error instanceof Error ? error.message : 'Unknown error'}`
-      );
+      setBanner({
+        message: `Failed to assign: ${error instanceof Error ? error.message : 'Unknown error'}`,
+        type: 'error',
+      });
     }
   };
 
@@ -433,6 +443,14 @@ export default function ReviewQueue() {
 
   return (
     <div className='space-y-6'>
+      {/* Banner for error notifications */}
+      {banner && (
+        <Banner
+          type={banner.type}
+          description={banner.message}
+          onDismiss={() => setBanner(null)}
+        />
+      )}
       {/* Header */}
       <div className='flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between'>
         <div>

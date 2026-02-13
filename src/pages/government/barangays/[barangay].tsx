@@ -212,34 +212,38 @@ export default function BarangayDetail() {
       <DetailSection title='Barangay Administration' icon={Briefcase}>
         <div className='grid grid-cols-1 gap-4 md:grid-cols-2'>
           {/* Secretary */}
-          <div className='flex items-center gap-4 rounded-xl border border-slate-100 bg-slate-50 p-4'>
-            <div className='flex h-10 w-10 shrink-0 items-center justify-center rounded-full border border-slate-200 bg-white text-slate-400 shadow-sm'>
-              <Briefcase className='h-5 w-5' />
-            </div>
-            <div>
-              <p className='text-[10px] font-bold tracking-wider text-slate-400 uppercase'>
-                Barangay Secretary
-              </p>
-              <p className='text-base font-bold text-slate-900'>
-                {secretary ? toTitleCase(secretary.name) : 'Vacant / No Data'}
-              </p>
-            </div>
-          </div>
+          <Card variant='slate' hover={false} className='bg-slate-50'>
+            <CardContent className='flex items-center gap-4 p-4'>
+              <div className='flex h-10 w-10 shrink-0 items-center justify-center rounded-full border border-slate-200 bg-white text-slate-400 shadow-sm'>
+                <Briefcase className='h-5 w-5' />
+              </div>
+              <div>
+                <p className='text-[10px] font-bold tracking-wider text-slate-400 uppercase'>
+                  Barangay Secretary
+                </p>
+                <p className='text-base font-bold text-slate-900'>
+                  {secretary ? toTitleCase(secretary.name) : 'Vacant / No Data'}
+                </p>
+              </div>
+            </CardContent>
+          </Card>
 
           {/* Treasurer */}
-          <div className='flex items-center gap-4 rounded-xl border border-slate-100 bg-slate-50 p-4'>
-            <div className='flex h-10 w-10 shrink-0 items-center justify-center rounded-full border border-slate-200 bg-white text-slate-400 shadow-sm'>
-              <Briefcase className='h-5 w-5' />
-            </div>
-            <div>
-              <p className='text-[10px] font-bold tracking-wider text-slate-400 uppercase'>
-                Barangay Treasurer
-              </p>
-              <p className='text-base font-bold text-slate-900'>
-                {treasurer ? toTitleCase(treasurer.name) : 'Vacant / No Data'}
-              </p>
-            </div>
-          </div>
+          <Card variant='slate' hover={false} className='bg-slate-50'>
+            <CardContent className='flex items-center gap-4 p-4'>
+              <div className='flex h-10 w-10 shrink-0 items-center justify-center rounded-full border border-slate-200 bg-white text-slate-400 shadow-sm'>
+                <Briefcase className='h-5 w-5' />
+              </div>
+              <div>
+                <p className='text-[10px] font-bold tracking-wider text-slate-400 uppercase'>
+                  Barangay Treasurer
+                </p>
+                <p className='text-base font-bold text-slate-900'>
+                  {treasurer ? toTitleCase(treasurer.name) : 'Vacant / No Data'}
+                </p>
+              </div>
+            </CardContent>
+          </Card>
         </div>
       </DetailSection>
     </div>

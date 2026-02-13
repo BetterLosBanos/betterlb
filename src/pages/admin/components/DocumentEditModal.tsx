@@ -1,5 +1,6 @@
 import { useCallback, useEffect, useState } from 'react';
 
+import { Banner } from '@/kapwa/banner';
 import {
   AlertCircle,
   Calendar,
@@ -94,6 +95,12 @@ export default function DocumentEditModal({
   const [loading, setLoading] = useState(false);
   const [saving, setSaving] = useState(false);
   const [formData, setFormData] = useState<Partial<DocumentData>>({});
+
+  // Banner state for notifications
+  const [banner, setBanner] = useState<{
+    message: string;
+    type: 'success' | 'warning' | 'error' | 'info';
+  } | null>(null);
 
   // Tab state
   const [activeTab, setActiveTab] = useState<TabValue>('document');
@@ -267,9 +274,10 @@ export default function DocumentEditModal({
       }
     } catch (error) {
       console.error('Error fetching document:', error);
-      alert(
-        `Failed to load document: ${error instanceof Error ? error.message : 'Unknown error'}`
-      );
+      setBanner({
+        message: `Failed to load document: ${error instanceof Error ? error.message : 'Unknown error'}`,
+        type: 'error',
+      });
     } finally {
       setLoading(false);
     }
@@ -337,9 +345,10 @@ export default function DocumentEditModal({
       onClose();
     } catch (error) {
       console.error('Error saving document:', error);
-      alert(
-        `Failed to save document: ${error instanceof Error ? error.message : 'Unknown error'}`
-      );
+      setBanner({
+        message: `Failed to save document: ${error instanceof Error ? error.message : 'Unknown error'}`,
+        type: 'error',
+      });
     } finally {
       setSaving(false);
     }
@@ -420,6 +429,17 @@ export default function DocumentEditModal({
             </div>
           </div>
         </DialogHeader>
+
+        {/* Notifications */}
+        {banner && (
+          <div className='mb-4'>
+            <Banner
+              type={banner.type}
+              description={banner.message}
+              onDismiss={() => setBanner(null)}
+            />
+          </div>
+        )}
 
         {/* Tabs */}
         <Tabs

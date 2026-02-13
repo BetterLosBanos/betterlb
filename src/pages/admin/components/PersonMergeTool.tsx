@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 
+import { Banner } from '@/kapwa/banner';
 import {
   CheckCircle,
   ChevronRight,
@@ -64,6 +65,12 @@ export default function PersonMergeTool() {
   const [deletionMode, setDeletionMode] = useState<DeletionMode>('delete');
   const [mergeResults, setMergeResults] = useState<MergeResponse | null>(null);
 
+  // Banner state for notifications
+  const [banner, setBanner] = useState<{
+    message: string;
+    type: 'success' | 'warning' | 'error' | 'info';
+  } | null>(null);
+
   useEffect(() => {
     fetchDuplicates();
   }, []);
@@ -117,7 +124,11 @@ export default function PersonMergeTool() {
       }
     } catch (error) {
       console.error('Error merging persons:', error);
-      alert(error instanceof Error ? error.message : 'Failed to merge persons');
+      setBanner({
+        message:
+          error instanceof Error ? error.message : 'Failed to merge persons',
+        type: 'error',
+      });
     } finally {
       setMerging(false);
     }
@@ -146,6 +157,15 @@ export default function PersonMergeTool() {
 
   return (
     <div className='space-y-6'>
+      {/* Notifications */}
+      {banner && (
+        <Banner
+          type={banner.type}
+          description={banner.message}
+          onDismiss={() => setBanner(null)}
+        />
+      )}
+
       {/* Header */}
       <div className='flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between'>
         <div>

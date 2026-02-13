@@ -212,15 +212,17 @@ export default function DepartmentDetail() {
 
       {/* --- SECTION 3: GENERAL MANDATE --- */}
       <DetailSection title='Office Mandate' icon={InfoIcon}>
-        <div className='rounded-xl border border-slate-100 bg-slate-50 p-6'>
-          <p className='text-sm leading-relaxed text-slate-600 md:text-base'>
-            The {toTitleCase(dept.office_name)} is a frontline office of the
-            Municipal Government of Los Baños. It is responsible for executing
-            administrative mandates and technical functions to ensure the
-            delivery of high-quality public services within the Science and
-            Nature City.
-          </p>
-        </div>
+        <Card variant='slate' hover={false} className='bg-slate-50'>
+          <CardContent className='p-6'>
+            <p className='text-sm leading-relaxed text-slate-600 md:text-base'>
+              The {toTitleCase(dept.office_name)} is a frontline office of the
+              Municipal Government of Los Baños. It is responsible for executing
+              administrative mandates and technical functions to ensure the
+              delivery of high-quality public services within the Science and
+              Nature City.
+            </p>
+          </CardContent>
+        </Card>
       </DetailSection>
     </div>
   );

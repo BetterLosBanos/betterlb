@@ -1,3 +1,7 @@
+/* Kapwa Design System */
+@import './kapwa/kapwa.css';
+
+/* Local styles */
 @import 'tailwindcss';
 
 @theme {
@@ -94,6 +98,9 @@
   --color-error-50: #fef2f2;
   --color-error-500: #ef4444; /* Design Guide Red-500 */
   --color-error-600: #dc2626;
+
+  /* --- SHADOWS --- */
+  --shadow-xs: 0 1px 2px 0 rgb(0 0 0 / 0.05);
 }
 
 @layer base {

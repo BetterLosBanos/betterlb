@@ -5,6 +5,8 @@ import { Link, useLocation } from 'react-router-dom';
 import { ChevronDownIcon, MenuIcon, SearchIcon, XIcon } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
 
+import Button from '@/components/ui/Button';
+
 import { cn } from '@/lib/utils';
 
 import { mainNavigation } from '../../data/navigation';
@@ -190,17 +192,18 @@ const Navbar: FC = () => {
             >
               <SearchIcon className='h-6 w-6' />
             </Link>
-            <button
+            <Button
               onClick={toggleMenu}
-              className='rounded-xl bg-slate-50 p-3 text-slate-900'
+              variant='ghost'
               aria-label='Toggle Menu'
+              className='rounded-xl bg-slate-50 p-3 text-slate-900'
             >
               {isOpen ? (
                 <XIcon className='h-6 w-6' />
               ) : (
                 <MenuIcon className='h-6 w-6' />
               )}
-            </button>
+            </Button>
           </div>
         </div>
       </div>
@@ -232,11 +235,12 @@ const Navbar: FC = () => {
                       {t(`navbar.${item.label.toLowerCase()}`)}
                     </Link>
                     {hasChildren && (
-                      <button
+                      <Button
                         onClick={e => {
                           e.preventDefault();
                           setActiveMobileSubmenu(isSubOpen ? null : item.label);
                         }}
+                        variant='ghost'
                         className='p-4 text-slate-400'
                       >
                         <ChevronDownIcon
@@ -245,7 +249,7 @@ const Navbar: FC = () => {
                             isSubOpen && 'rotate-180'
                           )}
                         />
-                      </button>
+                      </Button>
                     )}
                   </div>
 

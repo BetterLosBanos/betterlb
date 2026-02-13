@@ -18,6 +18,9 @@ import {
 import { Helmet } from 'react-helmet-async';
 import { useTranslation } from 'react-i18next';
 
+import Button from '@/components/ui/Button';
+import { Card, CardContent } from '@/components/ui/Card';
+
 const AboutPage: FC = () => {
   const { t } = useTranslation('about');
   return (
@@ -137,18 +140,17 @@ const AboutPage: FC = () => {
                       desc: 'Physical workspace for collaboration and meetings',
                     },
                   ].map((item, index) => (
-                    <div
-                      key={index}
-                      className='rounded-lg border bg-white p-5 transition-all hover:shadow-md'
-                    >
-                      <div className='bg-primary-100 mb-3 flex h-12 w-12 items-center justify-center rounded-lg'>
-                        <item.icon className='text-primary-600 h-6 w-6' />
-                      </div>
-                      <h3 className='mb-2 text-base font-semibold text-gray-900'>
-                        {item.title}
-                      </h3>
-                      <p className='text-sm text-gray-600'>{item.desc}</p>
-                    </div>
+                    <Card key={index} hover className='bg-white'>
+                      <CardContent className='p-5'>
+                        <div className='bg-primary-100 mb-3 flex h-12 w-12 items-center justify-center rounded-lg'>
+                          <item.icon className='text-primary-600 h-6 w-6' />
+                        </div>
+                        <h3 className='mb-2 text-base font-semibold text-gray-900'>
+                          {item.title}
+                        </h3>
+                        <p className='text-sm text-gray-600'>{item.desc}</p>
+                      </CardContent>
+                    </Card>
                   ))}
                 </div>
               </section>
@@ -245,22 +247,27 @@ const AboutPage: FC = () => {
                 Join our community of builders, dreamers, and changemakers.
               </p>
               <div className='flex flex-col justify-center gap-4 sm:flex-row'>
-                <Link
-                  to='/contact'
-                  className='inline-flex items-center rounded-lg bg-yellow-400 px-6 py-3 font-semibold text-blue-900 transition-colors hover:bg-yellow-500'
-                >
-                  <MessageCircleIcon className='mr-2 h-5 w-5' />
-                  Contacts
+                <Link to='/contact'>
+                  <Button
+                    className='bg-yellow-400 text-blue-900 hover:bg-yellow-500'
+                    size='lg'
+                    leftIcon={<MessageCircleIcon className='h-5 w-5' />}
+                  >
+                    Contacts
+                  </Button>
                 </Link>
                 <span className='flex items-center justify-center text-white'>
                   or
                 </span>
-                <Link
-                  to='/join-us'
-                  className='inline-flex items-center rounded-lg border-2 border-white bg-transparent px-6 py-3 font-semibold text-white transition-colors hover:bg-white hover:text-blue-600'
-                >
-                  <LightbulbIcon className='mr-2 h-5 w-5' />
-                  Join Us
+                <Link to='/join-us'>
+                  <Button
+                    className='border-white text-white hover:bg-white hover:text-blue-600'
+                    size='lg'
+                    variant='outline'
+                    leftIcon={<LightbulbIcon className='h-5 w-5' />}
+                  >
+                    Join Us
+                  </Button>
                 </Link>
               </div>
             </div>

@@ -1,6 +1,7 @@
 import { Calendar, ChevronDown, ChevronRight, FileText } from 'lucide-react';
 
 import { Badge } from '@/components/ui/Badge';
+import { Card, CardContent } from '@/components/ui/Card';
 
 import type {
   DocumentItem,
@@ -90,12 +91,10 @@ export default function OfficialCard({
   const totalTermsServed = person.memberships.length;
 
   return (
-    <div
-      className={`group rounded-xl border transition-all ${
-        isExpanded
-          ? 'border-primary-300 bg-primary-50/30 shadow-sm'
-          : 'border-slate-200 bg-white hover:border-slate-300 hover:shadow-sm'
-      }`}
+    <Card
+      variant={isExpanded ? 'featured' : 'default'}
+      hover={!isExpanded}
+      className='group'
     >
       {/* Collapsed Card Content */}
       <button
@@ -104,7 +103,7 @@ export default function OfficialCard({
         aria-expanded={isExpanded}
         aria-label={`Toggle details for ${personName}`}
       >
-        <div className='flex items-center gap-4 p-4'>
+        <CardContent className='flex items-center gap-4 p-4'>
           {/* Avatar with initials */}
           <div
             className={`flex h-12 w-12 shrink-0 items-center justify-center rounded-xl text-lg font-bold text-white shadow-sm ${getAvatarColor()}`}
@@ -179,12 +178,12 @@ export default function OfficialCard({
               <ChevronRight className='h-5 w-5 transition-colors group-hover:text-slate-500' />
             )}
           </div>
-        </div>
+        </CardContent>
       </button>
 
       {/* Expanded Service Timeline */}
       {isExpanded && (
-        <div className='animate-in fade-in slide-in-from-top-2 rounded-b-xl border-t border-slate-200 bg-slate-50/50 p-4 duration-200'>
+        <CardContent className='animate-in fade-in slide-in-from-top-2 border-t border-slate-200 bg-slate-50/50 p-4 duration-200'>
           <div className='mb-3 text-xs font-semibold tracking-wide text-slate-500 uppercase'>
             Service History
           </div>
@@ -195,8 +194,8 @@ export default function OfficialCard({
             sessions={sessions}
             documents={documents}
           />
-        </div>
+        </CardContent>
       )}
-    </div>
+    </Card>
   );
 }
