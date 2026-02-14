@@ -10,6 +10,7 @@ This project is a municipal-focused fork of [BetterGov.ph](https://bettergov.ph)
 Official government websites are often difficult to navigate on mobile devices, lack standardized accessibility features, and can be slow to update. **Better LB** provides a high-performance alternative that mirrors official data (built by BetterGov.PH volunteers) in a modern, inclusive, and community-audited format.
 
 ## Files to Edit
+To fork this project for your own LGU
 
 | File | What to Change |
 |------|------------------|
