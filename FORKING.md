@@ -11,27 +11,27 @@ npm run dev
 
 ## 📋 Configuration File
 
-The `/config/lgu.config.json` file contains all LGU-specific values in one place.
+The `/config/lgu.config.json` file contains all LGU-specific branding values in one place.
 
 ### Essential Fields
 
 | Field | Description | Example |
 |-------|-------------|-------------|
-| `lgu.name\` | "Your Municipality" | "Los Baños" |
-| `lgu.fullName\` | "Municipality of Los Baños" | "Municipality of Los Baños" |
-| `lgu.province\` | "Your Province" | "Laguna" |
-| `lgu.provinceWebsite\` | "Province Official Website" | "https://laguna.gov.ph" |
-| `lgu.region\` | "Your Region" | "Region IV-A" |
-| `lgu.regionCode\` | "Your Region Code" | "CALABARZON" |
-| `lgu.officialWebsite\` | "Official LGU Website" | "https://www.losbanos.gov.ph" |
-| `portal.name\` | "YourPortalName" | "BetterLB" |
-| `portal.domain\` | "YourDomain" | "BetterLB.org" |
-| `portal.baseUrl\` | "YourBaseURL" | "https://betterLB.org" |
-| `portal.tagline\` | "YourTagline" | "Your Slogan" |
-| `portal.description\` | "YourDescription" | "Portal description..." |
-| `portal.navbarTagline\` | "Navbar subtitle" | "A Community-run portal for" |
-| `portal.footerBrandName\` | "Footer brand name" | "Better Los Baños" |
-| `portal.footerTagline\` | "Footer tagline" | "Community Civic Portal" |
+| `lgu.name` | "Your Municipality" | "Los Baños" |
+| `lgu.fullName` | "Municipality of Los Baños" | "Municipality of Los Baños" |
+| `lgu.province` | "Your Province" | "Laguna" |
+| `lgu.provinceWebsite` | "Province Official Website" | "https://laguna.gov.ph" |
+| `lgu.region` | "Your Region" | "Region IV-A" |
+| `lgu.regionCode` | "Your Region Code" | "CALABARZON" |
+| `lgu.officialWebsite` | "Official LGU Website" | "https://www.losbanos.gov.ph" |
+| `portal.name` | "YourPortalName" | "BetterLB" |
+| `portal.domain` | "YourDomain" | "BetterLB.org" |
+| `portal.baseUrl` | "YourBaseURL" | "https://betterLB.org" |
+| `portal.tagline` | "YourTagline" | "Your Slogan" |
+| `portal.description` | "YourDescription" | "Portal description..." |
+| `portal.navbarTagline` | "Navbar subtitle" | "A Community-run portal for" |
+| `portal.footerBrandName` | "Footer brand name" | "Better Los Baños" |
+| `portal.footerTagline` | "Footer tagline" | "Community Civic Portal" |
 
 ### Example Configuration
 
@@ -63,121 +63,131 @@ The `/config/lgu.config.json` file contains all LGU-specific values in one place
 
 ## ⚠️ Manual Changes Required
 
-The following files contain hardcoded LGU values that must be edited manually:
+### Code Files
 
 | File | What to Change |
 |------|----------------|
 | `functions/api/weather.ts` | Update `DEFAULT_CITY` (lines 16-20) with your LGU name and coordinates |
+| `/public/locales/en/common.json` | LGU-specific text for descriptions and labels |
 
-## 📂 Files Modified
+---
 
-The following files read from the LGU config for dynamic branding:
+## 💾 D1 Database (Legislative Data)
 
-| File | Purpose | Config Usage |
-|------|----------|----------|
-| `src/lib/lguConfig.ts\` | Exports `config` object, all components import from here |
-| `src/lib/seoTemplates.ts\` | SEO title/description helpers using config for fallbacks |
-| `src/lib/weather.ts\` | Uses `config.location.weather.defaultCity`, `config.lgu.name`, `config.location.coordinates` for weather API calls |
-| `src/components/layout/SEO.tsx\` | Uses `config.portal.*` for titles, `config.portal.baseUrl` for canonical URLs |
-| `src/components/layout/Navbar.tsx\` | Uses `config.portal.name`, `config.portal.navbarTagline`, `config.lgu.fullName`, `config.lgu.officialWebsite` |
-| `src/components/layout/Footer.tsx\` | Uses `config.portal.footerBrandName`, `config.portal.footerTagline`, `config.portal.logoWhitePath`, `config.lgu.name` |
-| `src/components/home/GovernmentSection.tsx\` | Uses translation keys for descriptions (edit `/public/locales/en/common.json`) |
-| `src/components/home/WeatherMapSection.tsx\` | Uses `config.location.coordinates`, `config.lgu.name`, `config.lgu.fullName`, `config.lgu.province` for map center, markers, labels |
-| `src/components/home/TimelineSection.tsx\` | Uses `config.lgu.name` |
-| `src/data/navigation.ts\` | Uses `config.portal.name`, `config.portal.description`, `config.lgu.fullName`, `config.lgu.name`, `config.lgu.officialWebsite`, `config.lgu.province`, `config.lgu.provinceWebsite` for navigation links |
-| `src/pages/transparency/procurement/index.tsx\` | Uses `config.transparency.procurement.organizationName\` for filtering |
-| `src/pages/transparency/infrastructure/index.tsx\` | Uses `config.lgu.region\`, `config.lgu.districtEngineeringOffice\`, `config.transparency.infrastructure.*` for DPWH filtering |
+The D1 database (`betterlb_openlgu` remote, `BETTERLB_DB` local) contains all legislative data.
 
-## 🚀 How to Fork
+### Core Tables to Populate
 
-### 1. Clone Repository
+| Table | Description | What to Replace |
+|-------|-------------|-----------------|
+| `terms` | Council terms with dates, mayor/vice-mayor info | Your LGU's council terms, elected officials |
+| `persons` | Council members and officials | Your councilors, mayor, vice-mayor |
+| `memberships` | Person-term relationships | Who served in which term/role |
+| `sessions` | Legislative session records | Your session dates, numbers, types |
+| `session_absences` | Attendance records (absent-only model) | Your attendance data |
+| `documents` | Ordinances, resolutions, executive orders | **ALL** legislative documents from your LGU |
+| `document_authors` | Many-to-many relationship for document authors | Who authored each document |
+| `committees` | Legislative committees | Your LGU's committee structure |
+| `committee_memberships` | Committee assignments | Who serves on which committees |
+| `subjects` | Subject tags/categories | Topics relevant to your legislation |
+| `document_subjects` | Document-subject relationships | Tag documents with appropriate subjects |
+| `review_queue` | Items pending manual review | Data quality queue for your sources |
+| `data_conflicts` | Reconciliation between sources | Conflicts found during data import |
 
-```bash
-git clone https://github.com/your-username/betterlb.git
-cd betterlb
-```
-
-### 2. Install Dependencies
+### Database Commands
 
 ```bash
-npm install
+# Local development
+npx wrangler d1 execute BETTERLB_DB --local --file=db/migrations/001_initial_schema.sql
+
+# Remote production
+npx wrangler d1 execute betterlb_openlgu --remote --file=db/migrations/001_initial_schema.sql
+
+# Query local database
+npx wrangler d1 execute BETTERLB_DB --local --command="SELECT * FROM terms LIMIT 10"
 ```
 
-### 3. Update Configuration
+### Data Pipeline Scripts
 
-Edit `/config/lgu.config.json` with your LGU values.
-
-#### Important Fields
-
-- **Location**: Update `coordinates.lat` and `coordinates.lon` for accurate weather
-- **Branding**: Update `portal.*` fields to match your portal identity
-
-### 4. Update Translations (Optional)
-
-Edit `/public/locales/en/common.json` for any LGU-specific text.
-
-### 5. Build and Test
+The `pipeline/` directory contains Python scripts to process legislative PDFs into structured JSON:
 
 ```bash
-npm run build
+# Run in sequence for processing PDFs
+python3 pipeline/1_scrape.py        # Scrape document metadata
+python3 pipeline/1.5_normalize.py  # Normalize scraped data
+python3 pipeline/2_download.py      # Download PDFs
+python3 pipeline/3_parse.py         # Parse PDF content
+python3 pipeline/4_generate.py      # Generate database-ready JSON
 ```
 
-## 📋 Notes
+Note: this is specific to our LGU´s website. You might need a script that works for your LGU´s govph.
 
-- **Coordinates**: Use Google Maps to find accurate coordinates for your municipality
-- **Organization Name**: Check [PhilGEPS](https://phils.geps.gov.ph/) for exact spelling
-- **Exact Match Targets**: Include common typos and variations
+---
 
-## 🆘 Tech Stack
+## 📁 src/data Directory (Static Data Files)
 
-| Component | Stack | Purpose |
-|----------|-------------|-------------|
-| **Frontend** | React 19, Vite 6, TypeScript (Strict) |
-| **Styling** | Tailwind CSS v4 (CSS variables, high-contrast tokens) |
-| **Backend** | Cloudflare Pages Functions (TypeScript) |
-| **Data** | Structured JSON (Modular category-based architecture) |
-| **Search** | Meilisearch with fuzzy matching |
+The `src/data/` directory contains LGU-specific static data organized by category.
+
+### Services Data
+
+Located in `src/data/services/categories/` - these define the services your LGU provides:
+
+| File | What to Replace |
+|------|-----------------|
+| `agriculture-livelihood.json` | Your LGU's agriculture programs |
+| `business-licensing.json` | Your business requirements and fees |
+| `certificates-vital-records.json` | Your civil registry processes |
+| `education-scholarship.json` | Your scholarship programs |
+| `environment-waste.json` | Your waste collection schedules |
+| `health-wellness.json` | Your health centers and programs |
+| `infrastructure-engineering.json` | Your engineering office services |
+| `public-safety.json` | Your public safety contacts |
+| `social-services.json` | Your social services offerings |
+| `taxation-assessment.json` | Your tax rates and schedules |
+
+> **Important:** After modifying category files, run:
+> ```bash
+> python3 scripts/merge_services.py
+> ```
+> This combines category files into `src/data/services/services.json`.
+
+### Directory Data
+
+Located in `src/data/directory/`:
+
+| File | What to Replace |
+|------|-----------------|
+| `barangays.json` | Your LGU's barangays (update count in config too) |
+| `departments.json` | Your department names, addresses, contacts |
+| `executive.json` | Your mayor, vice mayor, department heads |
+| `legislative.json` | Your councilors and committees |
+
+### Statistics Data
+
+Located in `src/data/statistics/`:
+
+| File | What to Replace |
+|------|-----------------|
+| `ari.json` | Your LGU's revenue statistics | get from https://data.bettergov.ph/datasets/9
+| `cmci.json` | Your CMCI scores (if available) | get from https://cmci.dti.gov.ph/
+| `population.json` | Your LGU's population census data | get from https://psa.gov.ph/statistics/population-and-housing
+
+### Other Data Files
+
+| Location | File | What to Replace |
+|----------|------|-----------------|
+| `src/data/tourism/` | `resorts.json` | Your LGU's tourist spots |
+| `src/data/about/` | `history.json` | Your LGU's history |
+| `src/data/about/` | `highlights.json` | Your LGU's highlights |
+| `src/data/transparency/` | `budgetData.ts` | Your budget allocations | get from https://data.bettergov.ph/datasets/9
+| `src/data/transparency/` | `sre.json` | Your SRE evaluation results | get from https://data.bettergov.ph/datasets/9
+| `src/data/` | `navigation.ts` | Navigation structure changes (if needed) |
+| `src/data/` | `news.ts` | Your LGU's news feed |
+| `src/data/` | `websites.json` | Your related government sites |
+| `src/data/` | `hotlines.txt` | Your local emergency contacts |
+
+---
 
 ## 📄 License
 
 This project is released under [Creative Commons CC0](https://creativecommons.org/publicdomain/zero/1.0/) dedication.
-
----
-
-## ✅ Implementation Complete
-
-All LGU-specific values have been centralized into `/config/lgu.config.json` and are now used throughout the application via `src/lib/lguConfig.ts`.
-
-### Components Using Config
-
-| Component | Config Values Used |
-|-----------|-------------------|
-| Navbar.tsx | `config.portal.name`, `config.portal.navbarTagline`, `config.lgu.fullName`, `config.lgu.officialWebsite` |
-| Footer.tsx | `config.portal.footerBrandName`, `config.portal.footerTagline`, `config.portal.logoWhitePath`, `config.lgu.name` |
-| Hero.tsx | Uses translations (forkers edit `/public/locales/en/common.json`) |
-| GovernmentSection.tsx | Uses translations |
-| TimelineSection.tsx | `config.lgu.name` |
-| WeatherMapSection.tsx | `config.location.coordinates`, `config.lgu.name`, `config.lgu.fullName`, `config.lgu.province` |
-| weather.ts | `config.location.weather.defaultCity`, `config.lgu.name` |
-| navigation.ts | `config.portal.name`, `config.portal.description`, `config.lgu.fullName`, `config.lgu.name`, `config.lgu.officialWebsite`, `config.lgu.province`, `config.lgu.provinceWebsite` |
-| seoTemplates.ts | `config.portal.name`, `config.portal.description`, `config.lgu.fullName` |
-| navigation.ts | All sections use config templates |
-
-### Manual Changes Still Required
-
-| File | What to Change |
-|------|------------------|
-| `functions/api/weather.ts` | Update `DEFAULT_CITY` coordinates and city name (line ~16) |
-
-### Summary
-
-The forking implementation is essentially complete. Forkers can now update `/config/lgu.config.json` to adapt:
-- Portal name (BetterLB)
-- LGU name (Los Baños)
-- Full LGU name (Municipality of Los Baños)
-- Coordinates for weather and maps
-- Official website URLs
-- Branding text (navbar tagline, footer brand name, descriptions)
-- Taglines (navbar, footer)
-
-All major navigation and UI components now pull from config, making the project fully configurable for other municipalities.
