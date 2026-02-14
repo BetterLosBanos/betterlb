@@ -1,5 +1,6 @@
 import { StrictMode } from 'react';
 
+import '@betterlb/ui/styles';
 import { createRoot } from 'react-dom/client';
 import { HelmetProvider } from 'react-helmet-async';
 
