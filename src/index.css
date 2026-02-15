@@ -4,6 +4,9 @@
 /* Local styles */
 @import 'tailwindcss';
 
+/* Scan shared package for Tailwind classes */
+@source '../../betterlb-ui/src/**/*.{js,ts,jsx,tsx}';
+
 @theme {
   /* --- TYPOGRAPHY --- */
   /* Keeping Figtree as it is close to Inter but distinct for your brand */
