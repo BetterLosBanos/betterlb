@@ -1,109 +1,99 @@
-/* Kapwa Design System */
-@import './kapwa/kapwa.css';
-
 /* Local styles */
 @import 'tailwindcss';
 
-/* Scan shared package for Tailwind classes */
+/* Scan shared packages for Tailwind classes */
 @source '../../betterlb-ui/src/**/*.{js,ts,jsx,tsx}';
+@source './node_modules/@bettergov/kapwa';
+
+/* Import Kapwa Design System tokens */
+@import '@bettergov/kapwa/kapwa.css';
 
 @theme {
-  /* --- TYPOGRAPHY --- */
-  /* Keeping Figtree as it is close to Inter but distinct for your brand */
-  --font-sans: 'Figtree', ui-sans-serif, system-ui, sans-serif;
-
   /* --- SEMANTIC ALIASES --- */
-  /* These map your specific domain needs to the color palette below */
-  --color-brand-executive: var(--color-primary-600);
-  --color-brand-legislative: var(
-    --color-orange-600
-  ); /* Renamed to orange to match guide */
-  --color-status-verified: var(--color-emerald-600);
-  --color-status-audit: var(--color-gray-500);
+  /* These map your specific domain needs to Kapwa tokens */
+  --color-brand-executive: var(--color-kapwa-bg-info-active);
+  --color-brand-legislative: var(--color-kapwa-bg-warning-active);
+  --color-status-verified: var(--color-kapwa-bg-success-active);
+  --color-status-audit: var(--color-kapwa-bg-gray-disabled);
 
-  /* --- COLOR PALETTE (From Design Guide) --- */
+  /* --- TYPOGRAPHY OVERRIDE --- */
+  /* Override Kapwa's Inter with Figtree for BetterLB brand identity */
+  --font-sans: 'Figtree', ui-sans-serif, system-ui, sans-serif;
+  --font-kapwa-sans: 'Figtree', ui-sans-serif, system-ui, sans-serif;
 
-  /* Primary (Kapwa Blue) */
-  /* Based on 500: #3b82f6, 600: #2563eb */
-  --color-primary-50: #eff6ff;
-  --color-primary-100: #dbeafe;
-  --color-primary-200: #bfdbfe;
-  --color-primary-300: #93c5fd;
-  --color-primary-400: #60a5fa;
-  --color-primary-500: #3b82f6; /* Design Guide Standard */
-  --color-primary-600: #2563eb; /* Design Guide Standard */
-  --color-primary-700: #1d4ed8; /* Design Guide Standard */
-  --color-primary-800: #1e40af;
-  --color-primary-900: #1e3a8a;
-  --color-primary-950: #172554;
+  /* --- KAPWA SPACING, SHADOWS, TYPOGRAPHY --- */
 
-  /* Secondary / CivicTech (Orange) */
-  /* Based on 500: #f97316, 600: #ea580c */
-  --color-secondary-50: #fff7ed;
-  --color-secondary-100: #ffedd5;
-  --color-secondary-200: #fed7aa;
-  --color-secondary-300: #fdba74;
-  --color-secondary-400: #fb923c;
-  --color-secondary-500: #f97316; /* Design Guide Standard */
-  --color-secondary-600: #ea580c; /* Design Guide Standard */
-  --color-secondary-700: #c2410c;
-  --color-secondary-800: #9a3412;
-  --color-secondary-900: #7c2d12;
+  /* Spacing */
+  --spacing-kapwa-3xs: 0.125rem; /* 2px */
+  --spacing-kapwa-xs: 0.25rem; /* 4px */
+  --spacing-kapwa-sm: 0.5rem; /* 8px */
+  --spacing-kapwa-md: 1rem; /* 16px */
+  --spacing-kapwa-lg: 1.5rem; /* 24px */
+  --spacing-kapwa-xl: 2rem; /* 32px */
+  --spacing-kapwa-2xl: 3rem; /* 48px */
+  --spacing-kapwa-3xl: 4rem; /* 64px */
 
-  /* Accent (Pink - From Guidelines) */
-  --color-accent-50: #fdf2f8;
-  --color-accent-100: #fce7f3;
-  --color-accent-200: #fbcfe8;
-  --color-accent-300: #f9a8d4;
-  --color-accent-400: #f472b6;
-  --color-accent-500: #ec4899; /* Design Guide Standard */
-  --color-accent-600: #db2777; /* Design Guide Standard */
-  --color-accent-700: #be185d;
-  --color-accent-800: #9d174d;
-  --color-accent-900: #831843;
+  /* Shadows */
+  --shadow-kapwa-sm: 0 1px 3px 0 rgb(0 0 0 / 0.12);
+  --shadow-kapwa: 0 2px 8px 0 rgb(0 0 0 / 0.15);
+  --shadow-kapwa-md: 0 4px 12px 0 rgb(0 0 0 / 0.15);
+  --shadow-kapwa-lg: 0 8px 24px 0 rgb(0 0 0 / 0.15);
 
-  /* Neutral (Gray - Matching Design Guide) */
-  /* Replaces previous Slate to align with Guide's #111827/Gray-900 */
-  --color-slate-50: #f9fafb;
-  --color-slate-100: #f3f4f6;
-  --color-slate-200: #e5e7eb;
-  --color-slate-300: #d1d5db;
-  --color-slate-400: #9ca3af;
-  --color-slate-500: #6b7280; /* Design Guide Standard */
-  --color-slate-600: #4b5563;
-  --color-slate-700: #374151; /* Design Guide Standard */
-  --color-slate-800: #1f2937;
-  --color-slate-900: #111827; /* Design Guide Standard */
-  --color-slate-950: #030712;
+  /* Typography - Headings */
+  --font-kapwa-heading-xl: 2.25rem; /* 36px */
+  --font-kapwa-heading-lg: 1.75rem; /* 28px */
+  --font-kapwa-heading-md: 1.5rem; /* 24px */
+  --font-kapwa-heading-sm: 1.25rem; /* 20px */
+  --font-kapwa-heading-xs: 1rem; /* 16px */
+  --font-kapwa-heading-label: 0.875rem; /* 14px */
+  --font-kapwa-heading-label-weight: 700;
 
-  /* Keep legacy gray mapping for compatibility */
-  --color-gray-50: var(--color-slate-50);
-  --color-gray-100: var(--color-slate-100);
-  --color-gray-200: var(--color-slate-200);
-  --color-gray-300: var(--color-slate-300);
-  --color-gray-400: var(--color-slate-400);
-  --color-gray-500: var(--color-slate-500);
-  --color-gray-600: var(--color-slate-600);
-  --color-gray-700: var(--color-slate-700);
-  --color-gray-800: var(--color-slate-800);
-  --color-gray-900: var(--color-slate-900);
-  --color-gray-950: var(--color-slate-950);
+  /* Typography - Body Text */
+  --font-kapwa-body-xl: 1.25rem; /* 20px */
+  --font-kapwa-body-lg: 1.125rem; /* 18px */
+  --font-kapwa-body-md: 1rem; /* 16px */
+  --font-kapwa-body-sm: 0.875rem; /* 14px */
+  --font-kapwa-body-xs: 0.75rem; /* 12px */
 
-  /* Semantic Status Colors */
-  --color-success-50: #ecfdf5;
-  --color-success-500: #10b981;
-  --color-success-600: #059669;
+  /* Typography - Code Text */
+  --font-kapwa-code-xl: 1.25rem; /* 20px */
+  --font-kapwa-code-lg: 1.125rem; /* 18px */
+  --font-kapwa-code-md: 1rem; /* 16px */
+  --font-kapwa-code-sm: 0.875rem; /* 14px */
+  --font-kapwa-code-xs: 0.75rem; /* 12px */
 
-  --color-warning-50: #fffbeb;
-  --color-warning-500: #f59e0b;
-  --color-warning-600: #d97706;
+  /* Links */
+  --color-kapwa-text-link: var(--color-kapwa-blue-500);
+  --color-kapwa-text-link-hover: var(--color-kapwa-blue-600);
 
-  --color-error-50: #fef2f2;
-  --color-error-500: #ef4444; /* Design Guide Red-500 */
-  --color-error-600: #dc2626;
+  /* Labels */
+  --font-kapwa-label: var(--font-kapwa-heading-label);
+  --color-kapwa-text-label: var(--color-kapwa-text-strong);
 
-  /* --- SHADOWS --- */
-  --shadow-xs: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+  /* Border Radius */
+  --rounded-kapwa-sm: 0.25rem; /* 4px */
+  --rounded-kapwa: 0.375rem; /* 6px */
+  --rounded-kapwa-md: 0.5rem; /* 8px */
+  --rounded-kapwa-lg: 0.75rem; /* 12px */
+  --rounded-kapwa-xl: 1rem; /* 16px */
+
+  /* Padding */
+  --padding-kapwa-3xs: 0.125rem; /* 2px */
+  --padding-kapwa-xs: 0.25rem; /* 4px */
+  --padding-kapwa-sm: 0.5rem; /* 8px */
+  --padding-kapwa-md: 0.75rem; /* 12px */
+  --padding-kapwa-lg: 1rem; /* 16px */
+  --padding-kapwa-xl: 1.5rem; /* 24px */
+  --padding-kapwa-2xl: 2rem; /* 32px */
+
+  /* Margins */
+  --margin-kapwa-3xs: 0.125rem; /* 2px */
+  --margin-kapwa-xs: 0.25rem; /* 4px */
+  --margin-kapwa-sm: 0.5rem; /* 8px */
+  --margin-kapwa-md: 0.75rem; /* 12px */
+  --margin-kapwa-lg: 1rem; /* 16px */
+  --margin-kapwa-xl: 1.5rem; /* 24px */
+  --margin-kapwa-2xl: 2rem; /* 32px */
 }
 
 @layer base {
@@ -112,7 +102,115 @@
   ::before,
   ::backdrop,
   ::file-selector-button {
-    border-color: var(--color-slate-200, currentcolor);
+    border-color: var(--color-kapwa-gray-200, currentcolor);
+  }
+}
+
+/* --- LOCAL UTILITY CLASSES (mapped to Kapwa tokens) --- */
+@layer utilities {
+  /* Background colors using local naming for compatibility */
+  .bg-primary-50 {
+    background-color: var(--color-kapwa-blue-50);
+  }
+  .bg-primary-100 {
+    background-color: var(--color-kapwa-blue-100);
+  }
+  .bg-primary-600 {
+    background-color: var(--color-kapwa-blue-600);
+  }
+  .bg-primary-700 {
+    background-color: var(--color-kapwa-blue-700);
+  }
+  .bg-secondary-600 {
+    background-color: var(--color-kapwa-orange-600);
+  }
+  .bg-success-600 {
+    background-color: var(--color-kapwa-green-600);
+  }
+  .bg-error-600 {
+    background-color: var(--color-kapwa-red-600);
+  }
+  .bg-slate-900 {
+    background-color: var(--color-kapwa-gray-900);
+  }
+  .bg-slate-700 {
+    background-color: var(--color-kapwa-gray-700);
+  }
+  .bg-slate-600 {
+    background-color: var(--color-kapwa-gray-600);
+  }
+  .bg-slate-500 {
+    background-color: var(--color-kapwa-gray-500);
+  }
+  .bg-slate-200 {
+    background-color: var(--color-kapwa-gray-200);
+  }
+  .bg-slate-300 {
+    background-color: var(--color-kapwa-gray-300);
+  }
+  .bg-slate-800 {
+    background-color: var(--color-kapwa-gray-800);
+  }
+  .bg-gray-500 {
+    background-color: var(--color-kapwa-gray-500);
+  }
+  .bg-gray-100 {
+    background-color: var(--color-kapwa-gray-100);
+  }
+  .bg-gray-600 {
+    background-color: var(--color-kapwa-gray-600);
+  }
+  .bg-gray-700 {
+    background-color: var(--color-kapwa-gray-700);
+  }
+  .bg-gray-800 {
+    background-color: var(--color-kapwa-gray-800);
+  }
+  .bg-gray-900 {
+    background-color: var(--color-kapwa-gray-900);
+  }
+  .bg-gray-950 {
+    background-color: var(--color-kapwa-gray-950);
+  }
+
+  /* Text colors */
+  .text-primary-600 {
+    color: var(--color-kapwa-blue-600);
+  }
+  .text-primary-700 {
+    color: var(--color-kapwa-blue-700);
+  }
+  .text-slate-900 {
+    color: var(--color-kapwa-gray-900);
+  }
+  .text-slate-700 {
+    color: var(--color-kapwa-gray-700);
+  }
+  .text-slate-600 {
+    color: var(--color-kapwa-gray-600);
+  }
+  .text-slate-500 {
+    color: var(--color-kapwa-gray-500);
+  }
+  .text-slate-200 {
+    color: var(--color-kapwa-gray-200);
+  }
+  .text-slate-300 {
+    color: var(--color-kapwa-gray-300);
+  }
+  .text-error-600 {
+    color: var(--color-kapwa-red-600);
+  }
+  .text-success-600 {
+    color: var(--color-kapwa-green-600);
+  }
+  .text-warning-600 {
+    color: var(--color-kapwa-orange-600);
+  }
+
+  /* Border colors */
+  .border-primary-600 {
+    border-color: var(--color-kapwa-blue-600);
   }
 }
 
@@ -129,7 +227,7 @@
   line-height: 1.5 !important;
   font-family: var(--font-sans) !important;
   font-size: 14px !important;
-  color: var(--color-slate-700) !important;
+  color: var(--color-kapwa-gray-700) !important;
   padding: 16px;
   min-width: 280px;
 }
@@ -140,75 +238,43 @@
 }
 
 .leaflet-popup-close-button {
-  color: var(--color-slate-400) !important;
+  color: var(--color-kapwa-gray-400) !important;
   padding: 8px !important;
 }
 
 /* --- ANIMATIONS --- */
-@keyframes marquee {
-  0% {
-    transform: translateX(100%);
+@theme {
+  @keyframes marquee {
+    0% {
+      transform: translateX(100%);
+    }
+    100% {
+      transform: translateX(-100%);
+    }
   }
-  100% {
-    transform: translateX(-100%);
-  }
-}
-.animate-marquee {
-  animation: marquee 30s linear infinite;
-}
 
-@keyframes fadeIn {
-  from {
-    opacity: 0;
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
   }
-  to {
-    opacity: 1;
-  }
-}
-@keyframes slideUp {
-  from {
-    transform: translateY(10px);
-    opacity: 0;
-  }
-  to {
-    transform: translateY(0);
-    opacity: 1;
-  }
-}
 
-@utility animate-fade-in {
-  animation: fadeIn 0.5s ease-in-out;
-}
-
-@utility animate-slide-in {
-  animation: slideUp 0.5s ease-out;
-}
-
-/* --- SCROLLBAR --- */
-.scrollbar-thin {
-  scrollbar-width: thin;
-  scrollbar-color: var(--color-slate-300) var(--color-slate-100);
-}
-.scrollbar-thin::-webkit-scrollbar {
-  width: 6px;
-}
-.scrollbar-thin::-webkit-scrollbar-track {
-  background: var(--color-slate-100);
-}
-.scrollbar-thin::-webkit-scrollbar-thumb {
-  background: var(--color-slate-300);
-  border-radius: 4px;
-}
-.scrollbar-thin::-webkit-scrollbar-thumb:hover {
-  background: var(--color-slate-400);
+  @keyframes slideUp {
+    from {
+      transform: translateY(10px);
+      opacity: 0;
+    }
+    to {
+      transform: translateY(0);
+      opacity: 1;
+    }
+  }
 }
 
 @layer components {
-  /* 
-     Design Guide Typography Implementation 
-     Matching: "Heading 1 - text-4xl font-bold"
-  */
-
   .heading-hero {
     @apply text-3xl font-bold tracking-tight text-slate-900 md:text-5xl;
   }
@@ -217,20 +283,19 @@
     @apply text-2xl font-bold text-slate-900 md:text-3xl;
   }
 
-  /* Matching: "Small - text-sm" + "Caps" from previous system */
   .heading-label {
     @apply text-[10px] font-bold tracking-widest text-slate-500 uppercase;
   }
 
-  /* 
-     Design Guide Card Style
-     Matching: "p-4 bg-white border border-gray-200 rounded-lg"
-  */
   .card-better {
     @apply rounded-xl border border-slate-200 bg-white shadow-sm transition-all duration-200;
   }
 
   .sidebar-active {
-    @apply bg-primary-50 text-primary-700 border-primary-600 border-l-2 font-semibold;
+    background-color: var(--color-kapwa-blue-50);
+    color: var(--color-kapwa-blue-700);
+    border-color: var(--color-kapwa-blue-600);
+    border-left-width: 2px;
+    font-weight: 600;
   }
 }
