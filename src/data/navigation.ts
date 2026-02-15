@@ -65,7 +65,7 @@ export const footerNavigation = {
   brand: {
     title: config.portal.name,
     description: `An open-source civic tech initiative making government information and municipal services accessible for the people of ${config.lgu.name}.`,
-    cost: `Cost to the People of ${config.lgu.fullName} = ₱0`,
+    cost: `Cost to the People of ${config.lgu.name} = ₱0`,
   },
 
   mainSections: [
