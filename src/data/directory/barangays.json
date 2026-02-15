@@ -1,114 +1,1120 @@
 [
   {
-    "name": "Bagong Silang",
-    "slug": "bagong-silang",
-    "caption": "Barangay 1",
-    "official": "Hon. Captain",
-    "population": 0,
-    "coordinates": { "lat": 14.1784, "lon": 121.2384 }
+    "slug": "barangay-anos",
+    "barangay_name": "ANOS",
+    "address": "Barangay Hall, Brgy. Anos, Los Baños, Laguna",
+    "trunkline": ["0917 146 9167"],
+    "website": "https://www.losbanos.gov.ph",
+    "officials": [
+      {
+        "role": "Punong Barangay",
+        "name": "BENITO B. ELEC"
+      },
+      {
+        "role": "SB Member",
+        "name": "EDITHA V. LOZANO"
+      },
+      {
+        "role": "SB Member",
+        "name": "ROSALIE P. PANTING"
+      },
+      {
+        "role": "SB Member",
+        "name": "MIGUEL E. SORIANO"
+      },
+      {
+        "role": "SB Member",
+        "name": "EDGARDO R. EVANGELISTA"
+      },
+      {
+        "role": "SB Member",
+        "name": "ANGELITA N. ALVAREZ"
+      },
+      {
+        "role": "SB Member",
+        "name": "NORA S. ROBLES"
+      },
+      {
+        "role": "SK Chairperson",
+        "name": "SAMANTHALIN S. BANASIHAN"
+      },
+      {
+        "role": "Barangay Secretary",
+        "name": "SARAH M. ROBLES"
+      },
+      {
+        "role": "SK Member",
+        "name": "KATRINA B. MENDOZA"
+      },
+      {
+        "role": "SK Member",
+        "name": "REAN ROSALES"
+      },
+      {
+        "role": "SK Member",
+        "name": "ALEXIS ROSALES"
+      },
+      {
+        "role": "SK Member",
+        "name": "ALIYAH AVSONIO ABEDANIA"
+      },
+      {
+        "role": "SK Member",
+        "name": "JANELLE TEYENG"
+      },
+      {
+        "role": "SK Member",
+        "name": "MICAELA C. BANDIAN"
+      },
+      {
+        "role": "SK Secretary",
+        "name": "RYAM JOR G. BARREDA"
+      }
+    ]
   },
   {
-    "name": "Bayan-bayanan",
-    "slug": "bayan-bayanan",
-    "caption": "Barangay 2",
-    "official": "Hon. Captain",
-    "population": 0,
-    "coordinates": { "lat": 14.1784, "lon": 121.2384 }
+    "slug": "barangay-bagong-silang",
+    "barangay_name": "BAGONG SILANG",
+    "address": "Barangay Hall, Brgy. Bagong Silang, Los Baños, Laguna",
+    "trunkline": ["0955 527 9328"],
+    "website": "https://www.losbanos.gov.ph",
+    "officials": [
+      {
+        "role": "Punong Barangay",
+        "name": "ROGELIO N. DELOS REYES"
+      },
+      {
+        "role": "SB Member",
+        "name": "HAROLD L. DELOS REYES"
+      },
+      {
+        "role": "SB Member",
+        "name": "JOEL PANGANI"
+      },
+      {
+        "role": "SB Member",
+        "name": "ALVINO D. QUIATCHON"
+      },
+      {
+        "role": "SB Member",
+        "name": "DELOS REYES QUIATCHON JACINTO"
+      },
+      {
+        "role": "SB Member",
+        "name": "BABY JANE M. CALAO"
+      },
+      {
+        "role": "SB Member",
+        "name": "PRIMITIVO C. NAVAREZ"
+      },
+      {
+        "role": "SB Member",
+        "name": "AMADOR A. DELOS REYES"
+      },
+      {
+        "role": "SK Chairperson",
+        "name": "SHENA M. CALAO"
+      },
+      {
+        "role": "Barangay Secretary",
+        "name": "MYLA L. LAYOG"
+      },
+      {
+        "role": "SK Member",
+        "name": "IVAN D. QUIATCHON"
+      },
+      {
+        "role": "SK Member",
+        "name": "MAXINE Z. QUIATCHON"
+      },
+      {
+        "role": "SK Member",
+        "name": "BHABY AN DELOS REYES MALABANAN"
+      },
+      {
+        "role": "SK Member",
+        "name": "ANTONIO N. DELA CRUZ"
+      },
+      {
+        "role": "SK Member",
+        "name": "CHRISTIA V. QUIATCHON"
+      },
+      {
+        "role": "SK Member",
+        "name": "NATHALIE M. SULLEGUIN"
+      },
+      {
+        "role": "SK Member",
+        "name": "KEYLA D. BADILLO"
+      },
+      {
+        "role": "SK Secretary",
+        "name": "FRANCINE D. MONTEZA"
+      }
+    ]
   },
   {
-    "name": "Bayog",
-    "slug": "bayog",
-    "caption": "Barangay 3",
-    "official": "Hon. Captain",
-    "population": 0,
-    "coordinates": { "lat": 14.1784, "lon": 121.2384 }
+    "slug": "barangay-bambang",
+    "barangay_name": "BAMBANG",
+    "address": "Barangay Hall, Brgy. Bambang, Los Baños, Laguna",
+    "trunkline": ["0906 725 9232"],
+    "website": "https://www.losbanos.gov.ph",
+    "officials": [
+      {
+        "role": "Punong Barangay",
+        "name": "ARLENE P. DELOS SANTO"
+      },
+      {
+        "role": "SB Member",
+        "name": "MARIA AILEEN M. APACIONADO"
+      },
+      {
+        "role": "SB Member",
+        "name": "HENRY M. YANGO"
+      },
+      {
+        "role": "SB Member",
+        "name": "GERARD TATAD"
+      },
+      {
+        "role": "SB Member",
+        "name": "TERESA M. MIRANDAN"
+      },
+      {
+        "role": "SB Member",
+        "name": "RODRIGO S. GALANG"
+      },
+      {
+        "role": "SB Member",
+        "name": "JOY B. BAS"
+      },
+      {
+        "role": "SB Member",
+        "name": "CORAZON S. BOSTON"
+      },
+      {
+        "role": "SK Chairperson",
+        "name": "GLENDEL F. PACCIAL"
+      },
+      {
+        "role": "Barangay Secretary",
+        "name": "MA. NENE A. REALISTA"
+      },
+      {
+        "role": "SK Member",
+        "name": "AISEYIAH A. CANLAS"
+      },
+      {
+        "role": "SK Member",
+        "name": "MARYAN M. MARINO"
+      },
+      {
+        "role": "SK Member",
+        "name": "AUBREY M. GAVILAN"
+      },
+      {
+        "role": "SK Member",
+        "name": "PRINCE ZYR SALAZAR"
+      },
+      {
+        "role": "SK Member",
+        "name": "AUDREY V. GANGIL"
+      },
+      {
+        "role": "SK Member",
+        "name": "ALESSANDRA C. GUDA"
+      },
+      {
+        "role": "SK Member",
+        "name": "STEPHEN C. OBRA"
+      },
+      {
+        "role": "SK Secretary",
+        "name": "PATRICIA A. GAVILAN"
+      }
+    ]
   },
   {
-    "name": "Bucal",
-    "slug": "bucal",
-    "caption": "Barangay 4",
-    "official": "Hon. Captain",
-    "population": 0,
-    "coordinates": { "lat": 14.1784, "lon": 121.2384 }
+    "slug": "barangay-batong-malake",
+    "barangay_name": "BATONG MALAKE",
+    "address": "Barangay Hall, Brgy. Batong Malake, Los Baños, Laguna",
+    "trunkline": ["0945 544 2954", "0919 254 4257"],
+    "website": "https://www.losbanos.gov.ph",
+    "officials": [
+      {
+        "role": "Punong Barangay",
+        "name": "IAN N. KALAW"
+      },
+      {
+        "role": "SB Member",
+        "name": "DELFIN M. PABALATE"
+      },
+      {
+        "role": "SB Member",
+        "name": "KRISTINE P. CADAPAN"
+      },
+      {
+        "role": "SB Member",
+        "name": "JOEY R. DE GALA"
+      },
+      {
+        "role": "SB Member",
+        "name": "NELSON R. BANDIAN"
+      },
+      {
+        "role": "SB Member",
+        "name": "RONDELL R. RAZALDO"
+      },
+      {
+        "role": "SB Member",
+        "name": "ELVIRA A. TEVES"
+      },
+      {
+        "role": "SB Member",
+        "name": "LEO L. CATIMBANG"
+      },
+      {
+        "role": "SK Chairperson",
+        "name": "VINCENT P. BANASIHAN"
+      },
+      {
+        "role": "Barangay Secretary",
+        "name": "GENESIS J. BANDONG"
+      },
+      {
+        "role": "SK Member",
+        "name": "KAELA CERVANTINA CADAPAN"
+      },
+      {
+        "role": "SK Member",
+        "name": "MIKAS SHANE M. AQUINO"
+      },
+      {
+        "role": "SK Member",
+        "name": "RAIVEN NICOLE E. BUENA"
+      },
+      {
+        "role": "SK Member",
+        "name": "ALIETH B. LANCETA"
+      },
+      {
+        "role": "SK Member",
+        "name": "FAYE MIKAELA BATUGON DIZON"
+      },
+      {
+        "role": "SK Member",
+        "name": "JOHN MOSES M. DONOS"
+      },
+      {
+        "role": "SK Member",
+        "name": "JENNYLOU C. ABAYAN"
+      },
+      {
+        "role": "SK Secretary",
+        "name": "JANNA HE L. DAHONOG"
+      }
+    ]
   },
   {
-    "name": "Bungahan",
-    "slug": "bungahan",
-    "caption": "Barangay 5",
-    "official": "Hon. Captain",
-    "population": 0,
-    "coordinates": { "lat": 14.1784, "lon": 121.2384 }
+    "slug": "barangay-baybayin",
+    "barangay_name": "BAYBAYIN",
+    "address": "Barangay Hall, Brgy. Baybayin, Los Baños, Laguna",
+    "trunkline": ["0995 679 2525"],
+    "website": "https://www.losbanos.gov.ph",
+    "officials": [
+      {
+        "role": "Punong Barangay",
+        "name": "GAUDENCIO VILLAMOR LORESTO"
+      },
+      {
+        "role": "SB Member",
+        "name": "NICANOR P. LEDESMA"
+      },
+      {
+        "role": "SB Member",
+        "name": "ROBERT T. PALACPAC"
+      },
+      {
+        "role": "SB Member",
+        "name": "JEFFREY G. SAN VALENTIN"
+      },
+      {
+        "role": "SB Member",
+        "name": "CHONA V. PALACPAC"
+      },
+      {
+        "role": "SB Member",
+        "name": "RAMESES M. LIKWONG"
+      },
+      {
+        "role": "SB Member",
+        "name": "DELFIN H. CARPIO"
+      },
+      {
+        "role": "SB Member",
+        "name": "MERLITA L. RALLOS"
+      },
+      {
+        "role": "SK Chairperson",
+        "name": "FRANZES D. TOLENTINO"
+      },
+      {
+        "role": "Barangay Secretary",
+        "name": "MARIE JOY P. PALACPAC"
+      },
+      {
+        "role": "SK Member",
+        "name": "TRICIA NICOLE S. CONSULTI"
+      },
+      {
+        "role": "SK Member",
+        "name": "KRISTINA G. DE VILLA"
+      },
+      {
+        "role": "SK Member",
+        "name": "JOHN BRYLE C. GOMEZ"
+      },
+      {
+        "role": "SK Member",
+        "name": "JOEL O. RAMOS"
+      },
+      {
+        "role": "SK Member",
+        "name": "JAYPEE D. AGOJO"
+      },
+      {
+        "role": "SK Member",
+        "name": "JUNE O. DEL MUNDO"
+      },
+      {
+        "role": "SK Member",
+        "name": "TREXY C. CLARIDAD"
+      },
+      {
+        "role": "SK Secretary",
+        "name": "ARNEL M. PESTANO"
+      }
+    ]
   },
   {
-    "name": "Lalakay",
-    "slug": "lalakay",
-    "caption": "Barangay 6",
-    "official": "Hon. Captain",
-    "population": 0,
-    "coordinates": { "lat": 14.1784, "lon": 121.2384 }
+    "slug": "barangay-bayog",
+    "barangay_name": "BAYOG",
+    "address": "Barangay Hall, Brgy. Bayog, Los Baños, Laguna",
+    "trunkline": ["0926 963 4402"],
+    "website": "https://www.losbanos.gov.ph",
+    "officials": [
+      {
+        "role": "Punong Barangay",
+        "name": "EDUARDO E. DELMING"
+      },
+      {
+        "role": "SB Member",
+        "name": "OBDULIA C. VASQUEZ"
+      },
+      {
+        "role": "SB Member",
+        "name": "JONAS E. ARAGON"
+      },
+      {
+        "role": "SB Member",
+        "name": "ROLANDO V. EVANGELISTA"
+      },
+      {
+        "role": "SB Member",
+        "name": "VIRGILIO A. TANDANG"
+      },
+      {
+        "role": "SB Member",
+        "name": "FELICIANO S. TANDANG"
+      },
+      {
+        "role": "SK Chairperson",
+        "name": "ERICA P. PAR"
+      },
+      {
+        "role": "Barangay Secretary",
+        "name": "LORELEI M. HINTURAL"
+      },
+      {
+        "role": "SK Member",
+        "name": "TRICIA MAE B. REYES"
+      },
+      {
+        "role": "SK Member",
+        "name": "JANRIAN P. PAR"
+      },
+      {
+        "role": "SK Member",
+        "name": "MARIVEL P. CARILLAGA"
+      },
+      {
+        "role": "SK Member",
+        "name": "GIEN C. MAZO"
+      },
+      {
+        "role": "SK Member",
+        "name": "GUIA LORRAINE M. CATILLO"
+      },
+      {
+        "role": "SK Member",
+        "name": "KURT KEVIN Q. CLAVE"
+      },
+      {
+        "role": "SK Member",
+        "name": "CYRUS JYL M. FELIX"
+      },
+      {
+        "role": "SK Secretary",
+        "name": "PATRICK E. ARCINUE"
+      }
+    ]
   },
   {
-    "name": "Lamot",
-    "slug": "lamot",
-    "caption": "Barangay 7",
-    "official": "Hon. Captain",
-    "population": 0,
-    "coordinates": { "lat": 14.1784, "lon": 121.2384 }
+    "slug": "barangay-lalakay",
+    "barangay_name": "LALAKAY",
+    "address": "Barangay Hall, Brgy. Lalakay, Los Baños, Laguna",
+    "trunkline": ["0908 890 9125"],
+    "website": "https://www.losbanos.gov.ph",
+    "officials": [
+      {
+        "role": "Punong Barangay",
+        "name": "MARIO P. MAGULI"
+      },
+      {
+        "role": "SB Member",
+        "name": "LETICIA C. CONCEPCION"
+      },
+      {
+        "role": "SB Member",
+        "name": "KAYNETH M. BATAS"
+      },
+      {
+        "role": "SB Member",
+        "name": "ELVIS Q. ATIENZA"
+      },
+      {
+        "role": "SB Member",
+        "name": "ROBERT R. DELA CRUZ"
+      },
+      {
+        "role": "SB Member",
+        "name": "CRISTOPHER BAUTISTA REVILLEZA"
+      },
+      {
+        "role": "SB Member",
+        "name": "DOMINGO T. OBOSA"
+      },
+      {
+        "role": "SB Member",
+        "name": "ALLAN R. GARROVILLAS"
+      },
+      {
+        "role": "SK Chairperson",
+        "name": "JOHN KYLE N. PAMPLONA"
+      },
+      {
+        "role": "Barangay Secretary",
+        "name": "EILEEN RUTH S. FABAYOS"
+      },
+      {
+        "role": "SK Member",
+        "name": "CARLO B. TOLEDO"
+      },
+      {
+        "role": "SK Member",
+        "name": "KAYE MARTINEZ ORTE"
+      },
+      {
+        "role": "SK Member",
+        "name": "DANIEL PAOLO S. TUMDALA"
+      },
+      {
+        "role": "SK Member",
+        "name": "ELLA MAE C. ELASIGUE"
+      },
+      {
+        "role": "SK Member",
+        "name": "DESIREE J. ALMEYDA"
+      },
+      {
+        "role": "SK Member",
+        "name": "ERICA JOY B. ALEMANEA"
+      },
+      {
+        "role": "SK Member",
+        "name": "NORMAN L. DELA CRUZ"
+      },
+      {
+        "role": "SK Secretary",
+        "name": "SHERALYN E. NAS"
+      }
+    ]
   },
   {
-    "name": "Maahas",
-    "slug": "maahas",
-    "caption": "Barangay 8",
-    "official": "Hon. Captain",
-    "population": 0,
-    "coordinates": { "lat": 14.1784, "lon": 121.2384 }
+    "slug": "barangay-maahas",
+    "barangay_name": "MAAHAS",
+    "address": "Barangay Hall, Brgy. Maahas, Los Baños, Laguna",
+    "trunkline": ["0928 285 2720"],
+    "website": "https://www.losbanos.gov.ph",
+    "officials": [
+      {
+        "role": "Punong Barangay",
+        "name": "FERDINAND P. VARGAS"
+      },
+      {
+        "role": "SB Member",
+        "name": "EVA MARIE C. LASANAS"
+      },
+      {
+        "role": "SB Member",
+        "name": "BERNARD S. BAUTISTA"
+      },
+      {
+        "role": "SB Member",
+        "name": "CARIDAD T. LANUANG"
+      },
+      {
+        "role": "SB Member",
+        "name": "GINO M. LAWAS"
+      },
+      {
+        "role": "SB Member",
+        "name": "GAUDENCIO M. PAGCANLUNGAN"
+      },
+      {
+        "role": "SB Member",
+        "name": "JOSEPH T. ALVAREZ"
+      },
+      {
+        "role": "SB Member",
+        "name": "GERARDO A. LANTICAN"
+      },
+      {
+        "role": "SK Chairperson",
+        "name": "CATHERINE D. EISMA"
+      },
+      {
+        "role": "Barangay Secretary",
+        "name": "ALONA T. CANICOSA"
+      },
+      {
+        "role": "SK Member",
+        "name": "RAEJ P. SIMAN"
+      },
+      {
+        "role": "SK Member",
+        "name": "KYLA NICOLE L. LINGON"
+      },
+      {
+        "role": "SK Member",
+        "name": "JOHN ROY M. TAMIS"
+      },
+      {
+        "role": "SK Member",
+        "name": "RALPH MARK M. MABILANGAN"
+      },
+      {
+        "role": "SK Member",
+        "name": "SONNY M. ALVEZ"
+      },
+      {
+        "role": "SK Member",
+        "name": "SHANIA ISABEL B. MOLINAWAN"
+      },
+      {
+        "role": "SK Member",
+        "name": "KYLE AERON L. BATULINA"
+      },
+      {
+        "role": "SK Secretary",
+        "name": "MYLENE G. LAPIZ"
+      }
+    ]
   },
   {
-    "name": "Malinta",
-    "slug": "malinta",
-    "caption": "Barangay 9",
-    "official": "Hon. Captain",
-    "population": 0,
-    "coordinates": { "lat": 14.1784, "lon": 121.2384 }
+    "slug": "barangay-malinta",
+    "barangay_name": "MALINTA",
+    "address": "Barangay Hall, Brgy. Malinta, Los Baños, Laguna",
+    "trunkline": ["0906 934 5752"],
+    "website": "https://www.losbanos.gov.ph",
+    "officials": [
+      {
+        "role": "Punong Barangay",
+        "name": "JESUS H. DE UNA JR"
+      },
+      {
+        "role": "SB Member",
+        "name": "ROLANDO L. ERROBA"
+      },
+      {
+        "role": "SB Member",
+        "name": "RANIE F. ANDAL"
+      },
+      {
+        "role": "SB Member",
+        "name": "ERNESTO G. ALCANTARA"
+      },
+      {
+        "role": "SB Member",
+        "name": "ALLAN B. BIENES"
+      },
+      {
+        "role": "SB Member",
+        "name": "BENNY S. MORALDE"
+      },
+      {
+        "role": "SB Member",
+        "name": "SHERYL S. BAGNES"
+      },
+      {
+        "role": "SB Member",
+        "name": "GAUDENCIO D. MARIANO"
+      },
+      {
+        "role": "SK Chairperson",
+        "name": "EDMUND E. VELASCO"
+      },
+      {
+        "role": "Barangay Secretary",
+        "name": "RICHEL C. TAKAHASHI"
+      },
+      {
+        "role": "SK Member",
+        "name": "RONA KAY F. PELEGRINA"
+      },
+      {
+        "role": "SK Member",
+        "name": "JOSE ROD T. RECARIO"
+      },
+      {
+        "role": "SK Member",
+        "name": "JUDITH R. SARMIENTO"
+      },
+      {
+        "role": "SK Member",
+        "name": "MARY JOY E. BIENES"
+      },
+      {
+        "role": "SK Member",
+        "name": "MA. ALTHEA Q. VALLEJO"
+      },
+      {
+        "role": "SK Member",
+        "name": "ROSEMER V. SUBIAGA"
+      },
+      {
+        "role": "SK Member",
+        "name": "JIMUELL N. LEGASPI"
+      },
+      {
+        "role": "SK Secretary",
+        "name": "KARL LOU T. LABARETE"
+      }
+    ]
   },
   {
-    "name": "Mayondon",
-    "slug": "mayondon",
-    "caption": "Barangay 10",
-    "official": "Hon. Captain",
-    "population": 0,
-    "coordinates": { "lat": 14.1784, "lon": 121.2384 }
+    "slug": "barangay-mayondon",
+    "barangay_name": "MAYONDON",
+    "address": "Barangay Hall, Brgy. Mayondon, Los Baños, Laguna",
+    "trunkline": ["0906 783 7773", "0956 721 7127", "0938 298 8166"],
+    "website": "https://www.losbanos.gov.ph",
+    "officials": [
+      {
+        "role": "Punong Barangay",
+        "name": "ROMMEL N. MANINGAS"
+      },
+      {
+        "role": "SB Member",
+        "name": "DANILO V. APOLINAR"
+      },
+      {
+        "role": "SB Member",
+        "name": "MIGUEL C. CONCIO"
+      },
+      {
+        "role": "SB Member",
+        "name": "MICHAEL E. ESCOBIN"
+      },
+      {
+        "role": "SB Member",
+        "name": "ERICSON B. REYES"
+      },
+      {
+        "role": "SB Member",
+        "name": "MARTA D. LONTOC"
+      },
+      {
+        "role": "SB Member",
+        "name": "FELISA C. CAUNCA"
+      },
+      {
+        "role": "SB Member",
+        "name": "MARJORIE E. DE ADA"
+      },
+      {
+        "role": "SK Chairperson",
+        "name": "MARIA AN A. EUSEBIO"
+      },
+      {
+        "role": "Barangay Secretary",
+        "name": "REYMARC V. TORRES"
+      },
+      {
+        "role": "SK Member",
+        "name": "JANEYA M. SAPIN"
+      },
+      {
+        "role": "SK Member",
+        "name": "FRANCIS D. AJO"
+      },
+      {
+        "role": "SK Member",
+        "name": "CHESKA MAE H. DULAY"
+      },
+      {
+        "role": "SK Member",
+        "name": "CHARLES M. ARABIT"
+      },
+      {
+        "role": "SK Member",
+        "name": "DENNIS R. OARTE"
+      },
+      {
+        "role": "SK Member",
+        "name": "SOPHIA M. DIZON"
+      },
+      {
+        "role": "SK Member",
+        "name": "WENCIE J. BANASIHAN"
+      },
+      {
+        "role": "SK Secretary",
+        "name": "ARIANE JOY M. TERBIO"
+      }
+    ]
   },
   {
-    "name": "Paco",
-    "slug": "paco",
-    "caption": "Barangay 11",
-    "official": "Hon. Captain",
-    "population": 0,
-    "coordinates": { "lat": 14.1784, "lon": 121.2384 }
+    "slug": "barangay-putho-tuntungi",
+    "barangay_name": "PUTHO-TUNTUNGIN",
+    "address": "Barangay Hall, Brgy. Putho Tuntungi, Los Baños, Laguna",
+    "trunkline": ["0962 077 4706", "0970 736 3270"],
+    "website": "https://www.losbanos.gov.ph",
+    "officials": [
+      {
+        "role": "Punong Barangay",
+        "name": "FRANCISCO O. TORRES JR"
+      },
+      {
+        "role": "SB Member",
+        "name": "RONALDO O. ONATE"
+      },
+      {
+        "role": "SB Member",
+        "name": "ELMER R. GARCIA"
+      },
+      {
+        "role": "SB Member",
+        "name": "ELENA S. RAMOS"
+      },
+      {
+        "role": "SB Member",
+        "name": "JOHN ANDREW PEREZ"
+      },
+      {
+        "role": "SB Member",
+        "name": "ESTELITA L. JACOBO"
+      },
+      {
+        "role": "SB Member",
+        "name": "ERVIM F. MALABANAN"
+      },
+      {
+        "role": "SB Member",
+        "name": "MANUEL P. ALBORIDA"
+      },
+      {
+        "role": "SK Chairperson",
+        "name": "JEMELYN E. TATAD"
+      },
+      {
+        "role": "Barangay Secretary",
+        "name": "JOSEPH M. CARDINO"
+      },
+      {
+        "role": "SK Member",
+        "name": "LEVI JEN R. CUEVAS"
+      },
+      {
+        "role": "SK Member",
+        "name": "JOHNCEL P. BUEZA"
+      },
+      {
+        "role": "SK Member",
+        "name": "ANNE MAE P. FAUNDO"
+      },
+      {
+        "role": "SK Member",
+        "name": "OMAR C. CASTILLO"
+      },
+      {
+        "role": "SK Member",
+        "name": "DOROTHY C. RAMOS"
+      },
+      {
+        "role": "SK Member",
+        "name": "JINUEL D. ALBORIDA"
+      },
+      {
+        "role": "SK Member",
+        "name": "LORENXE B. DIOKNO"
+      },
+      {
+        "role": "SK Secretary",
+        "name": "JAYVEE A. ESCOTON"
+      }
+    ]
   },
   {
-    "name": "Putho",
-    "slug": "putho",
-    "caption": "Barangay 12",
-    "official": "Hon. Captain",
-    "population": 0,
-    "coordinates": { "lat": 14.1784, "lon": 121.2384 }
+    "slug": "barangay-san-antonio",
+    "barangay_name": "SAN ANTONIO",
+    "address": "Barangay Hall, Brgy. San Antonio, Los Baños, Laguna",
+    "trunkline": ["0960 576 0044"],
+    "website": "https://www.losbanos.gov.ph",
+    "officials": [
+      {
+        "role": "Punong Barangay",
+        "name": "RELLY C. MANAY"
+      },
+      {
+        "role": "SB Member",
+        "name": "VICKY G. LAWAS"
+      },
+      {
+        "role": "SB Member",
+        "name": "DAISY E. MANESE"
+      },
+      {
+        "role": "SB Member",
+        "name": "ANGELINA M. MUNDIN"
+      },
+      {
+        "role": "SB Member",
+        "name": "JONATHAN M. MEJIA"
+      },
+      {
+        "role": "SB Member",
+        "name": "LIBERATO A. CALICA"
+      },
+      {
+        "role": "SB Member",
+        "name": "JOSEPHINE M. DIMASANGAL"
+      },
+      {
+        "role": "SB Member",
+        "name": "RENA THEA V. DIZON"
+      },
+      {
+        "role": "SK Chairperson",
+        "name": "ASHLEY J. PAYAS"
+      },
+      {
+        "role": "Barangay Secretary",
+        "name": "MARIE JOY S. JUNIO"
+      },
+      {
+        "role": "SK Member",
+        "name": "MAEWIN L. GENIL"
+      },
+      {
+        "role": "SK Member",
+        "name": "CRISEL JOY B. OGALIN"
+      },
+      {
+        "role": "SK Member",
+        "name": "BERNADETTE LOPEZ"
+      },
+      {
+        "role": "SK Member",
+        "name": "ASHLEY N. SORRERA"
+      },
+      {
+        "role": "SK Member",
+        "name": "DENISE GRACE BALOGO"
+      },
+      {
+        "role": "SK Member",
+        "name": "YLA MARIE O. ROSARIO"
+      },
+      {
+        "role": "SK Member",
+        "name": "JOHN CARLO C. GUBA"
+      },
+      {
+        "role": "SK Secretary",
+        "name": "ELAINE M. LAPITAN"
+      }
+    ]
   },
   {
-    "name": "San Antonio",
-    "slug": "san-antonio",
-    "caption": "Barangay 13",
-    "official": "Hon. Captain",
-    "population": 0,
-    "coordinates": { "lat": 14.1784, "lon": 121.2384 }
+    "slug": "barangay-tadlak",
+    "barangay_name": "TADLAK",
+    "address": "Barangay Hall, Brgy. Tadlak, Los Baños, Laguna",
+    "trunkline": ["0921 526 3893"],
+    "website": "https://www.losbanos.gov.ph",
+    "officials": [
+      {
+        "role": "Punong Barangay",
+        "name": "JAIME B. BUENDIA"
+      },
+      {
+        "role": "SB Member",
+        "name": "VICTOR M. DEL ROSA"
+      },
+      {
+        "role": "SB Member",
+        "name": "NANNET R. SALDANA"
+      },
+      {
+        "role": "SB Member",
+        "name": "IRENEO L. DIAZ"
+      },
+      {
+        "role": "SB Member",
+        "name": "ARMANDO C. LLANES JR"
+      },
+      {
+        "role": "SB Member",
+        "name": "HENRY R. EVANGELISTA"
+      },
+      {
+        "role": "SB Member",
+        "name": "LEOPOLDO M. TATAD"
+      },
+      {
+        "role": "SB Member",
+        "name": "GILBERTO G. BAUTISTA"
+      },
+      {
+        "role": "SK Chairperson",
+        "name": "JEROME F. ELIZALDE"
+      },
+      {
+        "role": "Barangay Secretary",
+        "name": "MA. CECCILIA P. ESCULTOR"
+      },
+      {
+        "role": "SK Member",
+        "name": "JESSEL C. LORIA"
+      },
+      {
+        "role": "SK Member",
+        "name": "KYLENE R. CAHINDI"
+      },
+      {
+        "role": "SK Member",
+        "name": "ROY D. LUMIBAO"
+      },
+      {
+        "role": "SK Member",
+        "name": "JHON PATRICK S. ERASGA"
+      },
+      {
+        "role": "SK Member",
+        "name": "MARC ANTHONY A. MILAN"
+      },
+      {
+        "role": "SK Member",
+        "name": "JOSEPH R. MORALES"
+      },
+      {
+        "role": "SK Member",
+        "name": "DIALYN SAMSON"
+      },
+      {
+        "role": "SK Secretary",
+        "name": "MARY ROSE P. ERASGA"
+      }
+    ]
   },
   {
-    "name": "Tadlac",
-    "slug": "tadlac",
-    "caption": "Barangay 14",
-    "official": "Hon. Captain",
-    "population": 0,
-    "coordinates": { "lat": 14.1784, "lon": 121.2384 }
+    "slug": "barangay-timugan",
+    "barangay_name": "TIMUGAN",
+    "address": "Barangay Hall, Brgy. Timugan, Los Baños, Laguna",
+    "trunkline": ["0932 063 7743"],
+    "website": "https://www.losbanos.gov.ph",
+    "officials": [
+      {
+        "role": "Punong Barangay",
+        "name": "RENATO A. SAMSON"
+      },
+      {
+        "role": "SB Member",
+        "name": "ISAGANI D. BAUTISTA"
+      },
+      {
+        "role": "SB Member",
+        "name": "RODERICK S. ISIDRO"
+      },
+      {
+        "role": "SB Member",
+        "name": "LIZA C. MATUNDAN"
+      },
+      {
+        "role": "SB Member",
+        "name": "SOLIDAD D. ABDAH"
+      },
+      {
+        "role": "SB Member",
+        "name": "ELEAZAR B. AQUINO"
+      },
+      {
+        "role": "SB Member",
+        "name": "PAMELA FLORDELIZA F. DE VERA"
+      },
+      {
+        "role": "SB Member",
+        "name": "MARY JEAN C. AQUINO"
+      },
+      {
+        "role": "SK Chairperson",
+        "name": "RICO T. YADAO"
+      },
+      {
+        "role": "Barangay Secretary",
+        "name": "WILROSE L. PENALVER"
+      },
+      {
+        "role": "SK Member",
+        "name": "FELICITY T. BAGAO"
+      },
+      {
+        "role": "SK Member",
+        "name": "RICA P. GAYLON"
+      },
+      {
+        "role": "SK Member",
+        "name": "PHIL BOJO REPOTEN"
+      },
+      {
+        "role": "SK Member",
+        "name": "MARJORY B. GUIMMAYEN"
+      },
+      {
+        "role": "SK Member",
+        "name": "DERICK B. ORAP"
+      },
+      {
+        "role": "SK Member",
+        "name": "KC MAE M. DELA CRUZ"
+      },
+      {
+        "role": "SK Member",
+        "name": "JUSTINE JAKE L. EDUCADO"
+      },
+      {
+        "role": "SK Secretary",
+        "name": "CHARLES I. DE VERA"
+      }
+    ]
   }
 ]
