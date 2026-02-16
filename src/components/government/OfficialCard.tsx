@@ -33,9 +33,13 @@ export function OfficialCard({
           <h3 className='text-kapwa-text-strong truncate text-sm font-bold'>
             {toTitleCase(official.name)}
           </h3>
-          <p className='text-kapwa-text-support text-[10px] font-bold tracking-widest uppercase'>
+          <Badge
+            variant='secondary'
+            className='mt-0.5'
+            aria-label={`Position: ${role}`}
+          >
             {role}
-          </p>
+          </Badge>
         </div>
       </CardContent>
     </Card>
