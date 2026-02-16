@@ -71,14 +71,8 @@
 /* Local styles */
 @import 'tailwindcss';
 
-/* Safelist Kapwa color utilities for component library buttons */
-@source inline("{hover:}bg-kapwa-blue-{500,600,700}");
-@source inline("{hover:}bg-kapwa-orange-{500,600,700}");
-@source inline("text-kapwa-neutral-50");
-
 /* Scan shared packages for Tailwind classes */
-@source '../../betterlb-ui/src/**/*.{js,ts,jsx,tsx}';
-@source './node_modules/@betterlb/kapwa';
+@source '../node_modules/@betterlb/kapwa/dist/**/*.js';
 
 /* Import Kapwa Design System tokens */
 @import '@betterlb/kapwa/kapwa.css';
@@ -89,13 +83,6 @@
     sans-serif;
   --font-kapwa-mono:
     'Roboto Mono', ui-monospace, SFMono-Regular, Menlo, monospace;
-}
-
-@theme {
-  /* --- SEMANTIC ALIASES --- */
-  /* These map your specific domain needs to Kapwa tokens */
-  --color-brand-executive: var(--color-bg-kapwa-bg-info-active);
-  --color-brand-legislative: var(--color-bg-kapwa-bg-kapwa-bg-warning-active);
 }
 
 @layer base {

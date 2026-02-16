@@ -100,7 +100,7 @@ const GovernmentSection: FC = () => {
           description={t('government.directoryDescription')}
           cta={{
             label: t('government.viewDirectory'),
-            href: '/government/',
+            onClick: () => navigate('/government/'),
             variant: 'primary',
             size: 'lg',
           }}
