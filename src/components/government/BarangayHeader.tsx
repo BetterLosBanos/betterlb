@@ -1,9 +1,5 @@
 import { GlobeIcon, MapPinIcon, PhoneIcon } from 'lucide-react';
 
-import {
-  ContactContainer,
-  ContactItem,
-} from '@/components/data-display/ContactInfo';
 import { Badge } from '@/components/ui/Badge';
 
 import { toTitleCase } from '@/lib/stringUtils';
@@ -53,17 +49,28 @@ export function BarangayHeader({ barangay }: BarangayHeaderProps) {
       )}
 
       {/* Bottom: Contact Row */}
-      <ContactContainer variant='inline' className='gap-6 text-sm'>
-        <ContactItem icon={PhoneIcon} label='' value={contactValue} inline />
-        <ContactItem
-          icon={GlobeIcon}
-          label=''
-          value={barangay.website ? 'Facebook' : undefined}
-          href={barangay.website}
-          isExternal
-          inline
-        />
-      </ContactContainer>
+      <div className='flex flex-col gap-4 text-sm md:flex-row md:gap-6'>
+        {contactValue && (
+          <a
+            href={`tel:${contactValue}`}
+            className='text-kapwa-text-support hover:text-kapwa-text-brand flex items-center gap-2 transition-colors'
+          >
+            <PhoneIcon aria-hidden='true' className='h-4 w-4' />
+            <span>{contactValue}</span>
+          </a>
+        )}
+        {barangay.website && (
+          <a
+            href={barangay.website}
+            target='_blank'
+            rel='noreferrer'
+            className='text-kapwa-text-support hover:text-kapwa-text-brand flex items-center gap-2 transition-colors'
+          >
+            <GlobeIcon aria-hidden='true' className='h-4 w-4' />
+            <span>Facebook</span>
+          </a>
+        )}
+      </div>
     </header>
   );
 }
