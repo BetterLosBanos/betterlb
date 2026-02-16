@@ -101,10 +101,10 @@ const Ticker: FC = () => {
 
   if (isLoading && weatherLoading) {
     return (
-      <div className='text-kapwa-text-inverse bg-(--color-bg-kapwa-bg-brand-default) px-4 py-1'>
+      <div className='text-kapwa-text-inverse bg-kapwa-bg-surface-bold px-kapwa-md py-1'>
         <div className='container mx-auto flex items-center justify-center'>
           <LoaderIcon className='mr-2 h-4 w-4 animate-spin' />
-          <span className='text-xs'>Loading data...</span>
+          <span className='kapwa-body-xs-default'>Loading data...</span>
         </div>
       </div>
     );
@@ -122,7 +122,7 @@ const Ticker: FC = () => {
   if (!currentRate) return null;
 
   return (
-    <div className='bg-kapwa-blue-950 py-1.5'>
+    <div className='bg-kapwa-bg-surface-bold py-1.5'>
       <div className='container mx-auto flex justify-end px-4'>
         <div className='flex items-center justify-end'>
           {/* Forex ticker */}
@@ -136,13 +136,13 @@ const Ticker: FC = () => {
                 }`}
               >
                 <div className='inline-flex items-center space-x-1'>
-                  <span className='text-kapwa-yellow-500 opacity-80'>
+                  <span className='text-kapwa-text-warning opacity-80'>
                     {getCurrencyIcon(currentRate.code)}
                   </span>
-                  <span className='text-kapwa-text-inverse text-xs font-medium'>
+                  <span className='text-kapwa-text-inverse kapwa-body-xs-default kapwa-body-xs-strong'>
                     {currentRate.code}
                   </span>
-                  <span className='text-kapwa-text-inverse text-xs opacity-90'>
+                  <span className='text-kapwa-text-inverse kapwa-body-xs-default opacity-90'>
                     ₱{currentRate.rate.toFixed(2)}
                   </span>
                 </div>
@@ -151,17 +151,17 @@ const Ticker: FC = () => {
           </div>
 
           {/* Weather information */}
-          <div className='flex items-center space-x-6 border-l border-white/20 pl-4'>
+          <div className='flex items-center space-x-6 border-l border-kapwa-border-inverse pl-4'>
             {weatherLoading ? (
               <div className='flex items-center space-x-2'>
                 <LoaderIcon className='text-kapwa-text-inverse h-3 w-3 animate-spin opacity-80' />
-                <span className='text-kapwa-text-inverse text-xs opacity-80'>
+                <span className='text-kapwa-text-inverse kapwa-body-xs-default opacity-80'>
                   Loading weather...
                 </span>
               </div>
             ) : weatherError ? (
               <div className='flex items-center space-x-2'>
-                <span className='text-kapwa-text-inverse text-xs opacity-80'>
+                <span className='text-kapwa-text-inverse kapwa-body-xs-default opacity-80'>
                   Weather unavailable
                 </span>
               </div>
@@ -171,10 +171,10 @@ const Ticker: FC = () => {
                   key={data.location}
                   className='flex flex-col items-center justify-center space-x-0 uppercase sm:flex-row sm:space-x-2'
                 >
-                  <span className='text-kapwa-text-inverse text-xs font-medium opacity-90'>
+                  <span className='text-kapwa-text-inverse kapwa-body-xs-default kapwa-body-xs-strong opacity-90'>
                     {data.location}
                   </span>
-                  <span className='text-kapwa-text-inverse text-xs'>
+                  <span className='text-kapwa-text-inverse kapwa-body-xs-default'>
                     {data.temperature}°C
                   </span>
                 </div>

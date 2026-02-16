@@ -111,63 +111,39 @@ Services are split by category in `src/data/services/categories/*.json`. The `me
 
 ## Shared Components (@betterlb/ui)
 
-BetterLB uses shared UI components from `@betterlb/ui` package (located at `../betterlb-ui`).
+### Important: No Shared UI Package
+**Note:** The `@betterlb/ui` package mentioned in older documentation no longer exists. All UI components are maintained locally in `src/components/ui/`.
 
-### Development Workflow
-- Terminal 1: `cd ../betterlb-ui && npm run dev` - Watch shared components for changes
-- Terminal 2: `cd betterlb && npm run dev` - Run main app
-- After building shared package: Clear Vite cache with `rm -rf node_modules/.vite` and restart dev server
-
-### Available Components
-
-**Layout Components:**
-- `Navbar` - Main navigation bar with i18n support
-- `Footer` - Site footer with navigation links
-- `SidebarLayout` - Admin dashboard sidebar layout
-
-**UI Components (import from @betterlb/ui):**
-- `Button` - Supports variants: primary, secondary, success, outline, ghost, link
-- `Card` - Card container with Header, Content, Footer, Title, Description variants
-- `Badge` - Status and label badges
-- `Dialog` - Modal dialogs with Portal, Overlay, Content variants
-- `Tabs` - Tabbed interface with List, Trigger, Content variants
-- `PaginationControls` - Pagination navigation
+### Local UI Components (src/components/ui/)
+Available local components:
+- `Badge` - Status and label badges (aligned with municipal branding)
+- `Card` - Card container with Header, Content, Footer, Title, Description, CardGrid, CardContactInfo
+- `Dialog` - Modal dialogs (Radix UI-based)
 - `EmptyState` - Empty state placeholder component
-- `Banner` - Alert banners with types: info, warning, error, success, default
+- `Pagination` - PaginationControls component
+- `ScrollArea` - Scrollable area with custom scrollbar
 - `SearchInput` - Search input with icon and clear button
 - `SelectPicker` - Multi-select dropdown with search
-- `ScrollArea` - Scrollable area with custom scrollbar
 - `Skeletons` - CardSkeleton, DirectoryGridSkeleton, PageLoadingState
+- `Tabs` - Tabbed interface (Radix UI-based)
 - `Timeline` - Vertical timeline with TimelineItem
-
-**Local Components (src/components/ui/):**
-- `Input` - Form input (stays local - form-specific)
-- `Ticker` - News ticker (BetterLB-specific)
+- `Ticker` - News ticker (forex/weather data)
 
 ### Import Pattern
 ```tsx
-// Import shared components
-import { Button, Card, Badge, Banner } from '@betterlb/ui';
+// All local components - import from @/components/ui
+import { Badge, Card, SearchInput, EmptyState } from '@/components/ui';
 
-// Import local components
-import { Input, Ticker } from '@/components/ui';
+// Kapwa base components - import from @bettergov/kapwa (aliased)
+import { Button, Input, Label, Banner } from '@bettergov/kapwa';
 ```
 
-### Tailwind v4 Configuration
-Tailwind v4 requires `@source` directive in `src/index.css` to scan shared package for utility classes:
-```css
-@source '../../betterlb-ui/src/**/*.{js,ts,jsx,tsx}';
-```
-The path is relative to the CSS file location. Without this, classes like `lg:flex` or `text-green-500` from shared components won't be generated.
-
-### Translation Pattern
-Shared components (Navbar, Footer) handle translations internally via `useTranslation` hook. Pass raw navigation data - do not pre-translate labels.
-
-### Migration Notes
-- Previous `src/kapwa/` components have been migrated to `@betterlb/ui`
-- Previous `src/components/ui/` duplicates have been removed
-- All imports from `@/kapwa/*` and `@/components/ui/*` now use `@betterlb/ui`
-- The `success` variant for Button is now available in `@betterlb/ui`
+### Component Development Guidelines
+When modifying or creating local UI components:
+1. Follow Kapwa design patterns (see `docs/BetterLB-Design-System-Guide.md`)
+2. Use Kapwa semantic tokens with proper Tailwind v4 prefixes
+3. Ensure component variants match design system standards
+4. Maintain consistent prop interfaces with TypeScript
 
 ## Kapwa Design System (@betterlb/kapwa)
 
@@ -240,6 +216,12 @@ npm publish --access public     # Requires granular token with bypass 2FA
 - Package exports include: `.`, `./lib/utils`, `./banner`, `./button`, `./button/hooks`, `./card`, `./input`, `./label`, `./kapwa.css`, `./kapwa-fonts.css`
 
 ## Design System Documentation
+
+**Visual Consistency Plan** (`VISUAL_CONSISTENCY_PLAN.md`) - Page-by-page audit for improving visual consistency:
+- Organized by priority (P0-P3) and page type
+- Lists specific files needing updates
+- Includes verification checklist
+- Documents completed local UI component fixes (Badge, Card, Skeletons, ScrollArea, Timeline, Dialog, EmptyState, Pagination, Ticker)
 
 **BetterLB Design System Guide** (`docs/BetterLB-Design-System-Guide.md`) - Comprehensive reference for:
 - Component library (Card, Badge, Button, etc.) with variants and usage patterns

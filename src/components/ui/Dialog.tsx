@@ -40,7 +40,7 @@ const DialogContent = forwardRef<
       {...props}
     >
       {children}
-      <DialogPrimitive.Close className='data-[state=open]:bg-kapwa-bg-kapwa-bg-surface-raised data-[state=open]:text-kapwa-text-disabled absolute top-4 right-4 rounded-sm opacity-70 ring-offset-white transition-opacity hover:opacity-100 focus:ring-2 focus:ring-gray-950 focus:ring-offset-2 focus:outline-none disabled:pointer-events-none'>
+      <DialogPrimitive.Close className='data-[state=open]:bg-kapwa-bg-surface-raised data-[state=open]:text-kapwa-text-disabled absolute top-4 right-4 rounded-sm opacity-70 ring-offset-white transition-opacity hover:opacity-100 focus:ring-2 focus:ring-gray-950 focus:ring-offset-2 focus:outline-none disabled:pointer-events-none'>
         <X className='h-4 w-4' />
         <span className='sr-only'>Close</span>
       </DialogPrimitive.Close>
@@ -77,7 +77,7 @@ const DialogTitle = forwardRef<
 >(({ className, ...props }, ref) => (
   <DialogPrimitive.Title
     ref={ref}
-    className={`text-lg leading-none font-semibold tracking-tight ${className}`}
+    className={`kapwa-heading-md leading-none tracking-tight ${className}`}
     {...props}
   />
 ));

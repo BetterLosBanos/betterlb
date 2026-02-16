@@ -20,7 +20,7 @@ export function Timeline({
     <div className={cn('relative space-y-8 pl-8 md:pl-0', className)}>
       {/* Vertical Line */}
       <div
-        className='from-kapwa-brand-600 via-primary-200 absolute top-2 bottom-2 left-[11px] w-0.5 -translate-x-1/2 bg-linear-to-b to-transparent md:left-1/2'
+        className='from-kapwa-bg-brand-default via-kapwa-bg-brand-weak absolute top-2 bottom-2 left-[11px] w-0.5 -translate-x-1/2 bg-linear-to-b to-transparent md:left-1/2'
         aria-hidden='true'
       />
       {children}
@@ -33,7 +33,7 @@ export function TimelineItem({ year, title, children }: TimelineItemProps) {
     <div className='group relative flex flex-col md:flex-row md:items-center'>
       {/* 1. Date/Year Bubble (Desktop: Alternates, Mobile: Left) */}
       <div className='mb-2 md:mb-0 md:w-1/2 md:pr-12 md:text-right md:group-even:order-last md:group-even:pr-0 md:group-even:pl-12 md:group-even:text-left'>
-        <span className='bg-kapwa-bg-brand-default text-kapwa-text-inverse inline-flex items-center justify-center rounded-full px-3 py-1 text-xs font-bold shadow-md ring-4 ring-white'>
+        <span className='bg-kapwa-bg-brand-default text-kapwa-text-inverse inline-flex items-center justify-center rounded-full px-3 py-1 kapwa-body-xs-strong shadow-md ring-4 ring-kapwa-bg-surface'>
           {year}
         </span>
       </div>
@@ -53,11 +53,11 @@ export function TimelineItem({ year, title, children }: TimelineItemProps) {
           <div className='border-kapwa-border-weak bg-kapwa-bg-surface absolute top-1/2 -left-1.5 hidden h-3 w-3 -translate-y-1/2 rotate-45 border-b border-l group-even:-right-1.5 group-even:left-auto group-even:rotate-225 md:block' />
 
           {title && (
-            <h3 className='text-kapwa-text-strong mb-2 text-lg font-bold'>
+            <h3 className='text-kapwa-text-strong mb-2 kapwa-heading-md'>
               {title}
             </h3>
           )}
-          <div className='text-kapwa-text-on-disabled text-sm leading-relaxed'>
+          <div className='text-kapwa-text-support kapwa-body-sm-default leading-relaxed'>
             {children}
           </div>
         </div>

@@ -29,10 +29,12 @@ export function PageLoadingState({
   message = 'Loading...',
 }: PageLoadingStateProps) {
   return (
-    <div className='flex items-center justify-center p-20'>
-      <div className='text-kapwa-text-disabled flex items-center gap-3'>
-        <div className='border-kapwa-border-brand border-t-primary-600 h-5 w-5 animate-spin rounded-full border-2' />
-        <span className='text-sm font-medium'>{message}</span>
+    <div className='flex items-center justify-center p-kapwa-3xl'>
+      <div className='text-kapwa-text-disabled flex items-center gap-kapwa-md'>
+        <div className='border-kapwa-border-brand border-t-kapwa-bg-brand-default h-5 w-5 animate-spin rounded-full border-2' />
+        <span className='kapwa-body-sm-default kapwa-body-sm-strong'>
+          {message}
+        </span>
       </div>
     </div>
   );

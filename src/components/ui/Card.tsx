@@ -106,7 +106,7 @@ export const Card = forwardRef<HTMLElement, CardProps>(
       featured:
         'bg-kapwa-bg-surface border-kapwa-border-brand shadow-md ring-1 ring-kapwa-border-brand',
       slate: 'bg-kapwa-bg-surface border-kapwa-border-weak shadow-none',
-      compact: 'bg-kapwa-bg-surface border-slate-100 shadow-xs text-sm',
+      compact: 'bg-kapwa-bg-surface border-kapwa-border-weak shadow-xs text-sm',
     };
 
     return (
@@ -144,7 +144,7 @@ export const CardHeader = ({
   ...props
 }: HTMLAttributes<HTMLDivElement>) => (
   <header
-    className={cn('border-b border-slate-100 p-4 md:p-6', className)}
+    className={cn('border-b border-kapwa-border-weak p-4 md:p-6', className)}
     {...props}
   >
     {children}
@@ -180,7 +180,7 @@ export const CardFooter = ({
 }: HTMLAttributes<HTMLDivElement>) => (
   <footer
     className={cn(
-      'bg-kapwa-bg-surface/50 border-t border-slate-100 p-4 md:p-6',
+      'bg-kapwa-bg-surface/50 border-t border-kapwa-border-weak p-4 md:p-6',
       className
     )}
     {...props}
@@ -331,7 +331,7 @@ export const CardDescription = ({
 }) => (
   <p
     className={cn(
-      'text-kapwa-text-strong0 mt-2 text-sm leading-relaxed',
+      'text-kapwa-text-support mt-2 kapwa-body-sm-default leading-relaxed',
       className
     )}
   >
@@ -510,5 +510,5 @@ export const CardList = ({
  * Useful for separating sections within a card.
  */
 export const CardDivider = ({ className }: { className?: string }) => (
-  <hr className={cn('border-slate-100', className)} />
+  <hr className={cn('border-kapwa-border-weak', className)} />
 );

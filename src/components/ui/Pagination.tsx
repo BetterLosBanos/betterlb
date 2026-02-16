@@ -113,7 +113,7 @@ export function PaginationControls({
                 onClick={() => onPageChange(page as number)}
                 className={`h-8 w-8 rounded-lg text-xs font-bold transition-colors ${
                   currentPage === page
-                    ? 'bg-kapwa-bg-brand-default text-white'
+                    ? 'bg-kapwa-bg-brand-default text-kapwa-text-inverse'
                     : 'hover:bg-kapwa-bg-surface-raised border-kapwa-border-weak bg-kapwa-bg-surface text-kapwa-text-support border'
                 }`}
               >

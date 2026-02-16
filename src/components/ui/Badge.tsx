@@ -29,26 +29,31 @@ export function Badge({
   dot = false,
   ...props
 }: BadgeProps) {
-  // High-contrast color mapping (WCAG 2.1 Level AA Compliant)
+  // High-contrast color mapping using Kapwa semantic tokens (WCAG 2.1 Level AA Compliant)
   const variants = {
-    primary: 'bg-blue-50 text-blue-800 border-blue-200',
-    secondary: 'bg-orange-50 text-orange-800 border-orange-200',
-    success: 'bg-emerald-50 text-emerald-800 border-emerald-200',
-    warning: 'bg-amber-50 text-amber-800 border-amber-200',
-    error: 'bg-rose-50 text-rose-800 border-rose-200',
+    primary:
+      'bg-kapwa-bg-brand-weak text-kapwa-text-brand border-kapwa-border-brand',
+    secondary:
+      'bg-kapwa-bg-orange-weak text-kapwa-text-orange border-kapwa-border-orange',
+    success:
+      'bg-kapwa-bg-success-weak text-kapwa-text-success border-kapwa-border-success',
+    warning:
+      'bg-kapwa-bg-warning-weak text-kapwa-text-warning border-kapwa-border-warning',
+    error:
+      'bg-kapwa-bg-danger-weak text-kapwa-text-danger border-kapwa-border-danger',
     slate:
       'bg-kapwa-bg-surface-raised text-kapwa-text-support border-kapwa-border-weak',
-    outline: 'bg-transparent text-kapwa-text-support border-slate-300',
+    outline: 'bg-transparent text-kapwa-text-support border-kapwa-border-weak',
   };
 
   const dotColors = {
-    primary: 'bg-blue-600',
-    secondary: 'bg-orange-600',
-    success: 'bg-emerald-600',
-    warning: 'bg-amber-600',
-    error: 'bg-rose-600',
-    slate: 'bg-kapwa-bg-surface0',
-    outline: 'bg-kapwa-bg-gray-400',
+    primary: 'bg-kapwa-bg-brand-default',
+    secondary: 'bg-kapwa-bg-orange-default',
+    success: 'bg-kapwa-bg-success-default',
+    warning: 'bg-kapwa-bg-warning-default',
+    error: 'bg-kapwa-bg-danger-default',
+    slate: 'bg-kapwa-bg-surface-raised',
+    outline: 'bg-kapwa-bg-gray-default',
   };
 
   return (
