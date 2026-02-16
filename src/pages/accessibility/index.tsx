@@ -255,7 +255,9 @@ const AccessibilityPage: FC = () => {
                         {standard.level}
                       </h3>
                     </div>
-                    <p className='text-kapwa-text-strong'>{standard.description}</p>
+                    <p className='text-kapwa-text-strong'>
+                      {standard.description}
+                    </p>
                   </div>
                 ))}
               </div>

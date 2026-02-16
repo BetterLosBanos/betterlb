@@ -257,7 +257,8 @@ export default function ContributePage() {
               <div className='grid grid-cols-1 gap-4 md:grid-cols-2'>
                 <div className='md:col-span-2'>
                   <label className='heading-label mb-2 block' htmlFor='service'>
-                    Service Name <span className='text-kapwa-text-accent-orange'>*</span>
+                    Service Name{' '}
+                    <span className='text-kapwa-text-accent-orange'>*</span>
                   </label>
                   <input
                     id='service'
@@ -325,7 +326,7 @@ export default function ContributePage() {
                 </div>
                 <div
                   className={cn(
-                    'scrollbar-thin grid max-h-64 grid-cols-1 gap-2 overflow-y-auto rounded-2xl border border-kapwa-border-weak bg-kapwa-bg-surface p-4 md:grid-cols-2',
+                    'scrollbar-thin border-kapwa-border-weak bg-kapwa-bg-surface grid max-h-64 grid-cols-1 gap-2 overflow-y-auto rounded-2xl border p-4 md:grid-cols-2',
                     errors.officeSlug && 'border-rose-500'
                   )}
                 >
@@ -353,12 +354,14 @@ export default function ContributePage() {
                         {isChecked ? (
                           <CheckSquare className='text-kapwa-text-brand h-4 w-4 shrink-0' />
                         ) : (
-                          <Square className='h-4 w-4 shrink-0 text-kapwa-text-support' />
+                          <Square className='text-kapwa-text-support h-4 w-4 shrink-0' />
                         )}
                         <span
                           className={cn(
                             'text-xs leading-tight font-bold',
-                            isChecked ? 'text-kapwa-text-brand-bold' : 'text-kapwa-text-support'
+                            isChecked
+                              ? 'text-kapwa-text-brand-bold'
+                              : 'text-kapwa-text-support'
                           )}
                         >
                           {toTitleCase(dept.office_name)}
@@ -425,7 +428,7 @@ export default function ContributePage() {
                   id='source'
                   {...register('source', { required: 'Link required' })}
                   className={cn(
-                    'w-full rounded-xl border border-kapwa-border-weak p-3 text-sm outline-none',
+                    'border-kapwa-border-weak w-full rounded-xl border p-3 text-sm outline-none',
                     errors.source && 'border-rose-500'
                   )}
                 />
@@ -482,7 +485,7 @@ export default function ContributePage() {
           <h3 className='heading-label flex items-center gap-2'>
             <Eye className='h-3 w-3' /> Live Preview
           </h3>
-          <div className='ring-kapwa-border-brand/10 text-kapwa-text-inverse min-h-[200px] rounded-3xl bg-kapwa-bg-gray-900 p-8 shadow-2xl ring-4'>
+          <div className='ring-kapwa-border-brand/10 text-kapwa-text-inverse bg-kapwa-bg-gray-900 min-h-[200px] rounded-3xl p-8 shadow-2xl ring-4'>
             <div className='relative z-10 space-y-4'>
               <div className='flex gap-2'>
                 <Badge variant='primary'>

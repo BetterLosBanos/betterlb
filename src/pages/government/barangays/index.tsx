@@ -67,7 +67,7 @@ export default function BarangaysIndex() {
                         Official Barangay Profile
                       </p>
                     </div>
-                    <ArrowRight className='group-hover:text-kapwa-text-link mt-1 h-4 w-4 text-kapwa-text-support transition-all' />
+                    <ArrowRight className='group-hover:text-kapwa-text-link text-kapwa-text-support mt-1 h-4 w-4 transition-all' />
                   </div>
 
                   {/* Middle Row: Punong Barangay (Standardized Highlight Box) */}
@@ -93,7 +93,7 @@ export default function BarangaysIndex() {
                         <span>{brgy.trunkline[0]}</span>
                       </div>
                     ) : (
-                      <div className='text-[10px] text-kapwa-text-support italic'>
+                      <div className='text-kapwa-text-support text-[10px] italic'>
                         No contact listed
                       </div>
                     )}

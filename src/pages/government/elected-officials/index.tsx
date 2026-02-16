@@ -134,7 +134,7 @@ export default function ElectedOfficialsIndex() {
                         Council Members & Profiles
                       </p>
                     </div>
-                    <ChevronRight className='group-hover:text-kapwa-text-accent-orange h-5 w-5 text-kapwa-text-support transition-all group-hover:translate-x-1' />
+                    <ChevronRight className='group-hover:text-kapwa-text-accent-orange text-kapwa-text-support h-5 w-5 transition-all group-hover:translate-x-1' />
                   </CardContent>
                 </Card>
               </Link>
@@ -157,7 +157,7 @@ export default function ElectedOfficialsIndex() {
                         {committeeCount} Standing Committees
                       </p>
                     </div>
-                    <ChevronRight className='group-hover:text-kapwa-text-accent-orange h-5 w-5 text-kapwa-text-support transition-all group-hover:translate-x-1' />
+                    <ChevronRight className='group-hover:text-kapwa-text-accent-orange text-kapwa-text-support h-5 w-5 transition-all group-hover:translate-x-1' />
                   </CardContent>
                 </Card>
               </Link>
@@ -230,7 +230,10 @@ export default function ElectedOfficialsIndex() {
 function OfficialCard({ href, official, icon: Icon }: OfficialCardProps) {
   return (
     <Link to={href} className='group block'>
-      <Card hover className='border-kapwa-border-weak flex h-full flex-col shadow-xs'>
+      <Card
+        hover
+        className='border-kapwa-border-weak flex h-full flex-col shadow-xs'
+      >
         <CardContent className='flex flex-col space-y-6 p-6'>
           {/* Header Section */}
           <div className='flex items-start gap-5'>
@@ -248,7 +251,7 @@ function OfficialCard({ href, official, icon: Icon }: OfficialCardProps) {
               </h3>
             </div>
 
-            <div className='group-hover:bg-kapwa-bg-surface-brand group-hover:text-kapwa-text-brand bg-kapwa-bg-surface-raised shrink-0 rounded-lg p-2 text-kapwa-text-support transition-all'>
+            <div className='group-hover:bg-kapwa-bg-surface-brand group-hover:text-kapwa-text-brand bg-kapwa-bg-surface-raised text-kapwa-text-support shrink-0 rounded-lg p-2 transition-all'>
               <ChevronRight className='h-5 w-5' />
             </div>
           </div>

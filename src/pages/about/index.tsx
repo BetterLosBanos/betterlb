@@ -211,7 +211,9 @@ const AboutPage: FC = () => {
                     </li>
                   ))}
                 </ul>
-                <p className='text-kapwa-text-support'>{t('whyBuilding.conclusion')}</p>
+                <p className='text-kapwa-text-support'>
+                  {t('whyBuilding.conclusion')}
+                </p>
               </section>
 
               {/* Our Commitment Section */}

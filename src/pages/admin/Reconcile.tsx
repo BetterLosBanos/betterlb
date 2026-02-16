@@ -406,7 +406,9 @@ export default function Reconcile() {
                         View PDF
                       </a>
                     </div>
-                    <p className='text-kapwa-text-support'>{documentDetail.title}</p>
+                    <p className='text-kapwa-text-support'>
+                      {documentDetail.title}
+                    </p>
                     {documentDetail.authors &&
                       documentDetail.authors.length > 0 && (
                         <div className='flex flex-wrap gap-2'>
@@ -598,7 +600,7 @@ export default function Reconcile() {
               </Card>
             </div>
           ) : (
-            <Card variant='slate'>
+            <Card variant='default'>
               <CardContent className='py-12 text-center'>
                 <GitMerge className='text-kapwa-text-disabled mx-auto mb-4 h-12 w-12' />
                 <p className='text-kapwa-text-support'>

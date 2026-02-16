@@ -268,7 +268,9 @@ export default function AdminDashboard() {
               className='flex items-center justify-between'
             >
               <CardContent className='flex-1 py-4'>
-                <h3 className='text-kapwa-text-strong font-bold'>{action.title}</h3>
+                <h3 className='text-kapwa-text-strong font-bold'>
+                  {action.title}
+                </h3>
                 <p className='text-kapwa-text-disabled text-sm'>
                   {action.description}
                 </p>

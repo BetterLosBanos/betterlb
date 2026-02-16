@@ -114,7 +114,7 @@ export function PaginationControls({
                 className={`h-8 w-8 rounded-lg text-xs font-bold transition-colors ${
                   currentPage === page
                     ? 'bg-kapwa-bg-brand-default text-white'
-                    : 'hover:bg-kapwa-bg-surface-raised border border-kapwa-border-weak bg-kapwa-bg-surface text-kapwa-text-support'
+                    : 'hover:bg-kapwa-bg-surface-raised border-kapwa-border-weak bg-kapwa-bg-surface text-kapwa-text-support border'
                 }`}
               >
                 {page}

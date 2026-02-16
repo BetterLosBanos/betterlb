@@ -63,9 +63,7 @@ const ServicesSection: FC = () => {
               to={`/services?category=${category.slug}`}
               className='group h-full'
             >
-              <Card
-                className='border-kapwa-border-focus h-full border-t-4 transition-all hover:-translate-y-1'
-              >
+              <Card className='border-kapwa-border-focus h-full border-t-4 transition-all hover:-translate-y-1'>
                 <CardContent className='flex h-full flex-col p-6'>
                   <div className='mb-4 flex items-start justify-between'>
                     <div className='bg-kapwa-bg-surface text-kapwa-text-brand group-hover:bg-kapwa-bg-brand-default group-hover:text-kapwa-text-inverse rounded-lg p-3 transition-colors'>
@@ -81,7 +79,7 @@ const ServicesSection: FC = () => {
                     {category.description}
                   </p>
 
-                  <div className='text-kapwa-text-link flex items-center text-sm font-medium group-hover:underline group-hover:text-kapwa-text-link-hover'>
+                  <div className='text-kapwa-text-link group-hover:text-kapwa-text-link-hover flex items-center text-sm font-medium group-hover:underline'>
                     View Services
                     <LucideIcons.ArrowRight className='ml-1 h-4 w-4 transition-transform group-hover:translate-x-1' />
                   </div>

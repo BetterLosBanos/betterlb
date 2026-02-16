@@ -368,7 +368,10 @@ export default function DeletionQueue() {
           Select all ({persons.length})
         </button>
         <span>•</span>
-        <button onClick={clearSelection} className='hover:text-kapwa-text-brand'>
+        <button
+          onClick={clearSelection}
+          className='hover:text-kapwa-text-brand'
+        >
           Clear selection
         </button>
       </div>

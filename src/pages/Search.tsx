@@ -41,7 +41,9 @@ const Hit: FC<HitProps> = ({ hit }) => {
           {hit.service}
         </h2>
         {hit.description && (
-          <p className='text-kapwa-text-support mt-1 text-sm'>{hit.description}</p>
+          <p className='text-kapwa-text-support mt-1 text-sm'>
+            {hit.description}
+          </p>
         )}
         <div className='text-kapwa-text-support mt-1 text-xs'>
           {hit.category && <span>{hit.category.name}</span>}
@@ -50,7 +52,9 @@ const Hit: FC<HitProps> = ({ hit }) => {
           </span>
         </div>
         {hit.url && (
-          <p className='text-kapwa-text-link mt-1 truncate text-xs'>{hit.url}</p>
+          <p className='text-kapwa-text-link mt-1 truncate text-xs'>
+            {hit.url}
+          </p>
         )}
       </a>
     </article>

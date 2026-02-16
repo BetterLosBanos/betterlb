@@ -409,7 +409,7 @@ export default function PersonDetail() {
                 return (
                   <div
                     key={membership.term_id}
-                    className={`group relative overflow-hidden rounded-xl border bg-kapwa-bg-surface p-5 shadow-sm transition-all hover:shadow-md ${
+                    className={`group bg-kapwa-bg-surface relative overflow-hidden rounded-xl border p-5 shadow-sm transition-all hover:shadow-md ${
                       isActive
                         ? 'border-kapwa-border-brand from-kapwa-brand-50/50 bg-gradient-to-r to-white'
                         : 'border-kapwa-border-weak'
@@ -477,7 +477,7 @@ export default function PersonDetail() {
                                       <Crown className='h-4 w-4' />
                                     </div>
                                     <div className='min-w-0 flex-1'>
-                                      <p className='truncate text-sm font-semibold text-kapwa-text-strong'>
+                                      <p className='text-kapwa-text-strong truncate text-sm font-semibold'>
                                         {c.name}
                                       </p>
                                       <p className='text-[10px] font-medium tracking-wide text-amber-600 uppercase'>
@@ -496,7 +496,7 @@ export default function PersonDetail() {
                                       <Shield className='h-4 w-4' />
                                     </div>
                                     <div className='min-w-0 flex-1'>
-                                      <p className='truncate text-sm font-semibold text-kapwa-text-strong'>
+                                      <p className='text-kapwa-text-strong truncate text-sm font-semibold'>
                                         {c.name}
                                       </p>
                                       <p className='text-kapwa-text-info text-[10px] font-medium tracking-wide uppercase'>
@@ -590,7 +590,7 @@ export default function PersonDetail() {
                       {membership.term && (
                         <Link
                           to={`/openlgu/term/${membership.term.id}`}
-                          className='group-hover:text-kapwa-text-brand shrink-0 text-kapwa-text-support transition-colors'
+                          className='group-hover:text-kapwa-text-brand text-kapwa-text-support shrink-0 transition-colors'
                           aria-label={`View details for ${membership.term.name}`}
                         >
                           <ChevronRight className='h-6 w-6' />
@@ -660,23 +660,25 @@ export default function PersonDetail() {
                               {doc.number}
                             </span>
                             <span className='text-kapwa-text-support'>•</span>
-                            <span className='font-mono text-[10px] font-bold text-kapwa-text-support'>
+                            <span className='text-kapwa-text-support font-mono text-[10px] font-bold'>
                               {doc.date_enacted}
                             </span>
                             {termBadge && (
                               <>
-                                <span className='text-kapwa-text-support'>•</span>
+                                <span className='text-kapwa-text-support'>
+                                  •
+                                </span>
                                 <span className='text-kapwa-text-disabled text-[10px] font-medium'>
                                   {termBadge.ordinal}
                                 </span>
                               </>
                             )}
                           </div>
-                          <p className='group-hover:text-kapwa-text-brand line-clamp-2 text-sm leading-relaxed font-semibold text-kapwa-text-strong transition-colors'>
+                          <p className='group-hover:text-kapwa-text-brand text-kapwa-text-strong line-clamp-2 text-sm leading-relaxed font-semibold transition-colors'>
                             {doc.title}
                           </p>
                         </div>
-                        <ChevronRight className='group-hover:text-kapwa-text-brand mt-0.5 h-5 w-5 shrink-0 text-kapwa-text-support transition-colors' />
+                        <ChevronRight className='group-hover:text-kapwa-text-brand text-kapwa-text-support mt-0.5 h-5 w-5 shrink-0 transition-colors' />
                       </div>
                     </Link>
                   );
@@ -741,7 +743,7 @@ export default function PersonDetail() {
                             </p>
                           </div>
                         </div>
-                        <ChevronRight className='group-hover:text-kapwa-text-brand h-4 w-4 text-kapwa-text-support transition-colors' />
+                        <ChevronRight className='group-hover:text-kapwa-text-brand text-kapwa-text-support h-4 w-4 transition-colors' />
                       </Link>
                     );
                   })}
@@ -792,7 +794,9 @@ export default function PersonDetail() {
             </h3>
             <dl className='space-y-3'>
               <div className='flex items-center justify-between'>
-                <dt className='text-kapwa-text-on-disabled text-sm'>Total Terms</dt>
+                <dt className='text-kapwa-text-on-disabled text-sm'>
+                  Total Terms
+                </dt>
                 <dd className='text-kapwa-text-strong text-lg font-bold'>
                   {totalTermsServed}
                 </dd>

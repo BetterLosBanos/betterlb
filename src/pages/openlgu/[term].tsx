@@ -193,14 +193,14 @@ export default function TermDetail() {
                     {person.last_name[0]}
                   </div>
                   <div className='flex-1'>
-                    <p className='text-sm font-bold text-kapwa-text-strong'>
+                    <p className='text-kapwa-text-strong text-sm font-bold'>
                       {getPersonName(person)}
                     </p>
                     <p className='text-kapwa-text-brand text-xs font-medium tracking-wide uppercase'>
                       {membership?.role || 'Executive Official'}
                     </p>
                   </div>
-                  <ChevronRight className='group-hover:text-kapwa-text-brand h-5 w-5 text-kapwa-text-support transition-colors' />
+                  <ChevronRight className='group-hover:text-kapwa-text-brand text-kapwa-text-support h-5 w-5 transition-colors' />
                 </Link>
               );
             })}
@@ -283,7 +283,7 @@ export default function TermDetail() {
                           {person.last_name[0]}
                         </div>
                         <div className='min-w-0 flex-1'>
-                          <p className='text-sm font-bold text-kapwa-text-strong'>
+                          <p className='text-kapwa-text-strong text-sm font-bold'>
                             {getPersonName(person)}
                           </p>
                           <p className='text-kapwa-text-disabled text-xs font-medium'>
@@ -417,7 +417,7 @@ export default function TermDetail() {
                           {session.type}
                         </Badge>
                         <div>
-                          <p className='font-semibold text-kapwa-text-strong'>
+                          <p className='text-kapwa-text-strong font-semibold'>
                             {session.ordinal_number} {session.type} Session
                           </p>
                           <p className='text-kapwa-text-disabled text-sm'>
@@ -432,7 +432,7 @@ export default function TermDetail() {
                           </span>{' '}
                           docs
                         </span>
-                        <ChevronRight className='group-hover:text-kapwa-text-brand h-5 w-5 text-kapwa-text-support' />
+                        <ChevronRight className='group-hover:text-kapwa-text-brand text-kapwa-text-support h-5 w-5' />
                       </div>
                     </Link>
                   );
@@ -474,7 +474,7 @@ export default function TermDetail() {
                           {doc.date_enacted}
                         </span>
                       </div>
-                      <p className='line-clamp-2 text-sm leading-relaxed font-bold text-kapwa-text-strong'>
+                      <p className='text-kapwa-text-strong line-clamp-2 text-sm leading-relaxed font-bold'>
                         {doc.title}
                       </p>
                     </Link>

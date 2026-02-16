@@ -106,10 +106,10 @@ export default function ServiceDetail() {
         </BreadcrumbList>
       </Breadcrumb>
 
-      {/* --- REFINED HEADER --- */}
+      {/* HEADER */}
       <header
         className={`relative overflow-hidden rounded-3xl p-8 text-white shadow-xl transition-colors duration-500 md:p-12 ${
-          isTransaction ? 'bg-kapwa-bg-gray-900' : 'bg-kapwa-bg-brand-900'
+          isTransaction ? 'bg-kapwa-gray-900' : 'bg-kapwa-brand-950'
         }`}
       >
         <div className='relative z-10 max-w-3xl'>
@@ -128,7 +128,7 @@ export default function ServiceDetail() {
           </h1>
 
           {service.description && (
-            <p className='mb-8 max-w-2xl text-lg leading-relaxed text-kapwa-text-support italic'>
+            <p className='text-kapwa-text-support mb-8 max-w-2xl text-lg leading-relaxed italic'>
               &quot;{service.description}&quot;
             </p>
           )}
@@ -256,7 +256,7 @@ export default function ServiceDetail() {
               {isVerified ? (
                 <CheckCircle2Icon className='h-4 w-4 text-emerald-500' />
               ) : (
-                <AlertCircle className='h-4 w-4 text-kapwa-text-support' />
+                <AlertCircle className='text-kapwa-text-support h-4 w-4' />
               )}
             </div>
             <div className='flex items-center gap-3'>

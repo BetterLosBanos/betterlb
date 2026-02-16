@@ -26,7 +26,10 @@ export function EmptyState({
     <div className='animate-in fade-in zoom-in-95 flex flex-col items-center justify-center py-20 text-center duration-500'>
       {/* Icon Wrapper */}
       <div className='bg-kapwa-bg-surface-raised mb-4 rounded-full p-4 ring-8 ring-slate-50/50'>
-        <Icon className='h-12 w-12 text-kapwa-text-support' aria-hidden='true' />
+        <Icon
+          className='text-kapwa-text-support h-12 w-12'
+          aria-hidden='true'
+        />
       </div>
 
       {/* Text Content */}

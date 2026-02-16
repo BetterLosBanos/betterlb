@@ -141,7 +141,7 @@ const Hero: FC = () => {
               {popularServices.map(service => (
                 <Link
                   key={service.label}
-                  className='text-kapwa-text-inverse kapwa-body-sm-strong rounded-xl border border-white/20 bg-kapwa-bg-surface/10 px-4 py-2 hover:bg-kapwa-bg-surface/20'
+                  className='text-kapwa-text-inverse kapwa-body-sm-strong bg-kapwa-bg-surface/10 hover:bg-kapwa-bg-surface/20 rounded-xl border border-white/20 px-4 py-2'
                   to={service.href}
                 >
                   {service.label}
@@ -151,7 +151,7 @@ const Hero: FC = () => {
           </div>
 
           {/* Right section: quick access */}
-          <div className='animate-slide-in rounded-xl bg-kapwa-bg-surface/10 p-6 shadow-lg backdrop-blur-sm'>
+          <div className='animate-slide-in bg-kapwa-bg-surface/10 rounded-xl p-6 shadow-lg backdrop-blur-sm'>
             <h2 className='text-kapwa-text-inverse kapwa-heading-lg mb-4'>
               {t('services.title')}
             </h2>
@@ -160,7 +160,7 @@ const Hero: FC = () => {
                 <Link
                   key={cat.slug}
                   to={`/services?category=${encodeURIComponent(cat.slug)}`}
-                  className='flex flex-col items-center rounded-lg bg-kapwa-bg-surface/10 p-4 text-center transition-all duration-200 hover:bg-kapwa-bg-surface/20'
+                  className='bg-kapwa-bg-surface/10 hover:bg-kapwa-bg-surface/20 flex flex-col items-center rounded-lg p-4 text-center transition-all duration-200'
                 >
                   {/* Icon background with Kapwa brand color */}
                   <div className='bg-kapwa-brand-500 mb-3 rounded-full p-3'>
@@ -174,7 +174,7 @@ const Hero: FC = () => {
             </div>
             <div className='mt-4 flex'>
               <Link
-                className='text-kapwa-text-inverse kapwa-body-md-strong w-full rounded-lg bg-kapwa-bg-surface/10 p-4 text-center transition-all duration-500 hover:bg-kapwa-bg-surface/20'
+                className='text-kapwa-text-inverse kapwa-body-md-strong bg-kapwa-bg-surface/10 hover:bg-kapwa-bg-surface/20 w-full rounded-lg p-4 text-center transition-all duration-500'
                 to='/services'
               >
                 {t('services.viewAll')}

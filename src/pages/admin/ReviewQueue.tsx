@@ -454,7 +454,9 @@ export default function ReviewQueue() {
       {/* Header */}
       <div className='flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between'>
         <div>
-          <h2 className='text-kapwa-text-strong text-2xl font-bold'>Review Queue</h2>
+          <h2 className='text-kapwa-text-strong text-2xl font-bold'>
+            Review Queue
+          </h2>
           <p className='text-kapwa-text-support'>
             {pagination.total} items needing review
             {selectedItems.size > 0 && ` (${selectedItems.size} selected)`}
@@ -544,7 +546,10 @@ export default function ReviewQueue() {
             Select all visible
           </button>
           <span>•</span>
-          <button onClick={clearSelection} className='hover:text-kapwa-text-brand'>
+          <button
+            onClick={clearSelection}
+            className='hover:text-kapwa-text-brand'
+          >
             Clear selection
           </button>
         </div>

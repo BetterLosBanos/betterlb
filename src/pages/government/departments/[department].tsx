@@ -90,7 +90,7 @@ export default function DepartmentDetail() {
       </Breadcrumb>
 
       {/* --- HERO HEADER --- */}
-      <header className='text-kapwa-text-inverse relative overflow-hidden rounded-2xl bg-kapwa-bg-gray-900 p-8 shadow-xl md:p-10'>
+      <header className='text-kapwa-text-inverse bg-kapwa-bg-gray-900 relative overflow-hidden rounded-2xl p-8 shadow-xl md:p-10'>
         <div className='relative z-10 max-w-3xl'>
           <div className='mb-3 flex items-center gap-2'>
             <Badge variant='primary' dot>
@@ -100,7 +100,7 @@ export default function DepartmentDetail() {
           <h1 className='mb-4 text-3xl font-extrabold tracking-tight md:text-5xl'>
             {toTitleCase(dept.office_name)}
           </h1>
-          <div className='flex flex-wrap gap-x-6 gap-y-2 text-sm font-medium text-kapwa-text-support'>
+          <div className='text-kapwa-text-support flex flex-wrap gap-x-6 gap-y-2 text-sm font-medium'>
             {dept.address && (
               <span className='flex items-center gap-2'>
                 <MapPinIcon className='text-kapwa-text-brand h-4 w-4' />
@@ -201,7 +201,7 @@ export default function DepartmentDetail() {
                         </p>
                       </div>
                     </div>
-                    <ArrowRight className='group-hover:text-kapwa-text-brand h-4 w-4 shrink-0 text-kapwa-text-support transition-all group-hover:translate-x-1' />
+                    <ArrowRight className='group-hover:text-kapwa-text-brand text-kapwa-text-support h-4 w-4 shrink-0 transition-all group-hover:translate-x-1' />
                   </CardContent>
                 </Card>
               </Link>
@@ -212,7 +212,7 @@ export default function DepartmentDetail() {
 
       {/* --- SECTION 3: GENERAL MANDATE --- */}
       <DetailSection title='Office Mandate' icon={InfoIcon}>
-        <Card variant='slate' hover={false} className='bg-kapwa-bg-surface'>
+        <Card variant='default' hover={false} className='bg-kapwa-bg-surface'>
           <CardContent className='p-6'>
             <p className='text-kapwa-text-on-disabled text-sm leading-relaxed md:text-base'>
               The {toTitleCase(dept.office_name)} is a frontline office of the

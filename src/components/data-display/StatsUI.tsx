@@ -42,7 +42,7 @@ export function StatsHero({
       : badges;
 
   return (
-    <div className='text-kapwa-text-inverse relative overflow-hidden rounded-3xl bg-kapwa-bg-gray-900 p-8 shadow-xl md:p-12'>
+    <div className='text-kapwa-text-inverse bg-kapwa-bg-gray-900 relative overflow-hidden rounded-3xl p-8 shadow-xl md:p-12'>
       <div className='relative z-10 space-y-4'>
         <div className='flex flex-wrap gap-2'>
           {badgeArray.map((b, i) => (

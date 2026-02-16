@@ -187,7 +187,7 @@ export default function ServicesPage() {
                         ) : (
                           <>
                             <span className='bg-kapwa-bg-disabled h-1.5 w-1.5 shrink-0 rounded-full' />
-                            <span className='font-bold text-kapwa-text-support italic'>
+                            <span className='text-kapwa-text-inverse-subtle italic'>
                               Unverified
                             </span>
                           </>

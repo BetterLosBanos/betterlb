@@ -216,7 +216,9 @@ export default function FlagForReviewButton({
                   Flag for Review
                 </h3>
                 {itemTitle && (
-                  <p className='text-kapwa-text-disabled text-sm'>{itemTitle}</p>
+                  <p className='text-kapwa-text-disabled text-sm'>
+                    {itemTitle}
+                  </p>
                 )}
               </div>
             </div>

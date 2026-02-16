@@ -67,10 +67,7 @@ export default function TimelineSection() {
                     <div className='border-kapwa-border-brand group-hover:bg-kapwa-bg-brand-default bg-kapwa-bg-surface h-3 w-3 rounded-full border-2 shadow-sm transition-all duration-300 group-hover:scale-125' />
                   </div>
 
-                  <Card
-                    hoverable
-                    className='hover:border-kapwa-border-brand border-kapwa-border-weak shadow-sm transition-all hover:shadow-md'
-                  >
+                  <Card className='hover:border-kapwa-border-brand border-kapwa-border-weak shadow-sm transition-all hover:shadow-md'>
                     <CardContent className='flex flex-col items-start gap-4 p-4 sm:flex-row sm:p-5'>
                       <span className='bg-kapwa-bg-brand-default text-kapwa-text-inverse inline-flex shrink-0 items-center justify-center rounded-lg px-3 py-1 text-xs font-bold shadow-sm'>
                         {event.year}
@@ -129,6 +126,7 @@ export default function TimelineSection() {
           highlightsData.length > COLLAPSE_LIMIT) && (
           <div className='mt-8 flex justify-center'>
             <Button
+              variant='primary'
               onClick={() => setShowAll(!showAll)}
               className='bg-kapwa-bg-surface text-kapwa-text-brand hover:bg-kapwa-bg-surface-brand'
               rightIcon={

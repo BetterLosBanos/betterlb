@@ -138,7 +138,7 @@ export default function TermsIndex() {
                       {term.year_range}
                     </p>
                   </div>
-                  <ChevronRight className='group-hover:text-kapwa-text-brand h-5 w-5 text-kapwa-text-support transition-colors' />
+                  <ChevronRight className='group-hover:text-kapwa-text-brand text-kapwa-text-support h-5 w-5 transition-colors' />
                 </header>
 
                 <div className='text-kapwa-text-disabled mb-4 flex items-center gap-2 text-xs'>

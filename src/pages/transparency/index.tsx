@@ -76,7 +76,10 @@ export default function TransparencyIndex() {
             className='group'
             role='listitem'
           >
-            <Card hover className='border-kapwa-border-weak flex h-full flex-col'>
+            <Card
+              hover
+              className='border-kapwa-border-weak flex h-full flex-col'
+            >
               <CardContent className='flex h-full flex-col p-6'>
                 <div className='mb-6 flex items-start justify-between'>
                   <div
@@ -109,7 +112,7 @@ export default function TransparencyIndex() {
                   <span className='text-kapwa-text-brand text-[10px] font-black tracking-widest uppercase'>
                     Analyze Data
                   </span>
-                  <ChevronRight className='h-4 w-4 text-kapwa-text-support' />
+                  <ChevronRight className='text-kapwa-text-support h-4 w-4' />
                 </div>
               </CardContent>
             </Card>
@@ -150,7 +153,7 @@ export default function TransparencyIndex() {
               <span className='text-kapwa-text-support text-xs font-bold'>
                 BetterGov National Database
               </span>
-              <ExternalLink className='group-hover:text-kapwa-text-brand h-3.5 w-3.5 text-kapwa-text-support' />
+              <ExternalLink className='group-hover:text-kapwa-text-brand text-kapwa-text-support h-3.5 w-3.5' />
             </a>
             <a
               href='https://losbanos.gov.ph/full_disclosure_transparency'
@@ -161,7 +164,7 @@ export default function TransparencyIndex() {
               <span className='text-kapwa-text-support text-xs font-bold'>
                 Official LGU FDP Files
               </span>
-              <ExternalLink className='group-hover:text-kapwa-text-brand h-3.5 w-3.5 text-kapwa-text-support' />
+              <ExternalLink className='group-hover:text-kapwa-text-brand text-kapwa-text-support h-3.5 w-3.5' />
             </a>
           </div>
         </DetailSection>

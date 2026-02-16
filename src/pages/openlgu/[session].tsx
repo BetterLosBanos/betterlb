@@ -81,7 +81,7 @@ export default function SessionDetail() {
       </Breadcrumb>
 
       <header
-        className={`rounded-2xl border border-l-8 border-kapwa-border-weak bg-kapwa-bg-surface p-6 shadow-sm md:p-10 ${isRegular ? 'border-l-primary-600' : 'border-l-secondary-600'}`}
+        className={`border-kapwa-border-weak bg-kapwa-bg-surface rounded-2xl border border-l-8 p-6 shadow-sm md:p-10 ${isRegular ? 'border-l-primary-600' : 'border-l-secondary-600'}`}
       >
         <div className='flex flex-col justify-between gap-6 md:flex-row md:items-center'>
           <div className='space-y-4'>
@@ -192,7 +192,7 @@ export default function SessionDetail() {
                         {doc.number}
                       </span>
                     </div>
-                    <p className='group-hover:text-kapwa-text-brand text-sm leading-relaxed font-bold text-kapwa-text-strong'>
+                    <p className='group-hover:text-kapwa-text-brand text-kapwa-text-strong text-sm leading-relaxed font-bold'>
                       {doc.title}
                     </p>
                   </Link>

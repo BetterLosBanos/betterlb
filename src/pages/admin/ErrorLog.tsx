@@ -135,7 +135,9 @@ export default function ErrorLog() {
       {/* Header */}
       <div className='flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between'>
         <div>
-          <h2 className='text-kapwa-text-strong text-2xl font-bold'>Parse Errors</h2>
+          <h2 className='text-kapwa-text-strong text-2xl font-bold'>
+            Parse Errors
+          </h2>
           <p className='text-kapwa-text-support'>
             Documents that failed during pipeline processing
           </p>

@@ -376,7 +376,7 @@ export default function ProcurementPage() {
         {/* Link 2: National Comparison */}
         <div className='hover:border-kapwa-border-brand border-kapwa-border-weak bg-kapwa-bg-surface flex h-full flex-col justify-between rounded-xl border p-6 shadow-sm transition-all'>
           <div className='mb-4 flex items-start gap-4'>
-            <div className='text-kapwa-text-inverse shrink-0 rounded-xl bg-kapwa-bg-gray-900 p-3'>
+            <div className='text-kapwa-text-inverse bg-kapwa-bg-gray-900 shrink-0 rounded-xl p-3'>
               <Building2 className='h-6 w-6' />
             </div>
             <div>
@@ -393,7 +393,7 @@ export default function ProcurementPage() {
             href='https://transparency.bettergov.ph/procurement'
             target='_blank'
             rel='noreferrer'
-            className='text-kapwa-text-inverse inline-flex w-full items-center justify-center gap-2 rounded-lg bg-kapwa-bg-gray-900 px-4 py-2.5 text-xs font-bold transition-colors hover:bg-kapwa-bg-gray-800'
+            className='text-kapwa-text-inverse bg-kapwa-bg-gray-900 hover:bg-kapwa-bg-gray-800 inline-flex w-full items-center justify-center gap-2 rounded-lg px-4 py-2.5 text-xs font-bold transition-colors'
           >
             Open National Engine <ExternalLink className='h-3 w-3' />
           </a>

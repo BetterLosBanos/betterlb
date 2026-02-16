@@ -143,7 +143,7 @@ export default function LegislativeChamber() {
               <Card
                 key={member.name}
                 hover={!!member.personId}
-                className={`group flex h-full flex-col shadow-xs ${member.personId ? 'cursor-pointer border-kapwa-border-weak' : 'border-kapwa-border-weak'}`}
+                className={`group flex h-full flex-col shadow-xs ${member.personId ? 'border-kapwa-border-weak cursor-pointer' : 'border-kapwa-border-weak'}`}
               >
                 <CardContent className='flex h-full flex-col space-y-4 p-4'>
                   {/* Row 1: Icon, Role, Name */}
@@ -188,7 +188,7 @@ export default function LegislativeChamber() {
                             {/* Small decorative dot/line */}
                             <div className='bg-secondary-600 mt-0.5 h-8 w-1 shrink-0 rounded-full opacity-80' />
 
-                            <span className='text-xs leading-snug font-bold wrap-break-word text-kapwa-text-strong'>
+                            <span className='text-kapwa-text-strong text-xs leading-snug font-bold wrap-break-word'>
                               {toTitleCase(c.committee)}
                             </span>
                           </li>
@@ -241,7 +241,7 @@ export default function LegislativeChamber() {
       </DetailSection>
 
       {/* --- CTA Banner --- */}
-      <div className='group text-kapwa-text-inverse relative overflow-hidden rounded-3xl bg-kapwa-bg-gray-900 p-8 shadow-xl md:p-12'>
+      <div className='group text-kapwa-text-inverse bg-kapwa-bg-gray-900 relative overflow-hidden rounded-3xl p-8 shadow-xl md:p-12'>
         <div className='relative z-10 flex flex-col items-start justify-between gap-8 md:flex-row md:items-center'>
           <div className='max-w-2xl space-y-4'>
             <div className='flex items-center gap-3'>

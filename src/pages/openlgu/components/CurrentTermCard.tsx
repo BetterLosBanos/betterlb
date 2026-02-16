@@ -46,7 +46,7 @@ export default function CurrentTermCard({
             <Badge variant='primary' dot>
               {term.ordinal} Term
             </Badge>
-            <ChevronRight className='group-hover:text-kapwa-text-brand h-5 w-5 text-kapwa-text-support transition-colors' />
+            <ChevronRight className='group-hover:text-kapwa-text-brand text-kapwa-text-support h-5 w-5 transition-colors' />
           </div>
           <h3 className='text-kapwa-text-strong mb-1 text-lg font-extrabold'>
             {term.name}

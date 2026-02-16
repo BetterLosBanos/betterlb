@@ -652,7 +652,9 @@ export default function DocumentEditModal({
               {/* Review Notes */}
               <Card variant='default'>
                 <CardContent className='space-y-4 p-4'>
-                  <h4 className='text-kapwa-text-strong font-bold'>Review Notes</h4>
+                  <h4 className='text-kapwa-text-strong font-bold'>
+                    Review Notes
+                  </h4>
                   <textarea
                     value={formData.review_notes || ''}
                     onChange={e =>
@@ -686,7 +688,7 @@ export default function DocumentEditModal({
 
               {/* PDF Link */}
               {formData.pdf_url && (
-                <Card variant='slate'>
+                <Card variant='default'>
                   <CardContent className='flex items-center gap-3 p-4'>
                     <FileText className='text-kapwa-text-disabled h-5 w-5' />
                     <a
@@ -710,7 +712,7 @@ export default function DocumentEditModal({
           >
             <div className='space-y-6 py-4'>
               {!hasLinkedSession ? (
-                <Card variant='slate'>
+                <Card variant='default'>
                   <CardContent className='flex items-center gap-3 p-4'>
                     <AlertCircle className='h-5 w-5 text-amber-500' />
                     <p className='text-kapwa-text-on-disabled text-sm'>
@@ -723,7 +725,7 @@ export default function DocumentEditModal({
                   <div className='border-t-primary-500 border-kapwa-border-weak h-8 w-8 animate-spin rounded-full border-4' />
                 </div>
               ) : sessionError ? (
-                <Card variant='slate'>
+                <Card variant='default'>
                   <CardContent className='flex items-center gap-3 p-4'>
                     <AlertCircle className='h-5 w-5 text-red-500' />
                     <p className='text-kapwa-text-on-disabled text-sm'>

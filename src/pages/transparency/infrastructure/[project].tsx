@@ -225,7 +225,7 @@ export default function InfrastructureDetail() {
             {label}
           </span>
         </div>
-        <ExternalLink className='group-hover:text-kapwa-text-brand-600 h-3.5 w-3.5 text-kapwa-text-support transition-colors' />
+        <ExternalLink className='group-hover:text-kapwa-text-brand-600 text-kapwa-text-support h-3.5 w-3.5 transition-colors' />
       </a>
     );
   };
@@ -502,7 +502,7 @@ export default function InfrastructureDetail() {
                     {project.bidders.map((bidder, i) => (
                       <div
                         key={i}
-                        className={`flex items-center justify-between rounded-lg border p-3 ${bidder.isWinner ? 'border-emerald-100 bg-emerald-50' : 'border-slate-100 bg-kapwa-bg-surface'}`}
+                        className={`flex items-center justify-between rounded-lg border p-3 ${bidder.isWinner ? 'border-emerald-100 bg-emerald-50' : 'bg-kapwa-bg-surface border-slate-100'}`}
                       >
                         <div>
                           <p
@@ -605,18 +605,20 @@ export default function InfrastructureDetail() {
                     <div className='grid grid-cols-2 gap-2 text-xs'>
                       <p>
                         <span className='text-kapwa-text-disabled'>Type:</span>{' '}
-                        <span className='font-medium text-kapwa-text-strong'>
+                        <span className='text-kapwa-text-strong font-medium'>
                           {comp.infraType}
                         </span>
                       </p>
                       <p>
                         <span className='text-kapwa-text-disabled'>Work:</span>{' '}
-                        <span className='font-medium text-kapwa-text-strong'>
+                        <span className='text-kapwa-text-strong font-medium'>
                           {comp.typeOfWork}
                         </span>
                       </p>
                       <p>
-                        <span className='text-kapwa-text-disabled'>Coords:</span>{' '}
+                        <span className='text-kapwa-text-disabled'>
+                          Coords:
+                        </span>{' '}
                         <span className='text-kapwa-text-on-disabled font-mono'>
                           {comp.coordinates?.latitude.toFixed(5)},{' '}
                           {comp.coordinates?.longitude.toFixed(5)}
@@ -697,7 +699,7 @@ export default function InfrastructureDetail() {
                 </>
               ) : (
                 <div className='border-kapwa-border-weak bg-kapwa-bg-surface-raised rounded-xl border border-dashed p-4 text-center'>
-                  <MapPin className='mx-auto mb-2 h-6 w-6 text-kapwa-text-support' />
+                  <MapPin className='text-kapwa-text-support mx-auto mb-2 h-6 w-6' />
                   <p className='text-kapwa-text-disabled text-xs'>
                     No coordinates available
                   </p>
@@ -719,7 +721,9 @@ export default function InfrastructureDetail() {
               </div>
               {project.imageSummary.latestImageDate && (
                 <div className='border-kapwa-border-weak mt-2 flex items-center justify-between border-t pt-2'>
-                  <span className='text-kapwa-text-disabled text-xs'>Latest</span>
+                  <span className='text-kapwa-text-disabled text-xs'>
+                    Latest
+                  </span>
                   <span className='text-kapwa-text-support text-xs font-medium'>
                     {formatDate(project.imageSummary.latestImageDate)}
                   </span>
@@ -755,7 +759,7 @@ export default function InfrastructureDetail() {
               href={`https://bisto.ph/?q=${encodeURIComponent(project.contractId)}`} //waiting for bisto.ph PR
               target='_blank'
               rel='noreferrer'
-              className='text-kapwa-text-inverse flex w-full items-center justify-center gap-2 rounded-lg bg-kapwa-bg-gray-900 py-2 text-xs font-bold shadow-md transition-all hover:bg-kapwa-bg-gray-800'
+              className='text-kapwa-text-inverse bg-kapwa-bg-gray-900 hover:bg-kapwa-bg-gray-800 flex w-full items-center justify-center gap-2 rounded-lg py-2 text-xs font-bold shadow-md transition-all'
             >
               Search on Bisto.ph <Search className='h-3 w-3' />
             </a>

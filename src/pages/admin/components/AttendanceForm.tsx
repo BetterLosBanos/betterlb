@@ -169,7 +169,9 @@ export default function AttendanceForm({
           <div className='bg-kapwa-bg-surface-raised flex items-center justify-between rounded-md p-4'>
             <div className='flex gap-4'>
               <div>
-                <p className='text-kapwa-text-disabled text-xs'>Total Members</p>
+                <p className='text-kapwa-text-disabled text-xs'>
+                  Total Members
+                </p>
                 <p className='text-kapwa-text-strong text-lg font-bold'>
                   {members.length}
                 </p>

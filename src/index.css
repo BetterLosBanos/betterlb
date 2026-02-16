@@ -71,6 +71,11 @@
 /* Local styles */
 @import 'tailwindcss';
 
+/* Safelist Kapwa color utilities for component library buttons */
+@source inline("{hover:}bg-kapwa-blue-{500,600,700}");
+@source inline("{hover:}bg-kapwa-orange-{500,600,700}");
+@source inline("text-kapwa-neutral-50");
+
 /* Scan shared packages for Tailwind classes */
 @source '../../betterlb-ui/src/**/*.{js,ts,jsx,tsx}';
 @source './node_modules/@betterlb/kapwa';
@@ -91,8 +96,6 @@
   /* These map your specific domain needs to Kapwa tokens */
   --color-brand-executive: var(--color-bg-kapwa-bg-info-active);
   --color-brand-legislative: var(--color-bg-kapwa-bg-kapwa-bg-warning-active);
-  --color-status-verified: var(--color-bg-kapwa-bg-kapwa-bg-success-active);
-  --color-status-audit: var(--color-bg-kapwa-bg-gray-disabled);
 }
 
 @layer base {

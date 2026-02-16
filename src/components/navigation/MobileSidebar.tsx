@@ -23,7 +23,7 @@ export function MobileSidebarTrigger({
       </button>
 
       {isOpen && (
-        <div className='animate-in fade-in fixed inset-0 z-50 bg-kapwa-bg-gray-900/60 backdrop-blur-sm duration-200'>
+        <div className='animate-in fade-in bg-kapwa-bg-gray-900/60 fixed inset-0 z-50 backdrop-blur-sm duration-200'>
           <div className='animate-in slide-in-from-right bg-kapwa-bg-surface absolute top-0 right-0 h-full w-[280px] p-6 shadow-2xl duration-300'>
             <div className='mb-8 flex items-center justify-between'>
               <h2 className='text-kapwa-text-strong text-xs font-bold tracking-widest uppercase'>

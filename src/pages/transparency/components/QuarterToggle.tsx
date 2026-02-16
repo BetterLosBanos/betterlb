@@ -102,7 +102,7 @@ export default function QuarterToggle({
                   onClick={() => onQuarterChange(q)}
                   className={`relative rounded-md px-4 py-1.5 text-xs font-medium transition-all duration-200 ${
                     !isAvailable
-                      ? 'cursor-not-allowed bg-transparent text-kapwa-text-support' // Greyed out
+                      ? 'text-kapwa-text-support cursor-not-allowed bg-transparent' // Greyed out
                       : isSelected
                         ? 'bg-kapwa-bg-gray-900 text-white shadow-sm' // Active & Dark
                         : 'hover:bg-kapwa-bg-surface text-kapwa-text-support hover:shadow-sm' // Available & Hover

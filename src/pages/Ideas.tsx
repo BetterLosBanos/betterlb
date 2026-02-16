@@ -168,19 +168,25 @@ const Ideas: FC = () => {
             <div className='text-kapwa-text-brand text-2xl font-bold'>
               {projectIdeas.length}
             </div>
-            <div className='text-kapwa-text-on-disabled text-sm'>Total Ideas</div>
+            <div className='text-kapwa-text-on-disabled text-sm'>
+              Total Ideas
+            </div>
           </div>
           <div className='bg-kapwa-bg-surface rounded-lg p-4 text-center shadow-xs'>
             <div className='text-kapwa-text-danger text-2xl font-bold'>
               {projectIdeas.filter(idea => idea.priority === 'high').length}
             </div>
-            <div className='text-kapwa-text-on-disabled text-sm'>High Priority</div>
+            <div className='text-kapwa-text-on-disabled text-sm'>
+              High Priority
+            </div>
           </div>
           <div className='bg-kapwa-bg-surface rounded-lg p-4 text-center shadow-xs'>
             <div className='text-kapwa-text-info text-2xl font-bold'>
               {new Set(projectIdeas.map(idea => idea.category)).size}
             </div>
-            <div className='text-kapwa-text-on-disabled text-sm'>Categories</div>
+            <div className='text-kapwa-text-on-disabled text-sm'>
+              Categories
+            </div>
           </div>
           <div className='bg-kapwa-bg-surface rounded-lg p-4 text-center shadow-xs'>
             <div className='text-kapwa-text-kapwa-text-success text-2xl font-bold'>
@@ -194,7 +200,9 @@ const Ideas: FC = () => {
             <div className='text-kapwa-text-accent-purple text-2xl font-bold'>
               {projectIdeas.reduce((sum, idea) => sum + idea.upvotes, 0)}
             </div>
-            <div className='text-kapwa-text-on-disabled text-sm'>Total Votes</div>
+            <div className='text-kapwa-text-on-disabled text-sm'>
+              Total Votes
+            </div>
           </div>
         </div>
 

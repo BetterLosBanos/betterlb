@@ -284,7 +284,7 @@ export default function InfrastructurePage() {
                           {item.category}
                         </Badge>
                         <span className='text-kapwa-text-disabled flex items-center gap-1 text-xs'>
-                          <MapPin className='h-3 w-3 text-kapwa-text-support' />
+                          <MapPin className='text-kapwa-text-support h-3 w-3' />
                           {item.location.barangay
                             ? `${item.location.barangay}, `
                             : ''}
@@ -368,7 +368,7 @@ export default function InfrastructurePage() {
 
         <div className='hover:border-kapwa-border-brand border-kapwa-border-weak bg-kapwa-bg-surface flex h-full flex-col justify-between rounded-xl border p-6 shadow-sm transition-all'>
           <div className='mb-4 flex items-start gap-4'>
-            <div className='text-kapwa-text-inverse shrink-0 rounded-xl bg-kapwa-bg-gray-900 p-3'>
+            <div className='text-kapwa-text-inverse bg-kapwa-bg-gray-900 shrink-0 rounded-xl p-3'>
               <Layers className='h-6 w-6' />
             </div>
             <div>
@@ -386,7 +386,7 @@ export default function InfrastructurePage() {
             href='https://bisto.ph/projects?search=los+ba%C3%B1os&region=Region+IV-A&province=LAGUNA'
             target='_blank'
             rel='noreferrer'
-            className='text-kapwa-text-inverse inline-flex w-full items-center justify-center gap-2 rounded-lg bg-kapwa-bg-gray-900 px-4 py-2.5 text-xs font-bold transition-colors hover:bg-kapwa-bg-gray-800'
+            className='text-kapwa-text-inverse bg-kapwa-bg-gray-900 hover:bg-kapwa-bg-gray-800 inline-flex w-full items-center justify-center gap-2 rounded-lg px-4 py-2.5 text-xs font-bold transition-colors'
           >
             Visit Bisto.ph <ExternalLink className='h-3 w-3' />
           </a>

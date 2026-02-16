@@ -151,7 +151,9 @@ const WeatherPage: FC = () => {
 
                   <div className='grid grid-cols-2 gap-4 text-center md:grid-cols-4'>
                     <div className='bg-kapwa-bg-surface/20 rounded-lg p-4 backdrop-blur-xs'>
-                      <div className='text-kapwa-text-strong/80 mb-1'>Humidity</div>
+                      <div className='text-kapwa-text-strong/80 mb-1'>
+                        Humidity
+                      </div>
                       <div className='text-xl font-semibold'>
                         {selectedCityData.humidity}%
                       </div>
@@ -163,7 +165,9 @@ const WeatherPage: FC = () => {
                       </div>
                     </div>
                     <div className='bg-kapwa-bg-surface/20 rounded-lg p-4 backdrop-blur-xs'>
-                      <div className='text-kapwa-text-strong/80 mb-1'>Pressure</div>
+                      <div className='text-kapwa-text-strong/80 mb-1'>
+                        Pressure
+                      </div>
                       <div className='text-xl font-semibold'>
                         {selectedCityData.pressure} hPa
                       </div>
@@ -212,7 +216,10 @@ const WeatherPage: FC = () => {
                             {dayNum}
                           </p>
                           <div className='my-2 flex justify-center'>
-                            {getWeatherIcon(mockIcon, 'h-8 w-8 text-kapwa-text-support')}
+                            {getWeatherIcon(
+                              mockIcon,
+                              'h-8 w-8 text-kapwa-text-support'
+                            )}
                           </div>
                           <p className='text-kapwa-text-support text-lg font-semibold'>
                             {mockTemp}°C

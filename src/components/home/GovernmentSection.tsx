@@ -2,7 +2,7 @@ import { FC } from 'react';
 
 import { useNavigate } from 'react-router-dom';
 
-import { Button } from '@bettergov/kapwa';
+import { Banner, Button } from '@bettergov/kapwa';
 import { Building2Icon, HomeIcon, UsersIcon } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
 
@@ -64,7 +64,9 @@ const GovernmentSection: FC = () => {
                 <h3 className='text-kapwa-text-strong mb-2 text-xl font-semibold'>
                   {branch.title}
                 </h3>
-                <p className='text-kapwa-text-support mb-4'>{branch.description}</p>
+                <p className='text-kapwa-text-support mb-4'>
+                  {branch.description}
+                </p>
                 <Button
                   onClick={() => navigate(branch.link)}
                   variant='link'
@@ -91,26 +93,18 @@ const GovernmentSection: FC = () => {
           ))}
         </div>
 
-        <div className='bg-kapwa-bg-surface-raised mt-12 rounded-lg p-6'>
-          <div className='items-center md:flex'>
-            <div className='mb-6 md:mb-0 md:w-2/3 md:pr-8'>
-              <h3 className='text-kapwa-text-strong mb-2 text-xl font-semibold'>
-                {t('government.directoryTitle')}
-              </h3>
-              <p className='text-kapwa-text-strong'>
-                {t('government.directoryDescription')}
-              </p>
-            </div>
-            <div className='flex justify-center md:w-1/3 md:justify-end'>
-              <a
-                href='/government/'
-                className='bg-kapwa-bg-brand-weak0 hover:bg-kapwa-bg-brand-default focus:ring-kapwa-border-brand text-kapwa-text-inverse inline-flex items-center justify-center rounded-md px-6 py-3 font-medium shadow-xs transition-colors focus:ring-2 focus:ring-offset-2 focus:outline-hidden'
-              >
-                {t('government.viewDirectory')}
-              </a>
-            </div>
-          </div>
-        </div>
+        <Banner
+          className='p-kapwa-lg mt-12'
+          type='default'
+          title={t('government.directoryTitle')}
+          description={t('government.directoryDescription')}
+          cta={{
+            label: t('government.viewDirectory'),
+            href: '/government/',
+            variant: 'primary',
+            size: 'lg',
+          }}
+        />
       </div>
     </section>
   );

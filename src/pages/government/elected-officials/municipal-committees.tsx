@@ -123,7 +123,7 @@ export default function MunicipalCommitteesPage() {
                     <p className='text-kapwa-text-disabled mb-0.5 text-[9px] leading-none font-bold tracking-tighter uppercase'>
                       Chairperson
                     </p>
-                    <p className='truncate text-xs leading-tight font-bold text-kapwa-text-strong'>
+                    <p className='text-kapwa-text-strong truncate text-xs leading-tight font-bold'>
                       {toTitleCase(committee.chairperson)}
                     </p>
                   </div>

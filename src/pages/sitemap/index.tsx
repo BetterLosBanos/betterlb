@@ -334,7 +334,9 @@ const SitemapPage: FC = () => {
         <div className='mx-auto max-w-5xl'>
           <div className='bg-kapwa-bg-surface overflow-hidden rounded-xl shadow-xs'>
             <div className='border-kapwa-border-weak border-b p-6 md:p-8'>
-              <h1 className='text-kapwa-text-strong text-3xl font-bold'>Sitemap</h1>
+              <h1 className='text-kapwa-text-strong text-3xl font-bold'>
+                Sitemap
+              </h1>
               <p className='text-kapwa-text-support mt-2'>
                 A complete guide to all pages and services available on
                 BetterGov.ph
@@ -384,7 +386,10 @@ const SitemapPage: FC = () => {
           <div className='text-kapwa-text-support mt-8 text-center text-sm'>
             <p>
               Can&apos;t find what you&apos;re looking for? Try using our{' '}
-              <Link to='/search' className='text-kapwa-text-brand hover:underline'>
+              <Link
+                to='/search'
+                className='text-kapwa-text-brand hover:underline'
+              >
                 search feature
               </Link>
               .

@@ -113,7 +113,7 @@ export default function ExecutiveBranchPage() {
                 {/* Official Icon Seal */}
                 <div className='relative'>
                   <div
-                    className={`flex h-20 w-20 items-center justify-center rounded-full border-4 shadow-sm ${isMayor ? 'bg-kapwa-bg-surface border-kapwa-border-brand text-kapwa-text-brand' : 'border-white bg-kapwa-bg-surface text-kapwa-text-disabled'}`}
+                    className={`flex h-20 w-20 items-center justify-center rounded-full border-4 shadow-sm ${isMayor ? 'bg-kapwa-bg-surface border-kapwa-border-brand text-kapwa-text-brand' : 'bg-kapwa-bg-surface text-kapwa-text-disabled border-white'}`}
                   >
                     <Icon className='h-10 w-10' />
                   </div>
@@ -239,7 +239,7 @@ export default function ExecutiveBranchPage() {
                         <span>{official.phone}</span>
                       </div>
                     ) : (
-                      <div className='text-[10px] text-kapwa-text-support italic'>
+                      <div className='text-kapwa-text-support text-[10px] italic'>
                         No contact
                       </div>
                     )}
@@ -254,7 +254,7 @@ export default function ExecutiveBranchPage() {
       {/* --- SECTION 3: BRIDGE --- */}
       <div className='border-kapwa-border-weak bg-kapwa-bg-surface-raised mt-4 flex flex-col items-center justify-between gap-4 rounded-2xl border p-6 md:flex-row'>
         <div className='flex items-center gap-4'>
-          <Briefcase className='h-8 w-8 text-kapwa-text-support' />
+          <Briefcase className='text-kapwa-text-support h-8 w-8' />
           <div>
             <h4 className='text-kapwa-text-strong font-bold'>
               Looking for Department Heads?

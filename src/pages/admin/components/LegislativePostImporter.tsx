@@ -765,7 +765,7 @@ Seconded By: Hon. Miko C. Pelegrina
                 </CardContent>
               </Card>
 
-              <Card variant='slate'>
+              <Card variant='default'>
                 <CardContent className='p-4'>
                   <h4 className='text-kapwa-text-strong mb-2 text-sm font-semibold'>
                     Supported Format
@@ -852,7 +852,7 @@ Seconded By: Hon. Miko C. Pelegrina
                           setSelectedTermId(e.target.value || null)
                         }
                         disabled={termsLoading}
-                        className='border-kapwa-border-weak bg-kapwa-bg-surface w-full rounded-md border px-3 py-2 text-sm disabled:bg-kapwa-bg-surface-raised'
+                        className='border-kapwa-border-weak bg-kapwa-bg-surface disabled:bg-kapwa-bg-surface-raised w-full rounded-md border px-3 py-2 text-sm'
                       >
                         {terms.map(term => (
                           <option key={term.id} value={term.id}>
@@ -1061,7 +1061,7 @@ Seconded By: Hon. Miko C. Pelegrina
           {/* Step 3: Duplicates Found */}
           {step === 'duplicates' && (
             <div className='space-y-4 py-4'>
-              <Card variant='warning'>
+              <Card variant='default'>
                 <CardContent className='p-4'>
                   <div className='flex items-start gap-3'>
                     <AlertTriangle className='mt-0.5 h-5 w-5 flex-shrink-0 text-amber-500' />

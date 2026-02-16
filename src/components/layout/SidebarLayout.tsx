@@ -56,7 +56,7 @@ export default function SidebarLayout({
   }, [location]);
 
   return (
-    <div className={`min-h-screen md:bg-kapwa-bg-surface ${className}`}>
+    <div className={`md:bg-kapwa-bg-surface min-h-screen ${className}`}>
       <div className='container mx-auto py-6 sm:px-4 md:py-8'>
         {/* HEADER LOGIC: Custom Node OR Default ModuleHeader */}
         {headerNode ? (

@@ -36,7 +36,8 @@ export function Badge({
     success: 'bg-emerald-50 text-emerald-800 border-emerald-200',
     warning: 'bg-amber-50 text-amber-800 border-amber-200',
     error: 'bg-rose-50 text-rose-800 border-rose-200',
-    slate: 'bg-kapwa-bg-surface-raised text-kapwa-text-support border-kapwa-border-weak',
+    slate:
+      'bg-kapwa-bg-surface-raised text-kapwa-text-support border-kapwa-border-weak',
     outline: 'bg-transparent text-kapwa-text-support border-slate-300',
   };
 

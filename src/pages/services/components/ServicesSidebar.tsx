@@ -73,7 +73,7 @@ export default function ServicesSidebar({
           />
         ))}
       </SidebarContainer>
-      <div className='border-secondary-100 bg-kapwa-bg-accent-orange-weak/30 mt-8 space-y-4 rounded-2xl border-2 p-5 shadow-sm'>
+      <div className='border-kapwa-orange-100 bg-kapwa-bg-accent-orange-weak/30 mt-8 space-y-4 rounded-2xl border-2 p-5 shadow-sm'>
         <div className='flex items-center gap-3'>
           <div className='bg-kapwa-bg-accent-orange-weak text-kapwa-text-accent-orange rounded-lg p-2'>
             <PlusCircle className='h-5 w-5' />
@@ -91,7 +91,7 @@ export default function ServicesSidebar({
         <Link
           to='/contribute'
           onClick={() => console.log('Link was clicked!')}
-          className='bg-secondary-600 hover:bg-secondary-700 shadow-secondary-900/10 text-kapwa-text-inverse flex min-h-[44px] w-full items-center justify-center gap-2 rounded-xl px-4 py-2.5 text-xs font-bold shadow-md transition-all'
+          className='bg-kapwa-bg-accent-orange-default hover:bg-secondary-700 shadow-secondary-900/10 text-kapwa-text-inverse flex min-h-[44px] w-full items-center justify-center gap-2 rounded-xl px-4 py-2.5 text-xs font-bold shadow-md transition-all'
         >
           Suggest New Service
         </Link>

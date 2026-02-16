@@ -85,7 +85,7 @@ export function DetailSection({
   return (
     <section
       className={cn(
-        'overflow-hidden rounded-2xl border border-kapwa-border-weak bg-kapwa-bg-surface shadow-sm',
+        'border-kapwa-border-weak bg-kapwa-bg-surface overflow-hidden rounded-2xl border shadow-sm',
         className
       )}
     >

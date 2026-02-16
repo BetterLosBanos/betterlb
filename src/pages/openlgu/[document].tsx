@@ -104,7 +104,7 @@ export default function LegislationDocument() {
 
       {/* Accessible Header: Dark Text on Light Background with 8px Semantic Border */}
       <header
-        className={`rounded-2xl border border-l-8 border-kapwa-border-weak bg-kapwa-bg-surface p-6 shadow-sm md:p-10 ${isOrdinance ? 'border-l-primary-600' : 'border-l-secondary-600'}`}
+        className={`border-kapwa-border-weak bg-kapwa-bg-surface rounded-2xl border border-l-8 p-6 shadow-sm md:p-10 ${isOrdinance ? 'border-l-primary-600' : 'border-l-secondary-600'}`}
         aria-labelledby='doc-title'
       >
         <div className='space-y-4'>
@@ -159,12 +159,14 @@ export default function LegislationDocument() {
           <div className='border-kapwa-border-weak bg-kapwa-bg-surface-raised flex flex-col items-center justify-between gap-6 rounded-2xl border p-6 sm:flex-row'>
             <div className='flex items-center gap-4'>
               <div
-                className={`rounded-xl bg-kapwa-bg-surface p-3 shadow-sm ${isOrdinance ? 'text-kapwa-text-brand' : 'text-kapwa-text-accent-orange'}`}
+                className={`bg-kapwa-bg-surface rounded-xl p-3 shadow-sm ${isOrdinance ? 'text-kapwa-text-brand' : 'text-kapwa-text-accent-orange'}`}
               >
                 <FileText className='h-8 w-8' />
               </div>
               <div className='text-center sm:text-left'>
-                <p className='text-kapwa-text-strong font-bold'>Official Document</p>
+                <p className='text-kapwa-text-strong font-bold'>
+                  Official Document
+                </p>
                 <p className='text-kapwa-text-disabled mt-1 text-[10px] font-bold tracking-widest uppercase'>
                   Portable Document Format
                 </p>

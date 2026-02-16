@@ -143,13 +143,14 @@ const SelectPicker = ({
         ref={triggerRef}
         type='button'
         className={cn(
-          'flex w-full items-center justify-between rounded-lg border bg-kapwa-bg-surface text-left transition-all',
+          'bg-kapwa-bg-surface flex w-full items-center justify-between rounded-lg border text-left transition-all',
           'focus:ring-kapwa-border-brand/20 focus:border-kapwa-border-brand focus:ring-2',
           sizes[size],
           disabled
-            ? 'cursor-not-allowed bg-kapwa-bg-surface opacity-60'
+            ? 'bg-kapwa-bg-surface cursor-not-allowed opacity-60'
             : 'hover:border-kapwa-border-strong',
-          isOpen && 'border-kapwa-border-brand0 ring-kapwa-border-brand/20 ring-2',
+          isOpen &&
+            'border-kapwa-border-brand0 ring-kapwa-border-brand/20 ring-2',
           'px-3'
         )}
         onClick={handleToggle}
@@ -160,7 +161,9 @@ const SelectPicker = ({
         <span
           className={cn(
             'truncate',
-            selectedOptions.length > 0 ? 'text-kapwa-text-strong' : 'text-kapwa-text-disabled'
+            selectedOptions.length > 0
+              ? 'text-kapwa-text-strong'
+              : 'text-kapwa-text-disabled'
           )}
         >
           {selectedOptions.length > 0
@@ -180,7 +183,7 @@ const SelectPicker = ({
           )}
           <ChevronDownIcon
             className={cn(
-              'h-4 w-4 text-kapwa-text-disabled transition-transform duration-200',
+              'text-kapwa-text-disabled h-4 w-4 transition-transform duration-200',
               isOpen && 'rotate-180'
             )}
           />
@@ -190,7 +193,7 @@ const SelectPicker = ({
       {isOpen && (
         <div
           className={cn(
-            'absolute z-50 max-h-60 w-full overflow-hidden rounded-lg border bg-kapwa-bg-surface shadow-lg',
+            'bg-kapwa-bg-surface absolute z-50 max-h-60 w-full overflow-hidden rounded-lg border shadow-lg',
             dropdownPosition === 'top' ? 'bottom-full mb-1' : 'top-full mt-1'
           )}
         >

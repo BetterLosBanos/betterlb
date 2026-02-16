@@ -64,7 +64,7 @@ const BreadcrumbList = forwardRef<HTMLOListElement, BreadcrumbListProps>(
     <ol
       ref={ref}
       className={cn(
-        'flex flex-wrap items-center gap-2 text-sm text-kapwa-text-disabled',
+        'text-kapwa-text-disabled flex flex-wrap items-center gap-2 text-sm',
         className
       )}
       {...props}
@@ -94,7 +94,7 @@ const BreadcrumbLink = forwardRef<HTMLAnchorElement, BreadcrumbLinkProps>(
       ref={ref}
       to={href}
       className={cn(
-        'hover:text-kapwa-text-strong font-medium text-kapwa-text-disabled transition-colors',
+        'hover:text-kapwa-text-strong text-kapwa-text-disabled font-medium transition-colors',
         className
       )}
       {...props}
@@ -112,7 +112,7 @@ const BreadcrumbPage = forwardRef<HTMLSpanElement, BreadcrumbPageProps>(
       role='link'
       aria-disabled='true'
       aria-current='page'
-      className={cn('font-bold text-kapwa-text-strong', className)}
+      className={cn('text-kapwa-text-strong font-bold', className)}
       {...props}
     >
       {children}
@@ -143,7 +143,7 @@ const BreadcrumbHome = forwardRef<HTMLAnchorElement, BreadcrumbLinkProps>(
       ref={ref}
       to={href}
       className={cn(
-        'hover:text-kapwa-text-strong flex items-center gap-1.5 font-medium text-kapwa-text-disabled transition-colors',
+        'hover:text-kapwa-text-strong text-kapwa-text-disabled flex items-center gap-1.5 font-medium transition-colors',
         className
       )}
       {...props}

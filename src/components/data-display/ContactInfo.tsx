@@ -39,7 +39,7 @@ export function ContactItem({
   const content = (
     <div
       className={cn(
-        'flex items-start gap-3 rounded-xl border border-slate-100 bg-kapwa-bg-surface p-3 transition-all',
+        'bg-kapwa-bg-surface flex items-start gap-3 rounded-xl border border-slate-100 p-3 transition-all',
         'group hover:border-kapwa-border-brand hover:bg-kapwa-bg-surface-brand/30',
         className
       )}
@@ -65,7 +65,7 @@ export function ContactItem({
       {/* External Visual Indicator */}
       {external && href && (
         <ExternalLink
-          className='group-hover:text-kapwa-text-brand-600 ml-auto h-3 w-3 text-kapwa-text-support transition-colors'
+          className='group-hover:text-kapwa-text-brand-600 text-kapwa-text-support ml-auto h-3 w-3 transition-colors'
           aria-hidden='true'
         />
       )}

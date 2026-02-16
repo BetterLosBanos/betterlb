@@ -114,7 +114,7 @@ export default function OfficialCard({
           {/* Main content */}
           <div className='min-w-0 flex-1'>
             {/* Name */}
-            <p className='truncate font-semibold text-kapwa-text-strong'>
+            <p className='text-kapwa-text-strong truncate font-semibold'>
               {personName}
             </p>
 
