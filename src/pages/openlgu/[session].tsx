@@ -89,21 +89,23 @@ export default function SessionDetail() {
               <Badge variant={isRegular ? 'primary' : 'secondary'} dot>
                 {session.type} Session
               </Badge>
-              <span className='font-mono text-[10px] font-bold tracking-widest text-slate-400 uppercase'>
+              <span className='kapwa-text-disabled font-mono text-[10px] font-bold tracking-widest uppercase'>
                 ID: {session.id}
               </span>
             </div>
-            <h1 className='text-2xl font-extrabold text-slate-900 md:text-3xl'>
+            <h1 className='kapwa-text-strong text-2xl font-extrabold md:text-3xl'>
               {session.ordinal_number} {session.type} Session
             </h1>
           </div>
-          <div className='flex items-center gap-4 rounded-xl border border-slate-100 bg-slate-50 p-4'>
+          <div className='kapwa-border-weak kapwa-bg-surface-raised flex items-center gap-4 rounded-xl border p-4'>
             <Calendar className='text-primary-600 h-5 w-5' />
             <div>
-              <p className='text-[10px] font-bold tracking-widest text-slate-400 uppercase'>
+              <p className='kapwa-text-disabled text-[10px] font-bold tracking-widest uppercase'>
                 Date Held
               </p>
-              <p className='text-sm font-bold text-slate-700'>{session.date}</p>
+              <p className='kapwa-text-support text-sm font-bold'>
+                {session.date}
+              </p>
             </div>
           </div>
         </div>
@@ -130,7 +132,7 @@ export default function SessionDetail() {
                       <li key={p.id}>
                         <Link
                           to={`/openlgu/person/${p.id}`}
-                          className='hover:text-primary-600 block py-1 text-sm font-medium text-slate-600 transition-colors'
+                          className='hover:kapwa-text-brand kapwa-text-on-disabled block py-1 text-sm font-medium transition-colors'
                         >
                           {getPersonName(p)}
                         </Link>
@@ -140,7 +142,7 @@ export default function SessionDetail() {
                 </div>
 
                 {absentMembers.length > 0 && (
-                  <div className='border-t border-slate-100 pt-4'>
+                  <div className='kapwa-border-weak border-t pt-4'>
                     <h3 className='text-secondary-600 mb-3 flex items-center gap-2 text-[10px] font-bold tracking-widest uppercase'>
                       <XCircle className='h-3.5 w-3.5' /> Absent (
                       {absentMembers.length})
@@ -149,7 +151,7 @@ export default function SessionDetail() {
                       {absentMembers.map((p: Person) => (
                         <li
                           key={p.id}
-                          className='block py-1 text-sm font-medium text-slate-400'
+                          className='kapwa-text-disabled block py-1 text-sm font-medium'
                         >
                           {getPersonName(p)}
                         </li>
@@ -176,7 +178,7 @@ export default function SessionDetail() {
                   <Link
                     key={doc.id}
                     to={`/openlgu/documents/${doc.id}`}
-                    className='group -mx-2 block min-h-[44px] rounded-lg px-2 py-4 transition-all hover:bg-slate-50'
+                    className='group hover:kapwa-bg-surface-raised -mx-2 block min-h-[44px] rounded-lg px-2 py-4 transition-all'
                   >
                     <div className='mb-1 flex items-center gap-3'>
                       <Badge
@@ -186,11 +188,11 @@ export default function SessionDetail() {
                       >
                         {doc.type}
                       </Badge>
-                      <span className='font-mono text-[10px] font-bold text-slate-400 uppercase'>
+                      <span className='kapwa-text-disabled font-mono text-[10px] font-bold uppercase'>
                         {doc.number}
                       </span>
                     </div>
-                    <p className='group-hover:text-primary-600 text-sm leading-relaxed font-bold text-slate-800'>
+                    <p className='group-hover:kapwa-text-brand text-sm leading-relaxed font-bold text-slate-800'>
                       {doc.title}
                     </p>
                   </Link>

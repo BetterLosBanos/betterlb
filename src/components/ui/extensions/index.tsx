@@ -1,5 +1,4 @@
 // Extended components based on Kapwa
-export { Button } from './Button';
 export {
   Card,
   CardHeader,
@@ -16,6 +15,7 @@ export {
 } from './Card';
 
 // Kapwa components available for direct import
-export { Input } from '@bettergov/kapwa/input';
-export { Label } from '@bettergov/kapwa/label';
-export { Banner } from '@bettergov/kapwa/banner';
+export { Input } from '@bettergov/kapwa';
+export { Label } from '@bettergov/kapwa';
+export { Banner } from '@bettergov/kapwa';
+export { Button } from '@bettergov/kapwa';

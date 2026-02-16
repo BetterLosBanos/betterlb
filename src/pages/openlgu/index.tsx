@@ -188,7 +188,10 @@ export default function LegislationIndex() {
 
       {/* Results Badge + Pagination */}
       <div className='flex flex-wrap items-center justify-between gap-4'>
-        <Badge variant='slate' className='border-slate-200 bg-slate-50'>
+        <Badge
+          variant='slate'
+          className='kapwa-bg-surface-raised border-slate-200'
+        >
           {filteredDocs.length} Results
         </Badge>
         {totalPages > 1 && (
@@ -196,11 +199,11 @@ export default function LegislationIndex() {
             <button
               onClick={() => setCurrentPage(Math.max(1, currentPage - 1))}
               disabled={currentPage === 1}
-              className='rounded-lg border border-slate-200 bg-white px-3 py-1.5 text-xs font-bold text-slate-600 transition-colors hover:bg-slate-50 disabled:cursor-not-allowed disabled:opacity-50'
+              className='kapwa-border-weak kapwa-bg-surface kapwa-text-on-disabled hover:kapwa-bg-surface-raised rounded-lg border px-3 py-1.5 text-xs font-bold transition-colors disabled:cursor-not-allowed disabled:opacity-50'
             >
               ← Previous
             </button>
-            <span className='text-xs font-medium text-slate-500'>
+            <span className='kapwa-text-disabled text-xs font-medium'>
               Page {currentPage} of {totalPages}
             </span>
             <button
@@ -208,7 +211,7 @@ export default function LegislationIndex() {
                 setCurrentPage(Math.min(totalPages, currentPage + 1))
               }
               disabled={currentPage === totalPages}
-              className='rounded-lg border border-slate-200 bg-white px-3 py-1.5 text-xs font-bold text-slate-600 transition-colors hover:bg-slate-50 disabled:cursor-not-allowed disabled:opacity-50'
+              className='kapwa-border-weak kapwa-bg-surface kapwa-text-on-disabled hover:kapwa-bg-surface-raised rounded-lg border px-3 py-1.5 text-xs font-bold transition-colors disabled:cursor-not-allowed disabled:opacity-50'
             >
               Next →
             </button>
@@ -251,7 +254,7 @@ export default function LegislationIndex() {
             className='group block'
             aria-label={`${doc.type} ${doc.number}: ${doc.title}`}
           >
-            <article className='hover:border-primary-300 relative flex min-h-[100px] flex-col gap-4 rounded-2xl border border-slate-200 bg-white p-5 shadow-xs transition-all hover:shadow-md md:flex-row md:items-start md:justify-between'>
+            <article className='hover:kapwa-border-brand kapwa-border-weak kapwa-bg-surface relative flex min-h-[100px] flex-col gap-4 rounded-2xl border p-5 shadow-xs transition-all hover:shadow-md md:flex-row md:items-start md:justify-between'>
               <div className='flex-1 space-y-2'>
                 <header className='flex items-center gap-3'>
                   <Badge
@@ -260,17 +263,17 @@ export default function LegislationIndex() {
                     {doc.type}
                   </Badge>
                   <span
-                    className='text-[10px] font-bold tracking-widest text-slate-400 uppercase'
+                    className='kapwa-text-disabled text-[10px] font-bold tracking-widest uppercase'
                     aria-label={`Enacted on ${doc.date_enacted}`}
                   >
                     {doc.date_enacted}
                   </span>
                 </header>
-                <h3 className='group-hover:text-primary-600 line-clamp-2 text-base leading-snug font-bold text-slate-900 transition-colors'>
+                <h3 className='group-hover:kapwa-text-brand kapwa-text-strong line-clamp-2 text-base leading-snug font-bold transition-colors'>
                   {doc.title}
                 </h3>
-                <div className='flex items-center gap-2 text-[11px] font-medium text-slate-500'>
-                  <span className='rounded bg-slate-100 px-1.5 py-0.5 font-mono font-bold text-slate-600'>
+                <div className='kapwa-text-disabled flex items-center gap-2 text-[11px] font-medium'>
+                  <span className='kapwa-bg-hover kapwa-text-on-disabled rounded px-1.5 py-0.5 font-mono font-bold'>
                     {doc.number}
                   </span>
                   <span className='text-slate-300'>|</span>
@@ -289,8 +292,8 @@ export default function LegislationIndex() {
 
       {/* Bottom Pagination */}
       {totalPages > 1 && (
-        <div className='flex flex-wrap items-center justify-between gap-4 rounded-xl border-t border-slate-200 bg-slate-50 p-4'>
-          <span className='text-xs font-medium text-slate-500'>
+        <div className='kapwa-border-weak kapwa-bg-surface-raised flex flex-wrap items-center justify-between gap-4 rounded-xl border-t p-4'>
+          <span className='kapwa-text-disabled text-xs font-medium'>
             Showing {(currentPage - 1) * itemsPerPage + 1}—
             {Math.min(currentPage * itemsPerPage, filteredDocs.length)} of{' '}
             {filteredDocs.length}
@@ -299,11 +302,11 @@ export default function LegislationIndex() {
             <button
               onClick={() => setCurrentPage(Math.max(1, currentPage - 1))}
               disabled={currentPage === 1}
-              className='rounded-lg border border-slate-200 bg-white px-3 py-1.5 text-xs font-bold text-slate-600 transition-colors hover:bg-slate-50 disabled:cursor-not-allowed disabled:opacity-50'
+              className='kapwa-border-weak kapwa-bg-surface kapwa-text-on-disabled hover:kapwa-bg-surface-raised rounded-lg border px-3 py-1.5 text-xs font-bold transition-colors disabled:cursor-not-allowed disabled:opacity-50'
             >
               ← Previous
             </button>
-            <span className='text-xs font-medium text-slate-500'>
+            <span className='kapwa-text-disabled text-xs font-medium'>
               Page {currentPage} of {totalPages}
             </span>
             <button
@@ -311,7 +314,7 @@ export default function LegislationIndex() {
                 setCurrentPage(Math.min(totalPages, currentPage + 1))
               }
               disabled={currentPage === totalPages}
-              className='rounded-lg border border-slate-200 bg-white px-3 py-1.5 text-xs font-bold text-slate-600 transition-colors hover:bg-slate-50 disabled:cursor-not-allowed disabled:opacity-50'
+              className='kapwa-border-weak kapwa-bg-surface kapwa-text-on-disabled hover:kapwa-bg-surface-raised rounded-lg border px-3 py-1.5 text-xs font-bold transition-colors disabled:cursor-not-allowed disabled:opacity-50'
             >
               Next →
             </button>

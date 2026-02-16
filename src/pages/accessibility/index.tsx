@@ -110,11 +110,26 @@ const AccessibilityPage: FC = () => {
   const getStatusIcon = (status: string) => {
     switch (status) {
       case 'compliant':
-        return <CheckCircleIcon className='h-5 w-5 text-green-600' />;
+        return (
+          <CheckCircleIcon
+            style={{ color: 'var(--color-kapwa-green-600)' }}
+            className='h-5 w-5'
+          />
+        );
       case 'partial':
-        return <AlertCircleIcon className='h-5 w-5 text-yellow-600' />;
+        return (
+          <AlertCircleIcon
+            style={{ color: 'var(--color-kapwa-yellow-600)' }}
+            className='h-5 w-5'
+          />
+        );
       default:
-        return <InfoIcon className='h-5 w-5 text-blue-600' />;
+        return (
+          <InfoIcon
+            style={{ color: 'var(--color-kapwa-blue-600)' }}
+            className='h-5 w-5'
+          />
+        );
     }
   };
 
@@ -130,7 +145,7 @@ const AccessibilityPage: FC = () => {
   };
 
   return (
-    <div className='min-h-screen bg-gray-50 py-12'>
+    <div className='kapwa-bg-surface-raised min-h-screen py-12'>
       <SEO
         title='Accessibility Statement | BetterGov.ph'
         description="Learn about BetterGov.ph's commitment to web accessibility, including WCAG compliance, accessibility features, and how to request assistance."
@@ -147,12 +162,12 @@ const AccessibilityPage: FC = () => {
       <div className='container mx-auto px-4'>
         <div className='mx-auto max-w-4xl'>
           {/* Header */}
-          <div className='mb-8 overflow-hidden rounded-xl bg-white shadow-xs'>
-            <div className='border-b border-gray-200 p-6 md:p-8'>
-              <h1 className='mb-4 text-3xl font-bold text-gray-900'>
+          <div className='kapwa-bg-surface mb-8 overflow-hidden rounded-xl shadow-xs'>
+            <div className='kapwa-border-weak border-b p-6 md:p-8'>
+              <h1 className='kapwa-text-strong mb-4 text-3xl font-bold'>
                 Accessibility Statement
               </h1>
-              <p className='text-lg text-gray-800'>
+              <p className='kapwa-text-support text-lg'>
                 BetterGov.ph is committed to ensuring digital accessibility for
                 people with disabilities. We are continually improving the user
                 experience for everyone and applying the relevant accessibility
@@ -162,12 +177,12 @@ const AccessibilityPage: FC = () => {
           </div>
 
           {/* Commitment Section */}
-          <div className='mb-8 overflow-hidden rounded-xl bg-white shadow-xs'>
+          <div className='kapwa-bg-surface mb-8 overflow-hidden rounded-xl shadow-xs'>
             <div className='p-6 md:p-8'>
-              <h2 className='mb-4 text-2xl font-bold text-gray-900'>
+              <h2 className='kapwa-text-strong mb-4 text-2xl font-bold'>
                 Our Commitment
               </h2>
-              <div className='prose prose-lg text-gray-800'>
+              <div className='prose prose-lg kapwa-text-support'>
                 <p>
                   We believe that everyone should have equal access to
                   government information and services. Our website is designed
@@ -185,30 +200,32 @@ const AccessibilityPage: FC = () => {
           </div>
 
           {/* Accessibility Features */}
-          <div className='mb-8 overflow-hidden rounded-xl bg-white shadow-xs'>
+          <div className='kapwa-bg-surface mb-8 overflow-hidden rounded-xl shadow-xs'>
             <div className='p-6 md:p-8'>
-              <h2 className='mb-6 text-2xl font-bold text-gray-900'>
+              <h2 className='kapwa-text-strong mb-6 text-2xl font-bold'>
                 Accessibility Features
               </h2>
               <div className='grid grid-cols-1 gap-6 md:grid-cols-2'>
                 {accessibilityFeatures.map((feature, index) => (
                   <div
                     key={index}
-                    className='rounded-lg border border-gray-200 p-6'
+                    className='kapwa-border-weak rounded-lg border p-6'
                   >
                     <div className='mb-4 flex items-center'>
-                      <div className='bg-primary-50 text-primary-600 mr-3 rounded-md p-2'>
+                      <div className='bg-primary-50 kapwa-text-brand mr-3 rounded-md p-2'>
                         {feature.icon}
                       </div>
-                      <h3 className='text-lg font-semibold text-gray-900'>
+                      <h3 className='kapwa-text-strong text-lg font-semibold'>
                         {feature.title}
                       </h3>
                     </div>
                     <ul className='space-y-2'>
                       {feature.features.map((item, itemIndex) => (
                         <li key={itemIndex} className='flex items-start'>
-                          <CheckCircleIcon className='mt-0.5 mr-2 h-4 w-4 flex-shrink-0 text-green-600' />
-                          <span className='text-sm text-gray-800'>{item}</span>
+                          <CheckCircleIcon className='kapwa-text-success mt-0.5 mr-2 h-4 w-4 flex-shrink-0' />
+                          <span className='kapwa-text-support text-sm'>
+                            {item}
+                          </span>
                         </li>
                       ))}
                     </ul>
@@ -219,9 +236,9 @@ const AccessibilityPage: FC = () => {
           </div>
 
           {/* Standards Compliance */}
-          <div className='mb-8 overflow-hidden rounded-xl bg-white shadow-xs'>
+          <div className='kapwa-bg-surface mb-8 overflow-hidden rounded-xl shadow-xs'>
             <div className='p-6 md:p-8'>
-              <h2 className='mb-6 text-2xl font-bold text-gray-900'>
+              <h2 className='kapwa-text-strong mb-6 text-2xl font-bold'>
                 Standards Compliance
               </h2>
               <div className='space-y-4'>
@@ -234,7 +251,7 @@ const AccessibilityPage: FC = () => {
                   >
                     <div className='mb-2 flex items-center'>
                       {getStatusIcon(standard.status)}
-                      <h3 className='ml-2 text-lg font-semibold text-gray-900'>
+                      <h3 className='kapwa-text-strong ml-2 text-lg font-semibold'>
                         {standard.level}
                       </h3>
                     </div>
@@ -246,58 +263,60 @@ const AccessibilityPage: FC = () => {
           </div>
 
           {/* Keyboard Shortcuts */}
-          <div className='mb-8 overflow-hidden rounded-xl bg-white shadow-xs'>
+          <div className='kapwa-bg-surface mb-8 overflow-hidden rounded-xl shadow-xs'>
             <div className='p-6 md:p-8'>
-              <h2 className='mb-6 text-2xl font-bold text-gray-900'>
+              <h2 className='kapwa-text-strong mb-6 text-2xl font-bold'>
                 Keyboard Shortcuts
               </h2>
               <div className='grid grid-cols-1 gap-4 md:grid-cols-2'>
                 <div className='space-y-3'>
-                  <div className='flex items-center justify-between rounded-lg bg-gray-50 p-3'>
-                    <span className='font-medium text-gray-900'>
+                  <div className='kapwa-bg-surface-raised flex items-center justify-between rounded-lg p-3'>
+                    <span className='kapwa-text-strong font-medium'>
                       Skip to main content
                     </span>
-                    <kbd className='rounded-sm bg-gray-200 px-2 py-1 font-mono text-sm'>
+                    <kbd className='kapwa-bg-active rounded-sm px-2 py-1 font-mono text-sm'>
                       Tab
                     </kbd>
                   </div>
-                  <div className='flex items-center justify-between rounded-lg bg-gray-50 p-3'>
-                    <span className='font-medium text-gray-900'>
+                  <div className='kapwa-bg-surface-raised flex items-center justify-between rounded-lg p-3'>
+                    <span className='kapwa-text-strong font-medium'>
                       Navigate links
                     </span>
-                    <kbd className='rounded-sm bg-gray-200 px-2 py-1 font-mono text-sm'>
+                    <kbd className='kapwa-bg-active rounded-sm px-2 py-1 font-mono text-sm'>
                       Tab / Shift+Tab
                     </kbd>
                   </div>
-                  <div className='flex items-center justify-between rounded-lg bg-gray-50 p-3'>
-                    <span className='font-medium text-gray-900'>
+                  <div className='kapwa-bg-surface-raised flex items-center justify-between rounded-lg p-3'>
+                    <span className='kapwa-text-strong font-medium'>
                       Activate link/button
                     </span>
-                    <kbd className='rounded-sm bg-gray-200 px-2 py-1 font-mono text-sm'>
+                    <kbd className='kapwa-bg-active rounded-sm px-2 py-1 font-mono text-sm'>
                       Enter / Space
                     </kbd>
                   </div>
                 </div>
                 <div className='space-y-3'>
-                  <div className='flex items-center justify-between rounded-lg bg-gray-50 p-3'>
-                    <span className='font-medium text-gray-900'>Search</span>
-                    <kbd className='rounded-sm bg-gray-200 px-2 py-1 font-mono text-sm'>
+                  <div className='kapwa-bg-surface-raised flex items-center justify-between rounded-lg p-3'>
+                    <span className='kapwa-text-strong font-medium'>
+                      Search
+                    </span>
+                    <kbd className='kapwa-bg-active rounded-sm px-2 py-1 font-mono text-sm'>
                       Ctrl+K
                     </kbd>
                   </div>
-                  <div className='flex items-center justify-between rounded-lg bg-gray-50 p-3'>
-                    <span className='font-medium text-gray-900'>
+                  <div className='kapwa-bg-surface-raised flex items-center justify-between rounded-lg p-3'>
+                    <span className='kapwa-text-strong font-medium'>
                       Close modal/menu
                     </span>
-                    <kbd className='rounded-sm bg-gray-200 px-2 py-1 font-mono text-sm'>
+                    <kbd className='kapwa-bg-active rounded-sm px-2 py-1 font-mono text-sm'>
                       Escape
                     </kbd>
                   </div>
-                  <div className='flex items-center justify-between rounded-lg bg-gray-50 p-3'>
-                    <span className='font-medium text-gray-900'>
+                  <div className='kapwa-bg-surface-raised flex items-center justify-between rounded-lg p-3'>
+                    <span className='kapwa-text-strong font-medium'>
                       Navigate menu items
                     </span>
-                    <kbd className='rounded-sm bg-gray-200 px-2 py-1 font-mono text-sm'>
+                    <kbd className='kapwa-bg-active rounded-sm px-2 py-1 font-mono text-sm'>
                       Arrow Keys
                     </kbd>
                   </div>
@@ -307,12 +326,12 @@ const AccessibilityPage: FC = () => {
           </div>
 
           {/* Feedback and Support */}
-          <div className='mb-8 overflow-hidden rounded-xl bg-white shadow-xs'>
+          <div className='kapwa-bg-surface mb-8 overflow-hidden rounded-xl shadow-xs'>
             <div className='p-6 md:p-8'>
-              <h2 className='mb-6 text-2xl font-bold text-gray-900'>
+              <h2 className='kapwa-text-strong mb-6 text-2xl font-bold'>
                 Feedback and Support
               </h2>
-              <div className='prose prose-lg mb-6 text-gray-800'>
+              <div className='prose prose-lg kapwa-text-support mb-6'>
                 <p>
                   We welcome your feedback on the accessibility of BetterGov.ph.
                   If you encounter accessibility barriers or have suggestions
@@ -321,37 +340,37 @@ const AccessibilityPage: FC = () => {
               </div>
 
               <div className='grid grid-cols-1 gap-6 md:grid-cols-2'>
-                <div className='rounded-lg border border-gray-200 p-6'>
+                <div className='kapwa-border-weak rounded-lg border p-6'>
                   <div className='mb-4 flex items-center'>
                     <MailIcon className='text-primary-600 mr-3 h-6 w-6' />
-                    <h3 className='text-lg font-semibold text-gray-900'>
+                    <h3 className='kapwa-text-strong text-lg font-semibold'>
                       Email Support
                     </h3>
                   </div>
-                  <p className='mb-3 text-gray-800'>
+                  <p className='kapwa-text-support mb-3'>
                     Send us your accessibility feedback or request assistance.
                   </p>
                   <a
                     href='mailto:accessibility@bettergov.ph'
-                    className='text-primary-600 hover:text-primary-700 font-medium'
+                    className='text-primary-600 hover:kapwa-text-brand font-medium'
                   >
                     accessibility@bettergov.ph
                   </a>
                 </div>
 
-                <div className='rounded-lg border border-gray-200 p-6'>
+                <div className='kapwa-border-weak rounded-lg border p-6'>
                   <div className='mb-4 flex items-center'>
                     <PhoneIcon className='text-primary-600 mr-3 h-6 w-6' />
-                    <h3 className='text-lg font-semibold text-gray-900'>
+                    <h3 className='kapwa-text-strong text-lg font-semibold'>
                       Phone Support
                     </h3>
                   </div>
-                  <p className='mb-3 text-gray-800'>
+                  <p className='kapwa-text-support mb-3'>
                     Call us for immediate accessibility assistance.
                   </p>
                   <a
                     href='tel:+63-2-8888-1000'
-                    className='text-primary-600 hover:text-primary-700 font-medium'
+                    className='text-primary-600 hover:kapwa-text-brand font-medium'
                   >
                     +63 (2) 8888-1000
                   </a>
@@ -361,12 +380,12 @@ const AccessibilityPage: FC = () => {
           </div>
 
           {/* Alternative Formats */}
-          <div className='mb-8 overflow-hidden rounded-xl bg-white shadow-xs'>
+          <div className='kapwa-bg-surface mb-8 overflow-hidden rounded-xl shadow-xs'>
             <div className='p-6 md:p-8'>
-              <h2 className='mb-6 text-2xl font-bold text-gray-900'>
+              <h2 className='kapwa-text-strong mb-6 text-2xl font-bold'>
                 Alternative Formats
               </h2>
-              <div className='prose prose-lg text-gray-800'>
+              <div className='prose prose-lg kapwa-text-support'>
                 <p>
                   If you need information from this website in an alternative
                   format, such as:
@@ -388,13 +407,13 @@ const AccessibilityPage: FC = () => {
           </div>
 
           {/* Last Updated */}
-          <div className='overflow-hidden rounded-xl bg-white shadow-xs'>
+          <div className='kapwa-bg-surface overflow-hidden rounded-xl shadow-xs'>
             <div className='p-6 text-center md:p-8'>
-              <p className='text-sm text-gray-800'>
+              <p className='kapwa-text-support text-sm'>
                 This accessibility statement was last updated on{' '}
                 <time dateTime='2025-09-08'>September 8, 2025</time>.
               </p>
-              <p className='mt-2 text-sm text-gray-800'>
+              <p className='kapwa-text-support mt-2 text-sm'>
                 We review and update this statement regularly to ensure it
                 remains accurate and current.
               </p>

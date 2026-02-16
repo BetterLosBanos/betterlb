@@ -1,5 +1,6 @@
 import { useEffect, useMemo, useState } from 'react';
 
+import { Button } from '@bettergov/kapwa';
 import {
   BarChart3,
   Briefcase,
@@ -15,7 +16,6 @@ import {
 import { StatsCard } from '@/components/data-display/StatsUI';
 import { ModuleHeader } from '@/components/layout/PageLayouts';
 import { Badge } from '@/components/ui/Badge';
-import Button from '@/components/ui/Button';
 import { CardGrid } from '@/components/ui/Card';
 import { EmptyState } from '@/components/ui/EmptyState';
 import { PaginationControls } from '@/components/ui/Pagination';
@@ -252,7 +252,7 @@ export default function ProcurementPage() {
           {[1, 2, 3, 4, 5].map(i => (
             <div
               key={i}
-              className='h-16 animate-pulse rounded-xl bg-slate-50'
+              className='kapwa-bg-surface-raised h-16 animate-pulse rounded-xl'
             />
           ))}
         </div>
@@ -263,10 +263,10 @@ export default function ProcurementPage() {
           icon={Search}
         />
       ) : (
-        <div className='overflow-hidden rounded-xl border border-slate-200 bg-white shadow-sm'>
+        <div className='kapwa-border-weak kapwa-bg-surface overflow-hidden rounded-xl border shadow-sm'>
           <div className='overflow-x-auto'>
             <table className='w-full text-left text-sm'>
-              <thead className='border-b border-slate-200 bg-slate-50 text-xs font-bold tracking-wider text-slate-500 uppercase'>
+              <thead className='kapwa-border-weak kapwa-bg-surface-raised kapwa-text-disabled border-b text-xs font-bold tracking-wider uppercase'>
                 <tr>
                   <th className='hidden w-32 px-6 py-4 md:table-cell'>
                     Ref ID
@@ -281,14 +281,14 @@ export default function ProcurementPage() {
                 {paginatedResults.map(row => (
                   <tr
                     key={row.id}
-                    className='group transition-colors hover:bg-slate-50/50'
+                    className='group hover:kapwa-bg-surface-raised/50 transition-colors'
                   >
-                    <td className='group-hover:text-primary-600 hidden px-6 py-4 font-mono text-xs text-slate-500 transition-colors md:table-cell'>
+                    <td className='group-hover:kapwa-text-brand kapwa-text-disabled hidden px-6 py-4 font-mono text-xs transition-colors md:table-cell'>
                       {row.reference_id}
                     </td>
                     <td className='px-6 py-4'>
                       <p
-                        className='line-clamp-2 leading-snug font-bold text-slate-900'
+                        className='kapwa-text-strong line-clamp-2 leading-snug font-bold'
                         title={row.notice_title}
                       >
                         {row.notice_title}
@@ -296,13 +296,13 @@ export default function ProcurementPage() {
                       <div className='mt-1 flex items-center gap-2'>
                         <Badge
                           variant='slate'
-                          className='h-4 border-slate-200 bg-slate-50 px-1.5 py-0 text-[9px] text-slate-500'
+                          className='kapwa-border-weak kapwa-bg-surface-raised kapwa-text-disabled h-4 px-1.5 py-0 text-[9px]'
                         >
                           {row.business_category}
                         </Badge>
                         {row.awardee_name && (
                           <span
-                            className='max-w-[200px] truncate text-xs text-slate-500'
+                            className='kapwa-text-disabled max-w-[200px] truncate text-xs'
                             title={row.awardee_name}
                           >
                             • {row.awardee_name}
@@ -310,10 +310,10 @@ export default function ProcurementPage() {
                         )}
                       </div>
                     </td>
-                    <td className='px-6 py-4 text-right font-mono font-bold text-slate-900'>
+                    <td className='kapwa-text-strong px-6 py-4 text-right font-mono font-bold'>
                       {formatPesoAdaptive(row.contract_amount).fullString}
                     </td>
-                    <td className='hidden px-6 py-4 text-xs whitespace-nowrap text-slate-600 md:table-cell'>
+                    <td className='kapwa-text-on-disabled hidden px-6 py-4 text-xs whitespace-nowrap md:table-cell'>
                       {formatDate(row.award_date)}
                     </td>
                     <td className='px-6 py-4 text-center'>
@@ -348,16 +348,16 @@ export default function ProcurementPage() {
       {/* --- EXTERNAL LINKS FOOTER --- */}
       <div className='grid grid-cols-1 gap-4 md:grid-cols-2'>
         {/* Link 1: Local Analytics */}
-        <div className='hover:border-primary-200 flex h-full flex-col justify-between rounded-xl border border-slate-200 bg-white p-6 shadow-sm transition-all'>
+        <div className='hover:kapwa-border-brand kapwa-border-weak kapwa-bg-surface flex h-full flex-col justify-between rounded-xl border p-6 shadow-sm transition-all'>
           <div className='mb-4 flex items-start gap-4'>
-            <div className='shrink-0 rounded-xl bg-blue-50 p-3 text-blue-600'>
+            <div className='kapwa-bg-info-weak kapwa-text-info shrink-0 rounded-xl p-3'>
               <BarChart3 className='h-6 w-6' />
             </div>
             <div>
-              <h4 className='mb-1 font-bold text-slate-900'>
+              <h4 className='kapwa-text-strong mb-1 font-bold'>
                 Advanced Analytics
               </h4>
-              <p className='text-xs leading-relaxed text-slate-500'>
+              <p className='kapwa-text-disabled text-xs leading-relaxed'>
                 View detailed spending charts, top supplier breakdowns, and
                 historical procurement trends for Los Baños.
               </p>
@@ -367,23 +367,23 @@ export default function ProcurementPage() {
             href='https://transparency.bettergov.ph/organizations/MUNICIPALITY%20OF%20LOS%20BA%C3%91OS%2C%20LAGUNA'
             target='_blank'
             rel='noreferrer'
-            className='inline-flex w-full items-center justify-center gap-2 rounded-lg bg-blue-50 px-4 py-2.5 text-xs font-bold text-blue-700 transition-colors hover:bg-blue-100'
+            className='kapwa-bg-info-weak kapwa-text-info hover:kapwa-bg-info-weak inline-flex w-full items-center justify-center gap-2 rounded-lg px-4 py-2.5 text-xs font-bold transition-colors'
           >
             View Los Baños Charts <ExternalLink className='h-3 w-3' />
           </a>
         </div>
 
         {/* Link 2: National Comparison */}
-        <div className='hover:border-primary-200 flex h-full flex-col justify-between rounded-xl border border-slate-200 bg-white p-6 shadow-sm transition-all'>
+        <div className='hover:kapwa-border-brand kapwa-border-weak kapwa-bg-surface flex h-full flex-col justify-between rounded-xl border p-6 shadow-sm transition-all'>
           <div className='mb-4 flex items-start gap-4'>
-            <div className='shrink-0 rounded-xl bg-slate-900 p-3 text-white'>
+            <div className='kapwa-text-inverse shrink-0 rounded-xl bg-slate-900 p-3'>
               <Building2 className='h-6 w-6' />
             </div>
             <div>
-              <h4 className='mb-1 font-bold text-slate-900'>
+              <h4 className='kapwa-text-strong mb-1 font-bold'>
                 Transparency Dashboard
               </h4>
-              <p className='text-xs leading-relaxed text-slate-500'>
+              <p className='kapwa-text-disabled text-xs leading-relaxed'>
                 Access the full Philippine procurement database to compare local
                 spending against national averages.
               </p>
@@ -393,7 +393,7 @@ export default function ProcurementPage() {
             href='https://transparency.bettergov.ph/procurement'
             target='_blank'
             rel='noreferrer'
-            className='inline-flex w-full items-center justify-center gap-2 rounded-lg bg-slate-900 px-4 py-2.5 text-xs font-bold text-white transition-colors hover:bg-slate-800'
+            className='kapwa-text-inverse inline-flex w-full items-center justify-center gap-2 rounded-lg bg-slate-900 px-4 py-2.5 text-xs font-bold transition-colors hover:bg-slate-800'
           >
             Open National Engine <ExternalLink className='h-3 w-3' />
           </a>

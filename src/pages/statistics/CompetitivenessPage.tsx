@@ -110,7 +110,7 @@ export default function CompetitivenessPage() {
         />
       </div>
 
-      <nav className='flex gap-1.5 rounded-2xl bg-slate-100 p-1.5'>
+      <nav className='kapwa-bg-hover flex gap-1.5 rounded-2xl p-1.5'>
         {(['trends', 'pillars'] as const).map(tab => (
           <button
             key={tab}
@@ -119,7 +119,7 @@ export default function CompetitivenessPage() {
               'min-h-[48px] flex-1 rounded-xl py-3 text-xs font-bold tracking-widest uppercase transition-all',
               activeTab === tab
                 ? 'text-primary-700 bg-white shadow-md'
-                : 'text-slate-500 hover:text-slate-700'
+                : 'hover:kapwa-text-support text-slate-500'
             )}
           >
             {tab === 'trends' ? (
@@ -216,12 +216,12 @@ export default function CompetitivenessPage() {
                 {currentPillar?.indicators.map((ind, idx) => (
                   <div
                     key={idx}
-                    className='flex min-h-[100px] flex-col justify-between rounded-xl border border-slate-100 bg-white p-4 shadow-xs'
+                    className='kapwa-border-weak kapwa-bg-surface flex min-h-[100px] flex-col justify-between rounded-xl border p-4 shadow-xs'
                   >
-                    <span className='text-[10px] leading-tight font-bold tracking-widest text-slate-500 uppercase'>
+                    <span className='kapwa-text-disabled text-[10px] leading-tight font-bold tracking-widest uppercase'>
                       {ind.name}
                     </span>
-                    <span className='mt-2 text-xl font-black text-slate-900'>
+                    <span className='kapwa-text-strong mt-2 text-xl font-black'>
                       {ind.values[latestIdx]?.toFixed(4) || '0.0000'}
                     </span>
                   </div>

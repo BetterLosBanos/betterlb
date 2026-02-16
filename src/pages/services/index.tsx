@@ -122,7 +122,10 @@ export default function ServicesPage() {
   return (
     <div className='animate-in fade-in space-y-6 duration-500'>
       <div className='flex justify-start'>
-        <Badge variant='slate' className='border-slate-200 bg-slate-50'>
+        <Badge
+          variant='slate'
+          className='kapwa-bg-surface-raised border-slate-200'
+        >
           {filteredServices.length} Results
         </Badge>
       </div>
@@ -145,12 +148,12 @@ export default function ServicesPage() {
               >
                 <Card
                   hover
-                  className='flex h-full flex-col border-slate-200 shadow-sm'
+                  className='kapwa-border-weak flex h-full flex-col shadow-sm'
                 >
                   <CardContent className='flex h-full flex-col p-6'>
                     {/* Icon & Online Tag */}
                     <div className='mb-4 flex items-start justify-between'>
-                      <div className='bg-primary-50 text-primary-600 border-primary-100 rounded-xl border p-2.5 shadow-xs'>
+                      <div className='bg-primary-50 kapwa-text-brand kapwa-border-brand rounded-xl border p-2.5 shadow-xs'>
                         <CategoryIcon className='h-5 w-5' />
                       </div>
                       <Badge
@@ -163,10 +166,10 @@ export default function ServicesPage() {
 
                     {/* Title & Category Label */}
                     <div className='flex-1'>
-                      <h3 className='group-hover:text-primary-600 mb-1 leading-snug font-bold text-slate-900 transition-colors'>
+                      <h3 className='group-hover:kapwa-text-brand kapwa-text-strong mb-1 leading-snug font-bold transition-colors'>
                         {service.service}
                       </h3>
-                      <p className='text-[10px] font-bold tracking-widest text-slate-400 uppercase'>
+                      <p className='kapwa-text-disabled text-[10px] font-bold tracking-widest uppercase'>
                         {service.category.name}
                       </p>
                     </div>
@@ -183,7 +186,7 @@ export default function ServicesPage() {
                           </>
                         ) : (
                           <>
-                            <span className='h-1.5 w-1.5 shrink-0 rounded-full bg-slate-300' />
+                            <span className='kapwa-bg-disabled h-1.5 w-1.5 shrink-0 rounded-full' />
                             <span className='font-bold text-slate-300 italic'>
                               Unverified
                             </span>

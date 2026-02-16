@@ -39,7 +39,7 @@ export function ChartTooltip({
     );
 
     return (
-      <div className='animate-in fade-in zoom-in-95 min-w-[220px] rounded-xl border border-slate-200 bg-white p-3 shadow-xl duration-200'>
+      <div className='animate-in fade-in zoom-in-95 kapwa-border-weak kapwa-bg-surface min-w-[220px] rounded-xl border p-3 shadow-xl duration-200'>
         {/* Uses CHART_THEME.text for the label color */}
         <p
           style={{ color: CHART_THEME.text }}
@@ -65,14 +65,14 @@ export function ChartTooltip({
                     // Use CHART_THEME.fontWeight for consistency
                     index === 0
                       ? 'text-primary-700'
-                      : 'text-slate-600 group-hover:text-slate-900'
+                      : 'group-hover:kapwa-text-strong text-slate-600'
                   )}
                 >
                   {entry.name}
                 </span>
               </div>
               <span
-                className='text-[11px] font-black text-slate-900 tabular-nums'
+                className='kapwa-text-strong text-[11px] font-black tabular-nums'
                 style={{ fontWeight: CHART_THEME.fontWeight + 200 }} // Slightly bolder than axis
               >
                 {formatter ? formatter(Number(entry.value)) : entry.value}
@@ -83,7 +83,7 @@ export function ChartTooltip({
 
         <div className='mt-2 flex items-center justify-between border-t border-slate-50 pt-2 text-[9px] font-bold tracking-tight text-slate-300 uppercase'>
           <span>Ranked by Value</span>
-          <div className='h-1 w-1 rounded-full bg-slate-200' />
+          <div className='kapwa-bg-active h-1 w-1 rounded-full' />
         </div>
       </div>
     );

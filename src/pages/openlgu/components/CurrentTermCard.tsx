@@ -46,17 +46,17 @@ export default function CurrentTermCard({
             <Badge variant='primary' dot>
               {term.ordinal} Term
             </Badge>
-            <ChevronRight className='group-hover:text-primary-600 h-5 w-5 text-slate-300 transition-colors' />
+            <ChevronRight className='group-hover:kapwa-text-brand h-5 w-5 text-slate-300 transition-colors' />
           </div>
-          <h3 className='mb-1 text-lg font-extrabold text-slate-900'>
+          <h3 className='kapwa-text-strong mb-1 text-lg font-extrabold'>
             {term.name}
           </h3>
-          <p className='mb-4 flex items-center gap-2 text-xs font-medium text-slate-500'>
+          <p className='kapwa-text-disabled mb-4 flex items-center gap-2 text-xs font-medium'>
             <Calendar className='h-3.5 w-3.5' />
             {term.year_range}
           </p>
           <div className='grid grid-cols-3 gap-3'>
-            <div className='bg-primary-50 border-primary-100 flex flex-col items-center gap-1 rounded-xl border p-3'>
+            <div className='bg-primary-50 kapwa-border-brand flex flex-col items-center gap-1 rounded-xl border p-3'>
               <FileText className='text-primary-600 h-5 w-5' />
               <span className='text-primary-700 text-lg font-black'>
                 {ordCount}
@@ -75,8 +75,8 @@ export default function CurrentTermCard({
               </span>
             </div>
             <div className='flex flex-col items-center gap-1 rounded-xl border border-purple-100 bg-purple-50 p-3'>
-              <ScrollText className='h-5 w-5 text-purple-600' />
-              <span className='text-lg font-black text-purple-700'>
+              <ScrollText className='kapwa-text-accent-purple h-5 w-5' />
+              <span className='kapwa-text-accent-purple text-lg font-black'>
                 {eoCount}
               </span>
               <span className='text-[9px] font-bold tracking-wider text-purple-500 uppercase'>

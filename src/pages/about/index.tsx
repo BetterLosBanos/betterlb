@@ -2,6 +2,7 @@ import { FC } from 'react';
 
 import { Link } from 'react-router-dom';
 
+import { Button } from '@bettergov/kapwa';
 import {
   BuildingIcon,
   GlobeIcon,
@@ -18,13 +19,12 @@ import {
 import { Helmet } from 'react-helmet-async';
 import { useTranslation } from 'react-i18next';
 
-import Button from '@/components/ui/Button';
 import { Card, CardContent } from '@/components/ui/Card';
 
 const AboutPage: FC = () => {
   const { t } = useTranslation('about');
   return (
-    <div className='min-h-screen bg-gray-50'>
+    <div className='kapwa-bg-surface-raised min-h-screen'>
       <Helmet>
         <title>About | BetterGov.ph</title>
         <meta
@@ -48,31 +48,45 @@ const AboutPage: FC = () => {
         <meta property='og:image' content='https://bettergov.ph/ph-logo.png' />
       </Helmet>
       <div className='container mx-auto px-4 py-6 md:py-8'>
-        <div className='mt-4 rounded-lg border bg-white p-6 shadow-xs md:p-8 md:py-24'>
+        <div className='kapwa-bg-surface mt-4 rounded-lg border p-6 shadow-xs md:p-8 md:py-24'>
           <div className='mx-auto max-w-3xl'>
-            <h1 className='mb-6 text-3xl font-bold text-gray-900 md:text-4xl'>
+            <h1 className='kapwa-text-strong mb-6 text-3xl font-bold md:text-4xl'>
               {t('title')}
             </h1>
 
             <div className='prose prose-lg max-w-none'>
               <section className='mb-10'>
-                <h2 className='mb-4 flex items-center text-2xl font-bold text-gray-800'>
-                  <TargetIcon className='text-primary-600 mr-2 h-6 w-6' />
+                <h2 className='kapwa-text-support mb-4 flex items-center text-2xl font-bold'>
+                  <TargetIcon
+                    style={{ color: 'var(--color-kapwa-blue-600)' }}
+                    className='mr-2 h-6 w-6'
+                  />
                   {t('mission.title')}
                 </h2>
-                <div className='from-primary-50 mb-6 rounded-xl bg-gradient-to-r to-blue-50 p-6 md:p-8'>
-                  <p className='mb-4 text-lg leading-relaxed text-gray-800'>
+                <div
+                  style={{
+                    background:
+                      'linear-gradient(to right, var(--color-kapwa-blue-50), var(--color-kapwa-blue-50))',
+                  }}
+                  className='mb-6 rounded-xl p-6 md:p-8'
+                >
+                  <p className='kapwa-text-support mb-4 text-lg leading-relaxed'>
                     BetterGov is a{' '}
                     <strong>volunteer-led tech initiative</strong> committed to
                     creating
-                    <span className='bg-primary-600 mx-2 inline-flex items-center rounded-full px-3 py-1 text-sm font-semibold text-white'>
+                    <span
+                      style={{
+                        backgroundColor: 'var(--color-kapwa-blue-600)',
+                      }}
+                      className='kapwa-text-inverse mx-2 inline-flex items-center rounded-full px-3 py-1 text-sm font-semibold'
+                    >
                       <ZapIcon className='mr-1 h-4 w-4' />
                       #civictech
                     </span>
                     projects aimed at making government more transparent,
                     efficient, and accessible to citizens.
                   </p>
-                  <p className='mb-4 text-lg leading-relaxed text-gray-800'>
+                  <p className='kapwa-text-support mb-4 text-lg leading-relaxed'>
                     Our goal is to{' '}
                     <strong>support, promote, consolidate, and empower</strong>{' '}
                     citizen builders!
@@ -81,12 +95,15 @@ const AboutPage: FC = () => {
               </section>
 
               <section className='mb-10'>
-                <h2 className='mb-4 flex items-center text-2xl font-bold text-gray-800'>
-                  <RocketIcon className='text-primary-600 mr-2 h-6 w-6' />
+                <h2 className='kapwa-text-support mb-4 flex items-center text-2xl font-bold'>
+                  <RocketIcon
+                    style={{ color: 'var(--color-kapwa-blue-600)' }}
+                    className='mr-2 h-6 w-6'
+                  />
                   {t('mission.goalsIntro')}
                 </h2>
 
-                <ul className='mb-6 list-disc pl-6 text-gray-700'>
+                <ul className='kapwa-text-support mb-6 list-disc pl-6'>
                   {(
                     t('mission.goalsList', { returnObjects: true }) as string[]
                   ).map((goal: string, index: number) => (
@@ -99,11 +116,14 @@ const AboutPage: FC = () => {
 
               {/* What We Provide Section */}
               <section className='mb-10'>
-                <h2 className='mb-4 flex items-center text-2xl font-bold text-gray-800'>
-                  <RocketIcon className='text-primary-600 mr-2 h-6 w-6' />
+                <h2 className='kapwa-text-support mb-4 flex items-center text-2xl font-bold'>
+                  <RocketIcon
+                    style={{ color: 'var(--color-kapwa-blue-600)' }}
+                    className='mr-2 h-6 w-6'
+                  />
                   What We Provide
                 </h2>
-                <p className='mb-6 text-gray-700'>
+                <p className='kapwa-text-support mb-6'>
                   To support citizen builders in building impactful civic tech
                   projects:
                 </p>
@@ -142,13 +162,23 @@ const AboutPage: FC = () => {
                   ].map((item, index) => (
                     <Card key={index} hover className='bg-white'>
                       <CardContent className='p-5'>
-                        <div className='bg-primary-100 mb-3 flex h-12 w-12 items-center justify-center rounded-lg'>
-                          <item.icon className='text-primary-600 h-6 w-6' />
+                        <div
+                          style={{
+                            backgroundColor: 'var(--color-kapwa-blue-100)',
+                          }}
+                          className='mb-3 flex h-12 w-12 items-center justify-center rounded-lg'
+                        >
+                          <item.icon
+                            style={{ color: 'var(--color-kapwa-blue-600)' }}
+                            className='h-6 w-6'
+                          />
                         </div>
-                        <h3 className='mb-2 text-base font-semibold text-gray-900'>
+                        <h3 className='kapwa-text-strong mb-2 text-base font-semibold'>
                           {item.title}
                         </h3>
-                        <p className='text-sm text-gray-600'>{item.desc}</p>
+                        <p className='kapwa-text-on-disabled text-sm'>
+                          {item.desc}
+                        </p>
                       </CardContent>
                     </Card>
                   ))}
@@ -156,20 +186,21 @@ const AboutPage: FC = () => {
               </section>
 
               <section className='mb-10'>
-                <h2 className='mb-4 text-2xl font-bold text-gray-800'>
+                <h2 className='kapwa-text-support mb-4 text-2xl font-bold'>
                   {t('whyBuilding.title')}
                 </h2>
-                <p className='mb-4 text-gray-700'>
+                <p className='kapwa-text-support mb-4'>
                   {t('whyBuilding.intro')}
                   <a
                     href='https://www.gov.ph'
-                    className='mx-1 text-blue-600 hover:text-blue-800'
+                    style={{ color: 'var(--color-kapwa-blue-600)' }}
+                    className='mx-1 hover:opacity-80'
                   >
                     {t('whyBuilding.govPhLink')}
                   </a>
                   {t('whyBuilding.challenges')}
                 </p>
-                <ul className='mb-6 list-disc pl-6 leading-relaxed text-gray-700'>
+                <ul className='kapwa-text-support mb-6 list-disc pl-6 leading-relaxed'>
                   {(
                     t('whyBuilding.challengesList', {
                       returnObjects: true,
@@ -185,13 +216,26 @@ const AboutPage: FC = () => {
 
               {/* Our Commitment Section */}
               <section className='mb-10'>
-                <h2 className='mb-4 flex items-center text-2xl font-bold text-gray-800'>
-                  <ZapIcon className='mr-2 h-6 w-6 text-yellow-500' />
+                <h2 className='kapwa-text-support mb-4 flex items-center text-2xl font-bold'>
+                  <ZapIcon
+                    style={{ color: 'var(--color-kapwa-yellow-500)' }}
+                    className='mr-2 h-6 w-6'
+                  />
                   Our Commitment
                 </h2>
-                <div className='border-primary-600 rounded-xl border-l-4 bg-gradient-to-r from-red-50 via-orange-50 to-yellow-50 p-6 md:p-8'>
-                  <div className='space-y-4 text-gray-800'>
-                    <p className='text-primary-700 text-lg font-bold'>
+                <div
+                  style={{
+                    borderLeftColor: 'var(--color-kapwa-blue-600)',
+                    background:
+                      'linear-gradient(to right, var(--color-kapwa-red-50), var(--color-kapwa-orange-50), var(--color-kapwa-yellow-50))',
+                  }}
+                  className='rounded-xl border-l-4 p-6 md:p-8'
+                >
+                  <div className='kapwa-text-support space-y-4'>
+                    <p
+                      style={{ color: 'var(--color-kapwa-blue-700)' }}
+                      className='text-lg font-bold'
+                    >
                       WE&apos;RE DONE WAITING.
                     </p>
                     <p className='text-base leading-relaxed'>
@@ -201,7 +245,10 @@ const AboutPage: FC = () => {
                     </p>
                     <p className='text-base leading-relaxed'>
                       We can do <strong>amazing things</strong> together.{' '}
-                      <span className='text-primary-700 font-semibold'>
+                      <span
+                        style={{ color: 'var(--color-kapwa-blue-700)' }}
+                        className='font-semibold'
+                      >
                         Grassroots style. Open source. No permission needed.
                       </span>
                     </p>
@@ -213,8 +260,14 @@ const AboutPage: FC = () => {
                       permission. Open source, public,{' '}
                       <strong>high quality</strong> sites.
                     </p>
-                    <div className='border-primary-200 mt-6 border-t-2 pt-4'>
-                      <p className='text-primary-700 text-lg font-bold'>
+                    <div
+                      style={{ borderColor: 'var(--color-kapwa-blue-200)' }}
+                      className='mt-6 border-t-2 pt-4'
+                    >
+                      <p
+                        style={{ color: 'var(--color-kapwa-blue-700)' }}
+                        className='text-lg font-bold'
+                      >
                         WE&apos;RE LOOKING FOR PEOPLE SMARTER THAN US!
                       </p>
                     </div>
@@ -222,14 +275,15 @@ const AboutPage: FC = () => {
                 </div>
               </section>
               <section>
-                <h2 className='mb-4 text-2xl font-bold text-gray-800'>
+                <h2 className='kapwa-text-support mb-4 text-2xl font-bold'>
                   {t('license.title')}
                 </h2>
-                <p className='mb-4 text-gray-700'>
+                <p className='kapwa-text-support mb-4'>
                   {t('license.description')}
                   <a
                     href='https://creativecommons.org/publicdomain/zero/1.0/'
-                    className='mx-1 text-blue-600 hover:text-blue-800'
+                    style={{ color: 'var(--color-kapwa-blue-600)' }}
+                    className='mx-1 hover:opacity-80'
                   >
                     {t('license.ccLink')}
                   </a>
@@ -239,29 +293,40 @@ const AboutPage: FC = () => {
             </div>
 
             {/* Call to Action */}
-            <div className='mt-8 rounded-lg bg-blue-600 p-8 text-center'>
-              <h3 className='mb-4 text-2xl font-bold text-white'>
+            <div
+              style={{ backgroundColor: 'var(--color-kapwa-blue-600)' }}
+              className='mt-8 rounded-lg p-8 text-center'
+            >
+              <h3 className='kapwa-text-inverse mb-4 text-2xl font-bold'>
                 Ready to Make a Difference?
               </h3>
-              <p className='mx-auto mb-6 max-w-2xl text-blue-100'>
+              <p
+                style={{ color: 'var(--color-kapwa-blue-100)' }}
+                className='mx-auto mb-6 max-w-2xl'
+              >
                 Join our community of builders, dreamers, and changemakers.
               </p>
               <div className='flex flex-col justify-center gap-4 sm:flex-row'>
                 <Link to='/contact'>
                   <Button
-                    className='bg-yellow-400 text-blue-900 hover:bg-yellow-500'
+                    style={{
+                      backgroundColor: 'var(--color-kapwa-yellow-400)',
+                      color: 'var(--color-kapwa-blue-900)',
+                    }}
+                    className='hover:opacity-90'
                     size='lg'
                     leftIcon={<MessageCircleIcon className='h-5 w-5' />}
                   >
                     Contacts
                   </Button>
                 </Link>
-                <span className='flex items-center justify-center text-white'>
+                <span className='kapwa-text-inverse flex items-center justify-center'>
                   or
                 </span>
                 <Link to='/join-us'>
                   <Button
-                    className='border-white text-white hover:bg-white hover:text-blue-600'
+                    style={{ color: 'var(--color-kapwa-white)' }}
+                    className='hover:kapwa-bg-surface border-white hover:opacity-80'
                     size='lg'
                     variant='outline'
                     leftIcon={<LightbulbIcon className='h-5 w-5' />}

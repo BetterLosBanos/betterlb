@@ -48,10 +48,10 @@ const ServicesSection: FC = () => {
     <section className='bg-white py-12'>
       <div className='container mx-auto px-4'>
         <div className='mb-12 text-center'>
-          <h2 className='mb-4 text-2xl font-bold text-gray-900 md:text-3xl'>
+          <h2 className='kapwa-text-strong mb-4 text-2xl font-bold md:text-3xl'>
             {t('services.governmentServices')}
           </h2>
-          <p className='mx-auto max-w-2xl text-gray-800'>
+          <p className='kapwa-text-support mx-auto max-w-2xl'>
             {t('services.description')}
           </p>
         </div>
@@ -69,16 +69,16 @@ const ServicesSection: FC = () => {
               >
                 <CardContent className='flex h-full flex-col p-6'>
                   <div className='mb-4 flex items-start justify-between'>
-                    <div className='bg-primary-50 text-primary-600 group-hover:bg-primary-600 rounded-lg p-3 transition-colors group-hover:text-white'>
+                    <div className='bg-primary-50 kapwa-text-brand group-hover:kapwa-bg-brand-default group-hover:kapwa-text-inverse rounded-lg p-3 transition-colors'>
                       {getIcon(category.name)}
                     </div>
                   </div>
 
-                  <h3 className='group-hover:text-primary-700 mb-2 text-lg font-bold text-gray-900'>
+                  <h3 className='group-hover:kapwa-text-brand kapwa-text-strong mb-2 text-lg font-bold'>
                     {category.name}
                   </h3>
 
-                  <p className='mb-6 line-clamp-3 grow text-sm text-gray-600'>
+                  <p className='kapwa-text-on-disabled mb-6 line-clamp-3 grow text-sm'>
                     {category.description}
                   </p>
 
@@ -95,7 +95,7 @@ const ServicesSection: FC = () => {
         <div className='mt-10 text-center'>
           <Link
             to='/services?category=all'
-            className='bg-primary-600 hover:bg-primary-700 focus:ring-primary-500 inline-flex items-center justify-center rounded-lg px-6 py-3 font-medium text-white shadow-sm transition-colors focus:ring-2 focus:ring-offset-2 focus:outline-hidden'
+            className='bg-primary-600 hover:kapwa-bg-brand-hover focus:ring-primary-500 kapwa-text-inverse inline-flex items-center justify-center rounded-lg px-6 py-3 font-medium shadow-sm transition-colors focus:ring-2 focus:ring-offset-2 focus:outline-hidden'
           >
             {t('services.viewAll')}
           </Link>

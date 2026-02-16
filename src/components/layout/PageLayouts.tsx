@@ -17,11 +17,11 @@ export function PageHero({
 }) {
   return (
     <header className='animate-in fade-in flex flex-col justify-center py-8 text-center duration-700 md:py-12'>
-      <h1 className='mb-4 text-3xl font-bold tracking-tight text-slate-900 md:text-4xl'>
+      <h1 className='kapwa-text-strong mb-4 text-3xl font-bold tracking-tight md:text-4xl'>
         {title}
       </h1>
       {description && (
-        <p className='mx-auto max-w-2xl text-sm leading-relaxed text-slate-600 md:text-base'>
+        <p className='kapwa-text-on-disabled mx-auto max-w-2xl text-sm leading-relaxed md:text-base'>
           {description}
         </p>
       )}
@@ -44,14 +44,14 @@ export function ModuleHeader({
   children?: ReactNode;
 }) {
   return (
-    <div className='mb-8 border-b border-slate-100 pb-6'>
+    <div className='kapwa-border-weak mb-8 border-b pb-6'>
       <div className='flex flex-col justify-between gap-4 md:flex-row md:items-end'>
         <div className='max-w-2xl'>
-          <h2 className='text-2xl font-extrabold tracking-tight text-slate-900'>
+          <h2 className='kapwa-text-strong text-2xl font-extrabold tracking-tight'>
             {title}
           </h2>
           {description && (
-            <p className='mt-1 text-sm text-slate-500 md:text-base'>
+            <p className='kapwa-text-disabled mt-1 text-sm md:text-base'>
               {description}
             </p>
           )}
@@ -89,9 +89,9 @@ export function DetailSection({
         className
       )}
     >
-      <div className='flex items-center gap-2 border-b border-slate-100 bg-slate-50/50 px-6 py-4'>
+      <div className='kapwa-border-weak kapwa-bg-surface-raised/50 flex items-center gap-2 border-b px-6 py-4'>
         {Icon && <Icon className='text-primary-600 h-4 w-4' />}
-        <div className='flex flex-1 items-center justify-between text-[10px] font-bold tracking-widest text-slate-400 uppercase'>
+        <div className='kapwa-text-disabled flex flex-1 items-center justify-between text-[10px] font-bold tracking-widest uppercase'>
           {title}
         </div>
       </div>

@@ -190,17 +190,17 @@ export default function ContributePage() {
             <CheckCircle2 className='h-12 w-12 text-emerald-600' />
           </div>
         </div>
-        <h2 className='mb-4 text-3xl font-extrabold text-slate-900'>
+        <h2 className='kapwa-text-strong mb-4 text-3xl font-extrabold'>
           Submission Received
         </h2>
-        <p className='mb-10 text-lg leading-relaxed text-slate-600'>
+        <p className='kapwa-text-on-disabled mb-10 text-lg leading-relaxed'>
           Thank you for helping improve Better LB. Your contribution has been
           sent to our auditors for verification.
         </p>
         <div className='flex flex-col justify-center gap-4 sm:flex-row'>
           <Link
             to='/services'
-            className='bg-primary-600 hover:bg-primary-700 flex min-h-[48px] items-center justify-center rounded-xl px-8 py-3 font-bold text-white shadow-lg transition-all'
+            className='bg-primary-600 hover:kapwa-bg-brand-hover kapwa-text-inverse flex min-h-[48px] items-center justify-center rounded-xl px-8 py-3 font-bold shadow-lg transition-all'
           >
             Back to Services
           </Link>
@@ -209,7 +209,7 @@ export default function ContributePage() {
               setStatus('idle');
               reset();
             }}
-            className='min-h-[48px] rounded-xl border border-slate-200 bg-white px-8 py-3 font-bold text-slate-600 transition-all hover:bg-slate-50'
+            className='kapwa-border-weak kapwa-bg-surface kapwa-text-on-disabled hover:kapwa-bg-surface-raised min-h-[48px] rounded-xl border px-8 py-3 font-bold transition-all'
           >
             Submit Another
           </button>
@@ -282,7 +282,7 @@ export default function ContributePage() {
                   <select
                     id='type'
                     {...register('type')}
-                    className='w-full rounded-xl border border-slate-200 bg-white p-3 outline-none'
+                    className='kapwa-border-weak kapwa-bg-surface w-full rounded-xl border p-3 outline-none'
                   >
                     <option value='transaction'>Transactional</option>
                     <option value='information'>Informational</option>
@@ -298,7 +298,7 @@ export default function ContributePage() {
                   <select
                     id='categorySlug'
                     {...register('categorySlug')}
-                    className='w-full rounded-xl border border-slate-200 bg-white p-3 outline-none'
+                    className='kapwa-border-weak kapwa-bg-surface w-full rounded-xl border p-3 outline-none'
                   >
                     {categoryData.categories.map(cat => (
                       <option key={cat.slug} value={cat.slug}>
@@ -315,11 +315,11 @@ export default function ContributePage() {
                   <span className='text-secondary-600'>*</span>
                 </label>
                 <div className='relative mb-2'>
-                  <Search className='absolute top-1/2 left-3 h-4 w-4 -translate-y-1/2 text-slate-400' />
+                  <Search className='kapwa-text-disabled absolute top-1/2 left-3 h-4 w-4 -translate-y-1/2' />
                   <input
                     type='text'
                     placeholder='Search departments...'
-                    className='w-full border-b border-slate-100 bg-transparent py-2 pr-4 pl-10 text-sm italic outline-none'
+                    className='kapwa-border-weak w-full border-b bg-transparent py-2 pr-4 pl-10 text-sm italic outline-none'
                     onChange={e => setOfficeSearch(e.target.value)}
                   />
                 </div>
@@ -347,7 +347,7 @@ export default function ContributePage() {
                           'flex min-h-[44px] items-center gap-3 rounded-xl border p-3 text-left transition-all',
                           isChecked
                             ? 'border-primary-600 ring-primary-500/5 bg-white shadow-sm ring-2'
-                            : 'border-slate-200 bg-transparent hover:border-slate-300'
+                            : 'hover:kapwa-border-weak border-slate-200 bg-transparent'
                         )}
                       >
                         {isChecked ? (
@@ -383,7 +383,7 @@ export default function ContributePage() {
                 <textarea
                   id='description'
                   {...register('description')}
-                  className='h-24 w-full rounded-xl border border-slate-200 p-3 text-sm outline-none'
+                  className='kapwa-border-weak h-24 w-full rounded-xl border p-3 text-sm outline-none'
                 />
               </div>
               <div className='grid grid-cols-1 gap-4 md:grid-cols-2'>
@@ -394,7 +394,7 @@ export default function ContributePage() {
                   <textarea
                     id='steps'
                     {...register('steps')}
-                    className='h-48 w-full rounded-xl border border-slate-200 p-3 font-mono text-xs outline-none'
+                    className='kapwa-border-weak h-48 w-full rounded-xl border p-3 font-mono text-xs outline-none'
                   />
                 </div>
                 <div>
@@ -407,7 +407,7 @@ export default function ContributePage() {
                   <textarea
                     id='requirements'
                     {...register('requirements')}
-                    className='h-48 w-full rounded-xl border border-slate-200 p-3 font-mono text-xs outline-none'
+                    className='kapwa-border-weak h-48 w-full rounded-xl border p-3 font-mono text-xs outline-none'
                   />
                 </div>
               </div>
@@ -437,7 +437,7 @@ export default function ContributePage() {
                 <textarea
                   id='notes'
                   {...register('notes')}
-                  className='h-20 w-full rounded-xl border border-slate-200 p-3 text-sm outline-none'
+                  className='kapwa-border-weak h-20 w-full rounded-xl border p-3 text-sm outline-none'
                 />
               </div>
             </div>
@@ -447,7 +447,7 @@ export default function ContributePage() {
             <button
               type='submit'
               disabled={status === 'loading'}
-              className='bg-primary-600 hover:bg-primary-700 flex min-h-[48px] flex-1 items-center justify-center gap-2 rounded-2xl py-4 font-bold text-white shadow-xl transition-all disabled:opacity-50'
+              className='bg-primary-600 hover:kapwa-bg-brand-hover kapwa-text-inverse flex min-h-[48px] flex-1 items-center justify-center gap-2 rounded-2xl py-4 font-bold shadow-xl transition-all disabled:opacity-50'
             >
               {status === 'loading' ? (
                 <>
@@ -462,7 +462,7 @@ export default function ContributePage() {
             <button
               type='button'
               onClick={() => reset()}
-              className='flex min-h-[48px] items-center justify-center gap-2 rounded-2xl border border-slate-200 px-6 py-4 text-slate-400 transition-all hover:bg-slate-50'
+              className='kapwa-border-weak kapwa-text-disabled hover:kapwa-bg-surface-raised flex min-h-[48px] items-center justify-center gap-2 rounded-2xl border px-6 py-4 transition-all'
             >
               <RotateCcw className='h-4 w-4' /> Reset
             </button>
@@ -482,7 +482,7 @@ export default function ContributePage() {
           <h3 className='heading-label flex items-center gap-2'>
             <Eye className='h-3 w-3' /> Live Preview
           </h3>
-          <div className='ring-primary-500/10 min-h-[200px] rounded-3xl bg-slate-900 p-8 text-white shadow-2xl ring-4'>
+          <div className='ring-primary-500/10 kapwa-text-inverse min-h-[200px] rounded-3xl bg-slate-900 p-8 shadow-2xl ring-4'>
             <div className='relative z-10 space-y-4'>
               <div className='flex gap-2'>
                 <Badge variant='primary'>
@@ -497,7 +497,7 @@ export default function ContributePage() {
               <h4 className='text-2xl leading-tight font-bold'>
                 {previewService || 'Service Title'}
               </h4>
-              <p className='text-sm leading-relaxed text-slate-400 italic'>
+              <p className='kapwa-text-disabled text-sm leading-relaxed italic'>
                 &quot;{previewDescription || 'Description preview...'}&quot;
               </p>
             </div>

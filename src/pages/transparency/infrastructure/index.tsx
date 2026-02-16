@@ -217,7 +217,7 @@ export default function InfrastructurePage() {
           {[1, 2, 3].map(i => (
             <div
               key={i}
-              className='h-16 animate-pulse rounded-xl bg-slate-50'
+              className='kapwa-bg-surface-raised h-16 animate-pulse rounded-xl'
             />
           ))}
         </div>
@@ -242,10 +242,10 @@ export default function InfrastructurePage() {
           icon={HardHat}
         />
       ) : (
-        <div className='overflow-hidden rounded-xl border border-slate-200 bg-white shadow-sm'>
+        <div className='kapwa-border-weak kapwa-bg-surface overflow-hidden rounded-xl border shadow-sm'>
           <div className='overflow-x-auto'>
             <table className='w-full text-left text-sm'>
-              <thead className='border-b border-slate-200 bg-slate-50 text-xs font-bold tracking-wider text-slate-500 uppercase'>
+              <thead className='kapwa-border-weak kapwa-bg-surface-raised kapwa-text-disabled border-b text-xs font-bold tracking-wider uppercase'>
                 <tr>
                   <th className='hidden w-32 px-6 py-4 md:table-cell'>
                     Contract ID
@@ -267,23 +267,23 @@ export default function InfrastructurePage() {
                         `/transparency/infrastructure/${item.contractId}`
                       )
                     }
-                    className='group cursor-pointer transition-colors hover:bg-slate-50/50'
+                    className='group hover:kapwa-bg-surface-raised/50 cursor-pointer transition-colors'
                   >
-                    <td className='group-hover:text-primary-600 hidden px-6 py-4 font-mono text-xs text-slate-500 transition-colors md:table-cell'>
+                    <td className='group-hover:kapwa-text-brand kapwa-text-disabled hidden px-6 py-4 font-mono text-xs transition-colors md:table-cell'>
                       {item.contractId}
                     </td>
                     <td className='px-6 py-4'>
-                      <p className='group-hover:text-primary-700 mb-1 line-clamp-2 leading-snug font-bold text-slate-900 transition-colors'>
+                      <p className='group-hover:kapwa-text-brand kapwa-text-strong mb-1 line-clamp-2 leading-snug font-bold transition-colors'>
                         {item.description}
                       </p>
                       <div className='flex flex-wrap items-center gap-2'>
                         <Badge
                           variant='slate'
-                          className='h-4 border-slate-200 bg-slate-50 px-1.5 py-0 text-[9px] text-slate-500'
+                          className='kapwa-border-weak kapwa-bg-surface-raised kapwa-text-disabled h-4 px-1.5 py-0 text-[9px]'
                         >
                           {item.category}
                         </Badge>
-                        <span className='flex items-center gap-1 text-xs text-slate-500'>
+                        <span className='kapwa-text-disabled flex items-center gap-1 text-xs'>
                           <MapPin className='h-3 w-3 text-slate-300' />
                           {item.location.barangay
                             ? `${item.location.barangay}, `
@@ -292,15 +292,15 @@ export default function InfrastructurePage() {
                         </span>
                       </div>
                     </td>
-                    <td className='px-6 py-4 text-right font-mono font-bold text-slate-900'>
+                    <td className='kapwa-text-strong px-6 py-4 text-right font-mono font-bold'>
                       {formatPesoAdaptive(item.budget).fullString}
                     </td>
                     <td className='hidden w-32 px-6 py-4 text-center md:table-cell'>
                       <div className='flex flex-col items-center'>
-                        <span className='mb-1 text-xs font-bold text-slate-700'>
+                        <span className='kapwa-text-support mb-1 text-xs font-bold'>
                           {item.progress.toFixed(1)}%
                         </span>
-                        <div className='h-1.5 w-full overflow-hidden rounded-xl bg-slate-100'>
+                        <div className='kapwa-bg-hover h-1.5 w-full overflow-hidden rounded-xl'>
                           <div
                             className={`h-full ${item.progress >= 100 ? 'bg-emerald-500' : 'bg-primary-500'}`}
                             style={{
@@ -340,16 +340,16 @@ export default function InfrastructurePage() {
 
       {/*  External Links Footer  */}
       <div className='grid grid-cols-1 gap-4 md:grid-cols-2'>
-        <div className='hover:border-primary-200 flex h-full flex-col justify-between rounded-xl border border-slate-200 bg-white p-6 shadow-sm transition-all'>
+        <div className='hover:kapwa-border-brand kapwa-border-weak kapwa-bg-surface flex h-full flex-col justify-between rounded-xl border p-6 shadow-sm transition-all'>
           <div className='mb-4 flex items-start gap-4'>
-            <div className='shrink-0 rounded-xl bg-blue-50 p-3 text-blue-600'>
+            <div className='kapwa-bg-info-weak kapwa-text-info shrink-0 rounded-xl p-3'>
               <BarChart3 className='h-6 w-6' />
             </div>
             <div>
-              <h4 className='mb-1 font-bold text-slate-900'>
+              <h4 className='kapwa-text-strong mb-1 font-bold'>
                 Data & Analytics
               </h4>
-              <p className='text-xs leading-relaxed text-slate-500'>
+              <p className='kapwa-text-disabled text-xs leading-relaxed'>
                 View detailed budget breakdowns, regional comparisons, and
                 contractor performance charts on BetterGov Transparency
                 Dashboard.
@@ -360,22 +360,22 @@ export default function InfrastructurePage() {
             href='https://transparency.bettergov.ph/dpwh?q=los+ba%C3%B1os&regions=Region+IV-A&provinces=Region+IV-A%2CLaguna+2nd+DEO'
             target='_blank'
             rel='noreferrer'
-            className='inline-flex w-full items-center justify-center gap-2 rounded-lg bg-blue-50 px-4 py-2.5 text-xs font-bold text-blue-700 transition-colors hover:bg-blue-100'
+            className='kapwa-bg-info-weak kapwa-text-info hover:kapwa-bg-info-weak inline-flex w-full items-center justify-center gap-2 rounded-lg px-4 py-2.5 text-xs font-bold transition-colors'
           >
             Open Transparency Dashboard <ExternalLink className='h-3 w-3' />
           </a>
         </div>
 
-        <div className='hover:border-primary-200 flex h-full flex-col justify-between rounded-xl border border-slate-200 bg-white p-6 shadow-sm transition-all'>
+        <div className='hover:kapwa-border-brand kapwa-border-weak kapwa-bg-surface flex h-full flex-col justify-between rounded-xl border p-6 shadow-sm transition-all'>
           <div className='mb-4 flex items-start gap-4'>
-            <div className='shrink-0 rounded-xl bg-slate-900 p-3 text-white'>
+            <div className='kapwa-text-inverse shrink-0 rounded-xl bg-slate-900 p-3'>
               <Layers className='h-6 w-6' />
             </div>
             <div>
-              <h4 className='mb-1 font-bold text-slate-900'>
+              <h4 className='kapwa-text-strong mb-1 font-bold'>
                 Citizen Verification
               </h4>
-              <p className='text-xs leading-relaxed text-slate-500'>
+              <p className='kapwa-text-disabled text-xs leading-relaxed'>
                 Report issues, upload photos, and verify actual physical
                 progress of infrastructure projects in your barangay on
                 Bisto.ph.
@@ -386,7 +386,7 @@ export default function InfrastructurePage() {
             href='https://bisto.ph/projects?search=los+ba%C3%B1os&region=Region+IV-A&province=LAGUNA'
             target='_blank'
             rel='noreferrer'
-            className='inline-flex w-full items-center justify-center gap-2 rounded-lg bg-slate-900 px-4 py-2.5 text-xs font-bold text-white transition-colors hover:bg-slate-800'
+            className='kapwa-text-inverse inline-flex w-full items-center justify-center gap-2 rounded-lg bg-slate-900 px-4 py-2.5 text-xs font-bold transition-colors hover:bg-slate-800'
           >
             Visit Bisto.ph <ExternalLink className='h-3 w-3' />
           </a>

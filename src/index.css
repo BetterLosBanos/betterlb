@@ -1,12 +1,90 @@
+/* Inter - Regular (400) */
+@font-face {
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url('https://fonts.bunny.net/inter/files/inter-latin-400-normal.woff2')
+    format('woff2');
+}
+
+/* Inter - Medium (500) */
+@font-face {
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url('https://fonts.bunny.net/inter/files/inter-latin-500-normal.woff2')
+    format('woff2');
+}
+
+/* Inter - Semi Bold (600) */
+@font-face {
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+  src: url('https://fonts.bunny.net/inter/files/inter-latin-600-normal.woff2')
+    format('woff2');
+}
+
+/* Inter - Bold (700) */
+@font-face {
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url('https://fonts.bunny.net/inter/files/inter-latin-700-normal.woff2')
+    format('woff2');
+}
+
+/* Roboto Mono - Regular (400) */
+@font-face {
+  font-family: 'Roboto Mono';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url('https://fonts.bunny.net/roboto-mono/files/roboto-mono-latin-400-normal.woff2')
+    format('woff2');
+}
+
+/* Roboto Mono - Medium (500) */
+@font-face {
+  font-family: 'Roboto Mono';
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url('https://fonts.bunny.net/roboto-mono/files/roboto-mono-latin-500-normal.woff2')
+    format('woff2');
+}
+
+/* Roboto Mono - Semi Bold (600) */
+@font-face {
+  font-family: 'Roboto Mono';
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+  src: url('https://fonts.bunny.net/roboto-mono/files/roboto-mono-latin-600-normal.woff2')
+    format('woff2');
+}
+
 /* Local styles */
 @import 'tailwindcss';
 
 /* Scan shared packages for Tailwind classes */
 @source '../../betterlb-ui/src/**/*.{js,ts,jsx,tsx}';
-@source './node_modules/@bettergov/kapwa';
+@source './node_modules/@betterlb/kapwa';
 
 /* Import Kapwa Design System tokens */
-@import '@bettergov/kapwa/kapwa.css';
+@import '@betterlb/kapwa/kapwa.css';
+
+:root {
+  --font-kapwa-sans:
+    'Inter', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont,
+    sans-serif;
+  --font-kapwa-mono:
+    'Roboto Mono', ui-monospace, SFMono-Regular, Menlo, monospace;
+}
 
 @theme {
   /* --- SEMANTIC ALIASES --- */
@@ -15,85 +93,6 @@
   --color-brand-legislative: var(--color-kapwa-bg-warning-active);
   --color-status-verified: var(--color-kapwa-bg-success-active);
   --color-status-audit: var(--color-kapwa-bg-gray-disabled);
-
-  /* --- TYPOGRAPHY OVERRIDE --- */
-  /* Override Kapwa's Inter with Figtree for BetterLB brand identity */
-  --font-sans: 'Figtree', ui-sans-serif, system-ui, sans-serif;
-  --font-kapwa-sans: 'Figtree', ui-sans-serif, system-ui, sans-serif;
-
-  /* --- KAPWA SPACING, SHADOWS, TYPOGRAPHY --- */
-
-  /* Spacing */
-  --spacing-kapwa-3xs: 0.125rem; /* 2px */
-  --spacing-kapwa-xs: 0.25rem; /* 4px */
-  --spacing-kapwa-sm: 0.5rem; /* 8px */
-  --spacing-kapwa-md: 1rem; /* 16px */
-  --spacing-kapwa-lg: 1.5rem; /* 24px */
-  --spacing-kapwa-xl: 2rem; /* 32px */
-  --spacing-kapwa-2xl: 3rem; /* 48px */
-  --spacing-kapwa-3xl: 4rem; /* 64px */
-
-  /* Shadows */
-  --shadow-kapwa-sm: 0 1px 3px 0 rgb(0 0 0 / 0.12);
-  --shadow-kapwa: 0 2px 8px 0 rgb(0 0 0 / 0.15);
-  --shadow-kapwa-md: 0 4px 12px 0 rgb(0 0 0 / 0.15);
-  --shadow-kapwa-lg: 0 8px 24px 0 rgb(0 0 0 / 0.15);
-
-  /* Typography - Headings */
-  --font-kapwa-heading-xl: 2.25rem; /* 36px */
-  --font-kapwa-heading-lg: 1.75rem; /* 28px */
-  --font-kapwa-heading-md: 1.5rem; /* 24px */
-  --font-kapwa-heading-sm: 1.25rem; /* 20px */
-  --font-kapwa-heading-xs: 1rem; /* 16px */
-  --font-kapwa-heading-label: 0.875rem; /* 14px */
-  --font-kapwa-heading-label-weight: 700;
-
-  /* Typography - Body Text */
-  --font-kapwa-body-xl: 1.25rem; /* 20px */
-  --font-kapwa-body-lg: 1.125rem; /* 18px */
-  --font-kapwa-body-md: 1rem; /* 16px */
-  --font-kapwa-body-sm: 0.875rem; /* 14px */
-  --font-kapwa-body-xs: 0.75rem; /* 12px */
-
-  /* Typography - Code Text */
-  --font-kapwa-code-xl: 1.25rem; /* 20px */
-  --font-kapwa-code-lg: 1.125rem; /* 18px */
-  --font-kapwa-code-md: 1rem; /* 16px */
-  --font-kapwa-code-sm: 0.875rem; /* 14px */
-  --font-kapwa-code-xs: 0.75rem; /* 12px */
-
-  /* Links */
-  --color-kapwa-text-link: var(--color-kapwa-blue-500);
-  --color-kapwa-text-link-hover: var(--color-kapwa-blue-600);
-
-  /* Labels */
-  --font-kapwa-label: var(--font-kapwa-heading-label);
-  --color-kapwa-text-label: var(--color-kapwa-text-strong);
-
-  /* Border Radius */
-  --rounded-kapwa-sm: 0.25rem; /* 4px */
-  --rounded-kapwa: 0.375rem; /* 6px */
-  --rounded-kapwa-md: 0.5rem; /* 8px */
-  --rounded-kapwa-lg: 0.75rem; /* 12px */
-  --rounded-kapwa-xl: 1rem; /* 16px */
-
-  /* Padding */
-  --padding-kapwa-3xs: 0.125rem; /* 2px */
-  --padding-kapwa-xs: 0.25rem; /* 4px */
-  --padding-kapwa-sm: 0.5rem; /* 8px */
-  --padding-kapwa-md: 0.75rem; /* 12px */
-  --padding-kapwa-lg: 1rem; /* 16px */
-  --padding-kapwa-xl: 1.5rem; /* 24px */
-  --padding-kapwa-2xl: 2rem; /* 32px */
-
-  /* Margins */
-  --margin-kapwa-3xs: 0.125rem; /* 2px */
-  --margin-kapwa-xs: 0.25rem; /* 4px */
-  --margin-kapwa-sm: 0.5rem; /* 8px */
-  --margin-kapwa-md: 0.75rem; /* 12px */
-  --margin-kapwa-lg: 1rem; /* 16px */
-  --margin-kapwa-xl: 1.5rem; /* 24px */
-  --margin-kapwa-2xl: 2rem; /* 32px */
 }
 
 @layer base {
@@ -102,115 +101,7 @@
   ::before,
   ::backdrop,
   ::file-selector-button {
-    border-color: var(--color-kapwa-gray-200, currentcolor);
-  }
-}
-
-/* --- LOCAL UTILITY CLASSES (mapped to Kapwa tokens) --- */
-@layer utilities {
-  /* Background colors using local naming for compatibility */
-  .bg-primary-50 {
-    background-color: var(--color-kapwa-blue-50);
-  }
-  .bg-primary-100 {
-    background-color: var(--color-kapwa-blue-100);
-  }
-  .bg-primary-600 {
-    background-color: var(--color-kapwa-blue-600);
-  }
-  .bg-primary-700 {
-    background-color: var(--color-kapwa-blue-700);
-  }
-  .bg-secondary-600 {
-    background-color: var(--color-kapwa-orange-600);
-  }
-  .bg-success-600 {
-    background-color: var(--color-kapwa-green-600);
-  }
-  .bg-error-600 {
-    background-color: var(--color-kapwa-red-600);
-  }
-  .bg-slate-900 {
-    background-color: var(--color-kapwa-gray-900);
-  }
-  .bg-slate-700 {
-    background-color: var(--color-kapwa-gray-700);
-  }
-  .bg-slate-600 {
-    background-color: var(--color-kapwa-gray-600);
-  }
-  .bg-slate-500 {
-    background-color: var(--color-kapwa-gray-500);
-  }
-  .bg-slate-200 {
-    background-color: var(--color-kapwa-gray-200);
-  }
-  .bg-slate-300 {
-    background-color: var(--color-kapwa-gray-300);
-  }
-  .bg-slate-800 {
-    background-color: var(--color-kapwa-gray-800);
-  }
-  .bg-gray-500 {
-    background-color: var(--color-kapwa-gray-500);
-  }
-  .bg-gray-100 {
-    background-color: var(--color-kapwa-gray-100);
-  }
-  .bg-gray-600 {
-    background-color: var(--color-kapwa-gray-600);
-  }
-  .bg-gray-700 {
-    background-color: var(--color-kapwa-gray-700);
-  }
-  .bg-gray-800 {
-    background-color: var(--color-kapwa-gray-800);
-  }
-  .bg-gray-900 {
-    background-color: var(--color-kapwa-gray-900);
-  }
-  .bg-gray-950 {
-    background-color: var(--color-kapwa-gray-950);
-  }
-
-  /* Text colors */
-  .text-primary-600 {
-    color: var(--color-kapwa-blue-600);
-  }
-  .text-primary-700 {
-    color: var(--color-kapwa-blue-700);
-  }
-  .text-slate-900 {
-    color: var(--color-kapwa-gray-900);
-  }
-  .text-slate-700 {
-    color: var(--color-kapwa-gray-700);
-  }
-  .text-slate-600 {
-    color: var(--color-kapwa-gray-600);
-  }
-  .text-slate-500 {
-    color: var(--color-kapwa-gray-500);
-  }
-  .text-slate-200 {
-    color: var(--color-kapwa-gray-200);
-  }
-  .text-slate-300 {
-    color: var(--color-kapwa-gray-300);
-  }
-  .text-error-600 {
-    color: var(--color-kapwa-red-600);
-  }
-  .text-success-600 {
-    color: var(--color-kapwa-green-600);
-  }
-  .text-warning-600 {
-    color: var(--color-kapwa-orange-600);
-  }
-
-  /* Border colors */
-  .border-primary-600 {
-    border-color: var(--color-kapwa-blue-600);
+    border-color: var(--color-kapwa-border-weak, currentcolor);
   }
 }
 
@@ -227,7 +118,7 @@
   line-height: 1.5 !important;
   font-family: var(--font-sans) !important;
   font-size: 14px !important;
-  color: var(--color-kapwa-gray-700) !important;
+  color: var(--color-kapwa-text-support) !important;
   padding: 16px;
   min-width: 280px;
 }
@@ -238,7 +129,7 @@
 }
 
 .leaflet-popup-close-button {
-  color: var(--color-kapwa-gray-400) !important;
+  color: var(--color-kapwa-text-disabled) !important;
   padding: 8px !important;
 }
 
@@ -275,26 +166,10 @@
 }
 
 @layer components {
-  .heading-hero {
-    @apply text-3xl font-bold tracking-tight text-slate-900 md:text-5xl;
-  }
-
-  .heading-section {
-    @apply text-2xl font-bold text-slate-900 md:text-3xl;
-  }
-
-  .heading-label {
-    @apply text-[10px] font-bold tracking-widest text-slate-500 uppercase;
-  }
-
-  .card-better {
-    @apply rounded-xl border border-slate-200 bg-white shadow-sm transition-all duration-200;
-  }
-
   .sidebar-active {
-    background-color: var(--color-kapwa-blue-50);
-    color: var(--color-kapwa-blue-700);
-    border-color: var(--color-kapwa-blue-600);
+    background-color: var(--color-kapwa-bg-brand-weak);
+    color: var(--color-kapwa-text-brand);
+    border-color: var(--color-kapwa-border-brand);
     border-left-width: 2px;
     font-weight: 600;
   }

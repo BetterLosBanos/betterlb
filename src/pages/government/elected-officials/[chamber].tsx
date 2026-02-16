@@ -148,7 +148,7 @@ export default function LegislativeChamber() {
                 <CardContent className='flex h-full flex-col space-y-4 p-4'>
                   {/* Row 1: Icon, Role, Name */}
                   <div className='flex items-start gap-3'>
-                    <div className='bg-primary-50 text-primary-600 border-primary-100 group-hover:bg-primary-600 shrink-0 rounded-lg border p-2 shadow-sm transition-colors group-hover:text-white'>
+                    <div className='bg-primary-50 kapwa-text-brand kapwa-border-brand group-hover:kapwa-bg-brand-default group-hover:kapwa-text-inverse shrink-0 rounded-lg border p-2 shadow-sm transition-colors'>
                       <UserIcon className='h-5 w-5' />
                     </div>
 
@@ -156,7 +156,7 @@ export default function LegislativeChamber() {
                       <p className='text-primary-600 mb-0.5 text-[10px] font-bold tracking-widest uppercase'>
                         {member.role}
                       </p>
-                      <h4 className='text-base leading-tight font-bold text-slate-900'>
+                      <h4 className='kapwa-text-strong text-base leading-tight font-bold'>
                         {toTitleCase(member.name)}
                       </h4>
                       {member.personId && (
@@ -169,11 +169,11 @@ export default function LegislativeChamber() {
 
                   {/* Row 2: Committee Highlight Box */}
                   {chaired.length > 0 ? (
-                    <div className='flex flex-col gap-2 rounded-xl border border-slate-100 bg-slate-50/50 p-3'>
+                    <div className='kapwa-border-weak kapwa-bg-surface-raised/50 flex flex-col gap-2 rounded-xl border p-3'>
                       {/* Section Label */}
                       <div className='mb-1 flex items-center gap-2'>
-                        <BookOpenIcon className='h-3 w-3 text-slate-400' />
-                        <span className='text-[10px] font-bold tracking-widest text-slate-400 uppercase'>
+                        <BookOpenIcon className='kapwa-text-disabled h-3 w-3' />
+                        <span className='kapwa-text-disabled text-[10px] font-bold tracking-widest uppercase'>
                           Committee Chair
                         </span>
                       </div>
@@ -183,7 +183,7 @@ export default function LegislativeChamber() {
                         {chaired.map(c => (
                           <li
                             key={c.committee}
-                            className='flex items-start gap-2 rounded-lg border border-slate-100 bg-white px-2.5 py-2 shadow-sm'
+                            className='kapwa-border-weak kapwa-bg-surface flex items-start gap-2 rounded-lg border px-2.5 py-2 shadow-sm'
                           >
                             {/* Small decorative dot/line */}
                             <div className='bg-secondary-600 mt-0.5 h-8 w-1 shrink-0 rounded-full opacity-80' />
@@ -203,7 +203,7 @@ export default function LegislativeChamber() {
                   {member.website && (
                     <div className='mt-auto flex items-center justify-between border-t border-slate-50 pt-3'>
                       {/* Darker text for readability */}
-                      <span className='text-[10px] font-medium tracking-wide text-slate-400 uppercase'>
+                      <span className='kapwa-text-disabled text-[10px] font-medium tracking-wide uppercase'>
                         Social Profile
                       </span>
                       <a
@@ -211,7 +211,7 @@ export default function LegislativeChamber() {
                         target='_blank'
                         rel='noreferrer'
                         onClick={e => member.personId && e.stopPropagation()}
-                        className='group/link hover:border-primary-200 hover:text-primary-700 flex items-center gap-2 rounded-lg border border-slate-100 bg-white px-3 py-1.5 shadow-sm transition-all'
+                        className='group/link hover:kapwa-border-brand hover:kapwa-text-brand kapwa-border-weak kapwa-bg-surface flex items-center gap-2 rounded-lg border px-3 py-1.5 shadow-sm transition-all'
                       >
                         <span className='text-[10px] font-bold tracking-wider uppercase'>
                           Visit Page
@@ -241,21 +241,21 @@ export default function LegislativeChamber() {
       </DetailSection>
 
       {/* --- CTA Banner --- */}
-      <div className='group relative overflow-hidden rounded-3xl bg-slate-900 p-8 text-white shadow-xl md:p-12'>
+      <div className='group kapwa-text-inverse relative overflow-hidden rounded-3xl bg-slate-900 p-8 shadow-xl md:p-12'>
         <div className='relative z-10 flex flex-col items-start justify-between gap-8 md:flex-row md:items-center'>
           <div className='max-w-2xl space-y-4'>
             <div className='flex items-center gap-3'>
               <Badge variant='secondary' dot>
                 Legislative Archive
               </Badge>
-              <span className='text-xs font-bold tracking-widest text-slate-400 uppercase'>
+              <span className='kapwa-text-disabled text-xs font-bold tracking-widest uppercase'>
                 Public Records
               </span>
             </div>
             <h3 className='text-2xl font-extrabold tracking-tight md:text-3xl'>
               Municipal Ordinances & Resolutions
             </h3>
-            <p className='text-base leading-relaxed text-slate-400'>
+            <p className='kapwa-text-disabled text-base leading-relaxed'>
               Access the verified directory of local laws, ordinances, and
               resolutions passed by the {data.chamber}.
             </p>
@@ -263,13 +263,13 @@ export default function LegislativeChamber() {
 
           <Link
             to='/legislation'
-            className='hover:bg-secondary-50 flex min-h-[56px] w-full shrink-0 items-center justify-center gap-3 rounded-xl bg-white px-8 text-sm font-bold text-slate-900 shadow-lg transition-all md:w-auto'
+            className='hover:bg-secondary-50 kapwa-bg-surface kapwa-text-strong flex min-h-[56px] w-full shrink-0 items-center justify-center gap-3 rounded-xl px-8 text-sm font-bold shadow-lg transition-all md:w-auto'
           >
             Browse Documents <ChevronRight className='h-4 w-4' />
           </Link>
         </div>
 
-        <GavelIcon className='absolute right-[-5%] bottom-[-20%] h-64 w-64 -rotate-12 text-white/5 transition-transform duration-700 group-hover:scale-110 group-hover:rotate-0' />
+        <GavelIcon className='kapwa-text-inverse/5 absolute right-[-5%] bottom-[-20%] h-64 w-64 -rotate-12 transition-transform duration-700 group-hover:scale-110 group-hover:rotate-0' />
       </div>
     </div>
   );

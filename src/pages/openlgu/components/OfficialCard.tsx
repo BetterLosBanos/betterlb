@@ -126,7 +126,7 @@ export default function OfficialCard({
             </div>
 
             {/* Mini stats row */}
-            <div className='mt-2 flex flex-wrap items-center gap-3 text-xs text-slate-600'>
+            <div className='kapwa-text-on-disabled mt-2 flex flex-wrap items-center gap-3 text-xs'>
               {!isExecutive && (
                 <div className='flex items-center gap-1'>
                   <Calendar className='h-3 w-3' />
@@ -164,9 +164,9 @@ export default function OfficialCard({
           </div>
 
           {/* Expand/collapse indicator */}
-          <div className='flex items-center gap-2 text-slate-400'>
+          <div className='kapwa-text-disabled flex items-center gap-2'>
             {!isExpanded && (
-              <span className='hidden text-xs text-slate-400 sm:inline'>
+              <span className='kapwa-text-disabled hidden text-xs sm:inline'>
                 {totalTermsServed > 1
                   ? `served in ${totalTermsServed} term${totalTermsServed > 1 ? 's' : ''}`
                   : 'view details'}
@@ -175,7 +175,7 @@ export default function OfficialCard({
             {isExpanded ? (
               <ChevronDown className='text-primary-500 h-5 w-5' />
             ) : (
-              <ChevronRight className='h-5 w-5 transition-colors group-hover:text-slate-500' />
+              <ChevronRight className='group-hover:kapwa-text-disabled h-5 w-5 transition-colors' />
             )}
           </div>
         </CardContent>
@@ -183,8 +183,8 @@ export default function OfficialCard({
 
       {/* Expanded Service Timeline */}
       {isExpanded && (
-        <CardContent className='animate-in fade-in slide-in-from-top-2 border-t border-slate-200 bg-slate-50/50 p-4 duration-200'>
-          <div className='mb-3 text-xs font-semibold tracking-wide text-slate-500 uppercase'>
+        <CardContent className='animate-in fade-in slide-in-from-top-2 kapwa-border-weak kapwa-bg-surface-raised/50 border-t p-4 duration-200'>
+          <div className='kapwa-text-disabled mb-3 text-xs font-semibold tracking-wide uppercase'>
             Service History
           </div>
           <ServiceTimeline

@@ -6,7 +6,7 @@ import {
   CardFooter as KapwaCardFooter,
   CardHeader as KapwaCardHeader,
   CardImage as KapwaCardImage,
-} from '@bettergov/kapwa/card';
+} from '@bettergov/kapwa';
 import {
   ExternalLinkIcon,
   MailIcon,

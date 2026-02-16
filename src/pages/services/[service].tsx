@@ -62,7 +62,7 @@ export default function ServiceDetail() {
   );
   if (!service)
     return (
-      <div className='p-20 text-center font-bold tracking-widest text-slate-500 uppercase'>
+      <div className='kapwa-text-disabled p-20 text-center font-bold tracking-widest uppercase'>
         Service not found
       </div>
     );
@@ -139,7 +139,7 @@ export default function ServiceDetail() {
               href={service.url}
               target='_blank'
               rel='noreferrer'
-              className='bg-primary-600 hover:bg-primary-500 group inline-flex min-h-[48px] items-center gap-3 rounded-2xl px-8 py-4 font-bold text-white shadow-lg transition-all'
+              className='bg-primary-600 hover:bg-primary-500 group kapwa-text-inverse inline-flex min-h-[48px] items-center gap-3 rounded-2xl px-8 py-4 font-bold shadow-lg transition-all'
             >
               {isTransaction ? 'Access Online Portal' : 'View Full Document'}
               <ExternalLink className='h-5 w-5 transition-transform group-hover:translate-x-1 group-hover:-translate-y-1' />
@@ -147,7 +147,7 @@ export default function ServiceDetail() {
           )}
         </div>
         <ShieldCheck
-          className='absolute right-[-20px] bottom-[-20px] h-64 w-64 -rotate-12 text-white/5'
+          className='kapwa-text-inverse/5 absolute right-[-20px] bottom-[-20px] h-64 w-64 -rotate-12'
           aria-hidden='true'
         />
       </header>
@@ -161,16 +161,16 @@ export default function ServiceDetail() {
               {quickInfoArray.map((info, idx) => (
                 <div
                   key={idx}
-                  className='flex items-start gap-3 rounded-2xl border border-slate-100 bg-white p-4 shadow-xs'
+                  className='kapwa-border-weak kapwa-bg-surface flex items-start gap-3 rounded-2xl border p-4 shadow-xs'
                 >
-                  <div className='text-primary-600 shrink-0 rounded-lg bg-slate-50 p-2'>
+                  <div className='text-primary-600 kapwa-bg-surface-raised shrink-0 rounded-lg p-2'>
                     <info.icon className='h-4 w-4' />
                   </div>
                   <div>
-                    <p className='mb-1 text-[10px] font-bold tracking-widest text-slate-400 uppercase'>
+                    <p className='kapwa-text-disabled mb-1 text-[10px] font-bold tracking-widest uppercase'>
                       {info.label}
                     </p>
-                    <p className='text-xs font-bold text-slate-900'>
+                    <p className='kapwa-text-strong text-xs font-bold'>
                       {info.value}
                     </p>
                   </div>
@@ -196,7 +196,7 @@ export default function ServiceDetail() {
                     >
                       {idx + 1}
                     </div>
-                    <p className='pt-1 text-sm leading-relaxed text-slate-700 md:text-base'>
+                    <p className='kapwa-text-support pt-1 text-sm leading-relaxed md:text-base'>
                       {step}
                     </p>
                   </div>
@@ -212,13 +212,13 @@ export default function ServiceDetail() {
                 {service.sources.map((source: Source, idx: number) => (
                   <li
                     key={idx}
-                    className='hover:border-primary-100 group flex items-start gap-3 rounded-xl border border-slate-100 bg-slate-50/50 p-4 transition-all'
+                    className='hover:kapwa-border-brand group kapwa-border-weak kapwa-bg-surface-raised/50 flex items-start gap-3 rounded-xl border p-4 transition-all'
                   >
-                    <div className='group-hover:text-primary-600 rounded-lg bg-white p-2 text-slate-400 shadow-sm'>
+                    <div className='group-hover:kapwa-text-brand kapwa-bg-surface kapwa-text-disabled rounded-lg p-2 shadow-sm'>
                       <LinkIcon className='h-3.5 w-3.5' />
                     </div>
                     <div className='flex flex-col'>
-                      <p className='mb-1 text-[10px] font-bold tracking-widest text-slate-400 uppercase'>
+                      <p className='kapwa-text-disabled mb-1 text-[10px] font-bold tracking-widest uppercase'>
                         Reference
                       </p>
                       {source.url ? (
@@ -231,7 +231,7 @@ export default function ServiceDetail() {
                           {source.name} <ExternalLink className='h-3 w-3' />
                         </a>
                       ) : (
-                        <span className='text-sm font-bold text-slate-700'>
+                        <span className='kapwa-text-support text-sm font-bold'>
                           {source.name}
                         </span>
                       )}
@@ -250,7 +250,7 @@ export default function ServiceDetail() {
             className={`flex flex-col gap-3 rounded-2xl border p-5 transition-colors ${isVerified ? 'border-emerald-100 bg-emerald-50/30' : 'border-slate-200 bg-slate-50'}`}
           >
             <div className='flex items-center justify-between'>
-              <p className='text-[10px] font-bold tracking-widest text-slate-400 uppercase'>
+              <p className='kapwa-text-disabled text-[10px] font-bold tracking-widest uppercase'>
                 Data Integrity
               </p>
               {isVerified ? (
@@ -269,7 +269,7 @@ export default function ServiceDetail() {
                 >
                   {isVerified ? 'Verified Information' : 'Unverified Data'}
                 </p>
-                <p className='text-[11px] font-medium text-slate-400'>
+                <p className='kapwa-text-disabled text-[11px] font-medium'>
                   {isVerified
                     ? `Last Audit: ${format(updatedAtDate!, 'MMMM yyyy')}`
                     : 'Awaiting official verification'}
@@ -291,7 +291,7 @@ export default function ServiceDetail() {
                       to={`/government/departments/${off.slug}`}
                       className='group block'
                     >
-                      <h3 className='group-hover:text-primary-600 leading-tight font-bold text-slate-900 transition-colors'>
+                      <h3 className='group-hover:kapwa-text-brand kapwa-text-strong leading-tight font-bold transition-colors'>
                         {toTitleCase(off.office_name)}
                       </h3>
                       <span className='text-primary-600 mt-2 flex items-center gap-1 text-[10px] font-bold tracking-widest uppercase'>
@@ -306,24 +306,24 @@ export default function ServiceDetail() {
           )}
 
           {/* SUGGEST AN EDIT - NEW PLACEMENT & STYLE */}
-          <div className='space-y-4 rounded-2xl border border-slate-200 bg-white p-6 shadow-sm'>
+          <div className='kapwa-border-weak kapwa-bg-surface space-y-4 rounded-2xl border p-6 shadow-sm'>
             <div className='flex items-center gap-3'>
               <div className='bg-secondary-50 text-secondary-600 rounded-lg p-2'>
                 <HeartHandshake className='h-5 w-5' />
               </div>
-              <h4 className='text-sm leading-tight font-bold text-slate-900'>
+              <h4 className='kapwa-text-strong text-sm leading-tight font-bold'>
                 Help improve this data
               </h4>
             </div>
-            <p className='text-xs leading-relaxed text-slate-500'>
+            <p className='kapwa-text-disabled text-xs leading-relaxed'>
               Find an error or outdated info? Our community helps keep this
               portal accurate.
             </p>
             <Link
               to={`/contribute?edit=${service.slug}`}
-              className='group flex min-h-[44px] w-full items-center justify-center gap-2 rounded-xl border-2 border-slate-100 px-4 py-2.5 text-xs font-bold text-slate-600 transition-all hover:border-slate-200 hover:bg-slate-50'
+              className='group kapwa-border-weak kapwa-text-on-disabled hover:kapwa-border-weak hover:kapwa-bg-surface-raised flex min-h-[44px] w-full items-center justify-center gap-2 rounded-xl border-2 px-4 py-2.5 text-xs font-bold transition-all'
             >
-              <Edit3 className='group-hover:text-secondary-600 h-3.5 w-3.5 text-slate-400 transition-colors' />
+              <Edit3 className='group-hover:text-secondary-600 kapwa-text-disabled h-3.5 w-3.5 transition-colors' />
               Suggest an Edit
             </Link>
           </div>

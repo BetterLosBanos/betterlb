@@ -115,7 +115,7 @@ export const Card = forwardRef<HTMLElement, CardProps>(
           'w-full overflow-hidden rounded-2xl border transition-all duration-300',
           variants[variant],
           hover &&
-            'hover:border-primary-300 hover:-translate-y-0.5 hover:shadow-lg',
+            'hover:kapwa-border-brand hover:-translate-y-0.5 hover:shadow-lg',
           className
         )}
         {...props}
@@ -208,7 +208,7 @@ export const CardImage = ({
   className,
   ...props
 }: ImgHTMLAttributes<HTMLImageElement>) => (
-  <div className='relative h-48 w-full overflow-hidden bg-slate-100'>
+  <div className='kapwa-bg-hover relative h-48 w-full overflow-hidden'>
     <img
       className={cn(
         'h-full w-full object-cover transition-transform duration-500 group-hover:scale-105',

@@ -2,6 +2,7 @@ import { FC, useState } from 'react';
 
 import { Link } from 'react-router-dom';
 
+import { Button } from '@bettergov/kapwa';
 import {
   ArrowRightIcon,
   ChevronDownIcon,
@@ -13,8 +14,6 @@ import {
   UsersIcon,
 } from 'lucide-react';
 import { Helmet } from 'react-helmet-async';
-
-import Button from '@/components/ui/Button';
 
 const ContactUs: FC = () => {
   const contactMethods = [
@@ -90,7 +89,7 @@ const ContactUs: FC = () => {
   const [openFaq, setOpenFaq] = useState<number | null>(null);
 
   return (
-    <div className='min-h-screen bg-gray-50'>
+    <div className='kapwa-bg-surface-raised min-h-screen'>
       <Helmet>
         <title>Contact Us | BetterGov.ph</title>
         <meta
@@ -114,17 +113,17 @@ const ContactUs: FC = () => {
 
       <div className='container mx-auto px-4 py-6 md:py-8'>
         {/* Header Section */}
-        <div className='mt-4 rounded-lg border bg-white p-6 shadow-xs md:p-8 md:py-16'>
+        <div className='kapwa-bg-surface mt-4 rounded-lg border p-6 shadow-xs md:p-8 md:py-16'>
           <div className='mx-auto max-w-4xl text-center'>
             <div className='mb-6 flex justify-center'>
-              <div className='rounded-full bg-blue-100 p-4'>
-                <HeartHandshakeIcon className='h-12 w-12 text-blue-600' />
+              <div className='kapwa-bg-info-weak rounded-full p-4'>
+                <HeartHandshakeIcon className='kapwa-text-info h-12 w-12' />
               </div>
             </div>
-            <h1 className='mb-6 text-3xl font-bold text-gray-900 md:text-5xl'>
+            <h1 className='kapwa-text-strong mb-6 text-3xl font-bold md:text-5xl'>
               Connect with Us
             </h1>
-            <p className='mx-auto mb-8 max-w-3xl text-lg text-gray-600 md:text-xl'>
+            <p className='kapwa-text-on-disabled mx-auto mb-8 max-w-3xl text-lg md:text-xl'>
               We&apos;re a passionate community of volunteers, developers, and
               designers dedicated to improving digital public services in the
               Philippines. Whether you have a question, a suggestion, or want to
@@ -138,15 +137,17 @@ const ContactUs: FC = () => {
           {contactMethods.map((method, index) => (
             <div
               key={index}
-              className='rounded-lg border bg-white p-6 shadow-xs transition-shadow hover:shadow-md'
+              className='kapwa-bg-surface rounded-lg border p-6 shadow-xs transition-shadow hover:shadow-md'
             >
               <div className={`${method.color} mb-4 w-fit rounded-lg p-3`}>
                 {method.icon}
               </div>
-              <h3 className='mb-2 text-lg font-semibold text-gray-900'>
+              <h3 className='kapwa-text-strong mb-2 text-lg font-semibold'>
                 {method.title}
               </h3>
-              <p className='mb-4 text-sm text-gray-600'>{method.description}</p>
+              <p className='kapwa-text-on-disabled mb-4 text-sm'>
+                {method.description}
+              </p>
               <Button
                 href={method.action}
                 variant='link'
@@ -166,10 +167,10 @@ const ContactUs: FC = () => {
         </div>
 
         {/* FAQ Section */}
-        <div className='mt-8 rounded-lg border bg-white p-6 shadow-xs md:p-8'>
+        <div className='kapwa-bg-surface mt-8 rounded-lg border p-6 shadow-xs md:p-8'>
           <div className='mx-auto max-w-4xl'>
             <div className='mb-8 text-center'>
-              <h2 className='mb-4 text-2xl font-bold text-gray-900 md:text-3xl'>
+              <h2 className='kapwa-text-strong mb-4 text-2xl font-bold md:text-3xl'>
                 Frequently Asked Questions
               </h2>
               <p className='text-gray-600'>
@@ -184,17 +185,17 @@ const ContactUs: FC = () => {
                     onClick={() => setOpenFaq(openFaq === index ? null : index)}
                     className='flex w-full items-center justify-between p-4 text-left'
                   >
-                    <h3 className='flex-1 font-semibold text-gray-800'>
+                    <h3 className='kapwa-text-support flex-1 font-semibold'>
                       {faq.question}
                     </h3>
                     {openFaq === index ? (
-                      <ChevronUpIcon className='h-5 w-5 text-gray-500' />
+                      <ChevronUpIcon className='kapwa-text-disabled h-5 w-5' />
                     ) : (
-                      <ChevronDownIcon className='h-5 w-5 text-gray-500' />
+                      <ChevronDownIcon className='kapwa-text-disabled h-5 w-5' />
                     )}
                   </button>
                   {openFaq === index && (
-                    <div className='p-4 pt-0 text-sm leading-relaxed text-gray-600'>
+                    <div className='kapwa-text-on-disabled p-4 pt-0 text-sm leading-relaxed'>
                       <p>
                         {faq.answer}
                         {faq.link && (
@@ -202,7 +203,7 @@ const ContactUs: FC = () => {
                             {' '}
                             <Link
                               to={faq.link.href}
-                              className='font-medium text-blue-600 hover:text-blue-800'
+                              className='kapwa-text-info font-medium hover:text-blue-800'
                               target={
                                 faq.link.href.startsWith('http')
                                   ? '_blank'
@@ -230,7 +231,7 @@ const ContactUs: FC = () => {
 
         {/* Call to Action */}
         <div className='mt-8 rounded-lg bg-gradient-to-r from-blue-600 to-purple-600 p-8 text-center'>
-          <h3 className='mb-4 text-2xl font-bold text-white'>
+          <h3 className='kapwa-text-inverse mb-4 text-2xl font-bold'>
             Ready to Make a Difference?
           </h3>
           <p className='mx-auto mb-6 max-w-2xl text-blue-100'>
@@ -239,7 +240,7 @@ const ContactUs: FC = () => {
           </p>
           <Link
             to='/join-us'
-            className='inline-flex items-center rounded-lg bg-white px-6 py-3 font-semibold text-blue-600 transition-colors hover:bg-gray-50'
+            className='kapwa-bg-surface kapwa-text-info hover:kapwa-bg-surface-raised inline-flex items-center rounded-lg px-6 py-3 font-semibold transition-colors'
           >
             Become a Volunteer
             <ArrowRightIcon className='ml-2 h-5 w-5' />

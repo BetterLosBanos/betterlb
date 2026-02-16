@@ -1,5 +1,6 @@
 import { FC } from 'react';
 
+import { Button } from '@bettergov/kapwa';
 import {
   AwardIcon,
   BuildingIcon,
@@ -9,7 +10,6 @@ import {
   PhoneIcon,
 } from 'lucide-react';
 
-import Button from '../components/ui/Button';
 import {
   Card,
   CardContent,
@@ -30,7 +30,7 @@ const ColorBlock = ({
     <div className={`h-12 w-12 rounded-sm ${color}`} />
     <div>
       <div className='font-medium'>{name}</div>
-      <div className='text-sm text-gray-800'>{value}</div>
+      <div className='kapwa-text-support text-sm'>{value}</div>
     </div>
   </div>
 );
@@ -44,7 +44,7 @@ const TypographyExample = ({
 }) => (
   <div className='mb-4'>
     <div className={className}>The quick brown fox jumps over the lazy dog</div>
-    <div className='mt-1 text-sm text-gray-800'>{label}</div>
+    <div className='kapwa-text-support mt-1 text-sm'>{label}</div>
   </div>
 );
 
@@ -87,9 +87,9 @@ const DesignGuide: FC = () => {
   ];
 
   return (
-    <div className='min-h-screen bg-gray-50 py-12'>
+    <div className='kapwa-bg-surface-raised min-h-screen py-12'>
       <div className='container mx-auto px-4'>
-        <h1 className='mb-8 text-3xl font-bold text-gray-900'>
+        <h1 className='kapwa-text-strong mb-8 text-3xl font-bold'>
           Design Guidelines
         </h1>
 
@@ -232,14 +232,14 @@ const DesignGuide: FC = () => {
                   {searchResults.map(result => (
                     <div
                       key={result.id}
-                      className='hover:border-primary-500 rounded-lg border border-gray-200 bg-white p-4 transition-colors'
+                      className='hover:kapwa-border-brand kapwa-border-weak kapwa-bg-surface rounded-lg border p-4 transition-colors'
                     >
                       <div className='flex items-start justify-between'>
                         <div>
-                          <h4 className='text-lg font-medium text-gray-900'>
+                          <h4 className='kapwa-text-strong text-lg font-medium'>
                             {result.title}
                           </h4>
-                          <span className='mt-2 inline-block rounded-sm bg-gray-100 px-2 py-1 text-xs font-medium text-gray-800'>
+                          <span className='kapwa-bg-hover kapwa-text-support mt-2 inline-block rounded-sm px-2 py-1 text-xs font-medium'>
                             {result.category}
                           </span>
                         </div>
@@ -267,30 +267,32 @@ const DesignGuide: FC = () => {
               <table className='min-w-full divide-y divide-gray-200'>
                 <thead className='bg-gray-50'>
                   <tr>
-                    <th className='px-6 py-3 text-left text-xs font-medium tracking-wider text-gray-800 uppercase'>
+                    <th className='kapwa-text-support px-6 py-3 text-left text-xs font-medium tracking-wider uppercase'>
                       Name
                     </th>
-                    <th className='px-6 py-3 text-left text-xs font-medium tracking-wider text-gray-800 uppercase'>
+                    <th className='kapwa-text-support px-6 py-3 text-left text-xs font-medium tracking-wider uppercase'>
                       Email
                     </th>
-                    <th className='px-6 py-3 text-left text-xs font-medium tracking-wider text-gray-800 uppercase'>
+                    <th className='kapwa-text-support px-6 py-3 text-left text-xs font-medium tracking-wider uppercase'>
                       Status
                     </th>
-                    <th className='px-6 py-3 text-right text-xs font-medium tracking-wider text-gray-800 uppercase'>
+                    <th className='kapwa-text-support px-6 py-3 text-right text-xs font-medium tracking-wider uppercase'>
                       Actions
                     </th>
                   </tr>
                 </thead>
-                <tbody className='divide-y divide-gray-200 bg-white'>
+                <tbody className='kapwa-bg-surface divide-y divide-gray-200'>
                   {tableData.map(row => (
-                    <tr key={row.id} className='hover:bg-gray-50'>
+                    <tr key={row.id} className='hover:kapwa-bg-surface-raised'>
                       <td className='px-6 py-4 whitespace-nowrap'>
-                        <div className='text-sm font-medium text-gray-900'>
+                        <div className='kapwa-text-strong text-sm font-medium'>
                           {row.name}
                         </div>
                       </td>
                       <td className='px-6 py-4 whitespace-nowrap'>
-                        <div className='text-sm text-gray-800'>{row.email}</div>
+                        <div className='kapwa-text-support text-sm'>
+                          {row.email}
+                        </div>
                       </td>
                       <td className='px-6 py-4 whitespace-nowrap'>
                         <span
@@ -336,13 +338,13 @@ const DesignGuide: FC = () => {
                       alt='Article thumbnail'
                     />
                     <CardContent>
-                      <span className='bg-primary-100 text-primary-800 mb-2 inline-block rounded-sm px-2 py-1 text-xs font-medium'>
+                      <span className='bg-primary-100 kapwa-text-brand-bold mb-2 inline-block rounded-sm px-2 py-1 text-xs font-medium'>
                         News
                       </span>
                       <h3 className='mb-2 text-xl font-semibold'>
                         Digital Government Initiatives
                       </h3>
-                      <p className='mb-4 text-gray-800'>
+                      <p className='kapwa-text-support mb-4'>
                         Latest updates on the government&apos;s digital
                         transformation projects and e-services.
                       </p>
@@ -358,7 +360,7 @@ const DesignGuide: FC = () => {
                       />
                       <div className='absolute inset-0 flex items-end bg-linear-to-t from-black/75 to-transparent p-6'>
                         <div className='text-white'>
-                          <span className='mb-2 inline-block rounded-sm bg-white/20 px-2 py-1 text-xs font-medium'>
+                          <span className='kapwa-bg-surface/20 mb-2 inline-block rounded-sm px-2 py-1 text-xs font-medium'>
                             Tourism
                           </span>
                           <h3 className='mb-2 text-xl font-semibold'>
@@ -379,7 +381,7 @@ const DesignGuide: FC = () => {
                 <h3 className='mb-4 font-medium'>Article Content</h3>
                 <div className='prose max-w-none'>
                   <h1 className='mb-4 text-3xl font-bold'>Article Title</h1>
-                  <p className='mb-6 text-gray-800'>
+                  <p className='kapwa-text-support mb-6'>
                     Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed
                     do eiusmod tempor incididunt ut labore et dolore magna
                     aliqua.
@@ -387,7 +389,7 @@ const DesignGuide: FC = () => {
                   <h2 className='mb-3 text-2xl font-semibold'>
                     Section Heading
                   </h2>
-                  <p className='mb-4 text-gray-800'>
+                  <p className='kapwa-text-support mb-4'>
                     Ut enim ad minim veniam, quis nostrud exercitation ullamco
                     laboris nisi ut aliquip ex ea commodo consequat.
                   </p>
@@ -410,7 +412,7 @@ const DesignGuide: FC = () => {
               {/* Strip Banner */}
               <div>
                 <h3 className='mb-4 font-medium'>Strip Banner</h3>
-                <div className='relative overflow-hidden rounded-lg bg-linear-to-r from-orange-500 via-red-500 to-pink-500 py-3 text-white'>
+                <div className='kapwa-text-inverse relative overflow-hidden rounded-lg bg-linear-to-r from-orange-500 via-red-500 to-pink-500 py-3'>
                   <div className='container mx-auto px-4'>
                     <div className='flex flex-col items-center justify-between gap-2 sm:flex-row'>
                       <div className='flex items-center gap-3'>
@@ -423,7 +425,7 @@ const DesignGuide: FC = () => {
                         </span>
                       </div>
                       <div className='flex items-center gap-3'>
-                        <button className='rounded-full bg-gray-100 px-4 py-1.5 text-sm font-semibold text-gray-800 hover:bg-gray-200'>
+                        <button className='kapwa-bg-hover kapwa-text-support hover:kapwa-bg-active rounded-full px-4 py-1.5 text-sm font-semibold'>
                           Join Now
                         </button>
                         <span className='text-xs text-orange-200 underline'>
@@ -438,7 +440,7 @@ const DesignGuide: FC = () => {
               {/* Full Banner */}
               <div>
                 <h3 className='mb-4 font-medium'>Full CivicTech Banner</h3>
-                <div className='relative overflow-hidden rounded-lg bg-linear-to-br from-orange-500 via-red-500 to-pink-600 py-12 text-white'>
+                <div className='kapwa-text-inverse relative overflow-hidden rounded-lg bg-linear-to-br from-orange-500 via-red-500 to-pink-600 py-12'>
                   <div className='container mx-auto px-4 text-center'>
                     <h2 className='mb-4 text-2xl font-bold md:text-3xl'>
                       Join the{' '}
@@ -454,10 +456,10 @@ const DesignGuide: FC = () => {
                       </strong>
                     </p>
                     <div className='flex flex-col justify-center gap-4 sm:flex-row'>
-                      <button className='rounded-lg bg-white px-6 py-3 font-bold text-gray-900 hover:bg-gray-100'>
+                      <button className='kapwa-bg-surface kapwa-text-strong hover:kapwa-bg-hover rounded-lg px-6 py-3 font-bold'>
                         Join Our Movement
                       </button>
-                      <button className='rounded-lg border-2 border-white px-6 py-3 font-semibold text-white hover:bg-white hover:text-gray-900'>
+                      <button className='kapwa-text-inverse hover:kapwa-bg-surface hover:kapwa-text-strong rounded-lg border-2 border-white px-6 py-3 font-semibold'>
                         Join Discord
                       </button>
                     </div>
@@ -478,7 +480,7 @@ const DesignGuide: FC = () => {
           </CardHeader>
           <CardContent>
             <div className='mx-auto max-w-4xl'>
-              <div className='overflow-hidden rounded-xl bg-white shadow-xs'>
+              <div className='kapwa-bg-surface overflow-hidden rounded-xl shadow-xs'>
                 {/* Header Section */}
                 <div className='bg-primary-700 relative h-64'>
                   <div className='absolute inset-0'>
@@ -516,12 +518,12 @@ const DesignGuide: FC = () => {
                   <div className='grid grid-cols-1 gap-8 lg:grid-cols-3'>
                     {/* Left Column - Contact & Basic Info */}
                     <div className='space-y-6'>
-                      <div className='rounded-lg bg-gray-50 p-6'>
+                      <div className='kapwa-bg-surface-raised rounded-lg p-6'>
                         <h3 className='mb-4 text-lg font-semibold'>
                           Contact Information
                         </h3>
                         <div className='space-y-4'>
-                          <div className='flex items-center text-gray-800'>
+                          <div className='kapwa-text-support flex items-center'>
                             <BuildingIcon className='text-primary-600 mr-3 h-5 w-5' />
                             <div>
                               <div className='font-medium'>Office</div>
@@ -530,21 +532,21 @@ const DesignGuide: FC = () => {
                               </div>
                             </div>
                           </div>
-                          <div className='flex items-center text-gray-800'>
+                          <div className='kapwa-text-support flex items-center'>
                             <PhoneIcon className='text-primary-600 mr-3 h-5 w-5' />
                             <div>
                               <div className='font-medium'>Phone</div>
                               <div className='text-sm'>+63 (2) 8736 8645</div>
                             </div>
                           </div>
-                          <div className='flex items-center text-gray-800'>
+                          <div className='kapwa-text-support flex items-center'>
                             <MailIcon className='text-primary-600 mr-3 h-5 w-5' />
                             <div>
                               <div className='font-medium'>Email</div>
                               <div className='text-sm'>op@president.gov.ph</div>
                             </div>
                           </div>
-                          <div className='flex items-center text-gray-800'>
+                          <div className='kapwa-text-support flex items-center'>
                             <GlobeIcon className='text-primary-600 mr-3 h-5 w-5' />
                             <div>
                               <div className='font-medium'>Website</div>
@@ -556,7 +558,7 @@ const DesignGuide: FC = () => {
                         </div>
                       </div>
 
-                      <div className='rounded-lg bg-gray-50 p-6'>
+                      <div className='kapwa-bg-surface-raised rounded-lg p-6'>
                         <h3 className='mb-4 text-lg font-semibold'>
                           Education
                         </h3>
@@ -567,10 +569,10 @@ const DesignGuide: FC = () => {
                               className='border-primary-500 border-l-2 pl-4'
                             >
                               <div className='font-medium'>{edu.degree}</div>
-                              <div className='text-sm text-gray-800'>
+                              <div className='kapwa-text-support text-sm'>
                                 {edu.institution}
                               </div>
-                              <div className='text-sm text-gray-800'>
+                              <div className='kapwa-text-support text-sm'>
                                 {edu.year}
                               </div>
                             </div>
@@ -586,7 +588,7 @@ const DesignGuide: FC = () => {
                           Biography
                         </h3>
                         <div className='prose max-w-none'>
-                          <p className='leading-relaxed text-gray-800'>
+                          <p className='kapwa-text-support leading-relaxed'>
                             Ferdinand &ldquo;Bongbong&rdquo; Romualdez Marcos
                             Jr. serves as the 17th President of the Philippines,
                             assuming office on June 30, 2022. As the
@@ -594,7 +596,7 @@ const DesignGuide: FC = () => {
                             implementation of laws and policies aimed at
                             national development and public welfare.
                           </p>
-                          <p className='mt-4 leading-relaxed text-gray-800'>
+                          <p className='kapwa-text-support mt-4 leading-relaxed'>
                             Prior to his presidency, he served in various
                             government positions including as a Senator of the
                             Philippines from 2010 to 2016, and as Governor of
@@ -620,13 +622,13 @@ const DesignGuide: FC = () => {
                       </div>
 
                       <div className='mt-8 flex space-x-4'>
-                        <Button className='bg-primary-600 hover:bg-primary-700 text-white'>
+                        <Button className='bg-primary-600 hover:kapwa-bg-brand-hover kapwa-text-inverse'>
                           <MailIcon className='mr-2 h-4 w-4' />
                           Contact Office
                         </Button>
                         <Button
                           variant='outline'
-                          className='border-gray-300 text-gray-700 hover:bg-gray-50'
+                          className='kapwa-text-support hover:kapwa-bg-surface-raised border-gray-300'
                         >
                           <GlobeIcon className='mr-2 h-4 w-4' />
                           Visit Website

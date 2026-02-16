@@ -1,7 +1,7 @@
+import { Button } from '@bettergov/kapwa';
 import { X } from 'lucide-react';
 
 import { Badge } from '@/components/ui/Badge';
-import Button from '@/components/ui/Button';
 import SelectPicker from '@/components/ui/SelectPicker';
 
 import type { FilterType } from '../layout';

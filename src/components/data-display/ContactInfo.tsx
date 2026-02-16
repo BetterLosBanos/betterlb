@@ -40,13 +40,13 @@ export function ContactItem({
     <div
       className={cn(
         'flex items-start gap-3 rounded-xl border border-slate-100 bg-white p-3 transition-all',
-        'group hover:border-primary-200 hover:bg-primary-50/30',
+        'group hover:kapwa-border-brand hover:kapwa-bg-surface-brand/30',
         className
       )}
     >
       {/* Icon Wrapper */}
       <div
-        className='group-hover:bg-primary-100 group-hover:text-primary-600 shrink-0 rounded-lg bg-slate-50 p-2 text-slate-400 transition-colors'
+        className='group-hover:kapwa-bg-surface-brand group-hover:kapwa-text-brand kapwa-bg-surface-raised kapwa-text-disabled shrink-0 rounded-lg p-2 transition-colors'
         aria-hidden='true'
       >
         <Icon className='h-4 w-4' />
@@ -54,10 +54,10 @@ export function ContactItem({
 
       {/* Text Area */}
       <div className='min-w-0 flex-1'>
-        <p className='mb-1 text-[10px] leading-none font-bold tracking-widest text-slate-400 uppercase'>
+        <p className='kapwa-text-disabled mb-1 text-[10px] leading-none font-bold tracking-widest uppercase'>
           {label}
         </p>
-        <div className='truncate text-sm font-bold text-slate-700 transition-colors group-hover:text-slate-900'>
+        <div className='kapwa-text-support group-hover:kapwa-text-strong truncate text-sm font-bold transition-colors'>
           {Array.isArray(value) ? value[0] : value}
         </div>
       </div>
@@ -65,7 +65,7 @@ export function ContactItem({
       {/* External Visual Indicator */}
       {external && href && (
         <ExternalLink
-          className='group-hover:text-primary-400 ml-auto h-3 w-3 text-slate-300 transition-colors'
+          className='group-hover:kapwa-text-brand-600 ml-auto h-3 w-3 text-slate-300 transition-colors'
           aria-hidden='true'
         />
       )}
