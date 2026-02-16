@@ -1,4 +1,3 @@
-// Ticker.tsx - Fixed with Kapwa COLORS ONLY (keeping original font sizes)
 import { FC, useEffect, useState } from 'react';
 
 import {
@@ -17,13 +16,13 @@ const getCurrencyIcon = (code: string) => {
   const iconName = getCurrencyIconName(code);
   switch (iconName) {
     case 'DollarSign':
-      return <DollarSignIcon className='w-4 h-4' />;
+      return <DollarSignIcon className='h-4 w-4' />;
     case 'JapaneseYen':
-      return <JapaneseYenIcon className='w-4 h-4' />;
+      return <JapaneseYenIcon className='h-4 w-4' />;
     case 'Euro':
-      return <EuroIcon className='w-4 h-4' />;
+      return <EuroIcon className='h-4 w-4' />;
     case 'PoundSterling':
-      return <PoundSterlingIcon className='w-4 h-4' />;
+      return <PoundSterlingIcon className='h-4 w-4' />;
     default:
       return null;
   }
@@ -102,9 +101,9 @@ const Ticker: FC = () => {
 
   if (isLoading && weatherLoading) {
     return (
-      <div className='bg-(--color-kapwa-bg-brand-default) px-4 py-1 text-(--color-kapwa-text-inverse)'>
-        <div className='container flex justify-center items-center mx-auto'>
-          <LoaderIcon className='mr-2 w-4 h-4 animate-spin' />
+      <div className='bg-(--color-bg-kapwa-bg-brand-default) px-4 py-1 text-(--color-text-kapwa-text-inverse)'>
+        <div className='container mx-auto flex items-center justify-center'>
+          <LoaderIcon className='mr-2 h-4 w-4 animate-spin' />
           <span className='text-xs'>Loading data...</span>
         </div>
       </div>
@@ -124,26 +123,26 @@ const Ticker: FC = () => {
 
   return (
     <div className='bg-kapwa-blue-950 py-1.5'>
-      <div className='container flex justify-end px-4 mx-auto'>
-        <div className='flex justify-end items-center'>
+      <div className='container mx-auto flex justify-end px-4'>
+        <div className='flex items-center justify-end'>
           {/* Forex ticker */}
-          <div className='overflow-hidden flex-1 pr-4'>
-            <div className='flex relative items-center h-6'>
+          <div className='flex-1 overflow-hidden pr-4'>
+            <div className='relative flex h-6 items-center'>
               <div
                 className={`flex items-center transition-all duration-200 ${
                   isAnimating
-                    ? 'opacity-0 translate-y-2'
-                    : 'opacity-100 translate-y-0'
+                    ? 'translate-y-2 opacity-0'
+                    : 'translate-y-0 opacity-100'
                 }`}
               >
                 <div className='inline-flex items-center space-x-1'>
-                  <span className='text-(--color-kapwa-text-inverse) opacity-80'>
+                  <span className='text-(--color-text-kapwa-text-inverse) opacity-80'>
                     {getCurrencyIcon(currentRate.code)}
                   </span>
-                  <span className='text-xs font-medium text-(--color-kapwa-text-inverse)'>
+                  <span className='text-xs font-medium text-(--color-text-kapwa-text-inverse)'>
                     {currentRate.code}
                   </span>
-                  <span className='text-xs text-(--color-kapwa-text-inverse) opacity-90'>
+                  <span className='text-xs text-(--color-text-kapwa-text-inverse) opacity-90'>
                     ₱{currentRate.rate.toFixed(2)}
                   </span>
                 </div>
@@ -152,17 +151,17 @@ const Ticker: FC = () => {
           </div>
 
           {/* Weather information */}
-          <div className='flex items-center pl-4 space-x-6 border-l border-white/20'>
+          <div className='flex items-center space-x-6 border-l border-white/20 pl-4'>
             {weatherLoading ? (
               <div className='flex items-center space-x-2'>
-                <LoaderIcon className='h-3 w-3 animate-spin text-(--color-kapwa-text-inverse) opacity-80' />
-                <span className='text-xs text-(--color-kapwa-text-inverse) opacity-80'>
+                <LoaderIcon className='h-3 w-3 animate-spin text-(--color-text-kapwa-text-inverse) opacity-80' />
+                <span className='text-xs text-(--color-text-kapwa-text-inverse) opacity-80'>
                   Loading weather...
                 </span>
               </div>
             ) : weatherError ? (
               <div className='flex items-center space-x-2'>
-                <span className='text-xs text-(--color-kapwa-text-inverse) opacity-80'>
+                <span className='text-xs text-(--color-text-kapwa-text-inverse) opacity-80'>
                   Weather unavailable
                 </span>
               </div>
@@ -170,12 +169,12 @@ const Ticker: FC = () => {
               weatherData.slice(0, 4).map(data => (
                 <div
                   key={data.location}
-                  className='flex flex-col justify-center items-center space-x-0 uppercase sm:flex-row sm:space-x-2'
+                  className='flex flex-col items-center justify-center space-x-0 uppercase sm:flex-row sm:space-x-2'
                 >
-                  <span className='text-xs font-medium text-(--color-kapwa-text-inverse) opacity-90'>
+                  <span className='text-xs font-medium text-(--color-text-kapwa-text-inverse) opacity-90'>
                     {data.location}
                   </span>
-                  <span className='text-xs text-(--color-kapwa-text-inverse)'>
+                  <span className='text-xs text-(--color-text-kapwa-text-inverse)'>
                     {data.temperature}°C
                   </span>
                 </div>

@@ -48,10 +48,10 @@ const GovernmentSection: FC = () => {
     <section className='bg-white py-12'>
       <div className='container mx-auto px-4'>
         <div className='mb-12 text-center'>
-          <h2 className='kapwa-text-strong mb-4 text-2xl font-bold md:text-3xl'>
+          <h2 className='text-kapwa-text-strong mb-4 text-2xl font-bold md:text-3xl'>
             {t('government.title')}
           </h2>
-          <p className='kapwa-text-support mx-auto max-w-2xl'>
+          <p className='text-kapwa-text-support mx-auto max-w-2xl'>
             {t('government.description')}
           </p>
         </div>
@@ -61,10 +61,10 @@ const GovernmentSection: FC = () => {
             <Card key={branch.id} hoverable className='text-center'>
               <CardContent className='p-6'>
                 <div className='mb-4 flex justify-center'>{branch.icon}</div>
-                <h3 className='kapwa-text-strong mb-2 text-xl font-semibold'>
+                <h3 className='text-kapwa-text-strong mb-2 text-xl font-semibold'>
                   {branch.title}
                 </h3>
-                <p className='kapwa-text-support mb-4'>{branch.description}</p>
+                <p className='text-kapwa-text-support mb-4'>{branch.description}</p>
                 <Button
                   onClick={() => navigate(branch.link)}
                   variant='link'
@@ -91,10 +91,10 @@ const GovernmentSection: FC = () => {
           ))}
         </div>
 
-        <div className='kapwa-bg-surface-raised mt-12 rounded-lg p-6'>
+        <div className='bg-kapwa-bg-surface-raised mt-12 rounded-lg p-6'>
           <div className='items-center md:flex'>
             <div className='mb-6 md:mb-0 md:w-2/3 md:pr-8'>
-              <h3 className='kapwa-text-strong mb-2 text-xl font-semibold'>
+              <h3 className='text-kapwa-text-strong mb-2 text-xl font-semibold'>
                 {t('government.directoryTitle')}
               </h3>
               <p className='text-gray-800'>
@@ -104,7 +104,7 @@ const GovernmentSection: FC = () => {
             <div className='flex justify-center md:w-1/3 md:justify-end'>
               <a
                 href='/government/'
-                className='bg-primary-500 hover:kapwa-bg-brand-default focus:ring-primary-500 kapwa-text-inverse inline-flex items-center justify-center rounded-md px-6 py-3 font-medium shadow-xs transition-colors focus:ring-2 focus:ring-offset-2 focus:outline-hidden'
+                className='bg-primary-500 hover:bg-kapwa-bg-brand-default focus:ring-primary-500 text-kapwa-text-inverse inline-flex items-center justify-center rounded-md px-6 py-3 font-medium shadow-xs transition-colors focus:ring-2 focus:ring-offset-2 focus:outline-hidden'
               >
                 {t('government.viewDirectory')}
               </a>

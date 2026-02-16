@@ -193,7 +193,7 @@ export default function AdminDashboard() {
       {/* Stats Overview */}
       <section>
         <div className='mb-4 flex items-center justify-between'>
-          <h2 className='kapwa-text-strong text-xl font-bold'>Overview</h2>
+          <h2 className='text-kapwa-text-strong text-xl font-bold'>Overview</h2>
           <Button
             variant='outline'
             size='sm'
@@ -243,7 +243,7 @@ export default function AdminDashboard() {
                     <CardTitle level='h3' className='mb-1'>
                       {stat.title}
                     </CardTitle>
-                    <p className='kapwa-text-disabled text-sm'>
+                    <p className='text-kapwa-text-disabled text-sm'>
                       {stat.description}
                     </p>
                   </CardContent>
@@ -256,7 +256,7 @@ export default function AdminDashboard() {
 
       {/* Quick Actions */}
       <section>
-        <h2 className='kapwa-text-strong mb-4 text-xl font-bold'>
+        <h2 className='text-kapwa-text-strong mb-4 text-xl font-bold'>
           Quick Actions
         </h2>
         <div className='grid gap-4 sm:grid-cols-2 lg:grid-cols-3'>
@@ -268,13 +268,13 @@ export default function AdminDashboard() {
               className='flex items-center justify-between'
             >
               <CardContent className='flex-1 py-4'>
-                <h3 className='kapwa-text-strong font-bold'>{action.title}</h3>
-                <p className='kapwa-text-disabled text-sm'>
+                <h3 className='text-kapwa-text-strong font-bold'>{action.title}</h3>
+                <p className='text-kapwa-text-disabled text-sm'>
                   {action.description}
                 </p>
               </CardContent>
               <Link to={action.link} className='px-4'>
-                <ArrowRight className='kapwa-text-disabled h-5 w-5' />
+                <ArrowRight className='text-kapwa-text-disabled h-5 w-5' />
               </Link>
             </Card>
           ))}
@@ -284,7 +284,7 @@ export default function AdminDashboard() {
       {/* Recent Activity */}
       <section>
         <div className='mb-4 flex items-center justify-between'>
-          <h2 className='kapwa-text-strong text-xl font-bold'>
+          <h2 className='text-kapwa-text-strong text-xl font-bold'>
             Recent Activity
           </h2>
           <Button
@@ -305,11 +305,11 @@ export default function AdminDashboard() {
           <CardContent className='p-0'>
             {activityLoading ? (
               <div className='flex items-center justify-center py-6'>
-                <RefreshCw className='kapwa-text-disabled h-6 w-6 animate-spin' />
+                <RefreshCw className='text-kapwa-text-disabled h-6 w-6 animate-spin' />
               </div>
             ) : recentActivity.length === 0 ? (
-              <div className='kapwa-text-disabled py-6 text-center'>
-                <CheckCircle className='kapwa-text-disabled mx-auto mb-2 h-8 w-8' />
+              <div className='text-kapwa-text-disabled py-6 text-center'>
+                <CheckCircle className='text-kapwa-text-disabled mx-auto mb-2 h-8 w-8' />
                 <p className='text-sm'>No recent activity to display</p>
               </div>
             ) : (
@@ -317,7 +317,7 @@ export default function AdminDashboard() {
                 {recentActivity.map(item => (
                   <div
                     key={item.id}
-                    className='hover:kapwa-bg-surface-raised flex items-start gap-4 p-4'
+                    className='hover:bg-kapwa-bg-surface-raised flex items-start gap-4 p-4'
                   >
                     <div className='flex-shrink-0'>
                       <CheckCircle className='h-5 w-5 text-emerald-500' />
@@ -327,12 +327,12 @@ export default function AdminDashboard() {
                         <Badge variant='slate' className='text-xs'>
                           {item.item_type}
                         </Badge>
-                        <span className='kapwa-text-strong text-sm font-medium'>
+                        <span className='text-kapwa-text-strong text-sm font-medium'>
                           {item.issue_type.replace(/_/g, ' ')}
                         </span>
                       </div>
                       {item.description && (
-                        <p className='kapwa-text-on-disabled mb-1 line-clamp-2 text-sm'>
+                        <p className='text-kapwa-text-on-disabled mb-1 line-clamp-2 text-sm'>
                           {item.description}
                         </p>
                       )}
@@ -346,17 +346,17 @@ export default function AdminDashboard() {
                             ? 'Ordinance'
                             : 'Resolution'}{' '}
                           {item.document.number}
-                          <span className='kapwa-text-on-disabled ml-1 line-clamp-1 font-normal'>
+                          <span className='text-kapwa-text-on-disabled ml-1 line-clamp-1 font-normal'>
                             - {item.document.title}
                           </span>
                         </Link>
                       )}
                       {item.resolution && (
-                        <p className='kapwa-text-disabled text-sm italic'>
+                        <p className='text-kapwa-text-disabled text-sm italic'>
                           &quot;{item.resolution}&quot;
                         </p>
                       )}
-                      <div className='kapwa-text-disabled mt-1 flex flex-wrap items-center gap-3 text-xs'>
+                      <div className='text-kapwa-text-disabled mt-1 flex flex-wrap items-center gap-3 text-xs'>
                         <div className='flex items-center gap-1'>
                           <Calendar className='h-3 w-3' />
                           {new Date(item.resolved_at).toLocaleDateString()}

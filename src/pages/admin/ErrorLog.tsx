@@ -106,7 +106,7 @@ export default function ErrorLog() {
   if (loading) {
     return (
       <div className='flex items-center justify-center py-12'>
-        <RefreshCw className='kapwa-text-disabled h-8 w-8 animate-spin' />
+        <RefreshCw className='text-kapwa-text-disabled h-8 w-8 animate-spin' />
       </div>
     );
   }
@@ -135,7 +135,7 @@ export default function ErrorLog() {
       {/* Header */}
       <div className='flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between'>
         <div>
-          <h2 className='kapwa-text-strong text-2xl font-bold'>Parse Errors</h2>
+          <h2 className='text-kapwa-text-strong text-2xl font-bold'>Parse Errors</h2>
           <p className='text-slate-600'>
             Documents that failed during pipeline processing
           </p>
@@ -144,7 +144,7 @@ export default function ErrorLog() {
           <select
             value={filter}
             onChange={e => setFilter(e.target.value)}
-            className='kapwa-border-weak kapwa-bg-surface rounded-md border px-3 py-2 text-sm'
+            className='border-kapwa-border-weak bg-kapwa-bg-surface rounded-md border px-3 py-2 text-sm'
           >
             <option value='all'>All Stages</option>
             <option value='scrape'>Scrape</option>
@@ -178,14 +178,14 @@ export default function ErrorLog() {
                   {/* Header */}
                   <div className='flex items-center gap-3'>
                     {getStageBadge(error.stage)}
-                    <span className='kapwa-text-disabled text-xs'>
+                    <span className='text-kapwa-text-disabled text-xs'>
                       {new Date(error.timestamp).toLocaleString()}
                     </span>
                   </div>
 
                   {/* Document Info */}
                   <div>
-                    <h3 className='kapwa-text-strong font-bold'>
+                    <h3 className='text-kapwa-text-strong font-bold'>
                       {error.document_number || 'Unknown Document'}
                     </h3>
                     <a

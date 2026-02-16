@@ -221,29 +221,29 @@ export default function FinancialPage() {
       </Breadcrumb>
 
       {/* 2. Unified Header with Controls */}
-      <div className='kapwa-border-weak kapwa-bg-surface flex flex-col gap-8 rounded-3xl border p-8 shadow-sm xl:flex-row xl:items-center xl:justify-between'>
+      <div className='border-kapwa-border-weak bg-kapwa-bg-surface flex flex-col gap-8 rounded-3xl border p-8 shadow-sm xl:flex-row xl:items-center xl:justify-between'>
         <div className='space-y-4'>
           <div className='flex flex-wrap items-center gap-2'>
             <Badge variant='primary' dot>
               Verified Audit
             </Badge>
             <Badge variant='slate'>FY {selectedYear}</Badge>
-            <div className='kapwa-border-weak kapwa-bg-surface-raised kapwa-text-disabled flex items-center gap-1.5 rounded-md border px-2.5 py-1 text-[10px] font-bold tracking-widest uppercase'>
-              <Info className='kapwa-text-disabled h-3.5 w-3.5' />
+            <div className='border-kapwa-border-weak bg-kapwa-bg-surface-raised text-kapwa-text-disabled flex items-center gap-1.5 rounded-md border px-2.5 py-1 text-[10px] font-bold tracking-widest uppercase'>
+              <Info className='text-kapwa-text-disabled h-3.5 w-3.5' />
               <span>Millions (PHP)</span>
             </div>
           </div>
-          <h1 className='kapwa-text-strong flex items-center gap-3 text-3xl font-black tracking-tight md:text-4xl'>
+          <h1 className='text-kapwa-text-strong flex items-center gap-3 text-3xl font-black tracking-tight md:text-4xl'>
             <BarChart2Icon className='h-8 w-8 text-emerald-600' />
             Financial Performance
           </h1>
-          <p className='kapwa-text-disabled max-w-xl text-sm leading-relaxed font-medium'>
+          <p className='text-kapwa-text-disabled max-w-xl text-sm leading-relaxed font-medium'>
             Independent visualization of the municipal budget, including current
             operating income and expenditures.
           </p>
         </div>
 
-        <div className='kapwa-border-weak kapwa-bg-surface-raised shrink-0 rounded-2xl border p-4'>
+        <div className='border-kapwa-border-weak bg-kapwa-bg-surface-raised shrink-0 rounded-2xl border p-4'>
           <QuarterToggle
             quarters={quartersInYear.map(q => getQuarter(q.period))}
             years={years}
@@ -293,9 +293,9 @@ export default function FinancialPage() {
 
       {/* 5. Accessibility Footer */}
       <footer className='pt-10 text-center'>
-        <div className='kapwa-border-weak kapwa-bg-surface inline-flex items-center gap-2 rounded-full border px-4 py-2 shadow-sm'>
+        <div className='border-kapwa-border-weak bg-kapwa-bg-surface inline-flex items-center gap-2 rounded-full border px-4 py-2 shadow-sm'>
           <ShieldCheck className='h-4 w-4 text-emerald-600' />
-          <span className='kapwa-text-disabled text-[10px] font-bold tracking-widest uppercase'>
+          <span className='text-kapwa-text-disabled text-[10px] font-bold tracking-widest uppercase'>
             Source: LGU SRE via BLGF and Full Disclosure Policy Portal
           </span>
         </div>

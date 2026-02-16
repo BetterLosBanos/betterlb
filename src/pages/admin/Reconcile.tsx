@@ -247,7 +247,7 @@ export default function Reconcile() {
   if (loading && items.length === 0) {
     return (
       <div className='flex items-center justify-center py-12'>
-        <RefreshCw className='kapwa-text-disabled h-8 w-8 animate-spin' />
+        <RefreshCw className='text-kapwa-text-disabled h-8 w-8 animate-spin' />
       </div>
     );
   }
@@ -271,7 +271,7 @@ export default function Reconcile() {
       {/* Header */}
       <div className='flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between'>
         <div>
-          <h2 className='kapwa-text-strong text-2xl font-bold'>
+          <h2 className='text-kapwa-text-strong text-2xl font-bold'>
             Data Reconciliation
           </h2>
           <p className='text-slate-600'>
@@ -312,7 +312,7 @@ export default function Reconcile() {
       <div className='grid gap-6 lg:grid-cols-3'>
         {/* Conflict List */}
         <div className='space-y-4 lg:col-span-1'>
-          <h3 className='kapwa-text-strong font-bold'>Conflicts</h3>
+          <h3 className='text-kapwa-text-strong font-bold'>Conflicts</h3>
           <div className='space-y-3'>
             {items.map(item => (
               <Card
@@ -340,11 +340,11 @@ export default function Reconcile() {
                       </div>
                       {item.document && (
                         <>
-                          <p className='kapwa-text-strong text-sm font-bold'>
+                          <p className='text-kapwa-text-strong text-sm font-bold'>
                             {item.document.type === 'ordinance' ? 'O' : 'R'} -{' '}
                             {item.document.number}
                           </p>
-                          <p className='kapwa-text-on-disabled mt-1 line-clamp-2 text-xs'>
+                          <p className='text-kapwa-text-on-disabled mt-1 line-clamp-2 text-xs'>
                             {item.document.title}
                           </p>
                         </>
@@ -393,7 +393,7 @@ export default function Reconcile() {
                       >
                         {documentDetail.type}
                       </Badge>
-                      <span className='kapwa-text-support font-mono font-bold'>
+                      <span className='text-kapwa-text-support font-mono font-bold'>
                         {documentDetail.number}
                       </span>
                       <a
@@ -480,9 +480,9 @@ export default function Reconcile() {
                 </CardHeader>
                 <CardContent className='space-y-4'>
                   {/* Facebook Value */}
-                  <div className='kapwa-bg-info-weak rounded-md p-4'>
+                  <div className='bg-kapwa-bg-info-weak rounded-md p-4'>
                     <div className='mb-2 flex items-center gap-2'>
-                      <Facebook className='kapwa-text-info h-4 w-4' />
+                      <Facebook className='text-kapwa-text-info h-4 w-4' />
                       <span className='text-sm font-bold text-blue-900'>
                         Facebook Source
                       </span>
@@ -497,7 +497,7 @@ export default function Reconcile() {
                           ''
                         }
                         onChange={e => setEditedValue(e.target.value)}
-                        className='kapwa-bg-surface w-full rounded-md border border-blue-300 px-3 py-2 text-sm'
+                        className='bg-kapwa-bg-surface w-full rounded-md border border-blue-300 px-3 py-2 text-sm'
                       />
                     ) : (
                       <p className='text-sm text-blue-800'>
@@ -529,14 +529,14 @@ export default function Reconcile() {
 
                   {/* Resolved Value */}
                   {selectedItem.resolved_value && (
-                    <div className='kapwa-bg-hover rounded-md p-4'>
+                    <div className='bg-kapwa-bg-hover rounded-md p-4'>
                       <div className='mb-2 flex items-center gap-2'>
-                        <Check className='kapwa-text-on-disabled h-4 w-4' />
-                        <span className='kapwa-text-strong text-sm font-bold'>
+                        <Check className='text-kapwa-text-on-disabled h-4 w-4' />
+                        <span className='text-kapwa-text-strong text-sm font-bold'>
                           Resolved Value
                         </span>
                       </div>
-                      <p className='kapwa-text-support text-sm'>
+                      <p className='text-kapwa-text-support text-sm'>
                         {selectedItem.resolved_value}
                       </p>
                     </div>
@@ -585,11 +585,11 @@ export default function Reconcile() {
 
                   {/* Notes */}
                   {selectedItem.notes && (
-                    <div className='kapwa-bg-surface-raised rounded-md p-3'>
-                      <p className='kapwa-text-strong text-xs font-bold uppercase'>
+                    <div className='bg-kapwa-bg-surface-raised rounded-md p-3'>
+                      <p className='text-kapwa-text-strong text-xs font-bold uppercase'>
                         Notes
                       </p>
-                      <p className='kapwa-text-on-disabled mt-1 text-sm'>
+                      <p className='text-kapwa-text-on-disabled mt-1 text-sm'>
                         {selectedItem.notes}
                       </p>
                     </div>
@@ -600,7 +600,7 @@ export default function Reconcile() {
           ) : (
             <Card variant='slate'>
               <CardContent className='py-12 text-center'>
-                <GitMerge className='kapwa-text-disabled mx-auto mb-4 h-12 w-12' />
+                <GitMerge className='text-kapwa-text-disabled mx-auto mb-4 h-12 w-12' />
                 <p className='text-slate-600'>
                   Select a conflict from the list to view details and resolve
                 </p>
@@ -613,7 +613,7 @@ export default function Reconcile() {
       {/* Pagination */}
       {pagination.total > pagination.limit && (
         <div className='flex items-center justify-between'>
-          <p className='kapwa-text-on-disabled text-sm'>
+          <p className='text-kapwa-text-on-disabled text-sm'>
             Showing {pagination.offset + 1}-
             {Math.min(pagination.offset + pagination.limit, pagination.total)}{' '}
             of {pagination.total}

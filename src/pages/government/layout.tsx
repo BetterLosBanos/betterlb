@@ -66,7 +66,7 @@ export default function GovernmentRootLayout() {
               className={cn(
                 'group relative flex min-h-[160px] flex-col justify-between rounded-2xl border-2 p-6 transition-all duration-300',
                 isActive
-                  ? 'bg-primary-600 border-primary-600 shadow-primary-900/20 text-white shadow-xl'
+                  ? 'bg-kapwa-bg-brand-default border-primary-600 shadow-primary-900/20 text-white shadow-xl'
                   : 'hover:border-primary-400 border-slate-200 bg-white text-slate-900 shadow-sm'
               )}
               state={{ scrollToContent: true }}
@@ -78,7 +78,7 @@ export default function GovernmentRootLayout() {
                       'rounded-xl p-2.5 shadow-sm transition-colors',
                       isActive
                         ? 'bg-white/20 text-white'
-                        : 'bg-primary-50 text-primary-600 border-primary-100 border'
+                        : 'bg-kapwa-bg-surface text-primary-600 border-primary-100 border'
                     )}
                   >
                     <Icon className='h-5 w-5' />

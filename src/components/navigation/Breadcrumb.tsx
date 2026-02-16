@@ -94,7 +94,7 @@ const BreadcrumbLink = forwardRef<HTMLAnchorElement, BreadcrumbLinkProps>(
       ref={ref}
       to={href}
       className={cn(
-        'hover:kapwa-text-strong font-medium text-gray-500 transition-colors',
+        'hover:text-kapwa-text-strong font-medium text-gray-500 transition-colors',
         className
       )}
       {...props}
@@ -143,7 +143,7 @@ const BreadcrumbHome = forwardRef<HTMLAnchorElement, BreadcrumbLinkProps>(
       ref={ref}
       to={href}
       className={cn(
-        'hover:kapwa-text-strong flex items-center gap-1.5 font-medium text-gray-500 transition-colors',
+        'hover:text-kapwa-text-strong flex items-center gap-1.5 font-medium text-gray-500 transition-colors',
         className
       )}
       {...props}

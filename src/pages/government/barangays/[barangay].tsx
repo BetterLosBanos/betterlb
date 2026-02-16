@@ -75,7 +75,7 @@ export default function BarangayDetail() {
       </Breadcrumb>
 
       {/* --- HERO HEADER --- */}
-      <header className='kapwa-text-inverse relative overflow-hidden rounded-2xl bg-slate-900 p-8 shadow-xl md:p-10'>
+      <header className='text-kapwa-text-inverse relative overflow-hidden rounded-2xl bg-slate-900 p-8 shadow-xl md:p-10'>
         <div className='relative z-10 max-w-3xl'>
           <div className='mb-3 flex items-center gap-2'>
             <Badge variant='secondary' dot>
@@ -94,7 +94,7 @@ export default function BarangayDetail() {
             )}
           </div>
         </div>
-        <UsersIcon className='kapwa-text-inverse/5 absolute right-[-20px] bottom-[-40px] h-64 w-64 rotate-12' />
+        <UsersIcon className='text-kapwa-text-inverse/5 absolute right-[-20px] bottom-[-40px] h-64 w-64 rotate-12' />
       </header>
 
       {/* --- CONTACT BAR (Full Width) --- */}
@@ -122,14 +122,14 @@ export default function BarangayDetail() {
           // Explicit Executive Styling
           className='border-l-primary-600 border-l-4'
         >
-          <div className='bg-primary-50/50 kapwa-border-brand flex flex-col items-center gap-6 rounded-2xl border p-8 shadow-sm md:flex-row'>
+          <div className='bg-primary-50/50 border-kapwa-border-brand flex flex-col items-center gap-6 rounded-2xl border p-8 shadow-sm md:flex-row'>
             {/* Neutral Seal */}
-            <div className='border-primary-100 kapwa-text-brand kapwa-bg-surface flex h-20 w-20 shrink-0 items-center justify-center rounded-full border-4 shadow-sm'>
+            <div className='border-primary-100 text-kapwa-text-brand bg-kapwa-bg-surface flex h-20 w-20 shrink-0 items-center justify-center rounded-full border-4 shadow-sm'>
               <UserIcon className='h-10 w-10' />
             </div>
 
             <div className='text-center md:text-left'>
-              <h3 className='kapwa-text-strong text-2xl font-black'>
+              <h3 className='text-kapwa-text-strong text-2xl font-black'>
                 Hon. {toTitleCase(punongBarangay.name)}
               </h3>
               <Badge variant='primary' className='mt-2'>
@@ -165,7 +165,7 @@ export default function BarangayDetail() {
                   <p className='text-secondary-500 mb-0.5 text-[10px] font-bold tracking-widest uppercase'>
                     Barangay Kagawad
                   </p>
-                  <p className='kapwa-text-strong text-sm leading-tight font-bold'>
+                  <p className='text-kapwa-text-strong text-sm leading-tight font-bold'>
                     {toTitleCase(member.name)}
                   </p>
                 </div>
@@ -198,7 +198,7 @@ export default function BarangayDetail() {
                   <p className='text-secondary-500 mb-0.5 text-[10px] font-bold tracking-widest uppercase'>
                     {sk.role.replace('SK ', '')}
                   </p>
-                  <p className='kapwa-text-strong text-sm leading-tight font-bold'>
+                  <p className='text-kapwa-text-strong text-sm leading-tight font-bold'>
                     {toTitleCase(sk.name)}
                   </p>
                 </div>
@@ -214,14 +214,14 @@ export default function BarangayDetail() {
           {/* Secretary */}
           <Card variant='slate' hover={false} className='bg-slate-50'>
             <CardContent className='flex items-center gap-4 p-4'>
-              <div className='kapwa-border-weak kapwa-bg-surface kapwa-text-disabled flex h-10 w-10 shrink-0 items-center justify-center rounded-full border shadow-sm'>
+              <div className='border-kapwa-border-weak bg-kapwa-bg-surface text-kapwa-text-disabled flex h-10 w-10 shrink-0 items-center justify-center rounded-full border shadow-sm'>
                 <Briefcase className='h-5 w-5' />
               </div>
               <div>
-                <p className='kapwa-text-disabled text-[10px] font-bold tracking-wider uppercase'>
+                <p className='text-kapwa-text-disabled text-[10px] font-bold tracking-wider uppercase'>
                   Barangay Secretary
                 </p>
-                <p className='kapwa-text-strong text-base font-bold'>
+                <p className='text-kapwa-text-strong text-base font-bold'>
                   {secretary ? toTitleCase(secretary.name) : 'Vacant / No Data'}
                 </p>
               </div>
@@ -231,14 +231,14 @@ export default function BarangayDetail() {
           {/* Treasurer */}
           <Card variant='slate' hover={false} className='bg-slate-50'>
             <CardContent className='flex items-center gap-4 p-4'>
-              <div className='kapwa-border-weak kapwa-bg-surface kapwa-text-disabled flex h-10 w-10 shrink-0 items-center justify-center rounded-full border shadow-sm'>
+              <div className='border-kapwa-border-weak bg-kapwa-bg-surface text-kapwa-text-disabled flex h-10 w-10 shrink-0 items-center justify-center rounded-full border shadow-sm'>
                 <Briefcase className='h-5 w-5' />
               </div>
               <div>
-                <p className='kapwa-text-disabled text-[10px] font-bold tracking-wider uppercase'>
+                <p className='text-kapwa-text-disabled text-[10px] font-bold tracking-wider uppercase'>
                   Barangay Treasurer
                 </p>
-                <p className='kapwa-text-strong text-base font-bold'>
+                <p className='text-kapwa-text-strong text-base font-bold'>
                   {treasurer ? toTitleCase(treasurer.name) : 'Vacant / No Data'}
                 </p>
               </div>

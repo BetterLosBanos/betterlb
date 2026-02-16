@@ -73,7 +73,7 @@ export default function SidebarLayout({
         <div className='mb-4 md:hidden'>
           <button
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-            className='kapwa-border-weak kapwa-bg-surface kapwa-text-support active:kapwa-bg-surface-raised flex w-full items-center justify-between rounded-xl border px-4 py-3 font-bold shadow-sm'
+            className='border-kapwa-border-weak bg-kapwa-bg-surface text-kapwa-text-support active:bg-kapwa-bg-surface-raised flex w-full items-center justify-between rounded-xl border px-4 py-3 font-bold shadow-sm'
           >
             <span className='text-sm tracking-widest uppercase'>Menu</span>
             {mobileMenuOpen ? (
@@ -96,7 +96,7 @@ export default function SidebarLayout({
           >
             <button
               onClick={() => setIsCollapsed(false)}
-              className='hover:kapwa-text-brand hover:kapwa-border-brand kapwa-border-weak kapwa-bg-surface kapwa-text-disabled rounded-lg border p-2 shadow-sm transition-colors'
+              className='hover:text-kapwa-text-brand hover:border-kapwa-border-brand border-kapwa-border-weak bg-kapwa-bg-surface text-kapwa-text-disabled rounded-lg border p-2 shadow-sm transition-colors'
               title='Expand Menu'
             >
               <PanelLeftOpen className='h-5 w-5' />
@@ -121,7 +121,7 @@ export default function SidebarLayout({
                 <div className='mb-2 hidden justify-end md:flex'>
                   <button
                     onClick={() => setIsCollapsed(true)}
-                    className='hover:kapwa-text-brand kapwa-text-disabled flex items-center gap-1 text-[10px] font-bold tracking-widest uppercase transition-colors'
+                    className='hover:text-kapwa-text-brand text-kapwa-text-disabled flex items-center gap-1 text-[10px] font-bold tracking-widest uppercase transition-colors'
                   >
                     Hide Menu <PanelLeftClose className='h-3.5 w-3.5' />
                   </button>
@@ -135,7 +135,7 @@ export default function SidebarLayout({
           <main className='min-w-0 flex-1 transition-all duration-500 ease-in-out'>
             <div
               id='layout-content'
-              className='kapwa-border-weak kapwa-bg-surface min-h-[50vh] rounded-2xl border p-4 shadow-sm md:p-8'
+              className='border-kapwa-border-weak bg-kapwa-bg-surface min-h-[50vh] rounded-2xl border p-4 shadow-sm md:p-8'
             >
               {children}
             </div>

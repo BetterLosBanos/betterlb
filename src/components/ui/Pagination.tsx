@@ -56,16 +56,16 @@ export function PaginationControls({
   const end = Math.min(currentPage * resultsPerPage, totalItems);
 
   return (
-    <div className='kapwa-border-weak kapwa-bg-surface-raised flex flex-col items-center gap-4 border-t p-4 md:flex-row md:justify-between'>
+    <div className='border-kapwa-border-weak bg-kapwa-bg-surface-raised flex flex-col items-center gap-4 border-t p-4 md:flex-row md:justify-between'>
       {/* Left: Info & Selector */}
-      <div className='kapwa-text-disabled flex flex-wrap items-center justify-center gap-4 text-xs font-medium'>
+      <div className='text-kapwa-text-disabled flex flex-wrap items-center justify-center gap-4 text-xs font-medium'>
         <span>
           Showing{' '}
-          <span className='kapwa-text-strong font-bold'>
+          <span className='text-kapwa-text-strong font-bold'>
             {Math.max(0, start)}-{Math.max(0, end)}
           </span>{' '}
           of{' '}
-          <span className='kapwa-text-strong font-bold'>
+          <span className='text-kapwa-text-strong font-bold'>
             {totalItems.toLocaleString()}
           </span>
         </span>
@@ -75,7 +75,7 @@ export function PaginationControls({
           <select
             value={resultsPerPage}
             onChange={e => onResultsPerPageChange(Number(e.target.value))}
-            className='focus:kapwa-border-brand focus:ring-primary-500 kapwa-border-weak kapwa-bg-surface kapwa-text-support h-8 rounded-lg text-xs font-medium'
+            className='focus:border-kapwa-border-brand focus:ring-primary-500 border-kapwa-border-weak bg-kapwa-bg-surface text-kapwa-text-support h-8 rounded-lg text-xs font-medium'
           >
             {[10, 20, 50, 100].map(val => (
               <option key={val} value={val}>
@@ -103,7 +103,7 @@ export function PaginationControls({
             page === '...' ? (
               <span
                 key={`ellipsis-${idx}`}
-                className='kapwa-text-disabled px-2 py-1 text-xs'
+                className='text-kapwa-text-disabled px-2 py-1 text-xs'
               >
                 ...
               </span>
@@ -113,8 +113,8 @@ export function PaginationControls({
                 onClick={() => onPageChange(page as number)}
                 className={`h-8 w-8 rounded-lg text-xs font-bold transition-colors ${
                   currentPage === page
-                    ? 'bg-primary-600 text-white'
-                    : 'hover:kapwa-bg-surface-raised border border-slate-200 bg-white text-slate-600'
+                    ? 'bg-kapwa-bg-brand-default text-white'
+                    : 'hover:bg-kapwa-bg-surface-raised border border-slate-200 bg-white text-slate-600'
                 }`}
               >
                 {page}

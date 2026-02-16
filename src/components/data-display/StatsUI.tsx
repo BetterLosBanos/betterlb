@@ -42,7 +42,7 @@ export function StatsHero({
       : badges;
 
   return (
-    <div className='kapwa-text-inverse relative overflow-hidden rounded-3xl bg-slate-900 p-8 shadow-xl md:p-12'>
+    <div className='text-kapwa-text-inverse relative overflow-hidden rounded-3xl bg-slate-900 p-8 shadow-xl md:p-12'>
       <div className='relative z-10 space-y-4'>
         <div className='flex flex-wrap gap-2'>
           {badgeArray.map((b, i) => (
@@ -54,13 +54,13 @@ export function StatsHero({
         <h1 className='text-3xl font-extrabold tracking-tight md:text-5xl'>
           {title}
         </h1>
-        <p className='kapwa-text-disabled max-w-xl text-base leading-relaxed italic'>
+        <p className='text-kapwa-text-disabled max-w-xl text-base leading-relaxed italic'>
           &quot;{description}&quot;
         </p>
       </div>
       {Icon && (
         <Icon
-          className='kapwa-text-inverse/5 absolute right-[-20px] bottom-[-20px] h-64 w-64 -rotate-12 opacity-50'
+          className='text-kapwa-text-inverse/5 absolute right-[-20px] bottom-[-20px] h-64 w-64 -rotate-12 opacity-50'
           aria-hidden={true}
         />
       )}
@@ -147,10 +147,10 @@ export function StatsCard({
         )}
       >
         <div className='flex min-w-0 flex-1 flex-col gap-1'>
-          <p className='kapwa-text-disabled truncate text-[10px] font-bold tracking-widest uppercase'>
+          <p className='text-kapwa-text-disabled truncate text-[10px] font-bold tracking-widest uppercase'>
             {label}
           </p>
-          <div className='kapwa-text-strong truncate text-3xl font-black wrap-break-word sm:text-2xl md:text-2xl'>
+          <div className='text-kapwa-text-strong truncate text-3xl font-black wrap-break-word sm:text-2xl md:text-2xl'>
             {displayValue}
             {yoy && showTrend && (
               <span
@@ -162,7 +162,7 @@ export function StatsCard({
             )}
           </div>
           {subtext && (
-            <span className='kapwa-text-disabled truncate text-xs font-medium'>
+            <span className='text-kapwa-text-disabled truncate text-xs font-medium'>
               {subtext}
             </span>
           )}
@@ -191,20 +191,20 @@ interface StatsFooterProps {
 
 export function StatsFooter({ source, sourceUrl }: StatsFooterProps) {
   return (
-    <footer className='kapwa-border-weak space-y-4 border-t pt-10 text-center'>
+    <footer className='border-kapwa-border-weak space-y-4 border-t pt-10 text-center'>
       <ShieldCheck className='mx-auto h-6 w-6 text-emerald-600' />
       <div className='space-y-1'>
-        <p className='kapwa-text-strong text-[10px] font-bold tracking-widest uppercase'>
+        <p className='text-kapwa-text-strong text-[10px] font-bold tracking-widest uppercase'>
           Verified Data Audit
         </p>
-        <p className='kapwa-text-disabled text-[10px] font-bold tracking-widest uppercase'>
+        <p className='text-kapwa-text-disabled text-[10px] font-bold tracking-widest uppercase'>
           Source:{' '}
           {sourceUrl ? (
             <a
               href={sourceUrl}
               target='_blank'
               rel='noreferrer'
-              className='hover:kapwa-text-brand underline'
+              className='hover:text-kapwa-text-brand underline'
             >
               {source}
             </a>

@@ -119,7 +119,7 @@ const Ideas: FC = () => {
     window.open(githubUrl, '_blank');
   };
   return (
-    <div className='kapwa-bg-surface-raised min-h-screen'>
+    <div className='bg-kapwa-bg-surface-raised min-h-screen'>
       <Helmet>
         <title>Project Ideas | BetterGov.ph</title>
         <meta
@@ -147,14 +147,14 @@ const Ideas: FC = () => {
         {/* Header */}
         <header className='mb-8 text-center md:mb-12'>
           <div className='mb-4 flex items-center justify-center'>
-            <div className='bg-primary-50 kapwa-text-brand mr-4 rounded-full p-3'>
+            <div className='bg-kapwa-bg-surface text-kapwa-text-brand mr-4 rounded-full p-3'>
               <LightbulbIcon className='h-8 w-8' />
             </div>
-            <h1 className='kapwa-text-strong text-3xl font-bold md:text-4xl'>
+            <h1 className='text-kapwa-text-strong text-3xl font-bold md:text-4xl'>
               Project Ideas
             </h1>
           </div>
-          <p className='kapwa-text-support mx-auto max-w-3xl text-sm md:text-lg'>
+          <p className='text-kapwa-text-support mx-auto max-w-3xl text-sm md:text-lg'>
             Innovative concepts to enhance government transparency,
             accountability, and citizen engagement. These ideas aim to bridge
             the gap between citizens and government through technology and
@@ -164,37 +164,37 @@ const Ideas: FC = () => {
 
         {/* Stats */}
         <div className='mb-8 grid grid-cols-2 gap-4 md:mb-12 md:grid-cols-5'>
-          <div className='kapwa-bg-surface rounded-lg p-4 text-center shadow-xs'>
+          <div className='bg-kapwa-bg-surface rounded-lg p-4 text-center shadow-xs'>
             <div className='text-primary-600 text-2xl font-bold'>
               {projectIdeas.length}
             </div>
-            <div className='kapwa-text-on-disabled text-sm'>Total Ideas</div>
+            <div className='text-kapwa-text-on-disabled text-sm'>Total Ideas</div>
           </div>
-          <div className='kapwa-bg-surface rounded-lg p-4 text-center shadow-xs'>
-            <div className='kapwa-text-danger text-2xl font-bold'>
+          <div className='bg-kapwa-bg-surface rounded-lg p-4 text-center shadow-xs'>
+            <div className='text-kapwa-text-danger text-2xl font-bold'>
               {projectIdeas.filter(idea => idea.priority === 'high').length}
             </div>
-            <div className='kapwa-text-on-disabled text-sm'>High Priority</div>
+            <div className='text-kapwa-text-on-disabled text-sm'>High Priority</div>
           </div>
-          <div className='kapwa-bg-surface rounded-lg p-4 text-center shadow-xs'>
-            <div className='kapwa-text-info text-2xl font-bold'>
+          <div className='bg-kapwa-bg-surface rounded-lg p-4 text-center shadow-xs'>
+            <div className='text-kapwa-text-info text-2xl font-bold'>
               {new Set(projectIdeas.map(idea => idea.category)).size}
             </div>
-            <div className='kapwa-text-on-disabled text-sm'>Categories</div>
+            <div className='text-kapwa-text-on-disabled text-sm'>Categories</div>
           </div>
-          <div className='kapwa-bg-surface rounded-lg p-4 text-center shadow-xs'>
-            <div className='kapwa-text-success text-2xl font-bold'>
+          <div className='bg-kapwa-bg-surface rounded-lg p-4 text-center shadow-xs'>
+            <div className='text-kapwa-text-success text-2xl font-bold'>
               {projectIdeas.filter(idea => idea.complexity === 'simple').length}
             </div>
-            <div className='kapwa-text-on-disabled text-sm'>
+            <div className='text-kapwa-text-on-disabled text-sm'>
               Simple Projects
             </div>
           </div>
-          <div className='kapwa-bg-surface rounded-lg p-4 text-center shadow-xs'>
-            <div className='kapwa-text-accent-purple text-2xl font-bold'>
+          <div className='bg-kapwa-bg-surface rounded-lg p-4 text-center shadow-xs'>
+            <div className='text-kapwa-text-accent-purple text-2xl font-bold'>
               {projectIdeas.reduce((sum, idea) => sum + idea.upvotes, 0)}
             </div>
-            <div className='kapwa-text-on-disabled text-sm'>Total Votes</div>
+            <div className='text-kapwa-text-on-disabled text-sm'>Total Votes</div>
           </div>
         </div>
 
@@ -220,7 +220,7 @@ const Ideas: FC = () => {
 
         {/* Project Ideas List */}
         <main>
-          <h2 className='kapwa-text-strong mb-6 text-2xl font-bold'>
+          <h2 className='text-kapwa-text-strong mb-6 text-2xl font-bold'>
             All Project Ideas
           </h2>
           <div className='grid grid-cols-1 gap-6 lg:grid-cols-2'>
@@ -232,26 +232,26 @@ const Ideas: FC = () => {
                 <Card
                   key={idea.id}
                   hoverable
-                  className='kapwa-bg-surface h-full'
+                  className='bg-kapwa-bg-surface h-full'
                 >
                   <CardContent className='p-6'>
                     <div className='mb-4 flex items-start justify-between'>
                       <div className='flex flex-1 items-center'>
-                        <div className='bg-primary-50 kapwa-text-brand mr-3 rounded-lg p-2'>
+                        <div className='bg-kapwa-bg-surface text-kapwa-text-brand mr-3 rounded-lg p-2'>
                           {idea.icon}
                         </div>
                         <div className='flex-1'>
-                          <h3 className='kapwa-text-strong mb-1 text-xl font-semibold'>
+                          <h3 className='text-kapwa-text-strong mb-1 text-xl font-semibold'>
                             {idea.title}
                           </h3>
-                          <span className='kapwa-bg-hover kapwa-text-support inline-block rounded-sm px-2 py-1 text-xs font-medium'>
+                          <span className='bg-kapwa-bg-hover text-kapwa-text-support inline-block rounded-sm px-2 py-1 text-xs font-medium'>
                             {idea.category}
                           </span>
                         </div>
                       </div>
                     </div>
 
-                    <p className='kapwa-text-support mb-4 leading-relaxed'>
+                    <p className='text-kapwa-text-support mb-4 leading-relaxed'>
                       {idea.description}
                     </p>
 
@@ -282,11 +282,11 @@ const Ideas: FC = () => {
         </main>
 
         {/* Call to Action */}
-        <section className='kapwa-bg-surface mt-12 rounded-lg p-8 text-center shadow-xs'>
-          <h2 className='kapwa-text-strong mb-4 text-2xl font-bold'>
+        <section className='bg-kapwa-bg-surface mt-12 rounded-lg p-8 text-center shadow-xs'>
+          <h2 className='text-kapwa-text-strong mb-4 text-2xl font-bold'>
             Have an Idea?
           </h2>
-          <p className='kapwa-text-support mx-auto mb-6 max-w-2xl'>
+          <p className='text-kapwa-text-support mx-auto mb-6 max-w-2xl'>
             We&apos;re always looking for innovative ways to improve government
             services and citizen engagement. Submit your ideas via GitHub or
             learn more about our mission.

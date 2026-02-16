@@ -20,7 +20,7 @@ export const ScrollArea = forwardRef<HTMLDivElement, ScrollAreaProps>(
           '[&::-webkit-scrollbar-track]:rounded-sm',
           '[&::-webkit-scrollbar-thumb]:bg-gray-300',
           '[&::-webkit-scrollbar-thumb]:rounded-sm',
-          '[&::-webkit-scrollbar-thumb]:hover:kapwa-bg-gray-400',
+          '[&::-webkit-scrollbar-thumb]:hover:bg-kapwa-bg-gray-400',
           className
         )}
         {...props}

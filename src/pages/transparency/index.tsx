@@ -50,8 +50,8 @@ export default function TransparencyIndex() {
   return (
     <div className='animate-in fade-in mx-auto max-w-5xl space-y-10 pb-20 duration-500'>
       {/* 1. Grassroots Mission Box - Uses Brand Orange to signify "Community" */}
-      <div className='kapwa-bg-warning-weak flex flex-col items-center gap-6 rounded-3xl border-2 border-orange-100 p-6 shadow-sm md:flex-row'>
-        <div className='text-secondary-600 kapwa-bg-surface rounded-2xl p-4 shadow-md'>
+      <div className='bg-kapwa-bg-warning-weak flex flex-col items-center gap-6 rounded-3xl border-2 border-orange-100 p-6 shadow-sm md:flex-row'>
+        <div className='text-secondary-600 bg-kapwa-bg-surface rounded-2xl p-4 shadow-md'>
           <HeartHandshake className='h-8 w-8' />
         </div>
         <div className='flex-1 space-y-2 text-center md:text-left'>
@@ -76,14 +76,14 @@ export default function TransparencyIndex() {
             className='group'
             role='listitem'
           >
-            <Card hover className='kapwa-border-weak flex h-full flex-col'>
+            <Card hover className='border-kapwa-border-weak flex h-full flex-col'>
               <CardContent className='flex h-full flex-col p-6'>
                 <div className='mb-6 flex items-start justify-between'>
                   <div
                     className={`rounded-2xl p-3 shadow-sm transition-all ${
                       section.color === 'blue'
-                        ? 'bg-primary-50 text-primary-600 group-hover:kapwa-bg-brand-default group-hover:kapwa-text-inverse'
-                        : 'bg-secondary-50 text-secondary-600 group-hover:bg-secondary-600 group-hover:kapwa-text-inverse'
+                        ? 'bg-kapwa-bg-surface text-primary-600 group-hover:bg-kapwa-bg-brand-default group-hover:text-kapwa-text-inverse'
+                        : 'bg-secondary-50 text-secondary-600 group-hover:bg-secondary-600 group-hover:text-kapwa-text-inverse'
                     }`}
                   >
                     <section.icon className='h-6 w-6' />
@@ -97,10 +97,10 @@ export default function TransparencyIndex() {
                 </div>
 
                 <div className='flex-1 space-y-2'>
-                  <h4 className='group-hover:kapwa-text-brand kapwa-text-strong text-lg font-extrabold transition-colors'>
+                  <h4 className='group-hover:text-kapwa-text-brand text-kapwa-text-strong text-lg font-extrabold transition-colors'>
                     {section.title}
                   </h4>
-                  <p className='kapwa-text-disabled text-xs leading-relaxed'>
+                  <p className='text-kapwa-text-disabled text-xs leading-relaxed'>
                     {section.description}
                   </p>
                 </div>
@@ -122,15 +122,15 @@ export default function TransparencyIndex() {
         <DetailSection
           title='Help Our Audit'
           icon={Search}
-          className='kapwa-bg-surface-raised border-slate-200'
+          className='bg-kapwa-bg-surface-raised border-slate-200'
         >
-          <p className='kapwa-text-on-disabled mb-6 text-sm leading-relaxed'>
+          <p className='text-kapwa-text-on-disabled mb-6 text-sm leading-relaxed'>
             Our data depends on volunteers like you. If you find a project that
             is missing or an expense that seems incorrect, please let us know.
           </p>
           <Link
             to='/contribute'
-            className='hover:kapwa-border-brand hover:kapwa-text-brand kapwa-border-weak kapwa-bg-surface kapwa-text-support hover:kapwa-bg-surface inline-flex min-h-[44px] items-center gap-2 rounded-xl border px-6 py-3 text-xs font-bold shadow-sm transition-all'
+            className='hover:border-kapwa-border-brand hover:text-kapwa-text-brand border-kapwa-border-weak bg-kapwa-bg-surface text-kapwa-text-support hover:bg-kapwa-bg-surface inline-flex min-h-[44px] items-center gap-2 rounded-xl border px-6 py-3 text-xs font-bold shadow-sm transition-all'
           >
             <Users className='h-4 w-4' /> Join the Community Audit
           </Link>
@@ -138,30 +138,30 @@ export default function TransparencyIndex() {
 
         <DetailSection title='Data Sources' icon={FileText}>
           <div className='space-y-3'>
-            <p className='kapwa-text-disabled mb-2 text-[11px] font-medium italic'>
+            <p className='text-kapwa-text-disabled mb-2 text-[11px] font-medium italic'>
               We mirror and verify data from the following platforms:
             </p>
             <a
               href='https://transparency.bettergov.ph'
               target='_blank'
               rel='noreferrer'
-              className='group kapwa-border-weak hover:kapwa-bg-surface-raised flex items-center justify-between rounded-lg border p-3 transition-colors'
+              className='group border-kapwa-border-weak hover:bg-kapwa-bg-surface-raised flex items-center justify-between rounded-lg border p-3 transition-colors'
             >
-              <span className='kapwa-text-support text-xs font-bold'>
+              <span className='text-kapwa-text-support text-xs font-bold'>
                 BetterGov National Database
               </span>
-              <ExternalLink className='group-hover:kapwa-text-brand h-3.5 w-3.5 text-slate-300' />
+              <ExternalLink className='group-hover:text-kapwa-text-brand h-3.5 w-3.5 text-slate-300' />
             </a>
             <a
               href='https://losbanos.gov.ph/full_disclosure_transparency'
               target='_blank'
               rel='noreferrer'
-              className='group kapwa-border-weak hover:kapwa-bg-surface-raised flex items-center justify-between rounded-lg border p-3 transition-colors'
+              className='group border-kapwa-border-weak hover:bg-kapwa-bg-surface-raised flex items-center justify-between rounded-lg border p-3 transition-colors'
             >
-              <span className='kapwa-text-support text-xs font-bold'>
+              <span className='text-kapwa-text-support text-xs font-bold'>
                 Official LGU FDP Files
               </span>
-              <ExternalLink className='group-hover:kapwa-text-brand h-3.5 w-3.5 text-slate-300' />
+              <ExternalLink className='group-hover:text-kapwa-text-brand h-3.5 w-3.5 text-slate-300' />
             </a>
           </div>
         </DetailSection>

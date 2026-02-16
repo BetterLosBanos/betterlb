@@ -154,7 +154,7 @@ export default function AdminDocuments() {
   if (loading && documents.length === 0) {
     return (
       <div className='flex items-center justify-center py-12'>
-        <RefreshCw className='kapwa-text-disabled h-8 w-8 animate-spin' />
+        <RefreshCw className='text-kapwa-text-disabled h-8 w-8 animate-spin' />
       </div>
     );
   }
@@ -173,7 +173,7 @@ export default function AdminDocuments() {
       {/* Header */}
       <div className='flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between'>
         <div>
-          <h2 className='kapwa-text-strong text-2xl font-bold'>
+          <h2 className='text-kapwa-text-strong text-2xl font-bold'>
             Documents Management
           </h2>
           <p className='text-slate-600'>
@@ -203,14 +203,14 @@ export default function AdminDocuments() {
         <div className='flex flex-wrap gap-4'>
           <div className='min-w-[200px] flex-1'>
             <div className='relative'>
-              <Search className='kapwa-text-disabled absolute top-1/2 left-3 h-4 w-4 -translate-y-1/2' />
+              <Search className='text-kapwa-text-disabled absolute top-1/2 left-3 h-4 w-4 -translate-y-1/2' />
               <input
                 type='text'
                 placeholder='Search by number or title...'
                 value={searchQuery}
                 onChange={e => setSearchQuery(e.target.value)}
                 onKeyDown={e => e.key === 'Enter' && fetchDocuments()}
-                className='focus:kapwa-border-brand focus:ring-primary-500 kapwa-border-weak w-full rounded-md border py-2 pr-4 pl-10 text-sm focus:ring-1 focus:outline-none'
+                className='focus:border-kapwa-border-brand focus:ring-primary-500 border-kapwa-border-weak w-full rounded-md border py-2 pr-4 pl-10 text-sm focus:ring-1 focus:outline-none'
               />
             </div>
           </div>
@@ -221,7 +221,7 @@ export default function AdminDocuments() {
               setTypeFilter(e.target.value as TypeFilter);
               setPage(0);
             }}
-            className='kapwa-border-weak kapwa-bg-surface rounded-md border px-3 py-2 text-sm'
+            className='border-kapwa-border-weak bg-kapwa-bg-surface rounded-md border px-3 py-2 text-sm'
           >
             <option value='all'>All Types</option>
             <option value='ordinance'>Ordinances</option>
@@ -235,7 +235,7 @@ export default function AdminDocuments() {
               setStatusFilter(e.target.value as StatusFilter);
               setPage(0);
             }}
-            className='kapwa-border-weak kapwa-bg-surface rounded-md border px-3 py-2 text-sm'
+            className='border-kapwa-border-weak bg-kapwa-bg-surface rounded-md border px-3 py-2 text-sm'
           >
             <option value='all'>All Statuses</option>
             <option value='active'>Active</option>
@@ -250,7 +250,7 @@ export default function AdminDocuments() {
               setReviewFilter(e.target.value as ReviewFilter);
               setPage(0);
             }}
-            className='kapwa-border-weak kapwa-bg-surface rounded-md border px-3 py-2 text-sm'
+            className='border-kapwa-border-weak bg-kapwa-bg-surface rounded-md border px-3 py-2 text-sm'
           >
             <option value='all'>All Review States</option>
             <option value='needs_review'>Needs Review</option>
@@ -272,36 +272,36 @@ export default function AdminDocuments() {
         />
       ) : (
         <>
-          <div className='kapwa-border-weak overflow-hidden rounded-lg border'>
+          <div className='border-kapwa-border-weak overflow-hidden rounded-lg border'>
             <table className='w-full text-left text-sm'>
               <thead className='bg-slate-50'>
                 <tr>
-                  <th className='kapwa-text-strong px-4 py-3 font-semibold'>
+                  <th className='text-kapwa-text-strong px-4 py-3 font-semibold'>
                     Type
                   </th>
-                  <th className='kapwa-text-strong px-4 py-3 font-semibold'>
+                  <th className='text-kapwa-text-strong px-4 py-3 font-semibold'>
                     Number
                   </th>
-                  <th className='kapwa-text-strong px-4 py-3 font-semibold'>
+                  <th className='text-kapwa-text-strong px-4 py-3 font-semibold'>
                     Title
                   </th>
-                  <th className='kapwa-text-strong px-4 py-3 font-semibold'>
+                  <th className='text-kapwa-text-strong px-4 py-3 font-semibold'>
                     Date
                   </th>
-                  <th className='kapwa-text-strong px-4 py-3 font-semibold'>
+                  <th className='text-kapwa-text-strong px-4 py-3 font-semibold'>
                     Status
                   </th>
-                  <th className='kapwa-text-strong px-4 py-3 font-semibold'>
+                  <th className='text-kapwa-text-strong px-4 py-3 font-semibold'>
                     Review
                   </th>
-                  <th className='kapwa-text-strong px-4 py-3 text-right font-semibold'>
+                  <th className='text-kapwa-text-strong px-4 py-3 text-right font-semibold'>
                     Actions
                   </th>
                 </tr>
               </thead>
               <tbody className='divide-y divide-slate-200'>
                 {filteredDocuments.map(doc => (
-                  <tr key={doc.id} className='hover:kapwa-bg-surface-raised'>
+                  <tr key={doc.id} className='hover:bg-kapwa-bg-surface-raised'>
                     <td className='px-4 py-3'>
                       <Badge
                         variant={
@@ -319,11 +319,11 @@ export default function AdminDocuments() {
                       <span className='font-mono text-xs'>{doc.number}</span>
                     </td>
                     <td className='max-w-xs truncate px-4 py-3'>
-                      <span className='kapwa-text-strong font-medium'>
+                      <span className='text-kapwa-text-strong font-medium'>
                         {doc.title}
                       </span>
                     </td>
-                    <td className='kapwa-text-on-disabled px-4 py-3'>
+                    <td className='text-kapwa-text-on-disabled px-4 py-3'>
                       {doc.date_enacted || '-'}
                     </td>
                     <td className='px-4 py-3'>{getStatusBadge(doc)}</td>
@@ -334,7 +334,7 @@ export default function AdminDocuments() {
                         ) : (
                           <CheckCircle className='h-4 w-4 text-emerald-500' />
                         )}
-                        <span className='kapwa-text-on-disabled text-xs'>
+                        <span className='text-kapwa-text-on-disabled text-xs'>
                           {doc.needs_review ? 'Needs Review' : 'OK'}
                         </span>
                       </div>
@@ -345,7 +345,7 @@ export default function AdminDocuments() {
                           href={`/openlgu/${doc.type}/${doc.number}`}
                           target='_blank'
                           rel='noopener noreferrer'
-                          className='text-primary-600 hover:kapwa-text-brand'
+                          className='text-primary-600 hover:text-kapwa-text-brand'
                           title='View public page'
                         >
                           <ExternalLink className='h-4 w-4' />
@@ -354,7 +354,7 @@ export default function AdminDocuments() {
                           href={doc.pdf_url}
                           target='_blank'
                           rel='noopener noreferrer'
-                          className='hover:kapwa-text-strong text-slate-600'
+                          className='hover:text-kapwa-text-strong text-slate-600'
                           title='View PDF'
                         >
                           <FileText className='h-4 w-4' />
@@ -370,7 +370,7 @@ export default function AdminDocuments() {
           {/* Pagination */}
           {pagination.total > pagination.limit && (
             <div className='flex items-center justify-between'>
-              <p className='kapwa-text-on-disabled text-sm'>
+              <p className='text-kapwa-text-on-disabled text-sm'>
                 Showing {pagination.offset + 1}-
                 {Math.min(
                   pagination.offset + pagination.limit,
@@ -382,14 +382,14 @@ export default function AdminDocuments() {
                 <button
                   onClick={() => setPage(p => Math.max(0, p - 1))}
                   disabled={page === 0}
-                  className='kapwa-border-weak hover:kapwa-bg-surface-raised rounded-md border px-3 py-1 text-sm disabled:cursor-not-allowed disabled:opacity-50'
+                  className='border-kapwa-border-weak hover:bg-kapwa-bg-surface-raised rounded-md border px-3 py-1 text-sm disabled:cursor-not-allowed disabled:opacity-50'
                 >
                   Previous
                 </button>
                 <button
                   onClick={() => setPage(p => p + 1)}
                   disabled={!pagination.has_more}
-                  className='kapwa-border-weak hover:kapwa-bg-surface-raised rounded-md border px-3 py-1 text-sm disabled:cursor-not-allowed disabled:opacity-50'
+                  className='border-kapwa-border-weak hover:bg-kapwa-bg-surface-raised rounded-md border px-3 py-1 text-sm disabled:cursor-not-allowed disabled:opacity-50'
                 >
                   Next
                 </button>

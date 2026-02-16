@@ -82,10 +82,10 @@ const InfoWidgets: FC = () => {
     <section className='bg-gray-50 py-12'>
       <div className='container mx-auto px-4'>
         <div className='mb-12 text-center'>
-          <h2 className='kapwa-text-strong mb-4 text-3xl font-bold'>
+          <h2 className='text-kapwa-text-strong mb-4 text-3xl font-bold'>
             {t('data.title')}
           </h2>
-          <p className='kapwa-text-support mx-auto max-w-2xl text-lg'>
+          <p className='text-kapwa-text-support mx-auto max-w-2xl text-lg'>
             {t('data.description')}
           </p>
         </div>
@@ -93,7 +93,7 @@ const InfoWidgets: FC = () => {
           {/* Weather Widget */}
           <Card>
             <CardHeader className='bg-primary-50'>
-              <h3 className='kapwa-text-strong flex items-center text-xl font-semibold'>
+              <h3 className='text-kapwa-text-strong flex items-center text-xl font-semibold'>
                 <LucideIcons.Cloud className='text-primary-600 mr-2 h-5 w-5' />
                 {t('weather.title')}
               </h3>
@@ -113,7 +113,7 @@ const InfoWidgets: FC = () => {
                   {weatherData.map(location => (
                     <div
                       key={location.location}
-                      className='kapwa-border-weak kapwa-bg-surface flex flex-col items-center rounded-lg border p-3 uppercase'
+                      className='border-kapwa-border-weak bg-kapwa-bg-surface flex flex-col items-center rounded-lg border p-3 uppercase'
                     >
                       <div className='text-accent-500 mb-1'>
                         {getWeatherIcon(location.icon)}
@@ -124,7 +124,7 @@ const InfoWidgets: FC = () => {
                       <div className='text-2xl font-bold'>
                         {location.temperature}°C
                       </div>
-                      <div className='kapwa-text-support text-center text-sm'>
+                      <div className='text-kapwa-text-support text-center text-sm'>
                         {location.condition}
                       </div>
                     </div>
@@ -132,11 +132,11 @@ const InfoWidgets: FC = () => {
                 </div>
               )}
               <div className='space-between flex w-full items-center'>
-                <p className='kapwa-text-support mt-4 text-right text-sm'>
+                <p className='text-kapwa-text-support mt-4 text-right text-sm'>
                   Weather data provided by{' '}
                   <a
                     href='https://openweathermap.org/'
-                    className='hover:kapwa-text-strong text-gray-800 underline'
+                    className='hover:text-kapwa-text-strong text-gray-800 underline'
                     target='_blank'
                     rel='noopener noreferrer'
                   >
@@ -158,7 +158,7 @@ const InfoWidgets: FC = () => {
           {/* Forex Widget */}
           <Card>
             <CardHeader className='bg-primary-50'>
-              <h3 className='kapwa-text-strong flex items-center text-xl font-semibold'>
+              <h3 className='text-kapwa-text-strong flex items-center text-xl font-semibold'>
                 <LucideIcons.BarChart3 className='text-primary-600 mr-2 h-5 w-5' />
                 {t('forex.title')}
               </h3>
@@ -168,15 +168,15 @@ const InfoWidgets: FC = () => {
                 <table className='min-w-full divide-y divide-gray-200'>
                   <thead className='bg-gray-50'>
                     <tr>
-                      <th className='kapwa-text-support px-3 py-3 text-left text-xs font-medium tracking-wider uppercase'>
+                      <th className='text-kapwa-text-support px-3 py-3 text-left text-xs font-medium tracking-wider uppercase'>
                         Currency
                       </th>
-                      <th className='kapwa-text-support px-3 py-3 text-right text-xs font-medium tracking-wider uppercase'>
+                      <th className='text-kapwa-text-support px-3 py-3 text-right text-xs font-medium tracking-wider uppercase'>
                         ₱ Rate
                       </th>
                     </tr>
                   </thead>
-                  <tbody className='kapwa-bg-surface divide-y divide-gray-200'>
+                  <tbody className='bg-kapwa-bg-surface divide-y divide-gray-200'>
                     {isLoadingForex ? (
                       <tr>
                         <td colSpan={3} className='px-3 py-8 text-center'>
@@ -197,7 +197,7 @@ const InfoWidgets: FC = () => {
                       <tr>
                         <td
                           colSpan={3}
-                          className='kapwa-text-support px-3 py-4 text-center'
+                          className='text-kapwa-text-support px-3 py-4 text-center'
                         >
                           No forex data available
                         </td>
@@ -206,14 +206,14 @@ const InfoWidgets: FC = () => {
                       forexRates.map(rate => (
                         <tr
                           key={rate.code}
-                          className='hover:kapwa-bg-surface-raised'
+                          className='hover:bg-kapwa-bg-surface-raised'
                         >
                           <td className='px-3 py-2 whitespace-nowrap'>
                             <div className='flex items-center'>
-                              <div className='kapwa-text-strong font-medium'>
+                              <div className='text-kapwa-text-strong font-medium'>
                                 {rate.code}
                               </div>
-                              <div className='kapwa-text-support ml-2 text-sm'>
+                              <div className='text-kapwa-text-support ml-2 text-sm'>
                                 {rate.currency}
                               </div>
                             </div>

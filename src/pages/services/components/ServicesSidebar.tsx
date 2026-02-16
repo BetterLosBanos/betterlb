@@ -78,12 +78,12 @@ export default function ServicesSidebar({
           <div className='bg-secondary-100 text-secondary-600 rounded-lg p-2'>
             <PlusCircle className='h-5 w-5' />
           </div>
-          <h4 className='kapwa-text-strong text-sm leading-tight font-bold'>
+          <h4 className='text-kapwa-text-strong text-sm leading-tight font-bold'>
             Missing a service?
           </h4>
         </div>
 
-        <p className='kapwa-text-on-disabled text-xs leading-relaxed'>
+        <p className='text-kapwa-text-on-disabled text-xs leading-relaxed'>
           Better LB is community-maintained. Help your fellow citizens by
           suggesting a new service directory.
         </p>
@@ -91,7 +91,7 @@ export default function ServicesSidebar({
         <Link
           to='/contribute'
           onClick={() => console.log('Link was clicked!')}
-          className='bg-secondary-600 hover:bg-secondary-700 shadow-secondary-900/10 kapwa-text-inverse flex min-h-[44px] w-full items-center justify-center gap-2 rounded-xl px-4 py-2.5 text-xs font-bold shadow-md transition-all'
+          className='bg-secondary-600 hover:bg-secondary-700 shadow-secondary-900/10 text-kapwa-text-inverse flex min-h-[44px] w-full items-center justify-center gap-2 rounded-xl px-4 py-2.5 text-xs font-bold shadow-md transition-all'
         >
           Suggest New Service
         </Link>

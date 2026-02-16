@@ -45,13 +45,13 @@ const ServicesSection: FC = () => {
   const displayedCategories = categories.slice(0, 8);
 
   return (
-    <section className='bg-white py-12'>
+    <section className='bg-kapwa-bg-surface py-12'>
       <div className='container mx-auto px-4'>
         <div className='mb-12 text-center'>
-          <h2 className='kapwa-text-strong mb-4 text-2xl font-bold md:text-3xl'>
+          <h2 className='text-kapwa-text-strong mb-4 text-2xl font-bold md:text-3xl'>
             {t('services.governmentServices')}
           </h2>
-          <p className='kapwa-text-support mx-auto max-w-2xl'>
+          <p className='text-kapwa-text-support mx-auto max-w-2xl'>
             {t('services.description')}
           </p>
         </div>
@@ -64,25 +64,24 @@ const ServicesSection: FC = () => {
               className='group h-full'
             >
               <Card
-                hoverable
-                className='border-primary-500 h-full border-t-4 transition-all hover:-translate-y-1'
+                className='border-kapwa-border-focus h-full border-t-4 transition-all hover:-translate-y-1'
               >
                 <CardContent className='flex h-full flex-col p-6'>
                   <div className='mb-4 flex items-start justify-between'>
-                    <div className='bg-primary-50 kapwa-text-brand group-hover:kapwa-bg-brand-default group-hover:kapwa-text-inverse rounded-lg p-3 transition-colors'>
+                    <div className='bg-kapwa-bg-surface text-kapwa-text-brand group-hover:bg-kapwa-bg-brand-default group-hover:text-kapwa-text-inverse rounded-lg p-3 transition-colors'>
                       {getIcon(category.name)}
                     </div>
                   </div>
 
-                  <h3 className='group-hover:kapwa-text-brand kapwa-text-strong mb-2 text-lg font-bold'>
+                  <h3 className='group-hover:text-kapwa-text-brand text-kapwa-text-strong mb-2 text-lg font-bold'>
                     {category.name}
                   </h3>
 
-                  <p className='kapwa-text-on-disabled mb-6 line-clamp-3 grow text-sm'>
+                  <p className='text-kapwa-text-on-disabled mb-6 line-clamp-3 grow text-sm'>
                     {category.description}
                   </p>
 
-                  <div className='text-primary-600 flex items-center text-sm font-medium group-hover:underline'>
+                  <div className='text-kapwa-text-link flex items-center text-sm font-medium group-hover:underline group-hover:text-kapwa-text-link-hover'>
                     View Services
                     <LucideIcons.ArrowRight className='ml-1 h-4 w-4 transition-transform group-hover:translate-x-1' />
                   </div>
@@ -95,7 +94,7 @@ const ServicesSection: FC = () => {
         <div className='mt-10 text-center'>
           <Link
             to='/services?category=all'
-            className='bg-primary-600 hover:kapwa-bg-brand-hover focus:ring-primary-500 kapwa-text-inverse inline-flex items-center justify-center rounded-lg px-6 py-3 font-medium shadow-sm transition-colors focus:ring-2 focus:ring-offset-2 focus:outline-hidden'
+            className='bg-kapwa-bg-brand-default hover:bg-kapwa-bg-brand-hover focus:ring-primary-500 text-kapwa-text-inverse inline-flex items-center justify-center rounded-lg px-6 py-3 font-medium shadow-sm transition-colors focus:ring-2 focus:ring-offset-2 focus:outline-hidden'
           >
             {t('services.viewAll')}
           </Link>

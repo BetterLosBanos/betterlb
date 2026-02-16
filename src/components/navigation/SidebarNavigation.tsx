@@ -14,10 +14,10 @@ export function SidebarContainer({
 }) {
   return (
     <aside className='w-full shrink-0 md:w-64'>
-      <div className='kapwa-border-weak kapwa-bg-surface sticky top-32 overflow-hidden rounded-lg border shadow-sm'>
+      <div className='border-kapwa-border-weak bg-kapwa-bg-surface sticky top-32 overflow-hidden rounded-lg border shadow-sm'>
         {title && (
-          <div className='kapwa-border-weak kapwa-bg-surface-raised/50 border-b px-4 py-3'>
-            <h2 className='kapwa-text-strong text-[11px] font-semibold tracking-widest uppercase'>
+          <div className='border-kapwa-border-weak bg-kapwa-bg-surface-raised/50 border-b px-4 py-3'>
+            <h2 className='text-kapwa-text-strong text-[11px] font-semibold tracking-widest uppercase'>
               {title}
             </h2>
           </div>
@@ -40,7 +40,7 @@ export function SidebarGroup({
 }) {
   return (
     <div className='mb-4 last:mb-0'>
-      <h3 className='kapwa-text-disabled px-3 py-2 text-[10px] font-bold tracking-widest uppercase'>
+      <h3 className='text-kapwa-text-disabled px-3 py-2 text-[10px] font-bold tracking-widest uppercase'>
         {title}
       </h3>
       <ul className='space-y-1'>{children}</ul>
@@ -76,8 +76,8 @@ export function SidebarItem({
     border-l-2 
     ${
       active
-        ? 'bg-primary-50 text-primary-700 font-semibold border-primary-600'
-        : 'text-gray-600 hover:kapwa-bg-surface-raised hover:kapwa-text-strong border-transparent'
+        ? 'bg-kapwa-bg-surface text-primary-700 font-semibold border-primary-600'
+        : 'text-gray-600 hover:bg-kapwa-bg-surface-raised hover:text-kapwa-text-strong border-transparent'
     }
   `;
 
@@ -85,7 +85,7 @@ export function SidebarItem({
     <>
       {Icon && (
         <Icon
-          className={`mt-0.5 h-4 w-4 shrink-0 ${active ? 'text-primary-600' : 'group-hover:kapwa-text-on-disabled text-gray-400'}`}
+          className={`mt-0.5 h-4 w-4 shrink-0 ${active ? 'text-primary-600' : 'group-hover:text-kapwa-text-on-disabled text-gray-400'}`}
         />
       )}
       <div className='flex flex-col overflow-hidden text-left'>

@@ -48,38 +48,38 @@ export default function BarangaysIndex() {
             >
               <Card
                 hover
-                className='kapwa-border-weak flex h-full flex-col shadow-xs'
+                className='border-kapwa-border-weak flex h-full flex-col shadow-xs'
               >
                 <CardContent className='flex h-full flex-col space-y-4 p-4'>
                   {/* Top Row: Icon and Title */}
                   <div className='flex items-start gap-3'>
                     {/* Consistent Icon Styling (Primary) */}
-                    <div className='bg-primary-50 kapwa-text-brand kapwa-border-brand group-hover:kapwa-bg-brand-default group-hover:kapwa-text-inverse shrink-0 rounded-lg border p-2 shadow-sm transition-colors'>
+                    <div className='bg-kapwa-bg-surface text-kapwa-text-brand border-kapwa-border-brand group-hover:bg-kapwa-bg-brand-default group-hover:text-kapwa-text-inverse shrink-0 rounded-lg border p-2 shadow-sm transition-colors'>
                       <MapPinIcon className='h-5 w-5' />
                     </div>
                     <div className='min-w-0 flex-1'>
-                      <h3 className='group-hover:kapwa-text-brand kapwa-text-strong text-base leading-tight font-bold transition-colors'>
+                      <h3 className='group-hover:text-kapwa-text-brand text-kapwa-text-strong text-base leading-tight font-bold transition-colors'>
                         {toTitleCase(
                           brgy.barangay_name.replace('BARANGAY ', '')
                         )}
                       </h3>
-                      <p className='kapwa-text-disabled mt-0.5 text-[10px] font-bold tracking-widest uppercase'>
+                      <p className='text-kapwa-text-disabled mt-0.5 text-[10px] font-bold tracking-widest uppercase'>
                         Official Barangay Profile
                       </p>
                     </div>
-                    <ArrowRight className='group-hover:kapwa-text-link mt-1 h-4 w-4 text-slate-200 transition-all' />
+                    <ArrowRight className='group-hover:text-kapwa-text-link mt-1 h-4 w-4 text-slate-200 transition-all' />
                   </div>
 
                   {/* Middle Row: Punong Barangay (Standardized Highlight Box) */}
-                  <div className='kapwa-border-weak kapwa-bg-surface-raised/50 flex items-center gap-2 rounded-xl border px-3 py-2'>
-                    <div className='kapwa-border-weak kapwa-bg-surface kapwa-text-disabled shrink-0 rounded-full border p-1 shadow-sm'>
+                  <div className='border-kapwa-border-weak bg-kapwa-bg-surface-raised/50 flex items-center gap-2 rounded-xl border px-3 py-2'>
+                    <div className='border-kapwa-border-weak bg-kapwa-bg-surface text-kapwa-text-disabled shrink-0 rounded-full border p-1 shadow-sm'>
                       <User2 className='h-3.5 w-3.5' />
                     </div>
                     <div className='min-w-0'>
-                      <p className='kapwa-text-disabled mb-0.5 text-[9px] leading-none font-bold tracking-tighter uppercase'>
+                      <p className='text-kapwa-text-disabled mb-0.5 text-[9px] leading-none font-bold tracking-tighter uppercase'>
                         Punong Barangay
                       </p>
-                      <p className='kapwa-text-support truncate text-xs leading-tight font-bold'>
+                      <p className='text-kapwa-text-support truncate text-xs leading-tight font-bold'>
                         {punong ? toTitleCase(punong.name) : 'Awaiting Data'}
                       </p>
                     </div>
@@ -88,7 +88,7 @@ export default function BarangaysIndex() {
                   {/* Bottom Row: Trunkline & Action */}
                   <div className='mt-auto flex items-center justify-between gap-4 border-t border-slate-50 pt-3'>
                     {brgy.trunkline && brgy.trunkline.length > 0 ? (
-                      <div className='kapwa-text-disabled flex items-center gap-1.5 text-[11px] font-medium'>
+                      <div className='text-kapwa-text-disabled flex items-center gap-1.5 text-[11px] font-medium'>
                         <Phone className='text-primary-400 h-3 w-3' />
                         <span>{brgy.trunkline[0]}</span>
                       </div>

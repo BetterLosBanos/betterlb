@@ -53,7 +53,7 @@ export default function LegislationDocument() {
   if (!doc)
     return (
       <div className='p-20 text-center' role='alert'>
-        <h2 className='kapwa-text-strong text-xl font-bold'>
+        <h2 className='text-kapwa-text-strong text-xl font-bold'>
           Document not found
         </h2>
         <Link to={backLink} className='text-primary-600 hover:underline'>
@@ -112,13 +112,13 @@ export default function LegislationDocument() {
             <Badge variant={isOrdinance ? 'primary' : 'warning'}>
               {doc.type}
             </Badge>
-            <span className='kapwa-border-weak kapwa-bg-hover kapwa-text-on-disabled flex items-center gap-1.5 rounded border px-2.5 py-1 font-mono text-[10px] font-bold tracking-widest uppercase'>
+            <span className='border-kapwa-border-weak bg-kapwa-bg-hover text-kapwa-text-on-disabled flex items-center gap-1.5 rounded border px-2.5 py-1 font-mono text-[10px] font-bold tracking-widest uppercase'>
               <Hash className='h-3 w-3' /> {doc.number}
             </span>
           </div>
           <h1
             id='doc-title'
-            className='kapwa-text-strong text-xl leading-relaxed font-extrabold md:text-2xl'
+            className='text-kapwa-text-strong text-xl leading-relaxed font-extrabold md:text-2xl'
           >
             {doc.title}
           </h1>
@@ -134,29 +134,29 @@ export default function LegislationDocument() {
                   <Link
                     key={author.id}
                     to={`/openlgu/person/${author.id}`}
-                    className='hover:kapwa-border-brand hover:kapwa-bg-surface-brand kapwa-border-weak kapwa-bg-surface inline-flex min-h-[44px] items-center gap-3 rounded-full border px-4 py-2 transition-all'
+                    className='hover:border-kapwa-border-brand hover:bg-kapwa-bg-surface-brand border-kapwa-border-weak bg-kapwa-bg-surface inline-flex min-h-[44px] items-center gap-3 rounded-full border px-4 py-2 transition-all'
                   >
                     <div
-                      className='kapwa-bg-active kapwa-text-on-disabled flex h-6 w-6 items-center justify-center rounded-full text-[10px] font-bold'
+                      className='bg-kapwa-bg-active text-kapwa-text-on-disabled flex h-6 w-6 items-center justify-center rounded-full text-[10px] font-bold'
                       aria-hidden='true'
                     >
                       {author.first_name[0]}
                       {author.last_name[0]}
                     </div>
-                    <span className='kapwa-text-support text-xs font-bold'>
+                    <span className='text-kapwa-text-support text-xs font-bold'>
                       {getPersonName(author)}
                     </span>
                   </Link>
                 ))
               ) : (
-                <span className='kapwa-text-disabled text-sm font-bold italic'>
+                <span className='text-kapwa-text-disabled text-sm font-bold italic'>
                   Office of the Mayor
                 </span>
               )}
             </div>
           </DetailSection>
 
-          <div className='kapwa-border-weak kapwa-bg-surface-raised flex flex-col items-center justify-between gap-6 rounded-2xl border p-6 sm:flex-row'>
+          <div className='border-kapwa-border-weak bg-kapwa-bg-surface-raised flex flex-col items-center justify-between gap-6 rounded-2xl border p-6 sm:flex-row'>
             <div className='flex items-center gap-4'>
               <div
                 className={`rounded-xl bg-white p-3 shadow-sm ${isOrdinance ? 'text-primary-600' : 'text-secondary-600'}`}
@@ -164,8 +164,8 @@ export default function LegislationDocument() {
                 <FileText className='h-8 w-8' />
               </div>
               <div className='text-center sm:text-left'>
-                <p className='kapwa-text-strong font-bold'>Official Document</p>
-                <p className='kapwa-text-disabled mt-1 text-[10px] font-bold tracking-widest uppercase'>
+                <p className='text-kapwa-text-strong font-bold'>Official Document</p>
+                <p className='text-kapwa-text-disabled mt-1 text-[10px] font-bold tracking-widest uppercase'>
                   Portable Document Format
                 </p>
               </div>
@@ -174,7 +174,7 @@ export default function LegislationDocument() {
               href={doc.link}
               target='_blank'
               rel='noreferrer'
-              className={`flex min-h-[48px] w-full items-center justify-center gap-2 rounded-xl px-8 py-3 text-sm font-bold text-white shadow-md transition-all sm:w-auto ${isOrdinance ? 'bg-primary-600 hover:kapwa-bg-brand-hover' : 'bg-secondary-600 hover:bg-secondary-700'}`}
+              className={`flex min-h-[48px] w-full items-center justify-center gap-2 rounded-xl px-8 py-3 text-sm font-bold text-white shadow-md transition-all sm:w-auto ${isOrdinance ? 'bg-kapwa-bg-brand-default hover:bg-kapwa-bg-brand-hover' : 'bg-secondary-600 hover:bg-secondary-700'}`}
             >
               <Download className='h-4 w-4' /> Download PDF
             </a>
@@ -186,18 +186,18 @@ export default function LegislationDocument() {
             <dl className='space-y-6'>
               {/* Restored: Term Link */}
               <div>
-                <dt className='kapwa-text-disabled mb-2 flex items-center gap-2 text-[10px] font-bold tracking-widest uppercase'>
+                <dt className='text-kapwa-text-disabled mb-2 flex items-center gap-2 text-[10px] font-bold tracking-widest uppercase'>
                   <Landmark className='h-3.5 w-3.5' /> Legislative Term
                 </dt>
                 <dd>
                   <Link
                     to={term ? `/openlgu/term/${term.id}` : '#'}
-                    className='group hover:kapwa-border-brand kapwa-border-weak kapwa-bg-surface-raised/50 hover:kapwa-bg-surface block min-h-[44px] rounded-xl border p-3 transition-all'
+                    className='group hover:border-kapwa-border-brand border-kapwa-border-weak bg-kapwa-bg-surface-raised/50 hover:bg-kapwa-bg-surface block min-h-[44px] rounded-xl border p-3 transition-all'
                   >
-                    <span className='group-hover:kapwa-text-brand kapwa-text-support block text-sm leading-tight font-bold'>
+                    <span className='group-hover:text-kapwa-text-brand text-kapwa-text-support block text-sm leading-tight font-bold'>
                       {term?.name || '12th Sangguniang Bayan'}
                     </span>
-                    <span className='kapwa-text-disabled mt-1 block font-mono text-[10px]'>
+                    <span className='text-kapwa-text-disabled mt-1 block font-mono text-[10px]'>
                       {term?.year_range || '2022-2025'}
                     </span>
                   </Link>
@@ -205,42 +205,42 @@ export default function LegislationDocument() {
               </div>
 
               {/* Restored: Session Link */}
-              <div className='kapwa-border-weak border-t pt-4'>
-                <dt className='kapwa-text-disabled mb-2 flex items-center gap-2 text-[10px] font-bold tracking-widest uppercase'>
+              <div className='border-kapwa-border-weak border-t pt-4'>
+                <dt className='text-kapwa-text-disabled mb-2 flex items-center gap-2 text-[10px] font-bold tracking-widest uppercase'>
                   <Gavel className='h-3.5 w-3.5' /> Approved During
                 </dt>
                 <dd>
                   {session ? (
                     <Link
                       to={`/openlgu/session/${session.id}`}
-                      className='group hover:kapwa-border-brand kapwa-border-weak kapwa-bg-surface-raised/50 hover:kapwa-bg-surface block min-h-[44px] rounded-xl border p-3 transition-all'
+                      className='group hover:border-kapwa-border-brand border-kapwa-border-weak bg-kapwa-bg-surface-raised/50 hover:bg-kapwa-bg-surface block min-h-[44px] rounded-xl border p-3 transition-all'
                     >
-                      <span className='group-hover:kapwa-text-brand kapwa-text-support block text-sm leading-tight font-bold'>
+                      <span className='group-hover:text-kapwa-text-brand text-kapwa-text-support block text-sm leading-tight font-bold'>
                         {session.ordinal_number} {session.type} Session
                       </span>
-                      <span className='kapwa-text-disabled mt-1 block font-mono text-[10px]'>
+                      <span className='text-kapwa-text-disabled mt-1 block font-mono text-[10px]'>
                         Held on {session.date}
                       </span>
                     </Link>
                   ) : (
-                    <span className='kapwa-text-disabled text-sm font-bold italic'>
+                    <span className='text-kapwa-text-disabled text-sm font-bold italic'>
                       No session data linked
                     </span>
                   )}
                 </dd>
               </div>
 
-              <div className='kapwa-border-weak border-t pt-4'>
-                <dt className='kapwa-text-disabled mb-2 flex items-center gap-2 text-[10px] font-bold tracking-widest uppercase'>
+              <div className='border-kapwa-border-weak border-t pt-4'>
+                <dt className='text-kapwa-text-disabled mb-2 flex items-center gap-2 text-[10px] font-bold tracking-widest uppercase'>
                   <Calendar className='h-3.5 w-3.5' /> Enacted Date
                 </dt>
-                <dd className='kapwa-text-support pl-5.5 text-sm font-bold'>
+                <dd className='text-kapwa-text-support pl-5.5 text-sm font-bold'>
                   {doc.date_enacted}
                 </dd>
               </div>
 
-              <div className='kapwa-border-weak border-t pt-4'>
-                <dt className='kapwa-text-disabled mb-2 flex items-center gap-2 text-[10px] font-bold tracking-widest uppercase'>
+              <div className='border-kapwa-border-weak border-t pt-4'>
+                <dt className='text-kapwa-text-disabled mb-2 flex items-center gap-2 text-[10px] font-bold tracking-widest uppercase'>
                   <Activity className='h-3.5 w-3.5' /> Status
                 </dt>
                 <dd className='mt-1 pl-5.5'>
@@ -256,8 +256,8 @@ export default function LegislationDocument() {
           </DetailSection>
 
           {/* Flag for Review */}
-          <div className='kapwa-border-weak kapwa-bg-surface-raised rounded-xl border p-4'>
-            <p className='kapwa-text-on-disabled mb-3 text-xs leading-relaxed'>
+          <div className='border-kapwa-border-weak bg-kapwa-bg-surface-raised rounded-xl border p-4'>
+            <p className='text-kapwa-text-on-disabled mb-3 text-xs leading-relaxed'>
               Notice an error with this document? Flag it for review by the
               admin team.
             </p>

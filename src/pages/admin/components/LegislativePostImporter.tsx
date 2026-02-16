@@ -733,7 +733,7 @@ export default function LegislativePostImporter({
               <Card variant='default'>
                 <CardContent className='space-y-4 p-4'>
                   <div>
-                    <label className='kapwa-text-support mb-2 block text-sm font-medium'>
+                    <label className='text-kapwa-text-support mb-2 block text-sm font-medium'>
                       Paste Facebook Post Content
                     </label>
                     <textarea
@@ -750,7 +750,7 @@ Seconded By: Hon. Miko C. Pelegrina
 
 2. ORDINANCE NO. 2026-2470
 ...'
-                      className='kapwa-border-weak h-64 w-full rounded-md border px-3 py-2 font-mono text-sm'
+                      className='border-kapwa-border-weak h-64 w-full rounded-md border px-3 py-2 font-mono text-sm'
                     />
                   </div>
                   <Button
@@ -767,10 +767,10 @@ Seconded By: Hon. Miko C. Pelegrina
 
               <Card variant='slate'>
                 <CardContent className='p-4'>
-                  <h4 className='kapwa-text-strong mb-2 text-sm font-semibold'>
+                  <h4 className='text-kapwa-text-strong mb-2 text-sm font-semibold'>
                     Supported Format
                   </h4>
-                  <p className='kapwa-text-on-disabled text-xs'>
+                  <p className='text-kapwa-text-on-disabled text-xs'>
                     The parser expects numbered items with document type,
                     number, title, and author information. Session info should
                     be at the top (e.g., &quot;25TH REGULAR SESSION&quot;).
@@ -787,14 +787,14 @@ Seconded By: Hon. Miko C. Pelegrina
               <Card variant='default'>
                 <CardContent className='space-y-4 p-4'>
                   <div className='flex items-center gap-2'>
-                    <Calendar className='kapwa-text-disabled h-4 w-4' />
-                    <h4 className='kapwa-text-strong text-sm font-semibold'>
+                    <Calendar className='text-kapwa-text-disabled h-4 w-4' />
+                    <h4 className='text-kapwa-text-strong text-sm font-semibold'>
                       Session Information (Required)
                     </h4>
                   </div>
                   <div className='grid gap-4 sm:grid-cols-2'>
                     <div>
-                      <label className='kapwa-text-on-disabled mb-1 block text-xs'>
+                      <label className='text-kapwa-text-on-disabled mb-1 block text-xs'>
                         Session Type
                       </label>
                       <select
@@ -807,7 +807,7 @@ Seconded By: Hon. Miko C. Pelegrina
                               | 'Inaugural'
                           )
                         }
-                        className='kapwa-border-weak kapwa-bg-surface w-full rounded-md border px-3 py-2 text-sm'
+                        className='border-kapwa-border-weak bg-kapwa-bg-surface w-full rounded-md border px-3 py-2 text-sm'
                       >
                         <option value='Regular'>Regular</option>
                         <option value='Special'>Special</option>
@@ -815,7 +815,7 @@ Seconded By: Hon. Miko C. Pelegrina
                       </select>
                     </div>
                     <div>
-                      <label className='kapwa-text-on-disabled mb-1 block text-xs'>
+                      <label className='text-kapwa-text-on-disabled mb-1 block text-xs'>
                         Session Number (Ordinal)
                       </label>
                       <input
@@ -827,23 +827,23 @@ Seconded By: Hon. Miko C. Pelegrina
                           )
                         }
                         placeholder='e.g., 25'
-                        className='kapwa-border-weak w-full rounded-md border px-3 py-2 text-sm'
+                        className='border-kapwa-border-weak w-full rounded-md border px-3 py-2 text-sm'
                       />
                     </div>
                     <div>
-                      <label className='kapwa-text-on-disabled mb-1 block text-xs'>
+                      <label className='text-kapwa-text-on-disabled mb-1 block text-xs'>
                         Session Date
                       </label>
                       <input
                         type='date'
                         value={sessionDate}
                         onChange={e => setSessionDate(e.target.value)}
-                        className='kapwa-border-weak w-full rounded-md border px-3 py-2 text-sm'
+                        className='border-kapwa-border-weak w-full rounded-md border px-3 py-2 text-sm'
                         required
                       />
                     </div>
                     <div>
-                      <label className='kapwa-text-on-disabled mb-1 block text-xs'>
+                      <label className='text-kapwa-text-on-disabled mb-1 block text-xs'>
                         Term
                       </label>
                       <select
@@ -852,7 +852,7 @@ Seconded By: Hon. Miko C. Pelegrina
                           setSelectedTermId(e.target.value || null)
                         }
                         disabled={termsLoading}
-                        className='kapwa-border-weak kapwa-bg-surface w-full rounded-md border px-3 py-2 text-sm disabled:bg-slate-100'
+                        className='border-kapwa-border-weak bg-kapwa-bg-surface w-full rounded-md border px-3 py-2 text-sm disabled:bg-slate-100'
                       >
                         {terms.map(term => (
                           <option key={term.id} value={term.id}>
@@ -863,7 +863,7 @@ Seconded By: Hon. Miko C. Pelegrina
                     </div>
                   </div>
                   {parsedData?.session_info.type && (
-                    <p className='kapwa-text-disabled text-xs'>
+                    <p className='text-kapwa-text-disabled text-xs'>
                       Detected from post: {parsedData.session_info.ordinal}th{' '}
                       {parsedData.session_info.type} session
                     </p>
@@ -873,7 +873,7 @@ Seconded By: Hon. Miko C. Pelegrina
 
               {/* Documents List */}
               <div className='space-y-3'>
-                <h4 className='kapwa-text-strong text-sm font-semibold'>
+                <h4 className='text-kapwa-text-strong text-sm font-semibold'>
                   Parsed Documents ({editedDocuments.length})
                 </h4>
 
@@ -892,11 +892,11 @@ Seconded By: Hon. Miko C. Pelegrina
                             >
                               {getDocumentTypeLabel(doc.type)}
                             </Badge>
-                            <span className='kapwa-text-on-disabled font-mono text-xs'>
+                            <span className='text-kapwa-text-on-disabled font-mono text-xs'>
                               {doc.number}
                             </span>
                           </div>
-                          <p className='kapwa-text-strong line-clamp-2 text-sm font-medium'>
+                          <p className='text-kapwa-text-strong line-clamp-2 text-sm font-medium'>
                             {doc.title}
                           </p>
                           <div className='mt-2 flex flex-wrap gap-1'>
@@ -916,7 +916,7 @@ Seconded By: Hon. Miko C. Pelegrina
                         <div className='flex items-center gap-2'>
                           <button
                             onClick={() => toggleExpanded(index)}
-                            className='kapwa-text-disabled hover:kapwa-text-on-disabled p-1'
+                            className='text-kapwa-text-disabled hover:text-kapwa-text-on-disabled p-1'
                           >
                             {expandedItems.has(index) ? (
                               <ChevronUp className='h-4 w-4' />
@@ -926,7 +926,7 @@ Seconded By: Hon. Miko C. Pelegrina
                           </button>
                           <button
                             onClick={() => handleRemoveDocument(index)}
-                            className='hover:kapwa-text-danger p-1 text-red-400'
+                            className='hover:text-kapwa-text-danger p-1 text-red-400'
                             title='Remove document'
                           >
                             <Trash2 className='h-4 w-4' />
@@ -936,10 +936,10 @@ Seconded By: Hon. Miko C. Pelegrina
 
                       {/* Expanded Details */}
                       {expandedItems.has(index) && (
-                        <div className='kapwa-border-weak mt-4 space-y-4 border-t pt-4'>
+                        <div className='border-kapwa-border-weak mt-4 space-y-4 border-t pt-4'>
                           {/* Type */}
                           <div>
-                            <label className='kapwa-text-on-disabled mb-1 block text-xs'>
+                            <label className='text-kapwa-text-on-disabled mb-1 block text-xs'>
                               Document Type
                             </label>
                             <select
@@ -954,7 +954,7 @@ Seconded By: Hon. Miko C. Pelegrina
                                   return updated;
                                 });
                               }}
-                              className='kapwa-border-weak w-full rounded-md border px-3 py-2 text-sm'
+                              className='border-kapwa-border-weak w-full rounded-md border px-3 py-2 text-sm'
                             >
                               <option value='ordinance'>Ordinance</option>
                               <option value='resolution'>Resolution</option>
@@ -966,7 +966,7 @@ Seconded By: Hon. Miko C. Pelegrina
 
                           {/* Number */}
                           <div>
-                            <label className='kapwa-text-on-disabled mb-1 block text-xs'>
+                            <label className='text-kapwa-text-on-disabled mb-1 block text-xs'>
                               Document Number
                             </label>
                             <input
@@ -979,13 +979,13 @@ Seconded By: Hon. Miko C. Pelegrina
                                   return updated;
                                 });
                               }}
-                              className='kapwa-border-weak w-full rounded-md border px-3 py-2 font-mono text-sm'
+                              className='border-kapwa-border-weak w-full rounded-md border px-3 py-2 font-mono text-sm'
                             />
                           </div>
 
                           {/* Title */}
                           <div>
-                            <label className='kapwa-text-on-disabled mb-1 block text-xs'>
+                            <label className='text-kapwa-text-on-disabled mb-1 block text-xs'>
                               Title
                             </label>
                             <textarea
@@ -998,13 +998,13 @@ Seconded By: Hon. Miko C. Pelegrina
                                 });
                               }}
                               rows={3}
-                              className='kapwa-border-weak w-full rounded-md border px-3 py-2 text-sm'
+                              className='border-kapwa-border-weak w-full rounded-md border px-3 py-2 text-sm'
                             />
                           </div>
 
                           {/* Authors */}
                           <div>
-                            <label className='kapwa-text-on-disabled mb-1 block text-xs'>
+                            <label className='text-kapwa-text-on-disabled mb-1 block text-xs'>
                               Authors
                             </label>
                             <div className='mb-2 flex flex-wrap gap-2'>
@@ -1027,7 +1027,7 @@ Seconded By: Hon. Miko C. Pelegrina
                             <input
                               type='text'
                               placeholder='Add author (type name)...'
-                              className='kapwa-border-weak w-full rounded-md border px-3 py-2 text-sm'
+                              className='border-kapwa-border-weak w-full rounded-md border px-3 py-2 text-sm'
                               onKeyDown={e => {
                                 if (
                                   e.key === 'Enter' &&
@@ -1066,10 +1066,10 @@ Seconded By: Hon. Miko C. Pelegrina
                   <div className='flex items-start gap-3'>
                     <AlertTriangle className='mt-0.5 h-5 w-5 flex-shrink-0 text-amber-500' />
                     <div>
-                      <h4 className='kapwa-text-strong text-sm font-semibold'>
+                      <h4 className='text-kapwa-text-strong text-sm font-semibold'>
                         Duplicates Found
                       </h4>
-                      <p className='kapwa-text-on-disabled mt-1 text-xs'>
+                      <p className='text-kapwa-text-on-disabled mt-1 text-xs'>
                         {createResult?.duplicates.length || 0} document(s)
                         already exist in the database. Choose how to resolve
                         each duplicate below.
@@ -1096,7 +1096,7 @@ Seconded By: Hon. Miko C. Pelegrina
                           <div className='mb-3 flex items-center justify-between'>
                             <div className='flex items-center gap-2'>
                               <Badge variant='warning'>Duplicate</Badge>
-                              <span className='kapwa-text-on-disabled font-mono text-xs'>
+                              <span className='text-kapwa-text-on-disabled font-mono text-xs'>
                                 {doc.number}
                               </span>
                             </div>
@@ -1107,7 +1107,7 @@ Seconded By: Hon. Miko C. Pelegrina
                             {/* Title Comparison */}
                             <div className='grid grid-cols-2 gap-4 text-sm'>
                               <div>
-                                <span className='kapwa-text-support mb-1 block font-medium'>
+                                <span className='text-kapwa-text-support mb-1 block font-medium'>
                                   Existing Title
                                 </span>
                                 <span className='text-slate-600'>
@@ -1115,7 +1115,7 @@ Seconded By: Hon. Miko C. Pelegrina
                                 </span>
                               </div>
                               <div>
-                                <span className='kapwa-text-support mb-1 block font-medium'>
+                                <span className='text-kapwa-text-support mb-1 block font-medium'>
                                   New Title
                                 </span>
                                 <span className='text-slate-600'>
@@ -1127,7 +1127,7 @@ Seconded By: Hon. Miko C. Pelegrina
                             {/* Authors Comparison */}
                             <div className='grid grid-cols-2 gap-4 text-sm'>
                               <div>
-                                <span className='kapwa-text-support mb-1 block font-medium'>
+                                <span className='text-kapwa-text-support mb-1 block font-medium'>
                                   Existing Authors
                                 </span>
                                 <div className='flex flex-wrap gap-1'>
@@ -1151,7 +1151,7 @@ Seconded By: Hon. Miko C. Pelegrina
                                 </div>
                               </div>
                               <div>
-                                <span className='kapwa-text-support mb-1 block font-medium'>
+                                <span className='text-kapwa-text-support mb-1 block font-medium'>
                                   New Authors
                                 </span>
                                 <div className='flex flex-wrap gap-1'>
@@ -1178,7 +1178,7 @@ Seconded By: Hon. Miko C. Pelegrina
 
                           {/* Resolution Options */}
                           <div>
-                            <label className='kapwa-text-support mb-2 block text-xs font-medium'>
+                            <label className='text-kapwa-text-support mb-2 block text-xs font-medium'>
                               Resolution
                             </label>
                             <div className='mb-3 grid grid-cols-3 gap-2'>
@@ -1196,7 +1196,7 @@ Seconded By: Hon. Miko C. Pelegrina
                                 className={`rounded-md border px-3 py-2 text-xs ${
                                   resolution.action === 'skip'
                                     ? 'bg-primary-500 border-primary-500 text-white'
-                                    : 'hover:kapwa-bg-surface-raised border-slate-300'
+                                    : 'hover:bg-kapwa-bg-surface-raised border-slate-300'
                                 }`}
                               >
                                 Skip
@@ -1215,7 +1215,7 @@ Seconded By: Hon. Miko C. Pelegrina
                                 className={`rounded-md border px-3 py-2 text-xs ${
                                   resolution.action === 'replace'
                                     ? 'bg-primary-500 border-primary-500 text-white'
-                                    : 'hover:kapwa-bg-surface-raised border-slate-300'
+                                    : 'hover:bg-kapwa-bg-surface-raised border-slate-300'
                                 }`}
                               >
                                 Replace
@@ -1237,7 +1237,7 @@ Seconded By: Hon. Miko C. Pelegrina
                                 className={`rounded-md border px-3 py-2 text-xs ${
                                   resolution.action === 'merge'
                                     ? 'bg-primary-500 border-primary-500 text-white'
-                                    : 'hover:kapwa-bg-surface-raised border-slate-300'
+                                    : 'hover:bg-kapwa-bg-surface-raised border-slate-300'
                                 }`}
                               >
                                 Merge
@@ -1247,8 +1247,8 @@ Seconded By: Hon. Miko C. Pelegrina
                             {/* Merge field options when merge or replace is selected */}
                             {(resolution.action === 'merge' ||
                               resolution.action === 'replace') && (
-                              <div className='kapwa-border-weak space-y-2 border-t pt-2'>
-                                <span className='kapwa-text-support text-xs font-medium'>
+                              <div className='border-kapwa-border-weak space-y-2 border-t pt-2'>
+                                <span className='text-kapwa-text-support text-xs font-medium'>
                                   {resolution.action === 'merge'
                                     ? 'Fields to merge:'
                                     : 'Fields to update:'}
@@ -1275,7 +1275,7 @@ Seconded By: Hon. Miko C. Pelegrina
                                           return next;
                                         });
                                       }}
-                                      className='kapwa-border-weak rounded'
+                                      className='border-kapwa-border-weak rounded'
                                     />
                                     <span>Title</span>
                                   </label>
@@ -1300,7 +1300,7 @@ Seconded By: Hon. Miko C. Pelegrina
                                           return next;
                                         });
                                       }}
-                                      className='kapwa-border-weak rounded'
+                                      className='border-kapwa-border-weak rounded'
                                     />
                                     <span>Authors</span>
                                   </label>
@@ -1337,8 +1337,8 @@ Seconded By: Hon. Miko C. Pelegrina
           {/* Step 4: Creating */}
           {step === 'creating' && (
             <div className='flex flex-col items-center justify-center space-y-4 py-12'>
-              <div className='border-t-primary-500 kapwa-border-weak h-12 w-12 animate-spin rounded-full border-4' />
-              <p className='kapwa-text-on-disabled text-sm'>
+              <div className='border-t-primary-500 border-kapwa-border-weak h-12 w-12 animate-spin rounded-full border-4' />
+              <p className='text-kapwa-text-on-disabled text-sm'>
                 Creating documents...
               </p>
             </div>

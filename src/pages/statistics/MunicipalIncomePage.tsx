@@ -111,8 +111,8 @@ export default function MunicipalIncomePage() {
             <h4 className='text-secondary-600 border-b pb-2 text-[10px] font-black tracking-widest uppercase'>
               Local Tax
             </h4>
-            <div className='kapwa-text-support space-y-2 text-sm font-bold'>
-              <div className='kapwa-bg-surface-raised flex justify-between rounded-lg p-2'>
+            <div className='text-kapwa-text-support space-y-2 text-sm font-bold'>
+              <div className='bg-kapwa-bg-surface-raised flex justify-between rounded-lg p-2'>
                 <span>Real Property</span>
                 <span>
                   {
@@ -123,7 +123,7 @@ export default function MunicipalIncomePage() {
                   }
                 </span>
               </div>
-              <div className='kapwa-bg-surface-raised flex justify-between rounded-lg p-2'>
+              <div className='bg-kapwa-bg-surface-raised flex justify-between rounded-lg p-2'>
                 <span>Business Tax</span>
                 <span>
                   {
@@ -139,8 +139,8 @@ export default function MunicipalIncomePage() {
             <h4 className='text-primary-600 border-b pb-2 text-[10px] font-black tracking-widest uppercase'>
               Non-Tax
             </h4>
-            <div className='kapwa-text-support space-y-2 text-sm font-bold'>
-              <div className='kapwa-bg-surface-raised flex justify-between rounded-lg p-2'>
+            <div className='text-kapwa-text-support space-y-2 text-sm font-bold'>
+              <div className='bg-kapwa-bg-surface-raised flex justify-between rounded-lg p-2'>
                 <span>Fees</span>
                 <span>
                   {
@@ -151,7 +151,7 @@ export default function MunicipalIncomePage() {
                   }
                 </span>
               </div>
-              <div className='kapwa-bg-surface-raised flex justify-between rounded-lg p-2'>
+              <div className='bg-kapwa-bg-surface-raised flex justify-between rounded-lg p-2'>
                 <span>Enterprises</span>
                 <span>
                   {
@@ -168,8 +168,8 @@ export default function MunicipalIncomePage() {
             <h4 className='border-b pb-2 text-[10px] font-black tracking-widest text-emerald-600 uppercase'>
               External
             </h4>
-            <div className='kapwa-text-support space-y-2 text-sm font-bold'>
-              <div className='kapwa-bg-surface-raised flex justify-between rounded-lg p-2'>
+            <div className='text-kapwa-text-support space-y-2 text-sm font-bold'>
+              <div className='bg-kapwa-bg-surface-raised flex justify-between rounded-lg p-2'>
                 <span>Allotment</span>
                 <span>
                   {
@@ -179,7 +179,7 @@ export default function MunicipalIncomePage() {
                   }
                 </span>
               </div>
-              <div className='kapwa-bg-surface-raised flex justify-between rounded-lg p-2'>
+              <div className='bg-kapwa-bg-surface-raised flex justify-between rounded-lg p-2'>
                 <span>Other Shares</span>
                 <span>
                   {

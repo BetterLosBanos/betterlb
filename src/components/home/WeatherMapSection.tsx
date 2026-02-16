@@ -174,10 +174,10 @@ export default function WeatherMapSection() {
   const WeatherIcon = weather ? lucideIconMap[weather.icon || 'Sun'] : Sun;
 
   return (
-    <section className='kapwa-border-weak kapwa-bg-surface-raised border-t py-12'>
+    <section className='border-kapwa-border-weak bg-kapwa-bg-surface-raised border-t py-12'>
       <div className='container mx-auto px-4'>
         <div className='mb-12 text-center'>
-          <h2 className='kapwa-text-strong mb-4 text-2xl font-bold md:text-3xl'>
+          <h2 className='text-kapwa-text-strong mb-4 text-2xl font-bold md:text-3xl'>
             Weather and Map of {config.lgu.name}
           </h2>
         </div>
@@ -185,9 +185,9 @@ export default function WeatherMapSection() {
         <div className='flex flex-col items-stretch gap-6 md:flex-row'>
           {/* Weather Card */}
           <div className='w-full flex-1 md:min-w-[200px]'>
-            <div className='kapwa-border-weak kapwa-bg-surface flex flex-col gap-2 rounded-xl border p-4 shadow-sm hover:shadow-md md:gap-4 md:p-6'>
+            <div className='border-kapwa-border-weak bg-kapwa-bg-surface flex flex-col gap-2 rounded-xl border p-4 shadow-sm hover:shadow-md md:gap-4 md:p-6'>
               {loading ? (
-                <div className='kapwa-text-disabled flex items-center gap-2'>
+                <div className='text-kapwa-text-disabled flex items-center gap-2'>
                   <LoaderIcon className='h-5 w-5 animate-spin' />
                   Loading weather...
                 </div>
@@ -199,26 +199,26 @@ export default function WeatherMapSection() {
                   <div className='flex items-center gap-4'>
                     <WeatherIcon className='text-primary-600 h-14 w-14 shrink-0' />
                     <div className='flex flex-col gap-1'>
-                      <div className='kapwa-text-strong text-5xl font-bold'>
+                      <div className='text-kapwa-text-strong text-5xl font-bold'>
                         {weather.temperature}°C
                       </div>
-                      <div className='kapwa-text-on-disabled text-center text-base capitalize'>
+                      <div className='text-kapwa-text-on-disabled text-center text-base capitalize'>
                         {weather.condition}
                       </div>
-                      <div className='kapwa-text-disabled mt-1 flex items-center gap-2 text-sm'>
+                      <div className='text-kapwa-text-disabled mt-1 flex items-center gap-2 text-sm'>
                         <MapPin className='h-4 w-4' />
                         {config.lgu.name}, {config.lgu.province}
                       </div>
                     </div>
                   </div>
                   {/* Middle: Humidity & Wind */}
-                  <div className='kapwa-text-support mt-2 flex justify-center gap-8 text-sm'>
+                  <div className='text-kapwa-text-support mt-2 flex justify-center gap-8 text-sm'>
                     <div className='flex items-center gap-2'>
-                      <Droplet className='kapwa-text-link h-4 w-4' />
+                      <Droplet className='text-kapwa-text-link h-4 w-4' />
                       {weather.humidity}%
                     </div>
                     <div className='flex items-center gap-2'>
-                      <Wind className='kapwa-text-disabled h-4 w-4' />
+                      <Wind className='text-kapwa-text-disabled h-4 w-4' />
                       {weather.windSpeed} m/s
                     </div>
                   </div>
@@ -230,13 +230,13 @@ export default function WeatherMapSection() {
                       return (
                         <div
                           key={idx}
-                          className='hover:kapwa-bg-surface-brand kapwa-bg-hover flex w-full flex-col items-center gap-1.5 rounded-xl p-2 transition-all duration-200 hover:-translate-y-0.5 sm:flex-1 sm:p-3'
+                          className='hover:bg-kapwa-bg-surface-brand bg-kapwa-bg-hover flex w-full flex-col items-center gap-1.5 rounded-xl p-2 transition-all duration-200 hover:-translate-y-0.5 sm:flex-1 sm:p-3'
                         >
                           <IconComp className='text-primary-600 h-6 w-6' />
                           <div className='text-base font-bold'>
                             {h.temperature}°
                           </div>
-                          <div className='kapwa-text-disabled text-xs'>
+                          <div className='text-kapwa-text-disabled text-xs'>
                             {h.hour}
                           </div>
                         </div>
@@ -260,7 +260,7 @@ export default function WeatherMapSection() {
               aria-label='Interactive map of {config.lgu.fullName} Municipal Hall'
             >
               <noscript>
-                <div className='kapwa-text-disabled p-4 text-sm'>
+                <div className='text-kapwa-text-disabled p-4 text-sm'>
                   JavaScript is required to view the interactive map.
                   <a
                     href='https://www.openstreetmap.org/?mlat=14.1647&mlon=121.2436#map=15/14.1647/121.2436'
@@ -273,9 +273,9 @@ export default function WeatherMapSection() {
                 </div>
               </noscript>
             </div>
-            <div className='kapwa-border-weak kapwa-bg-surface flex items-center gap-2 border-t p-3'>
+            <div className='border-kapwa-border-weak bg-kapwa-bg-surface flex items-center gap-2 border-t p-3'>
               <MapPin className='text-primary-600 h-5 w-5' />
-              <span className='kapwa-text-support text-sm font-medium'>
+              <span className='text-kapwa-text-support text-sm font-medium'>
                 {config.lgu.fullName} Municipal Hall
               </span>
             </div>

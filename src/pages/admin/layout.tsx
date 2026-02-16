@@ -72,7 +72,7 @@ function AdminContent() {
           <div>
             <div className='mb-2 flex items-center gap-3'>
               <Shield className='text-primary-500 h-8 w-8' />
-              <h1 className='kapwa-text-strong text-3xl font-extrabold'>
+              <h1 className='text-kapwa-text-strong text-3xl font-extrabold'>
                 Admin Dashboard
               </h1>
               <Badge variant={USE_MOCK_AUTH ? 'info' : 'warning'}>

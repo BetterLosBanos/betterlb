@@ -215,17 +215,17 @@ export default function InfrastructureDetail() {
         href={url}
         target='_blank'
         rel='noopener noreferrer'
-        className='group hover:kapwa-border-brand kapwa-border-weak kapwa-bg-surface hover:kapwa-bg-surface-raised flex items-center justify-between rounded-xl border p-3 transition-all'
+        className='group hover:border-kapwa-border-brand border-kapwa-border-weak bg-kapwa-bg-surface hover:bg-kapwa-bg-surface-raised flex items-center justify-between rounded-xl border p-3 transition-all'
       >
         <div className='flex items-center gap-3'>
-          <div className='group-hover:kapwa-text-brand kapwa-border-weak kapwa-bg-surface-raised kapwa-text-disabled rounded-lg border p-2 transition-colors'>
+          <div className='group-hover:text-kapwa-text-brand border-kapwa-border-weak bg-kapwa-bg-surface-raised text-kapwa-text-disabled rounded-lg border p-2 transition-colors'>
             <FileText className='h-4 w-4' />
           </div>
-          <span className='kapwa-text-support group-hover:kapwa-text-strong text-sm font-bold'>
+          <span className='text-kapwa-text-support group-hover:text-kapwa-text-strong text-sm font-bold'>
             {label}
           </span>
         </div>
-        <ExternalLink className='group-hover:kapwa-text-brand-600 h-3.5 w-3.5 text-slate-300 transition-colors' />
+        <ExternalLink className='group-hover:text-kapwa-text-brand-600 h-3.5 w-3.5 text-slate-300 transition-colors' />
       </a>
     );
   };
@@ -238,10 +238,10 @@ export default function InfrastructureDetail() {
     value?: string | number | null;
   }) => (
     <div>
-      <label className='kapwa-text-disabled mb-1 block text-[10px] font-bold tracking-widest uppercase'>
+      <label className='text-kapwa-text-disabled mb-1 block text-[10px] font-bold tracking-widest uppercase'>
         {label}
       </label>
-      <p className='kapwa-text-strong text-sm font-bold wrap-break-word'>
+      <p className='text-kapwa-text-strong text-sm font-bold wrap-break-word'>
         {value || 'N/A'}
       </p>
     </div>
@@ -250,8 +250,8 @@ export default function InfrastructureDetail() {
   if (loading)
     return (
       <div className='animate-in fade-in container mx-auto min-h-screen space-y-8 px-4 pt-20'>
-        <div className='kapwa-bg-hover h-8 w-1/3 animate-pulse rounded' />
-        <div className='kapwa-bg-hover h-64 w-full animate-pulse rounded-3xl' />
+        <div className='bg-kapwa-bg-hover h-8 w-1/3 animate-pulse rounded' />
+        <div className='bg-kapwa-bg-hover h-64 w-full animate-pulse rounded-3xl' />
       </div>
     );
 
@@ -296,7 +296,7 @@ export default function InfrastructureDetail() {
       <div className='mb-8'>
         <Link
           to='/transparency/infrastructure'
-          className='hover:kapwa-text-brand kapwa-text-disabled mb-6 inline-flex items-center gap-2 text-xs font-bold tracking-widest uppercase transition-colors'
+          className='hover:text-kapwa-text-brand text-kapwa-text-disabled mb-6 inline-flex items-center gap-2 text-xs font-bold tracking-widest uppercase transition-colors'
         >
           <ArrowLeft className='h-4 w-4' /> Return to List
         </Link>
@@ -310,7 +310,7 @@ export default function InfrastructureDetail() {
               >
                 {project.status}
               </Badge>
-              <span className='kapwa-border-weak kapwa-bg-surface-raised kapwa-text-disabled rounded border px-2 py-0.5 font-mono text-xs font-medium'>
+              <span className='border-kapwa-border-weak bg-kapwa-bg-surface-raised text-kapwa-text-disabled rounded border px-2 py-0.5 font-mono text-xs font-medium'>
                 {project.contractId}
               </span>
               {project.isLive && (
@@ -322,7 +322,7 @@ export default function InfrastructureDetail() {
                 <Badge variant='success'>DPWH Verified</Badge>
               )}
             </div>
-            <h1 className='kapwa-text-strong text-2xl leading-tight font-black md:text-3xl'>
+            <h1 className='text-kapwa-text-strong text-2xl leading-tight font-black md:text-3xl'>
               {project.description}
             </h1>
           </div>
@@ -334,21 +334,21 @@ export default function InfrastructureDetail() {
         <Card className='border-slate-200 shadow-sm'>
           <CardContent className='flex h-full flex-col justify-between p-5'>
             <div className='mb-2 flex items-center gap-2'>
-              <div className='kapwa-border-weak kapwa-bg-surface-raised kapwa-text-disabled rounded-md border p-1.5'>
+              <div className='border-kapwa-border-weak bg-kapwa-bg-surface-raised text-kapwa-text-disabled rounded-md border p-1.5'>
                 <DollarSign className='h-4 w-4' />
               </div>
-              <span className='kapwa-text-disabled text-[10px] font-bold tracking-widest uppercase'>
+              <span className='text-kapwa-text-disabled text-[10px] font-bold tracking-widest uppercase'>
                 Total Budget
               </span>
             </div>
             <div>
               <p
-                className='kapwa-text-strong truncate text-2xl font-black'
+                className='text-kapwa-text-strong truncate text-2xl font-black'
                 title={formatPesoAdaptive(project.budget).fullString}
               >
                 {formatPesoAdaptive(project.budget).fullString}
               </p>
-              <p className='kapwa-text-disabled mt-0.5 text-xs font-medium'>
+              <p className='text-kapwa-text-disabled mt-0.5 text-xs font-medium'>
                 Allocated
               </p>
             </div>
@@ -358,21 +358,21 @@ export default function InfrastructureDetail() {
         <Card className='border-slate-200 shadow-sm'>
           <CardContent className='flex h-full flex-col justify-between p-5'>
             <div className='mb-2 flex items-center gap-2'>
-              <div className='kapwa-border-weak kapwa-bg-surface-raised kapwa-text-disabled rounded-md border p-1.5'>
+              <div className='border-kapwa-border-weak bg-kapwa-bg-surface-raised text-kapwa-text-disabled rounded-md border p-1.5'>
                 <Coins className='h-4 w-4' />
               </div>
-              <span className='kapwa-text-disabled text-[10px] font-bold tracking-widest uppercase'>
+              <span className='text-kapwa-text-disabled text-[10px] font-bold tracking-widest uppercase'>
                 Paid Amount
               </span>
             </div>
             <div>
               <p
-                className='kapwa-text-strong truncate text-2xl font-black'
+                className='text-kapwa-text-strong truncate text-2xl font-black'
                 title={formatPesoAdaptive(project.amountPaid).fullString}
               >
                 {formatPesoAdaptive(project.amountPaid).fullString}
               </p>
-              <p className='kapwa-text-disabled mt-0.5 text-xs font-medium'>
+              <p className='text-kapwa-text-disabled mt-0.5 text-xs font-medium'>
                 {project.budget > 0
                   ? ((project.amountPaid / project.budget) * 100).toFixed(1)
                   : 0}
@@ -382,13 +382,13 @@ export default function InfrastructureDetail() {
           </CardContent>
         </Card>
 
-        <Card className='kapwa-bg-surface-raised/50 border-slate-200 shadow-sm'>
+        <Card className='bg-kapwa-bg-surface-raised/50 border-slate-200 shadow-sm'>
           <CardContent className='flex h-full flex-col justify-between p-5'>
             <div className='mb-2 flex items-center gap-2'>
-              <div className='kapwa-border-weak kapwa-bg-surface kapwa-text-disabled rounded-md border p-1.5'>
+              <div className='border-kapwa-border-weak bg-kapwa-bg-surface text-kapwa-text-disabled rounded-md border p-1.5'>
                 <TrendingUp className='h-4 w-4' />
               </div>
-              <span className='kapwa-text-disabled text-[10px] font-bold tracking-widest uppercase'>
+              <span className='text-kapwa-text-disabled text-[10px] font-bold tracking-widest uppercase'>
                 Progress
               </span>
             </div>
@@ -396,9 +396,9 @@ export default function InfrastructureDetail() {
               <p className='text-primary-600 mb-2 text-2xl font-black'>
                 {project.progress.toFixed(1)}%
               </p>
-              <div className='kapwa-bg-active h-2 w-full overflow-hidden rounded-full'>
+              <div className='bg-kapwa-bg-active h-2 w-full overflow-hidden rounded-full'>
                 <div
-                  className='bg-primary-600 h-full rounded-full transition-all'
+                  className='bg-kapwa-bg-brand-default h-full rounded-full transition-all'
                   style={{ width: `${Math.min(project.progress, 100)}%` }}
                 />
               </div>
@@ -409,18 +409,18 @@ export default function InfrastructureDetail() {
         <Card className='border-slate-200 shadow-sm'>
           <CardContent className='flex h-full flex-col justify-between p-5'>
             <div className='mb-2 flex items-center gap-2'>
-              <div className='kapwa-border-weak kapwa-bg-surface-raised kapwa-text-disabled rounded-md border p-1.5'>
+              <div className='border-kapwa-border-weak bg-kapwa-bg-surface-raised text-kapwa-text-disabled rounded-md border p-1.5'>
                 <Calendar className='h-4 w-4' />
               </div>
-              <span className='kapwa-text-disabled text-[10px] font-bold tracking-widest uppercase'>
+              <span className='text-kapwa-text-disabled text-[10px] font-bold tracking-widest uppercase'>
                 Fiscal Year
               </span>
             </div>
             <div>
-              <p className='kapwa-text-strong text-2xl font-black'>
+              <p className='text-kapwa-text-strong text-2xl font-black'>
                 {project.infraYear}
               </p>
-              <p className='kapwa-text-disabled mt-0.5 truncate text-xs font-medium'>
+              <p className='text-kapwa-text-disabled mt-0.5 truncate text-xs font-medium'>
                 {project.programName}
               </p>
             </div>
@@ -468,7 +468,7 @@ export default function InfrastructureDetail() {
                 value={formatDate(project.expiryDate)}
               />
               {project.nysReason && (
-                <div className='kapwa-border-weak kapwa-bg-surface-raised rounded-lg border p-3 sm:col-span-2'>
+                <div className='border-kapwa-border-weak bg-kapwa-bg-surface-raised rounded-lg border p-3 sm:col-span-2'>
                   <InfoRow
                     label='Reason for Delay (NYS)'
                     value={project.nysReason}
@@ -487,7 +487,7 @@ export default function InfrastructureDetail() {
                   value={project.contractor}
                 />
                 {project.winnerNames && (
-                  <p className='kapwa-text-disabled mt-1 text-xs'>
+                  <p className='text-kapwa-text-disabled mt-1 text-xs'>
                     Winner: {project.winnerNames}
                   </p>
                 )}
@@ -495,7 +495,7 @@ export default function InfrastructureDetail() {
 
               {project.bidders && project.bidders.length > 0 && (
                 <div>
-                  <label className='kapwa-text-disabled mb-3 block text-[10px] font-bold tracking-widest uppercase'>
+                  <label className='text-kapwa-text-disabled mb-3 block text-[10px] font-bold tracking-widest uppercase'>
                     Participating Bidders
                   </label>
                   <div className='space-y-2'>
@@ -511,7 +511,7 @@ export default function InfrastructureDetail() {
                             {bidder.name}
                           </p>
                           {bidder.pcabId && (
-                            <p className='kapwa-text-disabled text-xs'>
+                            <p className='text-kapwa-text-disabled text-xs'>
                               PCAB: {bidder.pcabId}
                             </p>
                           )}
@@ -522,7 +522,7 @@ export default function InfrastructureDetail() {
                               Winner
                             </Badge>
                           )}
-                          <p className='kapwa-text-disabled font-mono text-xs'>
+                          <p className='text-kapwa-text-disabled font-mono text-xs'>
                             {bidder.participation}%
                           </p>
                         </div>
@@ -557,7 +557,7 @@ export default function InfrastructureDetail() {
                     value={project.procurement.fundingInstrument}
                   />
                 </div>
-                <div className='kapwa-border-weak grid grid-cols-1 gap-4 border-t pt-4 sm:grid-cols-3'>
+                <div className='border-kapwa-border-weak grid grid-cols-1 gap-4 border-t pt-4 sm:grid-cols-3'>
                   <InfoRow
                     label='Advertisement'
                     value={formatDateTime(
@@ -589,17 +589,17 @@ export default function InfrastructureDetail() {
                 {project.components.map((comp, idx) => (
                   <div
                     key={idx}
-                    className='kapwa-border-weak kapwa-bg-surface-raised rounded-xl border p-4'
+                    className='border-kapwa-border-weak bg-kapwa-bg-surface-raised rounded-xl border p-4'
                   >
                     <div className='mb-2 flex items-start justify-between'>
-                      <h4 className='kapwa-text-strong text-sm font-bold'>
+                      <h4 className='text-kapwa-text-strong text-sm font-bold'>
                         Component {idx + 1}
                       </h4>
-                      <span className='kapwa-border-weak kapwa-bg-surface kapwa-text-disabled rounded border px-1.5 py-0.5 font-mono text-[10px]'>
+                      <span className='border-kapwa-border-weak bg-kapwa-bg-surface text-kapwa-text-disabled rounded border px-1.5 py-0.5 font-mono text-[10px]'>
                         {comp.componentId}
                       </span>
                     </div>
-                    <p className='kapwa-text-on-disabled mb-3 text-xs leading-relaxed'>
+                    <p className='text-kapwa-text-on-disabled mb-3 text-xs leading-relaxed'>
                       {comp.description}
                     </p>
                     <div className='grid grid-cols-2 gap-2 text-xs'>
@@ -617,7 +617,7 @@ export default function InfrastructureDetail() {
                       </p>
                       <p>
                         <span className='text-slate-400'>Coords:</span>{' '}
-                        <span className='kapwa-text-on-disabled font-mono'>
+                        <span className='text-kapwa-text-on-disabled font-mono'>
                           {comp.coordinates?.latitude.toFixed(5)},{' '}
                           {comp.coordinates?.longitude.toFixed(5)}
                         </span>
@@ -662,8 +662,8 @@ export default function InfrastructureDetail() {
                 />
               </div>
             ) : (
-              <div className='kapwa-border-weak kapwa-bg-surface-raised rounded-xl border border-dashed p-4 text-center'>
-                <p className='kapwa-text-disabled text-xs font-medium'>
+              <div className='border-kapwa-border-weak bg-kapwa-bg-surface-raised rounded-xl border border-dashed p-4 text-center'>
+                <p className='text-kapwa-text-disabled text-xs font-medium'>
                   No public documents available.
                 </p>
               </div>
@@ -682,7 +682,7 @@ export default function InfrastructureDetail() {
 
               {project.latitude && project.longitude ? (
                 <>
-                  <div className='kapwa-border-weak kapwa-bg-surface-raised kapwa-text-disabled rounded border p-2 text-center font-mono text-[10px]'>
+                  <div className='border-kapwa-border-weak bg-kapwa-bg-surface-raised text-kapwa-text-disabled rounded border p-2 text-center font-mono text-[10px]'>
                     {project.latitude.toFixed(6)},{' '}
                     {project.longitude.toFixed(6)}
                   </div>
@@ -690,15 +690,15 @@ export default function InfrastructureDetail() {
                     href={`https://www.google.com/maps?q=${project.latitude},${project.longitude}`}
                     target='_blank'
                     rel='noopener noreferrer'
-                    className='hover:kapwa-border-brand hover:kapwa-text-brand kapwa-border-weak kapwa-bg-surface kapwa-text-support flex w-full items-center justify-center gap-2 rounded-xl border py-2.5 text-xs font-bold shadow-sm transition-all'
+                    className='hover:border-kapwa-border-brand hover:text-kapwa-text-brand border-kapwa-border-weak bg-kapwa-bg-surface text-kapwa-text-support flex w-full items-center justify-center gap-2 rounded-xl border py-2.5 text-xs font-bold shadow-sm transition-all'
                   >
                     View on Google Maps <ExternalLink className='h-3 w-3' />
                   </a>
                 </>
               ) : (
-                <div className='kapwa-border-weak kapwa-bg-surface-raised rounded-xl border border-dashed p-4 text-center'>
+                <div className='border-kapwa-border-weak bg-kapwa-bg-surface-raised rounded-xl border border-dashed p-4 text-center'>
                   <MapPin className='mx-auto mb-2 h-6 w-6 text-slate-300' />
-                  <p className='kapwa-text-disabled text-xs'>
+                  <p className='text-kapwa-text-disabled text-xs'>
                     No coordinates available
                   </p>
                 </div>
@@ -710,17 +710,17 @@ export default function InfrastructureDetail() {
           {project.imageSummary && (
             <DetailSection title='Images' icon={ImageIcon}>
               <div className='flex items-center justify-between'>
-                <span className='kapwa-text-on-disabled text-sm'>
+                <span className='text-kapwa-text-on-disabled text-sm'>
                   Total Images
                 </span>
-                <span className='kapwa-text-strong font-bold'>
+                <span className='text-kapwa-text-strong font-bold'>
                   {project.imageSummary.totalImages}
                 </span>
               </div>
               {project.imageSummary.latestImageDate && (
-                <div className='kapwa-border-weak mt-2 flex items-center justify-between border-t pt-2'>
-                  <span className='kapwa-text-disabled text-xs'>Latest</span>
-                  <span className='kapwa-text-support text-xs font-medium'>
+                <div className='border-kapwa-border-weak mt-2 flex items-center justify-between border-t pt-2'>
+                  <span className='text-kapwa-text-disabled text-xs'>Latest</span>
+                  <span className='text-kapwa-text-support text-xs font-medium'>
                     {formatDate(project.imageSummary.latestImageDate)}
                   </span>
                 </div>
@@ -730,7 +730,7 @@ export default function InfrastructureDetail() {
 
           {/* Live Stream */}
           {project.isLive && project.livestreamUrl && (
-            <div className='kapwa-bg-danger-weak rounded-2xl border-2 border-red-100 p-5'>
+            <div className='bg-kapwa-bg-danger-weak rounded-2xl border-2 border-red-100 p-5'>
               <div className='mb-3 flex items-center gap-2 text-red-800'>
                 <Video className='h-5 w-5 animate-pulse' />
                 <span className='font-bold'>Live Feed</span>
@@ -739,7 +739,7 @@ export default function InfrastructureDetail() {
                 href={project.livestreamUrl}
                 target='_blank'
                 rel='noreferrer'
-                className='kapwa-bg-danger-default kapwa-text-inverse hover:kapwa-bg-danger-default flex w-full items-center justify-center gap-2 rounded-xl py-3 font-bold shadow-lg transition-colors'
+                className='bg-kapwa-bg-danger-default text-kapwa-text-inverse hover:bg-kapwa-bg-danger-default flex w-full items-center justify-center gap-2 rounded-xl py-3 font-bold shadow-lg transition-colors'
               >
                 Watch Stream <ExternalLink className='h-4 w-4' />
               </a>
@@ -747,15 +747,15 @@ export default function InfrastructureDetail() {
           )}
 
           {/* Bisto Link */}
-          <div className='kapwa-border-weak kapwa-bg-surface-raised rounded-xl border p-4'>
-            <p className='kapwa-text-disabled mb-3 text-xs leading-relaxed'>
+          <div className='border-kapwa-border-weak bg-kapwa-bg-surface-raised rounded-xl border p-4'>
+            <p className='text-kapwa-text-disabled mb-3 text-xs leading-relaxed'>
               Verify status on national platform.
             </p>
             <a
               href={`https://bisto.ph/?q=${encodeURIComponent(project.contractId)}`} //waiting for bisto.ph PR
               target='_blank'
               rel='noreferrer'
-              className='kapwa-text-inverse flex w-full items-center justify-center gap-2 rounded-lg bg-slate-900 py-2 text-xs font-bold shadow-md transition-all hover:bg-slate-800'
+              className='text-kapwa-text-inverse flex w-full items-center justify-center gap-2 rounded-lg bg-slate-900 py-2 text-xs font-bold shadow-md transition-all hover:bg-slate-800'
             >
               Search on Bisto.ph <Search className='h-3 w-3' />
             </a>
@@ -764,13 +764,13 @@ export default function InfrastructureDetail() {
       </div>
 
       <div className='pt-8 text-center'>
-        <p className='kapwa-text-disabled text-xs'>
+        <p className='text-kapwa-text-disabled text-xs'>
           Source:{' '}
           <a
             href='https://transparency.bettergov.ph/dpwh/'
             target='_blank'
             rel='noopener noreferrer'
-            className='text-primary-600 hover:kapwa-text-brand-bold inline-flex items-center gap-1 font-bold transition-colors hover:underline'
+            className='text-primary-600 hover:text-kapwa-text-brand-bold inline-flex items-center gap-1 font-bold transition-colors hover:underline'
           >
             DPWH Infrastructure Transparency Interface via BetterGov.ph
             <ExternalLink className='h-3 w-3' />

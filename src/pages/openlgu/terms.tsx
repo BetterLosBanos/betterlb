@@ -102,11 +102,11 @@ export default function TermsIndex() {
         </BreadcrumbList>
       </Breadcrumb>
 
-      <header className='border-primary-600 kapwa-bg-surface rounded-2xl border-l-8 p-6 shadow-sm md:p-10'>
-        <h1 className='kapwa-text-strong text-2xl font-extrabold md:text-3xl'>
+      <header className='border-primary-600 bg-kapwa-bg-surface rounded-2xl border-l-8 p-6 shadow-sm md:p-10'>
+        <h1 className='text-kapwa-text-strong text-2xl font-extrabold md:text-3xl'>
           Legislative Terms
         </h1>
-        <p className='kapwa-text-on-disabled mt-2'>
+        <p className='text-kapwa-text-on-disabled mt-2'>
           Browse historical records of the Sangguniang Bayan sessions.
         </p>
       </header>
@@ -125,49 +125,49 @@ export default function TermsIndex() {
               to={`/openlgu/term/${term.id}`}
               className='group block'
             >
-              <article className='hover:kapwa-border-brand kapwa-border-weak kapwa-bg-surface h-full rounded-2xl border p-6 shadow-sm transition-all hover:shadow-md'>
+              <article className='hover:border-kapwa-border-brand border-kapwa-border-weak bg-kapwa-bg-surface h-full rounded-2xl border p-6 shadow-sm transition-all hover:shadow-md'>
                 <header className='mb-4 flex items-start justify-between'>
                   <div>
                     <Badge variant='primary' dot className='mb-2'>
                       {term.ordinal} Term
                     </Badge>
-                    <h3 className='group-hover:kapwa-text-brand kapwa-text-strong text-xl font-bold transition-colors'>
+                    <h3 className='group-hover:text-kapwa-text-brand text-kapwa-text-strong text-xl font-bold transition-colors'>
                       {term.name}
                     </h3>
-                    <p className='kapwa-text-disabled mt-1 text-sm'>
+                    <p className='text-kapwa-text-disabled mt-1 text-sm'>
                       {term.year_range}
                     </p>
                   </div>
-                  <ChevronRight className='group-hover:kapwa-text-brand h-5 w-5 text-slate-300 transition-colors' />
+                  <ChevronRight className='group-hover:text-kapwa-text-brand h-5 w-5 text-slate-300 transition-colors' />
                 </header>
 
-                <div className='kapwa-text-disabled mb-4 flex items-center gap-2 text-xs'>
+                <div className='text-kapwa-text-disabled mb-4 flex items-center gap-2 text-xs'>
                   <Calendar className='h-3.5 w-3.5' />
                   <span>
                     {term.start_date} — {term.end_date}
                   </span>
                 </div>
 
-                <div className='kapwa-border-weak grid grid-cols-2 gap-3 border-t pt-4'>
+                <div className='border-kapwa-border-weak grid grid-cols-2 gap-3 border-t pt-4'>
                   <div className='text-center'>
                     <div className='flex items-center justify-center gap-1'>
                       <Users className='text-primary-600 h-4 w-4' />
-                      <span className='kapwa-text-strong text-lg font-bold'>
+                      <span className='text-kapwa-text-strong text-lg font-bold'>
                         {term.legislativeCount}
                       </span>
                     </div>
-                    <p className='kapwa-text-disabled mt-1 text-[10px] font-bold tracking-widest uppercase'>
+                    <p className='text-kapwa-text-disabled mt-1 text-[10px] font-bold tracking-widest uppercase'>
                       Councilors
                     </p>
                   </div>
                   <div className='text-center'>
                     <div className='flex items-center justify-center gap-1'>
                       <FileText className='text-secondary-600 h-4 w-4' />
-                      <span className='kapwa-text-strong text-lg font-bold'>
+                      <span className='text-kapwa-text-strong text-lg font-bold'>
                         {term.documentCount}
                       </span>
                     </div>
-                    <p className='kapwa-text-disabled mt-1 text-[10px] font-bold tracking-widest uppercase'>
+                    <p className='text-kapwa-text-disabled mt-1 text-[10px] font-bold tracking-widest uppercase'>
                       Documents
                     </p>
                   </div>
@@ -178,7 +178,7 @@ export default function TermsIndex() {
                   term.eoCount > 0) && (
                   <div className='mt-3 flex flex-wrap gap-2'>
                     {term.ordCount > 0 && (
-                      <span className='bg-primary-50 kapwa-text-brand rounded-full px-2 py-1 text-[10px] font-bold'>
+                      <span className='bg-kapwa-bg-surface text-kapwa-text-brand rounded-full px-2 py-1 text-[10px] font-bold'>
                         {term.ordCount} Ord
                       </span>
                     )}
@@ -188,7 +188,7 @@ export default function TermsIndex() {
                       </span>
                     )}
                     {term.eoCount > 0 && (
-                      <span className='kapwa-text-accent-purple rounded-full bg-purple-50 px-2 py-1 text-[10px] font-bold'>
+                      <span className='text-kapwa-text-accent-purple rounded-full bg-purple-50 px-2 py-1 text-[10px] font-bold'>
                         {term.eoCount} EO
                       </span>
                     )}

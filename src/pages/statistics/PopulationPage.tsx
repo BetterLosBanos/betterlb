@@ -125,14 +125,14 @@ export default function PopulationPage() {
       </div>
 
       {/* Unified Tab Switcher */}
-      <div className='kapwa-bg-hover flex gap-1.5 rounded-2xl p-1.5'>
+      <div className='bg-kapwa-bg-hover flex gap-1.5 rounded-2xl p-1.5'>
         <button
           onClick={() => setActiveTab('municipality')}
           className={cn(
             'flex min-h-[48px] flex-1 items-center justify-center gap-2 rounded-xl py-3 text-xs font-bold tracking-widest uppercase transition-all',
             activeTab === 'municipality'
               ? 'text-primary-700 bg-white shadow-md'
-              : 'hover:kapwa-text-support text-slate-500'
+              : 'hover:text-kapwa-text-support text-slate-500'
           )}
         >
           <TrendingUp className='h-4 w-4' /> Municipal Growth
@@ -143,7 +143,7 @@ export default function PopulationPage() {
             'flex min-h-[48px] flex-1 items-center justify-center gap-2 rounded-xl py-3 text-xs font-bold tracking-widest uppercase transition-all',
             activeTab === 'barangays'
               ? 'text-primary-700 bg-white shadow-md'
-              : 'hover:kapwa-text-support text-slate-500'
+              : 'hover:text-kapwa-text-support text-slate-500'
           )}
         >
           <LineIcon className='h-4 w-4' /> Barangay Comparison
@@ -242,13 +242,13 @@ export default function PopulationPage() {
         )}
       </ChartContainer>
 
-      <div className='kapwa-border-weak kapwa-bg-surface-raised flex gap-4 rounded-2xl border p-6 shadow-inner'>
+      <div className='border-kapwa-border-weak bg-kapwa-bg-surface-raised flex gap-4 rounded-2xl border p-6 shadow-inner'>
         <Info className='text-primary-600 mt-0.5 h-5 w-5 shrink-0' />
         <div className='space-y-2'>
-          <p className='kapwa-text-strong text-xs font-bold tracking-widest uppercase'>
+          <p className='text-kapwa-text-strong text-xs font-bold tracking-widest uppercase'>
             How to read this data
           </p>
-          <p className='kapwa-text-disabled text-xs leading-relaxed italic'>
+          <p className='text-kapwa-text-disabled text-xs leading-relaxed italic'>
             {activeTab === 'municipality'
               ? 'The municipal growth chart tracks long-term population expansion from 1960 to current estimates.'
               : 'The comparison chart allows you to track which barangays are experiencing the fastest urban growth relative to their 2010 baseline.'}

@@ -23,7 +23,7 @@ const SearchInput = ({
   onChangeValue,
   className,
   placeholder = 'Search...',
-  icon = <SearchIcon className='kapwa-text-disabled h-4 w-4' />,
+  icon = <SearchIcon className='text-kapwa-text-disabled h-4 w-4' />,
   size = 'md',
   clearable = true,
   ...props
@@ -50,7 +50,7 @@ const SearchInput = ({
         className={cn(
           'w-full rounded-xl border border-gray-200 bg-gray-50/50 transition-all duration-200',
           'text-gray-900 placeholder:text-gray-400',
-          'focus:kapwa-border-brand focus:ring-primary-500/5 focus:kapwa-bg-surface outline-none focus:ring-4',
+          'focus:border-kapwa-border-brand focus:ring-primary-500/5 focus:bg-kapwa-bg-surface outline-none focus:ring-4',
           sizes[size],
           'pl-11',
           clearable && value ? 'pr-10' : 'pr-4'
@@ -61,7 +61,7 @@ const SearchInput = ({
       {clearable && value && (
         <button
           type='button'
-          className='kapwa-text-disabled hover:kapwa-text-on-disabled absolute inset-y-0 right-0 flex items-center pr-3 transition-colors'
+          className='text-kapwa-text-disabled hover:text-kapwa-text-on-disabled absolute inset-y-0 right-0 flex items-center pr-3 transition-colors'
           onClick={handleClear}
         >
           <XIcon className='h-4 w-4' />

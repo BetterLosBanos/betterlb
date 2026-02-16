@@ -30,27 +30,27 @@ const Hit: FC<HitProps> = ({ hit }) => {
   const link = hit.url || `/services/${hit.slug}`;
 
   return (
-    <article className='hit-item kapwa-border-weak hover:kapwa-bg-surface-raised border-b p-4'>
+    <article className='hit-item border-kapwa-border-weak hover:bg-kapwa-bg-surface-raised border-b p-4'>
       <a
         href={link}
         target='_blank'
         rel='noopener noreferrer'
         className='block'
       >
-        <h2 className='kapwa-text-info text-lg font-semibold hover:underline'>
+        <h2 className='text-kapwa-text-info text-lg font-semibold hover:underline'>
           {hit.service}
         </h2>
         {hit.description && (
-          <p className='kapwa-text-support mt-1 text-sm'>{hit.description}</p>
+          <p className='text-kapwa-text-support mt-1 text-sm'>{hit.description}</p>
         )}
-        <div className='kapwa-text-support mt-1 text-xs'>
+        <div className='text-kapwa-text-support mt-1 text-xs'>
           {hit.category && <span>{hit.category.name}</span>}
-          <span className='kapwa-bg-info-weak ml-2 rounded-sm px-2 py-0.5 text-xs font-medium text-blue-800'>
+          <span className='bg-kapwa-bg-info-weak ml-2 rounded-sm px-2 py-0.5 text-xs font-medium text-blue-800'>
             {hit.type}
           </span>
         </div>
         {hit.url && (
-          <p className='kapwa-text-link mt-1 truncate text-xs'>{hit.url}</p>
+          <p className='text-kapwa-text-link mt-1 truncate text-xs'>{hit.url}</p>
         )}
       </a>
     </article>
@@ -103,13 +103,13 @@ const SearchPage: FC = () => {
           placeholder='Search for government services, offices, and resources...'
           value={query}
           onChange={e => setQuery(e.target.value)}
-          className='kapwa-border-weak w-full rounded-lg border p-4 text-lg outline-hidden focus:ring-2 focus:ring-blue-500'
+          className='border-kapwa-border-weak w-full rounded-lg border p-4 text-lg outline-hidden focus:ring-2 focus:ring-blue-500'
         />
       </div>
 
       <div className='grid grid-cols-1 gap-8 lg:grid-cols-4'>
         <div className='lg:col-span-1'>
-          <div className='kapwa-bg-surface mb-6 rounded-lg p-4 shadow-sm'>
+          <div className='bg-kapwa-bg-surface mb-6 rounded-lg p-4 shadow-sm'>
             <h3 className='mb-4 text-lg font-semibold'>Filter By</h3>
 
             <div className='mb-6'>
@@ -119,7 +119,7 @@ const SearchPage: FC = () => {
                 onChange={e =>
                   setTypeFilter(e.target.value as ServiceType | '')
                 }
-                className='kapwa-border-weak w-full rounded border p-2'
+                className='border-kapwa-border-weak w-full rounded border p-2'
               >
                 <option value=''>All</option>
                 <option value='transaction'>Transaction</option>
@@ -132,7 +132,7 @@ const SearchPage: FC = () => {
               <select
                 value={categoryFilter}
                 onChange={e => setCategoryFilter(e.target.value)}
-                className='kapwa-border-weak w-full rounded border p-2'
+                className='border-kapwa-border-weak w-full rounded border p-2'
               >
                 <option value=''>All</option>
                 {categories.map(c => (
@@ -146,9 +146,9 @@ const SearchPage: FC = () => {
         </div>
 
         <div className='lg:col-span-3'>
-          <div className='kapwa-bg-surface overflow-hidden rounded-lg shadow-sm'>
+          <div className='bg-kapwa-bg-surface overflow-hidden rounded-lg shadow-sm'>
             {filteredResults.length === 0 ? (
-              <p className='kapwa-text-support p-4'>No results found.</p>
+              <p className='text-kapwa-text-support p-4'>No results found.</p>
             ) : (
               filteredResults.map(hit => <Hit key={hit.slug} hit={hit} />)
             )}

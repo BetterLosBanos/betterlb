@@ -73,7 +73,7 @@ export default function ServiceTimeline({
 
   if (sortedMemberships.length === 0) {
     return (
-      <div className='kapwa-text-disabled py-4 text-center text-sm'>
+      <div className='text-kapwa-text-disabled py-4 text-center text-sm'>
         No service history available
       </div>
     );
@@ -93,15 +93,15 @@ export default function ServiceTimeline({
         return (
           <div
             key={membership.term_id}
-            className='kapwa-border-weak relative border-l-2 pb-4 pl-6 last:border-0 last:pb-0'
+            className='border-kapwa-border-weak relative border-l-2 pb-4 pl-6 last:border-0 last:pb-0'
           >
             {/* Timeline dot */}
-            <div className='border-primary-500 kapwa-bg-surface absolute top-1.5 left-0 h-3 w-3 -translate-x-[5px] rounded-full border-2' />
+            <div className='border-primary-500 bg-kapwa-bg-surface absolute top-1.5 left-0 h-3 w-3 -translate-x-[5px] rounded-full border-2' />
 
             <div className='space-y-2'>
               {/* Term header */}
               <div className='flex flex-wrap items-center gap-2'>
-                <span className='kapwa-text-strong text-sm font-bold'>
+                <span className='text-kapwa-text-strong text-sm font-bold'>
                   {term.year_range}
                 </span>
               </div>
@@ -112,7 +112,7 @@ export default function ServiceTimeline({
               </Badge>
 
               {/* Stats row */}
-              <div className='kapwa-text-on-disabled flex flex-wrap gap-4 text-xs'>
+              <div className='text-kapwa-text-on-disabled flex flex-wrap gap-4 text-xs'>
                 {!isExecutive && (
                   <div className='flex items-center gap-1'>
                     <Calendar className='h-3 w-3' />
@@ -154,7 +154,7 @@ export default function ServiceTimeline({
                   {membership.committees.map(committee => (
                     <span
                       key={committee.id}
-                      className='kapwa-bg-hover kapwa-text-on-disabled inline-flex items-center gap-1 rounded-full px-2 py-0.5 text-[10px] font-medium'
+                      className='bg-kapwa-bg-hover text-kapwa-text-on-disabled inline-flex items-center gap-1 rounded-full px-2 py-0.5 text-[10px] font-medium'
                     >
                       <Users className='h-2.5 w-2.5' />
                       {committee.role}

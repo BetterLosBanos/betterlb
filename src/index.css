@@ -89,10 +89,10 @@
 @theme {
   /* --- SEMANTIC ALIASES --- */
   /* These map your specific domain needs to Kapwa tokens */
-  --color-brand-executive: var(--color-kapwa-bg-info-active);
-  --color-brand-legislative: var(--color-kapwa-bg-warning-active);
-  --color-status-verified: var(--color-kapwa-bg-success-active);
-  --color-status-audit: var(--color-kapwa-bg-gray-disabled);
+  --color-brand-executive: var(--color-bg-kapwa-bg-info-active);
+  --color-brand-legislative: var(--color-bg-kapwa-bg-warning-active);
+  --color-status-verified: var(--color-bg-kapwa-bg-success-active);
+  --color-status-audit: var(--color-bg-kapwa-bg-gray-disabled);
 }
 
 @layer base {
@@ -101,7 +101,7 @@
   ::before,
   ::backdrop,
   ::file-selector-button {
-    border-color: var(--color-kapwa-border-weak, currentcolor);
+    border-color: var(--color-border-kapwa-border-weak, currentcolor);
   }
 }
 
@@ -118,7 +118,7 @@
   line-height: 1.5 !important;
   font-family: var(--font-sans) !important;
   font-size: 14px !important;
-  color: var(--color-kapwa-text-support) !important;
+  color: var(--color-text-kapwa-text-support) !important;
   padding: 16px;
   min-width: 280px;
 }
@@ -129,7 +129,7 @@
 }
 
 .leaflet-popup-close-button {
-  color: var(--color-kapwa-text-disabled) !important;
+  color: var(--color-text-kapwa-text-disabled) !important;
   padding: 8px !important;
 }
 
@@ -167,9 +167,9 @@
 
 @layer components {
   .sidebar-active {
-    background-color: var(--color-kapwa-bg-brand-weak);
-    color: var(--color-kapwa-text-brand);
-    border-color: var(--color-kapwa-border-brand);
+    background-color: var(--color-bg-kapwa-bg-brand-weak);
+    color: var(--color-text-kapwa-text-brand);
+    border-color: var(--color-border-kapwa-border-brand);
     border-left-width: 2px;
     font-weight: 600;
   }

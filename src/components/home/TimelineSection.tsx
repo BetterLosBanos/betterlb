@@ -42,11 +42,11 @@ export default function TimelineSection() {
     : highlightsData.slice(0, COLLAPSE_LIMIT);
 
   return (
-    <section className='kapwa-border-weak kapwa-bg-surface-raised border-t py-12'>
+    <section className='border-kapwa-border-weak bg-kapwa-bg-surface-raised border-t py-12'>
       <div className='container mx-auto px-4'>
         {/* Header */}
         <div className='mb-12 text-center'>
-          <h2 className='kapwa-text-strong mb-4 text-2xl font-bold md:text-3xl'>
+          <h2 className='text-kapwa-text-strong mb-4 text-2xl font-bold md:text-3xl'>
             History of {config.lgu.name}
           </h2>
         </div>
@@ -64,22 +64,22 @@ export default function TimelineSection() {
                 >
                   {/* Dot Marker */}
                   <div className='absolute top-3 left-0 flex h-8 w-8 items-center justify-center'>
-                    <div className='border-primary-600 group-hover:kapwa-bg-brand-default kapwa-bg-surface h-3 w-3 rounded-full border-2 shadow-sm transition-all duration-300 group-hover:scale-125' />
+                    <div className='border-primary-600 group-hover:bg-kapwa-bg-brand-default bg-kapwa-bg-surface h-3 w-3 rounded-full border-2 shadow-sm transition-all duration-300 group-hover:scale-125' />
                   </div>
 
                   <Card
                     hoverable
-                    className='hover:kapwa-border-brand kapwa-border-weak shadow-sm transition-all hover:shadow-md'
+                    className='hover:border-kapwa-border-brand border-kapwa-border-weak shadow-sm transition-all hover:shadow-md'
                   >
                     <CardContent className='flex flex-col items-start gap-4 p-4 sm:flex-row sm:p-5'>
-                      <span className='bg-primary-600 kapwa-text-inverse inline-flex shrink-0 items-center justify-center rounded-lg px-3 py-1 text-xs font-bold shadow-sm'>
+                      <span className='bg-kapwa-bg-brand-default text-kapwa-text-inverse inline-flex shrink-0 items-center justify-center rounded-lg px-3 py-1 text-xs font-bold shadow-sm'>
                         {event.year}
                       </span>
                       <div>
-                        <h3 className='kapwa-text-strong mb-1 text-base leading-tight font-bold'>
+                        <h3 className='text-kapwa-text-strong mb-1 text-base leading-tight font-bold'>
                           {event.title}
                         </h3>
-                        <p className='kapwa-text-on-disabled text-xs leading-relaxed sm:text-sm'>
+                        <p className='text-kapwa-text-on-disabled text-xs leading-relaxed sm:text-sm'>
                           {event.description}
                         </p>
                       </div>
@@ -102,18 +102,18 @@ export default function TimelineSection() {
                 >
                   <Card
                     hoverable
-                    className='kapwa-bg-surface border-slate-200 shadow-sm transition-all hover:shadow-md'
+                    className='bg-kapwa-bg-surface border-slate-200 shadow-sm transition-all hover:shadow-md'
                   >
                     <CardContent className='p-5'>
                       <div className='mb-3 flex items-center gap-3'>
-                        <div className='bg-primary-600 kapwa-text-inverse flex h-10 w-10 items-center justify-center rounded-xl shadow-sm'>
+                        <div className='bg-kapwa-bg-brand-default text-kapwa-text-inverse flex h-10 w-10 items-center justify-center rounded-xl shadow-sm'>
                           <Icon className='h-5 w-5' />
                         </div>
-                        <h4 className='kapwa-text-strong text-sm leading-tight font-bold'>
+                        <h4 className='text-kapwa-text-strong text-sm leading-tight font-bold'>
                           {item.title}
                         </h4>
                       </div>
-                      <p className='kapwa-text-disabled text-xs leading-relaxed'>
+                      <p className='text-kapwa-text-disabled text-xs leading-relaxed'>
                         {item.description}
                       </p>
                     </CardContent>
@@ -130,7 +130,7 @@ export default function TimelineSection() {
           <div className='mt-8 flex justify-center'>
             <Button
               onClick={() => setShowAll(!showAll)}
-              className='bg-primary-50 kapwa-text-brand hover:kapwa-bg-surface-brand'
+              className='bg-kapwa-bg-surface text-kapwa-text-brand hover:bg-kapwa-bg-surface-brand'
               rightIcon={
                 <ChevronDown
                   className={`h-4 w-4 transition-transform duration-300 ${showAll ? 'rotate-180' : ''}`}

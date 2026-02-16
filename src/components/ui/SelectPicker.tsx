@@ -144,11 +144,11 @@ const SelectPicker = ({
         type='button'
         className={cn(
           'flex w-full items-center justify-between rounded-lg border bg-white text-left transition-all',
-          'focus:ring-primary-500/20 focus:kapwa-border-brand focus:ring-2',
+          'focus:ring-primary-500/20 focus:border-kapwa-border-brand focus:ring-2',
           sizes[size],
           disabled
             ? 'cursor-not-allowed bg-gray-50 opacity-60'
-            : 'hover:kapwa-border-strong',
+            : 'hover:border-kapwa-border-strong',
           isOpen && 'border-primary-500 ring-primary-500/20 ring-2',
           'px-3'
         )}
@@ -171,11 +171,11 @@ const SelectPicker = ({
           {clearable && selectedOptions.length > 0 && !disabled && (
             <button
               type='button'
-              className='hover:kapwa-bg-hover rounded-full p-1 transition-colors'
+              className='hover:bg-kapwa-bg-hover rounded-full p-1 transition-colors'
               onClick={handleClear}
               aria-label='Clear selection'
             >
-              <XIcon className='kapwa-text-disabled h-4 w-4' />
+              <XIcon className='text-kapwa-text-disabled h-4 w-4' />
             </button>
           )}
           <ChevronDownIcon
@@ -195,13 +195,13 @@ const SelectPicker = ({
           )}
         >
           {searchable && (
-            <div className='kapwa-border-weak border-b p-2'>
+            <div className='border-kapwa-border-weak border-b p-2'>
               <div className='relative'>
-                <SearchIcon className='kapwa-text-disabled absolute top-1/2 left-3 h-4 w-4 -translate-y-1/2' />
+                <SearchIcon className='text-kapwa-text-disabled absolute top-1/2 left-3 h-4 w-4 -translate-y-1/2' />
                 <input
                   ref={searchInputRef}
                   type='text'
-                  className='focus:ring-primary-500 focus:kapwa-border-brand kapwa-border-weak w-full rounded-md border py-2 pr-3 pl-9 text-sm focus:ring-2 focus:outline-none'
+                  className='focus:ring-primary-500 focus:border-kapwa-border-brand border-kapwa-border-weak w-full rounded-md border py-2 pr-3 pl-9 text-sm focus:ring-2 focus:outline-none'
                   placeholder='Search options...'
                   value={searchTerm}
                   onChange={handleSearchChange}
@@ -218,7 +218,7 @@ const SelectPicker = ({
                     key={option.value}
                     className={cn(
                       'cursor-pointer px-3 py-2 text-sm transition-colors',
-                      'hover:kapwa-bg-surface-brand hover:kapwa-text-brand',
+                      'hover:bg-kapwa-bg-surface-brand hover:text-kapwa-text-brand',
                       selectedOptions.some(o => o.value === option.value) &&
                         'bg-primary-100 text-primary-700'
                     )}
@@ -233,7 +233,7 @@ const SelectPicker = ({
                 ))}
               </ul>
             ) : (
-              <div className='kapwa-text-disabled px-3 py-2 text-center text-sm'>
+              <div className='text-kapwa-text-disabled px-3 py-2 text-center text-sm'>
                 No options found
               </div>
             )}

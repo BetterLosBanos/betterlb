@@ -139,7 +139,7 @@ export default function SessionAttendanceQuickEdit({
   if (loading) {
     return (
       <div className='flex items-center justify-center py-8'>
-        <div className='border-t-primary-500 kapwa-border-weak h-6 w-6 animate-spin rounded-full border-3' />
+        <div className='border-t-primary-500 border-kapwa-border-weak h-6 w-6 animate-spin rounded-full border-3' />
       </div>
     );
   }
@@ -155,7 +155,7 @@ export default function SessionAttendanceQuickEdit({
 
   if (members.length === 0) {
     return (
-      <div className='kapwa-text-disabled py-8 text-center text-sm'>
+      <div className='text-kapwa-text-disabled py-8 text-center text-sm'>
         No members found for this term.
       </div>
     );
@@ -178,14 +178,14 @@ export default function SessionAttendanceQuickEdit({
       <div className='flex items-center justify-between'>
         <div className='flex gap-4 text-sm'>
           <span className='flex items-center gap-1.5'>
-            <UserCheck className='kapwa-text-success h-4 w-4' />
-            <span className='kapwa-text-success font-medium'>
+            <UserCheck className='text-kapwa-text-success h-4 w-4' />
+            <span className='text-kapwa-text-success font-medium'>
               {presentCount} Present
             </span>
           </span>
           <span className='flex items-center gap-1.5'>
-            <UserX className='kapwa-text-danger h-4 w-4' />
-            <span className='kapwa-text-danger font-medium'>
+            <UserX className='text-kapwa-text-danger h-4 w-4' />
+            <span className='text-kapwa-text-danger font-medium'>
               {absentCount} Absent
             </span>
           </span>
@@ -224,19 +224,19 @@ export default function SessionAttendanceQuickEdit({
             return (
               <div
                 key={member.id}
-                className={`hover:kapwa-bg-surface-raised flex items-center justify-between p-3 transition-colors ${
+                className={`hover:bg-kapwa-bg-surface-raised flex items-center justify-between p-3 transition-colors ${
                   isAbsent ? 'bg-red-50' : ''
                 }`}
               >
                 <div className='flex-1'>
-                  <div className='kapwa-text-strong text-sm font-medium'>
+                  <div className='text-kapwa-text-strong text-sm font-medium'>
                     {member.first_name}
                     {member.middle_name && ` ${member.middle_name}`}
                     {` ${member.last_name}`}
                     {member.suffix && ` ${member.suffix}`}
                   </div>
                   {member.role && (
-                    <div className='kapwa-text-disabled text-xs'>
+                    <div className='text-kapwa-text-disabled text-xs'>
                       {member.role}
                     </div>
                   )}
@@ -265,7 +265,7 @@ export default function SessionAttendanceQuickEdit({
       </div>
 
       {disabled && (
-        <p className='kapwa-text-disabled text-center text-xs'>
+        <p className='text-kapwa-text-disabled text-center text-xs'>
           Save the document to enable attendance editing.
         </p>
       )}

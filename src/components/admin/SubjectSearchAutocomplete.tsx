@@ -175,11 +175,11 @@ export default function SubjectSearchAutocomplete({
             }
           }}
           placeholder={placeholder}
-          className='focus:kapwa-border-brand focus:ring-primary-500/20 kapwa-border-weak w-full rounded-md border px-3 py-2 pr-10 text-sm focus:ring-2 focus:outline-none'
+          className='focus:border-kapwa-border-brand focus:ring-primary-500/20 border-kapwa-border-weak w-full rounded-md border px-3 py-2 pr-10 text-sm focus:ring-2 focus:outline-none'
         />
-        <div className='kapwa-text-disabled absolute top-1/2 right-3 -translate-y-1/2'>
+        <div className='text-kapwa-text-disabled absolute top-1/2 right-3 -translate-y-1/2'>
           {loading ? (
-            <div className='border-t-primary-500 kapwa-border-weak h-4 w-4 animate-spin rounded-full border-2' />
+            <div className='border-t-primary-500 border-kapwa-border-weak h-4 w-4 animate-spin rounded-full border-2' />
           ) : (
             <Search className='h-4 w-4' />
           )}
@@ -189,7 +189,7 @@ export default function SubjectSearchAutocomplete({
       {showDropdown && (
         <div
           ref={dropdownRef}
-          className='kapwa-border-weak kapwa-bg-surface absolute z-50 mt-1 max-h-60 w-full rounded-md border shadow-lg'
+          className='border-kapwa-border-weak bg-kapwa-bg-surface absolute z-50 mt-1 max-h-60 w-full rounded-md border shadow-lg'
         >
           {results.length > 0 ? (
             <ul className='max-h-60 overflow-y-auto py-1'>
@@ -200,11 +200,11 @@ export default function SubjectSearchAutocomplete({
                   className={`cursor-pointer px-3 py-2 text-sm transition-colors ${
                     index === selectedIndex
                       ? 'bg-primary-100 text-primary-700'
-                      : 'hover:kapwa-bg-surface-raised'
+                      : 'hover:bg-kapwa-bg-surface-raised'
                   }`}
                 >
                   <div className='flex items-center gap-2'>
-                    <Tag className='kapwa-text-disabled h-4 w-4' />
+                    <Tag className='text-kapwa-text-disabled h-4 w-4' />
                     <span>{subject.name}</span>
                   </div>
                 </li>
@@ -212,19 +212,19 @@ export default function SubjectSearchAutocomplete({
             </ul>
           ) : hasNoResults ? (
             <div className='py-1'>
-              <div className='kapwa-text-disabled px-3 py-2 text-sm'>
+              <div className='text-kapwa-text-disabled px-3 py-2 text-sm'>
                 No existing subjects found
               </div>
               <button
                 onClick={handleCreateNew}
-                className='text-primary-600 hover:kapwa-bg-surface-brand flex w-full items-center gap-2 px-3 py-2 text-sm transition-colors'
+                className='text-primary-600 hover:bg-kapwa-bg-surface-brand flex w-full items-center gap-2 px-3 py-2 text-sm transition-colors'
               >
                 <Plus className='h-4 w-4' />
                 <span>Create new subject: &quot;{query}&quot;</span>
               </button>
             </div>
           ) : (
-            <div className='kapwa-text-disabled px-3 py-2 text-center text-sm'>
+            <div className='text-kapwa-text-disabled px-3 py-2 text-center text-sm'>
               {query.length < 2
                 ? 'Type at least 2 characters to search'
                 : 'No results'}

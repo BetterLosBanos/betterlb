@@ -140,7 +140,7 @@ export default function PersonMergeTool() {
   if (loading) {
     return (
       <div className='flex items-center justify-center py-12'>
-        <RefreshCw className='kapwa-text-disabled h-8 w-8 animate-spin' />
+        <RefreshCw className='text-kapwa-text-disabled h-8 w-8 animate-spin' />
       </div>
     );
   }
@@ -169,7 +169,7 @@ export default function PersonMergeTool() {
       {/* Header */}
       <div className='flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between'>
         <div>
-          <h2 className='kapwa-text-strong text-2xl font-bold'>
+          <h2 className='text-kapwa-text-strong text-2xl font-bold'>
             Person Merge Tool
           </h2>
           <p className='text-slate-600'>
@@ -225,14 +225,14 @@ export default function PersonMergeTool() {
                     onClick={() => setKeepPersonId(person.id)}
                     className={`cursor-pointer rounded-lg border-2 p-4 transition-all ${
                       isKeep
-                        ? 'border-primary-500 bg-primary-50 ring-primary-200 ring-2'
+                        ? 'border-primary-500 bg-kapwa-bg-surface ring-primary-200 ring-2'
                         : isMerge
                           ? 'border-amber-300 bg-amber-50 hover:border-amber-400'
-                          : 'hover:kapwa-border-weak border-slate-200 bg-white'
+                          : 'hover:border-kapwa-border-weak border-slate-200 bg-white'
                     }`}
                   >
                     <div className='mb-3 flex items-center justify-between'>
-                      <span className='kapwa-text-disabled text-xs font-bold uppercase'>
+                      <span className='text-kapwa-text-disabled text-xs font-bold uppercase'>
                         {person.id}
                       </span>
                       {isKeep && (
@@ -241,15 +241,15 @@ export default function PersonMergeTool() {
                         </Badge>
                       )}
                     </div>
-                    <h3 className='kapwa-text-strong font-bold'>
+                    <h3 className='text-kapwa-text-strong font-bold'>
                       {getPersonName(person)}
                     </h3>
                     {person.suffix && (
-                      <p className='kapwa-text-disabled text-xs'>
+                      <p className='text-kapwa-text-disabled text-xs'>
                         Suffix: {person.suffix}
                       </p>
                     )}
-                    <div className='kapwa-text-disabled mt-2 text-xs'>
+                    <div className='text-kapwa-text-disabled mt-2 text-xs'>
                       ID: {person.id}
                     </div>
                   </div>
@@ -258,34 +258,34 @@ export default function PersonMergeTool() {
             </div>
 
             {/* Related Records Summary */}
-            <div className='kapwa-bg-surface-raised rounded-md p-4'>
-              <h4 className='kapwa-text-strong mb-3 text-sm font-bold'>
+            <div className='bg-kapwa-bg-surface-raised rounded-md p-4'>
+              <h4 className='text-kapwa-text-strong mb-3 text-sm font-bold'>
                 Related Records
               </h4>
               <div className='grid gap-2 sm:grid-cols-2'>
                 <div className='flex items-center gap-2 text-sm'>
-                  <Users className='kapwa-text-disabled h-4 w-4' />
+                  <Users className='text-kapwa-text-disabled h-4 w-4' />
                   <span>
                     Memberships:{' '}
                     <strong>{currentGroup.membership_count}</strong>
                   </span>
                 </div>
                 <div className='flex items-center gap-2 text-sm'>
-                  <CheckCircle className='kapwa-text-disabled h-4 w-4' />
+                  <CheckCircle className='text-kapwa-text-disabled h-4 w-4' />
                   <span>
                     Committee Memberships:{' '}
                     <strong>{currentGroup.committee_count}</strong>
                   </span>
                 </div>
                 <div className='flex items-center gap-2 text-sm'>
-                  <Users className='kapwa-text-disabled h-4 w-4' />
+                  <Users className='text-kapwa-text-disabled h-4 w-4' />
                   <span>
                     Documents Authored:{' '}
                     <strong>{currentGroup.document_count}</strong>
                   </span>
                 </div>
               </div>
-              <p className='kapwa-text-disabled mt-2 text-xs'>
+              <p className='text-kapwa-text-disabled mt-2 text-xs'>
                 When merged, all records will be transferred to the person you
                 select to keep.
               </p>
@@ -293,19 +293,19 @@ export default function PersonMergeTool() {
 
             {/* Merge Strategy Selection */}
             <div>
-              <label className='kapwa-text-support mb-2 block text-sm font-medium'>
+              <label className='text-kapwa-text-support mb-2 block text-sm font-medium'>
                 Merge Strategy
               </label>
               <select
                 value='prefer_keep'
                 disabled
-                className='kapwa-border-weak kapwa-bg-hover w-full rounded-md border px-3 py-2 text-sm'
+                className='border-kapwa-border-weak bg-kapwa-bg-hover w-full rounded-md border px-3 py-2 text-sm'
               >
                 <option value='prefer_keep'>
                   Keep selected person&apos;s data (most conservative)
                 </option>
               </select>
-              <p className='kapwa-text-disabled mt-1 text-xs'>
+              <p className='text-kapwa-text-disabled mt-1 text-xs'>
                 More strategies coming soon. Currently uses all data from the
                 kept person record.
               </p>
@@ -313,7 +313,7 @@ export default function PersonMergeTool() {
 
             {/* Deletion Mode Selection */}
             <div>
-              <label className='kapwa-text-support mb-2 block text-sm font-medium'>
+              <label className='text-kapwa-text-support mb-2 block text-sm font-medium'>
                 Deletion Mode
               </label>
               <div className='space-y-2'>
@@ -321,7 +321,7 @@ export default function PersonMergeTool() {
                   className={`flex cursor-pointer items-start gap-3 rounded-md border p-3 transition-colors ${
                     deletionMode === 'delete'
                       ? 'border-red-300 bg-red-50'
-                      : 'hover:kapwa-border-weak border-slate-200'
+                      : 'hover:border-kapwa-border-weak border-slate-200'
                   }`}
                 >
                   <input
@@ -334,12 +334,12 @@ export default function PersonMergeTool() {
                   />
                   <div className='flex-1'>
                     <div className='flex items-center gap-2'>
-                      <Trash2 className='kapwa-text-danger h-4 w-4' />
-                      <span className='kapwa-text-strong font-medium'>
+                      <Trash2 className='text-kapwa-text-danger h-4 w-4' />
+                      <span className='text-kapwa-text-strong font-medium'>
                         Delete immediately
                       </span>
                     </div>
-                    <p className='kapwa-text-on-disabled mt-1 text-xs'>
+                    <p className='text-kapwa-text-on-disabled mt-1 text-xs'>
                       Permanently remove merged person records from the
                       database. This cannot be undone.
                     </p>
@@ -350,7 +350,7 @@ export default function PersonMergeTool() {
                   className={`flex cursor-pointer items-start gap-3 rounded-md border p-3 transition-colors ${
                     deletionMode === 'flag'
                       ? 'border-amber-300 bg-amber-50'
-                      : 'hover:kapwa-border-weak border-slate-200'
+                      : 'hover:border-kapwa-border-weak border-slate-200'
                   }`}
                 >
                   <input
@@ -364,11 +364,11 @@ export default function PersonMergeTool() {
                   <div className='flex-1'>
                     <div className='flex items-center gap-2'>
                       <Flag className='h-4 w-4 text-amber-600' />
-                      <span className='kapwa-text-strong font-medium'>
+                      <span className='text-kapwa-text-strong font-medium'>
                         Flag for deletion
                       </span>
                     </div>
-                    <p className='kapwa-text-on-disabled mt-1 text-xs'>
+                    <p className='text-kapwa-text-on-disabled mt-1 text-xs'>
                       Mark records for later review and permanent deletion. They
                       won&apos;t appear in future duplicate checks.
                     </p>
@@ -379,7 +379,7 @@ export default function PersonMergeTool() {
                   className={`flex cursor-pointer items-start gap-3 rounded-md border p-3 transition-colors ${
                     deletionMode === 'skip'
                       ? 'border-blue-300 bg-blue-50'
-                      : 'hover:kapwa-border-weak border-slate-200'
+                      : 'hover:border-kapwa-border-weak border-slate-200'
                   }`}
                 >
                   <input
@@ -392,12 +392,12 @@ export default function PersonMergeTool() {
                   />
                   <div className='flex-1'>
                     <div className='flex items-center gap-2'>
-                      <SkipForward className='kapwa-text-info h-4 w-4' />
-                      <span className='kapwa-text-strong font-medium'>
+                      <SkipForward className='text-kapwa-text-info h-4 w-4' />
+                      <span className='text-kapwa-text-strong font-medium'>
                         Skip deletion
                       </span>
                     </div>
-                    <p className='kapwa-text-on-disabled mt-1 text-xs'>
+                    <p className='text-kapwa-text-on-disabled mt-1 text-xs'>
                       Keep all records. Only updates foreign key references to
                       point to the kept person.
                     </p>
@@ -407,14 +407,14 @@ export default function PersonMergeTool() {
             </div>
 
             {/* Merge Action */}
-            <div className='kapwa-border-weak kapwa-bg-surface-raised flex items-center justify-between rounded-md border p-4'>
-              <div className='kapwa-text-on-disabled text-sm'>
+            <div className='border-kapwa-border-weak bg-kapwa-bg-surface-raised flex items-center justify-between rounded-md border p-4'>
+              <div className='text-kapwa-text-on-disabled text-sm'>
                 {mergeResults ? (
                   <div className='space-y-1'>
                     <p className='font-bold text-emerald-700'>
                       Merge completed successfully!
                     </p>
-                    <p className='kapwa-text-disabled text-xs'>
+                    <p className='text-kapwa-text-disabled text-xs'>
                       {mergeResults.merged_count} person(s) merged
                     </p>
                     {Object.entries(mergeResults.updated_tables).map(
@@ -422,7 +422,7 @@ export default function PersonMergeTool() {
                         count > 0 ? (
                           <p
                             key={table}
-                            className='kapwa-text-disabled text-xs'
+                            className='text-kapwa-text-disabled text-xs'
                           >
                             {count} {table.replace('_', ' ')} updated
                           </p>
@@ -430,7 +430,7 @@ export default function PersonMergeTool() {
                     )}
                   </div>
                 ) : (
-                  <p className='kapwa-text-on-disabled text-sm'>
+                  <p className='text-kapwa-text-on-disabled text-sm'>
                     Select the person record to keep, then click merge to
                     combine all records.
                   </p>
@@ -473,13 +473,13 @@ export default function PersonMergeTool() {
               <div
                 key={index}
                 onClick={() => setSelectedGroup(index)}
-                className='kapwa-border-weak hover:kapwa-border-weak hover:kapwa-bg-surface-raised flex cursor-pointer items-center justify-between rounded-lg border p-4 transition-all'
+                className='border-kapwa-border-weak hover:border-kapwa-border-weak hover:bg-kapwa-bg-surface-raised flex cursor-pointer items-center justify-between rounded-lg border p-4 transition-all'
               >
                 <div>
-                  <p className='kapwa-text-strong font-medium'>
+                  <p className='text-kapwa-text-strong font-medium'>
                     {group.persons.map(p => getPersonName(p)).join(' vs ')}
                   </p>
-                  <div className='kapwa-text-disabled mt-1 flex gap-3 text-xs'>
+                  <div className='text-kapwa-text-disabled mt-1 flex gap-3 text-xs'>
                     <span>{group.person_ids.length} records</span>
                     <span>•</span>
                     <span>{group.membership_count} memberships</span>
@@ -489,7 +489,7 @@ export default function PersonMergeTool() {
                     <span>{group.document_count} documents</span>
                   </div>
                 </div>
-                <ChevronRight className='kapwa-text-disabled h-5 w-5' />
+                <ChevronRight className='text-kapwa-text-disabled h-5 w-5' />
               </div>
             ))}
           </CardContent>

@@ -96,7 +96,7 @@ export default function MunicipalCommitteesPage() {
             <Card
               key={index}
               hover
-              className='kapwa-border-weak flex h-full flex-col shadow-xs'
+              className='border-kapwa-border-weak flex h-full flex-col shadow-xs'
             >
               <CardContent className='flex h-full flex-col space-y-4 p-4'>
                 {/* Top Row: Icon & Title */}
@@ -105,22 +105,22 @@ export default function MunicipalCommitteesPage() {
                     <BookOpenIcon className='h-5 w-5' />
                   </div>
                   <div className='min-w-0 flex-1'>
-                    <h3 className='kapwa-text-strong text-base leading-tight font-bold'>
+                    <h3 className='text-kapwa-text-strong text-base leading-tight font-bold'>
                       {toTitleCase(committee.committee)}
                     </h3>
-                    <p className='kapwa-text-disabled mt-0.5 text-[10px] font-bold tracking-widest uppercase'>
+                    <p className='text-kapwa-text-disabled mt-0.5 text-[10px] font-bold tracking-widest uppercase'>
                       Standing Committee
                     </p>
                   </div>
                 </div>
 
                 {/* Middle Row: Chairperson Highlight Box */}
-                <div className='kapwa-border-weak kapwa-bg-surface-raised/50 flex items-center gap-2 rounded-xl border px-3 py-2.5'>
-                  <div className='kapwa-border-weak kapwa-bg-surface kapwa-text-disabled shrink-0 rounded-full border p-1 shadow-sm'>
+                <div className='border-kapwa-border-weak bg-kapwa-bg-surface-raised/50 flex items-center gap-2 rounded-xl border px-3 py-2.5'>
+                  <div className='border-kapwa-border-weak bg-kapwa-bg-surface text-kapwa-text-disabled shrink-0 rounded-full border p-1 shadow-sm'>
                     <User2 className='h-3.5 w-3.5' />
                   </div>
                   <div className='min-w-0'>
-                    <p className='kapwa-text-disabled mb-0.5 text-[9px] leading-none font-bold tracking-tighter uppercase'>
+                    <p className='text-kapwa-text-disabled mb-0.5 text-[9px] leading-none font-bold tracking-tighter uppercase'>
                       Chairperson
                     </p>
                     <p className='truncate text-xs leading-tight font-bold text-slate-800'>
@@ -134,7 +134,7 @@ export default function MunicipalCommitteesPage() {
                   <div className='border-t border-slate-50 pt-2'>
                     <div className='mb-2.5 flex items-center gap-1.5'>
                       <UsersIcon className='text-secondary-500 h-3 w-3' />
-                      <span className='kapwa-text-disabled text-[10px] font-bold tracking-widest uppercase'>
+                      <span className='text-kapwa-text-disabled text-[10px] font-bold tracking-widest uppercase'>
                         Committee Members
                       </span>
                     </div>
@@ -142,7 +142,7 @@ export default function MunicipalCommitteesPage() {
                       {committee.members.map((member, i) => (
                         <li
                           key={i}
-                          className='kapwa-text-on-disabled flex items-start gap-2 px-1 text-xs font-semibold'
+                          className='text-kapwa-text-on-disabled flex items-start gap-2 px-1 text-xs font-semibold'
                         >
                           <span className='bg-secondary-300 mt-1.5 h-1 w-1 shrink-0 rounded-full' />
                           <span className='flex-1 leading-snug'>

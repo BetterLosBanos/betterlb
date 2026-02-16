@@ -110,7 +110,7 @@ export default function CompetitivenessPage() {
         />
       </div>
 
-      <nav className='kapwa-bg-hover flex gap-1.5 rounded-2xl p-1.5'>
+      <nav className='bg-kapwa-bg-hover flex gap-1.5 rounded-2xl p-1.5'>
         {(['trends', 'pillars'] as const).map(tab => (
           <button
             key={tab}
@@ -119,7 +119,7 @@ export default function CompetitivenessPage() {
               'min-h-[48px] flex-1 rounded-xl py-3 text-xs font-bold tracking-widest uppercase transition-all',
               activeTab === tab
                 ? 'text-primary-700 bg-white shadow-md'
-                : 'hover:kapwa-text-support text-slate-500'
+                : 'hover:text-kapwa-text-support text-slate-500'
             )}
           >
             {tab === 'trends' ? (
@@ -186,7 +186,7 @@ export default function CompetitivenessPage() {
                 className={cn(
                   'flex min-h-[56px] w-full items-center justify-between rounded-2xl border p-4 text-left transition-all',
                   selectedPillar === p.name
-                    ? 'bg-primary-50 border-primary-200 shadow-sm'
+                    ? 'bg-kapwa-bg-surface border-primary-200 shadow-sm'
                     : 'border-slate-200 bg-white'
                 )}
               >
@@ -216,12 +216,12 @@ export default function CompetitivenessPage() {
                 {currentPillar?.indicators.map((ind, idx) => (
                   <div
                     key={idx}
-                    className='kapwa-border-weak kapwa-bg-surface flex min-h-[100px] flex-col justify-between rounded-xl border p-4 shadow-xs'
+                    className='border-kapwa-border-weak bg-kapwa-bg-surface flex min-h-[100px] flex-col justify-between rounded-xl border p-4 shadow-xs'
                   >
-                    <span className='kapwa-text-disabled text-[10px] leading-tight font-bold tracking-widest uppercase'>
+                    <span className='text-kapwa-text-disabled text-[10px] leading-tight font-bold tracking-widest uppercase'>
                       {ind.name}
                     </span>
-                    <span className='kapwa-text-strong mt-2 text-xl font-black'>
+                    <span className='text-kapwa-text-strong mt-2 text-xl font-black'>
                       {ind.values[latestIdx]?.toFixed(4) || '0.0000'}
                     </span>
                   </div>

@@ -26,17 +26,17 @@ const CriticalHotlinesWidget: FC<CriticalHotlinesWidgetProps> = ({
   );
 
   return (
-    <div className='kapwa-border-weak kapwa-bg-surface overflow-hidden rounded-lg border shadow-md'>
-      <div className='kapwa-bg-danger-default flex items-center justify-between px-4 py-3'>
+    <div className='border-kapwa-border-weak bg-kapwa-bg-surface overflow-hidden rounded-lg border shadow-md'>
+      <div className='bg-kapwa-bg-danger-default flex items-center justify-between px-4 py-3'>
         <div className='flex items-center'>
-          <AlertCircleIcon className='kapwa-text-inverse mr-2 h-5 w-5' />
-          <h3 className='kapwa-text-inverse font-bold'>
+          <AlertCircleIcon className='text-kapwa-text-inverse mr-2 h-5 w-5' />
+          <h3 className='text-kapwa-text-inverse font-bold'>
             Critical Emergency Hotlines
           </h3>
         </div>
         <Link
           to='https://hotlines.bettergov.ph/'
-          className='kapwa-text-inverse flex items-center text-sm hover:underline'
+          className='text-kapwa-text-inverse flex items-center text-sm hover:underline'
         >
           View all <ChevronRightIcon className='ml-1 h-4 w-4' />
         </Link>
@@ -46,7 +46,7 @@ const CriticalHotlinesWidget: FC<CriticalHotlinesWidgetProps> = ({
         <div className='grid grid-cols-1 gap-4 sm:grid-cols-2'>
           {displayedHotlines.map((hotline, index) => (
             <div key={index} className='flex flex-col'>
-              <span className='kapwa-text-strong font-medium'>
+              <span className='text-kapwa-text-strong font-medium'>
                 {hotline.name}
               </span>
               <div className='mt-1 space-y-1'>
@@ -54,7 +54,7 @@ const CriticalHotlinesWidget: FC<CriticalHotlinesWidgetProps> = ({
                   <a
                     key={idx}
                     href={`tel:${number.replace(/\D/g, '')}`}
-                    className='kapwa-text-info flex items-center hover:underline'
+                    className='text-kapwa-text-info flex items-center hover:underline'
                   >
                     <PhoneIcon className='mr-1 h-3 w-3' />
                     <span className='text-sm'>{number}</span>
@@ -65,10 +65,10 @@ const CriticalHotlinesWidget: FC<CriticalHotlinesWidgetProps> = ({
           ))}
         </div>
 
-        <div className='kapwa-border-weak mt-4 border-t pt-3 text-center'>
+        <div className='border-kapwa-border-weak mt-4 border-t pt-3 text-center'>
           <Link
             to='/philippines/hotlines'
-            className='kapwa-text-info inline-flex items-center text-sm font-medium hover:text-blue-800'
+            className='text-kapwa-text-info inline-flex items-center text-sm font-medium hover:text-blue-800'
           >
             See all emergency hotlines
             <ChevronRightIcon className='ml-1 h-4 w-4' />

@@ -14,7 +14,7 @@ export function MobileSidebarTrigger({
     <div className='mb-4 md:hidden'>
       <button
         onClick={() => setIsOpen(!isOpen)}
-        className='kapwa-border-weak kapwa-bg-surface kapwa-text-strong flex w-full items-center justify-between rounded-xl border px-4 py-3 font-bold shadow-sm'
+        className='border-kapwa-border-weak bg-kapwa-bg-surface text-kapwa-text-strong flex w-full items-center justify-between rounded-xl border px-4 py-3 font-bold shadow-sm'
       >
         <span className='flex items-center gap-2 text-sm tracking-wider uppercase'>
           <Menu className='text-primary-600 h-4 w-4' /> Page Navigation
@@ -24,14 +24,14 @@ export function MobileSidebarTrigger({
 
       {isOpen && (
         <div className='animate-in fade-in fixed inset-0 z-50 bg-slate-900/60 backdrop-blur-sm duration-200'>
-          <div className='animate-in slide-in-from-right kapwa-bg-surface absolute top-0 right-0 h-full w-[280px] p-6 shadow-2xl duration-300'>
+          <div className='animate-in slide-in-from-right bg-kapwa-bg-surface absolute top-0 right-0 h-full w-[280px] p-6 shadow-2xl duration-300'>
             <div className='mb-8 flex items-center justify-between'>
-              <h2 className='kapwa-text-strong text-xs font-bold tracking-widest uppercase'>
+              <h2 className='text-kapwa-text-strong text-xs font-bold tracking-widest uppercase'>
                 Menu
               </h2>
               <button
                 onClick={() => setIsOpen(false)}
-                className='kapwa-bg-hover rounded-full p-2'
+                className='bg-kapwa-bg-hover rounded-full p-2'
               >
                 <X className='h-4 w-4' />
               </button>

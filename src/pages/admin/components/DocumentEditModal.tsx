@@ -395,7 +395,7 @@ export default function DocumentEditModal({
             <DialogTitle>Edit Document</DialogTitle>
           </DialogHeader>
           <div className='flex items-center justify-center py-12'>
-            <div className='border-t-primary-500 kapwa-border-weak h-8 w-8 animate-spin rounded-full border-4' />
+            <div className='border-t-primary-500 border-kapwa-border-weak h-8 w-8 animate-spin rounded-full border-4' />
           </div>
         </DialogContent>
       </Dialog>
@@ -423,7 +423,7 @@ export default function DocumentEditModal({
               >
                 {document.type}
               </Badge>
-              <span className='kapwa-text-on-disabled font-mono text-sm'>
+              <span className='text-kapwa-text-on-disabled font-mono text-sm'>
                 {document.number}
               </span>
             </div>
@@ -472,7 +472,7 @@ export default function DocumentEditModal({
               <Card variant='default'>
                 <CardContent className='space-y-4 p-4'>
                   <div>
-                    <label className='kapwa-text-support mb-1 block text-sm font-medium'>
+                    <label className='text-kapwa-text-support mb-1 block text-sm font-medium'>
                       Title
                     </label>
                     <input
@@ -481,13 +481,13 @@ export default function DocumentEditModal({
                       onChange={e =>
                         setFormData({ ...formData, title: e.target.value })
                       }
-                      className='kapwa-border-weak w-full rounded-md border px-3 py-2 text-sm'
+                      className='border-kapwa-border-weak w-full rounded-md border px-3 py-2 text-sm'
                     />
                   </div>
 
                   <div className='grid gap-4 sm:grid-cols-2'>
                     <div>
-                      <label className='kapwa-text-support mb-1 block text-sm font-medium'>
+                      <label className='text-kapwa-text-support mb-1 block text-sm font-medium'>
                         Document Number
                       </label>
                       <input
@@ -496,11 +496,11 @@ export default function DocumentEditModal({
                         onChange={e =>
                           setFormData({ ...formData, number: e.target.value })
                         }
-                        className='kapwa-border-weak w-full rounded-md border px-3 py-2 text-sm'
+                        className='border-kapwa-border-weak w-full rounded-md border px-3 py-2 text-sm'
                       />
                     </div>
                     <div>
-                      <label className='kapwa-text-support mb-1 block text-sm font-medium'>
+                      <label className='text-kapwa-text-support mb-1 block text-sm font-medium'>
                         Date Enacted
                       </label>
                       <input
@@ -512,14 +512,14 @@ export default function DocumentEditModal({
                             date_enacted: e.target.value,
                           })
                         }
-                        className='kapwa-border-weak w-full rounded-md border px-3 py-2 text-sm'
+                        className='border-kapwa-border-weak w-full rounded-md border px-3 py-2 text-sm'
                       />
                     </div>
                   </div>
 
                   <div className='grid gap-4 sm:grid-cols-2'>
                     <div>
-                      <label className='kapwa-text-support mb-1 block text-sm font-medium'>
+                      <label className='text-kapwa-text-support mb-1 block text-sm font-medium'>
                         Status
                       </label>
                       <select
@@ -527,7 +527,7 @@ export default function DocumentEditModal({
                         onChange={e =>
                           setFormData({ ...formData, status: e.target.value })
                         }
-                        className='kapwa-border-weak w-full rounded-md border px-3 py-2 text-sm'
+                        className='border-kapwa-border-weak w-full rounded-md border px-3 py-2 text-sm'
                       >
                         <option value='Approved'>Approved</option>
                         <option value='Pending'>Pending</option>
@@ -536,7 +536,7 @@ export default function DocumentEditModal({
                       </select>
                     </div>
                     <div>
-                      <label className='kapwa-text-support mb-1 block text-sm font-medium'>
+                      <label className='text-kapwa-text-support mb-1 block text-sm font-medium'>
                         Type
                       </label>
                       <select
@@ -550,7 +550,7 @@ export default function DocumentEditModal({
                               | 'executive_order',
                           })
                         }
-                        className='kapwa-border-weak w-full rounded-md border px-3 py-2 text-sm'
+                        className='border-kapwa-border-weak w-full rounded-md border px-3 py-2 text-sm'
                       >
                         <option value='ordinance'>Ordinance</option>
                         <option value='resolution'>Resolution</option>
@@ -564,7 +564,7 @@ export default function DocumentEditModal({
               {/* Authors */}
               <Card variant='default' className='overflow-visible'>
                 <CardContent className='space-y-4 overflow-visible p-4'>
-                  <h4 className='kapwa-text-strong font-bold'>Authors</h4>
+                  <h4 className='text-kapwa-text-strong font-bold'>Authors</h4>
                   <div className='flex flex-wrap gap-2'>
                     {formData.authors?.map(author => (
                       <Badge key={author.id} variant='slate'>
@@ -612,7 +612,7 @@ export default function DocumentEditModal({
               {/* Subjects */}
               <Card variant='default' className='overflow-visible'>
                 <CardContent className='space-y-4 overflow-visible p-4'>
-                  <h4 className='kapwa-text-strong font-bold'>Subjects</h4>
+                  <h4 className='text-kapwa-text-strong font-bold'>Subjects</h4>
                   <div className='flex flex-wrap gap-2'>
                     {formData.subjects?.map(subject => (
                       <Badge key={subject} variant='primary'>
@@ -652,7 +652,7 @@ export default function DocumentEditModal({
               {/* Review Notes */}
               <Card variant='default'>
                 <CardContent className='space-y-4 p-4'>
-                  <h4 className='kapwa-text-strong font-bold'>Review Notes</h4>
+                  <h4 className='text-kapwa-text-strong font-bold'>Review Notes</h4>
                   <textarea
                     value={formData.review_notes || ''}
                     onChange={e =>
@@ -660,7 +660,7 @@ export default function DocumentEditModal({
                     }
                     placeholder='Add notes about this correction...'
                     rows={3}
-                    className='kapwa-border-weak w-full rounded-md border px-3 py-2 text-sm'
+                    className='border-kapwa-border-weak w-full rounded-md border px-3 py-2 text-sm'
                   />
                   <div className='flex items-center gap-2'>
                     <input
@@ -676,7 +676,7 @@ export default function DocumentEditModal({
                     />
                     <label
                       htmlFor='needsReview'
-                      className='kapwa-text-support text-sm'
+                      className='text-kapwa-text-support text-sm'
                     >
                       Flag for further review
                     </label>
@@ -688,7 +688,7 @@ export default function DocumentEditModal({
               {formData.pdf_url && (
                 <Card variant='slate'>
                   <CardContent className='flex items-center gap-3 p-4'>
-                    <FileText className='kapwa-text-disabled h-5 w-5' />
+                    <FileText className='text-kapwa-text-disabled h-5 w-5' />
                     <a
                       href={formData.pdf_url}
                       target='_blank'
@@ -713,20 +713,20 @@ export default function DocumentEditModal({
                 <Card variant='slate'>
                   <CardContent className='flex items-center gap-3 p-4'>
                     <AlertCircle className='h-5 w-5 text-amber-500' />
-                    <p className='kapwa-text-on-disabled text-sm'>
+                    <p className='text-kapwa-text-on-disabled text-sm'>
                       This document is not linked to a session.
                     </p>
                   </CardContent>
                 </Card>
               ) : sessionLoading ? (
                 <div className='flex items-center justify-center py-12'>
-                  <div className='border-t-primary-500 kapwa-border-weak h-8 w-8 animate-spin rounded-full border-4' />
+                  <div className='border-t-primary-500 border-kapwa-border-weak h-8 w-8 animate-spin rounded-full border-4' />
                 </div>
               ) : sessionError ? (
                 <Card variant='slate'>
                   <CardContent className='flex items-center gap-3 p-4'>
                     <AlertCircle className='h-5 w-5 text-red-500' />
-                    <p className='kapwa-text-on-disabled text-sm'>
+                    <p className='text-kapwa-text-on-disabled text-sm'>
                       Error loading session: {sessionError}
                     </p>
                   </CardContent>
@@ -737,7 +737,7 @@ export default function DocumentEditModal({
                   <Card variant='default'>
                     <CardContent className='space-y-4 p-4'>
                       <div className='flex items-center justify-between'>
-                        <h4 className='kapwa-text-strong font-bold'>
+                        <h4 className='text-kapwa-text-strong font-bold'>
                           Session Details
                         </h4>
                         <a
@@ -753,7 +753,7 @@ export default function DocumentEditModal({
 
                       {/* Session Type Dropdown */}
                       <div>
-                        <label className='kapwa-text-support mb-1 block text-sm font-medium'>
+                        <label className='text-kapwa-text-support mb-1 block text-sm font-medium'>
                           Session Type
                         </label>
                         <select
@@ -769,7 +769,7 @@ export default function DocumentEditModal({
                             })
                           }
                           disabled={saving}
-                          className='kapwa-border-weak w-full rounded-md border px-3 py-2 text-sm disabled:opacity-50 sm:w-auto'
+                          className='border-kapwa-border-weak w-full rounded-md border px-3 py-2 text-sm disabled:opacity-50 sm:w-auto'
                         >
                           <option value='Regular'>Regular</option>
                           <option value='Inaugural'>Inaugural</option>
@@ -781,7 +781,7 @@ export default function DocumentEditModal({
                       <div className='grid gap-4 sm:grid-cols-2'>
                         {/* Date Input */}
                         <div>
-                          <label className='kapwa-text-support mb-1 block text-sm font-medium'>
+                          <label className='text-kapwa-text-support mb-1 block text-sm font-medium'>
                             Date
                           </label>
                           <input
@@ -794,13 +794,13 @@ export default function DocumentEditModal({
                               })
                             }
                             disabled={saving}
-                            className='kapwa-border-weak w-full rounded-md border px-3 py-2 text-sm disabled:opacity-50'
+                            className='border-kapwa-border-weak w-full rounded-md border px-3 py-2 text-sm disabled:opacity-50'
                           />
                         </div>
 
                         {/* Ordinal (Session Number) */}
                         <div>
-                          <label className='kapwa-text-support mb-1 block text-sm font-medium'>
+                          <label className='text-kapwa-text-support mb-1 block text-sm font-medium'>
                             Session Number
                           </label>
                           <input
@@ -818,7 +818,7 @@ export default function DocumentEditModal({
                             }
                             disabled={saving}
                             placeholder='Optional'
-                            className='kapwa-border-weak w-full rounded-md border px-3 py-2 text-sm disabled:opacity-50'
+                            className='border-kapwa-border-weak w-full rounded-md border px-3 py-2 text-sm disabled:opacity-50'
                           />
                         </div>
                       </div>
@@ -828,7 +828,7 @@ export default function DocumentEditModal({
                   {/* Attendance */}
                   <Card variant='default'>
                     <CardContent className='space-y-4 p-4'>
-                      <h4 className='kapwa-text-strong font-bold'>
+                      <h4 className='text-kapwa-text-strong font-bold'>
                         Attendance
                       </h4>
                       <SessionAttendanceQuickEdit
