@@ -9,7 +9,7 @@ const PromotionBanner: FC = () => {
   const { t } = useTranslation('common');
 
   return (
-    <section className='bg-accent-500 text-kapwa-text-inverse py-12'>
+    <section className='bg-kapwa-bg-accent-yellow-weak0 text-kapwa-text-inverse py-12'>
       <div className='container mx-auto px-4'>
         <div className='items-center justify-between md:flex'>
           <div>
@@ -23,7 +23,7 @@ const PromotionBanner: FC = () => {
           <div>
             <Link to='https://philsys.gov.ph/registration-process'>
               <Button
-                className='text-accent-600 bg-kapwa-bg-surface hover:bg-kapwa-bg-hover cursor-pointer px-8 py-3 text-lg shadow-lg'
+                className='text-kapwa-text-accent-yellow bg-kapwa-bg-surface hover:bg-kapwa-bg-hover cursor-pointer px-8 py-3 text-lg shadow-lg'
                 size='lg'
               >
                 {t('promotion.registerNow')}

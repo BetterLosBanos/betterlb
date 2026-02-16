@@ -66,8 +66,8 @@ export default function GovernmentRootLayout() {
               className={cn(
                 'group relative flex min-h-[160px] flex-col justify-between rounded-2xl border-2 p-6 transition-all duration-300',
                 isActive
-                  ? 'bg-kapwa-bg-brand-default border-primary-600 shadow-primary-900/20 text-white shadow-xl'
-                  : 'hover:border-primary-400 border-slate-200 bg-white text-slate-900 shadow-sm'
+                  ? 'bg-kapwa-bg-brand-default border-kapwa-border-brand shadow-primary-900/20 text-white shadow-xl'
+                  : 'hover:border-kapwa-border-brand border-kapwa-border-weak bg-kapwa-bg-surface text-kapwa-text-strong shadow-sm'
               )}
               state={{ scrollToContent: true }}
             >
@@ -77,8 +77,8 @@ export default function GovernmentRootLayout() {
                     className={cn(
                       'rounded-xl p-2.5 shadow-sm transition-colors',
                       isActive
-                        ? 'bg-white/20 text-white'
-                        : 'bg-kapwa-bg-surface text-primary-600 border-primary-100 border'
+                        ? 'bg-kapwa-bg-surface/20 text-white'
+                        : 'bg-kapwa-bg-surface text-kapwa-text-brand border-kapwa-border-brand border'
                     )}
                   >
                     <Icon className='h-5 w-5' />
@@ -86,7 +86,7 @@ export default function GovernmentRootLayout() {
                   <p
                     className={cn(
                       'text-[10px] font-bold tracking-[0.2em] uppercase',
-                      isActive ? 'text-primary-100' : 'text-slate-400'
+                      isActive ? 'text-kapwa-text-brand' : 'text-kapwa-text-disabled'
                     )}
                   >
                     {branch.category}
@@ -96,7 +96,7 @@ export default function GovernmentRootLayout() {
                 <h3
                   className={cn(
                     'text-xl leading-tight font-extrabold tracking-tight',
-                    isActive ? 'text-white' : 'text-slate-900'
+                    isActive ? 'text-white' : 'text-kapwa-text-strong'
                   )}
                 >
                   {branch.title}
@@ -107,7 +107,7 @@ export default function GovernmentRootLayout() {
                 <p
                   className={cn(
                     'line-clamp-2 pr-6 text-xs leading-relaxed font-medium',
-                    isActive ? 'text-primary-50' : 'text-slate-500'
+                    isActive ? 'text-kapwa-text-brand' : 'text-kapwa-text-strong0'
                   )}
                 >
                   {branch.description}
@@ -115,7 +115,7 @@ export default function GovernmentRootLayout() {
                 <ChevronRight
                   className={cn(
                     'h-5 w-5 shrink-0 transition-transform group-hover:translate-x-1',
-                    isActive ? 'text-white' : 'text-slate-300'
+                    isActive ? 'text-white' : 'text-kapwa-text-support'
                   )}
                 />
               </div>

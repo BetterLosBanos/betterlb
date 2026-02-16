@@ -102,7 +102,7 @@ export default function TermsIndex() {
         </BreadcrumbList>
       </Breadcrumb>
 
-      <header className='border-primary-600 bg-kapwa-bg-surface rounded-2xl border-l-8 p-6 shadow-sm md:p-10'>
+      <header className='border-kapwa-border-brand bg-kapwa-bg-surface rounded-2xl border-l-8 p-6 shadow-sm md:p-10'>
         <h1 className='text-kapwa-text-strong text-2xl font-extrabold md:text-3xl'>
           Legislative Terms
         </h1>
@@ -138,7 +138,7 @@ export default function TermsIndex() {
                       {term.year_range}
                     </p>
                   </div>
-                  <ChevronRight className='group-hover:text-kapwa-text-brand h-5 w-5 text-slate-300 transition-colors' />
+                  <ChevronRight className='group-hover:text-kapwa-text-brand h-5 w-5 text-kapwa-text-support transition-colors' />
                 </header>
 
                 <div className='text-kapwa-text-disabled mb-4 flex items-center gap-2 text-xs'>
@@ -151,7 +151,7 @@ export default function TermsIndex() {
                 <div className='border-kapwa-border-weak grid grid-cols-2 gap-3 border-t pt-4'>
                   <div className='text-center'>
                     <div className='flex items-center justify-center gap-1'>
-                      <Users className='text-primary-600 h-4 w-4' />
+                      <Users className='text-kapwa-text-brand h-4 w-4' />
                       <span className='text-kapwa-text-strong text-lg font-bold'>
                         {term.legislativeCount}
                       </span>
@@ -162,7 +162,7 @@ export default function TermsIndex() {
                   </div>
                   <div className='text-center'>
                     <div className='flex items-center justify-center gap-1'>
-                      <FileText className='text-secondary-600 h-4 w-4' />
+                      <FileText className='text-kapwa-text-accent-orange h-4 w-4' />
                       <span className='text-kapwa-text-strong text-lg font-bold'>
                         {term.documentCount}
                       </span>
@@ -183,7 +183,7 @@ export default function TermsIndex() {
                       </span>
                     )}
                     {term.resCount > 0 && (
-                      <span className='bg-secondary-50 text-secondary-600 rounded-full px-2 py-1 text-[10px] font-bold'>
+                      <span className='bg-kapwa-bg-accent-orange-weak text-kapwa-text-accent-orange rounded-full px-2 py-1 text-[10px] font-bold'>
                         {term.resCount} Res
                       </span>
                     )}

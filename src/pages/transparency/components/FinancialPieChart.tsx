@@ -66,7 +66,7 @@ const CustomTooltip = ({ active, payload }: TooltipProps<number, string>) => {
             className='h-2 w-2 rounded-full'
             style={{ backgroundColor: data.payload.fill }}
           />
-          <p className='font-semibold text-slate-800'>{data.name}</p>
+          <p className='font-semibold text-kapwa-text-strong'>{data.name}</p>
         </div>
         <p className='pl-4 font-mono font-medium text-emerald-600'>
           {formatPesoAdaptive(data.value as number).fullString}
@@ -192,7 +192,7 @@ export default function FinancialPieChart({
             <Icon className='text-kapwa-text-on-disabled h-4 w-4' />
           </div>
           <div className='flex flex-col'>
-            <span className='leading-none font-semibold text-slate-800'>
+            <span className='leading-none font-semibold text-kapwa-text-strong'>
               {drillDownItem ? drillDownItem.name : title}
             </span>
             {drillDownItem && (
@@ -218,8 +218,8 @@ export default function FinancialPieChart({
             title='Toggle Labels'
             className={`rounded-md p-1.5 transition-colors ${
               showLabels
-                ? 'bg-slate-200 text-slate-800'
-                : 'hover:bg-kapwa-bg-hover text-slate-400'
+                ? 'bg-kapwa-bg-gray-200 text-kapwa-text-strong'
+                : 'hover:bg-kapwa-bg-hover text-kapwa-text-disabled'
             }`}
           >
             <Tag className='h-3.5 w-3.5' />
@@ -227,7 +227,7 @@ export default function FinancialPieChart({
 
           <button
             onClick={() => setShowBreakdownList(!showBreakdownList)}
-            className='text-kapwa-text-disabled p-1 transition-colors hover:text-slate-800'
+            className='text-kapwa-text-disabled p-1 transition-colors hover:text-kapwa-text-strong'
             title='Toggle List'
           >
             {showBreakdownList ? (
@@ -294,7 +294,7 @@ export default function FinancialPieChart({
                 className='group bg-kapwa-bg-surface-raised/0 hover:bg-kapwa-bg-surface-raised pointer-events-auto flex h-24 w-24 flex-col items-center justify-center rounded-full transition-colors'
               >
                 <Undo2 className='text-kapwa-text-disabled group-hover:text-kapwa-text-support mb-1 h-5 w-5' />
-                <span className='text-kapwa-text-disabled text-[10px] font-semibold tracking-widest uppercase group-hover:text-slate-800'>
+                <span className='text-kapwa-text-disabled text-[10px] font-semibold tracking-widest uppercase group-hover:text-kapwa-text-strong'>
                   Return
                 </span>
               </button>
@@ -346,7 +346,7 @@ export default function FinancialPieChart({
                       style={{ backgroundColor: getFillColor(index) }}
                     />
                     <span
-                      className={`text-slate-600 transition-colors ${
+                      className={`text-kapwa-text-support transition-colors ${
                         canDrill
                           ? 'group-hover:font-medium group-hover:text-emerald-700'
                           : ''
@@ -355,7 +355,7 @@ export default function FinancialPieChart({
                       {item.name}
                     </span>
                     {canDrill && (
-                      <ZoomIn className='h-3 w-3 text-slate-300 group-hover:text-emerald-500' />
+                      <ZoomIn className='h-3 w-3 text-kapwa-text-support group-hover:text-emerald-500' />
                     )}
                   </div>
                   <div className='flex items-center gap-3'>

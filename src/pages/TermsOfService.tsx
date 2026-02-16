@@ -40,7 +40,7 @@ const TermsOfService: FC = () => {
       </Helmet>
 
       {/* Header Section */}
-      <section className='from-primary-600 text-kapwa-text-inverse bg-linear-to-r to-blue-700 py-16'>
+      <section className='from-kapwa-brand-600 text-kapwa-text-inverse bg-linear-to-r to-blue-700 py-16'>
         <div className='container mx-auto px-4'>
           <div className='mx-auto max-w-4xl text-center'>
             <div className='mb-6 flex justify-center'>
@@ -62,7 +62,7 @@ const TermsOfService: FC = () => {
           {/* Acceptance of Terms */}
           <section>
             <div className='mb-4 flex items-center gap-3'>
-              <FileText className='text-primary-600 h-6 w-6' />
+              <FileText className='text-kapwa-text-brand h-6 w-6' />
               <h2 className='text-kapwa-text-strong text-2xl font-bold'>
                 Acceptance of Terms
               </h2>
@@ -76,7 +76,7 @@ const TermsOfService: FC = () => {
           {/* Public Domain Content */}
           <section>
             <div className='mb-4 flex items-center gap-3'>
-              <Shield className='text-primary-600 h-6 w-6' />
+              <Shield className='text-kapwa-text-brand h-6 w-6' />
               <h2 className='text-kapwa-text-strong text-2xl font-bold'>
                 Public Domain Content and Volunteer Operation
               </h2>
@@ -228,7 +228,7 @@ const TermsOfService: FC = () => {
           {/* Source Links */}
           <section>
             <div className='mb-4 flex items-center gap-3'>
-              <ExternalLink className='text-primary-600 h-6 w-6' />
+              <ExternalLink className='text-kapwa-text-brand h-6 w-6' />
               <h2 className='text-kapwa-text-strong text-2xl font-bold'>
                 Source Links and External References
               </h2>
@@ -346,12 +346,12 @@ const TermsOfService: FC = () => {
                 </ul>
 
                 <div className='mb-2 flex items-center gap-2'>
-                  <Mail className='text-primary-600 h-5 w-5' />
+                  <Mail className='text-kapwa-text-brand h-5 w-5' />
                   <p className='font-semibold'>
                     Please contact us at:{' '}
                     <a
                       href='mailto:volunteers@bettergov.ph'
-                      className='text-primary-600 hover:text-kapwa-text-brand'
+                      className='text-kapwa-text-brand hover:text-kapwa-text-brand'
                     >
                       volunteers@bettergov.ph
                     </a>
@@ -367,7 +367,7 @@ const TermsOfService: FC = () => {
                 </ul>
               </div>
 
-              <div className='bg-kapwa-bg-success-weak rounded-lg border border-green-200 p-4'>
+              <div className='bg-kapwa-bg-kapwa-bg-success-weak rounded-lg border border-green-200 p-4'>
                 <h3 className='mb-2 font-semibold text-green-900'>
                   Our Response Process:
                 </h3>
@@ -402,16 +402,16 @@ const TermsOfService: FC = () => {
           {/* Contact Information */}
           <section className='border-t pt-8'>
             <div className='mb-4 flex items-center gap-3'>
-              <Mail className='text-primary-600 h-6 w-6' />
+              <Mail className='text-kapwa-text-brand h-6 w-6' />
               <h2 className='text-kapwa-text-strong text-2xl font-bold'>
                 Contact Information
               </h2>
             </div>
             <div className='bg-kapwa-bg-surface border-kapwa-border-brand rounded-lg border p-6'>
-              <p className='text-primary-800 mb-2'>
+              <p className='text-kapwa-text-brand-bold mb-2'>
                 For questions about these terms or content concerns, contact:
               </p>
-              <p className='text-primary-900 text-xl font-semibold'>
+              <p className='text-kapwa-text-brand-bold text-xl font-semibold'>
                 <a
                   href='mailto:volunteers@bettergov.ph'
                   className='hover:text-kapwa-text-brand transition-colors'
@@ -419,7 +419,7 @@ const TermsOfService: FC = () => {
                   volunteers@bettergov.ph
                 </a>
               </p>
-              <p className='text-primary-700 mt-4 italic'>
+              <p className='text-kapwa-text-brand-bold mt-4 italic'>
                 This website provides public domain information for educational
                 and informational purposes only.
               </p>

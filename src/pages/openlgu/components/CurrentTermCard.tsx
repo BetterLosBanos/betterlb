@@ -46,7 +46,7 @@ export default function CurrentTermCard({
             <Badge variant='primary' dot>
               {term.ordinal} Term
             </Badge>
-            <ChevronRight className='group-hover:text-kapwa-text-brand h-5 w-5 text-slate-300 transition-colors' />
+            <ChevronRight className='group-hover:text-kapwa-text-brand h-5 w-5 text-kapwa-text-support transition-colors' />
           </div>
           <h3 className='text-kapwa-text-strong mb-1 text-lg font-extrabold'>
             {term.name}
@@ -57,20 +57,20 @@ export default function CurrentTermCard({
           </p>
           <div className='grid grid-cols-3 gap-3'>
             <div className='bg-kapwa-bg-surface border-kapwa-border-brand flex flex-col items-center gap-1 rounded-xl border p-3'>
-              <FileText className='text-primary-600 h-5 w-5' />
-              <span className='text-primary-700 text-lg font-black'>
+              <FileText className='text-kapwa-text-brand h-5 w-5' />
+              <span className='text-kapwa-text-brand-bold text-lg font-black'>
                 {ordCount}
               </span>
-              <span className='text-primary-500 text-[9px] font-bold tracking-wider uppercase'>
+              <span className='text-kapwa-text-brand0 text-[9px] font-bold tracking-wider uppercase'>
                 Ordinances
               </span>
             </div>
-            <div className='bg-secondary-50 border-secondary-100 flex flex-col items-center gap-1 rounded-xl border p-3'>
-              <BookOpen className='text-secondary-600 h-5 w-5' />
-              <span className='text-secondary-700 text-lg font-black'>
+            <div className='bg-kapwa-bg-accent-orange-weak border-secondary-100 flex flex-col items-center gap-1 rounded-xl border p-3'>
+              <BookOpen className='text-kapwa-text-accent-orange h-5 w-5' />
+              <span className='text-kapwa-text-accent-orange text-lg font-black'>
                 {resCount}
               </span>
-              <span className='text-secondary-500 text-[9px] font-bold tracking-wider uppercase'>
+              <span className='text-kapwa-text-accent-orange0 text-[9px] font-bold tracking-wider uppercase'>
                 Resolutions
               </span>
             </div>

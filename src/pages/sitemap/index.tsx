@@ -384,7 +384,7 @@ const SitemapPage: FC = () => {
           <div className='text-kapwa-text-support mt-8 text-center text-sm'>
             <p>
               Can&apos;t find what you&apos;re looking for? Try using our{' '}
-              <Link to='/search' className='text-primary-600 hover:underline'>
+              <Link to='/search' className='text-kapwa-text-brand hover:underline'>
                 search feature
               </Link>
               .

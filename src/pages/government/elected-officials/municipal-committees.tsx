@@ -101,7 +101,7 @@ export default function MunicipalCommitteesPage() {
               <CardContent className='flex h-full flex-col space-y-4 p-4'>
                 {/* Top Row: Icon & Title */}
                 <div className='flex items-start gap-3'>
-                  <div className='bg-secondary-50 text-secondary-600 border-secondary-100 shrink-0 rounded-lg border p-2 shadow-sm'>
+                  <div className='bg-kapwa-bg-accent-orange-weak text-kapwa-text-accent-orange border-secondary-100 shrink-0 rounded-lg border p-2 shadow-sm'>
                     <BookOpenIcon className='h-5 w-5' />
                   </div>
                   <div className='min-w-0 flex-1'>
@@ -123,7 +123,7 @@ export default function MunicipalCommitteesPage() {
                     <p className='text-kapwa-text-disabled mb-0.5 text-[9px] leading-none font-bold tracking-tighter uppercase'>
                       Chairperson
                     </p>
-                    <p className='truncate text-xs leading-tight font-bold text-slate-800'>
+                    <p className='truncate text-xs leading-tight font-bold text-kapwa-text-strong'>
                       {toTitleCase(committee.chairperson)}
                     </p>
                   </div>
@@ -133,7 +133,7 @@ export default function MunicipalCommitteesPage() {
                 {committee.members && committee.members.length > 0 && (
                   <div className='border-t border-slate-50 pt-2'>
                     <div className='mb-2.5 flex items-center gap-1.5'>
-                      <UsersIcon className='text-secondary-500 h-3 w-3' />
+                      <UsersIcon className='text-kapwa-text-accent-orange0 h-3 w-3' />
                       <span className='text-kapwa-text-disabled text-[10px] font-bold tracking-widest uppercase'>
                         Committee Members
                       </span>

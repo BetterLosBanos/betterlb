@@ -71,7 +71,7 @@ function AdminContent() {
         <div className='mb-8 flex items-center justify-between'>
           <div>
             <div className='mb-2 flex items-center gap-3'>
-              <Shield className='text-primary-500 h-8 w-8' />
+              <Shield className='text-kapwa-text-brand0 h-8 w-8' />
               <h1 className='text-kapwa-text-strong text-3xl font-extrabold'>
                 Admin Dashboard
               </h1>
@@ -79,7 +79,7 @@ function AdminContent() {
                 {USE_MOCK_AUTH ? 'Mock Mode' : 'Admin Only'}
               </Badge>
             </div>
-            <p className='text-slate-600'>
+            <p className='text-kapwa-text-support'>
               Review and manage legislative data pipeline issues
             </p>
           </div>

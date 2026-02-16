@@ -64,8 +64,8 @@ export function ChartTooltip({
                     'max-w-[130px] truncate text-[11px] font-bold transition-colors',
                     // Use CHART_THEME.fontWeight for consistency
                     index === 0
-                      ? 'text-primary-700'
-                      : 'group-hover:text-kapwa-text-strong text-slate-600'
+                      ? 'text-kapwa-text-brand-bold'
+                      : 'group-hover:text-kapwa-text-strong text-kapwa-text-support'
                   )}
                 >
                   {entry.name}
@@ -81,7 +81,7 @@ export function ChartTooltip({
           ))}
         </div>
 
-        <div className='mt-2 flex items-center justify-between border-t border-slate-50 pt-2 text-[9px] font-bold tracking-tight text-slate-300 uppercase'>
+        <div className='mt-2 flex items-center justify-between border-t border-slate-50 pt-2 text-[9px] font-bold tracking-tight text-kapwa-text-support uppercase'>
           <span>Ranked by Value</span>
           <div className='bg-kapwa-bg-active h-1 w-1 rounded-full' />
         </div>
@@ -103,7 +103,7 @@ export function ChartContainer({
   return (
     <div
       className={cn(
-        'animate-in fade-in slide-in-from-bottom-2 w-full rounded-3xl border border-slate-200 bg-white p-4 shadow-sm duration-700 md:p-6',
+        'animate-in fade-in slide-in-from-bottom-2 w-full rounded-3xl border border-kapwa-border-weak bg-kapwa-bg-surface p-4 shadow-sm duration-700 md:p-6',
         className
       )}
       role='region'

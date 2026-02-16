@@ -26,7 +26,7 @@ export function EmptyState({
     <div className='animate-in fade-in zoom-in-95 flex flex-col items-center justify-center py-20 text-center duration-500'>
       {/* Icon Wrapper */}
       <div className='bg-kapwa-bg-surface-raised mb-4 rounded-full p-4 ring-8 ring-slate-50/50'>
-        <Icon className='h-12 w-12 text-slate-300' aria-hidden='true' />
+        <Icon className='h-12 w-12 text-kapwa-text-support' aria-hidden='true' />
       </div>
 
       {/* Text Content */}
@@ -44,7 +44,7 @@ export function EmptyState({
           className='border-kapwa-border-weak bg-kapwa-bg-surface text-kapwa-text-support hover:border-kapwa-border-weak hover:bg-kapwa-bg-surface-raised mt-8 inline-flex min-h-[48px] items-center gap-2 rounded-xl border px-6 py-3 text-sm font-bold transition-all hover:shadow-md'
         >
           {isContribution ? (
-            <PlusCircle className='text-primary-600 h-4 w-4' />
+            <PlusCircle className='text-kapwa-text-brand h-4 w-4' />
           ) : (
             <ArrowLeft className='text-kapwa-text-disabled h-4 w-4' />
           )}

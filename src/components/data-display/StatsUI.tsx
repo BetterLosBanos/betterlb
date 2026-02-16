@@ -42,7 +42,7 @@ export function StatsHero({
       : badges;
 
   return (
-    <div className='text-kapwa-text-inverse relative overflow-hidden rounded-3xl bg-slate-900 p-8 shadow-xl md:p-12'>
+    <div className='text-kapwa-text-inverse relative overflow-hidden rounded-3xl bg-kapwa-bg-gray-900 p-8 shadow-xl md:p-12'>
       <div className='relative z-10 space-y-4'>
         <div className='flex flex-wrap gap-2'>
           {badgeArray.map((b, i) => (
@@ -172,7 +172,7 @@ export function StatsCard({
           <div
             className={cn(
               'flex h-10 w-10 shrink-0 items-center justify-center rounded-xl p-2',
-              iconBg || 'bg-slate-100 text-slate-900'
+              iconBg || 'bg-kapwa-bg-surface-raised text-kapwa-text-strong'
             )}
           >
             <Icon className='h-6 w-6' />

@@ -53,9 +53,9 @@ export const Card = forwardRef<HTMLDivElement, CardProps>(
     ref
   ) => {
     const variants = {
-      default: 'border-slate-200 shadow-sm',
-      featured: 'border-primary-100 shadow-md ring-1 ring-primary-50',
-      slate: 'bg-slate-50 border-slate-200 shadow-none',
+      default: 'border-kapwa-border-weak shadow-sm',
+      featured: 'border-kapwa-border-brand shadow-md ring-1 ring-kapwa-border-brand',
+      slate: 'bg-kapwa-bg-surface border-kapwa-border-weak shadow-none',
       compact: 'border-slate-100 text-sm',
     };
 
@@ -104,7 +104,7 @@ export const CardAvatar = ({
   return (
     <div
       className={cn(
-        'flex shrink-0 items-center justify-center rounded-2xl bg-slate-100 font-black text-slate-400 uppercase shadow-inner',
+        'flex shrink-0 items-center justify-center rounded-2xl bg-kapwa-bg-surface-raised font-black text-kapwa-text-disabled uppercase shadow-inner',
         sizes[size],
         className
       )}
@@ -134,7 +134,7 @@ export const CardTitle = ({
   return (
     <Tag
       className={cn(
-        'font-extrabold tracking-tight text-slate-900',
+        'font-extrabold tracking-tight text-kapwa-text-strong',
         sizes[level],
         className
       )}
@@ -152,7 +152,7 @@ export const CardDescription = ({
   children: ReactNode;
   className?: string;
 }) => (
-  <p className={cn('mt-2 text-sm leading-relaxed text-slate-500', className)}>
+  <p className={cn('mt-2 text-sm leading-relaxed text-kapwa-text-strong0', className)}>
     {children}
   </p>
 );
@@ -168,11 +168,11 @@ export const CardContactInfo = ({
   const spacing = compact ? 'space-y-1' : 'space-y-3';
 
   return (
-    <address className={cn('text-sm text-slate-600 not-italic', spacing)}>
+    <address className={cn('text-sm text-kapwa-text-support not-italic', spacing)}>
       {contact.address && (
         <div className='flex items-start gap-2'>
           <MapPinIcon
-            className={cn('mt-0.5 shrink-0 text-slate-400', iconSize)}
+            className={cn('mt-0.5 shrink-0 text-kapwa-text-disabled', iconSize)}
             aria-hidden='true'
           />
           <span className='leading-snug'>{contact.address}</span>
@@ -181,7 +181,7 @@ export const CardContactInfo = ({
       {contact.phone && (
         <div className='flex items-start gap-2'>
           <PhoneIcon
-            className={cn('mt-0.5 shrink-0 text-slate-400', iconSize)}
+            className={cn('mt-0.5 shrink-0 text-kapwa-text-disabled', iconSize)}
             aria-hidden='true'
           />
           <span className='font-medium tabular-nums'>
@@ -192,12 +192,12 @@ export const CardContactInfo = ({
       {contact.email && (
         <div className='flex items-start gap-2'>
           <MailIcon
-            className={cn('mt-0.5 shrink-0 text-slate-400', iconSize)}
+            className={cn('mt-0.5 shrink-0 text-kapwa-text-disabled', iconSize)}
             aria-hidden='true'
           />
           <a
             href={`mailto:${contact.email}`}
-            className='text-primary-600 font-bold break-all hover:underline'
+            className='text-kapwa-text-brand font-bold break-all hover:underline'
           >
             {contact.email}
           </a>
@@ -206,7 +206,7 @@ export const CardContactInfo = ({
       {contact.website && (
         <div className='flex items-start gap-2'>
           <ExternalLinkIcon
-            className={cn('mt-0.5 shrink-0 text-slate-400', iconSize)}
+            className={cn('mt-0.5 shrink-0 text-kapwa-text-disabled', iconSize)}
             aria-hidden='true'
           />
           <a
@@ -217,7 +217,7 @@ export const CardContactInfo = ({
             }
             target='_blank'
             rel='noreferrer'
-            className='text-primary-600 truncate font-bold hover:underline'
+            className='text-kapwa-text-brand truncate font-bold hover:underline'
           >
             Official Website
           </a>

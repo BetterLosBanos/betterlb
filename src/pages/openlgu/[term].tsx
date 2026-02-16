@@ -186,21 +186,21 @@ export default function TermDetail() {
                 <Link
                   key={person.id}
                   to={`/openlgu/person/${person.id}`}
-                  className='group from-primary-50 border-kapwa-border-brand hover:border-kapwa-border-brand flex items-center gap-4 rounded-xl border bg-linear-to-r to-white p-4 transition-all hover:shadow-sm'
+                  className='group from-kapwa-brand-50 border-kapwa-border-brand hover:border-kapwa-border-brand flex items-center gap-4 rounded-xl border bg-linear-to-r to-white p-4 transition-all hover:shadow-sm'
                 >
-                  <div className='from-primary-500 to-primary-600 text-kapwa-text-inverse flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-linear-to-br text-lg font-bold shadow-sm'>
+                  <div className='from-kapwa-brand-500 to-kapwa-brand-600 text-kapwa-text-inverse flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-linear-to-br text-lg font-bold shadow-sm'>
                     {person.first_name[0]}
                     {person.last_name[0]}
                   </div>
                   <div className='flex-1'>
-                    <p className='text-sm font-bold text-slate-800'>
+                    <p className='text-sm font-bold text-kapwa-text-strong'>
                       {getPersonName(person)}
                     </p>
-                    <p className='text-primary-600 text-xs font-medium tracking-wide uppercase'>
+                    <p className='text-kapwa-text-brand text-xs font-medium tracking-wide uppercase'>
                       {membership?.role || 'Executive Official'}
                     </p>
                   </div>
-                  <ChevronRight className='group-hover:text-kapwa-text-brand h-5 w-5 text-slate-300 transition-colors' />
+                  <ChevronRight className='group-hover:text-kapwa-text-brand h-5 w-5 text-kapwa-text-support transition-colors' />
                 </Link>
               );
             })}
@@ -277,13 +277,13 @@ export default function TermDetail() {
                         className='flex items-center gap-3'
                       >
                         <div
-                          className={`flex h-10 w-10 shrink-0 items-center justify-center rounded-lg text-sm font-bold ${isVM ? 'bg-kapwa-bg-brand-default text-white' : 'bg-slate-200 text-slate-600'}`}
+                          className={`flex h-10 w-10 shrink-0 items-center justify-center rounded-lg text-sm font-bold ${isVM ? 'bg-kapwa-bg-brand-default text-white' : 'bg-kapwa-bg-gray-200 text-kapwa-text-support'}`}
                         >
                           {person.first_name[0]}
                           {person.last_name[0]}
                         </div>
                         <div className='min-w-0 flex-1'>
-                          <p className='text-sm font-bold text-slate-800'>
+                          <p className='text-sm font-bold text-kapwa-text-strong'>
                             {getPersonName(person)}
                           </p>
                           <p className='text-kapwa-text-disabled text-xs font-medium'>
@@ -358,23 +358,23 @@ export default function TermDetail() {
         >
           <div className='grid grid-cols-2 gap-4'>
             <div className='bg-kapwa-bg-surface border-kapwa-border-brand flex items-center gap-4 rounded-2xl border p-4'>
-              <FileText className='text-primary-600 h-6 w-6' />
+              <FileText className='text-kapwa-text-brand h-6 w-6' />
               <div>
-                <span className='text-primary-700 block text-2xl leading-none font-black'>
+                <span className='text-kapwa-text-brand-bold block text-2xl leading-none font-black'>
                   {ordCount}
                 </span>
-                <span className='text-primary-500 text-[10px] font-bold tracking-widest uppercase'>
+                <span className='text-kapwa-text-brand0 text-[10px] font-bold tracking-widest uppercase'>
                   Ordinances
                 </span>
               </div>
             </div>
-            <div className='bg-secondary-50 border-secondary-100 flex items-center gap-4 rounded-2xl border p-4'>
-              <BookOpen className='text-secondary-600 h-6 w-6' />
+            <div className='bg-kapwa-bg-accent-orange-weak border-secondary-100 flex items-center gap-4 rounded-2xl border p-4'>
+              <BookOpen className='text-kapwa-text-accent-orange h-6 w-6' />
               <div>
-                <span className='text-secondary-700 block text-2xl leading-none font-black'>
+                <span className='text-kapwa-text-accent-orange block text-2xl leading-none font-black'>
                   {resCount}
                 </span>
-                <span className='text-secondary-500 text-[10px] font-bold tracking-widest uppercase'>
+                <span className='text-kapwa-text-accent-orange0 text-[10px] font-bold tracking-widest uppercase'>
                   Resolutions
                 </span>
               </div>
@@ -417,7 +417,7 @@ export default function TermDetail() {
                           {session.type}
                         </Badge>
                         <div>
-                          <p className='font-semibold text-slate-800'>
+                          <p className='font-semibold text-kapwa-text-strong'>
                             {session.ordinal_number} {session.type} Session
                           </p>
                           <p className='text-kapwa-text-disabled text-sm'>
@@ -426,13 +426,13 @@ export default function TermDetail() {
                         </div>
                       </div>
                       <div className='flex items-center gap-4 text-sm'>
-                        <span className='text-slate-500'>
-                          <span className='text-primary-600 font-semibold'>
+                        <span className='text-kapwa-text-strong0'>
+                          <span className='text-kapwa-text-brand font-semibold'>
                             {sessionDocs.length}
                           </span>{' '}
                           docs
                         </span>
-                        <ChevronRight className='group-hover:text-kapwa-text-brand h-5 w-5 text-slate-300' />
+                        <ChevronRight className='group-hover:text-kapwa-text-brand h-5 w-5 text-kapwa-text-support' />
                       </div>
                     </Link>
                   );
@@ -474,7 +474,7 @@ export default function TermDetail() {
                           {doc.date_enacted}
                         </span>
                       </div>
-                      <p className='line-clamp-2 text-sm leading-relaxed font-bold text-slate-800'>
+                      <p className='line-clamp-2 text-sm leading-relaxed font-bold text-kapwa-text-strong'>
                         {doc.title}
                       </p>
                     </Link>
@@ -482,7 +482,7 @@ export default function TermDetail() {
                 {visibleDocs < termDocuments.length && (
                   <button
                     onClick={() => setVisibleDocs(prev => prev + 15)}
-                    className='text-primary-600 hover:text-kapwa-text-brand flex min-h-[48px] w-full items-center justify-center gap-2 py-4 text-xs font-bold tracking-widest uppercase'
+                    className='text-kapwa-text-brand hover:text-kapwa-text-brand flex min-h-[48px] w-full items-center justify-center gap-2 py-4 text-xs font-bold tracking-widest uppercase'
                   >
                     Load More <ChevronDown className='h-4 w-4' />
                   </button>

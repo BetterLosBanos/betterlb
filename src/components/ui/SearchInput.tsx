@@ -48,9 +48,9 @@ const SearchInput = ({
         value={value}
         onChange={e => onChangeValue(e.target.value)}
         className={cn(
-          'w-full rounded-xl border border-gray-200 bg-gray-50/50 transition-all duration-200',
-          'text-gray-900 placeholder:text-gray-400',
-          'focus:border-kapwa-border-brand focus:ring-primary-500/5 focus:bg-kapwa-bg-surface outline-none focus:ring-4',
+          'w-full rounded-xl border border-kapwa-border-weak bg-kapwa-bg-surface/50 transition-all duration-200',
+          'text-kapwa-text-strong placeholder:text-kapwa-text-disabled',
+          'focus:border-kapwa-border-brand focus:ring-kapwa-border-brand/5 focus:bg-kapwa-bg-surface outline-none focus:ring-4',
           sizes[size],
           'pl-11',
           clearable && value ? 'pr-10' : 'pr-4'

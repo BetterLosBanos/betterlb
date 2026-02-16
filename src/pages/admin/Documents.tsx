@@ -176,7 +176,7 @@ export default function AdminDocuments() {
           <h2 className='text-kapwa-text-strong text-2xl font-bold'>
             Documents Management
           </h2>
-          <p className='text-slate-600'>
+          <p className='text-kapwa-text-support'>
             {pagination.total.toLocaleString()} total documents
           </p>
         </div>
@@ -210,7 +210,7 @@ export default function AdminDocuments() {
                 value={searchQuery}
                 onChange={e => setSearchQuery(e.target.value)}
                 onKeyDown={e => e.key === 'Enter' && fetchDocuments()}
-                className='focus:border-kapwa-border-brand focus:ring-primary-500 border-kapwa-border-weak w-full rounded-md border py-2 pr-4 pl-10 text-sm focus:ring-1 focus:outline-none'
+                className='focus:border-kapwa-border-brand focus:ring-kapwa-border-brand border-kapwa-border-weak w-full rounded-md border py-2 pr-4 pl-10 text-sm focus:ring-1 focus:outline-none'
               />
             </div>
           </div>
@@ -274,7 +274,7 @@ export default function AdminDocuments() {
         <>
           <div className='border-kapwa-border-weak overflow-hidden rounded-lg border'>
             <table className='w-full text-left text-sm'>
-              <thead className='bg-slate-50'>
+              <thead className='bg-kapwa-bg-surface'>
                 <tr>
                   <th className='text-kapwa-text-strong px-4 py-3 font-semibold'>
                     Type
@@ -345,7 +345,7 @@ export default function AdminDocuments() {
                           href={`/openlgu/${doc.type}/${doc.number}`}
                           target='_blank'
                           rel='noopener noreferrer'
-                          className='text-primary-600 hover:text-kapwa-text-brand'
+                          className='text-kapwa-text-brand hover:text-kapwa-text-brand'
                           title='View public page'
                         >
                           <ExternalLink className='h-4 w-4' />
@@ -354,7 +354,7 @@ export default function AdminDocuments() {
                           href={doc.pdf_url}
                           target='_blank'
                           rel='noopener noreferrer'
-                          className='hover:text-kapwa-text-strong text-slate-600'
+                          className='hover:text-kapwa-text-strong text-kapwa-text-support'
                           title='View PDF'
                         >
                           <FileText className='h-4 w-4' />

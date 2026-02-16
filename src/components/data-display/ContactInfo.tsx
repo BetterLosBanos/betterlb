@@ -39,7 +39,7 @@ export function ContactItem({
   const content = (
     <div
       className={cn(
-        'flex items-start gap-3 rounded-xl border border-slate-100 bg-white p-3 transition-all',
+        'flex items-start gap-3 rounded-xl border border-slate-100 bg-kapwa-bg-surface p-3 transition-all',
         'group hover:border-kapwa-border-brand hover:bg-kapwa-bg-surface-brand/30',
         className
       )}
@@ -65,7 +65,7 @@ export function ContactItem({
       {/* External Visual Indicator */}
       {external && href && (
         <ExternalLink
-          className='group-hover:text-kapwa-text-brand-600 ml-auto h-3 w-3 text-slate-300 transition-colors'
+          className='group-hover:text-kapwa-text-brand-600 ml-auto h-3 w-3 text-kapwa-text-support transition-colors'
           aria-hidden='true'
         />
       )}
@@ -79,7 +79,7 @@ export function ContactItem({
         href={href}
         target={external ? '_blank' : undefined}
         rel={external ? 'noreferrer' : undefined}
-        className='focus:ring-primary-500 block min-h-[44px] rounded-xl focus:ring-2 focus:outline-none'
+        className='focus:ring-kapwa-border-brand block min-h-[44px] rounded-xl focus:ring-2 focus:outline-none'
         aria-label={`${label}: ${Array.isArray(value) ? value[0] : value}`}
       >
         {content}

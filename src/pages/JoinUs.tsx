@@ -39,7 +39,7 @@ const JoinUs: FC = () => {
       </Helmet>
 
       {/* Hero Section */}
-      <section className='from-primary-600 text-kapwa-text-inverse relative overflow-hidden bg-linear-to-r via-blue-700 to-purple-700'>
+      <section className='from-kapwa-brand-600 text-kapwa-text-inverse relative overflow-hidden bg-linear-to-r via-blue-700 to-purple-700'>
         <div className='bg-kapwa-bg-surface-bold absolute inset-0 opacity-10'></div>
         <div className='relative z-10 container mx-auto px-4 py-16 md:py-24'>
           <div className='mx-auto max-w-4xl text-center'>
@@ -91,11 +91,11 @@ const JoinUs: FC = () => {
       </section>
 
       {/* Mission Section */}
-      <section id='mission' className='bg-white py-16 md:py-20'>
+      <section id='mission' className='bg-kapwa-bg-surface py-16 md:py-20'>
         <div className='container mx-auto px-4'>
           <div className='mb-12 text-center'>
-            <div className='bg-primary-100 mb-4 inline-flex items-center justify-center rounded-full p-3'>
-              <TargetIcon className='text-primary-600 h-8 w-8' />
+            <div className='bg-kapwa-bg-brand-weak mb-4 inline-flex items-center justify-center rounded-full p-3'>
+              <TargetIcon className='text-kapwa-text-brand h-8 w-8' />
             </div>
             <h2 className='text-kapwa-text-strong mb-4 text-3xl font-bold md:text-4xl'>
               Our Mission
@@ -107,7 +107,7 @@ const JoinUs: FC = () => {
           </div>
 
           <div className='mx-auto max-w-4xl'>
-            <div className='from-primary-50 mb-8 rounded-2xl bg-linear-to-r to-blue-50 p-8 md:p-12'>
+            <div className='from-kapwa-brand-50 mb-8 rounded-2xl bg-linear-to-r to-blue-50 p-8 md:p-12'>
               <p className='text-kapwa-text-support mb-6 text-lg leading-relaxed'>
                 BetterGov is a <strong>volunteer-led tech initiative</strong>{' '}
                 committed to creating
@@ -130,7 +130,7 @@ const JoinUs: FC = () => {
       </section>
 
       {/* What We Provide Section */}
-      <section className='bg-gray-50 py-16 md:py-20'>
+      <section className='bg-kapwa-bg-surface py-16 md:py-20'>
         <div className='container mx-auto px-4'>
           <div className='mb-12 text-center'>
             <h2 className='text-kapwa-text-strong mb-4 text-3xl font-bold md:text-4xl'>
@@ -178,13 +178,13 @@ const JoinUs: FC = () => {
                 key={index}
                 className='bg-kapwa-bg-surface transform rounded-xl p-6 shadow-xs transition-all hover:-translate-y-1 hover:shadow-md'
               >
-                <div className='bg-primary-100 mb-4 flex h-12 w-12 items-center justify-center rounded-lg'>
-                  <item.icon className='text-primary-600 h-6 w-6' />
+                <div className='bg-kapwa-bg-brand-weak mb-4 flex h-12 w-12 items-center justify-center rounded-lg'>
+                  <item.icon className='text-kapwa-text-brand h-6 w-6' />
                 </div>
                 <h3 className='text-kapwa-text-strong mb-2 text-lg font-semibold'>
                   {item.title}
                 </h3>
-                <p className='text-gray-600'>{item.desc}</p>
+                <p className='text-kapwa-text-support'>{item.desc}</p>
               </div>
             ))}
           </div>
@@ -255,7 +255,7 @@ const JoinUs: FC = () => {
       </section>
 
       {/* Call to Action Section */}
-      <section className='from-primary-600 bg-linear-to-r to-blue-600 py-16 md:py-20'>
+      <section className='from-kapwa-brand-600 bg-linear-to-r to-blue-600 py-16 md:py-20'>
         <div className='container mx-auto px-4 text-center'>
           <div className='mx-auto max-w-3xl'>
             <h2 className='text-kapwa-text-inverse mb-6 text-3xl font-bold md:text-4xl'>

@@ -190,7 +190,7 @@ export default function LegislationIndex() {
       <div className='flex flex-wrap items-center justify-between gap-4'>
         <Badge
           variant='slate'
-          className='bg-kapwa-bg-surface-raised border-slate-200'
+          className='bg-kapwa-bg-surface-raised border-kapwa-border-weak'
         >
           {filteredDocs.length} Results
         </Badge>
@@ -276,7 +276,7 @@ export default function LegislationIndex() {
                   <span className='bg-kapwa-bg-hover text-kapwa-text-on-disabled rounded px-1.5 py-0.5 font-mono font-bold'>
                     {doc.number}
                   </span>
-                  <span className='text-slate-300'>|</span>
+                  <span className='text-kapwa-text-support'>|</span>
                   <span className='truncate'>
                     Authors:{' '}
                     {displayAuthors.length > 0

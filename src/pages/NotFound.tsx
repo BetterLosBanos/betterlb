@@ -52,7 +52,7 @@ export default function NotFound() {
               <Link to='/'>
                 <Button
                   size='lg'
-                  className='text-kapwa-text-info hover:bg-kapwa-bg-info-weak bg-white px-8 font-semibold'
+                  className='text-kapwa-text-info hover:bg-kapwa-bg-info-weak bg-kapwa-bg-surface px-8 font-semibold'
                 >
                   <HomeIcon className='mr-2 h-5 w-5' />
                   Return to Homepage

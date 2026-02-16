@@ -127,14 +127,14 @@ export default function ElectedOfficialsIndex() {
                       <Users className='h-7 w-7' />
                     </div>
                     <div className='flex-1'>
-                      <h3 className='group-hover:text-secondary-700 text-kapwa-text-strong text-lg leading-tight font-bold transition-colors'>
+                      <h3 className='group-hover:text-kapwa-text-accent-orange text-kapwa-text-strong text-lg leading-tight font-bold transition-colors'>
                         12th Sangguniang Bayan
                       </h3>
                       <p className='text-kapwa-text-disabled mt-1 text-xs font-medium'>
                         Council Members & Profiles
                       </p>
                     </div>
-                    <ChevronRight className='group-hover:text-secondary-600 h-5 w-5 text-slate-300 transition-all group-hover:translate-x-1' />
+                    <ChevronRight className='group-hover:text-kapwa-text-accent-orange h-5 w-5 text-kapwa-text-support transition-all group-hover:translate-x-1' />
                   </CardContent>
                 </Card>
               </Link>
@@ -146,18 +146,18 @@ export default function ElectedOfficialsIndex() {
               >
                 <Card hover className='border-kapwa-border-weak h-full'>
                   <CardContent className='flex items-center gap-5 p-5'>
-                    <div className='bg-secondary-50 text-secondary-600 border-secondary-100 flex h-14 w-14 shrink-0 items-center justify-center rounded-2xl border'>
+                    <div className='bg-kapwa-bg-accent-orange-weak text-kapwa-text-accent-orange border-secondary-100 flex h-14 w-14 shrink-0 items-center justify-center rounded-2xl border'>
                       <BookOpen className='h-7 w-7' />
                     </div>
                     <div className='flex-1'>
-                      <h3 className='group-hover:text-secondary-700 text-kapwa-text-strong text-lg leading-tight font-bold transition-colors'>
+                      <h3 className='group-hover:text-kapwa-text-accent-orange text-kapwa-text-strong text-lg leading-tight font-bold transition-colors'>
                         Municipal Committees
                       </h3>
                       <p className='text-kapwa-text-disabled mt-1 text-xs font-medium'>
                         {committeeCount} Standing Committees
                       </p>
                     </div>
-                    <ChevronRight className='group-hover:text-secondary-600 h-5 w-5 text-slate-300 transition-all group-hover:translate-x-1' />
+                    <ChevronRight className='group-hover:text-kapwa-text-accent-orange h-5 w-5 text-kapwa-text-support transition-all group-hover:translate-x-1' />
                   </CardContent>
                 </Card>
               </Link>
@@ -187,7 +187,7 @@ export default function ElectedOfficialsIndex() {
                     <h4 className='text-kapwa-text-strong text-sm leading-snug font-bold'>
                       {toTitleCase(official.name)}
                     </h4>
-                    <p className='text-primary-600 mt-0.5 truncate text-[10px] font-bold tracking-widest uppercase'>
+                    <p className='text-kapwa-text-brand mt-0.5 truncate text-[10px] font-bold tracking-widest uppercase'>
                       {official.role}
                     </p>
                   </div>
@@ -240,7 +240,7 @@ function OfficialCard({ href, official, icon: Icon }: OfficialCardProps) {
             </div>
 
             <div className='min-w-0 flex-1 py-1'>
-              <p className='text-primary-600 mb-1.5 text-[10px] leading-none font-bold tracking-widest uppercase'>
+              <p className='text-kapwa-text-brand mb-1.5 text-[10px] leading-none font-bold tracking-widest uppercase'>
                 {official.role}
               </p>
               <h3 className='group-hover:text-kapwa-text-brand text-kapwa-text-strong text-xl leading-tight font-extrabold transition-colors'>
@@ -248,7 +248,7 @@ function OfficialCard({ href, official, icon: Icon }: OfficialCardProps) {
               </h3>
             </div>
 
-            <div className='group-hover:bg-kapwa-bg-surface-brand group-hover:text-kapwa-text-brand bg-kapwa-bg-surface-raised shrink-0 rounded-lg p-2 text-slate-300 transition-all'>
+            <div className='group-hover:bg-kapwa-bg-surface-brand group-hover:text-kapwa-text-brand bg-kapwa-bg-surface-raised shrink-0 rounded-lg p-2 text-kapwa-text-support transition-all'>
               <ChevronRight className='h-5 w-5' />
             </div>
           </div>

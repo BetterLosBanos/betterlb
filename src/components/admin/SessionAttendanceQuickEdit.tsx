@@ -178,8 +178,8 @@ export default function SessionAttendanceQuickEdit({
       <div className='flex items-center justify-between'>
         <div className='flex gap-4 text-sm'>
           <span className='flex items-center gap-1.5'>
-            <UserCheck className='text-kapwa-text-success h-4 w-4' />
-            <span className='text-kapwa-text-success font-medium'>
+            <UserCheck className='text-kapwa-text-kapwa-text-success h-4 w-4' />
+            <span className='text-kapwa-text-kapwa-text-success font-medium'>
               {presentCount} Present
             </span>
           </span>

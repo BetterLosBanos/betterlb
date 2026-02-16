@@ -143,7 +143,7 @@ export default function LegislativeChamber() {
               <Card
                 key={member.name}
                 hover={!!member.personId}
-                className={`group flex h-full flex-col shadow-xs ${member.personId ? 'cursor-pointer border-slate-200' : 'border-slate-200'}`}
+                className={`group flex h-full flex-col shadow-xs ${member.personId ? 'cursor-pointer border-kapwa-border-weak' : 'border-kapwa-border-weak'}`}
               >
                 <CardContent className='flex h-full flex-col space-y-4 p-4'>
                   {/* Row 1: Icon, Role, Name */}
@@ -153,14 +153,14 @@ export default function LegislativeChamber() {
                     </div>
 
                     <div className='min-w-0 flex-1'>
-                      <p className='text-primary-600 mb-0.5 text-[10px] font-bold tracking-widest uppercase'>
+                      <p className='text-kapwa-text-brand mb-0.5 text-[10px] font-bold tracking-widest uppercase'>
                         {member.role}
                       </p>
                       <h4 className='text-kapwa-text-strong text-base leading-tight font-bold'>
                         {toTitleCase(member.name)}
                       </h4>
                       {member.personId && (
-                        <p className='text-primary-600 mt-1 text-[10px] font-medium tracking-wide uppercase'>
+                        <p className='text-kapwa-text-brand mt-1 text-[10px] font-medium tracking-wide uppercase'>
                           View Profile
                         </p>
                       )}
@@ -188,7 +188,7 @@ export default function LegislativeChamber() {
                             {/* Small decorative dot/line */}
                             <div className='bg-secondary-600 mt-0.5 h-8 w-1 shrink-0 rounded-full opacity-80' />
 
-                            <span className='text-xs leading-snug font-bold wrap-break-word text-slate-800'>
+                            <span className='text-xs leading-snug font-bold wrap-break-word text-kapwa-text-strong'>
                               {toTitleCase(c.committee)}
                             </span>
                           </li>
@@ -241,7 +241,7 @@ export default function LegislativeChamber() {
       </DetailSection>
 
       {/* --- CTA Banner --- */}
-      <div className='group text-kapwa-text-inverse relative overflow-hidden rounded-3xl bg-slate-900 p-8 shadow-xl md:p-12'>
+      <div className='group text-kapwa-text-inverse relative overflow-hidden rounded-3xl bg-kapwa-bg-gray-900 p-8 shadow-xl md:p-12'>
         <div className='relative z-10 flex flex-col items-start justify-between gap-8 md:flex-row md:items-center'>
           <div className='max-w-2xl space-y-4'>
             <div className='flex items-center gap-3'>
@@ -263,7 +263,7 @@ export default function LegislativeChamber() {
 
           <Link
             to='/legislation'
-            className='hover:bg-secondary-50 bg-kapwa-bg-surface text-kapwa-text-strong flex min-h-[56px] w-full shrink-0 items-center justify-center gap-3 rounded-xl px-8 text-sm font-bold shadow-lg transition-all md:w-auto'
+            className='hover:bg-kapwa-bg-accent-orange-weak bg-kapwa-bg-surface text-kapwa-text-strong flex min-h-[56px] w-full shrink-0 items-center justify-center gap-3 rounded-xl px-8 text-sm font-bold shadow-lg transition-all md:w-auto'
           >
             Browse Documents <ChevronRight className='h-4 w-4' />
           </Link>

@@ -105,8 +105,8 @@ export function AdminAuthProvider({ children }: AdminAuthProviderProps) {
         <Card variant='default' className='w-full max-w-md'>
           <CardContent className='space-y-6 p-8'>
             <div className='text-center'>
-              <div className='bg-primary-100 mx-auto mb-4 flex h-16 w-16 items-center justify-center rounded-full'>
-                <Shield className='text-primary-600 h-8 w-8' />
+              <div className='bg-kapwa-bg-brand-weak mx-auto mb-4 flex h-16 w-16 items-center justify-center rounded-full'>
+                <Shield className='text-kapwa-text-brand h-8 w-8' />
               </div>
               <h1 className='text-kapwa-text-strong text-2xl font-bold'>
                 Admin Access Required

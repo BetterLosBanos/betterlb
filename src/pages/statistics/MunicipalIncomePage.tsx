@@ -108,7 +108,7 @@ export default function MunicipalIncomePage() {
       <DetailSection title='Full Financial Itemization' icon={Coins}>
         <div className='grid grid-cols-1 gap-8 md:grid-cols-3'>
           <div className='space-y-4'>
-            <h4 className='text-secondary-600 border-b pb-2 text-[10px] font-black tracking-widest uppercase'>
+            <h4 className='text-kapwa-text-accent-orange border-b pb-2 text-[10px] font-black tracking-widest uppercase'>
               Local Tax
             </h4>
             <div className='text-kapwa-text-support space-y-2 text-sm font-bold'>
@@ -136,7 +136,7 @@ export default function MunicipalIncomePage() {
             </div>
           </div>
           <div className='space-y-4'>
-            <h4 className='text-primary-600 border-b pb-2 text-[10px] font-black tracking-widest uppercase'>
+            <h4 className='text-kapwa-text-brand border-b pb-2 text-[10px] font-black tracking-widest uppercase'>
               Non-Tax
             </h4>
             <div className='text-kapwa-text-support space-y-2 text-sm font-bold'>

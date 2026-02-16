@@ -79,7 +79,7 @@ const InfoWidgets: FC = () => {
   }, []);
 
   return (
-    <section className='bg-gray-50 py-12'>
+    <section className='bg-kapwa-bg-surface py-12'>
       <div className='container mx-auto px-4'>
         <div className='mb-12 text-center'>
           <h2 className='text-kapwa-text-strong mb-4 text-3xl font-bold'>
@@ -92,16 +92,16 @@ const InfoWidgets: FC = () => {
         <div className='grid grid-cols-1 gap-6 lg:grid-cols-3'>
           {/* Weather Widget */}
           <Card>
-            <CardHeader className='bg-primary-50'>
+            <CardHeader className='bg-kapwa-bg-brand-weak'>
               <h3 className='text-kapwa-text-strong flex items-center text-xl font-semibold'>
-                <LucideIcons.Cloud className='text-primary-600 mr-2 h-5 w-5' />
+                <LucideIcons.Cloud className='text-kapwa-text-brand mr-2 h-5 w-5' />
                 {t('weather.title')}
               </h3>
             </CardHeader>
             <CardContent className='@container'>
               {isLoadingWeather ? (
                 <div className='flex h-40 items-center justify-center'>
-                  <LucideIcons.Loader className='text-primary-600 h-8 w-8 animate-spin' />
+                  <LucideIcons.Loader className='text-kapwa-text-brand h-8 w-8 animate-spin' />
                 </div>
               ) : weatherError ? (
                 <div className='p-4 text-center text-red-500'>
@@ -115,7 +115,7 @@ const InfoWidgets: FC = () => {
                       key={location.location}
                       className='border-kapwa-border-weak bg-kapwa-bg-surface flex flex-col items-center rounded-lg border p-3 uppercase'
                     >
-                      <div className='text-accent-500 mb-1'>
+                      <div className='text-kapwa-text-accent-yellow0 mb-1'>
                         {getWeatherIcon(location.icon)}
                       </div>
                       <div className='text-lg font-semibold'>
@@ -136,7 +136,7 @@ const InfoWidgets: FC = () => {
                   Weather data provided by{' '}
                   <a
                     href='https://openweathermap.org/'
-                    className='hover:text-kapwa-text-strong text-gray-800 underline'
+                    className='hover:text-kapwa-text-strong text-kapwa-text-strong underline'
                     target='_blank'
                     rel='noopener noreferrer'
                   >
@@ -146,7 +146,7 @@ const InfoWidgets: FC = () => {
                 <div className='mt-4 flex-1 text-right'>
                   <a
                     href='/data/weather'
-                    className='text-primary-600 text-sm hover:underline'
+                    className='text-kapwa-text-brand text-sm hover:underline'
                   >
                     Detailed Forecast
                   </a>
@@ -157,16 +157,16 @@ const InfoWidgets: FC = () => {
 
           {/* Forex Widget */}
           <Card>
-            <CardHeader className='bg-primary-50'>
+            <CardHeader className='bg-kapwa-bg-brand-weak'>
               <h3 className='text-kapwa-text-strong flex items-center text-xl font-semibold'>
-                <LucideIcons.BarChart3 className='text-primary-600 mr-2 h-5 w-5' />
+                <LucideIcons.BarChart3 className='text-kapwa-text-brand mr-2 h-5 w-5' />
                 {t('forex.title')}
               </h3>
             </CardHeader>
             <CardContent>
               <div className='overflow-x-auto'>
                 <table className='min-w-full divide-y divide-gray-200'>
-                  <thead className='bg-gray-50'>
+                  <thead className='bg-kapwa-bg-surface'>
                     <tr>
                       <th className='text-kapwa-text-support px-3 py-3 text-left text-xs font-medium tracking-wider uppercase'>
                         Currency
@@ -180,7 +180,7 @@ const InfoWidgets: FC = () => {
                     {isLoadingForex ? (
                       <tr>
                         <td colSpan={3} className='px-3 py-8 text-center'>
-                          <LucideIcons.Loader className='text-primary-600 mx-auto h-6 w-6 animate-spin' />
+                          <LucideIcons.Loader className='text-kapwa-text-brand mx-auto h-6 w-6 animate-spin' />
                         </td>
                       </tr>
                     ) : forexError ? (
@@ -230,7 +230,7 @@ const InfoWidgets: FC = () => {
               <div className='mt-4 text-right'>
                 <a
                   href='/data/forex'
-                  className='text-primary-600 text-sm hover:underline'
+                  className='text-kapwa-text-brand text-sm hover:underline'
                 >
                   More Currencies
                 </a>

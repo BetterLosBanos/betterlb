@@ -110,7 +110,7 @@ const Hero: FC = () => {
                 value={query}
                 onChangeValue={setQuery}
                 placeholder={'Search services...'}
-                className='bg-white/80'
+                className='bg-kapwa-bg-surface/80'
               />
             </div>
 
@@ -141,7 +141,7 @@ const Hero: FC = () => {
               {popularServices.map(service => (
                 <Link
                   key={service.label}
-                  className='text-kapwa-text-inverse kapwa-body-sm-strong rounded-xl border border-white/20 bg-white/10 px-4 py-2 hover:bg-white/20'
+                  className='text-kapwa-text-inverse kapwa-body-sm-strong rounded-xl border border-white/20 bg-kapwa-bg-surface/10 px-4 py-2 hover:bg-kapwa-bg-surface/20'
                   to={service.href}
                 >
                   {service.label}
@@ -151,7 +151,7 @@ const Hero: FC = () => {
           </div>
 
           {/* Right section: quick access */}
-          <div className='animate-slide-in rounded-xl bg-white/10 p-6 shadow-lg backdrop-blur-sm'>
+          <div className='animate-slide-in rounded-xl bg-kapwa-bg-surface/10 p-6 shadow-lg backdrop-blur-sm'>
             <h2 className='text-kapwa-text-inverse kapwa-heading-lg mb-4'>
               {t('services.title')}
             </h2>
@@ -160,7 +160,7 @@ const Hero: FC = () => {
                 <Link
                   key={cat.slug}
                   to={`/services?category=${encodeURIComponent(cat.slug)}`}
-                  className='flex flex-col items-center rounded-lg bg-white/10 p-4 text-center transition-all duration-200 hover:bg-white/20'
+                  className='flex flex-col items-center rounded-lg bg-kapwa-bg-surface/10 p-4 text-center transition-all duration-200 hover:bg-kapwa-bg-surface/20'
                 >
                   {/* Icon background with Kapwa brand color */}
                   <div className='bg-kapwa-brand-500 mb-3 rounded-full p-3'>
@@ -174,7 +174,7 @@ const Hero: FC = () => {
             </div>
             <div className='mt-4 flex'>
               <Link
-                className='text-kapwa-text-inverse kapwa-body-md-strong w-full rounded-lg bg-white/10 p-4 text-center transition-all duration-500 hover:bg-white/20'
+                className='text-kapwa-text-inverse kapwa-body-md-strong w-full rounded-lg bg-kapwa-bg-surface/10 p-4 text-center transition-all duration-500 hover:bg-kapwa-bg-surface/20'
                 to='/services'
               >
                 {t('services.viewAll')}

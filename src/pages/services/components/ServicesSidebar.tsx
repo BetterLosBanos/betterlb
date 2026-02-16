@@ -73,9 +73,9 @@ export default function ServicesSidebar({
           />
         ))}
       </SidebarContainer>
-      <div className='border-secondary-100 bg-secondary-50/30 mt-8 space-y-4 rounded-2xl border-2 p-5 shadow-sm'>
+      <div className='border-secondary-100 bg-kapwa-bg-accent-orange-weak/30 mt-8 space-y-4 rounded-2xl border-2 p-5 shadow-sm'>
         <div className='flex items-center gap-3'>
-          <div className='bg-secondary-100 text-secondary-600 rounded-lg p-2'>
+          <div className='bg-kapwa-bg-accent-orange-weak text-kapwa-text-accent-orange rounded-lg p-2'>
             <PlusCircle className='h-5 w-5' />
           </div>
           <h4 className='text-kapwa-text-strong text-sm leading-tight font-bold'>

@@ -238,7 +238,7 @@ export default function FlagForReviewButton({
                   id='issue-type'
                   value={issueType}
                   onChange={e => setIssueType(e.target.value)}
-                  className='focus:border-kapwa-border-brand focus:ring-primary-500 border-kapwa-border-weak w-full rounded-md border px-3 py-2 text-sm focus:ring-1 focus:outline-none'
+                  className='focus:border-kapwa-border-brand focus:ring-kapwa-border-brand border-kapwa-border-weak w-full rounded-md border px-3 py-2 text-sm focus:ring-1 focus:outline-none'
                   required
                   disabled={submitting || submitted}
                 >
@@ -257,7 +257,7 @@ export default function FlagForReviewButton({
                   value={description}
                   onChange={e => setDescription(e.target.value)}
                   placeholder='Please describe what needs to be reviewed...'
-                  className='focus:border-kapwa-border-brand focus:ring-primary-500 border-kapwa-border-weak w-full rounded-md border px-3 py-2 text-sm focus:ring-1 focus:outline-none'
+                  className='focus:border-kapwa-border-brand focus:ring-kapwa-border-brand border-kapwa-border-weak w-full rounded-md border px-3 py-2 text-sm focus:ring-1 focus:outline-none'
                   rows={3}
                   disabled={submitting || submitted}
                 />

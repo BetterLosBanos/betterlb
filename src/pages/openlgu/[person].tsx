@@ -229,7 +229,7 @@ export default function PersonDetail() {
         <div className='flex flex-col items-center gap-6 md:flex-row md:items-start'>
           {/* Avatar */}
           <div
-            className='from-primary-600 to-primary-700 text-kapwa-text-inverse flex h-28 w-28 shrink-0 items-center justify-center rounded-2xl bg-gradient-to-br text-4xl font-black shadow-lg'
+            className='from-kapwa-brand-600 to-kapwa-brand-700 text-kapwa-text-inverse flex h-28 w-28 shrink-0 items-center justify-center rounded-2xl bg-gradient-to-br text-4xl font-black shadow-lg'
             aria-hidden='true'
           >
             {person.first_name[0]}
@@ -269,7 +269,7 @@ export default function PersonDetail() {
               {overallAttendanceRate >= 90 ? (
                 <CheckCircle2 className='h-5 w-5 text-emerald-600' />
               ) : overallAttendanceRate >= 75 ? (
-                <CalendarCheck className='text-secondary-600 h-5 w-5' />
+                <CalendarCheck className='text-kapwa-text-accent-orange h-5 w-5' />
               ) : (
                 <XCircle className='text-kapwa-text-danger h-5 w-5' />
               )}
@@ -278,7 +278,7 @@ export default function PersonDetail() {
                   overallAttendanceRate >= 90
                     ? 'text-emerald-600'
                     : overallAttendanceRate >= 75
-                      ? 'text-secondary-600'
+                      ? 'text-kapwa-text-accent-orange'
                       : 'text-red-600'
                 }`}
               >
@@ -295,7 +295,7 @@ export default function PersonDetail() {
         <div className='border-kapwa-border-weak mt-8 grid grid-cols-4 gap-4 border-t pt-6'>
           <div className='text-center'>
             <div className='flex items-center justify-center gap-2'>
-              <FileText className='text-primary-600 h-5 w-5' />
+              <FileText className='text-kapwa-text-brand h-5 w-5' />
               <span className='text-kapwa-text-strong text-2xl font-bold'>
                 {ordCount}
               </span>
@@ -306,7 +306,7 @@ export default function PersonDetail() {
           </div>
           <div className='text-center'>
             <div className='flex items-center justify-center gap-2'>
-              <BookOpen className='text-secondary-600 h-5 w-5' />
+              <BookOpen className='text-kapwa-text-accent-orange h-5 w-5' />
               <span className='text-kapwa-text-strong text-2xl font-bold'>
                 {resCount}
               </span>
@@ -409,10 +409,10 @@ export default function PersonDetail() {
                 return (
                   <div
                     key={membership.term_id}
-                    className={`group relative overflow-hidden rounded-xl border bg-white p-5 shadow-sm transition-all hover:shadow-md ${
+                    className={`group relative overflow-hidden rounded-xl border bg-kapwa-bg-surface p-5 shadow-sm transition-all hover:shadow-md ${
                       isActive
-                        ? 'border-primary-400 from-primary-50/50 bg-gradient-to-r to-white'
-                        : 'border-slate-200'
+                        ? 'border-kapwa-border-brand from-kapwa-brand-50/50 bg-gradient-to-r to-white'
+                        : 'border-kapwa-border-weak'
                     }`}
                   >
                     {isActive && (
@@ -477,7 +477,7 @@ export default function PersonDetail() {
                                       <Crown className='h-4 w-4' />
                                     </div>
                                     <div className='min-w-0 flex-1'>
-                                      <p className='truncate text-sm font-semibold text-slate-800'>
+                                      <p className='truncate text-sm font-semibold text-kapwa-text-strong'>
                                         {c.name}
                                       </p>
                                       <p className='text-[10px] font-medium tracking-wide text-amber-600 uppercase'>
@@ -496,7 +496,7 @@ export default function PersonDetail() {
                                       <Shield className='h-4 w-4' />
                                     </div>
                                     <div className='min-w-0 flex-1'>
-                                      <p className='truncate text-sm font-semibold text-slate-800'>
+                                      <p className='truncate text-sm font-semibold text-kapwa-text-strong'>
                                         {c.name}
                                       </p>
                                       <p className='text-kapwa-text-info text-[10px] font-medium tracking-wide uppercase'>
@@ -534,13 +534,13 @@ export default function PersonDetail() {
                             <>
                               <div className='flex items-center gap-2'>
                                 <CalendarCheck
-                                  className={`h-4 w-4 ${membership.attendanceRate >= 90 ? 'text-emerald-500' : 'text-slate-400'}`}
+                                  className={`h-4 w-4 ${membership.attendanceRate >= 90 ? 'text-emerald-500' : 'text-kapwa-text-disabled'}`}
                                 />
                                 <span
                                   className={
                                     membership.attendanceRate >= 90
                                       ? 'font-semibold text-emerald-600'
-                                      : 'text-slate-600'
+                                      : 'text-kapwa-text-support'
                                   }
                                 >
                                   {membership.attendanceRate}% attendance
@@ -551,13 +551,13 @@ export default function PersonDetail() {
                                   </span>
                                 </span>
                               </div>
-                              <span className='text-slate-300'>•</span>
-                              <span className='text-slate-600'>
-                                <span className='text-primary-600 font-semibold'>
+                              <span className='text-kapwa-text-support'>•</span>
+                              <span className='text-kapwa-text-support'>
+                                <span className='text-kapwa-text-brand font-semibold'>
                                   {membership.termStats?.ordinances || 0}
                                 </span>{' '}
                                 ord,
-                                <span className='text-secondary-600 font-semibold'>
+                                <span className='text-kapwa-text-accent-orange font-semibold'>
                                   {' '}
                                   {membership.termStats?.resolutions || 0}
                                 </span>{' '}
@@ -576,7 +576,7 @@ export default function PersonDetail() {
                               </span>
                             </>
                           ) : (
-                            <span className='text-slate-600'>
+                            <span className='text-kapwa-text-support'>
                               <span className='text-kapwa-text-accent-purple font-semibold'>
                                 {membership.executiveOrdersSigned || 0}
                               </span>{' '}
@@ -590,7 +590,7 @@ export default function PersonDetail() {
                       {membership.term && (
                         <Link
                           to={`/openlgu/term/${membership.term.id}`}
-                          className='group-hover:text-kapwa-text-brand shrink-0 text-slate-300 transition-colors'
+                          className='group-hover:text-kapwa-text-brand shrink-0 text-kapwa-text-support transition-colors'
                           aria-label={`View details for ${membership.term.name}`}
                         >
                           <ChevronRight className='h-6 w-6' />
@@ -615,7 +615,7 @@ export default function PersonDetail() {
                 {authoredDocs.length > 6 && (
                   <Link
                     to={`/openlgu?search=${encodeURIComponent(officialName)}`}
-                    className='text-primary-600 hover:text-kapwa-text-brand shrink-0 text-sm font-medium'
+                    className='text-kapwa-text-brand hover:text-kapwa-text-brand shrink-0 text-sm font-medium'
                   >
                     View all {authoredDocs.length} →
                   </Link>
@@ -659,24 +659,24 @@ export default function PersonDetail() {
                             <span className='text-kapwa-text-disabled font-mono text-[10px] font-bold uppercase'>
                               {doc.number}
                             </span>
-                            <span className='text-slate-300'>•</span>
-                            <span className='font-mono text-[10px] font-bold text-slate-300'>
+                            <span className='text-kapwa-text-support'>•</span>
+                            <span className='font-mono text-[10px] font-bold text-kapwa-text-support'>
                               {doc.date_enacted}
                             </span>
                             {termBadge && (
                               <>
-                                <span className='text-slate-300'>•</span>
+                                <span className='text-kapwa-text-support'>•</span>
                                 <span className='text-kapwa-text-disabled text-[10px] font-medium'>
                                   {termBadge.ordinal}
                                 </span>
                               </>
                             )}
                           </div>
-                          <p className='group-hover:text-kapwa-text-brand line-clamp-2 text-sm leading-relaxed font-semibold text-slate-800 transition-colors'>
+                          <p className='group-hover:text-kapwa-text-brand line-clamp-2 text-sm leading-relaxed font-semibold text-kapwa-text-strong transition-colors'>
                             {doc.title}
                           </p>
                         </div>
-                        <ChevronRight className='group-hover:text-kapwa-text-brand mt-0.5 h-5 w-5 shrink-0 text-slate-300 transition-colors' />
+                        <ChevronRight className='group-hover:text-kapwa-text-brand mt-0.5 h-5 w-5 shrink-0 text-kapwa-text-support transition-colors' />
                       </div>
                     </Link>
                   );
@@ -725,9 +725,9 @@ export default function PersonDetail() {
                               />
                             </div>
                           ) : (
-                            <div className='bg-secondary-100 rounded-full p-1'>
+                            <div className='bg-kapwa-bg-accent-orange-weak rounded-full p-1'>
                               <XCircle
-                                className='text-secondary-600 h-3.5 w-3.5'
+                                className='text-kapwa-text-accent-orange h-3.5 w-3.5'
                                 aria-label='Absent'
                               />
                             </div>
@@ -741,7 +741,7 @@ export default function PersonDetail() {
                             </p>
                           </div>
                         </div>
-                        <ChevronRight className='group-hover:text-kapwa-text-brand h-4 w-4 text-slate-300 transition-colors' />
+                        <ChevronRight className='group-hover:text-kapwa-text-brand h-4 w-4 text-kapwa-text-support transition-colors' />
                       </Link>
                     );
                   })}
@@ -775,7 +775,7 @@ export default function PersonDetail() {
                   {totalExecutiveOrdersSigned > 0 && (
                     <Link
                       to={`/openlgu?search=${encodeURIComponent(officialName)}&type=executive_order`}
-                      className='text-primary-600 hover:text-kapwa-text-brand inline-flex items-center gap-2 text-sm font-medium'
+                      className='text-kapwa-text-brand hover:text-kapwa-text-brand inline-flex items-center gap-2 text-sm font-medium'
                     >
                       View all executive orders →
                     </Link>
@@ -807,7 +807,7 @@ export default function PersonDetail() {
                       overallAttendanceRate >= 90
                         ? 'text-emerald-600'
                         : overallAttendanceRate >= 75
-                          ? 'text-secondary-600'
+                          ? 'text-kapwa-text-accent-orange'
                           : 'text-red-600'
                     }`}
                   >

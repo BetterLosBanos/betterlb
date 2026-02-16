@@ -274,7 +274,7 @@ export default function Reconcile() {
           <h2 className='text-kapwa-text-strong text-2xl font-bold'>
             Data Reconciliation
           </h2>
-          <p className='text-slate-600'>
+          <p className='text-kapwa-text-support'>
             {pagination.total} conflicts between Facebook and gov.ph sources
           </p>
         </div>
@@ -320,7 +320,7 @@ export default function Reconcile() {
                 variant='default'
                 className={
                   selectedItem?.id === item.id
-                    ? 'border-l-primary-500 bg-primary-50/30 border-l-4'
+                    ? 'border-l-primary-500 bg-kapwa-bg-brand-weak/30 border-l-4'
                     : item.status === 'unresolved'
                       ? 'border-l-4 border-l-amber-500'
                       : ''
@@ -400,13 +400,13 @@ export default function Reconcile() {
                         href={documentDetail.pdf_url}
                         target='_blank'
                         rel='noopener noreferrer'
-                        className='text-primary-600 ml-auto text-sm hover:underline'
+                        className='text-kapwa-text-brand ml-auto text-sm hover:underline'
                       >
                         <FileText className='mr-1 inline h-4 w-4' />
                         View PDF
                       </a>
                     </div>
-                    <p className='text-slate-700'>{documentDetail.title}</p>
+                    <p className='text-kapwa-text-support'>{documentDetail.title}</p>
                     {documentDetail.authors &&
                       documentDetail.authors.length > 0 && (
                         <div className='flex flex-wrap gap-2'>
@@ -601,7 +601,7 @@ export default function Reconcile() {
             <Card variant='slate'>
               <CardContent className='py-12 text-center'>
                 <GitMerge className='text-kapwa-text-disabled mx-auto mb-4 h-12 w-12' />
-                <p className='text-slate-600'>
+                <p className='text-kapwa-text-support'>
                   Select a conflict from the list to view details and resolve
                 </p>
               </CardContent>

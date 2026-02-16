@@ -172,7 +172,7 @@ export default function PersonMergeTool() {
           <h2 className='text-kapwa-text-strong text-2xl font-bold'>
             Person Merge Tool
           </h2>
-          <p className='text-slate-600'>
+          <p className='text-kapwa-text-support'>
             {duplicates.length} group{duplicates.length !== 1 ? 's' : ''} of
             duplicate person records found
           </p>
@@ -225,10 +225,10 @@ export default function PersonMergeTool() {
                     onClick={() => setKeepPersonId(person.id)}
                     className={`cursor-pointer rounded-lg border-2 p-4 transition-all ${
                       isKeep
-                        ? 'border-primary-500 bg-kapwa-bg-surface ring-primary-200 ring-2'
+                        ? 'border-kapwa-border-brand0 bg-kapwa-bg-surface ring-kapwa-border-brand ring-2'
                         : isMerge
                           ? 'border-amber-300 bg-amber-50 hover:border-amber-400'
-                          : 'hover:border-kapwa-border-weak border-slate-200 bg-white'
+                          : 'hover:border-kapwa-border-weak border-kapwa-border-weak bg-kapwa-bg-surface'
                     }`}
                   >
                     <div className='mb-3 flex items-center justify-between'>
@@ -321,7 +321,7 @@ export default function PersonMergeTool() {
                   className={`flex cursor-pointer items-start gap-3 rounded-md border p-3 transition-colors ${
                     deletionMode === 'delete'
                       ? 'border-red-300 bg-red-50'
-                      : 'hover:border-kapwa-border-weak border-slate-200'
+                      : 'hover:border-kapwa-border-weak border-kapwa-border-weak'
                   }`}
                 >
                   <input
@@ -350,7 +350,7 @@ export default function PersonMergeTool() {
                   className={`flex cursor-pointer items-start gap-3 rounded-md border p-3 transition-colors ${
                     deletionMode === 'flag'
                       ? 'border-amber-300 bg-amber-50'
-                      : 'hover:border-kapwa-border-weak border-slate-200'
+                      : 'hover:border-kapwa-border-weak border-kapwa-border-weak'
                   }`}
                 >
                   <input
@@ -379,7 +379,7 @@ export default function PersonMergeTool() {
                   className={`flex cursor-pointer items-start gap-3 rounded-md border p-3 transition-colors ${
                     deletionMode === 'skip'
                       ? 'border-blue-300 bg-blue-50'
-                      : 'hover:border-kapwa-border-weak border-slate-200'
+                      : 'hover:border-kapwa-border-weak border-kapwa-border-weak'
                   }`}
                 >
                   <input

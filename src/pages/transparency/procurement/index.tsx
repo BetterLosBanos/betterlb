@@ -213,7 +213,7 @@ export default function ProcurementPage() {
       <CardGrid columns={4}>
         <StatsCard
           icon={Tags}
-          iconBg='bg-slate-100'
+          iconBg='bg-kapwa-bg-surface-raised'
           label='Categories'
           value={detailedStats.uniqueCategories}
           subtext='Business Sectors'
@@ -221,7 +221,7 @@ export default function ProcurementPage() {
 
         <StatsCard
           icon={Briefcase}
-          iconBg='bg-slate-100'
+          iconBg='bg-kapwa-bg-surface-raised'
           label='Total Value'
           value={
             formatPesoAdaptive(detailedStats.totalContractAmount).fullString
@@ -231,7 +231,7 @@ export default function ProcurementPage() {
 
         <StatsCard
           icon={TrendingUp}
-          iconBg='bg-slate-100'
+          iconBg='bg-kapwa-bg-surface-raised'
           label='Average'
           value={formatPesoAdaptive(detailedStats.averageCost).fullString}
           subtext='Per Contract'
@@ -239,7 +239,7 @@ export default function ProcurementPage() {
 
         <StatsCard
           icon={FileText}
-          iconBg='bg-slate-100'
+          iconBg='bg-kapwa-bg-surface-raised'
           label='Volume'
           value={detailedStats.totalContractCount.toLocaleString()}
           subtext='Total Contracts'
@@ -376,7 +376,7 @@ export default function ProcurementPage() {
         {/* Link 2: National Comparison */}
         <div className='hover:border-kapwa-border-brand border-kapwa-border-weak bg-kapwa-bg-surface flex h-full flex-col justify-between rounded-xl border p-6 shadow-sm transition-all'>
           <div className='mb-4 flex items-start gap-4'>
-            <div className='text-kapwa-text-inverse shrink-0 rounded-xl bg-slate-900 p-3'>
+            <div className='text-kapwa-text-inverse shrink-0 rounded-xl bg-kapwa-bg-gray-900 p-3'>
               <Building2 className='h-6 w-6' />
             </div>
             <div>
@@ -393,7 +393,7 @@ export default function ProcurementPage() {
             href='https://transparency.bettergov.ph/procurement'
             target='_blank'
             rel='noreferrer'
-            className='text-kapwa-text-inverse inline-flex w-full items-center justify-center gap-2 rounded-lg bg-slate-900 px-4 py-2.5 text-xs font-bold transition-colors hover:bg-slate-800'
+            className='text-kapwa-text-inverse inline-flex w-full items-center justify-center gap-2 rounded-lg bg-kapwa-bg-gray-900 px-4 py-2.5 text-xs font-bold transition-colors hover:bg-kapwa-bg-gray-800'
           >
             Open National Engine <ExternalLink className='h-3 w-3' />
           </a>

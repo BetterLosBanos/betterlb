@@ -175,7 +175,7 @@ export default function SubjectSearchAutocomplete({
             }
           }}
           placeholder={placeholder}
-          className='focus:border-kapwa-border-brand focus:ring-primary-500/20 border-kapwa-border-weak w-full rounded-md border px-3 py-2 pr-10 text-sm focus:ring-2 focus:outline-none'
+          className='focus:border-kapwa-border-brand focus:ring-kapwa-border-brand/20 border-kapwa-border-weak w-full rounded-md border px-3 py-2 pr-10 text-sm focus:ring-2 focus:outline-none'
         />
         <div className='text-kapwa-text-disabled absolute top-1/2 right-3 -translate-y-1/2'>
           {loading ? (
@@ -199,7 +199,7 @@ export default function SubjectSearchAutocomplete({
                   onClick={() => handleSelect(subject)}
                   className={`cursor-pointer px-3 py-2 text-sm transition-colors ${
                     index === selectedIndex
-                      ? 'bg-primary-100 text-primary-700'
+                      ? 'bg-kapwa-bg-brand-weak text-kapwa-text-brand-bold'
                       : 'hover:bg-kapwa-bg-surface-raised'
                   }`}
                 >
@@ -217,7 +217,7 @@ export default function SubjectSearchAutocomplete({
               </div>
               <button
                 onClick={handleCreateNew}
-                className='text-primary-600 hover:bg-kapwa-bg-surface-brand flex w-full items-center gap-2 px-3 py-2 text-sm transition-colors'
+                className='text-kapwa-text-brand hover:bg-kapwa-bg-surface-brand flex w-full items-center gap-2 px-3 py-2 text-sm transition-colors'
               >
                 <Plus className='h-4 w-4' />
                 <span>Create new subject: &quot;{query}&quot;</span>

@@ -143,13 +143,13 @@ const SelectPicker = ({
         ref={triggerRef}
         type='button'
         className={cn(
-          'flex w-full items-center justify-between rounded-lg border bg-white text-left transition-all',
-          'focus:ring-primary-500/20 focus:border-kapwa-border-brand focus:ring-2',
+          'flex w-full items-center justify-between rounded-lg border bg-kapwa-bg-surface text-left transition-all',
+          'focus:ring-kapwa-border-brand/20 focus:border-kapwa-border-brand focus:ring-2',
           sizes[size],
           disabled
-            ? 'cursor-not-allowed bg-gray-50 opacity-60'
+            ? 'cursor-not-allowed bg-kapwa-bg-surface opacity-60'
             : 'hover:border-kapwa-border-strong',
-          isOpen && 'border-primary-500 ring-primary-500/20 ring-2',
+          isOpen && 'border-kapwa-border-brand0 ring-kapwa-border-brand/20 ring-2',
           'px-3'
         )}
         onClick={handleToggle}
@@ -160,7 +160,7 @@ const SelectPicker = ({
         <span
           className={cn(
             'truncate',
-            selectedOptions.length > 0 ? 'text-gray-900' : 'text-gray-500'
+            selectedOptions.length > 0 ? 'text-kapwa-text-strong' : 'text-kapwa-text-disabled'
           )}
         >
           {selectedOptions.length > 0
@@ -180,7 +180,7 @@ const SelectPicker = ({
           )}
           <ChevronDownIcon
             className={cn(
-              'h-4 w-4 text-gray-500 transition-transform duration-200',
+              'h-4 w-4 text-kapwa-text-disabled transition-transform duration-200',
               isOpen && 'rotate-180'
             )}
           />
@@ -190,7 +190,7 @@ const SelectPicker = ({
       {isOpen && (
         <div
           className={cn(
-            'absolute z-50 max-h-60 w-full overflow-hidden rounded-lg border bg-white shadow-lg',
+            'absolute z-50 max-h-60 w-full overflow-hidden rounded-lg border bg-kapwa-bg-surface shadow-lg',
             dropdownPosition === 'top' ? 'bottom-full mb-1' : 'top-full mt-1'
           )}
         >
@@ -201,7 +201,7 @@ const SelectPicker = ({
                 <input
                   ref={searchInputRef}
                   type='text'
-                  className='focus:ring-primary-500 focus:border-kapwa-border-brand border-kapwa-border-weak w-full rounded-md border py-2 pr-3 pl-9 text-sm focus:ring-2 focus:outline-none'
+                  className='focus:ring-kapwa-border-brand focus:border-kapwa-border-brand border-kapwa-border-weak w-full rounded-md border py-2 pr-3 pl-9 text-sm focus:ring-2 focus:outline-none'
                   placeholder='Search options...'
                   value={searchTerm}
                   onChange={handleSearchChange}
@@ -220,7 +220,7 @@ const SelectPicker = ({
                       'cursor-pointer px-3 py-2 text-sm transition-colors',
                       'hover:bg-kapwa-bg-surface-brand hover:text-kapwa-text-brand',
                       selectedOptions.some(o => o.value === option.value) &&
-                        'bg-primary-100 text-primary-700'
+                        'bg-kapwa-bg-brand-weak text-kapwa-text-brand-bold'
                     )}
                     onClick={() => handleSelect(option)}
                     role='option'

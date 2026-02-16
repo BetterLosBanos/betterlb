@@ -197,7 +197,7 @@ export default function WeatherMapSection() {
                 <>
                   {/* Top: Temp & Condition */}
                   <div className='flex items-center gap-4'>
-                    <WeatherIcon className='text-primary-600 h-14 w-14 shrink-0' />
+                    <WeatherIcon className='text-kapwa-text-brand h-14 w-14 shrink-0' />
                     <div className='flex flex-col gap-1'>
                       <div className='text-kapwa-text-strong text-5xl font-bold'>
                         {weather.temperature}°C
@@ -232,7 +232,7 @@ export default function WeatherMapSection() {
                           key={idx}
                           className='hover:bg-kapwa-bg-surface-brand bg-kapwa-bg-hover flex w-full flex-col items-center gap-1.5 rounded-xl p-2 transition-all duration-200 hover:-translate-y-0.5 sm:flex-1 sm:p-3'
                         >
-                          <IconComp className='text-primary-600 h-6 w-6' />
+                          <IconComp className='text-kapwa-text-brand h-6 w-6' />
                           <div className='text-base font-bold'>
                             {h.temperature}°
                           </div>
@@ -245,7 +245,7 @@ export default function WeatherMapSection() {
                   </div>
                 </>
               ) : (
-                <p className='text-slate-500'>No weather data available.</p>
+                <p className='text-kapwa-text-strong0'>No weather data available.</p>
               )}
             </div>
           </div>
@@ -266,7 +266,7 @@ export default function WeatherMapSection() {
                     href='https://www.openstreetmap.org/?mlat=14.1647&mlon=121.2436#map=15/14.1647/121.2436'
                     target='_blank'
                     rel='noopener noreferrer'
-                    className='text-primary-600 ml-1 underline'
+                    className='text-kapwa-text-brand ml-1 underline'
                   >
                     View {config.lgu.fullName} Municipal Hall on OpenStreetMap
                   </a>
@@ -274,7 +274,7 @@ export default function WeatherMapSection() {
               </noscript>
             </div>
             <div className='border-kapwa-border-weak bg-kapwa-bg-surface flex items-center gap-2 border-t p-3'>
-              <MapPin className='text-primary-600 h-5 w-5' />
+              <MapPin className='text-kapwa-text-brand h-5 w-5' />
               <span className='text-kapwa-text-support text-sm font-medium'>
                 {config.lgu.fullName} Municipal Hall
               </span>

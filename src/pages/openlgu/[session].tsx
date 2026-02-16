@@ -81,7 +81,7 @@ export default function SessionDetail() {
       </Breadcrumb>
 
       <header
-        className={`rounded-2xl border border-l-8 border-slate-200 bg-white p-6 shadow-sm md:p-10 ${isRegular ? 'border-l-primary-600' : 'border-l-secondary-600'}`}
+        className={`rounded-2xl border border-l-8 border-kapwa-border-weak bg-kapwa-bg-surface p-6 shadow-sm md:p-10 ${isRegular ? 'border-l-primary-600' : 'border-l-secondary-600'}`}
       >
         <div className='flex flex-col justify-between gap-6 md:flex-row md:items-center'>
           <div className='space-y-4'>
@@ -98,7 +98,7 @@ export default function SessionDetail() {
             </h1>
           </div>
           <div className='border-kapwa-border-weak bg-kapwa-bg-surface-raised flex items-center gap-4 rounded-xl border p-4'>
-            <Calendar className='text-primary-600 h-5 w-5' />
+            <Calendar className='text-kapwa-text-brand h-5 w-5' />
             <div>
               <p className='text-kapwa-text-disabled text-[10px] font-bold tracking-widest uppercase'>
                 Date Held
@@ -143,7 +143,7 @@ export default function SessionDetail() {
 
                 {absentMembers.length > 0 && (
                   <div className='border-kapwa-border-weak border-t pt-4'>
-                    <h3 className='text-secondary-600 mb-3 flex items-center gap-2 text-[10px] font-bold tracking-widest uppercase'>
+                    <h3 className='text-kapwa-text-accent-orange mb-3 flex items-center gap-2 text-[10px] font-bold tracking-widest uppercase'>
                       <XCircle className='h-3.5 w-3.5' /> Absent (
                       {absentMembers.length})
                     </h3>
@@ -192,7 +192,7 @@ export default function SessionDetail() {
                         {doc.number}
                       </span>
                     </div>
-                    <p className='group-hover:text-kapwa-text-brand text-sm leading-relaxed font-bold text-slate-800'>
+                    <p className='group-hover:text-kapwa-text-brand text-sm leading-relaxed font-bold text-kapwa-text-strong'>
                       {doc.title}
                     </p>
                   </Link>

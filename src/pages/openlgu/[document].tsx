@@ -56,7 +56,7 @@ export default function LegislationDocument() {
         <h2 className='text-kapwa-text-strong text-xl font-bold'>
           Document not found
         </h2>
-        <Link to={backLink} className='text-primary-600 hover:underline'>
+        <Link to={backLink} className='text-kapwa-text-brand hover:underline'>
           Return to Archive
         </Link>
       </div>
@@ -104,7 +104,7 @@ export default function LegislationDocument() {
 
       {/* Accessible Header: Dark Text on Light Background with 8px Semantic Border */}
       <header
-        className={`rounded-2xl border border-l-8 border-slate-200 bg-white p-6 shadow-sm md:p-10 ${isOrdinance ? 'border-l-primary-600' : 'border-l-secondary-600'}`}
+        className={`rounded-2xl border border-l-8 border-kapwa-border-weak bg-kapwa-bg-surface p-6 shadow-sm md:p-10 ${isOrdinance ? 'border-l-primary-600' : 'border-l-secondary-600'}`}
         aria-labelledby='doc-title'
       >
         <div className='space-y-4'>
@@ -159,7 +159,7 @@ export default function LegislationDocument() {
           <div className='border-kapwa-border-weak bg-kapwa-bg-surface-raised flex flex-col items-center justify-between gap-6 rounded-2xl border p-6 sm:flex-row'>
             <div className='flex items-center gap-4'>
               <div
-                className={`rounded-xl bg-white p-3 shadow-sm ${isOrdinance ? 'text-primary-600' : 'text-secondary-600'}`}
+                className={`rounded-xl bg-kapwa-bg-surface p-3 shadow-sm ${isOrdinance ? 'text-kapwa-text-brand' : 'text-kapwa-text-accent-orange'}`}
               >
                 <FileText className='h-8 w-8' />
               </div>

@@ -36,8 +36,8 @@ export function Badge({
     success: 'bg-emerald-50 text-emerald-800 border-emerald-200',
     warning: 'bg-amber-50 text-amber-800 border-amber-200',
     error: 'bg-rose-50 text-rose-800 border-rose-200',
-    slate: 'bg-slate-100 text-slate-700 border-slate-200',
-    outline: 'bg-transparent text-slate-600 border-slate-300',
+    slate: 'bg-kapwa-bg-surface-raised text-kapwa-text-support border-kapwa-border-weak',
+    outline: 'bg-transparent text-kapwa-text-support border-slate-300',
   };
 
   const dotColors = {
@@ -46,8 +46,8 @@ export function Badge({
     success: 'bg-emerald-600',
     warning: 'bg-amber-600',
     error: 'bg-rose-600',
-    slate: 'bg-slate-500',
-    outline: 'bg-slate-400',
+    slate: 'bg-kapwa-bg-surface0',
+    outline: 'bg-kapwa-bg-gray-400',
   };
 
   return (

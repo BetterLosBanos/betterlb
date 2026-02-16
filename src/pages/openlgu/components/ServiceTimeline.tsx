@@ -96,7 +96,7 @@ export default function ServiceTimeline({
             className='border-kapwa-border-weak relative border-l-2 pb-4 pl-6 last:border-0 last:pb-0'
           >
             {/* Timeline dot */}
-            <div className='border-primary-500 bg-kapwa-bg-surface absolute top-1.5 left-0 h-3 w-3 -translate-x-[5px] rounded-full border-2' />
+            <div className='border-kapwa-border-brand0 bg-kapwa-bg-surface absolute top-1.5 left-0 h-3 w-3 -translate-x-[5px] rounded-full border-2' />
 
             <div className='space-y-2'>
               {/* Term header */}
@@ -121,7 +121,7 @@ export default function ServiceTimeline({
                         attendanceRate >= 90
                           ? 'font-semibold text-emerald-600'
                           : attendanceRate >= 70
-                            ? 'text-slate-600'
+                            ? 'text-kapwa-text-support'
                             : 'text-amber-600'
                       }
                     >

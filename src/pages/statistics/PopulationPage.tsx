@@ -131,8 +131,8 @@ export default function PopulationPage() {
           className={cn(
             'flex min-h-[48px] flex-1 items-center justify-center gap-2 rounded-xl py-3 text-xs font-bold tracking-widest uppercase transition-all',
             activeTab === 'municipality'
-              ? 'text-primary-700 bg-white shadow-md'
-              : 'hover:text-kapwa-text-support text-slate-500'
+              ? 'text-kapwa-text-brand-bold bg-kapwa-bg-surface shadow-md'
+              : 'hover:text-kapwa-text-support text-kapwa-text-strong0'
           )}
         >
           <TrendingUp className='h-4 w-4' /> Municipal Growth
@@ -142,8 +142,8 @@ export default function PopulationPage() {
           className={cn(
             'flex min-h-[48px] flex-1 items-center justify-center gap-2 rounded-xl py-3 text-xs font-bold tracking-widest uppercase transition-all',
             activeTab === 'barangays'
-              ? 'text-primary-700 bg-white shadow-md'
-              : 'hover:text-kapwa-text-support text-slate-500'
+              ? 'text-kapwa-text-brand-bold bg-kapwa-bg-surface shadow-md'
+              : 'hover:text-kapwa-text-support text-kapwa-text-strong0'
           )}
         >
           <LineIcon className='h-4 w-4' /> Barangay Comparison
@@ -243,7 +243,7 @@ export default function PopulationPage() {
       </ChartContainer>
 
       <div className='border-kapwa-border-weak bg-kapwa-bg-surface-raised flex gap-4 rounded-2xl border p-6 shadow-inner'>
-        <Info className='text-primary-600 mt-0.5 h-5 w-5 shrink-0' />
+        <Info className='text-kapwa-text-brand mt-0.5 h-5 w-5 shrink-0' />
         <div className='space-y-2'>
           <p className='text-kapwa-text-strong text-xs font-bold tracking-widest uppercase'>
             How to read this data

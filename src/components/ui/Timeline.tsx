@@ -20,7 +20,7 @@ export function Timeline({
     <div className={cn('relative space-y-8 pl-8 md:pl-0', className)}>
       {/* Vertical Line */}
       <div
-        className='from-primary-600 via-primary-200 absolute top-2 bottom-2 left-[11px] w-0.5 -translate-x-1/2 bg-linear-to-b to-transparent md:left-1/2'
+        className='from-kapwa-brand-600 via-primary-200 absolute top-2 bottom-2 left-[11px] w-0.5 -translate-x-1/2 bg-linear-to-b to-transparent md:left-1/2'
         aria-hidden='true'
       />
       {children}
@@ -39,7 +39,7 @@ export function TimelineItem({ year, title, children }: TimelineItemProps) {
       </div>
 
       {/* 2. The Dot (Absolute Center) */}
-      <div className='border-primary-600 bg-kapwa-bg-surface absolute top-0 left-[11px] flex h-4 w-4 -translate-x-1/2 items-center justify-center rounded-full border-2 shadow-sm transition-transform duration-300 group-hover:scale-125 md:top-1/2 md:left-1/2 md:-translate-y-1/2'>
+      <div className='border-kapwa-border-brand bg-kapwa-bg-surface absolute top-0 left-[11px] flex h-4 w-4 -translate-x-1/2 items-center justify-center rounded-full border-2 shadow-sm transition-transform duration-300 group-hover:scale-125 md:top-1/2 md:left-1/2 md:-translate-y-1/2'>
         <div className='bg-kapwa-bg-brand-default h-1.5 w-1.5 rounded-full' />
       </div>
 

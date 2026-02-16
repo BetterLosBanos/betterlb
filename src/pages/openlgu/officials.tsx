@@ -107,7 +107,7 @@ export default function OfficialsIndex() {
   return (
     <div className='animate-in fade-in mx-auto max-w-5xl space-y-8 pb-20 duration-500'>
       {/* Header */}
-      <div className='border-primary-600 bg-kapwa-bg-surface rounded-2xl border-l-8 p-6 shadow-sm md:p-10'>
+      <div className='border-kapwa-border-brand bg-kapwa-bg-surface rounded-2xl border-l-8 p-6 shadow-sm md:p-10'>
         <h1 className='text-kapwa-text-strong text-2xl font-extrabold md:text-3xl'>
           Officials of Los Baños
         </h1>
@@ -152,7 +152,7 @@ export default function OfficialsIndex() {
               return (
                 <div key={letter}>
                   {/* Letter header */}
-                  <h2 className='text-primary-600 border-kapwa-border-weak bg-kapwa-bg-surface/95 sticky top-0 mb-3 border-b py-2 text-lg font-bold backdrop-blur-sm'>
+                  <h2 className='text-kapwa-text-brand border-kapwa-border-weak bg-kapwa-bg-surface/95 sticky top-0 mb-3 border-b py-2 text-lg font-bold backdrop-blur-sm'>
                     {letter}
                   </h2>
 

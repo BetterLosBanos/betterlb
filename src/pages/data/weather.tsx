@@ -83,7 +83,7 @@ const WeatherPage: FC = () => {
       <div className='container mx-auto px-4 py-8'>
         {isLoading ? (
           <div className='flex h-64 items-center justify-center'>
-            <div className='border-primary-600 h-12 w-12 animate-spin rounded-full border-t-2 border-b-2'></div>
+            <div className='border-kapwa-border-brand h-12 w-12 animate-spin rounded-full border-t-2 border-b-2'></div>
           </div>
         ) : error ? (
           <div className='bg-kapwa-bg-danger-weak text-kapwa-text-danger rounded-sm border-l-4 border-red-500 p-4 shadow-md'>
@@ -104,7 +104,7 @@ const WeatherPage: FC = () => {
                     onClick={() => setSelectedCity(city.location)}
                     className={`flex w-full items-center justify-between rounded-md px-4 py-3 text-left transition-all ${
                       selectedCity === city.location
-                        ? 'bg-primary-100 text-primary-800'
+                        ? 'bg-kapwa-bg-brand-weak text-kapwa-text-brand-bold'
                         : 'hover:bg-kapwa-bg-hover'
                     }`}
                   >
@@ -212,7 +212,7 @@ const WeatherPage: FC = () => {
                             {dayNum}
                           </p>
                           <div className='my-2 flex justify-center'>
-                            {getWeatherIcon(mockIcon, 'h-8 w-8 text-gray-700')}
+                            {getWeatherIcon(mockIcon, 'h-8 w-8 text-kapwa-text-support')}
                           </div>
                           <p className='text-kapwa-text-support text-lg font-semibold'>
                             {mockTemp}°C
@@ -241,26 +241,26 @@ const WeatherPage: FC = () => {
             cities.
           </p>
           <div className='mt-6 grid grid-cols-1 gap-6 md:grid-cols-2'>
-            <div className='border-primary-500 border-l-4 pl-4'>
+            <div className='border-kapwa-border-brand0 border-l-4 pl-4'>
               <h3 className='text-kapwa-text-support mb-2 text-lg font-semibold'>
                 Understanding the Data
               </h3>
-              <p className='text-gray-800'>
+              <p className='text-kapwa-text-strong'>
                 Temperature is displayed in Celsius (°C). Weather conditions are
                 categorized based on current atmospheric observations. The
                 forecast provides a 5-day outlook to help you plan ahead.
               </p>
             </div>
-            <div className='border-primary-500 border-l-4 pl-4'>
+            <div className='border-kapwa-border-brand0 border-l-4 pl-4'>
               <h3 className='text-kapwa-text-support mb-2 text-lg font-semibold'>
                 Weather Advisories
               </h3>
-              <p className='text-gray-800'>
+              <p className='text-kapwa-text-strong'>
                 For official weather advisories, warnings, and detailed
                 forecasts, please visit the{' '}
                 <a
                   href='https://bagong.pagasa.dost.gov.ph/'
-                  className='text-primary-600 hover:underline'
+                  className='text-kapwa-text-brand hover:underline'
                   target='_blank'
                   rel='noopener noreferrer'
                 >
@@ -274,7 +274,7 @@ const WeatherPage: FC = () => {
             Weather data provided by{' '}
             <a
               href='https://openweathermap.org/'
-              className='hover:text-kapwa-text-strong text-gray-800 underline'
+              className='hover:text-kapwa-text-strong text-kapwa-text-strong underline'
               target='_blank'
               rel='noopener noreferrer'
             >

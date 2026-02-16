@@ -94,7 +94,7 @@ const ServicesSection: FC = () => {
         <div className='mt-10 text-center'>
           <Link
             to='/services?category=all'
-            className='bg-kapwa-bg-brand-default hover:bg-kapwa-bg-brand-hover focus:ring-primary-500 text-kapwa-text-inverse inline-flex items-center justify-center rounded-lg px-6 py-3 font-medium shadow-sm transition-colors focus:ring-2 focus:ring-offset-2 focus:outline-hidden'
+            className='bg-kapwa-bg-brand-default hover:bg-kapwa-bg-brand-hover focus:ring-kapwa-border-brand text-kapwa-text-inverse inline-flex items-center justify-center rounded-lg px-6 py-3 font-medium shadow-sm transition-colors focus:ring-2 focus:ring-offset-2 focus:outline-hidden'
           >
             {t('services.viewAll')}
           </Link>

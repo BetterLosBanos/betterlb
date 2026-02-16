@@ -124,7 +124,7 @@ export default function ServicesPage() {
       <div className='flex justify-start'>
         <Badge
           variant='slate'
-          className='bg-kapwa-bg-surface-raised border-slate-200'
+          className='bg-kapwa-bg-surface-raised border-kapwa-border-weak'
         >
           {filteredServices.length} Results
         </Badge>
@@ -180,21 +180,21 @@ export default function ServicesPage() {
                         {hasValidDate ? (
                           <>
                             <ClockIcon className='h-3 w-3 text-emerald-600' />
-                            <span className='text-slate-500'>
+                            <span className='text-kapwa-text-strong0'>
                               {format(new Date(service.updatedAt!), 'MMM yyyy')}
                             </span>
                           </>
                         ) : (
                           <>
                             <span className='bg-kapwa-bg-disabled h-1.5 w-1.5 shrink-0 rounded-full' />
-                            <span className='font-bold text-slate-300 italic'>
+                            <span className='font-bold text-kapwa-text-support italic'>
                               Unverified
                             </span>
                           </>
                         )}
                       </div>
 
-                      <span className='text-primary-600 flex items-center gap-1 text-xs font-bold transition-transform group-hover:translate-x-1'>
+                      <span className='text-kapwa-text-brand flex items-center gap-1 text-xs font-bold transition-transform group-hover:translate-x-1'>
                         View <ArrowRightIcon className='h-3 w-3' />
                       </span>
                     </div>
@@ -208,7 +208,7 @@ export default function ServicesPage() {
       {/* Infinite Scroll Loader */}
       {filteredServices.length > currentPage * ITEMS_PER_PAGE && (
         <div ref={loadMoreRef} className='flex justify-center py-12'>
-          <div className='border-primary-600 h-6 w-6 animate-spin rounded-full border-2 border-t-transparent' />
+          <div className='border-kapwa-border-brand h-6 w-6 animate-spin rounded-full border-2 border-t-transparent' />
         </div>
       )}
     </div>

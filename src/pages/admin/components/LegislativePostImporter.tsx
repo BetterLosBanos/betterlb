@@ -852,7 +852,7 @@ Seconded By: Hon. Miko C. Pelegrina
                           setSelectedTermId(e.target.value || null)
                         }
                         disabled={termsLoading}
-                        className='border-kapwa-border-weak bg-kapwa-bg-surface w-full rounded-md border px-3 py-2 text-sm disabled:bg-slate-100'
+                        className='border-kapwa-border-weak bg-kapwa-bg-surface w-full rounded-md border px-3 py-2 text-sm disabled:bg-kapwa-bg-surface-raised'
                       >
                         {terms.map(term => (
                           <option key={term.id} value={term.id}>
@@ -1110,7 +1110,7 @@ Seconded By: Hon. Miko C. Pelegrina
                                 <span className='text-kapwa-text-support mb-1 block font-medium'>
                                   Existing Title
                                 </span>
-                                <span className='text-slate-600'>
+                                <span className='text-kapwa-text-support'>
                                   {dup?.existing.title}
                                 </span>
                               </div>
@@ -1118,7 +1118,7 @@ Seconded By: Hon. Miko C. Pelegrina
                                 <span className='text-kapwa-text-support mb-1 block font-medium'>
                                   New Title
                                 </span>
-                                <span className='text-slate-600'>
+                                <span className='text-kapwa-text-support'>
                                   {doc.title}
                                 </span>
                               </div>
@@ -1144,7 +1144,7 @@ Seconded By: Hon. Miko C. Pelegrina
                                       </Badge>
                                     ))
                                   ) : (
-                                    <span className='text-slate-400 italic'>
+                                    <span className='text-kapwa-text-disabled italic'>
                                       No authors
                                     </span>
                                   )}
@@ -1167,7 +1167,7 @@ Seconded By: Hon. Miko C. Pelegrina
                                       </Badge>
                                     ))
                                   ) : (
-                                    <span className='text-slate-400 italic'>
+                                    <span className='text-kapwa-text-disabled italic'>
                                       No authors
                                     </span>
                                   )}
@@ -1195,7 +1195,7 @@ Seconded By: Hon. Miko C. Pelegrina
                                 }}
                                 className={`rounded-md border px-3 py-2 text-xs ${
                                   resolution.action === 'skip'
-                                    ? 'bg-primary-500 border-primary-500 text-white'
+                                    ? 'bg-kapwa-bg-brand-weak0 border-kapwa-border-brand0 text-white'
                                     : 'hover:bg-kapwa-bg-surface-raised border-slate-300'
                                 }`}
                               >
@@ -1214,7 +1214,7 @@ Seconded By: Hon. Miko C. Pelegrina
                                 }}
                                 className={`rounded-md border px-3 py-2 text-xs ${
                                   resolution.action === 'replace'
-                                    ? 'bg-primary-500 border-primary-500 text-white'
+                                    ? 'bg-kapwa-bg-brand-weak0 border-kapwa-border-brand0 text-white'
                                     : 'hover:bg-kapwa-bg-surface-raised border-slate-300'
                                 }`}
                               >
@@ -1236,7 +1236,7 @@ Seconded By: Hon. Miko C. Pelegrina
                                 }}
                                 className={`rounded-md border px-3 py-2 text-xs ${
                                   resolution.action === 'merge'
-                                    ? 'bg-primary-500 border-primary-500 text-white'
+                                    ? 'bg-kapwa-bg-brand-weak0 border-kapwa-border-brand0 text-white'
                                     : 'hover:bg-kapwa-bg-surface-raised border-slate-300'
                                 }`}
                               >

@@ -54,7 +54,7 @@ export default function TimelineSection() {
         <div className='grid grid-cols-1 gap-6 lg:grid-cols-[1fr_320px]'>
           {/* --- LEFT: Timeline --- */}
           <div className='relative'>
-            <div className='from-primary-600 absolute top-2 bottom-0 left-4 w-0.5 bg-linear-to-b via-gray-300 to-transparent' />
+            <div className='from-kapwa-brand-600 absolute top-2 bottom-0 left-4 w-0.5 bg-linear-to-b via-gray-300 to-transparent' />
             <div className='space-y-6'>
               {visibleHistory.map((event, idx) => (
                 <div
@@ -64,7 +64,7 @@ export default function TimelineSection() {
                 >
                   {/* Dot Marker */}
                   <div className='absolute top-3 left-0 flex h-8 w-8 items-center justify-center'>
-                    <div className='border-primary-600 group-hover:bg-kapwa-bg-brand-default bg-kapwa-bg-surface h-3 w-3 rounded-full border-2 shadow-sm transition-all duration-300 group-hover:scale-125' />
+                    <div className='border-kapwa-border-brand group-hover:bg-kapwa-bg-brand-default bg-kapwa-bg-surface h-3 w-3 rounded-full border-2 shadow-sm transition-all duration-300 group-hover:scale-125' />
                   </div>
 
                   <Card
@@ -102,7 +102,7 @@ export default function TimelineSection() {
                 >
                   <Card
                     hoverable
-                    className='bg-kapwa-bg-surface border-slate-200 shadow-sm transition-all hover:shadow-md'
+                    className='bg-kapwa-bg-surface border-kapwa-border-weak shadow-sm transition-all hover:shadow-md'
                   >
                     <CardContent className='p-5'>
                       <div className='mb-3 flex items-center gap-3'>

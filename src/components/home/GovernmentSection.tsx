@@ -22,7 +22,7 @@ const GovernmentSection: FC = () => {
         'government.electedofficialsDescription',
         'Meet your Mayor, Vice Mayor, and Councilors.'
       ),
-      icon: <UsersIcon className='text-primary-600 h-10 w-10' />,
+      icon: <UsersIcon className='text-kapwa-text-brand h-10 w-10' />,
       link: '/government/elected-officials',
     },
     {
@@ -32,20 +32,20 @@ const GovernmentSection: FC = () => {
         'government.departmentsDescription',
         'Services and offices under the Executive branch.'
       ),
-      icon: <Building2Icon className='text-primary-600 h-10 w-10' />,
+      icon: <Building2Icon className='text-kapwa-text-brand h-10 w-10' />,
       link: '/government/departments',
     },
     {
       id: 'barangays',
       title: t('government.barangaysTitle'),
       description: t('government.barangaysDescription'),
-      icon: <HomeIcon className='text-primary-600 h-10 w-10' />,
+      icon: <HomeIcon className='text-kapwa-text-brand h-10 w-10' />,
       link: '/government/barangays',
     },
   ];
 
   return (
-    <section className='bg-white py-12'>
+    <section className='bg-kapwa-bg-surface py-12'>
       <div className='container mx-auto px-4'>
         <div className='mb-12 text-center'>
           <h2 className='text-kapwa-text-strong mb-4 text-2xl font-bold md:text-3xl'>
@@ -97,14 +97,14 @@ const GovernmentSection: FC = () => {
               <h3 className='text-kapwa-text-strong mb-2 text-xl font-semibold'>
                 {t('government.directoryTitle')}
               </h3>
-              <p className='text-gray-800'>
+              <p className='text-kapwa-text-strong'>
                 {t('government.directoryDescription')}
               </p>
             </div>
             <div className='flex justify-center md:w-1/3 md:justify-end'>
               <a
                 href='/government/'
-                className='bg-primary-500 hover:bg-kapwa-bg-brand-default focus:ring-primary-500 text-kapwa-text-inverse inline-flex items-center justify-center rounded-md px-6 py-3 font-medium shadow-xs transition-colors focus:ring-2 focus:ring-offset-2 focus:outline-hidden'
+                className='bg-kapwa-bg-brand-weak0 hover:bg-kapwa-bg-brand-default focus:ring-kapwa-border-brand text-kapwa-text-inverse inline-flex items-center justify-center rounded-md px-6 py-3 font-medium shadow-xs transition-colors focus:ring-2 focus:ring-offset-2 focus:outline-hidden'
               >
                 {t('government.viewDirectory')}
               </a>

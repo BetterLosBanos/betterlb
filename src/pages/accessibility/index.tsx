@@ -222,7 +222,7 @@ const AccessibilityPage: FC = () => {
                     <ul className='space-y-2'>
                       {feature.features.map((item, itemIndex) => (
                         <li key={itemIndex} className='flex items-start'>
-                          <CheckCircleIcon className='text-kapwa-text-success mt-0.5 mr-2 h-4 w-4 flex-shrink-0' />
+                          <CheckCircleIcon className='text-kapwa-text-kapwa-text-success mt-0.5 mr-2 h-4 w-4 flex-shrink-0' />
                           <span className='text-kapwa-text-support text-sm'>
                             {item}
                           </span>
@@ -255,7 +255,7 @@ const AccessibilityPage: FC = () => {
                         {standard.level}
                       </h3>
                     </div>
-                    <p className='text-gray-800'>{standard.description}</p>
+                    <p className='text-kapwa-text-strong'>{standard.description}</p>
                   </div>
                 ))}
               </div>
@@ -342,7 +342,7 @@ const AccessibilityPage: FC = () => {
               <div className='grid grid-cols-1 gap-6 md:grid-cols-2'>
                 <div className='border-kapwa-border-weak rounded-lg border p-6'>
                   <div className='mb-4 flex items-center'>
-                    <MailIcon className='text-primary-600 mr-3 h-6 w-6' />
+                    <MailIcon className='text-kapwa-text-brand mr-3 h-6 w-6' />
                     <h3 className='text-kapwa-text-strong text-lg font-semibold'>
                       Email Support
                     </h3>
@@ -352,7 +352,7 @@ const AccessibilityPage: FC = () => {
                   </p>
                   <a
                     href='mailto:accessibility@bettergov.ph'
-                    className='text-primary-600 hover:text-kapwa-text-brand font-medium'
+                    className='text-kapwa-text-brand hover:text-kapwa-text-brand font-medium'
                   >
                     accessibility@bettergov.ph
                   </a>
@@ -360,7 +360,7 @@ const AccessibilityPage: FC = () => {
 
                 <div className='border-kapwa-border-weak rounded-lg border p-6'>
                   <div className='mb-4 flex items-center'>
-                    <PhoneIcon className='text-primary-600 mr-3 h-6 w-6' />
+                    <PhoneIcon className='text-kapwa-text-brand mr-3 h-6 w-6' />
                     <h3 className='text-kapwa-text-strong text-lg font-semibold'>
                       Phone Support
                     </h3>
@@ -370,7 +370,7 @@ const AccessibilityPage: FC = () => {
                   </p>
                   <a
                     href='tel:+63-2-8888-1000'
-                    className='text-primary-600 hover:text-kapwa-text-brand font-medium'
+                    className='text-kapwa-text-brand hover:text-kapwa-text-brand font-medium'
                   >
                     +63 (2) 8888-1000
                   </a>

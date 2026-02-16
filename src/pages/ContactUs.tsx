@@ -173,7 +173,7 @@ const ContactUs: FC = () => {
               <h2 className='text-kapwa-text-strong mb-4 text-2xl font-bold md:text-3xl'>
                 Frequently Asked Questions
               </h2>
-              <p className='text-gray-600'>
+              <p className='text-kapwa-text-support'>
                 Find answers to common questions about BetterGov
               </p>
             </div>

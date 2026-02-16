@@ -75,7 +75,7 @@ export default function BarangayDetail() {
       </Breadcrumb>
 
       {/* --- HERO HEADER --- */}
-      <header className='text-kapwa-text-inverse relative overflow-hidden rounded-2xl bg-slate-900 p-8 shadow-xl md:p-10'>
+      <header className='text-kapwa-text-inverse relative overflow-hidden rounded-2xl bg-kapwa-bg-gray-900 p-8 shadow-xl md:p-10'>
         <div className='relative z-10 max-w-3xl'>
           <div className='mb-3 flex items-center gap-2'>
             <Badge variant='secondary' dot>
@@ -85,10 +85,10 @@ export default function BarangayDetail() {
           <h1 className='mb-4 text-3xl font-extrabold tracking-tight md:text-5xl'>
             {toTitleCase(barangay.barangay_name)}
           </h1>
-          <div className='flex flex-wrap gap-x-6 gap-y-2 text-sm font-medium text-slate-300'>
+          <div className='flex flex-wrap gap-x-6 gap-y-2 text-sm font-medium text-kapwa-text-support'>
             {barangay.address && (
               <span className='flex items-center gap-2'>
-                <MapPinIcon className='text-secondary-400 h-4 w-4' />{' '}
+                <MapPinIcon className='text-kapwa-text-accent-orange h-4 w-4' />{' '}
                 {barangay.address}
               </span>
             )}
@@ -122,9 +122,9 @@ export default function BarangayDetail() {
           // Explicit Executive Styling
           className='border-l-primary-600 border-l-4'
         >
-          <div className='bg-primary-50/50 border-kapwa-border-brand flex flex-col items-center gap-6 rounded-2xl border p-8 shadow-sm md:flex-row'>
+          <div className='bg-kapwa-bg-brand-weak/50 border-kapwa-border-brand flex flex-col items-center gap-6 rounded-2xl border p-8 shadow-sm md:flex-row'>
             {/* Neutral Seal */}
-            <div className='border-primary-100 text-kapwa-text-brand bg-kapwa-bg-surface flex h-20 w-20 shrink-0 items-center justify-center rounded-full border-4 shadow-sm'>
+            <div className='border-kapwa-border-brand text-kapwa-text-brand bg-kapwa-bg-surface flex h-20 w-20 shrink-0 items-center justify-center rounded-full border-4 shadow-sm'>
               <UserIcon className='h-10 w-10' />
             </div>
 
@@ -158,11 +158,11 @@ export default function BarangayDetail() {
             >
               <CardContent className='flex items-center gap-3 p-4'>
                 {/* Orange Icon Box */}
-                <div className='bg-secondary-50 text-secondary-600 border-secondary-100 shrink-0 rounded-lg border p-2'>
+                <div className='bg-kapwa-bg-accent-orange-weak text-kapwa-text-accent-orange border-secondary-100 shrink-0 rounded-lg border p-2'>
                   <UsersIcon className='h-5 w-5' />
                 </div>
                 <div className='min-w-0'>
-                  <p className='text-secondary-500 mb-0.5 text-[10px] font-bold tracking-widest uppercase'>
+                  <p className='text-kapwa-text-accent-orange0 mb-0.5 text-[10px] font-bold tracking-widest uppercase'>
                     Barangay Kagawad
                   </p>
                   <p className='text-kapwa-text-strong text-sm leading-tight font-bold'>
@@ -191,11 +191,11 @@ export default function BarangayDetail() {
             >
               <CardContent className='flex items-center gap-3 p-4'>
                 {/* Orange Icon Box */}
-                <div className='bg-secondary-50 text-secondary-600 border-secondary-100 shrink-0 rounded-lg border p-2'>
+                <div className='bg-kapwa-bg-accent-orange-weak text-kapwa-text-accent-orange border-secondary-100 shrink-0 rounded-lg border p-2'>
                   <GraduationCapIcon className='h-5 w-5' />
                 </div>
                 <div className='min-w-0'>
-                  <p className='text-secondary-500 mb-0.5 text-[10px] font-bold tracking-widest uppercase'>
+                  <p className='text-kapwa-text-accent-orange0 mb-0.5 text-[10px] font-bold tracking-widest uppercase'>
                     {sk.role.replace('SK ', '')}
                   </p>
                   <p className='text-kapwa-text-strong text-sm leading-tight font-bold'>
@@ -212,7 +212,7 @@ export default function BarangayDetail() {
       <DetailSection title='Barangay Administration' icon={Briefcase}>
         <div className='grid grid-cols-1 gap-4 md:grid-cols-2'>
           {/* Secretary */}
-          <Card variant='slate' hover={false} className='bg-slate-50'>
+          <Card variant='slate' hover={false} className='bg-kapwa-bg-surface'>
             <CardContent className='flex items-center gap-4 p-4'>
               <div className='border-kapwa-border-weak bg-kapwa-bg-surface text-kapwa-text-disabled flex h-10 w-10 shrink-0 items-center justify-center rounded-full border shadow-sm'>
                 <Briefcase className='h-5 w-5' />
@@ -229,7 +229,7 @@ export default function BarangayDetail() {
           </Card>
 
           {/* Treasurer */}
-          <Card variant='slate' hover={false} className='bg-slate-50'>
+          <Card variant='slate' hover={false} className='bg-kapwa-bg-surface'>
             <CardContent className='flex items-center gap-4 p-4'>
               <div className='border-kapwa-border-weak bg-kapwa-bg-surface text-kapwa-text-disabled flex h-10 w-10 shrink-0 items-center justify-center rounded-full border shadow-sm'>
                 <Briefcase className='h-5 w-5' />

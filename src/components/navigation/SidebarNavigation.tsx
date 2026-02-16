@@ -76,8 +76,8 @@ export function SidebarItem({
     border-l-2 
     ${
       active
-        ? 'bg-kapwa-bg-surface text-primary-700 font-semibold border-primary-600'
-        : 'text-gray-600 hover:bg-kapwa-bg-surface-raised hover:text-kapwa-text-strong border-transparent'
+        ? 'bg-kapwa-bg-surface text-kapwa-text-brand-bold font-semibold border-kapwa-border-brand'
+        : 'text-kapwa-text-support hover:bg-kapwa-bg-surface-raised hover:text-kapwa-text-strong border-transparent'
     }
   `;
 
@@ -85,14 +85,14 @@ export function SidebarItem({
     <>
       {Icon && (
         <Icon
-          className={`mt-0.5 h-4 w-4 shrink-0 ${active ? 'text-primary-600' : 'group-hover:text-kapwa-text-on-disabled text-gray-400'}`}
+          className={`mt-0.5 h-4 w-4 shrink-0 ${active ? 'text-kapwa-text-brand' : 'group-hover:text-kapwa-text-on-disabled text-kapwa-text-disabled'}`}
         />
       )}
       <div className='flex flex-col overflow-hidden text-left'>
         <span className='truncate'>{label}</span>
         {description && (
           <span
-            className={`text-[11px] leading-tight ${active ? 'text-primary-600/70' : 'text-gray-400'}`}
+            className={`text-[11px] leading-tight ${active ? 'text-kapwa-text-brand/70' : 'text-kapwa-text-disabled'}`}
           >
             {description}
           </span>

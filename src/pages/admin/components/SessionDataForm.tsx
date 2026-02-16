@@ -246,7 +246,7 @@ export default function SessionDataForm({
               value={facebookPost}
               onChange={e => setFacebookPost(e.target.value)}
               placeholder='Paste the Facebook post content here... The parser will extract session type, number, date, and attendees.'
-              className='focus:border-kapwa-border-brand focus:ring-primary-500 border-kapwa-border-weak w-full rounded-md border px-3 py-2 text-sm focus:ring-1 focus:outline-none'
+              className='focus:border-kapwa-border-brand focus:ring-kapwa-border-brand border-kapwa-border-weak w-full rounded-md border px-3 py-2 text-sm focus:ring-1 focus:outline-none'
               rows={5}
             />
           </div>
@@ -304,7 +304,7 @@ export default function SessionDataForm({
               <select
                 value={sessionType}
                 onChange={e => setSessionType(e.target.value as SessionType)}
-                className='focus:border-kapwa-border-brand focus:ring-primary-500 border-kapwa-border-weak w-full rounded-md border px-3 py-2 text-sm focus:ring-1 focus:outline-none'
+                className='focus:border-kapwa-border-brand focus:ring-kapwa-border-brand border-kapwa-border-weak w-full rounded-md border px-3 py-2 text-sm focus:ring-1 focus:outline-none'
               >
                 {sessionTypeOptions.map(option => (
                   <option key={option.value} value={option.value}>
@@ -327,7 +327,7 @@ export default function SessionDataForm({
                   )
                 }
                 placeholder='e.g., 100'
-                className='focus:border-kapwa-border-brand focus:ring-primary-500 border-kapwa-border-weak w-full rounded-md border px-3 py-2 text-sm focus:ring-1 focus:outline-none'
+                className='focus:border-kapwa-border-brand focus:ring-kapwa-border-brand border-kapwa-border-weak w-full rounded-md border px-3 py-2 text-sm focus:ring-1 focus:outline-none'
               />
             </div>
           </div>
@@ -340,7 +340,7 @@ export default function SessionDataForm({
               type='date'
               value={date}
               onChange={e => setDate(e.target.value)}
-              className='focus:border-kapwa-border-brand focus:ring-primary-500 border-kapwa-border-weak w-full rounded-md border px-3 py-2 text-sm focus:ring-1 focus:outline-none'
+              className='focus:border-kapwa-border-brand focus:ring-kapwa-border-brand border-kapwa-border-weak w-full rounded-md border px-3 py-2 text-sm focus:ring-1 focus:outline-none'
             />
           </div>
 
@@ -353,7 +353,7 @@ export default function SessionDataForm({
               value={sourceUrl}
               onChange={e => setSourceUrl(e.target.value)}
               placeholder='https://facebook.com/...'
-              className='focus:border-kapwa-border-brand focus:ring-primary-500 border-kapwa-border-weak w-full rounded-md border px-3 py-2 text-sm focus:ring-1 focus:outline-none'
+              className='focus:border-kapwa-border-brand focus:ring-kapwa-border-brand border-kapwa-border-weak w-full rounded-md border px-3 py-2 text-sm focus:ring-1 focus:outline-none'
             />
           </div>
         </CardContent>

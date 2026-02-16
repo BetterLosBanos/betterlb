@@ -225,7 +225,7 @@ export default function InfrastructureDetail() {
             {label}
           </span>
         </div>
-        <ExternalLink className='group-hover:text-kapwa-text-brand-600 h-3.5 w-3.5 text-slate-300 transition-colors' />
+        <ExternalLink className='group-hover:text-kapwa-text-brand-600 h-3.5 w-3.5 text-kapwa-text-support transition-colors' />
       </a>
     );
   };
@@ -331,7 +331,7 @@ export default function InfrastructureDetail() {
 
       {/* 3. Key Stats Grid */}
       <div className='mb-8 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4'>
-        <Card className='border-slate-200 shadow-sm'>
+        <Card className='border-kapwa-border-weak shadow-sm'>
           <CardContent className='flex h-full flex-col justify-between p-5'>
             <div className='mb-2 flex items-center gap-2'>
               <div className='border-kapwa-border-weak bg-kapwa-bg-surface-raised text-kapwa-text-disabled rounded-md border p-1.5'>
@@ -355,7 +355,7 @@ export default function InfrastructureDetail() {
           </CardContent>
         </Card>
 
-        <Card className='border-slate-200 shadow-sm'>
+        <Card className='border-kapwa-border-weak shadow-sm'>
           <CardContent className='flex h-full flex-col justify-between p-5'>
             <div className='mb-2 flex items-center gap-2'>
               <div className='border-kapwa-border-weak bg-kapwa-bg-surface-raised text-kapwa-text-disabled rounded-md border p-1.5'>
@@ -382,7 +382,7 @@ export default function InfrastructureDetail() {
           </CardContent>
         </Card>
 
-        <Card className='bg-kapwa-bg-surface-raised/50 border-slate-200 shadow-sm'>
+        <Card className='bg-kapwa-bg-surface-raised/50 border-kapwa-border-weak shadow-sm'>
           <CardContent className='flex h-full flex-col justify-between p-5'>
             <div className='mb-2 flex items-center gap-2'>
               <div className='border-kapwa-border-weak bg-kapwa-bg-surface text-kapwa-text-disabled rounded-md border p-1.5'>
@@ -393,7 +393,7 @@ export default function InfrastructureDetail() {
               </span>
             </div>
             <div>
-              <p className='text-primary-600 mb-2 text-2xl font-black'>
+              <p className='text-kapwa-text-brand mb-2 text-2xl font-black'>
                 {project.progress.toFixed(1)}%
               </p>
               <div className='bg-kapwa-bg-active h-2 w-full overflow-hidden rounded-full'>
@@ -406,7 +406,7 @@ export default function InfrastructureDetail() {
           </CardContent>
         </Card>
 
-        <Card className='border-slate-200 shadow-sm'>
+        <Card className='border-kapwa-border-weak shadow-sm'>
           <CardContent className='flex h-full flex-col justify-between p-5'>
             <div className='mb-2 flex items-center gap-2'>
               <div className='border-kapwa-border-weak bg-kapwa-bg-surface-raised text-kapwa-text-disabled rounded-md border p-1.5'>
@@ -502,11 +502,11 @@ export default function InfrastructureDetail() {
                     {project.bidders.map((bidder, i) => (
                       <div
                         key={i}
-                        className={`flex items-center justify-between rounded-lg border p-3 ${bidder.isWinner ? 'border-emerald-100 bg-emerald-50' : 'border-slate-100 bg-slate-50'}`}
+                        className={`flex items-center justify-between rounded-lg border p-3 ${bidder.isWinner ? 'border-emerald-100 bg-emerald-50' : 'border-slate-100 bg-kapwa-bg-surface'}`}
                       >
                         <div>
                           <p
-                            className={`text-sm font-bold ${bidder.isWinner ? 'text-emerald-900' : 'text-slate-700'}`}
+                            className={`text-sm font-bold ${bidder.isWinner ? 'text-emerald-900' : 'text-kapwa-text-support'}`}
                           >
                             {bidder.name}
                           </p>
@@ -604,19 +604,19 @@ export default function InfrastructureDetail() {
                     </p>
                     <div className='grid grid-cols-2 gap-2 text-xs'>
                       <p>
-                        <span className='text-slate-400'>Type:</span>{' '}
-                        <span className='font-medium text-slate-800'>
+                        <span className='text-kapwa-text-disabled'>Type:</span>{' '}
+                        <span className='font-medium text-kapwa-text-strong'>
                           {comp.infraType}
                         </span>
                       </p>
                       <p>
-                        <span className='text-slate-400'>Work:</span>{' '}
-                        <span className='font-medium text-slate-800'>
+                        <span className='text-kapwa-text-disabled'>Work:</span>{' '}
+                        <span className='font-medium text-kapwa-text-strong'>
                           {comp.typeOfWork}
                         </span>
                       </p>
                       <p>
-                        <span className='text-slate-400'>Coords:</span>{' '}
+                        <span className='text-kapwa-text-disabled'>Coords:</span>{' '}
                         <span className='text-kapwa-text-on-disabled font-mono'>
                           {comp.coordinates?.latitude.toFixed(5)},{' '}
                           {comp.coordinates?.longitude.toFixed(5)}
@@ -697,7 +697,7 @@ export default function InfrastructureDetail() {
                 </>
               ) : (
                 <div className='border-kapwa-border-weak bg-kapwa-bg-surface-raised rounded-xl border border-dashed p-4 text-center'>
-                  <MapPin className='mx-auto mb-2 h-6 w-6 text-slate-300' />
+                  <MapPin className='mx-auto mb-2 h-6 w-6 text-kapwa-text-support' />
                   <p className='text-kapwa-text-disabled text-xs'>
                     No coordinates available
                   </p>
@@ -755,7 +755,7 @@ export default function InfrastructureDetail() {
               href={`https://bisto.ph/?q=${encodeURIComponent(project.contractId)}`} //waiting for bisto.ph PR
               target='_blank'
               rel='noreferrer'
-              className='text-kapwa-text-inverse flex w-full items-center justify-center gap-2 rounded-lg bg-slate-900 py-2 text-xs font-bold shadow-md transition-all hover:bg-slate-800'
+              className='text-kapwa-text-inverse flex w-full items-center justify-center gap-2 rounded-lg bg-kapwa-bg-gray-900 py-2 text-xs font-bold shadow-md transition-all hover:bg-kapwa-bg-gray-800'
             >
               Search on Bisto.ph <Search className='h-3 w-3' />
             </a>
@@ -770,7 +770,7 @@ export default function InfrastructureDetail() {
             href='https://transparency.bettergov.ph/dpwh/'
             target='_blank'
             rel='noopener noreferrer'
-            className='text-primary-600 hover:text-kapwa-text-brand-bold inline-flex items-center gap-1 font-bold transition-colors hover:underline'
+            className='text-kapwa-text-brand hover:text-kapwa-text-brand-bold inline-flex items-center gap-1 font-bold transition-colors hover:underline'
           >
             DPWH Infrastructure Transparency Interface via BetterGov.ph
             <ExternalLink className='h-3 w-3' />

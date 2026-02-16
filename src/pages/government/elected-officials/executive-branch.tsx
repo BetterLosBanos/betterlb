@@ -106,14 +106,14 @@ export default function ExecutiveBranchPage() {
               className={
                 isMayor
                   ? 'border-l-primary-600 border-l-4 shadow-sm'
-                  : 'bg-slate-50/30'
+                  : 'bg-kapwa-bg-surface/30'
               }
             >
               <div className='flex flex-col items-center space-y-4 py-4 text-center'>
                 {/* Official Icon Seal */}
                 <div className='relative'>
                   <div
-                    className={`flex h-20 w-20 items-center justify-center rounded-full border-4 shadow-sm ${isMayor ? 'bg-kapwa-bg-surface border-primary-100 text-primary-600' : 'border-white bg-white text-slate-400'}`}
+                    className={`flex h-20 w-20 items-center justify-center rounded-full border-4 shadow-sm ${isMayor ? 'bg-kapwa-bg-surface border-kapwa-border-brand text-kapwa-text-brand' : 'border-white bg-kapwa-bg-surface text-kapwa-text-disabled'}`}
                   >
                     <Icon className='h-10 w-10' />
                   </div>
@@ -164,7 +164,7 @@ export default function ExecutiveBranchPage() {
                   <div className='border-kapwa-border-weak w-full border-t pt-4'>
                     <Link
                       to={`/openlgu/person/${leader.personId}`}
-                      className='text-primary-600 hover:text-kapwa-text-brand-bold group flex items-center justify-center gap-2 text-sm font-bold transition-colors'
+                      className='text-kapwa-text-brand hover:text-kapwa-text-brand-bold group flex items-center justify-center gap-2 text-sm font-bold transition-colors'
                     >
                       View Full Profile
                       <ArrowRight className='h-4 w-4 transition-transform group-hover:translate-x-1' />
@@ -235,11 +235,11 @@ export default function ExecutiveBranchPage() {
                   <div className='mt-auto flex items-center justify-between gap-4 border-t border-slate-50 pt-3'>
                     {official.phone ? (
                       <div className='text-kapwa-text-disabled flex items-center gap-1.5 text-[11px] font-medium'>
-                        <Phone className='text-primary-400 h-3 w-3' />
+                        <Phone className='text-kapwa-text-brand h-3 w-3' />
                         <span>{official.phone}</span>
                       </div>
                     ) : (
-                      <div className='text-[10px] text-slate-300 italic'>
+                      <div className='text-[10px] text-kapwa-text-support italic'>
                         No contact
                       </div>
                     )}
@@ -254,7 +254,7 @@ export default function ExecutiveBranchPage() {
       {/* --- SECTION 3: BRIDGE --- */}
       <div className='border-kapwa-border-weak bg-kapwa-bg-surface-raised mt-4 flex flex-col items-center justify-between gap-4 rounded-2xl border p-6 md:flex-row'>
         <div className='flex items-center gap-4'>
-          <Briefcase className='h-8 w-8 text-slate-300' />
+          <Briefcase className='h-8 w-8 text-kapwa-text-support' />
           <div>
             <h4 className='text-kapwa-text-strong font-bold'>
               Looking for Department Heads?
@@ -267,7 +267,7 @@ export default function ExecutiveBranchPage() {
         </div>
         <Link
           to='/government/departments'
-          className='text-primary-600 hover:text-kapwa-text-brand-bold group border-kapwa-border-weak bg-kapwa-bg-surface flex min-h-[44px] items-center gap-2 rounded-xl border px-5 py-2.5 text-[10px] font-bold tracking-widest uppercase shadow-sm transition-all'
+          className='text-kapwa-text-brand hover:text-kapwa-text-brand-bold group border-kapwa-border-weak bg-kapwa-bg-surface flex min-h-[44px] items-center gap-2 rounded-xl border px-5 py-2.5 text-[10px] font-bold tracking-widest uppercase shadow-sm transition-all'
         >
           Go to Departments{' '}
           <ArrowRight className='h-3.5 w-3.5 transition-transform group-hover:translate-x-1' />

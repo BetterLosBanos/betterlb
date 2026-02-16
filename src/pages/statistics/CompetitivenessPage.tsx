@@ -118,8 +118,8 @@ export default function CompetitivenessPage() {
             className={cn(
               'min-h-[48px] flex-1 rounded-xl py-3 text-xs font-bold tracking-widest uppercase transition-all',
               activeTab === tab
-                ? 'text-primary-700 bg-white shadow-md'
-                : 'hover:text-kapwa-text-support text-slate-500'
+                ? 'text-kapwa-text-brand-bold bg-kapwa-bg-surface shadow-md'
+                : 'hover:text-kapwa-text-support text-kapwa-text-strong0'
             )}
           >
             {tab === 'trends' ? (
@@ -186,16 +186,16 @@ export default function CompetitivenessPage() {
                 className={cn(
                   'flex min-h-[56px] w-full items-center justify-between rounded-2xl border p-4 text-left transition-all',
                   selectedPillar === p.name
-                    ? 'bg-kapwa-bg-surface border-primary-200 shadow-sm'
-                    : 'border-slate-200 bg-white'
+                    ? 'bg-kapwa-bg-surface border-kapwa-border-brand shadow-sm'
+                    : 'border-kapwa-border-weak bg-kapwa-bg-surface'
                 )}
               >
                 <span
                   className={cn(
                     'text-sm font-bold',
                     selectedPillar === p.name
-                      ? 'text-primary-900'
-                      : 'text-slate-700'
+                      ? 'text-kapwa-text-brand-bold'
+                      : 'text-kapwa-text-support'
                   )}
                 >
                   {p.name}
@@ -210,7 +210,7 @@ export default function CompetitivenessPage() {
             <DetailSection
               title={`${selectedPillar} Indicators`}
               icon={Target}
-              className='bg-slate-50/30'
+              className='bg-kapwa-bg-surface/30'
             >
               <div className='grid grid-cols-1 gap-3 sm:grid-cols-2'>
                 {currentPillar?.indicators.map((ind, idx) => (

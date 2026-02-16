@@ -136,7 +136,7 @@ export default function ErrorLog() {
       <div className='flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between'>
         <div>
           <h2 className='text-kapwa-text-strong text-2xl font-bold'>Parse Errors</h2>
-          <p className='text-slate-600'>
+          <p className='text-kapwa-text-support'>
             Documents that failed during pipeline processing
           </p>
         </div>
@@ -192,7 +192,7 @@ export default function ErrorLog() {
                       href={error.pdf_url}
                       target='_blank'
                       rel='noopener noreferrer'
-                      className='text-primary-600 mt-1 inline-flex items-center gap-1 text-sm hover:underline'
+                      className='text-kapwa-text-brand mt-1 inline-flex items-center gap-1 text-sm hover:underline'
                     >
                       <FileText className='h-3 w-3' />
                       View PDF

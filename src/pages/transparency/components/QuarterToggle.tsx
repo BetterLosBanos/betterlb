@@ -33,7 +33,7 @@ const SlideToggle = <T extends string>({
           <button
             key={option}
             onClick={() => onChange(option)}
-            className={`relative z-10 rounded-md px-3 py-1 text-xs font-medium transition-all duration-200 ${isActive ? 'text-slate-900' : 'hover:text-kapwa-text-support text-slate-500'} `}
+            className={`relative z-10 rounded-md px-3 py-1 text-xs font-medium transition-all duration-200 ${isActive ? 'text-kapwa-text-strong' : 'hover:text-kapwa-text-support text-kapwa-text-strong0'} `}
           >
             {labels ? labels[option] : option}
 
@@ -102,10 +102,10 @@ export default function QuarterToggle({
                   onClick={() => onQuarterChange(q)}
                   className={`relative rounded-md px-4 py-1.5 text-xs font-medium transition-all duration-200 ${
                     !isAvailable
-                      ? 'cursor-not-allowed bg-transparent text-slate-300' // Greyed out
+                      ? 'cursor-not-allowed bg-transparent text-kapwa-text-support' // Greyed out
                       : isSelected
-                        ? 'bg-slate-900 text-white shadow-sm' // Active & Dark
-                        : 'hover:bg-kapwa-bg-surface text-slate-600 hover:shadow-sm' // Available & Hover
+                        ? 'bg-kapwa-bg-gray-900 text-white shadow-sm' // Active & Dark
+                        : 'hover:bg-kapwa-bg-surface text-kapwa-text-support hover:shadow-sm' // Available & Hover
                   } `}
                 >
                   {q}

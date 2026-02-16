@@ -339,7 +339,7 @@ export default function AdminDashboard() {
                       {item.document && (
                         <Link
                           to={`/openlgu/documents/${item.document.id}`}
-                          className='text-primary-600 mb-1 inline-flex items-center gap-1 text-sm font-medium hover:underline'
+                          className='text-kapwa-text-brand mb-1 inline-flex items-center gap-1 text-sm font-medium hover:underline'
                         >
                           <FileText className='h-3 w-3' />
                           {item.document.type === 'ordinance'

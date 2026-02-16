@@ -455,7 +455,7 @@ export default function ReviewQueue() {
       <div className='flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between'>
         <div>
           <h2 className='text-kapwa-text-strong text-2xl font-bold'>Review Queue</h2>
-          <p className='text-slate-600'>
+          <p className='text-kapwa-text-support'>
             {pagination.total} items needing review
             {selectedItems.size > 0 && ` (${selectedItems.size} selected)`}
           </p>
@@ -467,7 +467,7 @@ export default function ReviewQueue() {
               setTypeFilter(e.target.value as ItemType | 'all');
               setPage(0);
             }}
-            className='focus:border-kapwa-border-brand focus:ring-primary-500/20 border-kapwa-border-weak bg-kapwa-bg-surface h-9 rounded-md border px-3 py-1 text-sm shadow-sm focus:ring-2 focus:outline-none'
+            className='focus:border-kapwa-border-brand focus:ring-kapwa-border-brand/20 border-kapwa-border-weak bg-kapwa-bg-surface h-9 rounded-md border px-3 py-1 text-sm shadow-sm focus:ring-2 focus:outline-none'
           >
             {typeOptions.map(opt => (
               <option key={opt.value} value={opt.value}>
@@ -481,7 +481,7 @@ export default function ReviewQueue() {
               setStatusFilter(e.target.value as ReviewStatus | 'all');
               setPage(0);
             }}
-            className='focus:border-kapwa-border-brand focus:ring-primary-500/20 border-kapwa-border-weak bg-kapwa-bg-surface h-9 rounded-md border px-3 py-1 text-sm shadow-sm focus:ring-2 focus:outline-none'
+            className='focus:border-kapwa-border-brand focus:ring-kapwa-border-brand/20 border-kapwa-border-weak bg-kapwa-bg-surface h-9 rounded-md border px-3 py-1 text-sm shadow-sm focus:ring-2 focus:outline-none'
           >
             {statusOptions.map(opt => (
               <option key={opt.value} value={opt.value}>
@@ -504,7 +504,7 @@ export default function ReviewQueue() {
       {selectedItems.size > 0 && (
         <div className='bg-kapwa-bg-surface flex items-center justify-between rounded-md p-4'>
           <div className='flex items-center gap-3'>
-            <span className='text-primary-900 font-medium'>
+            <span className='text-kapwa-text-brand-bold font-medium'>
               {selectedItems.size} item{selectedItems.size !== 1 ? 's' : ''}{' '}
               selected
             </span>
@@ -574,7 +574,7 @@ export default function ReviewQueue() {
                       className='hover:text-kapwa-text-brand text-kapwa-text-disabled flex-shrink-0'
                     >
                       {selectedItems.has(item.id) ? (
-                        <CheckSquare className='text-primary-600 h-5 w-5' />
+                        <CheckSquare className='text-kapwa-text-brand h-5 w-5' />
                       ) : (
                         <Square className='h-5 w-5' />
                       )}
@@ -626,7 +626,7 @@ export default function ReviewQueue() {
                           href={item.document.pdf_url}
                           target='_blank'
                           rel='noopener noreferrer'
-                          className='text-primary-600 mt-2 inline-flex items-center gap-1 text-xs hover:underline'
+                          className='text-kapwa-text-brand mt-2 inline-flex items-center gap-1 text-xs hover:underline'
                         >
                           <FileText className='h-3 w-3' />
                           View PDF
@@ -652,7 +652,7 @@ export default function ReviewQueue() {
                         href={item.source_url}
                         target='_blank'
                         rel='noopener noreferrer'
-                        className='text-primary-600 hover:underline'
+                        className='text-kapwa-text-brand hover:underline'
                       >
                         Source
                       </a>

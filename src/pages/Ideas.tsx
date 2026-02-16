@@ -87,7 +87,7 @@ const getPriorityColor = (priority: string) => {
     case 'low':
       return 'bg-green-100 text-green-800';
     default:
-      return 'bg-gray-100 text-gray-800';
+      return 'bg-kapwa-bg-kapwa-bg-surface-raised text-kapwa-text-strong';
   }
 };
 
@@ -100,7 +100,7 @@ const getComplexityColor = (complexity: string) => {
     case 'complex':
       return 'bg-orange-100 text-orange-800';
     default:
-      return 'bg-gray-100 text-gray-800';
+      return 'bg-kapwa-bg-kapwa-bg-surface-raised text-kapwa-text-strong';
   }
 };
 
@@ -165,7 +165,7 @@ const Ideas: FC = () => {
         {/* Stats */}
         <div className='mb-8 grid grid-cols-2 gap-4 md:mb-12 md:grid-cols-5'>
           <div className='bg-kapwa-bg-surface rounded-lg p-4 text-center shadow-xs'>
-            <div className='text-primary-600 text-2xl font-bold'>
+            <div className='text-kapwa-text-brand text-2xl font-bold'>
               {projectIdeas.length}
             </div>
             <div className='text-kapwa-text-on-disabled text-sm'>Total Ideas</div>
@@ -183,7 +183,7 @@ const Ideas: FC = () => {
             <div className='text-kapwa-text-on-disabled text-sm'>Categories</div>
           </div>
           <div className='bg-kapwa-bg-surface rounded-lg p-4 text-center shadow-xs'>
-            <div className='text-kapwa-text-success text-2xl font-bold'>
+            <div className='text-kapwa-text-kapwa-text-success text-2xl font-bold'>
               {projectIdeas.filter(idea => idea.complexity === 'simple').length}
             </div>
             <div className='text-kapwa-text-on-disabled text-sm'>

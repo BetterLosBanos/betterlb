@@ -64,7 +64,7 @@ const BreadcrumbList = forwardRef<HTMLOListElement, BreadcrumbListProps>(
     <ol
       ref={ref}
       className={cn(
-        'flex flex-wrap items-center gap-2 text-sm text-gray-500',
+        'flex flex-wrap items-center gap-2 text-sm text-kapwa-text-disabled',
         className
       )}
       {...props}
@@ -94,7 +94,7 @@ const BreadcrumbLink = forwardRef<HTMLAnchorElement, BreadcrumbLinkProps>(
       ref={ref}
       to={href}
       className={cn(
-        'hover:text-kapwa-text-strong font-medium text-gray-500 transition-colors',
+        'hover:text-kapwa-text-strong font-medium text-kapwa-text-disabled transition-colors',
         className
       )}
       {...props}
@@ -112,7 +112,7 @@ const BreadcrumbPage = forwardRef<HTMLSpanElement, BreadcrumbPageProps>(
       role='link'
       aria-disabled='true'
       aria-current='page'
-      className={cn('font-bold text-gray-900', className)}
+      className={cn('font-bold text-kapwa-text-strong', className)}
       {...props}
     >
       {children}
@@ -129,7 +129,7 @@ const BreadcrumbSeparator = ({
   <li
     role='presentation'
     aria-hidden='true'
-    className={cn('text-gray-400', className)}
+    className={cn('text-kapwa-text-disabled', className)}
     {...props}
   >
     {children || <ChevronRightIcon className='h-3.5 w-3.5' />}
@@ -143,7 +143,7 @@ const BreadcrumbHome = forwardRef<HTMLAnchorElement, BreadcrumbLinkProps>(
       ref={ref}
       to={href}
       className={cn(
-        'hover:text-kapwa-text-strong flex items-center gap-1.5 font-medium text-gray-500 transition-colors',
+        'hover:text-kapwa-text-strong flex items-center gap-1.5 font-medium text-kapwa-text-disabled transition-colors',
         className
       )}
       {...props}

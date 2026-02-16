@@ -223,11 +223,11 @@ const MeilisearchInstantSearch: FC = () => {
               root: 'mb-2',
               form: 'relative',
               input:
-                'w-full p-3 pl-10 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-hidden transition duration-150 ease-in-out',
+                'w-full p-3 pl-10 border border-kapwa-border-weak rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-hidden transition duration-150 ease-in-out',
               submit:
-                'absolute top-0 right-0 h-full px-3 text-gray-800 hover:text-kapwa-text-info',
+                'absolute top-0 right-0 h-full px-3 text-kapwa-text-strong hover:text-kapwa-text-info',
               reset:
-                'absolute top-0 right-8 h-full px-3 text-gray-400 hover:text-kapwa-text-support',
+                'absolute top-0 right-8 h-full px-3 text-kapwa-text-disabled hover:text-kapwa-text-support',
             }}
           />
 
@@ -235,7 +235,7 @@ const MeilisearchInstantSearch: FC = () => {
             <div className='bg-kapwa-bg-surface absolute z-30 h-96 w-[calc(100%-2rem)] max-w-[calc(100%-4rem)] overflow-y-scroll rounded-lg shadow-sm lg:w-1/2'>
               <Stats
                 classNames={{
-                  root: 'text-sm text-gray-800 p-2 text-right text-xs',
+                  root: 'text-sm text-kapwa-text-strong p-2 text-right text-xs',
                 }}
               />
               <Hits

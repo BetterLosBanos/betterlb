@@ -278,7 +278,7 @@ export default function DeletionQueue() {
           <h2 className='text-kapwa-text-strong text-2xl font-bold'>
             Deletion Queue
           </h2>
-          <p className='text-slate-600'>
+          <p className='text-kapwa-text-support'>
             {persons.length} person{persons.length !== 1 ? 's' : ''} flagged for
             deletion
             {selectedIds.size > 0 && ` (${selectedIds.size} selected)`}
@@ -362,7 +362,7 @@ export default function DeletionQueue() {
             type='checkbox'
             checked={selectedIds.size === persons.length && persons.length > 0}
             onChange={selectAll}
-            className='text-primary-600 focus:ring-primary-500 border-kapwa-border-weak h-4 w-4 rounded'
+            className='text-kapwa-text-brand focus:ring-kapwa-border-brand border-kapwa-border-weak h-4 w-4 rounded'
             readOnly
           />
           Select all ({persons.length})
@@ -394,7 +394,7 @@ export default function DeletionQueue() {
                     type='checkbox'
                     checked={isSelected}
                     onChange={() => toggleSelection(person.id)}
-                    className='text-primary-600 focus:ring-primary-500 border-kapwa-border-weak mt-1 h-4 w-4 rounded'
+                    className='text-kapwa-text-brand focus:ring-kapwa-border-brand border-kapwa-border-weak mt-1 h-4 w-4 rounded'
                   />
                   <div>
                     <h3 className='text-kapwa-text-strong font-medium'>

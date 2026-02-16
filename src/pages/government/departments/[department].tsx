@@ -90,7 +90,7 @@ export default function DepartmentDetail() {
       </Breadcrumb>
 
       {/* --- HERO HEADER --- */}
-      <header className='text-kapwa-text-inverse relative overflow-hidden rounded-2xl bg-slate-900 p-8 shadow-xl md:p-10'>
+      <header className='text-kapwa-text-inverse relative overflow-hidden rounded-2xl bg-kapwa-bg-gray-900 p-8 shadow-xl md:p-10'>
         <div className='relative z-10 max-w-3xl'>
           <div className='mb-3 flex items-center gap-2'>
             <Badge variant='primary' dot>
@@ -100,10 +100,10 @@ export default function DepartmentDetail() {
           <h1 className='mb-4 text-3xl font-extrabold tracking-tight md:text-5xl'>
             {toTitleCase(dept.office_name)}
           </h1>
-          <div className='flex flex-wrap gap-x-6 gap-y-2 text-sm font-medium text-slate-300'>
+          <div className='flex flex-wrap gap-x-6 gap-y-2 text-sm font-medium text-kapwa-text-support'>
             {dept.address && (
               <span className='flex items-center gap-2'>
-                <MapPinIcon className='text-primary-400 h-4 w-4' />
+                <MapPinIcon className='text-kapwa-text-brand h-4 w-4' />
                 {dept.address}
               </span>
             )}
@@ -140,9 +140,9 @@ export default function DepartmentDetail() {
       {/* --- SECTION 1: OFFICE LEADERSHIP --- */}
       {dept.department_head && (
         <DetailSection title='Office Leadership' icon={UserIcon}>
-          <div className='bg-primary-50/50 border-kapwa-border-brand flex flex-col items-center gap-6 rounded-2xl border p-8 shadow-sm md:flex-row'>
+          <div className='bg-kapwa-bg-brand-weak/50 border-kapwa-border-brand flex flex-col items-center gap-6 rounded-2xl border p-8 shadow-sm md:flex-row'>
             {/* Neutral Seal */}
-            <div className='border-primary-100 text-kapwa-text-brand bg-kapwa-bg-surface flex h-20 w-20 shrink-0 items-center justify-center rounded-full border-4 shadow-sm'>
+            <div className='border-kapwa-border-brand text-kapwa-text-brand bg-kapwa-bg-surface flex h-20 w-20 shrink-0 items-center justify-center rounded-full border-4 shadow-sm'>
               <Briefcase className='h-10 w-10' />
             </div>
 
@@ -156,9 +156,9 @@ export default function DepartmentDetail() {
 
               {/* Optional Direct Contact for Head */}
               {dept.department_head.email && (
-                <div className='border-primary-100/50 text-kapwa-text-on-disabled mt-4 flex justify-center gap-4 border-t pt-4 text-sm md:justify-start'>
+                <div className='border-kapwa-border-brand/50 text-kapwa-text-on-disabled mt-4 flex justify-center gap-4 border-t pt-4 text-sm md:justify-start'>
                   <span className='flex items-center gap-1.5 font-medium'>
-                    <MailIcon className='text-primary-500 h-4 w-4' />
+                    <MailIcon className='text-kapwa-text-brand0 h-4 w-4' />
                     {dept.department_head.email}
                   </span>
                 </div>
@@ -193,7 +193,7 @@ export default function DepartmentDetail() {
                         <CheckCircle2 className='h-5 w-5' />
                       </div>
                       <div className='min-w-0'>
-                        <p className='text-primary-600 mb-0.5 truncate text-[10px] font-bold tracking-widest uppercase'>
+                        <p className='text-kapwa-text-brand mb-0.5 truncate text-[10px] font-bold tracking-widest uppercase'>
                           Public Service
                         </p>
                         <p className='group-hover:text-kapwa-text-brand-bold text-kapwa-text-support text-sm leading-tight font-bold transition-colors'>
@@ -201,7 +201,7 @@ export default function DepartmentDetail() {
                         </p>
                       </div>
                     </div>
-                    <ArrowRight className='group-hover:text-kapwa-text-brand h-4 w-4 shrink-0 text-slate-300 transition-all group-hover:translate-x-1' />
+                    <ArrowRight className='group-hover:text-kapwa-text-brand h-4 w-4 shrink-0 text-kapwa-text-support transition-all group-hover:translate-x-1' />
                   </CardContent>
                 </Card>
               </Link>
@@ -212,7 +212,7 @@ export default function DepartmentDetail() {
 
       {/* --- SECTION 3: GENERAL MANDATE --- */}
       <DetailSection title='Office Mandate' icon={InfoIcon}>
-        <Card variant='slate' hover={false} className='bg-slate-50'>
+        <Card variant='slate' hover={false} className='bg-kapwa-bg-surface'>
           <CardContent className='p-6'>
             <p className='text-kapwa-text-on-disabled text-sm leading-relaxed md:text-base'>
               The {toTitleCase(dept.office_name)} is a frontline office of the

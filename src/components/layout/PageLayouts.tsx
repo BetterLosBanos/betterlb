@@ -85,12 +85,12 @@ export function DetailSection({
   return (
     <section
       className={cn(
-        'overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-sm',
+        'overflow-hidden rounded-2xl border border-kapwa-border-weak bg-kapwa-bg-surface shadow-sm',
         className
       )}
     >
       <div className='border-kapwa-border-weak bg-kapwa-bg-surface-raised/50 flex items-center gap-2 border-b px-6 py-4'>
-        {Icon && <Icon className='text-primary-600 h-4 w-4' />}
+        {Icon && <Icon className='text-kapwa-text-brand h-4 w-4' />}
         <div className='text-kapwa-text-disabled flex flex-1 items-center justify-between text-[10px] font-bold tracking-widest uppercase'>
           {title}
         </div>

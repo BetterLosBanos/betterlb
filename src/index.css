@@ -90,8 +90,8 @@
   /* --- SEMANTIC ALIASES --- */
   /* These map your specific domain needs to Kapwa tokens */
   --color-brand-executive: var(--color-bg-kapwa-bg-info-active);
-  --color-brand-legislative: var(--color-bg-kapwa-bg-warning-active);
-  --color-status-verified: var(--color-bg-kapwa-bg-success-active);
+  --color-brand-legislative: var(--color-bg-kapwa-bg-kapwa-bg-warning-active);
+  --color-status-verified: var(--color-bg-kapwa-bg-kapwa-bg-success-active);
   --color-status-audit: var(--color-bg-kapwa-bg-gray-disabled);
 }
 

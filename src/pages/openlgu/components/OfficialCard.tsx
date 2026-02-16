@@ -68,7 +68,7 @@ export default function OfficialCard({
   const getAvatarColor = (): string => {
     const role = latestMembership.role.toLowerCase();
     if (role.includes('mayor')) {
-      return 'bg-gradient-to-br from-primary-500 to-primary-600';
+      return 'bg-gradient-to-br from-kapwa-brand-500 to-kapwa-brand-600';
     }
     if (role.includes('vice mayor')) {
       return 'bg-gradient-to-br from-secondary-500 to-secondary-600';
@@ -114,7 +114,7 @@ export default function OfficialCard({
           {/* Main content */}
           <div className='min-w-0 flex-1'>
             {/* Name */}
-            <p className='truncate font-semibold text-slate-800'>
+            <p className='truncate font-semibold text-kapwa-text-strong'>
               {personName}
             </p>
 
@@ -135,7 +135,7 @@ export default function OfficialCard({
                       attendanceRate >= 90
                         ? 'font-semibold text-emerald-600'
                         : attendanceRate >= 70
-                          ? 'text-slate-600'
+                          ? 'text-kapwa-text-support'
                           : 'text-amber-600'
                     }
                   >
@@ -173,7 +173,7 @@ export default function OfficialCard({
               </span>
             )}
             {isExpanded ? (
-              <ChevronDown className='text-primary-500 h-5 w-5' />
+              <ChevronDown className='text-kapwa-text-brand0 h-5 w-5' />
             ) : (
               <ChevronRight className='group-hover:text-kapwa-text-disabled h-5 w-5 transition-colors' />
             )}

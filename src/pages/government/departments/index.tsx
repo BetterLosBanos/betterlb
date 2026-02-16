@@ -69,7 +69,7 @@ export default function DepartmentsIndex() {
                         {dept.office_name}
                       </p>
                     </div>
-                    <ArrowRight className='group-hover:text-kapwa-text-link mt-1 h-4 w-4 text-slate-200 transition-all' />
+                    <ArrowRight className='group-hover:text-kapwa-text-link mt-1 h-4 w-4 text-kapwa-text-support transition-all' />
                   </div>
 
                   {/* Middle Row: Leadership (Standardized Highlight Box) */}
@@ -96,7 +96,7 @@ export default function DepartmentsIndex() {
                   <div className='mt-auto flex items-center justify-between gap-4 border-t border-slate-50 pt-3'>
                     {dept.trunkline ? (
                       <div className='text-kapwa-text-disabled flex items-center gap-1.5 text-[11px] font-medium'>
-                        <Phone className='text-primary-400 h-3 w-3' />
+                        <Phone className='text-kapwa-text-brand h-3 w-3' />
                         <span>
                           {Array.isArray(dept.trunkline)
                             ? dept.trunkline[0]
@@ -104,7 +104,7 @@ export default function DepartmentsIndex() {
                         </span>
                       </div>
                     ) : (
-                      <div className='text-[10px] text-slate-300 italic'>
+                      <div className='text-[10px] text-kapwa-text-support italic'>
                         No contact
                       </div>
                     )}
@@ -118,7 +118,7 @@ export default function DepartmentsIndex() {
                           <Globe className='h-3.5 w-3.5' />
                         </div>
                       )}
-                      <span className='text-primary-600 text-[10px] font-black tracking-tighter uppercase opacity-0 transition-opacity group-hover:opacity-100'>
+                      <span className='text-kapwa-text-brand text-[10px] font-black tracking-tighter uppercase opacity-0 transition-opacity group-hover:opacity-100'>
                         View Profile
                       </span>
                     </div>

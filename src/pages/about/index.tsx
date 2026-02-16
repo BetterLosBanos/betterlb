@@ -160,7 +160,7 @@ const AboutPage: FC = () => {
                       desc: 'Physical workspace for collaboration and meetings',
                     },
                   ].map((item, index) => (
-                    <Card key={index} hover className='bg-white'>
+                    <Card key={index} hover className='bg-kapwa-bg-surface'>
                       <CardContent className='p-5'>
                         <div
                           style={{
@@ -211,7 +211,7 @@ const AboutPage: FC = () => {
                     </li>
                   ))}
                 </ul>
-                <p className='text-gray-700'>{t('whyBuilding.conclusion')}</p>
+                <p className='text-kapwa-text-support'>{t('whyBuilding.conclusion')}</p>
               </section>
 
               {/* Our Commitment Section */}

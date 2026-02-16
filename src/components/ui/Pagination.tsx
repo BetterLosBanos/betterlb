@@ -75,7 +75,7 @@ export function PaginationControls({
           <select
             value={resultsPerPage}
             onChange={e => onResultsPerPageChange(Number(e.target.value))}
-            className='focus:border-kapwa-border-brand focus:ring-primary-500 border-kapwa-border-weak bg-kapwa-bg-surface text-kapwa-text-support h-8 rounded-lg text-xs font-medium'
+            className='focus:border-kapwa-border-brand focus:ring-kapwa-border-brand border-kapwa-border-weak bg-kapwa-bg-surface text-kapwa-text-support h-8 rounded-lg text-xs font-medium'
           >
             {[10, 20, 50, 100].map(val => (
               <option key={val} value={val}>
@@ -114,7 +114,7 @@ export function PaginationControls({
                 className={`h-8 w-8 rounded-lg text-xs font-bold transition-colors ${
                   currentPage === page
                     ? 'bg-kapwa-bg-brand-default text-white'
-                    : 'hover:bg-kapwa-bg-surface-raised border border-slate-200 bg-white text-slate-600'
+                    : 'hover:bg-kapwa-bg-surface-raised border border-kapwa-border-weak bg-kapwa-bg-surface text-kapwa-text-support'
                 }`}
               >
                 {page}

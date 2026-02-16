@@ -693,7 +693,7 @@ export default function DocumentEditModal({
                       href={formData.pdf_url}
                       target='_blank'
                       rel='noopener noreferrer'
-                      className='text-primary-600 text-sm hover:underline'
+                      className='text-kapwa-text-brand text-sm hover:underline'
                     >
                       View Original PDF
                     </a>
@@ -744,7 +744,7 @@ export default function DocumentEditModal({
                           href={`/admin/sessions/${sessionData.id}`}
                           target='_blank'
                           rel='noopener noreferrer'
-                          className='text-primary-600 inline-flex items-center gap-1 text-sm hover:underline'
+                          className='text-kapwa-text-brand inline-flex items-center gap-1 text-sm hover:underline'
                         >
                           Open full session editor
                           <ExternalLink className='h-3 w-3' />
