@@ -688,9 +688,95 @@ Kapwa semantic classes follow these patterns:
 
 ---
 
-## 🎯 Responsive Typography Pattern
+## 🎯 Responsive Typography
 
-For responsive headings, combine Tailwind's responsive prefixes with Kapwa typography classes:
+### Automatic Responsive Tokens (Preferred)
+
+Kapwa provides **automatic responsive typography tokens** that scale across breakpoints without manual breakpoint classes. These are the preferred choice for most use cases.
+
+#### `kapwa-heading` - Auto-Scaling Headings
+
+The `kapwa-heading` token automatically scales across breakpoints:
+
+| Breakpoint | Size | Pixels | Use Case |
+|------------|------|--------|----------|
+| Mobile (base) | 1.25rem | 20px | Small screens |
+| Tablet (md:) | 1.5rem | 24px | 768px+ |
+| Desktop (lg:) | 2rem | 32px | 1024px+ |
+| XL Desktop (xl:) | 2.5rem | 40px | 1280px+ |
+
+```tsx
+// Automatic responsive scaling - no breakpoints needed!
+<h1 className="kapwa-heading text-kapwa-text-strong">
+  This scales automatically from 20px → 24px → 32px → 40px
+</h1>
+
+// Equivalent to the old manual way:
+<h1 className="text-xl md:text-2xl lg:text-3xl xl:text-4xl">
+  Manual responsive (don't use this anymore)
+</h1>
+```
+
+#### All Auto-Responsive Tokens
+
+All these tokens provide automatic responsive scaling:
+
+| Token | Base → md → lg → xl | Use Case |
+|-------|---------------------|----------|
+| `kapwa-heading` | 1.25rem → 1.5rem → 2rem → 2.5rem | Headings (H1, H2) |
+| `kapwa-body` | 0.875rem → 1rem → 1.125rem → 1.25rem | Body text |
+| `kapwa-body strong` | same as above + bold | Bold body text |
+| `kapwa-label` | 0.75rem → 0.875rem → 1rem → 1.125rem | Labels, small text |
+| `kapwa-link` | 0.875rem → 1rem → 1.125rem → 1.25rem | Links |
+| `kapwa-code` | 0.875rem → 1rem → 1.125rem → 1.25rem | Code blocks |
+
+```tsx
+// All auto-responsive examples
+<h1 className="kapwa-heading">Auto-scaling heading</h1>
+<p className="kapwa-body">Auto-scaling body text</p>
+<p className="kapwa-body strong">Auto-scaling bold body</p>
+<span className="kapwa-label">Auto-scaling label</span>
+<a className="kapwa-link">Auto-scaling link</a>
+<code className="kapwa-code">Auto-scaling code</code>
+```
+
+#### When to Use Manual Responsive Sizing
+
+Only use manual breakpoint sizing when:
+- Hero sections need larger scale (text-4xl md:text-6xl or bigger)
+- Special design requirements exceed kapwa-heading range (max 2.5rem)
+
+```tsx
+// Hero title - keep manual sizing for larger scale
+<h1 className="text-4xl md:text-5xl lg:text-6xl">
+  Large hero title (beyond kapwa-heading range)
+</h1>
+
+// Standard heading - use auto-responsive token
+<h2 className="kapwa-heading">
+  Standard section heading
+</h2>
+```
+
+#### Migration Pattern
+
+Replace manual responsive sizing with auto-responsive tokens:
+
+```tsx
+// Before ❌
+<h2 className="text-2xl font-bold md:text-3xl">Section Title</h2>
+<p className="text-base md:text-lg">Description text</p>
+<p className="text-base md:text-lg font-bold">Bold description</p>
+
+// After ✅
+<h2 className="kapwa-heading font-bold">Section Title</h2>
+<p className="kapwa-body">Description text</p>
+<p className="kapwa-body strong">Bold description</p>
+```
+
+### Manual Responsive Pattern (Legacy)
+
+For specific responsive needs, combine Tailwind's responsive prefixes with Kapwa typography classes:
 
 ```tsx
 // Mobile → Tablet → Desktop → Large Desktop
@@ -700,6 +786,8 @@ For responsive headings, combine Tailwind's responsive prefixes with Kapwa typog
 
 // Mobile: 1.25rem → Tablet: 1.5rem → Desktop: 2rem → XL: 2.5rem
 ```
+
+**Note:** Prefer the automatic `kapwa-heading` token over manual breakpoints unless you need specific sizing outside the auto-scale range.
 
 ---
 
