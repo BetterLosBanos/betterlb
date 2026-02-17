@@ -238,7 +238,7 @@ export default function PersonDetail() {
 
           {/* Name and role info */}
           <div className='flex-1 text-center md:text-left'>
-            <h1 className='text-kapwa-text-strong text-3xl font-bold md:text-4xl'>
+            <h1 className='text-kapwa-text-strong kapwa-heading font-bold'>
               Hon. {officialName}
             </h1>
             <div className='mt-3 flex flex-col gap-2 sm:flex-row sm:items-center sm:justify-between'>

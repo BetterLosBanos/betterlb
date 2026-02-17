@@ -38,7 +38,7 @@ export default function NotFound() {
               404
             </h1>
             <div className='mb-8 space-y-4'>
-              <h2 className='text-kapwa-text-inverse text-2xl font-semibold md:text-3xl'>
+              <h2 className='text-kapwa-text-inverse kapwa-heading font-semibold'>
                 Lost in the Digital Bureaucracy?
               </h2>
               <p className='mx-auto max-w-2xl text-lg leading-relaxed text-kapwa-text-inverse/80'>

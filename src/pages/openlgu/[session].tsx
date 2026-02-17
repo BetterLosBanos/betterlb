@@ -93,7 +93,7 @@ export default function SessionDetail() {
                 ID: {session.id}
               </span>
             </div>
-            <h1 className='text-kapwa-text-strong text-2xl font-extrabold md:text-3xl'>
+            <h1 className='text-kapwa-text-strong kapwa-heading font-extrabold'>
               {session.ordinal_number} {session.type} Session
             </h1>
           </div>
