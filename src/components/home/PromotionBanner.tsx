@@ -9,7 +9,7 @@ const PromotionBanner: FC = () => {
   const { t } = useTranslation('common');
 
   return (
-    <section className='bg-kapwa-bg-accent-yellow-weak0 text-kapwa-text-inverse py-12'>
+    <section className='bg-kapwa-bg-accent-yellow-weak text-kapwa-text-inverse py-12'>
       <div className='container mx-auto px-4'>
         <div className='items-center justify-between md:flex'>
           <div>

@@ -96,7 +96,7 @@ export default function ServiceTimeline({
             className='border-kapwa-border-weak relative border-l-2 pb-4 pl-6 last:border-0 last:pb-0'
           >
             {/* Timeline dot */}
-            <div className='border-kapwa-border-brand0 bg-kapwa-bg-surface absolute top-1.5 left-0 h-3 w-3 -translate-x-[5px] rounded-full border-2' />
+            <div className='border-kapwa-border-brand bg-kapwa-bg-surface absolute top-1.5 left-0 h-3 w-3 -translate-x-[5px] rounded-full border-2' />
 
             <div className='space-y-2'>
               {/* Term header */}
@@ -112,17 +112,17 @@ export default function ServiceTimeline({
               </Badge>
 
               {/* Stats row */}
-              <div className='text-kapwa-text-on-disabled flex flex-wrap gap-4 text-xs'>
+              <div className='text-kapwa-text-support flex flex-wrap gap-4 text-xs'>
                 {!isExecutive && (
                   <div className='flex items-center gap-1'>
                     <Calendar className='h-3 w-3' />
                     <span
                       className={
                         attendanceRate >= 90
-                          ? 'font-semibold text-emerald-600'
+                          ? 'font-semibold text-kapwa-text-success'
                           : attendanceRate >= 70
                             ? 'text-kapwa-text-support'
-                            : 'text-amber-600'
+                            : 'text-kapwa-text-warning'
                       }
                     >
                       {attendanceRate}% attendance
@@ -154,7 +154,7 @@ export default function ServiceTimeline({
                   {membership.committees.map(committee => (
                     <span
                       key={committee.id}
-                      className='bg-kapwa-bg-hover text-kapwa-text-on-disabled inline-flex items-center gap-1 rounded-full px-2 py-0.5 text-[10px] font-medium'
+                      className='bg-kapwa-bg-hover text-kapwa-text-support inline-flex items-center gap-1 rounded-full px-2 py-0.5 text-[10px] font-medium'
                     >
                       <Users className='h-2.5 w-2.5' />
                       {committee.role}

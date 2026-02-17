@@ -91,7 +91,7 @@ export default function ServicesSidebar({
         <Link
           to='/contribute'
           onClick={() => console.log('Link was clicked!')}
-          className='bg-kapwa-bg-accent-orange-default hover:bg-secondary-700 shadow-secondary-900/10 text-kapwa-text-inverse flex min-h-[44px] w-full items-center justify-center gap-2 rounded-xl px-4 py-2.5 text-xs font-bold shadow-md transition-all'
+          className='bg-kapwa-bg-accent-orange-default hover:bg-kapwa-orange-700 shadow-md text-kapwa-text-inverse flex min-h-[44px] w-full items-center justify-center gap-2 rounded-xl px-4 py-2.5 text-xs font-bold shadow-md transition-all'
         >
           Suggest New Service
         </Link>

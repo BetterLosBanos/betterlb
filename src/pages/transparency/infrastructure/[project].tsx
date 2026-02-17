@@ -502,11 +502,11 @@ export default function InfrastructureDetail() {
                     {project.bidders.map((bidder, i) => (
                       <div
                         key={i}
-                        className={`flex items-center justify-between rounded-lg border p-3 ${bidder.isWinner ? 'border-emerald-100 bg-emerald-50' : 'bg-kapwa-bg-surface border-slate-100'}`}
+                        className={`flex items-center justify-between rounded-lg border p-3 ${bidder.isWinner ? 'border-emerald-100 bg-kapwa-bg-success-weak' : 'bg-kapwa-bg-surface border-kapwa-border-weak'}`}
                       >
                         <div>
                           <p
-                            className={`text-sm font-bold ${bidder.isWinner ? 'text-emerald-900' : 'text-kapwa-text-support'}`}
+                            className={`text-sm font-bold ${bidder.isWinner ? 'text-kapwa-text-success' : 'text-kapwa-text-support'}`}
                           >
                             {bidder.name}
                           </p>
@@ -599,7 +599,7 @@ export default function InfrastructureDetail() {
                         {comp.componentId}
                       </span>
                     </div>
-                    <p className='text-kapwa-text-on-disabled mb-3 text-xs leading-relaxed'>
+                    <p className='text-kapwa-text-support mb-3 text-xs leading-relaxed'>
                       {comp.description}
                     </p>
                     <div className='grid grid-cols-2 gap-2 text-xs'>
@@ -619,7 +619,7 @@ export default function InfrastructureDetail() {
                         <span className='text-kapwa-text-disabled'>
                           Coords:
                         </span>{' '}
-                        <span className='text-kapwa-text-on-disabled font-mono'>
+                        <span className='text-kapwa-text-support font-mono'>
                           {comp.coordinates?.latitude.toFixed(5)},{' '}
                           {comp.coordinates?.longitude.toFixed(5)}
                         </span>
@@ -712,7 +712,7 @@ export default function InfrastructureDetail() {
           {project.imageSummary && (
             <DetailSection title='Images' icon={ImageIcon}>
               <div className='flex items-center justify-between'>
-                <span className='text-kapwa-text-on-disabled text-sm'>
+                <span className='text-kapwa-text-support text-sm'>
                   Total Images
                 </span>
                 <span className='text-kapwa-text-strong font-bold'>
@@ -759,7 +759,7 @@ export default function InfrastructureDetail() {
               href={`https://bisto.ph/?q=${encodeURIComponent(project.contractId)}`} //waiting for bisto.ph PR
               target='_blank'
               rel='noreferrer'
-              className='text-kapwa-text-inverse bg-kapwa-bg-gray-900 hover:bg-kapwa-bg-gray-800 flex w-full items-center justify-center gap-2 rounded-lg py-2 text-xs font-bold shadow-md transition-all'
+              className='text-kapwa-text-inverse bg-kapwa-bg-kapwa-bg-surface hover:bg-kapwa-bg-kapwa-bg-surface flex w-full items-center justify-center gap-2 rounded-lg py-2 text-xs font-bold shadow-md transition-all'
             >
               Search on Bisto.ph <Search className='h-3 w-3' />
             </a>

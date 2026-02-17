@@ -109,7 +109,7 @@ export default function ServiceDetail() {
       {/* HEADER */}
       <header
         className={`relative overflow-hidden rounded-3xl p-8 text-white shadow-xl transition-colors duration-500 md:p-12 ${
-          isTransaction ? 'bg-kapwa-gray-900' : 'bg-kapwa-brand-950'
+          isTransaction ? 'bg-kapwa-bg-surface-bold' : 'bg-kapwa-bg-brand-bold'
         }`}
       >
         <div className='relative z-10 max-w-3xl'>
@@ -139,7 +139,7 @@ export default function ServiceDetail() {
               href={service.url}
               target='_blank'
               rel='noreferrer'
-              className='bg-kapwa-bg-brand-default hover:bg-kapwa-bg-brand-weak0 group text-kapwa-text-inverse inline-flex min-h-[48px] items-center gap-3 rounded-2xl px-8 py-4 font-bold shadow-lg transition-all'
+              className='bg-kapwa-bg-brand-default hover:bg-kapwa-bg-brand-weak group text-kapwa-text-inverse inline-flex min-h-[48px] items-center gap-3 rounded-2xl px-8 py-4 font-bold shadow-lg transition-all'
             >
               {isTransaction ? 'Access Online Portal' : 'View Full Document'}
               <ExternalLink className='h-5 w-5 transition-transform group-hover:translate-x-1 group-hover:-translate-y-1' />
@@ -191,7 +191,7 @@ export default function ServiceDetail() {
                       className={`flex h-8 w-8 shrink-0 items-center justify-center rounded-full border text-sm font-bold transition-colors ${
                         isTransaction
                           ? 'bg-kapwa-bg-surface text-kapwa-text-brand border-kapwa-border-brand'
-                          : 'text-kapwa-text-accent-orange bg-kapwa-bg-accent-orange-weak border-secondary-100'
+                          : 'text-kapwa-text-accent-orange bg-kapwa-bg-accent-orange-weak border-kapwa-border-weak'
                       }`}
                     >
                       {idx + 1}
@@ -247,25 +247,25 @@ export default function ServiceDetail() {
         <aside className='w-full space-y-6 xl:w-80'>
           {/* Data Integrity Card */}
           <div
-            className={`flex flex-col gap-3 rounded-2xl border p-5 transition-colors ${isVerified ? 'border-emerald-100 bg-emerald-50/30' : 'border-kapwa-border-weak bg-kapwa-bg-surface'}`}
+            className={`flex flex-col gap-3 rounded-2xl border p-5 transition-colors ${isVerified ? 'border-kapwa-border-success bg-kapwa-bg-success-weak/30' : 'border-kapwa-border-weak bg-kapwa-bg-surface'}`}
           >
             <div className='flex items-center justify-between'>
               <p className='text-kapwa-text-disabled text-[10px] font-bold tracking-widest uppercase'>
                 Data Integrity
               </p>
               {isVerified ? (
-                <CheckCircle2Icon className='h-4 w-4 text-emerald-500' />
+                <CheckCircle2Icon className='h-4 w-4 text-kapwa-text-success' />
               ) : (
                 <AlertCircle className='text-kapwa-text-support h-4 w-4' />
               )}
             </div>
             <div className='flex items-center gap-3'>
               <Clock
-                className={`h-5 w-5 ${isVerified ? 'text-emerald-600' : 'text-kapwa-text-support'}`}
+                className={`h-5 w-5 ${isVerified ? 'text-kapwa-text-success' : 'text-kapwa-text-support'}`}
               />
               <div>
                 <p
-                  className={`text-sm font-bold ${isVerified ? 'text-emerald-900' : 'text-kapwa-text-strong0'}`}
+                  className={`text-sm font-bold ${isVerified ? 'text-kapwa-text-strong' : 'text-kapwa-text-strong0'}`}
                 >
                   {isVerified ? 'Verified Information' : 'Unverified Data'}
                 </p>
@@ -285,7 +285,9 @@ export default function ServiceDetail() {
                 {involvedOffices.map((off, idx) => (
                   <div
                     key={off.slug}
-                    className={idx > 0 ? 'border-t border-slate-100 pt-5' : ''}
+                    className={
+                      idx > 0 ? 'border-t border-kapwa-border-weak pt-5' : ''
+                    }
                   >
                     <Link
                       to={`/government/departments/${off.slug}`}
@@ -321,7 +323,7 @@ export default function ServiceDetail() {
             </p>
             <Link
               to={`/contribute?edit=${service.slug}`}
-              className='group border-kapwa-border-weak text-kapwa-text-on-disabled hover:border-kapwa-border-weak hover:bg-kapwa-bg-surface-raised flex min-h-[44px] w-full items-center justify-center gap-2 rounded-xl border-2 px-4 py-2.5 text-xs font-bold transition-all'
+              className='group border-kapwa-border-weak text-kapwa-text-support hover:border-kapwa-border-weak hover:bg-kapwa-bg-surface-raised flex min-h-[44px] w-full items-center justify-center gap-2 rounded-xl border-2 px-4 py-2.5 text-xs font-bold transition-all'
             >
               <Edit3 className='group-hover:text-kapwa-text-accent-orange text-kapwa-text-disabled h-3.5 w-3.5 transition-colors' />
               Suggest an Edit

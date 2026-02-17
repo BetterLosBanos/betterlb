@@ -68,7 +68,7 @@ const CustomTooltip = ({ active, payload }: TooltipProps<number, string>) => {
           />
           <p className='text-kapwa-text-strong font-semibold'>{data.name}</p>
         </div>
-        <p className='pl-4 font-mono font-medium text-emerald-600'>
+        <p className='pl-4 font-mono font-medium text-kapwa-text-success'>
           {formatPesoAdaptive(data.value as number).fullString}
         </p>
         <p className='text-kapwa-text-disabled mt-1 pl-4 text-xs'>
@@ -189,7 +189,7 @@ export default function FinancialPieChart({
       <CardHeader className='border-kapwa-border-weak bg-kapwa-bg-surface-raised/50 flex min-h-[60px] flex-row items-center justify-between border-b px-6 py-4'>
         <div className='flex items-center gap-3'>
           <div className='border-kapwa-border-weak bg-kapwa-bg-surface rounded-lg border p-2 shadow-sm'>
-            <Icon className='text-kapwa-text-on-disabled h-4 w-4' />
+            <Icon className='text-kapwa-text-support h-4 w-4' />
           </div>
           <div className='flex flex-col'>
             <span className='text-kapwa-text-strong leading-none font-semibold'>
@@ -207,7 +207,7 @@ export default function FinancialPieChart({
           {drillDownItem && (
             <button
               onClick={resetView}
-              className='animate-in fade-in slide-in-from-right-2 border-kapwa-border-weak bg-kapwa-bg-surface text-kapwa-text-on-disabled hover:bg-kapwa-bg-surface-raised mr-2 flex items-center gap-1 rounded-md border px-2 py-1 text-xs font-medium'
+              className='animate-in fade-in slide-in-from-right-2 border-kapwa-border-weak bg-kapwa-bg-surface text-kapwa-text-support hover:bg-kapwa-bg-surface-raised mr-2 flex items-center gap-1 rounded-md border px-2 py-1 text-xs font-medium'
             >
               <Undo2 className='h-3 w-3' /> Back
             </button>
@@ -218,7 +218,7 @@ export default function FinancialPieChart({
             title='Toggle Labels'
             className={`rounded-md p-1.5 transition-colors ${
               showLabels
-                ? 'bg-kapwa-bg-gray-200 text-kapwa-text-strong'
+                ? 'bg-kapwa-bg-kapwa-bg-surface text-kapwa-text-strong'
                 : 'hover:bg-kapwa-bg-hover text-kapwa-text-disabled'
             }`}
           >
@@ -348,14 +348,14 @@ export default function FinancialPieChart({
                     <span
                       className={`text-kapwa-text-support transition-colors ${
                         canDrill
-                          ? 'group-hover:font-medium group-hover:text-emerald-700'
+                          ? 'group-hover:font-medium group-hover:text-kapwa-text-success'
                           : ''
                       }`}
                     >
                       {item.name}
                     </span>
                     {canDrill && (
-                      <ZoomIn className='text-kapwa-text-support h-3 w-3 group-hover:text-emerald-500' />
+                      <ZoomIn className='text-kapwa-text-support h-3 w-3 group-hover:text-kapwa-text-success' />
                     )}
                   </div>
                   <div className='flex items-center gap-3'>

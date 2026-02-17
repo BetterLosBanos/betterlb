@@ -136,11 +136,11 @@ const AccessibilityPage: FC = () => {
   const getStatusColor = (status: string) => {
     switch (status) {
       case 'compliant':
-        return 'bg-green-50 border-green-200';
+        return 'bg-kapwa-bg-success-weak border-kapwa-border-success';
       case 'partial':
         return 'bg-yellow-50 border-yellow-200';
       default:
-        return 'bg-blue-50 border-blue-200';
+        return 'bg-kapwa-bg-info-weak border-kapwa-border-info';
     }
   };
 

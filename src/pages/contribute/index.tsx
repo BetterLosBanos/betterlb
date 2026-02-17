@@ -186,14 +186,14 @@ export default function ContributePage() {
     return (
       <div className='animate-in zoom-in-95 mx-auto max-w-2xl py-20 text-center duration-500'>
         <div className='mb-6 flex justify-center'>
-          <div className='rounded-full bg-emerald-50 p-4 ring-8 ring-emerald-50/50'>
-            <CheckCircle2 className='h-12 w-12 text-emerald-600' />
+          <div className='rounded-full bg-kapwa-bg-success-weak p-4 ring-8 ring-kapwa-bg-success-weak/50'>
+            <CheckCircle2 className='h-12 w-12 text-kapwa-text-success' />
           </div>
         </div>
         <h2 className='text-kapwa-text-strong mb-4 text-3xl font-extrabold'>
           Submission Received
         </h2>
-        <p className='text-kapwa-text-on-disabled mb-10 text-lg leading-relaxed'>
+        <p className='text-kapwa-text-support mb-10 text-lg leading-relaxed'>
           Thank you for helping improve Better LB. Your contribution has been
           sent to our auditors for verification.
         </p>
@@ -209,7 +209,7 @@ export default function ContributePage() {
               setStatus('idle');
               reset();
             }}
-            className='border-kapwa-border-weak bg-kapwa-bg-surface text-kapwa-text-on-disabled hover:bg-kapwa-bg-surface-raised min-h-[48px] rounded-xl border px-8 py-3 font-bold transition-all'
+            className='border-kapwa-border-weak bg-kapwa-bg-surface text-kapwa-text-support hover:bg-kapwa-bg-surface-raised min-h-[48px] rounded-xl border px-8 py-3 font-bold transition-all'
           >
             Submit Another
           </button>
@@ -266,12 +266,12 @@ export default function ContributePage() {
                     className={cn(
                       'w-full rounded-xl border p-3 transition-all outline-none',
                       errors.service
-                        ? 'border-rose-500 ring-rose-500/10'
+                        ? 'border-kapwa-border-danger ring-kapwa-border-danger/10'
                         : 'border-kapwa-border-weak'
                     )}
                   />
                   {errors.service && (
-                    <p className='mt-1 text-xs font-bold text-rose-600'>
+                    <p className='mt-1 text-xs font-bold text-kapwa-text-danger'>
                       {errors.service.message}
                     </p>
                   )}
@@ -327,7 +327,7 @@ export default function ContributePage() {
                 <div
                   className={cn(
                     'scrollbar-thin border-kapwa-border-weak bg-kapwa-bg-surface grid max-h-64 grid-cols-1 gap-2 overflow-y-auto rounded-2xl border p-4 md:grid-cols-2',
-                    errors.officeSlug && 'border-rose-500'
+                    errors.officeSlug && 'border-kapwa-border-danger'
                   )}
                 >
                   <input
@@ -429,7 +429,7 @@ export default function ContributePage() {
                   {...register('source', { required: 'Link required' })}
                   className={cn(
                     'border-kapwa-border-weak w-full rounded-xl border p-3 text-sm outline-none',
-                    errors.source && 'border-rose-500'
+                    errors.source && 'border-kapwa-border-danger'
                   )}
                 />
               </div>
@@ -485,7 +485,7 @@ export default function ContributePage() {
           <h3 className='heading-label flex items-center gap-2'>
             <Eye className='h-3 w-3' /> Live Preview
           </h3>
-          <div className='ring-kapwa-border-brand/10 text-kapwa-text-inverse bg-kapwa-bg-gray-900 min-h-[200px] rounded-3xl p-8 shadow-2xl ring-4'>
+          <div className='ring-kapwa-border-brand/10 text-kapwa-text-inverse bg-kapwa-bg-surface-bold min-h-[200px] rounded-3xl p-8 shadow-2xl ring-4'>
             <div className='relative z-10 space-y-4'>
               <div className='flex gap-2'>
                 <Badge variant='primary'>
@@ -505,9 +505,9 @@ export default function ContributePage() {
               </p>
             </div>
           </div>
-          <div className='flex gap-4 rounded-2xl border border-amber-100 bg-amber-50 p-5'>
-            <AlertTriangle className='h-6 w-6 shrink-0 text-amber-600' />
-            <p className='text-xs leading-relaxed text-amber-800'>
+          <div className='flex gap-4 rounded-2xl border border-kapwa-border-warning bg-kapwa-bg-warning-weak p-5'>
+            <AlertTriangle className='h-6 w-6 shrink-0 text-kapwa-text-warning' />
+            <p className='text-xs leading-relaxed text-kapwa-text-warning'>
               <strong>Note:</strong> All submissions are reviewed manually.
               Provide an official source link to avoid rejection.
             </p>

@@ -78,7 +78,7 @@ export default function OfficialsFilterBar({
         {searchQuery && (
           <button
             onClick={() => setSearchQuery('')}
-            className='text-kapwa-text-disabled hover:text-kapwa-text-on-disabled absolute top-1/2 right-3 -translate-y-1/2'
+            className='text-kapwa-text-disabled hover:text-kapwa-text-support absolute top-1/2 right-3 -translate-y-1/2'
             aria-label='Clear search'
           >
             <X className='h-4 w-4' />

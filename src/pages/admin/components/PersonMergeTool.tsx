@@ -225,7 +225,7 @@ export default function PersonMergeTool() {
                     onClick={() => setKeepPersonId(person.id)}
                     className={`cursor-pointer rounded-lg border-2 p-4 transition-all ${
                       isKeep
-                        ? 'border-kapwa-border-brand0 bg-kapwa-bg-surface ring-kapwa-border-brand ring-2'
+                        ? 'border-kapwa-border-brand bg-kapwa-bg-surface ring-kapwa-border-brand ring-2'
                         : isMerge
                           ? 'border-amber-300 bg-amber-50 hover:border-amber-400'
                           : 'hover:border-kapwa-border-weak border-kapwa-border-weak bg-kapwa-bg-surface'
@@ -320,7 +320,7 @@ export default function PersonMergeTool() {
                 <label
                   className={`flex cursor-pointer items-start gap-3 rounded-md border p-3 transition-colors ${
                     deletionMode === 'delete'
-                      ? 'border-red-300 bg-red-50'
+                      ? 'border-red-300 bg-kapwa-bg-danger-weak'
                       : 'hover:border-kapwa-border-weak border-kapwa-border-weak'
                   }`}
                 >
@@ -339,7 +339,7 @@ export default function PersonMergeTool() {
                         Delete immediately
                       </span>
                     </div>
-                    <p className='text-kapwa-text-on-disabled mt-1 text-xs'>
+                    <p className='text-kapwa-text-support mt-1 text-xs'>
                       Permanently remove merged person records from the
                       database. This cannot be undone.
                     </p>
@@ -368,7 +368,7 @@ export default function PersonMergeTool() {
                         Flag for deletion
                       </span>
                     </div>
-                    <p className='text-kapwa-text-on-disabled mt-1 text-xs'>
+                    <p className='text-kapwa-text-support mt-1 text-xs'>
                       Mark records for later review and permanent deletion. They
                       won&apos;t appear in future duplicate checks.
                     </p>
@@ -378,7 +378,7 @@ export default function PersonMergeTool() {
                 <label
                   className={`flex cursor-pointer items-start gap-3 rounded-md border p-3 transition-colors ${
                     deletionMode === 'skip'
-                      ? 'border-blue-300 bg-blue-50'
+                      ? 'border-blue-300 bg-kapwa-bg-brand-weak'
                       : 'hover:border-kapwa-border-weak border-kapwa-border-weak'
                   }`}
                 >
@@ -397,7 +397,7 @@ export default function PersonMergeTool() {
                         Skip deletion
                       </span>
                     </div>
-                    <p className='text-kapwa-text-on-disabled mt-1 text-xs'>
+                    <p className='text-kapwa-text-support mt-1 text-xs'>
                       Keep all records. Only updates foreign key references to
                       point to the kept person.
                     </p>
@@ -408,7 +408,7 @@ export default function PersonMergeTool() {
 
             {/* Merge Action */}
             <div className='border-kapwa-border-weak bg-kapwa-bg-surface-raised flex items-center justify-between rounded-md border p-4'>
-              <div className='text-kapwa-text-on-disabled text-sm'>
+              <div className='text-kapwa-text-support text-sm'>
                 {mergeResults ? (
                   <div className='space-y-1'>
                     <p className='font-bold text-emerald-700'>
@@ -430,7 +430,7 @@ export default function PersonMergeTool() {
                     )}
                   </div>
                 ) : (
-                  <p className='text-kapwa-text-on-disabled text-sm'>
+                  <p className='text-kapwa-text-support text-sm'>
                     Select the person record to keep, then click merge to
                     combine all records.
                   </p>

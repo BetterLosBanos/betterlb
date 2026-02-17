@@ -81,26 +81,26 @@ const initialProjectIdeas: ProjectIdea[] = [
 const getPriorityColor = (priority: string) => {
   switch (priority) {
     case 'high':
-      return 'bg-red-100 text-red-800';
+      return 'bg-kapwa-bg-danger-weak text-kapwa-text-danger';
     case 'medium':
-      return 'bg-yellow-100 text-yellow-800';
+      return 'bg-kapwa-bg-warning-weak text-kapwa-text-warning';
     case 'low':
-      return 'bg-green-100 text-green-800';
+      return 'bg-kapwa-bg-success-weak text-kapwa-text-success';
     default:
-      return 'bg-kapwa-bg-kapwa-bg-surface-raised text-kapwa-text-strong';
+      return 'bg-kapwa-bg-surface-raised text-kapwa-text-strong';
   }
 };
 
 const getComplexityColor = (complexity: string) => {
   switch (complexity) {
     case 'simple':
-      return 'bg-blue-100 text-blue-800';
+      return 'bg-kapwa-bg-info-weak text-kapwa-text-info';
     case 'moderate':
-      return 'bg-purple-100 text-purple-800';
+      return 'bg-kapwa-bg-accent-purple-weak text-kapwa-text-accent-purple';
     case 'complex':
-      return 'bg-orange-100 text-orange-800';
+      return 'bg-kapwa-bg-accent-orange-weak text-kapwa-text-accent-orange';
     default:
-      return 'bg-kapwa-bg-kapwa-bg-surface-raised text-kapwa-text-strong';
+      return 'bg-kapwa-bg-surface-raised text-kapwa-text-strong';
   }
 };
 
@@ -189,7 +189,7 @@ const Ideas: FC = () => {
             </div>
           </div>
           <div className='bg-kapwa-bg-surface rounded-lg p-4 text-center shadow-xs'>
-            <div className='text-kapwa-text-kapwa-text-success text-2xl font-bold'>
+            <div className='text-kapwa-text-success text-2xl font-bold'>
               {projectIdeas.filter(idea => idea.complexity === 'simple').length}
             </div>
             <div className='text-kapwa-text-on-disabled text-sm'>

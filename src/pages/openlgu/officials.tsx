@@ -111,7 +111,7 @@ export default function OfficialsIndex() {
         <h1 className='text-kapwa-text-strong text-2xl font-extrabold md:text-3xl'>
           Officials of Los Baños
         </h1>
-        <p className='text-kapwa-text-on-disabled mt-2'>
+        <p className='text-kapwa-text-support mt-2'>
           Browse the historical collection of all LGU politicians who have
           served Los Baños.
         </p>

@@ -537,7 +537,7 @@ export default function ReviewQueue() {
 
       {/* Select All Bar */}
       {items.length > 0 && (
-        <div className='text-kapwa-text-on-disabled flex items-center gap-2 text-sm'>
+        <div className='text-kapwa-text-support flex items-center gap-2 text-sm'>
           <button
             onClick={selectAllVisible}
             className='hover:text-kapwa-text-brand flex items-center gap-1'
@@ -600,7 +600,7 @@ export default function ReviewQueue() {
                       {item.issue_type}
                     </h3>
                     {item.description && (
-                      <p className='text-kapwa-text-on-disabled mt-1 text-sm'>
+                      <p className='text-kapwa-text-support mt-1 text-sm'>
                         {item.description}
                       </p>
                     )}
@@ -623,7 +623,7 @@ export default function ReviewQueue() {
                           {item.document.number}
                         </span>
                       </div>
-                      <p className='text-kapwa-text-on-disabled mt-1 text-sm'>
+                      <p className='text-kapwa-text-support mt-1 text-sm'>
                         {item.document.title}
                       </p>
                       {item.document.pdf_url && (
@@ -769,7 +769,7 @@ export default function ReviewQueue() {
       {/* Pagination */}
       {pagination.total > pagination.limit && (
         <div className='flex items-center justify-between'>
-          <p className='text-kapwa-text-on-disabled text-sm'>
+          <p className='text-kapwa-text-support text-sm'>
             Showing {pagination.offset + 1}-
             {Math.min(pagination.offset + pagination.limit, pagination.total)}{' '}
             of {pagination.total}

@@ -544,7 +544,7 @@ Kapwa semantic classes follow these patterns:
 <div className="
   from-kapwa-brand-600 to-kapwa-brand-700
   text-kapwa-text-inverse
-  bg-gradient-to-r
+  bg-linear-to-r
   py-12 md:py-24
 ">
   <h1 className="
@@ -761,10 +761,52 @@ Use raw Kapwa color tokens (like `bg-kapwa-brand-600`) only when:
 **Example:**
 ```tsx
 // Rare case: specific brand gradient
-<div className="bg-gradient-to-r from-kapwa-brand-400 to-kapwa-brand-600">
+<div className="bg-linear-to-r from-kapwa-brand-400 to-kapwa-brand-600">
   Special gradient
 </div>
 ```
+
+---
+
+## 🔤 Common Typos & Invalid Tokens
+
+### Trailing `0` Typos
+These are accidental typos from copy-paste or autocomplete. **Always remove the trailing `0`.**
+
+| Invalid Token | Valid Token |
+|---------------|-------------|
+| `text-kapwa-text-brand0` | `text-kapwa-text-brand` |
+| `border-kapwa-border-brand0` | `border-kapwa-border-brand` |
+| `text-kapwa-text-accent-orange0` | `text-kapwa-text-accent-orange` |
+| `text-kapwa-text-accent-yellow0` | `text-kapwa-text-accent-yellow` |
+| `bg-kapwa-bg-accent-yellow-weak0` | `bg-kapwa-bg-accent-yellow-weak` |
+| `bg-kapwa-bg-brand-weak0` | `bg-kapwa-bg-brand-weak` |
+
+### Invalid `secondary-*` Tokens
+The `secondary-*` pattern is NOT a valid Kapwa token system. Use proper orange scale instead:
+
+| Invalid Token | Valid Token |
+|---------------|-------------|
+| `border-secondary-100` | `border-kapwa-border-weak` or `border-kapwa-orange-200` |
+| `bg-secondary-300` | `bg-kapwa-bg-disabled` or `bg-kapwa-orange-300` |
+| `bg-secondary-600` | `bg-kapwa-orange-600` |
+| `hover:bg-secondary-700` | `hover:bg-kapwa-orange-700` |
+| `hover:bg-secondary-600` | `hover:bg-kapwa-orange-600` |
+| `shadow-secondary-900/10` | `shadow-md` (standard shadow class) |
+
+### Valid Accent Tokens
+
+**✅ VALID - Text accents:**
+- `text-kapwa-text-accent-orange`
+- `text-kapwa-text-accent-yellow`
+- `text-kapwa-text-accent-purple`
+- `text-kapwa-text-accent-green`
+
+**✅ VALID - Background accents:**
+- `bg-kapwa-bg-accent-orange-weak`
+- `bg-kapwa-bg-accent-orange-default`
+- `bg-kapwa-bg-accent-yellow-weak`
+- `bg-kapwa-bg-accent-yellow-default`
 
 ---
 

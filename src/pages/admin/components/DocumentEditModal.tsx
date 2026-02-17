@@ -423,7 +423,7 @@ export default function DocumentEditModal({
               >
                 {document.type}
               </Badge>
-              <span className='text-kapwa-text-on-disabled font-mono text-sm'>
+              <span className='text-kapwa-text-support font-mono text-sm'>
                 {document.number}
               </span>
             </div>
@@ -573,7 +573,7 @@ export default function DocumentEditModal({
                         <button
                           type='button'
                           onClick={() => removeAuthor(author.id)}
-                          className='ml-1 hover:text-red-500'
+                          className='ml-1 hover:text-kapwa-text-danger'
                         >
                           <X className='h-3 w-3' />
                         </button>
@@ -620,7 +620,7 @@ export default function DocumentEditModal({
                         <button
                           type='button'
                           onClick={() => removeSubject(subject)}
-                          className='ml-1 hover:text-red-500'
+                          className='ml-1 hover:text-kapwa-text-danger'
                         >
                           <X className='h-3 w-3' />
                         </button>
@@ -715,7 +715,7 @@ export default function DocumentEditModal({
                 <Card variant='default'>
                   <CardContent className='flex items-center gap-3 p-4'>
                     <AlertCircle className='h-5 w-5 text-amber-500' />
-                    <p className='text-kapwa-text-on-disabled text-sm'>
+                    <p className='text-kapwa-text-support text-sm'>
                       This document is not linked to a session.
                     </p>
                   </CardContent>
@@ -727,8 +727,8 @@ export default function DocumentEditModal({
               ) : sessionError ? (
                 <Card variant='default'>
                   <CardContent className='flex items-center gap-3 p-4'>
-                    <AlertCircle className='h-5 w-5 text-red-500' />
-                    <p className='text-kapwa-text-on-disabled text-sm'>
+                    <AlertCircle className='h-5 w-5 text-kapwa-text-danger' />
+                    <p className='text-kapwa-text-support text-sm'>
                       Error loading session: {sessionError}
                     </p>
                   </CardContent>

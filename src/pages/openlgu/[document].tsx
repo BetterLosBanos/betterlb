@@ -112,7 +112,7 @@ export default function LegislationDocument() {
             <Badge variant={isOrdinance ? 'primary' : 'warning'}>
               {doc.type}
             </Badge>
-            <span className='border-kapwa-border-weak bg-kapwa-bg-hover text-kapwa-text-on-disabled flex items-center gap-1.5 rounded border px-2.5 py-1 font-mono text-[10px] font-bold tracking-widest uppercase'>
+            <span className='border-kapwa-border-weak bg-kapwa-bg-hover text-kapwa-text-support flex items-center gap-1.5 rounded border px-2.5 py-1 font-mono text-[10px] font-bold tracking-widest uppercase'>
               <Hash className='h-3 w-3' /> {doc.number}
             </span>
           </div>
@@ -137,7 +137,7 @@ export default function LegislationDocument() {
                     className='hover:border-kapwa-border-brand hover:bg-kapwa-bg-surface-brand border-kapwa-border-weak bg-kapwa-bg-surface inline-flex min-h-[44px] items-center gap-3 rounded-full border px-4 py-2 transition-all'
                   >
                     <div
-                      className='bg-kapwa-bg-active text-kapwa-text-on-disabled flex h-6 w-6 items-center justify-center rounded-full text-[10px] font-bold'
+                      className='bg-kapwa-bg-active text-kapwa-text-support flex h-6 w-6 items-center justify-center rounded-full text-[10px] font-bold'
                       aria-hidden='true'
                     >
                       {author.first_name[0]}
@@ -176,7 +176,7 @@ export default function LegislationDocument() {
               href={doc.link}
               target='_blank'
               rel='noreferrer'
-              className={`flex min-h-[48px] w-full items-center justify-center gap-2 rounded-xl px-8 py-3 text-sm font-bold text-white shadow-md transition-all sm:w-auto ${isOrdinance ? 'bg-kapwa-bg-brand-default hover:bg-kapwa-bg-brand-hover' : 'bg-secondary-600 hover:bg-secondary-700'}`}
+              className={`flex min-h-[48px] w-full items-center justify-center gap-2 rounded-xl px-8 py-3 text-sm font-bold text-white shadow-md transition-all sm:w-auto ${isOrdinance ? 'bg-kapwa-bg-brand-default hover:bg-kapwa-bg-brand-hover' : 'bg-kapwa-orange-600 hover:bg-kapwa-orange-700'}`}
             >
               <Download className='h-4 w-4' /> Download PDF
             </a>
@@ -259,7 +259,7 @@ export default function LegislationDocument() {
 
           {/* Flag for Review */}
           <div className='border-kapwa-border-weak bg-kapwa-bg-surface-raised rounded-xl border p-4'>
-            <p className='text-kapwa-text-on-disabled mb-3 text-xs leading-relaxed'>
+            <p className='text-kapwa-text-support mb-3 text-xs leading-relaxed'>
               Notice an error with this document? Flag it for review by the
               admin team.
             </p>

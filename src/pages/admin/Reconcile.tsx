@@ -344,7 +344,7 @@ export default function Reconcile() {
                             {item.document.type === 'ordinance' ? 'O' : 'R'} -{' '}
                             {item.document.number}
                           </p>
-                          <p className='text-kapwa-text-on-disabled mt-1 line-clamp-2 text-xs'>
+                          <p className='text-kapwa-text-support mt-1 line-clamp-2 text-xs'>
                             {item.document.title}
                           </p>
                         </>
@@ -485,7 +485,7 @@ export default function Reconcile() {
                   <div className='bg-kapwa-bg-info-weak rounded-md p-4'>
                     <div className='mb-2 flex items-center gap-2'>
                       <Facebook className='text-kapwa-text-info h-4 w-4' />
-                      <span className='text-sm font-bold text-blue-900'>
+                      <span className='text-sm font-bold text-kapwa-text-brand'>
                         Facebook Source
                       </span>
                     </div>
@@ -502,9 +502,9 @@ export default function Reconcile() {
                         className='bg-kapwa-bg-surface w-full rounded-md border border-blue-300 px-3 py-2 text-sm'
                       />
                     ) : (
-                      <p className='text-sm text-blue-800'>
+                      <p className='text-sm text-kapwa-text-brand'>
                         {selectedItem.facebook_value || (
-                          <span className='text-blue-400 italic'>
+                          <span className='text-kapwa-text-brand italic'>
                             Not available
                           </span>
                         )}
@@ -533,7 +533,7 @@ export default function Reconcile() {
                   {selectedItem.resolved_value && (
                     <div className='bg-kapwa-bg-hover rounded-md p-4'>
                       <div className='mb-2 flex items-center gap-2'>
-                        <Check className='text-kapwa-text-on-disabled h-4 w-4' />
+                        <Check className='text-kapwa-text-support h-4 w-4' />
                         <span className='text-kapwa-text-strong text-sm font-bold'>
                           Resolved Value
                         </span>
@@ -591,7 +591,7 @@ export default function Reconcile() {
                       <p className='text-kapwa-text-strong text-xs font-bold uppercase'>
                         Notes
                       </p>
-                      <p className='text-kapwa-text-on-disabled mt-1 text-sm'>
+                      <p className='text-kapwa-text-support mt-1 text-sm'>
                         {selectedItem.notes}
                       </p>
                     </div>
@@ -615,7 +615,7 @@ export default function Reconcile() {
       {/* Pagination */}
       {pagination.total > pagination.limit && (
         <div className='flex items-center justify-between'>
-          <p className='text-kapwa-text-on-disabled text-sm'>
+          <p className='text-kapwa-text-support text-sm'>
             Showing {pagination.offset + 1}-
             {Math.min(pagination.offset + pagination.limit, pagination.total)}{' '}
             of {pagination.total}

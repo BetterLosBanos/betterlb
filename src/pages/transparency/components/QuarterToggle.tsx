@@ -104,7 +104,7 @@ export default function QuarterToggle({
                     !isAvailable
                       ? 'text-kapwa-text-support cursor-not-allowed bg-transparent' // Greyed out
                       : isSelected
-                        ? 'bg-kapwa-bg-gray-900 text-white shadow-sm' // Active & Dark
+                        ? 'bg-kapwa-bg-kapwa-bg-surface text-white shadow-sm' // Active & Dark
                         : 'hover:bg-kapwa-bg-surface text-kapwa-text-support hover:shadow-sm' // Available & Hover
                   } `}
                 >

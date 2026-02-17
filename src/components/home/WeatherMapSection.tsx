@@ -245,7 +245,7 @@ export default function WeatherMapSection() {
                   </div>
                 </>
               ) : (
-                <p className='text-kapwa-text-strong0'>
+                <p className='text-kapwa-text-strong'>
                   No weather data available.
                 </p>
               )}

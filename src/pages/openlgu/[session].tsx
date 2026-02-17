@@ -123,7 +123,7 @@ export default function SessionDetail() {
             ) : (
               <div className='space-y-6'>
                 <div>
-                  <h3 className='mb-3 flex items-center gap-2 text-[10px] font-bold tracking-widest text-emerald-600 uppercase'>
+                  <h3 className='mb-3 flex items-center gap-2 text-[10px] font-bold tracking-widest text-kapwa-text-success uppercase'>
                     <CheckCircle2 className='h-3.5 w-3.5' /> Present (
                     {presentMembers.length})
                   </h3>
@@ -132,7 +132,7 @@ export default function SessionDetail() {
                       <li key={p.id}>
                         <Link
                           to={`/openlgu/person/${p.id}`}
-                          className='hover:text-kapwa-text-brand text-kapwa-text-on-disabled block py-1 text-sm font-medium transition-colors'
+                          className='hover:text-kapwa-text-brand text-kapwa-text-support block py-1 text-sm font-medium transition-colors'
                         >
                           {getPersonName(p)}
                         </Link>

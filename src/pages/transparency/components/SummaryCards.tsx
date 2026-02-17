@@ -46,7 +46,7 @@ export default function SummaryCards({
       prevValue: prevYear?.totalIncome,
       icon: Landmark,
       variant: 'primary' as const,
-      iconBg: 'bg-emerald-50 text-emerald-600',
+      iconBg: 'bg-kapwa-bg-success-weak text-kapwa-text-success',
     },
     {
       label: 'Total Expenditure',
@@ -62,7 +62,7 @@ export default function SummaryCards({
       prevValue: prevYear?.netIncome,
       icon: Scale,
       variant: 'primary' as const,
-      iconBg: 'bg-blue-50 text-blue-600',
+      iconBg: 'bg-kapwa-bg-brand-weak text-kapwa-text-brand',
     },
     {
       label: 'Treasury Balance',

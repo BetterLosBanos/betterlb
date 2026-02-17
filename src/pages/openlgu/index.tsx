@@ -199,7 +199,7 @@ export default function LegislationIndex() {
             <button
               onClick={() => setCurrentPage(Math.max(1, currentPage - 1))}
               disabled={currentPage === 1}
-              className='border-kapwa-border-weak bg-kapwa-bg-surface text-kapwa-text-on-disabled hover:bg-kapwa-bg-surface-raised rounded-lg border px-3 py-1.5 text-xs font-bold transition-colors disabled:cursor-not-allowed disabled:opacity-50'
+              className='border-kapwa-border-weak bg-kapwa-bg-surface text-kapwa-text-strong hover:bg-kapwa-bg-surface-raised disabled:text-kapwa-text-disabled rounded-lg border px-3 py-1.5 text-xs font-bold transition-colors disabled:cursor-not-allowed disabled:opacity-50'
             >
               ← Previous
             </button>
@@ -211,7 +211,7 @@ export default function LegislationIndex() {
                 setCurrentPage(Math.min(totalPages, currentPage + 1))
               }
               disabled={currentPage === totalPages}
-              className='border-kapwa-border-weak bg-kapwa-bg-surface text-kapwa-text-on-disabled hover:bg-kapwa-bg-surface-raised rounded-lg border px-3 py-1.5 text-xs font-bold transition-colors disabled:cursor-not-allowed disabled:opacity-50'
+              className='border-kapwa-border-weak bg-kapwa-bg-surface text-kapwa-text-strong hover:bg-kapwa-bg-surface-raised disabled:text-kapwa-text-disabled rounded-lg border px-3 py-1.5 text-xs font-bold transition-colors disabled:cursor-not-allowed disabled:opacity-50'
             >
               Next →
             </button>
@@ -273,7 +273,7 @@ export default function LegislationIndex() {
                   {doc.title}
                 </h3>
                 <div className='text-kapwa-text-disabled flex items-center gap-2 text-[11px] font-medium'>
-                  <span className='bg-kapwa-bg-hover text-kapwa-text-on-disabled rounded px-1.5 py-0.5 font-mono font-bold'>
+                  <span className='bg-kapwa-bg-hover text-kapwa-text-support rounded px-1.5 py-0.5 font-mono font-bold'>
                     {doc.number}
                   </span>
                   <span className='text-kapwa-text-support'>|</span>
@@ -302,7 +302,7 @@ export default function LegislationIndex() {
             <button
               onClick={() => setCurrentPage(Math.max(1, currentPage - 1))}
               disabled={currentPage === 1}
-              className='border-kapwa-border-weak bg-kapwa-bg-surface text-kapwa-text-on-disabled hover:bg-kapwa-bg-surface-raised rounded-lg border px-3 py-1.5 text-xs font-bold transition-colors disabled:cursor-not-allowed disabled:opacity-50'
+              className='border-kapwa-border-weak bg-kapwa-bg-surface text-kapwa-text-strong hover:bg-kapwa-bg-surface-raised disabled:text-kapwa-text-disabled rounded-lg border px-3 py-1.5 text-xs font-bold transition-colors disabled:cursor-not-allowed disabled:opacity-50'
             >
               ← Previous
             </button>
@@ -314,7 +314,7 @@ export default function LegislationIndex() {
                 setCurrentPage(Math.min(totalPages, currentPage + 1))
               }
               disabled={currentPage === totalPages}
-              className='border-kapwa-border-weak bg-kapwa-bg-surface text-kapwa-text-on-disabled hover:bg-kapwa-bg-surface-raised rounded-lg border px-3 py-1.5 text-xs font-bold transition-colors disabled:cursor-not-allowed disabled:opacity-50'
+              className='border-kapwa-border-weak bg-kapwa-bg-surface text-kapwa-text-strong hover:bg-kapwa-bg-surface-raised disabled:text-kapwa-text-disabled rounded-lg border px-3 py-1.5 text-xs font-bold transition-colors disabled:cursor-not-allowed disabled:opacity-50'
             >
               Next →
             </button>

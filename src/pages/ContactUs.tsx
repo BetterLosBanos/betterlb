@@ -24,7 +24,7 @@ const ContactUs: FC = () => {
         'Send us an email for general inquiries and collaboration opportunities',
       contact: 'volunteers@bettergov.ph',
       action: 'mailto:volunteers@bettergov.ph',
-      color: 'bg-blue-100 text-blue-600',
+      color: 'bg-kapwa-bg-brand-weak text-kapwa-text-brand',
     },
     {
       icon: <MessageCircleIcon className='h-8 w-8' />,
@@ -33,7 +33,7 @@ const ContactUs: FC = () => {
         'Join our volunteer community for real-time discussions and support',
       contact: 'discord.gg/bettergov',
       action: 'https://discord.gg/mHtThpN8bT',
-      color: 'bg-blue-100 text-blue-600',
+      color: 'bg-kapwa-bg-brand-weak text-kapwa-text-brand',
     },
     {
       icon: <UsersIcon className='h-8 w-8' />,
@@ -41,7 +41,7 @@ const ContactUs: FC = () => {
       description: 'Help us build better digital services for Filipinos',
       contact: 'Become a Volunteer',
       action: '/join-us',
-      color: 'bg-blue-100 text-blue-600',
+      color: 'bg-kapwa-bg-brand-weak text-kapwa-text-brand',
     },
     {
       icon: <GlobeIcon className='h-8 w-8' />,
@@ -49,7 +49,7 @@ const ContactUs: FC = () => {
       description: 'Found a bug or have a suggestion? Open an issue on GitHub',
       contact: 'GitHub Issues',
       action: 'https://github.com/bettergovph/bettergov/issues',
-      color: 'bg-blue-100 text-blue-600',
+      color: 'bg-kapwa-bg-brand-weak text-kapwa-text-brand',
     },
   ];
 
@@ -113,7 +113,7 @@ const ContactUs: FC = () => {
 
       <div className='container mx-auto px-4 py-6 md:py-8'>
         {/* Header Section */}
-        <div className='bg-kapwa-bg-surface mt-4 rounded-lg border p-6 shadow-xs md:p-8 md:py-16'>
+        <div className='bg-kapwa-bg-surface border-kapwa-border-weak mt-4 rounded-lg border p-6 shadow-xs md:p-8 md:py-16'>
           <div className='mx-auto max-w-4xl text-center'>
             <div className='mb-6 flex justify-center'>
               <div className='bg-kapwa-bg-info-weak rounded-full p-4'>
@@ -123,7 +123,7 @@ const ContactUs: FC = () => {
             <h1 className='text-kapwa-text-strong mb-6 text-3xl font-bold md:text-5xl'>
               Connect with Us
             </h1>
-            <p className='text-kapwa-text-on-disabled mx-auto mb-8 max-w-3xl text-lg md:text-xl'>
+            <p className='text-kapwa-text-support mx-auto mb-8 max-w-3xl text-lg md:text-xl'>
               We&apos;re a passionate community of volunteers, developers, and
               designers dedicated to improving digital public services in the
               Philippines. Whether you have a question, a suggestion, or want to
@@ -137,7 +137,7 @@ const ContactUs: FC = () => {
           {contactMethods.map((method, index) => (
             <div
               key={index}
-              className='bg-kapwa-bg-surface rounded-lg border p-6 shadow-xs transition-shadow hover:shadow-md'
+              className='bg-kapwa-bg-surface border-kapwa-border-weak rounded-lg border p-6 shadow-xs transition-shadow hover:shadow-md'
             >
               <div className={`${method.color} mb-4 w-fit rounded-lg p-3`}>
                 {method.icon}
@@ -145,7 +145,7 @@ const ContactUs: FC = () => {
               <h3 className='text-kapwa-text-strong mb-2 text-lg font-semibold'>
                 {method.title}
               </h3>
-              <p className='text-kapwa-text-on-disabled mb-4 text-sm'>
+              <p className='text-kapwa-text-support mb-4 text-sm'>
                 {method.description}
               </p>
               <Button
@@ -195,7 +195,7 @@ const ContactUs: FC = () => {
                     )}
                   </button>
                   {openFaq === index && (
-                    <div className='text-kapwa-text-on-disabled p-4 pt-0 text-sm leading-relaxed'>
+                    <div className='text-kapwa-text-support p-4 pt-0 text-sm leading-relaxed'>
                       <p>
                         {faq.answer}
                         {faq.link && (
@@ -203,7 +203,7 @@ const ContactUs: FC = () => {
                             {' '}
                             <Link
                               to={faq.link.href}
-                              className='text-kapwa-text-info font-medium hover:text-blue-800'
+                              className='text-kapwa-text-info font-medium hover:text-kapwa-text-link-hover'
                               target={
                                 faq.link.href.startsWith('http')
                                   ? '_blank'
@@ -230,11 +230,11 @@ const ContactUs: FC = () => {
         </div>
 
         {/* Call to Action */}
-        <div className='mt-8 rounded-lg bg-gradient-to-r from-blue-600 to-purple-600 p-8 text-center'>
+        <div className='from-kapwa-brand-600 to-kapwa-purple-600 bg-linear-to-r mt-8 rounded-lg p-8 text-center'>
           <h3 className='text-kapwa-text-inverse mb-4 text-2xl font-bold'>
             Ready to Make a Difference?
           </h3>
-          <p className='mx-auto mb-6 max-w-2xl text-blue-100'>
+          <p className='text-kapwa-text-inverse/80 mx-auto mb-6 max-w-2xl'>
             Join our community of volunteers building better digital services
             for the Philippines.
           </p>

@@ -237,7 +237,7 @@ const ForexPage: FC = () => {
                           setSearchTerm('');
                           setIsSearchOpen(false);
                         }}
-                        className='hover:text-kapwa-text-on-disabled text-kapwa-text-disabled'
+                        className='hover:text-kapwa-text-support text-kapwa-text-disabled'
                       >
                         <LucideIcons.X className='h-4 w-4' />
                       </button>
@@ -278,7 +278,7 @@ const ForexPage: FC = () => {
                 ) : (
                   <div className='flex h-full flex-col items-center justify-center pt-8 text-center'>
                     <LucideIcons.SearchX className='text-kapwa-text-disabled mb-4 h-12 w-12' />
-                    <h3 className='text-kapwa-text-on-disabled mb-2 text-lg font-medium'>
+                    <h3 className='text-kapwa-text-support mb-2 text-lg font-medium'>
                       No currencies found
                     </h3>
                     <p className='text-kapwa-text-disabled mb-4 text-sm'>
@@ -495,7 +495,7 @@ const ForexPage: FC = () => {
             the Philippine Peso against major world currencies.
           </p>
           <div className='mt-6 grid grid-cols-1 gap-6 md:grid-cols-2'>
-            <div className='border-kapwa-border-brand0 border-l-4 pl-4'>
+            <div className='border-kapwa-border-brand border-l-4 pl-4'>
               <h3 className='text-kapwa-text-support mb-2 text-lg font-semibold'>
                 Understanding Exchange Rates
               </h3>
@@ -506,7 +506,7 @@ const ForexPage: FC = () => {
                 foreign currency.
               </p>
             </div>
-            <div className='border-kapwa-border-brand0 border-l-4 pl-4'>
+            <div className='border-kapwa-border-brand border-l-4 pl-4'>
               <h3 className='text-kapwa-text-support mb-2 text-lg font-semibold'>
                 Official BSP Rates
               </h3>

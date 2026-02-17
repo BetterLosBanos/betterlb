@@ -313,7 +313,7 @@ export default function ProcurementPage() {
                     <td className='text-kapwa-text-strong px-6 py-4 text-right font-mono font-bold'>
                       {formatPesoAdaptive(row.contract_amount).fullString}
                     </td>
-                    <td className='text-kapwa-text-on-disabled hidden px-6 py-4 text-xs whitespace-nowrap md:table-cell'>
+                    <td className='text-kapwa-text-support hidden px-6 py-4 text-xs whitespace-nowrap md:table-cell'>
                       {formatDate(row.award_date)}
                     </td>
                     <td className='px-6 py-4 text-center'>
@@ -376,7 +376,7 @@ export default function ProcurementPage() {
         {/* Link 2: National Comparison */}
         <div className='hover:border-kapwa-border-brand border-kapwa-border-weak bg-kapwa-bg-surface flex h-full flex-col justify-between rounded-xl border p-6 shadow-sm transition-all'>
           <div className='mb-4 flex items-start gap-4'>
-            <div className='text-kapwa-text-inverse bg-kapwa-bg-gray-900 shrink-0 rounded-xl p-3'>
+            <div className='text-kapwa-text-inverse bg-kapwa-bg-kapwa-bg-surface shrink-0 rounded-xl p-3'>
               <Building2 className='h-6 w-6' />
             </div>
             <div>
@@ -393,7 +393,7 @@ export default function ProcurementPage() {
             href='https://transparency.bettergov.ph/procurement'
             target='_blank'
             rel='noreferrer'
-            className='text-kapwa-text-inverse bg-kapwa-bg-gray-900 hover:bg-kapwa-bg-gray-800 inline-flex w-full items-center justify-center gap-2 rounded-lg px-4 py-2.5 text-xs font-bold transition-colors'
+            className='text-kapwa-text-inverse bg-kapwa-bg-kapwa-bg-surface hover:bg-kapwa-bg-kapwa-bg-surface inline-flex w-full items-center justify-center gap-2 rounded-lg px-4 py-2.5 text-xs font-bold transition-colors'
           >
             Open National Engine <ExternalLink className='h-3 w-3' />
           </a>

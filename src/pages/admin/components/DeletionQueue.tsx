@@ -323,7 +323,7 @@ export default function DeletionQueue() {
             </span>
             <button
               onClick={clearSelection}
-              className='hover:text-kapwa-text-brand text-kapwa-text-on-disabled text-sm'
+              className='hover:text-kapwa-text-brand text-kapwa-text-support text-sm'
             >
               Clear selection
             </button>
@@ -344,7 +344,7 @@ export default function DeletionQueue() {
               leftIcon={<Trash2 className='h-4 w-4' />}
               onClick={bulkPermanentDelete}
               disabled={actionLoading}
-              className='hover:bg-kapwa-bg-danger-weak text-red-600 hover:border-red-300'
+              className='hover:bg-kapwa-bg-danger-weak text-kapwa-text-danger hover:border-red-300'
             >
               Permanently Delete
             </Button>
@@ -353,7 +353,7 @@ export default function DeletionQueue() {
       )}
 
       {/* Select All Bar */}
-      <div className='text-kapwa-text-on-disabled flex items-center gap-2 text-sm'>
+      <div className='text-kapwa-text-support flex items-center gap-2 text-sm'>
         <button
           onClick={selectAll}
           className='hover:text-kapwa-text-brand flex items-center gap-1'
@@ -436,7 +436,7 @@ export default function DeletionQueue() {
                     leftIcon={<Trash2 className='h-4 w-4' />}
                     onClick={() => permanentDelete(person.id)}
                     disabled={actionLoading}
-                    className='hover:bg-kapwa-bg-danger-weak text-red-600 hover:border-red-300'
+                    className='hover:bg-kapwa-bg-danger-weak text-kapwa-text-danger hover:border-red-300'
                   >
                     Delete
                   </Button>

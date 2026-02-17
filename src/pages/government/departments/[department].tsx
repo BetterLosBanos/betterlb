@@ -90,7 +90,7 @@ export default function DepartmentDetail() {
       </Breadcrumb>
 
       {/* --- HERO HEADER --- */}
-      <header className='text-kapwa-text-inverse bg-kapwa-bg-gray-900 relative overflow-hidden rounded-2xl p-8 shadow-xl md:p-10'>
+      <header className='text-kapwa-text-inverse bg-kapwa-bg-surface-bold relative overflow-hidden rounded-2xl p-8 shadow-xl md:p-10'>
         <div className='relative z-10 max-w-3xl'>
           <div className='mb-3 flex items-center gap-2'>
             <Badge variant='primary' dot>
@@ -156,9 +156,9 @@ export default function DepartmentDetail() {
 
               {/* Optional Direct Contact for Head */}
               {dept.department_head.email && (
-                <div className='border-kapwa-border-brand/50 text-kapwa-text-on-disabled mt-4 flex justify-center gap-4 border-t pt-4 text-sm md:justify-start'>
+                <div className='border-kapwa-border-brand/50 text-kapwa-text-support mt-4 flex justify-center gap-4 border-t pt-4 text-sm md:justify-start'>
                   <span className='flex items-center gap-1.5 font-medium'>
-                    <MailIcon className='text-kapwa-text-brand0 h-4 w-4' />
+                    <MailIcon className='text-kapwa-text-brand h-4 w-4' />
                     {dept.department_head.email}
                   </span>
                 </div>
@@ -174,7 +174,7 @@ export default function DepartmentDetail() {
           title='Department Services'
           icon={ClipboardList}
           // Add a subtle border highlight to indicate functionality
-          className='border-l-4 border-l-slate-400'
+          className='border-l-4 border-l-kapwa-border-strong'
         >
           <div className='grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-3'>
             {associatedServices.map(service => (
@@ -214,7 +214,7 @@ export default function DepartmentDetail() {
       <DetailSection title='Office Mandate' icon={InfoIcon}>
         <Card variant='default' hover={false} className='bg-kapwa-bg-surface'>
           <CardContent className='p-6'>
-            <p className='text-kapwa-text-on-disabled text-sm leading-relaxed md:text-base'>
+            <p className='text-kapwa-text-support text-sm leading-relaxed md:text-base'>
               The {toTitleCase(dept.office_name)} is a frontline office of the
               Municipal Government of Los Baños. It is responsible for executing
               administrative mandates and technical functions to ensure the

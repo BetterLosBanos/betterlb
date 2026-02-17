@@ -61,25 +61,25 @@ export default function CurrentTermCard({
               <span className='text-kapwa-text-brand-bold text-lg font-black'>
                 {ordCount}
               </span>
-              <span className='text-kapwa-text-brand0 text-[9px] font-bold tracking-wider uppercase'>
+              <span className='text-kapwa-text-brand text-[9px] font-bold tracking-wider uppercase'>
                 Ordinances
               </span>
             </div>
-            <div className='bg-kapwa-bg-accent-orange-weak border-secondary-100 flex flex-col items-center gap-1 rounded-xl border p-3'>
+            <div className='bg-kapwa-bg-accent-orange-weak border-kapwa-border-weak flex flex-col items-center gap-1 rounded-xl border p-3'>
               <BookOpen className='text-kapwa-text-accent-orange h-5 w-5' />
               <span className='text-kapwa-text-accent-orange text-lg font-black'>
                 {resCount}
               </span>
-              <span className='text-kapwa-text-accent-orange0 text-[9px] font-bold tracking-wider uppercase'>
+              <span className='text-kapwa-text-accent-orange text-[9px] font-bold tracking-wider uppercase'>
                 Resolutions
               </span>
             </div>
-            <div className='flex flex-col items-center gap-1 rounded-xl border border-purple-100 bg-purple-50 p-3'>
+            <div className='flex flex-col items-center gap-1 rounded-xl border border-purple-100 bg-kapwa-bg-accent-purple-weak p-3'>
               <ScrollText className='text-kapwa-text-accent-purple h-5 w-5' />
               <span className='text-kapwa-text-accent-purple text-lg font-black'>
                 {eoCount}
               </span>
-              <span className='text-[9px] font-bold tracking-wider text-purple-500 uppercase'>
+              <span className='text-[9px] font-bold tracking-wider text-kapwa-text-accent-purple uppercase'>
                 Exec. Orders
               </span>
             </div>

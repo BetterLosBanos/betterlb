@@ -228,7 +228,7 @@ export default function AdminDashboard() {
                               ? 'text-amber-500'
                               : stat.variant === 'success'
                                 ? 'text-emerald-500'
-                                : 'text-blue-500'
+                                : 'text-kapwa-text-brand'
                         }`}
                       />
                       <Badge
@@ -334,7 +334,7 @@ export default function AdminDashboard() {
                         </span>
                       </div>
                       {item.description && (
-                        <p className='text-kapwa-text-on-disabled mb-1 line-clamp-2 text-sm'>
+                        <p className='text-kapwa-text-support mb-1 line-clamp-2 text-sm'>
                           {item.description}
                         </p>
                       )}
@@ -348,7 +348,7 @@ export default function AdminDashboard() {
                             ? 'Ordinance'
                             : 'Resolution'}{' '}
                           {item.document.number}
-                          <span className='text-kapwa-text-on-disabled ml-1 line-clamp-1 font-normal'>
+                          <span className='text-kapwa-text-support ml-1 line-clamp-1 font-normal'>
                             - {item.document.title}
                           </span>
                         </Link>

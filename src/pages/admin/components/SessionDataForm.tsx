@@ -261,7 +261,7 @@ export default function SessionDataForm({
 
           {parsedData && (
             <div className='bg-kapwa-bg-info-weak rounded-md p-4'>
-              <p className='mb-2 text-sm font-bold text-blue-900'>
+              <p className='mb-2 text-sm font-bold text-kapwa-text-brand'>
                 Parsed Data:
               </p>
               <div className='text-kapwa-text-info space-y-1 text-sm'>

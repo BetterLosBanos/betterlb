@@ -26,7 +26,7 @@ export interface Service {
   type: ServiceType;
   description?: string;
   url?: string;
-  officeSlug: string;
+  officeSlug: string | string[];
   category: ServiceCategory;
   steps?: string[];
   requirements?: string[];

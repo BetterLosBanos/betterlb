@@ -186,7 +186,7 @@ export default function TermDetail() {
                 <Link
                   key={person.id}
                   to={`/openlgu/person/${person.id}`}
-                  className='group from-kapwa-brand-50 border-kapwa-border-brand hover:border-kapwa-border-brand flex items-center gap-4 rounded-xl border bg-linear-to-r to-white p-4 transition-all hover:shadow-sm'
+                  className='group from-kapwa-brand-50 border-kapwa-border-brand hover:border-kapwa-border-brand flex items-center gap-4 rounded-xl border bg-linear-to-r to-kapwa-bg-surface p-4 transition-all hover:shadow-sm'
                 >
                   <div className='from-kapwa-brand-500 to-kapwa-brand-600 text-kapwa-text-inverse flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-linear-to-br text-lg font-bold shadow-sm'>
                     {person.first_name[0]}
@@ -277,7 +277,7 @@ export default function TermDetail() {
                         className='flex items-center gap-3'
                       >
                         <div
-                          className={`flex h-10 w-10 shrink-0 items-center justify-center rounded-lg text-sm font-bold ${isVM ? 'bg-kapwa-bg-brand-default text-white' : 'bg-kapwa-bg-gray-200 text-kapwa-text-support'}`}
+                          className={`flex h-10 w-10 shrink-0 items-center justify-center rounded-lg text-sm font-bold ${isVM ? 'bg-kapwa-bg-brand-default text-white' : 'bg-kapwa-bg-kapwa-bg-surface text-kapwa-text-support'}`}
                         >
                           {person.first_name[0]}
                           {person.last_name[0]}
@@ -307,10 +307,10 @@ export default function TermDetail() {
                             {committeesByRole.chairperson.map(c => (
                               <div
                                 key={`chair-${c.id}`}
-                                className='flex items-center gap-1.5 rounded-md border border-amber-200/50 bg-linear-to-r from-amber-50 to-amber-50/50 px-2 py-1'
+                                className='flex items-center gap-1.5 rounded-md border border-kapwa-border-warning/50 bg-linear-to-r from-kapwa-warning-weak to-kapwa-warning-weak/50 px-2 py-1'
                               >
-                                <Crown className='h-3 w-3 text-amber-600' />
-                                <span className='max-w-[120px] truncate text-[10px] font-medium text-amber-700'>
+                                <Crown className='h-3 w-3 text-kapwa-text-warning' />
+                                <span className='max-w-[120px] truncate text-[10px] font-medium text-kapwa-text-warning'>
                                   {c.name}
                                 </span>
                               </div>
@@ -319,7 +319,7 @@ export default function TermDetail() {
                             {committeesByRole.viceChairperson.map(c => (
                               <div
                                 key={`vice-${c.id}`}
-                                className='flex items-center gap-1.5 rounded-md border border-blue-200/50 bg-linear-to-r from-blue-50 to-blue-50/50 px-2 py-1'
+                                className='flex items-center gap-1.5 rounded-md border border-kapwa-border-info/50 bg-linear-to-r from-kapwa-info-weak to-kapwa-info-weak/50 px-2 py-1'
                               >
                                 <Shield className='text-kapwa-text-info h-3 w-3' />
                                 <span className='text-kapwa-text-info max-w-[120px] truncate text-[10px] font-medium'>
@@ -336,7 +336,7 @@ export default function TermDetail() {
                                   className='border-kapwa-border-weak bg-kapwa-bg-hover flex items-center gap-1.5 rounded-md border px-2 py-1'
                                 >
                                   <User className='text-kapwa-text-disabled h-3 w-3' />
-                                  <span className='text-kapwa-text-on-disabled max-w-[120px] truncate text-[10px] font-medium'>
+                                  <span className='text-kapwa-text-support max-w-[120px] truncate text-[10px] font-medium'>
                                     {c.name}
                                   </span>
                                 </div>
@@ -363,30 +363,30 @@ export default function TermDetail() {
                 <span className='text-kapwa-text-brand-bold block text-2xl leading-none font-black'>
                   {ordCount}
                 </span>
-                <span className='text-kapwa-text-brand0 text-[10px] font-bold tracking-widest uppercase'>
+                <span className='text-kapwa-text-brand text-[10px] font-bold tracking-widest uppercase'>
                   Ordinances
                 </span>
               </div>
             </div>
-            <div className='bg-kapwa-bg-accent-orange-weak border-secondary-100 flex items-center gap-4 rounded-2xl border p-4'>
+            <div className='bg-kapwa-bg-accent-orange-weak border-kapwa-border-weak flex items-center gap-4 rounded-2xl border p-4'>
               <BookOpen className='text-kapwa-text-accent-orange h-6 w-6' />
               <div>
                 <span className='text-kapwa-text-accent-orange block text-2xl leading-none font-black'>
                   {resCount}
                 </span>
-                <span className='text-kapwa-text-accent-orange0 text-[10px] font-bold tracking-widest uppercase'>
+                <span className='text-kapwa-text-accent-orange text-[10px] font-bold tracking-widest uppercase'>
                   Resolutions
                 </span>
               </div>
             </div>
             {eoCount > 0 && (
-              <div className='flex items-center gap-4 rounded-2xl border border-purple-100 bg-purple-50 p-4'>
+              <div className='flex items-center gap-4 rounded-2xl border border-purple-100 bg-kapwa-bg-accent-purple-weak p-4'>
                 <ScrollText className='text-kapwa-text-accent-purple h-6 w-6' />
                 <div>
                   <span className='text-kapwa-text-accent-purple block text-2xl leading-none font-black'>
                     {eoCount}
                   </span>
-                  <span className='text-[10px] font-bold tracking-widest text-purple-500 uppercase'>
+                  <span className='text-[10px] font-bold tracking-widest text-kapwa-text-accent-purple uppercase'>
                     Exec. Orders
                   </span>
                 </div>

@@ -42,11 +42,11 @@ export default function TimelineSection() {
     : highlightsData.slice(0, COLLAPSE_LIMIT);
 
   return (
-    <section className='border-kapwa-border-weak bg-kapwa-bg-surface-raised border-t py-12'>
-      <div className='container mx-auto px-4'>
+    <section className='py-12 border-t border-kapwa-border-weak bg-kapwa-bg-surface-raised'>
+      <div className='container px-4 mx-auto'>
         {/* Header */}
         <div className='mb-12 text-center'>
-          <h2 className='text-kapwa-text-strong mb-4 text-2xl font-bold md:text-3xl'>
+          <h2 className='mb-4 text-2xl font-bold text-kapwa-text-strong md:text-3xl'>
             History of {config.lgu.name}
           </h2>
         </div>
@@ -54,29 +54,29 @@ export default function TimelineSection() {
         <div className='grid grid-cols-1 gap-6 lg:grid-cols-[1fr_320px]'>
           {/* --- LEFT: Timeline --- */}
           <div className='relative'>
-            <div className='from-kapwa-brand-600 absolute top-2 bottom-0 left-4 w-0.5 bg-linear-to-b via-gray-300 to-transparent' />
+            <div className='border-l-2 border-kapwa-border-brand absolute top-2 bottom-0 left-4 w-0.5' />
             <div className='space-y-6'>
               {visibleHistory.map((event, idx) => (
                 <div
                   key={idx}
-                  className='group animate-in fade-in slide-in-from-left-4 relative pl-12 duration-300'
+                  className='relative pl-12 duration-300 group animate-in fade-in slide-in-from-left-4'
                   style={{ animationDelay: `${idx * 50}ms` }}
                 >
                   {/* Dot Marker */}
-                  <div className='absolute top-3 left-0 flex h-8 w-8 items-center justify-center'>
-                    <div className='border-kapwa-border-brand group-hover:bg-kapwa-bg-brand-default bg-kapwa-bg-surface h-3 w-3 rounded-full border-2 shadow-sm transition-all duration-300 group-hover:scale-125' />
+                  <div className='flex absolute left-0 top-3 justify-center items-center w-8 h-8'>
+                    <div className='w-3 h-3 rounded-full border-2 shadow-sm transition-all duration-300 border-kapwa-border-brand group-hover:bg-kapwa-bg-brand-default bg-kapwa-bg-surface group-hover:scale-125' />
                   </div>
 
-                  <Card className='hover:border-kapwa-border-brand border-kapwa-border-weak shadow-sm transition-all hover:shadow-md'>
-                    <CardContent className='flex flex-col items-start gap-4 p-4 sm:flex-row sm:p-5'>
-                      <span className='bg-kapwa-bg-brand-default text-kapwa-text-inverse inline-flex shrink-0 items-center justify-center rounded-lg px-3 py-1 text-xs font-bold shadow-sm'>
+                  <Card className='shadow-sm transition-all hover:border-kapwa-border-brand border-kapwa-border-weak hover:shadow-md'>
+                    <CardContent className='flex flex-col gap-4 items-start p-4 sm:flex-row sm:p-5'>
+                      <span className='inline-flex justify-center items-center px-3 py-1 text-xs font-bold rounded-lg shadow-sm bg-kapwa-bg-brand-default text-kapwa-text-inverse shrink-0'>
                         {event.year}
                       </span>
                       <div>
-                        <h3 className='text-kapwa-text-strong mb-1 text-base leading-tight font-bold'>
+                        <h3 className='mb-1 text-base font-bold leading-tight text-kapwa-text-strong'>
                           {event.title}
                         </h3>
-                        <p className='text-kapwa-text-on-disabled text-xs leading-relaxed sm:text-sm'>
+                        <p className='text-xs leading-relaxed text-kapwa-text-support sm:text-sm'>
                           {event.description}
                         </p>
                       </div>
@@ -94,23 +94,23 @@ export default function TimelineSection() {
               return (
                 <div
                   key={idx}
-                  className='group animate-in fade-in slide-in-from-right-4 duration-300'
+                  className='duration-300 group animate-in fade-in slide-in-from-right-4'
                   style={{ animationDelay: `${idx * 50}ms` }}
                 >
                   <Card
-                    hoverable
-                    className='bg-kapwa-bg-surface border-kapwa-border-weak shadow-sm transition-all hover:shadow-md'
+                    hover
+                    className='shadow-sm transition-all bg-kapwa-bg-surface border-kapwa-border-weak hover:shadow-md'
                   >
                     <CardContent className='p-5'>
-                      <div className='mb-3 flex items-center gap-3'>
-                        <div className='bg-kapwa-bg-brand-default text-kapwa-text-inverse flex h-10 w-10 items-center justify-center rounded-xl shadow-sm'>
-                          <Icon className='h-5 w-5' />
+                      <div className='flex gap-3 items-center mb-3'>
+                        <div className='flex justify-center items-center w-10 h-10 rounded-xl shadow-sm bg-kapwa-bg-brand-default text-kapwa-text-inverse'>
+                          <Icon className='w-5 h-5' />
                         </div>
-                        <h4 className='text-kapwa-text-strong text-sm leading-tight font-bold'>
+                        <h4 className='text-sm font-bold leading-tight text-kapwa-text-strong'>
                           {item.title}
                         </h4>
                       </div>
-                      <p className='text-kapwa-text-disabled text-xs leading-relaxed'>
+                      <p className='text-xs leading-relaxed text-kapwa-text-disabled'>
                         {item.description}
                       </p>
                     </CardContent>
@@ -124,7 +124,7 @@ export default function TimelineSection() {
         {/* Show More / Show Less */}
         {(historyData.length > COLLAPSE_LIMIT ||
           highlightsData.length > COLLAPSE_LIMIT) && (
-          <div className='mt-8 flex justify-center'>
+          <div className='flex justify-center mt-8'>
             <Button
               variant='primary'
               onClick={() => setShowAll(!showAll)}

@@ -86,7 +86,7 @@ export default function TransparencyIndex() {
                     className={`rounded-2xl p-3 shadow-sm transition-all ${
                       section.color === 'blue'
                         ? 'bg-kapwa-bg-surface text-kapwa-text-brand group-hover:bg-kapwa-bg-brand-default group-hover:text-kapwa-text-inverse'
-                        : 'bg-kapwa-bg-accent-orange-weak text-kapwa-text-accent-orange group-hover:bg-secondary-600 group-hover:text-kapwa-text-inverse'
+                        : 'bg-kapwa-bg-accent-orange-weak text-kapwa-text-accent-orange group-hover:bg-kapwa-orange-600 group-hover:text-kapwa-text-inverse'
                     }`}
                   >
                     <section.icon className='h-6 w-6' />

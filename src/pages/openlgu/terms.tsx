@@ -106,7 +106,7 @@ export default function TermsIndex() {
         <h1 className='text-kapwa-text-strong text-2xl font-extrabold md:text-3xl'>
           Legislative Terms
         </h1>
-        <p className='text-kapwa-text-on-disabled mt-2'>
+        <p className='text-kapwa-text-support mt-2'>
           Browse historical records of the Sangguniang Bayan sessions.
         </p>
       </header>
@@ -188,7 +188,7 @@ export default function TermsIndex() {
                       </span>
                     )}
                     {term.eoCount > 0 && (
-                      <span className='text-kapwa-text-accent-purple rounded-full bg-purple-50 px-2 py-1 text-[10px] font-bold'>
+                      <span className='text-kapwa-text-accent-purple rounded-full bg-kapwa-bg-accent-purple-weak px-2 py-1 text-[10px] font-bold'>
                         {term.eoCount} EO
                       </span>
                     )}

@@ -248,7 +248,7 @@ const WeatherPage: FC = () => {
             cities.
           </p>
           <div className='mt-6 grid grid-cols-1 gap-6 md:grid-cols-2'>
-            <div className='border-kapwa-border-brand0 border-l-4 pl-4'>
+            <div className='border-kapwa-border-brand border-l-4 pl-4'>
               <h3 className='text-kapwa-text-support mb-2 text-lg font-semibold'>
                 Understanding the Data
               </h3>
@@ -258,7 +258,7 @@ const WeatherPage: FC = () => {
                 forecast provides a 5-day outlook to help you plan ahead.
               </p>
             </div>
-            <div className='border-kapwa-border-brand0 border-l-4 pl-4'>
+            <div className='border-kapwa-border-brand border-l-4 pl-4'>
               <h3 className='text-kapwa-text-support mb-2 text-lg font-semibold'>
                 Weather Advisories
               </h3>

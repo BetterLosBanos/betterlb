@@ -115,7 +115,7 @@ const InfoWidgets: FC = () => {
                       key={location.location}
                       className='border-kapwa-border-weak bg-kapwa-bg-surface flex flex-col items-center rounded-lg border p-3 uppercase'
                     >
-                      <div className='text-kapwa-text-accent-yellow0 mb-1'>
+                      <div className='text-kapwa-text-accent-yellow mb-1'>
                         {getWeatherIcon(location.icon)}
                       </div>
                       <div className='text-lg font-semibold'>

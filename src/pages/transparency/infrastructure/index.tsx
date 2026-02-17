@@ -302,7 +302,7 @@ export default function InfrastructurePage() {
                         </span>
                         <div className='bg-kapwa-bg-hover h-1.5 w-full overflow-hidden rounded-xl'>
                           <div
-                            className={`h-full ${item.progress >= 100 ? 'bg-emerald-500' : 'bg-kapwa-bg-brand-weak0'}`}
+                            className={`h-full ${item.progress >= 100 ? 'bg-kapwa-bg-success-weak' : 'bg-kapwa-bg-brand-weak'}`}
                             style={{
                               width: `${Math.min(item.progress, 100)}%`,
                             }}
@@ -368,7 +368,7 @@ export default function InfrastructurePage() {
 
         <div className='hover:border-kapwa-border-brand border-kapwa-border-weak bg-kapwa-bg-surface flex h-full flex-col justify-between rounded-xl border p-6 shadow-sm transition-all'>
           <div className='mb-4 flex items-start gap-4'>
-            <div className='text-kapwa-text-inverse bg-kapwa-bg-gray-900 shrink-0 rounded-xl p-3'>
+            <div className='text-kapwa-text-inverse bg-kapwa-bg-kapwa-bg-surface shrink-0 rounded-xl p-3'>
               <Layers className='h-6 w-6' />
             </div>
             <div>
@@ -386,7 +386,7 @@ export default function InfrastructurePage() {
             href='https://bisto.ph/projects?search=los+ba%C3%B1os&region=Region+IV-A&province=LAGUNA'
             target='_blank'
             rel='noreferrer'
-            className='text-kapwa-text-inverse bg-kapwa-bg-gray-900 hover:bg-kapwa-bg-gray-800 inline-flex w-full items-center justify-center gap-2 rounded-lg px-4 py-2.5 text-xs font-bold transition-colors'
+            className='text-kapwa-text-inverse bg-kapwa-bg-kapwa-bg-surface hover:bg-kapwa-bg-kapwa-bg-surface inline-flex w-full items-center justify-center gap-2 rounded-lg px-4 py-2.5 text-xs font-bold transition-colors'
           >
             Visit Bisto.ph <ExternalLink className='h-3 w-3' />
           </a>

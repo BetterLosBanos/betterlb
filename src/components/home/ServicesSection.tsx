@@ -75,7 +75,7 @@ const ServicesSection: FC = () => {
                     {category.name}
                   </h3>
 
-                  <p className='text-kapwa-text-on-disabled mb-6 line-clamp-3 grow text-sm'>
+                  <p className='text-kapwa-text-support mb-6 line-clamp-3 grow text-sm'>
                     {category.description}
                   </p>
 

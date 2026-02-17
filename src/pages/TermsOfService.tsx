@@ -40,7 +40,7 @@ const TermsOfService: FC = () => {
       </Helmet>
 
       {/* Header Section */}
-      <section className='from-kapwa-brand-600 text-kapwa-text-inverse bg-linear-to-r to-blue-700 py-16'>
+      <section className='from-kapwa-brand-600 text-kapwa-text-inverse bg-linear-to-r to-kapwa-blue-700 py-16'>
         <div className='container mx-auto px-4'>
           <div className='mx-auto max-w-4xl text-center'>
             <div className='mb-6 flex justify-center'>
@@ -100,18 +100,18 @@ const TermsOfService: FC = () => {
           {/* "AS IS" Disclaimer */}
           <section>
             <div className='mb-4 flex items-center gap-3'>
-              <AlertTriangle className='h-6 w-6 text-amber-600' />
+              <AlertTriangle className='h-6 w-6 text-kapwa-text-warning' />
               <h2 className='text-kapwa-text-strong text-2xl font-bold'>
                 &quot;AS IS&quot; Disclaimer
               </h2>
             </div>
-            <div className='mb-4 border-l-4 border-amber-400 bg-amber-50 p-4'>
-              <p className='mb-2 font-semibold text-amber-800'>
+            <div className='mb-4 border-l-4 border-kapwa-border-warning bg-kapwa-bg-warning-weak p-4'>
+              <p className='mb-2 font-semibold text-kapwa-text-warning'>
                 ALL INFORMATION ON THIS WEBSITE IS PROVIDED &quot;AS IS&quot;
                 WITHOUT WARRANTY OF ANY KIND, EITHER EXPRESS OR IMPLIED,
                 INCLUDING BUT NOT LIMITED TO:
               </p>
-              <ul className='list-inside list-disc space-y-1 text-amber-700'>
+              <ul className='list-inside list-disc space-y-1 text-kapwa-text-warning'>
                 <li>Warranties of merchantability</li>
                 <li>Fitness for a particular purpose</li>
                 <li>Non-infringement of intellectual property rights</li>
@@ -186,8 +186,8 @@ const TermsOfService: FC = () => {
                 </li>
               </ul>
 
-              <div className='bg-kapwa-bg-info-weak mt-4 border-l-4 border-blue-400 p-4'>
-                <p className='mb-2 font-semibold text-blue-800'>
+              <div className='bg-kapwa-bg-info-weak mt-4 border-l-4 border-kapwa-border-info p-4'>
+                <p className='mb-2 font-semibold text-kapwa-text-info'>
                   We strongly encourage users to:
                 </p>
                 <ul className='text-kapwa-text-info list-inside list-disc space-y-1'>

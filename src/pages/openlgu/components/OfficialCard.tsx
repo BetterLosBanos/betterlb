@@ -126,17 +126,17 @@ export default function OfficialCard({
             </div>
 
             {/* Mini stats row */}
-            <div className='text-kapwa-text-on-disabled mt-2 flex flex-wrap items-center gap-3 text-xs'>
+            <div className='text-kapwa-text-support mt-2 flex flex-wrap items-center gap-3 text-xs'>
               {!isExecutive && (
                 <div className='flex items-center gap-1'>
                   <Calendar className='h-3 w-3' />
                   <span
                     className={
                       attendanceRate >= 90
-                        ? 'font-semibold text-emerald-600'
+                        ? 'font-semibold text-kapwa-text-success'
                         : attendanceRate >= 70
                           ? 'text-kapwa-text-support'
-                          : 'text-amber-600'
+                          : 'text-kapwa-text-warning'
                     }
                   >
                     {attendanceRate}% attendance
@@ -173,7 +173,7 @@ export default function OfficialCard({
               </span>
             )}
             {isExpanded ? (
-              <ChevronDown className='text-kapwa-text-brand0 h-5 w-5' />
+              <ChevronDown className='text-kapwa-text-brand h-5 w-5' />
             ) : (
               <ChevronRight className='group-hover:text-kapwa-text-disabled h-5 w-5 transition-colors' />
             )}

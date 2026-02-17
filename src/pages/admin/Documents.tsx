@@ -323,7 +323,7 @@ export default function AdminDocuments() {
                         {doc.title}
                       </span>
                     </td>
-                    <td className='text-kapwa-text-on-disabled px-4 py-3'>
+                    <td className='text-kapwa-text-support px-4 py-3'>
                       {doc.date_enacted || '-'}
                     </td>
                     <td className='px-4 py-3'>{getStatusBadge(doc)}</td>
@@ -334,7 +334,7 @@ export default function AdminDocuments() {
                         ) : (
                           <CheckCircle className='h-4 w-4 text-emerald-500' />
                         )}
-                        <span className='text-kapwa-text-on-disabled text-xs'>
+                        <span className='text-kapwa-text-support text-xs'>
                           {doc.needs_review ? 'Needs Review' : 'OK'}
                         </span>
                       </div>
@@ -370,7 +370,7 @@ export default function AdminDocuments() {
           {/* Pagination */}
           {pagination.total > pagination.limit && (
             <div className='flex items-center justify-between'>
-              <p className='text-kapwa-text-on-disabled text-sm'>
+              <p className='text-kapwa-text-support text-sm'>
                 Showing {pagination.offset + 1}-
                 {Math.min(
                   pagination.offset + pagination.limit,

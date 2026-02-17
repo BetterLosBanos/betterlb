@@ -71,7 +71,7 @@ function AdminContent() {
         <div className='mb-8 flex items-center justify-between'>
           <div>
             <div className='mb-2 flex items-center gap-3'>
-              <Shield className='text-kapwa-text-brand0 h-8 w-8' />
+              <Shield className='text-kapwa-text-brand h-8 w-8' />
               <h1 className='text-kapwa-text-strong text-3xl font-extrabold'>
                 Admin Dashboard
               </h1>

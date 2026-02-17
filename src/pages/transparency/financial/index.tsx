@@ -234,7 +234,7 @@ export default function FinancialPage() {
             </div>
           </div>
           <h1 className='text-kapwa-text-strong flex items-center gap-3 text-3xl font-black tracking-tight md:text-4xl'>
-            <BarChart2Icon className='h-8 w-8 text-emerald-600' />
+            <BarChart2Icon className='h-8 w-8 text-kapwa-text-success' />
             Financial Performance
           </h1>
           <p className='text-kapwa-text-disabled max-w-xl text-sm leading-relaxed font-medium'>
@@ -294,7 +294,7 @@ export default function FinancialPage() {
       {/* 5. Accessibility Footer */}
       <footer className='pt-10 text-center'>
         <div className='border-kapwa-border-weak bg-kapwa-bg-surface inline-flex items-center gap-2 rounded-full border px-4 py-2 shadow-sm'>
-          <ShieldCheck className='h-4 w-4 text-emerald-600' />
+          <ShieldCheck className='h-4 w-4 text-kapwa-text-success' />
           <span className='text-kapwa-text-disabled text-[10px] font-bold tracking-widest uppercase'>
             Source: LGU SRE via BLGF and Full Disclosure Policy Portal
           </span>

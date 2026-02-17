@@ -232,7 +232,7 @@ export default function ExecutiveBranchPage() {
                   </div>
 
                   {/* Compact Footer (Keeping this dense for the grid list) */}
-                  <div className='mt-auto flex items-center justify-between gap-4 border-t border-slate-50 pt-3'>
+                  <div className='mt-auto flex items-center justify-between gap-4 border-t border-kapwa-border-weak pt-3'>
                     {official.phone ? (
                       <div className='text-kapwa-text-disabled flex items-center gap-1.5 text-[11px] font-medium'>
                         <Phone className='text-kapwa-text-brand h-3 w-3' />
@@ -277,7 +277,7 @@ export default function ExecutiveBranchPage() {
       <footer className='pt-12 text-center'>
         <div className='border-kapwa-border-weak bg-kapwa-bg-surface inline-flex items-center gap-2 rounded-full border px-5 py-2.5 shadow-sm'>
           <ShieldCheck
-            className='h-4 w-4 text-emerald-600'
+            className='h-4 w-4 text-kapwa-text-success'
             aria-hidden='true'
           />
           <span className='text-kapwa-text-disabled text-[10px] font-bold tracking-widest uppercase'>

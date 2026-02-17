@@ -111,7 +111,7 @@ export function AdminAuthProvider({ children }: AdminAuthProviderProps) {
               <h1 className='text-kapwa-text-strong text-2xl font-bold'>
                 Admin Access Required
               </h1>
-              <p className='text-kapwa-text-on-disabled mt-2'>
+              <p className='text-kapwa-text-support mt-2'>
                 You need to authenticate to access the admin dashboard.
               </p>
             </div>
@@ -160,7 +160,7 @@ export function AdminAuthProvider({ children }: AdminAuthProviderProps) {
               </Button>
             </div>
 
-            <div className='bg-kapwa-bg-surface-raised text-kapwa-text-on-disabled rounded-md p-4 text-sm'>
+            <div className='bg-kapwa-bg-surface-raised text-kapwa-text-support rounded-md p-4 text-sm'>
               <p className='text-kapwa-text-strong font-bold'>
                 Authorized users only
               </p>

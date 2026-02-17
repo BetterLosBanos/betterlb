@@ -6,7 +6,7 @@ import { Helmet } from 'react-helmet-async';
 
 export default function NotFound() {
   return (
-    <div className='min-h-screen bg-gradient-to-br from-blue-600 via-blue-700 to-blue-800'>
+    <div className='min-h-screen bg-linear-to-br from-kapwa-brand-600 via-kapwa-brand-700 to-kapwa-brand-800'>
       <Helmet>
         <title>Page Not Found! | BetterGov.ph</title>
         <meta
@@ -41,7 +41,7 @@ export default function NotFound() {
               <h2 className='text-kapwa-text-inverse text-2xl font-semibold md:text-3xl'>
                 Lost in the Digital Bureaucracy?
               </h2>
-              <p className='mx-auto max-w-2xl text-lg leading-relaxed text-blue-100'>
+              <p className='mx-auto max-w-2xl text-lg leading-relaxed text-kapwa-text-inverse/80'>
                 Relax, even the best systems have their maze-like moments. This
                 page seems to have gotten stuck in processing... probably
                 waiting for approval from three (or more) different departments.

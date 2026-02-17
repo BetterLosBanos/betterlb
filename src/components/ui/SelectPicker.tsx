@@ -150,7 +150,7 @@ const SelectPicker = ({
             ? 'bg-kapwa-bg-surface cursor-not-allowed opacity-60'
             : 'hover:border-kapwa-border-strong',
           isOpen &&
-            'border-kapwa-border-brand0 ring-kapwa-border-brand/20 ring-2',
+            'border-kapwa-border-brand ring-kapwa-border-brand/20 ring-2',
           'px-3'
         )}
         onClick={handleToggle}
