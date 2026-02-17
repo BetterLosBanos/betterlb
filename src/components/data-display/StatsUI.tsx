@@ -21,7 +21,30 @@ const calculateYoY = (current: number, previous?: number) => {
   return { diff, pct };
 };
 
-// Stats Hero / Header
+// ============================================================================
+// DEPRECATED COMPONENTS
+// ============================================================================
+// These components are kept for backward compatibility but are deprecated.
+// Use the documented patterns instead:
+// - StatsHero → Use PageHero from @/components/layout/PageLayouts
+// - StatsCard → Use StatCard from @/components/ui/Card
+// - StatsGrid → Use StatGrid from @/components/ui/Card
+// - StatsFooter → Use standard footer pattern with proper styling
+//
+// Migration Guide:
+// 1. Replace <StatsHero> with <PageHero> and add badges as children
+// 2. Replace <StatsCard> with <StatCard> - same API with improved styling
+// 3. Replace <StatsGrid> with <StatGrid> - same API with documented grid
+// 4. Replace <StatsFooter> with standard footer HTML pattern
+// ============================================================================
+
+/**
+ * @deprecated Use PageHero from @/components/layout/PageLayouts instead.
+ * Example replacement:
+ * <PageHero title="..." description="...">
+ *   <Badge variant="primary">Badge</Badge>
+ * </PageHero>
+ */
 interface StatsHeroProps {
   title: string;
   description: string;
@@ -68,7 +91,10 @@ export function StatsHero({
   );
 }
 
-// Stats Card
+/**
+ * @deprecated Use StatCard from @/components/ui/Card instead.
+ * The new StatCard has the same API with improved styling and consistency.
+ */
 interface StatsCardProps {
   label: string;
   value: string | number;
@@ -183,7 +209,18 @@ export function StatsCard({
   );
 }
 
-// Stats Footer
+/**
+ * @deprecated Use standard footer HTML pattern instead.
+ * Example:
+ * <footer className="border-kapwa-border-weak space-y-4 border-t pt-10 text-center">
+ *   <div className="mx-auto flex h-6 w-6 items-center justify-center rounded-full bg-emerald-100 text-emerald-600">
+ *     <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+ *       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+ *     </svg>
+ *   </div>
+ *   <p>Source text here</p>
+ * </footer>
+ */
 interface StatsFooterProps {
   source: string;
   sourceUrl?: string;
@@ -217,7 +254,10 @@ export function StatsFooter({ source, sourceUrl }: StatsFooterProps) {
   );
 }
 
-// Stats Grid
+/**
+ * @deprecated Use StatGrid from @/components/ui/Card instead.
+ * The new StatGrid has the same API with documented responsive grid behavior.
+ */
 interface StatsGridProps {
   stats: {
     label: string;

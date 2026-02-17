@@ -20,7 +20,7 @@ export default function BarangaysIndex() {
     .sort((a, b) => a.barangay_name.localeCompare(b.barangay_name));
 
   return (
-    <div className='animate-in fade-in mx-auto max-w-7xl space-y-6 duration-500'>
+    <div className='container mx-auto px-4 animate-in fade-in space-y-6 duration-500'>
       <ModuleHeader
         title='Local Barangays'
         description={`${filtered.length} component barangays of the Municipality of Los Baños.`}

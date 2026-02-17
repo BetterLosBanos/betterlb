@@ -46,7 +46,7 @@ export default function GovernmentRootLayout() {
   ];
 
   return (
-    <div className='animate-in fade-in mx-auto max-w-7xl space-y-12 pb-20 duration-700 md:pb-32'>
+    <div className='container mx-auto px-4 animate-in fade-in space-y-12 pb-20 duration-700 md:pb-32'>
       {/* 1. Unified Page Header */}
       <PageHero
         title='Government'

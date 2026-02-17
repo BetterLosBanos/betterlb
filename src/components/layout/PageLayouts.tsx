@@ -17,7 +17,7 @@ export function PageHero({
 }) {
   return (
     <header className='animate-in fade-in flex flex-col justify-center py-8 text-center duration-700 md:py-12'>
-      <h1 className='text-kapwa-text-strong mb-4 text-3xl font-bold tracking-tight md:text-4xl'>
+      <h1 className='text-kapwa-text-strong mb-4 kapwa-heading font-bold tracking-tight'>
         {title}
       </h1>
       {description && (
@@ -47,7 +47,7 @@ export function ModuleHeader({
     <div className='border-kapwa-border-weak mb-8 border-b pb-6'>
       <div className='flex flex-col justify-between gap-4 md:flex-row md:items-end'>
         <div className='max-w-2xl'>
-          <h2 className='text-kapwa-text-strong text-2xl font-extrabold tracking-tight'>
+          <h2 className='text-kapwa-text-strong kapwa-heading font-extrabold tracking-tight'>
             {title}
           </h2>
           {description && (

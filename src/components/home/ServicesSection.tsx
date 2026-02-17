@@ -1,17 +1,23 @@
-import { FC } from 'react';
+import { FC, useMemo } from 'react';
 
 import { Link } from 'react-router-dom';
 
 import * as LucideIcons from 'lucide-react';
 import { useTranslation } from 'react-i18next';
 
+import { Badge } from '@/components/ui/Badge';
+import { Card, CardContent, CardGrid } from '@/components/ui/Card';
+
 import serviceCategories from '../../data/service_categories.json';
-import { Card, CardContent } from '../ui/Card';
 
 interface Category {
   name: string;
   slug: string;
   description: string;
+}
+
+interface ServiceCategory extends Category {
+  services?: unknown[];
 }
 
 const ServicesSection: FC = () => {
@@ -41,14 +47,22 @@ const ServicesSection: FC = () => {
   // Cast JSON data to new Interface
   const categories = serviceCategories.categories as Category[];
 
-  // Show only first 8-12 categories (depending on your grid preference)
-  const displayedCategories = categories.slice(0, 8);
+  // Calculate service count per category
+  const categoriesWithCount = useMemo(() => {
+    return categories.map((cat: ServiceCategory) => ({
+      ...cat,
+      serviceCount: cat.services?.length || 0,
+    }));
+  }, [categories]);
+
+  // Show all categories now (no slicing)
+  const displayedCategories = categoriesWithCount;
 
   return (
     <section className='bg-kapwa-bg-surface py-12'>
       <div className='container mx-auto px-4'>
         <div className='mb-12 text-center'>
-          <h2 className='text-kapwa-text-strong mb-4 text-2xl font-bold md:text-3xl'>
+          <h2 className='text-kapwa-text-strong mb-4 kapwa-heading font-bold'>
             {t('services.governmentServices')}
           </h2>
           <p className='text-kapwa-text-support mx-auto max-w-2xl'>
@@ -56,26 +70,28 @@ const ServicesSection: FC = () => {
           </p>
         </div>
 
-        <div className='grid grid-cols-1 gap-6 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4'>
+        {/* Using documented CardGrid pattern */}
+        <CardGrid columns={4}>
           {displayedCategories.map(category => (
             <Link
               key={category.slug}
               to={`/services?category=${category.slug}`}
               className='group h-full'
             >
-              <Card className='border-kapwa-border-focus h-full border-t-4 transition-all hover:-translate-y-1'>
+              <Card hover className='h-full'>
                 <CardContent className='flex h-full flex-col p-6'>
                   <div className='mb-4 flex items-start justify-between'>
                     <div className='bg-kapwa-bg-surface text-kapwa-text-brand group-hover:bg-kapwa-bg-brand-default group-hover:text-kapwa-text-inverse rounded-lg p-3 transition-colors'>
                       {getIcon(category.name)}
                     </div>
+                    <Badge variant='slate'>{category.serviceCount}</Badge>
                   </div>
 
                   <h3 className='group-hover:text-kapwa-text-brand text-kapwa-text-strong mb-2 text-lg font-bold'>
                     {category.name}
                   </h3>
 
-                  <p className='text-kapwa-text-support mb-6 line-clamp-3 grow text-sm'>
+                  <p className='text-kapwa-text-support mb-6 line-clamp-3 flex-1 text-sm'>
                     {category.description}
                   </p>
 
@@ -87,7 +103,7 @@ const ServicesSection: FC = () => {
               </Card>
             </Link>
           ))}
-        </div>
+        </CardGrid>
 
         <div className='mt-10 text-center'>
           <Link

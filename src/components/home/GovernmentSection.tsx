@@ -6,9 +6,8 @@ import { Banner, Button } from '@bettergov/kapwa';
 import { Building2Icon, HomeIcon, UsersIcon } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
 
-import { config } from '@/lib/lguConfig';
-
-import { Card, CardContent } from '../ui/Card';
+import { Badge } from '@/components/ui/Badge';
+import { Card, CardContent, CardGrid } from '@/components/ui/Card';
 
 const GovernmentSection: FC = () => {
   const { t } = useTranslation('common');
@@ -48,7 +47,7 @@ const GovernmentSection: FC = () => {
     <section className='bg-kapwa-bg-surface py-12'>
       <div className='container mx-auto px-4'>
         <div className='mb-12 text-center'>
-          <h2 className='text-kapwa-text-strong mb-4 text-2xl font-bold md:text-3xl'>
+          <h2 className='text-kapwa-text-strong mb-4 kapwa-heading font-bold'>
             {t('government.title')}
           </h2>
           <p className='text-kapwa-text-support mx-auto max-w-2xl'>
@@ -56,9 +55,23 @@ const GovernmentSection: FC = () => {
           </p>
         </div>
 
-        <div className='grid grid-cols-1 gap-6 md:grid-cols-3'>
+        {/* Quick stats using documented Badge component */}
+        <div className='flex flex-wrap justify-center gap-4 mb-8'>
+          <Badge variant='primary' className='px-4 py-2 text-sm'>
+            18 Barangays
+          </Badge>
+          <Badge variant='secondary' className='px-4 py-2 text-sm'>
+            15 Departments
+          </Badge>
+          <Badge variant='slate' className='px-4 py-2 text-sm'>
+            Elected Officials
+          </Badge>
+        </div>
+
+        {/* Using documented CardGrid pattern */}
+        <CardGrid columns={3}>
           {branches.map(branch => (
-            <Card key={branch.id} hoverable className='text-center'>
+            <Card key={branch.id} hover className='text-center'>
               <CardContent className='p-6'>
                 <div className='mb-4 flex justify-center'>{branch.icon}</div>
                 <h3 className='text-kapwa-text-strong mb-2 text-xl font-semibold'>
@@ -91,8 +104,9 @@ const GovernmentSection: FC = () => {
               </CardContent>
             </Card>
           ))}
-        </div>
+        </CardGrid>
 
+        {/* Banner CTA - using documented Banner component */}
         <Banner
           className='p-kapwa-lg mt-12'
           type='default'

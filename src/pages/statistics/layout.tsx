@@ -7,7 +7,7 @@ import StatisticsSidebar from './components/StatisticsSidebar';
 
 export default function StatisticsLayout() {
   return (
-    <div className='bg-kapwa-bg-surface-raised min-h-screen'>
+    <div className='bg-kapwa-bg-surface min-h-screen'>
       <div className='container mx-auto px-4 py-8 md:py-12'>
         <PageHero
           title='Municipal Statistics'

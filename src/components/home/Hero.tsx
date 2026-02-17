@@ -11,6 +11,7 @@ import {
 } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
 
+import { Badge } from '@/components/ui/Badge';
 import SearchInput from '@/components/ui/SearchInput';
 
 import servicesData from '@/data/services/services.json';
@@ -23,6 +24,13 @@ interface Service {
   description?: string;
   category?: { name: string; slug: string };
   subcategory?: { name: string; slug: string };
+}
+
+interface QuickCategory {
+  name: string;
+  slug: string;
+  label: string;
+  icon: JSX.Element;
 }
 
 const Hero: FC = () => {
@@ -48,46 +56,31 @@ const Hero: FC = () => {
     return fuse.search(query).map(r => r.item);
   }, [query, fuse]);
 
-  const popularServices = useMemo(() => {
-    if (!servicesData || servicesData.length === 0) return [];
-    const shuffled = [...servicesData].sort(() => 0.5 - Math.random());
-    return shuffled.slice(0, 3).map(service => ({
-      label: service.service || 'Service',
-      href: `/services?category=${encodeURIComponent(service.category?.slug || '')}&subcategory=${encodeURIComponent(service.slug)}`,
-    }));
-  }, []);
-
-  interface QuickCategory {
-    name: string;
-    slug: string;
-    label: string;
-    icon: JSX.Element;
-  }
-
+  // Quick access categories - using documented Badge component
   const quickCategories: QuickCategory[] = [
     {
       name: 'Certificates & Civil Registry',
       slug: 'certificates-civil-registry',
       label: 'Citizenship & ID',
-      icon: <FileTextIcon className='w-6 h-6 text-kapwa-text-inverse' />,
+      icon: <FileTextIcon className='w-4 h-4' />,
     },
     {
       name: 'Business & Licensing',
       slug: 'business-licensing',
       label: 'Business',
-      icon: <BriefcaseIcon className='w-6 h-6 text-kapwa-text-inverse' />,
+      icon: <BriefcaseIcon className='w-4 h-4' />,
     },
     {
       name: 'Education & Learning',
       slug: 'education-learning',
       label: 'Education',
-      icon: <BookOpenIcon className='w-6 h-6 text-kapwa-text-inverse' />,
+      icon: <BookOpenIcon className='w-4 h-4' />,
     },
     {
       name: 'Health & Nutrition',
       slug: 'health-nutrition',
       label: 'Health',
-      icon: <HeartIcon className='w-6 h-6 text-kapwa-text-inverse' />,
+      icon: <HeartIcon className='w-4 h-4' />,
     },
   ];
 
@@ -95,7 +88,7 @@ const Hero: FC = () => {
     <div className='py-12 from-kapwa-brand-600 to-kapwa-brand-700 bg-linear-to-r text-kapwa-text-inverse md:py-24'>
       <div className='container px-4 mx-auto'>
         <div className='grid grid-cols-1 gap-8 items-center lg:grid-cols-2'>
-          {/* Left section: title + search + popular */}
+          {/* Left section: title + search + quick categories */}
           <div className='animate-fade-in'>
             <h1 className='mb-4 text-kapwa-text-inverse kapwa-heading'>
               {t('hero.title')}
@@ -136,21 +129,26 @@ const Hero: FC = () => {
               </div>
             )}
 
-            {/* Popular services */}
+            {/* Quick access categories - using documented Badge component */}
             <div className='flex flex-wrap gap-2 mt-4'>
-              {popularServices.map(service => (
+              {quickCategories.map(cat => (
                 <Link
-                  key={service.label}
-                  className='px-4 py-2 rounded-xl border text-kapwa-text-inverse kapwa-body-sm-strong bg-kapwa-bg-surface/10 hover:bg-kapwa-bg-surface/20 border-white/20'
-                  to={service.href}
+                  key={cat.slug}
+                  to={`/services?category=${encodeURIComponent(cat.slug)}`}
                 >
-                  {service.label}
+                  <Badge
+                    variant='outline'
+                    className='cursor-pointer border-white/20 text-kapwa-text-inverse hover:bg-kapwa-bg-surface/20'
+                  >
+                    {cat.icon}
+                    <span className='ml-1'>{cat.label}</span>
+                  </Badge>
                 </Link>
               ))}
             </div>
           </div>
 
-          {/* Right section: quick access */}
+          {/* Right section: service categories */}
           <div className='p-6 rounded-xl shadow-lg backdrop-blur-sm animate-slide-in bg-kapwa-bg-surface/10'>
             <h2 className='mb-4 text-kapwa-text-inverse kapwa-heading-lg'>
               {t('services.title')}
@@ -164,7 +162,9 @@ const Hero: FC = () => {
                 >
                   {/* Icon background with Kapwa brand color */}
                   <div className='p-3 mb-3 rounded-full bg-kapwa-brand-500'>
-                    {cat.icon}
+                    <div className='w-6 h-6 text-kapwa-text-inverse'>
+                      {cat.icon}
+                    </div>
                   </div>
                   <span className='text-kapwa-text-inverse kapwa-body-md-strong'>
                     {cat.label}

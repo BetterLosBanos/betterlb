@@ -75,7 +75,7 @@ export default function ElectedOfficialsIndex() {
   const committeeCount = sbChamber?.permanent_committees?.length || 0;
 
   return (
-    <div className='animate-in fade-in space-y-8 pb-20 duration-500'>
+    <div className='container mx-auto px-4 animate-in fade-in space-y-8 pb-20 duration-500'>
       <ModuleHeader
         title='Municipal Leadership'
         description='Meet the elected leaders and appointed management of the Science and Nature City.'
