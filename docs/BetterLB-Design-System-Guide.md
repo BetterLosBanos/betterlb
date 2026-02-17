@@ -355,6 +355,77 @@ import { CardGrid } from '@/components/ui/Card';
 // 4 cols: 1 col mobile, 2 cols tablet, 4 cols desktop
 ```
 
+### StatCard Component
+
+**Location:** `src/components/ui/StatCard.tsx`
+
+StatCard is a specialized card component for displaying statistical KPIs with trend indicators. It extends the standard Card component with data visualization features.
+
+#### Basic Usage
+
+```tsx
+import { StatCard, StatGrid } from '@/components/ui/Card';
+
+// Single stat card with trend indicator
+<StatCard
+  label="Total Population"
+  value={123456}
+  subtext="Actual Resident Count"
+  variant="primary"
+  trend={{ value: 2.5, positive: true }}
+/>
+
+// Multiple stats using StatGrid
+<StatGrid
+  columns={3}
+  stats={[
+    {
+      label: "Population",
+      value: 123456,
+      subtext "Residents",
+      variant: "primary",
+      trend: { value: 2.5, positive: true }
+    },
+    {
+      label: "Growth Rate",
+      value: "2.5%",
+      subtext: "Annual Rate",
+      variant: "secondary"
+    },
+    {
+      label: "Barangays",
+      value: 18,
+      variant: "slate",
+      icon: Users
+    }
+  ]}
+/>
+```
+
+#### Props
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `label` | `string` | - | Label for the statistic |
+| `value` | `string \| number` | - | Value to display |
+| `subtext` | `string` | - | Supporting text below value |
+| `trend` | `{ value: number, positive: boolean }` | - | Trend indicator with percentage |
+| `variant` | `'primary' \| 'secondary' \| 'slate'` | `'slate'` | Bottom border color |
+| `icon` | `LucideIcon` | - | Optional icon to display |
+| `hover` | `boolean` | `false` | Enable hover effect |
+
+#### When to Use
+
+- **Statistics pages** - Population, competitiveness, municipal income KPIs
+- **Dashboard displays** - Any data visualization requiring trend indicators
+- **Comparative metrics** - When showing growth/decline patterns
+
+#### Variants
+
+- **`primary`** - Key metrics, main KPIs (blue bottom border)
+- **`secondary`** - Secondary metrics, comparisons (orange bottom border)
+- **`slate`** - Neutral metrics, administrative data (gray bottom border)
+
 ### Badge Component
 
 **Location:** `src/components/ui/Badge.tsx`
@@ -570,28 +641,44 @@ import { InfoIcon } from 'lucide-react';
 
 ### Homepage Pattern
 
-**Reference:** `src/pages/Home.tsx`
+**Reference:** `src/pages/Home.tsx`, `src/components/home/*.tsx`
 
 ```tsx
 <main className='grow'>
-  <Hero />
-  <ServicesSection />
-  <TimelineSection />
-  <WeatherMapSection />
-  <GovernmentSection />
+  <div className='animate-in fade-in duration-700'>
+    <Hero />
+    <div className='space-y-16 py-12'>
+      <ServicesSection />
+      <TimelineSection />
+      <WeatherMapSection />
+      <NewsSection />
+      <GovernmentSection />
+    </div>
+  </div>
 </main>
 ```
 
 **Structure:**
-1. **Hero section** - Search, quick access
-2. **Services grid** - Most-used services
-3. **Timeline section** - Recent updates/announcements
-4. **Weather/Map section** - Local information
-5. **Government section** - Elected officials, departments
+1. **Hero section** - Search, quick access categories with Badge
+2. **Services grid** - All service categories with CardGrid and count badges
+3. **Timeline section** - Wrapped in DetailSection, uses documented components
+4. **Weather/Map section** - Uses Card and DetailSection
+5. **News section** - Uses CardGrid with Badge components (category/date)
+6. **Government section** - Stats badges, CardGrid, Banner CTA
+
+**Enhancements (2024):**
+- Hero now uses `Badge` component for quick category access
+- ServicesSection uses `CardGrid` with service count badges
+- TimelineSection wrapped in `DetailSection` for consistency
+- WeatherMapSection uses `Card` and `DetailSection` components
+- NewsSection uses `CardGrid` with category and date badges
+- GovernmentSection includes quick stats badges and uses CardGrid
+- Added `animate-in fade-in duration-700` for page entrance animation
+- Uses `space-y-16` for consistent section spacing
 
 **Animation pattern:**
 - `animate-in fade-in` for page load
-- Staggered reveals for sections
+- Consistent `space-y-16` spacing between sections
 
 ### Index/List Page Pattern
 
@@ -745,6 +832,80 @@ import { InfoIcon } from 'lucide-react';
 - Action buttons
 - Filter controls
 - Pagination
+
+### Statistics Pages Pattern
+
+**References:** `src/pages/statistics/*.tsx`
+
+Statistics pages follow the dashboard pattern with consistent light theme and documented components.
+
+#### Standard Structure
+
+```tsx
+// Layout: src/pages/statistics/layout.tsx
+<div className="bg-kapwa-bg-surface min-h-screen">
+  <div className="container mx-auto px-4 py-8 md:py-12">
+    <PageHero
+      title="Municipal Statistics"
+      description="Data-driven insights into population, economy, and performance."
+    />
+    <SidebarLayout sidebar={<StatisticsSidebar />} collapsible={true}>
+      <Outlet />
+    </SidebarLayout>
+  </div>
+</div>
+```
+
+#### Page Components
+
+Statistics pages use:
+- **`PageHero`** for section headers (not StatsHero - deprecated)
+- **`StatCard`** for KPI displays with trend indicators
+- **`StatGrid`** for responsive stat card grids
+- **`DetailSection`** for chart containers
+- **`Badge`** for category and status indicators
+
+```tsx
+// Statistics page example
+<PageHero
+  title="Population Profile"
+  description="Detailed demographic analysis..."
+>
+  <div className="flex flex-wrap justify-center gap-2">
+    <Badge variant="primary" dot>Census 2024</Badge>
+    <Badge variant="slate">18 Barangays</Badge>
+  </div>
+</PageHero>
+
+<StatGrid
+  columns={3}
+  stats={[
+    { label: "Population", value: 123456, variant: "primary", trend: { value: 2.5, positive: true } },
+    { label: "Growth Rate", value: "2.5%", variant: "secondary" },
+    { label: "Barangays", value: 18, variant: "slate", icon: Users }
+  ]}
+/>
+
+<DetailSection title="Population Growth" icon={TrendingUp}>
+  <ResponsiveContainer width="100%" height={400}>
+    <LineChart>{/* chart data */}</LineChart>
+  </ResponsiveContainer>
+</DetailSection>
+```
+
+#### Key Design Decisions
+
+- **Light theme**: Statistics pages now use light background (`bg-kapwa-bg-surface`) instead of dark (`bg-kapwa-bg-gray-900`) for consistency
+- **Trend indicators**: Use `trend` prop on StatCard to show growth/decline with arrows
+- **Chart containers**: Wrap charts in `DetailSection` for consistent visual grouping
+- **Footer pattern**: Use standard footer HTML with verified data audit badge
+
+#### Migration Notes
+
+The statistics pages were migrated from custom components (`StatsHero`, `StatsCard`) to documented patterns:
+- `StatsHero` → `PageHero` with `Badge` children
+- `StatsCard` → `StatCard` (same API, improved styling)
+- Custom dark backgrounds → Light theme for consistency
 
 ### Search Results Pattern
 
@@ -1022,6 +1183,90 @@ Always use `gap-kapwa-*` utilities for consistent spacing:
 <h1 className="kapwa-heading-sm md:kapwa-heading-md lg:kapwa-heading-lg xl:kapwa-heading-xl">
   Responsive Heading
 </h1>
+```
+
+### Automatic Responsive Tokens
+
+Kapwa provides **automatic responsive typography tokens** that scale across breakpoints without manual breakpoint classes. These are the preferred choice for most use cases.
+
+#### `kapwa-heading` - Auto-Scaling Headings
+
+The `kapwa-heading` token automatically scales across breakpoints:
+
+| Breakpoint | Size | Pixels | Use Case |
+|------------|------|--------|----------|
+| Mobile (base) | 1.25rem | 20px | Small screens |
+| Tablet (md:) | 1.5rem | 24px | 768px+ |
+| Desktop (lg:) | 2rem | 32px | 1024px+ |
+| XL Desktop (xl:) | 2.5rem | 40px | 1280px+ |
+
+```tsx
+// Automatic responsive scaling - no breakpoints needed!
+<h1 className="kapwa-heading text-kapwa-text-strong">
+  This scales automatically from 20px → 24px → 32px → 40px
+</h1>
+
+// Equivalent to:
+<h1 className="text-xl md:text-2xl lg:text-3xl xl:text-4xl">
+  Manual responsive (don't use this anymore)
+</h1>
+```
+
+#### Other Auto-Responsive Tokens
+
+All these tokens provide automatic responsive scaling:
+
+| Token | Base → md → lg → xl | Use Case |
+|-------|---------------------|----------|
+| `kapwa-heading` | 1.25rem → 1.5rem → 2rem → 2.5rem | Headings (H1, H2) |
+| `kapwa-body` | 0.875rem → 1rem → 1.125rem → 1.25rem | Body text |
+| `kapwa-body strong` | same + bold | Bold body text |
+| `kapwa-label` | 0.75rem → 0.875rem → 1rem → 1.125rem | Labels, small text |
+| `kapwa-link` | 0.875rem → 1rem → 1.125rem → 1.25rem | Links |
+| `kapwa-code` | 0.875rem → 1rem → 1.125rem → 1.25rem | Code blocks |
+
+```tsx
+// All auto-responsive examples
+<h1 className="kapwa-heading">Auto-scaling heading</h1>
+<p className="kapwa-body">Auto-scaling body text</p>
+<p className="kapwa-body strong">Auto-scaling bold body</p>
+<span className="kapwa-label">Auto-scaling label</span>
+<a className="kapwa-link">Auto-scaling link</a>
+<code className="kapwa-code">Auto-scaling code</code>
+```
+
+#### When to Use Manual Responsive Sizing
+
+Only use manual breakpoint sizing when:
+- Hero sections need larger scale (text-4xl md:text-6xl or bigger)
+- Special design requirements exceed kapwa-heading range (max 2.5rem)
+
+```tsx
+// Hero title - keep manual sizing for larger scale
+<h1 className="text-4xl md:text-5xl lg:text-6xl">
+  Large hero title
+</h1>
+
+// Standard heading - use auto-responsive token
+<h2 className="kapwa-heading">
+  Standard section heading
+</h2>
+```
+
+#### Migration Pattern
+
+Replace manual responsive sizing with auto-responsive tokens:
+
+```tsx
+// Before ❌
+<h2 className="text-2xl font-bold md:text-3xl">Section</h2>
+<p className="text-base md:text-lg">Description</p>
+<p className="text-base md:text-lg font-bold">Bold description</p>
+
+// After ✅
+<h2 className="kapwa-heading font-bold">Section</h2>
+<p className="kapwa-body">Description</p>
+<p className="kapwa-body strong">Bold description</p>
 ```
 
 ### Text Truncation
@@ -1777,13 +2022,32 @@ Use this decision tree to choose the right layout pattern.
 </main>
 ```
 
-#### Government Index
-**Reference:** `src/pages/government/elected-officials/index.tsx`
+#### Government Pages
 
-- Uses `ModuleHeader` with search
-- Card-based grid layout
-- Filter by chamber/position
-- Pagination
+**References:**
+- Main layout: `src/pages/government/layout.tsx`
+- Elected Officials: `src/pages/government/elected-officials/index.tsx`
+- Departments: `src/pages/government/departments/index.tsx`
+- Barangays: `src/pages/government/barangays/index.tsx`
+
+**Structure:**
+- All pages use `container mx-auto px-4` for consistent width stretching
+- Main layout uses PageHero for section header
+- Sub-pages (elected-officials, departments, barangays) use SidebarLayout with navigation
+- Index pages use ModuleHeader with search where appropriate
+- CardGrid for consistent responsive layouts
+
+**Consistency improvements (2024):**
+- Fixed responsiveness to match other pages (use `container` class instead of `max-w-7xl`)
+- Elected Officials page uses StatCard for KPI displays
+- Departments page includes search in ModuleHeader
+- Barangays page includes search in ModuleHeader
+- All pages maintain consistent spacing and width with rest of site
+
+**Navigation pattern:**
+- "Big 3" cards on main page for executive, departments, barangays
+- Sidebar navigation for sub-pages with collapsible menu
+- Consistent `container` usage ensures full-width stretching matches homepage
 
 #### Service Detail
 **Reference:** `src/pages/services/[service].tsx`
