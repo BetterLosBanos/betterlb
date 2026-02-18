@@ -183,9 +183,9 @@ def map_office_division_to_slug(office_division: str) -> str:
         "PERSON WITH DISABILITY AFFAIRS OFFICE": "persons-with-disability-affairs-office",
         "PHILIPPINE NATIONAL POLICE (PNP) - LOS BAÑOS MPS": "municipal-police-station",
         "PUBLIC EMPLOYMENT SERVICE OFFICE": "public-employment-service-office",
-        "SANGGUNIANG BAYAN": "",  # Legislative, not in departments.json
-        "MUNICIPAL MAYOR'S OFFICE": "",  # Executive, not in departments.json
-        "MUNICIPAL VICE MAYOR'S OFFICE": "",  # Executive, not in departments.json
+        "SANGGUNIANG BAYAN": "12th-sangguniang-bayan",  # Legislative
+        "MUNICIPAL MAYOR'S OFFICE": "office-of-the-mayor",  # Executive
+        "MUNICIPAL VICE MAYOR'S OFFICE": "office-of-the-vice-mayor",  # Executive
         "PUBLIC ORDER AND SAFETY OFFICE/TRANSPORTATION AND REGULATION UNIT": "",
     }
     return office_mapping.get(office_division, "")

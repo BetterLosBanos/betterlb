@@ -69,7 +69,7 @@
     "source": "citizens-charter",
     "type": "transaction",
     "officeDivision": "SANGGUNIANG BAYAN",
-    "officeSlug": "",
+    "officeSlug": "12th-sangguniang-bayan",
     "category": {
       "name": "Other Municipal Services",
       "slug": "other-municipal"
@@ -2320,7 +2320,7 @@
     "source": "citizens-charter",
     "type": "transaction",
     "officeDivision": "MUNICIPAL VICE MAYOR'S OFFICE",
-    "officeSlug": "",
+    "officeSlug": "office-of-the-vice-mayor",
     "category": {
       "name": "Other Municipal Services",
       "slug": "other-municipal"
@@ -3139,7 +3139,7 @@
     "source": "citizens-charter",
     "type": "transaction",
     "officeDivision": "SANGGUNIANG BAYAN",
-    "officeSlug": "",
+    "officeSlug": "12th-sangguniang-bayan",
     "category": {
       "name": "Other Municipal Services",
       "slug": "other-municipal"
@@ -5305,7 +5305,7 @@
     "source": "citizens-charter",
     "type": "transaction",
     "officeDivision": "SANGGUNIANG BAYAN",
-    "officeSlug": "",
+    "officeSlug": "12th-sangguniang-bayan",
     "category": {
       "name": "Other Municipal Services",
       "slug": "other-municipal"
@@ -6099,7 +6099,7 @@
     "source": "citizens-charter",
     "type": "transaction",
     "officeDivision": "MUNICIPAL MAYOR'S OFFICE",
-    "officeSlug": "",
+    "officeSlug": "office-of-the-mayor",
     "category": {
       "name": "Other Municipal Services",
       "slug": "other-municipal"
@@ -6161,7 +6161,7 @@
     "source": "citizens-charter",
     "type": "transaction",
     "officeDivision": "MUNICIPAL MAYOR'S OFFICE",
-    "officeSlug": "",
+    "officeSlug": "office-of-the-mayor",
     "category": {
       "name": "Other Municipal Services",
       "slug": "other-municipal"
@@ -6285,7 +6285,7 @@
     "source": "citizens-charter",
     "type": "transaction",
     "officeDivision": "MUNICIPAL MAYOR'S OFFICE",
-    "officeSlug": "",
+    "officeSlug": "office-of-the-mayor",
     "category": {
       "name": "Other Municipal Services",
       "slug": "other-municipal"
@@ -8722,7 +8722,7 @@
     "source": "citizens-charter",
     "type": "transaction",
     "officeDivision": "MUNICIPAL VICE MAYOR'S OFFICE",
-    "officeSlug": "",
+    "officeSlug": "office-of-the-vice-mayor",
     "category": {
       "name": "Other Municipal Services",
       "slug": "other-municipal"
@@ -9676,7 +9676,7 @@
     "source": "citizens-charter",
     "type": "transaction",
     "officeDivision": "MUNICIPAL MAYOR'S OFFICE",
-    "officeSlug": "",
+    "officeSlug": "office-of-the-mayor",
     "category": {
       "name": "Other Municipal Services",
       "slug": "other-municipal"
