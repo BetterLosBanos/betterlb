@@ -13,6 +13,8 @@ export interface Requirement {
   requirement: string;
   /** Source office or agency where to secure the requirement */
   where_to_secure: string;
+  /** Optional: Link to related service page if this requirement is itself a service */
+  serviceSlug?: string;
 }
 
 /**
