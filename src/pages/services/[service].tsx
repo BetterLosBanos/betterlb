@@ -144,11 +144,11 @@ export default function ServiceDetail() {
 
       {/* HEADER */}
       <header
-        className={`relative overflow-hidden rounded-3xl p-8 text-white shadow-xl transition-colors duration-500 md:p-12 ${
-          isTransaction ? 'bg-kapwa-bg-surface-bold' : 'bg-kapwa-bg-brand-bold'
+        className={`border-kapwa-border-weak bg-kapwa-bg-surface overflow-hidden rounded-3xl border p-8 shadow-sm md:p-10 ${
+          isOfficialSource ? 'border-l-4 border-l-kapwa-border-success' : ''
         }`}
       >
-        <div className='relative z-10 max-w-3xl'>
+        <div className='max-w-3xl'>
           <div className='mb-6 flex flex-wrap items-center gap-2'>
             <Badge variant='primary'>{service.category.name}</Badge>
             <Badge variant={isTransaction ? 'success' : 'secondary'} dot>
@@ -169,21 +169,21 @@ export default function ServiceDetail() {
             )}
           </div>
 
-          <h1 className='mb-6 text-3xl leading-tight font-extrabold tracking-tight md:text-5xl'>
+          <h1 className='text-kapwa-text-strong mb-6 text-3xl leading-tight font-bold tracking-tight md:text-4xl'>
             {service.service}
           </h1>
 
           {service.description && (
-            <p className='text-kapwa-text-support mb-8 max-w-2xl text-lg leading-relaxed italic'>
+            <p className='text-kapwa-text-support mb-8 max-w-2xl text-base leading-relaxed'>
               &quot;{service.description}&quot;
             </p>
           )}
 
           {/* Who May Avail (Citizens Charter) */}
           {service.whoMayAvail && !needsVerification && (
-            <div className='bg-kapwa-bg-inverse/10 mb-8 rounded-xl p-4 backdrop-blur-sm'>
+            <div className='border-kapwa-border-weak bg-kapwa-bg-surface-raised mb-8 rounded-xl border p-4'>
               <p className='text-kapwa-text-support text-sm font-medium'>
-                <span className='text-kapwa-text-inverse-subtle font-semibold'>
+                <span className='text-kapwa-text-brand font-semibold'>
                   Who may avail:{' '}
                 </span>
                 {service.whoMayAvail}
@@ -197,17 +197,13 @@ export default function ServiceDetail() {
               href={service.url}
               target='_blank'
               rel='noreferrer'
-              className='bg-kapwa-bg-brand-default hover:bg-kapwa-bg-brand-weak group text-kapwa-text-inverse inline-flex min-h-[48px] items-center gap-3 rounded-2xl px-8 py-4 font-bold shadow-lg transition-all'
+              className='bg-kapwa-bg-brand-default hover:bg-kapwa-bg-brand-weak text-kapwa-text-inverse inline-flex min-h-[48px] items-center gap-3 rounded-xl px-6 py-3 font-semibold shadow-sm transition-all'
             >
               {isTransaction ? 'Access Online Portal' : 'View Full Document'}
-              <ExternalLink className='h-5 w-5 transition-transform group-hover:translate-x-1 group-hover:-translate-y-1' />
+              <ExternalLink className='h-4 w-4 transition-transform group-hover:translate-x-0.5' />
             </a>
           )}
         </div>
-        <ShieldCheck
-          className='text-kapwa-text-inverse/5 absolute right-[-20px] bottom-[-20px] h-64 w-64 -rotate-12'
-          aria-hidden='true'
-        />
       </header>
 
       {/* --- CONTENT AREA --- */}
