@@ -34,6 +34,7 @@ import { Card, CardContent } from '@/components/ui/Card';
 // Standard Card
 
 import { toTitleCase } from '@/lib/stringUtils';
+import { toTelUri } from '@/lib/utils';
 
 import departmentsData from '@/data/directory/departments.json';
 import servicesData from '@/data/services/services.json';
@@ -121,6 +122,7 @@ export default function DepartmentDetail() {
           icon={PhoneIcon}
           label='Trunkline'
           value={contactValue || 'No contact listed'}
+          href={contactValue ? toTelUri(contactValue) || undefined : undefined}
         />
         <ContactItem
           icon={GlobeIcon}
