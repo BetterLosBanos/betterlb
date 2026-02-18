@@ -94,32 +94,40 @@ export default function ServiceDetail() {
     : [];
 
   // Build Citizens Charter specific info items
-  const ccInfoItems: { label: string; value: string }[] = [];
+  const ccInfoItems: { label: string; value: string; icon: LucideIcon }[] = [];
   if (service.processingTime) {
     ccInfoItems.push({
       label: 'Processing Time',
       value: service.processingTime,
+      icon: Clock,
     });
   }
   if (service.fees) {
     ccInfoItems.push({
       label: 'Fees',
       value: service.fees.amount || 'Variable',
+      icon: Banknote,
     });
   }
   if (service.classification) {
     ccInfoItems.push({
       label: 'Classification',
       value: service.classification,
+      icon: ShieldCheck,
     });
   }
   if (service.typeOfTransaction) {
-    ccInfoItems.push({ label: 'Type', value: service.typeOfTransaction });
+    ccInfoItems.push({
+      label: 'Type',
+      value: service.typeOfTransaction,
+      icon: ClipboardList,
+    });
   }
   if (service.personResponsible && service.personResponsible.length > 0) {
     ccInfoItems.push({
       label: 'Responsible Person(s)',
       value: service.personResponsible.join(', '),
+      icon: Users,
     });
   }
 
@@ -221,7 +229,7 @@ export default function ServiceDetail() {
                   className='border-kapwa-border-weak bg-kapwa-bg-surface flex items-start gap-3 rounded-2xl border p-4 shadow-xs'
                 >
                   <div className='text-kapwa-text-brand bg-kapwa-bg-surface-raised shrink-0 rounded-lg p-2'>
-                    <Info className='h-4 w-4' />
+                    <info.icon className='h-4 w-4' />
                   </div>
                   <div>
                     <p className='text-kapwa-text-disabled mb-1 text-[10px] font-bold tracking-widest uppercase'>
