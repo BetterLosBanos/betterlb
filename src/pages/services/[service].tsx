@@ -254,41 +254,11 @@ export default function ServiceDetail() {
             </div>
           )}
 
-          {/* Detailed Requirements (Citizens Charter) */}
+          {/* Requirements (Citizens Charter) */}
           {isOfficialSource &&
             service.detailedRequirements &&
             service.detailedRequirements.length > 0 && (
-              <DetailSection title='Requirements' icon={FileText}>
-                <div className='border-kapwa-border-weak overflow-hidden rounded-xl border'>
-                  <table className='w-full text-sm'>
-                    <thead className='bg-kapwa-bg-surface-raised'>
-                      <tr>
-                        <th className='text-kapwa-text-strong px-4 py-3 text-left font-semibold'>
-                          Requirement
-                        </th>
-                        <th className='text-kapwa-text-strong px-4 py-3 text-left font-semibold'>
-                          Where to Secure
-                        </th>
-                      </tr>
-                    </thead>
-                    <tbody className='divide-y divide-slate-100'>
-                      {service.detailedRequirements.map((req, idx) => (
-                        <tr
-                          key={idx}
-                          className='hover:bg-kapwa-bg-surface-raised/50'
-                        >
-                          <td className='text-kapwa-text-support px-4 py-3'>
-                            {req.requirement}
-                          </td>
-                          <td className='text-kapwa-text-brand px-4 py-3 font-medium'>
-                            {req.where_to_secure}
-                          </td>
-                        </tr>
-                      ))}
-                    </tbody>
-                  </table>
-                </div>
-              </DetailSection>
+              <RequirementGrid requirements={service.detailedRequirements} />
             )}
 
           {/* Client Steps (Citizens Charter - with agency actions) */}
