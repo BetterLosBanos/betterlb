@@ -150,7 +150,7 @@
     "source": "citizens-charter",
     "type": "transaction",
     "officeDivision": "CIVIL REGISTRY OFFICE",
-    "officeSlug": "",
+    "officeSlug": "local-civil-registry-office",
     "category": {
       "name": "Other Municipal Services",
       "slug": "other-municipal"
@@ -283,7 +283,7 @@
     "source": "citizens-charter",
     "type": "transaction",
     "officeDivision": "CIVIL REGISTRY OFFICE",
-    "officeSlug": "",
+    "officeSlug": "local-civil-registry-office",
     "category": {
       "name": "Other Municipal Services",
       "slug": "other-municipal"
@@ -351,7 +351,7 @@
     "source": "citizens-charter",
     "type": "transaction",
     "officeDivision": "MUNICIPAL HUMAN RESOURCE MANAGEMENT OFFICE",
-    "officeSlug": "",
+    "officeSlug": "municipal-human-resource-management-office",
     "category": {
       "name": "Other Municipal Services",
       "slug": "other-municipal"
@@ -405,7 +405,7 @@
     "source": "citizens-charter",
     "type": "transaction",
     "officeDivision": "MUNICIPAL ASSESSOR'S OFFICE",
-    "officeSlug": "municipal-assessor-office",
+    "officeSlug": "municipal-assessors-office",
     "category": {
       "name": "Taxation & Assessment",
       "slug": "taxation-assessment"
@@ -482,7 +482,7 @@
     "source": "citizens-charter",
     "type": "transaction",
     "officeDivision": "MUNICIPAL ASSESSOR'S OFFICE",
-    "officeSlug": "municipal-assessor-office",
+    "officeSlug": "municipal-assessors-office",
     "category": {
       "name": "Taxation & Assessment",
       "slug": "taxation-assessment"
@@ -554,7 +554,7 @@
     "source": "citizens-charter",
     "type": "transaction",
     "officeDivision": "MUNICIPAL SOCIAL WELFARE AND DEVELOPMENT OFFICE",
-    "officeSlug": "",
+    "officeSlug": "municipal-social-welfare-development-office",
     "category": {
       "name": "Other Municipal Services",
       "slug": "other-municipal"
@@ -630,7 +630,7 @@
     "source": "citizens-charter",
     "type": "transaction",
     "officeDivision": "MUNICIPAL PLANNING AND DEVELOPMENT COORDINATOR (MPDC)",
-    "officeSlug": "mpdc",
+    "officeSlug": "municipal-planning-and-development-office",
     "category": {
       "name": "Infrastructure & Engineering",
       "slug": "infrastructure-engineering"
@@ -648,7 +648,7 @@
     "source": "citizens-charter",
     "type": "transaction",
     "officeDivision": "MUNICIPAL HUMAN RESOURCE MANAGEMENT OFFICE",
-    "officeSlug": "",
+    "officeSlug": "municipal-human-resource-management-office",
     "category": {
       "name": "Other Municipal Services",
       "slug": "other-municipal"
@@ -759,7 +759,7 @@
     "source": "citizens-charter",
     "type": "transaction",
     "officeDivision": "MUNICIPAL SOCIAL WELFARE AND DEVELOPMENT OFFICE",
-    "officeSlug": "",
+    "officeSlug": "municipal-social-welfare-development-office",
     "category": {
       "name": "Other Municipal Services",
       "slug": "other-municipal"
@@ -1040,7 +1040,7 @@
     "source": "citizens-charter",
     "type": "transaction",
     "officeDivision": "MUNICIPAL PLANNING AND DEVELOPMENT COORDINATOR (MPDC)",
-    "officeSlug": "mpdc",
+    "officeSlug": "municipal-planning-and-development-office",
     "category": {
       "name": "Infrastructure & Engineering",
       "slug": "infrastructure-engineering"
@@ -1617,7 +1617,7 @@
     "source": "citizens-charter",
     "type": "transaction",
     "officeDivision": "MUNICIPAL ASSESSOR'S OFFICE",
-    "officeSlug": "municipal-assessor-office",
+    "officeSlug": "municipal-assessors-office",
     "category": {
       "name": "Taxation & Assessment",
       "slug": "taxation-assessment"
@@ -1684,7 +1684,7 @@
     "source": "citizens-charter",
     "type": "transaction",
     "officeDivision": "PUBLIC EMPLOYMENT SERVICE OFFICE",
-    "officeSlug": "",
+    "officeSlug": "public-employment-service-office",
     "category": {
       "name": "Other Municipal Services",
       "slug": "other-municipal"
@@ -1844,7 +1844,7 @@
     "source": "citizens-charter",
     "type": "transaction",
     "officeDivision": "MUNICIPAL PLANNING AND DEVELOPMENT COORDINATOR (MPDC)",
-    "officeSlug": "mpdc",
+    "officeSlug": "municipal-planning-and-development-office",
     "category": {
       "name": "Infrastructure & Engineering",
       "slug": "infrastructure-engineering"
@@ -1980,7 +1980,7 @@
     "source": "citizens-charter",
     "type": "transaction",
     "officeDivision": "MUNICIPAL TREASURER'S OFFICE",
-    "officeSlug": "municipal-treasurer-office",
+    "officeSlug": "municipal-treasurers-office",
     "category": {
       "name": "Taxation & Assessment",
       "slug": "taxation-assessment"
@@ -2037,7 +2037,7 @@
     "source": "citizens-charter",
     "type": "transaction",
     "officeDivision": "MUNICIPAL TREASURER'S OFFICE",
-    "officeSlug": "municipal-treasurer-office",
+    "officeSlug": "municipal-treasurers-office",
     "category": {
       "name": "Taxation & Assessment",
       "slug": "taxation-assessment"
@@ -2125,7 +2125,7 @@
     "source": "citizens-charter",
     "type": "transaction",
     "officeDivision": "PUBLIC EMPLOYMENT SERVICE OFFICE",
-    "officeSlug": "",
+    "officeSlug": "public-employment-service-office",
     "category": {
       "name": "Other Municipal Services",
       "slug": "other-municipal"
@@ -2191,7 +2191,7 @@
     "source": "citizens-charter",
     "type": "transaction",
     "officeDivision": "MUNICIPAL TOURISM OFFICE",
-    "officeSlug": "",
+    "officeSlug": "municipal-tourism-office",
     "category": {
       "name": "Other Municipal Services",
       "slug": "other-municipal"
@@ -2258,7 +2258,7 @@
     "source": "citizens-charter",
     "type": "transaction",
     "officeDivision": "MUNICIPAL TOURISM OFFICE",
-    "officeSlug": "",
+    "officeSlug": "municipal-tourism-office",
     "category": {
       "name": "Other Municipal Services",
       "slug": "other-municipal"
@@ -2387,7 +2387,7 @@
     "source": "citizens-charter",
     "type": "transaction",
     "officeDivision": "MUNICIPAL PLANNING AND DEVELOPMENT COORDINATOR (MPDC)",
-    "officeSlug": "mpdc",
+    "officeSlug": "municipal-planning-and-development-office",
     "category": {
       "name": "Infrastructure & Engineering",
       "slug": "infrastructure-engineering"
@@ -2444,7 +2444,7 @@
     "source": "citizens-charter",
     "type": "transaction",
     "officeDivision": "CIVIL REGISTRY OFFICE",
-    "officeSlug": "",
+    "officeSlug": "local-civil-registry-office",
     "category": {
       "name": "Other Municipal Services",
       "slug": "other-municipal"
@@ -2502,7 +2502,7 @@
     "source": "citizens-charter",
     "type": "transaction",
     "officeDivision": "CIVIL REGISTRY OFFICE",
-    "officeSlug": "",
+    "officeSlug": "local-civil-registry-office",
     "category": {
       "name": "Other Municipal Services",
       "slug": "other-municipal"
@@ -2560,7 +2560,7 @@
     "source": "citizens-charter",
     "type": "transaction",
     "officeDivision": "CIVIL REGISTRY OFFICE",
-    "officeSlug": "",
+    "officeSlug": "local-civil-registry-office",
     "category": {
       "name": "Other Municipal Services",
       "slug": "other-municipal"
@@ -2622,7 +2622,7 @@
     "source": "citizens-charter",
     "type": "transaction",
     "officeDivision": "MUNICIPAL ENGINEERING OFFICE / OBO",
-    "officeSlug": "",
+    "officeSlug": "municipal-engineering-office",
     "category": {
       "name": "Other Municipal Services",
       "slug": "other-municipal"
@@ -2772,7 +2772,7 @@
     "source": "citizens-charter",
     "type": "transaction",
     "officeDivision": "LOCAL YOUTH AND DEVELOPMENT OFFICE",
-    "officeSlug": "lydo",
+    "officeSlug": "local-youth-and-development-office",
     "category": {
       "name": "Education & Scholarship",
       "slug": "education-scholarship"
@@ -2879,7 +2879,7 @@
     "source": "citizens-charter",
     "type": "transaction",
     "officeDivision": "MUNICIPAL DISASTER RISK REDUCTION AND MANAGEMENT OFFICE",
-    "officeSlug": "",
+    "officeSlug": "municipal-mdrrmo-office",
     "category": {
       "name": "Other Municipal Services",
       "slug": "other-municipal"
@@ -2972,7 +2972,7 @@
     "source": "citizens-charter",
     "type": "transaction",
     "officeDivision": "MUNICIPAL PLANNING AND DEVELOPMENT COORDINATOR (MPDC)",
-    "officeSlug": "mpdc",
+    "officeSlug": "municipal-planning-and-development-office",
     "category": {
       "name": "Infrastructure & Engineering",
       "slug": "infrastructure-engineering"
@@ -3046,7 +3046,7 @@
     "source": "citizens-charter",
     "type": "transaction",
     "officeDivision": "MUNICIPAL HEALTH OFFICE (MHO)",
-    "officeSlug": "",
+    "officeSlug": "municipal-health-office",
     "category": {
       "name": "Other Municipal Services",
       "slug": "other-municipal"
@@ -3251,7 +3251,7 @@
     "source": "citizens-charter",
     "type": "transaction",
     "officeDivision": "MUNICIPAL HEALTH OFFICE (MHO)",
-    "officeSlug": "",
+    "officeSlug": "municipal-health-office",
     "category": {
       "name": "Other Municipal Services",
       "slug": "other-municipal"
@@ -3341,7 +3341,7 @@
     "source": "citizens-charter",
     "type": "transaction",
     "officeDivision": "MUNICIPAL TOURISM OFFICE",
-    "officeSlug": "",
+    "officeSlug": "municipal-tourism-office",
     "category": {
       "name": "Other Municipal Services",
       "slug": "other-municipal"
@@ -3437,7 +3437,7 @@
     "source": "citizens-charter",
     "type": "transaction",
     "officeDivision": "MUNICIPAL HEALTH OFFICE (MHO)",
-    "officeSlug": "",
+    "officeSlug": "municipal-health-office",
     "category": {
       "name": "Other Municipal Services",
       "slug": "other-municipal"
@@ -3492,7 +3492,7 @@
     "source": "citizens-charter",
     "type": "transaction",
     "officeDivision": "MUNICIPAL SOCIAL WELFARE AND DEVELOPMENT OFFICE",
-    "officeSlug": "",
+    "officeSlug": "municipal-social-welfare-development-office",
     "category": {
       "name": "Other Municipal Services",
       "slug": "other-municipal"
@@ -3577,7 +3577,7 @@
     "source": "citizens-charter",
     "type": "transaction",
     "officeDivision": "MUNICIPAL URBAN DEVELOPMENT AND HOUSING OFFICE",
-    "officeSlug": "",
+    "officeSlug": "municipal-urban-development-and-housing-office",
     "category": {
       "name": "Other Municipal Services",
       "slug": "other-municipal"
@@ -3708,7 +3708,7 @@
     "source": "citizens-charter",
     "type": "transaction",
     "officeDivision": "MUNICIPAL ENGINEERING OFFICE / OBO",
-    "officeSlug": "",
+    "officeSlug": "municipal-engineering-office",
     "category": {
       "name": "Other Municipal Services",
       "slug": "other-municipal"
@@ -3766,7 +3766,7 @@
     "source": "citizens-charter",
     "type": "transaction",
     "officeDivision": "MUNICIPAL ENGINEERING OFFICE / OBO",
-    "officeSlug": "",
+    "officeSlug": "municipal-engineering-office",
     "category": {
       "name": "Other Municipal Services",
       "slug": "other-municipal"
@@ -3824,7 +3824,7 @@
     "source": "citizens-charter",
     "type": "transaction",
     "officeDivision": "MUNICIPAL ENGINEERING OFFICE / OBO",
-    "officeSlug": "",
+    "officeSlug": "municipal-engineering-office",
     "category": {
       "name": "Other Municipal Services",
       "slug": "other-municipal"
@@ -3882,7 +3882,7 @@
     "source": "citizens-charter",
     "type": "transaction",
     "officeDivision": "MUNICIPAL ENGINEERING OFFICE / OBO",
-    "officeSlug": "",
+    "officeSlug": "municipal-engineering-office",
     "category": {
       "name": "Other Municipal Services",
       "slug": "other-municipal"
@@ -4524,7 +4524,7 @@
     "source": "citizens-charter",
     "type": "transaction",
     "officeDivision": "MUNICIPAL ENGINEERING OFFICE / OBO",
-    "officeSlug": "",
+    "officeSlug": "municipal-engineering-office",
     "category": {
       "name": "Other Municipal Services",
       "slug": "other-municipal"
@@ -4604,7 +4604,7 @@
     "source": "citizens-charter",
     "type": "transaction",
     "officeDivision": "MUNICIPAL URBAN DEVELOPMENT AND HOUSING OFFICE",
-    "officeSlug": "",
+    "officeSlug": "municipal-urban-development-and-housing-office",
     "category": {
       "name": "Other Municipal Services",
       "slug": "other-municipal"
@@ -4733,7 +4733,7 @@
     "source": "citizens-charter",
     "type": "transaction",
     "officeDivision": "PERSON WITH DISABILITY AFFAIRS OFFICE",
-    "officeSlug": "",
+    "officeSlug": "persons-with-disability-affairs-office",
     "category": {
       "name": "Other Municipal Services",
       "slug": "other-municipal"
@@ -4875,7 +4875,7 @@
     "source": "citizens-charter",
     "type": "transaction",
     "officeDivision": "PHILIPPINE NATIONAL POLICE (PNP) - LOS BAÑOS MPS",
-    "officeSlug": "",
+    "officeSlug": "municipal-police-station",
     "category": {
       "name": "Other Municipal Services",
       "slug": "other-municipal"
@@ -4937,7 +4937,7 @@
     "source": "citizens-charter",
     "type": "transaction",
     "officeDivision": "MUNICIPAL HEALTH OFFICE (MHO)",
-    "officeSlug": "",
+    "officeSlug": "municipal-health-office",
     "category": {
       "name": "Other Municipal Services",
       "slug": "other-municipal"
@@ -5247,7 +5247,7 @@
     "source": "citizens-charter",
     "type": "transaction",
     "officeDivision": "PERSON WITH DISABILITY AFFAIRS OFFICE",
-    "officeSlug": "",
+    "officeSlug": "persons-with-disability-affairs-office",
     "category": {
       "name": "Other Municipal Services",
       "slug": "other-municipal"
@@ -5461,7 +5461,7 @@
     "source": "citizens-charter",
     "type": "transaction",
     "officeDivision": "MUNICIPAL TREASURER'S OFFICE",
-    "officeSlug": "municipal-treasurer-office",
+    "officeSlug": "municipal-treasurers-office",
     "category": {
       "name": "Taxation & Assessment",
       "slug": "taxation-assessment"
@@ -5518,7 +5518,7 @@
     "source": "citizens-charter",
     "type": "transaction",
     "officeDivision": "MUNICIPAL ENGINEERING OFFICE / OBO",
-    "officeSlug": "",
+    "officeSlug": "municipal-engineering-office",
     "category": {
       "name": "Other Municipal Services",
       "slug": "other-municipal"
@@ -5603,7 +5603,7 @@
     "source": "citizens-charter",
     "type": "transaction",
     "officeDivision": "MUNICIPAL ENGINEERING OFFICE / OBO",
-    "officeSlug": "",
+    "officeSlug": "municipal-engineering-office",
     "category": {
       "name": "Other Municipal Services",
       "slug": "other-municipal"
@@ -5666,7 +5666,7 @@
     "source": "citizens-charter",
     "type": "transaction",
     "officeDivision": "MUNICIPAL ENGINEERING OFFICE / OBO",
-    "officeSlug": "",
+    "officeSlug": "municipal-engineering-office",
     "category": {
       "name": "Other Municipal Services",
       "slug": "other-municipal"
@@ -5729,7 +5729,7 @@
     "source": "citizens-charter",
     "type": "transaction",
     "officeDivision": "MUNICIPAL ENGINEERING OFFICE / OBO",
-    "officeSlug": "",
+    "officeSlug": "municipal-engineering-office",
     "category": {
       "name": "Other Municipal Services",
       "slug": "other-municipal"
@@ -5792,7 +5792,7 @@
     "source": "citizens-charter",
     "type": "transaction",
     "officeDivision": "MUNICIPAL HEALTH OFFICE (MHO)",
-    "officeSlug": "",
+    "officeSlug": "municipal-health-office",
     "category": {
       "name": "Other Municipal Services",
       "slug": "other-municipal"
@@ -5860,7 +5860,7 @@
     "source": "citizens-charter",
     "type": "transaction",
     "officeDivision": "LOCAL YOUTH AND DEVELOPMENT OFFICE",
-    "officeSlug": "lydo",
+    "officeSlug": "local-youth-and-development-office",
     "category": {
       "name": "Education & Scholarship",
       "slug": "education-scholarship"
@@ -5963,7 +5963,7 @@
     "source": "citizens-charter",
     "type": "transaction",
     "officeDivision": "MUNICIPAL PLANNING AND DEVELOPMENT COORDINATOR (MPDC)",
-    "officeSlug": "mpdc",
+    "officeSlug": "municipal-planning-and-development-office",
     "category": {
       "name": "Infrastructure & Engineering",
       "slug": "infrastructure-engineering"
@@ -6348,7 +6348,7 @@
     "source": "citizens-charter",
     "type": "transaction",
     "officeDivision": "MUNICIPAL ENGINEERING OFFICE / OBO",
-    "officeSlug": "",
+    "officeSlug": "municipal-engineering-office",
     "category": {
       "name": "Other Municipal Services",
       "slug": "other-municipal"
@@ -6411,7 +6411,7 @@
     "source": "citizens-charter",
     "type": "transaction",
     "officeDivision": "MUNICIPAL HEALTH OFFICE (MHO)",
-    "officeSlug": "",
+    "officeSlug": "municipal-health-office",
     "category": {
       "name": "Other Municipal Services",
       "slug": "other-municipal"
@@ -6690,7 +6690,7 @@
     "source": "citizens-charter",
     "type": "transaction",
     "officeDivision": "MUNICIPAL ENGINEERING OFFICE / OBO",
-    "officeSlug": "",
+    "officeSlug": "municipal-engineering-office",
     "category": {
       "name": "Other Municipal Services",
       "slug": "other-municipal"
@@ -6816,7 +6816,7 @@
     "source": "citizens-charter",
     "type": "transaction",
     "officeDivision": "MUNICIPAL HUMAN RESOURCE MANAGEMENT OFFICE",
-    "officeSlug": "",
+    "officeSlug": "municipal-human-resource-management-office",
     "category": {
       "name": "Other Municipal Services",
       "slug": "other-municipal"
@@ -6947,7 +6947,7 @@
     "source": "citizens-charter",
     "type": "transaction",
     "officeDivision": "MUNICIPAL ENGINEERING OFFICE / OBO",
-    "officeSlug": "",
+    "officeSlug": "municipal-engineering-office",
     "category": {
       "name": "Other Municipal Services",
       "slug": "other-municipal"
@@ -7010,7 +7010,7 @@
     "source": "citizens-charter",
     "type": "transaction",
     "officeDivision": "MUNICIPAL HUMAN RESOURCE MANAGEMENT OFFICE",
-    "officeSlug": "",
+    "officeSlug": "municipal-human-resource-management-office",
     "category": {
       "name": "Other Municipal Services",
       "slug": "other-municipal"
@@ -7064,7 +7064,7 @@
     "source": "citizens-charter",
     "type": "transaction",
     "officeDivision": "MUNICIPAL ENGINEERING OFFICE / OBO",
-    "officeSlug": "",
+    "officeSlug": "municipal-engineering-office",
     "category": {
       "name": "Other Municipal Services",
       "slug": "other-municipal"
@@ -7131,7 +7131,7 @@
     "source": "citizens-charter",
     "type": "transaction",
     "officeDivision": "MUNICIPAL SOCIAL WELFARE AND DEVELOPMENT OFFICE",
-    "officeSlug": "",
+    "officeSlug": "municipal-social-welfare-development-office",
     "category": {
       "name": "Other Municipal Services",
       "slug": "other-municipal"
@@ -7474,7 +7474,7 @@
     "source": "citizens-charter",
     "type": "transaction",
     "officeDivision": "INFORMATION AND COMMUNICATION SYSTEMS OFFICE (ICSO)",
-    "officeSlug": "icso",
+    "officeSlug": "information-and-communication-systems-office",
     "category": {
       "name": "Other Municipal Services",
       "slug": "other-municipal"
@@ -7528,7 +7528,7 @@
     "source": "citizens-charter",
     "type": "transaction",
     "officeDivision": "MUNICIPAL PLANNING AND DEVELOPMENT COORDINATOR (MPDC)",
-    "officeSlug": "mpdc",
+    "officeSlug": "municipal-planning-and-development-office",
     "category": {
       "name": "Infrastructure & Engineering",
       "slug": "infrastructure-engineering"
@@ -7595,7 +7595,7 @@
     "source": "citizens-charter",
     "type": "transaction",
     "officeDivision": "MUNICIPAL PLANNING AND DEVELOPMENT OFFICE",
-    "officeSlug": "",
+    "officeSlug": "municipal-planning-and-development-office",
     "category": {
       "name": "Other Municipal Services",
       "slug": "other-municipal"
@@ -7654,7 +7654,7 @@
     "source": "citizens-charter",
     "type": "transaction",
     "officeDivision": "PUBLIC EMPLOYMENT SERVICE OFFICE",
-    "officeSlug": "",
+    "officeSlug": "public-employment-service-office",
     "category": {
       "name": "Other Municipal Services",
       "slug": "other-municipal"
@@ -7712,7 +7712,7 @@
     "source": "citizens-charter",
     "type": "transaction",
     "officeDivision": "PUBLIC EMPLOYMENT SERVICE OFFICE",
-    "officeSlug": "",
+    "officeSlug": "public-employment-service-office",
     "category": {
       "name": "Other Municipal Services",
       "slug": "other-municipal"
@@ -8230,7 +8230,7 @@
     "source": "citizens-charter",
     "type": "transaction",
     "officeDivision": "PUBLIC EMPLOYMENT SERVICE OFFICE",
-    "officeSlug": "",
+    "officeSlug": "public-employment-service-office",
     "category": {
       "name": "Other Municipal Services",
       "slug": "other-municipal"
@@ -8288,7 +8288,7 @@
     "source": "citizens-charter",
     "type": "transaction",
     "officeDivision": "MUNICIPAL NUTRITION ACTION OFFICE",
-    "officeSlug": "",
+    "officeSlug": "municipal-nutrition-office",
     "category": {
       "name": "Other Municipal Services",
       "slug": "other-municipal"
@@ -8861,7 +8861,7 @@
     "source": "citizens-charter",
     "type": "transaction",
     "officeDivision": "MUNICIPAL TREASURER'S OFFICE",
-    "officeSlug": "municipal-treasurer-office",
+    "officeSlug": "municipal-treasurers-office",
     "category": {
       "name": "Taxation & Assessment",
       "slug": "taxation-assessment"
@@ -8994,7 +8994,7 @@
     "source": "citizens-charter",
     "type": "transaction",
     "officeDivision": "MUNICIPAL TREASURER'S OFFICE",
-    "officeSlug": "municipal-treasurer-office",
+    "officeSlug": "municipal-treasurers-office",
     "category": {
       "name": "Taxation & Assessment",
       "slug": "taxation-assessment"
@@ -9044,7 +9044,7 @@
     "source": "citizens-charter",
     "type": "transaction",
     "officeDivision": "MUNICIPAL TREASURER'S OFFICE",
-    "officeSlug": "municipal-treasurer-office",
+    "officeSlug": "municipal-treasurers-office",
     "category": {
       "name": "Taxation & Assessment",
       "slug": "taxation-assessment"
@@ -9156,7 +9156,7 @@
     "source": "citizens-charter",
     "type": "transaction",
     "officeDivision": "MUNICIPAL SOCIAL WELFARE AND DEVELOPMENT OFFICE",
-    "officeSlug": "",
+    "officeSlug": "municipal-social-welfare-development-office",
     "category": {
       "name": "Other Municipal Services",
       "slug": "other-municipal"
@@ -9284,7 +9284,7 @@
     "source": "citizens-charter",
     "type": "transaction",
     "officeDivision": "MUNICIPAL SOCIAL WELFARE AND DEVELOPMENT OFFICE",
-    "officeSlug": "",
+    "officeSlug": "municipal-social-welfare-development-office",
     "category": {
       "name": "Other Municipal Services",
       "slug": "other-municipal"
@@ -9347,7 +9347,7 @@
     "source": "citizens-charter",
     "type": "transaction",
     "officeDivision": "MUNICIPAL HEALTH OFFICE (MHO)",
-    "officeSlug": "",
+    "officeSlug": "municipal-health-office",
     "category": {
       "name": "Other Municipal Services",
       "slug": "other-municipal"
@@ -9540,7 +9540,7 @@
     "source": "citizens-charter",
     "type": "transaction",
     "officeDivision": "PERSON WITH DISABILITY AFFAIRS OFFICE",
-    "officeSlug": "",
+    "officeSlug": "persons-with-disability-affairs-office",
     "category": {
       "name": "Other Municipal Services",
       "slug": "other-municipal"
@@ -9771,7 +9771,7 @@
     "source": "citizens-charter",
     "type": "transaction",
     "officeDivision": "CIVIL REGISTRY OFFICE",
-    "officeSlug": "",
+    "officeSlug": "local-civil-registry-office",
     "category": {
       "name": "Other Municipal Services",
       "slug": "other-municipal"
@@ -9950,7 +9950,7 @@
     "source": "citizens-charter",
     "type": "transaction",
     "officeDivision": "MUNICIPAL ASSESSOR'S OFFICE",
-    "officeSlug": "municipal-assessor-office",
+    "officeSlug": "municipal-assessors-office",
     "category": {
       "name": "Taxation & Assessment",
       "slug": "taxation-assessment"
@@ -10023,7 +10023,7 @@
     "source": "citizens-charter",
     "type": "transaction",
     "officeDivision": "PERSON WITH DISABILITY AFFAIRS OFFICE",
-    "officeSlug": "",
+    "officeSlug": "persons-with-disability-affairs-office",
     "category": {
       "name": "Other Municipal Services",
       "slug": "other-municipal"
@@ -10351,7 +10351,7 @@
     "source": "citizens-charter",
     "type": "transaction",
     "officeDivision": "CIVIL REGISTRY OFFICE",
-    "officeSlug": "",
+    "officeSlug": "local-civil-registry-office",
     "category": {
       "name": "Other Municipal Services",
       "slug": "other-municipal"
@@ -10409,7 +10409,7 @@
     "source": "citizens-charter",
     "type": "transaction",
     "officeDivision": "Civil Registry Office",
-    "officeSlug": "",
+    "officeSlug": "local-civil-registry-office",
     "category": {
       "name": "Other Municipal Services",
       "slug": "other-municipal"
@@ -10529,7 +10529,7 @@
     "source": "citizens-charter",
     "type": "transaction",
     "officeDivision": "CIVIL REGISTRY OFFICE",
-    "officeSlug": "",
+    "officeSlug": "local-civil-registry-office",
     "category": {
       "name": "Other Municipal Services",
       "slug": "other-municipal"
@@ -10659,7 +10659,7 @@
     "source": "citizens-charter",
     "type": "transaction",
     "officeDivision": "MUNICIPAL ENGINEERING OFFICE / OBO",
-    "officeSlug": "",
+    "officeSlug": "municipal-engineering-office",
     "category": {
       "name": "Other Municipal Services",
       "slug": "other-municipal"
@@ -10743,7 +10743,7 @@
     "source": "citizens-charter",
     "type": "transaction",
     "officeDivision": "CIVIL REGISTRY OFFICE",
-    "officeSlug": "",
+    "officeSlug": "local-civil-registry-office",
     "category": {
       "name": "Other Municipal Services",
       "slug": "other-municipal"
@@ -10802,7 +10802,7 @@
     "source": "citizens-charter",
     "type": "transaction",
     "officeDivision": "MUNICIPAL HUMAN RESOURCE MANAGEMENT OFFICE",
-    "officeSlug": "",
+    "officeSlug": "municipal-human-resource-management-office",
     "category": {
       "name": "Other Municipal Services",
       "slug": "other-municipal"
@@ -10864,7 +10864,7 @@
     "source": "citizens-charter",
     "type": "transaction",
     "officeDivision": "MUNICIPAL ENGINEERING OFFICE / OBO",
-    "officeSlug": "",
+    "officeSlug": "municipal-engineering-office",
     "category": {
       "name": "Other Municipal Services",
       "slug": "other-municipal"
@@ -10918,7 +10918,7 @@
     "source": "citizens-charter",
     "type": "transaction",
     "officeDivision": "CIVIL REGISTRY OFFICE",
-    "officeSlug": "",
+    "officeSlug": "local-civil-registry-office",
     "category": {
       "name": "Other Municipal Services",
       "slug": "other-municipal"
@@ -11148,7 +11148,7 @@
     "source": "citizens-charter",
     "type": "transaction",
     "officeDivision": "MUNICIPAL RECORDS OFFICE",
-    "officeSlug": "",
+    "officeSlug": "municipal-general-services-office",
     "category": {
       "name": "Other Municipal Services",
       "slug": "other-municipal"
@@ -11211,7 +11211,7 @@
     "source": "citizens-charter",
     "type": "transaction",
     "officeDivision": "MUNICIPAL ASSESSOR'S OFFICE",
-    "officeSlug": "municipal-assessor-office",
+    "officeSlug": "municipal-assessors-office",
     "category": {
       "name": "Taxation & Assessment",
       "slug": "taxation-assessment"
@@ -11331,7 +11331,7 @@
     "source": "citizens-charter",
     "type": "transaction",
     "officeDivision": "CIVIL REGISTRY OFFICE",
-    "officeSlug": "",
+    "officeSlug": "local-civil-registry-office",
     "category": {
       "name": "Other Municipal Services",
       "slug": "other-municipal"
@@ -11386,7 +11386,7 @@
     "source": "citizens-charter",
     "type": "transaction",
     "officeDivision": "MUNICIPAL DISASTER RISK REDUCTION AND MANAGEMENT OFFICE",
-    "officeSlug": "",
+    "officeSlug": "municipal-mdrrmo-office",
     "category": {
       "name": "Other Municipal Services",
       "slug": "other-municipal"
@@ -11444,7 +11444,7 @@
     "source": "citizens-charter",
     "type": "transaction",
     "officeDivision": "MUNICIPAL DISASTER RISK REDUCTION AND MANAGEMENT OFFICE",
-    "officeSlug": "",
+    "officeSlug": "municipal-mdrrmo-office",
     "category": {
       "name": "Other Municipal Services",
       "slug": "other-municipal"
@@ -11498,7 +11498,7 @@
     "source": "citizens-charter",
     "type": "transaction",
     "officeDivision": "CIVIL REGISTRY OFFICE",
-    "officeSlug": "",
+    "officeSlug": "local-civil-registry-office",
     "category": {
       "name": "Other Municipal Services",
       "slug": "other-municipal"
@@ -11666,7 +11666,7 @@
     "source": "citizens-charter",
     "type": "transaction",
     "officeDivision": "MUNICIPAL ASSESSOR'S OFFICE",
-    "officeSlug": "municipal-assessor-office",
+    "officeSlug": "municipal-assessors-office",
     "category": {
       "name": "Taxation & Assessment",
       "slug": "taxation-assessment"
@@ -11742,7 +11742,7 @@
     "source": "citizens-charter",
     "type": "transaction",
     "officeDivision": "MUNICIPAL TOURISM OFFICE",
-    "officeSlug": "",
+    "officeSlug": "municipal-tourism-office",
     "category": {
       "name": "Other Municipal Services",
       "slug": "other-municipal"
@@ -11831,7 +11831,7 @@
     "source": "citizens-charter",
     "type": "transaction",
     "officeDivision": "MUNICIPAL HEALTH OFFICE (MHO)",
-    "officeSlug": "",
+    "officeSlug": "municipal-health-office",
     "category": {
       "name": "Other Municipal Services",
       "slug": "other-municipal"
@@ -12010,7 +12010,7 @@
     "source": "citizens-charter",
     "type": "transaction",
     "officeDivision": "MUNICIPAL SOCIAL WELFARE AND DEVELOPMENT OFFICE",
-    "officeSlug": "",
+    "officeSlug": "municipal-social-welfare-development-office",
     "category": {
       "name": "Other Municipal Services",
       "slug": "other-municipal"
@@ -12098,7 +12098,7 @@
     "source": "citizens-charter",
     "type": "transaction",
     "officeDivision": "PUBLIC EMPLOYMENT SERVICE OFFICE",
-    "officeSlug": "",
+    "officeSlug": "public-employment-service-office",
     "category": {
       "name": "Other Municipal Services",
       "slug": "other-municipal"
@@ -12218,7 +12218,7 @@
     "source": "citizens-charter",
     "type": "transaction",
     "officeDivision": "MUNICIPAL ECONOMIC ENTERPRISE: SLAUGHTERHOUSE",
-    "officeSlug": "",
+    "officeSlug": "slaughterhouse",
     "category": {
       "name": "Other Municipal Services",
       "slug": "other-municipal"
@@ -12319,7 +12319,7 @@
     "source": "citizens-charter",
     "type": "transaction",
     "officeDivision": "LOCAL YOUTH AND DEVELOPMENT OFFICE",
-    "officeSlug": "lydo",
+    "officeSlug": "local-youth-and-development-office",
     "category": {
       "name": "Education & Scholarship",
       "slug": "education-scholarship"
@@ -12381,7 +12381,7 @@
     "source": "citizens-charter",
     "type": "transaction",
     "officeDivision": "MUNICIPAL PLANNING AND DEVELOPMENT COORDINATOR (MPDC)",
-    "officeSlug": "mpdc",
+    "officeSlug": "municipal-planning-and-development-office",
     "category": {
       "name": "Infrastructure & Engineering",
       "slug": "infrastructure-engineering"
@@ -12474,7 +12474,7 @@
     "source": "citizens-charter",
     "type": "transaction",
     "officeDivision": "MUNICIPAL HEALTH OFFICE (MHO)",
-    "officeSlug": "",
+    "officeSlug": "municipal-health-office",
     "category": {
       "name": "Other Municipal Services",
       "slug": "other-municipal"
@@ -12545,7 +12545,7 @@
     "source": "citizens-charter",
     "type": "transaction",
     "officeDivision": "MUNICIPAL ASSESSOR'S OFFICE",
-    "officeSlug": "municipal-assessor-office",
+    "officeSlug": "municipal-assessors-office",
     "category": {
       "name": "Taxation & Assessment",
       "slug": "taxation-assessment"
@@ -12654,7 +12654,7 @@
     "source": "citizens-charter",
     "type": "transaction",
     "officeDivision": "MUNICIPAL ASSESSOR'S OFFICE",
-    "officeSlug": "municipal-assessor-office",
+    "officeSlug": "municipal-assessors-office",
     "category": {
       "name": "Taxation & Assessment",
       "slug": "taxation-assessment"
@@ -12770,7 +12770,7 @@
     "source": "citizens-charter",
     "type": "transaction",
     "officeDivision": "PERSON WITH DISABILITY AFFAIRS OFFICE",
-    "officeSlug": "",
+    "officeSlug": "persons-with-disability-affairs-office",
     "category": {
       "name": "Other Municipal Services",
       "slug": "other-municipal"
@@ -12828,7 +12828,7 @@
     "source": "citizens-charter",
     "type": "transaction",
     "officeDivision": "MUNICIPAL SOCIAL WELFARE AND DEVELOPMENT OFFICE",
-    "officeSlug": "",
+    "officeSlug": "municipal-social-welfare-development-office",
     "category": {
       "name": "Other Municipal Services",
       "slug": "other-municipal"
@@ -12895,7 +12895,7 @@
     "source": "citizens-charter",
     "type": "transaction",
     "officeDivision": "LOCAL YOUTH AND DEVELOPMENT OFFICE",
-    "officeSlug": "lydo",
+    "officeSlug": "local-youth-and-development-office",
     "category": {
       "name": "Education & Scholarship",
       "slug": "education-scholarship"

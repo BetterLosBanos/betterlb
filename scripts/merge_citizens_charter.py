@@ -153,19 +153,40 @@ def map_office_division_to_slug(office_division: str) -> str:
     # Map CC office names to slugs used in departments.json
     office_mapping = {
         "BUSINESS PERMIT AND LICENSING OFFICE (BPLO)": "business-permit-and-licensing-office",
-        "MUNICIPAL TREASURER'S OFFICE": "municipal-treasurer-office",
-        "MUNICIPAL ASSESSOR'S OFFICE": "municipal-assessor-office",
+        "MUNICIPAL TREASURER'S OFFICE": "municipal-treasurers-office",
+        "MUNICIPAL TREASURER'S OFFICE": "municipal-treasurers-office",
+        "MUNICIPAL ASSESSOR'S OFFICE": "municipal-assessors-office",
         "MUNICIPAL ENGINEERING OFFICE": "municipal-engineering-office",
-        "MUNICIPAL PLANNING AND DEVELOPMENT COORDINATOR (MPDC)": "mpdc",
+        "MUNICIPAL ENGINEERING OFFICE / OBO": "municipal-engineering-office",
+        "MUNICIPAL PLANNING AND DEVELOPMENT COORDINATOR (MPDC)": "municipal-planning-and-development-office",
+        "MUNICIPAL PLANNING AND DEVELOPMENT OFFICE": "municipal-planning-and-development-office",
         "LOCAL CIVIL REGISTRY OFFICE": "local-civil-registry-office",
+        "CIVIL REGISTRY OFFICE": "local-civil-registry-office",
+        "Civil Registry Office": "local-civil-registry-office",
         "MUNICIPAL ECONOMIC ENTERPRISE - MARKET": "market",
         "MUNICIPAL ECONOMIC ENTERPRISE - SLAUGHTERHOUSE": "slaughterhouse",
+        "MUNICIPAL ECONOMIC ENTERPRISE: SLAUGHTERHOUSE": "slaughterhouse",
         "MUNICIPAL AGRICULTURE OFFICE": "municipal-agriculture-office",
         "BARANGAY OFFICE": "barangay-office",
         "BIDS AND AWARDS COMMITTEE": "bids-and-awards-committee",
-        "INFORMATION AND COMMUNICATION SYSTEMS OFFICE (ICSO)": "icso",
-        "LOCAL YOUTH AND DEVELOPMENT OFFICE": "lydo",
+        "INFORMATION AND COMMUNICATION SYSTEMS OFFICE (ICSO)": "information-and-communication-systems-office",
+        "LOCAL YOUTH AND DEVELOPMENT OFFICE": "local-youth-and-development-office",
         "MUNICIPAL ACCOUNTING OFFICE": "municipal-accounting-office",
+        "MUNICIPAL DISASTER RISK REDUCTION AND MANAGEMENT OFFICE": "municipal-mdrrmo-office",
+        "MUNICIPAL HEALTH OFFICE (MHO)": "municipal-health-office",
+        "MUNICIPAL HUMAN RESOURCE MANAGEMENT OFFICE": "municipal-human-resource-management-office",
+        "MUNICIPAL NUTRITION ACTION OFFICE": "municipal-nutrition-office",
+        "MUNICIPAL RECORDS OFFICE": "municipal-general-services-office",
+        "MUNICIPAL SOCIAL WELFARE AND DEVELOPMENT OFFICE": "municipal-social-welfare-development-office",
+        "MUNICIPAL TOURISM OFFICE": "municipal-tourism-office",
+        "MUNICIPAL URBAN DEVELOPMENT AND HOUSING OFFICE": "municipal-urban-development-and-housing-office",
+        "PERSON WITH DISABILITY AFFAIRS OFFICE": "persons-with-disability-affairs-office",
+        "PHILIPPINE NATIONAL POLICE (PNP) - LOS BAÑOS MPS": "municipal-police-station",
+        "PUBLIC EMPLOYMENT SERVICE OFFICE": "public-employment-service-office",
+        "SANGGUNIANG BAYAN": "",  # Legislative, not in departments.json
+        "MUNICIPAL MAYOR'S OFFICE": "",  # Executive, not in departments.json
+        "MUNICIPAL VICE MAYOR'S OFFICE": "",  # Executive, not in departments.json
+        "PUBLIC ORDER AND SAFETY OFFICE/TRANSPORTATION AND REGULATION UNIT": "",
     }
     return office_mapping.get(office_division, "")
 
