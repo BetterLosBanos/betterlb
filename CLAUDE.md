@@ -85,6 +85,11 @@ Services are split by category in `src/data/services/categories/*.json`. The `me
 ### Path Aliases
 `@` maps to `src/` (configured in `vite.config.ts` and `tsconfig.json`)
 
+### Slug Naming Convention (Directory Data)
+- Use full-name, hyphenated lowercase slugs (e.g., `gender-and-development-office`, `public-employment-service-office`)
+- Avoid abbreviations (not `gad`, `peso`, `dilg`)
+- For committees or non-departments, use descriptive names (e.g., `bids-and-awards-committee`)
+
 ## Code Quality Standards
 
 - **ESLint**: Zero warnings allowed (`--max-warnings 0`)
@@ -108,6 +113,18 @@ Services are split by category in `src/data/services/categories/*.json`. The `me
 - The data pipeline includes a "human-in-the-loop" verification system
 - Maps use Leaflet - ensure map tiles are properly loaded
 - Weather data is cached in Cloudflare KV with automatic updates
+
+### Directory Data Structure
+- `departments.json` - Municipal departments/administrative offices only
+- `executive.json` - Elected officials (Mayor, Vice Mayor) with personal contact info
+- `legislative.json` - Sangguniang Bayan with councilors and committees
+- Do NOT add executive/legislative offices to departments.json
+
+### Phone Number Format
+- **Display**: `530-2981, 3000` (comma for extension, more compact)
+- **tel: links**: `tel:+63495302981` (E.164 format, main number only - extensions not well-supported)
+- Use `toTelUri()` utility from `@/lib/utils` for conversion
+- Area code for Los Baños: 049, Philippines country code: +63
 
 ## Shared Components (@betterlb/ui)
 
@@ -144,6 +161,12 @@ When modifying or creating local UI components:
 2. Use Kapwa semantic tokens with proper Tailwind v4 prefixes
 3. Ensure component variants match design system standards
 4. Maintain consistent prop interfaces with TypeScript
+
+### Office Icon Mappings
+- Icon mappings in `src/lib/officeIcons.ts` map department slugs to Lucide icons
+- When adding new departments, add corresponding icon mapping
+- Lucide icon names are camelCase (e.g., `IdCard`, `UserCheck`, `ShieldAlert`)
+- Unused icon imports will cause ESLint errors
 
 ## Kapwa Design System (@betterlb/kapwa)
 
