@@ -6,10 +6,24 @@ import { useQueryState } from 'nuqs';
 
 import { ModuleHeader, PageHero } from '@/components/layout/PageLayouts';
 import SidebarLayout from '@/components/layout/SidebarLayout';
-// Import both
 import SearchInput from '@/components/ui/SearchInput';
 
 import ServicesSidebar from './components/ServicesSidebar';
+
+// Additional filter types
+export type ServiceSource = 'citizens-charter' | 'community' | 'all';
+export type ClassificationFilter = 'Simple' | 'Complex' | 'all';
+
+export interface ServicesOutletContext {
+  searchQuery: string;
+  selectedCategorySlug: string;
+  selectedOfficeDivision: string;
+  selectedSource: ServiceSource;
+  selectedClassification: ClassificationFilter;
+  setOfficeDivision: (division: string) => void;
+  setSource: (source: ServiceSource) => void;
+  setClassification: (classification: ClassificationFilter) => void;
+}
 
 export default function ServicesLayout() {
   const location = useLocation();
@@ -38,6 +52,12 @@ export default function ServicesLayout() {
     defaultValue: '',
   });
 
+  // New filter states
+  const [selectedOfficeDivision, setSelectedOfficeDivision] = useState('all');
+  const [selectedSource, setSelectedSource] = useState<ServiceSource>('all');
+  const [selectedClassification, setSelectedClassification] =
+    useState<ClassificationFilter>('all');
+
   return (
     <SidebarLayout
       collapsible={true}
@@ -49,7 +69,7 @@ export default function ServicesLayout() {
         isIndexPage ? (
           <PageHero
             title='Local Government Services'
-            description='Explore official municipal services, permits, and documents. Choose a category to filter or search below.'
+            description='Explore official municipal services from the Citizens Charter and community contributions. Choose a category to filter or search below.'
           >
             <div className='animate-in fade-in slide-in-from-top-2 mx-auto max-w-xl duration-1000'>
               <SearchInput
@@ -78,6 +98,12 @@ export default function ServicesLayout() {
         context={{
           searchQuery,
           selectedCategorySlug,
+          selectedOfficeDivision,
+          selectedSource,
+          selectedClassification,
+          setOfficeDivision: setSelectedOfficeDivision,
+          setSource: setSelectedSource,
+          setClassification: setSelectedClassification,
         }}
       />
     </SidebarLayout>

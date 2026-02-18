@@ -126,6 +126,21 @@ Services are split by category in `src/data/services/categories/*.json`. The `me
 - Use `toTelUri()` utility from `@/lib/utils` for conversion
 - Area code for Los Baños: 049, Philippines country code: +63
 
+### Citizens Charter Data
+Location: `src/data/citizens-charter/citizens-charter.json`
+
+**Structure:**
+- Services use `category.service_number` format (e.g., "1.1", "2.3")
+- Categories 1-8: Frontline services with detailed info tables (from Citizens Charter document)
+  - 1: BPLO, 2: Assessor, 3: Engineering, 4: MPDC, 5: LCR, 6: Market, 7: Slaughterhouse, 8: Agriculture
+- Categories 9+: Other services without detailed tables, grouped by division
+- **Important**: BPLO and Treasurer are separate divisions - do not merge
+
+**When reorganizing:**
+- Preserve exact service names from the document for categories 1-8
+- Services without tables should have basic info only (no made-up requirements/steps/fees)
+- Use `/tmp/` for temporary Python scripts when manipulating JSON
+
 ## Shared Components (@betterlb/ui)
 
 ### Important: No Shared UI Package

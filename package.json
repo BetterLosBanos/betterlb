@@ -5,10 +5,11 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "tsc && npm run merge:data && vite build",
+    "build": "tsc && npm run merge:services && vite build",
     "lint": "eslint . --max-warnings 0",
     "format": "prettier --write .",
     "test:e2e": "playwright test",
+    "merge:services": "python3 scripts/merge_citizens_charter.py && npm run merge:data",
     "merge:data": "python3 scripts/merge_services.py",
     "flag:sessions": "python3 scripts/flag_sessions_for_review.py",
     "wrangler": "wrangler",

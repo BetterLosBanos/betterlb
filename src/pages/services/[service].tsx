@@ -16,6 +16,7 @@ import {
   ExternalLink,
   FileText,
   HeartHandshake,
+  Info,
   LinkIcon,
   LucideIcon,
   ShieldCheck,
@@ -34,12 +35,12 @@ import {
 } from '@/components/navigation/Breadcrumb';
 import { Badge } from '@/components/ui/Badge';
 
+import { getServiceBySlug } from '@/lib/services';
 import { toTitleCase } from '@/lib/stringUtils';
 
 import departmentsData from '@/data/directory/departments.json';
-import servicesData from '@/data/services/services.json';
 
-import type { QuickInfo, Service, Source } from '@/types/servicesTypes';
+import type { QuickInfo, Source } from '@/types/servicesTypes';
 
 const QUICK_INFO_CONFIG: Record<
   keyof QuickInfo,
@@ -57,9 +58,7 @@ export default function ServiceDetail() {
   const { service: serviceSlug } = useParams<{ service: string }>();
   if (!serviceSlug) return null;
 
-  const service = (servicesData as Service[]).find(
-    s => s.slug === decodeURIComponent(serviceSlug)
-  );
+  const service = getServiceBySlug(decodeURIComponent(serviceSlug));
   if (!service)
     return (
       <div className='text-kapwa-text-disabled p-20 text-center font-bold tracking-widest uppercase'>
@@ -78,6 +77,10 @@ export default function ServiceDetail() {
   const updatedAtDate = service.updatedAt ? new Date(service.updatedAt) : null;
   const isVerified = updatedAtDate !== null && isValid(updatedAtDate);
 
+  // Citizens Charter specific
+  const isOfficialSource = service.source === 'citizens-charter';
+  const needsVerification = service.needsVerification === true;
+
   const quickInfoArray = service.quickInfo
     ? (Object.entries(service.quickInfo) as [keyof QuickInfo, string][]).map(
         ([key, value]) => ({
@@ -87,6 +90,36 @@ export default function ServiceDetail() {
         })
       )
     : [];
+
+  // Build Citizens Charter specific info items
+  const ccInfoItems: { label: string; value: string }[] = [];
+  if (service.processingTime) {
+    ccInfoItems.push({
+      label: 'Processing Time',
+      value: service.processingTime,
+    });
+  }
+  if (service.fees) {
+    ccInfoItems.push({
+      label: 'Fees',
+      value: service.fees.amount || 'Variable',
+    });
+  }
+  if (service.classification) {
+    ccInfoItems.push({
+      label: 'Classification',
+      value: service.classification,
+    });
+  }
+  if (service.typeOfTransaction) {
+    ccInfoItems.push({ label: 'Type', value: service.typeOfTransaction });
+  }
+  if (service.personResponsible && service.personResponsible.length > 0) {
+    ccInfoItems.push({
+      label: 'Responsible Person(s)',
+      value: service.personResponsible.join(', '),
+    });
+  }
 
   return (
     <div className='animate-in fade-in mx-auto max-w-7xl space-y-6 duration-500'>
@@ -118,9 +151,19 @@ export default function ServiceDetail() {
             <Badge variant={isTransaction ? 'success' : 'secondary'} dot>
               {isTransaction ? 'Transactional' : 'Resource'}
             </Badge>
-            <Badge variant={isVerified ? 'success' : 'slate'} dot={!isVerified}>
-              {isVerified ? 'Verified' : 'Unverified'}
+            <Badge variant={isOfficialSource ? 'success' : 'secondary'} dot>
+              {isOfficialSource ? 'Official (CC)' : 'Community'}
             </Badge>
+            {service.serviceNumber && (
+              <Badge variant='outline'>
+                Service No. {service.serviceNumber}
+              </Badge>
+            )}
+            {needsVerification && (
+              <Badge variant='warning' dot>
+                Pending Verification
+              </Badge>
+            )}
           </div>
 
           <h1 className='mb-6 text-3xl leading-tight font-extrabold tracking-tight md:text-5xl'>
@@ -131,6 +174,18 @@ export default function ServiceDetail() {
             <p className='text-kapwa-text-support mb-8 max-w-2xl text-lg leading-relaxed italic'>
               &quot;{service.description}&quot;
             </p>
+          )}
+
+          {/* Who May Avail (Citizens Charter) */}
+          {service.whoMayAvail && !needsVerification && (
+            <div className='bg-kapwa-bg-inverse/10 mb-8 rounded-xl p-4 backdrop-blur-sm'>
+              <p className='text-kapwa-text-support text-sm font-medium'>
+                <span className='text-kapwa-text-inverse-subtle font-semibold'>
+                  Who may avail:{' '}
+                </span>
+                {service.whoMayAvail}
+              </p>
+            </div>
           )}
 
           {/* SINGLE PRIMARY ACTION */}
@@ -155,16 +210,16 @@ export default function ServiceDetail() {
       {/* --- CONTENT AREA --- */}
       <div className='flex flex-col gap-8 xl:flex-row'>
         <div className='min-w-0 flex-1 space-y-8'>
-          {/* Quick Info Grid - Moved here to keep Hero Header cleaner */}
-          {isTransaction && quickInfoArray.length > 0 && (
+          {/* Citizens Charter Info Grid (processing time, fees, etc.) */}
+          {isOfficialSource && ccInfoItems.length > 0 && (
             <div className='grid grid-cols-2 gap-3 md:grid-cols-3'>
-              {quickInfoArray.map((info, idx) => (
+              {ccInfoItems.map((info, idx) => (
                 <div
                   key={idx}
                   className='border-kapwa-border-weak bg-kapwa-bg-surface flex items-start gap-3 rounded-2xl border p-4 shadow-xs'
                 >
                   <div className='text-kapwa-text-brand bg-kapwa-bg-surface-raised shrink-0 rounded-lg p-2'>
-                    <info.icon className='h-4 w-4' />
+                    <Info className='h-4 w-4' />
                   </div>
                   <div>
                     <p className='text-kapwa-text-disabled mb-1 text-[10px] font-bold tracking-widest uppercase'>
@@ -179,7 +234,99 @@ export default function ServiceDetail() {
             </div>
           )}
 
-          {service.steps && service.steps.length > 0 && (
+          {/* Pending Verification Notice */}
+          {needsVerification && (
+            <div className='border-kapwa-border-warning bg-kapwa-bg-warning-weak/30 flex items-start gap-3 rounded-2xl border p-4'>
+              <Info className='text-kapwa-text-warning h-5 w-5 shrink-0' />
+              <div>
+                <p className='text-kapwa-text-strong mb-1 text-sm font-bold'>
+                  Detailed Information Pending Verification
+                </p>
+                <p className='text-kapwa-text-support text-xs leading-relaxed'>
+                  This service data is from the Citizens Charter document.
+                  Detailed requirements, steps, and fee information will be
+                  added as we verify and extract data from the official
+                  document.
+                </p>
+              </div>
+            </div>
+          )}
+
+          {/* Detailed Requirements (Citizens Charter) */}
+          {isOfficialSource &&
+            service.detailedRequirements &&
+            service.detailedRequirements.length > 0 && (
+              <DetailSection title='Requirements' icon={FileText}>
+                <div className='border-kapwa-border-weak overflow-hidden rounded-xl border'>
+                  <table className='w-full text-sm'>
+                    <thead className='bg-kapwa-bg-surface-raised'>
+                      <tr>
+                        <th className='text-kapwa-text-strong px-4 py-3 text-left font-semibold'>
+                          Requirement
+                        </th>
+                        <th className='text-kapwa-text-strong px-4 py-3 text-left font-semibold'>
+                          Where to Secure
+                        </th>
+                      </tr>
+                    </thead>
+                    <tbody className='divide-y divide-slate-100'>
+                      {service.detailedRequirements.map((req, idx) => (
+                        <tr
+                          key={idx}
+                          className='hover:bg-kapwa-bg-surface-raised/50'
+                        >
+                          <td className='text-kapwa-text-support px-4 py-3'>
+                            {req.requirement}
+                          </td>
+                          <td className='text-kapwa-text-brand px-4 py-3 font-medium'>
+                            {req.where_to_secure}
+                          </td>
+                        </tr>
+                      ))}
+                    </tbody>
+                  </table>
+                </div>
+              </DetailSection>
+            )}
+
+          {/* Client Steps (Citizens Charter - with agency actions) */}
+          {isOfficialSource &&
+            service.clientSteps &&
+            service.clientSteps.length > 0 && (
+              <DetailSection title='Client Steps' icon={ClipboardList}>
+                <div className='space-y-4'>
+                  {service.clientSteps.map((step, idx) => (
+                    <div
+                      key={idx}
+                      className='border-kapwa-border-weak bg-kapwa-bg-surface rounded-xl border p-4 shadow-xs'
+                    >
+                      <div className='mb-2 flex items-center gap-3'>
+                        <span className='bg-kapwa-bg-brand-default flex h-7 w-7 shrink-0 items-center justify-center rounded-full text-xs font-bold text-white'>
+                          {step.step}
+                        </span>
+                        <h4 className='text-kapwa-text-strong text-sm font-bold'>
+                          Your Action
+                        </h4>
+                      </div>
+                      <p className='text-kapwa-text-support mb-3 pl-10 text-sm'>
+                        {step.action}
+                      </p>
+                      <div className='border-kapwa-border-weak ml-10 rounded-lg border-l-2 bg-kapwa-bg-surface-raised/50 p-3'>
+                        <p className='text-kapwa-text-disabled mb-1 text-[10px] font-bold uppercase'>
+                          Agency Action
+                        </p>
+                        <p className='text-kapwa-text-support text-sm italic'>
+                          {step.agency_action}
+                        </p>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </DetailSection>
+            )}
+
+          {/* Regular Steps (community services) */}
+          {!isOfficialSource && service.steps && service.steps.length > 0 && (
             <DetailSection
               title={isTransaction ? 'Process Steps' : 'Information Details'}
               icon={ClipboardList}
@@ -203,6 +350,30 @@ export default function ServiceDetail() {
                 ))}
               </div>
             </DetailSection>
+          )}
+
+          {/* Quick Info Grid (community services) */}
+          {!isOfficialSource && isTransaction && quickInfoArray.length > 0 && (
+            <div className='grid grid-cols-2 gap-3 md:grid-cols-3'>
+              {quickInfoArray.map((info, idx) => (
+                <div
+                  key={idx}
+                  className='border-kapwa-border-weak bg-kapwa-bg-surface flex items-start gap-3 rounded-2xl border p-4 shadow-xs'
+                >
+                  <div className='text-kapwa-text-brand bg-kapwa-bg-surface-raised shrink-0 rounded-lg p-2'>
+                    <info.icon className='h-4 w-4' />
+                  </div>
+                  <div>
+                    <p className='text-kapwa-text-disabled mb-1 text-[10px] font-bold tracking-widest uppercase'>
+                      {info.label}
+                    </p>
+                    <p className='text-kapwa-text-strong text-xs font-bold'>
+                      {info.value}
+                    </p>
+                  </div>
+                </div>
+              ))}
+            </div>
           )}
 
           {/* Sources and References */}
@@ -247,13 +418,19 @@ export default function ServiceDetail() {
         <aside className='w-full space-y-6 xl:w-80'>
           {/* Data Integrity Card */}
           <div
-            className={`flex flex-col gap-3 rounded-2xl border p-5 transition-colors ${isVerified ? 'border-kapwa-border-success bg-kapwa-bg-success-weak/30' : 'border-kapwa-border-weak bg-kapwa-bg-surface'}`}
+            className={`flex flex-col gap-3 rounded-2xl border p-5 transition-colors ${
+              isOfficialSource
+                ? 'border-kapwa-border-success bg-kapwa-bg-success-weak/30'
+                : isVerified
+                  ? 'border-kapwa-border-success bg-kapwa-bg-success-weak/30'
+                  : 'border-kapwa-border-weak bg-kapwa-bg-surface'
+            }`}
           >
             <div className='flex items-center justify-between'>
               <p className='text-kapwa-text-disabled text-[10px] font-bold tracking-widest uppercase'>
                 Data Integrity
               </p>
-              {isVerified ? (
+              {isOfficialSource || isVerified ? (
                 <CheckCircle2Icon className='h-4 w-4 text-kapwa-text-success' />
               ) : (
                 <AlertCircle className='text-kapwa-text-support h-4 w-4' />
@@ -261,18 +438,32 @@ export default function ServiceDetail() {
             </div>
             <div className='flex items-center gap-3'>
               <Clock
-                className={`h-5 w-5 ${isVerified ? 'text-kapwa-text-success' : 'text-kapwa-text-support'}`}
+                className={`h-5 w-5 ${
+                  isOfficialSource || isVerified
+                    ? 'text-kapwa-text-success'
+                    : 'text-kapwa-text-support'
+                }`}
               />
               <div>
                 <p
-                  className={`text-sm font-bold ${isVerified ? 'text-kapwa-text-strong' : 'text-kapwa-text-strong0'}`}
+                  className={`text-sm font-bold ${
+                    isOfficialSource || isVerified
+                      ? 'text-kapwa-text-strong'
+                      : 'text-kapwa-text-strong0'
+                  }`}
                 >
-                  {isVerified ? 'Verified Information' : 'Unverified Data'}
+                  {isOfficialSource
+                    ? 'Official Data'
+                    : isVerified
+                      ? 'Verified Information'
+                      : 'Unverified Data'}
                 </p>
                 <p className='text-kapwa-text-disabled text-[11px] font-medium'>
-                  {isVerified
-                    ? `Last Audit: ${format(updatedAtDate!, 'MMMM yyyy')}`
-                    : 'Awaiting official verification'}
+                  {isOfficialSource
+                    ? 'From Citizens Charter document'
+                    : isVerified
+                      ? `Last Audit: ${format(updatedAtDate!, 'MMMM yyyy')}`
+                      : 'Awaiting official verification'}
                 </p>
               </div>
             </div>

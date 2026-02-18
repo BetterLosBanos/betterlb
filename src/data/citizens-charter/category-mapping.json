@@ -1,0 +1,78 @@
+{
+  "mappings": [
+    {
+      "officeDivision": "BUSINESS PERMIT AND LICENSING OFFICE (BPLO)",
+      "categorySlug": "business-licensing",
+      "subcategory": "Business Permits"
+    },
+    {
+      "officeDivision": "MUNICIPAL TREASURER'S OFFICE",
+      "categorySlug": "taxation-assessment",
+      "subcategory": "Tax Payment"
+    },
+    {
+      "officeDivision": "MUNICIPAL ASSESSOR'S OFFICE",
+      "categorySlug": "taxation-assessment",
+      "subcategory": "Property Assessment"
+    },
+    {
+      "officeDivision": "MUNICIPAL ENGINEERING OFFICE",
+      "categorySlug": "infrastructure-engineering",
+      "subcategory": "Building Permits"
+    },
+    {
+      "officeDivision": "MUNICIPAL PLANNING AND DEVELOPMENT COORDINATOR (MPDC)",
+      "categorySlug": "infrastructure-engineering",
+      "subcategory": "Planning Services"
+    },
+    {
+      "officeDivision": "LOCAL CIVIL REGISTRY OFFICE",
+      "categorySlug": "certificates-vital-records",
+      "subcategory": "Civil Registry"
+    },
+    {
+      "officeDivision": "MUNICIPAL ECONOMIC ENTERPRISE - MARKET",
+      "categorySlug": "business-licensing",
+      "subcategory": "Market Services"
+    },
+    {
+      "officeDivision": "MUNICIPAL ECONOMIC ENTERPRISE - SLAUGHTERHOUSE",
+      "categorySlug": "agriculture-livelihood",
+      "subcategory": "Slaughterhouse Services"
+    },
+    {
+      "officeDivision": "MUNICIPAL AGRICULTURE OFFICE",
+      "categorySlug": "agriculture-livelihood",
+      "subcategory": "Agriculture Services"
+    },
+    {
+      "officeDivision": "BARANGAY OFFICE",
+      "categorySlug": "certificates-vital-records",
+      "subcategory": "Barangay Services"
+    },
+    {
+      "officeDivision": "BIDS AND AWARDS COMMITTEE",
+      "categorySlug": "public-safety",
+      "subcategory": "Bids and Awards"
+    },
+    {
+      "officeDivision": "INFORMATION AND COMMUNICATION SYSTEMS OFFICE (ICSO)",
+      "categorySlug": "other-municipal",
+      "subcategory": "ICT Services"
+    },
+    {
+      "officeDivision": "LOCAL YOUTH AND DEVELOPMENT OFFICE",
+      "categorySlug": "education-scholarship",
+      "subcategory": "Youth Services"
+    },
+    {
+      "officeDivision": "MUNICIPAL ACCOUNTING OFFICE",
+      "categorySlug": "other-municipal",
+      "subcategory": "Accounting Services"
+    }
+  ],
+  "defaultCategory": {
+    "name": "Other Municipal Services",
+    "slug": "other-municipal"
+  }
+}
