@@ -82,6 +82,14 @@ Services are split by category in `src/data/services/categories/*.json`. The `me
   - `widgets/` - Small reusable widgets
 - `src/pages/` - Route-level page components (site sections)
 
+### Service Page Components
+- `src/pages/services/components/` - Service-specific components
+  - `RequirementCard` - Individual requirement card with optional service link
+  - `RequirementGrid` - Grid of requirement cards
+  - `ProcessTimeline` - Vertical timeline for client steps
+  - `ServiceCard` - Service listing card
+  - `ServiceFilters` - Service filtering options
+
 ### Path Aliases
 `@` maps to `src/` (configured in `vite.config.ts` and `tsconfig.json`)
 
@@ -140,6 +148,11 @@ Location: `src/data/citizens-charter/citizens-charter.json`
 - Preserve exact service names from the document for categories 1-8
 - Services without tables should have basic info only (no made-up requirements/steps/fees)
 - Use `/tmp/` for temporary Python scripts when manipulating JSON
+
+**Requirement Linking:**
+- Requirements can optionally have a `serviceSlug` field
+- If present, the requirement card becomes clickable and links to that service
+- Example: "Barangay Clearance" requirement with `serviceSlug: "barangay-clearance"`
 
 **Extraction utilities (pipeline/):**
 - `citizens_charter_extractor.py` - Main orchestrator for PDF data extraction
