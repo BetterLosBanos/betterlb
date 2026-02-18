@@ -32,6 +32,11 @@
         "type": ["string", "null"],
         "format": "uri"
       },
+      "email": {
+        "type": ["string", "null"],
+        "format": "email",
+        "description": "Official office email address"
+      },
       "department_head": {
         "oneOf": [
           {
