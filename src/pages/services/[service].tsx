@@ -261,40 +261,11 @@ export default function ServiceDetail() {
               <RequirementGrid requirements={service.detailedRequirements} />
             )}
 
-          {/* Client Steps (Citizens Charter - with agency actions) */}
+          {/* Process Timeline (Citizens Charter) */}
           {isOfficialSource &&
             service.clientSteps &&
             service.clientSteps.length > 0 && (
-              <DetailSection title='Client Steps' icon={ClipboardList}>
-                <div className='space-y-4'>
-                  {service.clientSteps.map((step, idx) => (
-                    <div
-                      key={idx}
-                      className='border-kapwa-border-weak bg-kapwa-bg-surface rounded-xl border p-4 shadow-xs'
-                    >
-                      <div className='mb-2 flex items-center gap-3'>
-                        <span className='bg-kapwa-bg-brand-default flex h-7 w-7 shrink-0 items-center justify-center rounded-full text-xs font-bold text-white'>
-                          {step.step}
-                        </span>
-                        <h4 className='text-kapwa-text-strong text-sm font-bold'>
-                          Your Action
-                        </h4>
-                      </div>
-                      <p className='text-kapwa-text-support mb-3 pl-10 text-sm'>
-                        {step.action}
-                      </p>
-                      <div className='border-kapwa-border-weak ml-10 rounded-lg border-l-2 bg-kapwa-bg-surface-raised/50 p-3'>
-                        <p className='text-kapwa-text-disabled mb-1 text-[10px] font-bold uppercase'>
-                          Agency Action
-                        </p>
-                        <p className='text-kapwa-text-support text-sm italic'>
-                          {step.agency_action}
-                        </p>
-                      </div>
-                    </div>
-                  ))}
-                </div>
-              </DetailSection>
+              <ProcessTimeline steps={service.clientSteps} />
             )}
 
           {/* Regular Steps (community services) */}
