@@ -5,10 +5,8 @@ import {
   Building2,
   Calculator,
   Compass,
-  Crown,
   FileBadge,
   Flame,
-  Gavel,
   HandHelping,
   HardHat,
   HeartHandshake,
@@ -31,19 +29,13 @@ import {
   TreePine,
   User,
   UserCheck,
-  Users,
   Wallet,
 } from 'lucide-react';
 
 // 1. Map the slugs to specific Lucide icons
 export const officeIcons: Record<string, LucideIcon> = {
-  // Executive Offices
-  'office-of-the-mayor': Crown,
-  'office-of-the-vice-mayor': Users,
-  'sangguniang-bayan': Gavel,
-  'operation-center': Radio,
-
   // Municipal Departments
+  'operation-center': Radio,
   'gender-and-development-office': HeartHandshake,
   'local-civil-registry-office': FileBadge,
   'municipal-planning-and-development-office': Compass,
