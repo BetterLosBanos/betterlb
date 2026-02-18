@@ -41,6 +41,8 @@ import { getServiceBySlug } from '@/lib/services';
 import { toTitleCase } from '@/lib/stringUtils';
 
 import departmentsData from '@/data/directory/departments.json';
+import executiveData from '@/data/directory/executive.json';
+import legislativeData from '@/data/directory/legislative.json';
 
 import type { QuickInfo, Source } from '@/types/servicesTypes';
 
@@ -72,9 +74,30 @@ export default function ServiceDetail() {
     ? service.officeSlug
     : [service.officeSlug].filter(Boolean);
 
-  const involvedOffices = departmentsData.filter(d =>
-    officeSlugs.includes(d.slug)
-  );
+  // Collect offices from all sources (departments, executive, legislative)
+  const involvedOffices = [
+    ...departmentsData
+      .filter(d => officeSlugs.includes(d.slug))
+      .map(d => ({
+        slug: d.slug,
+        name: d.office_name,
+        type: 'department',
+      })),
+    ...executiveData
+      .filter(e => officeSlugs.includes(e.slug))
+      .map(e => ({
+        slug: e.slug,
+        name: e.role,
+        type: 'executive',
+      })),
+    ...legislativeData
+      .filter(l => officeSlugs.includes(l.slug))
+      .map(l => ({
+        slug: l.slug,
+        name: l.chamber,
+        type: 'legislative',
+      })),
+  ];
   const isTransaction = service.type === 'transaction';
   const updatedAtDate = service.updatedAt ? new Date(service.updatedAt) : null;
   const isVerified = updatedAtDate !== null && isValid(updatedAtDate);
@@ -413,27 +436,33 @@ export default function ServiceDetail() {
           {involvedOffices.length > 0 && (
             <DetailSection title='Responsible Offices' icon={Building2}>
               <div className='space-y-6'>
-                {involvedOffices.map((off, idx) => (
-                  <div
-                    key={off.slug}
-                    className={
-                      idx > 0 ? 'border-t border-kapwa-border-weak pt-5' : ''
-                    }
-                  >
-                    <Link
-                      to={`/government/departments/${off.slug}`}
-                      className='group block'
+                {involvedOffices.map((off, idx) => {
+                  const officePath =
+                    off.type === 'executive'
+                      ? `/government/executive/${off.slug}`
+                      : off.type === 'legislative'
+                        ? `/government/legislative/${off.slug}`
+                        : `/government/departments/${off.slug}`;
+
+                  return (
+                    <div
+                      key={off.slug}
+                      className={
+                        idx > 0 ? 'border-t border-kapwa-border-weak pt-5' : ''
+                      }
                     >
-                      <h3 className='group-hover:text-kapwa-text-brand text-kapwa-text-strong leading-tight font-bold transition-colors'>
-                        {toTitleCase(off.office_name)}
-                      </h3>
-                      <span className='text-kapwa-text-brand mt-2 flex items-center gap-1 text-[10px] font-bold tracking-widest uppercase'>
-                        View Profile{' '}
-                        <ArrowRight className='h-3 w-3 transition-transform group-hover:translate-x-1' />
-                      </span>
-                    </Link>
-                  </div>
-                ))}
+                      <Link to={officePath} className='group block'>
+                        <h3 className='group-hover:text-kapwa-text-brand text-kapwa-text-strong leading-tight font-bold transition-colors'>
+                          {toTitleCase(off.name)}
+                        </h3>
+                        <span className='text-kapwa-text-brand mt-2 flex items-center gap-1 text-[10px] font-bold tracking-widest uppercase'>
+                          View Profile{' '}
+                          <ArrowRight className='h-3 w-3 transition-transform group-hover:translate-x-1' />
+                        </span>
+                      </Link>
+                    </div>
+                  );
+                })}
               </div>
             </DetailSection>
           )}
