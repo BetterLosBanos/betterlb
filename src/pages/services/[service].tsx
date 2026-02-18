@@ -34,6 +34,8 @@ import {
   BreadcrumbSeparator,
 } from '@/components/navigation/Breadcrumb';
 import { Badge } from '@/components/ui/Badge';
+import { RequirementGrid } from './components/RequirementGrid';
+import { ProcessTimeline } from './components/ProcessTimeline';
 
 import { getServiceBySlug } from '@/lib/services';
 import { toTitleCase } from '@/lib/stringUtils';
