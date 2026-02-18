@@ -102,32 +102,25 @@ export default function ServiceDetail() {
       icon: Clock,
     });
   }
-  if (service.fees) {
+  if (service.fees?.amount) {
     ccInfoItems.push({
-      label: 'Fees',
-      value: service.fees.amount || 'Variable',
+      label: 'Fee',
+      value: service.fees.amount,
       icon: Banknote,
+    });
+  }
+  if (service.whoMayAvail) {
+    ccInfoItems.push({
+      label: 'Who Can Apply',
+      value: service.whoMayAvail,
+      icon: Users,
     });
   }
   if (service.classification) {
     ccInfoItems.push({
       label: 'Classification',
       value: service.classification,
-      icon: ShieldCheck,
-    });
-  }
-  if (service.typeOfTransaction) {
-    ccInfoItems.push({
-      label: 'Type',
-      value: service.typeOfTransaction,
-      icon: ClipboardList,
-    });
-  }
-  if (service.personResponsible && service.personResponsible.length > 0) {
-    ccInfoItems.push({
-      label: 'Responsible Person(s)',
-      value: service.personResponsible.join(', '),
-      icon: Users,
+      icon: FileText,
     });
   }
 
