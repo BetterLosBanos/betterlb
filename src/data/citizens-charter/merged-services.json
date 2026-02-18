@@ -137,7 +137,11 @@
       "description": ""
     },
     "processingTime": "30-60 days",
-    "personResponsible": ["SB Secretary", "SB Committee Chair", "SB Members"]
+    "personResponsible": [
+      "SB Secretary",
+      "SB Committee Chair",
+      "SB Members"
+    ]
   },
   {
     "service": "Admission of Paternity/R.A. 9255",
@@ -145,24 +149,61 @@
     "serviceNumber": "5.12",
     "source": "citizens-charter",
     "type": "transaction",
-    "officeDivision": "LOCAL CIVIL REGISTRY OFFICE",
-    "officeSlug": "local-civil-registry-office",
+    "officeDivision": "CIVIL REGISTRY OFFICE",
+    "officeSlug": "",
     "category": {
-      "name": "Certificates & Vital Records",
-      "slug": "certificates-vital-records"
+      "name": "Other Municipal Services",
+      "slug": "other-municipal"
     },
-    "classification": null,
-    "typeOfTransaction": null,
-    "whoMayAvail": null,
-    "dataComplete": false,
-    "needsVerification": true
+    "classification": "Simple",
+    "typeOfTransaction": "G2C (Government to Citizen)",
+    "whoMayAvail": "Parents of illegitimate children",
+    "dataComplete": true,
+    "needsVerification": false,
+    "detailedRequirements": [
+      {
+        "requirement": "Certificate of Live Birth",
+        "where_to_secure": "Civil Registry"
+      },
+      {
+        "requirement": "Affidavit of Admission of Paternity",
+        "where_to_secure": "Lawyer/Notary Public"
+      },
+      {
+        "requirement": "Valid IDs of parents",
+        "where_to_secure": "Parents"
+      }
+    ],
+    "clientSteps": [
+      {
+        "step": 1,
+        "action": "Submit Affidavit of Admission of Paternity",
+        "agency_action": "Receive and process"
+      },
+      {
+        "step": 2,
+        "action": "Pay fees",
+        "agency_action": "Issue Official Receipt"
+      }
+    ],
+    "fees": {
+      "amount": "₱1,000.00",
+      "description": "Service charge"
+    },
+    "processingTime": "2 minutes",
+    "personResponsible": [
+      "License Inspector",
+      "Admin Aide"
+    ]
   },
   {
     "service": "Adolescent and Youth Health Program",
     "slug": "adolescent-youth-health-program",
     "type": "information",
     "description": "Health education and clinical services specifically tailored for teens and young adults.",
-    "officeSlug": ["municipal-health-office"],
+    "officeSlug": [
+      "municipal-health-office"
+    ],
     "category": {
       "name": "Health & Wellness",
       "slug": "health-wellness"
@@ -176,7 +217,9 @@
     "slug": "animal-bite-treatment-center",
     "type": "transaction",
     "description": "Anti-rabies vaccination and wound management for individuals bitten by animals.",
-    "officeSlug": ["municipal-health-office"],
+    "officeSlug": [
+      "municipal-health-office"
+    ],
     "category": {
       "name": "Health & Wellness",
       "slug": "health-wellness"
@@ -229,7 +272,9 @@
       "description": ""
     },
     "processingTime": "10 Minutes",
-    "personResponsible": ["Veterinarian/Livestock Inspector"]
+    "personResponsible": [
+      "Veterinarian/Livestock Inspector"
+    ]
   },
   {
     "service": "Application and Issuance of Marriage License",
@@ -237,17 +282,67 @@
     "serviceNumber": "5.3",
     "source": "citizens-charter",
     "type": "transaction",
-    "officeDivision": "LOCAL CIVIL REGISTRY OFFICE",
-    "officeSlug": "local-civil-registry-office",
+    "officeDivision": "CIVIL REGISTRY OFFICE",
+    "officeSlug": "",
     "category": {
-      "name": "Certificates & Vital Records",
-      "slug": "certificates-vital-records"
+      "name": "Other Municipal Services",
+      "slug": "other-municipal"
     },
-    "classification": null,
-    "typeOfTransaction": null,
-    "whoMayAvail": null,
-    "dataComplete": false,
-    "needsVerification": true
+    "classification": "Simple",
+    "typeOfTransaction": "G2C - Government to Citizens",
+    "whoMayAvail": "Contracting parties",
+    "dataComplete": true,
+    "needsVerification": false,
+    "detailedRequirements": [
+      {
+        "requirement": "Birth Certificate (NSO/PSA)",
+        "where_to_secure": "PSA"
+      },
+      {
+        "requirement": "Community Tax Certificate",
+        "where_to_secure": "Treasurer's Office"
+      },
+      {
+        "requirement": "Parent's Marriage Certificate",
+        "where_to_secure": "Civil Registry",
+        "serviceSlug": "marriage-license-application"
+      },
+      {
+        "requirement": "Parent's Consent (if 18-21 years old) or Parent's Advice (if 21-25 years old)",
+        "where_to_secure": "Parents"
+      },
+      {
+        "requirement": "Certificate of Pre-Marriage Counseling",
+        "where_to_secure": "Population Office"
+      }
+    ],
+    "clientSteps": [
+      {
+        "step": 1,
+        "action": "Proceed to the Civil Registry Office Counter 3 to submit original and photocopies of the documents",
+        "agency_action": "Evaluate the submitted documents"
+      },
+      {
+        "step": 2,
+        "action": "Pay the corresponding fees at Treasurer's Office Window 4",
+        "agency_action": "Issue an order of payment"
+      },
+      {
+        "step": 3,
+        "action": "Submit the Official Receipt",
+        "agency_action": "Accepts Official Receipt; Marriage license shall be issued on the 11th day from the submission of the application"
+      }
+    ],
+    "fees": {
+      "amount": "₱500.00",
+      "description": "Filing Fee"
+    },
+    "processingTime": "10 Days Posting *If Release date falls on a holiday, the next working day; if it falls on a Saturday or Sunday, release shall be on a Monday",
+    "personResponsible": [
+      "Administrative Aide/",
+      "Clerk – Counter 3",
+      "Civil Registry Office"
+    ]
   },
   {
     "service": "APPLICATION FOR LEAVE",
@@ -298,7 +393,10 @@
       "description": ""
     },
     "processingTime": "1-3 working days",
-    "personResponsible": ["HRMO Head", "HRMO Staff"]
+    "personResponsible": [
+      "HRMO Head",
+      "HRMO Staff"
+    ]
   },
   {
     "service": "APPLICATION FOR NEW TAX DECLARATION (BUILDING/IMPROVEMENT)",
@@ -481,7 +579,8 @@
       },
       {
         "requirement": "Birth Certificate of Child/Children",
-        "where_to_secure": "Local Civil Registry"
+        "where_to_secure": "Local Civil Registry",
+        "serviceSlug": "birth-certificate-registration"
       },
       {
         "requirement": "Proof of Income (if employed)",
@@ -519,7 +618,10 @@
       "description": "per ID"
     },
     "processingTime": "1 day",
-    "personResponsible": ["MSWDO Head", "Social Worker"]
+    "personResponsible": [
+      "MSWDO Head",
+      "Social Worker"
+    ]
   },
   {
     "service": "APPLICATION FOR VARIANCE FROM THE LOCAL ZONING BOARD OF APPEALS",
@@ -609,7 +711,10 @@
       "description": "unless there's a fee for examination"
     },
     "processingTime": "30-45 days (depending on vacancy)",
-    "personResponsible": ["HRMO Head", "Selection Committee"]
+    "personResponsible": [
+      "HRMO Head",
+      "Selection Committee"
+    ]
   },
   {
     "service": "ASSISTANCE FOR DATA REQUEST, INTERVIEWS AND CONSULTATION CONCERNING DIFFERENT PROGRAMS OF THE OFFICE",
@@ -708,7 +813,10 @@
       "description": "assistance amount varies"
     },
     "processingTime": "3 days",
-    "personResponsible": ["MSWDO Head", "Social Worker"]
+    "personResponsible": [
+      "MSWDO Head",
+      "Social Worker"
+    ]
   },
   {
     "service": "BID EVALUATION AND POST-QUALIFICATION EVALUATION",
@@ -780,7 +888,9 @@
     "slug": "birth-certificate-registration",
     "type": "transaction",
     "description": "Timely registration of birth for newborn children.",
-    "officeSlug": ["municipal-civil-registrar"],
+    "officeSlug": [
+      "municipal-civil-registrar"
+    ],
     "category": {
       "name": "Certificates & Vital Records",
       "slug": "certificates-vital-records"
@@ -818,7 +928,9 @@
     "slug": "birthing-home-services",
     "type": "transaction",
     "description": "24/7 facility-based delivery services for low-risk pregnancies.",
-    "officeSlug": ["municipal-health-office"],
+    "officeSlug": [
+      "municipal-health-office"
+    ],
     "category": {
       "name": "Health & Wellness",
       "slug": "health-wellness"
@@ -832,7 +944,9 @@
     "slug": "blood-program",
     "type": "information",
     "description": "Blood donation drives and assistance in sourcing blood for patients in need.",
-    "officeSlug": ["municipal-health-office"],
+    "officeSlug": [
+      "municipal-health-office"
+    ],
     "category": {
       "name": "Health & Wellness",
       "slug": "health-wellness"
@@ -847,7 +961,9 @@
     "type": "transaction",
     "description": "The primary legal authorization required before starting construction, alteration, or repair of any building.",
     "url": "https://www.facebook.com/media/set/?set=a.182362044081096&type=3",
-    "officeSlug": ["municipal-engineering-office"],
+    "officeSlug": [
+      "municipal-engineering-office"
+    ],
     "category": {
       "name": "Infrastructure & Engineering",
       "slug": "infrastructure-engineering"
@@ -879,7 +995,9 @@
     "slug": "building-permit",
     "type": "transaction",
     "description": "Permit required before constructing, altering, or repairing any building.",
-    "officeSlug": ["municipal-engineering-office"],
+    "officeSlug": [
+      "municipal-engineering-office"
+    ],
     "category": {
       "name": "Infrastructure & Engineering",
       "slug": "infrastructure-engineering"
@@ -983,7 +1101,9 @@
     "type": "transaction",
     "description": "Application for a new Mayor's Permit to conduct business within the municipality.",
     "url": "",
-    "officeSlug": ["business-permit-and-licensing-office"],
+    "officeSlug": [
+      "business-permit-and-licensing-office"
+    ],
     "category": {
       "name": "Business & Licensing",
       "slug": "business-licensing"
@@ -1032,7 +1152,9 @@
     "slug": "business-permit-renewal",
     "type": "transaction",
     "description": "Annual renewal of Mayor's Permit for existing businesses.",
-    "officeSlug": ["business-permit-and-licensing-office"],
+    "officeSlug": [
+      "business-permit-and-licensing-office"
+    ],
     "category": {
       "name": "Business & Licensing",
       "slug": "business-licensing"
@@ -1049,7 +1171,9 @@
       "BIR Income Tax Return (Previous Year)",
       "Financial Statement"
     ],
-    "relatedServices": ["business-permit-new"],
+    "relatedServices": [
+      "business-permit-new"
+    ],
     "quickInfo": {
       "processingTime": "1 day",
       "fee": "Based on gross sales",
@@ -1070,24 +1194,6 @@
     "source": "community"
   },
   {
-    "service": "Business Registration (New Applicant) - Face to Face",
-    "slug": "business-registration-new-applicant---face-to-face",
-    "serviceNumber": "1.3",
-    "source": "citizens-charter",
-    "type": "transaction",
-    "officeDivision": "BUSINESS PERMIT AND LICENSING OFFICE (BPLO)",
-    "officeSlug": "business-permit-and-licensing-office",
-    "category": {
-      "name": "Business & Licensing",
-      "slug": "business-licensing"
-    },
-    "classification": null,
-    "typeOfTransaction": null,
-    "whoMayAvail": null,
-    "dataComplete": false,
-    "needsVerification": true
-  },
-  {
     "service": "Business Registration (New Applicant) - Online",
     "slug": "business-registration-new-applicant---online",
     "serviceNumber": "1.4",
@@ -1099,47 +1205,370 @@
       "name": "Business & Licensing",
       "slug": "business-licensing"
     },
-    "classification": null,
-    "typeOfTransaction": null,
-    "whoMayAvail": null,
-    "dataComplete": false,
-    "needsVerification": true
+    "classification": "Simple",
+    "typeOfTransaction": "G2B (Government to Business)",
+    "whoMayAvail": "New Business Applicants",
+    "dataComplete": true,
+    "needsVerification": false,
+    "detailedRequirements": [
+      {
+        "requirement": "Mayor's Business Clearance",
+        "where_to_secure": "BPLO"
+      },
+      {
+        "requirement": "Contract of Lease / Land Tax Declaration",
+        "where_to_secure": "Owner/Lessor / Assessor's Office"
+      },
+      {
+        "requirement": "DTI Registration",
+        "where_to_secure": "DTI"
+      },
+      {
+        "requirement": "SSS Clearance",
+        "where_to_secure": "SSS Office"
+      },
+      {
+        "requirement": "Location Map / Sketch",
+        "where_to_secure": "Private Architect / Geodetic Engineer"
+      },
+      {
+        "requirement": "Picture of Business Establishment",
+        "where_to_secure": "Client"
+      },
+      {
+        "requirement": "Barangay Clearance",
+        "where_to_secure": "Barangay Hall"
+      }
+    ],
+    "clientSteps": [
+      {
+        "step": 1,
+        "action": "Proceed to BPLO website and create account",
+        "agency_action": "Receive online application"
+      },
+      {
+        "step": 2,
+        "action": "Upload required documents",
+        "agency_action": "Review uploaded documents"
+      },
+      {
+        "step": 3,
+        "action": "Wait for assessment notification",
+        "agency_action": "Assess Business Tax and Other Fees"
+      },
+      {
+        "step": 4,
+        "action": "Pay fees at Municipal Treasurer's Office",
+        "agency_action": "Receive payment and issue Official Receipt"
+      },
+      {
+        "step": 5,
+        "action": "Claim Business Permit at BPLO",
+        "agency_action": "Release Business Permit"
+      }
+    ],
+    "fees": {
+      "amount": "Based on Schedule of Business Taxes and Other Fees",
+      "description": "per annum"
+    },
+    "processingTime": "1 day",
+    "personResponsible": [
+      "BPLO Head",
+      "BPLO Staff"
+    ]
   },
   {
-    "service": "Business Registration (Renewal) - Face to Face",
-    "slug": "business-registration-renewal---face-to-face",
+    "service": "Business Registration (New Applicant) – Face to Face",
+    "slug": "business-registration-new-applicant-face-to-face",
+    "serviceNumber": "1.3",
+    "source": "citizens-charter",
+    "type": "transaction",
+    "officeDivision": "Municipal Treasurer’s Office",
+    "officeSlug": "",
+    "category": {
+      "name": "Other Municipal Services",
+      "slug": "other-municipal"
+    },
+    "classification": "Simple",
+    "typeOfTransaction": "G2B",
+    "whoMayAvail": "Business Owners/ Establishments",
+    "dataComplete": true,
+    "needsVerification": false,
+    "detailedRequirements": [
+      {
+        "requirement": "Proof of business registration, incorporation, or",
+        "where_to_secure": "legal personality (DTI, SEC, CDA) Business Owner"
+      },
+      {
+        "requirement": "Duly Accomplished Business Permit Application",
+        "where_to_secure": ""
+      },
+      {
+        "requirement": "Duly signed Inspection Report Business Owner",
+        "where_to_secure": ""
+      },
+      {
+        "requirement": "Sketch and picture of Location of the business Business Owner",
+        "where_to_secure": ""
+      },
+      {
+        "requirement": "Photocopy of official receipt of real property tax",
+        "where_to_secure": ""
+      },
+      {
+        "requirement": "Photocopy of Mayor’s Permit of Lessor (prior year) Business Owner",
+        "where_to_secure": ""
+      },
+      {
+        "requirement": "Photocopy of the Latest Lease Contract duly",
+        "where_to_secure": ""
+      },
+      {
+        "requirement": "List of employees and address Business Owner",
+        "where_to_secure": ""
+      },
+      {
+        "requirement": "Original certification from Market Administrator (for",
+        "where_to_secure": "Business Owner"
+      },
+      {
+        "requirement": "Photocopy of latest Corporate Community Tax (if",
+        "where_to_secure": "head office of the business is located outside Los Business Owner"
+      },
+      {
+        "requirement": "Other clearance/permit that other agencies may",
+        "where_to_secure": ""
+      },
+      {
+        "requirement": "Oath of Undertaking for buildings more than 15",
+        "where_to_secure": ""
+      }
+    ]
+  },
+  {
+    "service": "Business Registration (Renewal) – Face to Face",
+    "slug": "business-registration-renewal-face-to-face",
     "serviceNumber": "1.1",
     "source": "citizens-charter",
     "type": "transaction",
-    "officeDivision": "BUSINESS PERMIT AND LICENSING OFFICE (BPLO)",
-    "officeSlug": "business-permit-and-licensing-office",
+    "officeDivision": "Municipal Treasurer’s Office",
+    "officeSlug": "",
     "category": {
-      "name": "Business & Licensing",
-      "slug": "business-licensing"
+      "name": "Other Municipal Services",
+      "slug": "other-municipal"
     },
-    "classification": null,
-    "typeOfTransaction": null,
-    "whoMayAvail": null,
-    "dataComplete": false,
-    "needsVerification": true
+    "classification": "Simple",
+    "typeOfTransaction": "G2B",
+    "whoMayAvail": "Business Owners/ Establishments",
+    "dataComplete": true,
+    "needsVerification": false,
+    "detailedRequirements": [
+      {
+        "requirement": "Copy of DTI Registration (if",
+        "where_to_secure": ""
+      },
+      {
+        "requirement": "Basis for computing taxes (ITR/Quarterly/Monthly",
+        "where_to_secure": "Bureau of Internal Revenue"
+      },
+      {
+        "requirement": "Duly Accomplished Business Permit Application",
+        "where_to_secure": ""
+      },
+      {
+        "requirement": "Photocopy Previous Year Mayor’s Permit/License",
+        "where_to_secure": "Business Owner"
+      },
+      {
+        "requirement": "Photocopy of Official Receipt of Previous Year",
+        "where_to_secure": ""
+      },
+      {
+        "requirement": "Photocopy of Mayor’s Permit of Lessor (prior year) Business Owner",
+        "where_to_secure": ""
+      },
+      {
+        "requirement": "Photocopy of the Latest Lease Contract duly",
+        "where_to_secure": ""
+      },
+      {
+        "requirement": "List of employees and address Business Owner",
+        "where_to_secure": ""
+      },
+      {
+        "requirement": "Original certification from Market Administrator (for",
+        "where_to_secure": "Business Owner"
+      },
+      {
+        "requirement": "Photocopy of Corporate Community Tax",
+        "where_to_secure": "Certificate (if head office of the business is located Business Owner"
+      },
+      {
+        "requirement": "Other clearance/permit that other agencies may",
+        "where_to_secure": ""
+      },
+      {
+        "requirement": "Oath of Undertaking for buildings more than 15",
+        "where_to_secure": ""
+      }
+    ],
+    "clientSteps": [
+      {
+        "step": 1,
+        "action": "1 Calls the",
+        "agency_action": ""
+      },
+      {
+        "step": 1,
+        "action": "2 Receives",
+        "agency_action": ""
+      },
+      {
+        "step": 1,
+        "action": "Submits",
+        "agency_action": ""
+      },
+      {
+        "step": 1,
+        "action": "3 Inputs to",
+        "agency_action": ""
+      },
+      {
+        "step": 1,
+        "action": "4 Verifies",
+        "agency_action": ""
+      },
+      {
+        "step": 1,
+        "action": "5 Verifies and Clerk II or authorized",
+        "agency_action": ""
+      },
+      {
+        "step": 1,
+        "action": "6 Verifies and",
+        "agency_action": ""
+      },
+      {
+        "step": 1,
+        "action": "7Assess/Com",
+        "agency_action": ""
+      },
+      {
+        "step": 1,
+        "action": "8 FSIC fees Officer I",
+        "agency_action": ""
+      },
+      {
+        "step": 2,
+        "action": "1 Calls the",
+        "agency_action": ""
+      },
+      {
+        "step": 2,
+        "action": "Pays 2.2 Receive",
+        "agency_action": ""
+      },
+      {
+        "step": 3,
+        "action": "1 Receives",
+        "agency_action": ""
+      },
+      {
+        "step": 3,
+        "action": "Printing,",
+        "agency_action": ""
+      },
+      {
+        "step": 3,
+        "action": "2 Scan",
+        "agency_action": ""
+      },
+      {
+        "step": 3,
+        "action": "3 Release",
+        "agency_action": ""
+      }
+    ]
   },
   {
-    "service": "Business Registration (Renewal) - Online",
-    "slug": "business-registration-renewal---online",
+    "service": "Business Registration (Renewal) – Online",
+    "slug": "business-registration-renewal-online",
     "serviceNumber": "1.2",
     "source": "citizens-charter",
     "type": "transaction",
-    "officeDivision": "BUSINESS PERMIT AND LICENSING OFFICE (BPLO)",
-    "officeSlug": "business-permit-and-licensing-office",
+    "officeDivision": "Municipal Treasurer’s Office",
+    "officeSlug": "",
     "category": {
-      "name": "Business & Licensing",
-      "slug": "business-licensing"
+      "name": "Other Municipal Services",
+      "slug": "other-municipal"
     },
-    "classification": null,
-    "typeOfTransaction": null,
-    "whoMayAvail": null,
-    "dataComplete": false,
-    "needsVerification": true
+    "classification": "Simple",
+    "typeOfTransaction": "G2B",
+    "whoMayAvail": "Business Owners/ Establishments",
+    "dataComplete": true,
+    "needsVerification": false,
+    "detailedRequirements": [
+      {
+        "requirement": "Copy of DTI Registration (if",
+        "where_to_secure": ""
+      },
+      {
+        "requirement": "Basis for computing taxes (ITR/Quarterly/Monthly",
+        "where_to_secure": "Bureau of Internal Revenue"
+      },
+      {
+        "requirement": "Duly Accomplished Business Permit Application",
+        "where_to_secure": ""
+      },
+      {
+        "requirement": "Photocopy Previous Year Mayor’s Permit/License",
+        "where_to_secure": "Business Owner"
+      },
+      {
+        "requirement": "Photocopy of Official Receipt of Previous Year",
+        "where_to_secure": ""
+      },
+      {
+        "requirement": "Photocopy of Mayor’s Permit of Lessor (prior year) Business Owner",
+        "where_to_secure": ""
+      },
+      {
+        "requirement": "Photocopy of the Latest Lease Contract duly",
+        "where_to_secure": ""
+      },
+      {
+        "requirement": "List of employees and address Business Owner",
+        "where_to_secure": ""
+      },
+      {
+        "requirement": "Original certification from Market Administrator (for",
+        "where_to_secure": "Business Owner"
+      },
+      {
+        "requirement": "Photocopy of Corporate Community Tax",
+        "where_to_secure": "Certificate (if head office of the business is located Business Owner"
+      },
+      {
+        "requirement": "Other clearance/permit that other agencies may",
+        "where_to_secure": ""
+      },
+      {
+        "requirement": "Oath of Undertaking for buildings more than 15",
+        "where_to_secure": ""
+      }
+    ],
+    "clientSteps": [
+      {
+        "step": 1,
+        "action": "A. visit",
+        "agency_action": ""
+      },
+      {
+        "step": 2,
+        "action": "Payment -",
+        "agency_action": ""
+      }
+    ]
   },
   {
     "service": "Business Termination/Closure",
@@ -1147,17 +1576,39 @@
     "serviceNumber": "1.5",
     "source": "citizens-charter",
     "type": "transaction",
-    "officeDivision": "MUNICIPAL TREASURER'S OFFICE",
-    "officeSlug": "municipal-treasurer-office",
+    "officeDivision": "Municipal Treasurer’s Office",
+    "officeSlug": "",
     "category": {
-      "name": "Taxation & Assessment",
-      "slug": "taxation-assessment"
+      "name": "Other Municipal Services",
+      "slug": "other-municipal"
     },
-    "classification": null,
-    "typeOfTransaction": null,
-    "whoMayAvail": null,
-    "dataComplete": false,
-    "needsVerification": true
+    "classification": "Simple",
+    "typeOfTransaction": "G2B",
+    "whoMayAvail": "Business Owners/ Establishments",
+    "dataComplete": true,
+    "needsVerification": false,
+    "detailedRequirements": [
+      {
+        "requirement": "Duly Accomplished Application of Business Permit",
+        "where_to_secure": "Termination/Closure Municipal Treasurer's Office - BPLO"
+      },
+      {
+        "requirement": "Original latest Mayor's Permit Business Owner",
+        "where_to_secure": ""
+      },
+      {
+        "requirement": "ITR/Quarterly/Monthly BIR payments/Sworn",
+        "where_to_secure": "Bureau of Internal Revenue"
+      },
+      {
+        "requirement": "DTI Cancellation (photocopy) DTI",
+        "where_to_secure": ""
+      },
+      {
+        "requirement": "Barangay Business Closure (photocopy) Barangay where business is located",
+        "where_to_secure": ""
+      }
+    ]
   },
   {
     "service": "CANCELLATION OF TAX DECLARATION",
@@ -1221,7 +1672,10 @@
       "description": "cancellation fee"
     },
     "processingTime": "3-5 working days",
-    "personResponsible": ["Assessment Clerk", "Municipal Assessor"]
+    "personResponsible": [
+      "Assessment Clerk",
+      "Municipal Assessor"
+    ]
   },
   {
     "service": "CAREER INFORMATION COUNSELING WORK ORIENTATION PROGRAM",
@@ -1268,14 +1722,19 @@
       "description": ""
     },
     "processingTime": "1-2 hours per session",
-    "personResponsible": ["PESO Manager", "Career Guidance Counselor"]
+    "personResponsible": [
+      "PESO Manager",
+      "Career Guidance Counselor"
+    ]
   },
   {
     "service": "Cash Subsidy for Solo Parents",
     "slug": "solo-parents-cash-subsidy",
     "type": "transaction",
     "description": "Financial assistance provided semi-annually to qualified solo parents in the municipality.",
-    "officeSlug": ["municipal-social-welfare-and-development-office"],
+    "officeSlug": [
+      "municipal-social-welfare-and-development-office"
+    ],
     "category": {
       "name": "Social Services",
       "slug": "social-services"
@@ -1309,7 +1768,9 @@
     "type": "transaction",
     "description": "Required for new kWhr meter applications, reconnections, or relocations to ensure electrical safety compliance.",
     "url": "https://www.facebook.com/media/set/?set=a.109696514078279&type=3",
-    "officeSlug": ["municipal-engineering-office"],
+    "officeSlug": [
+      "municipal-engineering-office"
+    ],
     "category": {
       "name": "Infrastructure & Engineering",
       "slug": "infrastructure-engineering"
@@ -1348,7 +1809,9 @@
     "type": "transaction",
     "description": "Certifies that a newly constructed or renovated structure is safe for use and complies with the National Building Code.",
     "url": "https://www.facebook.com/media/set/?set=a.182383407412293&type=3",
-    "officeSlug": ["municipal-engineering-office"],
+    "officeSlug": [
+      "municipal-engineering-office"
+    ],
     "category": {
       "name": "Infrastructure & Engineering",
       "slug": "infrastructure-engineering"
@@ -1446,7 +1909,9 @@
     "slug": "certification-services",
     "type": "transaction",
     "description": "Issuance of medical certificates, health cards, and sanitary permits.",
-    "officeSlug": ["municipal-health-office"],
+    "officeSlug": [
+      "municipal-health-office"
+    ],
     "category": {
       "name": "Health & Wellness",
       "slug": "health-wellness"
@@ -1476,7 +1941,9 @@
     "slug": "child-health-services",
     "type": "transaction",
     "description": "Immunization, nutrition monitoring, and pediatric consultations for infants and children.",
-    "officeSlug": ["municipal-health-office"],
+    "officeSlug": [
+      "municipal-health-office"
+    ],
     "category": {
       "name": "Health & Wellness",
       "slug": "health-wellness"
@@ -1491,6 +1958,24 @@
   {
     "service": "Collection of Other Payments",
     "slug": "collection-of-other-payments",
+    "serviceNumber": "1.6",
+    "source": "citizens-charter",
+    "type": "transaction",
+    "officeDivision": "Municipal Treasurer’s Office",
+    "officeSlug": "",
+    "category": {
+      "name": "Other Municipal Services",
+      "slug": "other-municipal"
+    },
+    "classification": null,
+    "typeOfTransaction": null,
+    "whoMayAvail": null,
+    "dataComplete": false,
+    "needsVerification": true
+  },
+  {
+    "service": "Collection of Other Payments",
+    "slug": "29-29-1-collection-of-other-payments",
     "serviceNumber": "29.1",
     "source": "citizens-charter",
     "type": "transaction",
@@ -1500,11 +1985,50 @@
       "name": "Taxation & Assessment",
       "slug": "taxation-assessment"
     },
-    "classification": null,
-    "typeOfTransaction": null,
-    "whoMayAvail": null,
-    "dataComplete": false,
-    "needsVerification": true
+    "classification": "Simple",
+    "typeOfTransaction": "G2C (Government to Citizen)",
+    "whoMayAvail": "Taxpayers and Real Property Owners",
+    "dataComplete": true,
+    "needsVerification": false,
+    "detailedRequirements": [
+      {
+        "requirement": "Any of the following: Certification; Certified True Copy, Annotation, Transfer Tax Declaration",
+        "where_to_secure": "Municipal Assessor's Office"
+      },
+      {
+        "requirement": "Permits (Burial, Exhumation), License (Marriage), Petition for Clerical Error, Certification (Birth, Marriage, Death)",
+        "where_to_secure": "Municipal Civil Registrar's Office"
+      },
+      {
+        "requirement": "Permit - Building and wiring permit, CEI, Fire Code fee, signage and occupancy",
+        "where_to_secure": "Municipal Engineering Office"
+      },
+      {
+        "requirement": "Mayor's Permit, Mayor's Clearance, BID Document, BAC Accreditation, Franchise-Tricycle",
+        "where_to_secure": "Mayor's Office, SB, BAC, TRU"
+      }
+    ],
+    "clientSteps": [
+      {
+        "step": 1,
+        "action": "Secure queue number for purpose",
+        "agency_action": "Issue Official Receipt and ask for payment"
+      },
+      {
+        "step": 2,
+        "action": "Present Order of Payment",
+        "agency_action": "Receive payment and issue Official Receipt"
+      }
+    ],
+    "fees": {
+      "amount": "Varies",
+      "description": "Depending on service type"
+    },
+    "processingTime": "2-44 minutes depending on transaction",
+    "personResponsible": [
+      "RCC I/Administrative Aide",
+      "License Inspector"
+    ]
   },
   {
     "service": "Collection of Other Payments (Traffic and Municipal Ordinance Violation)",
@@ -1518,18 +2042,52 @@
       "name": "Taxation & Assessment",
       "slug": "taxation-assessment"
     },
-    "classification": null,
-    "typeOfTransaction": null,
-    "whoMayAvail": null,
-    "dataComplete": false,
-    "needsVerification": true
+    "classification": "Simple",
+    "typeOfTransaction": "G2C (Government to Citizen)",
+    "whoMayAvail": "Violators of Municipal Ordinances",
+    "dataComplete": true,
+    "needsVerification": false,
+    "detailedRequirements": [
+      {
+        "requirement": "Citation Ticket",
+        "where_to_secure": "Issuing TRU Aide of TRU"
+      }
+    ],
+    "clientSteps": [
+      {
+        "step": 1,
+        "action": "Check on the system the amount due and provisions of the Municipal Ordinance violated",
+        "agency_action": "Inform the violators of the corresponding amount"
+      },
+      {
+        "step": 2,
+        "action": "Proceed to the Window of TRU General Collections of the Treasurer's Office and present ticket",
+        "agency_action": "Check on system the amount due and issues official receipt"
+      },
+      {
+        "step": 3,
+        "action": "Present citation ticket",
+        "agency_action": "Refer to Issuing TRU Aide"
+      }
+    ],
+    "fees": {
+      "amount": "Depends on the Municipal Ordinance/Traffic Violations violated",
+      "description": "Per violation"
+    },
+    "processingTime": "2 Minutes",
+    "personResponsible": [
+      "License Inspector",
+      "RCC I/Administrative Aide"
+    ]
   },
   {
     "service": "Community Tax Certificate (Cedula)",
     "slug": "community-tax-certificate",
     "type": "transaction",
     "description": "Issuance of Community Tax Certificate for individuals and corporations.",
-    "officeSlug": ["municipal-treasurers-office"],
+    "officeSlug": [
+      "municipal-treasurers-office"
+    ],
     "category": {
       "name": "Certificates & Vital Records",
       "slug": "certificates-vital-records"
@@ -1621,7 +2179,10 @@
       "description": ""
     },
     "processingTime": "3-5 working days",
-    "personResponsible": ["PESO Manager", "PESO Staff"]
+    "personResponsible": [
+      "PESO Manager",
+      "PESO Staff"
+    ]
   },
   {
     "service": "CONDUCT OF LAKBAY LOS BAÑOS (TOUR)",
@@ -1685,7 +2246,10 @@
       "description": "depending on tour package and group size"
     },
     "processingTime": "5-7 working days (for scheduling)",
-    "personResponsible": ["Tourism Officer", "Tour Guide"]
+    "personResponsible": [
+      "Tourism Officer",
+      "Tour Guide"
+    ]
   },
   {
     "service": "CONDUCT OF SURVEY AND/OR INTERVIEW",
@@ -1744,7 +2308,10 @@
       "description": "or minimal fee depending on scope"
     },
     "processingTime": "3-5 working days (for approval)",
-    "personResponsible": ["Tourism Officer", "Tourism Staff"]
+    "personResponsible": [
+      "Tourism Officer",
+      "Tourism Staff"
+    ]
   },
   {
     "service": "DAMAYAN SA KAPWA",
@@ -1808,7 +2375,10 @@
       "description": "assistance amount varies"
     },
     "processingTime": "1-3 working days",
-    "personResponsible": ["Vice Mayor's Office Staff", "Vice Mayor"]
+    "personResponsible": [
+      "Vice Mayor's Office Staff",
+      "Vice Mayor"
+    ]
   },
   {
     "service": "DATA REQUEST/ASSISTANCE TO RESEARCHERS",
@@ -1834,7 +2404,9 @@
     "type": "transaction",
     "description": "Registration of a birth that was not reported within thirty (30) days after its occurrence.",
     "url": "https://losbanos.gov.ph/posts/91",
-    "officeSlug": ["local-civil-registry-office"],
+    "officeSlug": [
+      "local-civil-registry-office"
+    ],
     "category": {
       "name": "Certificates & Vital Records",
       "slug": "certificates-vital-records"
@@ -1871,17 +2443,57 @@
     "serviceNumber": "5.7",
     "source": "citizens-charter",
     "type": "transaction",
-    "officeDivision": "LOCAL CIVIL REGISTRY OFFICE",
-    "officeSlug": "local-civil-registry-office",
+    "officeDivision": "CIVIL REGISTRY OFFICE",
+    "officeSlug": "",
     "category": {
-      "name": "Certificates & Vital Records",
-      "slug": "certificates-vital-records"
+      "name": "Other Municipal Services",
+      "slug": "other-municipal"
     },
-    "classification": null,
-    "typeOfTransaction": null,
-    "whoMayAvail": null,
-    "dataComplete": false,
-    "needsVerification": true
+    "classification": "Complex",
+    "typeOfTransaction": "G2C (Government to Citizens)",
+    "whoMayAvail": "LB Constituents, Non-LB residents",
+    "dataComplete": true,
+    "needsVerification": false,
+    "detailedRequirements": [
+      {
+        "requirement": "Certificate of Death",
+        "where_to_secure": "Hospital/Clinic"
+      },
+      {
+        "requirement": "Affidavit of Delayed Registration",
+        "where_to_secure": "Lawyer/Notary Public"
+      },
+      {
+        "requirement": "Valid IDs",
+        "where_to_secure": "Requesting party"
+      }
+    ],
+    "clientSteps": [
+      {
+        "step": 1,
+        "action": "Submit requirements",
+        "agency_action": "Receive and evaluate"
+      },
+      {
+        "step": 2,
+        "action": "Pay fees",
+        "agency_action": "Issue Official Receipt"
+      },
+      {
+        "step": 3,
+        "action": "Claim registered Certificate",
+        "agency_action": "Release Certificate"
+      }
+    ],
+    "fees": {
+      "amount": "",
+      "description": "Varies"
+    },
+    "processingTime": "1-2 hours",
+    "personResponsible": [
+      "Administrative Aide",
+      "Civil Registry Staff"
+    ]
   },
   {
     "service": "Delayed Registration of Certificate of Marriage",
@@ -1889,17 +2501,57 @@
     "serviceNumber": "5.5",
     "source": "citizens-charter",
     "type": "transaction",
-    "officeDivision": "LOCAL CIVIL REGISTRY OFFICE",
-    "officeSlug": "local-civil-registry-office",
+    "officeDivision": "CIVIL REGISTRY OFFICE",
+    "officeSlug": "",
     "category": {
-      "name": "Certificates & Vital Records",
-      "slug": "certificates-vital-records"
+      "name": "Other Municipal Services",
+      "slug": "other-municipal"
     },
-    "classification": null,
-    "typeOfTransaction": null,
-    "whoMayAvail": null,
-    "dataComplete": false,
-    "needsVerification": true
+    "classification": "Complex",
+    "typeOfTransaction": "G2C (Government to Citizens)",
+    "whoMayAvail": "Contracting parties",
+    "dataComplete": true,
+    "needsVerification": false,
+    "detailedRequirements": [
+      {
+        "requirement": "Marriage Contract",
+        "where_to_secure": "Original source"
+      },
+      {
+        "requirement": "Affidavit of Delayed Registration",
+        "where_to_secure": "Lawyer/Notary Public"
+      },
+      {
+        "requirement": "Valid IDs",
+        "where_to_secure": "Requesting party"
+      }
+    ],
+    "clientSteps": [
+      {
+        "step": 1,
+        "action": "Submit requirements",
+        "agency_action": "Receive and evaluate"
+      },
+      {
+        "step": 2,
+        "action": "Pay fees",
+        "agency_action": "Issue Official Receipt"
+      },
+      {
+        "step": 3,
+        "action": "Claim registered Certificate",
+        "agency_action": "Release Certificate"
+      }
+    ],
+    "fees": {
+      "amount": "",
+      "description": "Varies"
+    },
+    "processingTime": "1-2 hours",
+    "personResponsible": [
+      "Administrative Aide",
+      "Civil Registry Staff"
+    ]
   },
   {
     "service": "Delayed Registration of Regular and Timely Certificate of Live Birth",
@@ -1907,17 +2559,61 @@
     "serviceNumber": "5.2",
     "source": "citizens-charter",
     "type": "transaction",
-    "officeDivision": "LOCAL CIVIL REGISTRY OFFICE",
-    "officeSlug": "local-civil-registry-office",
+    "officeDivision": "CIVIL REGISTRY OFFICE",
+    "officeSlug": "",
     "category": {
-      "name": "Certificates & Vital Records",
-      "slug": "certificates-vital-records"
+      "name": "Other Municipal Services",
+      "slug": "other-municipal"
     },
-    "classification": null,
-    "typeOfTransaction": null,
-    "whoMayAvail": null,
-    "dataComplete": false,
-    "needsVerification": true
+    "classification": "Complex",
+    "typeOfTransaction": "G2C (Government to Citizens)",
+    "whoMayAvail": "LB Constituents, Non-LB residents",
+    "dataComplete": true,
+    "needsVerification": false,
+    "detailedRequirements": [
+      {
+        "requirement": "Certificate of Live Birth (4 copies)",
+        "where_to_secure": "Hospital/Clinic"
+      },
+      {
+        "requirement": "Certificate of No Registration from PSA",
+        "where_to_secure": "PSA"
+      },
+      {
+        "requirement": "Affidavit of Delayed Registration",
+        "where_to_secure": "Lawyer/Notary Public"
+      },
+      {
+        "requirement": "Valid IDs",
+        "where_to_secure": "Requesting party"
+      }
+    ],
+    "clientSteps": [
+      {
+        "step": 1,
+        "action": "Submit requirements to Civil Registry Office",
+        "agency_action": "Receive and evaluate documents"
+      },
+      {
+        "step": 2,
+        "action": "Pay fees",
+        "agency_action": "Issue Official Receipt"
+      },
+      {
+        "step": 3,
+        "action": "Claim registered Certificate",
+        "agency_action": "Release Certificate"
+      }
+    ],
+    "fees": {
+      "amount": "",
+      "description": "Varies"
+    },
+    "processingTime": "1-2 hours",
+    "personResponsible": [
+      "Administrative Aide",
+      "Civil Registry Staff"
+    ]
   },
   {
     "service": "DEMOLITION PERMIT",
@@ -1985,7 +2681,11 @@
       "description": "plus ₱5.00 per square meter"
     },
     "processingTime": "5 working days",
-    "personResponsible": ["Building Official", "Plans Examiner", "OBO Staff"]
+    "personResponsible": [
+      "Building Official",
+      "Plans Examiner",
+      "OBO Staff"
+    ]
   },
   {
     "service": "Demolition Permit",
@@ -1993,7 +2693,9 @@
     "type": "transaction",
     "description": "Required before the total or partial destruction of any building or structure.",
     "url": "https://www.facebook.com/media/set/?set=a.182380830745884&type=3",
-    "officeSlug": ["municipal-engineering-office"],
+    "officeSlug": [
+      "municipal-engineering-office"
+    ],
     "category": {
       "name": "Infrastructure & Engineering",
       "slug": "infrastructure-engineering"
@@ -2016,7 +2718,9 @@
     "slug": "dental-services",
     "type": "transaction",
     "description": "Oral health services including tooth extraction, cleaning, and consultations.",
-    "officeSlug": ["municipal-health-office"],
+    "officeSlug": [
+      "municipal-health-office"
+    ],
     "category": {
       "name": "Health & Wellness",
       "slug": "health-wellness"
@@ -2035,7 +2739,9 @@
     "slug": "educational-assistance",
     "type": "transaction",
     "description": "Financial grant for students from Junior High School to College levels to assist with educational expenses.",
-    "officeSlug": ["local-youth-and-development-office"],
+    "officeSlug": [
+      "local-youth-and-development-office"
+    ],
     "category": {
       "name": "Education & Scholarship",
       "slug": "education-scholarship"
@@ -2129,7 +2835,11 @@
       "description": "assistance amount varies"
     },
     "processingTime": "7-14 working days",
-    "personResponsible": ["LYDO Head", "LYDO Staff", "Selection Committee"]
+    "personResponsible": [
+      "LYDO Head",
+      "LYDO Staff",
+      "Selection Committee"
+    ]
   },
   {
     "service": "Electronics Permit",
@@ -2137,7 +2847,9 @@
     "type": "transaction",
     "description": "A technical sub-permit required for the installation of electronic systems within a building structure.",
     "url": "https://www.facebook.com/media/set/?set=a.182380010745966&type=3",
-    "officeSlug": ["municipal-engineering-office"],
+    "officeSlug": [
+      "municipal-engineering-office"
+    ],
     "category": {
       "name": "Infrastructure & Engineering",
       "slug": "infrastructure-engineering"
@@ -2204,7 +2916,10 @@
       "description": ""
     },
     "processingTime": "Immediate response",
-    "personResponsible": ["MDRRMO Head", "Response Team"]
+    "personResponsible": [
+      "MDRRMO Head",
+      "Response Team"
+    ]
   },
   {
     "service": "ENDORSEMENT TO NATIONAL STATISTICS OFFICE (NSO)",
@@ -2246,7 +2961,9 @@
       "description": "government service"
     },
     "processingTime": "5-7 working days",
-    "personResponsible": ["LCRO Officer"]
+    "personResponsible": [
+      "LCRO Officer"
+    ]
   },
   {
     "service": "ENDORSEMENT TO SANGGUNIANG BAYAN FOR SIMPLE LAND SUBDIVISION",
@@ -2272,7 +2989,9 @@
     "type": "transaction",
     "description": "Provision of cash incentives for elderly residents reaching milestone ages of 80, 85, 90, and 95, facilitated by the National Commission of Senior Citizens (NCSC).",
     "url": "",
-    "officeSlug": ["municipal-treasurers-office"],
+    "officeSlug": [
+      "municipal-treasurers-office"
+    ],
     "category": {
       "name": "Social Services",
       "slug": "social-services"
@@ -2365,14 +3084,20 @@
       "description": ""
     },
     "processingTime": "30 minutes",
-    "personResponsible": ["Nurse", "Midwife", "Rural Health Physician"]
+    "personResponsible": [
+      "Nurse",
+      "Midwife",
+      "Rural Health Physician"
+    ]
   },
   {
     "service": "Family Planning Services",
     "slug": "family-planning-services",
     "type": "information",
     "description": "Consultation and provision of various family planning methods.",
-    "officeSlug": ["municipal-health-office"],
+    "officeSlug": [
+      "municipal-health-office"
+    ],
     "category": {
       "name": "Health & Wellness",
       "slug": "health-wellness"
@@ -2387,7 +3112,9 @@
     "type": "transaction",
     "description": "Permit for the construction of perimeter fences or walls.",
     "url": "https://www.facebook.com/media/set/?set=a.182363280747639&type=3",
-    "officeSlug": ["municipal-engineering-office"],
+    "officeSlug": [
+      "municipal-engineering-office"
+    ],
     "category": {
       "name": "Infrastructure & Engineering",
       "slug": "infrastructure-engineering"
@@ -2481,14 +3208,20 @@
       "description": ""
     },
     "processingTime": "60-90 days (or longer depending on case complexity)",
-    "personResponsible": ["SB Secretary", "SB Committee Chair", "SB Members"]
+    "personResponsible": [
+      "SB Secretary",
+      "SB Committee Chair",
+      "SB Members"
+    ]
   },
   {
     "service": "Fire Safety Inspection Certificate (FSIC)",
     "slug": "fire-safety-inspection-certificate",
     "type": "transaction",
     "description": "Required for occupancy and business permits to ensure the structure meets fire safety standards.",
-    "officeSlug": ["bureau-fire-protection"],
+    "officeSlug": [
+      "bureau-fire-protection"
+    ],
     "category": {
       "name": "Public Safety",
       "slug": "public-safety"
@@ -2556,14 +3289,19 @@
       "description": ""
     },
     "processingTime": "1 hour",
-    "personResponsible": ["Dentist", "Dental Aide"]
+    "personResponsible": [
+      "Dentist",
+      "Dental Aide"
+    ]
   },
   {
     "service": "Garbage Collection Schedule",
     "slug": "garbage-collection-schedule",
     "type": "information",
     "description": "Weekly schedule for waste collection per barangay. Please segregate biodegradable and non-biodegradable waste.",
-    "officeSlug": ["municipal-environment-and-natural-resources-office"],
+    "officeSlug": [
+      "municipal-environment-and-natural-resources-office"
+    ],
     "category": {
       "name": "Environment & Waste",
       "slug": "environment-waste"
@@ -2645,14 +3383,19 @@
       "description": ""
     },
     "processingTime": "Immediate",
-    "personResponsible": ["Tourism Officer", "Tourism Staff"]
+    "personResponsible": [
+      "Tourism Officer",
+      "Tourism Staff"
+    ]
   },
   {
     "service": "Health Certificate",
     "slug": "health-certificate",
     "type": "transaction",
     "description": "Required for food handlers and employees in business establishments.",
-    "officeSlug": ["municipal-health-office"],
+    "officeSlug": [
+      "municipal-health-office"
+    ],
     "category": {
       "name": "Health & Wellness",
       "slug": "health-wellness"
@@ -2736,7 +3479,11 @@
       "description": "for routine EPI vaccines"
     },
     "processingTime": "30 minutes",
-    "personResponsible": ["Nurse", "Midwife", "Rural Health Physician"]
+    "personResponsible": [
+      "Nurse",
+      "Midwife",
+      "Rural Health Physician"
+    ]
   },
   {
     "service": "IMPLEMENTATION OF RA 9344 (JUVENILE JUSTICE) AND RA 7610 (CHILD PROTECTION)",
@@ -2758,7 +3505,8 @@
     "detailedRequirements": [
       {
         "requirement": "Birth Certificate",
-        "where_to_secure": "Local Civil Registry"
+        "where_to_secure": "Local Civil Registry",
+        "serviceSlug": "birth-certificate-registration"
       },
       {
         "requirement": "Valid ID of parent/guardian",
@@ -2801,14 +3549,19 @@
       "description": ""
     },
     "processingTime": "Varies",
-    "personResponsible": ["MSWDO Social Worker", "CICL Officer"]
+    "personResponsible": [
+      "MSWDO Social Worker",
+      "CICL Officer"
+    ]
   },
   {
     "service": "Infection Control Program",
     "slug": "infection-control-program",
     "type": "information",
     "description": "Surveillance and mitigation strategies for communicable diseases within the municipality.",
-    "officeSlug": ["municipal-health-office"],
+    "officeSlug": [
+      "municipal-health-office"
+    ],
     "category": {
       "name": "Health & Wellness",
       "slug": "health-wellness"
@@ -2861,25 +3614,10 @@
       "description": ""
     },
     "processingTime": "15-30 minutes",
-    "personResponsible": ["MUDHO Head", "MUDHO Staff"]
-  },
-  {
-    "service": "Inquiries/ Assistance to New Cooperatives",
-    "slug": "inquiries-assistance-to-new-cooperatives",
-    "serviceNumber": "8.1",
-    "source": "citizens-charter",
-    "type": "transaction",
-    "officeDivision": "MUNICIPAL AGRICULTURE OFFICE",
-    "officeSlug": "municipal-agriculture-office",
-    "category": {
-      "name": "Agriculture & Livelihood",
-      "slug": "agriculture-livelihood"
-    },
-    "classification": null,
-    "typeOfTransaction": null,
-    "whoMayAvail": null,
-    "dataComplete": false,
-    "needsVerification": true
+    "personResponsible": [
+      "MUDHO Head",
+      "MUDHO Staff"
+    ]
   },
   {
     "service": "INQUIRIES/ASSISTANCE TO NEW COOPERATIVES",
@@ -2921,7 +3659,47 @@
       "description": ""
     },
     "processingTime": "7 Minutes",
-    "personResponsible": ["OMA personnel", "MCDC Officer"]
+    "personResponsible": [
+      "OMA personnel",
+      "MCDC Officer"
+    ]
+  },
+  {
+    "service": "Inquiries/Assistance to New Cooperatives",
+    "slug": "8-8-1-inquiriesassistance-to-new-cooperatives",
+    "serviceNumber": "8.1",
+    "source": "citizens-charter",
+    "type": "transaction",
+    "officeDivision": "MUNICIPAL AGRICULTURE OFFICE",
+    "officeSlug": "municipal-agriculture-office",
+    "category": {
+      "name": "Agriculture & Livelihood",
+      "slug": "agriculture-livelihood"
+    },
+    "classification": "Simple",
+    "typeOfTransaction": "G2C (Government to Citizen)",
+    "whoMayAvail": "Farmers, cooperative members",
+    "dataComplete": true,
+    "needsVerification": false,
+    "detailedRequirements": [
+      {
+        "requirement": "Letter of request",
+        "where_to_secure": "Cooperative"
+      }
+    ],
+    "clientSteps": [
+      {
+        "step": 1,
+        "action": "Visit Municipal Agriculture Office",
+        "agency_action": "Provide assistance and information"
+      }
+    ],
+    "fees": {
+      "amount": "Free",
+      "description": ""
+    },
+    "processingTime": "Same day",
+    "personResponsible": "Agriculturist"
   },
   {
     "service": "INSPECTION OF ELECTRICAL INSTALLATION (FINAL)",
@@ -2976,7 +3754,10 @@
       "description": "per inspection"
     },
     "processingTime": "3 working days",
-    "personResponsible": ["Electrical Inspector", "OBO Staff"]
+    "personResponsible": [
+      "Electrical Inspector",
+      "OBO Staff"
+    ]
   },
   {
     "service": "INSPECTION OF ELECTRONICS INSTALLATION (FINAL)",
@@ -3031,7 +3812,10 @@
       "description": "per inspection"
     },
     "processingTime": "3 working days",
-    "personResponsible": ["Electronics Inspector", "OBO Staff"]
+    "personResponsible": [
+      "Electronics Inspector",
+      "OBO Staff"
+    ]
   },
   {
     "service": "INSPECTION OF MECHANICAL INSTALLATION (FINAL)",
@@ -3086,7 +3870,10 @@
       "description": "per inspection"
     },
     "processingTime": "3 working days",
-    "personResponsible": ["Mechanical Inspector", "OBO Staff"]
+    "personResponsible": [
+      "Mechanical Inspector",
+      "OBO Staff"
+    ]
   },
   {
     "service": "INSPECTION OF SANITARY INSTALLATION (FINAL)",
@@ -3141,7 +3928,10 @@
       "description": "per inspection"
     },
     "processingTime": "3 working days",
-    "personResponsible": ["Sanitary Inspector", "OBO Staff"]
+    "personResponsible": [
+      "Sanitary Inspector",
+      "OBO Staff"
+    ]
   },
   {
     "service": "Issuance of Animal Health Certificates, Certificate of Acceptance, Certificate to Travel Livestock, Fish and Companion Animal",
@@ -3219,24 +4009,6 @@
     ]
   },
   {
-    "service": "Issuance of Assorted Vegetable Seeds/ Seedlings",
-    "slug": "issuance-of-assorted-vegetable-seeds-seedlings",
-    "serviceNumber": "8.2",
-    "source": "citizens-charter",
-    "type": "transaction",
-    "officeDivision": "MUNICIPAL AGRICULTURE OFFICE",
-    "officeSlug": "municipal-agriculture-office",
-    "category": {
-      "name": "Agriculture & Livelihood",
-      "slug": "agriculture-livelihood"
-    },
-    "classification": null,
-    "typeOfTransaction": null,
-    "whoMayAvail": null,
-    "dataComplete": false,
-    "needsVerification": true
-  },
-  {
     "service": "ISSUANCE OF ASSORTED VEGETABLE SEEDS/SEEDLINGS",
     "slug": "issuance-of-assorted-vegetable-seedsseedlings",
     "serviceNumber": "16.2",
@@ -3276,7 +4048,46 @@
       "description": ""
     },
     "processingTime": "4 Minutes",
-    "personResponsible": ["OMA Staff"]
+    "personResponsible": [
+      "OMA Staff"
+    ]
+  },
+  {
+    "service": "Issuance of Assorted Vegetable Seeds/Seedlings",
+    "slug": "8-8-2-issuance-of-assorted-vegetable-seedsseedlings",
+    "serviceNumber": "8.2",
+    "source": "citizens-charter",
+    "type": "transaction",
+    "officeDivision": "MUNICIPAL AGRICULTURE OFFICE",
+    "officeSlug": "municipal-agriculture-office",
+    "category": {
+      "name": "Agriculture & Livelihood",
+      "slug": "agriculture-livelihood"
+    },
+    "classification": "Simple",
+    "typeOfTransaction": "G2C (Government to Citizen)",
+    "whoMayAvail": "Farmers, gardeners",
+    "dataComplete": true,
+    "needsVerification": false,
+    "detailedRequirements": [
+      {
+        "requirement": "Valid ID",
+        "where_to_secure": "Requester"
+      }
+    ],
+    "clientSteps": [
+      {
+        "step": 1,
+        "action": "Visit Municipal Agriculture Office",
+        "agency_action": "Provide seeds/seedlings"
+      }
+    ],
+    "fees": {
+      "amount": "Free",
+      "description": ""
+    },
+    "processingTime": "Same day",
+    "personResponsible": "Agriculturist"
   },
   {
     "service": "ISSUANCE OF BARANGAY BUSINESS CLEARANCE",
@@ -3318,25 +4129,10 @@
       "description": "per establishment"
     },
     "processingTime": "15 minutes",
-    "personResponsible": ["Barangay Captain", "Barangay Secretary/Treasurer"]
-  },
-  {
-    "service": "Issuance of Barangay Business Clearance and Barangay Building Clearance",
-    "slug": "issuance-of-barangay-business-clearance-and-barangay-building-clearance",
-    "serviceNumber": "1.6",
-    "source": "citizens-charter",
-    "type": "transaction",
-    "officeDivision": "BUSINESS PERMIT AND LICENSING OFFICE (BPLO)",
-    "officeSlug": "business-permit-and-licensing-office",
-    "category": {
-      "name": "Business & Licensing",
-      "slug": "business-licensing"
-    },
-    "classification": null,
-    "typeOfTransaction": null,
-    "whoMayAvail": null,
-    "dataComplete": false,
-    "needsVerification": true
+    "personResponsible": [
+      "Barangay Captain",
+      "Barangay Secretary/Treasurer"
+    ]
   },
   {
     "service": "ISSUANCE OF BARANGAY CLEARANCE",
@@ -3382,7 +4178,10 @@
       "description": "per clearance"
     },
     "processingTime": "15 minutes",
-    "personResponsible": ["Barangay Captain", "Barangay Secretary/Treasurer"]
+    "personResponsible": [
+      "Barangay Captain",
+      "Barangay Secretary/Treasurer"
+    ]
   },
   {
     "service": "ISSUANCE OF BARANGAY INDIGENCY CERTIFICATE",
@@ -3428,7 +4227,10 @@
       "description": "per certificate"
     },
     "processingTime": "15 minutes",
-    "personResponsible": ["Barangay Captain", "Barangay Secretary/Treasurer"]
+    "personResponsible": [
+      "Barangay Captain",
+      "Barangay Secretary/Treasurer"
+    ]
   },
   {
     "service": "Issuance of Building Permit (Highly Technical Transaction)",
@@ -3531,17 +4333,189 @@
     "serviceNumber": "3.2",
     "source": "citizens-charter",
     "type": "transaction",
-    "officeDivision": "MUNICIPAL ENGINEERING OFFICE",
-    "officeSlug": "municipal-engineering-office",
+    "officeDivision": "Municipal Engineering Office",
+    "officeSlug": "",
     "category": {
-      "name": "Infrastructure & Engineering",
-      "slug": "infrastructure-engineering"
+      "name": "Other Municipal Services",
+      "slug": "other-municipal"
     },
-    "classification": null,
-    "typeOfTransaction": null,
-    "whoMayAvail": null,
-    "dataComplete": false,
-    "needsVerification": true
+    "classification": "Simple",
+    "typeOfTransaction": "G2C",
+    "whoMayAvail": "Prospective house and/or building owners within the jurisdiction of",
+    "dataComplete": true,
+    "needsVerification": false,
+    "detailedRequirements": [
+      {
+        "requirement": "Five (5) copies of filled-up and Notarized Unified Municipal Engineering Office and MEO",
+        "where_to_secure": ""
+      },
+      {
+        "requirement": "Three (3) photocopies of Valid PRC Licenses (PRC Private Professionals (Engineers,",
+        "where_to_secure": ""
+      },
+      {
+        "requirement": "Four (4) copies of Notarized estimated value of the Private Professionals (Engineers,",
+        "where_to_secure": ""
+      },
+      {
+        "requirement": "Four (4) sets of Drawing Plans (Signed and sealed Private Professionals (Engineers,",
+        "where_to_secure": "by Engineers/Signed by Owner) Architects, etc.)"
+      },
+      {
+        "requirement": "Three (3) sets of Lot Plan (Signed and sealed by Private Professionals (Geodetic",
+        "where_to_secure": ""
+      },
+      {
+        "requirement": "Four (4) copies of General Specifications (Signed Private Professionals (Engineers,",
+        "where_to_secure": ""
+      },
+      {
+        "requirement": "Two (2) copies of Structural Design Analysis (Signed Private Professionals (Civil or Structural",
+        "where_to_secure": ""
+      },
+      {
+        "requirement": "Two (2) copies of Electrical Design Analysis (Signed Private Professionals (Electrical",
+        "where_to_secure": ""
+      },
+      {
+        "requirement": "Two (2) copies of Soil Boring Test (Signed and Private Professionals (Geodetic",
+        "where_to_secure": ""
+      },
+      {
+        "requirement": "Three (3) photocopies Original Certificate of Title",
+        "where_to_secure": ""
+      },
+      {
+        "requirement": "Construction Safety and Health Program (CSHP - DOLE Regional Office",
+        "where_to_secure": ""
+      },
+      {
+        "requirement": "DPWH Clearance* for Construction along National DPWH District Office",
+        "where_to_secure": ""
+      },
+      {
+        "requirement": "Other Agencies as maybe required related to the Other Agencies (LLDA, DENR, NWRB,",
+        "where_to_secure": ""
+      },
+      {
+        "requirement": "Notarized Authorization Letter or Special Power of",
+        "where_to_secure": ""
+      },
+      {
+        "requirement": "Photocopy of Valid I.D. of Owner/Signatory and",
+        "where_to_secure": "Authorized Representative* Client"
+      },
+      {
+        "requirement": "Secretary's Certificate (If applicant is a corporation)",
+        "where_to_secure": ""
+      },
+      {
+        "requirement": "Affidavit of Undertaking* (Notarized) Notary Public",
+        "where_to_secure": ""
+      }
+    ],
+    "clientSteps": [
+      {
+        "step": 3,
+        "action": "3 Issuance of Certificate of Annual Inspection for Business Permit",
+        "agency_action": ""
+      },
+      {
+        "step": 1,
+        "action": "Business License Application Form Municipal Treasurer’s Office",
+        "agency_action": ""
+      },
+      {
+        "step": 2,
+        "action": "Inspection Report",
+        "agency_action": ""
+      },
+      {
+        "step": 3,
+        "action": "Oath of Undertaking",
+        "agency_action": ""
+      },
+      {
+        "step": 3,
+        "action": "4 Issuance of Certificate of Final Electrical Inspection",
+        "agency_action": ""
+      },
+      {
+        "step": 1,
+        "action": "Properly Fill-up CEI Form and MEO Facebook Page",
+        "agency_action": ""
+      },
+      {
+        "step": 2,
+        "action": "Yellow Card",
+        "agency_action": ""
+      },
+      {
+        "step": 3,
+        "action": "Barangay Clearance (Purpose: Meralco Application) Barangay where the installation is",
+        "agency_action": ""
+      },
+      {
+        "step": 4,
+        "action": "Proof of Ownership",
+        "agency_action": ""
+      },
+      {
+        "step": 5,
+        "action": "Occupancy Permit",
+        "agency_action": ""
+      },
+      {
+        "step": 6,
+        "action": "Recent Electrical bill (within a year)",
+        "agency_action": ""
+      },
+      {
+        "step": 7,
+        "action": "Building Permit Building Owner",
+        "agency_action": ""
+      },
+      {
+        "step": 3,
+        "action": "5 Issuance of Certificate of Occupancy",
+        "agency_action": ""
+      },
+      {
+        "step": 1,
+        "action": "Properly Fill-up Two (2) Copies of Unified Municipal Engineering Office and",
+        "agency_action": ""
+      },
+      {
+        "step": 2,
+        "action": "Construction Logbook (Signed and sealed by Private Professionals (Engineers,",
+        "agency_action": ""
+      },
+      {
+        "step": 3,
+        "action": "As built Plans (Signed and sealed by Professional Private Professionals (Engineers,",
+        "agency_action": ""
+      },
+      {
+        "step": 4,
+        "action": "One (1) photocopy of Valid PRC Licenses (PRC Private Professionals (Engineers,",
+        "agency_action": ""
+      },
+      {
+        "step": 5,
+        "action": "Captioned Photographs of Site and Completed",
+        "agency_action": ""
+      },
+      {
+        "step": 6,
+        "action": "Yellow Card Issued by the Electrical Service",
+        "agency_action": ""
+      },
+      {
+        "step": 7,
+        "action": "Vicinity Map",
+        "agency_action": ""
+      }
+    ]
   },
   {
     "service": "ISSUANCE OF BUILDING PERMIT RESIDENTIAL/COMMERCIAL (NEW)",
@@ -3617,7 +4591,11 @@
       "description": "per National Building Code"
     },
     "processingTime": "5 working days",
-    "personResponsible": ["Building Official", "Plans Examiner", "OBO Staff"]
+    "personResponsible": [
+      "Building Official",
+      "Plans Examiner",
+      "OBO Staff"
+    ]
   },
   {
     "service": "ISSUANCE OF CERTIFICATE FOR ELECTRIC CONNECTION, WATER CONNECTION, BUILDING PERMIT AND TAX DECLARATION",
@@ -3681,7 +4659,10 @@
       "description": "per certificate"
     },
     "processingTime": "3-5 working days",
-    "personResponsible": ["MUDHO Head", "MUDHO Staff"]
+    "personResponsible": [
+      "MUDHO Head",
+      "MUDHO Staff"
+    ]
   },
   {
     "service": "Issuance of Certificate of Annual Inspection for Business Permit",
@@ -3798,7 +4779,10 @@
       "description": ""
     },
     "processingTime": "15 minutes",
-    "personResponsible": ["PDAO Head", "PDAO Staff"]
+    "personResponsible": [
+      "PDAO Head",
+      "PDAO Staff"
+    ]
   },
   {
     "service": "Issuance of Certificate of Final Electrical Inspection",
@@ -3941,7 +4925,10 @@
       "description": "per certificate"
     },
     "processingTime": "3 days",
-    "personResponsible": ["Station Commander", "Police Staff"]
+    "personResponsible": [
+      "Station Commander",
+      "Police Staff"
+    ]
   },
   {
     "service": "ISSUANCE OF CERTIFICATE OF INDIGENCE (MEDICAL ASSISTANCE)",
@@ -3991,7 +4978,10 @@
       "description": ""
     },
     "processingTime": "30 minutes",
-    "personResponsible": ["MHO Head", "MHO Staff"]
+    "personResponsible": [
+      "MHO Head",
+      "MHO Staff"
+    ]
   },
   {
     "service": "Issuance of Certificate of Inspection for Road Worthiness",
@@ -4066,7 +5056,8 @@
     "detailedRequirements": [
       {
         "requirement": "Birth Certificate",
-        "where_to_secure": "LCRO/NSO"
+        "where_to_secure": "LCRO/NSO",
+        "serviceSlug": "birth-certificate-registration"
       },
       {
         "requirement": "Certificate of No Marriage (CENOMAR)",
@@ -4103,7 +5094,10 @@
       "description": "per copy"
     },
     "processingTime": "30 minutes - 1 hour",
-    "personResponsible": ["LCRO Clerk", "LCRO Officer"]
+    "personResponsible": [
+      "LCRO Clerk",
+      "LCRO Officer"
+    ]
   },
   {
     "service": "Issuance of Certificate of Occupancy",
@@ -4241,7 +5235,10 @@
       "description": "per certificate"
     },
     "processingTime": "9 Minutes",
-    "personResponsible": ["Revenue Collection Clerk I", "Market Supervisor III"]
+    "personResponsible": [
+      "Revenue Collection Clerk I",
+      "Market Supervisor III"
+    ]
   },
   {
     "service": "ISSUANCE OF CERTIFICATIONS",
@@ -4296,7 +5293,10 @@
       "description": ""
     },
     "processingTime": "15 minutes",
-    "personResponsible": ["PDAO Head", "PDAO Staff"]
+    "personResponsible": [
+      "PDAO Head",
+      "PDAO Staff"
+    ]
   },
   {
     "service": "ISSUANCE OF CERTIFIED TRUE COPY OF DOCUMENTS",
@@ -4322,17 +5322,137 @@
     "serviceNumber": "2.5",
     "source": "citizens-charter",
     "type": "transaction",
-    "officeDivision": "MUNICIPAL ASSESSOR'S OFFICE",
-    "officeSlug": "municipal-assessor-office",
+    "officeDivision": "Municipal Assessor’s Office",
+    "officeSlug": "",
     "category": {
-      "name": "Taxation & Assessment",
-      "slug": "taxation-assessment"
+      "name": "Other Municipal Services",
+      "slug": "other-municipal"
     },
-    "classification": null,
-    "typeOfTransaction": null,
-    "whoMayAvail": null,
-    "dataComplete": false,
-    "needsVerification": true
+    "classification": "Simple",
+    "typeOfTransaction": "G2C",
+    "whoMayAvail": "Real Property Owners and other agencies",
+    "dataComplete": true,
+    "needsVerification": false,
+    "detailedRequirements": [
+      {
+        "requirement": "Application Form Transaction Window",
+        "where_to_secure": ""
+      },
+      {
+        "requirement": "Old Tax Declaration / Realty Tax Receipt Owner as received from the",
+        "where_to_secure": "Assessor’s Office"
+      },
+      {
+        "requirement": "If not the owner must present proof that requestor is",
+        "where_to_secure": ""
+      },
+      {
+        "requirement": "Certification Fee",
+        "where_to_secure": ""
+      }
+    ],
+    "clientSteps": [
+      {
+        "step": 1,
+        "action": "Requests for 1. Researches 3 minutes per Clerk I, Tax Mapping",
+        "agency_action": ""
+      },
+      {
+        "step": 2,
+        "action": "Receives payment 2. Issues ₱50.00 per 5 Minutes Clerk I, Tax Mapping",
+        "agency_action": ""
+      },
+      {
+        "step": 3,
+        "action": "Receives 3. Issues 2 Minutes Clerk I, Tax Mapping",
+        "agency_action": ""
+      },
+      {
+        "step": 3,
+        "action": "BUILDING PERMITS AND REPAIRS",
+        "agency_action": ""
+      },
+      {
+        "step": 3,
+        "action": "1 Issuance of Building Permit (Highly Technical Transaction)",
+        "agency_action": ""
+      },
+      {
+        "step": 1,
+        "action": "Five (5) copies of filled-up and Notarized Unified Municipal Engineering Office and MEO",
+        "agency_action": ""
+      },
+      {
+        "step": 2,
+        "action": "Three (3) photocopies of Valid PRC Licenses (PRC Private Professionals (Engineers,",
+        "agency_action": ""
+      },
+      {
+        "step": 3,
+        "action": "Four (4) copies of Notarized estimated value of the Private Professionals (Engineers,",
+        "agency_action": ""
+      },
+      {
+        "step": 4,
+        "action": "Four (4) sets of Drawing Plans (Signed and sealed Private Professionals (Engineers,",
+        "agency_action": ""
+      },
+      {
+        "step": 5,
+        "action": "Three (3) sets of Lot Plan (Signed and sealed by Private Professionals (Geodetic",
+        "agency_action": ""
+      },
+      {
+        "step": 6,
+        "action": "Four (4) copies of General Specifications (Signed Private Professionals (Engineers,",
+        "agency_action": ""
+      },
+      {
+        "step": 7,
+        "action": "Two (2) copies of Structural Design Analysis (Signed Private Professionals (Civil or Structural",
+        "agency_action": ""
+      },
+      {
+        "step": 8,
+        "action": "Two (2) copies of Electrical Design Analysis (Signed Private Professionals (Electrical",
+        "agency_action": ""
+      },
+      {
+        "step": 9,
+        "action": "Two (2) copies of Soil Boring Test (Signed and Private Professionals (Geodetic",
+        "agency_action": ""
+      },
+      {
+        "step": 10,
+        "action": "Three (3) photocopies Original Certificate of Title",
+        "agency_action": ""
+      },
+      {
+        "step": 11,
+        "action": "Three (3) photocopies Updated Tax Receipt",
+        "agency_action": ""
+      },
+      {
+        "step": 12,
+        "action": "Construction Safety and Health Program (CSHP - DOLE Regional Office",
+        "agency_action": ""
+      },
+      {
+        "step": 13,
+        "action": "Barangay Building Clearance",
+        "agency_action": ""
+      },
+      {
+        "step": 14,
+        "action": "DPWH Clearance* for Construction along National DPWH District Office",
+        "agency_action": ""
+      },
+      {
+        "step": 15,
+        "action": "Other Agencies as maybe required related to the NWRB, etc.)",
+        "agency_action": ""
+      }
+    ]
   },
   {
     "service": "Issuance of Community Tax Certificate (Individual and Corporation)",
@@ -4346,11 +5466,50 @@
       "name": "Taxation & Assessment",
       "slug": "taxation-assessment"
     },
-    "classification": null,
-    "typeOfTransaction": null,
-    "whoMayAvail": null,
-    "dataComplete": false,
-    "needsVerification": true
+    "classification": "Simple",
+    "typeOfTransaction": "G2C (Government to Citizen)",
+    "whoMayAvail": "All Los Baños residents, Business Owners",
+    "dataComplete": true,
+    "needsVerification": false,
+    "detailedRequirements": [
+      {
+        "requirement": "Individuals 18 years old and above and Corporation",
+        "where_to_secure": "Taxpayer"
+      },
+      {
+        "requirement": "Community Tax Certificate / Valid ID",
+        "where_to_secure": "Taxpayer"
+      },
+      {
+        "requirement": "Certificate of Withholding Tax",
+        "where_to_secure": "Taxpayer"
+      }
+    ],
+    "clientSteps": [
+      {
+        "step": 1,
+        "action": "Secure queue number for purpose",
+        "agency_action": "None"
+      },
+      {
+        "step": 2,
+        "action": "Presents all the requirements and provides information",
+        "agency_action": "Receives and Checks requirements"
+      },
+      {
+        "step": 3,
+        "action": "Fill up Community Tax Certificate based on the information given by the taxpayer",
+        "agency_action": "Process Community Tax"
+      }
+    ],
+    "fees": {
+      "amount": "P 5.00 Basic; Additional community tax not to exceed P5,000.00",
+      "description": "Individual"
+    },
+    "processingTime": "5 Minutes",
+    "personResponsible": [
+      "RCC I/Admin Aide"
+    ]
   },
   {
     "service": "ISSUANCE OF DEVELOPMENT PERMIT RESIDENTIAL/COMMERCIAL (NEW)",
@@ -4431,7 +5590,11 @@
       "description": "see Section 3.10 of Revised IRR of PD 957"
     },
     "processingTime": "5 working days",
-    "personResponsible": ["Building Official", "Plans Examiner", "OBO Staff"]
+    "personResponsible": [
+      "Building Official",
+      "Plans Examiner",
+      "OBO Staff"
+    ]
   },
   {
     "service": "ISSUANCE OF ELECTRICAL INSTALLATION PERMIT",
@@ -4491,7 +5654,10 @@
       "description": "per RA 7920"
     },
     "processingTime": "2 working days",
-    "personResponsible": ["Electrical Inspector", "OBO Staff"]
+    "personResponsible": [
+      "Electrical Inspector",
+      "OBO Staff"
+    ]
   },
   {
     "service": "ISSUANCE OF ELECTRONICS PERMIT",
@@ -4551,7 +5717,10 @@
       "description": "per RA 9292"
     },
     "processingTime": "2 working days",
-    "personResponsible": ["Electronics Inspector", "OBO Staff"]
+    "personResponsible": [
+      "Electronics Inspector",
+      "OBO Staff"
+    ]
   },
   {
     "service": "ISSUANCE OF FENCING PERMIT",
@@ -4611,7 +5780,10 @@
       "description": "plus ₱10.00 per linear meter"
     },
     "processingTime": "2 working days",
-    "personResponsible": ["Plans Examiner", "OBO Staff"]
+    "personResponsible": [
+      "Plans Examiner",
+      "OBO Staff"
+    ]
   },
   {
     "service": "ISSUANCE OF HEALTH CERTIFICATE (SANITARY PERMIT)",
@@ -4675,7 +5847,11 @@
       "description": "per certificate"
     },
     "processingTime": "1 day",
-    "personResponsible": ["MHO Head", "MHO Staff", "Sanitary Inspector"]
+    "personResponsible": [
+      "MHO Head",
+      "MHO Staff",
+      "Sanitary Inspector"
+    ]
   },
   {
     "service": "ISSUANCE OF LIBRARY CARD",
@@ -4726,7 +5902,10 @@
       "description": "per card (annual)"
     },
     "processingTime": "15 minutes",
-    "personResponsible": ["Library Staff", "LYDO Staff"]
+    "personResponsible": [
+      "Library Staff",
+      "LYDO Staff"
+    ]
   },
   {
     "service": "Issuance of Locational Clearance for Building Application",
@@ -4734,17 +5913,23 @@
     "serviceNumber": "4.2",
     "source": "citizens-charter",
     "type": "transaction",
-    "officeDivision": "MUNICIPAL PLANNING AND DEVELOPMENT COORDINATOR (MPDC)",
-    "officeSlug": "mpdc",
+    "officeDivision": "Municipal Planning and Development Office",
+    "officeSlug": "",
     "category": {
-      "name": "Infrastructure & Engineering",
-      "slug": "infrastructure-engineering"
+      "name": "Other Municipal Services",
+      "slug": "other-municipal"
     },
-    "classification": null,
-    "typeOfTransaction": null,
-    "whoMayAvail": null,
-    "dataComplete": false,
-    "needsVerification": true
+    "classification": "Simple",
+    "typeOfTransaction": "G2C",
+    "whoMayAvail": "Property Owners, Developers",
+    "dataComplete": true,
+    "needsVerification": false,
+    "detailedRequirements": [
+      {
+        "requirement": "2 Issuance of Locational Clearance for Building Application",
+        "where_to_secure": "Office/Division: Municipal Planning and Development Office"
+      }
+    ]
   },
   {
     "service": "Issuance of Locational Clearance for Land Reclassification",
@@ -4752,17 +5937,24 @@
     "serviceNumber": "4.3",
     "source": "citizens-charter",
     "type": "transaction",
-    "officeDivision": "MUNICIPAL PLANNING AND DEVELOPMENT COORDINATOR (MPDC)",
-    "officeSlug": "mpdc",
+    "officeDivision": "Municipal Planning and Development Office",
+    "officeSlug": "",
     "category": {
-      "name": "Infrastructure & Engineering",
-      "slug": "infrastructure-engineering"
+      "name": "Other Municipal Services",
+      "slug": "other-municipal"
     },
-    "classification": null,
-    "typeOfTransaction": null,
-    "whoMayAvail": null,
-    "dataComplete": false,
-    "needsVerification": true
+    "classification": "Simple",
+    "typeOfTransaction": "G2C",
+    "whoMayAvail": "Property Owners, Developers",
+    "dataComplete": true,
+    "needsVerification": false,
+    "clientSteps": [
+      {
+        "step": 4,
+        "action": "3 Issuance of Zoning Certification",
+        "agency_action": ""
+      }
+    ]
   },
   {
     "service": "Issuance of Locational Clearance for Titling Application (Free Patent)",
@@ -4895,7 +6087,10 @@
       "description": "per copy"
     },
     "processingTime": "15 minutes",
-    "personResponsible": ["BPLO Head", "BPLO Staff"]
+    "personResponsible": [
+      "BPLO Head",
+      "BPLO Staff"
+    ]
   },
   {
     "service": "ISSUANCE OF MAYOR'S PERMIT TO ALL ADVERTISING ACTIVITIES",
@@ -4954,7 +6149,10 @@
       "description": "depending on advertisement type and duration"
     },
     "processingTime": "3-5 working days",
-    "personResponsible": ["Mayor's Office Staff", "Mayor"]
+    "personResponsible": [
+      "Mayor's Office Staff",
+      "Mayor"
+    ]
   },
   {
     "service": "ISSUANCE OF MAYOR'S PERMIT TO CONDUCT MOTORCADE/PARADE",
@@ -5013,7 +6211,10 @@
       "description": ""
     },
     "processingTime": "3-5 working days",
-    "personResponsible": ["Mayor's Office Staff", "Mayor"]
+    "personResponsible": [
+      "Mayor's Office Staff",
+      "Mayor"
+    ]
   },
   {
     "service": "ISSUANCE OF MAYOR'S PERMIT TO OPERATE (MOTOR VEHICLE)",
@@ -5072,7 +6273,10 @@
       "description": "per unit"
     },
     "processingTime": "15 minutes",
-    "personResponsible": ["BPLO Head", "BPLO Staff"]
+    "personResponsible": [
+      "BPLO Head",
+      "BPLO Staff"
+    ]
   },
   {
     "service": "ISSUANCE OF MAYOR'S WORKING PERMIT",
@@ -5098,7 +6302,8 @@
       },
       {
         "requirement": "Birth Certificate",
-        "where_to_secure": "Local Civil Registry"
+        "where_to_secure": "Local Civil Registry",
+        "serviceSlug": "birth-certificate-registration"
       },
       {
         "requirement": "Parent/Guardian's Valid ID",
@@ -5131,7 +6336,10 @@
       "description": ""
     },
     "processingTime": "1-2 working days",
-    "personResponsible": ["Mayor's Office Staff", "Mayor"]
+    "personResponsible": [
+      "Mayor's Office Staff",
+      "Mayor"
+    ]
   },
   {
     "service": "ISSUANCE OF MECHANICAL INSTALLATION PERMIT",
@@ -5191,7 +6399,10 @@
       "description": "per RA 8495"
     },
     "processingTime": "2 working days",
-    "personResponsible": ["Mechanical Inspector", "OBO Staff"]
+    "personResponsible": [
+      "Mechanical Inspector",
+      "OBO Staff"
+    ]
   },
   {
     "service": "ISSUANCE OF MEDICAL CERTIFICATE (CONSULTATION)",
@@ -5242,7 +6453,10 @@
       "description": "per certificate"
     },
     "processingTime": "30 minutes",
-    "personResponsible": ["MHO Head", "MHO Staff"]
+    "personResponsible": [
+      "MHO Head",
+      "MHO Staff"
+    ]
   },
   {
     "service": "ISSUANCE OF MOTORIZED TRICYCLE OPERATOR'S PERMIT (SPECIAL AUTHORITY FOR PRIVATE MOTORIZED TRICYCLE)",
@@ -5310,7 +6524,10 @@
       "description": "per unit"
     },
     "processingTime": "15 minutes",
-    "personResponsible": ["BPLO Head", "BPLO Staff"]
+    "personResponsible": [
+      "BPLO Head",
+      "BPLO Staff"
+    ]
   },
   {
     "service": "ISSUANCE OF MOTORIZED TRICYCLE OPERATOR'S PERMIT FOR NEW FRANCHISE",
@@ -5382,7 +6599,10 @@
       "description": "per unit"
     },
     "processingTime": "15 minutes",
-    "personResponsible": ["BPLO Head", "BPLO Staff"]
+    "personResponsible": [
+      "BPLO Head",
+      "BPLO Staff"
+    ]
   },
   {
     "service": "ISSUANCE OF MOTORIZED TRICYCLE OPERATOR'S PERMIT FOR RENEWAL OF FRANCHISE/CHANGE OF MOTOR VEHICLE",
@@ -5458,7 +6678,10 @@
       "description": "per unit"
     },
     "processingTime": "15 minutes",
-    "personResponsible": ["BPLO Head", "BPLO Staff"]
+    "personResponsible": [
+      "BPLO Head",
+      "BPLO Staff"
+    ]
   },
   {
     "service": "ISSUANCE OF OCCUPANCY PERMIT",
@@ -5526,7 +6749,11 @@
       "description": "per permit"
     },
     "processingTime": "5 working days",
-    "personResponsible": ["Building Official", "Plans Examiner", "OBO Staff"]
+    "personResponsible": [
+      "Building Official",
+      "Plans Examiner",
+      "OBO Staff"
+    ]
   },
   {
     "service": "ISSUANCE OF OFFICIAL RECEIPT",
@@ -5577,7 +6804,10 @@
       "description": "based on transaction"
     },
     "processingTime": "5 minutes",
-    "personResponsible": ["Cashier", "Municipal Treasurer"]
+    "personResponsible": [
+      "Cashier",
+      "Municipal Treasurer"
+    ]
   },
   {
     "service": "ISSUANCE OF PERMIT TO TRAVEL ABROAD",
@@ -5632,7 +6862,10 @@
       "description": ""
     },
     "processingTime": "5-7 working days",
-    "personResponsible": ["HRMO Head", "Administrative Officer"]
+    "personResponsible": [
+      "HRMO Head",
+      "Administrative Officer"
+    ]
   },
   {
     "service": "ISSUANCE OF PURCHASE ORDER / CONTRACT",
@@ -5701,7 +6934,11 @@
       "description": ""
     },
     "processingTime": "7-14 days",
-    "personResponsible": ["BAC Chairman", "BAC Secretariat", "Mayor"]
+    "personResponsible": [
+      "BAC Chairman",
+      "BAC Secretariat",
+      "Mayor"
+    ]
   },
   {
     "service": "ISSUANCE OF SANITARY PERMIT",
@@ -5761,7 +6998,10 @@
       "description": "per PD 856 (Sanitation Code)"
     },
     "processingTime": "2 working days",
-    "personResponsible": ["Sanitary Inspector", "OBO Staff"]
+    "personResponsible": [
+      "Sanitary Inspector",
+      "OBO Staff"
+    ]
   },
   {
     "service": "ISSUANCE OF SERVICE RECORDS, CERTIFICATE OF EMPLOYMENT AND/OR OTHER CERTIFICATIONS",
@@ -5812,7 +7052,10 @@
       "description": "for employees"
     },
     "processingTime": "3-5 working days",
-    "personResponsible": ["HRMO Head", "HRMO Staff"]
+    "personResponsible": [
+      "HRMO Head",
+      "HRMO Staff"
+    ]
   },
   {
     "service": "ISSUANCE OF SIGNAGE PERMIT",
@@ -5876,7 +7119,10 @@
       "description": "per sign"
     },
     "processingTime": "2 working days",
-    "personResponsible": ["Plans Examiner", "OBO Staff"]
+    "personResponsible": [
+      "Plans Examiner",
+      "OBO Staff"
+    ]
   },
   {
     "service": "ISSUANCE OF SOLO PARENT IDENTIFICATION CARD",
@@ -5906,7 +7152,8 @@
       },
       {
         "requirement": "Birth Certificate of Child/Children",
-        "where_to_secure": "Local Civil Registry"
+        "where_to_secure": "Local Civil Registry",
+        "serviceSlug": "birth-certificate-registration"
       },
       {
         "requirement": "Proof of Income (if employed)",
@@ -5944,7 +7191,10 @@
       "description": "per ID"
     },
     "processingTime": "1 day",
-    "personResponsible": ["MSWDO Head", "Social Worker"]
+    "personResponsible": [
+      "MSWDO Head",
+      "Social Worker"
+    ]
   },
   {
     "service": "ISSUANCE OF TAX CLEARANCE",
@@ -5999,7 +7249,10 @@
       "description": "certification fee"
     },
     "processingTime": "15-30 minutes",
-    "personResponsible": ["Tax Collection Clerk", "Municipal Treasurer"]
+    "personResponsible": [
+      "Tax Collection Clerk",
+      "Municipal Treasurer"
+    ]
   },
   {
     "service": "Issuance of Tax Declaration for Transfer of Ownership Consolidation/Subdivision",
@@ -6007,11 +7260,11 @@
     "serviceNumber": "2.1",
     "source": "citizens-charter",
     "type": "transaction",
-    "officeDivision": "MUNICIPAL ASSESSOR'S OFFICE",
-    "officeSlug": "municipal-assessor-office",
+    "officeDivision": "Municipal Assessor’s Office",
+    "officeSlug": "",
     "category": {
-      "name": "Taxation & Assessment",
-      "slug": "taxation-assessment"
+      "name": "Other Municipal Services",
+      "slug": "other-municipal"
     },
     "classification": null,
     "typeOfTransaction": null,
@@ -6020,40 +7273,102 @@
     "needsVerification": true
   },
   {
-    "service": "Issuance of Updated Tax Declaration for Corrected Information",
-    "slug": "issuance-of-updated-tax-declaration-for-corrected-information",
+    "service": "Issuance of Updated Tax Declaration for Corrected Information e.g. Spelling of",
+    "slug": "issuance-of-updated-tax-declaration-for-corrected-information-eg-spelling-of",
     "serviceNumber": "2.4",
     "source": "citizens-charter",
     "type": "transaction",
-    "officeDivision": "MUNICIPAL ASSESSOR'S OFFICE",
-    "officeSlug": "municipal-assessor-office",
+    "officeDivision": "Municipal Assessor’s Office",
+    "officeSlug": "",
     "category": {
-      "name": "Taxation & Assessment",
-      "slug": "taxation-assessment"
+      "name": "Other Municipal Services",
+      "slug": "other-municipal"
     },
-    "classification": null,
-    "typeOfTransaction": null,
-    "whoMayAvail": null,
-    "dataComplete": false,
-    "needsVerification": true
+    "classification": "Complex",
+    "typeOfTransaction": "G2C",
+    "whoMayAvail": "Real Property Owners and other agencies",
+    "dataComplete": true,
+    "needsVerification": false,
+    "detailedRequirements": [
+      {
+        "requirement": "Application Form Transaction Window",
+        "where_to_secure": ""
+      },
+      {
+        "requirement": "Request Letter indicating the information that needs Owner",
+        "where_to_secure": ""
+      },
+      {
+        "requirement": "Latest Realty Tax Receipt / Tax Clearance",
+        "where_to_secure": "Owner as received from the"
+      },
+      {
+        "requirement": "Previous Tax Declaration",
+        "where_to_secure": "Assessor’s Office"
+      }
+    ],
+    "clientSteps": [
+      {
+        "step": 1,
+        "action": "Presents/submits 1. Inspects 10 Minu tes Clerk I, Tax Mapping",
+        "agency_action": ""
+      },
+      {
+        "step": 2,
+        "action": "Receives payment 2. Explains to the ₱100.00 5 Minutes Clerk I, LAOO I,",
+        "agency_action": ""
+      },
+      {
+        "step": 3,
+        "action": "If Transaction falls Corrects Property 20 Minutes Draftsman I, Clerk II",
+        "agency_action": ""
+      },
+      {
+        "step": 4,
+        "action": "Upon date of Issues Owner’s 3 Minutes Clerk I, Tax Mapping",
+        "agency_action": ""
+      }
+    ]
   },
   {
-    "service": "Issuance of Updated Tax Declaration for New or Reassessment of Building/Machineries",
-    "slug": "issuance-of-updated-tax-declaration-for-new-or-reassessment-of-buildingmachineries",
+    "service": "Issuance of Updated Tax Declaration for New or Reassessment of Building/",
+    "slug": "issuance-of-updated-tax-declaration-for-new-or-reassessment-of-building",
     "serviceNumber": "2.2",
     "source": "citizens-charter",
     "type": "transaction",
-    "officeDivision": "MUNICIPAL ASSESSOR'S OFFICE",
-    "officeSlug": "municipal-assessor-office",
+    "officeDivision": "Municipal Assessor’s Office",
+    "officeSlug": "",
     "category": {
-      "name": "Taxation & Assessment",
-      "slug": "taxation-assessment"
+      "name": "Other Municipal Services",
+      "slug": "other-municipal"
     },
-    "classification": null,
-    "typeOfTransaction": null,
-    "whoMayAvail": null,
-    "dataComplete": false,
-    "needsVerification": true
+    "classification": "Complex",
+    "typeOfTransaction": "G2C",
+    "whoMayAvail": "Real Property Owners and other agencies",
+    "dataComplete": true,
+    "needsVerification": false,
+    "clientSteps": [
+      {
+        "step": 1,
+        "action": "Presents/submits 1. Inspects 15 min utes Clerk I, LAOO I,",
+        "agency_action": ""
+      },
+      {
+        "step": 2,
+        "action": "Receives 2. Explains to 5 Minutes Clerk I, LAOO I,",
+        "agency_action": ""
+      },
+      {
+        "step": 3,
+        "action": "Early on the 35 3. Corrects 20 Minutes Clerk I, LAOO I,",
+        "agency_action": ""
+      },
+      {
+        "step": 4,
+        "action": "Upon date of Issues 3 Minutes Clerk I, Tax Mapping",
+        "agency_action": ""
+      }
+    ]
   },
   {
     "service": "Issuance of Updated Tax Declaration for New or Reassessment of Lands",
@@ -6061,17 +7376,96 @@
     "serviceNumber": "2.3",
     "source": "citizens-charter",
     "type": "transaction",
-    "officeDivision": "MUNICIPAL ASSESSOR'S OFFICE",
-    "officeSlug": "municipal-assessor-office",
+    "officeDivision": "Municipal Assessor’s Office",
+    "officeSlug": "",
     "category": {
-      "name": "Taxation & Assessment",
-      "slug": "taxation-assessment"
+      "name": "Other Municipal Services",
+      "slug": "other-municipal"
     },
-    "classification": null,
-    "typeOfTransaction": null,
-    "whoMayAvail": null,
-    "dataComplete": false,
-    "needsVerification": true
+    "classification": "Complex",
+    "typeOfTransaction": "G2C",
+    "whoMayAvail": "Real Property Owners and other agencies",
+    "dataComplete": true,
+    "needsVerification": false,
+    "detailedRequirements": [
+      {
+        "requirement": "Application Form Transaction Window",
+        "where_to_secure": ""
+      },
+      {
+        "requirement": "Request Letter (For reassessment) Owner",
+        "where_to_secure": ""
+      },
+      {
+        "requirement": "Latest Realty Tax Receipt / Tax Clearance (for Municipal Treasurer’s Office",
+        "where_to_secure": ""
+      },
+      {
+        "requirement": "Previous Tax Declaration (for reassessment) Owner, as received from Assessor’s",
+        "where_to_secure": "- - - - - - - - - - - - - - - - - - - - - - - - - - Office"
+      },
+      {
+        "requirement": "Approved Survey Plan DENR as surveyed by Licensed",
+        "where_to_secure": ""
+      },
+      {
+        "requirement": "Certification that Lot is Alienable & Disposable DENR / PENRO / CENTRO",
+        "where_to_secure": ""
+      },
+      {
+        "requirement": "Lot Data Computation",
+        "where_to_secure": ""
+      },
+      {
+        "requirement": "AWARD Certificate or MUDHO Certification MUDHO",
+        "where_to_secure": ""
+      },
+      {
+        "requirement": "Notarized Affidavit of Ownership Notary Public as executed by the",
+        "where_to_secure": ""
+      },
+      {
+        "requirement": "Notarized Affidavit of Adjoining Lot Owners",
+        "where_to_secure": ""
+      },
+      {
+        "requirement": "Certification from Barangay – Possessor and",
+        "where_to_secure": ""
+      },
+      {
+        "requirement": "Certified True Copy of Title Registry of Deeds",
+        "where_to_secure": ""
+      },
+      {
+        "requirement": "Approved Survey Plan DENR as surveyed by Licensed",
+        "where_to_secure": ""
+      },
+      {
+        "requirement": "Certified True Copy of Free Patent / Homestead / DENR",
+        "where_to_secure": ""
+      },
+      {
+        "requirement": "Annotation Fee Issued at Transaction window, paid",
+        "where_to_secure": "at Municipal Treasurer’s Office"
+      }
+    ],
+    "clientSteps": [
+      {
+        "step": 1,
+        "action": "Presents/submits 1. Receives 10 Minu tes Clerk I, Tax Mapping",
+        "agency_action": ""
+      },
+      {
+        "step": 2,
+        "action": "Receives payment 2. Issues ₱100.00 per 5 Minutes Clerk II, LAOO I,",
+        "agency_action": ""
+      },
+      {
+        "step": 3,
+        "action": "Early on the 21 - Corrects 20 Minutes Draftsman I, Clerk II",
+        "agency_action": ""
+      }
+    ]
   },
   {
     "service": "ISSUANCE OF VACCINATION CARD",
@@ -6122,7 +7516,10 @@
       "description": "per card"
     },
     "processingTime": "30 minutes",
-    "personResponsible": ["ICSO Head", "ICSO Staff"]
+    "personResponsible": [
+      "ICSO Head",
+      "ICSO Staff"
+    ]
   },
   {
     "service": "ISSUANCE OF ZONING CERTIFICATE",
@@ -6197,17 +7594,58 @@
     "serviceNumber": "4.4",
     "source": "citizens-charter",
     "type": "transaction",
-    "officeDivision": "MUNICIPAL PLANNING AND DEVELOPMENT COORDINATOR (MPDC)",
-    "officeSlug": "mpdc",
+    "officeDivision": "MUNICIPAL PLANNING AND DEVELOPMENT OFFICE",
+    "officeSlug": "",
     "category": {
-      "name": "Infrastructure & Engineering",
-      "slug": "infrastructure-engineering"
+      "name": "Other Municipal Services",
+      "slug": "other-municipal"
     },
-    "classification": null,
-    "typeOfTransaction": null,
-    "whoMayAvail": null,
-    "dataComplete": false,
-    "needsVerification": true
+    "classification": "Simple",
+    "typeOfTransaction": "G2B - Government to Business; G2C - Government to Citizen",
+    "whoMayAvail": "All",
+    "dataComplete": true,
+    "needsVerification": false,
+    "detailedRequirements": [
+      {
+        "requirement": "Locational Clearance",
+        "where_to_secure": "MPDO"
+      },
+      {
+        "requirement": "Certified True Copy of Tax Declaration",
+        "where_to_secure": "Assessor's Office"
+      },
+      {
+        "requirement": "Recent ID pictures (2x2)",
+        "where_to_secure": "Client"
+      }
+    ],
+    "clientSteps": [
+      {
+        "step": 1,
+        "action": "Submit the required documents for assessment and verification",
+        "agency_action": "Receive and review the completeness of requirements"
+      },
+      {
+        "step": 2,
+        "action": "Pay the application fee at the Municipal Treasurer's Office and present the Official Receipt",
+        "agency_action": "Receive and check the Official Receipt"
+      },
+      {
+        "step": 3,
+        "action": "Wait for processing",
+        "agency_action": "Prepare the Order of Payment and Issue the Zoning Certification"
+      }
+    ],
+    "fees": {
+      "amount": "₱100.00",
+      "description": "Certification Fee"
+    },
+    "processingTime": "5 minutes",
+    "personResponsible": [
+      "Zoning Officer II/",
+      "Zoning Inspector II/",
+      "Data Controller III"
+    ]
   },
   {
     "service": "JOB VACANCY POSTING AND REFERRAL",
@@ -6262,7 +7700,10 @@
       "description": ""
     },
     "processingTime": "1-3 working days",
-    "personResponsible": ["PESO Manager", "Employment Services Officer"]
+    "personResponsible": [
+      "PESO Manager",
+      "Employment Services Officer"
+    ]
   },
   {
     "service": "LABOR MARKET INFORMATION",
@@ -6304,14 +7745,19 @@
       "description": ""
     },
     "processingTime": "Immediate to 3 working days",
-    "personResponsible": ["PESO Manager", "LMO Staff"]
+    "personResponsible": [
+      "PESO Manager",
+      "LMO Staff"
+    ]
   },
   {
     "service": "Laboratory Services",
     "slug": "laboratory-services",
     "type": "transaction",
     "description": "Diagnostic laboratory tests including blood chemistry, urinalysis, and fecalysis.",
-    "officeSlug": ["municipal-health-office"],
+    "officeSlug": [
+      "municipal-health-office"
+    ],
     "category": {
       "name": "Health & Wellness",
       "slug": "health-wellness"
@@ -6399,7 +7845,10 @@
       "description": "depending on delay period"
     },
     "processingTime": "1-2 days (depending on completeness)",
-    "personResponsible": ["LCRO Clerk", "LCRO Officer"]
+    "personResponsible": [
+      "LCRO Clerk",
+      "LCRO Officer"
+    ]
   },
   {
     "service": "LATE REGISTRATION OF DEATH",
@@ -6468,7 +7917,10 @@
       "description": "depending on delay period"
     },
     "processingTime": "1-2 days",
-    "personResponsible": ["LCRO Clerk", "LCRO Officer"]
+    "personResponsible": [
+      "LCRO Clerk",
+      "LCRO Officer"
+    ]
   },
   {
     "service": "LATE REGISTRATION OF MARRIAGE",
@@ -6541,7 +7993,10 @@
       "description": "depending on delay period"
     },
     "processingTime": "1-2 days",
-    "personResponsible": ["LCRO Clerk", "LCRO Officer"]
+    "personResponsible": [
+      "LCRO Clerk",
+      "LCRO Officer"
+    ]
   },
   {
     "service": "LEGAL INSTRUMENTS THAT WILL AFFECT THE CERTIFICATE OF LIVE BIRTH",
@@ -6585,7 +8040,9 @@
     "type": "transaction",
     "description": "Process for illegitimate children to be considered legitimate through the subsequent marriage of their parents.",
     "url": "https://losbanos.gov.ph/posts/61",
-    "officeSlug": ["local-civil-registry-office"],
+    "officeSlug": [
+      "local-civil-registry-office"
+    ],
     "category": {
       "name": "Certificates & Vital Records",
       "slug": "certificates-vital-records"
@@ -6680,7 +8137,10 @@
       "description": "processing fee"
     },
     "processingTime": "2-3 working days",
-    "personResponsible": ["LCRO Clerk", "LCRO Officer"]
+    "personResponsible": [
+      "LCRO Clerk",
+      "LCRO Officer"
+    ]
   },
   {
     "service": "Livestock Dispersal and Monitoring",
@@ -6758,7 +8218,10 @@
       "description": ""
     },
     "processingTime": "6 Hours & 27 Minutes",
-    "personResponsible": ["Livestock Inspector", "Veterinarian"]
+    "personResponsible": [
+      "Livestock Inspector",
+      "Veterinarian"
+    ]
   },
   {
     "service": "LOCAL AND OVERSEAS RECRUITMENT",
@@ -6813,7 +8276,10 @@
       "description": ""
     },
     "processingTime": "Varies",
-    "personResponsible": ["PESO Manager", "Employment Services Officer"]
+    "personResponsible": [
+      "PESO Manager",
+      "Employment Services Officer"
+    ]
   },
   {
     "service": "MANAGEMENT OF ACUTE MALNUTRITION",
@@ -6884,7 +8350,9 @@
     "slug": "marriage-license-application",
     "type": "transaction",
     "description": "Legal requirement for two people intending to get married within the Philippines.",
-    "officeSlug": ["local-civil-registry-office"],
+    "officeSlug": [
+      "local-civil-registry-office"
+    ],
     "category": {
       "name": "Certificates & Vital Records",
       "slug": "certificates-vital-records"
@@ -6916,7 +8384,9 @@
     "slug": "maternal-health-services",
     "type": "transaction",
     "description": "Prenatal and postnatal care for expectant and new mothers.",
-    "officeSlug": ["municipal-health-office"],
+    "officeSlug": [
+      "municipal-health-office"
+    ],
     "category": {
       "name": "Health & Wellness",
       "slug": "health-wellness"
@@ -6983,7 +8453,10 @@
       "description": "per carcass"
     },
     "processingTime": "8 Minutes",
-    "personResponsible": ["Meat Inspector", "Collection Clerk"]
+    "personResponsible": [
+      "Meat Inspector",
+      "Collection Clerk"
+    ]
   },
   {
     "service": "Medical and Surgical Services",
@@ -6991,7 +8464,9 @@
     "type": "transaction",
     "description": "General medical consultations and minor surgical procedures provided by the Municipal Health Office.",
     "url": "",
-    "officeSlug": ["municipal-health-office"],
+    "officeSlug": [
+      "municipal-health-office"
+    ],
     "category": {
       "name": "Health & Wellness",
       "slug": "health-wellness"
@@ -7026,7 +8501,9 @@
     "slug": "medical-assistance-aics",
     "type": "transaction",
     "description": "Assistance to Individuals in Crisis Situations for medical needs.",
-    "officeSlug": ["municipal-social-welfare-and-development-office"],
+    "officeSlug": [
+      "municipal-social-welfare-and-development-office"
+    ],
     "category": {
       "name": "Social Services",
       "slug": "social-services"
@@ -7065,7 +8542,9 @@
     "slug": "medical-outreach-program",
     "type": "information",
     "description": "Mobile medical clinics conducted in various barangays for far-flung communities.",
-    "officeSlug": ["municipal-health-office"],
+    "officeSlug": [
+      "municipal-health-office"
+    ],
     "category": {
       "name": "Health & Wellness",
       "slug": "health-wellness"
@@ -7079,7 +8558,9 @@
     "slug": "mental-health-services",
     "type": "information",
     "description": "Psychological support, counseling, and referral services for mental wellness.",
-    "officeSlug": ["municipal-health-office"],
+    "officeSlug": [
+      "municipal-health-office"
+    ],
     "category": {
       "name": "Health & Wellness",
       "slug": "health-wellness"
@@ -7123,7 +8604,9 @@
       "description": ""
     },
     "processingTime": "4 Hours",
-    "personResponsible": ["HVC Focal Person"]
+    "personResponsible": [
+      "HVC Focal Person"
+    ]
   },
   {
     "service": "NEW BUSINESS PERMIT APPLICATION",
@@ -7208,7 +8691,11 @@
       "description": "per annum"
     },
     "processingTime": "1 day",
-    "personResponsible": ["BPLO Head", "BPLO Staff", "Sanitary Inspector"]
+    "personResponsible": [
+      "BPLO Head",
+      "BPLO Staff",
+      "Sanitary Inspector"
+    ]
   },
   {
     "service": "OTHER REGISTRATION OF LEGAL INSTRUMENTS",
@@ -7286,7 +8773,10 @@
       "description": ""
     },
     "processingTime": "1-3 working days",
-    "personResponsible": ["Vice Mayor's Office Staff", "Vice Mayor"]
+    "personResponsible": [
+      "Vice Mayor's Office Staff",
+      "Vice Mayor"
+    ]
   },
   {
     "service": "PAYMENT OF BUSINESS TAX",
@@ -7341,7 +8831,10 @@
       "description": "based on business type and capital"
     },
     "processingTime": "10-15 minutes",
-    "personResponsible": ["Tax Collection Clerk", "Municipal Treasurer"]
+    "personResponsible": [
+      "Tax Collection Clerk",
+      "Municipal Treasurer"
+    ]
   },
   {
     "service": "PAYMENT OF CONTRACTOR'S TAX",
@@ -7373,11 +8866,38 @@
       "name": "Taxation & Assessment",
       "slug": "taxation-assessment"
     },
-    "classification": null,
-    "typeOfTransaction": null,
-    "whoMayAvail": null,
-    "dataComplete": false,
-    "needsVerification": true
+    "classification": "Simple",
+    "typeOfTransaction": "G2C (Government to Citizen)",
+    "whoMayAvail": "All vendors and business establishments using weight and measure instruments",
+    "dataComplete": true,
+    "needsVerification": false,
+    "detailedRequirements": [
+      {
+        "requirement": "Weight and measure instrument",
+        "where_to_secure": "Taxpayer"
+      }
+    ],
+    "clientSteps": [
+      {
+        "step": 1,
+        "action": "Ask for Schedule of calibration (gasoline station)",
+        "agency_action": "None"
+      },
+      {
+        "step": 2,
+        "action": "Present weight and measure instrument",
+        "agency_action": "Inspect and seal"
+      }
+    ],
+    "fees": {
+      "amount": "",
+      "description": "Based on instrument type"
+    },
+    "processingTime": "1 minute per instrument",
+    "personResponsible": [
+      "Client/Taxpayers",
+      "Weights and Measures Inspector"
+    ]
   },
   {
     "service": "Payment of Market Fees (Rental)",
@@ -7419,7 +8939,9 @@
       "description": "according to stall size"
     },
     "processingTime": "4 Minutes",
-    "personResponsible": ["Revenue Collection Clerk I"]
+    "personResponsible": [
+      "Revenue Collection Clerk I"
+    ]
   },
   {
     "service": "Payment of Market Fees (Utilities)",
@@ -7461,7 +8983,9 @@
       "description": "according to consumption"
     },
     "processingTime": "4 Minutes",
-    "personResponsible": ["Revenue Collection Clerk I"]
+    "personResponsible": [
+      "Revenue Collection Clerk I"
+    ]
   },
   {
     "service": "Payment of Real Property Tax",
@@ -7477,10 +9001,41 @@
     },
     "classification": "Simple",
     "typeOfTransaction": "G2C (Government to Citizen)",
-    "whoMayAvail": "Property owners, administrators, or authorized representatives",
+    "whoMayAvail": "Real Property taxpayer/Real Property Owner",
     "dataComplete": true,
     "needsVerification": false,
-    "processingTime": "See document for details"
+    "detailedRequirements": [
+      {
+        "requirement": "New Tax Declaration",
+        "where_to_secure": "Municipal Assessors Office"
+      },
+      {
+        "requirement": "Official Receipt of latest payment",
+        "where_to_secure": "Taxpayer"
+      }
+    ],
+    "clientSteps": [
+      {
+        "step": 1,
+        "action": "Secure queue number for purpose",
+        "agency_action": "Present RPT Special Education Fund rate (1%) of Assessed Value x years delinquent + penalties"
+      },
+      {
+        "step": 2,
+        "action": "Present payment",
+        "agency_action": "Receive payment and issue Official Receipt"
+      }
+    ],
+    "fees": {
+      "amount": "Depends on the Assessed Value of the Real Property",
+      "description": "Annual tax"
+    },
+    "processingTime": "7 Minutes",
+    "personResponsible": [
+      "RCC I",
+      "Administrative Aide",
+      "Bookbinder II"
+    ]
   },
   {
     "service": "Payment of Real Property Tax Clearance",
@@ -7535,7 +9090,10 @@
       "description": "based on property assessment"
     },
     "processingTime": "5-10 minutes",
-    "personResponsible": ["Tax Collection Clerk", "Municipal Treasurer"]
+    "personResponsible": [
+      "Tax Collection Clerk",
+      "Municipal Treasurer"
+    ]
   },
   {
     "service": "PAYMENT PENALTIES FOR MUNICIPAL ORDINANCES VIOLATIONS",
@@ -7586,7 +9144,10 @@
       "description": "depending on ordinance violated"
     },
     "processingTime": "5-10 minutes",
-    "personResponsible": ["TRU Officer", "Cashier"]
+    "personResponsible": [
+      "TRU Officer",
+      "Cashier"
+    ]
   },
   {
     "service": "PERSONS WITH DISABILITY (PWD) ID CARD ISSUANCE",
@@ -7645,7 +9206,10 @@
       "description": ""
     },
     "processingTime": "30 minutes",
-    "personResponsible": ["PDAO Head", "PDAO Staff"]
+    "personResponsible": [
+      "PDAO Head",
+      "PDAO Staff"
+    ]
   },
   {
     "service": "Petition for Correction of Month/Date of Birth (R.A. 10172)",
@@ -7653,7 +9217,9 @@
     "type": "transaction",
     "url": "https://losbanos.gov.ph/posts/84",
     "description": "Administrative remedy for correcting clerical or typographical errors in the day and/or month of birth in the Civil Register.",
-    "officeSlug": ["local-civil-registry-office"],
+    "officeSlug": [
+      "local-civil-registry-office"
+    ],
     "category": {
       "name": "Certificates & Vital Records",
       "slug": "certificates-vital-records"
@@ -7684,7 +9250,9 @@
     "type": "transaction",
     "url": "https://losbanos.gov.ph/posts/85",
     "description": "Administrative procedure to correct an erroneous entry in the sex of a person in the Certificate of Live Birth.",
-    "officeSlug": ["local-civil-registry-office"],
+    "officeSlug": [
+      "local-civil-registry-office"
+    ],
     "category": {
       "name": "Certificates & Vital Records",
       "slug": "certificates-vital-records"
@@ -7733,7 +9301,8 @@
       },
       {
         "requirement": "Birth Certificates",
-        "where_to_secure": "Local Civil Registry"
+        "where_to_secure": "Local Civil Registry",
+        "serviceSlug": "birth-certificate-registration"
       },
       {
         "requirement": "Certificate of No Marriage (CENOMAR)",
@@ -7766,7 +9335,10 @@
       "description": ""
     },
     "processingTime": "2-3 hours",
-    "personResponsible": ["MSWDO Social Worker", "Counselor"]
+    "personResponsible": [
+      "MSWDO Social Worker",
+      "Counselor"
+    ]
   },
   {
     "service": "PRE-NATAL CARE SERVICES",
@@ -7813,7 +9385,11 @@
       "description": ""
     },
     "processingTime": "1 hour",
-    "personResponsible": ["Midwife", "Nurse", "Rural Health Physician"]
+    "personResponsible": [
+      "Midwife",
+      "Nurse",
+      "Rural Health Physician"
+    ]
   },
   {
     "service": "PROCESSING OF DISBURSEMENTS",
@@ -7877,14 +9453,19 @@
       "description": ""
     },
     "processingTime": "5-10 working days",
-    "personResponsible": ["Municipal Accountant", "Accounting Staff"]
+    "personResponsible": [
+      "Municipal Accountant",
+      "Accounting Staff"
+    ]
   },
   {
     "service": "Programmatic Management of Drug Resistant Tuberculosis (PMDT)",
     "slug": "pmdt-services",
     "type": "information",
     "description": "Specialized care and medication management for drug-resistant TB strains.",
-    "officeSlug": ["municipal-health-office"],
+    "officeSlug": [
+      "municipal-health-office"
+    ],
     "category": {
       "name": "Health & Wellness",
       "slug": "health-wellness"
@@ -7948,7 +9529,9 @@
       "description": ""
     },
     "processingTime": "8 Minutes",
-    "personResponsible": ["Veterinarian/Trained Vaccinator"]
+    "personResponsible": [
+      "Veterinarian/Trained Vaccinator"
+    ]
   },
   {
     "service": "PROVISION OF ASSISTIVE DEVICE FOR PERSONS WITH DISABILITIES",
@@ -8003,7 +9586,10 @@
       "description": "subject to availability"
     },
     "processingTime": "7-30 working days",
-    "personResponsible": ["PDAO Head", "PDAO Staff"]
+    "personResponsible": [
+      "PDAO Head",
+      "PDAO Staff"
+    ]
   },
   {
     "service": "PUBLIC BIDDING",
@@ -8077,7 +9663,11 @@
       "description": "varies by project"
     },
     "processingTime": "30-90 days (depending on project)",
-    "personResponsible": ["BAC Chairman", "BAC Secretariat", "BAC Members"]
+    "personResponsible": [
+      "BAC Chairman",
+      "BAC Secretariat",
+      "BAC Members"
+    ]
   },
   {
     "service": "PUBLIC CUSTOMER ASSISTANCE",
@@ -8128,14 +9718,19 @@
       "description": ""
     },
     "processingTime": "Varies",
-    "personResponsible": ["Mayor's Office Staff", "Customer Service Officer"]
+    "personResponsible": [
+      "Mayor's Office Staff",
+      "Customer Service Officer"
+    ]
   },
   {
     "service": "Public School Directory",
     "slug": "public-school-directory",
     "type": "information",
     "description": "A comprehensive list of public elementary and secondary schools in the municipality.",
-    "officeSlug": ["department-of-education"],
+    "officeSlug": [
+      "department-of-education"
+    ],
     "category": {
       "name": "Education & Scholarship",
       "slug": "education-scholarship"
@@ -8151,7 +9746,9 @@
       "University of the Philippines Rural High School"
     ],
     "requirements": [],
-    "relatedServices": ["scholarship-application"],
+    "relatedServices": [
+      "scholarship-application"
+    ],
     "faqs": [
       {
         "question": "When does enrollment start?",
@@ -8173,17 +9770,61 @@
     "serviceNumber": "5.14",
     "source": "citizens-charter",
     "type": "transaction",
-    "officeDivision": "LOCAL CIVIL REGISTRY OFFICE",
-    "officeSlug": "local-civil-registry-office",
+    "officeDivision": "CIVIL REGISTRY OFFICE",
+    "officeSlug": "",
     "category": {
-      "name": "Certificates & Vital Records",
-      "slug": "certificates-vital-records"
+      "name": "Other Municipal Services",
+      "slug": "other-municipal"
     },
-    "classification": null,
-    "typeOfTransaction": null,
-    "whoMayAvail": null,
-    "dataComplete": false,
-    "needsVerification": true
+    "classification": "Simple",
+    "typeOfTransaction": "G2C (Government to Citizen)",
+    "whoMayAvail": "Individuals seeking name change",
+    "dataComplete": true,
+    "needsVerification": false,
+    "detailedRequirements": [
+      {
+        "requirement": "Certificate of Live Birth",
+        "where_to_secure": "Civil Registry/PSA"
+      },
+      {
+        "requirement": "Petition for Change of First Name",
+        "where_to_secure": "Lawyer"
+      },
+      {
+        "requirement": "Valid IDs",
+        "where_to_secure": "Petitioner"
+      },
+      {
+        "requirement": "Affidavit of undertaking",
+        "where_to_secure": "Lawyer"
+      }
+    ],
+    "clientSteps": [
+      {
+        "step": 1,
+        "action": "Submit petition and requirements",
+        "agency_action": "Receive and evaluate"
+      },
+      {
+        "step": 2,
+        "action": "Pay fees",
+        "agency_action": "Issue Official Receipt"
+      },
+      {
+        "step": 3,
+        "action": "Wait for processing",
+        "agency_action": "Process petition"
+      }
+    ],
+    "fees": {
+      "amount": "₱3,000.00",
+      "description": "Filing fee"
+    },
+    "processingTime": "Varies",
+    "personResponsible": [
+      "Civil Registry Head",
+      "Civil Registry Staff"
+    ]
   },
   {
     "service": "R.A. 9048 - Petition for Correction of Clerical Error (CCE)",
@@ -8256,14 +9897,19 @@
       "description": "depending on type of correction"
     },
     "processingTime": "3-5 working days",
-    "personResponsible": ["LCRO Clerk", "LCRO Officer"]
+    "personResponsible": [
+      "LCRO Clerk",
+      "LCRO Officer"
+    ]
   },
   {
     "service": "Real Property Tax Payment",
     "slug": "real-property-tax-payment",
     "type": "transaction",
     "description": "Payment of taxes on land, buildings, and machinery (Amilyar).",
-    "officeSlug": ["municipal-treasurers-office"],
+    "officeSlug": [
+      "municipal-treasurers-office"
+    ],
     "category": {
       "name": "Taxation & Assessment",
       "slug": "taxation-assessment"
@@ -8274,7 +9920,10 @@
       "Proceed to Treasurer's window for payment.",
       "Receive Official Receipt."
     ],
-    "requirements": ["Previous Official Receipt", "Tax Declaration Number"],
+    "requirements": [
+      "Previous Official Receipt",
+      "Tax Declaration Number"
+    ],
     "quickInfo": {
       "processingTime": "30 minutes",
       "fee": "1% of Assessed Value",
@@ -8424,7 +10073,10 @@
       "description": ""
     },
     "processingTime": "30 minutes",
-    "personResponsible": ["PDAO Head", "PDAO Staff"]
+    "personResponsible": [
+      "PDAO Head",
+      "PDAO Staff"
+    ]
   },
   {
     "service": "REGISTRATION OF DEATH",
@@ -8484,7 +10136,10 @@
       "description": "per copy"
     },
     "processingTime": "5 minutes",
-    "personResponsible": ["LCRO Clerk", "LCRO Officer"]
+    "personResponsible": [
+      "LCRO Clerk",
+      "LCRO Officer"
+    ]
   },
   {
     "service": "REGISTRATION OF FOUNDLING",
@@ -8514,7 +10169,8 @@
       },
       {
         "requirement": "Birth Certificate (if available)",
-        "where_to_secure": "Hospital/Clinic"
+        "where_to_secure": "Hospital/Clinic",
+        "serviceSlug": "birth-certificate-registration"
       },
       {
         "requirement": "Report to DSWD/police",
@@ -8557,7 +10213,10 @@
       "description": "registration fee"
     },
     "processingTime": "2-3 working days",
-    "personResponsible": ["LCRO Clerk", "LCRO Officer"]
+    "personResponsible": [
+      "LCRO Clerk",
+      "LCRO Officer"
+    ]
   },
   {
     "service": "REGISTRATION OF LIVE BIRTH",
@@ -8579,11 +10238,13 @@
     "detailedRequirements": [
       {
         "requirement": "Birth Certificate (BCR/CLCR)",
-        "where_to_secure": "Any civil registry office"
+        "where_to_secure": "Any civil registry office",
+        "serviceSlug": "birth-certificate-registration"
       },
       {
         "requirement": "Marriage Certificate (if parents are married)",
-        "where_to_secure": "Any civil registry office"
+        "where_to_secure": "Any civil registry office",
+        "serviceSlug": "marriage-license-application"
       },
       {
         "requirement": "Affidavit of Paternity/Acknowledgment (if parents are unmarried)",
@@ -8616,7 +10277,10 @@
       "description": "per copy"
     },
     "processingTime": "5 minutes",
-    "personResponsible": ["LCRO Clerk", "LCRO Officer"]
+    "personResponsible": [
+      "LCRO Clerk",
+      "LCRO Officer"
+    ]
   },
   {
     "service": "REGISTRATION OF MARRIAGE",
@@ -8675,7 +10339,10 @@
       "description": "per copy"
     },
     "processingTime": "5 minutes",
-    "personResponsible": ["LCRO Clerk", "LCRO Officer"]
+    "personResponsible": [
+      "LCRO Clerk",
+      "LCRO Officer"
+    ]
   },
   {
     "service": "Registration of Regular and Timely Certificate of Death",
@@ -8683,17 +10350,57 @@
     "serviceNumber": "5.6",
     "source": "citizens-charter",
     "type": "transaction",
-    "officeDivision": "LOCAL CIVIL REGISTRY OFFICE",
-    "officeSlug": "local-civil-registry-office",
+    "officeDivision": "CIVIL REGISTRY OFFICE",
+    "officeSlug": "",
     "category": {
-      "name": "Certificates & Vital Records",
-      "slug": "certificates-vital-records"
+      "name": "Other Municipal Services",
+      "slug": "other-municipal"
     },
-    "classification": null,
-    "typeOfTransaction": null,
-    "whoMayAvail": null,
-    "dataComplete": false,
-    "needsVerification": true
+    "classification": "Simple",
+    "typeOfTransaction": "G2C - Government to Citizens",
+    "whoMayAvail": "LB Constituents, Non-LB residents, immediate family member, Funeral Home, Barangay Chairman",
+    "dataComplete": true,
+    "needsVerification": false,
+    "detailedRequirements": [
+      {
+        "requirement": "Original Certificate of Death (4 copies)",
+        "where_to_secure": "Hospitals, Rural Health Unit, Medical Clinics"
+      },
+      {
+        "requirement": "Autopsy Report (if applicable)",
+        "where_to_secure": "NBI or PNP - Medico Legal Section"
+      },
+      {
+        "requirement": "Photocopy of Government Issued IDs of the Deceased and Informant",
+        "where_to_secure": "BIR, SSS, GSIS, PAG-IBIG, LTO, PRC, DFA, Company ID, Post Office, IBP"
+      }
+    ],
+    "clientSteps": [
+      {
+        "step": 1,
+        "action": "Submit the Certificate of Death for registration",
+        "agency_action": "Receive and review document"
+      },
+      {
+        "step": 2,
+        "action": "Present personal copy of the Death Certificate",
+        "agency_action": "Review and sign MCR or authorized signatory"
+      },
+      {
+        "step": 3,
+        "action": "Wait for processing",
+        "agency_action": "Certificate of Marriage shall be issued on the 11th day from the submission of the Application"
+      }
+    ],
+    "fees": {
+      "amount": "",
+      "description": "None"
+    },
+    "personResponsible": [
+      "Administrative Aide/",
+      "Clerk – Counter 7",
+      "Civil Registry Office"
+    ]
   },
   {
     "service": "Registration of Regular and Timely Certificate of Live Birth",
@@ -8701,17 +10408,119 @@
     "serviceNumber": "5.1",
     "source": "citizens-charter",
     "type": "transaction",
-    "officeDivision": "LOCAL CIVIL REGISTRY OFFICE",
-    "officeSlug": "local-civil-registry-office",
+    "officeDivision": "Civil Registry Office",
+    "officeSlug": "",
     "category": {
-      "name": "Certificates & Vital Records",
-      "slug": "certificates-vital-records"
+      "name": "Other Municipal Services",
+      "slug": "other-municipal"
     },
-    "classification": null,
-    "typeOfTransaction": null,
-    "whoMayAvail": null,
-    "dataComplete": false,
-    "needsVerification": true
+    "classification": "Simple",
+    "typeOfTransaction": "G2C",
+    "whoMayAvail": "All Government/Private Hospitals, Maternity & Lying-In Clinics/other",
+    "dataComplete": true,
+    "needsVerification": false,
+    "clientSteps": [
+      {
+        "step": 1,
+        "action": "1 Checks",
+        "agency_action": ""
+      },
+      {
+        "step": 1,
+        "action": "Submit of entries and",
+        "agency_action": ""
+      },
+      {
+        "step": 2,
+        "action": "Proceed to the APP-",
+        "agency_action": ""
+      },
+      {
+        "step": 2,
+        "action": "1 If complete",
+        "agency_action": ""
+      },
+      {
+        "step": 2,
+        "action": "2 Signs the",
+        "agency_action": ""
+      },
+      {
+        "step": 3,
+        "action": "Release",
+        "agency_action": ""
+      },
+      {
+        "step": 3,
+        "action": "Receive personal Admin Aide -",
+        "agency_action": ""
+      },
+      {
+        "step": 5,
+        "action": "2 Delayed Registration of Regular and Timely Certificate of Live Birth",
+        "agency_action": ""
+      },
+      {
+        "step": 1,
+        "action": "1 Informs the Admin Aide",
+        "agency_action": ""
+      },
+      {
+        "step": 100,
+        "action": "00 date falls",
+        "agency_action": ""
+      },
+      {
+        "step": 1,
+        "action": "2 Informs client to",
+        "agency_action": ""
+      },
+      {
+        "step": 1,
+        "action": "3 If Issued with a",
+        "agency_action": ""
+      },
+      {
+        "step": 1,
+        "action": "Submit all CNR, provide release",
+        "agency_action": ""
+      },
+      {
+        "step": 1,
+        "action": "4 Upon completion of",
+        "agency_action": ""
+      },
+      {
+        "step": 1,
+        "action": "5 If completely filled",
+        "agency_action": ""
+      },
+      {
+        "step": 1,
+        "action": "6 Advise the",
+        "agency_action": ""
+      },
+      {
+        "step": 1,
+        "action": "7 Issues order of",
+        "agency_action": ""
+      },
+      {
+        "step": 2,
+        "action": "Pay the",
+        "agency_action": ""
+      },
+      {
+        "step": 2,
+        "action": "Once paid,",
+        "agency_action": ""
+      },
+      {
+        "step": 3,
+        "action": "Wait until the 3. Signs the MCR or",
+        "agency_action": ""
+      }
+    ]
   },
   {
     "service": "Registration of Regular and Timely Certificate of Marriage",
@@ -8719,17 +10528,48 @@
     "serviceNumber": "5.4",
     "source": "citizens-charter",
     "type": "transaction",
-    "officeDivision": "LOCAL CIVIL REGISTRY OFFICE",
-    "officeSlug": "local-civil-registry-office",
+    "officeDivision": "CIVIL REGISTRY OFFICE",
+    "officeSlug": "",
     "category": {
-      "name": "Certificates & Vital Records",
-      "slug": "certificates-vital-records"
+      "name": "Other Municipal Services",
+      "slug": "other-municipal"
     },
-    "classification": null,
-    "typeOfTransaction": null,
-    "whoMayAvail": null,
-    "dataComplete": false,
-    "needsVerification": true
+    "classification": "Simple",
+    "typeOfTransaction": "G2C (Government to Citizens)",
+    "whoMayAvail": "Contracting parties, Informant",
+    "dataComplete": true,
+    "needsVerification": false,
+    "detailedRequirements": [
+      {
+        "requirement": "Marriage Contract (4 copies)",
+        "where_to_secure": "Licensure/Officiating Person"
+      },
+      {
+        "requirement": "Valid IDs",
+        "where_to_secure": "Requesting party"
+      }
+    ],
+    "clientSteps": [
+      {
+        "step": 1,
+        "action": "Submit Marriage Contract for registration",
+        "agency_action": "Receive and document review"
+      },
+      {
+        "step": 2,
+        "action": "Wait for processing",
+        "agency_action": "Register marriage"
+      }
+    ],
+    "fees": {
+      "amount": "",
+      "description": "None"
+    },
+    "processingTime": "11 days",
+    "personResponsible": [
+      "Administrative Aide",
+      "Civil Registry Staff"
+    ]
   },
   {
     "service": "RENEWAL OF BUSINESS PERMIT",
@@ -8806,7 +10646,11 @@
       "description": "per annum"
     },
     "processingTime": "1 day",
-    "personResponsible": ["BPLO Head", "BPLO Staff", "Sanitary Inspector"]
+    "personResponsible": [
+      "BPLO Head",
+      "BPLO Staff",
+      "Sanitary Inspector"
+    ]
   },
   {
     "service": "RENEWAL OF BUSINESS PERMIT (WITH CONSTRUCTION)",
@@ -8870,14 +10714,20 @@
       "description": "per National Building Code"
     },
     "processingTime": "5 working days",
-    "personResponsible": ["Building Official", "Plans Examiner", "OBO Staff"]
+    "personResponsible": [
+      "Building Official",
+      "Plans Examiner",
+      "OBO Staff"
+    ]
   },
   {
     "service": "Reproductive Health Services",
     "slug": "reproductive-health-services",
     "type": "information",
     "description": "Comprehensive care related to reproductive wellness and STI prevention.",
-    "officeSlug": ["municipal-health-office"],
+    "officeSlug": [
+      "municipal-health-office"
+    ],
     "category": {
       "name": "Health & Wellness",
       "slug": "health-wellness"
@@ -8892,17 +10742,58 @@
     "serviceNumber": "5.11",
     "source": "citizens-charter",
     "type": "transaction",
-    "officeDivision": "LOCAL CIVIL REGISTRY OFFICE",
-    "officeSlug": "local-civil-registry-office",
+    "officeDivision": "CIVIL REGISTRY OFFICE",
+    "officeSlug": "",
     "category": {
-      "name": "Certificates & Vital Records",
-      "slug": "certificates-vital-records"
+      "name": "Other Municipal Services",
+      "slug": "other-municipal"
     },
-    "classification": null,
-    "typeOfTransaction": null,
-    "whoMayAvail": null,
-    "dataComplete": false,
-    "needsVerification": true
+    "classification": "Simple",
+    "typeOfTransaction": "G2C - Government to Citizens",
+    "whoMayAvail": "All requesting parties",
+    "dataComplete": true,
+    "needsVerification": false,
+    "detailedRequirements": [
+      {
+        "requirement": "Duly accomplished request form",
+        "where_to_secure": "Civil Registry Office"
+      },
+      {
+        "requirement": "Valid Identification Card",
+        "where_to_secure": "Requesting party"
+      },
+      {
+        "requirement": "Authorization letter (if requesting for another person)",
+        "where_to_secure": "Requesting party"
+      }
+    ],
+    "clientSteps": [
+      {
+        "step": 1,
+        "action": "Proceed to Civil Registry Office and submit requirements",
+        "agency_action": "Receive and evaluate request"
+      },
+      {
+        "step": 2,
+        "action": "Pay corresponding fees",
+        "agency_action": "Issue Official Receipt"
+      },
+      {
+        "step": 3,
+        "action": "Claim requested document",
+        "agency_action": "Release Certified True Copy"
+      }
+    ],
+    "fees": {
+      "amount": "₱50.00",
+      "description": "per copy"
+    },
+    "processingTime": "15 minutes",
+    "personResponsible": [
+      "Administrative Aide/",
+      "Clerk – Counter 3",
+      "Civil Registry Office"
+    ]
   },
   {
     "service": "REQUEST FOR AUTHENTICATED COPY OF EMPLOYEES' INFORMATION (201 FILE)",
@@ -8961,7 +10852,10 @@
       "description": "for employee; varies for external request"
     },
     "processingTime": "3-5 working days",
-    "personResponsible": ["HRMO Head", "Records Officer"]
+    "personResponsible": [
+      "HRMO Head",
+      "Records Officer"
+    ]
   },
   {
     "service": "REQUEST FOR BUILDING INSPECTION (DURING CONSTRUCTION)",
@@ -9012,7 +10906,10 @@
       "description": "per inspection"
     },
     "processingTime": "3 working days",
-    "personResponsible": ["Building Inspector", "OBO Staff"]
+    "personResponsible": [
+      "Building Inspector",
+      "OBO Staff"
+    ]
   },
   {
     "service": "Request for Burial Permit",
@@ -9020,17 +10917,63 @@
     "serviceNumber": "5.9",
     "source": "citizens-charter",
     "type": "transaction",
-    "officeDivision": "LOCAL CIVIL REGISTRY OFFICE",
-    "officeSlug": "local-civil-registry-office",
+    "officeDivision": "CIVIL REGISTRY OFFICE",
+    "officeSlug": "",
     "category": {
-      "name": "Certificates & Vital Records",
-      "slug": "certificates-vital-records"
+      "name": "Other Municipal Services",
+      "slug": "other-municipal"
     },
-    "classification": null,
-    "typeOfTransaction": null,
-    "whoMayAvail": null,
-    "dataComplete": false,
-    "needsVerification": true
+    "classification": "Simple",
+    "typeOfTransaction": "G2C - Government to Citizens",
+    "whoMayAvail": "LB Constituents, Non-LB residents whose deceased family member was buried in cemeteries in LB",
+    "dataComplete": true,
+    "needsVerification": false,
+    "detailedRequirements": [
+      {
+        "requirement": "Exhumation Letter",
+        "where_to_secure": "Client"
+      },
+      {
+        "requirement": "Certified copy of Certificate of Death",
+        "where_to_secure": "Local Civil Registry Office (LCRO) where the death occurred or PSA"
+      },
+      {
+        "requirement": "Valid Identification Cards (IDs)",
+        "where_to_secure": "The informant of the Certificate of Death/Family/Relative/Authorized Person"
+      }
+    ],
+    "clientSteps": [
+      {
+        "step": 1,
+        "action": "Submit the documentary requirements for evaluation",
+        "agency_action": "Receive the documentary requirements for evaluation"
+      },
+      {
+        "step": 2,
+        "action": "Secure the Order of Payment upon evaluation if the documentary requirements are complete and correct",
+        "agency_action": "Issue Order of Payment"
+      },
+      {
+        "step": 3,
+        "action": "Pay the corresponding fee at the Treasurer's Office",
+        "agency_action": "Receive payment and issue Official Receipt"
+      },
+      {
+        "step": 4,
+        "action": "Return to Civil Registry Office",
+        "agency_action": "Release Burial Permit"
+      }
+    ],
+    "fees": {
+      "amount": "₱50.00",
+      "description": "Burial Permit"
+    },
+    "processingTime": "4 minutes",
+    "personResponsible": [
+      "Administrative Aide/",
+      "Clerk – Counter 7",
+      "Civil Registry Office"
+    ]
   },
   {
     "service": "REQUEST FOR CERTIFICATE OF NO MARRIAGE RECORD (CENOMAR)",
@@ -9081,7 +11024,10 @@
       "description": "per copy"
     },
     "processingTime": "20-30 minutes",
-    "personResponsible": ["LCRO Clerk", "LCRO Officer"]
+    "personResponsible": [
+      "LCRO Clerk",
+      "LCRO Officer"
+    ]
   },
   {
     "service": "REQUEST FOR CERTIFICATE OF NO RECORD",
@@ -9132,7 +11078,10 @@
       "description": "per copy"
     },
     "processingTime": "20-30 minutes",
-    "personResponsible": ["LCRO Clerk", "LCRO Officer"]
+    "personResponsible": [
+      "LCRO Clerk",
+      "LCRO Officer"
+    ]
   },
   {
     "service": "REQUEST FOR CERTIFIED TRUE COPY",
@@ -9187,7 +11136,10 @@
       "description": "additional ₱25.00 for certification"
     },
     "processingTime": "10-15 minutes",
-    "personResponsible": ["LCRO Clerk", "LCRO Officer"]
+    "personResponsible": [
+      "LCRO Clerk",
+      "LCRO Officer"
+    ]
   },
   {
     "service": "REQUEST FOR CERTIFIED TRUE COPY OF PUBLIC DOCUMENT",
@@ -9247,7 +11199,10 @@
       "description": "per copy"
     },
     "processingTime": "30 minutes - 1 day (depending on document location)",
-    "personResponsible": ["Records Officer", "Records Staff"]
+    "personResponsible": [
+      "Records Officer",
+      "Records Staff"
+    ]
   },
   {
     "service": "REQUEST FOR CERTIFIED TRUE COPY OF TAX DECLARATION",
@@ -9306,7 +11261,10 @@
       "description": "per copy"
     },
     "processingTime": "15-30 minutes",
-    "personResponsible": ["Assessment Clerk", "Municipal Assessor"]
+    "personResponsible": [
+      "Assessment Clerk",
+      "Municipal Assessor"
+    ]
   },
   {
     "service": "REQUEST FOR CIVIL REGISTRY DOCUMENT (BIRTH, DEATH, MARRIAGE)",
@@ -9361,7 +11319,10 @@
       "description": "for birth, death, marriage certificates"
     },
     "processingTime": "10-15 minutes",
-    "personResponsible": ["LCRO Clerk", "LCRO Officer"]
+    "personResponsible": [
+      "LCRO Clerk",
+      "LCRO Officer"
+    ]
   },
   {
     "service": "Request for Cremation Permit",
@@ -9369,17 +11330,54 @@
     "serviceNumber": "5.10",
     "source": "citizens-charter",
     "type": "transaction",
-    "officeDivision": "LOCAL CIVIL REGISTRY OFFICE",
-    "officeSlug": "local-civil-registry-office",
+    "officeDivision": "CIVIL REGISTRY OFFICE",
+    "officeSlug": "",
     "category": {
-      "name": "Certificates & Vital Records",
-      "slug": "certificates-vital-records"
+      "name": "Other Municipal Services",
+      "slug": "other-municipal"
     },
-    "classification": null,
-    "typeOfTransaction": null,
-    "whoMayAvail": null,
-    "dataComplete": false,
-    "needsVerification": true
+    "classification": "Simple",
+    "typeOfTransaction": "G2C - Government to Citizens",
+    "whoMayAvail": "LB Constituents, Non-LB residents whose deceased family member was buried in cemeteries in LB",
+    "dataComplete": true,
+    "needsVerification": false,
+    "detailedRequirements": [
+      {
+        "requirement": "Certificate of Death",
+        "where_to_secure": "Hospital/Clinic"
+      },
+      {
+        "requirement": "Valid Identification Cards (IDs)",
+        "where_to_secure": "The informant of the Certificate of Death/Family/Relative/Authorized Person"
+      }
+    ],
+    "clientSteps": [
+      {
+        "step": 1,
+        "action": "Submit the Certificate of Death and valid IDs",
+        "agency_action": "Receive and evaluate documents"
+      },
+      {
+        "step": 2,
+        "action": "Pay the corresponding fee",
+        "agency_action": "Issue Official Receipt"
+      },
+      {
+        "step": 3,
+        "action": "Claim Cremation Permit",
+        "agency_action": "Release Cremation Permit"
+      }
+    ],
+    "fees": {
+      "amount": "",
+      "description": "Varies"
+    },
+    "processingTime": "Same day",
+    "personResponsible": [
+      "Administrative Aide/",
+      "Clerk – Counter 7",
+      "Civil Registry Office"
+    ]
   },
   {
     "service": "REQUEST FOR DISASTER RISK REDUCTION AND MANAGEMENT EQUIPMENT/LOGISTICS",
@@ -9434,7 +11432,10 @@
       "description": "depending on equipment/logistics requested"
     },
     "processingTime": "3-5 working days",
-    "personResponsible": ["MDRRMO Head", "Logistics Officer"]
+    "personResponsible": [
+      "MDRRMO Head",
+      "Logistics Officer"
+    ]
   },
   {
     "service": "REQUEST FOR DISASTER RISK REDUCTION AND MANAGEMENT TRAININGS AND CAPACITY BUILDING",
@@ -9485,7 +11486,10 @@
       "description": ""
     },
     "processingTime": "5-10 working days (for scheduling)",
-    "personResponsible": ["MDRRMO Head", "Training Officer"]
+    "personResponsible": [
+      "MDRRMO Head",
+      "Training Officer"
+    ]
   },
   {
     "service": "Request for Exhumation Permit",
@@ -9493,17 +11497,58 @@
     "serviceNumber": "5.8",
     "source": "citizens-charter",
     "type": "transaction",
-    "officeDivision": "LOCAL CIVIL REGISTRY OFFICE",
-    "officeSlug": "local-civil-registry-office",
+    "officeDivision": "CIVIL REGISTRY OFFICE",
+    "officeSlug": "",
     "category": {
-      "name": "Certificates & Vital Records",
-      "slug": "certificates-vital-records"
+      "name": "Other Municipal Services",
+      "slug": "other-municipal"
     },
-    "classification": null,
-    "typeOfTransaction": null,
-    "whoMayAvail": null,
-    "dataComplete": false,
-    "needsVerification": true
+    "classification": "Simple",
+    "typeOfTransaction": "G2C - Government to Citizens",
+    "whoMayAvail": "LB Constituents, Non-LB residents whose deceased family member was buried in cemeteries in LB",
+    "dataComplete": true,
+    "needsVerification": false,
+    "detailedRequirements": [
+      {
+        "requirement": "Exhumation Letter",
+        "where_to_secure": "Client"
+      },
+      {
+        "requirement": "Certified copy of Certificate of Death",
+        "where_to_secure": "Local Civil Registry Office (LCRO) where the death occurred or PSA"
+      },
+      {
+        "requirement": "Valid Identification Cards (IDs)",
+        "where_to_secure": "The informant of the Certificate of Death/Family/Relative/Authorized Person"
+      }
+    ],
+    "clientSteps": [
+      {
+        "step": 1,
+        "action": "Submit the Exhumation Letter, together with the certified copy of Certificate of Death",
+        "agency_action": "Receive the Exhumation Letter and Certificate of Death"
+      },
+      {
+        "step": 2,
+        "action": "Secure the Order of Payment upon evaluation",
+        "agency_action": "Issue Order of Exhumation of Cadaver Collector Window 4"
+      },
+      {
+        "step": 3,
+        "action": "Pay the corresponding fee at the Treasurer's Office",
+        "agency_action": "Receive payment and issue Official Receipt"
+      }
+    ],
+    "fees": {
+      "amount": "",
+      "description": "None"
+    },
+    "processingTime": "4 minutes",
+    "personResponsible": [
+      "Administrative Aide/",
+      "Clerk – Counter 7",
+      "Civil Registry Office"
+    ]
   },
   {
     "service": "REQUEST FOR INSPECTION OF BUSINESS ESTABLISHMENT",
@@ -9554,7 +11599,11 @@
       "description": ""
     },
     "processingTime": "3 days",
-    "personResponsible": ["BPLO Head", "BPLO Staff", "Sanitary Inspector"]
+    "personResponsible": [
+      "BPLO Head",
+      "BPLO Staff",
+      "Sanitary Inspector"
+    ]
   },
   {
     "service": "REQUEST FOR STATEMENT OF ACCOUNT",
@@ -9605,7 +11654,10 @@
       "description": "certification fee"
     },
     "processingTime": "15-30 minutes",
-    "personResponsible": ["Tax Collection Clerk", "Municipal Treasurer"]
+    "personResponsible": [
+      "Tax Collection Clerk",
+      "Municipal Treasurer"
+    ]
   },
   {
     "service": "REQUEST FOR TAX DECLARATION INFORMATION",
@@ -9660,7 +11712,10 @@
       "description": "per inquiry"
     },
     "processingTime": "10-15 minutes",
-    "personResponsible": ["Assessment Clerk", "Municipal Assessor"]
+    "personResponsible": [
+      "Assessment Clerk",
+      "Municipal Assessor"
+    ]
   },
   {
     "service": "REQUESTING CERTIFIED TRUE COPIES OF LEGAL INSTRUMENTS",
@@ -9733,14 +11788,19 @@
       "description": "or minimal fee depending on scope"
     },
     "processingTime": "3-7 working days",
-    "personResponsible": ["Tourism Officer", "Tourism Staff"]
+    "personResponsible": [
+      "Tourism Officer",
+      "Tourism Staff"
+    ]
   },
   {
     "service": "Rural Health Unit (RHU) Locations",
     "slug": "rhu-locations",
     "type": "information",
     "description": "Locations of health centers providing free primary care, immunization, and maternal services.",
-    "officeSlug": ["municipal-health-office"],
+    "officeSlug": [
+      "municipal-health-office"
+    ],
     "category": {
       "name": "Health & Wellness",
       "slug": "health-wellness"
@@ -9752,7 +11812,9 @@
       "Animal Bite Center: Municipal Hall Compound"
     ],
     "requirements": [],
-    "relatedServices": ["health-certificate"],
+    "relatedServices": [
+      "health-certificate"
+    ],
     "updatedAt": null,
     "sources": [
       {
@@ -9811,14 +11873,19 @@
       "description": "per inspection"
     },
     "processingTime": "3 days",
-    "personResponsible": ["Sanitary Inspector", "MHO Staff"]
+    "personResponsible": [
+      "Sanitary Inspector",
+      "MHO Staff"
+    ]
   },
   {
     "service": "Sanitation Services",
     "slug": "sanitation-services",
     "type": "transaction",
     "description": "Environmental health services and inspection of establishments for sanitary compliance.",
-    "officeSlug": ["municipal-health-office"],
+    "officeSlug": [
+      "municipal-health-office"
+    ],
     "category": {
       "name": "Health & Wellness",
       "slug": "health-wellness"
@@ -9835,7 +11902,9 @@
     "slug": "scholarship-application",
     "type": "transaction",
     "description": "Financial assistance program for deserving college students.",
-    "officeSlug": ["office-of-the-mayor"],
+    "officeSlug": [
+      "office-of-the-mayor"
+    ],
     "category": {
       "name": "Education & Scholarship",
       "slug": "education-scholarship"
@@ -9871,7 +11940,9 @@
     "slug": "seed-fertilizer-distribution",
     "type": "information",
     "description": "Availability of free vegetable seeds and subsidized fertilizers for local farmers.",
-    "officeSlug": ["municipal-agriculture-office"],
+    "officeSlug": [
+      "municipal-agriculture-office"
+    ],
     "category": {
       "name": "Agriculture & Livelihood",
       "slug": "agriculture-livelihood"
@@ -9899,7 +11970,9 @@
     "slug": "senior-citizen-id",
     "type": "transaction",
     "description": "Issuance of ID and purchase booklet for senior citizens (60 years old and above).",
-    "officeSlug": ["municipal-social-welfare-and-development-office"],
+    "officeSlug": [
+      "municipal-social-welfare-and-development-office"
+    ],
     "category": {
       "name": "Social Services",
       "slug": "social-services"
@@ -9987,7 +12060,10 @@
       "description": ""
     },
     "processingTime": "30 minutes",
-    "personResponsible": ["OSCA Head", "OSCA Staff"]
+    "personResponsible": [
+      "OSCA Head",
+      "OSCA Staff"
+    ]
   },
   {
     "service": "Sign Permit",
@@ -9995,7 +12071,9 @@
     "type": "transaction",
     "description": "Permit for the installation of outdoor signs, billboards, or business identifiers.",
     "url": "https://www.facebook.com/media/set/?set=a.182381717412462&type=3",
-    "officeSlug": ["municipal-engineering-office"],
+    "officeSlug": [
+      "municipal-engineering-office"
+    ],
     "category": {
       "name": "Infrastructure & Engineering",
       "slug": "infrastructure-engineering"
@@ -10067,7 +12145,10 @@
       "description": "subject to available funding/slots"
     },
     "processingTime": "Varies by training",
-    "personResponsible": ["PESO Manager", "Training Officer"]
+    "personResponsible": [
+      "PESO Manager",
+      "Training Officer"
+    ]
   },
   {
     "service": "SLAUGHTERING OF ANIMALS AND ISSUANCE OF LOCAL MEAT INSPECTION CERTIFICATE",
@@ -10136,17 +12217,50 @@
     "serviceNumber": "7.2",
     "source": "citizens-charter",
     "type": "transaction",
-    "officeDivision": "MUNICIPAL ECONOMIC ENTERPRISE - SLAUGHTERHOUSE",
-    "officeSlug": "slaughterhouse",
+    "officeDivision": "MUNICIPAL ECONOMIC ENTERPRISE: SLAUGHTERHOUSE",
+    "officeSlug": "",
     "category": {
-      "name": "Agriculture & Livelihood",
-      "slug": "agriculture-livelihood"
+      "name": "Other Municipal Services",
+      "slug": "other-municipal"
     },
-    "classification": null,
-    "typeOfTransaction": null,
-    "whoMayAvail": null,
-    "dataComplete": false,
-    "needsVerification": true
+    "classification": "Simple",
+    "typeOfTransaction": "G2B (Government to Business)",
+    "whoMayAvail": "Meat vendors, animal owners",
+    "dataComplete": true,
+    "needsVerification": false,
+    "detailedRequirements": [
+      {
+        "requirement": "Animal to be slaughtered",
+        "where_to_secure": "Owner"
+      },
+      {
+        "requirement": "Valid ID",
+        "where_to_secure": "Owner"
+      }
+    ],
+    "clientSteps": [
+      {
+        "step": 1,
+        "action": "Bring animal to slaughterhouse",
+        "agency_action": "Accept animal and conduct ante-mortem inspection"
+      },
+      {
+        "step": 2,
+        "action": "Wait for slaughtering",
+        "agency_action": "Slaughter and conduct post-mortem inspection"
+      },
+      {
+        "step": 3,
+        "action": "Pay inspection fee",
+        "agency_action": "Issue Meat Inspection Certificate"
+      }
+    ],
+    "fees": {
+      "amount": "",
+      "description": "Varies by animal size"
+    },
+    "processingTime": "Same day",
+    "personResponsible": "Meat Inspector"
   },
   {
     "service": "Special Promotional Fee",
@@ -10193,7 +12307,10 @@
       "description": "promotional fee"
     },
     "processingTime": "3-5 working days",
-    "personResponsible": ["Revenue Collection Clerk I", "Market Supervisor III"]
+    "personResponsible": [
+      "Revenue Collection Clerk I",
+      "Market Supervisor III"
+    ]
   },
   {
     "service": "SPORTS AND DEVELOPMENT: CASH INCENTIVES FOR EXEMPLARY PERFORMANCE IN SPORTS",
@@ -10252,7 +12369,10 @@
       "description": "incentive amount varies based on competition level"
     },
     "processingTime": "7-14 working days",
-    "personResponsible": ["LYDO Head", "LYDO Staff"]
+    "personResponsible": [
+      "LYDO Head",
+      "LYDO Staff"
+    ]
   },
   {
     "service": "SUBDIVISION DEVELOPMENT PERMIT PROCESSING",
@@ -10396,14 +12516,20 @@
       "description": ""
     },
     "processingTime": "30 minutes for consultation",
-    "personResponsible": ["TB Coordinator", "Nurse", "Rural Health Physician"]
+    "personResponsible": [
+      "TB Coordinator",
+      "Nurse",
+      "Rural Health Physician"
+    ]
   },
   {
     "service": "TB Prevention and Control Program",
     "slug": "tb-prevention-control-program",
     "type": "information",
     "description": "Sputum examination and DOTS (Directly Observed Treatment Short-course) for Tuberculosis.",
-    "officeSlug": ["municipal-health-office"],
+    "officeSlug": [
+      "municipal-health-office"
+    ],
     "category": {
       "name": "Health & Wellness",
       "slug": "health-wellness"
@@ -10478,14 +12604,19 @@
       "description": "transfer fee"
     },
     "processingTime": "3-5 working days",
-    "personResponsible": ["Assessment Clerk", "Municipal Assessor"]
+    "personResponsible": [
+      "Assessment Clerk",
+      "Municipal Assessor"
+    ]
   },
   {
     "service": "Tricycle Franchise Renewal",
     "slug": "tricycle-franchise-renewal",
     "type": "transaction",
     "description": "Annual renewal of franchise for tricycle operators.",
-    "officeSlug": ["tricycle-regulatory-unit"],
+    "officeSlug": [
+      "tricycle-regulatory-unit"
+    ],
     "category": {
       "name": "Public Safety",
       "slug": "public-safety"
@@ -10569,7 +12700,10 @@
       "description": "per verification"
     },
     "processingTime": "15-30 minutes",
-    "personResponsible": ["Assessment Clerk", "Municipal Assessor"]
+    "personResponsible": [
+      "Assessment Clerk",
+      "Municipal Assessor"
+    ]
   },
   {
     "service": "VERIFICATION OF TAX PAYMENT",
@@ -10624,7 +12758,10 @@
       "description": "certification fee"
     },
     "processingTime": "15-30 minutes",
-    "personResponsible": ["Tax Collection Clerk", "Municipal Treasurer"]
+    "personResponsible": [
+      "Tax Collection Clerk",
+      "Municipal Treasurer"
+    ]
   },
   {
     "service": "WALK-IN ISSUANCE OF BOOKLET (MEDICINE/GROCERY)",
@@ -10679,7 +12816,10 @@
       "description": ""
     },
     "processingTime": "15 minutes",
-    "personResponsible": ["PDAO Head", "PDAO Staff"]
+    "personResponsible": [
+      "PDAO Head",
+      "PDAO Staff"
+    ]
   },
   {
     "service": "WOMEN AND CHILDREN PROGRAM",
@@ -10809,6 +12949,9 @@
       "description": ""
     },
     "processingTime": "5-7 working days",
-    "personResponsible": ["LYDO Head", "LYDO Staff"]
+    "personResponsible": [
+      "LYDO Head",
+      "LYDO Staff"
+    ]
   }
 ]

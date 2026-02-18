@@ -1518,11 +1518,13 @@
       "requirements": [
         {
           "requirement": "Birth Certificate (BCR/CLCR)",
-          "where_to_secure": "Any civil registry office"
+          "where_to_secure": "Any civil registry office",
+          "serviceSlug": "birth-certificate-registration"
         },
         {
           "requirement": "Marriage Certificate (if parents are married)",
-          "where_to_secure": "Any civil registry office"
+          "where_to_secure": "Any civil registry office",
+          "serviceSlug": "marriage-license-application"
         },
         {
           "requirement": "Affidavit of Paternity/Acknowledgment (if parents are unmarried)",
@@ -1570,7 +1572,8 @@
       "requirements": [
         {
           "requirement": "Birth Certificate",
-          "where_to_secure": "LCRO/NSO"
+          "where_to_secure": "LCRO/NSO",
+          "serviceSlug": "birth-certificate-registration"
         },
         {
           "requirement": "Certificate of No Marriage (CENOMAR)",
@@ -1664,7 +1667,8 @@
         },
         {
           "requirement": "Birth Certificate (if available)",
-          "where_to_secure": "Hospital/Clinic"
+          "where_to_secure": "Hospital/Clinic",
+          "serviceSlug": "birth-certificate-registration"
         },
         {
           "requirement": "Report to DSWD/police",
@@ -4703,7 +4707,8 @@
         },
         {
           "requirement": "Birth Certificate",
-          "where_to_secure": "Local Civil Registry"
+          "where_to_secure": "Local Civil Registry",
+          "serviceSlug": "birth-certificate-registration"
         },
         {
           "requirement": "Parent/Guardian's Valid ID",
@@ -5274,7 +5279,8 @@
         },
         {
           "requirement": "Birth Certificates",
-          "where_to_secure": "Local Civil Registry"
+          "where_to_secure": "Local Civil Registry",
+          "serviceSlug": "birth-certificate-registration"
         },
         {
           "requirement": "Certificate of No Marriage (CENOMAR)",
@@ -5334,7 +5340,8 @@
         },
         {
           "requirement": "Birth Certificate of Child/Children",
-          "where_to_secure": "Local Civil Registry"
+          "where_to_secure": "Local Civil Registry",
+          "serviceSlug": "birth-certificate-registration"
         },
         {
           "requirement": "Proof of Income (if employed)",
@@ -5444,7 +5451,8 @@
       "requirements": [
         {
           "requirement": "Birth Certificate",
-          "where_to_secure": "Local Civil Registry"
+          "where_to_secure": "Local Civil Registry",
+          "serviceSlug": "birth-certificate-registration"
         },
         {
           "requirement": "Valid ID of parent/guardian",
@@ -5566,7 +5574,8 @@
         },
         {
           "requirement": "Birth Certificate of Child/Children",
-          "where_to_secure": "Local Civil Registry"
+          "where_to_secure": "Local Civil Registry",
+          "serviceSlug": "birth-certificate-registration"
         },
         {
           "requirement": "Proof of Income (if employed)",
@@ -8478,7 +8487,8 @@
         },
         {
           "requirement": "Parent's Marriage Certificate",
-          "where_to_secure": "Civil Registry"
+          "where_to_secure": "Civil Registry",
+          "serviceSlug": "marriage-license-application"
         },
         {
           "requirement": "Parent's Consent (if 18-21 years old) or Parent's Advice (if 21-25 years old)",

@@ -372,11 +372,7 @@
         "description": "varies by project"
       },
       "processing_time": "30-90 days (depending on project)",
-      "person_responsible": [
-        "BAC Chairman",
-        "BAC Secretariat",
-        "BAC Members"
-      ]
+      "person_responsible": ["BAC Chairman", "BAC Secretariat", "BAC Members"]
     },
     {
       "service_number": "10.2",
@@ -490,11 +486,7 @@
         "description": ""
       },
       "processing_time": "7-14 days",
-      "person_responsible": [
-        "BAC Chairman",
-        "BAC Secretariat",
-        "Mayor"
-      ]
+      "person_responsible": ["BAC Chairman", "BAC Secretariat", "Mayor"]
     },
     {
       "service_number": "11.1",
@@ -535,10 +527,7 @@
         "description": "certification fee"
       },
       "processing_time": "15-30 minutes",
-      "person_responsible": [
-        "Tax Collection Clerk",
-        "Municipal Treasurer"
-      ]
+      "person_responsible": ["Tax Collection Clerk", "Municipal Treasurer"]
     },
     {
       "service_number": "11.10",
@@ -583,10 +572,7 @@
         "description": "certification fee"
       },
       "processing_time": "15-30 minutes",
-      "person_responsible": [
-        "Tax Collection Clerk",
-        "Municipal Treasurer"
-      ]
+      "person_responsible": ["Tax Collection Clerk", "Municipal Treasurer"]
     },
     {
       "service_number": "11.11",
@@ -635,10 +621,7 @@
         "description": "per unit"
       },
       "processing_time": "15 minutes",
-      "person_responsible": [
-        "BPLO Head",
-        "BPLO Staff"
-      ]
+      "person_responsible": ["BPLO Head", "BPLO Staff"]
     },
     {
       "service_number": "11.2",
@@ -679,11 +662,7 @@
         "description": ""
       },
       "processing_time": "3 days",
-      "person_responsible": [
-        "BPLO Head",
-        "BPLO Staff",
-        "Sanitary Inspector"
-      ]
+      "person_responsible": ["BPLO Head", "BPLO Staff", "Sanitary Inspector"]
     },
     {
       "service_number": "11.3",
@@ -724,10 +703,7 @@
         "description": "based on transaction"
       },
       "processing_time": "5 minutes",
-      "person_responsible": [
-        "Cashier",
-        "Municipal Treasurer"
-      ]
+      "person_responsible": ["Cashier", "Municipal Treasurer"]
     },
     {
       "service_number": "11.4",
@@ -772,10 +748,7 @@
         "description": "certification fee"
       },
       "processing_time": "15-30 minutes",
-      "person_responsible": [
-        "Tax Collection Clerk",
-        "Municipal Treasurer"
-      ]
+      "person_responsible": ["Tax Collection Clerk", "Municipal Treasurer"]
     },
     {
       "service_number": "11.5",
@@ -832,10 +805,7 @@
         "description": "per copy"
       },
       "processing_time": "15 minutes",
-      "person_responsible": [
-        "BPLO Head",
-        "BPLO Staff"
-      ]
+      "person_responsible": ["BPLO Head", "BPLO Staff"]
     },
     {
       "service_number": "11.7",
@@ -910,11 +880,7 @@
         "description": "per annum"
       },
       "processing_time": "1 day",
-      "person_responsible": [
-        "BPLO Head",
-        "BPLO Staff",
-        "Sanitary Inspector"
-      ]
+      "person_responsible": ["BPLO Head", "BPLO Staff", "Sanitary Inspector"]
     },
     {
       "service_number": "11.8",
@@ -959,10 +925,7 @@
         "description": "based on business type and capital"
       },
       "processing_time": "10-15 minutes",
-      "person_responsible": [
-        "Tax Collection Clerk",
-        "Municipal Treasurer"
-      ]
+      "person_responsible": ["Tax Collection Clerk", "Municipal Treasurer"]
     },
     {
       "service_number": "11.9",
@@ -1029,11 +992,7 @@
         "description": "per annum"
       },
       "processing_time": "1 day",
-      "person_responsible": [
-        "BPLO Head",
-        "BPLO Staff",
-        "Sanitary Inspector"
-      ]
+      "person_responsible": ["BPLO Head", "BPLO Staff", "Sanitary Inspector"]
     },
     {
       "service_number": "12.1",
@@ -1074,10 +1033,7 @@
         "description": "per card"
       },
       "processing_time": "30 minutes",
-      "person_responsible": [
-        "ICSO Head",
-        "ICSO Staff"
-      ]
+      "person_responsible": ["ICSO Head", "ICSO Staff"]
     },
     {
       "service_number": "13.1",
@@ -1118,10 +1074,7 @@
         "description": "per copy"
       },
       "processing_time": "20-30 minutes",
-      "person_responsible": [
-        "LCRO Clerk",
-        "LCRO Officer"
-      ]
+      "person_responsible": ["LCRO Clerk", "LCRO Officer"]
     },
     {
       "service_number": "13.10",
@@ -1180,10 +1133,7 @@
         "description": "depending on delay period"
       },
       "processing_time": "1-2 days",
-      "person_responsible": [
-        "LCRO Clerk",
-        "LCRO Officer"
-      ]
+      "person_responsible": ["LCRO Clerk", "LCRO Officer"]
     },
     {
       "service_number": "13.11",
@@ -1232,10 +1182,7 @@
         "description": "per copy"
       },
       "processing_time": "5 minutes",
-      "person_responsible": [
-        "LCRO Clerk",
-        "LCRO Officer"
-      ]
+      "person_responsible": ["LCRO Clerk", "LCRO Officer"]
     },
     {
       "service_number": "13.12",
@@ -1298,10 +1245,7 @@
         "description": "depending on delay period"
       },
       "processing_time": "1-2 days",
-      "person_responsible": [
-        "LCRO Clerk",
-        "LCRO Officer"
-      ]
+      "person_responsible": ["LCRO Clerk", "LCRO Officer"]
     },
     {
       "service_number": "13.13",
@@ -1346,10 +1290,7 @@
         "description": "additional ₱25.00 for certification"
       },
       "processing_time": "10-15 minutes",
-      "person_responsible": [
-        "LCRO Clerk",
-        "LCRO Officer"
-      ]
+      "person_responsible": ["LCRO Clerk", "LCRO Officer"]
     },
     {
       "service_number": "13.14",
@@ -1394,10 +1335,7 @@
         "description": "for birth, death, marriage certificates"
       },
       "processing_time": "10-15 minutes",
-      "person_responsible": [
-        "LCRO Clerk",
-        "LCRO Officer"
-      ]
+      "person_responsible": ["LCRO Clerk", "LCRO Officer"]
     },
     {
       "service_number": "13.15",
@@ -1438,10 +1376,7 @@
         "description": "per copy"
       },
       "processing_time": "20-30 minutes",
-      "person_responsible": [
-        "LCRO Clerk",
-        "LCRO Officer"
-      ]
+      "person_responsible": ["LCRO Clerk", "LCRO Officer"]
     },
     {
       "service_number": "13.16",
@@ -1490,10 +1425,7 @@
         "description": "per copy"
       },
       "processing_time": "5 minutes",
-      "person_responsible": [
-        "LCRO Clerk",
-        "LCRO Officer"
-      ]
+      "person_responsible": ["LCRO Clerk", "LCRO Officer"]
     },
     {
       "service_number": "13.17",
@@ -1542,10 +1474,7 @@
         "description": "per copy"
       },
       "processing_time": "30 minutes - 1 hour",
-      "person_responsible": [
-        "LCRO Clerk",
-        "LCRO Officer"
-      ]
+      "person_responsible": ["LCRO Clerk", "LCRO Officer"]
     },
     {
       "service_number": "13.2",
@@ -1577,9 +1506,7 @@
         "description": "government service"
       },
       "processing_time": "5-7 working days",
-      "person_responsible": [
-        "LCRO Officer"
-      ]
+      "person_responsible": ["LCRO Officer"]
     },
     {
       "service_number": "13.3",
@@ -1642,10 +1569,7 @@
         "description": "registration fee"
       },
       "processing_time": "2-3 working days",
-      "person_responsible": [
-        "LCRO Clerk",
-        "LCRO Officer"
-      ]
+      "person_responsible": ["LCRO Clerk", "LCRO Officer"]
     },
     {
       "service_number": "13.4",
@@ -1732,10 +1656,7 @@
         "description": "depending on delay period"
       },
       "processing_time": "1-2 days (depending on completeness)",
-      "person_responsible": [
-        "LCRO Clerk",
-        "LCRO Officer"
-      ]
+      "person_responsible": ["LCRO Clerk", "LCRO Officer"]
     },
     {
       "service_number": "13.9",
@@ -1785,10 +1706,7 @@
         "description": "per copy"
       },
       "processing_time": "5 minutes",
-      "person_responsible": [
-        "LCRO Clerk",
-        "LCRO Officer"
-      ]
+      "person_responsible": ["LCRO Clerk", "LCRO Officer"]
     },
     {
       "service_number": "14.1",
@@ -1841,10 +1759,7 @@
         "description": ""
       },
       "processing_time": "5-7 working days",
-      "person_responsible": [
-        "LYDO Head",
-        "LYDO Staff"
-      ]
+      "person_responsible": ["LYDO Head", "LYDO Staff"]
     },
     {
       "service_number": "14.2",
@@ -1893,10 +1808,7 @@
         "description": "incentive amount varies based on competition level"
       },
       "processing_time": "7-14 working days",
-      "person_responsible": [
-        "LYDO Head",
-        "LYDO Staff"
-      ]
+      "person_responsible": ["LYDO Head", "LYDO Staff"]
     },
     {
       "service_number": "14.3",
@@ -1958,11 +1870,7 @@
         "description": "assistance amount varies"
       },
       "processing_time": "7-14 working days",
-      "person_responsible": [
-        "LYDO Head",
-        "LYDO Staff",
-        "Selection Committee"
-      ]
+      "person_responsible": ["LYDO Head", "LYDO Staff", "Selection Committee"]
     },
     {
       "service_number": "14.4",
@@ -2003,10 +1911,7 @@
         "description": "per card (annual)"
       },
       "processing_time": "15 minutes",
-      "person_responsible": [
-        "Library Staff",
-        "LYDO Staff"
-      ]
+      "person_responsible": ["Library Staff", "LYDO Staff"]
     },
     {
       "service_number": "15.1",
@@ -2060,10 +1965,7 @@
         "description": ""
       },
       "processing_time": "5-10 working days",
-      "person_responsible": [
-        "Municipal Accountant",
-        "Accounting Staff"
-      ]
+      "person_responsible": ["Municipal Accountant", "Accounting Staff"]
     },
     {
       "service_number": "16.1",
@@ -2095,10 +1997,7 @@
         "description": ""
       },
       "processing_time": "7 Minutes",
-      "person_responsible": [
-        "OMA personnel",
-        "MCDC Officer"
-      ]
+      "person_responsible": ["OMA personnel", "MCDC Officer"]
     },
     {
       "service_number": "16.2",
@@ -2130,9 +2029,7 @@
         "description": ""
       },
       "processing_time": "4 Minutes",
-      "person_responsible": [
-        "OMA Staff"
-      ]
+      "person_responsible": ["OMA Staff"]
     },
     {
       "service_number": "16.3",
@@ -2191,10 +2088,7 @@
         "description": "per copy"
       },
       "processing_time": "15-30 minutes",
-      "person_responsible": [
-        "Assessment Clerk",
-        "Municipal Assessor"
-      ]
+      "person_responsible": ["Assessment Clerk", "Municipal Assessor"]
     },
     {
       "service_number": "17.2",
@@ -2381,10 +2275,7 @@
         "description": "transfer fee"
       },
       "processing_time": "3-5 working days",
-      "person_responsible": [
-        "Assessment Clerk",
-        "Municipal Assessor"
-      ]
+      "person_responsible": ["Assessment Clerk", "Municipal Assessor"]
     },
     {
       "service_number": "17.5",
@@ -2501,10 +2392,7 @@
         "description": "cancellation fee"
       },
       "processing_time": "3-5 working days",
-      "person_responsible": [
-        "Assessment Clerk",
-        "Municipal Assessor"
-      ]
+      "person_responsible": ["Assessment Clerk", "Municipal Assessor"]
     },
     {
       "service_number": "17.7",
@@ -2549,10 +2437,7 @@
         "description": "per inquiry"
       },
       "processing_time": "10-15 minutes",
-      "person_responsible": [
-        "Assessment Clerk",
-        "Municipal Assessor"
-      ]
+      "person_responsible": ["Assessment Clerk", "Municipal Assessor"]
     },
     {
       "service_number": "17.8",
@@ -2597,10 +2482,7 @@
         "description": "per verification"
       },
       "processing_time": "15-30 minutes",
-      "person_responsible": [
-        "Assessment Clerk",
-        "Municipal Assessor"
-      ]
+      "person_responsible": ["Assessment Clerk", "Municipal Assessor"]
     },
     {
       "service_number": "18.1",
@@ -2636,10 +2518,7 @@
         "description": ""
       },
       "processing_time": "Immediate response",
-      "person_responsible": [
-        "MDRRMO Head",
-        "Response Team"
-      ]
+      "person_responsible": ["MDRRMO Head", "Response Team"]
     },
     {
       "service_number": "18.2",
@@ -2680,10 +2559,7 @@
         "description": ""
       },
       "processing_time": "5-10 working days (for scheduling)",
-      "person_responsible": [
-        "MDRRMO Head",
-        "Training Officer"
-      ]
+      "person_responsible": ["MDRRMO Head", "Training Officer"]
     },
     {
       "service_number": "18.3",
@@ -2728,10 +2604,7 @@
         "description": "depending on equipment/logistics requested"
       },
       "processing_time": "3-5 working days",
-      "person_responsible": [
-        "MDRRMO Head",
-        "Logistics Officer"
-      ]
+      "person_responsible": ["MDRRMO Head", "Logistics Officer"]
     },
     {
       "service_number": "19.1",
@@ -3133,10 +3006,7 @@
         "description": "per PD 856 (Sanitation Code)"
       },
       "processing_time": "2 working days",
-      "person_responsible": [
-        "Sanitary Inspector",
-        "OBO Staff"
-      ]
+      "person_responsible": ["Sanitary Inspector", "OBO Staff"]
     },
     {
       "service_number": "20.10",
@@ -3190,11 +3060,7 @@
         "description": "per National Building Code"
       },
       "processing_time": "5 working days",
-      "person_responsible": [
-        "Building Official",
-        "Plans Examiner",
-        "OBO Staff"
-      ]
+      "person_responsible": ["Building Official", "Plans Examiner", "OBO Staff"]
     },
     {
       "service_number": "20.11",
@@ -3244,10 +3110,7 @@
         "description": "plus ₱10.00 per linear meter"
       },
       "processing_time": "2 working days",
-      "person_responsible": [
-        "Plans Examiner",
-        "OBO Staff"
-      ]
+      "person_responsible": ["Plans Examiner", "OBO Staff"]
     },
     {
       "service_number": "20.12",
@@ -3301,10 +3164,7 @@
         "description": "per sign"
       },
       "processing_time": "2 working days",
-      "person_responsible": [
-        "Plans Examiner",
-        "OBO Staff"
-      ]
+      "person_responsible": ["Plans Examiner", "OBO Staff"]
     },
     {
       "service_number": "20.13",
@@ -3362,11 +3222,7 @@
         "description": "plus ₱5.00 per square meter"
       },
       "processing_time": "5 working days",
-      "person_responsible": [
-        "Building Official",
-        "Plans Examiner",
-        "OBO Staff"
-      ]
+      "person_responsible": ["Building Official", "Plans Examiner", "OBO Staff"]
     },
     {
       "service_number": "20.14",
@@ -3432,11 +3288,7 @@
         "description": "per National Building Code"
       },
       "processing_time": "5 working days",
-      "person_responsible": [
-        "Building Official",
-        "Plans Examiner",
-        "OBO Staff"
-      ]
+      "person_responsible": ["Building Official", "Plans Examiner", "OBO Staff"]
     },
     {
       "service_number": "20.15",
@@ -3486,10 +3338,7 @@
         "description": "per RA 7920"
       },
       "processing_time": "2 working days",
-      "person_responsible": [
-        "Electrical Inspector",
-        "OBO Staff"
-      ]
+      "person_responsible": ["Electrical Inspector", "OBO Staff"]
     },
     {
       "service_number": "20.16",
@@ -3539,10 +3388,7 @@
         "description": "per RA 8495"
       },
       "processing_time": "2 working days",
-      "person_responsible": [
-        "Mechanical Inspector",
-        "OBO Staff"
-      ]
+      "person_responsible": ["Mechanical Inspector", "OBO Staff"]
     },
     {
       "service_number": "20.2",
@@ -3592,10 +3438,7 @@
         "description": "per RA 9292"
       },
       "processing_time": "2 working days",
-      "person_responsible": [
-        "Electronics Inspector",
-        "OBO Staff"
-      ]
+      "person_responsible": ["Electronics Inspector", "OBO Staff"]
     },
     {
       "service_number": "20.3",
@@ -3640,10 +3483,7 @@
         "description": "per inspection"
       },
       "processing_time": "3 working days",
-      "person_responsible": [
-        "Electrical Inspector",
-        "OBO Staff"
-      ]
+      "person_responsible": ["Electrical Inspector", "OBO Staff"]
     },
     {
       "service_number": "20.4",
@@ -3688,10 +3528,7 @@
         "description": "per inspection"
       },
       "processing_time": "3 working days",
-      "person_responsible": [
-        "Mechanical Inspector",
-        "OBO Staff"
-      ]
+      "person_responsible": ["Mechanical Inspector", "OBO Staff"]
     },
     {
       "service_number": "20.5",
@@ -3736,10 +3573,7 @@
         "description": "per inspection"
       },
       "processing_time": "3 working days",
-      "person_responsible": [
-        "Sanitary Inspector",
-        "OBO Staff"
-      ]
+      "person_responsible": ["Sanitary Inspector", "OBO Staff"]
     },
     {
       "service_number": "20.6",
@@ -3780,10 +3614,7 @@
         "description": "per inspection"
       },
       "processing_time": "3 working days",
-      "person_responsible": [
-        "Building Inspector",
-        "OBO Staff"
-      ]
+      "person_responsible": ["Building Inspector", "OBO Staff"]
     },
     {
       "service_number": "20.7",
@@ -3854,11 +3685,7 @@
         "description": "see Section 3.10 of Revised IRR of PD 957"
       },
       "processing_time": "5 working days",
-      "person_responsible": [
-        "Building Official",
-        "Plans Examiner",
-        "OBO Staff"
-      ]
+      "person_responsible": ["Building Official", "Plans Examiner", "OBO Staff"]
     },
     {
       "service_number": "20.8",
@@ -3903,10 +3730,7 @@
         "description": "per inspection"
       },
       "processing_time": "3 working days",
-      "person_responsible": [
-        "Electronics Inspector",
-        "OBO Staff"
-      ]
+      "person_responsible": ["Electronics Inspector", "OBO Staff"]
     },
     {
       "service_number": "20.9",
@@ -3964,11 +3788,7 @@
         "description": "per permit"
       },
       "processing_time": "5 working days",
-      "person_responsible": [
-        "Building Official",
-        "Plans Examiner",
-        "OBO Staff"
-      ]
+      "person_responsible": ["Building Official", "Plans Examiner", "OBO Staff"]
     },
     {
       "service_number": "21.1",
@@ -4009,10 +3829,7 @@
         "description": "per certificate"
       },
       "processing_time": "30 minutes",
-      "person_responsible": [
-        "MHO Head",
-        "MHO Staff"
-      ]
+      "person_responsible": ["MHO Head", "MHO Staff"]
     },
     {
       "service_number": "21.2",
@@ -4066,11 +3883,7 @@
         "description": "per certificate"
       },
       "processing_time": "1 day",
-      "person_responsible": [
-        "MHO Head",
-        "MHO Staff",
-        "Sanitary Inspector"
-      ]
+      "person_responsible": ["MHO Head", "MHO Staff", "Sanitary Inspector"]
     },
     {
       "service_number": "21.3",
@@ -4110,10 +3923,7 @@
         "description": ""
       },
       "processing_time": "30 minutes",
-      "person_responsible": [
-        "MHO Head",
-        "MHO Staff"
-      ]
+      "person_responsible": ["MHO Head", "MHO Staff"]
     },
     {
       "service_number": "21.4",
@@ -4150,10 +3960,7 @@
         "description": ""
       },
       "processing_time": "1 hour",
-      "person_responsible": [
-        "Dentist",
-        "Dental Aide"
-      ]
+      "person_responsible": ["Dentist", "Dental Aide"]
     },
     {
       "service_number": "21.5",
@@ -4190,11 +3997,7 @@
         "description": ""
       },
       "processing_time": "1 hour",
-      "person_responsible": [
-        "Midwife",
-        "Nurse",
-        "Rural Health Physician"
-      ]
+      "person_responsible": ["Midwife", "Nurse", "Rural Health Physician"]
     },
     {
       "service_number": "21.6",
@@ -4235,11 +4038,7 @@
         "description": "for routine EPI vaccines"
       },
       "processing_time": "30 minutes",
-      "person_responsible": [
-        "Nurse",
-        "Midwife",
-        "Rural Health Physician"
-      ]
+      "person_responsible": ["Nurse", "Midwife", "Rural Health Physician"]
     },
     {
       "service_number": "21.7",
@@ -4276,11 +4075,7 @@
         "description": ""
       },
       "processing_time": "30 minutes",
-      "person_responsible": [
-        "Nurse",
-        "Midwife",
-        "Rural Health Physician"
-      ]
+      "person_responsible": ["Nurse", "Midwife", "Rural Health Physician"]
     },
     {
       "service_number": "21.8",
@@ -4366,10 +4161,7 @@
         "description": "per inspection"
       },
       "processing_time": "3 days",
-      "person_responsible": [
-        "Sanitary Inspector",
-        "MHO Staff"
-      ]
+      "person_responsible": ["Sanitary Inspector", "MHO Staff"]
     },
     {
       "service_number": "22.1",
@@ -4410,10 +4202,7 @@
         "description": "for employees"
       },
       "processing_time": "3-5 working days",
-      "person_responsible": [
-        "HRMO Head",
-        "HRMO Staff"
-      ]
+      "person_responsible": ["HRMO Head", "HRMO Staff"]
     },
     {
       "service_number": "22.2",
@@ -4458,10 +4247,7 @@
         "description": ""
       },
       "processing_time": "5-7 working days",
-      "person_responsible": [
-        "HRMO Head",
-        "Administrative Officer"
-      ]
+      "person_responsible": ["HRMO Head", "Administrative Officer"]
     },
     {
       "service_number": "22.3",
@@ -4523,10 +4309,7 @@
         "description": "unless there's a fee for examination"
       },
       "processing_time": "30-45 days (depending on vacancy)",
-      "person_responsible": [
-        "HRMO Head",
-        "Selection Committee"
-      ]
+      "person_responsible": ["HRMO Head", "Selection Committee"]
     },
     {
       "service_number": "22.4",
@@ -4575,10 +4358,7 @@
         "description": "for employee; varies for external request"
       },
       "processing_time": "3-5 working days",
-      "person_responsible": [
-        "HRMO Head",
-        "Records Officer"
-      ]
+      "person_responsible": ["HRMO Head", "Records Officer"]
     },
     {
       "service_number": "22.5",
@@ -4619,10 +4399,7 @@
         "description": ""
       },
       "processing_time": "1-3 working days",
-      "person_responsible": [
-        "HRMO Head",
-        "HRMO Staff"
-      ]
+      "person_responsible": ["HRMO Head", "HRMO Staff"]
     },
     {
       "service_number": "23.1",
@@ -4671,10 +4448,7 @@
         "description": ""
       },
       "processing_time": "1-2 working days",
-      "person_responsible": [
-        "Mayor's Office Staff",
-        "Mayor"
-      ]
+      "person_responsible": ["Mayor's Office Staff", "Mayor"]
     },
     {
       "service_number": "23.2",
@@ -4723,10 +4497,7 @@
         "description": ""
       },
       "processing_time": "3-5 working days",
-      "person_responsible": [
-        "Mayor's Office Staff",
-        "Mayor"
-      ]
+      "person_responsible": ["Mayor's Office Staff", "Mayor"]
     },
     {
       "service_number": "23.3",
@@ -4775,10 +4546,7 @@
         "description": "depending on advertisement type and duration"
       },
       "processing_time": "3-5 working days",
-      "person_responsible": [
-        "Mayor's Office Staff",
-        "Mayor"
-      ]
+      "person_responsible": ["Mayor's Office Staff", "Mayor"]
     },
     {
       "service_number": "23.4",
@@ -4819,10 +4587,7 @@
         "description": ""
       },
       "processing_time": "Varies",
-      "person_responsible": [
-        "Mayor's Office Staff",
-        "Customer Service Officer"
-      ]
+      "person_responsible": ["Mayor's Office Staff", "Customer Service Officer"]
     },
     {
       "service_number": "24.1",
@@ -5190,10 +4955,7 @@
         "description": "per copy"
       },
       "processing_time": "30 minutes - 1 day (depending on document location)",
-      "person_responsible": [
-        "Records Officer",
-        "Records Staff"
-      ]
+      "person_responsible": ["Records Officer", "Records Staff"]
     },
     {
       "service_number": "27.1",
@@ -5242,10 +5004,7 @@
         "description": ""
       },
       "processing_time": "2-3 hours",
-      "person_responsible": [
-        "MSWDO Social Worker",
-        "Counselor"
-      ]
+      "person_responsible": ["MSWDO Social Worker", "Counselor"]
     },
     {
       "service_number": "27.2",
@@ -5307,10 +5066,7 @@
         "description": "per ID"
       },
       "processing_time": "1 day",
-      "person_responsible": [
-        "MSWDO Head",
-        "Social Worker"
-      ]
+      "person_responsible": ["MSWDO Head", "Social Worker"]
     },
     {
       "service_number": "27.3",
@@ -5422,10 +5178,7 @@
         "description": ""
       },
       "processing_time": "Varies",
-      "person_responsible": [
-        "MSWDO Social Worker",
-        "CICL Officer"
-      ]
+      "person_responsible": ["MSWDO Social Worker", "CICL Officer"]
     },
     {
       "service_number": "27.5",
@@ -5478,10 +5231,7 @@
         "description": "assistance amount varies"
       },
       "processing_time": "3 days",
-      "person_responsible": [
-        "MSWDO Head",
-        "Social Worker"
-      ]
+      "person_responsible": ["MSWDO Head", "Social Worker"]
     },
     {
       "service_number": "27.6",
@@ -5539,10 +5289,7 @@
         "description": "per ID"
       },
       "processing_time": "1 day",
-      "person_responsible": [
-        "MSWDO Head",
-        "Social Worker"
-      ]
+      "person_responsible": ["MSWDO Head", "Social Worker"]
     },
     {
       "service_number": "27.7",
@@ -5591,10 +5338,7 @@
         "description": ""
       },
       "processing_time": "30 minutes",
-      "person_responsible": [
-        "OSCA Head",
-        "OSCA Staff"
-      ]
+      "person_responsible": ["OSCA Head", "OSCA Staff"]
     },
     {
       "service_number": "27.8",
@@ -5643,10 +5387,7 @@
         "description": ""
       },
       "processing_time": "30 minutes",
-      "person_responsible": [
-        "PDAO Head",
-        "PDAO Staff"
-      ]
+      "person_responsible": ["PDAO Head", "PDAO Staff"]
     },
     {
       "service_number": "28.1",
@@ -5691,10 +5432,7 @@
         "description": "or minimal fee depending on scope"
       },
       "processing_time": "3-7 working days",
-      "person_responsible": [
-        "Tourism Officer",
-        "Tourism Staff"
-      ]
+      "person_responsible": ["Tourism Officer", "Tourism Staff"]
     },
     {
       "service_number": "28.2",
@@ -5743,10 +5481,7 @@
         "description": "or minimal fee depending on scope"
       },
       "processing_time": "3-5 working days (for approval)",
-      "person_responsible": [
-        "Tourism Officer",
-        "Tourism Staff"
-      ]
+      "person_responsible": ["Tourism Officer", "Tourism Staff"]
     },
     {
       "service_number": "28.3",
@@ -5800,10 +5535,7 @@
         "description": "depending on tour package and group size"
       },
       "processing_time": "5-7 working days (for scheduling)",
-      "person_responsible": [
-        "Tourism Officer",
-        "Tour Guide"
-      ]
+      "person_responsible": ["Tourism Officer", "Tour Guide"]
     },
     {
       "service_number": "28.4",
@@ -5844,10 +5576,7 @@
         "description": ""
       },
       "processing_time": "Immediate",
-      "person_responsible": [
-        "Tourism Officer",
-        "Tourism Staff"
-      ]
+      "person_responsible": ["Tourism Officer", "Tourism Staff"]
     },
     {
       "service_number": "29.1",
@@ -5924,10 +5653,7 @@
         "description": "based on property assessment"
       },
       "processing_time": "5-10 minutes",
-      "person_responsible": [
-        "Tax Collection Clerk",
-        "Municipal Treasurer"
-      ]
+      "person_responsible": ["Tax Collection Clerk", "Municipal Treasurer"]
     },
     {
       "service_number": "29.5",
@@ -6492,10 +6218,7 @@
         "description": ""
       },
       "processing_time": "15-30 minutes",
-      "person_responsible": [
-        "MUDHO Head",
-        "MUDHO Staff"
-      ]
+      "person_responsible": ["MUDHO Head", "MUDHO Staff"]
     },
     {
       "service_number": "30.2",
@@ -6549,10 +6272,7 @@
         "description": "per certificate"
       },
       "processing_time": "3-5 working days",
-      "person_responsible": [
-        "MUDHO Head",
-        "MUDHO Staff"
-      ]
+      "person_responsible": ["MUDHO Head", "MUDHO Staff"]
     },
     {
       "service_number": "31.1",
@@ -6606,10 +6326,7 @@
         "description": "assistance amount varies"
       },
       "processing_time": "1-3 working days",
-      "person_responsible": [
-        "Vice Mayor's Office Staff",
-        "Vice Mayor"
-      ]
+      "person_responsible": ["Vice Mayor's Office Staff", "Vice Mayor"]
     },
     {
       "service_number": "31.2",
@@ -6659,10 +6376,7 @@
         "description": ""
       },
       "processing_time": "1-3 working days",
-      "person_responsible": [
-        "Vice Mayor's Office Staff",
-        "Vice Mayor"
-      ]
+      "person_responsible": ["Vice Mayor's Office Staff", "Vice Mayor"]
     },
     {
       "service_number": "32.1",
@@ -6711,10 +6425,7 @@
         "description": ""
       },
       "processing_time": "30 minutes",
-      "person_responsible": [
-        "PDAO Head",
-        "PDAO Staff"
-      ]
+      "person_responsible": ["PDAO Head", "PDAO Staff"]
     },
     {
       "service_number": "32.2",
@@ -6759,10 +6470,7 @@
         "description": "subject to availability"
       },
       "processing_time": "7-30 working days",
-      "person_responsible": [
-        "PDAO Head",
-        "PDAO Staff"
-      ]
+      "person_responsible": ["PDAO Head", "PDAO Staff"]
     },
     {
       "service_number": "32.3",
@@ -6807,10 +6515,7 @@
         "description": ""
       },
       "processing_time": "15 minutes",
-      "person_responsible": [
-        "PDAO Head",
-        "PDAO Staff"
-      ]
+      "person_responsible": ["PDAO Head", "PDAO Staff"]
     },
     {
       "service_number": "32.4",
@@ -6855,10 +6560,7 @@
         "description": ""
       },
       "processing_time": "15 minutes",
-      "person_responsible": [
-        "PDAO Head",
-        "PDAO Staff"
-      ]
+      "person_responsible": ["PDAO Head", "PDAO Staff"]
     },
     {
       "service_number": "32.5",
@@ -6903,10 +6605,7 @@
         "description": ""
       },
       "processing_time": "15 minutes",
-      "person_responsible": [
-        "PDAO Head",
-        "PDAO Staff"
-      ]
+      "person_responsible": ["PDAO Head", "PDAO Staff"]
     },
     {
       "service_number": "33.1",
@@ -6955,10 +6654,7 @@
         "description": "per certificate"
       },
       "processing_time": "3 days",
-      "person_responsible": [
-        "Station Commander",
-        "Police Staff"
-      ]
+      "person_responsible": ["Station Commander", "Police Staff"]
     },
     {
       "service_number": "34.1",
@@ -7011,10 +6707,7 @@
         "description": ""
       },
       "processing_time": "3-5 working days",
-      "person_responsible": [
-        "PESO Manager",
-        "PESO Staff"
-      ]
+      "person_responsible": ["PESO Manager", "PESO Staff"]
     },
     {
       "service_number": "34.2",
@@ -7059,10 +6752,7 @@
         "description": ""
       },
       "processing_time": "1-3 working days",
-      "person_responsible": [
-        "PESO Manager",
-        "Employment Services Officer"
-      ]
+      "person_responsible": ["PESO Manager", "Employment Services Officer"]
     },
     {
       "service_number": "34.3",
@@ -7107,10 +6797,7 @@
         "description": ""
       },
       "processing_time": "Varies",
-      "person_responsible": [
-        "PESO Manager",
-        "Employment Services Officer"
-      ]
+      "person_responsible": ["PESO Manager", "Employment Services Officer"]
     },
     {
       "service_number": "34.4",
@@ -7156,10 +6843,7 @@
         "description": "subject to available funding/slots"
       },
       "processing_time": "Varies by training",
-      "person_responsible": [
-        "PESO Manager",
-        "Training Officer"
-      ]
+      "person_responsible": ["PESO Manager", "Training Officer"]
     },
     {
       "service_number": "34.5",
@@ -7196,10 +6880,7 @@
         "description": ""
       },
       "processing_time": "1-2 hours per session",
-      "person_responsible": [
-        "PESO Manager",
-        "Career Guidance Counselor"
-      ]
+      "person_responsible": ["PESO Manager", "Career Guidance Counselor"]
     },
     {
       "service_number": "34.6",
@@ -7231,10 +6912,7 @@
         "description": ""
       },
       "processing_time": "Immediate to 3 working days",
-      "person_responsible": [
-        "PESO Manager",
-        "LMO Staff"
-      ]
+      "person_responsible": ["PESO Manager", "LMO Staff"]
     },
     {
       "service_number": "35.1",
@@ -7275,10 +6953,7 @@
         "description": "depending on ordinance violated"
       },
       "processing_time": "5-10 minutes",
-      "person_responsible": [
-        "TRU Officer",
-        "Cashier"
-      ]
+      "person_responsible": ["TRU Officer", "Cashier"]
     },
     {
       "service_number": "35.2",
@@ -7340,10 +7015,7 @@
         "description": "per unit"
       },
       "processing_time": "15 minutes",
-      "person_responsible": [
-        "BPLO Head",
-        "BPLO Staff"
-      ]
+      "person_responsible": ["BPLO Head", "BPLO Staff"]
     },
     {
       "service_number": "35.3",
@@ -7409,10 +7081,7 @@
         "description": "per unit"
       },
       "processing_time": "15 minutes",
-      "person_responsible": [
-        "BPLO Head",
-        "BPLO Staff"
-      ]
+      "person_responsible": ["BPLO Head", "BPLO Staff"]
     },
     {
       "service_number": "35.4",
@@ -7470,10 +7139,7 @@
         "description": "per unit"
       },
       "processing_time": "15 minutes",
-      "person_responsible": [
-        "BPLO Head",
-        "BPLO Staff"
-      ]
+      "person_responsible": ["BPLO Head", "BPLO Staff"]
     },
     {
       "service_number": "36.1",
@@ -7540,11 +7206,7 @@
         "description": ""
       },
       "processing_time": "30-60 days",
-      "person_responsible": [
-        "SB Secretary",
-        "SB Committee Chair",
-        "SB Members"
-      ]
+      "person_responsible": ["SB Secretary", "SB Committee Chair", "SB Members"]
     },
     {
       "service_number": "36.2",
@@ -7612,11 +7274,7 @@
         "description": ""
       },
       "processing_time": "60-90 days (or longer depending on case complexity)",
-      "person_responsible": [
-        "SB Secretary",
-        "SB Committee Chair",
-        "SB Members"
-      ]
+      "person_responsible": ["SB Secretary", "SB Committee Chair", "SB Members"]
     },
     {
       "service_number": "36.3",
@@ -7933,10 +7591,7 @@
         "description": "processing fee"
       },
       "processing_time": "2-3 working days",
-      "person_responsible": [
-        "LCRO Clerk",
-        "LCRO Officer"
-      ]
+      "person_responsible": ["LCRO Clerk", "LCRO Officer"]
     },
     {
       "service_number": "5.14",
@@ -8008,10 +7663,7 @@
         "description": "depending on type of correction"
       },
       "processing_time": "3-5 working days",
-      "person_responsible": [
-        "LCRO Clerk",
-        "LCRO Officer"
-      ]
+      "person_responsible": ["LCRO Clerk", "LCRO Officer"]
     },
     {
       "service_number": "5.2",
@@ -8159,9 +7811,7 @@
         "description": "according to stall size"
       },
       "processing_time": "4 Minutes",
-      "person_responsible": [
-        "Revenue Collection Clerk I"
-      ]
+      "person_responsible": ["Revenue Collection Clerk I"]
     },
     {
       "service_number": "6.3",
@@ -8193,9 +7843,7 @@
         "description": "according to consumption"
       },
       "processing_time": "4 Minutes",
-      "person_responsible": [
-        "Revenue Collection Clerk I"
-      ]
+      "person_responsible": ["Revenue Collection Clerk I"]
     },
     {
       "service_number": "6.4",
@@ -8347,10 +7995,7 @@
         "description": "per carcass"
       },
       "processing_time": "8 Minutes",
-      "person_responsible": [
-        "Meat Inspector",
-        "Collection Clerk"
-      ]
+      "person_responsible": ["Meat Inspector", "Collection Clerk"]
     },
     {
       "service_number": "8.1",
@@ -8415,9 +8060,7 @@
         "description": ""
       },
       "processing_time": "8 Minutes",
-      "person_responsible": [
-        "Veterinarian/Trained Vaccinator"
-      ]
+      "person_responsible": ["Veterinarian/Trained Vaccinator"]
     },
     {
       "service_number": "8.4",
@@ -8485,10 +8128,7 @@
         "description": ""
       },
       "processing_time": "6 Hours & 27 Minutes",
-      "person_responsible": [
-        "Livestock Inspector",
-        "Veterinarian"
-      ]
+      "person_responsible": ["Livestock Inspector", "Veterinarian"]
     },
     {
       "service_number": "8.5",
@@ -8520,9 +8160,7 @@
         "description": ""
       },
       "processing_time": "10 Minutes",
-      "person_responsible": [
-        "Veterinarian/Livestock Inspector"
-      ]
+      "person_responsible": ["Veterinarian/Livestock Inspector"]
     },
     {
       "service_number": "8.6",
@@ -8549,9 +8187,7 @@
         "description": ""
       },
       "processing_time": "4 Hours",
-      "person_responsible": [
-        "HVC Focal Person"
-      ]
+      "person_responsible": ["HVC Focal Person"]
     },
     {
       "service_number": "8.7",
@@ -8648,10 +8284,7 @@
         "description": "per establishment"
       },
       "processing_time": "15 minutes",
-      "person_responsible": [
-        "Barangay Captain",
-        "Barangay Secretary/Treasurer"
-      ]
+      "person_responsible": ["Barangay Captain", "Barangay Secretary/Treasurer"]
     },
     {
       "service_number": "9.2",
@@ -8687,10 +8320,7 @@
         "description": "per clearance"
       },
       "processing_time": "15 minutes",
-      "person_responsible": [
-        "Barangay Captain",
-        "Barangay Secretary/Treasurer"
-      ]
+      "person_responsible": ["Barangay Captain", "Barangay Secretary/Treasurer"]
     },
     {
       "service_number": "9.3",
@@ -8726,10 +8356,7 @@
         "description": "per certificate"
       },
       "processing_time": "15 minutes",
-      "person_responsible": [
-        "Barangay Captain",
-        "Barangay Secretary/Treasurer"
-      ]
+      "person_responsible": ["Barangay Captain", "Barangay Secretary/Treasurer"]
     }
   ]
 }
