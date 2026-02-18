@@ -90,6 +90,31 @@ Services are split by category in `src/data/services/categories/*.json`. The `me
   - `ServiceCard` - Service listing card
   - `ServiceFilters` - Service filtering options
 
+### Citizens Charter Merge Script
+`scripts/merge_citizens_charter.py` - Merges Citizens Charter data with services.json:
+- Maps office divisions to office slugs using `map_office_division_to_slug()`
+- Adds service numbers, categories, and verification flags
+- Run after updating citizens-charter.json: `python3 scripts/merge_citizens_charter.py`
+- Output: `src/data/citizens-charter/merged-services.json`
+
+### Office Data Structure
+- `departments.json` - Municipal departments (slug field: `office_name`)
+- `executive.json` - Elected officials (slug field: `role`, path: `/government/executive/{slug}`)
+- `legislative.json` - Sangguniang Bayan (slug field: `chamber`, path: `/government/legislative/{slug}`)
+- When linking offices, check all three sources based on office type
+
+### Python JSON Operations
+```bash
+# Quick JSON operations when jq is unavailable
+python3 -c "import json; data=json.load(open('file.json')); print(json.dumps(data, indent=2))"
+python3 -c "import json; d=json.load(open('f.json')); print(set(s['field'] for s in d['services']))"
+```
+
+### Icon Naming Convention
+- This codebase uses `*Icon` suffix for Lucide icons (e.g., `ArrowRightIcon`, not `ArrowRight`)
+- Check existing imports before using new icons to avoid ESLint errors
+- Icons used in `src/lib/officeIcons.ts` map department slugs to Lucide names
+
 ### Path Aliases
 `@` maps to `src/` (configured in `vite.config.ts` and `tsconfig.json`)
 
