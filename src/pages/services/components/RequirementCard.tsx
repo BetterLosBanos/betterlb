@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import { FileText, ArrowRight } from 'lucide-react';
+import { FileText, ArrowRightIcon } from 'lucide-react';
 import { Requirement } from '@/types/citizens-charter';
 
 interface RequirementCardProps {
@@ -31,7 +31,7 @@ export function RequirementCard({ requirement }: RequirementCardProps) {
           </p>
           {isClickable && (
             <span className='text-kapwa-text-brand mt-2 inline-flex items-center gap-1 text-xs font-bold group-hover:underline'>
-              View Service <ArrowRight className='h-3 w-3' />
+              View Service <ArrowRightIcon className='h-3 w-3' />
             </span>
           )}
         </div>
