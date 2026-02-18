@@ -141,6 +141,20 @@ Location: `src/data/citizens-charter/citizens-charter.json`
 - Services without tables should have basic info only (no made-up requirements/steps/fees)
 - Use `/tmp/` for temporary Python scripts when manipulating JSON
 
+**Extraction utilities (pipeline/):**
+- `citizens_charter_extractor.py` - Main orchestrator for PDF data extraction
+- `cc_data_validator.py` - JSON schema validation for service data
+- `cc_merge_utils.py` - Merge utilities with automatic backup
+- `vision_prompt_templates.py` - Prompt templates for vision extraction
+
+**Python packages for PDF processing:**
+```bash
+pip3 install --break-system-packages pdfplumber pdf2image PyPDF2  # PDF extraction
+pip3 install --break-system-packages aiohttp jsonschema tqdm  # Validation utilities
+```
+
+**Verification queue:** `src/data/citizens-charter/verification-queue.json` tracks services needing extraction
+
 ## Shared Components (@betterlb/ui)
 
 ### Important: No Shared UI Package
