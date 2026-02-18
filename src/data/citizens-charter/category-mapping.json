@@ -57,7 +57,7 @@
     },
     {
       "officeDivision": "INFORMATION AND COMMUNICATION SYSTEMS OFFICE (ICSO)",
-      "categorySlug": "other-municipal",
+      "categorySlug": "infrastructure-engineering",
       "subcategory": "ICT Services"
     },
     {
@@ -67,12 +67,12 @@
     },
     {
       "officeDivision": "MUNICIPAL ACCOUNTING OFFICE",
-      "categorySlug": "other-municipal",
+      "categorySlug": "business-licensing",
       "subcategory": "Accounting Services"
     }
   ],
   "defaultCategory": {
-    "name": "Other Municipal Services",
-    "slug": "other-municipal"
+    "name": "Infrastructure & Engineering",
+    "slug": "infrastructure-engineering"
   }
 }

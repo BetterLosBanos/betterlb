@@ -71,8 +71,8 @@
     "officeDivision": "SANGGUNIANG BAYAN",
     "officeSlug": "12th-sangguniang-bayan",
     "category": {
-      "name": "Other Municipal Services",
-      "slug": "other-municipal"
+      "name": "Infrastructure & Engineering",
+      "slug": "infrastructure-engineering"
     },
     "classification": "Complex",
     "typeOfTransaction": "G2C (Government to Citizen) / G2B (Government to Business)",
@@ -152,8 +152,8 @@
     "officeDivision": "CIVIL REGISTRY OFFICE",
     "officeSlug": "local-civil-registry-office",
     "category": {
-      "name": "Other Municipal Services",
-      "slug": "other-municipal"
+      "name": "Infrastructure & Engineering",
+      "slug": "infrastructure-engineering"
     },
     "classification": "Simple",
     "typeOfTransaction": "G2C (Government to Citizen)",
@@ -285,8 +285,8 @@
     "officeDivision": "CIVIL REGISTRY OFFICE",
     "officeSlug": "local-civil-registry-office",
     "category": {
-      "name": "Other Municipal Services",
-      "slug": "other-municipal"
+      "name": "Infrastructure & Engineering",
+      "slug": "infrastructure-engineering"
     },
     "classification": "Simple",
     "typeOfTransaction": "G2C - Government to Citizens",
@@ -353,8 +353,8 @@
     "officeDivision": "MUNICIPAL HUMAN RESOURCE MANAGEMENT OFFICE",
     "officeSlug": "municipal-human-resource-management-office",
     "category": {
-      "name": "Other Municipal Services",
-      "slug": "other-municipal"
+      "name": "Infrastructure & Engineering",
+      "slug": "infrastructure-engineering"
     },
     "classification": "Simple",
     "typeOfTransaction": "G2C (Government to Citizen)",
@@ -556,8 +556,8 @@
     "officeDivision": "MUNICIPAL SOCIAL WELFARE AND DEVELOPMENT OFFICE",
     "officeSlug": "municipal-social-welfare-development-office",
     "category": {
-      "name": "Other Municipal Services",
-      "slug": "other-municipal"
+      "name": "Infrastructure & Engineering",
+      "slug": "infrastructure-engineering"
     },
     "classification": "Simple",
     "typeOfTransaction": "G2C (Government to Citizen)",
@@ -650,8 +650,8 @@
     "officeDivision": "MUNICIPAL HUMAN RESOURCE MANAGEMENT OFFICE",
     "officeSlug": "municipal-human-resource-management-office",
     "category": {
-      "name": "Other Municipal Services",
-      "slug": "other-municipal"
+      "name": "Infrastructure & Engineering",
+      "slug": "infrastructure-engineering"
     },
     "classification": "Simple",
     "typeOfTransaction": "G2C (Government to Citizen)",
@@ -761,8 +761,8 @@
     "officeDivision": "MUNICIPAL SOCIAL WELFARE AND DEVELOPMENT OFFICE",
     "officeSlug": "municipal-social-welfare-development-office",
     "category": {
-      "name": "Other Municipal Services",
-      "slug": "other-municipal"
+      "name": "Infrastructure & Engineering",
+      "slug": "infrastructure-engineering"
     },
     "classification": "Simple",
     "typeOfTransaction": "G2C (Government to Citizen)",
@@ -1286,8 +1286,8 @@
     "officeDivision": "Municipal Treasurer’s Office",
     "officeSlug": "",
     "category": {
-      "name": "Other Municipal Services",
-      "slug": "other-municipal"
+      "name": "Infrastructure & Engineering",
+      "slug": "infrastructure-engineering"
     },
     "classification": "Simple",
     "typeOfTransaction": "G2B",
@@ -1354,8 +1354,8 @@
     "officeDivision": "Municipal Treasurer’s Office",
     "officeSlug": "",
     "category": {
-      "name": "Other Municipal Services",
-      "slug": "other-municipal"
+      "name": "Infrastructure & Engineering",
+      "slug": "infrastructure-engineering"
     },
     "classification": "Simple",
     "typeOfTransaction": "G2B",
@@ -1499,8 +1499,8 @@
     "officeDivision": "Municipal Treasurer’s Office",
     "officeSlug": "",
     "category": {
-      "name": "Other Municipal Services",
-      "slug": "other-municipal"
+      "name": "Infrastructure & Engineering",
+      "slug": "infrastructure-engineering"
     },
     "classification": "Simple",
     "typeOfTransaction": "G2B",
@@ -1579,8 +1579,8 @@
     "officeDivision": "Municipal Treasurer’s Office",
     "officeSlug": "",
     "category": {
-      "name": "Other Municipal Services",
-      "slug": "other-municipal"
+      "name": "Infrastructure & Engineering",
+      "slug": "infrastructure-engineering"
     },
     "classification": "Simple",
     "typeOfTransaction": "G2B",
@@ -1686,8 +1686,8 @@
     "officeDivision": "PUBLIC EMPLOYMENT SERVICE OFFICE",
     "officeSlug": "public-employment-service-office",
     "category": {
-      "name": "Other Municipal Services",
-      "slug": "other-municipal"
+      "name": "Infrastructure & Engineering",
+      "slug": "infrastructure-engineering"
     },
     "classification": "Simple",
     "typeOfTransaction": "G2C (Government to Citizen)",
@@ -1964,8 +1964,8 @@
     "officeDivision": "Municipal Treasurer’s Office",
     "officeSlug": "",
     "category": {
-      "name": "Other Municipal Services",
-      "slug": "other-municipal"
+      "name": "Infrastructure & Engineering",
+      "slug": "infrastructure-engineering"
     },
     "classification": null,
     "typeOfTransaction": null,
@@ -2127,8 +2127,8 @@
     "officeDivision": "PUBLIC EMPLOYMENT SERVICE OFFICE",
     "officeSlug": "public-employment-service-office",
     "category": {
-      "name": "Other Municipal Services",
-      "slug": "other-municipal"
+      "name": "Infrastructure & Engineering",
+      "slug": "infrastructure-engineering"
     },
     "classification": "Simple",
     "typeOfTransaction": "G2B (Government to Business)",
@@ -2193,8 +2193,8 @@
     "officeDivision": "MUNICIPAL TOURISM OFFICE",
     "officeSlug": "municipal-tourism-office",
     "category": {
-      "name": "Other Municipal Services",
-      "slug": "other-municipal"
+      "name": "Infrastructure & Engineering",
+      "slug": "infrastructure-engineering"
     },
     "classification": "Simple",
     "typeOfTransaction": "G2C (Government to Citizen) / G2B (Government to Business)",
@@ -2260,8 +2260,8 @@
     "officeDivision": "MUNICIPAL TOURISM OFFICE",
     "officeSlug": "municipal-tourism-office",
     "category": {
-      "name": "Other Municipal Services",
-      "slug": "other-municipal"
+      "name": "Infrastructure & Engineering",
+      "slug": "infrastructure-engineering"
     },
     "classification": "Simple",
     "typeOfTransaction": "G2C (Government to Citizen) / G2B (Government to Business)",
@@ -2322,8 +2322,8 @@
     "officeDivision": "MUNICIPAL VICE MAYOR'S OFFICE",
     "officeSlug": "office-of-the-vice-mayor",
     "category": {
-      "name": "Other Municipal Services",
-      "slug": "other-municipal"
+      "name": "Infrastructure & Engineering",
+      "slug": "infrastructure-engineering"
     },
     "classification": "Simple",
     "typeOfTransaction": "G2C (Government to Citizen)",
@@ -2446,8 +2446,8 @@
     "officeDivision": "CIVIL REGISTRY OFFICE",
     "officeSlug": "local-civil-registry-office",
     "category": {
-      "name": "Other Municipal Services",
-      "slug": "other-municipal"
+      "name": "Infrastructure & Engineering",
+      "slug": "infrastructure-engineering"
     },
     "classification": "Complex",
     "typeOfTransaction": "G2C (Government to Citizens)",
@@ -2504,8 +2504,8 @@
     "officeDivision": "CIVIL REGISTRY OFFICE",
     "officeSlug": "local-civil-registry-office",
     "category": {
-      "name": "Other Municipal Services",
-      "slug": "other-municipal"
+      "name": "Infrastructure & Engineering",
+      "slug": "infrastructure-engineering"
     },
     "classification": "Complex",
     "typeOfTransaction": "G2C (Government to Citizens)",
@@ -2562,8 +2562,8 @@
     "officeDivision": "CIVIL REGISTRY OFFICE",
     "officeSlug": "local-civil-registry-office",
     "category": {
-      "name": "Other Municipal Services",
-      "slug": "other-municipal"
+      "name": "Infrastructure & Engineering",
+      "slug": "infrastructure-engineering"
     },
     "classification": "Complex",
     "typeOfTransaction": "G2C (Government to Citizens)",
@@ -2624,8 +2624,8 @@
     "officeDivision": "MUNICIPAL ENGINEERING OFFICE / OBO",
     "officeSlug": "municipal-engineering-office",
     "category": {
-      "name": "Other Municipal Services",
-      "slug": "other-municipal"
+      "name": "Infrastructure & Engineering",
+      "slug": "infrastructure-engineering"
     },
     "classification": "Complex",
     "typeOfTransaction": "G2B (Government to Business)",
@@ -2881,8 +2881,8 @@
     "officeDivision": "MUNICIPAL DISASTER RISK REDUCTION AND MANAGEMENT OFFICE",
     "officeSlug": "municipal-mdrrmo-office",
     "category": {
-      "name": "Other Municipal Services",
-      "slug": "other-municipal"
+      "name": "Infrastructure & Engineering",
+      "slug": "infrastructure-engineering"
     },
     "classification": "Simple",
     "typeOfTransaction": "G2C (Government to Citizen)",
@@ -3048,8 +3048,8 @@
     "officeDivision": "MUNICIPAL HEALTH OFFICE (MHO)",
     "officeSlug": "municipal-health-office",
     "category": {
-      "name": "Other Municipal Services",
-      "slug": "other-municipal"
+      "name": "Infrastructure & Engineering",
+      "slug": "infrastructure-engineering"
     },
     "classification": "Simple",
     "typeOfTransaction": "G2C (Government to Citizen)",
@@ -3141,8 +3141,8 @@
     "officeDivision": "SANGGUNIANG BAYAN",
     "officeSlug": "12th-sangguniang-bayan",
     "category": {
-      "name": "Other Municipal Services",
-      "slug": "other-municipal"
+      "name": "Infrastructure & Engineering",
+      "slug": "infrastructure-engineering"
     },
     "classification": "Complex",
     "typeOfTransaction": "G2C (Government to Citizen)",
@@ -3253,8 +3253,8 @@
     "officeDivision": "MUNICIPAL HEALTH OFFICE (MHO)",
     "officeSlug": "municipal-health-office",
     "category": {
-      "name": "Other Municipal Services",
-      "slug": "other-municipal"
+      "name": "Infrastructure & Engineering",
+      "slug": "infrastructure-engineering"
     },
     "classification": "Simple",
     "typeOfTransaction": "G2C (Government to Citizen)",
@@ -3343,8 +3343,8 @@
     "officeDivision": "MUNICIPAL TOURISM OFFICE",
     "officeSlug": "municipal-tourism-office",
     "category": {
-      "name": "Other Municipal Services",
-      "slug": "other-municipal"
+      "name": "Infrastructure & Engineering",
+      "slug": "infrastructure-engineering"
     },
     "classification": "Simple",
     "typeOfTransaction": "G2C (Government to Citizen) / G2B (Government to Business)",
@@ -3439,8 +3439,8 @@
     "officeDivision": "MUNICIPAL HEALTH OFFICE (MHO)",
     "officeSlug": "municipal-health-office",
     "category": {
-      "name": "Other Municipal Services",
-      "slug": "other-municipal"
+      "name": "Infrastructure & Engineering",
+      "slug": "infrastructure-engineering"
     },
     "classification": "Simple",
     "typeOfTransaction": "G2C (Government to Citizen)",
@@ -3494,8 +3494,8 @@
     "officeDivision": "MUNICIPAL SOCIAL WELFARE AND DEVELOPMENT OFFICE",
     "officeSlug": "municipal-social-welfare-development-office",
     "category": {
-      "name": "Other Municipal Services",
-      "slug": "other-municipal"
+      "name": "Infrastructure & Engineering",
+      "slug": "infrastructure-engineering"
     },
     "classification": "Complex",
     "typeOfTransaction": "G2C (Government to Citizen)",
@@ -3579,8 +3579,8 @@
     "officeDivision": "MUNICIPAL URBAN DEVELOPMENT AND HOUSING OFFICE",
     "officeSlug": "municipal-urban-development-and-housing-office",
     "category": {
-      "name": "Other Municipal Services",
-      "slug": "other-municipal"
+      "name": "Infrastructure & Engineering",
+      "slug": "infrastructure-engineering"
     },
     "classification": "Simple",
     "typeOfTransaction": "G2C (Government to Citizen) / G2B (Government to Business)",
@@ -3710,8 +3710,8 @@
     "officeDivision": "MUNICIPAL ENGINEERING OFFICE / OBO",
     "officeSlug": "municipal-engineering-office",
     "category": {
-      "name": "Other Municipal Services",
-      "slug": "other-municipal"
+      "name": "Infrastructure & Engineering",
+      "slug": "infrastructure-engineering"
     },
     "classification": "Simple",
     "typeOfTransaction": "G2B (Government to Business)",
@@ -3768,8 +3768,8 @@
     "officeDivision": "MUNICIPAL ENGINEERING OFFICE / OBO",
     "officeSlug": "municipal-engineering-office",
     "category": {
-      "name": "Other Municipal Services",
-      "slug": "other-municipal"
+      "name": "Infrastructure & Engineering",
+      "slug": "infrastructure-engineering"
     },
     "classification": "Simple",
     "typeOfTransaction": "G2B (Government to Business)",
@@ -3826,8 +3826,8 @@
     "officeDivision": "MUNICIPAL ENGINEERING OFFICE / OBO",
     "officeSlug": "municipal-engineering-office",
     "category": {
-      "name": "Other Municipal Services",
-      "slug": "other-municipal"
+      "name": "Infrastructure & Engineering",
+      "slug": "infrastructure-engineering"
     },
     "classification": "Simple",
     "typeOfTransaction": "G2B (Government to Business)",
@@ -3884,8 +3884,8 @@
     "officeDivision": "MUNICIPAL ENGINEERING OFFICE / OBO",
     "officeSlug": "municipal-engineering-office",
     "category": {
-      "name": "Other Municipal Services",
-      "slug": "other-municipal"
+      "name": "Infrastructure & Engineering",
+      "slug": "infrastructure-engineering"
     },
     "classification": "Simple",
     "typeOfTransaction": "G2B (Government to Business)",
@@ -4336,8 +4336,8 @@
     "officeDivision": "Municipal Engineering Office",
     "officeSlug": "",
     "category": {
-      "name": "Other Municipal Services",
-      "slug": "other-municipal"
+      "name": "Infrastructure & Engineering",
+      "slug": "infrastructure-engineering"
     },
     "classification": "Simple",
     "typeOfTransaction": "G2C",
@@ -4526,8 +4526,8 @@
     "officeDivision": "MUNICIPAL ENGINEERING OFFICE / OBO",
     "officeSlug": "municipal-engineering-office",
     "category": {
-      "name": "Other Municipal Services",
-      "slug": "other-municipal"
+      "name": "Infrastructure & Engineering",
+      "slug": "infrastructure-engineering"
     },
     "classification": "Complex",
     "typeOfTransaction": "G2B (Government to Business)",
@@ -4606,8 +4606,8 @@
     "officeDivision": "MUNICIPAL URBAN DEVELOPMENT AND HOUSING OFFICE",
     "officeSlug": "municipal-urban-development-and-housing-office",
     "category": {
-      "name": "Other Municipal Services",
-      "slug": "other-municipal"
+      "name": "Infrastructure & Engineering",
+      "slug": "infrastructure-engineering"
     },
     "classification": "Simple",
     "typeOfTransaction": "G2C (Government to Citizen)",
@@ -4735,8 +4735,8 @@
     "officeDivision": "PERSON WITH DISABILITY AFFAIRS OFFICE",
     "officeSlug": "persons-with-disability-affairs-office",
     "category": {
-      "name": "Other Municipal Services",
-      "slug": "other-municipal"
+      "name": "Infrastructure & Engineering",
+      "slug": "infrastructure-engineering"
     },
     "classification": "Simple",
     "typeOfTransaction": "G2C (Government to Citizen)",
@@ -4877,8 +4877,8 @@
     "officeDivision": "PHILIPPINE NATIONAL POLICE (PNP) - LOS BAÑOS MPS",
     "officeSlug": "municipal-police-station",
     "category": {
-      "name": "Other Municipal Services",
-      "slug": "other-municipal"
+      "name": "Infrastructure & Engineering",
+      "slug": "infrastructure-engineering"
     },
     "classification": "Simple",
     "typeOfTransaction": "G2C (Government to Citizen)",
@@ -4939,8 +4939,8 @@
     "officeDivision": "MUNICIPAL HEALTH OFFICE (MHO)",
     "officeSlug": "municipal-health-office",
     "category": {
-      "name": "Other Municipal Services",
-      "slug": "other-municipal"
+      "name": "Infrastructure & Engineering",
+      "slug": "infrastructure-engineering"
     },
     "classification": "Simple",
     "typeOfTransaction": "G2C (Government to Citizen)",
@@ -5249,8 +5249,8 @@
     "officeDivision": "PERSON WITH DISABILITY AFFAIRS OFFICE",
     "officeSlug": "persons-with-disability-affairs-office",
     "category": {
-      "name": "Other Municipal Services",
-      "slug": "other-municipal"
+      "name": "Infrastructure & Engineering",
+      "slug": "infrastructure-engineering"
     },
     "classification": "Simple",
     "typeOfTransaction": "G2C (Government to Citizen)",
@@ -5307,8 +5307,8 @@
     "officeDivision": "SANGGUNIANG BAYAN",
     "officeSlug": "12th-sangguniang-bayan",
     "category": {
-      "name": "Other Municipal Services",
-      "slug": "other-municipal"
+      "name": "Infrastructure & Engineering",
+      "slug": "infrastructure-engineering"
     },
     "classification": null,
     "typeOfTransaction": null,
@@ -5325,8 +5325,8 @@
     "officeDivision": "Municipal Assessor’s Office",
     "officeSlug": "",
     "category": {
-      "name": "Other Municipal Services",
-      "slug": "other-municipal"
+      "name": "Infrastructure & Engineering",
+      "slug": "infrastructure-engineering"
     },
     "classification": "Simple",
     "typeOfTransaction": "G2C",
@@ -5520,8 +5520,8 @@
     "officeDivision": "MUNICIPAL ENGINEERING OFFICE / OBO",
     "officeSlug": "municipal-engineering-office",
     "category": {
-      "name": "Other Municipal Services",
-      "slug": "other-municipal"
+      "name": "Infrastructure & Engineering",
+      "slug": "infrastructure-engineering"
     },
     "classification": "Complex",
     "typeOfTransaction": "G2B (Government to Business)",
@@ -5605,8 +5605,8 @@
     "officeDivision": "MUNICIPAL ENGINEERING OFFICE / OBO",
     "officeSlug": "municipal-engineering-office",
     "category": {
-      "name": "Other Municipal Services",
-      "slug": "other-municipal"
+      "name": "Infrastructure & Engineering",
+      "slug": "infrastructure-engineering"
     },
     "classification": "Simple",
     "typeOfTransaction": "G2B (Government to Business)",
@@ -5668,8 +5668,8 @@
     "officeDivision": "MUNICIPAL ENGINEERING OFFICE / OBO",
     "officeSlug": "municipal-engineering-office",
     "category": {
-      "name": "Other Municipal Services",
-      "slug": "other-municipal"
+      "name": "Infrastructure & Engineering",
+      "slug": "infrastructure-engineering"
     },
     "classification": "Simple",
     "typeOfTransaction": "G2B (Government to Business)",
@@ -5731,8 +5731,8 @@
     "officeDivision": "MUNICIPAL ENGINEERING OFFICE / OBO",
     "officeSlug": "municipal-engineering-office",
     "category": {
-      "name": "Other Municipal Services",
-      "slug": "other-municipal"
+      "name": "Infrastructure & Engineering",
+      "slug": "infrastructure-engineering"
     },
     "classification": "Simple",
     "typeOfTransaction": "G2B (Government to Business)",
@@ -5794,8 +5794,8 @@
     "officeDivision": "MUNICIPAL HEALTH OFFICE (MHO)",
     "officeSlug": "municipal-health-office",
     "category": {
-      "name": "Other Municipal Services",
-      "slug": "other-municipal"
+      "name": "Infrastructure & Engineering",
+      "slug": "infrastructure-engineering"
     },
     "classification": "Simple",
     "typeOfTransaction": "G2C (Government to Citizen)",
@@ -5916,8 +5916,8 @@
     "officeDivision": "Municipal Planning and Development Office",
     "officeSlug": "",
     "category": {
-      "name": "Other Municipal Services",
-      "slug": "other-municipal"
+      "name": "Infrastructure & Engineering",
+      "slug": "infrastructure-engineering"
     },
     "classification": "Simple",
     "typeOfTransaction": "G2C",
@@ -5940,8 +5940,8 @@
     "officeDivision": "Municipal Planning and Development Office",
     "officeSlug": "",
     "category": {
-      "name": "Other Municipal Services",
-      "slug": "other-municipal"
+      "name": "Infrastructure & Engineering",
+      "slug": "infrastructure-engineering"
     },
     "classification": "Simple",
     "typeOfTransaction": "G2C",
@@ -6101,8 +6101,8 @@
     "officeDivision": "MUNICIPAL MAYOR'S OFFICE",
     "officeSlug": "office-of-the-mayor",
     "category": {
-      "name": "Other Municipal Services",
-      "slug": "other-municipal"
+      "name": "Infrastructure & Engineering",
+      "slug": "infrastructure-engineering"
     },
     "classification": "Simple",
     "typeOfTransaction": "G2B (Government to Business)",
@@ -6163,8 +6163,8 @@
     "officeDivision": "MUNICIPAL MAYOR'S OFFICE",
     "officeSlug": "office-of-the-mayor",
     "category": {
-      "name": "Other Municipal Services",
-      "slug": "other-municipal"
+      "name": "Infrastructure & Engineering",
+      "slug": "infrastructure-engineering"
     },
     "classification": "Simple",
     "typeOfTransaction": "G2C (Government to Citizen) / G2B (Government to Business)",
@@ -6287,8 +6287,8 @@
     "officeDivision": "MUNICIPAL MAYOR'S OFFICE",
     "officeSlug": "office-of-the-mayor",
     "category": {
-      "name": "Other Municipal Services",
-      "slug": "other-municipal"
+      "name": "Infrastructure & Engineering",
+      "slug": "infrastructure-engineering"
     },
     "classification": "Simple",
     "typeOfTransaction": "G2C (Government to Citizen)",
@@ -6350,8 +6350,8 @@
     "officeDivision": "MUNICIPAL ENGINEERING OFFICE / OBO",
     "officeSlug": "municipal-engineering-office",
     "category": {
-      "name": "Other Municipal Services",
-      "slug": "other-municipal"
+      "name": "Infrastructure & Engineering",
+      "slug": "infrastructure-engineering"
     },
     "classification": "Simple",
     "typeOfTransaction": "G2B (Government to Business)",
@@ -6413,8 +6413,8 @@
     "officeDivision": "MUNICIPAL HEALTH OFFICE (MHO)",
     "officeSlug": "municipal-health-office",
     "category": {
-      "name": "Other Municipal Services",
-      "slug": "other-municipal"
+      "name": "Infrastructure & Engineering",
+      "slug": "infrastructure-engineering"
     },
     "classification": "Simple",
     "typeOfTransaction": "G2C (Government to Citizen)",
@@ -6467,8 +6467,8 @@
     "officeDivision": "PUBLIC ORDER AND SAFETY OFFICE/TRANSPORTATION AND REGULATION UNIT",
     "officeSlug": "",
     "category": {
-      "name": "Other Municipal Services",
-      "slug": "other-municipal"
+      "name": "Infrastructure & Engineering",
+      "slug": "infrastructure-engineering"
     },
     "classification": "Simple",
     "typeOfTransaction": "G2C (Government to Citizen)",
@@ -6538,8 +6538,8 @@
     "officeDivision": "PUBLIC ORDER AND SAFETY OFFICE/TRANSPORTATION AND REGULATION UNIT",
     "officeSlug": "",
     "category": {
-      "name": "Other Municipal Services",
-      "slug": "other-municipal"
+      "name": "Infrastructure & Engineering",
+      "slug": "infrastructure-engineering"
     },
     "classification": "Simple",
     "typeOfTransaction": "G2C (Government to Citizen)",
@@ -6613,8 +6613,8 @@
     "officeDivision": "PUBLIC ORDER AND SAFETY OFFICE/TRANSPORTATION AND REGULATION UNIT",
     "officeSlug": "",
     "category": {
-      "name": "Other Municipal Services",
-      "slug": "other-municipal"
+      "name": "Infrastructure & Engineering",
+      "slug": "infrastructure-engineering"
     },
     "classification": "Simple",
     "typeOfTransaction": "G2C (Government to Citizen)",
@@ -6692,8 +6692,8 @@
     "officeDivision": "MUNICIPAL ENGINEERING OFFICE / OBO",
     "officeSlug": "municipal-engineering-office",
     "category": {
-      "name": "Other Municipal Services",
-      "slug": "other-municipal"
+      "name": "Infrastructure & Engineering",
+      "slug": "infrastructure-engineering"
     },
     "classification": "Complex",
     "typeOfTransaction": "G2B (Government to Business)",
@@ -6818,8 +6818,8 @@
     "officeDivision": "MUNICIPAL HUMAN RESOURCE MANAGEMENT OFFICE",
     "officeSlug": "municipal-human-resource-management-office",
     "category": {
-      "name": "Other Municipal Services",
-      "slug": "other-municipal"
+      "name": "Infrastructure & Engineering",
+      "slug": "infrastructure-engineering"
     },
     "classification": "Simple",
     "typeOfTransaction": "G2C (Government to Citizen)",
@@ -6949,8 +6949,8 @@
     "officeDivision": "MUNICIPAL ENGINEERING OFFICE / OBO",
     "officeSlug": "municipal-engineering-office",
     "category": {
-      "name": "Other Municipal Services",
-      "slug": "other-municipal"
+      "name": "Infrastructure & Engineering",
+      "slug": "infrastructure-engineering"
     },
     "classification": "Simple",
     "typeOfTransaction": "G2B (Government to Business)",
@@ -7012,8 +7012,8 @@
     "officeDivision": "MUNICIPAL HUMAN RESOURCE MANAGEMENT OFFICE",
     "officeSlug": "municipal-human-resource-management-office",
     "category": {
-      "name": "Other Municipal Services",
-      "slug": "other-municipal"
+      "name": "Infrastructure & Engineering",
+      "slug": "infrastructure-engineering"
     },
     "classification": "Simple",
     "typeOfTransaction": "G2C (Government to Citizen)",
@@ -7066,8 +7066,8 @@
     "officeDivision": "MUNICIPAL ENGINEERING OFFICE / OBO",
     "officeSlug": "municipal-engineering-office",
     "category": {
-      "name": "Other Municipal Services",
-      "slug": "other-municipal"
+      "name": "Infrastructure & Engineering",
+      "slug": "infrastructure-engineering"
     },
     "classification": "Simple",
     "typeOfTransaction": "G2B (Government to Business)",
@@ -7133,8 +7133,8 @@
     "officeDivision": "MUNICIPAL SOCIAL WELFARE AND DEVELOPMENT OFFICE",
     "officeSlug": "municipal-social-welfare-development-office",
     "category": {
-      "name": "Other Municipal Services",
-      "slug": "other-municipal"
+      "name": "Infrastructure & Engineering",
+      "slug": "infrastructure-engineering"
     },
     "classification": "Simple",
     "typeOfTransaction": "G2C (Government to Citizen)",
@@ -7263,8 +7263,8 @@
     "officeDivision": "Municipal Assessor’s Office",
     "officeSlug": "",
     "category": {
-      "name": "Other Municipal Services",
-      "slug": "other-municipal"
+      "name": "Infrastructure & Engineering",
+      "slug": "infrastructure-engineering"
     },
     "classification": null,
     "typeOfTransaction": null,
@@ -7281,8 +7281,8 @@
     "officeDivision": "Municipal Assessor’s Office",
     "officeSlug": "",
     "category": {
-      "name": "Other Municipal Services",
-      "slug": "other-municipal"
+      "name": "Infrastructure & Engineering",
+      "slug": "infrastructure-engineering"
     },
     "classification": "Complex",
     "typeOfTransaction": "G2C",
@@ -7339,8 +7339,8 @@
     "officeDivision": "Municipal Assessor’s Office",
     "officeSlug": "",
     "category": {
-      "name": "Other Municipal Services",
-      "slug": "other-municipal"
+      "name": "Infrastructure & Engineering",
+      "slug": "infrastructure-engineering"
     },
     "classification": "Complex",
     "typeOfTransaction": "G2C",
@@ -7379,8 +7379,8 @@
     "officeDivision": "Municipal Assessor’s Office",
     "officeSlug": "",
     "category": {
-      "name": "Other Municipal Services",
-      "slug": "other-municipal"
+      "name": "Infrastructure & Engineering",
+      "slug": "infrastructure-engineering"
     },
     "classification": "Complex",
     "typeOfTransaction": "G2C",
@@ -7476,8 +7476,8 @@
     "officeDivision": "INFORMATION AND COMMUNICATION SYSTEMS OFFICE (ICSO)",
     "officeSlug": "information-and-communication-systems-office",
     "category": {
-      "name": "Other Municipal Services",
-      "slug": "other-municipal"
+      "name": "Infrastructure & Engineering",
+      "slug": "infrastructure-engineering"
     },
     "classification": "Simple",
     "typeOfTransaction": "G2C (Government to Citizen)",
@@ -7597,8 +7597,8 @@
     "officeDivision": "MUNICIPAL PLANNING AND DEVELOPMENT OFFICE",
     "officeSlug": "municipal-planning-and-development-office",
     "category": {
-      "name": "Other Municipal Services",
-      "slug": "other-municipal"
+      "name": "Infrastructure & Engineering",
+      "slug": "infrastructure-engineering"
     },
     "classification": "Simple",
     "typeOfTransaction": "G2B - Government to Business; G2C - Government to Citizen",
@@ -7656,8 +7656,8 @@
     "officeDivision": "PUBLIC EMPLOYMENT SERVICE OFFICE",
     "officeSlug": "public-employment-service-office",
     "category": {
-      "name": "Other Municipal Services",
-      "slug": "other-municipal"
+      "name": "Infrastructure & Engineering",
+      "slug": "infrastructure-engineering"
     },
     "classification": "Simple",
     "typeOfTransaction": "G2B (Government to Business)",
@@ -7714,8 +7714,8 @@
     "officeDivision": "PUBLIC EMPLOYMENT SERVICE OFFICE",
     "officeSlug": "public-employment-service-office",
     "category": {
-      "name": "Other Municipal Services",
-      "slug": "other-municipal"
+      "name": "Infrastructure & Engineering",
+      "slug": "infrastructure-engineering"
     },
     "classification": "Simple",
     "typeOfTransaction": "G2C (Government to Citizen) / G2B (Government to Business)",
@@ -8232,8 +8232,8 @@
     "officeDivision": "PUBLIC EMPLOYMENT SERVICE OFFICE",
     "officeSlug": "public-employment-service-office",
     "category": {
-      "name": "Other Municipal Services",
-      "slug": "other-municipal"
+      "name": "Infrastructure & Engineering",
+      "slug": "infrastructure-engineering"
     },
     "classification": "Simple",
     "typeOfTransaction": "G2B (Government to Business) / G2C (Government to Citizen)",
@@ -8290,8 +8290,8 @@
     "officeDivision": "MUNICIPAL NUTRITION ACTION OFFICE",
     "officeSlug": "municipal-nutrition-office",
     "category": {
-      "name": "Other Municipal Services",
-      "slug": "other-municipal"
+      "name": "Infrastructure & Engineering",
+      "slug": "infrastructure-engineering"
     },
     "classification": "Simple",
     "typeOfTransaction": "G2C (Government to Citizen)",
@@ -8724,8 +8724,8 @@
     "officeDivision": "MUNICIPAL VICE MAYOR'S OFFICE",
     "officeSlug": "office-of-the-vice-mayor",
     "category": {
-      "name": "Other Municipal Services",
-      "slug": "other-municipal"
+      "name": "Infrastructure & Engineering",
+      "slug": "infrastructure-engineering"
     },
     "classification": "Simple",
     "typeOfTransaction": "G2C (Government to Citizen)",
@@ -9104,8 +9104,8 @@
     "officeDivision": "PUBLIC ORDER AND SAFETY OFFICE/TRANSPORTATION AND REGULATION UNIT",
     "officeSlug": "",
     "category": {
-      "name": "Other Municipal Services",
-      "slug": "other-municipal"
+      "name": "Infrastructure & Engineering",
+      "slug": "infrastructure-engineering"
     },
     "classification": "Simple",
     "typeOfTransaction": "G2C (Government to Citizen)",
@@ -9158,8 +9158,8 @@
     "officeDivision": "MUNICIPAL SOCIAL WELFARE AND DEVELOPMENT OFFICE",
     "officeSlug": "municipal-social-welfare-development-office",
     "category": {
-      "name": "Other Municipal Services",
-      "slug": "other-municipal"
+      "name": "Infrastructure & Engineering",
+      "slug": "infrastructure-engineering"
     },
     "classification": "Simple",
     "typeOfTransaction": "G2C (Government to Citizen)",
@@ -9286,8 +9286,8 @@
     "officeDivision": "MUNICIPAL SOCIAL WELFARE AND DEVELOPMENT OFFICE",
     "officeSlug": "municipal-social-welfare-development-office",
     "category": {
-      "name": "Other Municipal Services",
-      "slug": "other-municipal"
+      "name": "Infrastructure & Engineering",
+      "slug": "infrastructure-engineering"
     },
     "classification": "Simple",
     "typeOfTransaction": "G2C (Government to Citizen)",
@@ -9349,8 +9349,8 @@
     "officeDivision": "MUNICIPAL HEALTH OFFICE (MHO)",
     "officeSlug": "municipal-health-office",
     "category": {
-      "name": "Other Municipal Services",
-      "slug": "other-municipal"
+      "name": "Infrastructure & Engineering",
+      "slug": "infrastructure-engineering"
     },
     "classification": "Simple",
     "typeOfTransaction": "G2C (Government to Citizen)",
@@ -9400,8 +9400,8 @@
     "officeDivision": "MUNICIPAL ACCOUNTING OFFICE",
     "officeSlug": "municipal-accounting-office",
     "category": {
-      "name": "Other Municipal Services",
-      "slug": "other-municipal"
+      "name": "Business & Licensing",
+      "slug": "business-licensing"
     },
     "classification": "Simple",
     "typeOfTransaction": "G2G (Government to Government) / G2C (Government to Citizen)",
@@ -9542,8 +9542,8 @@
     "officeDivision": "PERSON WITH DISABILITY AFFAIRS OFFICE",
     "officeSlug": "persons-with-disability-affairs-office",
     "category": {
-      "name": "Other Municipal Services",
-      "slug": "other-municipal"
+      "name": "Infrastructure & Engineering",
+      "slug": "infrastructure-engineering"
     },
     "classification": "Simple",
     "typeOfTransaction": "G2C (Government to Citizen)",
@@ -9678,8 +9678,8 @@
     "officeDivision": "MUNICIPAL MAYOR'S OFFICE",
     "officeSlug": "office-of-the-mayor",
     "category": {
-      "name": "Other Municipal Services",
-      "slug": "other-municipal"
+      "name": "Infrastructure & Engineering",
+      "slug": "infrastructure-engineering"
     },
     "classification": "Simple",
     "typeOfTransaction": "G2C (Government to Citizen)",
@@ -9773,8 +9773,8 @@
     "officeDivision": "CIVIL REGISTRY OFFICE",
     "officeSlug": "local-civil-registry-office",
     "category": {
-      "name": "Other Municipal Services",
-      "slug": "other-municipal"
+      "name": "Infrastructure & Engineering",
+      "slug": "infrastructure-engineering"
     },
     "classification": "Simple",
     "typeOfTransaction": "G2C (Government to Citizen)",
@@ -10025,8 +10025,8 @@
     "officeDivision": "PERSON WITH DISABILITY AFFAIRS OFFICE",
     "officeSlug": "persons-with-disability-affairs-office",
     "category": {
-      "name": "Other Municipal Services",
-      "slug": "other-municipal"
+      "name": "Infrastructure & Engineering",
+      "slug": "infrastructure-engineering"
     },
     "classification": "Simple",
     "typeOfTransaction": "G2C (Government to Citizen)",
@@ -10353,8 +10353,8 @@
     "officeDivision": "CIVIL REGISTRY OFFICE",
     "officeSlug": "local-civil-registry-office",
     "category": {
-      "name": "Other Municipal Services",
-      "slug": "other-municipal"
+      "name": "Infrastructure & Engineering",
+      "slug": "infrastructure-engineering"
     },
     "classification": "Simple",
     "typeOfTransaction": "G2C - Government to Citizens",
@@ -10411,8 +10411,8 @@
     "officeDivision": "Civil Registry Office",
     "officeSlug": "local-civil-registry-office",
     "category": {
-      "name": "Other Municipal Services",
-      "slug": "other-municipal"
+      "name": "Infrastructure & Engineering",
+      "slug": "infrastructure-engineering"
     },
     "classification": "Simple",
     "typeOfTransaction": "G2C",
@@ -10531,8 +10531,8 @@
     "officeDivision": "CIVIL REGISTRY OFFICE",
     "officeSlug": "local-civil-registry-office",
     "category": {
-      "name": "Other Municipal Services",
-      "slug": "other-municipal"
+      "name": "Infrastructure & Engineering",
+      "slug": "infrastructure-engineering"
     },
     "classification": "Simple",
     "typeOfTransaction": "G2C (Government to Citizens)",
@@ -10661,8 +10661,8 @@
     "officeDivision": "MUNICIPAL ENGINEERING OFFICE / OBO",
     "officeSlug": "municipal-engineering-office",
     "category": {
-      "name": "Other Municipal Services",
-      "slug": "other-municipal"
+      "name": "Infrastructure & Engineering",
+      "slug": "infrastructure-engineering"
     },
     "classification": "Complex",
     "typeOfTransaction": "G2B (Government to Business)",
@@ -10745,8 +10745,8 @@
     "officeDivision": "CIVIL REGISTRY OFFICE",
     "officeSlug": "local-civil-registry-office",
     "category": {
-      "name": "Other Municipal Services",
-      "slug": "other-municipal"
+      "name": "Infrastructure & Engineering",
+      "slug": "infrastructure-engineering"
     },
     "classification": "Simple",
     "typeOfTransaction": "G2C - Government to Citizens",
@@ -10804,8 +10804,8 @@
     "officeDivision": "MUNICIPAL HUMAN RESOURCE MANAGEMENT OFFICE",
     "officeSlug": "municipal-human-resource-management-office",
     "category": {
-      "name": "Other Municipal Services",
-      "slug": "other-municipal"
+      "name": "Infrastructure & Engineering",
+      "slug": "infrastructure-engineering"
     },
     "classification": "Simple",
     "typeOfTransaction": "G2C (Government to Citizen)",
@@ -10866,8 +10866,8 @@
     "officeDivision": "MUNICIPAL ENGINEERING OFFICE / OBO",
     "officeSlug": "municipal-engineering-office",
     "category": {
-      "name": "Other Municipal Services",
-      "slug": "other-municipal"
+      "name": "Infrastructure & Engineering",
+      "slug": "infrastructure-engineering"
     },
     "classification": "Simple",
     "typeOfTransaction": "G2B (Government to Business)",
@@ -10920,8 +10920,8 @@
     "officeDivision": "CIVIL REGISTRY OFFICE",
     "officeSlug": "local-civil-registry-office",
     "category": {
-      "name": "Other Municipal Services",
-      "slug": "other-municipal"
+      "name": "Infrastructure & Engineering",
+      "slug": "infrastructure-engineering"
     },
     "classification": "Simple",
     "typeOfTransaction": "G2C - Government to Citizens",
@@ -11150,8 +11150,8 @@
     "officeDivision": "MUNICIPAL RECORDS OFFICE",
     "officeSlug": "municipal-general-services-office",
     "category": {
-      "name": "Other Municipal Services",
-      "slug": "other-municipal"
+      "name": "Infrastructure & Engineering",
+      "slug": "infrastructure-engineering"
     },
     "classification": "Simple",
     "typeOfTransaction": "G2C (Government to Citizen)",
@@ -11333,8 +11333,8 @@
     "officeDivision": "CIVIL REGISTRY OFFICE",
     "officeSlug": "local-civil-registry-office",
     "category": {
-      "name": "Other Municipal Services",
-      "slug": "other-municipal"
+      "name": "Infrastructure & Engineering",
+      "slug": "infrastructure-engineering"
     },
     "classification": "Simple",
     "typeOfTransaction": "G2C - Government to Citizens",
@@ -11388,8 +11388,8 @@
     "officeDivision": "MUNICIPAL DISASTER RISK REDUCTION AND MANAGEMENT OFFICE",
     "officeSlug": "municipal-mdrrmo-office",
     "category": {
-      "name": "Other Municipal Services",
-      "slug": "other-municipal"
+      "name": "Infrastructure & Engineering",
+      "slug": "infrastructure-engineering"
     },
     "classification": "Simple",
     "typeOfTransaction": "G2C (Government to Citizen) / G2B (Government to Business)",
@@ -11446,8 +11446,8 @@
     "officeDivision": "MUNICIPAL DISASTER RISK REDUCTION AND MANAGEMENT OFFICE",
     "officeSlug": "municipal-mdrrmo-office",
     "category": {
-      "name": "Other Municipal Services",
-      "slug": "other-municipal"
+      "name": "Infrastructure & Engineering",
+      "slug": "infrastructure-engineering"
     },
     "classification": "Simple",
     "typeOfTransaction": "G2C (Government to Citizen) / G2B (Government to Business)",
@@ -11500,8 +11500,8 @@
     "officeDivision": "CIVIL REGISTRY OFFICE",
     "officeSlug": "local-civil-registry-office",
     "category": {
-      "name": "Other Municipal Services",
-      "slug": "other-municipal"
+      "name": "Infrastructure & Engineering",
+      "slug": "infrastructure-engineering"
     },
     "classification": "Simple",
     "typeOfTransaction": "G2C - Government to Citizens",
@@ -11744,8 +11744,8 @@
     "officeDivision": "MUNICIPAL TOURISM OFFICE",
     "officeSlug": "municipal-tourism-office",
     "category": {
-      "name": "Other Municipal Services",
-      "slug": "other-municipal"
+      "name": "Infrastructure & Engineering",
+      "slug": "infrastructure-engineering"
     },
     "classification": "Simple",
     "typeOfTransaction": "G2C (Government to Citizen) / G2B (Government to Business)",
@@ -11833,8 +11833,8 @@
     "officeDivision": "MUNICIPAL HEALTH OFFICE (MHO)",
     "officeSlug": "municipal-health-office",
     "category": {
-      "name": "Other Municipal Services",
-      "slug": "other-municipal"
+      "name": "Infrastructure & Engineering",
+      "slug": "infrastructure-engineering"
     },
     "classification": "Simple",
     "typeOfTransaction": "G2B (Government to Business)",
@@ -12012,8 +12012,8 @@
     "officeDivision": "MUNICIPAL SOCIAL WELFARE AND DEVELOPMENT OFFICE",
     "officeSlug": "municipal-social-welfare-development-office",
     "category": {
-      "name": "Other Municipal Services",
-      "slug": "other-municipal"
+      "name": "Infrastructure & Engineering",
+      "slug": "infrastructure-engineering"
     },
     "classification": "Simple",
     "typeOfTransaction": "G2C (Government to Citizen)",
@@ -12100,8 +12100,8 @@
     "officeDivision": "PUBLIC EMPLOYMENT SERVICE OFFICE",
     "officeSlug": "public-employment-service-office",
     "category": {
-      "name": "Other Municipal Services",
-      "slug": "other-municipal"
+      "name": "Infrastructure & Engineering",
+      "slug": "infrastructure-engineering"
     },
     "classification": "Simple",
     "typeOfTransaction": "G2C (Government to Citizen)",
@@ -12220,8 +12220,8 @@
     "officeDivision": "MUNICIPAL ECONOMIC ENTERPRISE: SLAUGHTERHOUSE",
     "officeSlug": "slaughterhouse",
     "category": {
-      "name": "Other Municipal Services",
-      "slug": "other-municipal"
+      "name": "Infrastructure & Engineering",
+      "slug": "infrastructure-engineering"
     },
     "classification": "Simple",
     "typeOfTransaction": "G2B (Government to Business)",
@@ -12476,8 +12476,8 @@
     "officeDivision": "MUNICIPAL HEALTH OFFICE (MHO)",
     "officeSlug": "municipal-health-office",
     "category": {
-      "name": "Other Municipal Services",
-      "slug": "other-municipal"
+      "name": "Infrastructure & Engineering",
+      "slug": "infrastructure-engineering"
     },
     "classification": "Simple",
     "typeOfTransaction": "G2C (Government to Citizen)",
@@ -12772,8 +12772,8 @@
     "officeDivision": "PERSON WITH DISABILITY AFFAIRS OFFICE",
     "officeSlug": "persons-with-disability-affairs-office",
     "category": {
-      "name": "Other Municipal Services",
-      "slug": "other-municipal"
+      "name": "Infrastructure & Engineering",
+      "slug": "infrastructure-engineering"
     },
     "classification": "Simple",
     "typeOfTransaction": "G2C (Government to Citizen)",
@@ -12830,8 +12830,8 @@
     "officeDivision": "MUNICIPAL SOCIAL WELFARE AND DEVELOPMENT OFFICE",
     "officeSlug": "municipal-social-welfare-development-office",
     "category": {
-      "name": "Other Municipal Services",
-      "slug": "other-municipal"
+      "name": "Infrastructure & Engineering",
+      "slug": "infrastructure-engineering"
     },
     "classification": "Simple",
     "typeOfTransaction": "G2C (Government to Citizen)",
