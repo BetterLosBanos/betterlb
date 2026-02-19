@@ -108,6 +108,9 @@ Services are split by category in `src/data/services/categories/*.json`. The `me
 # Quick JSON operations when jq is unavailable
 python3 -c "import json; data=json.load(open('file.json')); print(json.dumps(data, indent=2))"
 python3 -c "import json; d=json.load(open('f.json')); print(set(s['field'] for s in d['services']))"
+
+### Large JSON Files
+- `citizens-charter.json` exceeds 256KB - use Read with offset/limit or Python: `python3 -c "import json; print(len(json.load(open('file.json'))['services']))"`
 ```
 
 ### Icon Naming Convention
@@ -192,6 +195,11 @@ pip3 install --break-system-packages aiohttp jsonschema tqdm  # Validation utili
 ```
 
 **Verification queue:** `src/data/citizens-charter/verification-queue.json` tracks services needing extraction
+
+**Data Quality Patterns:**
+- Truncated requirements end with: "(if", "(for", ", ", " or " - flag for manual review
+- Empty `agency_action` fields are common (unused in UI) - may be removed in future
+- Missing `where_to_secure` (20% of requirements) - default to "Contact the office" if unknown
 
 ## Shared Components (@betterlb/ui)
 
