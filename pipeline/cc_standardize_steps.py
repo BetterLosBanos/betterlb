@@ -48,7 +48,8 @@ THIRD_PERSON_TO_IMPERATIVE = {
     r'\bAttaches?\b': 'Attach',
     r'\bDownloads?\b': 'Download',
     r'\bPrints?\b': 'Print',
-    r'\bFills?\s+(?:out)?\b': 'Fill out',
+    r'\bFills?\s+out\b': 'Fill out',
+    r'\bFill\b(?!\s+out)': 'Fill',  # Match "Fill" but not "Fill out"
     r'\bEncodes?\b': 'Encode',
     r'\bRegisters?\b': 'Register',
     r'\bClaims?\b': 'Claim',
@@ -64,12 +65,15 @@ PASSIVE_TO_ACTIVE = {
 }
 
 # Noun phrases -> Verb phrases
+# NOTE: Patterns must be specific to avoid incorrect replacements
+# Technical terms like "inspection", "evaluation", "approval" are already plain language
+# when used in context. Only transform noun phrases that are clearly bureaucratic.
 NOUN_TO_VERB = {
     r'\bPayment?\s+(?:of|for)\s+(?:fees?|charges?)?\b': 'Pay fees',
     r'\bSubmission?\s+(?:of|for)\s+(?:requirements?|documents?)?\b': 'Submit requirements',
-    r'\bEvaluation?\b': 'Evaluate',
-    r'\bApproval?\b': 'Receive approval',
-    r'\bInspection?\b': 'Complete inspection',
+    # REMOVED: r'\bEvaluation?\b': 'Evaluate' - Too broad, "evaluation" is already plain language
+    # REMOVED: r'\bApproval?\b': 'Receive approval' - Too broad, can break phrases like "for approval"
+    # REMOVED: r'\bInspection?\b': 'Complete inspection' - Creates double words!
 }
 
 # Vague terms to specific replacements

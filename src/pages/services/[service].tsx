@@ -36,6 +36,8 @@ import {
 import { Badge } from '@/components/ui/Badge';
 import { RequirementGrid } from './components/RequirementGrid';
 import { ProcessTimeline } from './components/ProcessTimeline';
+import { SupportingDocumentsDetail } from './components/SupportingDocumentsDetail';
+import { FeesCard } from './components/FeesCard';
 
 import { getServiceBySlug } from '@/lib/services';
 import { toTitleCase } from '@/lib/stringUtils';
@@ -125,13 +127,6 @@ export default function ServiceDetail() {
       icon: Clock,
     });
   }
-  if (service.fees?.amount) {
-    ccInfoItems.push({
-      label: 'Fee',
-      value: service.fees.amount,
-      icon: Banknote,
-    });
-  }
   if (service.whoMayAvail) {
     ccInfoItems.push({
       label: 'Who Can Apply',
@@ -160,7 +155,9 @@ export default function ServiceDetail() {
           </BreadcrumbItem>
           <BreadcrumbSeparator />
           <BreadcrumbItem>
-            <BreadcrumbPage>{service.service}</BreadcrumbPage>
+            <BreadcrumbPage>
+              {service.plainLanguageName || service.service}
+            </BreadcrumbPage>
           </BreadcrumbItem>
         </BreadcrumbList>
       </Breadcrumb>
@@ -193,7 +190,7 @@ export default function ServiceDetail() {
           </div>
 
           <h1 className='text-kapwa-text-strong mb-6 text-3xl leading-tight font-bold tracking-tight md:text-4xl'>
-            {service.service}
+            {service.plainLanguageName || service.service}
           </h1>
 
           {service.description && (
@@ -215,7 +212,18 @@ export default function ServiceDetail() {
           )}
 
           {/* SINGLE PRIMARY ACTION */}
-          {service.url && (
+          {service.website && (
+            <a
+              href={service.website}
+              target='_blank'
+              rel='noreferrer'
+              className='bg-kapwa-bg-brand-default hover:bg-kapwa-bg-brand-weak text-kapwa-text-inverse inline-flex min-h-[48px] items-center gap-3 rounded-xl px-6 py-3 font-semibold shadow-sm transition-all'
+            >
+              Access Online Portal
+              <ExternalLink className='h-4 w-4 transition-transform group-hover:translate-x-0.5' />
+            </a>
+          )}
+          {service.url && !service.website && (
             <a
               href={service.url}
               target='_blank'
@@ -256,6 +264,9 @@ export default function ServiceDetail() {
             </div>
           )}
 
+          {/* Fees Card (Citizens Charter) */}
+          {isOfficialSource && service.fees && <FeesCard fees={service.fees} />}
+
           {/* Pending Verification Notice */}
           {needsVerification && (
             <div className='border-kapwa-border-warning bg-kapwa-bg-warning-weak/30 flex items-start gap-3 rounded-2xl border p-4'>
@@ -279,6 +290,17 @@ export default function ServiceDetail() {
             service.detailedRequirements &&
             service.detailedRequirements.length > 0 && (
               <RequirementGrid requirements={service.detailedRequirements} />
+            )}
+
+          {/* Supporting Documents Detail (Citizens Charter - optional) */}
+          {isOfficialSource &&
+            service.supportingDocumentsDetail &&
+            Object.keys(service.supportingDocumentsDetail).length > 0 && (
+              <div className='space-y-4'>
+                <SupportingDocumentsDetail
+                  detail={service.supportingDocumentsDetail}
+                />
+              </div>
             )}
 
           {/* Process Timeline (Citizens Charter) */}

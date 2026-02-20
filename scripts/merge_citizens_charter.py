@@ -91,17 +91,16 @@ def map_office_division_to_category(office_division: str, mapping_data: dict) ->
             category_slug = mapping["categorySlug"]
             # Map slugs to display names
             category_names = {
-                "business-licensing": "Business & Licensing",
-                "taxation-assessment": "Taxation & Assessment",
-                "infrastructure-engineering": "Infrastructure & Engineering",
+                "business-trade-investment": "Business, Trade & Investment",
+                "taxation-payments": "Taxation & Payments",
+                "infrastructure-public-works": "Infrastructure & Public Works",
                 "certificates-vital-records": "Certificates & Vital Records",
-                "agriculture-livelihood": "Agriculture & Livelihood",
-                "public-safety": "Public Safety",
+                "agriculture-economic-development": "Agriculture & Economic Development",
+                "public-safety-security": "Public Safety & Security",
                 "education-scholarship": "Education & Scholarship",
-                "other-municipal": "Other Municipal Services",
                 "health-wellness": "Health & Wellness",
-                "social-services": "Social Services",
-                "environment-waste": "Environment & Waste",
+                "social-services-assistance": "Social Services & Assistance",
+                "environment-natural-resources": "Environment & Natural Resources",
             }
             return {
                 "name": category_names.get(category_slug, mapping.get("subcategory", "Other Services")),
@@ -109,7 +108,7 @@ def map_office_division_to_category(office_division: str, mapping_data: dict) ->
             }
 
     # Return default category if not found
-    default = mapping_data.get("defaultCategory", {"name": "Other Municipal Services", "slug": "other-municipal"})
+    default = mapping_data.get("defaultCategory", {"name": "Infrastructure & Engineering", "slug": "infrastructure-engineering"})
     return {"name": default["name"], "slug": default["slug"]}
 
 
@@ -157,15 +156,11 @@ def map_office_division_to_slug(office_division: str) -> str:
         "MUNICIPAL TREASURER'S OFFICE": "municipal-treasurers-office",
         "MUNICIPAL ASSESSOR'S OFFICE": "municipal-assessors-office",
         "MUNICIPAL ENGINEERING OFFICE": "municipal-engineering-office",
-        "MUNICIPAL ENGINEERING OFFICE / OBO": "municipal-engineering-office",
         "MUNICIPAL PLANNING AND DEVELOPMENT COORDINATOR (MPDC)": "municipal-planning-and-development-office",
         "MUNICIPAL PLANNING AND DEVELOPMENT OFFICE": "municipal-planning-and-development-office",
         "LOCAL CIVIL REGISTRY OFFICE": "local-civil-registry-office",
-        "CIVIL REGISTRY OFFICE": "local-civil-registry-office",
-        "Civil Registry Office": "local-civil-registry-office",
         "MUNICIPAL ECONOMIC ENTERPRISE - MARKET": "market",
         "MUNICIPAL ECONOMIC ENTERPRISE - SLAUGHTERHOUSE": "slaughterhouse",
-        "MUNICIPAL ECONOMIC ENTERPRISE: SLAUGHTERHOUSE": "slaughterhouse",
         "MUNICIPAL AGRICULTURE OFFICE": "municipal-agriculture-office",
         "BARANGAY OFFICE": "barangay-office",
         "BIDS AND AWARDS COMMITTEE": "bids-and-awards-committee",
@@ -186,7 +181,7 @@ def map_office_division_to_slug(office_division: str) -> str:
         "SANGGUNIANG BAYAN": "12th-sangguniang-bayan",  # Legislative
         "MUNICIPAL MAYOR'S OFFICE": "office-of-the-mayor",  # Executive
         "MUNICIPAL VICE MAYOR'S OFFICE": "office-of-the-vice-mayor",  # Executive
-        "PUBLIC ORDER AND SAFETY OFFICE/TRANSPORTATION AND REGULATION UNIT": "",
+        "PUBLIC ORDER AND SAFETY OFFICE/TRANSPORTATION AND REGULATION UNIT": "public-order-and-safety-office",
     }
     return office_mapping.get(office_division, "")
 
@@ -225,14 +220,29 @@ def convert_cc_service_to_service(cc_service: dict, category: dict, slug: str, m
     if "requirements" in cc_service and cc_service["requirements"]:
         service["detailedRequirements"] = cc_service["requirements"]
 
+    if "supporting_documents_detail" in cc_service and cc_service["supporting_documents_detail"]:
+        service["supportingDocumentsDetail"] = cc_service["supporting_documents_detail"]
+
     if "client_steps" in cc_service and cc_service["client_steps"]:
         service["clientSteps"] = cc_service["client_steps"]
+
+    if "website" in cc_service and cc_service["website"]:
+        service["website"] = cc_service["website"]
 
     if "fees" in cc_service and cc_service["fees"]:
         service["fees"] = cc_service["fees"]
 
+    if "fee_schedule" in cc_service and cc_service["fee_schedule"]:
+        service["feeSchedule"] = cc_service["fee_schedule"]
+
     if "processing_time" in cc_service and cc_service["processing_time"]:
         service["processingTime"] = cc_service["processing_time"]
+
+    if "turnaround_time" in cc_service and cc_service["turnaround_time"]:
+        service["turnaroundTime"] = cc_service["turnaround_time"]
+
+    if "plain_language_name" in cc_service and cc_service["plain_language_name"]:
+        service["plainLanguageName"] = cc_service["plain_language_name"]
 
     if "person_responsible" in cc_service and cc_service["person_responsible"]:
         service["personResponsible"] = cc_service["person_responsible"]
@@ -273,8 +283,28 @@ def main():
         )
         used_slugs.add(slug)
 
-        # Map to category
-        category = map_office_division_to_category(cc_service["office_division"], category_mapping)
+        # Map to category (check for override first)
+        if "category_override" in cc_service:
+            # Use override category
+            category_slug = cc_service["category_override"]
+            category_names = {
+                "business-trade-investment": "Business, Trade & Investment",
+                "taxation-payments": "Taxation & Payments",
+                "infrastructure-public-works": "Infrastructure & Public Works",
+                "certificates-vital-records": "Certificates & Vital Records",
+                "agriculture-economic-development": "Agriculture & Economic Development",
+                "public-safety-security": "Public Safety & Security",
+                "education-scholarship": "Education & Scholarship",
+                "health-wellness": "Health & Wellness",
+                "social-services-assistance": "Social Services & Assistance",
+                "environment-natural-resources": "Environment & Natural Resources",
+            }
+            category = {
+                "name": category_names.get(category_slug, "Other Services"),
+                "slug": category_slug
+            }
+        else:
+            category = map_office_division_to_category(cc_service["office_division"], category_mapping)
 
         # Convert to service format
         service = convert_cc_service_to_service(cc_service, category, slug, category_mapping)

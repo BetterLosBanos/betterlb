@@ -417,6 +417,17 @@ def standardize_service(service: Dict[str, Any]) -> Tuple[Dict[str, Any], List[s
     service = service.copy()
     changes = []
 
+    # Normalize type_of_transaction to G2C/G2B
+    if 'type_of_transaction' in service:
+        original = service['type_of_transaction']
+        trans_type = original.strip()
+        if 'G2B' in trans_type or 'Business' in trans_type:
+            service['type_of_transaction'] = 'G2B'
+        elif 'G2C' in trans_type or 'Citizen' in trans_type:
+            service['type_of_transaction'] = 'G2C'
+        if service['type_of_transaction'] != original:
+            changes.append(f'type_of_transaction normalized: "{original}" → "{service["type_of_transaction"]}"')
+
     # Standardize requirements
     if 'requirements' in service and service['requirements']:
         original_count = len(service['requirements'])

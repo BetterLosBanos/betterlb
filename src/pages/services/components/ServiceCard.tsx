@@ -54,7 +54,7 @@ export default function ServiceCard({ service }: ServiceCardProps) {
     <Link
       to={`/services/${service.slug}`}
       className='group min-h-[200px]'
-      aria-label={`View details for ${service.service}`}
+      aria-label={`View details for ${service.plainLanguageName || service.service}`}
     >
       <Card
         hover
@@ -96,7 +96,7 @@ export default function ServiceCard({ service }: ServiceCardProps) {
           {/* Title & Category Label */}
           <div className='flex-1'>
             <h3 className='group-hover:text-kapwa-text-brand text-kapwa-text-strong mb-1 leading-snug font-bold transition-colors'>
-              {service.service}
+              {service.plainLanguageName || service.service}
             </h3>
             <p className='text-kapwa-text-disabled text-[10px] font-bold tracking-widest uppercase'>
               {service.category.name}
