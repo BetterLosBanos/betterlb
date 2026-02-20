@@ -1,0 +1,3955 @@
+{
+  "services": [
+    {
+      "service_number": "1.1",
+      "service_name": "Business Registration (Renewal) – Face to Face",
+      "office_division": "MUNICIPAL TREASURER'S OFFICE",
+      "classification": "Simple",
+      "type_of_transaction": "G2B",
+      "who_may_avail": "Business Owners/ Establishments",
+      "requirements": [
+        {
+          "requirement": "Copy of DTI Registration (if",
+          "where_to_secure": "Department of Trade and Industry"
+        },
+        {
+          "requirement": "Basis for computing taxes (ITR/Quarterly/Monthly",
+          "where_to_secure": "Bureau of Internal Revenue"
+        },
+        {
+          "requirement": "Duly Accomplished Business Permit Application",
+          "where_to_secure": "Contact the office"
+        },
+        {
+          "requirement": "Photocopy Previous Year Mayor’s Permit/License",
+          "where_to_secure": "Business Owner"
+        },
+        {
+          "requirement": "Photocopy of Official Receipt of Previous Year",
+          "where_to_secure": "Contact the office"
+        },
+        {
+          "requirement": "Photocopy of Mayor’s Permit of Lessor (prior year) Business Owner",
+          "where_to_secure": "Mayor's Office"
+        },
+        {
+          "requirement": "Photocopy of the Latest Lease Contract duly",
+          "where_to_secure": "Contact the office"
+        },
+        {
+          "requirement": "List of employees and address Business Owner",
+          "where_to_secure": "Contact the office"
+        },
+        {
+          "requirement": "Original certification from Market Administrator (for",
+          "where_to_secure": "Business Owner"
+        },
+        {
+          "requirement": "Photocopy of Corporate Community Tax",
+          "where_to_secure": "Certificate (if head office of the business is located Business Owner"
+        },
+        {
+          "requirement": "Other clearance/permit that other agencies may",
+          "where_to_secure": "Contact the office"
+        },
+        {
+          "requirement": "Oath of Undertaking for buildings more than 15",
+          "where_to_secure": "Contact the office"
+        }
+      ],
+      "supporting_documents_detail": {
+        "conditional_requirements": {
+          "instruction": "Additional requirements that may apply based on your situation:",
+          "options": [
+            {
+              "condition": "Required if head office is outside Los Baños",
+              "document": "Photocopy of Corporate Community Tax Certificate",
+              "where_to_secure": "Business Owner",
+              "copies": null,
+              "note": null,
+              "if_unavailable": null
+            },
+            {
+              "condition": "May be required based on business type: LLDA for lakeshore businesses, Lifeguard Certificate for resorts, DENR Non-Coverage for Sash Furniture and Junkshop, Police Clearance for junkshop owners, ECC for Gasoline Stations, Provincial Treasurer Clearance for printing press",
+              "document": "Other clearance/permit from other agencies",
+              "where_to_secure": "Various agencies",
+              "copies": null,
+              "note": null,
+              "if_unavailable": null
+            },
+            {
+              "condition": "Required for buildings >15 years used for: Space Rental, Dorms, Apartments, Banks, Schools, Commercial Buildings, Churches, Gyms, Covered Courts, Assembly Areas, Gas Stations, Restaurants, Resorts, Hospitals, Malls",
+              "document": "Oath of Undertaking",
+              "where_to_secure": "Notary Public",
+              "copies": "3",
+              "note": null,
+              "if_unavailable": null
+            },
+            {
+              "condition": "Required for buildings <15 years",
+              "document": "Certificate of Occupancy",
+              "where_to_secure": "Municipal Engineering Office",
+              "copies": "3",
+              "note": null,
+              "if_unavailable": [
+                "Affidavit of no additional construction/extension (from original)",
+                "Affidavit of no change of use of building"
+              ]
+            }
+          ]
+        },
+        "note": "A processor will determine applicable documents based on your specific situation"
+      },
+      "client_steps": [
+        {
+          "step": 1,
+          "action": "Submit requirements"
+        },
+        {
+          "step": 2,
+          "action": "Pay computed tax and fees"
+        },
+        {
+          "step": 3,
+          "action": "Printing, scanning and releasing of permit"
+        }
+      ],
+      "fees": {
+        "amount": "",
+        "description": "Varies"
+      },
+      "processing_time": "2 hours, release within the day",
+      "turnaround_time": "",
+      "plain_language_name": "Renew your business registration"
+    },
+    {
+      "service_number": "1.2",
+      "service_name": "Business Registration (Renewal) – Online",
+      "office_division": "MUNICIPAL TREASURER'S OFFICE",
+      "classification": "Simple",
+      "type_of_transaction": "G2B",
+      "who_may_avail": "Business Owners/ Establishments",
+      "website": "https://ebosslosbanos.com",
+      "requirements": [
+        {
+          "requirement": "Copy of DTI Registration (if",
+          "where_to_secure": "Department of Trade and Industry"
+        },
+        {
+          "requirement": "Basis for computing taxes (ITR/Quarterly/Monthly",
+          "where_to_secure": "Bureau of Internal Revenue"
+        },
+        {
+          "requirement": "Duly Accomplished Business Permit Application",
+          "where_to_secure": "Contact the office"
+        },
+        {
+          "requirement": "Photocopy Previous Year Mayor’s Permit/License",
+          "where_to_secure": "Business Owner"
+        },
+        {
+          "requirement": "Photocopy of Official Receipt of Previous Year",
+          "where_to_secure": "Contact the office"
+        },
+        {
+          "requirement": "Photocopy of Mayor’s Permit of Lessor (prior year) Business Owner",
+          "where_to_secure": "Mayor's Office"
+        },
+        {
+          "requirement": "Photocopy of the Latest Lease Contract duly",
+          "where_to_secure": "Contact the office"
+        },
+        {
+          "requirement": "List of employees and address Business Owner",
+          "where_to_secure": "Contact the office"
+        },
+        {
+          "requirement": "Original certification from Market Administrator (for",
+          "where_to_secure": "Business Owner"
+        },
+        {
+          "requirement": "Photocopy of Corporate Community Tax",
+          "where_to_secure": "Certificate (if head office of the business is located Business Owner"
+        },
+        {
+          "requirement": "Other clearance/permit that other agencies may",
+          "where_to_secure": "Contact the office"
+        },
+        {
+          "requirement": "Oath of Undertaking for buildings more than 15",
+          "where_to_secure": "Contact the office"
+        }
+      ],
+      "client_steps": [
+        {
+          "step": 1,
+          "action": "Go to ebosslosbanos.com and Complete the application process",
+          "sub_steps": [
+            {
+              "letter": "A",
+              "action": "If with credentials, log in. If no credentials, create an account"
+            },
+            {
+              "letter": "B",
+              "action": "Fill outup the e-BOSS registration for those with no credentials"
+            },
+            {
+              "letter": "C",
+              "action": "Applicant will see the dashboard, click the renewal link for existing business"
+            },
+            {
+              "letter": "D",
+              "action": "Enter the following:",
+              "details": [
+                "Mayor's permit 4-digit transaction/ID No.",
+                "Business owner name",
+                "Address",
+                "Mobile number",
+                "Email address"
+              ]
+            },
+            {
+              "letter": "E",
+              "action": "Upload the previous mayor's permit"
+            }
+          ],
+          "processing_time": "10-30 minutes"
+        },
+        {
+          "step": 2,
+          "action": "Payment and Receive approval",
+          "sub_steps": [
+            {
+              "letter": "A",
+              "action": "Upload proof of payment. Once credited to the LGU account, the Treasury Office will Issue an official receipt.",
+              "details": [
+                "FSIC payment is through online system of the BFP",
+                "Once FSIC has been paid, the BFP will click on the system to proceed to printing"
+              ]
+            },
+            {
+              "letter": "B",
+              "action": "Wait for Receive approval:",
+              "details": [
+                "Once approved, fill up information needed and upload requirements",
+                "Once submitted, wait for the verification approval of other offices"
+              ]
+            }
+          ],
+          "processing_time": "1-2 days"
+        },
+        {
+          "step": 3,
+          "action": "Print your permits and Claim Community Tax Certificate",
+          "sub_steps": [
+            {
+              "letter": "A",
+              "action": "The applicant can Print the digital copy of his Mayor and Business Permit and barangay business clearance"
+            },
+            {
+              "letter": "B",
+              "action": "The community tax certificate can be picked up for signature and thumb mark"
+            }
+          ],
+          "processing_time": "Same day"
+        }
+      ],
+      "supporting_documents_detail": {
+        "conditional_requirements": {
+          "instruction": "Additional requirements that may apply based on your situation:",
+          "options": [
+            {
+              "condition": "Required if head office is outside Los Baños",
+              "document": "Photocopy of Corporate Community Tax Certificate",
+              "where_to_secure": "Business Owner",
+              "copies": null,
+              "note": null,
+              "if_unavailable": null
+            },
+            {
+              "condition": "May be required based on business type: LLDA for lakeshore businesses, Lifeguard Certificate for resorts, DENR Non-Coverage for Sash Furniture and Junkshop, Police Clearance for junkshop owners, ECC for Gasoline Stations, Provincial Treasurer Clearance for printing press",
+              "document": "Other clearance/permit from other agencies",
+              "where_to_secure": "Various agencies",
+              "copies": null,
+              "note": null,
+              "if_unavailable": null
+            },
+            {
+              "condition": "Required for buildings >15 years used for: Space Rental, Dorms, Apartments, Banks, Schools, Commercial Buildings, Churches, Gyms, Covered Courts, Assembly Areas, Gas Stations, Restaurants, Resorts, Hospitals, Malls",
+              "document": "Oath of Undertaking",
+              "where_to_secure": "Notary Public",
+              "copies": "3",
+              "note": null,
+              "if_unavailable": null
+            },
+            {
+              "condition": "Required for buildings <15 years",
+              "document": "Certificate of Occupancy",
+              "where_to_secure": "Municipal Engineering Office",
+              "copies": "3",
+              "note": null,
+              "if_unavailable": [
+                "Affidavit of no additional construction/extension (from original)",
+                "Affidavit of no change of use of building"
+              ]
+            }
+          ]
+        },
+        "note": "A processor will determine applicable documents based on your specific situation"
+      },
+      "processing_time": "",
+      "turnaround_time": "",
+      "plain_language_name": "Renew your business registration"
+    },
+    {
+      "service_number": "1.3",
+      "service_name": "Business Registration (New Applicant) – Face to Face",
+      "office_division": "MUNICIPAL TREASURER'S OFFICE",
+      "classification": "Simple",
+      "type_of_transaction": "G2B",
+      "who_may_avail": "Business Owners/ Establishments",
+      "requirements": [
+        {
+          "requirement": "Proof of business registration, incorporation, or",
+          "where_to_secure": "legal personality (DTI, SEC, CDA) Business Owner"
+        },
+        {
+          "requirement": "Duly Accomplished Business Permit Application",
+          "where_to_secure": "Contact the office"
+        },
+        {
+          "requirement": "Duly signed Inspection Report Business Owner",
+          "where_to_secure": "Contact the office"
+        },
+        {
+          "requirement": "Sketch and picture of Location of the business Business Owner",
+          "where_to_secure": "Contact the office"
+        },
+        {
+          "requirement": "Photocopy of official receipt of real property tax",
+          "where_to_secure": "Bureau of Internal Revenue"
+        },
+        {
+          "requirement": "Photocopy of Mayor’s Permit of Lessor (prior year) Business Owner",
+          "where_to_secure": "Mayor's Office"
+        },
+        {
+          "requirement": "Photocopy of the Latest Lease Contract duly",
+          "where_to_secure": "Contact the office"
+        },
+        {
+          "requirement": "List of employees and address Business Owner",
+          "where_to_secure": "Contact the office"
+        },
+        {
+          "requirement": "Original certification from Market Administrator (for",
+          "where_to_secure": "Business Owner"
+        },
+        {
+          "requirement": "Photocopy of latest Corporate Community Tax (if",
+          "where_to_secure": "head office of the business is located outside Los Business Owner"
+        },
+        {
+          "requirement": "Other clearance/permit that other agencies may",
+          "where_to_secure": "Contact the office"
+        },
+        {
+          "requirement": "Oath of Undertaking for buildings more than 15",
+          "where_to_secure": "Contact the office"
+        }
+      ],
+      "supporting_documents_detail": {
+        "conditional_requirements": {
+          "instruction": "Additional requirements that may apply based on your situation:",
+          "options": [
+            {
+              "condition": "Required if head office is outside Los Baños",
+              "document": "Photocopy of Corporate Community Tax Certificate",
+              "where_to_secure": "Business Owner",
+              "copies": null,
+              "note": null,
+              "if_unavailable": null
+            },
+            {
+              "condition": "May be required based on business type: LLDA for lakeshore businesses, Lifeguard Certificate for resorts, DENR Non-Coverage for Sash Furniture and Junkshop, Police Clearance for junkshop owners, ECC for Gasoline Stations, Provincial Treasurer Clearance for printing press",
+              "document": "Other clearance/permit from other agencies",
+              "where_to_secure": "Various agencies",
+              "copies": null,
+              "note": null,
+              "if_unavailable": null
+            },
+            {
+              "condition": "Required for buildings >15 years used for: Space Rental, Dorms, Apartments, Banks, Schools, Commercial Buildings, Churches, Gyms, Covered Courts, Assembly Areas, Gas Stations, Restaurants, Resorts, Hospitals, Malls",
+              "document": "Oath of Undertaking",
+              "where_to_secure": "Notary Public",
+              "copies": "3",
+              "note": null,
+              "if_unavailable": null
+            },
+            {
+              "condition": "Required for buildings <15 years",
+              "document": "Certificate of Occupancy",
+              "where_to_secure": "Municipal Engineering Office",
+              "copies": "3",
+              "note": null,
+              "if_unavailable": [
+                "Affidavit of no additional construction/extension (from original)",
+                "Affidavit of no change of use of building"
+              ]
+            }
+          ]
+        },
+        "note": "A processor will determine applicable documents based on your specific situation"
+      },
+      "processing_time": "",
+      "turnaround_time": "",
+      "plain_language_name": "Get Business Registration – Face to Face"
+    },
+    {
+      "service_number": "1.4",
+      "service_name": "Business Registration (New Applicant) - Online",
+      "office_division": "BUSINESS PERMIT AND LICENSING OFFICE (BPLO)",
+      "classification": "Simple",
+      "type_of_transaction": "G2B (Government to Business)",
+      "who_may_avail": "New Business Applicants",
+      "requirements": [
+        {
+          "requirement": "Proof of business registration, incorporation, or",
+          "where_to_secure": "legal personality (DTI, SEC, CDA) Business Owner"
+        },
+        {
+          "requirement": "Duly Accomplished Business Permit Application",
+          "where_to_secure": "Contact the office"
+        },
+        {
+          "requirement": "Duly signed Inspection Report Business Owner",
+          "where_to_secure": "Contact the office"
+        },
+        {
+          "requirement": "Sketch and picture of Location of the business Business Owner",
+          "where_to_secure": "Contact the office"
+        },
+        {
+          "requirement": "Photocopy of official receipt of real property tax",
+          "where_to_secure": "Bureau of Internal Revenue"
+        },
+        {
+          "requirement": "Photocopy of Mayor’s Permit of Lessor (prior year) Business Owner",
+          "where_to_secure": "Mayor's Office"
+        },
+        {
+          "requirement": "Photocopy of the Latest Lease Contract duly",
+          "where_to_secure": "Contact the office"
+        },
+        {
+          "requirement": "List of employees and address Business Owner",
+          "where_to_secure": "Contact the office"
+        },
+        {
+          "requirement": "Original certification from Market Administrator (for",
+          "where_to_secure": "Business Owner"
+        },
+        {
+          "requirement": "Photocopy of latest Corporate Community Tax (if",
+          "where_to_secure": "head office of the business is located outside Los Business Owner"
+        },
+        {
+          "requirement": "Other clearance/permit that other agencies may",
+          "where_to_secure": "Contact the office"
+        },
+        {
+          "requirement": "Oath of Undertaking for buildings more than 15",
+          "where_to_secure": "Contact the office"
+        }
+      ],
+      "client_steps": [
+        {
+          "step": 1,
+          "action": "Submit initial requirements and get scheduled for Complete inspection",
+          "sub_steps": [
+            {
+              "letter": "A",
+              "action": "Submit DTI, sketch and picture of location of business, and duly accomplished application form",
+              "details": ["Lessor - if renting", "Business Owner"]
+            },
+            {
+              "letter": "B",
+              "action": "If business has been inspected and Complete inspection report has been duly signed by the inspectors, applicant can now proceed on the online application",
+              "details": [
+                "Visit ebosslosbanos.com",
+                "If with credentials, log in",
+                "If no credentials, create an account"
+              ]
+            }
+          ]
+        },
+        {
+          "step": 2,
+          "action": "Complete online application and Complete inspection",
+          "sub_steps": [
+            {
+              "letter": "A",
+              "action": "On the dashboard, click NEW to apply for new business",
+              "details": ["Upload all documents needed"]
+            }
+          ]
+        },
+        {
+          "step": 3,
+          "action": "Payment",
+          "sub_steps": [
+            {
+              "letter": "A",
+              "action": "Upload proof of payment. Verifies thru the Landbank LinkBiz portal.",
+              "details": [
+                "Once credited to the LGU account, the Treasury Office will issue an official receipt",
+                "Verifies if credited to the LGU account thru the Landbank We Access"
+              ]
+            },
+            {
+              "letter": "B",
+              "action": "FSIC payment is through online system of the BFP. Once FSIC has been paid, the BFP will click on the system to proceed to printing"
+            }
+          ]
+        },
+        {
+          "step": 5,
+          "action": "Print your permits and Claim Community Tax Certificate",
+          "sub_steps": [
+            {
+              "letter": "A",
+              "action": "The applicant can Print the digital copy of his Mayor and Business Permit and barangay business clearance"
+            },
+            {
+              "letter": "B",
+              "action": "The community tax certificate can be picked up for signature and thumb mark"
+            }
+          ]
+        }
+      ],
+      "fees": {
+        "amount": "Based on Schedule of Business Taxes and Other Fees",
+        "description": "per annum"
+      },
+      "processing_time": "2 hours",
+      "supporting_documents_detail": {
+        "conditional_requirements": {
+          "instruction": "Additional requirements that may apply based on your situation:",
+          "options": [
+            {
+              "condition": "Required if head office is outside Los Baños",
+              "document": "Photocopy of Corporate Community Tax Certificate",
+              "where_to_secure": "Business Owner",
+              "copies": null,
+              "note": null,
+              "if_unavailable": null
+            },
+            {
+              "condition": "May be required based on business type: LLDA for lakeshore businesses, Lifeguard Certificate for resorts, DENR Non-Coverage for Sash Furniture and Junkshop, Police Clearance for junkshop owners, ECC for Gasoline Stations, Provincial Treasurer Clearance for printing press",
+              "document": "Other clearance/permit from other agencies",
+              "where_to_secure": "Various agencies",
+              "copies": null,
+              "note": null,
+              "if_unavailable": null
+            },
+            {
+              "condition": "Required for buildings >15 years used for: Space Rental, Dorms, Apartments, Banks, Schools, Commercial Buildings, Churches, Gyms, Covered Courts, Assembly Areas, Gas Stations, Restaurants, Resorts, Hospitals, Malls",
+              "document": "Oath of Undertaking",
+              "where_to_secure": "Notary Public",
+              "copies": "3",
+              "note": null,
+              "if_unavailable": null
+            },
+            {
+              "condition": "Required for buildings <15 years",
+              "document": "Certificate of Occupancy",
+              "where_to_secure": "Municipal Engineering Office",
+              "copies": "3",
+              "note": null,
+              "if_unavailable": [
+                "Affidavit of no additional construction/extension (from original)",
+                "Affidavit of no change of use of building"
+              ]
+            }
+          ]
+        },
+        "note": "A processor will determine applicable documents based on your specific situation"
+      },
+      "website": "https://ebosslosbanos.com",
+      "turnaround_time": ", released 2 day",
+      "plain_language_name": "Get Business Registration - Online"
+    },
+    {
+      "service_number": "1.5",
+      "service_name": "Business Termination/Closure",
+      "office_division": "MUNICIPAL TREASURER'S OFFICE",
+      "classification": "Simple",
+      "type_of_transaction": "G2B",
+      "who_may_avail": "Business Owners/ Establishments",
+      "requirements": [
+        {
+          "requirement": "Duly Accomplished Application of Business Permit Termination/Closure",
+          "where_to_secure": "Municipal Treasurer's Office - BPLO"
+        },
+        {
+          "requirement": "Original latest Mayor's Permit Business Owner",
+          "where_to_secure": "Mayor's Office"
+        },
+        {
+          "requirement": "ITR/Quarterly/Monthly BIR payments/Sworn",
+          "where_to_secure": "Bureau of Internal Revenue"
+        },
+        {
+          "requirement": "DTI Cancellation (photocopy)",
+          "where_to_secure": "DTI"
+        },
+        {
+          "requirement": "Barangay Business Closure (photocopy)",
+          "where_to_secure": "Barangay where business is located"
+        }
+      ],
+      "processing_time": "",
+      "turnaround_time": "",
+      "plain_language_name": "Get Business Termination/Closure"
+    },
+    {
+      "service_number": "1.6",
+      "service_name": "Collection of Other Payments",
+      "office_division": "MUNICIPAL TREASURER'S OFFICE",
+      "classification": "Simple",
+      "type_of_transaction": "G2C",
+      "who_may_avail": "Taxpayers and Real Property Owners",
+      "fee_schedule": [
+        {
+          "name": "Certification Fee (no real property, no improvement) with Documentary stamp",
+          "amount": "₱80.00",
+          "processing_time": "2 minutes",
+          "office": "Municipal Assessor's Office",
+          "category": "Assessor Services"
+        },
+        {
+          "name": "Certified True Copy of Tax Declaration with Documentary stamp",
+          "amount": "₱80.00",
+          "processing_time": "2 minutes",
+          "office": "Municipal Assessor's Office",
+          "category": "Assessor Services"
+        },
+        {
+          "name": "Annotation Fee with Documentary stamp",
+          "amount": "₱1,300.00",
+          "processing_time": "2 minutes",
+          "office": "Municipal Assessor's Office",
+          "category": "Assessor Services"
+        },
+        {
+          "name": "Transfer Tax (50% × 1% of market value or selling price, whichever is higher)",
+          "amount": "Variable",
+          "processing_time": "2 minutes",
+          "office": "Municipal Assessor's Office",
+          "category": "Assessor Services"
+        },
+        {
+          "name": "Certification Fee (Birth, Marriage, Death, Solo Parent)",
+          "amount": "₱130.00",
+          "processing_time": "2 minutes",
+          "office": "Municipal Civil Registrar's Office",
+          "category": "Civil Registry Services"
+        },
+        {
+          "name": "Certified True Copy (Birth, Marriage, Death)",
+          "amount": "₱130.00",
+          "processing_time": "2 minutes",
+          "office": "Municipal Civil Registrar's Office",
+          "category": "Civil Registry Services"
+        },
+        {
+          "name": "Permit (Burial) with Documentary stamp",
+          "amount": "₱80.00",
+          "processing_time": "2 minutes",
+          "office": "Municipal Civil Registrar's Office",
+          "category": "Civil Registry Services"
+        },
+        {
+          "name": "License Exhumation",
+          "amount": "₱130.00",
+          "processing_time": "2 minutes",
+          "office": "Municipal Civil Registrar's Office",
+          "category": "Civil Registry Services"
+        },
+        {
+          "name": "Transfer of License (Cadaver)",
+          "amount": "₱130.00",
+          "processing_time": "2 minutes",
+          "office": "Municipal Civil Registrar's Office",
+          "category": "Civil Registry Services"
+        },
+        {
+          "name": "Marriage License (includes application, marriage counseling)",
+          "amount": "₱530.00",
+          "processing_time": "2 minutes",
+          "office": "Municipal Civil Registrar's Office",
+          "category": "Civil Registry Services"
+        },
+        {
+          "name": "Solemnization Fee",
+          "amount": "₱130.00",
+          "processing_time": "2 minutes",
+          "office": "Municipal Civil Registrar's Office",
+          "category": "Civil Registry Services"
+        },
+        {
+          "name": "Late Registration Service Fee (birth, marriage, death) with Documentary stamp",
+          "amount": "₱230.00",
+          "processing_time": "2 minutes",
+          "office": "Municipal Civil Registrar's Office",
+          "category": "Civil Registry Services"
+        },
+        {
+          "name": "Legitimation with Documentary stamp",
+          "amount": "₱130.00",
+          "processing_time": "2 minutes",
+          "office": "Municipal Civil Registrar's Office",
+          "category": "Civil Registry Services"
+        },
+        {
+          "name": "Authority to Use Surname with Documentary stamp",
+          "amount": "₱230.00",
+          "processing_time": "2 minutes",
+          "office": "Municipal Civil Registrar's Office",
+          "category": "Civil Registry Services"
+        },
+        {
+          "name": "Change of Name and Gender",
+          "amount": "₱3,030.00",
+          "processing_time": "2 minutes",
+          "office": "Municipal Civil Registrar's Office",
+          "category": "Civil Registry Services"
+        },
+        {
+          "name": "Petition for Clerical Error with service charge and Documentary stamp",
+          "amount": "₱1,000.00",
+          "processing_time": "2 minutes",
+          "office": "Municipal Civil Registrar's Office",
+          "category": "Civil Registry Services"
+        },
+        {
+          "name": "Permit (Building & wiring permit, CEI, Fire Code fee, signage, occupancy)",
+          "amount": "Variable",
+          "processing_time": "2 minutes",
+          "office": "Municipal Engineering Office",
+          "category": "Engineering Services"
+        },
+        {
+          "name": "Mayor's Permit (local employment) with Documentary stamp",
+          "amount": "₱230.00",
+          "processing_time": "2 minutes",
+          "office": "Mayor's Office",
+          "category": "Executive Services"
+        },
+        {
+          "name": "Mayor's Clearance (local employment, firearms) with Documentary stamp",
+          "amount": "₱80.00",
+          "processing_time": "2 minutes",
+          "office": "Mayor's Office",
+          "category": "Executive Services"
+        },
+        {
+          "name": "BID Document",
+          "amount": "₱1,000.00",
+          "processing_time": "2 minutes",
+          "office": "Bids and Awards Committee",
+          "category": "Executive Services"
+        },
+        {
+          "name": "BAC Accreditation",
+          "amount": "Variable",
+          "processing_time": "2 minutes",
+          "office": "Bids and Awards Committee",
+          "category": "Executive Services"
+        },
+        {
+          "name": "Franchise (Tricycle)",
+          "amount": "₱230.00",
+          "processing_time": "2 minutes",
+          "office": "TRU",
+          "category": "Executive Services"
+        }
+      ],
+      "processing_time": "44 minutes (within the day)",
+      "client_steps": [
+        {
+          "step": 1,
+          "action": "Secure queue number for purpose"
+        },
+        {
+          "step": 2,
+          "action": "Present Order of Payment and Pay the required fee"
+        }
+      ],
+      "requirements": [
+        {
+          "requirement": "Any of the following services (see fee schedule)",
+          "where_to_secure": "Municipal Assessor's Office"
+        },
+        {
+          "requirement": "Any of the following services (see fee schedule)",
+          "where_to_secure": "Municipal Civil Registrar's Office"
+        },
+        {
+          "requirement": "Building/wiring permit, CEI, Fire Code fee, signage, occupancy permit",
+          "where_to_secure": "Municipal Engineering Office"
+        },
+        {
+          "requirement": "Mayor's Permit, Mayor's Clearance, BID Document, BAC Accreditation, Franchise",
+          "where_to_secure": "Mayor's Office / SB / BAC / TRU"
+        }
+      ],
+      "fees": {
+        "amount": "See fee schedule",
+        "description": "Varies by service type"
+      },
+      "turnaround_time": "",
+      "plain_language_name": "Pay Other Payments"
+    },
+    {
+      "service_number": "2.1",
+      "service_name": "Issuance of Tax Declaration for Transfer of Ownership Consolidation/Subdivision",
+      "office_division": "MUNICIPAL ASSESSOR'S OFFICE",
+      "classification": "Complex",
+      "type_of_transaction": "G2C (Government to Citizen)",
+      "who_may_avail": "Real Property Owners and other agencies",
+      "requirements": [
+        {
+          "requirement": "Application Form",
+          "where_to_secure": "Transaction Window"
+        },
+        {
+          "requirement": "Deed of Conveyance",
+          "where_to_secure": "Owner / Notary Public"
+        },
+        {
+          "requirement": "Certified True Copy of OCT/TCT",
+          "where_to_secure": "Registry of Deeds"
+        },
+        {
+          "requirement": "Clearances from BIR and RD",
+          "where_to_secure": "BIR / RD"
+        },
+        {
+          "requirement": "Tax Clearance or Updated Realty Tax Receipt (after paying Annotation Fee)",
+          "where_to_secure": "Municipal Treasurer's Office"
+        }
+      ],
+      "client_steps": [
+        {
+          "step": 1,
+          "action": "Present and Submit all the requirements",
+          "sub_steps": [
+            {
+              "letter": "A",
+              "action": "Inspects and verifies documents for completeness and validity; Verification from previous record/tax declaration",
+              "processing_time": "15 Minutes"
+            }
+          ]
+        },
+        {
+          "step": 2,
+          "action": "Receive payment order form and Pay at the cashier",
+          "sub_steps": [
+            {
+              "letter": "A",
+              "action": "Issue payment order form and advises applicant to Pay the required fee at the cashier",
+              "processing_time": "15 Minutes"
+            },
+            {
+              "letter": "B",
+              "action": "Pay Annotation Fee per Tax Declaration (₱100.00)",
+              "processing_time": "3 Minutes"
+            }
+          ]
+        },
+        {
+          "step": 3,
+          "action": "Receive Transaction Claim Stub with Date of New Tax Declaration Release",
+          "sub_steps": [
+            {
+              "letter": "A",
+              "action": "Issue Claim stub to client and explains the variability of new TD release",
+              "processing_time": "5 Minutes"
+            }
+          ]
+        },
+        {
+          "step": 4,
+          "action": "Field Complete inspection and Property Assessment",
+          "sub_steps": [
+            {
+              "letter": "A",
+              "action": "Shall be Present, OR send a representative, to accompany the office's Field Personnel during the Complete inspection of the property being transacted most especially if the property has an improvement"
+            },
+            {
+              "letter": "B",
+              "action": "Corrects Property Boundaries, assigns new PIN, Prepare Field Work map",
+              "processing_time": "20 Minutes"
+            },
+            {
+              "letter": "C",
+              "action": "Conducts Complete inspection of Property being Transacted",
+              "processing_time": "30 Minutes / 90 Minutes if with Improvement"
+            },
+            {
+              "letter": "D",
+              "action": "Prepare Complete inspection Report",
+              "processing_time": "20 Minutes / 65 Minutes if with Improvement"
+            }
+          ]
+        },
+        {
+          "step": 5,
+          "action": "Records the Transaction in the TMCR (Tax Mapping Control Roll)",
+          "sub_steps": [
+            {
+              "letter": "A",
+              "action": "Records the Transaction in the TMCR (Tax Mapping Control Roll)",
+              "processing_time": "10 Minutes"
+            },
+            {
+              "letter": "B",
+              "action": "Prepare Initial FAAS based on Complete inspection Report",
+              "processing_time": "25 Minutes"
+            },
+            {
+              "letter": "C",
+              "action": "Review and preapproves Initial FAAS",
+              "processing_time": "10 Minutes"
+            },
+            {
+              "letter": "D",
+              "action": "Assigns new TD No. and records in the Logbook of Assessment Records",
+              "processing_time": "10 Minutes"
+            },
+            {
+              "letter": "E",
+              "action": "Prepare New Tax Declaration / Notice of Assessment and Attach all pertinent documents",
+              "processing_time": "10 Minutes"
+            },
+            {
+              "letter": "F",
+              "action": "Sign Final FAAS and New TD",
+              "processing_time": "5 Minutes"
+            }
+          ]
+        },
+        {
+          "step": 6,
+          "action": "Upon date of return, Receive approved Tax Declaration",
+          "sub_steps": [
+            {
+              "letter": "A",
+              "action": "Issue Owner's copy & Notice of Assessment, and have the claimant Sign Office Duplicate and Logbook",
+              "processing_time": "3 Minutes"
+            }
+          ]
+        }
+      ],
+      "fees": {
+        "amount": "₱100.00",
+        "description": "Annotation Fee per Tax Declaration"
+      },
+      "processing_time": "",
+      "turnaround_time": "21-35 working days (21 days if no improvement, 35 days if with improvement)",
+      "plain_language_name": "Get a Tax Declaration for Transfer of Ownership Consolidation/Subdivision"
+    },
+    {
+      "service_number": "2.2",
+      "service_name": "Issuance of Updated Tax Declaration for New or Reassessment of Building/Machineries",
+      "office_division": "MUNICIPAL ASSESSOR'S OFFICE",
+      "classification": "Complex",
+      "type_of_transaction": "G2C",
+      "who_may_avail": "Real Property Owners and other agencies",
+      "client_steps": [
+        {
+          "step": 1,
+          "action": "Present and Submit all the requirements (Application Form, Approved Building Permit, Building Plan, Certificate of Completion, Certificate of Occupancy, Previous Tax Declaration, Tax Clearance, Sworn Statement)"
+        },
+        {
+          "step": 2,
+          "action": "Receive Transaction Claim Stub"
+        },
+        {
+          "step": 3,
+          "action": "Wait for release (35 working days) - be Present or send a representative to accompany Field Personnel during property Complete inspection"
+        },
+        {
+          "step": 4,
+          "action": "Upon date of return, Receive approved Tax Declaration and Sign Office Duplicate and Logbook"
+        }
+      ],
+      "processing_time": "",
+      "fees": {
+        "amount": "Variable",
+        "description": "Based on property assessment"
+      },
+      "requirements": [
+        {
+          "requirement": "Application Form",
+          "where_to_secure": "Transaction Window"
+        },
+        {
+          "requirement": "Approved Building Permit",
+          "where_to_secure": "Municipal Engineering Office"
+        },
+        {
+          "requirement": "Building Plan",
+          "where_to_secure": "Owner"
+        },
+        {
+          "requirement": "Certificate of Completion",
+          "where_to_secure": "Municipal Engineering Office"
+        },
+        {
+          "requirement": "Certificate of Occupancy",
+          "where_to_secure": "Municipal Engineering Office"
+        },
+        {
+          "requirement": "Previous Tax Declaration (for reassessment)",
+          "where_to_secure": "Municipal Assessor's Office"
+        },
+        {
+          "requirement": "Tax Clearance or Latest Tax Receipt (for reassessment)",
+          "where_to_secure": "Municipal Treasurer's Office"
+        },
+        {
+          "requirement": "Completely filled-up Sworn Statement",
+          "where_to_secure": "Transaction Window"
+        }
+      ],
+      "turnaround_time": "35 working days (subject to provincial assessor approval for new assessment)",
+      "plain_language_name": "Get an Updated Tax Declaration for New or Reassessment of Building/Machineries"
+    },
+    {
+      "service_number": "2.3",
+      "service_name": "Issuance of Updated Tax Declaration for New or Reassessment of Lands",
+      "office_division": "MUNICIPAL ASSESSOR'S OFFICE",
+      "classification": "Complex",
+      "type_of_transaction": "G2C",
+      "who_may_avail": "Real Property Owners and other agencies",
+      "requirements": [
+        {
+          "requirement": "Application Form",
+          "where_to_secure": "Transaction Window"
+        },
+        {
+          "requirement": "Annotation Fee",
+          "where_to_secure": "Issued at Transaction window, paid at Municipal Treasurer's Office"
+        }
+      ],
+      "conditional_requirements": [
+        {
+          "condition": "For Reassessment",
+          "requirements": [
+            {
+              "requirement": "Request Letter",
+              "where_to_secure": "Owner"
+            },
+            {
+              "requirement": "Latest Realty Tax Receipt / Tax Clearance",
+              "where_to_secure": "Municipal Treasurer's Office"
+            },
+            {
+              "requirement": "Previous Tax Declaration",
+              "where_to_secure": "Owner, as received from Assessor's Office"
+            }
+          ]
+        },
+        {
+          "condition": "For New Assessment of Untitled Land",
+          "requirements": [
+            {
+              "requirement": "Approved Survey Plan",
+              "where_to_secure": "DENR as surveyed by Licensed Geodetic Engineer"
+            },
+            {
+              "requirement": "Certification that Lot is Alienable & Disposable",
+              "where_to_secure": "DENR / PENRO / CENTRO"
+            },
+            {
+              "requirement": "Lot Data Computation",
+              "where_to_secure": ""
+            },
+            {
+              "requirement": "AWARD Certificate or MUDHO Certification",
+              "where_to_secure": "MUDHO"
+            },
+            {
+              "requirement": "Notarized Affidavit of Ownership",
+              "where_to_secure": "Notary Public as executed by the Claimant/Declarant"
+            },
+            {
+              "requirement": "Notarized Affidavit of Adjoining Lot Owners",
+              "where_to_secure": "Notary Public as executed by adjoining lot owners"
+            },
+            {
+              "requirement": "Certification from Barangay – Possessor and Occupant of Lot",
+              "where_to_secure": "Punumbarangay where lot is situated"
+            }
+          ]
+        },
+        {
+          "condition": "For New Assessment of Titled Land",
+          "requirements": [
+            {
+              "requirement": "Certified True Copy of Title",
+              "where_to_secure": "Registry of Deeds"
+            },
+            {
+              "requirement": "Approved Survey Plan",
+              "where_to_secure": "DENR as surveyed by Licensed Geodetic Engineer"
+            },
+            {
+              "requirement": "Certified True Copy of Free Patent / Homestead / Miscellaneous Sales Application OR the Certified Copy of the DENR Indorsement of the application to RD",
+              "where_to_secure": "DENR"
+            }
+          ]
+        }
+      ],
+      "client_steps": [
+        {
+          "step": 1,
+          "action": "Present/Submit all the requirements"
+        },
+        {
+          "step": 2,
+          "action": "Pay annotation fee and Submit receipt to Assessor's Office; Receive Transaction Claim Stub"
+        },
+        {
+          "step": 3,
+          "action": "Early on the 21-35 working days wait, be Present (or send representative) to accompany office's Field Personnel during Complete inspection of the property"
+        },
+        {
+          "step": 4,
+          "action": "Upon date of return, Receive approved Tax Declaration, Owner's copy & Notice of Assessment, and Sign Office Duplicate and Logbook"
+        }
+      ],
+      "fees": {
+        "amount": "₱100.00 per RPU",
+        "description": ""
+      },
+      "processing_time": "",
+      "turnaround_time": "Variable: 21 working days (reassessment of lands w/o improvement) | 35 working days (reassessment of lands w/ improvement or new assessment of lands w/ or w/o improvement) note: date of release can be variable due to: • volume of transactions • reassessment of lands would most likely entail change in market value and assessed value and is subject to the final approval of the provincial assessor • lands declared for the 1st time whether with or without improvements will always be subject to the final approval of the provincial assessor.",
+      "plain_language_name": "Get an Updated Tax Declaration for New or Reassessment of Lands"
+    },
+    {
+      "service_number": "2.4",
+      "service_name": "Issuance of Updated Tax Declaration for Corrected Information e.g. Spelling of Name, Lot Area, Lot Number, etc...",
+      "office_division": "MUNICIPAL ASSESSOR'S OFFICE",
+      "classification": "Complex",
+      "type_of_transaction": "G2C",
+      "who_may_avail": "Real Property Owners and other agencies",
+      "requirements": [
+        {
+          "requirement": "Application Form",
+          "where_to_secure": "Transaction Window"
+        },
+        {
+          "requirement": "Request Letter indicating the information that needs correction / update",
+          "where_to_secure": "Owner"
+        },
+        {
+          "requirement": "Latest Realty Tax Receipt / Tax Clearance",
+          "where_to_secure": "Municipal Treasurer's Office"
+        },
+        {
+          "requirement": "Previous Tax Declaration",
+          "where_to_secure": "Owner as received from the Assessor's Office"
+        },
+        {
+          "requirement": "Annotation Fee",
+          "where_to_secure": "Issued at Transaction window, paid at Municipal Treasurer's Office"
+        }
+      ],
+      "conditional_requirements": [
+        {
+          "condition": "Provide the following applicable needed proof for the information to be corrected / updated (choose as applicable):",
+          "requirements": [
+            {
+              "requirement": "Certified True Copy of OCT / TCT",
+              "where_to_secure": "Registry of Deeds"
+            },
+            {
+              "requirement": "Valid Government Issued ID / Passport",
+              "where_to_secure": "SSS, BIR, LTO, DICT, DFA"
+            },
+            {
+              "requirement": "Birth Certificate",
+              "where_to_secure": "PSA"
+            },
+            {
+              "requirement": "Lot Data Computation",
+              "where_to_secure": "DENR / PENRO / CENRO"
+            },
+            {
+              "requirement": "Other Pertinent Documents",
+              "where_to_secure": "As applicable"
+            }
+          ]
+        }
+      ],
+      "client_steps": [
+        {
+          "step": 1,
+          "action": "Present/Submit all the requirements"
+        },
+        {
+          "step": 2,
+          "action": "Pay annotation fee and Submit receipt to Assessor's Office; Receive Transaction Claim Stub"
+        },
+        {
+          "step": 3,
+          "action": "If Transaction falls in the SIMPLE category: 7 working days wait time. If property falls in the COMPLEX category: Early on the 21 or 35 working days wait, be Present (or send representative) to accompany the office's Field Personnel during the Complete inspection of the property being transacted"
+        },
+        {
+          "step": 4,
+          "action": "Upon date of return, Receive approved Tax Declaration, Owner's copy & Notice of Assessment, and Sign Office Duplicate and Logbook"
+        }
+      ],
+      "fees": {
+        "amount": "₱100.00 per RPU",
+        "description": ""
+      },
+      "processing_time": "",
+      "turnaround_time": "Variable by transaction type: **simple** (real properties with recent assessment not older than 1 year, no field inspection required): **7 working days** **complex** (real properties with assessments older than 1 year, requiring field inspection): - properties without improvements: **21 working days** - properties with improvements: **35 working days** note: date of release can be variable due to: • volume of transactions • simple transactions: no field inspection, approval at local assessor's level only • complex transactions: requires field inspection with longer timeline • if there is an improvement in the property being transacted, reassessment may require approval of the provincial assessor",
+      "plain_language_name": "Get an Updated Tax Declaration for Corrected Information e.g. Spelling of Name, Lot Area, Lot Number, etc..."
+    },
+    {
+      "service_number": "2.5",
+      "service_name": "Issuance of Certified True Copy of Tax Declaration and Other Kinds of Certification",
+      "office_division": "MUNICIPAL ASSESSOR'S OFFICE",
+      "classification": "Simple",
+      "type_of_transaction": "G2C",
+      "who_may_avail": "Real Property Owners and other agencies",
+      "requirements": [
+        {
+          "requirement": "Application Form (indicate: Certified True Copy of TD; No Improvement; No Real Property; Aggregate Property Holdings; Tax Map)",
+          "where_to_secure": "Transaction Window"
+        },
+        {
+          "requirement": "Old Tax Declaration / Realty Tax Receipt",
+          "where_to_secure": "Owner as received from Assessor's Office"
+        },
+        {
+          "requirement": "Proof of authorization (if not the owner): SPA; Authorization Letter; Court Order; etc.",
+          "where_to_secure": "Owner / Law Firm / Court"
+        },
+        {
+          "requirement": "Certification Fee (Payment Order Slip from Transaction window)",
+          "where_to_secure": "Paid at Municipal Treasurer's Office"
+        }
+      ],
+      "client_steps": [
+        {
+          "step": 1,
+          "action": "Requests for Certified True Copy of TD or other Certification (Must provide Identification and/or authorization from the declarant / property / holdings and other related certifications)"
+        },
+        {
+          "step": 2,
+          "action": "Receive payment order slip and Pay in the Municipal Treasurer's Office; Returns to the Office and Present the payment Receipt"
+        },
+        {
+          "step": 3,
+          "action": "Receive requested Certified Copy / Certification"
+        }
+      ],
+      "fees": {
+        "amount": "₱50.00 per Tax Dec or Certification, ₱30.00",
+        "description": ""
+      },
+      "processing_time": "3 minutes per real property unit (may increase variably if client requests for older versions of tax declaration - i.e., tracebacks) note: depending on how many certified copies / certifications are requested, the transaction time can be faster or take longer.",
+      "service_types": [
+        "Certified True Copy of TD",
+        "No Improvement Certification",
+        "No Real Property Certification",
+        "Aggregate Property Holdings",
+        "Tax Map"
+      ],
+      "turnaround_time": "",
+      "plain_language_name": "Get a Certified True Copy of Tax Declaration and Other Kinds of Certification"
+    },
+    {
+      "service_number": "1.7",
+      "service_name": "Collection of Other Payments (Traffic and Municipal Ordinance Violation)",
+      "office_division": "MUNICIPAL TREASURER'S OFFICE",
+      "classification": "Simple",
+      "type_of_transaction": "G2C (Government to Citizen)",
+      "who_may_avail": "Violators of Municipal Ordinances",
+      "requirements": [
+        {
+          "requirement": "Citation Ticket",
+          "where_to_secure": "Traffic Violators/Municipal Ordinance Offender"
+        }
+      ],
+      "client_steps": [
+        {
+          "step": 1,
+          "action": "Secure number for queue"
+        },
+        {
+          "step": 2,
+          "action": "Present citation ticket"
+        },
+        {
+          "step": 3,
+          "action": "Pay at the Treasury Office"
+        }
+      ],
+      "fees": {
+        "amount": "Depends on the Municipal Ordinance/Traffic Violations violated",
+        "description": "Per violation"
+      },
+      "processing_time": "2 minutes",
+      "turnaround_time": "",
+      "plain_language_name": "Pay Other Payments"
+    },
+    {
+      "service_number": "1.8",
+      "service_name": "Payment of Real Property Tax",
+      "office_division": "MUNICIPAL TREASURER'S OFFICE",
+      "classification": "Simple",
+      "type_of_transaction": "G2C (Government to Citizen)",
+      "who_may_avail": "Real Property taxpayer/Real Property Owner",
+      "requirements": [
+        {
+          "requirement": "New Tax Declaration",
+          "where_to_secure": "Municipal Assessors Office"
+        },
+        {
+          "requirement": "Official Receipt of latest payment",
+          "where_to_secure": "Taxpayer"
+        }
+      ],
+      "client_steps": [
+        {
+          "step": 1,
+          "action": "Secure queue number for purpose"
+        },
+        {
+          "step": 2,
+          "action": "Present requirements"
+        },
+        {
+          "step": 3,
+          "action": "Pay computed real property tax"
+        }
+      ],
+      "fees": {
+        "amount": "Variable (1% of Assessed Value), Variable (1% of Assessed Value x years delinquent + penalties)",
+        "description": "RPT Basic - computed rate (1%), RPT Special Education Fund - computed rate after verification of tax payment"
+      },
+      "processing_time": "7 minutes (after verification and assessment)",
+      "turnaround_time": "",
+      "plain_language_name": "Get Payment of Real Property Tax"
+    },
+    {
+      "service_number": "1.9",
+      "service_name": "Payment of Real Property Tax Clearance",
+      "office_division": "MUNICIPAL TREASURER'S OFFICE",
+      "classification": "Simple",
+      "type_of_transaction": "G2C (Government to Citizen)",
+      "who_may_avail": "Property owner or authorized representative",
+      "requirements": [
+        {
+          "requirement": "Latest Payment (Official Receipt)",
+          "where_to_secure": "Taxpayer"
+        },
+        {
+          "requirement": "Community Tax Certificate / Valid ID",
+          "where_to_secure": "Taxpayer"
+        }
+      ],
+      "client_steps": [
+        {
+          "step": 1,
+          "action": "Secure number for queue"
+        },
+        {
+          "step": 2,
+          "action": "Present Tax Declaration number/previous receipt"
+        },
+        {
+          "step": 3,
+          "action": "Pay tax at cashier"
+        }
+      ],
+      "fees": {
+        "amount": "50.00, 30.00",
+        "description": "clearance certificate, documentary stamp"
+      },
+      "processing_time": "5",
+      "turnaround_time": "",
+      "plain_language_name": "Get a Payment of Real Property Tax clearance"
+    },
+    {
+      "service_number": "1.10",
+      "service_name": "Issuance of Community Tax Certificate (Individual and Corporation)",
+      "office_division": "MUNICIPAL TREASURER'S OFFICE",
+      "classification": "Simple",
+      "type_of_transaction": "G2C (Government to Citizen)",
+      "who_may_avail": "All Los Baños residents, Business Owners",
+      "requirements": [
+        {
+          "requirement": "Individuals 18 years old and above and Corporation",
+          "where_to_secure": "Taxpayer"
+        },
+        {
+          "requirement": "Community Tax Certificate / Valid ID",
+          "where_to_secure": "Taxpayer"
+        },
+        {
+          "requirement": "Certificate of Withholding Tax",
+          "where_to_secure": "Taxpayer"
+        }
+      ],
+      "client_steps": [
+        {
+          "step": 1,
+          "action": "Secure queue number for purpose"
+        },
+        {
+          "step": 2,
+          "action": "Present all the requirements and provides information"
+        },
+        {
+          "step": 3,
+          "action": "Fill outup Community Tax Certificate based on the information given by the taxpayer"
+        }
+      ],
+      "fees": {
+        "amount": "P5.00, Up to P5,000.00, P500.00, Up to P10,000.00",
+        "description": "Individual - Basic community tax, Individual - Additional community tax (based on salary/gross receipts: P1.00 for every P1,000.00), Corporation - Basic community tax, Corporation - Additional community tax (based on real property: P2.00 for every P5,000.00 OR gross receipts: P2.00 for every P5,000.00)"
+      },
+      "processing_time": "5 minutes",
+      "turnaround_time": "",
+      "plain_language_name": "Get a Community Tax Certificate"
+    },
+    {
+      "service_number": "1.12",
+      "service_name": "Payment of Fees for Sealing and Licensing of Weights and Measure Instrument",
+      "office_division": "MUNICIPAL TREASURER'S OFFICE",
+      "classification": "Simple",
+      "type_of_transaction": "G2C (Government to Citizen)",
+      "who_may_avail": "All vendors and business establishments using weight and measure instruments",
+      "requirements": [
+        {
+          "requirement": "Weight and measure instrument",
+          "where_to_secure": "Taxpayer"
+        }
+      ],
+      "client_steps": [
+        {
+          "step": 1,
+          "action": "Ask for Schedule of calibration (gasoline station) or For vendors, Present weighing instrument upon Complete inspection",
+          "processing_time": "1 Minute"
+        },
+        {
+          "step": 2,
+          "action": "Wait for the calibration process",
+          "sub_steps": [
+            {
+              "letter": "A",
+              "action": "If test fails, inform the owner (either confiscate or lock in the pumps and nozzles) - Identify the instrument as defective or tampered"
+            },
+            {
+              "letter": "B",
+              "action": "If successful, Pay the fees Pursuant to the provisions of the Local Revenue Code",
+              "processing_time": "3 Minutes"
+            }
+          ]
+        },
+        {
+          "step": 3,
+          "action": "Present the Weight and Measure Instrument"
+        },
+        {
+          "step": 4,
+          "action": "Pay the fees",
+          "processing_time": "3 Minutes"
+        }
+      ],
+      "fees": {
+        "amount": "Variable",
+        "description": "Depending on the number of pumps and storage (for gasoline station) and on the weight and measure instrument of business establishment/owner"
+      },
+      "processing_time": "1 hour and 11 minutes (within the day)",
+      "turnaround_time": "",
+      "plain_language_name": "Get Payment of Fees for Sealing and Licensing of Weights and Measure Instrument"
+    },
+    {
+      "service_number": "3.1",
+      "service_name": "Issuance of Building Permit (Highly Technical Transaction)",
+      "office_division": "MUNICIPAL ENGINEERING OFFICE",
+      "classification": "Complex",
+      "type_of_transaction": "G2G – Government to Government; G2C - Government to Citizen",
+      "who_may_avail": "Prospective house and/or building owners within the jurisdiction of Los Baños",
+      "requirements": [
+        {
+          "requirement": "Five (5) copies of filled-up and Notarized Unified Application Form for Building Permit",
+          "where_to_secure": "Municipal Engineering Office and MEO Facebook Page",
+          "copies": "5"
+        },
+        {
+          "requirement": "Three (3) photocopies of Valid PRC Licenses (I.D.) of all involved professionals (Engineers, Architects, etc.)",
+          "where_to_secure": "Private Professionals (Engineers, Architects, etc.)",
+          "copies": "3"
+        },
+        {
+          "requirement": "Four (4) copies of Notarized estimated value of the building structure to be erected",
+          "where_to_secure": "Private Professionals (Engineers, Architects, etc.)",
+          "copies": "4"
+        },
+        {
+          "requirement": "Four (4) sets of Drawing Plans (Signed and sealed by Engineers/Signed by Owner)",
+          "where_to_secure": "Private Professionals (Engineers, Architects, etc.)",
+          "copies": "4"
+        },
+        {
+          "requirement": "Three (3) sets of Lot Plan (Signed and sealed by Geodetic Engineer)",
+          "where_to_secure": "Private Professionals (Geodetic Engineers)",
+          "copies": "3"
+        },
+        {
+          "requirement": "Four (4) copies of General Specifications (Signed and sealed by Engineer)",
+          "where_to_secure": "Private Professionals (Engineers, Architects, etc.)",
+          "copies": "4"
+        },
+        {
+          "requirement": "Three (3) photocopies of Original Certificate of Title (OCT)/Transfer Certificate of Title (TCT), and/or Deed of Absolute Sale and Lot Locational Plan from LRA",
+          "where_to_secure": "Lot Owner",
+          "copies": "3",
+          "category": "Proof of Ownership"
+        },
+        {
+          "requirement": "Three (3) photocopies of Updated Tax Receipt",
+          "where_to_secure": "Municipal Treasurer's Office",
+          "copies": "3"
+        },
+        {
+          "requirement": "Construction Safety and Health Program (CSHP - DOLE)",
+          "where_to_secure": "DOLE Regional Office",
+          "category": "Clearances"
+        },
+        {
+          "requirement": "Barangay Building Clearance",
+          "where_to_secure": "Barangay",
+          "category": "Clearances"
+        },
+        {
+          "requirement": "Other Agencies as maybe required related to the structure to be constructed (LLDA, DENR, NWRB, etc.)",
+          "where_to_secure": "Other Agencies (LLDA, DENR, NWRB, etc.)",
+          "category": "Clearances"
+        }
+      ],
+      "client_steps": [
+        {
+          "step": 1,
+          "action": "Present and Submit all the required documents"
+        },
+        {
+          "step": 2,
+          "action": "Payment to the cashier at Municipal Treasurer's Office; Issue Official Receipt"
+        },
+        {
+          "step": 3,
+          "action": "Release of building permit and Certificate"
+        }
+      ],
+      "processing_time": "",
+      "agency_actions_endorsement": [
+        "Assessor",
+        "Treasury",
+        "MPDO (Municipal Planning and Development Office)",
+        "BFP (Bureau of Fire Protection)"
+      ],
+      "turnaround_time": "7 days (document evaluation) + 2 days (permit release) = **9 working days** note: documents are endorsed to assessor, treasury, mpdo, and bfp for assessment.",
+      "supporting_documents_detail": {
+        "conditional_requirements": {
+          "instruction": "Additional requirements that may apply based on your situation:",
+          "options": [
+            {
+              "condition": "* for 2 Storey and Above",
+              "document": "Two (2) copies of Structural Design Analysis (Signed and sealed by Engineer)",
+              "where_to_secure": "Private Professionals (Civil or Structural Engineers)",
+              "copies": "2"
+            },
+            {
+              "condition": "* for 2 Storey and Above",
+              "document": "Two (2) copies of Electrical Design Analysis (Signed and sealed by Engineer)",
+              "where_to_secure": "Private Professionals (Electrical Engineers)",
+              "copies": "2"
+            },
+            {
+              "condition": "* for 3 Storey and Above",
+              "document": "Two (2) copies of Soil Boring Test (Signed and sealed by Engineer)",
+              "where_to_secure": "Private Professionals (Geodetic Engineers)",
+              "copies": "2"
+            },
+            {
+              "condition": "May be required based on your situation",
+              "document": "Three (3) photocopies of Tax Declaration and DENR Certificate of claimant (if OCT/TCT is unavailable)",
+              "where_to_secure": "Tax Declaration / DENR",
+              "copies": "3"
+            },
+            {
+              "condition": "May be required based on your situation",
+              "document": "DPWH Clearance for Construction along National Road",
+              "where_to_secure": "DPWH District Office"
+            },
+            {
+              "condition": "May be required based on your situation",
+              "document": "Notarized Authorization Letter or Special Power of Attorney (SPA)",
+              "where_to_secure": "Notary Public Attorney"
+            },
+            {
+              "condition": "May be required based on your situation",
+              "document": "Photocopy of Valid I.D. of Owner/Signatory and Authorized Representative",
+              "where_to_secure": "Client"
+            },
+            {
+              "condition": "May be required based on your situation",
+              "document": "Secretary's Certificate (If applicant is a corporation)",
+              "where_to_secure": "Private Corporation"
+            },
+            {
+              "condition": "May be required based on your situation",
+              "document": "Affidavit of Undertaking (Notarized)",
+              "where_to_secure": "Notary Public"
+            }
+          ]
+        }
+      },
+      "plain_language_name": "Get a Building Permit"
+    },
+    {
+      "service_number": "3.2",
+      "service_name": "Issuance of Building Permit (Simple Transaction)",
+      "office_division": "MUNICIPAL ENGINEERING OFFICE",
+      "classification": "Simple",
+      "type_of_transaction": "G2G – Government to Government; G2C - Government to Citizen",
+      "who_may_avail": "Prospective house and/or building owners within the jurisdiction of Los Baños",
+      "requirements": [
+        {
+          "requirement": "Five (5) copies of filled-up and Notarized Unified Application Form for Building Permit",
+          "where_to_secure": "Municipal Engineering Office and MEO Facebook Page",
+          "copies": "5"
+        },
+        {
+          "requirement": "Three (3) photocopies of Valid PRC Licenses (I.D.) of all involved professionals",
+          "where_to_secure": "Private Professionals (Engineers, Architects, etc.)",
+          "copies": "3"
+        },
+        {
+          "requirement": "Four (4) copies of Notarized estimated value of the building structure to be erected",
+          "where_to_secure": "Private Professionals (Engineers, Architects, etc.)",
+          "copies": "4"
+        },
+        {
+          "requirement": "Four (4) sets of Drawing Plans (Signed and sealed by Engineers/Signed by Owner)",
+          "where_to_secure": "Private Professionals (Engineers, Architects, etc.)",
+          "copies": "4"
+        },
+        {
+          "requirement": "Three (3) sets of Lot Plan (Signed and sealed by Geodetic Engineer)",
+          "where_to_secure": "Private Professionals (Geodetic Engineers)",
+          "copies": "3"
+        },
+        {
+          "requirement": "Four (4) copies of General Specifications (Signed and sealed by Engineer)",
+          "where_to_secure": "Private Professionals (Engineers, Architects, etc.)",
+          "copies": "4"
+        },
+        {
+          "requirement": "Three (3) photocopies of Original Certificate of Title (OCT)/Transfer Certificate of Title (TCT), and/or Deed of Absolute Sale and Lot Locational Plan from LRA (if lessee, Contract of Lease)",
+          "where_to_secure": "Lot Owner",
+          "copies": "3",
+          "category": "Proof of Ownership"
+        },
+        {
+          "requirement": "Construction Safety and Health Program (CSHP - DOLE)",
+          "where_to_secure": "DOLE Regional Office",
+          "category": "Clearances"
+        },
+        {
+          "requirement": "Other Agencies as maybe required related to the structure to be constructed (LLDA, DENR, NWRB, etc.)",
+          "where_to_secure": "Other Agencies (LLDA, DENR, NWRB, etc.)",
+          "category": "Clearances"
+        }
+      ],
+      "client_steps": [
+        {
+          "step": 1,
+          "action": "Present and Submit all the required documents"
+        },
+        {
+          "step": 2,
+          "action": "Payment to the cashier at Municipal Treasurer's Office; Issue Official Receipt"
+        },
+        {
+          "step": 3,
+          "action": "Release of building permit and Certificate"
+        }
+      ],
+      "processing_time": "",
+      "agency_actions_endorsement": ["Assessor", "Treasury", "MPDO", "BFP"],
+      "turnaround_time": "1 day (document evaluation) + 1 day (permit release) = **2 working days** note: documents are endorsed to assessor, treasury, mpdo, and bfp for assessment.",
+      "supporting_documents_detail": {
+        "conditional_requirements": {
+          "instruction": "Additional requirements that may apply based on your situation:",
+          "options": [
+            {
+              "condition": "* for 2 Storey and Above",
+              "document": "Two (2) copies of Structural Design Analysis (Signed and sealed by Engineer)",
+              "where_to_secure": "Private Professionals (Civil or Structural Engineers)",
+              "copies": "2"
+            },
+            {
+              "condition": "* for 2 Storey and Above",
+              "document": "Two (2) copies of Electrical Design Analysis (Signed and sealed by Engineer)",
+              "where_to_secure": "Private Professionals (Electrical Engineers)",
+              "copies": "2"
+            },
+            {
+              "condition": "* for 3 Storey and Above",
+              "document": "Two (2) copies of Soil Boring Test (Signed and sealed by Engineer)",
+              "where_to_secure": "Private Professionals (Geodetic Engineers)",
+              "copies": "2"
+            },
+            {
+              "condition": "May be required based on your situation",
+              "document": "Three (3) photocopies of Tax Declaration and DENR Certificate of claimant (if OCT/TCT is unavailable)",
+              "where_to_secure": "Tax Declaration / DENR",
+              "copies": "3"
+            },
+            {
+              "condition": "May be required based on your situation",
+              "document": "DPWH Clearance for Construction along National Road",
+              "where_to_secure": "DPWH District Office"
+            },
+            {
+              "condition": "May be required based on your situation",
+              "document": "Notarized Authorization Letter or Special Power of Attorney (SPA)",
+              "where_to_secure": "Notary Public"
+            },
+            {
+              "condition": "May be required based on your situation",
+              "document": "Photocopy of Valid I.D. of Owner/Signatory and Authorized Representative",
+              "where_to_secure": "Client"
+            },
+            {
+              "condition": "May be required based on your situation",
+              "document": "Secretary's Certificate (If applicant is a corporation)",
+              "where_to_secure": "Private Corporation"
+            },
+            {
+              "condition": "May be required based on your situation",
+              "document": "Affidavit of Undertaking (Notarized)",
+              "where_to_secure": "Notary Public"
+            }
+          ]
+        }
+      },
+      "plain_language_name": "Get a Building Permit"
+    },
+    {
+      "service_number": "3.3",
+      "service_name": "Issuance of Certificate of Annual Inspection for Business Permit",
+      "office_division": "MUNICIPAL ENGINEERING OFFICE",
+      "classification": "Simple",
+      "type_of_transaction": "G2B – Government to Business",
+      "who_may_avail": "Business Establishment Owners within the jurisdiction of Los Baños",
+      "requirements": [
+        {
+          "requirement": "Business License Application Form",
+          "where_to_secure": "Municipal Treasurer's Office"
+        },
+        {
+          "requirement": "Inspection Report",
+          "where_to_secure": "Others"
+        }
+      ],
+      "client_steps": [
+        {
+          "step": 1,
+          "action": "Present and Submit all the required documents"
+        },
+        {
+          "step": 2,
+          "action": "Payment to the cashier at Municipal Treasurer's Office; Process payment and Issue Official Receipt"
+        },
+        {
+          "step": 3,
+          "action": "Sign Logbook for release; Grant/Issue Certificate"
+        }
+      ],
+      "processing_time": "15 minutes (document evaluation) + site inspection (if necessary) + 5 minutes (payment) = **varies by site inspection** note: processing time may be much longer if site inspection is necessary.",
+      "turnaround_time": "",
+      "supporting_documents_detail": {
+        "conditional_requirements": {
+          "instruction": "Additional requirements that may apply based on your situation:",
+          "options": [
+            {
+              "condition": "May be required based on your situation",
+              "document": "Oath of Undertaking",
+              "where_to_secure": "Notary Public"
+            }
+          ]
+        }
+      },
+      "plain_language_name": "Get a Certificate of Annual Inspection for Business Permit"
+    },
+    {
+      "service_number": "3.4",
+      "service_name": "Issuance of Certificate of Final Electrical Inspection",
+      "office_division": "MUNICIPAL ENGINEERING OFFICE",
+      "classification": "Simple",
+      "type_of_transaction": "G2G – Government to Government; G2C - Government to Citizen",
+      "who_may_avail": "Electrical Service Provider Applicant within the jurisdiction of Los Baños",
+      "requirements": [
+        {
+          "requirement": "Properly Fill-up CEI Form",
+          "where_to_secure": "Municipal Engineering Office and MEO Facebook Page"
+        },
+        {
+          "requirement": "Yellow Card",
+          "where_to_secure": "Meralco"
+        },
+        {
+          "requirement": "Barangay Clearance (Purpose: Meralco Application)",
+          "where_to_secure": "Barangay where the installation is located"
+        }
+      ],
+      "client_steps": [
+        {
+          "step": 1,
+          "action": "Present and Submit all the required documents"
+        },
+        {
+          "step": 2,
+          "action": "Payment to the cashier at Municipal Treasurer's Office; Process payment and Issue Official Receipt"
+        },
+        {
+          "step": 3,
+          "action": "Sign Logbook for release; Grant/Issue Certificate"
+        }
+      ],
+      "processing_time": "5 minutes",
+      "turnaround_time": "1 day (document review) + site inspection + (payment) + 2 minutes (release) = **varies by site inspection** note: includes utility foreman site inspection to locate the place of installation.",
+      "supporting_documents_detail": {
+        "conditional_requirements": {
+          "instruction": "Additional requirements that may apply based on your situation:",
+          "options": [
+            {
+              "condition": "For NEW kWhr meter applications on OLD BUILDINGS",
+              "document": "Proof of Ownership",
+              "where_to_secure": "Building Owner"
+            },
+            {
+              "condition": "For NEW kWhr meter applications on NEW BUILDINGS",
+              "document": "Occupancy Permit",
+              "where_to_secure": "Building Owner"
+            },
+            {
+              "condition": "For Reconnection, Remodel, Transfer of Service, and Relocation",
+              "document": "Recent Electrical bill (within a year)",
+              "where_to_secure": "Building Owner"
+            },
+            {
+              "condition": "For Temporary applications",
+              "document": "Building Permit",
+              "where_to_secure": "Building Owner"
+            }
+          ]
+        }
+      },
+      "plain_language_name": "Get a Certificate of Final Electrical Inspection"
+    },
+    {
+      "service_number": "3.5",
+      "service_name": "Issuance of Certificate of Occupancy",
+      "office_division": "MUNICIPAL ENGINEERING OFFICE",
+      "classification": "Simple",
+      "type_of_transaction": "G2G – Government to Government; G2C - Government to Citizen",
+      "who_may_avail": "House and/or building owners within the jurisdiction of Los Baños",
+      "requirements": [
+        {
+          "requirement": "Two (2) Copies of Unified Application Form and Four (4) Copies of Certificate of Completion Form",
+          "where_to_secure": "Municipal Engineering Office and MEO Facebook Page",
+          "copies": "2"
+        },
+        {
+          "requirement": "Construction Logbook (Signed and sealed by Professional In charge who undertook full time inspection and supervision)",
+          "where_to_secure": "Private Professionals (Engineers, Architects, etc.)"
+        },
+        {
+          "requirement": "As built Plans (Signed and sealed by Professional In charge who undertook full time inspection and supervision)",
+          "where_to_secure": "Private Professionals (Engineers, Architects, etc.)"
+        },
+        {
+          "requirement": "One (1) photocopy of Valid PRC Licenses (PRC I.D.) of all involved professionals",
+          "where_to_secure": "Private Professionals (Engineers, Architects, etc.)"
+        },
+        {
+          "requirement": "Captioned Photographs of Site and Completed Building/Structure showing front, sides and rear areas and septic tank",
+          "where_to_secure": "Building Owner"
+        },
+        {
+          "requirement": "Yellow Card Issued by the Electrical Service Provider",
+          "where_to_secure": "Meralco"
+        },
+        {
+          "requirement": "Vicinity Map",
+          "where_to_secure": "Building Owner"
+        }
+      ],
+      "client_steps": [
+        {
+          "step": 1,
+          "action": "Present and Submit all the required documents"
+        },
+        {
+          "step": 2,
+          "action": "Payment to the cashier at Municipal Treasurer's Office; Process payment and Issue Official Receipt"
+        },
+        {
+          "step": 3,
+          "action": "Release of Occupancy Permit; Grant/Issue Certificate"
+        }
+      ],
+      "processing_time": "10 minutes",
+      "agency_actions_endorsement": ["BFP"],
+      "turnaround_time": "1 day (document review) + bfp site inspection + (payment) + 1 day (release) = **varies by bfp inspection** note: endorse to bfp for site inspection.",
+      "supporting_documents_detail": {
+        "conditional_requirements": {
+          "instruction": "Additional requirements that may apply based on your situation:",
+          "options": [
+            {
+              "condition": "May be required based on your situation",
+              "document": "Affidavit of Setbacks (Notarized)",
+              "where_to_secure": "Notary Public"
+            }
+          ]
+        }
+      },
+      "plain_language_name": "Get a Certificate of Occupancy"
+    },
+    {
+      "service_number": "3.6",
+      "service_name": "Issuance of Certificate of Inspection for Road Worthiness",
+      "office_division": "MUNICIPAL ENGINEERING OFFICE",
+      "classification": "Simple",
+      "type_of_transaction": "G2G – Government to Government; G2C - Government to Citizen",
+      "who_may_avail": "House and/or building owners within the jurisdiction of Los Baños",
+      "requirements": [
+        {
+          "requirement": "Documents from Transportation Regulatory Unit",
+          "where_to_secure": "Transportation Regulatory Unit"
+        }
+      ],
+      "client_steps": [
+        {
+          "step": 1,
+          "action": "Present and Submit all the required documents from TRU"
+        },
+        {
+          "step": 2,
+          "action": "Present the tricycle to be inspected"
+        },
+        {
+          "step": 3,
+          "action": "Sign Logbook for release; Grant/Issue Certificate"
+        }
+      ],
+      "processing_time": "5 minutes (document review) + 5 minutes (tricycle inspection) + 2 minutes (release) = **12 minutes** note: includes physical tricycle inspection by cm & m and administrative aide i.",
+      "turnaround_time": "",
+      "plain_language_name": "Get a Certificate of Inspection for Road Worthiness"
+    },
+    {
+      "service_number": "4.1",
+      "service_name": "Issuance of Locational Clearance for Titling Application (Free Patent)",
+      "office_division": "MUNICIPAL PLANNING AND DEVELOPMENT OFFICE",
+      "classification": "Simple",
+      "type_of_transaction": "G2C",
+      "who_may_avail": "Property Owners, Developers",
+      "requirements": [
+        {
+          "requirement": "Letter addressed to MPDC for Titling Certification - PENRO Request",
+          "where_to_secure": "Client/Applicant"
+        },
+        {
+          "requirement": "Proof of Lot Ownership - Mode of Conveyance",
+          "where_to_secure": "Registered Lot Owner"
+        },
+        {
+          "requirement": "Latest Tax Declaration",
+          "where_to_secure": "Municipal Assessor's Office"
+        },
+        {
+          "requirement": "Deed of Sale",
+          "where_to_secure": "Registered Lot Owner"
+        },
+        {
+          "requirement": "Latest Tax Receipt (1 photocopy)",
+          "where_to_secure": "Municipal Treasurer's Office"
+        },
+        {
+          "requirement": "Vicinity Map",
+          "where_to_secure": "Client/Applicant"
+        }
+      ],
+      "client_steps": [
+        {
+          "step": 1,
+          "action": "Submit the required documents for assessment and verification"
+        },
+        {
+          "step": 2,
+          "action": "Receive the copy of the Titling Certificate"
+        },
+        {
+          "step": 3,
+          "action": "Release the approved Titling Certificate"
+        }
+      ],
+      "fees": {
+        "amount": "Variable",
+        "description": "Processing time: 30 minutes (document review) + 30 minutes to 2 days (Mayor's signature) + 5 minutes (release) = 1-2 days"
+      },
+      "processing_time": "",
+      "notes": "The Titling Certificate will be forwarded to the Office of the Mayor for signature.",
+      "turnaround_time": "Variable (1-2 days)",
+      "plain_language_name": "Apply for Issuance of Locational Clearance for Titling"
+    },
+    {
+      "service_number": "4.2",
+      "service_name": "Issuance of Locational Clearance for Building Application",
+      "office_division": "MUNICIPAL PLANNING AND DEVELOPMENT OFFICE",
+      "classification": "Simple",
+      "type_of_transaction": "G2C",
+      "who_may_avail": "Property Owners, Developers",
+      "requirements": [
+        {
+          "requirement": "Zoning Application Form duly notarized",
+          "where_to_secure": "MPDO"
+        },
+        {
+          "requirement": "Latest Tax Receipt or Tax Clearance",
+          "where_to_secure": "Municipal Treasurer's Office"
+        },
+        {
+          "requirement": "Proof of Lot Ownership - Mode of Conveyance",
+          "where_to_secure": "Register of Deeds"
+        },
+        {
+          "requirement": "Transfer Certificate of Title (TCT)",
+          "where_to_secure": "Municipal Assessor's Office"
+        },
+        {
+          "requirement": "Latest Tax Declaration",
+          "where_to_secure": "Registered Lot Owner"
+        },
+        {
+          "requirement": "Deed of Sale",
+          "where_to_secure": "Registered Lot Owner"
+        },
+        {
+          "requirement": "Contract of Lease",
+          "where_to_secure": "Others"
+        },
+        {
+          "requirement": "Duly notarized Authorization Letter or Special Power of Attorney",
+          "where_to_secure": "For Representative"
+        },
+        {
+          "requirement": "Government-issued Identification Card of the person being represented",
+          "where_to_secure": "Registered Lot Owner"
+        },
+        {
+          "requirement": "Government-issued Identification Card of the representative",
+          "where_to_secure": "Registered Lot Owner"
+        },
+        {
+          "requirement": "Barangay Certification for Building/Fencing Permit",
+          "where_to_secure": "Barangay"
+        },
+        {
+          "requirement": "Signed and sealed architectural plan with PTR of the signatory",
+          "copies": "3",
+          "where_to_secure": "Licensed Architect or Civil Engineer"
+        },
+        {
+          "requirement": "Bill of Materials",
+          "where_to_secure": "Licensed Architect or Civil Engineer"
+        },
+        {
+          "requirement": "For dwellings on rear lot: Duly notarized Easement of Right-of-Way",
+          "where_to_secure": "Registered Lot Owner"
+        },
+        {
+          "requirement": "Subdivision Plan indicating",
+          "where_to_secure": "Supplemental Documents",
+          "note": "Licensed Architect or Civil Engineer"
+        },
+        {
+          "requirement": "Environmental Compliance Certificate (ECC)",
+          "where_to_secure": "DENR"
+        },
+        {
+          "requirement": "Certificate of Non-Coverage (CNC)",
+          "where_to_secure": "DENR"
+        },
+        {
+          "requirement": "Height Clearance Permit",
+          "where_to_secure": "Civil Aviation Authority of the Phil (CAAP)"
+        }
+      ],
+      "client_steps": [
+        {
+          "step": 1,
+          "action": "Submit the required documents for assessment and verification"
+        },
+        {
+          "step": 2,
+          "action": "Wait for the Ocular Site Complete inspection Schedule"
+        },
+        {
+          "step": 3,
+          "action": "Pay the application fee at the Municipal Treasurer's Office and Present the Official Receipt (OR) to the MPDO"
+        },
+        {
+          "step": 4,
+          "action": "Receive the copy of the Zoning Certification and the approved copy of the project plans"
+        }
+      ],
+      "processing_time": "~1-2 hours (plus site inspection)",
+      "turnaround_time": "",
+      "plain_language_name": "Apply for a building permit"
+    },
+    {
+      "service_number": "4.3",
+      "service_name": "Issuance of Locational Clearance for Land Reclassification",
+      "office_division": "MUNICIPAL PLANNING AND DEVELOPMENT OFFICE",
+      "classification": "Simple",
+      "type_of_transaction": "G2C",
+      "who_may_avail": "Property Owners, Developers",
+      "requirements": [
+        {
+          "requirement": "Proof of Lot Ownership - Mode of Conveyance (1 photocopy) - whichever is applicable:",
+          "where_to_secure": "Contact the office",
+          "sub_requirements": [
+            {
+              "requirement": "Latest Tax Declaration",
+              "where_to_secure": "Municipal Assessor's Office"
+            },
+            {
+              "requirement": "Transfer Certificate of Title",
+              "where_to_secure": "Register of Deeds"
+            }
+          ]
+        }
+      ],
+      "client_steps": [
+        {
+          "step": 1,
+          "action": "Submit the required documents for assessment and verification"
+        },
+        {
+          "step": 2,
+          "action": "Pay the application fee at the Municipal Treasurer's Office and Present the Official Receipt (OR) to the MPDO"
+        },
+        {
+          "step": 3,
+          "action": "Receive the copy of the Locational Clearance"
+        }
+      ],
+      "processing_time": "~20 minutes",
+      "fees": {
+        "amount": "",
+        "description": "Refer to the Local Revenue Code"
+      },
+      "turnaround_time": "",
+      "plain_language_name": "Get a Locational Clearance for Land Reclassification"
+    },
+    {
+      "service_number": "4.4",
+      "service_name": "Issuance of Zoning Certification",
+      "office_division": "MUNICIPAL PLANNING AND DEVELOPMENT OFFICE",
+      "classification": "Simple",
+      "type_of_transaction": "G2B – Government to Business; G2C - Government to Citizen",
+      "who_may_avail": "All",
+      "requirements": [
+        {
+          "requirement": "Letter-request addressed to the MPDC/Zoning Administrator",
+          "details": [
+            "Signed by School Head and/or Student",
+            "Signed by the requesting party"
+          ],
+          "where_to_secure": "Client"
+        },
+        {
+          "requirement": "Real Property Tax Declaration",
+          "where_to_secure": "Municipal Assessor's Office"
+        },
+        {
+          "requirement": "Latest Real Property Tax Receipt (1 photocopy)",
+          "details": "Required if for Business or other Legal Purposes",
+          "where_to_secure": "Municipal Treasury Office"
+        },
+        {
+          "requirement": "Vicinity Map",
+          "where_to_secure": "Client"
+        }
+      ],
+      "client_steps": [
+        {
+          "step": 1,
+          "action": "Submit the required documents for assessment and verification"
+        },
+        {
+          "step": 2,
+          "action": "Pay the required fees"
+        },
+        {
+          "step": 3,
+          "action": "Secures the approved Zoning Certificate"
+        }
+      ],
+      "fees": {
+        "amount": "₱50.00 + ₱30.00 (documentary stamp), ₱600.00 + ₱30.00 (documentary stamp)",
+        "description": "Research and Development - Student, Other Legal Purposes - Business Establishment Owners"
+      },
+      "processing_time": "~1 hour",
+      "turnaround_time": "",
+      "plain_language_name": "Get a Zoning Certification"
+    },
+    {
+      "service_number": "5.1",
+      "service_name": "Registration of Regular and Timely Certificate of Live Birth",
+      "office_division": "LOCAL CIVIL REGISTRY OFFICE",
+      "classification": "Simple",
+      "type_of_transaction": "G2C",
+      "who_may_avail": "All Government/Private Hospitals, Maternity & Lying-In Clinics/other birth attendants, Constituents",
+      "requirements": [
+        {
+          "document": "Duly accomplished Certificate of Live Birth (4 copies)",
+          "from_agency": "Hospital, Maternity/Lying-In Clinics, other birthing facilities",
+          "where_to_secure": "Contact the office"
+        },
+        {
+          "condition": "For Marital Child",
+          "documents": [
+            {
+              "document": "Marriage Certificate of Parents",
+              "from_agency": "PSA or LCR"
+            },
+            {
+              "document": "Copy of valid IDs of parents (Passport for foreigner)",
+              "from_agency": ""
+            }
+          ],
+          "where_to_secure": "Contact the office"
+        },
+        {
+          "condition": "For Non-Marital Child",
+          "documents": [
+            {
+              "document": "Signed and notarized Affidavit of Acknowledgment/Admission of Paternity",
+              "from_agency": ""
+            },
+            {
+              "document": "Notarized Affidavit to Use the Surname of the Father (AUSF) executed by Mother or Father",
+              "from_agency": ""
+            },
+            {
+              "document": "Copy of valid IDs of parents",
+              "from_agency": ""
+            }
+          ],
+          "where_to_secure": "Contact the office"
+        }
+      ],
+      "client_steps": [
+        {
+          "step": 1,
+          "action": "Submit Certificate of Live Birth and all the requirements"
+        },
+        {
+          "step": 2,
+          "action": "Proceed to the Treasurer's Office Window 4, Pay the required fee/s, and secure an official receipt"
+        },
+        {
+          "step": 3,
+          "action": "Receive personal copy of registered Certificate of Live Birth"
+        }
+      ],
+      "fees": {
+        "amount": "",
+        "description": ""
+      },
+      "processing_time": "5-7 minutes",
+      "turnaround_time": "",
+      "plain_language_name": "Get a Registration of Regular and Timely of Live Birth certificate"
+    },
+    {
+      "service_number": "5.10",
+      "service_name": "Request for Cremation Permit",
+      "office_division": "LOCAL CIVIL REGISTRY OFFICE",
+      "classification": "Simple",
+      "type_of_transaction": "G2C",
+      "who_may_avail": "LB residents, Non-LB residents",
+      "requirements": [
+        {
+          "requirement": "Certified copy of Certificate of Death",
+          "where_to_secure": "LCRO where death occurred"
+        },
+        {
+          "requirement": "Cremation Form - RHU I",
+          "where_to_secure": "Rural Health Unit"
+        },
+        {
+          "requirement": "Original copy of Transfer Permit (if death occurred in another city/municipality)",
+          "where_to_secure": "Local/Municipal Civil Registry or Health Department"
+        },
+        {
+          "requirement": "Valid Identification Cards (IDs)",
+          "where_to_secure": "Informant/Family/Relative/Authorized Person"
+        }
+      ],
+      "client_steps": [
+        {
+          "step": 1,
+          "action": "Submit documentary requirements"
+        },
+        {
+          "step": 2,
+          "action": "Secure Order of Payment from Receiving Clerk Counter 7"
+        },
+        {
+          "step": 3,
+          "action": "Pay at Treasurer's Office"
+        },
+        {
+          "step": 4,
+          "action": "Return Official Receipt to Counter 7, then Present to Sanitation Dept of RHU for Cremation Permit"
+        }
+      ],
+      "fees": {
+        "amount": "₱500.00, ₱1,000.00, ₱100.00",
+        "description": "Cremation Permit Fee - LB Resident, Cremation Permit Fee - Non LB Resident, Transfer Permit Fee"
+      },
+      "processing_time": "~12 minutes",
+      "turnaround_time": "",
+      "plain_language_name": "Apply for Cremation Permit"
+    },
+    {
+      "service_number": "5.11",
+      "service_name": "Request and Issuance of Certified True Copy of Birth/Death/Marriage Certificate",
+      "office_division": "LOCAL CIVIL REGISTRY OFFICE",
+      "classification": "Simple",
+      "type_of_transaction": "G2C",
+      "who_may_avail": "LB residents, Non-LB residents",
+      "requirements": [
+        {
+          "requirement": "Request Form for Birth/Death/Marriage Certificate",
+          "where_to_secure": "Civil Registry Office"
+        },
+        {
+          "requirement": "Government-issued / Valid Identification Card",
+          "where_to_secure": "BIR, SSS, GSIS, PAG-IBIG, LTO, PRC, DFA, Company ID, Post Office, IBP"
+        },
+        {
+          "requirement": "Authorization Letter/Special Power of Attorney from document owner (for representative)",
+          "where_to_secure": "Document owner",
+          "copies": "one original"
+        },
+        {
+          "requirement": "Photocopy of Government Issued ID with signature of document owner",
+          "where_to_secure": "Document owner"
+        },
+        {
+          "requirement": "Photocopy of Government Issued ID of representative",
+          "where_to_secure": "Representative"
+        },
+        {
+          "requirement": "Requested document, if available",
+          "where_to_secure": "Document owner"
+        }
+      ],
+      "client_steps": [
+        {
+          "step": 1,
+          "action": "Submit filled-out CTC request form and ID"
+        },
+        {
+          "step": 2,
+          "action": "Pay corresponding fees at Treasurer's Office"
+        },
+        {
+          "step": 3,
+          "action": "Present/Submit Official Receipt"
+        },
+        {
+          "step": 4,
+          "action": "Receive certified copy of the document/s"
+        }
+      ],
+      "fees": {
+        "amount": "₱100.00",
+        "description": "Certified True Copy (CTC)"
+      },
+      "processing_time": "5 minutes",
+      "turnaround_time": "",
+      "plain_language_name": "Apply for and Issuance of Certified True Copy of Birth/Death/Marriage Certificate"
+    },
+    {
+      "service_number": "5.12",
+      "service_name": "Admission of Paternity/R.A. 9255",
+      "office_division": "LOCAL CIVIL REGISTRY OFFICE",
+      "classification": "Simple",
+      "type_of_transaction": "G2C",
+      "who_may_avail": "Parents/minor parents of LB-born illegitimate children; document owner with missing entry in COLB",
+      "requirements": [
+        {
+          "requirement": "Certificate of No Previous Marriage (CENOMAR) of both parents",
+          "where_to_secure": "PSA"
+        },
+        {
+          "requirement": "Certificate of Marriage of parents – PSA and local copy",
+          "where_to_secure": "PSA; LCR Counter 2"
+        },
+        {
+          "requirement": "Child's Certificate of Live Birth - PSA copy and Local Copy",
+          "where_to_secure": "PSA; LCR Counter 2"
+        },
+        {
+          "requirement": "Government-issued/Valid Identification Card of the Parents",
+          "where_to_secure": "Government issuing offices"
+        },
+        {
+          "requirement": "Signed Joint Affidavit of Legitimation (parents who have no legal impediment to marry)",
+          "where_to_secure": "Lawyer/Notary Public"
+        },
+        {
+          "requirement": "Signed Supplemental Joint Affidavit of Legitimation under R.A 9858 (parents disqualified due to minority)",
+          "where_to_secure": "Lawyer/Notary Public"
+        },
+        {
+          "requirement": "Affidavit Of Admission of Paternity (if not yet previously executed)",
+          "where_to_secure": "Lawyer/Notary Public"
+        },
+        {
+          "requirement": "FATHER: To prove child's filiation, any two (2) of: Employment Record, SSS/GSIS Record, Insurance Policy, Income Tax Return (ITR), SALN, Pag-ibig/Philhealth MDR, Medical Record of Child, School Record of Child, Baptismal Certificate",
+          "where_to_secure": "Employer, SSS/GSIS, Insurance Company, BIR, Government Office, Pag-ibig/Philhealth, Hospital, School, Church"
+        }
+      ],
+      "client_steps": [
+        {
+          "step": 1,
+          "action": "Submit required documents"
+        },
+        {
+          "step": 2,
+          "action": "Pay corresponding fee at Treasurer's Office"
+        },
+        {
+          "step": 3,
+          "action": "Submit Official Receipt"
+        },
+        {
+          "step": 4,
+          "action": "Receive the Supplemental Report Endorsement"
+        }
+      ],
+      "fees": {
+        "amount": "₱200.00",
+        "description": "Supplemental Report"
+      },
+      "processing_time": "",
+      "turnaround_time": "3 working days",
+      "plain_language_name": "Get Admission of Paternity/R.A. 9255"
+    },
+    {
+      "service_number": "5.13",
+      "service_name": "Legitimation with Admission of Paternity, including R.A. 9858 / Supplemental Report",
+      "office_division": "LOCAL CIVIL REGISTRY OFFICE",
+      "classification": "Complex",
+      "type_of_transaction": "G2C",
+      "who_may_avail": "Parents/minor parents of LB-born illegitimate children; document owner with missing entry in COLB",
+      "requirements": [
+        {
+          "requirement": "Certificate of No Previous Marriage (CENOMAR) of both parents",
+          "where_to_secure": "PSA"
+        },
+        {
+          "requirement": "Certificate of Marriage of parents – PSA and local copy",
+          "where_to_secure": "PSA; LCR Counter 2"
+        },
+        {
+          "requirement": "Child's Certificate of Live Birth - PSA copy and Local Copy",
+          "where_to_secure": "PSA; LCR Counter 2"
+        },
+        {
+          "requirement": "Government-issued/Valid Identification Card of the Parents",
+          "where_to_secure": "Government issuing offices"
+        },
+        {
+          "requirement": "Signed Joint Affidavit of Legitimation (parents who have no legal impediment to marry)",
+          "where_to_secure": "Lawyer/Notary Public"
+        },
+        {
+          "requirement": "Signed Supplemental Joint Affidavit of Legitimation under R.A 9858 (parents disqualified due to minority)",
+          "where_to_secure": "Lawyer/Notary Public"
+        },
+        {
+          "requirement": "Affidavit Of Admission of Paternity (if not yet previously executed)",
+          "where_to_secure": "Lawyer/Notary Public"
+        },
+        {
+          "requirement": "FATHER: To prove child's filiation, any two (2) of: Employment Record, SSS/GSIS Record, Insurance Policy, Income Tax Return (ITR), SALN, Pag-ibig/Philhealth MDR, Medical Record of Child, School Record of Child, Baptismal Certificate",
+          "where_to_secure": "Employer, SSS/GSIS, Insurance Company, BIR, Government Office, Pag-ibig/Philhealth, Hospital, School, Church"
+        },
+        {
+          "requirement": "PSA copy of Death Certificate (if any or both parents are dead / if previous spouse died before child's conception)",
+          "where_to_secure": "PSA"
+        },
+        {
+          "requirement": "Certified True Copy of Decision and Certificate of Finality of Annulment/Divorce (if any or both parents are annulled or divorced)",
+          "where_to_secure": "Court"
+        }
+      ],
+      "client_steps": [
+        {
+          "step": 1,
+          "action": "Submit required documents"
+        },
+        {
+          "step": 2,
+          "action": "Pay corresponding fee at Treasurer's Office"
+        },
+        {
+          "step": 3,
+          "action": "Submit Official Receipt"
+        },
+        {
+          "step": 4,
+          "action": "Receive the Supplemental Report Endorsement"
+        }
+      ],
+      "fees": {
+        "amount": "₱200.00",
+        "description": "Supplemental Report"
+      },
+      "processing_time": "",
+      "turnaround_time": "3 working days",
+      "plain_language_name": "Get Legitimation with Admission of Paternity, including R.A. 9858 / Supplemental Report"
+    },
+    {
+      "service_number": "5.14",
+      "service_name": "R.A. 9048 - Petition for Change of First Name (CFN)",
+      "office_division": "LOCAL CIVIL REGISTRY OFFICE",
+      "classification": "Simple",
+      "type_of_transaction": "G2C (Government to Citizen)",
+      "who_may_avail": "Individuals seeking name change",
+      "requirements": [
+        {
+          "requirement": "Certified True Copy or Local Copy of Certificate of Live Birth",
+          "where_to_secure": "Civil Registry",
+          "copies": "3"
+        },
+        {
+          "requirement": "PSA Copy of Certificate of Live Birth",
+          "where_to_secure": "Philippine Statistics Authority"
+        },
+        {
+          "requirement": "Petition for Change of First Name",
+          "where_to_secure": "Lawyer",
+          "copies": "3"
+        },
+        {
+          "requirement": "Affidavit of undertaking",
+          "where_to_secure": "Lawyer",
+          "copies": "3"
+        },
+        {
+          "requirement": "Supporting documents (see detailed list below)",
+          "where_to_secure": "Various"
+        }
+      ],
+      "supporting_documents_detail": {
+        "instruction": "Submit ANY TWO (2) of the following. All must be original/certified true copies plus 3 photocopies in legal size paper:",
+        "mandatory_requirements": {
+          "instruction": "Mandatory requirements (3 photocopies in legal size paper):",
+          "documents": [
+            {
+              "document": "Certification of Employment with no pending case",
+              "where_to_secure": "Employer",
+              "note": "If employed"
+            },
+            {
+              "document": "Affidavit of Non-Employment",
+              "where_to_secure": "Lawyer/Notary Public",
+              "note": "If not employed"
+            },
+            {
+              "document": "NBI Clearance",
+              "where_to_secure": "NBI",
+              "note": "Current with 6 months validity, purpose: For Change of First Name"
+            },
+            {
+              "document": "Police Clearance",
+              "where_to_secure": "PNP",
+              "note": "Current with 6 months validity, purpose: For Change of First Name"
+            }
+          ]
+        },
+        "primary_documents": [
+          {
+            "document": "Baptismal Certificate",
+            "where_to_secure": "Church/Parish"
+          },
+          {
+            "document": "School Records",
+            "where_to_secure": "School last attended"
+          },
+          {
+            "document": "Voter's Affidavit",
+            "where_to_secure": "COMELEC"
+          },
+          {
+            "document": "SSS/GSIS Records",
+            "where_to_secure": "SSS/GSIS"
+          },
+          {
+            "document": "Medical or Business Record",
+            "where_to_secure": "Clinic/Hospital or Business establishment"
+          }
+        ],
+        "additional_documents": {
+          "instruction": "Additional supporting documents (if applicable):",
+          "documents": [
+            {
+              "document": "Certificate of Marriage",
+              "where_to_secure": "LCRO/PSA",
+              "note": "If applicable"
+            },
+            {
+              "document": "Certificate of Live Birth of Child",
+              "where_to_secure": "LCRO/PSA"
+            },
+            {
+              "document": "Two (2) Government-issued ID / Valid Identification Card or CEDULA",
+              "where_to_secure": "Government issuing offices",
+              "copies": "2"
+            }
+          ]
+        },
+        "note": "The processor will determine applicable documents"
+      },
+      "client_steps": [
+        {
+          "step": 1,
+          "action": "Present the documents for correction or change"
+        },
+        {
+          "step": 2,
+          "action": "Initial interview, and Submit requirements."
+        },
+        {
+          "step": 3,
+          "action": "Final interview to clarify entries for correction, and reevaluate requirements"
+        },
+        {
+          "step": 4,
+          "action": "Pay at the cashier"
+        },
+        {
+          "step": 5,
+          "action": "Claim corrected document"
+        }
+      ],
+      "fees": {
+        "amount": "₱3000, ₱650, ₱200, ₱1000",
+        "description": "filing fee, filing fee, certificate of finality, migrant petition"
+      },
+      "processing_time": "",
+      "turnaround_time": "Varies",
+      "plain_language_name": "Get R.A. 9048 - Petition for Change of First Name"
+    },
+    {
+      "service_number": "5.15",
+      "service_name": "R.A. 9048 - Petition for Correction of Clerical Error (CCE)",
+      "office_division": "LOCAL CIVIL REGISTRY OFFICE",
+      "classification": "Complex",
+      "type_of_transaction": "G2C (Government to Citizen)",
+      "who_may_avail": "Owner of document or authorized representative",
+      "requirements": [
+        {
+          "requirement": "Petition for correction",
+          "where_to_secure": "LCRO"
+        },
+        {
+          "requirement": "Copy of document with error",
+          "where_to_secure": "LCRO"
+        },
+        {
+          "requirement": "Supporting documents (see detailed list below)",
+          "where_to_secure": "Various"
+        },
+        {
+          "requirement": "Valid IDs (2 copies)",
+          "where_to_secure": "Government issuing offices"
+        },
+        {
+          "requirement": "Affidavit of correction",
+          "where_to_secure": "Lawyer/Notary Public"
+        }
+      ],
+      "supporting_documents_detail": {
+        "instruction": "Submit ANY TWO (2) of the following. All must be original/certified true copies plus 3 photocopies in legal size paper:",
+        "primary_documents": [
+          {
+            "document": "Certificate of Live Birth",
+            "where_to_secure": "LCRO/PSA",
+            "note": "Wife/Husband for Marriage Petition"
+          },
+          {
+            "document": "Baptismal Certificate",
+            "where_to_secure": "Church/Parish"
+          },
+          {
+            "document": "School Records",
+            "where_to_secure": "School last attended"
+          },
+          {
+            "document": "Voter's Affidavit",
+            "where_to_secure": "COMELEC"
+          },
+          {
+            "document": "SSS/GSIS Records",
+            "where_to_secure": "SSS/GSIS"
+          },
+          {
+            "document": "NBI Clearance",
+            "where_to_secure": "NBI"
+          },
+          {
+            "document": "Police Clearance",
+            "where_to_secure": "PNP"
+          },
+          {
+            "document": "Medical or Business Record",
+            "where_to_secure": "Clinic/Hospital or Business establishment"
+          }
+        ],
+        "additional_documents": {
+          "instruction": "May be required as applicable:",
+          "documents": [
+            {
+              "document": "Certificate of Marriage",
+              "where_to_secure": "LCRO/PSA"
+            },
+            {
+              "document": "Certificate of Live Birth of Child/Children",
+              "where_to_secure": "LCRO/PSA"
+            },
+            {
+              "document": "Certificate of Live Birth of Father, Mother, and Siblings",
+              "where_to_secure": "LCRO/PSA"
+            },
+            {
+              "document": "Certificate of Marriage of Parents",
+              "where_to_secure": "LCRO/PSA"
+            },
+            {
+              "document": "Government-issued ID / CEDULA",
+              "where_to_secure": "Government issuing offices",
+              "copies": "2"
+            }
+          ]
+        },
+        "note": "A processor will determine applicable documents"
+      },
+      "client_steps": [
+        {
+          "step": 1,
+          "action": "Present the documents for correction or change"
+        },
+        {
+          "step": 2,
+          "action": "Initial interview, and Submit requirements."
+        },
+        {
+          "step": 3,
+          "action": "Final interview to clarify entries for correction, and reevaluate requirements"
+        },
+        {
+          "step": 4,
+          "action": "Pay at the cashier"
+        },
+        {
+          "step": 5,
+          "action": "Claim corrected document"
+        }
+      ],
+      "fees": {
+        "amount": "₱1000, ₱650, ₱200, ₱1000",
+        "description": "filing fee, filing fee, certificate of finality, migrant petition"
+      },
+      "processing_time": "50 minutes, 10+ days for release",
+      "turnaround_time": "",
+      "plain_language_name": "Get R.A. 9048 - Petition for Correction of Clerical Error"
+    },
+    {
+      "service_number": "5.2",
+      "service_name": "Delayed Registration of Regular and Timely Certificate of Live Birth",
+      "office_division": "LOCAL CIVIL REGISTRY OFFICE",
+      "classification": "Complex",
+      "type_of_transaction": "G2C",
+      "who_may_avail": "All Government/Private Hospitals, Maternity & Lying-In Clinics/other birth attendants, Constituents",
+      "requirements": [
+        {
+          "document": "Accomplished Certificate of Live Birth for Late Registration (4 copies)",
+          "from_agency": "",
+          "where_to_secure": "Contact the office"
+        },
+        {
+          "document": "Signed and Notarized Affidavit for Delayed Registration",
+          "from_agency": "",
+          "where_to_secure": "Contact the office"
+        },
+        {
+          "document": "Negative Certification of Birth / Certificate of No Record (CNR)",
+          "from_agency": "PSA",
+          "fee": "PHP 100.00",
+          "where_to_secure": "Contact the office"
+        },
+        {
+          "document": "Any two of the following supporting documents:",
+          "from_agency": "",
+          "options": [
+            "Baptismal Certificate",
+            "School Record",
+            "Income Tax Return",
+            "Insurance Policy",
+            "Medical Records",
+            "Barangay Certification",
+            "Member's Data Record/Form",
+            "SSS E-1 Form",
+            "Voter's Certification"
+          ],
+          "where_to_secure": "Contact the office"
+        },
+        {
+          "condition": "For Marital Child",
+          "documents": [
+            {
+              "document": "Parents' Certificate of Marriage",
+              "from_agency": "PSA or LCR"
+            }
+          ],
+          "where_to_secure": "Contact the office"
+        },
+        {
+          "condition": "For Non-Marital Child",
+          "documents": [
+            {
+              "document": "Signed and Notarized Acknowledgment/Admission of Paternity",
+              "from_agency": ""
+            },
+            {
+              "document": "Notarized Affidavit to Use the Surname of the Father (AUSF) executed by Mother or Father",
+              "from_agency": ""
+            },
+            {
+              "document": "Acceptable proof of acknowledgement if child born before August 3, 1988",
+              "from_agency": ""
+            }
+          ],
+          "where_to_secure": "Contact the office"
+        },
+        {
+          "document": "Joint Affidavit of Two Disinterested Persons/Witnesses",
+          "from_agency": "",
+          "where_to_secure": "Contact the office"
+        },
+        {
+          "document": "Government issued ID or Cedula (Passport for foreigner)",
+          "from_agency": "",
+          "where_to_secure": "Contact the office"
+        }
+      ],
+      "client_steps": [
+        {
+          "step": 1,
+          "action": "Submit all necessary requirements"
+        },
+        {
+          "step": 2,
+          "action": "Pay the corresponding fees at Treasurer's Office"
+        },
+        {
+          "step": 3,
+          "action": "Wait until the 10-day Mandatory Posting Period is Complete"
+        },
+        {
+          "step": 4,
+          "action": "Receive Personal Copy of the Registered Certificate of Live Birth"
+        }
+      ],
+      "fees": {
+        "amount": "",
+        "description": "Late Registration fee"
+      },
+      "processing_time": "",
+      "turnaround_time": "11 calendar days (including 10-day posting)",
+      "plain_language_name": "Get a Delayed Registration of Regular and Timely of Live Birth certificate"
+    },
+    {
+      "service_number": "5.3",
+      "service_name": "Application and Issuance of Marriage License",
+      "office_division": "LOCAL CIVIL REGISTRY OFFICE",
+      "classification": "Complex",
+      "type_of_transaction": "G2C",
+      "who_may_avail": "LB Residents (Marriageable Age: at least 18 years old)",
+      "requirements": [
+        {
+          "document": "Marriage License Application Form",
+          "from_agency": "LCR",
+          "where_to_secure": "Contact the office"
+        },
+        {
+          "document": "Government-issued/Valid Identification Card with LB address",
+          "from_agency": "",
+          "where_to_secure": "Contact the office"
+        },
+        {
+          "document": "Birth Certificate",
+          "from_agency": "PSA",
+          "where_to_secure": "Contact the office"
+        },
+        {
+          "document": "Certificate of No Marriage (CENOMAR)",
+          "from_agency": "PSA",
+          "note": "At least 3 months from date of issuance",
+          "where_to_secure": "Contact the office"
+        },
+        {
+          "document": "Community Tax Certificate",
+          "from_agency": "Treasurer's Office",
+          "note": "If no valid ID",
+          "where_to_secure": "Contact the office"
+        },
+        {
+          "document": "2x2 picture of both applicants",
+          "from_agency": "",
+          "where_to_secure": "Contact the office"
+        },
+        {
+          "document": "Barangay Residency Certificate",
+          "from_agency": "Barangay Hall",
+          "where_to_secure": "Contact the office"
+        },
+        {
+          "condition": "If applicable (ages 18-25)",
+          "documents": [
+            {
+              "document": "Municipal Form No. 92 (Parental Consent for 18-20 years old)",
+              "from_agency": "LCR"
+            },
+            {
+              "document": "Municipal Form No. 8 (Parental Advice for 21-25 years old)",
+              "from_agency": "LCR"
+            },
+            {
+              "document": "Certificate of Family Planning",
+              "from_agency": ""
+            },
+            {
+              "document": "Certificate of Marriage Counseling",
+              "from_agency": ""
+            }
+          ],
+          "where_to_secure": "Contact the office"
+        },
+        {
+          "condition": "If previously married",
+          "documents": [
+            {
+              "document": "Judicial Decree of Annulment",
+              "from_agency": "Court"
+            },
+            {
+              "document": "Judicial Decree of Absolute Divorce",
+              "from_agency": "Court"
+            },
+            {
+              "document": "Death Certificate of previous spouse",
+              "from_agency": "PSA"
+            },
+            {
+              "document": "Annotated Marriage Certificate",
+              "from_agency": "PSA"
+            }
+          ],
+          "where_to_secure": "Contact the office"
+        },
+        {
+          "condition": "For Foreigners",
+          "documents": [
+            {
+              "document": "Photocopy of valid passport",
+              "from_agency": ""
+            },
+            {
+              "document": "Alien Certificate of Registration (ACR)",
+              "from_agency": "Immigration"
+            },
+            {
+              "document": "Certificate of Legal Capacity to Marry",
+              "from_agency": "Embassy/Consulate"
+            },
+            {
+              "document": "Apostilled Certificate of No Legal Impediment",
+              "from_agency": "Embassy/Consulate"
+            },
+            {
+              "document": "Certificate of Family Planning and Marriage Counseling",
+              "from_agency": ""
+            }
+          ],
+          "where_to_secure": "Contact the office"
+        }
+      ],
+      "client_steps": [
+        {
+          "step": 1,
+          "action": "Proceed to Civil Registry Office Counter 3 to Submit documents"
+        },
+        {
+          "step": 2,
+          "action": "Pay corresponding fees at Treasurer's Office"
+        },
+        {
+          "step": 3,
+          "action": "Submit the Official Receipt"
+        },
+        {
+          "step": 4,
+          "action": "Secure the marriage license/Sign in the logbook (issued on 11th day)"
+        }
+      ],
+      "fees": {
+        "amount": "",
+        "description": "Filing Fee, Marriage License"
+      },
+      "processing_time": "",
+      "turnaround_time": "10 days posting (issued on 11th day)",
+      "plain_language_name": "Apply for and Issuance of Marriage License"
+    },
+    {
+      "service_number": "5.4",
+      "service_name": "Registration of Regular and Timely Certificate of Marriage",
+      "office_division": "LOCAL CIVIL REGISTRY OFFICE",
+      "classification": "Simple",
+      "type_of_transaction": "G2C (Government to Citizens)",
+      "who_may_avail": "LB constituents, Non-LB Residents (who were married in LB)",
+      "requirements": [
+        {
+          "requirement": "Certificate of Marriage (4 copies) signed by the solemnizing officer",
+          "where_to_secure": "Church, Place of marriage"
+        },
+        {
+          "requirement": "Original or Photocopy of Marriage License",
+          "where_to_secure": "Local Civil Registry Office of place of residency"
+        },
+        {
+          "requirement": "Photocopy of the Authorization to Solemnize Marriage of Solemnizing Officer",
+          "where_to_secure": "Church/Ministry/Religious Sect"
+        },
+        {
+          "requirement": "If applicable: Duly Notarized Affidavit of Cohabitation under Art. 34 (5 years together)",
+          "where_to_secure": "Notary Public"
+        },
+        {
+          "requirement": "If applicable: Notarized Request for celebration of marriage in unauthorized place (Art. 8)",
+          "where_to_secure": "Notary Public"
+        }
+      ],
+      "client_steps": [
+        {
+          "step": 1,
+          "action": "Submit Certificate of Marriage for registration"
+        },
+        {
+          "step": 2,
+          "action": "Pay corresponding fees at Treasurer's office"
+        },
+        {
+          "step": 3,
+          "action": "Receive personal copy of Marriage Certificate"
+        }
+      ],
+      "fees": {
+        "amount": "200.00",
+        "description": "Registration - PHP 200.00"
+      },
+      "processing_time": "~13 minutes",
+      "turnaround_time": "",
+      "plain_language_name": "Get a Registration of Regular and Timely of Marriage certificate"
+    },
+    {
+      "service_number": "5.5",
+      "service_name": "Delayed Registration of Certificate of Marriage",
+      "office_division": "LOCAL CIVIL REGISTRY OFFICE",
+      "classification": "Complex",
+      "type_of_transaction": "G2C (Government to Citizens)",
+      "who_may_avail": "LB constituents, Non-LB Residents (who were married in LB)",
+      "requirements": [
+        {
+          "requirement": "Certificate of Marriage (4 copies) signed by solemnizing officer with Notarized Affidavit for Delayed Registration at back",
+          "where_to_secure": "Church, Place of marriage"
+        },
+        {
+          "requirement": "Original or Photocopy of Marriage License",
+          "where_to_secure": "Local Civil Registry Office of place of residency"
+        },
+        {
+          "requirement": "Photocopy of Authorization to Solemnize Marriage",
+          "where_to_secure": "Church/Ministry/Religious Sect"
+        },
+        {
+          "requirement": "If applicable: Duly Notarized Affidavit of Cohabitation under Art. 34",
+          "where_to_secure": "Notary Public"
+        },
+        {
+          "requirement": "If applicable: Notarized Request for celebration in unauthorized place",
+          "where_to_secure": "Notary Public"
+        }
+      ],
+      "client_steps": [
+        {
+          "step": 1,
+          "action": "Submit Certificate of Marriage for registration"
+        },
+        {
+          "step": 2,
+          "action": "Pay at cashier the corresponding fees"
+        },
+        {
+          "step": 3,
+          "action": "Receive personal copy of Marriage Certificate"
+        }
+      ],
+      "fees": {
+        "amount": "500.00",
+        "description": "Filing fee - PHP 200.00, Registration Fee - PHP 200.00, Certificate of No Record (CNR) - PHP 100.00"
+      },
+      "processing_time": "",
+      "turnaround_time": "10 calendar days posting",
+      "plain_language_name": "Get a Delayed Registration of of Marriage certificate"
+    },
+    {
+      "service_number": "5.6",
+      "service_name": "Registration of Regular and Timely Certificate of Death",
+      "office_division": "LOCAL CIVIL REGISTRY OFFICE",
+      "classification": "Simple",
+      "type_of_transaction": "G2C (Government to Citizens)",
+      "who_may_avail": "LB Constituents, Non-LB residents, immediate family member, Funeral Home, Barangay Chairman",
+      "requirements": [
+        {
+          "requirement": "Original Certificate of Death (4 copies)",
+          "where_to_secure": "Hospitals, Rural Health Unit, Medical Clinics"
+        },
+        {
+          "requirement": "Autopsy Report (if applicable)",
+          "where_to_secure": "NBI or PNP Medico Legal Section"
+        },
+        {
+          "requirement": "Photocopy of Government Issued IDs of Deceased and Informant",
+          "where_to_secure": "BIR, SSS, GSIS, PAG-IBIG, LTO, PRC, DFA, Company ID, Post Office, IBP"
+        }
+      ],
+      "client_steps": [
+        {
+          "step": 1,
+          "action": "Submit original Certificate of Death for registration"
+        },
+        {
+          "step": 2,
+          "action": "Pay corresponding fees at Treasurer's Office"
+        },
+        {
+          "step": 3,
+          "action": "Receive personal copy"
+        }
+      ],
+      "fees": {
+        "amount": "Varies",
+        "description": "COD-Burial - P 50.00, Transfer of cadaver – P 100.00, Cremation - P 500.00 (resident) / P1,000.00 (non-resident)"
+      },
+      "processing_time": "~14 minutes",
+      "turnaround_time": "",
+      "plain_language_name": "Get a Registration of Regular and Timely of Death certificate"
+    },
+    {
+      "service_number": "5.7",
+      "service_name": "Delayed Registration of Certificate of Death",
+      "office_division": "LOCAL CIVIL REGISTRY OFFICE",
+      "classification": "Complex",
+      "type_of_transaction": "G2C (Government to Citizens)",
+      "who_may_avail": "LB Constituents, Non-LB residents, immediate family member, Funeral Home, Barangay Chairman",
+      "requirements": [
+        {
+          "requirement": "Original Certificate of Death (4 copies) with Notarized Affidavit for Delayed Registration at back",
+          "where_to_secure": "Hospitals, Rural Health Unit, Medical Clinics, Notary Public"
+        },
+        {
+          "requirement": "Autopsy Report (if applicable)",
+          "where_to_secure": "NBI or PNP - Medico Legal Section"
+        },
+        {
+          "requirement": "Photocopy of Government Issued IDs of Deceased and Informant",
+          "where_to_secure": "BIR, SSS, GSIS, PAG-IBIG, LTO, PRC, DFA, Company ID, Post Office, IBP"
+        },
+        {
+          "requirement": "Certificate of Burial/Cremation/Transfer",
+          "where_to_secure": "Cemetery/Columbarium/Crematorium/RHU"
+        },
+        {
+          "requirement": "PSA Negative Certification",
+          "where_to_secure": "Philippine Statistics Authority"
+        },
+        {
+          "requirement": "Local Civil Registry (LCR) Certificate of No Record (CNR)",
+          "where_to_secure": "Local Civil Registry Office"
+        }
+      ],
+      "client_steps": [
+        {
+          "step": 1,
+          "action": "Submit original Certificate of Death for late registration"
+        },
+        {
+          "step": 2,
+          "action": "Pay corresponding fees at Treasurer's Office"
+        },
+        {
+          "step": 3,
+          "action": "Receive personal copy"
+        }
+      ],
+      "fees": {
+        "amount": "",
+        "description": "CNR - PHP 100.00, COD-Burial - P 50.00, Transfer of cadaver – P 100.00, Cremation - P 500.00 (resident) / P1,000.00 (non-resident)"
+      },
+      "processing_time": "",
+      "turnaround_time": "11 calendar days",
+      "plain_language_name": "Get a Delayed Registration of of Death certificate"
+    },
+    {
+      "service_number": "5.8",
+      "service_name": "Request for Exhumation Permit",
+      "office_division": "LOCAL CIVIL REGISTRY OFFICE",
+      "classification": "Simple",
+      "type_of_transaction": "G2C - Government to Citizens",
+      "who_may_avail": "LB Constituents, Non-LB residents whose deceased family member was buried in cemeteries in LB",
+      "requirements": [
+        {
+          "requirement": "Exhumation Letter",
+          "where_to_secure": "Client"
+        },
+        {
+          "requirement": "Certified copy of Certificate of Death",
+          "where_to_secure": "LCRO where death occurred or PSA"
+        },
+        {
+          "requirement": "Valid Identification Cards (IDs)",
+          "where_to_secure": "Informant of Certificate of Death/Family/Relative/Authorized Person"
+        }
+      ],
+      "client_steps": [
+        {
+          "step": 1,
+          "action": "Submit Exhumation Letter with certified copy of Certificate of Death"
+        },
+        {
+          "step": 2,
+          "action": "Secure Order of Payment"
+        },
+        {
+          "step": 3,
+          "action": "Submit Official Receipt to Counter 7"
+        }
+      ],
+      "fees": {
+        "amount": "₱100.00",
+        "description": "Exhumation of Cadaver Fee"
+      },
+      "processing_time": "~10 minutes",
+      "turnaround_time": "",
+      "plain_language_name": "Apply for Exhumation Permit"
+    },
+    {
+      "service_number": "5.9",
+      "service_name": "Request for Burial Permit",
+      "office_division": "LOCAL CIVIL REGISTRY OFFICE",
+      "classification": "Simple",
+      "type_of_transaction": "G2C - Government to Citizens",
+      "who_may_avail": "Constituents, Non-LB residents",
+      "requirements": [
+        {
+          "requirement": "Certified copy of Certificate of Death",
+          "where_to_secure": "LCRO where death occurred"
+        },
+        {
+          "requirement": "Original Copy of Transfer (if death occurred in another city/municipality)",
+          "where_to_secure": "Local/Municipal Civil Registry or Health Department"
+        },
+        {
+          "requirement": "Valid Identification Cards (IDs)",
+          "where_to_secure": "Informant/Family/Relative/Authorized Person"
+        }
+      ],
+      "client_steps": [
+        {
+          "step": 1,
+          "action": "Submit documentary requirements for Evaluate"
+        },
+        {
+          "step": 2,
+          "action": "Secure Order of Payment"
+        },
+        {
+          "step": 3,
+          "action": "Pay corresponding fee at Treasurer's Office"
+        },
+        {
+          "step": 4,
+          "action": "Return Official Receipt to Counter 7, Receive Burial Permit in form of Official Receipt"
+        }
+      ],
+      "fees": {
+        "amount": "",
+        "description": "Burial Permit - PHP 50.00, Transfer Permit – PHP 100.00"
+      },
+      "processing_time": "~12 minutes",
+      "turnaround_time": "",
+      "plain_language_name": "Apply for Burial Permit"
+    },
+    {
+      "service_number": "6.1",
+      "service_name": "Issuance of Certification of No Outstanding Obligation",
+      "office_division": "MUNICIPAL ECONOMIC ENTERPRISE - MARKET",
+      "classification": "Simple",
+      "type_of_transaction": "G2C (Government to Citizen)",
+      "who_may_avail": "Market stallholders who want to secure Mayor's/Business Permit",
+      "requirements": [
+        {
+          "requirement": "Latest payment / Official Receipt",
+          "where_to_secure": "MEO Market"
+        },
+        {
+          "requirement": "Updated payment of all market fees (Rental/Utilities)",
+          "where_to_secure": "MEO Market"
+        }
+      ],
+      "client_steps": [
+        {
+          "step": 1,
+          "action": "Requesting Vendor proceeds to MEO Market to request for certificate"
+        },
+        {
+          "step": 2,
+          "action": "Requesting vendor Pay the corresponding fee"
+        },
+        {
+          "step": 3,
+          "action": "Secures the approved certification/clearance and official receipt"
+        }
+      ],
+      "fees": {
+        "amount": "None",
+        "description": ""
+      },
+      "processing_time": "9 minutes",
+      "turnaround_time": "",
+      "plain_language_name": "Get a Certification of No Outstanding Obligation"
+    },
+    {
+      "service_number": "6.2",
+      "service_name": "Payment of Market Fees (Rental)",
+      "office_division": "MUNICIPAL ECONOMIC ENTERPRISE - MARKET",
+      "classification": "Simple",
+      "type_of_transaction": "G2C (Government to Citizen)",
+      "who_may_avail": "Market Vendors",
+      "requirements": [
+        {
+          "requirement": "None",
+          "where_to_secure": "N/A"
+        }
+      ],
+      "client_steps": [
+        {
+          "step": 1,
+          "action": "Requesting Vendor proceeds to MEO Market to Pay rental fee"
+        },
+        {
+          "step": 2,
+          "action": "Requesting Vendor Pay the required amount and secures Official Receipt"
+        }
+      ],
+      "fees": {
+        "amount": "Varies",
+        "description": "according to stall size"
+      },
+      "processing_time": "4 minutes",
+      "turnaround_time": "",
+      "plain_language_name": "Get Payment of Market Fees"
+    },
+    {
+      "service_number": "6.3",
+      "service_name": "Payment of Market Fees (Utilities)",
+      "office_division": "MUNICIPAL ECONOMIC ENTERPRISE - MARKET",
+      "classification": "Simple",
+      "type_of_transaction": "G2C (Government to Citizen)",
+      "who_may_avail": "Market Vendors",
+      "requirements": [
+        {
+          "requirement": "Monthly billing statement",
+          "where_to_secure": "MEO Market"
+        }
+      ],
+      "client_steps": [
+        {
+          "step": 1,
+          "action": "Requesting Vendor proceeds to MEO Market to Pay utility fee"
+        },
+        {
+          "step": 2,
+          "action": "Requesting Vendor Pay the required amount and secures Official Receipt"
+        }
+      ],
+      "fees": {
+        "amount": "Varies",
+        "description": "according to consumption"
+      },
+      "processing_time": "4 minutes",
+      "turnaround_time": "",
+      "plain_language_name": "Get Payment of Market Fees"
+    },
+    {
+      "service_number": "6.4",
+      "service_name": "Special Promotional Fee",
+      "office_division": "MUNICIPAL ECONOMIC ENTERPRISE - MARKET",
+      "classification": "Complex",
+      "type_of_transaction": "G2B (Government to Business)",
+      "who_may_avail": "Companies/Businesses",
+      "requirements": [
+        {
+          "requirement": "Request letter",
+          "where_to_secure": "Client"
+        }
+      ],
+      "client_steps": [
+        {
+          "step": 1,
+          "action": "Requesting Vendor proceeds to MEO Market to request for promotional activity"
+        },
+        {
+          "step": 2,
+          "action": "Wait for Receive approval"
+        },
+        {
+          "step": 3,
+          "action": "Paying corresponding fee upon Receive approval"
+        }
+      ],
+      "fees": {
+        "amount": "₱500.00",
+        "description": "promotional fee"
+      },
+      "processing_time": "",
+      "turnaround_time": "3-5 working days",
+      "plain_language_name": "Get Special Promotional Fee"
+    },
+    {
+      "service_number": "7.1",
+      "service_name": "Acceptance of Livestock and Ante-mortem Inspection",
+      "office_division": "MUNICIPAL ECONOMIC ENTERPRISE - SLAUGHTERHOUSE",
+      "classification": "Simple",
+      "type_of_transaction": "G2C (Government to Citizen)",
+      "who_may_avail": "Authorized meat dealers, livestock suppliers, and individual clients",
+      "requirements": [
+        {
+          "requirement": "Veterinary Health Certificate",
+          "where_to_secure": "City/Municipal Veterinary Office or Accredited Private Vet"
+        },
+        {
+          "requirement": "Shipping Permit",
+          "where_to_secure": "BAI Regional Veterinary Quarantine Station or Checkpoints"
+        },
+        {
+          "requirement": "Animal Health Certificate",
+          "where_to_secure": "LGU Office of Municipal Agriculture or Livestock Inspector"
+        },
+        {
+          "requirement": "Certificate of Ownership (for large animals)",
+          "where_to_secure": "LGU Office of Municipal Agriculture or Livestock Inspector"
+        }
+      ],
+      "client_steps": [
+        {
+          "step": 1,
+          "action": "Present original documents upon entry"
+        },
+        {
+          "step": 2,
+          "action": "Unload livestock to designated pen for ante-mortem Complete inspection"
+        },
+        {
+          "step": 3,
+          "action": "Present animals for ante-mortem Complete inspection"
+        }
+      ],
+      "fees": {
+        "amount": "None",
+        "description": ""
+      },
+      "processing_time": "22 minutes",
+      "turnaround_time": "",
+      "plain_language_name": "Get Acceptance of Livestock and Ante-mortem Inspection"
+    },
+    {
+      "service_number": "7.2",
+      "service_name": "Slaughtering of Small/Large Animals and Issuance of Local Meat Inspection Certificate",
+      "office_division": "MUNICIPAL ECONOMIC ENTERPRISE - SLAUGHTERHOUSE",
+      "classification": "Simple",
+      "type_of_transaction": "G2C (Government to Citizen)",
+      "who_may_avail": "Authorized meat dealers, livestock suppliers, and individual clients",
+      "requirements": [
+        {
+          "requirement": "Meat Inspector Daily Inventory Form (from MEO Slaughterhouse)",
+          "where_to_secure": "MEO Slaughterhouse"
+        }
+      ],
+      "client_steps": [
+        {
+          "step": 1,
+          "action": "Allow humane slaughter by assigned butchers"
+        },
+        {
+          "step": 2,
+          "action": "Pay fees and collect official receipt"
+        },
+        {
+          "step": 3,
+          "action": "Request and secure Local Meat Complete inspection Certificate (LMIC)"
+        },
+        {
+          "step": 4,
+          "action": "Receive or arrange delivery of carcass to market"
+        }
+      ],
+      "fees": {
+        "amount": "Php 379.00",
+        "description": "per carcass"
+      },
+      "processing_time": "2 hours & 45 minutes",
+      "turnaround_time": "",
+      "plain_language_name": "Get a Slaughtering of Small/Large Animals and Issuance of Local Meat Inspection certificate"
+    },
+    {
+      "service_number": "7.3",
+      "service_name": "Meat Inspection Services, Fee Assessment, and Issuance of Official Receipt",
+      "office_division": "MUNICIPAL ECONOMIC ENTERPRISE - SLAUGHTERHOUSE",
+      "classification": "Simple",
+      "type_of_transaction": "G2C (Government to Citizen)",
+      "who_may_avail": "Authorized meat dealers, livestock suppliers, and individual clients",
+      "requirements": [
+        {
+          "requirement": "Certificate of Meat Inspection or COMI (for frozen imported meat)",
+          "where_to_secure": "NMIS Meat Inspection Officer"
+        },
+        {
+          "requirement": "Delivery Receipt; Sales Invoice; Official Receipt (for frozen imported meat)",
+          "where_to_secure": "Importer or Distributor"
+        },
+        {
+          "requirement": "Meat Inspection Certificate or MIC (for fresh carcass)",
+          "where_to_secure": "NMIS Accredited AA and AAA Slaughterhouses and Poultry Dressing Plants"
+        }
+      ],
+      "client_steps": [
+        {
+          "step": 1,
+          "action": "Present carcass for Complete inspection, pertinent documents, and declare type/quantity"
+        },
+        {
+          "step": 2,
+          "action": "Await Complete inspection"
+        },
+        {
+          "step": 3,
+          "action": "Proceed to payment"
+        },
+        {
+          "step": 4,
+          "action": "Receive Complete inspection result and receipt"
+        }
+      ],
+      "fees": {
+        "amount": "₱70.00 (Beef); ₱35.00 (Pork); ₱0.25 (Chicken)",
+        "description": "per carcass"
+      },
+      "processing_time": "8 minutes",
+      "turnaround_time": "",
+      "plain_language_name": "Get Meat Inspection Services, Fee Assessment, and Issuance of Official Receipt"
+    },
+    {
+      "service_number": "8.1",
+      "service_name": "INQUIRIES/ASSISTANCE TO NEW COOPERATIVES",
+      "office_division": "MUNICIPAL AGRICULTURE OFFICE",
+      "classification": "Simple",
+      "type_of_transaction": "G2C (Government to Citizen)",
+      "who_may_avail": "All residents of Los Baños and associations/organizations",
+      "requirements": [
+        {
+          "requirement": "Letter of request",
+          "where_to_secure": "Cooperative"
+        }
+      ],
+      "client_steps": [
+        {
+          "step": 1,
+          "action": "Logging in of the client/s on the logbook"
+        },
+        {
+          "step": 2,
+          "action": "State the purpose of such inquiry"
+        }
+      ],
+      "fees": {
+        "amount": "None",
+        "description": ""
+      },
+      "processing_time": "7 minutes",
+      "turnaround_time": "",
+      "plain_language_name": "Get INQUIRIES/ASSISTANCE TO NEW COOPERATIVES"
+    },
+    {
+      "service_number": "8.2",
+      "service_name": "Issuance of Assorted Vegetable Seeds/Seedlings",
+      "office_division": "MUNICIPAL AGRICULTURE OFFICE",
+      "classification": "Simple",
+      "type_of_transaction": "G2C (Government to Citizen)",
+      "who_may_avail": "Farmers, gardeners",
+      "requirements": [
+        {
+          "requirement": "None",
+          "where_to_secure": "N/A"
+        }
+      ],
+      "client_steps": [
+        {
+          "step": 1,
+          "action": "Visit Municipal Agriculture Office to request for assorted seeds/seedlings"
+        },
+        {
+          "step": 2,
+          "action": "Receive seeds/seedlings"
+        }
+      ],
+      "fees": {
+        "amount": "None",
+        "description": ""
+      },
+      "processing_time": "4 minutes",
+      "turnaround_time": "",
+      "plain_language_name": "Get an Assorted Vegetable Seeds/Seedlings"
+    },
+    {
+      "service_number": "8.3",
+      "service_name": "Provision of Anti-Rabies Vaccination for Cats and Dogs",
+      "office_division": "MUNICIPAL AGRICULTURE OFFICE",
+      "classification": "Simple",
+      "type_of_transaction": "G2C (Government to Citizen)",
+      "who_may_avail": "All residents of Los Baños",
+      "requirements": [
+        {
+          "requirement": "None",
+          "where_to_secure": "N/A"
+        }
+      ],
+      "client_steps": [
+        {
+          "step": 1,
+          "action": "Inquire/request for pet vaccination"
+        },
+        {
+          "step": 2,
+          "action": "Receive payment order (PO) for the registration fee"
+        },
+        {
+          "step": 3,
+          "action": "Pay the registration fee at the Treasury Office"
+        },
+        {
+          "step": 4,
+          "action": "Return to Office for vaccination"
+        }
+      ],
+      "fees": {
+        "amount": "₱50.00 per animal",
+        "description": ""
+      },
+      "processing_time": "8 minutes",
+      "turnaround_time": "",
+      "plain_language_name": "Get Provision of Anti-Rabies Vaccination for Cats and Dogs"
+    },
+    {
+      "service_number": "8.4",
+      "service_name": "Livestock Dispersal and Monitoring",
+      "office_division": "MUNICIPAL AGRICULTURE OFFICE",
+      "classification": "Simple",
+      "type_of_transaction": "G2C (Government to Citizen)",
+      "who_may_avail": "All residents of Los Baños",
+      "requirements": [
+        {
+          "requirement": "Request letter",
+          "where_to_secure": "Client"
+        },
+        {
+          "requirement": "Community Tax Certificates",
+          "where_to_secure": "Treasury Office"
+        },
+        {
+          "requirement": "1x1 ID picture",
+          "where_to_secure": "Client"
+        },
+        {
+          "requirement": "Notarized Animal Dispersal Agreement",
+          "where_to_secure": "Client"
+        },
+        {
+          "requirement": "Barangay Clearance",
+          "where_to_secure": "Barangay Hall"
+        }
+      ],
+      "client_steps": [
+        {
+          "step": 1,
+          "action": "Submit request letter as recipient of animal dispersal"
+        },
+        {
+          "step": 2,
+          "action": "Fill-up the Information Sheet"
+        },
+        {
+          "step": 3,
+          "action": "Wait for validation results"
+        },
+        {
+          "step": 4,
+          "action": "Submit Documentary Requirements if qualified"
+        },
+        {
+          "step": 5,
+          "action": "Attend and participate in the seminars/trainings/meetings"
+        },
+        {
+          "step": 6,
+          "action": "Ensure animal welfare"
+        }
+      ],
+      "fees": {
+        "amount": "None",
+        "description": ""
+      },
+      "processing_time": "6 hours & 27 minutes",
+      "turnaround_time": "",
+      "plain_language_name": "Get Livestock Dispersal and Monitoring"
+    },
+    {
+      "service_number": "8.5",
+      "service_name": "Animal Treatment",
+      "office_division": "MUNICIPAL AGRICULTURE OFFICE",
+      "classification": "Simple",
+      "type_of_transaction": "G2C (Government to Citizen)",
+      "who_may_avail": "All residents of Los Baños",
+      "requirements": [
+        {
+          "requirement": "None",
+          "where_to_secure": "N/A"
+        }
+      ],
+      "client_steps": [
+        {
+          "step": 1,
+          "action": "Bring animal for check-up and write in the logbook"
+        },
+        {
+          "step": 2,
+          "action": "Request visit to the animal"
+        }
+      ],
+      "fees": {
+        "amount": "None",
+        "description": ""
+      },
+      "processing_time": "10 minutes",
+      "turnaround_time": "",
+      "plain_language_name": "Get Animal Treatment"
+    },
+    {
+      "service_number": "8.6",
+      "service_name": "Monitoring and Evaluation of Barangay Community Garden/Hapag, Backyard/Home Gardens, and Farmers Production Area",
+      "office_division": "MUNICIPAL AGRICULTURE OFFICE",
+      "classification": "Simple",
+      "type_of_transaction": "G2C (Government to Citizen)",
+      "who_may_avail": "All residents of Los Baños",
+      "requirements": [
+        {
+          "requirement": "None",
+          "where_to_secure": "N/A"
+        }
+      ],
+      "client_steps": [
+        {
+          "step": 1,
+          "action": "Must be available for field visitation"
+        }
+      ],
+      "fees": {
+        "amount": "None",
+        "description": ""
+      },
+      "processing_time": "4 hours",
+      "turnaround_time": "",
+      "plain_language_name": "Get Monitoring and Evaluation of Barangay Community Garden/Hapag, Backyard/Home Gardens, and Farmers Production Area"
+    },
+    {
+      "service_number": "8.7",
+      "service_name": "Issuance of Animal Health Certificates, Certificate of Acceptance, Certificate to Travel Livestock, Fish and Companion Animal",
+      "office_division": "MUNICIPAL AGRICULTURE OFFICE",
+      "classification": "Simple",
+      "type_of_transaction": "G2C (Government to Citizen)",
+      "who_may_avail": "All residents of Los Baños",
+      "requirements": [],
+      "client_steps": [
+        {
+          "step": 1,
+          "action": "Bring the documentary requirements and animal (if applicable) for physical examination"
+        },
+        {
+          "step": 2,
+          "action": "Conduct field visit and check the place (if applicable)"
+        },
+        {
+          "step": 3,
+          "action": "Pay the needed fee"
+        },
+        {
+          "step": 4,
+          "action": "Secure the approved certificate and Sign in the logbook"
+        },
+        {
+          "step": 5,
+          "action": "Bring request letter for tree cutting with necessary requirements"
+        }
+      ],
+      "fees": {
+        "amount": "₱50.00",
+        "description": ""
+      },
+      "processing_time": "1 hour & 35 minutes",
+      "supporting_documents_detail": {
+        "instruction": "Select the type of certificate you need:",
+        "conditional_requirements": {
+          "instruction": "Requirements vary by certificate type (all certificates are ₱50)",
+          "options": [
+            {
+              "condition": "Animal Health Certificate",
+              "document": "Vaccination record, plate number, handler's license, transport carrier license",
+              "where_to_secure": "Client",
+              "copies": null,
+              "note": null,
+              "if_unavailable": null
+            },
+            {
+              "condition": "Certificate of Acceptance (Swine)",
+              "document": "Veterinary health certificate, plate number, livestock handler's permit, livestock transport carrier license, animal disease monitoring compliance certificate, certificate of farm disease free status (ASF)",
+              "where_to_secure": "Client",
+              "copies": null,
+              "note": null,
+              "if_unavailable": null
+            },
+            {
+              "condition": "Clearance to Travel Fish",
+              "document": "Business permit/Mayor's permit number, type of vehicle and plate number (photocopy)",
+              "where_to_secure": "Client",
+              "copies": null,
+              "note": null,
+              "if_unavailable": null
+            },
+            {
+              "condition": "Clearance to Travel Companion Animals",
+              "document": "Vaccination record",
+              "where_to_secure": "Client",
+              "copies": null,
+              "note": null,
+              "if_unavailable": null
+            },
+            {
+              "condition": "Certificate of No Objection (Tree Cutting)",
+              "document": "Proof of ownership of land, endorsement from the barangay, request letter, authorization letter from the owner (original and photocopy, if not the owner)",
+              "where_to_secure": "Client",
+              "copies": null,
+              "note": null,
+              "if_unavailable": null
+            }
+          ]
+        }
+      },
+      "turnaround_time": "",
+      "plain_language_name": "Get an Animal Health Certificates, Certificate of Acceptance, Certificate to Travel Livestock, Fish and Companion Animal"
+    },
+    {
+      "service_number": "1.11",
+      "service_name": "ISSUANCE OF BARANGAY BUSINESS CLEARANCE AND BARANGAY BUILDING CLEARANCE",
+      "office_division": "BARANGAY OFFICE",
+      "classification": "Simple",
+      "type_of_transaction": "G2B (Government to Business)",
+      "who_may_avail": "All Business Owner (New and Renewal)",
+      "requirements": [
+        {
+          "requirement": "Community Tax Certificate",
+          "where_to_secure": "Municipal Treasurer's Office"
+        }
+      ],
+      "client_steps": [
+        {
+          "step": 1,
+          "action": "Present the Barangay Business Clearance (prior year) and Official Receipt (prior year)"
+        },
+        {
+          "step": 2,
+          "action": "Present the barangay building permit payment order from the Building Official"
+        }
+      ],
+      "fees": {
+        "amount": "Variable",
+        "description": "Depending on the Barangay Revenue Code and Building Official"
+      },
+      "processing_time": "4 minutes (within the day)",
+      "turnaround_time": "",
+      "plain_language_name": "Get a barangay clearance"
+    }
+  ]
+}

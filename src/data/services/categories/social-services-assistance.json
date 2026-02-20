@@ -38,41 +38,6 @@
     ]
   },
   {
-    "service": "Senior Citizen ID Application",
-    "slug": "senior-citizen-id",
-    "type": "transaction",
-    "description": "Issuance of ID and purchase booklet for senior citizens (60 years old and above).",
-    "officeSlug": ["municipal-social-welfare-and-development-office"],
-    "category": {
-      "name": "Social Services",
-      "slug": "social-services"
-    },
-    "steps": [
-      "Fill out application form.",
-      "Submit requirements.",
-      "ID processing and printing.",
-      "Claim ID and booklets."
-    ],
-    "requirements": [
-      "Birth Certificate",
-      "1x1 ID Picture",
-      "Valid ID with address"
-    ],
-    "quickInfo": {
-      "processingTime": "Same day",
-      "fee": "Free",
-      "whoCanApply": "60 years old+",
-      "validity": "Lifetime"
-    },
-    "updatedAt": null,
-    "sources": [
-      {
-        "name": "Republic Act No. 9994 (Expanded Senior Citizens Act)",
-        "url": ""
-      }
-    ]
-  },
-  {
     "service": "Cash Subsidy for Solo Parents",
     "slug": "solo-parents-cash-subsidy",
     "type": "transaction",
@@ -153,7 +118,7 @@
         "url": "https://ncsc.gov.ph"
       },
       {
-        "name": "Office of the Senior Citizens Affairs (OSCA) Los Baños"
+        "name": "Office of the Senior Citizens Affairs (OSCA) Los Ba\u00f1os"
       }
     ]
   }

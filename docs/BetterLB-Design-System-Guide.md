@@ -235,7 +235,7 @@ Use raw Kapwa color tokens (like `bg-kapwa-brand-600`) only when:
 
 ```tsx
 // Rare case: specific brand gradient
-<div className="bg-gradient-to-r from-kapwa-brand-400 to-kapwa-brand-600">
+<div className="bg-linear-to-r from-kapwa-brand-400 to-kapwa-brand-600">
   Special gradient
 </div>
 ```

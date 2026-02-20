@@ -7,7 +7,12 @@ interface RequirementCardProps {
 }
 
 export function RequirementCard({ requirement }: RequirementCardProps) {
-  const { requirement: title, where_to_secure, serviceSlug } = requirement;
+  const {
+    requirement: title,
+    where_to_secure,
+    copies,
+    serviceSlug,
+  } = requirement;
   const isClickable = !!serviceSlug;
 
   const CardContent = () => (
@@ -29,6 +34,11 @@ export function RequirementCard({ requirement }: RequirementCardProps) {
           <p className='text-kapwa-text-support mt-1 text-xs'>
             from: {where_to_secure}
           </p>
+          {copies && (
+            <p className='text-kapwa-text-brand mt-1 text-xs font-medium'>
+              {copies}
+            </p>
+          )}
           {isClickable && (
             <span className='text-kapwa-text-brand mt-2 inline-flex items-center gap-1 text-xs font-bold group-hover:underline'>
               View Service <ArrowRightIcon className='h-3 w-3' />

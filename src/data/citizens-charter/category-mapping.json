@@ -2,27 +2,27 @@
   "mappings": [
     {
       "officeDivision": "BUSINESS PERMIT AND LICENSING OFFICE (BPLO)",
-      "categorySlug": "business-licensing",
+      "categorySlug": "business-trade-investment",
       "subcategory": "Business Permits"
     },
     {
       "officeDivision": "MUNICIPAL TREASURER'S OFFICE",
-      "categorySlug": "taxation-assessment",
+      "categorySlug": "taxation-payments",
       "subcategory": "Tax Payment"
     },
     {
       "officeDivision": "MUNICIPAL ASSESSOR'S OFFICE",
-      "categorySlug": "taxation-assessment",
+      "categorySlug": "taxation-payments",
       "subcategory": "Property Assessment"
     },
     {
       "officeDivision": "MUNICIPAL ENGINEERING OFFICE",
-      "categorySlug": "infrastructure-engineering",
+      "categorySlug": "infrastructure-public-works",
       "subcategory": "Building Permits"
     },
     {
       "officeDivision": "MUNICIPAL PLANNING AND DEVELOPMENT COORDINATOR (MPDC)",
-      "categorySlug": "infrastructure-engineering",
+      "categorySlug": "infrastructure-public-works",
       "subcategory": "Planning Services"
     },
     {
@@ -32,17 +32,17 @@
     },
     {
       "officeDivision": "MUNICIPAL ECONOMIC ENTERPRISE - MARKET",
-      "categorySlug": "business-licensing",
+      "categorySlug": "business-trade-investment",
       "subcategory": "Market Services"
     },
     {
       "officeDivision": "MUNICIPAL ECONOMIC ENTERPRISE - SLAUGHTERHOUSE",
-      "categorySlug": "agriculture-livelihood",
+      "categorySlug": "agriculture-economic-development",
       "subcategory": "Slaughterhouse Services"
     },
     {
       "officeDivision": "MUNICIPAL AGRICULTURE OFFICE",
-      "categorySlug": "agriculture-livelihood",
+      "categorySlug": "agriculture-economic-development",
       "subcategory": "Agriculture Services"
     },
     {
@@ -52,12 +52,12 @@
     },
     {
       "officeDivision": "BIDS AND AWARDS COMMITTEE",
-      "categorySlug": "public-safety",
+      "categorySlug": "public-safety-security",
       "subcategory": "Bids and Awards"
     },
     {
       "officeDivision": "INFORMATION AND COMMUNICATION SYSTEMS OFFICE (ICSO)",
-      "categorySlug": "infrastructure-engineering",
+      "categorySlug": "infrastructure-public-works",
       "subcategory": "ICT Services"
     },
     {
@@ -67,12 +67,22 @@
     },
     {
       "officeDivision": "MUNICIPAL ACCOUNTING OFFICE",
-      "categorySlug": "business-licensing",
+      "categorySlug": "business-trade-investment",
       "subcategory": "Accounting Services"
+    },
+    {
+      "officeDivision": "MUNICIPAL HEALTH OFFICE (MHO)",
+      "categorySlug": "health-wellness",
+      "subcategory": "Health Services"
+    },
+    {
+      "officeDivision": "PUBLIC ORDER AND SAFETY OFFICE/TRANSPORTATION AND REGULATION UNIT",
+      "categorySlug": "public-safety-security",
+      "subcategory": "Public Safety"
     }
   ],
   "defaultCategory": {
-    "name": "Infrastructure & Engineering",
-    "slug": "infrastructure-engineering"
+    "name": "Infrastructure & Public Works",
+    "slug": "infrastructure-public-works"
   }
 }

@@ -21,14 +21,17 @@ import {
   PieChart,
   Radio,
   Scale,
+  Shield,
   ShieldAlert,
   Siren,
   Smile,
   Sprout,
   Stethoscope,
+  Store,
   TreePine,
   User,
   UserCheck,
+  Utensils,
   Wallet,
 } from 'lucide-react';
 
@@ -64,6 +67,11 @@ export const officeIcons: Record<string, LucideIcon> = {
   'municipal-nutrition-office': Apple,
   'public-employment-service-office': IdCard,
   'municipal-local-government-operations-office': Landmark,
+  // Economic Enterprises
+  market: Store,
+  slaughterhouse: Utensils,
+  // Public Safety
+  'public-order-and-safety-office': Shield,
   // Committees
   'bids-and-awards-committee': Scale,
 };

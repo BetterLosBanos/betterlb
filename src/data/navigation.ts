@@ -74,17 +74,20 @@ export const footerNavigation = {
       links: [
         { label: 'All Services', href: '/services' },
         {
-          label: 'Business & Licensing',
-          href: '/services?category=business-licensing',
+          label: 'Business, Trade & Investment',
+          href: '/services?category=business-trade-investment',
         },
         {
           label: 'Health & Wellness',
           href: '/services?category=health-wellness',
         },
-        { label: 'Social Welfare', href: '/services?category=social-services' },
         {
-          label: 'Agriculture & Veterinary',
-          href: '/services?category=agriculture-veterinary',
+          label: 'Social Services',
+          href: '/services?category=social-services-assistance',
+        },
+        {
+          label: 'Agriculture & Economic Development',
+          href: '/services?category=agriculture-economic-development',
         },
       ],
     },

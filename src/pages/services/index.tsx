@@ -9,7 +9,7 @@ import { EmptyState } from '@/components/ui/EmptyState';
 import { filterServices } from '@/lib/services';
 
 import ServiceCard from './components/ServiceCard';
-import ServiceFilters from './components/ServiceFilters';
+import FilterBar from './components/FilterBar';
 import type { ServicesOutletContext } from './layout';
 
 const ITEMS_PER_PAGE = 12;
@@ -82,7 +82,9 @@ export default function ServicesPage() {
       <EmptyState
         icon={SearchXIcon}
         title='No services found'
-        message={`We couldn't find any services matching your filters. Try adjusting your search or filters.`}
+        message={
+          "We couldn't find any services matching your filters. Try adjusting your search or filters."
+        }
         actionHref='/contribute'
         actionLabel='Suggest New Service'
       />
@@ -91,8 +93,18 @@ export default function ServicesPage() {
 
   return (
     <div className='animate-in fade-in space-y-6 duration-500'>
-      {/* Results Badge & Filter Toggle */}
-      <div className='flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between'>
+      {/* Filter Bar */}
+      <FilterBar
+        selectedOfficeDivision={selectedOfficeDivision}
+        selectedSource={selectedSource}
+        selectedClassification={selectedClassification}
+        onOfficeDivisionChange={setOfficeDivision}
+        onSourceChange={setSource}
+        onClassificationChange={setClassification}
+      />
+
+      {/* Results Badge */}
+      <div className='flex items-center justify-between'>
         <Badge
           variant='slate'
           className='bg-kapwa-bg-surface-raised border-kapwa-border-weak'
@@ -147,36 +159,20 @@ export default function ServicesPage() {
         )}
       </div>
 
-      <div className='flex flex-col gap-6 lg:flex-row'>
-        {/* Services Grid */}
-        <div className='flex-1'>
-          <div className='grid grid-cols-1 gap-6 md:grid-cols-2 2xl:grid-cols-3'>
-            {filteredServices
-              .slice(0, currentPage * ITEMS_PER_PAGE)
-              .map(service => (
-                <ServiceCard key={service.slug} service={service} />
-              ))}
+      {/* Services Grid */}
+      <div className='grid grid-cols-1 gap-6 md:grid-cols-2 2xl:grid-cols-3'>
+        {filteredServices
+          .slice(0, currentPage * ITEMS_PER_PAGE)
+          .map(service => (
+            <ServiceCard key={service.slug} service={service} />
+          ))}
+
+        {/* Infinite Scroll Loader */}
+        {filteredServices.length > currentPage * ITEMS_PER_PAGE && (
+          <div ref={loadMoreRef} className='flex justify-center py-12'>
+            <div className='border-kapwa-border-brand h-6 w-6 animate-spin rounded-full border-2 border-t-transparent' />
           </div>
-
-          {/* Infinite Scroll Loader */}
-          {filteredServices.length > currentPage * ITEMS_PER_PAGE && (
-            <div ref={loadMoreRef} className='flex justify-center py-12'>
-              <div className='border-kapwa-border-brand h-6 w-6 animate-spin rounded-full border-2 border-t-transparent' />
-            </div>
-          )}
-        </div>
-
-        {/* Additional Filters Sidebar */}
-        <aside className='w-full lg:w-72'>
-          <ServiceFilters
-            selectedOfficeDivision={selectedOfficeDivision}
-            selectedSource={selectedSource}
-            selectedClassification={selectedClassification}
-            onOfficeDivisionChange={setOfficeDivision}
-            onSourceChange={setSource}
-            onClassificationChange={setClassification}
-          />
-        </aside>
+        )}
       </div>
     </div>
   );

@@ -25,15 +25,15 @@ import serviceCategories from '@/data/service_categories.json';
 
 const categoryIcons: Record<string, LucideIcon> = {
   'certificates-vital-records': FileText,
-  'business-licensing': Briefcase,
-  'taxation-assessment': DollarSign,
-  'infrastructure-engineering': Hammer,
-  'social-services': Users,
+  'business-trade-investment': Briefcase,
+  'taxation-payments': DollarSign,
+  'infrastructure-public-works': Hammer,
+  'social-services-assistance': Users,
   'health-wellness': Heart,
-  'agriculture-livelihood': Leaf,
-  'environment-waste': Leaf,
+  'agriculture-economic-development': Leaf,
+  'environment-natural-resources': Leaf,
   'education-scholarship': BookOpen,
-  'public-safety': Shield,
+  'public-safety-security': Shield,
 };
 
 interface ServicesSidebarProps {

@@ -1,17 +1,4 @@
 {
-  "pending": [
-    {
-      "serviceNumber": "1.6",
-      "serviceName": "Collection of Other Payments",
-      "reason": "Placeholder data - needs requirements, steps, fees, and other details from Citizens Charter document",
-      "priority": "high"
-    },
-    {
-      "serviceNumber": "2.1",
-      "serviceName": "Issuance of Tax Declaration for Transfer of Ownership Consolidation/Subdivision",
-      "reason": "Placeholder data - needs requirements, steps, fees, and other details from Citizens Charter document",
-      "priority": "high"
-    }
-  ],
+  "pending": [],
   "completed": []
 }
