@@ -91,19 +91,21 @@ export function StatCard({
           <p className='text-kapwa-text-disabled truncate text-[10px] font-bold tracking-widest uppercase'>
             {label}
           </p>
-          <div className='text-kapwa-text-strong truncate text-3xl font-black'>
-            {typeof value === 'number' ? value.toLocaleString() : value}
-            {trend && (
-              <span
-                className={cn(
-                  'ml-2 inline-flex items-center text-lg font-semibold',
-                  trendColor
-                )}
-              >
-                <TrendIcon className='h-4 w-4' />
-                <span className='ml-0.5'>{Math.abs(trend.value)}%</span>
+          <div className='text-kapwa-text-strong flex items-center gap-2 text-3xl font-black'>
+            <span className='truncate'>
+              {typeof value === 'number' ? value.toLocaleString() : value}
+            </span>
+            <span
+              className={cn(
+                'inline-flex items-center text-lg font-semibold',
+                trend ? trendColor : 'invisible'
+              )}
+            >
+              <TrendIcon className='h-4 w-4' />
+              <span className='ml-0.5'>
+                {trend ? Math.abs(trend.value) : 0}%
               </span>
-            )}
+            </span>
           </div>
           {subtext && (
             <span className='text-kapwa-text-disabled truncate text-xs font-medium'>
