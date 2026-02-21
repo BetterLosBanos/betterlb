@@ -109,6 +109,8 @@ export default function MunicipalIncomePage() {
       <DetailSection title='Revenue Composition' icon={Landmark}>
         <div className='flex justify-center'>
           <FinancialPieChart
+            title='Revenue Composition'
+            icon={Landmark}
             data={drillDownIncomeData}
             colors={[
               COLORS.national,
