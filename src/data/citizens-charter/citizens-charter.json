@@ -470,10 +470,7 @@
             {
               "letter": "A",
               "action": "Submit DTI, sketch and picture of location of business, and duly accomplished application form",
-              "details": [
-                "Lessor - if renting",
-                "Business Owner"
-              ]
+              "details": ["Lessor - if renting", "Business Owner"]
             },
             {
               "letter": "B",
@@ -493,9 +490,7 @@
             {
               "letter": "A",
               "action": "On the dashboard, click NEW to apply for new business",
-              "details": [
-                "Upload all documents needed"
-              ]
+              "details": ["Upload all documents needed"]
             }
           ]
         },
@@ -1726,12 +1721,7 @@
         }
       ],
       "processing_time": "",
-      "agency_actions_endorsement": [
-        "Assessor",
-        "Treasury",
-        "MPDO",
-        "BFP"
-      ],
+      "agency_actions_endorsement": ["Assessor", "Treasury", "MPDO", "BFP"],
       "turnaround_time": "1 day (document evaluation) + 1 day (permit release) = **2 working days** note: documents are endorsed to assessor, treasury, mpdo, and bfp for assessment.",
       "supporting_documents_detail": {
         "conditional_requirements": {
@@ -1995,9 +1985,7 @@
         }
       ],
       "processing_time": "10 minutes",
-      "agency_actions_endorsement": [
-        "BFP"
-      ],
+      "agency_actions_endorsement": ["BFP"],
       "turnaround_time": "1 day (document review) + bfp site inspection + (payment) + 1 day (release) = **varies by bfp inspection** note: endorse to bfp for site inspection.",
       "supporting_documents_detail": {
         "conditional_requirements": {
