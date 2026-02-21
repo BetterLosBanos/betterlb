@@ -85,7 +85,7 @@ export default function CompetitivenessPage() {
       </PageHero>
 
       {/* KPI Cards - using new StatCard component */}
-      <div className='grid grid-cols-1 gap-4 md:grid-cols-3'>
+      <div className='grid grid-cols-1 gap-4 md:grid-cols-3 items-stretch'>
         <StatCard
           label='Overall Score'
           value={cmciData.overall_score[latestIdx].toFixed(2)}

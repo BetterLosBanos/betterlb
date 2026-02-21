@@ -83,7 +83,7 @@ export function StatCard({
     >
       <CardContent
         className={cn(
-          'flex flex-col items-start justify-between gap-2 border-b-4 sm:flex-row sm:items-center',
+          'flex h-full flex-col items-start justify-between gap-2 border-b-4 sm:flex-row sm:items-center',
           variantClasses[variant]
         )}
       >
@@ -112,16 +112,16 @@ export function StatCard({
               {subtext}
             </span>
           )}
-          {children && <div className='mt-1'>{children}</div>}
         </div>
-        {Icon && (
+        {(Icon || children) && (
           <div
             className={cn(
-              'flex h-10 w-10 shrink-0 items-center justify-center rounded-xl p-2',
-              iconBg || 'bg-kapwa-bg-surface-raised text-kapwa-text-strong'
+              'flex shrink-0 items-center justify-center rounded-xl p-2',
+              iconBg || 'bg-kapwa-bg-surface-raised text-kapwa-text-strong',
+              children ? 'h-auto' : 'h-10 w-10'
             )}
           >
-            <Icon className='h-6 w-6' />
+            {Icon ? <Icon className='h-6 w-6' /> : children}
           </div>
         )}
       </CardContent>
