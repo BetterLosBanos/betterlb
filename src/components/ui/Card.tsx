@@ -513,6 +513,5 @@ export const CardDivider = ({ className }: { className?: string }) => (
   <hr className={cn('border-kapwa-border-weak', className)} />
 );
 
-// Re-export StatCard for convenience
-export { StatCard, StatGrid } from './StatCard';
-export type { StatCardProps, StatGridProps } from './StatCard';
+// Note: StatCard and StatGrid are in separate files to avoid circular dependency
+// Import them directly from '@/components/ui/StatCard'

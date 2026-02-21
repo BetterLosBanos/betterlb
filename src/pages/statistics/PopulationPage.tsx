@@ -12,7 +12,7 @@ import {
   YAxis,
 } from 'recharts';
 
-import { StatCard } from '@/components/ui/Card';
+import { StatCard } from '@/components/ui/StatCard';
 import { Badge } from '@/components/ui/Badge';
 import { ChartTooltip } from '@/components/data-display/ChartContainer';
 import { DetailSection } from '@/components/layout/PageLayouts';

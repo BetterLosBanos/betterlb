@@ -364,7 +364,7 @@ StatCard is a specialized card component for displaying statistical KPIs with tr
 #### Basic Usage
 
 ```tsx
-import { StatCard, StatGrid } from '@/components/ui/Card';
+import { StatCard, StatGrid } from '@/components/ui/StatCard';
 
 // Single stat card with trend indicator
 <StatCard

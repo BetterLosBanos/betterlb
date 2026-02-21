@@ -2,7 +2,7 @@ import { useMemo } from 'react';
 
 import { Coins, Landmark, Wallet } from 'lucide-react';
 
-import { StatGrid } from '@/components/ui/Card';
+import { StatGrid } from '@/components/ui/StatCard';
 import { Badge } from '@/components/ui/Badge';
 import { DetailSection } from '@/components/layout/PageLayouts';
 import { PageHero } from '@/components/layout/PageLayouts';
