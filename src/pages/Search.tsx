@@ -6,33 +6,29 @@ import { Helmet } from 'react-helmet-async';
 import { Input } from '@bettergov/kapwa';
 import { SearchIcon } from 'lucide-react';
 
-import servicesData from '@/data/services/services.json';
+import mergedServicesData from '@/data/citizens-charter/merged-services.json';
 import { Badge, EmptyState } from '@/components/ui';
-import type { Service, ServiceType } from '@/types/servicesTypes';
+
+interface MergedService {
+  slug: string;
+  service: string;
+  plainLanguageName?: string;
+  type: string;
+  category: { name: string; slug: string };
+  classification?: string;
+}
 
 interface HitProps {
-  hit: Service;
+  hit: MergedService;
 }
 
 const Hit: FC<HitProps> = ({ hit }) => {
-  const link = hit.url || `/services/${hit.slug}`;
-
   return (
     <article className='hit-item border-kapwa-border-weak hover:bg-kapwa-bg-surface-raised hover:border-kapwa-border-brand border-b p-4 transition-all'>
-      <a
-        href={link}
-        target='_blank'
-        rel='noopener noreferrer'
-        className='block'
-      >
+      <a href={`/services/${hit.slug}`} className='block'>
         <h2 className='text-kapwa-text-info text-lg font-semibold hover:underline'>
-          {hit.service}
+          {hit.plainLanguageName || hit.service}
         </h2>
-        {hit.description && (
-          <p className='text-kapwa-text-support kapwa-body-sm-default mt-1'>
-            {hit.description}
-          </p>
-        )}
         <div className='text-kapwa-text-support mt-1 flex items-center gap-2 text-xs'>
           {hit.category && <span>{hit.category.name}</span>}
           <Badge
@@ -41,12 +37,12 @@ const Hit: FC<HitProps> = ({ hit }) => {
           >
             {hit.type}
           </Badge>
+          {hit.classification && (
+            <span className='text-kapwa-text-disabled'>
+              {hit.classification}
+            </span>
+          )}
         </div>
-        {hit.url && (
-          <p className='text-kapwa-text-link mt-1 truncate text-xs'>
-            {hit.url}
-          </p>
-        )}
       </a>
     </article>
   );
@@ -54,20 +50,20 @@ const Hit: FC<HitProps> = ({ hit }) => {
 
 const SearchPage: FC = () => {
   const [query, setQuery] = useState('');
-  const [typeFilter, setTypeFilter] = useState<ServiceType | ''>('');
+  const [typeFilter, setTypeFilter] = useState<string>('');
   const [categoryFilter, setCategoryFilter] = useState<string>('');
 
   const fuse = useMemo(() => {
-    return new Fuse(servicesData as Service[], {
-      keys: ['service', 'description', 'category.name'],
+    return new Fuse(mergedServicesData as MergedService[], {
+      keys: ['service', 'plainLanguageName', 'category.name', 'officeDivision'],
       threshold: 0.3,
     });
   }, []);
 
   const filteredResults = useMemo(() => {
-    let results: Service[] = query
+    let results: MergedService[] = query
       ? fuse.search(query).map(r => r.item)
-      : (servicesData as Service[]);
+      : (mergedServicesData as MergedService[]);
 
     if (typeFilter) results = results.filter(s => s.type === typeFilter);
     if (categoryFilter)
@@ -77,7 +73,7 @@ const SearchPage: FC = () => {
   }, [query, typeFilter, categoryFilter, fuse]);
 
   const categories = Array.from(
-    new Set((servicesData as Service[]).map(s => s.category.name))
+    new Set((mergedServicesData as MergedService[]).map(s => s.category.name))
   );
 
   const activeFiltersCount = (typeFilter ? 1 : 0) + (categoryFilter ? 1 : 0);
@@ -164,9 +160,7 @@ const SearchPage: FC = () => {
               </h4>
               <select
                 value={typeFilter}
-                onChange={e =>
-                  setTypeFilter(e.target.value as ServiceType | '')
-                }
+                onChange={e => setTypeFilter(e.target.value)}
                 className='border-kapwa-border-weak bg-kapwa-bg-surface text-kapwa-text-strong w-full rounded-lg border p-2 text-sm focus:border-kapwa-border-focus focus:outline-none focus:ring-2 focus:ring-kapwa-border-focus/20'
               >
                 <option value=''>All</option>

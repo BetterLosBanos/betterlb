@@ -4,10 +4,11 @@ import { Link } from 'react-router-dom';
 
 import Fuse from 'fuse.js';
 import {
-  BookOpenIcon,
-  BriefcaseIcon,
+  BarChart3Icon,
+  BuildingIcon,
+  DollarSignIcon,
   FileTextIcon,
-  HeartIcon,
+  GavelIcon,
 } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
 
@@ -15,6 +16,7 @@ import { Badge } from '@/components/ui/Badge';
 import SearchInput from '@/components/ui/SearchInput';
 
 import servicesData from '@/data/services/services.json';
+import mergedServicesData from '@/data/citizens-charter/merged-services.json';
 
 interface Service {
   slug: string;
@@ -26,10 +28,17 @@ interface Service {
   subcategory?: { name: string; slug: string };
 }
 
-interface QuickCategory {
-  name: string;
+interface MergedService {
   slug: string;
-  label: string;
+  service: string;
+  plainLanguageName?: string;
+  officeSlug: string;
+}
+
+interface QuickAccessCard {
+  title: string;
+  description: string;
+  to: string;
   icon: JSX.Element;
 }
 
@@ -56,31 +65,43 @@ const Hero: FC = () => {
     return fuse.search(query).map(r => r.item);
   }, [query, fuse]);
 
-  // Quick access categories - using documented Badge component
-  const quickCategories: QuickCategory[] = [
+  // Random services from merged-services - using plain language titles
+  const randomServices = useMemo(() => {
+    const services = mergedServicesData as MergedService[];
+    // Filter services that have plainLanguageName
+    const servicesWithPlainNames = services.filter(s => s.plainLanguageName);
+    // Shuffle and pick 2
+    const shuffled = [...servicesWithPlainNames].sort(
+      () => Math.random() - 0.5
+    );
+    return shuffled.slice(0, 2);
+  }, []);
+
+  // Quick access cards for key sections
+  const quickAccessCards: QuickAccessCard[] = [
     {
-      name: 'Certificates & Civil Registry',
-      slug: 'certificates-civil-registry',
-      label: 'Citizenship & ID',
-      icon: <FileTextIcon className='w-4 h-4' />,
+      title: 'Financial Reports',
+      description: 'Budget & income statements',
+      to: '/transparency/financial',
+      icon: <DollarSignIcon className='w-6 h-6' />,
     },
     {
-      name: 'Business & Licensing',
-      slug: 'business-licensing',
-      label: 'Business',
-      icon: <BriefcaseIcon className='w-4 h-4' />,
+      title: 'Infrastructure',
+      description: 'Track municipal projects',
+      to: '/transparency/infrastructure',
+      icon: <BuildingIcon className='w-6 h-6' />,
     },
     {
-      name: 'Education & Learning',
-      slug: 'education-learning',
-      label: 'Education',
-      icon: <BookOpenIcon className='w-4 h-4' />,
+      title: 'Legislation',
+      description: 'Ordinances & resolutions',
+      to: '/openlgu',
+      icon: <GavelIcon className='w-6 h-6' />,
     },
     {
-      name: 'Health & Nutrition',
-      slug: 'health-nutrition',
-      label: 'Health',
-      icon: <HeartIcon className='w-4 h-4' />,
+      title: 'Statistics',
+      description: 'Population & demographics',
+      to: '/statistics',
+      icon: <BarChart3Icon className='w-6 h-6' />,
     },
   ];
 
@@ -129,56 +150,49 @@ const Hero: FC = () => {
               </div>
             )}
 
-            {/* Quick access categories - using documented Badge component */}
+            {/* Random services - using plain language titles */}
             <div className='flex flex-wrap gap-2 mt-4'>
-              {quickCategories.map(cat => (
-                <Link
-                  key={cat.slug}
-                  to={`/services?category=${encodeURIComponent(cat.slug)}`}
-                >
+              {randomServices.map(service => (
+                <Link key={service.slug} to={`/services/${service.slug}`}>
                   <Badge
                     variant='outline'
                     className='cursor-pointer border-white/20 text-kapwa-text-inverse hover:bg-kapwa-bg-surface/20'
                   >
-                    {cat.icon}
-                    <span className='ml-1'>{cat.label}</span>
+                    <FileTextIcon className='w-4 h-4' />
+                    <span className='ml-1'>
+                      {service.plainLanguageName || service.service}
+                    </span>
                   </Badge>
                 </Link>
               ))}
             </div>
           </div>
 
-          {/* Right section: service categories */}
+          {/* Right section: quick access to key sections */}
           <div className='p-6 rounded-xl shadow-lg backdrop-blur-sm animate-slide-in bg-kapwa-bg-surface/10'>
             <h2 className='mb-4 text-kapwa-text-inverse kapwa-heading-lg'>
-              {t('services.title')}
+              {t('hero.quickAccess')}
             </h2>
             <div className='grid grid-cols-2 gap-4'>
-              {quickCategories.map(cat => (
+              {quickAccessCards.map(card => (
                 <Link
-                  key={cat.slug}
-                  to={`/services?category=${encodeURIComponent(cat.slug)}`}
+                  key={card.to}
+                  to={card.to}
                   className='flex flex-col items-center p-4 text-center rounded-lg transition-all duration-200 bg-kapwa-bg-surface/10 hover:bg-kapwa-bg-surface/20'
                 >
-                  {/* Icon background with Kapwa brand color */}
                   <div className='p-3 mb-3 rounded-full bg-kapwa-brand-500'>
                     <div className='w-6 h-6 text-kapwa-text-inverse'>
-                      {cat.icon}
+                      {card.icon}
                     </div>
                   </div>
                   <span className='text-kapwa-text-inverse kapwa-body-md-strong'>
-                    {cat.label}
+                    {card.title}
+                  </span>
+                  <span className='text-kapwa-text-inverse/70 kapwa-body-sm-default'>
+                    {card.description}
                   </span>
                 </Link>
               ))}
-            </div>
-            <div className='flex mt-4'>
-              <Link
-                className='p-4 w-full text-center rounded-lg transition-all duration-500 text-kapwa-text-inverse kapwa-body-md-strong bg-kapwa-bg-surface/10 hover:bg-kapwa-bg-surface/20'
-                to='/services'
-              >
-                {t('services.viewAll')}
-              </Link>
             </div>
           </div>
         </div>
