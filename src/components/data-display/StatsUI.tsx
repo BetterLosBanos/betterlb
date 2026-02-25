@@ -65,7 +65,7 @@ export function StatsHero({
       : badges;
 
   return (
-    <div className='text-kapwa-text-inverse bg-kapwa-bg-gray-900 relative overflow-hidden rounded-3xl p-8 shadow-xl md:p-12'>
+    <div className='text-kapwa-text-inverse bg-kapwa-bg-surface-bold relative overflow-hidden rounded-3xl p-8 shadow-xl md:p-12'>
       <div className='relative z-10 space-y-4'>
         <div className='flex flex-wrap gap-2'>
           {badgeArray.map((b, i) => (
@@ -113,7 +113,8 @@ export function StatsCard({
   label,
   value,
   subtext,
-  variant = 'slate',
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  variant, // Unused - kept for backward compatibility
   icon: Icon,
   iconBg,
   children,
@@ -122,19 +123,13 @@ export function StatsCard({
   showTrend = true,
   hover = false,
 }: StatsCardProps) {
-  const variantClasses = {
-    primary: 'border-b-primary-600',
-    secondary: 'border-b-secondary-600',
-    slate: 'border-b-slate-900',
-  };
-
   // Calculate YoY trend if prevValue is provided
   const yoy =
     prevValue !== undefined && typeof value === 'number'
       ? calculateYoY(value, prevValue)
       : null;
   const isPositive = yoy ? yoy.diff >= 0 : true;
-  const trendColor = isPositive ? 'text-emerald-600' : 'text-rose-600';
+  const trendColor = isPositive ? 'text-kapwa-green-600' : 'text-kapwa-red-600';
   const TrendIcon = isPositive ? ArrowUpRight : ArrowDownRight;
 
   // Determine if value should be formatted as currency
@@ -168,8 +163,7 @@ export function StatsCard({
     <Card variant='default' hover={hover} className='overflow-hidden'>
       <CardContent
         className={cn(
-          'flex flex-col items-start justify-between gap-2 border-b-4 sm:flex-row sm:items-center',
-          variantClasses[variant]
+          'flex flex-col items-start justify-between gap-2 sm:flex-row sm:items-center'
         )}
       >
         <div className='flex min-w-0 flex-1 flex-col gap-1'>
@@ -229,7 +223,7 @@ interface StatsFooterProps {
 export function StatsFooter({ source, sourceUrl }: StatsFooterProps) {
   return (
     <footer className='border-kapwa-border-weak space-y-4 border-t pt-10 text-center'>
-      <ShieldCheck className='mx-auto h-6 w-6 text-emerald-600' />
+      <ShieldCheck className='mx-auto h-6 w-6 text-kapwa-text-success' />
       <div className='space-y-1'>
         <p className='text-kapwa-text-strong text-[10px] font-bold tracking-widest uppercase'>
           Verified Data Audit
