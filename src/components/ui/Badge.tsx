@@ -6,6 +6,7 @@ import { cn } from '@/lib/utils';
 type BadgeVariant =
   | 'primary' // Municipal Blue (Executive / Ordinances)
   | 'secondary' // Brand Orange (Resolutions / Contrast)
+  | 'yellow' // Yellow (Executive Orders)
   | 'success' // Emerald (Active / Verified)
   | 'warning' // Amber (Pending / Notice)
   | 'error' // Rose (Closed / Cancelled)
@@ -34,7 +35,8 @@ export function Badge({
     primary:
       'bg-kapwa-bg-brand-weak text-kapwa-text-brand border-kapwa-border-brand',
     secondary:
-      'bg-kapwa-bg-orange-weak text-kapwa-text-orange border-kapwa-border-orange',
+      'bg-kapwa-bg-accent-orange-weak text-kapwa-text-accent-orange border-kapwa-border-warning',
+    yellow: 'bg-kapwa-yellow-50 text-kapwa-yellow-700 border-kapwa-yellow-600',
     success:
       'bg-kapwa-bg-success-weak text-kapwa-text-success border-kapwa-border-success',
     warning:
@@ -48,12 +50,13 @@ export function Badge({
 
   const dotColors = {
     primary: 'bg-kapwa-bg-brand-default',
-    secondary: 'bg-kapwa-bg-orange-default',
+    secondary: 'bg-kapwa-bg-accent-orange-default',
+    yellow: 'bg-kapwa-yellow-600',
     success: 'bg-kapwa-bg-success-default',
     warning: 'bg-kapwa-bg-warning-default',
     error: 'bg-kapwa-bg-danger-default',
     slate: 'bg-kapwa-bg-surface-raised',
-    outline: 'bg-kapwa-bg-gray-default',
+    outline: 'bg-kapwa-bg-surface-raised',
   };
 
   return (

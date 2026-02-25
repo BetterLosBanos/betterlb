@@ -17,7 +17,7 @@ import {
 } from 'lucide-react';
 
 import FlagForReviewButton from '@/components/admin/FlagForReviewButton';
-import { DetailSection } from '@/components/layout/PageLayouts';
+import { DetailSection, useBreadcrumbs } from '@/components/layout';
 import {
   Breadcrumb,
   BreadcrumbHome,
@@ -30,7 +30,7 @@ import {
 import { PageLoadingState } from '@/components/ui';
 import { Badge } from '@/components/ui/Badge';
 
-import { getPersonName } from '@/lib/openlgu';
+import { getDocTypeBadgeVariant, getPersonName } from '@/lib/openlgu';
 
 import type { LegislationContext, Person } from '@/types/legislationTypes';
 
@@ -39,6 +39,9 @@ export default function LegislationDocument() {
   const { documents, persons, sessions, terms, isLoading } =
     useOutletContext<LegislationContext>();
   const [searchParams] = useSearchParams();
+
+  // Auto-generate breadcrumbs using the hook
+  const breadcrumbs = useBreadcrumbs();
 
   // Build back link with preserved query params
   const queryParams = searchParams.toString();
@@ -84,34 +87,46 @@ export default function LegislationDocument() {
     : null;
   const term = terms?.find((t: any) => t.id === (doc as any).term_id);
 
-  const isOrdinance = doc.type === 'ordinance';
-
   return (
     <div className='animate-in fade-in mx-auto max-w-5xl space-y-6 duration-500'>
       <Breadcrumb>
         <BreadcrumbList>
-          <BreadcrumbItem>
-            <BreadcrumbHome href='/' />
-          </BreadcrumbItem>
-          <BreadcrumbSeparator />
-          <BreadcrumbItem>
-            <BreadcrumbLink href={backLink}>OpenLGU</BreadcrumbLink>
-          </BreadcrumbItem>
-          <BreadcrumbSeparator />
-          <BreadcrumbPage>{doc.number}</BreadcrumbPage>
+          {breadcrumbs.map((crumb, index) => {
+            const isLast = index === breadcrumbs.length - 1;
+            return (
+              <div key={crumb.href} className='flex items-center gap-2'>
+                {index === 0 ? (
+                  <BreadcrumbItem>
+                    <BreadcrumbHome href={crumb.href} />
+                  </BreadcrumbItem>
+                ) : (
+                  <>
+                    <BreadcrumbSeparator />
+                    <BreadcrumbItem>
+                      {isLast ? (
+                        <BreadcrumbPage>{doc.number}</BreadcrumbPage>
+                      ) : (
+                        <BreadcrumbLink href={crumb.href}>
+                          {crumb.label}
+                        </BreadcrumbLink>
+                      )}
+                    </BreadcrumbItem>
+                  </>
+                )}
+              </div>
+            );
+          })}
         </BreadcrumbList>
       </Breadcrumb>
 
       {/* Accessible Header: Dark Text on Light Background with 8px Semantic Border */}
       <header
-        className={`border-kapwa-border-weak bg-kapwa-bg-surface rounded-2xl border border-l-8 p-6 shadow-sm md:p-10 ${isOrdinance ? 'border-l-primary-600' : 'border-l-secondary-600'}`}
+        className={`border-kapwa-border-weak bg-kapwa-bg-surface rounded-2xl border border-l-8 p-6 shadow-sm md:p-10 ${doc.type === 'ordinance' ? 'border-l-kapwa-border-brand' : doc.type === 'executive_order' ? 'border-l-kapwa-border-warning' : 'border-l-kapwa-border-accent-orange'}`}
         aria-labelledby='doc-title'
       >
         <div className='space-y-4'>
           <div className='flex flex-wrap items-center gap-3'>
-            <Badge variant={isOrdinance ? 'primary' : 'warning'}>
-              {doc.type}
-            </Badge>
+            <Badge variant={getDocTypeBadgeVariant(doc.type)}>{doc.type}</Badge>
             <span className='border-kapwa-border-weak bg-kapwa-bg-hover text-kapwa-text-support flex items-center gap-1.5 rounded border px-2.5 py-1 font-mono text-[10px] font-bold tracking-widest uppercase'>
               <Hash className='h-3 w-3' /> {doc.number}
             </span>
@@ -159,7 +174,7 @@ export default function LegislationDocument() {
           <div className='border-kapwa-border-weak bg-kapwa-bg-surface-raised flex flex-col items-center justify-between gap-6 rounded-2xl border p-6 sm:flex-row'>
             <div className='flex items-center gap-4'>
               <div
-                className={`bg-kapwa-bg-surface rounded-xl p-3 shadow-sm ${isOrdinance ? 'text-kapwa-text-brand' : 'text-kapwa-text-accent-orange'}`}
+                className={`bg-kapwa-bg-surface rounded-xl p-3 shadow-sm ${doc.type === 'ordinance' ? 'text-kapwa-text-brand' : doc.type === 'executive_order' ? 'text-kapwa-yellow-700' : 'text-kapwa-text-accent-orange'}`}
               >
                 <FileText className='h-8 w-8' />
               </div>
@@ -176,7 +191,7 @@ export default function LegislationDocument() {
               href={doc.link}
               target='_blank'
               rel='noreferrer'
-              className={`flex min-h-[48px] w-full items-center justify-center gap-2 rounded-xl px-8 py-3 text-sm font-bold text-white shadow-md transition-all sm:w-auto ${isOrdinance ? 'bg-kapwa-bg-brand-default hover:bg-kapwa-bg-brand-hover' : 'bg-kapwa-orange-600 hover:bg-kapwa-orange-700'}`}
+              className={`flex min-h-[48px] w-full items-center justify-center gap-2 rounded-xl px-8 py-3 text-sm font-bold text-white shadow-md transition-all sm:w-auto ${doc.type === 'ordinance' ? 'bg-kapwa-bg-brand-default hover:bg-kapwa-bg-brand-hover' : doc.type === 'executive_order' ? 'bg-kapwa-bg-warning-default hover:bg-kapwa-bg-warning-hover' : 'bg-kapwa-bg-accent-orange-default hover:bg-kapwa-bg-accent-orange-hover'}`}
             >
               <Download className='h-4 w-4' /> Download PDF
             </a>

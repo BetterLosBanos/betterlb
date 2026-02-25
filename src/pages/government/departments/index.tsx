@@ -26,7 +26,7 @@ export default function DepartmentsIndex() {
     });
 
   return (
-    <div className='container mx-auto px-4 animate-in fade-in space-y-6 duration-500'>
+    <div className='animate-in fade-in space-y-6 duration-500'>
       <ModuleHeader
         title='Municipal Departments'
         description={`${filtered.length} active offices.`}

@@ -13,6 +13,9 @@ import {
   SidebarItem,
 } from '@/components/navigation/SidebarNavigation';
 
+import CurrentTermCard from './CurrentTermCard';
+import type { DocumentItem, Term } from '@/lib/openlgu';
+
 interface OpenLGUSidebarProps {
   filterType: string;
   setFilterType: (
@@ -26,12 +29,16 @@ interface OpenLGUSidebarProps {
     term_number: number;
   }>;
   persons: Array<{ id: string }>;
+  term: Term | null;
+  documents: DocumentItem[];
 }
 
 export default function OpenLGUSidebar({
   filterType,
   terms,
   persons,
+  term,
+  documents,
 }: OpenLGUSidebarProps) {
   const categories = [
     { id: 'all', label: 'All Documents', icon: LayoutGrid },
@@ -42,6 +49,9 @@ export default function OpenLGUSidebar({
 
   return (
     <SidebarContainer title='OpenLGU Portal'>
+      {/* Current Term Stats */}
+      {term && <CurrentTermCard term={term} documents={documents} />}
+
       {/* Group 1: Browse */}
       <SidebarGroup title='Browse'>
         <SidebarItem

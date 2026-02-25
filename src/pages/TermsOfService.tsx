@@ -367,7 +367,7 @@ const TermsOfService: FC = () => {
                 </ul>
               </div>
 
-              <div className='bg-kapwa-bg-kapwa-bg-success-weak rounded-lg border border-green-200 p-4'>
+              <div className='bg-kapwa-bg-success-weak rounded-lg border border-green-200 p-4'>
                 <h3 className='mb-2 font-semibold text-green-900'>
                   Our Response Process:
                 </h3>

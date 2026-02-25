@@ -110,7 +110,7 @@ export default function ServiceCard({ service }: ServiceCardProps) {
           </div>
 
           {/* Footer Row */}
-          <div className='mt-6 flex items-center justify-between border-t border-slate-50 pt-4'>
+          <div className='mt-6 flex items-center justify-between border-t border-kapwa-border-weak pt-4'>
             {/* Verification / Data Status */}
             <div className='flex items-center gap-1.5 text-[10px] font-bold tracking-widest uppercase'>
               {needsVerification ? (
@@ -150,7 +150,7 @@ export default function ServiceCard({ service }: ServiceCardProps) {
 
           {/* Classification Badge (for Citizens Charter services) */}
           {service.classification && (
-            <div className='mt-3 border-t border-slate-50 pt-3'>
+            <div className='mt-3 border-t border-kapwa-border-weak pt-3'>
               <Badge variant='outline' className='text-[9px]'>
                 {service.classification} Transaction
               </Badge>

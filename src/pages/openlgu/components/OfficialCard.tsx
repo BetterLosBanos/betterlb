@@ -71,9 +71,9 @@ export default function OfficialCard({
       return 'bg-gradient-to-br from-kapwa-brand-500 to-kapwa-brand-600';
     }
     if (role.includes('vice mayor')) {
-      return 'bg-gradient-to-br from-secondary-500 to-secondary-600';
+      return 'bg-gradient-to-br from-kapwa-accent-orange-500 to-kapwa-accent-orange-600';
     }
-    return 'bg-gradient-to-br from-slate-500 to-slate-600';
+    return 'bg-gradient-to-br from-kapwa-neutral-500 to-kapwa-neutral-600';
   };
 
   // Get role badge variant

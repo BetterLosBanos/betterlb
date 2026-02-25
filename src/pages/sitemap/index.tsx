@@ -13,7 +13,7 @@ import {
   Waves,
 } from 'lucide-react';
 
-import SEO from '@/components/layout/SEO';
+import { SEO } from '@/components/layout/SEO';
 
 interface SitemapSection {
   title: string;

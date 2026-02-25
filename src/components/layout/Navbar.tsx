@@ -14,7 +14,7 @@ import { mainNavigation } from '../../data/navigation';
 import { LANGUAGES } from '../../i18n/languages';
 import { LanguageType } from '../../types';
 
-const Navbar: FC = () => {
+export const Navbar: FC = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [activeMobileSubmenu, setActiveMobileSubmenu] = useState<string | null>(
     null
@@ -303,5 +303,3 @@ const Navbar: FC = () => {
     </nav>
   );
 };
-
-export default Navbar;

@@ -28,7 +28,7 @@ import {
 import { EmptyState, PageLoadingState } from '@/components/ui';
 import { Badge } from '@/components/ui/Badge';
 
-import { getPersonName } from '@/lib/openlgu';
+import { getDocTypeBadgeVariant, getPersonName } from '@/lib/openlgu';
 
 export default function SessionDetail() {
   const { sessionId } = useParams<{ sessionId: string }>();
@@ -81,7 +81,7 @@ export default function SessionDetail() {
       </Breadcrumb>
 
       <header
-        className={`border-kapwa-border-weak bg-kapwa-bg-surface rounded-2xl border border-l-8 p-6 shadow-sm md:p-10 ${isRegular ? 'border-l-primary-600' : 'border-l-secondary-600'}`}
+        className={`border-kapwa-border-weak bg-kapwa-bg-surface rounded-2xl border border-l-8 p-6 shadow-sm md:p-10 ${isRegular ? 'border-l-kapwa-border-brand' : 'border-l-kapwa-border-accent-orange'}`}
       >
         <div className='flex flex-col justify-between gap-6 md:flex-row md:items-center'>
           <div className='space-y-4'>
@@ -181,11 +181,7 @@ export default function SessionDetail() {
                     className='group hover:bg-kapwa-bg-surface-raised -mx-2 block min-h-[44px] rounded-lg px-2 py-4 transition-all'
                   >
                     <div className='mb-1 flex items-center gap-3'>
-                      <Badge
-                        variant={
-                          doc.type === 'ordinance' ? 'primary' : 'secondary'
-                        }
-                      >
+                      <Badge variant={getDocTypeBadgeVariant(doc.type)}>
                         {doc.type}
                       </Badge>
                       <span className='text-kapwa-text-disabled font-mono text-[10px] font-bold uppercase'>

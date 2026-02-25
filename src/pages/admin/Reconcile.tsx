@@ -320,9 +320,9 @@ export default function Reconcile() {
                 variant='default'
                 className={
                   selectedItem?.id === item.id
-                    ? 'border-l-primary-500 bg-kapwa-bg-brand-weak/30 border-l-4'
+                    ? 'border-l-kapwa-border-brand bg-kapwa-bg-brand-weak/30 border-l-4'
                     : item.status === 'unresolved'
-                      ? 'border-l-4 border-l-amber-500'
+                      ? 'border-l-4 border-l-kapwa-border-warning'
                       : ''
                 }
                 hover
@@ -499,7 +499,7 @@ export default function Reconcile() {
                           ''
                         }
                         onChange={e => setEditedValue(e.target.value)}
-                        className='bg-kapwa-bg-surface w-full rounded-md border border-blue-300 px-3 py-2 text-sm'
+                        className='bg-kapwa-bg-surface w-full rounded-md border border-kapwa-border-brand px-3 py-2 text-sm'
                       />
                     ) : (
                       <p className='text-sm text-kapwa-text-brand'>

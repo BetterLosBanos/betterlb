@@ -101,7 +101,7 @@ const Ticker: FC = () => {
 
   if (isLoading && weatherLoading) {
     return (
-      <div className='py-1 text-kapwa-text-inverse bg-kapwa-blue-950 px-kapwa-md'>
+      <div className='py-1 bg-kapwa-bg-surface-bold px-kapwa-md text-kapwa-text-inverse'>
         <div className='container flex justify-center items-center mx-auto'>
           <LoaderIcon className='mr-2 w-4 h-4 animate-spin' />
           <span className='kapwa-body-xs-default'>Loading data...</span>

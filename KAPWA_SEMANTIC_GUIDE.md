@@ -1,913 +1,177 @@
 # Kapwa Semantic Token Quick Reference
 
-## 🎯 Philosophy: Semantic First
+## Philosophy: Semantic vs Raw Colors
 
-Always use **semantic tokens** (like `text-kapwa-text-strong`) over raw color tokens (like `text-kapwa-gray-900`) whenever possible. Semantic tokens adapt better to theme changes and express intent clearly.
+**CRITICAL:** Use semantic tokens ONLY for their actual semantic purpose.
 
-## ⚠️ Class Naming Rules
+| Type | When to Use | Examples |
+|------|-------------|----------|
+| **Semantic** | Status/feedback conveying meaning | `text-kapwa-text-success`, `text-kapwa-text-danger` |
+| **Raw** | Decorative, data viz, non-semantic styling | `bg-kapwa-green-50`, `text-kapwa-blue-600` |
 
-Kapwa semantic classes follow these patterns:
-
-| Type | Pattern | Example |
-|------|---------|---------|
-| Text Colors | `text-` prefix required | `text-kapwa-text-strong` |
-| Backgrounds | `bg-` prefix required | `bg-kapwa-bg-surface` |
-| Borders | `border-` prefix required | `border-kapwa-border-weak` |
-| Typography | No prefix | `kapwa-heading-md` |
-| Spacing | No prefix | `p-kapwa-md`, `m-kapwa-lg` |
+**Rule:** If the color conveys success/error/warning/info → use semantic. If it's just visual decoration or data → use raw colors.
 
 ---
 
-## 📝 TEXT COLORS
+## Class Naming Rules
 
-**Important:** All text color classes MUST use the `text-` prefix.
+Kapwa semantic classes MUST use Tailwind v4 prefixes:
+
+| Type | Prefix | Example |
+|------|--------|---------|
+| Text Colors | `text-` | `text-kapwa-text-strong` |
+| Backgrounds | `bg-` | `bg-kapwa-bg-surface` |
+| Borders | `border-` | `border-kapwa-border-weak` |
+
+---
+
+## TEXT COLORS
 
 ### Hierarchy
 ```tsx
-// Primary text - headlines, important content
-<h1 className="kapwa-heading-lg text-kapwa-text-strong">Main Heading</h1>
-
-// Secondary text - body, descriptions  
-<p className="kapwa-body-md-default text-kapwa-text-support">Supporting information</p>
-
-// Disabled/inactive text
+<h1 className="kapwa-heading text-kapwa-text-strong">Main Heading</h1>
+<p className="kapwa-body text-kapwa-text-support">Supporting information</p>
 <span className="text-kapwa-text-disabled">Disabled option</span>
+```
 
-// Disabled with emphasis
-<span className="text-kapwa-text-on-disabled">Label on disabled button</span>
+### Links
+```tsx
+<a className="text-kapwa-text-link hover:text-kapwa-text-link-hover">Link</a>
+```
 
-// Inverse text (on dark backgrounds)
+### Brand
+```tsx
+<span className="text-kapwa-text-brand">Brand colored</span>
+<strong className="text-kapwa-text-brand-bold">Bold brand</strong>
+```
+
+### Status (ONLY for actual status/feedback)
+```tsx
+<p className="text-kapwa-text-success">Operation successful!</p>
+<p className="text-kapwa-text-danger">Error occurred</p>
+<p className="text-kapwa-text-warning">Please be careful</p>
+<p className="text-kapwa-text-info">For your information</p>
+```
+
+---
+
+## BACKGROUND COLORS
+
+### Surfaces
+```tsx
+<div className="bg-kapwa-bg-surface">Default background</div>
+<div className="bg-kapwa-bg-surface-raised">Card background</div>
 <div className="bg-kapwa-bg-surface-bold">
   <p className="text-kapwa-text-inverse">White text on dark</p>
 </div>
 ```
 
-### Links
-```tsx
-// Default link
-<a className="text-kapwa-text-link">Click here</a>
-
-// Link hover (use with hover:)
-<a className="text-kapwa-text-link hover:text-kapwa-text-link-hover">Hover me</a>
-
-// Visited link
-<a className="text-kapwa-text-link-visited">Already visited</a>
-```
-
-### Brand
-```tsx
-// Brand color text
-<span className="text-kapwa-text-brand">Brand colored</span>
-
-// Strong brand emphasis
-<strong className="text-kapwa-text-brand-bold">Bold brand</strong>
-```
-
-### Status
-```tsx
-// Success message
-<p className="text-kapwa-text-success">Operation successful!</p>
-
-// Error message
-<p className="text-kapwa-text-danger">Error occurred</p>
-
-// Warning message
-<p className="text-kapwa-text-warning">Please be careful</p>
-
-// Info message
-<p className="text-kapwa-text-info">For your information</p>
-```
-
-### Accents
-```tsx
-<span className="text-kapwa-text-accent-purple">Purple accent</span>
-<span className="text-kapwa-text-accent-green">Green accent</span>
-<span className="text-kapwa-text-accent-red">Red accent</span>
-<span className="text-kapwa-text-accent-orange">Orange accent</span>
-<span className="text-kapwa-text-accent-blue">Blue accent</span>
-```
-
----
-
-## 🎨 BACKGROUND COLORS
-
-**Important:** All background classes MUST use the `bg-` prefix.
-
-### Surfaces
-```tsx
-// Base white surface
-<div className="bg-kapwa-bg-surface">Default background</div>
-
-// Slightly raised surface (cards, panels)
-<div className="bg-kapwa-bg-surface-raised">Card background</div>
-
-// Brand-tinted surface
-<div className="bg-kapwa-bg-surface-brand">Brand section</div>
-
-// Dark/bold surface
-<div className="bg-kapwa-bg-surface-bold">Footer background</div>
-
-// Adaptive (changes with theme)
-<div className="bg-kapwa-bg-surface-adaptive">Theme-aware bg</div>
-```
-
 ### Interactive States
 ```tsx
-// Hover state
 <button className="bg-kapwa-bg-surface hover:bg-kapwa-bg-hover">
   Hover me
 </button>
-
-// Active/pressed state
-<button className="bg-kapwa-bg-surface active:bg-kapwa-bg-active">
-  Click me
-</button>
-
-// Disabled state
-<button className="bg-kapwa-bg-disabled" disabled>
-  Disabled
-</button>
-
-// Focus indicator
-<input className="focus:bg-kapwa-bg-focus" />
 ```
 
-### Brand Backgrounds (Buttons, CTAs)
+### Brand Backgrounds
 ```tsx
-// Primary button
-<button className="
-  bg-kapwa-bg-brand-default
-  hover:bg-kapwa-bg-brand-hover
-  active:bg-kapwa-bg-brand-active
-  text-kapwa-text-inverse
-  kapwa-body-md-strong
-">
+<button className="bg-kapwa-bg-brand-default hover:bg-kapwa-bg-brand-hover">
   Primary Action
 </button>
+<div className="bg-kapwa-bg-brand-weak">Subtle brand section</div>
+```
 
-// Subtle brand background
-<div className="bg-kapwa-bg-brand-weak">
-  Subtle brand section
+### Status Backgrounds - USE RAW COLORS
+**IMPORTANT:** `bg-kapwa-bg-success-weak` etc. DO NOT exist. Use raw colors:
+
+```tsx
+// Success - use green scale
+<div className="bg-kapwa-green-50 border border-kapwa-green-200">
+  <p className="text-kapwa-text-success">Success message!</p>
 </div>
-```
 
-### Gray Backgrounds
-```tsx
-// Gray button/element
-<button className="
-  bg-kapwa-bg-gray-default
-  hover:bg-kapwa-bg-gray-hover
-  active:bg-kapwa-bg-gray-active
-">
-  Secondary Action
-</button>
-
-// Disabled gray
-<div className="bg-kapwa-bg-gray-disabled">Disabled area</div>
-```
-
-### Status Backgrounds - Success ✅
-```tsx
-// Success button
-<button className="
-  bg-kapwa-bg-success-default
-  hover:bg-kapwa-bg-success-hover
-  active:bg-kapwa-bg-success-active
-  text-kapwa-text-inverse
-  kapwa-body-md-strong
-">
-  Confirm
-</button>
-
-// Success alert/banner
-<div className="bg-kapwa-bg-success-weak border border-kapwa-border-success">
-  <p className="text-kapwa-text-success kapwa-body-sm-strong">Success message!</p>
+// Error - use red scale
+<div className="bg-kapwa-red-50 border border-kapwa-red-200">
+  <p className="text-kapwa-text-danger">Error message!</p>
 </div>
-```
 
-### Status Backgrounds - Danger/Error ⛔
-```tsx
-// Danger button
-<button className="
-  bg-kapwa-bg-danger-default
-  hover:bg-kapwa-bg-danger-hover
-  active:bg-kapwa-bg-danger-active
-  text-kapwa-text-inverse
-  kapwa-body-md-strong
-">
-  Delete
-</button>
-
-// Error alert
-<div className="bg-kapwa-bg-danger-weak border border-kapwa-border-danger">
-  <p className="text-kapwa-text-danger kapwa-body-sm-strong">Error: Something went wrong</p>
+// Warning - use orange scale
+<div className="bg-kapwa-orange-50 border border-kapwa-orange-200">
+  <p className="text-kapwa-text-warning">Warning message!</p>
 </div>
-```
 
-### Status Backgrounds - Warning ⚠️
-```tsx
-// Warning button
-<button className="
-  bg-kapwa-bg-warning-default
-  hover:bg-kapwa-bg-warning-hover
-  active:bg-kapwa-bg-warning-active
-  text-kapwa-text-inverse
-  kapwa-body-md-strong
-">
-  Proceed with Caution
-</button>
-
-// Warning alert
-<div className="bg-kapwa-bg-warning-weak border border-kapwa-border-warning">
-  <p className="text-kapwa-text-warning kapwa-body-sm-strong">Warning: Please review</p>
-</div>
-```
-
-### Status Backgrounds - Info ℹ️
-```tsx
-// Info button
-<button className="
-  bg-kapwa-bg-info-default
-  hover:bg-kapwa-bg-info-hover
-  active:bg-kapwa-bg-info-active
-  text-kapwa-text-inverse
-  kapwa-body-md-strong
-">
-  Learn More
-</button>
-
-// Info alert
-<div className="bg-kapwa-bg-info-weak border border-kapwa-border-info">
-  <p className="text-kapwa-text-info kapwa-body-sm-strong">Info: New feature available</p>
+// Info - use blue scale
+<div className="bg-kapwa-blue-50 border border-kapwa-blue-200">
+  <p className="text-kapwa-text-info">Info message!</p>
 </div>
 ```
 
 ---
 
-## 🔲 BORDER COLORS
-
-**Important:** All border classes MUST use the `border-` prefix.
+## BORDER COLORS
 
 ```tsx
-// Subtle border (most common)
 <div className="border border-kapwa-border-weak">Default border</div>
-
-// Strong border (emphasis)
 <div className="border border-kapwa-border-strong">Emphasized border</div>
+<div className="border border-kapwa-border-brand">Brand border</div>
+```
 
-// Inverse border (on dark backgrounds)
-<div className="bg-kapwa-bg-surface-bold border border-kapwa-border-inverse">
-  Light border on dark
-</div>
-
-// Disabled border
-<input className="border border-kapwa-border-on-disabled" disabled />
-
-// Focus border
-<input className="border border-kapwa-border-weak focus:border-kapwa-border-focus" />
-
-// Brand border
-<div className="border border-kapwa-border-brand">Brand bordered</div>
-
-// Status borders
-<div className="border border-kapwa-border-success">Success</div>
-<div className="border border-kapwa-border-danger">Error</div>
-<div className="border border-kapwa-border-warning">Warning</div>
-<div className="border border-kapwa-border-info">Info</div>
+### Status Borders - USE RAW COLORS
+```tsx
+<div className="border border-kapwa-green-300">Success</div>
+<div className="border border-kapwa-red-300">Error</div>
+<div className="border border-kapwa-orange-300">Warning</div>
 ```
 
 ---
 
-## ✏️ TYPOGRAPHY
+## COMPLETE COLOR REFERENCE
 
-**No prefix needed** - use directly as `kapwa-heading-*`, `kapwa-body-*`, etc.
+### Raw Color Scales (50-950)
 
-### Headings
-```tsx
-<h1 className="kapwa-heading-xl">Extra Large Heading (2.5rem)</h1>
-<h2 className="kapwa-heading-lg">Large Heading (2rem)</h2>
-<h3 className="kapwa-heading-md">Medium Heading (1.5rem)</h3>
-<h4 className="kapwa-heading-sm">Small Heading (1.25rem)</h4>
+| Scale | Use For |
+|-------|---------|
+| `kapwa-brand-*` | Brand colors, primary actions |
+| `kapwa-red-*` | Errors, destructive, data viz |
+| `kapwa-green-*` | Success states, positive trends |
+| `kapwa-yellow-*` | Warnings, highlights |
+| `kapwa-orange-*` | Warnings, secondary brand |
+| `kapwa-blue-*` | Info, links |
+| `kapwa-gray-*` | Neutral borders, dividers |
+| `kapwa-neutral-*` | Neutral backgrounds, text |
 
-// With responsive scaling
-<h1 className="kapwa-heading-md md:kapwa-heading-lg lg:kapwa-heading-xl">
-  Responsive Title
-</h1>
-```
+### Semantic Text Mapping
 
-### Body Text
-```tsx
-<p className="kapwa-body-xl-default">Extra large body (1.25rem)</p>
-<p className="kapwa-body-xl-strong">Extra large bold (1.25rem, 700)</p>
-
-<p className="kapwa-body-lg-default">Large body (1.125rem)</p>
-<p className="kapwa-body-lg-strong">Large bold (1.125rem, 700)</p>
-
-<p className="kapwa-body-md-default">Default body (1rem)</p>
-<p className="kapwa-body-md-strong">Default bold (1rem, 700)</p>
-
-<p className="kapwa-body-sm-default">Small body (0.875rem)</p>
-<p className="kapwa-body-sm-strong">Small bold (0.875rem, 700)</p>
-
-<p className="kapwa-body-xs-default">Extra small (0.75rem)</p>
-<p className="kapwa-body-xs-strong">Extra small bold (0.775rem, 700)</p>
-```
-
-### Code
-```tsx
-<code className="kapwa-code-lg">Large code (1.125rem)</code>
-<code className="kapwa-code-md">Default code (1rem)</code>
-<code className="kapwa-code-sm">Small code (0.875rem)</code>
-```
-
-### Labels
-```tsx
-<label className="kapwa-label-lg">Large label (1.125rem, 700)</label>
-<label className="kapwa-label-md">Default label (1rem, 700)</label>
-<label className="kapwa-label-sm">Small label (0.875rem, 700)</label>
-<label className="kapwa-label-xs">Extra small label (0.75rem, 700)</label>
-```
-
-### Links
-```tsx
-<a className="kapwa-link-lg">Large link (1.125rem, underlined)</a>
-<a className="kapwa-link-md">Default link (1rem, underlined)</a>
-<a className="kapwa-link-sm">Small link (0.875rem, underlined)</a>
-```
-
-### Input
-```tsx
-<input className="kapwa-input" />
-// 1rem, 400 weight, 1.5rem line-height
-```
+| Token | Raw Color |
+|-------|-----------|
+| `text-kapwa-text-strong` | Gray/950 |
+| `text-kapwa-text-support` | Gray/700 |
+| `text-kapwa-text-disabled` | Gray/500 |
+| `text-kapwa-text-inverse` | Neutral/50 |
+| `text-kapwa-text-brand` | Brand/600 |
+| `text-kapwa-text-success` | Green/600 |
+| `text-kapwa-text-danger` | Red/600 |
+| `text-kapwa-text-warning` | Orange/600 |
+| `text-kapwa-text-info` | Blue/600 |
 
 ---
 
-## 📏 SPACING
-
-**Use with Tailwind spacing utilities** - add `kapwa-` to the size.
-
-| Class | Size | Pixels |
-|-------|------|--------|
-| `p-kapwa-3xs` | 0.125rem | 2px |
-| `p-kapwa-2xs` | 0.25rem | 4px |
-| `p-kapwa-xs` | 0.5rem | 8px |
-| `p-kapwa-sm` | 0.75rem | 12px |
-| `p-kapwa-md` | 1rem | 16px |
-| `p-kapwa-lg` | 1.5rem | 24px |
-| `p-kapwa-xl` | 2rem | 32px |
-| `p-kapwa-2xl` | 2.5rem | 40px |
-| `p-kapwa-3xl` | 3rem | 48px |
+## COMMON MISTAKES
 
 ```tsx
-// Padding
-<div className="p-kapwa-md">Medium padding (16px)</div>
-<div className="px-kapwa-lg py-kapwa-sm">Horizontal 24px, Vertical 12px</div>
-
-// Margin
-<div className="m-kapwa-lg">Medium margin (24px)</div>
-<div className="mt-kapwa-xl mb-kapwa-md">Top 32px, Bottom 16px</div>
-
-// Gap
-<div className="flex gap-kapwa-md">16px gap between children</div>
-```
-
----
-
-## 🌓 SHADOWS
-
-```tsx
-<div className="shadow-xs">Extra small shadow</div>
-<div className="shadow-sm">Small shadow</div>
-<div className="shadow-base">Base shadow (default)</div>
-<div className="shadow-md">Medium shadow</div>
-<div className="shadow-lg">Large shadow</div>
-```
-
----
-
-## 📦 COMPLETE COMPONENT EXAMPLES
-
-### Alert Component
-```tsx
-// Success Alert
-<div className="
-  bg-kapwa-bg-success-weak
-  border border-kapwa-border-success
-  rounded-lg
-  p-kapwa-md
-">
-  <p className="text-kapwa-text-success kapwa-body-sm-strong">
-    ✓ Changes saved successfully!
-  </p>
-</div>
-
-// Error Alert
-<div className="
-  bg-kapwa-bg-danger-weak
-  border border-kapwa-border-danger
-  rounded-lg
-  p-kapwa-md
-">
-  <p className="text-kapwa-text-danger kapwa-body-sm-strong">
-    ⚠ Please fix the errors below
-  </p>
-</div>
-
-// Warning Alert
-<div className="
-  bg-kapwa-bg-warning-weak
-  border border-kapwa-border-warning
-  rounded-lg
-  p-kapwa-md
-">
-  <p className="text-kapwa-text-warning kapwa-body-sm-strong">
-    ⚡ This action cannot be undone
-  </p>
-</div>
-
-// Info Alert
-<div className="
-  bg-kapwa-bg-info-weak
-  border border-kapwa-border-info
-  rounded-lg
-  p-kapwa-md
-">
-  <p className="text-kapwa-text-info kapwa-body-sm-strong">
-    💡 Tip: Press Ctrl+S to save
-  </p>
-</div>
-```
-
-### Button Component
-```tsx
-// Primary Button
-<button className="
-  bg-kapwa-bg-brand-default
-  hover:bg-kapwa-bg-brand-hover
-  active:bg-kapwa-bg-brand-active
-  text-kapwa-text-inverse
-  px-kapwa-lg py-kapwa-sm
-  rounded-lg
-  kapwa-body-md-strong
-  transition-colors
-  shadow-sm hover:shadow-md
-">
-  Primary Action
-</button>
-
-// Secondary Button
-<button className="
-  bg-kapwa-bg-surface-raised
-  hover:bg-kapwa-bg-hover
-  active:bg-kapwa-bg-active
-  text-kapwa-text-strong
-  border border-kapwa-border-weak
-  px-kapwa-lg py-kapwa-sm
-  rounded-lg
-  kapwa-body-md-strong
-  transition-colors
-">
-  Secondary Action
-</button>
-
-// Danger Button
-<button className="
-  bg-kapwa-bg-danger-default
-  hover:bg-kapwa-bg-danger-hover
-  active:bg-kapwa-bg-danger-active
-  text-kapwa-text-inverse
-  px-kapwa-lg py-kapwa-sm
-  rounded-lg
-  kapwa-body-md-strong
-  transition-colors
-">
-  Delete
-</button>
-
-// Success Button
-<button className="
-  bg-kapwa-bg-success-default
-  hover:bg-kapwa-bg-success-hover
-  active:bg-kapwa-bg-success-active
-  text-kapwa-text-inverse
-  px-kapwa-lg py-kapwa-sm
-  rounded-lg
-  kapwa-body-md-strong
-  transition-colors
-">
-  Confirm
-</button>
-```
-
-### Card Component
-```tsx
-// Default Card
-<div className="
-  bg-kapwa-bg-surface
-  border border-kapwa-border-weak
-  rounded-lg
-  shadow-sm
-  hover:shadow-md
-  transition-shadow
-">
-  <div className="p-kapwa-lg">
-    <h3 className="kapwa-heading-md text-kapwa-text-strong">
-      Card Title
-    </h3>
-    <p className="kapwa-body-sm-default text-kapwa-text-support mt-kapwa-xs">
-      Card description goes here
-    </p>
-  </div>
-</div>
-
-// Featured/Brand Card
-<div className="
-  bg-kapwa-bg-surface-brand
-  border border-kapwa-border-brand
-  rounded-lg
-  shadow-md
-">
-  <div className="p-kapwa-lg">
-    <h3 className="kapwa-heading-md text-kapwa-text-brand-bold">
-      Featured Content
-    </h3>
-    <p className="kapwa-body-sm-default text-kapwa-text-support mt-kapwa-xs">
-      Special highlighted section
-    </p>
-  </div>
-</div>
-```
-
-### Hero Section with Responsive Typography
-```tsx
-<div className="
-  from-kapwa-brand-600 to-kapwa-brand-700
-  text-kapwa-text-inverse
-  bg-linear-to-r
-  py-12 md:py-24
-">
-  <h1 className="
-    text-kapwa-text-inverse
-    kapwa-heading-md md:kapwa-heading-lg lg:kapwa-heading-xl
-    mb-4
-  ">
-    Main Title
-  </h1>
-  <p className="
-    text-kapwa-text-inverse
-    kapwa-body-md-default
-    mb-8 max-w-lg opacity-80
-  ">
-    Subtitle text
-  </p>
-</div>
-```
-
-### Form Input
-```tsx
-// Default Input
-<input
-  type="text"
-  className="
-    w-full
-    bg-kapwa-bg-surface
-    border border-kapwa-border-weak
-    focus:border-kapwa-border-focus
-    focus:ring-2 focus:ring-kapwa-border-focus/20
-    text-kapwa-text-strong
-    px-kapwa-sm py-kapwa-xs
-    rounded-md
-    kapwa-body-md-default
-    transition-colors
-  "
-  placeholder="Enter text..."
-/>
-
-// Error State Input
-<input
-  type="text"
-  className="
-    w-full
-    bg-kapwa-bg-surface
-    border-2 border-kapwa-border-danger
-    focus:border-kapwa-border-danger
-    text-kapwa-text-strong
-    px-kapwa-sm py-kapwa-xs
-    rounded-md
-    kapwa-body-md-default
-  "
-  placeholder="Enter text..."
-/>
-
-// Disabled Input
-<input
-  type="text"
-  disabled
-  className="
-    w-full
-    bg-kapwa-bg-disabled
-    border border-kapwa-border-on-disabled
-    text-kapwa-text-disabled
-    px-kapwa-sm py-kapwa-xs
-    rounded-md
-    kapwa-body-md-default
-    cursor-not-allowed
-  "
-  placeholder="Disabled..."
-/>
-```
-
-### Badge Component
-```tsx
-// Default Badge
-<span className="
-  inline-flex items-center
-  bg-kapwa-bg-gray-default
-  text-kapwa-text-strong
-  border border-kapwa-border-weak
-  rounded-md
-  px-kapwa-xs py-kapwa-3xs
-  kapwa-body-xs-strong
-">
-  Default
-</span>
-
-// Success Badge
-<span className="
-  inline-flex items-center
-  bg-kapwa-bg-success-weak
-  text-kapwa-text-success
-  border border-kapwa-border-success
-  rounded-md
-  px-kapwa-xs py-kapwa-3xs
-  kapwa-body-xs-strong
-">
-  Active
-</span>
-
-// Danger Badge
-<span className="
-  inline-flex items-center
-  bg-kapwa-bg-danger-weak
-  text-kapwa-text-danger
-  border border-kapwa-border-danger
-  rounded-md
-  px-kapwa-xs py-kapwa-3xs
-  kapwa-body-xs-strong
-">
-  Error
-</span>
-
-// Warning Badge
-<span className="
-  inline-flex items-center
-  bg-kapwa-bg-warning-weak
-  text-kapwa-text-warning
-  border border-kapwa-border-warning
-  rounded-md
-  px-kapwa-xs py-kapwa-3xs
-  kapwa-body-xs-strong
-">
-  Pending
-</span>
-
-// Brand Badge
-<span className="
-  inline-flex items-center
-  bg-kapwa-bg-brand-weak
-  text-kapwa-text-brand
-  border border-kapwa-border-brand
-  rounded-md
-  px-kapwa-xs py-kapwa-3xs
-  kapwa-body-xs-strong
-">
-  Featured
-</span>
-```
-
----
-
-## 🎯 Responsive Typography
-
-### Automatic Responsive Tokens (Preferred)
-
-Kapwa provides **automatic responsive typography tokens** that scale across breakpoints without manual breakpoint classes. These are the preferred choice for most use cases.
-
-#### `kapwa-heading` - Auto-Scaling Headings
-
-The `kapwa-heading` token automatically scales across breakpoints:
-
-| Breakpoint | Size | Pixels | Use Case |
-|------------|------|--------|----------|
-| Mobile (base) | 1.25rem | 20px | Small screens |
-| Tablet (md:) | 1.5rem | 24px | 768px+ |
-| Desktop (lg:) | 2rem | 32px | 1024px+ |
-| XL Desktop (xl:) | 2.5rem | 40px | 1280px+ |
-
-```tsx
-// Automatic responsive scaling - no breakpoints needed!
-<h1 className="kapwa-heading text-kapwa-text-strong">
-  This scales automatically from 20px → 24px → 32px → 40px
-</h1>
-
-// Equivalent to the old manual way:
-<h1 className="text-xl md:text-2xl lg:text-3xl xl:text-4xl">
-  Manual responsive (don't use this anymore)
-</h1>
-```
-
-#### All Auto-Responsive Tokens
-
-All these tokens provide automatic responsive scaling:
-
-| Token | Base → md → lg → xl | Use Case |
-|-------|---------------------|----------|
-| `kapwa-heading` | 1.25rem → 1.5rem → 2rem → 2.5rem | Headings (H1, H2) |
-| `kapwa-body` | 0.875rem → 1rem → 1.125rem → 1.25rem | Body text |
-| `kapwa-body strong` | same as above + bold | Bold body text |
-| `kapwa-label` | 0.75rem → 0.875rem → 1rem → 1.125rem | Labels, small text |
-| `kapwa-link` | 0.875rem → 1rem → 1.125rem → 1.25rem | Links |
-| `kapwa-code` | 0.875rem → 1rem → 1.125rem → 1.25rem | Code blocks |
-
-```tsx
-// All auto-responsive examples
-<h1 className="kapwa-heading">Auto-scaling heading</h1>
-<p className="kapwa-body">Auto-scaling body text</p>
-<p className="kapwa-body strong">Auto-scaling bold body</p>
-<span className="kapwa-label">Auto-scaling label</span>
-<a className="kapwa-link">Auto-scaling link</a>
-<code className="kapwa-code">Auto-scaling code</code>
-```
-
-#### When to Use Manual Responsive Sizing
-
-Only use manual breakpoint sizing when:
-- Hero sections need larger scale (text-4xl md:text-6xl or bigger)
-- Special design requirements exceed kapwa-heading range (max 2.5rem)
-
-```tsx
-// Hero title - keep manual sizing for larger scale
-<h1 className="text-4xl md:text-5xl lg:text-6xl">
-  Large hero title (beyond kapwa-heading range)
-</h1>
-
-// Standard heading - use auto-responsive token
-<h2 className="kapwa-heading">
-  Standard section heading
-</h2>
-```
-
-#### Migration Pattern
-
-Replace manual responsive sizing with auto-responsive tokens:
-
-```tsx
-// Before ❌
-<h2 className="text-2xl font-bold md:text-3xl">Section Title</h2>
-<p className="text-base md:text-lg">Description text</p>
-<p className="text-base md:text-lg font-bold">Bold description</p>
-
-// After ✅
-<h2 className="kapwa-heading font-bold">Section Title</h2>
-<p className="kapwa-body">Description text</p>
-<p className="kapwa-body strong">Bold description</p>
-```
-
-### Manual Responsive Pattern (Legacy)
-
-For specific responsive needs, combine Tailwind's responsive prefixes with Kapwa typography classes:
-
-```tsx
-// Mobile → Tablet → Desktop → Large Desktop
-<h1 className="kapwa-heading-sm md:kapwa-heading-md lg:kapwa-heading-lg xl:kapwa-heading-xl">
-  Responsive Heading
-</h1>
-
-// Mobile: 1.25rem → Tablet: 1.5rem → Desktop: 2rem → XL: 2.5rem
-```
-
-**Note:** Prefer the automatic `kapwa-heading` token over manual breakpoints unless you need specific sizing outside the auto-scale range.
-
----
-
-## ❌ Common Mistakes to Avoid
-
-```tsx
-// ❌ DON'T: Forget text- prefix for text colors
-<div className="kapwa-text-strong">Wrong</div>
-
-// ✅ DO: Always use text- prefix for text colors
-<div className="text-kapwa-text-strong">Correct</div>
-
-// ❌ DON'T: Forget bg- prefix for backgrounds
-<div className="kapwa-bg-surface">Wrong</div>
-
-// ✅ DO: Always use bg- prefix for backgrounds
-<div className="bg-kapwa-bg-surface">Correct</div>
-
-// ❌ DON'T: Forget border- prefix for borders
-<div className="border kapwa-border-weak">Wrong</div>
-
-// ✅ DO: Always use border- prefix for borders
-<div className="border border-kapwa-border-weak">Correct</div>
-
-// ❌ DON'T: Use raw colors for semantic purposes
-<div className="bg-kapwa-red-50 text-kapwa-red-600">Error</div>
-
-// ✅ DO: Use semantic tokens
+// ❌ DON'T: Use non-existent semantic backgrounds
 <div className="bg-kapwa-bg-danger-weak text-kapwa-text-danger">Error</div>
 
-// ❌ DON'T: Mix old and new systems
-<div className="bg-primary-500 text-white">
+// ✅ DO: Use raw colors for backgrounds
+<div className="bg-kapwa-red-50 text-kapwa-text-danger">Error</div>
 
-// ✅ DO: Use Kapwa consistently
-<div className="bg-kapwa-bg-brand-default text-kapwa-text-inverse">
+// ❌ DON'T: Use semantic colors for non-semantic purposes
+<div className="text-kapwa-text-success">Profit chart</div>
 
-// ❌ DON'T: Forget interactive states
-<button className="bg-kapwa-bg-brand-default">Click</button>
-
-// ✅ DO: Include all states
-<button className="
-  bg-kapwa-bg-brand-default
-  hover:bg-kapwa-bg-brand-hover
-  active:bg-kapwa-bg-brand-active
-">
-  Click
-</button>
+// ✅ DO: Use raw colors for data visualization
+<div className="text-kapwa-green-600">Profit chart</div>
 ```
 
 ---
 
-## 📚 When to Use Raw Color Tokens
-
-Use raw Kapwa color tokens (like `bg-kapwa-brand-600`) only when:
-1. You need a specific shade not covered by semantic tokens
-2. Creating custom components with unique styling
-3. Design requires a specific brand color that doesn't fit semantic categories
-
-**Example:**
-```tsx
-// Rare case: specific brand gradient
-<div className="bg-linear-to-r from-kapwa-brand-400 to-kapwa-brand-600">
-  Special gradient
-</div>
-```
-
----
-
-## 🔤 Common Typos & Invalid Tokens
-
-### Trailing `0` Typos
-These are accidental typos from copy-paste or autocomplete. **Always remove the trailing `0`.**
-
-| Invalid Token | Valid Token |
-|---------------|-------------|
-| `text-kapwa-text-brand0` | `text-kapwa-text-brand` |
-| `border-kapwa-border-brand0` | `border-kapwa-border-brand` |
-| `text-kapwa-text-accent-orange0` | `text-kapwa-text-accent-orange` |
-| `text-kapwa-text-accent-yellow0` | `text-kapwa-text-accent-yellow` |
-| `bg-kapwa-bg-accent-yellow-weak0` | `bg-kapwa-bg-accent-yellow-weak` |
-| `bg-kapwa-bg-brand-weak0` | `bg-kapwa-bg-brand-weak` |
-
-### Invalid `secondary-*` Tokens
-The `secondary-*` pattern is NOT a valid Kapwa token system. Use proper orange scale instead:
-
-| Invalid Token | Valid Token |
-|---------------|-------------|
-| `border-secondary-100` | `border-kapwa-border-weak` or `border-kapwa-orange-200` |
-| `bg-secondary-300` | `bg-kapwa-bg-disabled` or `bg-kapwa-orange-300` |
-| `bg-secondary-600` | `bg-kapwa-orange-600` |
-| `hover:bg-secondary-700` | `hover:bg-kapwa-orange-700` |
-| `hover:bg-secondary-600` | `hover:bg-kapwa-orange-600` |
-| `shadow-secondary-900/10` | `shadow-md` (standard shadow class) |
-
-### Valid Accent Tokens
-
-**✅ VALID - Text accents:**
-- `text-kapwa-text-accent-orange`
-- `text-kapwa-text-accent-yellow`
-- `text-kapwa-text-accent-purple`
-- `text-kapwa-text-accent-green`
-
-**✅ VALID - Background accents:**
-- `bg-kapwa-bg-accent-orange-weak`
-- `bg-kapwa-bg-accent-orange-default`
-- `bg-kapwa-bg-accent-yellow-weak`
-- `bg-kapwa-bg-accent-yellow-default`
-
----
-
-## 🚀 Pro Tips
-
-1. **Semantic > Raw**: Always prefer `text-kapwa-text-strong` over `text-kapwa-gray-900`
-2. **Always Use Prefixes**: `text-` for text, `bg-` for backgrounds, `border-` for borders
-3. **Status Colors**: Use semantic status backgrounds (`bg-kapwa-bg-success-weak`) for alerts
-4. **Interactive States**: Always include hover/active states on buttons
-5. **Consistent Borders**: Use `border border-kapwa-border-weak` for most borders
-6. **Focus States**: Always add focus styles to interactive elements
-7. **Responsive Typography**: Use Tailwind prefixes with Kapwa typography: `kapwa-heading-md md:kapwa-heading-lg`
-
----
-
-Good luck with your migration! 🎨✨
+For full component examples and patterns, see `docs/BetterLB-Design-System-Guide.md`.

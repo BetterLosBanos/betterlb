@@ -57,7 +57,7 @@ export const Card = forwardRef<HTMLDivElement, CardProps>(
       featured:
         'border-kapwa-border-brand shadow-md ring-1 ring-kapwa-border-brand',
       slate: 'bg-kapwa-bg-surface border-kapwa-border-weak shadow-none',
-      compact: 'border-slate-100 text-sm',
+      compact: 'border-kapwa-border-weak text-sm',
     };
 
     return (
@@ -274,5 +274,5 @@ export const CardList = ({
 );
 
 export const CardDivider = ({ className }: { className?: string }) => (
-  <hr className={cn('border-slate-100', className)} />
+  <hr className={cn('border-kapwa-border-weak', className)} />
 );

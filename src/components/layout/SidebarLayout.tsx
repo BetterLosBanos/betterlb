@@ -8,7 +8,7 @@ import { cn } from '@/lib/utils';
 
 import { ModuleHeader } from './PageLayouts';
 
-interface SidebarLayoutProps {
+export interface SidebarLayoutProps {
   children: ReactNode;
   sidebar: ReactNode;
   // Option A: Standard Config
@@ -24,7 +24,7 @@ interface SidebarLayoutProps {
   className?: string;
 }
 
-export default function SidebarLayout({
+export function SidebarLayout({
   children,
   sidebar,
   header,
@@ -56,7 +56,7 @@ export default function SidebarLayout({
   }, [location]);
 
   return (
-    <div className={`md:bg-kapwa-bg-surface min-h-screen ${className}`}>
+    <div className={`bg-kapwa-bg-surface min-h-screen ${className}`}>
       <div className='container mx-auto py-6 sm:px-4 md:py-8'>
         {/* HEADER LOGIC: Custom Node OR Default ModuleHeader */}
         {headerNode ? (

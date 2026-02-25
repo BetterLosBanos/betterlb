@@ -59,10 +59,12 @@ BetterLB uses the **Kapwa Design System** (`@betterlb/kapwa`) for design tokens.
 
 ### Semantic Token Philosophy
 
-**Always use semantic tokens** (like `text-kapwa-text-strong`) over raw color tokens (like `text-kapwa-gray-900`). Semantic tokens:
-- Adapt better to theme changes
-- Express design intent clearly
-- Maintain consistency across the application
+**IMPORTANT:** Use semantic tokens ONLY for their actual semantic purpose.
+
+- **Semantic tokens** (`text-kapwa-text-success`, `text-kapwa-text-danger`, `text-kapwa-text-warning`) are for status/feedback that conveys meaning
+- **Raw colors** (`bg-kapwa-green-50`, `text-kapwa-blue-600`) are for decorative, data visualization, or non-semantic styling
+
+**Rule of thumb:** If the color conveys success/error/warning/info → use semantic. If it's just visual decoration or data → use raw colors.
 
 ### Critical Rule: Tailwind v4 Prefixes
 
@@ -118,8 +120,10 @@ Kapwa semantic classes MUST use Tailwind v4's CSS variable convention:
 // Brand-tinted surface
 <div className="bg-kapwa-bg-surface-brand">Brand section</div>
 
-// Dark/bold surface
-<div className="bg-kapwa-bg-surface-bold">Footer background</div>
+// Dark/bold surface (use inverse text)
+<div className="bg-kapwa-bg-surface-bold">
+  <p className="text-kapwa-text-inverse">White text on dark</p>
+</div>
 
 // Interactive states
 <button className="bg-kapwa-bg-surface hover:bg-kapwa-bg-hover">
@@ -131,9 +135,15 @@ Kapwa semantic classes MUST use Tailwind v4's CSS variable convention:
   Primary Action
 </button>
 
-// Status backgrounds
-<div className="bg-kapwa-bg-success-weak border border-kapwa-border-success">
+// Status backgrounds - USE RAW COLORS, not semantic backgrounds
+<div className="bg-kapwa-green-50 border border-kapwa-green-200">
   <p className="text-kapwa-text-success">Success message!</p>
+</div>
+<div className="bg-kapwa-red-50 border border-kapwa-red-200">
+  <p className="text-kapwa-text-danger">Error message!</p>
+</div>
+<div className="bg-kapwa-orange-50 border border-kapwa-orange-200">
+  <p className="text-kapwa-text-warning">Warning message!</p>
 </div>
 ```
 
@@ -149,9 +159,13 @@ Kapwa semantic classes MUST use Tailwind v4's CSS variable convention:
 // Focus border
 <input className="border border-kapwa-border-weak focus:border-kapwa-border-focus" />
 
-// Status borders
-<div className="border border-kapwa-border-success">Success</div>
-<div className="border border-kapwa-border-danger">Error</div>
+// Brand border
+<div className="border border-kapwa-border-brand">Brand bordered</div>
+
+// Status borders - USE RAW COLORS
+<div className="border border-kapwa-green-300">Success</div>
+<div className="border border-kapwa-red-300">Error</div>
+<div className="border border-kapwa-orange-300">Warning</div>
 ```
 
 ### Typography
@@ -219,26 +233,70 @@ Use Kapwa spacing utilities with `kapwa-` prefix:
 // ✅ DO: Always use border- prefix for borders
 <div className="border border-kapwa-border-weak">Correct</div>
 
-// ❌ DON'T: Use raw colors for semantic purposes
-<div className="bg-kapwa-red-50 text-kapwa-red-600">Error</div>
-
-// ✅ DO: Use semantic tokens
+// ❌ DON'T: Use non-existent semantic backgrounds
 <div className="bg-kapwa-bg-danger-weak text-kapwa-text-danger">Error</div>
+
+// ✅ DO: Use raw colors for backgrounds, semantic for text
+<div className="bg-kapwa-red-50 text-kapwa-text-danger">Error</div>
 ```
 
-### When to Use Raw Color Tokens
+### Complete Kapwa Color Reference
 
-Use raw Kapwa color tokens (like `bg-kapwa-brand-600`) only when:
-1. You need a specific shade not covered by semantic tokens
-2. Creating custom components with unique styling
-3. Design requires a specific brand color that doesn't fit semantic categories
+#### Raw Color Scales (Use for decorative/non-semantic styling)
 
-```tsx
-// Rare case: specific brand gradient
-<div className="bg-linear-to-r from-kapwa-brand-400 to-kapwa-brand-600">
-  Special gradient
-</div>
-```
+| Scale | Tokens (50-950) | Use For |
+|-------|-----------------|---------|
+| `kapwa-brand-*` | 50, 100, 200, 300, 400, 500, 600, 700, 800, 900, 950 | Brand colors, primary actions |
+| `kapwa-red-*` | 50, 100, 200, 300, 400, 500, 600, 700, 800, 900, 950 | Errors, destructive actions, data viz |
+| `kapwa-green-*` | 50, 100, 200, 300, 400, 500, 600, 700, 800, 900, 950 | Success states, positive trends, data viz |
+| `kapwa-yellow-*` | 50, 100, 200, 300, 400, 500, 600, 700, 800, 900, 950 | Warnings, highlights, data viz |
+| `kapwa-orange-*` | 50, 100, 200, 300, 400, 500, 600, 700, 800, 900, 950 | Warnings, secondary brand, data viz |
+| `kapwa-purple-*` | 50, 100, 200, 300, 400, 500, 600, 700, 800, 900, 950 | Decorative, data visualization |
+| `kapwa-blue-*` | 50, 100, 200, 300, 400, 500, 600, 700, 800, 900, 950 | Info, links, data visualization |
+| `kapwa-gray-*` | 50, 100, 200, 300, 400, 500, 600, 700, 800, 900, 950 | Neutral borders, dividers |
+| `kapwa-neutral-*` | 50, 100, 200, 300 | Neutral backgrounds, text |
+
+#### Semantic Text Colors (ONLY for actual semantic meaning)
+
+| Token | Maps To | Use For |
+|-------|---------|---------|
+| `text-kapwa-text-strong` | Gray/950 | Primary text, headings |
+| `text-kapwa-text-support` | Gray/700 | Body text, descriptions |
+| `text-kapwa-text-disabled` | Gray/500 | Disabled text, labels |
+| `text-kapwa-text-on-disabled` | Gray/600 | Labels on disabled elements |
+| `text-kapwa-text-inverse` | Neutral/50 | Text on dark backgrounds |
+| `text-kapwa-text-inverse-subtle` | Gray/400 | Subtle text on dark backgrounds |
+| `text-kapwa-text-link` | Blue/500 | Links |
+| `text-kapwa-text-link-hover` | Blue/600 | Link hover state |
+| `text-kapwa-text-link-visited` | Blue/700 | Visited links |
+| `text-kapwa-text-brand` | Brand/600 | Brand accents |
+| `text-kapwa-text-brand-bold` | Brand/950 | Strong brand emphasis |
+| `text-kapwa-text-success` | Green/600 | **SUCCESS states only** |
+| `text-kapwa-text-danger` | Red/600 | **ERROR/FAILURE states only** |
+| `text-kapwa-text-warning` | Orange/600 | **WARNING states only** |
+| `text-kapwa-text-info` | Blue/600 | **INFO states only** |
+
+#### Semantic Background Colors
+
+| Token | Maps To | Use For |
+|-------|---------|---------|
+| `bg-kapwa-bg-surface` | Neutral/50 | Default white surface |
+| `bg-kapwa-bg-surface-raised` | Gray/50 | Card backgrounds |
+| `bg-kapwa-bg-surface-brand` | Brand/100 | Brand-tinted sections |
+| `bg-kapwa-bg-surface-bold` | Gray/950 | Dark/footer backgrounds |
+| `bg-kapwa-bg-surface-adaptive` | Neutral/100 | Theme-aware backgrounds |
+| `bg-kapwa-bg-surface-brand-active` | Brand/50 | Active brand sections |
+| `bg-kapwa-bg-hover` | Neutral/200 | Hover state |
+| `bg-kapwa-bg-active` | Neutral/300 | Active/pressed state |
+| `bg-kapwa-bg-disabled` | Neutral/300 | Disabled backgrounds |
+| `bg-kapwa-bg-focus` | Yellow/500 | Focus indicators |
+| `bg-kapwa-bg-overlay` | Custom | Modal overlay |
+| `bg-kapwa-bg-brand-default` | Brand/600 | Primary buttons |
+| `bg-kapwa-bg-brand-hover` | Brand/700 | Button hover |
+| `bg-kapwa-bg-brand-active` | Brand/800 | Button active |
+| `bg-kapwa-bg-brand-weak` | Brand/50 | Subtle brand backgrounds |
+
+**IMPORTANT:** There are NO semantic backgrounds for success/danger/warning/info. Use raw color scales (e.g., `bg-kapwa-green-50`, `bg-kapwa-red-50`) for colored backgrounds.
 
 ---
 
@@ -439,6 +497,7 @@ import { Badge } from '@/components/ui/Badge';
 
 <Badge variant="primary">Municipal Blue</Badge>
 <Badge variant="secondary">Brand Orange</Badge>
+<Badge variant="yellow">Executive Orders</Badge>
 <Badge variant="success">Active</Badge>
 <Badge variant="warning">Pending</Badge>
 <Badge variant="error">Closed</Badge>
@@ -453,15 +512,122 @@ import { Badge } from '@/components/ui/Badge';
 <Badge variant="success" dot>Active</Badge>
 ```
 
+#### Document Type Badge Helper
+
+For OpenLGU legislative documents, use the `getDocTypeBadgeVariant()` helper to automatically get the correct badge variant based on document type.
+
+```tsx
+import { getDocTypeBadgeVariant } from '@/lib/openlgu';
+
+// Returns appropriate variant for document type
+<Badge variant={getDocTypeBadgeVariant(doc.type)}>
+  {doc.type}
+</Badge>
+
+// Mapping:
+// - "ordinance"     → "primary" (Blue)
+// - "resolution"    → "secondary" (Orange)
+// - "executive_order" → "yellow" (Yellow)
+// - (unknown)       → "slate" (Gray)
+```
+
+**Usage locations:**
+- Document cards in index/list pages
+- Document detail pages
+- Filter badges showing active document type selection
+
 #### When to Use Each Variant
 
 - **`primary`** - Executive/official items, ordinances
 - **`secondary`** - Resolutions, contrast items
+- **`yellow`** - Executive Orders (legislative)
 - **`success`** - Active, verified, completed status
 - **`warning`** - Pending, notice, caution
 - **`error`** - Closed, cancelled, failed
 - **`slate`** - Admin, metadata, neutral
 - **`outline`** - Border-only, minimal emphasis
+
+### Document Type Color Scheme
+
+For OpenLGU legislative documents, use the following color scheme to maintain visual consistency across the site.
+
+| Document Type | Color Scheme | Kapwa Raw Tokens |
+|---------------|--------------|------------------|
+| **Ordinances** | Primary Brand (Blue) | `border-kapwa-brand-600`<br>`bg-kapwa-brand-50`<br>`text-kapwa-brand-700` |
+| **Resolutions** | Accent 1 (Orange) | `border-kapwa-orange-600`<br>`bg-kapwa-orange-50`<br>`text-kapwa-orange-700` |
+| **Executive Orders** | Accent 2 (Yellow/Gold) | `border-kapwa-yellow-600`<br>`bg-kapwa-yellow-50`<br>`text-kapwa-yellow-700` |
+
+**Accessibility Note:** Text uses `-700` shades for adequate contrast against light backgrounds (WCAG AA compliant).
+
+#### Implementation Example
+
+```tsx
+// Ordinances - Primary Brand (Blue)
+<div className="border-kapwa-brand-600 bg-kapwa-brand-50 flex items-center gap-3 rounded-lg border p-3">
+  <FileText className="text-kapwa-brand-700 h-5 w-5 shrink-0" />
+  <div className="flex-1">
+    <span className="text-kapwa-brand-700 text-lg font-black">{ordCount}</span>
+    <span className="text-kapwa-brand-700 ml-2 text-xs font-bold uppercase">Ordinances</span>
+  </div>
+</div>
+
+// Resolutions - Accent 1 (Orange)
+<div className="border-kapwa-orange-600 bg-kapwa-orange-50 flex items-center gap-3 rounded-lg border p-3">
+  <BookOpen className="text-kapwa-orange-700 h-5 w-5 shrink-0" />
+  <div className="flex-1">
+    <span className="text-kapwa-orange-700 text-lg font-black">{resCount}</span>
+    <span className="text-kapwa-orange-700 ml-2 text-xs font-bold uppercase">Resolutions</span>
+  </div>
+</div>
+
+// Executive Orders - Accent 2 (Yellow/Gold)
+<div className="border-kapwa-yellow-600 bg-kapwa-yellow-50 flex items-center gap-3 rounded-lg border p-3">
+  <ScrollText className="text-kapwa-yellow-700 h-5 w-5 shrink-0" />
+  <div className="flex-1">
+    <span className="text-kapwa-yellow-700 text-lg font-black">{eoCount}</span>
+    <span className="text-kapwa-yellow-700 ml-2 text-xs font-bold uppercase">Exec. Orders</span>
+  </div>
+</div>
+```
+
+#### Site-Wide Color Palette Usage
+
+The document type colors extend to other UI elements for consistency:
+
+**Primary Brand (Blue):**
+- Ordinances
+- Primary CTAs
+- Key metrics (StatCard `primary` variant)
+
+**Accent 1 - Orange:**
+- Resolutions
+- Secondary items
+- Warning/attention states
+- Comparison metrics (StatCard `secondary` variant)
+
+**Accent 2 - Yellow/Gold:**
+- Executive Orders
+- Administrative items
+- Highlighted content (seal-authentic color)
+
+**Status Colors (for their specific purposes only):**
+- Success (green) - only for actual success states
+- Danger (red) - only for errors/danger
+- Warning (orange) - warnings, AND resolutions (document type color)
+- Info (cyan/blue) - informational items, help/tooltip content, info banners
+- Slate (gray) - neutral, metadata, disabled states
+
+#### Rationale
+
+1. **Seal-Inspired Palette**: Blue, orange, and yellow/gold are colors from the official Los Baños seal (`#07223c` navy, `#ffcc0f` gold)
+2. **Warm & Energetic**: Blue → Orange → Yellow creates a sunny, vibrant interface that feels welcoming and active
+3. **Raw Color Tokens**: Uses direct Kapwa color scales for maximum vibrancy (`kapwa-brand-600`, `kapwa-orange-600`, `kapwa-yellow-600`)
+4. **Visual Hierarchy**:
+   - Blue = most important (legislative primary)
+   - Orange = secondary importance (legislative secondary)
+   - Yellow/gold = administrative/highlighted (seal-authentic accent)
+5. **Accessibility**: All Kapwa raw tokens meet WCAG AA contrast requirements
+6. **Distinctive**: Each document type has a unique, easily distinguishable color
 
 ### Button Component
 
@@ -2203,6 +2369,13 @@ import {
 
 ---
 
-**Version:** 1.0.0
-**Last Updated:** 2026-02-16
+**Version:** 1.5.0
+**Last Updated:** 2026-02-22
 **Maintained By:** BetterLB Development Team
+
+## Changelog
+
+### v1.5.0 (2026-02-22)
+- Added `yellow` Badge variant for Executive Orders
+- Documented `getDocTypeBadgeVariant()` helper function
+- Updated Document Type Color Scheme references

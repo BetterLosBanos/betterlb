@@ -4,6 +4,8 @@ import { X } from 'lucide-react';
 import { Badge } from '@/components/ui/Badge';
 import SelectPicker from '@/components/ui/SelectPicker';
 
+import { getDocTypeBadgeVariant } from '@/lib/openlgu';
+
 import type { FilterType } from '../layout';
 
 interface DocumentFiltersProps {
@@ -103,7 +105,11 @@ export default function DocumentFilters({
         <div className='flex flex-wrap gap-2'>
           {filterType !== 'all' && (
             <Badge
-              variant='primary'
+              variant={
+                filterType === 'all'
+                  ? 'slate'
+                  : getDocTypeBadgeVariant(filterType)
+              }
               className='cursor-pointer hover:opacity-80'
               onClick={() => setFilterType('all')}
             >

@@ -57,29 +57,15 @@ const AboutPage: FC = () => {
             <div className='prose prose-lg max-w-none'>
               <section className='mb-10'>
                 <h2 className='text-kapwa-text-support mb-4 flex items-center text-2xl font-bold'>
-                  <TargetIcon
-                    style={{ color: 'var(--color-kapwa-blue-600)' }}
-                    className='mr-2 h-6 w-6'
-                  />
+                  <TargetIcon className='text-kapwa-text-brand mr-2 h-6 w-6' />
                   {t('mission.title')}
                 </h2>
-                <div
-                  style={{
-                    background:
-                      'linear-gradient(to right, var(--color-kapwa-blue-50), var(--color-kapwa-blue-50))',
-                  }}
-                  className='mb-6 rounded-xl p-6 md:p-8'
-                >
+                <div className='bg-kapwa-bg-surface-brand/30 mb-6 rounded-xl p-6 md:p-8'>
                   <p className='text-kapwa-text-support mb-4 text-lg leading-relaxed'>
                     BetterGov is a{' '}
                     <strong>volunteer-led tech initiative</strong> committed to
                     creating
-                    <span
-                      style={{
-                        backgroundColor: 'var(--color-kapwa-blue-600)',
-                      }}
-                      className='text-kapwa-text-inverse mx-2 inline-flex items-center rounded-full px-3 py-1 text-sm font-semibold'
-                    >
+                    <span className='bg-kapwa-bg-brand-default text-kapwa-text-inverse mx-2 inline-flex items-center rounded-full px-3 py-1 text-sm font-semibold'>
                       <ZapIcon className='mr-1 h-4 w-4' />
                       #civictech
                     </span>
@@ -96,10 +82,7 @@ const AboutPage: FC = () => {
 
               <section className='mb-10'>
                 <h2 className='text-kapwa-text-support mb-4 flex items-center text-2xl font-bold'>
-                  <RocketIcon
-                    style={{ color: 'var(--color-kapwa-blue-600)' }}
-                    className='mr-2 h-6 w-6'
-                  />
+                  <RocketIcon className='text-kapwa-text-brand mr-2 h-6 w-6' />
                   {t('mission.goalsIntro')}
                 </h2>
 
@@ -117,10 +100,7 @@ const AboutPage: FC = () => {
               {/* What We Provide Section */}
               <section className='mb-10'>
                 <h2 className='text-kapwa-text-support mb-4 flex items-center text-2xl font-bold'>
-                  <RocketIcon
-                    style={{ color: 'var(--color-kapwa-blue-600)' }}
-                    className='mr-2 h-6 w-6'
-                  />
+                  <RocketIcon className='text-kapwa-text-brand mr-2 h-6 w-6' />
                   What We Provide
                 </h2>
                 <p className='text-kapwa-text-support mb-6'>
@@ -162,16 +142,8 @@ const AboutPage: FC = () => {
                   ].map((item, index) => (
                     <Card key={index} hover className='bg-kapwa-bg-surface'>
                       <CardContent className='p-5'>
-                        <div
-                          style={{
-                            backgroundColor: 'var(--color-kapwa-blue-100)',
-                          }}
-                          className='mb-3 flex h-12 w-12 items-center justify-center rounded-lg'
-                        >
-                          <item.icon
-                            style={{ color: 'var(--color-kapwa-blue-600)' }}
-                            className='h-6 w-6'
-                          />
+                        <div className='bg-kapwa-bg-surface-brand-weak mb-3 flex h-12 w-12 items-center justify-center rounded-lg'>
+                          <item.icon className='text-kapwa-text-brand h-6 w-6' />
                         </div>
                         <h3 className='text-kapwa-text-strong mb-2 text-base font-semibold'>
                           {item.title}
@@ -193,8 +165,7 @@ const AboutPage: FC = () => {
                   {t('whyBuilding.intro')}
                   <a
                     href='https://www.gov.ph'
-                    style={{ color: 'var(--color-kapwa-blue-600)' }}
-                    className='mx-1 hover:opacity-80'
+                    className='text-kapwa-text-brand mx-1 hover:opacity-80'
                   >
                     {t('whyBuilding.govPhLink')}
                   </a>
@@ -219,25 +190,12 @@ const AboutPage: FC = () => {
               {/* Our Commitment Section */}
               <section className='mb-10'>
                 <h2 className='text-kapwa-text-support mb-4 flex items-center text-2xl font-bold'>
-                  <ZapIcon
-                    style={{ color: 'var(--color-kapwa-yellow-500)' }}
-                    className='mr-2 h-6 w-6'
-                  />
+                  <ZapIcon className='text-kapwa-text-warning mr-2 h-6 w-6' />
                   Our Commitment
                 </h2>
-                <div
-                  style={{
-                    borderLeftColor: 'var(--color-kapwa-blue-600)',
-                    background:
-                      'linear-gradient(to right, var(--color-kapwa-red-50), var(--color-kapwa-orange-50), var(--color-kapwa-yellow-50))',
-                  }}
-                  className='rounded-xl border-l-4 p-6 md:p-8'
-                >
+                <div className='border-kapwa-border-brand bg-gradient-to-r from-kapwa-bg-danger-weak via-kapwa-bg-accent-orange-weak to-kapwa-bg-warning-weak rounded-xl border-l-4 p-6 md:p-8'>
                   <div className='text-kapwa-text-support space-y-4'>
-                    <p
-                      style={{ color: 'var(--color-kapwa-blue-700)' }}
-                      className='text-lg font-bold'
-                    >
+                    <p className='text-kapwa-text-brand text-lg font-bold'>
                       WE&apos;RE DONE WAITING.
                     </p>
                     <p className='text-base leading-relaxed'>
@@ -247,10 +205,7 @@ const AboutPage: FC = () => {
                     </p>
                     <p className='text-base leading-relaxed'>
                       We can do <strong>amazing things</strong> together.{' '}
-                      <span
-                        style={{ color: 'var(--color-kapwa-blue-700)' }}
-                        className='font-semibold'
-                      >
+                      <span className='text-kapwa-text-brand font-semibold'>
                         Grassroots style. Open source. No permission needed.
                       </span>
                     </p>
@@ -262,14 +217,8 @@ const AboutPage: FC = () => {
                       permission. Open source, public,{' '}
                       <strong>high quality</strong> sites.
                     </p>
-                    <div
-                      style={{ borderColor: 'var(--color-kapwa-blue-200)' }}
-                      className='mt-6 border-t-2 pt-4'
-                    >
-                      <p
-                        style={{ color: 'var(--color-kapwa-blue-700)' }}
-                        className='text-lg font-bold'
-                      >
+                    <div className='border-kapwa-border-brand mt-6 border-t-2 pt-4'>
+                      <p className='text-kapwa-text-brand text-lg font-bold'>
                         WE&apos;RE LOOKING FOR PEOPLE SMARTER THAN US!
                       </p>
                     </div>
@@ -284,8 +233,7 @@ const AboutPage: FC = () => {
                   {t('license.description')}
                   <a
                     href='https://creativecommons.org/publicdomain/zero/1.0/'
-                    style={{ color: 'var(--color-kapwa-blue-600)' }}
-                    className='mx-1 hover:opacity-80'
+                    className='text-kapwa-text-brand mx-1 hover:opacity-80'
                   >
                     {t('license.ccLink')}
                   </a>
@@ -295,27 +243,17 @@ const AboutPage: FC = () => {
             </div>
 
             {/* Call to Action */}
-            <div
-              style={{ backgroundColor: 'var(--color-kapwa-blue-600)' }}
-              className='mt-8 rounded-lg p-8 text-center'
-            >
+            <div className='bg-kapwa-bg-brand-default mt-8 rounded-lg p-8 text-center'>
               <h3 className='text-kapwa-text-inverse mb-4 text-2xl font-bold'>
                 Ready to Make a Difference?
               </h3>
-              <p
-                style={{ color: 'var(--color-kapwa-blue-100)' }}
-                className='mx-auto mb-6 max-w-2xl'
-              >
+              <p className='text-kapwa-text-inverse mx-auto mb-6 max-w-2xl opacity-90'>
                 Join our community of builders, dreamers, and changemakers.
               </p>
               <div className='flex flex-col justify-center gap-4 sm:flex-row'>
                 <Link to='/contact'>
                   <Button
-                    style={{
-                      backgroundColor: 'var(--color-kapwa-yellow-400)',
-                      color: 'var(--color-kapwa-blue-900)',
-                    }}
-                    className='hover:opacity-90'
+                    className='bg-kapwa-bg-accent-yellow-default hover:bg-kapwa-accent-yellow-hover text-kapwa-text-brand hover:opacity-90'
                     size='lg'
                     leftIcon={<MessageCircleIcon className='h-5 w-5' />}
                   >
@@ -327,8 +265,7 @@ const AboutPage: FC = () => {
                 </span>
                 <Link to='/join-us'>
                   <Button
-                    style={{ color: 'var(--color-kapwa-white)' }}
-                    className='hover:bg-kapwa-bg-surface border-white hover:opacity-80'
+                    className='text-kapwa-text-inverse border-kapwa-border-inverse hover:bg-kapwa-bg-surface hover:border-kapwa-border-weak hover:text-kapwa-text-brand hover:opacity-80'
                     size='lg'
                     variant='outline'
                     leftIcon={<LightbulbIcon className='h-5 w-5' />}

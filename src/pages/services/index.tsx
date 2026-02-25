@@ -5,6 +5,7 @@ import { useOutletContext } from 'react-router-dom';
 import { SearchXIcon } from 'lucide-react';
 
 import { Badge } from '@/components/ui/Badge';
+import { CardGrid } from '@/components/ui/Card';
 import { EmptyState } from '@/components/ui/EmptyState';
 import { filterServices } from '@/lib/services';
 
@@ -159,8 +160,8 @@ export default function ServicesPage() {
         )}
       </div>
 
-      {/* Services Grid */}
-      <div className='grid grid-cols-1 gap-6 md:grid-cols-2 2xl:grid-cols-3'>
+      {/* Services Grid - Using CardGrid for consistency */}
+      <CardGrid columns={filteredServices.length > 12 ? 3 : 2}>
         {filteredServices
           .slice(0, currentPage * ITEMS_PER_PAGE)
           .map(service => (
@@ -169,11 +170,14 @@ export default function ServicesPage() {
 
         {/* Infinite Scroll Loader */}
         {filteredServices.length > currentPage * ITEMS_PER_PAGE && (
-          <div ref={loadMoreRef} className='flex justify-center py-12'>
+          <div
+            ref={loadMoreRef}
+            className='flex justify-center py-12 col-span-full'
+          >
             <div className='border-kapwa-border-brand h-6 w-6 animate-spin rounded-full border-2 border-t-transparent' />
           </div>
         )}
-      </div>
+      </CardGrid>
     </div>
   );
 }

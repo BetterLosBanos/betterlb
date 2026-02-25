@@ -8,11 +8,11 @@ import {
 
 import { NuqsAdapter } from 'nuqs/adapters/react-router/v6';
 
-import Footer from '@/components/layout/Footer';
+import { Footer } from '@/components/layout/Footer';
 // --- Layouts ---
-import Navbar from '@/components/layout/Navbar';
-import SEO from '@/components/layout/SEO';
-import ScrollToTop from '@/components/layout/ScrollToTop';
+import { Navbar } from '@/components/layout/Navbar';
+import { SEO } from '@/components/layout/SEO';
+import { ScrollToTop } from '@/components/layout/ScrollToTop';
 import Ticker from '@/components/ui/Ticker';
 
 import ContactUs from '@/pages/ContactUs';

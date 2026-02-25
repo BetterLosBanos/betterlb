@@ -344,7 +344,7 @@ const ForexPage: FC = () => {
                         className={`rounded-md px-3 py-1 text-sm ${
                           timeframe === period
                             ? 'bg-kapwa-bg-brand-default text-white'
-                            : 'hover:bg-kapwa-bg-active bg-kapwa-bg-kapwa-bg-surface-raised text-kapwa-text-support'
+                            : 'hover:bg-kapwa-bg-active bg-kapwa-bg-surface-raised text-kapwa-text-support'
                         }`}
                       >
                         {period}

@@ -15,7 +15,7 @@ import {
   XCircle,
 } from 'lucide-react';
 
-import { DetailSection } from '@/components/layout/PageLayouts';
+import { DetailSection, useBreadcrumbs } from '@/components/layout';
 import {
   Breadcrumb,
   BreadcrumbHome,
@@ -36,7 +36,7 @@ import type {
   Session,
   Term,
 } from '@/lib/openlgu';
-import { getPersonName } from '@/lib/openlgu';
+import { getDocTypeBadgeVariant, getPersonName } from '@/lib/openlgu';
 import { toTitleCase } from '@/lib/stringUtils';
 
 // Helper functions to identify role types
@@ -80,6 +80,9 @@ interface MembershipWithDetails {
 
 export default function PersonDetail() {
   const { personId } = useParams<{ personId: string }>();
+
+  // Auto-generate breadcrumbs using the hook
+  const breadcrumbs = useBreadcrumbs();
 
   // 1. Strictly typed destructuring from context
   const { persons, documents, committees, sessions, terms, isLoading } =
@@ -209,17 +212,31 @@ export default function PersonDetail() {
       {/* Breadcrumbs */}
       <Breadcrumb>
         <BreadcrumbList>
-          <BreadcrumbItem>
-            <BreadcrumbHome href='/' />
-          </BreadcrumbItem>
-          <BreadcrumbSeparator />
-          <BreadcrumbItem>
-            <BreadcrumbLink href='/openlgu'>OpenLGU</BreadcrumbLink>
-          </BreadcrumbItem>
-          <BreadcrumbSeparator />
-          <BreadcrumbItem>
-            <BreadcrumbPage>{officialName}</BreadcrumbPage>
-          </BreadcrumbItem>
+          {breadcrumbs.map((crumb, index) => {
+            const isLast = index === breadcrumbs.length - 1;
+            return (
+              <div key={crumb.href} className='flex items-center gap-2'>
+                {index === 0 ? (
+                  <BreadcrumbItem>
+                    <BreadcrumbHome href={crumb.href} />
+                  </BreadcrumbItem>
+                ) : (
+                  <>
+                    <BreadcrumbSeparator />
+                    <BreadcrumbItem>
+                      {isLast ? (
+                        <BreadcrumbPage>{officialName}</BreadcrumbPage>
+                      ) : (
+                        <BreadcrumbLink href={crumb.href}>
+                          {crumb.label}
+                        </BreadcrumbLink>
+                      )}
+                    </BreadcrumbItem>
+                  </>
+                )}
+              </div>
+            );
+          })}
         </BreadcrumbList>
       </Breadcrumb>
 
@@ -317,7 +334,7 @@ export default function PersonDetail() {
           </div>
           <div className='text-center'>
             <div className='flex items-center justify-center gap-2'>
-              <ScrollText className='text-kapwa-text-accent-purple h-5 w-5' />
+              <ScrollText className='text-kapwa-yellow-700 h-5 w-5' />
               <span className='text-kapwa-text-strong text-2xl font-bold'>
                 {eoCount}
               </span>
@@ -329,7 +346,7 @@ export default function PersonDetail() {
           {hasExecutiveRole && totalExecutiveOrdersSigned > 0 ? (
             <div className='text-center'>
               <div className='flex items-center justify-center gap-2'>
-                <ScrollText className='text-kapwa-text-accent-purple h-5 w-5' />
+                <ScrollText className='text-kapwa-yellow-700 h-5 w-5' />
                 <span className='text-kapwa-text-strong text-2xl font-bold'>
                   {totalExecutiveOrdersSigned}
                 </span>
@@ -565,7 +582,7 @@ export default function PersonDetail() {
                                 {membership.termStats?.executiveOrders ? (
                                   <span>
                                     ,{' '}
-                                    <span className='text-kapwa-text-accent-purple font-semibold'>
+                                    <span className='text-kapwa-yellow-700 font-semibold'>
                                       {membership.termStats.executiveOrders}
                                     </span>{' '}
                                     EO
@@ -577,7 +594,7 @@ export default function PersonDetail() {
                             </>
                           ) : (
                             <span className='text-kapwa-text-support'>
-                              <span className='text-kapwa-text-accent-purple font-semibold'>
+                              <span className='text-kapwa-yellow-700 font-semibold'>
                                 {membership.executiveOrdersSigned || 0}
                               </span>{' '}
                               Executive Orders signed
@@ -639,13 +656,7 @@ export default function PersonDetail() {
                     >
                       <div className='flex items-start gap-3'>
                         <Badge
-                          variant={
-                            doc.type === 'ordinance'
-                              ? 'primary'
-                              : doc.type === 'executive_order'
-                                ? 'warning'
-                                : 'secondary'
-                          }
+                          variant={getDocTypeBadgeVariant(doc.type)}
                           className='mt-0.5 shrink-0 text-xs'
                         >
                           {doc.type === 'ordinance'
@@ -822,7 +833,7 @@ export default function PersonDetail() {
                   <dt className='text-kapwa-text-support text-sm'>
                     Executive Orders Signed
                   </dt>
-                  <dd className='text-kapwa-text-accent-purple text-lg font-bold'>
+                  <dd className='text-kapwa-yellow-700 text-lg font-bold'>
                     {totalExecutiveOrdersSigned}
                   </dd>
                 </div>

@@ -278,16 +278,26 @@ export default function FinancialPage() {
           title='Income Composition'
           icon={Landmark}
           data={incomeChartData}
-          // BetterGov: Emerald for local, Blue for national, Slate for others
-          colors={['#059669', '#0066eb', '#64748b', '#94a3b8']}
+          // BetterGov: Brand for local, Blue for national, Gray for others
+          colors={[
+            'var(--color-kapwa-brand-600)',
+            'var(--color-kapwa-blue-600)',
+            'var(--color-kapwa-gray-500)',
+            'var(--color-kapwa-gray-400)',
+          ]}
         />
 
         <FinancialPieChart
           title='Expenditure Allocation'
           icon={ReceiptText}
           data={expenditureChartData}
-          // BetterGov: Rose for services, Orange for economic, Amber for debt
-          colors={['#dc2626', '#cc3e00', '#d97706', '#0066eb']}
+          // BetterGov: Red for services, Orange for economic, Yellow for debt
+          colors={[
+            'var(--color-kapwa-red-600)',
+            'var(--color-kapwa-orange-600)',
+            'var(--color-kapwa-yellow-600)',
+            'var(--color-kapwa-blue-600)',
+          ]}
         />
       </div>
 

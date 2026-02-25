@@ -15,7 +15,7 @@ import {
   Users,
 } from 'lucide-react';
 
-import { DetailSection } from '@/components/layout/PageLayouts';
+import { DetailSection, useBreadcrumbs } from '@/components/layout';
 import {
   Breadcrumb,
   BreadcrumbHome,
@@ -29,7 +29,7 @@ import { EmptyState, PageLoadingState } from '@/components/ui';
 import { Badge } from '@/components/ui/Badge';
 
 import type { Committee, DocumentItem, Person, Session } from '@/lib/openlgu';
-import { getPersonName } from '@/lib/openlgu';
+import { getDocTypeBadgeVariant, getPersonName } from '@/lib/openlgu';
 import { isExecutiveRole, isLegislativeRole } from '@/lib/roleHelpers';
 import { toTitleCase } from '@/lib/stringUtils';
 
@@ -64,6 +64,9 @@ export default function TermDetail() {
   const { persons, terms, documents, sessions, committees, isLoading } =
     useOutletContext<LegislationContext>();
   const [visibleDocs, setVisibleDocs] = useState(10);
+
+  // Auto-generate breadcrumbs using the hook
+  const breadcrumbs = useBreadcrumbs();
 
   // Find the requested term from the terms array
   const term = useMemo(() => {
@@ -144,22 +147,36 @@ export default function TermDetail() {
     <div className='animate-in fade-in mx-auto max-w-5xl space-y-8 pb-20 duration-500'>
       <Breadcrumb>
         <BreadcrumbList>
-          <BreadcrumbItem>
-            <BreadcrumbHome href='/' />
-          </BreadcrumbItem>
-          <BreadcrumbSeparator />
-          <BreadcrumbItem>
-            <BreadcrumbLink href='/openlgu'>OpenLGU</BreadcrumbLink>
-          </BreadcrumbItem>
-          <BreadcrumbSeparator />
-          <BreadcrumbItem>
-            <BreadcrumbPage>{term.ordinal} Term</BreadcrumbPage>
-          </BreadcrumbItem>
+          {breadcrumbs.map((crumb, index) => {
+            const isLast = index === breadcrumbs.length - 1;
+            return (
+              <div key={crumb.href} className='flex items-center gap-2'>
+                {index === 0 ? (
+                  <BreadcrumbItem>
+                    <BreadcrumbHome href={crumb.href} />
+                  </BreadcrumbItem>
+                ) : (
+                  <>
+                    <BreadcrumbSeparator />
+                    <BreadcrumbItem>
+                      {isLast ? (
+                        <BreadcrumbPage>{term.ordinal} Term</BreadcrumbPage>
+                      ) : (
+                        <BreadcrumbLink href={crumb.href}>
+                          {crumb.label}
+                        </BreadcrumbLink>
+                      )}
+                    </BreadcrumbItem>
+                  </>
+                )}
+              </div>
+            );
+          })}
         </BreadcrumbList>
       </Breadcrumb>
 
       {/* New header pattern - light with left border accent */}
-      <header className='border-l-primary-600 border-kapwa-border-weak bg-kapwa-bg-surface rounded-2xl border-l-8 p-6 shadow-sm md:p-10'>
+      <header className='border-l-kapwa-border-brand border-kapwa-border-weak bg-kapwa-bg-surface rounded-2xl border-l-8 p-6 shadow-sm md:p-10'>
         <div className='flex flex-wrap items-center gap-3'>
           <Badge variant='primary' dot>
             {term.ordinal} Term
@@ -277,7 +294,7 @@ export default function TermDetail() {
                         className='flex items-center gap-3'
                       >
                         <div
-                          className={`flex h-10 w-10 shrink-0 items-center justify-center rounded-lg text-sm font-bold ${isVM ? 'bg-kapwa-bg-brand-default text-white' : 'bg-kapwa-bg-kapwa-bg-surface text-kapwa-text-support'}`}
+                          className={`flex h-10 w-10 shrink-0 items-center justify-center rounded-lg text-sm font-bold ${isVM ? 'bg-kapwa-bg-brand-default text-white' : 'bg-kapwa-bg-surface text-kapwa-text-support'}`}
                         >
                           {person.first_name[0]}
                           {person.last_name[0]}
@@ -380,13 +397,13 @@ export default function TermDetail() {
               </div>
             </div>
             {eoCount > 0 && (
-              <div className='flex items-center gap-4 rounded-2xl border border-purple-100 bg-kapwa-bg-accent-purple-weak p-4'>
-                <ScrollText className='text-kapwa-text-accent-purple h-6 w-6' />
+              <div className='border-kapwa-border-warning bg-kapwa-bg-warning-weak flex items-center gap-4 rounded-2xl border p-4'>
+                <ScrollText className='text-kapwa-text-warning h-6 w-6' />
                 <div>
-                  <span className='text-kapwa-text-accent-purple block text-2xl leading-none font-black'>
+                  <span className='text-kapwa-text-warning block text-2xl leading-none font-black'>
                     {eoCount}
                   </span>
-                  <span className='text-[10px] font-bold tracking-widest text-kapwa-text-accent-purple uppercase'>
+                  <span className='text-[10px] font-bold tracking-widest text-kapwa-text-warning uppercase'>
                     Exec. Orders
                   </span>
                 </div>
@@ -459,15 +476,7 @@ export default function TermDetail() {
                       className='hover:bg-kapwa-bg-surface-raised block min-h-[44px] py-4 transition-all'
                     >
                       <div className='mb-1 flex items-center gap-3'>
-                        <Badge
-                          variant={
-                            doc.type === 'ordinance'
-                              ? 'primary'
-                              : doc.type === 'executive_order'
-                                ? 'warning'
-                                : 'secondary'
-                          }
-                        >
+                        <Badge variant={getDocTypeBadgeVariant(doc.type)}>
                           {doc.type}
                         </Badge>
                         <span className='text-kapwa-text-disabled font-mono text-[10px] font-bold uppercase'>

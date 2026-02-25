@@ -188,7 +188,7 @@ export default function TermsIndex() {
                       </span>
                     )}
                     {term.eoCount > 0 && (
-                      <span className='text-kapwa-text-accent-purple rounded-full bg-kapwa-bg-accent-purple-weak px-2 py-1 text-[10px] font-bold'>
+                      <span className='bg-kapwa-yellow-50 text-kapwa-yellow-700 rounded-full px-2 py-1 text-[10px] font-bold'>
                         {term.eoCount} EO
                       </span>
                     )}

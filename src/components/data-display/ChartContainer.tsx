@@ -43,7 +43,7 @@ export function ChartTooltip({
         {/* Uses CHART_THEME.text for the label color */}
         <p
           style={{ color: CHART_THEME.text }}
-          className='mb-2 border-b border-slate-50 pb-1 text-[10px] font-bold tracking-widest uppercase'
+          className='mb-2 border-b border-kapwa-border-weak pb-1 text-[10px] font-bold tracking-widest uppercase'
         >
           Year: {label}
         </p>
@@ -81,7 +81,7 @@ export function ChartTooltip({
           ))}
         </div>
 
-        <div className='text-kapwa-text-support mt-2 flex items-center justify-between border-t border-slate-50 pt-2 text-[9px] font-bold tracking-tight uppercase'>
+        <div className='text-kapwa-text-support mt-2 flex items-center justify-between border-t border-kapwa-border-weak pt-2 text-[9px] font-bold tracking-tight uppercase'>
           <span>Ranked by Value</span>
           <div className='bg-kapwa-bg-active h-1 w-1 rounded-full' />
         </div>

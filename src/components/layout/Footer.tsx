@@ -15,29 +15,29 @@ import { config } from '@/lib/lguConfig';
 
 import { footerNavigation } from '../../data/navigation';
 
-const Footer: FC = () => {
+export const Footer: FC = () => {
   const { t } = useTranslation('common');
 
   const getSocialIcon = (label: string) => {
     switch (label) {
       case 'Facebook':
-        return <SiFacebook className='h-5 w-5' />;
+        return <SiFacebook className='w-5 h-5' />;
       case 'Instagram':
-        return <SiInstagram className='h-5 w-5' />;
+        return <SiInstagram className='w-5 h-5' />;
       case 'YouTube':
-        return <SiYoutube className='h-5 w-5' />;
+        return <SiYoutube className='w-5 h-5' />;
       case 'Discord':
-        return <SiDiscord className='h-5 w-5' />;
+        return <SiDiscord className='w-5 h-5' />;
       case 'GitHub':
-        return <SiGithub className='h-5 w-5' />;
+        return <SiGithub className='w-5 h-5' />;
       default:
         return null;
     }
   };
 
   return (
-    <footer className='selection:bg-kapwa-bg-brand-default bg-kapwa-bg-surface-bold text-kapwa-text-inverse selection:text-kapwa-text-inverse'>
-      <div className='container mx-auto px-4 pt-16 pb-12'>
+    <footer className='bg-gray-900 selection:bg-primary-500 text-kapwa-text-inverse selection:text-kapwa-text-inverse'>
+      <div className='container px-4 pt-16 pb-12 mx-auto'>
         <div className='grid grid-cols-1 gap-x-8 gap-y-12 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-6'>
           {/* Brand Column */}
           <div className='col-span-2 space-y-6 md:col-span-3 lg:col-span-2'>
@@ -45,7 +45,7 @@ const Footer: FC = () => {
               <img
                 src={config.portal.logoWhitePath}
                 alt='BetterLB'
-                className='mr-4 h-12 w-12'
+                className='mr-4 w-12 h-12'
               />
               <div>
                 <div className='text-xl font-black tracking-tighter'>
@@ -66,7 +66,7 @@ const Footer: FC = () => {
                 <Link
                   key={link.label}
                   to={link.href}
-                  className='text-kapwa-text-disabled transition-colors hover:text-kapwa-text-inverse'
+                  className='transition-colors text-kapwa-text-disabled hover:text-kapwa-text-inverse'
                   target='_blank'
                   rel='noopener noreferrer'
                 >
@@ -90,14 +90,14 @@ const Footer: FC = () => {
                         href={link.href}
                         target='_blank'
                         rel='noreferrer'
-                        className='hover:text-kapwa-text-link-hover flex items-center gap-1 text-sm text-kapwa-text-support transition-colors'
+                        className='flex gap-1 items-center text-sm transition-colors hover:text-kapwa-text-link-hover text-kapwa-text-support'
                       >
                         {link.label}
                       </a>
                     ) : (
                       <Link
                         to={link.href}
-                        className='hover:text-kapwa-text-link-hover text-sm text-kapwa-text-support transition-colors'
+                        className='text-sm transition-colors hover:text-kapwa-text-link-hover text-kapwa-text-support'
                       >
                         {link.label}
                       </Link>
@@ -110,12 +110,12 @@ const Footer: FC = () => {
         </div>
 
         {/* 3. The Signature BetterGov "Cost Statement" */}
-        <div className='mt-20 flex justify-center'>
-          <div className='inline-flex flex-col items-center gap-2 rounded-full border border-kapwa-border-strong bg-kapwa-bg-surface-raised/50 px-6 py-4 text-center md:flex-row md:gap-4'>
+        <div className='flex justify-center mt-20'>
+          <div className='inline-flex flex-col gap-2 items-center px-6 py-4 text-center rounded-full border border-kapwa-border-strong bg-kapwa-bg-surface-bold/20 md:flex-row md:gap-4'>
             <p className='text-xs font-medium text-kapwa-text-support md:text-sm'>
               Built by the community for the community.
             </p>
-            <span className='hidden h-1 w-1 rounded-full bg-kapwa-border-strong md:block' />
+            <span className='hidden w-1 h-1 rounded-full bg-kapwa-border-strong md:block' />
             <p className='text-xs font-bold md:text-sm'>
               Cost to the People of Los Baños ={' '}
               <span className='text-kapwa-text-success'>₱0</span>
@@ -124,7 +124,7 @@ const Footer: FC = () => {
         </div>
 
         {/* Bottom Bar */}
-        <div className='mt-16 flex flex-col items-center justify-between gap-6 border-t border-kapwa-border-strong pt-8 md:flex-row'>
+        <div className='flex flex-col gap-6 justify-between items-center pt-8 mt-16 border-t border-kapwa-border-strong md:flex-row'>
           <p className='text-[10px] font-bold tracking-widest text-kapwa-text-disabled uppercase'>
             {t('footer.copyright')}
           </p>
@@ -150,5 +150,3 @@ const Footer: FC = () => {
     </footer>
   );
 };
-
-export default Footer;

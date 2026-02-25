@@ -75,7 +75,7 @@ export default function ElectedOfficialsIndex() {
   const committeeCount = sbChamber?.permanent_committees?.length || 0;
 
   return (
-    <div className='container mx-auto px-4 animate-in fade-in space-y-8 pb-20 duration-500'>
+    <div className='animate-in fade-in space-y-8 pb-20 duration-500'>
       <ModuleHeader
         title='Municipal Leadership'
         description='Meet the elected leaders and appointed management of the Science and Nature City.'
@@ -113,7 +113,7 @@ export default function ElectedOfficialsIndex() {
           <DetailSection
             title='Legislative Branch'
             icon={Gavel}
-            className='border-l-kapwa-orange-600 h-full border-l-4 shadow-sm'
+            className='border-l-kapwa-border-accent-orange h-full border-l-4 shadow-sm'
           >
             <div className='grid grid-cols-1 gap-4'>
               {/* SB Card */}
@@ -123,18 +123,18 @@ export default function ElectedOfficialsIndex() {
               >
                 <Card hover className='border-kapwa-border-weak h-full'>
                   <CardContent className='flex items-center gap-5 p-5'>
-                    <div className='bg-kapwa-orange-600 text-kapwa-text-inverse flex h-14 w-14 shrink-0 items-center justify-center rounded-2xl shadow-md'>
+                    <div className='bg-kapwa-bg-accent-orange-default text-kapwa-text-inverse flex h-14 w-14 shrink-0 items-center justify-center rounded-2xl shadow-md'>
                       <Users className='h-7 w-7' />
                     </div>
                     <div className='flex-1'>
-                      <h3 className='group-hover:text-kapwa-orange-600 text-kapwa-text-strong text-lg leading-tight font-bold transition-colors'>
+                      <h3 className='group-hover:text-kapwa-text-accent-orange text-kapwa-text-strong text-lg leading-tight font-bold transition-colors'>
                         12th Sangguniang Bayan
                       </h3>
                       <p className='text-kapwa-text-disabled mt-1 text-xs font-medium'>
                         Council Members & Profiles
                       </p>
                     </div>
-                    <ChevronRight className='group-hover:text-kapwa-orange-600 text-kapwa-text-support h-5 w-5 transition-all group-hover:translate-x-1' />
+                    <ChevronRight className='group-hover:text-kapwa-text-accent-orange text-kapwa-text-support h-5 w-5 transition-all group-hover:translate-x-1' />
                   </CardContent>
                 </Card>
               </Link>
@@ -146,18 +146,18 @@ export default function ElectedOfficialsIndex() {
               >
                 <Card hover className='border-kapwa-border-weak h-full'>
                   <CardContent className='flex items-center gap-5 p-5'>
-                    <div className='bg-kapwa-orange-50 text-kapwa-orange-600 border-kapwa-orange-200 flex h-14 w-14 shrink-0 items-center justify-center rounded-2xl border'>
+                    <div className='bg-kapwa-bg-accent-orange-weak text-kapwa-text-accent-orange border-kapwa-border-accent-orange flex h-14 w-14 shrink-0 items-center justify-center rounded-2xl border'>
                       <BookOpen className='h-7 w-7' />
                     </div>
                     <div className='flex-1'>
-                      <h3 className='group-hover:text-kapwa-orange-600 text-kapwa-text-strong text-lg leading-tight font-bold transition-colors'>
+                      <h3 className='group-hover:text-kapwa-text-accent-orange text-kapwa-text-strong text-lg leading-tight font-bold transition-colors'>
                         Municipal Committees
                       </h3>
                       <p className='text-kapwa-text-disabled mt-1 text-xs font-medium'>
                         {committeeCount} Standing Committees
                       </p>
                     </div>
-                    <ChevronRight className='group-hover:text-kapwa-orange-600 text-kapwa-text-support h-5 w-5 transition-all group-hover:translate-x-1' />
+                    <ChevronRight className='group-hover:text-kapwa-text-accent-orange text-kapwa-text-support h-5 w-5 transition-all group-hover:translate-x-1' />
                   </CardContent>
                 </Card>
               </Link>

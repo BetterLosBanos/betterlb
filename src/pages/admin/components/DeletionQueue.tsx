@@ -387,7 +387,7 @@ export default function DeletionQueue() {
               variant={isSelected ? 'default' : 'default'}
               className={`transition-all ${
                 isSelected
-                  ? 'border-l-primary-500 bg-kapwa-bg-surface border-l-4'
+                  ? 'border-l-kapwa-border-brand bg-kapwa-bg-surface border-l-4'
                   : ''
               }`}
             >

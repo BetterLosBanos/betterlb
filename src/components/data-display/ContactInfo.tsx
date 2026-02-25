@@ -39,7 +39,7 @@ export function ContactItem({
   const content = (
     <div
       className={cn(
-        'bg-kapwa-bg-surface flex items-start gap-3 rounded-xl border border-slate-100 p-3 transition-all',
+        'bg-kapwa-bg-surface flex items-start gap-3 rounded-xl border border-kapwa-border-weak p-3 transition-all',
         'group hover:border-kapwa-border-brand hover:bg-kapwa-bg-surface-brand/30',
         className
       )}

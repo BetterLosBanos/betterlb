@@ -14,7 +14,7 @@ import {
 
 import { DetailSection } from '@/components/layout/PageLayouts';
 import { Badge } from '@/components/ui/Badge';
-import { Card, CardContent } from '@/components/ui/Card';
+import { Card, CardContent, CardGrid } from '@/components/ui/Card';
 
 export default function TransparencyIndex() {
   const sections = [
@@ -48,27 +48,29 @@ export default function TransparencyIndex() {
   ];
 
   return (
-    <div className='animate-in fade-in mx-auto max-w-5xl space-y-10 pb-20 duration-500'>
+    <div className='animate-in fade-in duration-500'>
       {/* 1. Grassroots Mission Box - Uses Brand Orange to signify "Community" */}
-      <div className='bg-kapwa-bg-kapwa-bg-warning-weak flex flex-col items-center gap-6 rounded-3xl border-2 border-orange-100 p-6 shadow-sm md:flex-row'>
-        <div className='text-kapwa-text-accent-orange bg-kapwa-bg-surface rounded-2xl p-4 shadow-md'>
-          <HeartHandshake className='h-8 w-8' />
-        </div>
-        <div className='flex-1 space-y-2 text-center md:text-left'>
-          <h3 className='text-[10px] font-bold tracking-widest text-orange-900 uppercase'>
-            Independent Grassroots Initiative
-          </h3>
-          <p className='text-sm leading-relaxed text-orange-800'>
-            Better LB is <strong>not an official government portal</strong>. We
-            are a volunteer movement mirroring public records to empower
-            citizens with the information they need to engage in local
-            governance.
-          </p>
+      <div className='mb-10'>
+        <div className='bg-kapwa-orange-50 flex flex-col items-center gap-6 rounded-3xl border-0 p-6 shadow-sm md:flex-row'>
+          <div className='text-kapwa-orange-600 bg-kapwa-bg-surface rounded-2xl p-4 shadow-md'>
+            <HeartHandshake className='h-8 w-8' />
+          </div>
+          <div className='flex-1 space-y-2 text-center md:text-left'>
+            <h3 className='text-[10px] font-bold tracking-widest text-kapwa-orange-600 uppercase'>
+              Independent Grassroots Initiative
+            </h3>
+            <p className='text-sm leading-relaxed text-kapwa-orange-600'>
+              Better LB is <strong>not an official government portal</strong>.
+              We are a volunteer movement mirroring public records to empower
+              citizens with the information they need to engage in local
+              governance.
+            </p>
+          </div>
         </div>
       </div>
 
-      {/* 2. The Three Pillars of Oversight */}
-      <div className='grid grid-cols-1 gap-6 md:grid-cols-3' role='list'>
+      {/* 2. The Three Pillars of Oversight - Using CardGrid */}
+      <CardGrid columns={3}>
         {sections.map(section => (
           <Link
             key={section.href}
@@ -86,7 +88,7 @@ export default function TransparencyIndex() {
                     className={`rounded-2xl p-3 shadow-sm transition-all ${
                       section.color === 'blue'
                         ? 'bg-kapwa-bg-surface text-kapwa-text-brand group-hover:bg-kapwa-bg-brand-default group-hover:text-kapwa-text-inverse'
-                        : 'bg-kapwa-bg-accent-orange-weak text-kapwa-text-accent-orange group-hover:bg-kapwa-orange-600 group-hover:text-kapwa-text-inverse'
+                        : 'bg-kapwa-orange-50 text-kapwa-orange-600 group-hover:bg-kapwa-orange-100 group-hover:text-kapwa-text-inverse'
                     }`}
                   >
                     <section.icon className='h-6 w-6' />
@@ -108,7 +110,7 @@ export default function TransparencyIndex() {
                   </p>
                 </div>
 
-                <div className='mt-8 flex items-center justify-between border-t border-slate-50 pt-4 transition-transform group-hover:translate-x-1'>
+                <div className='mt-8 flex items-center justify-between border-t border-kapwa-border-weak pt-4 transition-transform group-hover:translate-x-1'>
                   <span className='text-kapwa-text-brand text-[10px] font-black tracking-widest uppercase'>
                     Analyze Data
                   </span>
@@ -118,16 +120,16 @@ export default function TransparencyIndex() {
             </Card>
           </Link>
         ))}
-      </div>
+      </CardGrid>
 
       {/* 3. Community Engagement Block */}
-      <div className='grid grid-cols-1 gap-8 md:grid-cols-2'>
+      <div className='mt-10 grid grid-cols-1 gap-8 md:grid-cols-2'>
         <DetailSection
           title='Help Our Audit'
           icon={Search}
           className='bg-kapwa-bg-surface-raised border-kapwa-border-weak'
         >
-          <p className='text-kapwa-text-on-disabled mb-6 text-sm leading-relaxed'>
+          <p className='text-kapwa-text-support mb-6 text-sm leading-relaxed'>
             Our data depends on volunteers like you. If you find a project that
             is missing or an expense that seems incorrect, please let us know.
           </p>

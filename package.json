@@ -17,7 +17,7 @@
     "generate:sitemap": "node ./scripts/generate-sitemap.js"
   },
   "dependencies": {
-    "@betterlb/kapwa": "^1.1.11",
+    "@betterlb/kapwa": "^1.2.3",
     "@betterlb/ui": "file:../betterlb-ui",
     "@icons-pack/react-simple-icons": "^13.7.0",
     "@radix-ui/react-dialog": "^1.0.5",

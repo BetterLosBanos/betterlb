@@ -1,18 +1,6 @@
 import { Link } from 'react-router-dom';
 
-import {
-  BookOpen,
-  Briefcase,
-  DollarSign,
-  FileText,
-  Hammer,
-  Heart,
-  Leaf,
-  LucideIcon,
-  PlusCircle,
-  Shield,
-  Users,
-} from 'lucide-react';
+import { FileText, LucideIcon, PlusCircle } from 'lucide-react';
 
 import {
   SidebarContainer,
@@ -20,21 +8,9 @@ import {
 } from '@/components/navigation/SidebarNavigation';
 
 import { scrollToTop } from '@/lib/scrollUtils';
+import { getCategoryIconBySlug } from '@/lib/serviceIcons';
 
 import serviceCategories from '@/data/service_categories.json';
-
-const categoryIcons: Record<string, LucideIcon> = {
-  'certificates-vital-records': FileText,
-  'business-trade-investment': Briefcase,
-  'taxation-payments': DollarSign,
-  'infrastructure-public-works': Hammer,
-  'social-services-assistance': Users,
-  'health-wellness': Heart,
-  'agriculture-economic-development': Leaf,
-  'environment-natural-resources': Leaf,
-  'education-scholarship': BookOpen,
-  'public-safety-security': Shield,
-};
 
 interface ServicesSidebarProps {
   selectedCategorySlug: string;
@@ -64,7 +40,7 @@ export default function ServicesSidebar({
           <SidebarItem
             key={category.slug}
             label={category.name}
-            icon={categoryIcons[category.slug] || FileText}
+            icon={getCategoryIconBySlug(category.slug)}
             isActive={selectedCategorySlug === category.slug}
             onClick={() => {
               scrollToTop();

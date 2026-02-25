@@ -75,7 +75,7 @@ const CustomTooltip = ({ active, payload }: TooltipProps<number, string>) => {
           {((data.payload.percent || 0) * 100).toFixed(1)}% of total
         </p>
         {!isDetail && data.payload.details?.length > 0 && (
-          <p className='mt-2 flex items-center gap-1 pl-4 text-[10px] font-medium text-indigo-500'>
+          <p className='mt-2 flex items-center gap-1 pl-4 text-[10px] font-medium text-kapwa-text-brand'>
             <ZoomIn className='h-3 w-3' /> Click to view breakdown
           </p>
         )}
@@ -132,7 +132,7 @@ const renderCustomizedLabel = ({
         y={ly}
         textAnchor={textAnchor}
         dy={-5}
-        className='fill-slate-700 text-[10px] font-medium md:text-xs'
+        className='fill-[var(--color-kapwa-text-strong)] text-[10px] font-medium md:text-xs'
       >
         {name}
       </text>
@@ -141,7 +141,7 @@ const renderCustomizedLabel = ({
         y={ly}
         textAnchor={textAnchor}
         dy={10}
-        className='fill-slate-500 text-[10px]'
+        className='fill-[var(--color-kapwa-text-support)] text-[10px]'
       >
         {formatPesoAdaptive(value).fullString} ({(percent * 100).toFixed(0)}%)
       </text>
@@ -218,8 +218,8 @@ export default function FinancialPieChart({
             title='Toggle Labels'
             className={`rounded-md p-1.5 transition-colors ${
               showLabels
-                ? 'bg-kapwa-bg-kapwa-bg-surface text-kapwa-text-strong'
-                : 'hover:bg-kapwa-bg-hover text-kapwa-text-disabled'
+                ? 'bg-kapwa-bg-brand-weak text-kapwa-text-brand'
+                : 'hover:bg-kapwa-bg-surface-raised text-kapwa-text-disabled'
             }`}
           >
             <Tag className='h-3.5 w-3.5' />

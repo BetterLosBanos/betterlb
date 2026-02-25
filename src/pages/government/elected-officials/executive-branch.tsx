@@ -105,7 +105,7 @@ export default function ExecutiveBranchPage() {
               icon={Icon}
               className={
                 isMayor
-                  ? 'border-l-primary-600 border-l-4 shadow-sm'
+                  ? 'border-l-kapwa-border-brand border-l-4 shadow-sm'
                   : 'bg-kapwa-bg-surface/30'
               }
             >
