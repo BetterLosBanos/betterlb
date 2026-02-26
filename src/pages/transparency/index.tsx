@@ -127,47 +127,52 @@ export default function TransparencyIndex() {
         <DetailSection
           title='Help Our Audit'
           icon={Search}
-          className='bg-kapwa-bg-surface-raised border-kapwa-border-weak'
+          className='bg-kapwa-bg-surface-raised border-kapwa-border-weak flex h-full flex-col'
         >
-          <p className='text-kapwa-text-support mb-6 text-sm leading-relaxed'>
-            Our data depends on volunteers like you. If you find a project that
-            is missing or an expense that seems incorrect, please let us know.
-          </p>
-          <Link
-            to='/contribute'
-            className='hover:border-kapwa-border-brand hover:text-kapwa-text-brand border-kapwa-border-weak bg-kapwa-bg-surface text-kapwa-text-support hover:bg-kapwa-bg-surface inline-flex min-h-[44px] items-center gap-2 rounded-xl border px-6 py-3 text-xs font-bold shadow-sm transition-all'
-          >
-            <Users className='h-4 w-4' /> Join the Community Audit
-          </Link>
-        </DetailSection>
-
-        <DetailSection title='Data Sources' icon={FileText}>
-          <div className='space-y-3'>
-            <p className='text-kapwa-text-disabled mb-2 text-[11px] font-medium italic'>
-              We mirror and verify data from the following platforms:
+          <div className='flex h-full flex-col justify-between'>
+            <p className='text-kapwa-text-support mb-6 text-sm leading-relaxed'>
+              Our data depends on volunteers like you. If you find a project
+              that is missing or an expense that seems incorrect, please let us
+              know.
             </p>
             <a
-              href='https://transparency.bettergov.ph'
+              href='https://github.com/BetterLosBanos/betterlb/issues'
               target='_blank'
               rel='noreferrer'
-              className='group border-kapwa-border-weak hover:bg-kapwa-bg-surface-raised flex items-center justify-between rounded-lg border p-3 transition-colors'
+              className='bg-kapwa-blue-50 text-kapwa-blue-600 hover:bg-kapwa-blue-100 inline-flex w-full items-center justify-center gap-2 rounded-lg px-4 py-2.5 text-xs font-bold transition-colors'
             >
-              <span className='text-kapwa-text-support text-xs font-bold'>
-                BetterGov National Database
-              </span>
-              <ExternalLink className='group-hover:text-kapwa-text-brand text-kapwa-text-support h-3.5 w-3.5' />
+              <Users className='h-4 w-4' /> Report an Issue
             </a>
-            <a
-              href='https://losbanos.gov.ph/full_disclosure_transparency'
-              target='_blank'
-              rel='noreferrer'
-              className='group border-kapwa-border-weak hover:bg-kapwa-bg-surface-raised flex items-center justify-between rounded-lg border p-3 transition-colors'
-            >
-              <span className='text-kapwa-text-support text-xs font-bold'>
-                Official LGU FDP Files
-              </span>
-              <ExternalLink className='group-hover:text-kapwa-text-brand text-kapwa-text-support h-3.5 w-3.5' />
-            </a>
+          </div>
+        </DetailSection>
+
+        <DetailSection
+          title='Data Sources'
+          icon={FileText}
+          className='flex h-full flex-col'
+        >
+          <div className='flex h-full flex-col justify-between'>
+            <p className='text-kapwa-text-disabled mb-6 text-[11px] font-medium italic'>
+              We mirror and verify data from the following platforms:
+            </p>
+            <div className='flex flex-col gap-3'>
+              <a
+                href='https://transparency.bettergov.ph'
+                target='_blank'
+                rel='noreferrer'
+                className='bg-kapwa-blue-50 text-kapwa-blue-600 hover:bg-kapwa-blue-100 inline-flex w-full items-center justify-center gap-2 rounded-lg px-4 py-2.5 text-xs font-bold transition-colors'
+              >
+                Transparency Dashboard <ExternalLink className='h-3 w-3' />
+              </a>
+              <a
+                href='https://data.bettergov.ph/'
+                target='_blank'
+                rel='noreferrer'
+                className='bg-kapwa-blue-50 text-kapwa-blue-600 hover:bg-kapwa-blue-100 inline-flex w-full items-center justify-center gap-2 rounded-lg px-4 py-2.5 text-xs font-bold transition-colors'
+              >
+                BetterGov Data Portal <ExternalLink className='h-3 w-3' />
+              </a>
+            </div>
           </div>
         </DetailSection>
       </div>

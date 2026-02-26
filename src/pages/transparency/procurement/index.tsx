@@ -57,6 +57,7 @@ export default function ProcurementPage() {
   // Constants
   const ORG_NAME = config.transparency.procurement.organizationName;
   const ORG_FILTER = `organization_name = "${ORG_NAME}"`;
+  const orgDashboardUrl = `${config.transparency.procurement.externalDashboard}${encodeURIComponent(ORG_NAME)}`;
 
   // Helper function to get badge variant based on award status
   const getAwardStatusBadgeVariant = (
@@ -428,7 +429,7 @@ export default function ProcurementPage() {
             </div>
           </div>
           <a
-            href='https://transparency.bettergov.ph/organizations/MUNICIPALITY%20OF%20LOS%20BA%C3%91OS%2C%20LAGUNA'
+            href={orgDashboardUrl}
             target='_blank'
             rel='noreferrer'
             className='bg-kapwa-blue-50 text-kapwa-blue-600 hover:bg-kapwa-blue-100 inline-flex w-full items-center justify-center gap-2 rounded-lg px-4 py-2.5 text-xs font-bold transition-colors'
@@ -459,7 +460,7 @@ export default function ProcurementPage() {
             rel='noreferrer'
             className='text-kapwa-text-inverse bg-kapwa-brand-600 hover:bg-kapwa-brand-700 inline-flex w-full items-center justify-center gap-2 rounded-lg px-4 py-2.5 text-xs font-bold transition-colors'
           >
-            Open National Engine <ExternalLink className='h-3 w-3' />
+            View Dashboard <ExternalLink className='h-3 w-3' />
           </a>
         </div>
       </div>

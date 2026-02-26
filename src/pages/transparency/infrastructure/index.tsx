@@ -31,7 +31,18 @@ import { DPWHProject, INDICES, client } from '@/lib/meilisearch';
 export default function InfrastructurePage() {
   const navigate = useNavigate();
 
-  // Get config for infrastructure filters
+  // External URLs constructed from config
+  const dpwhDashboardUrl = useMemo(
+    () =>
+      `https://transparency.bettergov.ph/dpwh?q=${encodeURIComponent(config.lgu.name)}&regions=${encodeURIComponent(config.lgu.region)}&provinces=${encodeURIComponent(config.lgu.region)}%2C${encodeURIComponent(config.lgu.districtEngineeringOffice || config.lgu.province)}`,
+    [config]
+  );
+
+  const bistoProjectsUrl = useMemo(
+    () =>
+      `https://bisto.ph/projects?search=${encodeURIComponent(config.lgu.name)}&region=${encodeURIComponent(config.lgu.region)}`,
+    [config]
+  );
 
   // Filters & Search
   const [query, setQuery] = useState('');
@@ -407,7 +418,7 @@ export default function InfrastructurePage() {
             </div>
           </div>
           <a
-            href='https://transparency.bettergov.ph/dpwh?q=los+ba%C3%B1os&regions=Region+IV-A&provinces=Region+IV-A%2CLaguna+2nd+DEO'
+            href={dpwhDashboardUrl}
             target='_blank'
             rel='noreferrer'
             className='bg-kapwa-blue-50 text-kapwa-blue-600 hover:bg-kapwa-blue-100 inline-flex w-full items-center justify-center gap-2 rounded-lg px-4 py-2.5 text-xs font-bold transition-colors'
@@ -433,7 +444,7 @@ export default function InfrastructurePage() {
             </div>
           </div>
           <a
-            href='https://bisto.ph/projects?search=los+ba%C3%B1os&region=Region+IV-A&province=LAGUNA'
+            href={bistoProjectsUrl}
             target='_blank'
             rel='noreferrer'
             className='text-kapwa-text-inverse bg-kapwa-brand-600 hover:bg-kapwa-brand-700 inline-flex w-full items-center justify-center gap-2 rounded-lg px-4 py-2.5 text-xs font-bold transition-colors'

@@ -5,6 +5,8 @@ import {
   useContext,
   useState,
   useMemo,
+  useLayoutEffect,
+  useCallback,
 } from 'react';
 
 import { HomeIcon } from 'lucide-react';
@@ -176,7 +178,9 @@ export function SectionAlternator({
 }) {
   const [index, setIndex] = useState(startIndex);
 
-  const increment = () => setIndex(prev => prev + 1);
+  const increment = useCallback(() => {
+    setIndex(prev => prev + 1);
+  }, []);
 
   return (
     <SectionContext.Provider value={{ index, increment }}>
@@ -228,10 +232,12 @@ export function SectionBlock({
     explicitVariant ||
     (['default', 'raised', 'brand'][index % 3] as SectionBlockProps['variant']);
 
-  // Increment after determining variant for next sibling
-  if (!explicitVariant) {
-    increment();
-  }
+  // Increment after render (using useLayoutEffect to run before paint)
+  useLayoutEffect(() => {
+    if (!explicitVariant) {
+      increment();
+    }
+  }, [explicitVariant, increment]);
 
   const variants = {
     default: 'bg-kapwa-bg-surface',
