@@ -1,6 +1,7 @@
 import { useCallback, useEffect, useState } from 'react';
 
-import { Banner } from '@/kapwa/banner';
+import { Banner } from '@bettergov/kapwa';
+import { Button } from '@bettergov/kapwa';
 import {
   Calendar,
   Check,
@@ -16,7 +17,6 @@ import {
 } from 'lucide-react';
 
 import { Badge } from '@/components/ui/Badge';
-import Button from '@/components/ui/Button';
 import { Card, CardContent } from '@/components/ui/Card';
 import { EmptyState } from '@/components/ui/EmptyState';
 
@@ -422,7 +422,7 @@ export default function ReviewQueue() {
   if (loading && items.length === 0) {
     return (
       <div className='flex items-center justify-center py-12'>
-        <RefreshCw className='h-8 w-8 animate-spin text-slate-400' />
+        <RefreshCw className='text-kapwa-text-disabled h-8 w-8 animate-spin' />
       </div>
     );
   }
@@ -454,8 +454,10 @@ export default function ReviewQueue() {
       {/* Header */}
       <div className='flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between'>
         <div>
-          <h2 className='text-2xl font-bold text-slate-900'>Review Queue</h2>
-          <p className='text-slate-600'>
+          <h2 className='text-kapwa-text-strong text-2xl font-bold'>
+            Review Queue
+          </h2>
+          <p className='text-kapwa-text-support'>
             {pagination.total} items needing review
             {selectedItems.size > 0 && ` (${selectedItems.size} selected)`}
           </p>
@@ -467,7 +469,7 @@ export default function ReviewQueue() {
               setTypeFilter(e.target.value as ItemType | 'all');
               setPage(0);
             }}
-            className='focus:border-primary-500 focus:ring-primary-500/20 h-9 rounded-md border border-slate-300 bg-white px-3 py-1 text-sm shadow-sm focus:ring-2 focus:outline-none'
+            className='focus:border-kapwa-border-brand focus:ring-kapwa-border-brand/20 border-kapwa-border-weak bg-kapwa-bg-surface h-9 rounded-md border px-3 py-1 text-sm shadow-sm focus:ring-2 focus:outline-none'
           >
             {typeOptions.map(opt => (
               <option key={opt.value} value={opt.value}>
@@ -481,7 +483,7 @@ export default function ReviewQueue() {
               setStatusFilter(e.target.value as ReviewStatus | 'all');
               setPage(0);
             }}
-            className='focus:border-primary-500 focus:ring-primary-500/20 h-9 rounded-md border border-slate-300 bg-white px-3 py-1 text-sm shadow-sm focus:ring-2 focus:outline-none'
+            className='focus:border-kapwa-border-brand focus:ring-kapwa-border-brand/20 border-kapwa-border-weak bg-kapwa-bg-surface h-9 rounded-md border px-3 py-1 text-sm shadow-sm focus:ring-2 focus:outline-none'
           >
             {statusOptions.map(opt => (
               <option key={opt.value} value={opt.value}>
@@ -502,9 +504,9 @@ export default function ReviewQueue() {
 
       {/* Bulk Actions Bar */}
       {selectedItems.size > 0 && (
-        <div className='bg-primary-50 flex items-center justify-between rounded-md p-4'>
+        <div className='bg-kapwa-bg-surface flex items-center justify-between rounded-md p-4'>
           <div className='flex items-center gap-3'>
-            <span className='text-primary-900 font-medium'>
+            <span className='text-kapwa-text-brand-bold font-medium'>
               {selectedItems.size} item{selectedItems.size !== 1 ? 's' : ''}{' '}
               selected
             </span>
@@ -535,16 +537,19 @@ export default function ReviewQueue() {
 
       {/* Select All Bar */}
       {items.length > 0 && (
-        <div className='flex items-center gap-2 text-sm text-slate-600'>
+        <div className='text-kapwa-text-support flex items-center gap-2 text-sm'>
           <button
             onClick={selectAllVisible}
-            className='hover:text-primary-600 flex items-center gap-1'
+            className='hover:text-kapwa-text-brand flex items-center gap-1'
           >
             <CheckSquare className='h-4 w-4' />
             Select all visible
           </button>
           <span>•</span>
-          <button onClick={clearSelection} className='hover:text-primary-600'>
+          <button
+            onClick={clearSelection}
+            className='hover:text-kapwa-text-brand'
+          >
             Clear selection
           </button>
         </div>
@@ -571,10 +576,10 @@ export default function ReviewQueue() {
                   <div className='flex flex-wrap items-center gap-3'>
                     <button
                       onClick={() => toggleItemSelection(item.id)}
-                      className='hover:text-primary-600 flex-shrink-0 text-slate-400'
+                      className='hover:text-kapwa-text-brand text-kapwa-text-disabled flex-shrink-0'
                     >
                       {selectedItems.has(item.id) ? (
-                        <CheckSquare className='text-primary-600 h-5 w-5' />
+                        <CheckSquare className='text-kapwa-text-brand h-5 w-5' />
                       ) : (
                         <Square className='h-5 w-5' />
                       )}
@@ -584,18 +589,18 @@ export default function ReviewQueue() {
                     </Badge>
                     <Badge variant='slate'>{item.item_type}</Badge>
                     <Badge variant='outline'>{item.source_type}</Badge>
-                    <span className='text-xs text-slate-500'>
+                    <span className='text-kapwa-text-disabled text-xs'>
                       ID: {item.item_id}
                     </span>
                   </div>
 
                   {/* Description */}
                   <div>
-                    <h3 className='font-bold text-slate-900'>
+                    <h3 className='text-kapwa-text-strong font-bold'>
                       {item.issue_type}
                     </h3>
                     {item.description && (
-                      <p className='mt-1 text-sm text-slate-600'>
+                      <p className='text-kapwa-text-support mt-1 text-sm'>
                         {item.description}
                       </p>
                     )}
@@ -603,7 +608,7 @@ export default function ReviewQueue() {
 
                   {/* Document Details (if applicable) */}
                   {item.document && (
-                    <div className='rounded-md bg-slate-50 p-3'>
+                    <div className='bg-kapwa-bg-surface-raised rounded-md p-3'>
                       <div className='flex items-center gap-2 text-sm'>
                         <Badge
                           variant={
@@ -614,11 +619,11 @@ export default function ReviewQueue() {
                         >
                           {item.document.type}
                         </Badge>
-                        <span className='font-mono font-bold text-slate-700'>
+                        <span className='text-kapwa-text-support font-mono font-bold'>
                           {item.document.number}
                         </span>
                       </div>
-                      <p className='mt-1 text-sm text-slate-600'>
+                      <p className='text-kapwa-text-support mt-1 text-sm'>
                         {item.document.title}
                       </p>
                       {item.document.pdf_url && (
@@ -626,7 +631,7 @@ export default function ReviewQueue() {
                           href={item.document.pdf_url}
                           target='_blank'
                           rel='noopener noreferrer'
-                          className='text-primary-600 mt-2 inline-flex items-center gap-1 text-xs hover:underline'
+                          className='text-kapwa-text-brand mt-2 inline-flex items-center gap-1 text-xs hover:underline'
                         >
                           <FileText className='h-3 w-3' />
                           View PDF
@@ -636,7 +641,7 @@ export default function ReviewQueue() {
                   )}
 
                   {/* Metadata */}
-                  <div className='flex flex-wrap gap-4 text-xs text-slate-500'>
+                  <div className='text-kapwa-text-disabled flex flex-wrap gap-4 text-xs'>
                     <div className='flex items-center gap-1'>
                       <Calendar className='h-3 w-3' />
                       Created {new Date(item.created_at).toLocaleString()}
@@ -652,7 +657,7 @@ export default function ReviewQueue() {
                         href={item.source_url}
                         target='_blank'
                         rel='noopener noreferrer'
-                        className='text-primary-600 hover:underline'
+                        className='text-kapwa-text-brand hover:underline'
                       >
                         Source
                       </a>
@@ -738,7 +743,7 @@ export default function ReviewQueue() {
                   {item.status === 'in_progress' && (
                     <>
                       <Button
-                        variant='success'
+                        variant='primary'
                         size='sm'
                         leftIcon={<Check className='h-4 w-4' />}
                         onClick={() => updateStatus(item.id, 'resolved')}
@@ -764,7 +769,7 @@ export default function ReviewQueue() {
       {/* Pagination */}
       {pagination.total > pagination.limit && (
         <div className='flex items-center justify-between'>
-          <p className='text-sm text-slate-600'>
+          <p className='text-kapwa-text-support text-sm'>
             Showing {pagination.offset + 1}-
             {Math.min(pagination.offset + pagination.limit, pagination.total)}{' '}
             of {pagination.total}
@@ -807,9 +812,9 @@ export default function ReviewQueue() {
 
       {/* Session Form Modal */}
       {sessionFormSessionId && sessionFormOpen && (
-        <div className='fixed inset-0 z-50 flex items-center justify-center bg-black/50 p-4'>
-          <div className='max-h-[90vh] w-full max-w-3xl overflow-y-auto rounded-lg bg-white p-6'>
-            <h2 className='mb-4 text-2xl font-bold text-slate-900'>
+        <div className='bg-kapwa-bg-surface-bold/50 fixed inset-0 z-50 flex items-center justify-center p-4'>
+          <div className='bg-kapwa-bg-surface max-h-[90vh] w-full max-w-3xl overflow-y-auto rounded-lg p-6'>
+            <h2 className='text-kapwa-text-strong mb-4 text-2xl font-bold'>
               {sessionFormSessionId ? 'Edit Session' : 'Create Session'}
             </h2>
             <SessionDataForm
@@ -831,9 +836,9 @@ export default function ReviewQueue() {
 
       {/* Attendance Form Modal */}
       {attendanceFormSessionId && attendanceFormOpen && (
-        <div className='fixed inset-0 z-50 flex items-center justify-center bg-black/50 p-4'>
-          <div className='max-h-[90vh] w-full max-w-2xl overflow-y-auto rounded-lg bg-white p-6'>
-            <h2 className='mb-4 text-2xl font-bold text-slate-900'>
+        <div className='bg-kapwa-bg-surface-bold/50 fixed inset-0 z-50 flex items-center justify-center p-4'>
+          <div className='bg-kapwa-bg-surface max-h-[90vh] w-full max-w-2xl overflow-y-auto rounded-lg p-6'>
+            <h2 className='text-kapwa-text-strong mb-4 text-2xl font-bold'>
               Edit Attendance
             </h2>
             <AttendanceForm

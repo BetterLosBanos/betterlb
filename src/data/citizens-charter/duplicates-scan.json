@@ -1,0 +1,16 @@
+{
+  "scanTimestamp": "2026-02-19T23:10:04.346001",
+  "summary": {
+    "totalServices": 176,
+    "authoritativeServices": 56,
+    "unverifiedServices": 120,
+    "highConfidenceDuplicates": 0,
+    "mediumConfidenceDuplicates": 0,
+    "lowConfidenceMatches": 0
+  },
+  "duplicates": {
+    "high": [],
+    "medium": [],
+    "low": []
+  }
+}

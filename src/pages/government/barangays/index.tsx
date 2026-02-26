@@ -20,7 +20,7 @@ export default function BarangaysIndex() {
     .sort((a, b) => a.barangay_name.localeCompare(b.barangay_name));
 
   return (
-    <div className='animate-in fade-in mx-auto max-w-7xl space-y-6 duration-500'>
+    <div className='container mx-auto px-4 animate-in fade-in space-y-6 duration-500'>
       <ModuleHeader
         title='Local Barangays'
         description={`${filtered.length} component barangays of the Municipality of Los Baños.`}
@@ -48,57 +48,57 @@ export default function BarangaysIndex() {
             >
               <Card
                 hover
-                className='flex h-full flex-col border-slate-200 shadow-xs'
+                className='border-kapwa-border-weak flex h-full flex-col shadow-xs'
               >
                 <CardContent className='flex h-full flex-col space-y-4 p-4'>
                   {/* Top Row: Icon and Title */}
                   <div className='flex items-start gap-3'>
                     {/* Consistent Icon Styling (Primary) */}
-                    <div className='bg-primary-50 text-primary-600 border-primary-100 group-hover:bg-primary-600 shrink-0 rounded-lg border p-2 shadow-sm transition-colors group-hover:text-white'>
+                    <div className='bg-kapwa-bg-surface text-kapwa-text-brand border-kapwa-border-brand group-hover:bg-kapwa-bg-brand-default group-hover:text-kapwa-text-inverse shrink-0 rounded-lg border p-2 shadow-sm transition-colors'>
                       <MapPinIcon className='h-5 w-5' />
                     </div>
                     <div className='min-w-0 flex-1'>
-                      <h3 className='group-hover:text-primary-700 text-base leading-tight font-bold text-slate-900 transition-colors'>
+                      <h3 className='group-hover:text-kapwa-text-brand text-kapwa-text-strong text-base leading-tight font-bold transition-colors'>
                         {toTitleCase(
                           brgy.barangay_name.replace('BARANGAY ', '')
                         )}
                       </h3>
-                      <p className='mt-0.5 text-[10px] font-bold tracking-widest text-slate-400 uppercase'>
+                      <p className='text-kapwa-text-disabled mt-0.5 text-[10px] font-bold tracking-widest uppercase'>
                         Official Barangay Profile
                       </p>
                     </div>
-                    <ArrowRight className='group-hover:text-primary-500 mt-1 h-4 w-4 text-slate-200 transition-all' />
+                    <ArrowRight className='group-hover:text-kapwa-text-link text-kapwa-text-support mt-1 h-4 w-4 transition-all' />
                   </div>
 
                   {/* Middle Row: Punong Barangay (Standardized Highlight Box) */}
-                  <div className='flex items-center gap-2 rounded-xl border border-slate-100 bg-slate-50/50 px-3 py-2'>
-                    <div className='shrink-0 rounded-full border border-slate-200 bg-white p-1 text-slate-400 shadow-sm'>
+                  <div className='border-kapwa-border-weak bg-kapwa-bg-surface-raised/50 flex items-center gap-2 rounded-xl border px-3 py-2'>
+                    <div className='border-kapwa-border-weak bg-kapwa-bg-surface text-kapwa-text-disabled shrink-0 rounded-full border p-1 shadow-sm'>
                       <User2 className='h-3.5 w-3.5' />
                     </div>
                     <div className='min-w-0'>
-                      <p className='mb-0.5 text-[9px] leading-none font-bold tracking-tighter text-slate-400 uppercase'>
+                      <p className='text-kapwa-text-disabled mb-0.5 text-[9px] leading-none font-bold tracking-tighter uppercase'>
                         Punong Barangay
                       </p>
-                      <p className='truncate text-xs leading-tight font-bold text-slate-700'>
+                      <p className='text-kapwa-text-support truncate text-xs leading-tight font-bold'>
                         {punong ? toTitleCase(punong.name) : 'Awaiting Data'}
                       </p>
                     </div>
                   </div>
 
                   {/* Bottom Row: Trunkline & Action */}
-                  <div className='mt-auto flex items-center justify-between gap-4 border-t border-slate-50 pt-3'>
+                  <div className='mt-auto flex items-center justify-between gap-4 border-t border-kapwa-border-weak pt-3'>
                     {brgy.trunkline && brgy.trunkline.length > 0 ? (
-                      <div className='flex items-center gap-1.5 text-[11px] font-medium text-slate-500'>
-                        <Phone className='text-primary-400 h-3 w-3' />
+                      <div className='text-kapwa-text-disabled flex items-center gap-1.5 text-[11px] font-medium'>
+                        <Phone className='text-kapwa-text-brand h-3 w-3' />
                         <span>{brgy.trunkline[0]}</span>
                       </div>
                     ) : (
-                      <div className='text-[10px] text-slate-300 italic'>
+                      <div className='text-kapwa-text-support text-[10px] italic'>
                         No contact listed
                       </div>
                     )}
 
-                    <span className='text-primary-600 text-[10px] font-black tracking-tighter uppercase opacity-0 transition-opacity group-hover:opacity-100'>
+                    <span className='text-kapwa-text-brand text-[10px] font-black tracking-tighter uppercase opacity-0 transition-opacity group-hover:opacity-100'>
                       View Profile
                     </span>
                   </div>

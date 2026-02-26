@@ -1,11 +1,10 @@
 import { useState } from 'react';
 
-import { Banner } from '@/kapwa/banner';
-import { Input } from '@/kapwa/input';
-import { Label } from '@/kapwa/label';
+import { Banner } from '@bettergov/kapwa';
+import { Input } from '@bettergov/kapwa';
+import { Label } from '@bettergov/kapwa';
+import { Button } from '@bettergov/kapwa';
 import { AlertTriangle, Check, Flag } from 'lucide-react';
-
-import Button from '@/components/ui/Button';
 
 interface BannerState {
   message: string;
@@ -113,8 +112,8 @@ export default function FlagForReviewButton({
         </Button>
 
         {isOpen && (
-          <div className='fixed inset-0 z-50 flex items-center justify-center bg-black/50 p-4'>
-            <div className='w-full max-w-md rounded-lg bg-white p-6 shadow-lg'>
+          <div className='bg-kapwa-bg-surface-bold/50 fixed inset-0 z-50 flex items-center justify-center p-4'>
+            <div className='bg-kapwa-bg-surface w-full max-w-md rounded-lg p-6 shadow-lg'>
               {banner && (
                 <div className='mb-4'>
                   <Banner
@@ -124,7 +123,7 @@ export default function FlagForReviewButton({
                   />
                 </div>
               )}
-              <h3 className='mb-4 text-lg font-bold text-slate-900'>
+              <h3 className='text-kapwa-text-strong mb-4 text-lg font-bold'>
                 Flag for Review
               </h3>
               <form onSubmit={handleSubmit} className='space-y-4'>
@@ -134,7 +133,7 @@ export default function FlagForReviewButton({
                     id='issue-type-compact'
                     value={issueType}
                     onChange={e => setIssueType(e.target.value)}
-                    className='w-full rounded-md border border-slate-300 px-3 py-2 text-sm'
+                    className='border-kapwa-border-weak w-full rounded-md border px-3 py-2 text-sm'
                     disabled={submitting || submitted}
                   >
                     {issueTypeOptions.map(option => (
@@ -154,7 +153,7 @@ export default function FlagForReviewButton({
                     value={description}
                     onChange={e => setDescription(e.target.value)}
                     placeholder='Describe the issue...'
-                    className='w-full rounded-md border border-slate-300 px-3 py-2 text-sm'
+                    className='border-kapwa-border-weak w-full rounded-md border px-3 py-2 text-sm'
                     rows={3}
                     disabled={submitting || submitted}
                   />
@@ -206,18 +205,20 @@ export default function FlagForReviewButton({
       </Button>
 
       {isOpen && (
-        <div className='fixed inset-0 z-50 flex items-center justify-center bg-black/50 p-4'>
-          <div className='w-full max-w-md rounded-lg bg-white p-6 shadow-lg'>
+        <div className='bg-kapwa-bg-surface-bold/50 fixed inset-0 z-50 flex items-center justify-center p-4'>
+          <div className='bg-kapwa-bg-surface w-full max-w-md rounded-lg p-6 shadow-lg'>
             <div className='mb-4 flex items-center gap-3'>
               <div className='flex h-10 w-10 items-center justify-center rounded-full bg-amber-100'>
                 <AlertTriangle className='h-5 w-5 text-amber-600' />
               </div>
               <div>
-                <h3 className='text-lg font-bold text-slate-900'>
+                <h3 className='text-kapwa-text-strong text-lg font-bold'>
                   Flag for Review
                 </h3>
                 {itemTitle && (
-                  <p className='text-sm text-slate-500'>{itemTitle}</p>
+                  <p className='text-kapwa-text-disabled text-sm'>
+                    {itemTitle}
+                  </p>
                 )}
               </div>
             </div>
@@ -239,7 +240,7 @@ export default function FlagForReviewButton({
                   id='issue-type'
                   value={issueType}
                   onChange={e => setIssueType(e.target.value)}
-                  className='focus:border-primary-500 focus:ring-primary-500 w-full rounded-md border border-slate-300 px-3 py-2 text-sm focus:ring-1 focus:outline-none'
+                  className='focus:border-kapwa-border-brand focus:ring-kapwa-border-brand border-kapwa-border-weak w-full rounded-md border px-3 py-2 text-sm focus:ring-1 focus:outline-none'
                   required
                   disabled={submitting || submitted}
                 >
@@ -258,11 +259,11 @@ export default function FlagForReviewButton({
                   value={description}
                   onChange={e => setDescription(e.target.value)}
                   placeholder='Please describe what needs to be reviewed...'
-                  className='focus:border-primary-500 focus:ring-primary-500 w-full rounded-md border border-slate-300 px-3 py-2 text-sm focus:ring-1 focus:outline-none'
+                  className='focus:border-kapwa-border-brand focus:ring-kapwa-border-brand border-kapwa-border-weak w-full rounded-md border px-3 py-2 text-sm focus:ring-1 focus:outline-none'
                   rows={3}
                   disabled={submitting || submitted}
                 />
-                <p className='mt-1 text-xs text-slate-500'>
+                <p className='text-kapwa-text-disabled mt-1 text-xs'>
                   Provide details about what needs to be reviewed or corrected.
                 </p>
               </div>

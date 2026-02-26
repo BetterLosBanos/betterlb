@@ -147,12 +147,12 @@ export default function OfficialsTeaser({
   return (
     <div className='space-y-4'>
       <div className='flex items-center justify-between'>
-        <h2 className='text-sm font-bold tracking-widest text-slate-400 uppercase'>
+        <h2 className='text-kapwa-text-disabled text-sm font-bold tracking-widest uppercase'>
           Officials
         </h2>
         <Link
           to='/openlgu/officials'
-          className='text-primary-600 hover:text-primary-700 text-xs font-bold'
+          className='text-kapwa-text-brand hover:text-kapwa-text-brand text-xs font-bold'
         >
           View all →
         </Link>
@@ -168,20 +168,20 @@ export default function OfficialsTeaser({
               to={`/openlgu/person/${person.id}`}
               className='group'
             >
-              <Card variant='slate' hover={true} className='h-full'>
+              <Card variant='default' hover={true} className='h-full'>
                 <CardContent className='p-4'>
                   <div className='flex items-start gap-3'>
-                    <div className='from-primary-500 to-primary-600 flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-linear-to-br text-sm font-bold text-white shadow-sm'>
+                    <div className='from-kapwa-brand-500 to-kapwa-brand-600 text-kapwa-text-inverse flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-linear-to-br text-sm font-bold shadow-sm'>
                       {initials}
                     </div>
                     <div className='min-w-0 flex-1'>
                       <div className='mb-1'>{getRoleBadge(person)}</div>
-                      <p className='group-hover:text-primary-600 truncate text-sm font-bold text-slate-900 transition-colors'>
+                      <p className='group-hover:text-kapwa-text-brand text-kapwa-text-strong truncate text-sm font-bold transition-colors'>
                         {getPersonName(person)}
                       </p>
                     </div>
                     <RoleIcon
-                      className='group-hover:text-primary-600 h-4 w-4 shrink-0 text-slate-300 transition-colors'
+                      className='group-hover:text-kapwa-text-brand text-kapwa-text-support h-4 w-4 shrink-0 transition-colors'
                       aria-hidden='true'
                     />
                   </div>

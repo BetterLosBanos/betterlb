@@ -148,7 +148,7 @@ async function handleParsePost(context: {
     const parsed = parseFacebookPostContent(content);
 
     // If we found attendee names, try to match them against the database
-    let matchedAttendees: Array<{
+    const matchedAttendees: Array<{
       person_id: string;
       name: string;
       confidence: number;

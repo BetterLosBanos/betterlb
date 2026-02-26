@@ -106,6 +106,21 @@ export function getPersonName(person: Person): string {
     .join(' ');
 }
 
+import type { BadgeVariant } from '@/components/ui/Badge';
+
+export function getDocTypeBadgeVariant(type: string): BadgeVariant {
+  switch (type) {
+    case 'ordinance':
+      return 'primary';
+    case 'resolution':
+      return 'secondary';
+    case 'executive_order':
+      return 'yellow';
+    default:
+      return 'slate';
+  }
+}
+
 // ------------------
 // API-BASED LOADERS
 // ------------------

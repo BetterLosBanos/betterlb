@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 
-import { Banner } from '@/kapwa/banner';
+import { Banner } from '@bettergov/kapwa';
+import { Button } from '@bettergov/kapwa';
 import {
   AlertCircle,
   CheckCircle,
@@ -10,7 +11,6 @@ import {
   Users,
 } from 'lucide-react';
 
-import Button from '@/components/ui/Button';
 import { Card, CardContent } from '@/components/ui/Card';
 import { EmptyState } from '@/components/ui/EmptyState';
 
@@ -255,7 +255,7 @@ export default function DeletionQueue() {
   if (loading) {
     return (
       <div className='flex items-center justify-center py-12'>
-        <RefreshCw className='h-8 w-8 animate-spin text-slate-400' />
+        <RefreshCw className='text-kapwa-text-disabled h-8 w-8 animate-spin' />
       </div>
     );
   }
@@ -275,8 +275,10 @@ export default function DeletionQueue() {
       {/* Header */}
       <div className='flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between'>
         <div>
-          <h2 className='text-2xl font-bold text-slate-900'>Deletion Queue</h2>
-          <p className='text-slate-600'>
+          <h2 className='text-kapwa-text-strong text-2xl font-bold'>
+            Deletion Queue
+          </h2>
+          <p className='text-kapwa-text-support'>
             {persons.length} person{persons.length !== 1 ? 's' : ''} flagged for
             deletion
             {selectedIds.size > 0 && ` (${selectedIds.size} selected)`}
@@ -313,15 +315,15 @@ export default function DeletionQueue() {
 
       {/* Bulk Actions */}
       {selectedIds.size > 0 && (
-        <div className='flex flex-col gap-3 rounded-md border border-slate-200 bg-slate-50 p-4 sm:flex-row sm:items-center sm:justify-between'>
+        <div className='border-kapwa-border-weak bg-kapwa-bg-surface-raised flex flex-col gap-3 rounded-md border p-4 sm:flex-row sm:items-center sm:justify-between'>
           <div className='flex items-center gap-3'>
-            <span className='font-medium text-slate-900'>
+            <span className='text-kapwa-text-strong font-medium'>
               {selectedIds.size} item{selectedIds.size !== 1 ? 's' : ''}{' '}
               selected
             </span>
             <button
               onClick={clearSelection}
-              className='hover:text-primary-600 text-sm text-slate-600'
+              className='hover:text-kapwa-text-brand text-kapwa-text-support text-sm'
             >
               Clear selection
             </button>
@@ -342,7 +344,7 @@ export default function DeletionQueue() {
               leftIcon={<Trash2 className='h-4 w-4' />}
               onClick={bulkPermanentDelete}
               disabled={actionLoading}
-              className='text-red-600 hover:border-red-300 hover:bg-red-50'
+              className='hover:bg-kapwa-bg-danger-weak text-kapwa-text-danger hover:border-red-300'
             >
               Permanently Delete
             </Button>
@@ -351,22 +353,25 @@ export default function DeletionQueue() {
       )}
 
       {/* Select All Bar */}
-      <div className='flex items-center gap-2 text-sm text-slate-600'>
+      <div className='text-kapwa-text-support flex items-center gap-2 text-sm'>
         <button
           onClick={selectAll}
-          className='hover:text-primary-600 flex items-center gap-1'
+          className='hover:text-kapwa-text-brand flex items-center gap-1'
         >
           <input
             type='checkbox'
             checked={selectedIds.size === persons.length && persons.length > 0}
             onChange={selectAll}
-            className='text-primary-600 focus:ring-primary-500 h-4 w-4 rounded border-slate-300'
+            className='text-kapwa-text-brand focus:ring-kapwa-border-brand border-kapwa-border-weak h-4 w-4 rounded'
             readOnly
           />
           Select all ({persons.length})
         </button>
         <span>•</span>
-        <button onClick={clearSelection} className='hover:text-primary-600'>
+        <button
+          onClick={clearSelection}
+          className='hover:text-kapwa-text-brand'
+        >
           Clear selection
         </button>
       </div>
@@ -382,7 +387,7 @@ export default function DeletionQueue() {
               variant={isSelected ? 'default' : 'default'}
               className={`transition-all ${
                 isSelected
-                  ? 'border-l-primary-500 bg-primary-50 border-l-4'
+                  ? 'border-l-kapwa-border-brand bg-kapwa-bg-surface border-l-4'
                   : ''
               }`}
             >
@@ -392,13 +397,13 @@ export default function DeletionQueue() {
                     type='checkbox'
                     checked={isSelected}
                     onChange={() => toggleSelection(person.id)}
-                    className='text-primary-600 focus:ring-primary-500 mt-1 h-4 w-4 rounded border-slate-300'
+                    className='text-kapwa-text-brand focus:ring-kapwa-border-brand border-kapwa-border-weak mt-1 h-4 w-4 rounded'
                   />
                   <div>
-                    <h3 className='font-medium text-slate-900'>
+                    <h3 className='text-kapwa-text-strong font-medium'>
                       {person.full_name}
                     </h3>
-                    <div className='mt-1 flex flex-wrap gap-3 text-xs text-slate-500'>
+                    <div className='text-kapwa-text-disabled mt-1 flex flex-wrap gap-3 text-xs'>
                       <span>ID: {person.id}</span>
                       <span>•</span>
                       <span>
@@ -431,7 +436,7 @@ export default function DeletionQueue() {
                     leftIcon={<Trash2 className='h-4 w-4' />}
                     onClick={() => permanentDelete(person.id)}
                     disabled={actionLoading}
-                    className='text-red-600 hover:border-red-300 hover:bg-red-50'
+                    className='hover:bg-kapwa-bg-danger-weak text-kapwa-text-danger hover:border-red-300'
                   >
                     Delete
                   </Button>

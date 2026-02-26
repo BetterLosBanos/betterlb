@@ -68,12 +68,12 @@ export default function OfficialCard({
   const getAvatarColor = (): string => {
     const role = latestMembership.role.toLowerCase();
     if (role.includes('mayor')) {
-      return 'bg-gradient-to-br from-primary-500 to-primary-600';
+      return 'bg-gradient-to-br from-kapwa-brand-500 to-kapwa-brand-600';
     }
     if (role.includes('vice mayor')) {
-      return 'bg-gradient-to-br from-secondary-500 to-secondary-600';
+      return 'bg-gradient-to-br from-kapwa-accent-orange-500 to-kapwa-accent-orange-600';
     }
-    return 'bg-gradient-to-br from-slate-500 to-slate-600';
+    return 'bg-gradient-to-br from-kapwa-neutral-500 to-kapwa-neutral-600';
   };
 
   // Get role badge variant
@@ -114,7 +114,7 @@ export default function OfficialCard({
           {/* Main content */}
           <div className='min-w-0 flex-1'>
             {/* Name */}
-            <p className='truncate font-semibold text-slate-800'>
+            <p className='text-kapwa-text-strong truncate font-semibold'>
               {personName}
             </p>
 
@@ -126,17 +126,17 @@ export default function OfficialCard({
             </div>
 
             {/* Mini stats row */}
-            <div className='mt-2 flex flex-wrap items-center gap-3 text-xs text-slate-600'>
+            <div className='text-kapwa-text-support mt-2 flex flex-wrap items-center gap-3 text-xs'>
               {!isExecutive && (
                 <div className='flex items-center gap-1'>
                   <Calendar className='h-3 w-3' />
                   <span
                     className={
                       attendanceRate >= 90
-                        ? 'font-semibold text-emerald-600'
+                        ? 'font-semibold text-kapwa-text-success'
                         : attendanceRate >= 70
-                          ? 'text-slate-600'
-                          : 'text-amber-600'
+                          ? 'text-kapwa-text-support'
+                          : 'text-kapwa-text-warning'
                     }
                   >
                     {attendanceRate}% attendance
@@ -164,18 +164,18 @@ export default function OfficialCard({
           </div>
 
           {/* Expand/collapse indicator */}
-          <div className='flex items-center gap-2 text-slate-400'>
+          <div className='text-kapwa-text-disabled flex items-center gap-2'>
             {!isExpanded && (
-              <span className='hidden text-xs text-slate-400 sm:inline'>
+              <span className='text-kapwa-text-disabled hidden text-xs sm:inline'>
                 {totalTermsServed > 1
                   ? `served in ${totalTermsServed} term${totalTermsServed > 1 ? 's' : ''}`
                   : 'view details'}
               </span>
             )}
             {isExpanded ? (
-              <ChevronDown className='text-primary-500 h-5 w-5' />
+              <ChevronDown className='text-kapwa-text-brand h-5 w-5' />
             ) : (
-              <ChevronRight className='h-5 w-5 transition-colors group-hover:text-slate-500' />
+              <ChevronRight className='group-hover:text-kapwa-text-disabled h-5 w-5 transition-colors' />
             )}
           </div>
         </CardContent>
@@ -183,8 +183,8 @@ export default function OfficialCard({
 
       {/* Expanded Service Timeline */}
       {isExpanded && (
-        <CardContent className='animate-in fade-in slide-in-from-top-2 border-t border-slate-200 bg-slate-50/50 p-4 duration-200'>
-          <div className='mb-3 text-xs font-semibold tracking-wide text-slate-500 uppercase'>
+        <CardContent className='animate-in fade-in slide-in-from-top-2 border-kapwa-border-weak bg-kapwa-bg-surface-raised/50 border-t p-4 duration-200'>
+          <div className='text-kapwa-text-disabled mb-3 text-xs font-semibold tracking-wide uppercase'>
             Service History
           </div>
           <ServiceTimeline

@@ -2,6 +2,7 @@
   "hero": {
     "title": "Welcome to BetterLB",
     "subtitle": "The volunteer run portal of the Municipality of Los Baños. Find information, access government services, stay updated with the latest news about Los Baños.",
+    "quickAccess": "Quick Access",
     "nationalId": "National ID",
     "birthCertificate": "Birth Certificate",
     "businessRegistration": "Business Registration"

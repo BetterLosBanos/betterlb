@@ -41,36 +41,32 @@ export default function SummaryCards({
 
   const cards = [
     {
-      label: 'Total Revenue',
+      label: 'Total Revenue (M)',
       value: totalIncome,
       prevValue: prevYear?.totalIncome,
       icon: Landmark,
-      variant: 'primary' as const,
-      iconBg: 'bg-emerald-50 text-emerald-600',
+      iconBg: 'bg-kapwa-green-50 text-kapwa-green-600',
     },
     {
-      label: 'Total Expenditure',
+      label: 'Total Expenditure (M)',
       value: totalExpenditure,
       prevValue: prevYear?.totalExpenditure,
       icon: ReceiptText,
-      variant: 'secondary' as const,
-      iconBg: 'bg-rose-50 text-rose-600',
+      iconBg: 'bg-kapwa-red-50 text-kapwa-red-600',
     },
     {
-      label: 'Net Operating Income',
+      label: 'Net Operating Income (M)',
       value: netIncome,
       prevValue: prevYear?.netIncome,
       icon: Scale,
-      variant: 'primary' as const,
-      iconBg: 'bg-blue-50 text-blue-600',
+      iconBg: 'bg-kapwa-bg-brand-weak text-kapwa-text-brand',
     },
     {
-      label: 'Treasury Balance',
+      label: 'Treasury Balance (M)',
       value: fundBalance,
       prevValue: prevYear?.fundCashEnd,
       icon: Vault,
-      variant: 'slate' as const,
-      iconBg: 'bg-amber-50 text-amber-600',
+      iconBg: 'bg-kapwa-orange-50 text-kapwa-orange-600',
     },
   ];
 

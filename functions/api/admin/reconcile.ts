@@ -64,7 +64,7 @@ async function handleGetReconcile(context: {
 
   // Build query - for now we generate conflicts from documents with different source data
   // In a real implementation, you'd have a conflicts table
-  let sql = `
+  const sql = `
     SELECT
       d.id as doc_id, d.type, d.number, d.title, d.pdf_url,
       d.moved_by, d.seconded_by, d.source_type

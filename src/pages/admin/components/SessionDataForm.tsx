@@ -1,10 +1,10 @@
 import { useEffect, useState } from 'react';
 
+import { Button } from '@bettergov/kapwa';
 import { Calendar, Check, FileText, Users } from 'lucide-react';
 import { X } from 'lucide-react';
 
 import { Badge } from '@/components/ui/Badge';
-import Button from '@/components/ui/Button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/Card';
 import { EmptyState } from '@/components/ui/EmptyState';
 
@@ -239,14 +239,14 @@ export default function SessionDataForm({
         </CardHeader>
         <CardContent className='space-y-4'>
           <div>
-            <label className='mb-2 block text-sm font-medium text-slate-700'>
+            <label className='text-kapwa-text-support mb-2 block text-sm font-medium'>
               Paste Facebook Post Content
             </label>
             <textarea
               value={facebookPost}
               onChange={e => setFacebookPost(e.target.value)}
               placeholder='Paste the Facebook post content here... The parser will extract session type, number, date, and attendees.'
-              className='focus:border-primary-500 focus:ring-primary-500 w-full rounded-md border border-slate-300 px-3 py-2 text-sm focus:ring-1 focus:outline-none'
+              className='focus:border-kapwa-border-brand focus:ring-kapwa-border-brand border-kapwa-border-weak w-full rounded-md border px-3 py-2 text-sm focus:ring-1 focus:outline-none'
               rows={5}
             />
           </div>
@@ -260,11 +260,11 @@ export default function SessionDataForm({
           </Button>
 
           {parsedData && (
-            <div className='rounded-md bg-blue-50 p-4'>
-              <p className='mb-2 text-sm font-bold text-blue-900'>
+            <div className='bg-kapwa-bg-info-weak rounded-md p-4'>
+              <p className='mb-2 text-sm font-bold text-kapwa-text-brand'>
                 Parsed Data:
               </p>
-              <div className='space-y-1 text-sm text-blue-700'>
+              <div className='text-kapwa-text-info space-y-1 text-sm'>
                 <p>
                   Session Type: {parsedData.session_type || 'Not detected'} (
                   {Math.round(parsedData.confidence.session_type * 100)}%)
@@ -298,13 +298,13 @@ export default function SessionDataForm({
         <CardContent className='space-y-4'>
           <div className='grid gap-4 sm:grid-cols-2'>
             <div>
-              <label className='mb-2 block text-sm font-medium text-slate-700'>
+              <label className='text-kapwa-text-support mb-2 block text-sm font-medium'>
                 Session Type
               </label>
               <select
                 value={sessionType}
                 onChange={e => setSessionType(e.target.value as SessionType)}
-                className='focus:border-primary-500 focus:ring-primary-500 w-full rounded-md border border-slate-300 px-3 py-2 text-sm focus:ring-1 focus:outline-none'
+                className='focus:border-kapwa-border-brand focus:ring-kapwa-border-brand border-kapwa-border-weak w-full rounded-md border px-3 py-2 text-sm focus:ring-1 focus:outline-none'
               >
                 {sessionTypeOptions.map(option => (
                   <option key={option.value} value={option.value}>
@@ -315,7 +315,7 @@ export default function SessionDataForm({
             </div>
 
             <div>
-              <label className='mb-2 block text-sm font-medium text-slate-700'>
+              <label className='text-kapwa-text-support mb-2 block text-sm font-medium'>
                 Ordinal Number
               </label>
               <input
@@ -327,25 +327,25 @@ export default function SessionDataForm({
                   )
                 }
                 placeholder='e.g., 100'
-                className='focus:border-primary-500 focus:ring-primary-500 w-full rounded-md border border-slate-300 px-3 py-2 text-sm focus:ring-1 focus:outline-none'
+                className='focus:border-kapwa-border-brand focus:ring-kapwa-border-brand border-kapwa-border-weak w-full rounded-md border px-3 py-2 text-sm focus:ring-1 focus:outline-none'
               />
             </div>
           </div>
 
           <div>
-            <label className='mb-2 block text-sm font-medium text-slate-700'>
+            <label className='text-kapwa-text-support mb-2 block text-sm font-medium'>
               Date
             </label>
             <input
               type='date'
               value={date}
               onChange={e => setDate(e.target.value)}
-              className='focus:border-primary-500 focus:ring-primary-500 w-full rounded-md border border-slate-300 px-3 py-2 text-sm focus:ring-1 focus:outline-none'
+              className='focus:border-kapwa-border-brand focus:ring-kapwa-border-brand border-kapwa-border-weak w-full rounded-md border px-3 py-2 text-sm focus:ring-1 focus:outline-none'
             />
           </div>
 
           <div>
-            <label className='mb-2 block text-sm font-medium text-slate-700'>
+            <label className='text-kapwa-text-support mb-2 block text-sm font-medium'>
               Source URL
             </label>
             <input
@@ -353,7 +353,7 @@ export default function SessionDataForm({
               value={sourceUrl}
               onChange={e => setSourceUrl(e.target.value)}
               placeholder='https://facebook.com/...'
-              className='focus:border-primary-500 focus:ring-primary-500 w-full rounded-md border border-slate-300 px-3 py-2 text-sm focus:ring-1 focus:outline-none'
+              className='focus:border-kapwa-border-brand focus:ring-kapwa-border-brand border-kapwa-border-weak w-full rounded-md border px-3 py-2 text-sm focus:ring-1 focus:outline-none'
             />
           </div>
         </CardContent>
@@ -384,7 +384,7 @@ export default function SessionDataForm({
           </div>
 
           {loading ? (
-            <div className='py-8 text-center text-slate-500'>
+            <div className='text-kapwa-text-disabled py-8 text-center'>
               Loading members...
             </div>
           ) : members.length === 0 ? (
@@ -420,12 +420,12 @@ export default function SessionDataForm({
                         )}
                       </div>
                       <div>
-                        <p className='text-sm font-medium text-slate-900'>
+                        <p className='text-kapwa-text-strong text-sm font-medium'>
                           {member.first_name} {member.middle_name}{' '}
                           {member.last_name}
                         </p>
                         {member.role && (
-                          <p className='text-xs text-slate-500'>
+                          <p className='text-kapwa-text-disabled text-xs'>
                             {member.role}
                           </p>
                         )}

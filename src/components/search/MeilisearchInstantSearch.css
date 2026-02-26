@@ -51,8 +51,8 @@
 
 .ais-RefinementList-count {
   font-size: 0.875rem;
-  color: #6b7280; /* text-gray-800 */
-  background-color: #f3f4f6; /* bg-gray-100 */
+  color: #6b7280; /* text-kapwa-text-strong */
+  background-color: #f3f4f6; /* bg-kapwa-bg-kapwa-bg-surface-raised */
   padding: 2px 8px;
   border-radius: 9999px; /* rounded-full */
 }
@@ -75,17 +75,17 @@
 
 .ais-Pagination-link {
   padding: 8px 12px;
-  border: 1px solid #d1d5db; /* border-gray-300 */
+  border: 1px solid #d1d5db; /* border-kapwa-border-weak */
   border-radius: 4px;
   text-decoration: none;
-  color: #374151; /* text-gray-700 */
+  color: #374151; /* text-kapwa-text-support */
   transition:
     background-color 0.2s ease-in-out,
     color 0.2s ease-in-out;
 }
 
 .ais-Pagination-link:hover {
-  background-color: #f3f4f6; /* bg-gray-100 */
+  background-color: #f3f4f6; /* bg-kapwa-bg-kapwa-bg-surface-raised */
 }
 
 .ais-Pagination-item--disabled .ais-Pagination-link {
@@ -96,7 +96,7 @@
 /* Stats styling */
 .ais-Stats {
   font-size: 0.875rem;
-  color: #4b5563; /* text-gray-800 */
+  color: #4b5563; /* text-kapwa-text-strong */
 }
 
 /* Fix checkbox positioning to prevent movement on click */
@@ -164,7 +164,7 @@ form.ais-SearchBox-form:not(:focus-within) .ais-SearchBox-input {
 }
 
 input.ais-SearchBox-input::placeholder {
-  color: #9ca3af; /* text-gray-400 */
+  color: #9ca3af; /* text-kapwa-text-disabled */
   opacity: 1; /* Firefox otherwise dims it */
 }
 

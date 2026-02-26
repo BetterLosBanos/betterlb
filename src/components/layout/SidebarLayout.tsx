@@ -8,7 +8,7 @@ import { cn } from '@/lib/utils';
 
 import { ModuleHeader } from './PageLayouts';
 
-interface SidebarLayoutProps {
+export interface SidebarLayoutProps {
   children: ReactNode;
   sidebar: ReactNode;
   // Option A: Standard Config
@@ -24,7 +24,7 @@ interface SidebarLayoutProps {
   className?: string;
 }
 
-export default function SidebarLayout({
+export function SidebarLayout({
   children,
   sidebar,
   header,
@@ -56,7 +56,7 @@ export default function SidebarLayout({
   }, [location]);
 
   return (
-    <div className={`min-h-screen md:bg-slate-50 ${className}`}>
+    <div className={`bg-kapwa-bg-surface min-h-screen ${className}`}>
       <div className='container mx-auto py-6 sm:px-4 md:py-8'>
         {/* HEADER LOGIC: Custom Node OR Default ModuleHeader */}
         {headerNode ? (
@@ -73,7 +73,7 @@ export default function SidebarLayout({
         <div className='mb-4 md:hidden'>
           <button
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-            className='flex w-full items-center justify-between rounded-xl border border-slate-200 bg-white px-4 py-3 font-bold text-slate-700 shadow-sm active:bg-slate-50'
+            className='border-kapwa-border-weak bg-kapwa-bg-surface text-kapwa-text-support active:bg-kapwa-bg-surface-raised flex w-full items-center justify-between rounded-xl border px-4 py-3 font-bold shadow-sm'
           >
             <span className='text-sm tracking-widest uppercase'>Menu</span>
             {mobileMenuOpen ? (
@@ -96,7 +96,7 @@ export default function SidebarLayout({
           >
             <button
               onClick={() => setIsCollapsed(false)}
-              className='hover:text-primary-600 hover:border-primary-200 rounded-lg border border-slate-200 bg-white p-2 text-slate-400 shadow-sm transition-colors'
+              className='hover:text-kapwa-text-brand hover:border-kapwa-border-brand border-kapwa-border-weak bg-kapwa-bg-surface text-kapwa-text-disabled rounded-lg border p-2 shadow-sm transition-colors'
               title='Expand Menu'
             >
               <PanelLeftOpen className='h-5 w-5' />
@@ -121,7 +121,7 @@ export default function SidebarLayout({
                 <div className='mb-2 hidden justify-end md:flex'>
                   <button
                     onClick={() => setIsCollapsed(true)}
-                    className='hover:text-primary-600 flex items-center gap-1 text-[10px] font-bold tracking-widest text-slate-400 uppercase transition-colors'
+                    className='hover:text-kapwa-text-brand text-kapwa-text-disabled flex items-center gap-1 text-[10px] font-bold tracking-widest uppercase transition-colors'
                   >
                     Hide Menu <PanelLeftClose className='h-3.5 w-3.5' />
                   </button>
@@ -135,7 +135,7 @@ export default function SidebarLayout({
           <main className='min-w-0 flex-1 transition-all duration-500 ease-in-out'>
             <div
               id='layout-content'
-              className='min-h-[50vh] rounded-2xl border border-slate-200 bg-white p-4 shadow-sm md:p-8'
+              className='border-kapwa-border-weak bg-kapwa-bg-surface min-h-[50vh] rounded-2xl border p-4 shadow-sm md:p-8'
             >
               {children}
             </div>

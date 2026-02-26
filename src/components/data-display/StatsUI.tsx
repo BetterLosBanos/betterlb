@@ -21,7 +21,30 @@ const calculateYoY = (current: number, previous?: number) => {
   return { diff, pct };
 };
 
-// Stats Hero / Header
+// ============================================================================
+// DEPRECATED COMPONENTS
+// ============================================================================
+// These components are kept for backward compatibility but are deprecated.
+// Use the documented patterns instead:
+// - StatsHero → Use PageHero from @/components/layout/PageLayouts
+// - StatsCard → Use StatCard from @/components/ui/Card
+// - StatsGrid → Use StatGrid from @/components/ui/Card
+// - StatsFooter → Use standard footer pattern with proper styling
+//
+// Migration Guide:
+// 1. Replace <StatsHero> with <PageHero> and add badges as children
+// 2. Replace <StatsCard> with <StatCard> - same API with improved styling
+// 3. Replace <StatsGrid> with <StatGrid> - same API with documented grid
+// 4. Replace <StatsFooter> with standard footer HTML pattern
+// ============================================================================
+
+/**
+ * @deprecated Use PageHero from @/components/layout/PageLayouts instead.
+ * Example replacement:
+ * <PageHero title="..." description="...">
+ *   <Badge variant="primary">Badge</Badge>
+ * </PageHero>
+ */
 interface StatsHeroProps {
   title: string;
   description: string;
@@ -42,7 +65,7 @@ export function StatsHero({
       : badges;
 
   return (
-    <div className='relative overflow-hidden rounded-3xl bg-slate-900 p-8 text-white shadow-xl md:p-12'>
+    <div className='text-kapwa-text-inverse bg-kapwa-bg-surface-bold relative overflow-hidden rounded-3xl p-8 shadow-xl md:p-12'>
       <div className='relative z-10 space-y-4'>
         <div className='flex flex-wrap gap-2'>
           {badgeArray.map((b, i) => (
@@ -54,13 +77,13 @@ export function StatsHero({
         <h1 className='text-3xl font-extrabold tracking-tight md:text-5xl'>
           {title}
         </h1>
-        <p className='max-w-xl text-base leading-relaxed text-slate-400 italic'>
+        <p className='text-kapwa-text-disabled max-w-xl text-base leading-relaxed italic'>
           &quot;{description}&quot;
         </p>
       </div>
       {Icon && (
         <Icon
-          className='absolute right-[-20px] bottom-[-20px] h-64 w-64 -rotate-12 text-white/5 opacity-50'
+          className='text-kapwa-text-inverse/5 absolute right-[-20px] bottom-[-20px] h-64 w-64 -rotate-12 opacity-50'
           aria-hidden={true}
         />
       )}
@@ -68,7 +91,10 @@ export function StatsHero({
   );
 }
 
-// Stats Card
+/**
+ * @deprecated Use StatCard from @/components/ui/Card instead.
+ * The new StatCard has the same API with improved styling and consistency.
+ */
 interface StatsCardProps {
   label: string;
   value: string | number;
@@ -87,7 +113,8 @@ export function StatsCard({
   label,
   value,
   subtext,
-  variant = 'slate',
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  variant, // Unused - kept for backward compatibility
   icon: Icon,
   iconBg,
   children,
@@ -96,19 +123,13 @@ export function StatsCard({
   showTrend = true,
   hover = false,
 }: StatsCardProps) {
-  const variantClasses = {
-    primary: 'border-b-primary-600',
-    secondary: 'border-b-secondary-600',
-    slate: 'border-b-slate-900',
-  };
-
   // Calculate YoY trend if prevValue is provided
   const yoy =
     prevValue !== undefined && typeof value === 'number'
       ? calculateYoY(value, prevValue)
       : null;
   const isPositive = yoy ? yoy.diff >= 0 : true;
-  const trendColor = isPositive ? 'text-emerald-600' : 'text-rose-600';
+  const trendColor = isPositive ? 'text-kapwa-green-600' : 'text-kapwa-red-600';
   const TrendIcon = isPositive ? ArrowUpRight : ArrowDownRight;
 
   // Determine if value should be formatted as currency
@@ -142,15 +163,14 @@ export function StatsCard({
     <Card variant='default' hover={hover} className='overflow-hidden'>
       <CardContent
         className={cn(
-          'flex flex-col items-start justify-between gap-2 border-b-4 sm:flex-row sm:items-center',
-          variantClasses[variant]
+          'flex flex-col items-start justify-between gap-2 sm:flex-row sm:items-center'
         )}
       >
         <div className='flex min-w-0 flex-1 flex-col gap-1'>
-          <p className='truncate text-[10px] font-bold tracking-widest text-slate-400 uppercase'>
+          <p className='text-kapwa-text-disabled truncate text-[10px] font-bold tracking-widest uppercase'>
             {label}
           </p>
-          <div className='truncate text-3xl font-black wrap-break-word text-slate-900 sm:text-2xl md:text-2xl'>
+          <div className='text-kapwa-text-strong truncate text-3xl font-black wrap-break-word sm:text-2xl md:text-2xl'>
             {displayValue}
             {yoy && showTrend && (
               <span
@@ -162,7 +182,7 @@ export function StatsCard({
             )}
           </div>
           {subtext && (
-            <span className='truncate text-xs font-medium text-slate-400'>
+            <span className='text-kapwa-text-disabled truncate text-xs font-medium'>
               {subtext}
             </span>
           )}
@@ -172,7 +192,7 @@ export function StatsCard({
           <div
             className={cn(
               'flex h-10 w-10 shrink-0 items-center justify-center rounded-xl p-2',
-              iconBg || 'bg-slate-100 text-slate-900'
+              iconBg || 'bg-kapwa-bg-surface-raised text-kapwa-text-strong'
             )}
           >
             <Icon className='h-6 w-6' />
@@ -183,7 +203,18 @@ export function StatsCard({
   );
 }
 
-// Stats Footer
+/**
+ * @deprecated Use standard footer HTML pattern instead.
+ * Example:
+ * <footer className="border-kapwa-border-weak space-y-4 border-t pt-10 text-center">
+ *   <div className="mx-auto flex h-6 w-6 items-center justify-center rounded-full bg-emerald-100 text-emerald-600">
+ *     <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+ *       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+ *     </svg>
+ *   </div>
+ *   <p>Source text here</p>
+ * </footer>
+ */
 interface StatsFooterProps {
   source: string;
   sourceUrl?: string;
@@ -191,20 +222,20 @@ interface StatsFooterProps {
 
 export function StatsFooter({ source, sourceUrl }: StatsFooterProps) {
   return (
-    <footer className='space-y-4 border-t border-slate-100 pt-10 text-center'>
-      <ShieldCheck className='mx-auto h-6 w-6 text-emerald-600' />
+    <footer className='border-kapwa-border-weak space-y-4 border-t pt-10 text-center'>
+      <ShieldCheck className='mx-auto h-6 w-6 text-kapwa-text-success' />
       <div className='space-y-1'>
-        <p className='text-[10px] font-bold tracking-widest text-slate-900 uppercase'>
+        <p className='text-kapwa-text-strong text-[10px] font-bold tracking-widest uppercase'>
           Verified Data Audit
         </p>
-        <p className='text-[10px] font-bold tracking-widest text-slate-400 uppercase'>
+        <p className='text-kapwa-text-disabled text-[10px] font-bold tracking-widest uppercase'>
           Source:{' '}
           {sourceUrl ? (
             <a
               href={sourceUrl}
               target='_blank'
               rel='noreferrer'
-              className='hover:text-primary-600 underline'
+              className='hover:text-kapwa-text-brand underline'
             >
               {source}
             </a>
@@ -217,7 +248,10 @@ export function StatsFooter({ source, sourceUrl }: StatsFooterProps) {
   );
 }
 
-// Stats Grid
+/**
+ * @deprecated Use StatGrid from @/components/ui/Card instead.
+ * The new StatGrid has the same API with documented responsive grid behavior.
+ */
 interface StatsGridProps {
   stats: {
     label: string;

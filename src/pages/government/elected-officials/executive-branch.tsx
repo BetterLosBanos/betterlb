@@ -105,20 +105,20 @@ export default function ExecutiveBranchPage() {
               icon={Icon}
               className={
                 isMayor
-                  ? 'border-l-primary-600 border-l-4 shadow-sm'
-                  : 'bg-slate-50/30'
+                  ? 'border-l-kapwa-border-brand border-l-4 shadow-sm'
+                  : 'bg-kapwa-bg-surface/30'
               }
             >
               <div className='flex flex-col items-center space-y-4 py-4 text-center'>
                 {/* Official Icon Seal */}
                 <div className='relative'>
                   <div
-                    className={`flex h-20 w-20 items-center justify-center rounded-full border-4 shadow-sm ${isMayor ? 'bg-primary-50 border-primary-100 text-primary-600' : 'border-white bg-white text-slate-400'}`}
+                    className={`flex h-20 w-20 items-center justify-center rounded-full border-4 shadow-sm ${isMayor ? 'bg-kapwa-bg-surface border-kapwa-border-brand text-kapwa-text-brand' : 'bg-kapwa-bg-surface text-kapwa-text-disabled border-white'}`}
                   >
                     <Icon className='h-10 w-10' />
                   </div>
                   {isMayor && (
-                    <div className='bg-primary-600 absolute -right-1 -bottom-1 rounded-full border-2 border-white p-1.5 text-white shadow-md'>
+                    <div className='bg-kapwa-bg-brand-default text-kapwa-text-inverse absolute -right-1 -bottom-1 rounded-full border-2 border-white p-1.5 shadow-md'>
                       <ShieldCheck className='h-3.5 w-3.5' aria-hidden='true' />
                     </div>
                   )}
@@ -126,7 +126,7 @@ export default function ExecutiveBranchPage() {
 
                 {/* Name & Role */}
                 <div className='min-w-0 pb-2'>
-                  <h2 className='text-2xl leading-tight font-black text-slate-900'>
+                  <h2 className='text-kapwa-text-strong text-2xl leading-tight font-black'>
                     Hon. {toTitleCase(leader.name)}
                   </h2>
                   <Badge
@@ -139,7 +139,7 @@ export default function ExecutiveBranchPage() {
 
                 {/* REFACTORED: Using Unified Contact Components */}
                 {(leader.email || leader.phone) && (
-                  <div className='w-full border-t border-slate-100 pt-4'>
+                  <div className='border-kapwa-border-weak w-full border-t pt-4'>
                     <ContactContainer variant='stack' className='text-left'>
                       <ContactItem
                         icon={Mail}
@@ -161,10 +161,10 @@ export default function ExecutiveBranchPage() {
 
                 {/* View Profile Link */}
                 {leader.personId && (
-                  <div className='w-full border-t border-slate-100 pt-4'>
+                  <div className='border-kapwa-border-weak w-full border-t pt-4'>
                     <Link
                       to={`/openlgu/person/${leader.personId}`}
-                      className='text-primary-600 hover:text-primary-800 group flex items-center justify-center gap-2 text-sm font-bold transition-colors'
+                      className='text-kapwa-text-brand hover:text-kapwa-text-brand-bold group flex items-center justify-center gap-2 text-sm font-bold transition-colors'
                     >
                       View Full Profile
                       <ArrowRight className='h-4 w-4 transition-transform group-hover:translate-x-1' />
@@ -193,9 +193,9 @@ export default function ExecutiveBranchPage() {
       {/* --- SECTION 2: EXECUTIVE SUPPORT STAFF --- */}
       {supportStaff.length > 0 && (
         <div className='space-y-4 pt-4'>
-          <div className='flex items-center gap-2 border-b border-slate-100 pb-2'>
-            <Briefcase className='h-4 w-4 text-slate-500' />
-            <h3 className='text-sm font-bold tracking-widest text-slate-500 uppercase'>
+          <div className='border-kapwa-border-weak flex items-center gap-2 border-b pb-2'>
+            <Briefcase className='text-kapwa-text-disabled h-4 w-4' />
+            <h3 className='text-kapwa-text-disabled text-sm font-bold tracking-widest uppercase'>
               Office of the Mayor
             </h3>
           </div>
@@ -205,41 +205,41 @@ export default function ExecutiveBranchPage() {
               <Card
                 key={official.slug}
                 hover
-                className='group flex h-full flex-col border-slate-200 shadow-xs'
+                className='group border-kapwa-border-weak flex h-full flex-col shadow-xs'
               >
                 <CardContent className='flex h-full flex-col space-y-4 p-4'>
                   {/* Top Row */}
                   <div className='flex items-start gap-3'>
-                    <div className='group-hover:border-primary-200 group-hover:text-primary-600 shrink-0 rounded-lg border border-slate-200 bg-white p-2 text-slate-400 shadow-sm transition-colors'>
+                    <div className='group-hover:border-kapwa-border-brand group-hover:text-kapwa-text-brand border-kapwa-border-weak bg-kapwa-bg-surface text-kapwa-text-disabled shrink-0 rounded-lg border p-2 shadow-sm transition-colors'>
                       <User2 className='h-5 w-5' />
                     </div>
                     <div className='min-w-0 flex-1'>
-                      <h3 className='group-hover:text-primary-700 text-base leading-tight font-bold text-slate-900 transition-colors'>
+                      <h3 className='group-hover:text-kapwa-text-brand text-kapwa-text-strong text-base leading-tight font-bold transition-colors'>
                         {toTitleCase(official.name)}
                       </h3>
-                      <p className='mt-0.5 text-[10px] font-bold tracking-widest text-slate-400 uppercase'>
+                      <p className='text-kapwa-text-disabled mt-0.5 text-[10px] font-bold tracking-widest uppercase'>
                         Appointed Official
                       </p>
                     </div>
                   </div>
 
                   {/* Role Badge */}
-                  <div className='flex items-center gap-2 rounded-xl border border-slate-100 bg-slate-50/50 px-3 py-2'>
-                    <Briefcase className='h-3.5 w-3.5 text-slate-400' />
-                    <span className='truncate text-[11px] font-bold text-slate-600'>
+                  <div className='border-kapwa-border-weak bg-kapwa-bg-surface-raised/50 flex items-center gap-2 rounded-xl border px-3 py-2'>
+                    <Briefcase className='text-kapwa-text-disabled h-3.5 w-3.5' />
+                    <span className='text-kapwa-text-on-disabled truncate text-[11px] font-bold'>
                       {official.role}
                     </span>
                   </div>
 
                   {/* Compact Footer (Keeping this dense for the grid list) */}
-                  <div className='mt-auto flex items-center justify-between gap-4 border-t border-slate-50 pt-3'>
+                  <div className='mt-auto flex items-center justify-between gap-4 border-t border-kapwa-border-weak pt-3'>
                     {official.phone ? (
-                      <div className='flex items-center gap-1.5 text-[11px] font-medium text-slate-500'>
-                        <Phone className='text-primary-400 h-3 w-3' />
+                      <div className='text-kapwa-text-disabled flex items-center gap-1.5 text-[11px] font-medium'>
+                        <Phone className='text-kapwa-text-brand h-3 w-3' />
                         <span>{official.phone}</span>
                       </div>
                     ) : (
-                      <div className='text-[10px] text-slate-300 italic'>
+                      <div className='text-kapwa-text-support text-[10px] italic'>
                         No contact
                       </div>
                     )}
@@ -252,14 +252,14 @@ export default function ExecutiveBranchPage() {
       )}
 
       {/* --- SECTION 3: BRIDGE --- */}
-      <div className='mt-4 flex flex-col items-center justify-between gap-4 rounded-2xl border border-slate-200 bg-slate-50 p-6 md:flex-row'>
+      <div className='border-kapwa-border-weak bg-kapwa-bg-surface-raised mt-4 flex flex-col items-center justify-between gap-4 rounded-2xl border p-6 md:flex-row'>
         <div className='flex items-center gap-4'>
-          <Briefcase className='h-8 w-8 text-slate-300' />
+          <Briefcase className='text-kapwa-text-support h-8 w-8' />
           <div>
-            <h4 className='font-bold text-slate-900'>
+            <h4 className='text-kapwa-text-strong font-bold'>
               Looking for Department Heads?
             </h4>
-            <p className='text-sm font-medium text-slate-500'>
+            <p className='text-kapwa-text-disabled text-sm font-medium'>
               Municipal Treasurer, Assessor, Engineer, and other service heads
               are listed in the directory.
             </p>
@@ -267,7 +267,7 @@ export default function ExecutiveBranchPage() {
         </div>
         <Link
           to='/government/departments'
-          className='text-primary-600 hover:text-primary-800 group flex min-h-[44px] items-center gap-2 rounded-xl border border-slate-200 bg-white px-5 py-2.5 text-[10px] font-bold tracking-widest uppercase shadow-sm transition-all'
+          className='text-kapwa-text-brand hover:text-kapwa-text-brand-bold group border-kapwa-border-weak bg-kapwa-bg-surface flex min-h-[44px] items-center gap-2 rounded-xl border px-5 py-2.5 text-[10px] font-bold tracking-widest uppercase shadow-sm transition-all'
         >
           Go to Departments{' '}
           <ArrowRight className='h-3.5 w-3.5 transition-transform group-hover:translate-x-1' />
@@ -275,12 +275,12 @@ export default function ExecutiveBranchPage() {
       </div>
 
       <footer className='pt-12 text-center'>
-        <div className='inline-flex items-center gap-2 rounded-full border border-slate-200 bg-white px-5 py-2.5 shadow-sm'>
+        <div className='border-kapwa-border-weak bg-kapwa-bg-surface inline-flex items-center gap-2 rounded-full border px-5 py-2.5 shadow-sm'>
           <ShieldCheck
-            className='h-4 w-4 text-emerald-600'
+            className='h-4 w-4 text-kapwa-text-success'
             aria-hidden='true'
           />
-          <span className='text-[10px] font-bold tracking-widest text-slate-500 uppercase'>
+          <span className='text-kapwa-text-disabled text-[10px] font-bold tracking-widest uppercase'>
             Verified Executive Registry
           </span>
         </div>

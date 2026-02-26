@@ -13,7 +13,7 @@ import {
   Waves,
 } from 'lucide-react';
 
-import SEO from '@/components/layout/SEO';
+import { SEO } from '@/components/layout/SEO';
 
 interface SitemapSection {
   title: string;
@@ -317,7 +317,7 @@ const SitemapPage: FC = () => {
   ];
 
   return (
-    <div className='min-h-screen bg-gray-50 py-12'>
+    <div className='bg-kapwa-bg-surface-raised min-h-screen py-12'>
       <SEO
         title='Sitemap | BetterGov.ph'
         description='Complete sitemap of BetterGov.ph - Find all pages and services available on the Philippine Government Portal.'
@@ -332,10 +332,12 @@ const SitemapPage: FC = () => {
 
       <div className='container mx-auto px-4'>
         <div className='mx-auto max-w-5xl'>
-          <div className='overflow-hidden rounded-xl bg-white shadow-xs'>
-            <div className='border-b border-gray-200 p-6 md:p-8'>
-              <h1 className='text-3xl font-bold text-gray-900'>Sitemap</h1>
-              <p className='mt-2 text-gray-800'>
+          <div className='bg-kapwa-bg-surface overflow-hidden rounded-xl shadow-xs'>
+            <div className='border-kapwa-border-weak border-b p-6 md:p-8'>
+              <h1 className='text-kapwa-text-strong text-3xl font-bold'>
+                Sitemap
+              </h1>
+              <p className='text-kapwa-text-support mt-2'>
                 A complete guide to all pages and services available on
                 BetterGov.ph
               </p>
@@ -346,10 +348,10 @@ const SitemapPage: FC = () => {
                 {sitemapSections.map((section, index) => (
                   <div key={index}>
                     <div className='mb-4 flex items-center'>
-                      <div className='bg-primary-50 text-primary-600 mr-3 rounded-md p-2'>
+                      <div className='bg-kapwa-bg-surface text-kapwa-text-brand mr-3 rounded-md p-2'>
                         {section.icon}
                       </div>
-                      <h2 className='text-xl font-bold text-gray-900'>
+                      <h2 className='text-kapwa-text-strong text-xl font-bold'>
                         {section.title}
                       </h2>
                     </div>
@@ -359,16 +361,16 @@ const SitemapPage: FC = () => {
                         <Link
                           key={linkIndex}
                           to={link.url}
-                          className='group hover:border-primary-300 hover:bg-primary-50 flex flex-col rounded-lg border border-gray-200 p-4 transition-colors'
+                          className='group hover:border-kapwa-border-brand hover:bg-kapwa-bg-surface-brand border-kapwa-border-weak flex flex-col rounded-lg border p-4 transition-colors'
                         >
                           <div className='mb-2 flex items-center justify-between'>
-                            <h3 className='group-hover:text-primary-700 font-medium text-gray-900'>
+                            <h3 className='group-hover:text-kapwa-text-brand text-kapwa-text-strong font-medium'>
                               {link.title}
                             </h3>
-                            <ChevronRight className='group-hover:text-primary-500 h-4 w-4 text-gray-400' />
+                            <ChevronRight className='group-hover:text-kapwa-text-link text-kapwa-text-disabled h-4 w-4' />
                           </div>
                           {link.description && (
-                            <p className='text-sm text-gray-800'>
+                            <p className='text-kapwa-text-support text-sm'>
                               {link.description}
                             </p>
                           )}
@@ -381,10 +383,13 @@ const SitemapPage: FC = () => {
             </div>
           </div>
 
-          <div className='mt-8 text-center text-sm text-gray-800'>
+          <div className='text-kapwa-text-support mt-8 text-center text-sm'>
             <p>
               Can&apos;t find what you&apos;re looking for? Try using our{' '}
-              <Link to='/search' className='text-primary-600 hover:underline'>
+              <Link
+                to='/search'
+                className='text-kapwa-text-brand hover:underline'
+              >
                 search feature
               </Link>
               .

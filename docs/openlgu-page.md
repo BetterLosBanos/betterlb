@@ -307,6 +307,11 @@ getPersonById(persons: Person[], id: string): Person | undefined
 
 // Format full person name
 getPersonName(person: Person): string
+
+// Get badge variant for document type
+getDocTypeBadgeVariant(type: string): BadgeVariant
+// Returns: 'primary' for ordinances, 'secondary' for resolutions,
+//          'yellow' for executive orders, 'slate' for unknown
 ```
 
 **Location:** `src/lib/roleHelpers.ts`
@@ -331,8 +336,18 @@ toTitleCase(str: string): string
 | Type | Badge Variant | Color |
 |------|---------------|-------|
 | Ordinance | `primary` | Blue |
-| Resolution | `secondary` | Gray |
-| Executive Order | `warning` | Yellow/Orange |
+| Resolution | `secondary` | Orange |
+| Executive Order | `yellow` | Yellow |
+
+**Use the helper function** to get the correct badge variant:
+
+```typescript
+import { getDocTypeBadgeVariant } from '@/lib/openlgu';
+
+<Badge variant={getDocTypeBadgeVariant(doc.type)}>
+  {doc.type}
+</Badge>
+```
 
 ## Accessibility Features
 

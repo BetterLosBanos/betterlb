@@ -1,9 +1,9 @@
 import { useEffect, useState } from 'react';
 
+import { Button } from '@bettergov/kapwa';
 import { Calendar, Check, RefreshCw, Users, X } from 'lucide-react';
 
 import { Badge } from '@/components/ui/Badge';
-import Button from '@/components/ui/Button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/Card';
 import { EmptyState } from '@/components/ui/EmptyState';
 
@@ -105,7 +105,7 @@ export default function AttendanceForm({
   if (loading) {
     return (
       <div className='flex items-center justify-center py-12'>
-        <RefreshCw className='h-8 w-8 animate-spin text-slate-400' />
+        <RefreshCw className='text-kapwa-text-disabled h-8 w-8 animate-spin' />
       </div>
     );
   }
@@ -133,20 +133,22 @@ export default function AttendanceForm({
         <CardContent>
           <div className='flex flex-wrap gap-4'>
             <div>
-              <p className='text-xs text-slate-500'>Session Type</p>
-              <p className='font-medium text-slate-900 capitalize'>
+              <p className='text-kapwa-text-disabled text-xs'>Session Type</p>
+              <p className='text-kapwa-text-strong font-medium capitalize'>
                 {session.session_type}
               </p>
             </div>
             {session.ordinal && (
               <div>
-                <p className='text-xs text-slate-500'>Number</p>
-                <p className='font-medium text-slate-900'>{session.ordinal}</p>
+                <p className='text-kapwa-text-disabled text-xs'>Number</p>
+                <p className='text-kapwa-text-strong font-medium'>
+                  {session.ordinal}
+                </p>
               </div>
             )}
             <div>
-              <p className='text-xs text-slate-500'>Date</p>
-              <p className='font-medium text-slate-900'>
+              <p className='text-kapwa-text-disabled text-xs'>Date</p>
+              <p className='text-kapwa-text-strong font-medium'>
                 {new Date(session.date).toLocaleDateString()}
               </p>
             </div>
@@ -164,22 +166,24 @@ export default function AttendanceForm({
         </CardHeader>
         <CardContent className='space-y-4'>
           {/* Summary */}
-          <div className='flex items-center justify-between rounded-md bg-slate-50 p-4'>
+          <div className='bg-kapwa-bg-surface-raised flex items-center justify-between rounded-md p-4'>
             <div className='flex gap-4'>
               <div>
-                <p className='text-xs text-slate-500'>Total Members</p>
-                <p className='text-lg font-bold text-slate-900'>
+                <p className='text-kapwa-text-disabled text-xs'>
+                  Total Members
+                </p>
+                <p className='text-kapwa-text-strong text-lg font-bold'>
                   {members.length}
                 </p>
               </div>
               <div>
-                <p className='text-xs text-slate-500'>Present</p>
+                <p className='text-kapwa-text-disabled text-xs'>Present</p>
                 <p className='text-lg font-bold text-emerald-600'>
                   {presentCount}
                 </p>
               </div>
               <div>
-                <p className='text-xs text-slate-500'>Absent</p>
+                <p className='text-kapwa-text-disabled text-xs'>Absent</p>
                 <p className='text-lg font-bold text-amber-600'>
                   {absentCount}
                 </p>
@@ -229,12 +233,12 @@ export default function AttendanceForm({
                         )}
                       </div>
                       <div>
-                        <p className='text-sm font-medium text-slate-900'>
+                        <p className='text-kapwa-text-strong text-sm font-medium'>
                           {member.first_name} {member.middle_name}{' '}
                           {member.last_name}
                         </p>
                         {member.role && (
-                          <p className='text-xs text-slate-500'>
+                          <p className='text-kapwa-text-disabled text-xs'>
                             {member.role}
                           </p>
                         )}

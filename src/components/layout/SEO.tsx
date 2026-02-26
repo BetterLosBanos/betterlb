@@ -12,7 +12,7 @@ import {
 
 import routeMeta from '@/data/seo-metadata.json';
 
-interface SEOProps {
+export interface SEOProps {
   title?: string;
   description?: string;
   canonical?: string;
@@ -27,7 +27,7 @@ interface SEOProps {
   }>;
 }
 
-export default function SEO({
+export function SEO({
   title,
   description,
   ogImage = '/logos/png/betterlb-white.jpg',
@@ -36,7 +36,7 @@ export default function SEO({
   keywords = [],
   jsonLd,
   breadcrumbs,
-}: SEOProps = {}) {
+}: SEOProps) {
   const location = useLocation();
   const [, forceUpdate] = useState({});
 

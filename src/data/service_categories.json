@@ -3,52 +3,52 @@
     {
       "name": "Certificates & Vital Records",
       "slug": "certificates-vital-records",
-      "description": "Birth, death, marriage certificates, cedula, and clearances."
+      "description": "Birth, death, marriage certificates, and other vital records."
     },
     {
-      "name": "Business & Licensing",
-      "slug": "business-licensing",
-      "description": "Business permits, renewals, closures, and tricycle franchising."
+      "name": "Business, Trade & Investment",
+      "slug": "business-trade-investment",
+      "description": "Business permits, licenses, and trade registration services."
     },
     {
-      "name": "Taxation & Assessment",
-      "slug": "taxation-assessment",
-      "description": "Real property tax (Amilyar), tax declarations, and assessments."
-    },
-    {
-      "name": "Infrastructure & Engineering",
-      "slug": "infrastructure-engineering",
-      "description": "Building, occupancy, electrical, and fencing permits."
-    },
-    {
-      "name": "Social Services",
-      "slug": "social-services",
-      "description": "Medical assistance (AICS), Senior Citizen, PWD, and Solo Parent IDs."
+      "name": "Social Services & Assistance",
+      "slug": "social-services-assistance",
+      "description": "Welfare programs, senior citizen services, PWD benefits, and financial aid."
     },
     {
       "name": "Health & Wellness",
       "slug": "health-wellness",
-      "description": "Health certificates, sanitary permits, and vaccinations."
+      "description": "Vaccination programs, health certificates, and medical assistance."
     },
     {
-      "name": "Agriculture & Livelihood",
-      "slug": "agriculture-livelihood",
-      "description": "Seeds, fertilizer, anti-rabies, and job fairs."
+      "name": "Taxation & Payments",
+      "slug": "taxation-payments",
+      "description": "Property tax, business tax, payments, and tax clearance."
     },
     {
-      "name": "Environment & Waste",
-      "slug": "environment-waste",
-      "description": "Garbage collection, tree trimming, and environmental compliance."
+      "name": "Agriculture & Economic Development",
+      "slug": "agriculture-economic-development",
+      "description": "Agricultural loans, crop insurance, fertilizer assistance, and training."
+    },
+    {
+      "name": "Infrastructure & Public Works",
+      "slug": "infrastructure-public-works",
+      "description": "Construction permits, road maintenance requests, and public facilities."
     },
     {
       "name": "Education & Scholarship",
       "slug": "education-scholarship",
-      "description": "Local scholarships and student financial aid."
+      "description": "Scholarship programs, student assistance, and educational grants."
     },
     {
-      "name": "Public Safety",
-      "slug": "public-safety",
-      "description": "Emergency response, fire safety, and traffic management."
+      "name": "Public Safety & Security",
+      "slug": "public-safety-security",
+      "description": "Emergency services, disaster preparedness, and community safety programs."
+    },
+    {
+      "name": "Environment & Natural Resources",
+      "slug": "environment-natural-resources",
+      "description": "Environmental permits, waste management, and conservation programs."
     }
   ]
 }

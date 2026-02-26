@@ -16,11 +16,11 @@ export const ScrollArea = forwardRef<HTMLDivElement, ScrollAreaProps>(
           'relative overflow-auto',
           // Custom scrollbar styling - consistent with scrollbar-thin
           '[&::-webkit-scrollbar]:w-1',
-          '[&::-webkit-scrollbar-track]:bg-gray-100',
+          '[&::-webkit-scrollbar-track]:bg-kapwa-bg-surface-raised',
           '[&::-webkit-scrollbar-track]:rounded-sm',
-          '[&::-webkit-scrollbar-thumb]:bg-gray-300',
+          '[&::-webkit-scrollbar-thumb]:bg-kapwa-border-weak',
           '[&::-webkit-scrollbar-thumb]:rounded-sm',
-          '[&::-webkit-scrollbar-thumb]:hover:bg-gray-400',
+          '[&::-webkit-scrollbar-thumb]:hover:bg-kapwa-border-strong',
           className
         )}
         {...props}

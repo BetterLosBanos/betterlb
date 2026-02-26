@@ -1,0 +1,88 @@
+{
+  "mappings": [
+    {
+      "officeDivision": "BUSINESS PERMIT AND LICENSING OFFICE (BPLO)",
+      "categorySlug": "business-trade-investment",
+      "subcategory": "Business Permits"
+    },
+    {
+      "officeDivision": "MUNICIPAL TREASURER'S OFFICE",
+      "categorySlug": "taxation-payments",
+      "subcategory": "Tax Payment"
+    },
+    {
+      "officeDivision": "MUNICIPAL ASSESSOR'S OFFICE",
+      "categorySlug": "taxation-payments",
+      "subcategory": "Property Assessment"
+    },
+    {
+      "officeDivision": "MUNICIPAL ENGINEERING OFFICE",
+      "categorySlug": "infrastructure-public-works",
+      "subcategory": "Building Permits"
+    },
+    {
+      "officeDivision": "MUNICIPAL PLANNING AND DEVELOPMENT COORDINATOR (MPDC)",
+      "categorySlug": "infrastructure-public-works",
+      "subcategory": "Planning Services"
+    },
+    {
+      "officeDivision": "LOCAL CIVIL REGISTRY OFFICE",
+      "categorySlug": "certificates-vital-records",
+      "subcategory": "Civil Registry"
+    },
+    {
+      "officeDivision": "MUNICIPAL ECONOMIC ENTERPRISE - MARKET",
+      "categorySlug": "business-trade-investment",
+      "subcategory": "Market Services"
+    },
+    {
+      "officeDivision": "MUNICIPAL ECONOMIC ENTERPRISE - SLAUGHTERHOUSE",
+      "categorySlug": "agriculture-economic-development",
+      "subcategory": "Slaughterhouse Services"
+    },
+    {
+      "officeDivision": "MUNICIPAL AGRICULTURE OFFICE",
+      "categorySlug": "agriculture-economic-development",
+      "subcategory": "Agriculture Services"
+    },
+    {
+      "officeDivision": "BARANGAY OFFICE",
+      "categorySlug": "certificates-vital-records",
+      "subcategory": "Barangay Services"
+    },
+    {
+      "officeDivision": "BIDS AND AWARDS COMMITTEE",
+      "categorySlug": "public-safety-security",
+      "subcategory": "Bids and Awards"
+    },
+    {
+      "officeDivision": "INFORMATION AND COMMUNICATION SYSTEMS OFFICE (ICSO)",
+      "categorySlug": "infrastructure-public-works",
+      "subcategory": "ICT Services"
+    },
+    {
+      "officeDivision": "LOCAL YOUTH AND DEVELOPMENT OFFICE",
+      "categorySlug": "education-scholarship",
+      "subcategory": "Youth Services"
+    },
+    {
+      "officeDivision": "MUNICIPAL ACCOUNTING OFFICE",
+      "categorySlug": "business-trade-investment",
+      "subcategory": "Accounting Services"
+    },
+    {
+      "officeDivision": "MUNICIPAL HEALTH OFFICE (MHO)",
+      "categorySlug": "health-wellness",
+      "subcategory": "Health Services"
+    },
+    {
+      "officeDivision": "PUBLIC ORDER AND SAFETY OFFICE/TRANSPORTATION AND REGULATION UNIT",
+      "categorySlug": "public-safety-security",
+      "subcategory": "Public Safety"
+    }
+  ],
+  "defaultCategory": {
+    "name": "Infrastructure & Public Works",
+    "slug": "infrastructure-public-works"
+  }
+}

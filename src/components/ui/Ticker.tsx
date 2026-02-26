@@ -16,13 +16,13 @@ const getCurrencyIcon = (code: string) => {
   const iconName = getCurrencyIconName(code);
   switch (iconName) {
     case 'DollarSign':
-      return <DollarSignIcon className='h-4 w-4' />;
+      return <DollarSignIcon className='w-4 h-4' />;
     case 'JapaneseYen':
-      return <JapaneseYenIcon className='h-4 w-4' />;
+      return <JapaneseYenIcon className='w-4 h-4' />;
     case 'Euro':
-      return <EuroIcon className='h-4 w-4' />;
+      return <EuroIcon className='w-4 h-4' />;
     case 'PoundSterling':
-      return <PoundSterlingIcon className='h-4 w-4' />;
+      return <PoundSterlingIcon className='w-4 h-4' />;
     default:
       return null;
   }
@@ -38,14 +38,11 @@ const Ticker: FC = () => {
   const [error, setError] = useState<string | null>(null);
   const [weatherError, setWeatherError] = useState<string | null>(null);
 
-  // Fetch forex data
   useEffect(() => {
     const getForexData = async () => {
       try {
         setIsLoading(true);
         setError(null);
-
-        // Get forex data for the top 4 currencies
         const transformedData = await fetchForexData([
           'USD',
           'EUR',
@@ -66,13 +63,11 @@ const Ticker: FC = () => {
     getForexData();
   }, []);
 
-  // Fetch weather data
   useEffect(() => {
     const getWeatherData = async () => {
       try {
         setWeatherLoading(true);
         setWeatherError(null);
-
         const data = await fetchWeatherData();
         setWeatherData(data);
       } catch (error) {
@@ -90,37 +85,31 @@ const Ticker: FC = () => {
     getWeatherData();
   }, []);
 
-  // Rotate through the forex rates
   useEffect(() => {
-    // Only start rotation if we have forex rates
     if (forexRates.length === 0) return;
 
     const interval = setInterval(() => {
       setIsAnimating(true);
-
-      // Wait for animation to complete before changing the index
       setTimeout(() => {
         setCurrentRateIndex(prevIndex => (prevIndex + 1) % forexRates.length);
         setIsAnimating(false);
-      }, 500); // Match this with the CSS animation duration
-    }, 4000); // Show each rate for 4 seconds
+      }, 500);
+    }, 4000);
 
     return () => clearInterval(interval);
   }, [forexRates.length]);
 
-  // If loading or error, show appropriate content
   if (isLoading && weatherLoading) {
     return (
-      <div className='bg-primary-600 px-4 py-1 text-white'>
-        <div className='container mx-auto flex items-center justify-center'>
-          <LoaderIcon className='mr-2 h-4 w-4 animate-spin' />
-          <span className='text-xs'>Loading data...</span>
+      <div className='py-1 bg-kapwa-bg-surface-bold px-kapwa-md text-kapwa-text-inverse'>
+        <div className='container flex justify-center items-center mx-auto'>
+          <LoaderIcon className='mr-2 w-4 h-4 animate-spin' />
+          <span className='kapwa-body-xs-default'>Loading data...</span>
         </div>
       </div>
     );
   }
 
-  // If both forex and weather have errors or no data, hide the ticker
   if (
     (error && weatherError) ||
     (forexRates.length === 0 && weatherData.length === 0)
@@ -133,27 +122,27 @@ const Ticker: FC = () => {
   if (!currentRate) return null;
 
   return (
-    <div className='bg-blue-950 py-1.5 text-white'>
-      <div className='container mx-auto flex justify-end px-4'>
-        <div className='flex items-center justify-end'>
+    <div className='bg-kapwa-blue-950 py-1.5'>
+      <div className='container flex justify-end px-4 mx-auto'>
+        <div className='flex justify-end items-center'>
           {/* Forex ticker */}
-          <div className='flex-1 overflow-hidden pr-4'>
-            <div className='relative flex h-6 items-center'>
+          <div className='overflow-hidden flex-1 pr-4'>
+            <div className='flex relative items-center h-6'>
               <div
                 className={`flex items-center transition-all duration-200 ${
                   isAnimating
-                    ? 'translate-y-2 opacity-0'
-                    : 'translate-y-0 opacity-100'
+                    ? 'opacity-0 translate-y-2'
+                    : 'opacity-100 translate-y-0'
                 }`}
               >
                 <div className='inline-flex items-center space-x-1'>
-                  <span className='text-accent-200'>
+                  <span className='opacity-80' style={{ color: '#d4a855' }}>
                     {getCurrencyIcon(currentRate.code)}
                   </span>
-                  <span className='text-xs font-medium'>
+                  <span className='text-kapwa-text-inverse kapwa-body-xs-default kapwa-body-xs-strong'>
                     {currentRate.code}
                   </span>
-                  <span className='text-accent-100 text-xs'>
+                  <span className='opacity-90 text-kapwa-text-inverse kapwa-body-xs-default'>
                     ₱{currentRate.rate.toFixed(2)}
                   </span>
                 </div>
@@ -162,30 +151,30 @@ const Ticker: FC = () => {
           </div>
 
           {/* Weather information */}
-          <div className='border-accent-500 flex items-center space-x-6 border-l pl-4'>
+          <div className='flex items-center pl-4 space-x-6 border-l border-kapwa-border-inverse'>
             {weatherLoading ? (
               <div className='flex items-center space-x-2'>
-                <LoaderIcon className='text-accent-100 h-3 w-3 animate-spin' />
-                <span className='text-accent-100 text-xs'>
+                <LoaderIcon className='w-3 h-3 opacity-80 animate-spin text-kapwa-text-inverse' />
+                <span className='opacity-80 text-kapwa-text-inverse kapwa-body-xs-default'>
                   Loading weather...
                 </span>
               </div>
             ) : weatherError ? (
               <div className='flex items-center space-x-2'>
-                <span className='text-accent-100 text-xs'>
+                <span className='opacity-80 text-kapwa-text-inverse kapwa-body-xs-default'>
                   Weather unavailable
                 </span>
               </div>
             ) : (
-              weatherData.slice(0, 1).map(data => (
+              weatherData.slice(0, 4).map(data => (
                 <div
                   key={data.location}
-                  className='flex flex-col items-center justify-center space-x-0 uppercase sm:flex-row sm:space-x-2'
+                  className='flex flex-col justify-center items-center space-x-0 uppercase sm:flex-row sm:space-x-2'
                 >
-                  <span className='text-accent-100 text-xs font-medium'>
+                  <span className='opacity-90 text-kapwa-text-inverse kapwa-body-xs-default kapwa-body-xs-strong'>
                     {data.location}
                   </span>
-                  <span className='text-xs text-white'>
+                  <span className='text-kapwa-text-inverse kapwa-body-xs-default'>
                     {data.temperature}°C
                   </span>
                 </div>

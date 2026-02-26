@@ -9,7 +9,21 @@
 
 export { Footer } from './Footer';
 export { Navbar } from './Navbar';
-export { PageLayouts } from './PageLayouts';
 export { ScrollToTop } from './ScrollToTop';
-export { SEO } from './SEO';
-export { SidebarLayout } from './SidebarLayout';
+export { SEO, type SEOProps } from './SEO';
+export { SidebarLayout, type SidebarLayoutProps } from './SidebarLayout';
+
+// PageLayouts components
+export { PageHero, ModuleHeader, DetailSection } from './PageLayouts';
+
+// Unified Layout Components
+export {
+  PageHeader,
+  SectionBlock,
+  SectionAlternator,
+  StaggeredGrid,
+  useBreadcrumbs,
+  type SectionBlockProps,
+  type PageHeaderProps,
+  type StaggeredGridProps,
+} from './UnifiedLayouts';

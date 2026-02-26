@@ -16,13 +16,14 @@ import {
   ExternalLink,
   FileText,
   HeartHandshake,
+  Info,
   LinkIcon,
   LucideIcon,
   ShieldCheck,
   Users,
 } from 'lucide-react';
 
-import { DetailSection } from '@/components/layout/PageLayouts';
+import { DetailSection, useBreadcrumbs } from '@/components/layout';
 import {
   Breadcrumb,
   BreadcrumbHome,
@@ -33,13 +34,19 @@ import {
   BreadcrumbSeparator,
 } from '@/components/navigation/Breadcrumb';
 import { Badge } from '@/components/ui/Badge';
+import { RequirementGrid } from './components/RequirementGrid';
+import { ProcessTimeline } from './components/ProcessTimeline';
+import { SupportingDocumentsDetail } from './components/SupportingDocumentsDetail';
+import { FeesCard } from './components/FeesCard';
 
+import { getServiceBySlug } from '@/lib/services';
 import { toTitleCase } from '@/lib/stringUtils';
 
 import departmentsData from '@/data/directory/departments.json';
-import servicesData from '@/data/services/services.json';
+import executiveData from '@/data/directory/executive.json';
+import legislativeData from '@/data/directory/legislative.json';
 
-import type { QuickInfo, Service, Source } from '@/types/servicesTypes';
+import type { QuickInfo, Source } from '@/types/servicesTypes';
 
 const QUICK_INFO_CONFIG: Record<
   keyof QuickInfo,
@@ -57,12 +64,13 @@ export default function ServiceDetail() {
   const { service: serviceSlug } = useParams<{ service: string }>();
   if (!serviceSlug) return null;
 
-  const service = (servicesData as Service[]).find(
-    s => s.slug === decodeURIComponent(serviceSlug)
-  );
+  const service = getServiceBySlug(decodeURIComponent(serviceSlug));
+
+  // Auto-generate breadcrumbs using the hook
+  const breadcrumbs = useBreadcrumbs();
   if (!service)
     return (
-      <div className='p-20 text-center font-bold tracking-widest text-slate-500 uppercase'>
+      <div className='text-kapwa-text-disabled p-20 text-center font-bold tracking-widest uppercase'>
         Service not found
       </div>
     );
@@ -71,12 +79,37 @@ export default function ServiceDetail() {
     ? service.officeSlug
     : [service.officeSlug].filter(Boolean);
 
-  const involvedOffices = departmentsData.filter(d =>
-    officeSlugs.includes(d.slug)
-  );
+  // Collect offices from all sources (departments, executive, legislative)
+  const involvedOffices = [
+    ...departmentsData
+      .filter(d => officeSlugs.includes(d.slug))
+      .map(d => ({
+        slug: d.slug,
+        name: d.office_name,
+        type: 'department',
+      })),
+    ...executiveData
+      .filter(e => officeSlugs.includes(e.slug))
+      .map(e => ({
+        slug: e.slug,
+        name: e.role,
+        type: 'executive',
+      })),
+    ...legislativeData
+      .filter(l => officeSlugs.includes(l.slug))
+      .map(l => ({
+        slug: l.slug,
+        name: l.chamber,
+        type: 'legislative',
+      })),
+  ];
   const isTransaction = service.type === 'transaction';
   const updatedAtDate = service.updatedAt ? new Date(service.updatedAt) : null;
   const isVerified = updatedAtDate !== null && isValid(updatedAtDate);
+
+  // Citizens Charter specific
+  const isOfficialSource = service.source === 'citizens-charter';
+  const needsVerification = service.needsVerification === true;
 
   const quickInfoArray = service.quickInfo
     ? (Object.entries(service.quickInfo) as [keyof QuickInfo, string][]).map(
@@ -88,89 +121,158 @@ export default function ServiceDetail() {
       )
     : [];
 
+  // Build Citizens Charter specific info items
+  const ccInfoItems: { label: string; value: string; icon: LucideIcon }[] = [];
+  if (service.processingTime) {
+    ccInfoItems.push({
+      label: 'Processing Time',
+      value: service.processingTime,
+      icon: Clock,
+    });
+  }
+  if (service.whoMayAvail) {
+    ccInfoItems.push({
+      label: 'Who Can Apply',
+      value: service.whoMayAvail,
+      icon: Users,
+    });
+  }
+  if (service.classification) {
+    ccInfoItems.push({
+      label: 'Classification',
+      value: service.classification,
+      icon: FileText,
+    });
+  }
+
   return (
     <div className='animate-in fade-in mx-auto max-w-7xl space-y-6 duration-500'>
       <Breadcrumb>
         <BreadcrumbList>
-          <BreadcrumbItem>
-            <BreadcrumbHome href='/' />
-          </BreadcrumbItem>
-          <BreadcrumbSeparator />
-          <BreadcrumbItem>
-            <BreadcrumbLink href='/services'>Services</BreadcrumbLink>
-          </BreadcrumbItem>
-          <BreadcrumbSeparator />
-          <BreadcrumbItem>
-            <BreadcrumbPage>{service.service}</BreadcrumbPage>
-          </BreadcrumbItem>
+          {breadcrumbs.map((crumb, index) => {
+            const isLast = index === breadcrumbs.length - 1;
+            return (
+              <div key={crumb.href} className='flex items-center gap-2'>
+                {index === 0 ? (
+                  <BreadcrumbItem>
+                    <BreadcrumbHome href={crumb.href} />
+                  </BreadcrumbItem>
+                ) : (
+                  <>
+                    <BreadcrumbSeparator />
+                    <BreadcrumbItem>
+                      {isLast ? (
+                        <BreadcrumbPage>
+                          {service.plainLanguageName || service.service}
+                        </BreadcrumbPage>
+                      ) : (
+                        <BreadcrumbLink href={crumb.href}>
+                          {crumb.label}
+                        </BreadcrumbLink>
+                      )}
+                    </BreadcrumbItem>
+                  </>
+                )}
+              </div>
+            );
+          })}
         </BreadcrumbList>
       </Breadcrumb>
 
-      {/* --- REFINED HEADER --- */}
+      {/* HEADER */}
       <header
-        className={`relative overflow-hidden rounded-3xl p-8 text-white shadow-xl transition-colors duration-500 md:p-12 ${
-          isTransaction ? 'bg-slate-900' : 'bg-primary-900'
+        className={`border-kapwa-border-weak bg-kapwa-bg-surface overflow-hidden rounded-3xl border p-8 shadow-sm md:p-10 ${
+          isOfficialSource ? 'border-l-4 border-l-kapwa-border-success' : ''
         }`}
       >
-        <div className='relative z-10 max-w-3xl'>
+        <div className='max-w-3xl'>
           <div className='mb-6 flex flex-wrap items-center gap-2'>
             <Badge variant='primary'>{service.category.name}</Badge>
             <Badge variant={isTransaction ? 'success' : 'secondary'} dot>
               {isTransaction ? 'Transactional' : 'Resource'}
             </Badge>
-            <Badge variant={isVerified ? 'success' : 'slate'} dot={!isVerified}>
-              {isVerified ? 'Verified' : 'Unverified'}
+            <Badge variant={isOfficialSource ? 'success' : 'secondary'} dot>
+              {isOfficialSource ? 'Official (CC)' : 'Community'}
             </Badge>
+            {service.serviceNumber && (
+              <Badge variant='outline'>
+                Service No. {service.serviceNumber}
+              </Badge>
+            )}
+            {needsVerification && (
+              <Badge variant='warning' dot>
+                Pending Verification
+              </Badge>
+            )}
           </div>
 
-          <h1 className='mb-6 text-3xl leading-tight font-extrabold tracking-tight md:text-5xl'>
-            {service.service}
+          <h1 className='text-kapwa-text-strong mb-6 text-3xl leading-tight font-bold tracking-tight md:text-4xl'>
+            {service.plainLanguageName || service.service}
           </h1>
 
           {service.description && (
-            <p className='mb-8 max-w-2xl text-lg leading-relaxed text-slate-300 italic'>
+            <p className='text-kapwa-text-support mb-8 max-w-2xl text-base leading-relaxed'>
               &quot;{service.description}&quot;
             </p>
           )}
 
+          {/* Who May Avail (Citizens Charter) */}
+          {service.whoMayAvail && !needsVerification && (
+            <div className='border-kapwa-border-weak bg-kapwa-bg-surface-raised mb-8 rounded-xl border p-4'>
+              <p className='text-kapwa-text-support text-sm font-medium'>
+                <span className='text-kapwa-text-brand font-semibold'>
+                  Who may avail:{' '}
+                </span>
+                {service.whoMayAvail}
+              </p>
+            </div>
+          )}
+
           {/* SINGLE PRIMARY ACTION */}
-          {service.url && (
+          {service.website && (
+            <a
+              href={service.website}
+              target='_blank'
+              rel='noreferrer'
+              className='bg-kapwa-bg-brand-default hover:bg-kapwa-bg-brand-weak text-kapwa-text-inverse inline-flex min-h-[48px] items-center gap-3 rounded-xl px-6 py-3 font-semibold shadow-sm transition-all'
+            >
+              Access Online Portal
+              <ExternalLink className='h-4 w-4 transition-transform group-hover:translate-x-0.5' />
+            </a>
+          )}
+          {service.url && !service.website && (
             <a
               href={service.url}
               target='_blank'
               rel='noreferrer'
-              className='bg-primary-600 hover:bg-primary-500 group inline-flex min-h-[48px] items-center gap-3 rounded-2xl px-8 py-4 font-bold text-white shadow-lg transition-all'
+              className='bg-kapwa-bg-brand-default hover:bg-kapwa-bg-brand-weak text-kapwa-text-inverse inline-flex min-h-[48px] items-center gap-3 rounded-xl px-6 py-3 font-semibold shadow-sm transition-all'
             >
               {isTransaction ? 'Access Online Portal' : 'View Full Document'}
-              <ExternalLink className='h-5 w-5 transition-transform group-hover:translate-x-1 group-hover:-translate-y-1' />
+              <ExternalLink className='h-4 w-4 transition-transform group-hover:translate-x-0.5' />
             </a>
           )}
         </div>
-        <ShieldCheck
-          className='absolute right-[-20px] bottom-[-20px] h-64 w-64 -rotate-12 text-white/5'
-          aria-hidden='true'
-        />
       </header>
 
       {/* --- CONTENT AREA --- */}
       <div className='flex flex-col gap-8 xl:flex-row'>
         <div className='min-w-0 flex-1 space-y-8'>
-          {/* Quick Info Grid - Moved here to keep Hero Header cleaner */}
-          {isTransaction && quickInfoArray.length > 0 && (
+          {/* Citizens Charter Info Grid (processing time, fees, etc.) */}
+          {isOfficialSource && ccInfoItems.length > 0 && (
             <div className='grid grid-cols-2 gap-3 md:grid-cols-3'>
-              {quickInfoArray.map((info, idx) => (
+              {ccInfoItems.map((info, idx) => (
                 <div
                   key={idx}
-                  className='flex items-start gap-3 rounded-2xl border border-slate-100 bg-white p-4 shadow-xs'
+                  className='border-kapwa-border-weak bg-kapwa-bg-surface flex items-start gap-3 rounded-2xl border p-4 shadow-xs'
                 >
-                  <div className='text-primary-600 shrink-0 rounded-lg bg-slate-50 p-2'>
+                  <div className='text-kapwa-text-brand bg-kapwa-bg-surface-raised shrink-0 rounded-lg p-2'>
                     <info.icon className='h-4 w-4' />
                   </div>
                   <div>
-                    <p className='mb-1 text-[10px] font-bold tracking-widest text-slate-400 uppercase'>
+                    <p className='text-kapwa-text-disabled mb-1 text-[10px] font-bold tracking-widest uppercase'>
                       {info.label}
                     </p>
-                    <p className='text-xs font-bold text-slate-900'>
+                    <p className='text-kapwa-text-strong text-xs font-bold'>
                       {info.value}
                     </p>
                   </div>
@@ -179,7 +281,54 @@ export default function ServiceDetail() {
             </div>
           )}
 
-          {service.steps && service.steps.length > 0 && (
+          {/* Fees Card (Citizens Charter) */}
+          {isOfficialSource && service.fees && <FeesCard fees={service.fees} />}
+
+          {/* Pending Verification Notice */}
+          {needsVerification && (
+            <div className='border-kapwa-border-warning bg-kapwa-bg-warning-weak/30 flex items-start gap-3 rounded-2xl border p-4'>
+              <Info className='text-kapwa-text-warning h-5 w-5 shrink-0' />
+              <div>
+                <p className='text-kapwa-text-strong mb-1 text-sm font-bold'>
+                  Detailed Information Pending Verification
+                </p>
+                <p className='text-kapwa-text-support text-xs leading-relaxed'>
+                  This service data is from the Citizens Charter document.
+                  Detailed requirements, steps, and fee information will be
+                  added as we verify and extract data from the official
+                  document.
+                </p>
+              </div>
+            </div>
+          )}
+
+          {/* Requirements (Citizens Charter) */}
+          {isOfficialSource &&
+            service.detailedRequirements &&
+            service.detailedRequirements.length > 0 && (
+              <RequirementGrid requirements={service.detailedRequirements} />
+            )}
+
+          {/* Supporting Documents Detail (Citizens Charter - optional) */}
+          {isOfficialSource &&
+            service.supportingDocumentsDetail &&
+            Object.keys(service.supportingDocumentsDetail).length > 0 && (
+              <div className='space-y-4'>
+                <SupportingDocumentsDetail
+                  detail={service.supportingDocumentsDetail}
+                />
+              </div>
+            )}
+
+          {/* Process Timeline (Citizens Charter) */}
+          {isOfficialSource &&
+            service.clientSteps &&
+            service.clientSteps.length > 0 && (
+              <ProcessTimeline steps={service.clientSteps} />
+            )}
+
+          {/* Regular Steps (community services) */}
+          {!isOfficialSource && service.steps && service.steps.length > 0 && (
             <DetailSection
               title={isTransaction ? 'Process Steps' : 'Information Details'}
               icon={ClipboardList}
@@ -190,19 +339,43 @@ export default function ServiceDetail() {
                     <div
                       className={`flex h-8 w-8 shrink-0 items-center justify-center rounded-full border text-sm font-bold transition-colors ${
                         isTransaction
-                          ? 'bg-primary-50 text-primary-600 border-primary-100'
-                          : 'text-secondary-600 bg-secondary-50 border-secondary-100'
+                          ? 'bg-kapwa-bg-surface text-kapwa-text-brand border-kapwa-border-brand'
+                          : 'text-kapwa-text-accent-orange bg-kapwa-bg-accent-orange-weak border-kapwa-border-weak'
                       }`}
                     >
                       {idx + 1}
                     </div>
-                    <p className='pt-1 text-sm leading-relaxed text-slate-700 md:text-base'>
+                    <p className='text-kapwa-text-support pt-1 text-sm leading-relaxed md:text-base'>
                       {step}
                     </p>
                   </div>
                 ))}
               </div>
             </DetailSection>
+          )}
+
+          {/* Quick Info Grid (community services) */}
+          {!isOfficialSource && isTransaction && quickInfoArray.length > 0 && (
+            <div className='grid grid-cols-2 gap-3 md:grid-cols-3'>
+              {quickInfoArray.map((info, idx) => (
+                <div
+                  key={idx}
+                  className='border-kapwa-border-weak bg-kapwa-bg-surface flex items-start gap-3 rounded-2xl border p-4 shadow-xs'
+                >
+                  <div className='text-kapwa-text-brand bg-kapwa-bg-surface-raised shrink-0 rounded-lg p-2'>
+                    <info.icon className='h-4 w-4' />
+                  </div>
+                  <div>
+                    <p className='text-kapwa-text-disabled mb-1 text-[10px] font-bold tracking-widest uppercase'>
+                      {info.label}
+                    </p>
+                    <p className='text-kapwa-text-strong text-xs font-bold'>
+                      {info.value}
+                    </p>
+                  </div>
+                </div>
+              ))}
+            </div>
           )}
 
           {/* Sources and References */}
@@ -212,13 +385,13 @@ export default function ServiceDetail() {
                 {service.sources.map((source: Source, idx: number) => (
                   <li
                     key={idx}
-                    className='hover:border-primary-100 group flex items-start gap-3 rounded-xl border border-slate-100 bg-slate-50/50 p-4 transition-all'
+                    className='hover:border-kapwa-border-brand group border-kapwa-border-weak bg-kapwa-bg-surface-raised/50 flex items-start gap-3 rounded-xl border p-4 transition-all'
                   >
-                    <div className='group-hover:text-primary-600 rounded-lg bg-white p-2 text-slate-400 shadow-sm'>
+                    <div className='group-hover:text-kapwa-text-brand bg-kapwa-bg-surface text-kapwa-text-disabled rounded-lg p-2 shadow-sm'>
                       <LinkIcon className='h-3.5 w-3.5' />
                     </div>
                     <div className='flex flex-col'>
-                      <p className='mb-1 text-[10px] font-bold tracking-widest text-slate-400 uppercase'>
+                      <p className='text-kapwa-text-disabled mb-1 text-[10px] font-bold tracking-widest uppercase'>
                         Reference
                       </p>
                       {source.url ? (
@@ -226,12 +399,12 @@ export default function ServiceDetail() {
                           href={source.url}
                           target='_blank'
                           rel='noreferrer'
-                          className='text-primary-600 inline-flex items-center gap-1.5 text-sm font-bold hover:underline'
+                          className='text-kapwa-text-brand inline-flex items-center gap-1.5 text-sm font-bold hover:underline'
                         >
                           {source.name} <ExternalLink className='h-3 w-3' />
                         </a>
                       ) : (
-                        <span className='text-sm font-bold text-slate-700'>
+                        <span className='text-kapwa-text-support text-sm font-bold'>
                           {source.name}
                         </span>
                       )}
@@ -247,32 +420,52 @@ export default function ServiceDetail() {
         <aside className='w-full space-y-6 xl:w-80'>
           {/* Data Integrity Card */}
           <div
-            className={`flex flex-col gap-3 rounded-2xl border p-5 transition-colors ${isVerified ? 'border-emerald-100 bg-emerald-50/30' : 'border-slate-200 bg-slate-50'}`}
+            className={`flex flex-col gap-3 rounded-2xl border p-5 transition-colors ${
+              isOfficialSource
+                ? 'border-kapwa-border-success bg-kapwa-bg-success-weak/30'
+                : isVerified
+                  ? 'border-kapwa-border-success bg-kapwa-bg-success-weak/30'
+                  : 'border-kapwa-border-weak bg-kapwa-bg-surface'
+            }`}
           >
             <div className='flex items-center justify-between'>
-              <p className='text-[10px] font-bold tracking-widest text-slate-400 uppercase'>
+              <p className='text-kapwa-text-disabled text-[10px] font-bold tracking-widest uppercase'>
                 Data Integrity
               </p>
-              {isVerified ? (
-                <CheckCircle2Icon className='h-4 w-4 text-emerald-500' />
+              {isOfficialSource || isVerified ? (
+                <CheckCircle2Icon className='h-4 w-4 text-kapwa-text-success' />
               ) : (
-                <AlertCircle className='h-4 w-4 text-slate-300' />
+                <AlertCircle className='text-kapwa-text-support h-4 w-4' />
               )}
             </div>
             <div className='flex items-center gap-3'>
               <Clock
-                className={`h-5 w-5 ${isVerified ? 'text-emerald-600' : 'text-slate-300'}`}
+                className={`h-5 w-5 ${
+                  isOfficialSource || isVerified
+                    ? 'text-kapwa-text-success'
+                    : 'text-kapwa-text-support'
+                }`}
               />
               <div>
                 <p
-                  className={`text-sm font-bold ${isVerified ? 'text-emerald-900' : 'text-slate-500'}`}
+                  className={`text-sm font-bold ${
+                    isOfficialSource || isVerified
+                      ? 'text-kapwa-text-strong'
+                      : 'text-kapwa-text-strong0'
+                  }`}
                 >
-                  {isVerified ? 'Verified Information' : 'Unverified Data'}
+                  {isOfficialSource
+                    ? 'Official Data'
+                    : isVerified
+                      ? 'Verified Information'
+                      : 'Unverified Data'}
                 </p>
-                <p className='text-[11px] font-medium text-slate-400'>
-                  {isVerified
-                    ? `Last Audit: ${format(updatedAtDate!, 'MMMM yyyy')}`
-                    : 'Awaiting official verification'}
+                <p className='text-kapwa-text-disabled text-[11px] font-medium'>
+                  {isOfficialSource
+                    ? 'From Citizens Charter document'
+                    : isVerified
+                      ? `Last Audit: ${format(updatedAtDate!, 'MMMM yyyy')}`
+                      : 'Awaiting official verification'}
                 </p>
               </div>
             </div>
@@ -282,48 +475,56 @@ export default function ServiceDetail() {
           {involvedOffices.length > 0 && (
             <DetailSection title='Responsible Offices' icon={Building2}>
               <div className='space-y-6'>
-                {involvedOffices.map((off, idx) => (
-                  <div
-                    key={off.slug}
-                    className={idx > 0 ? 'border-t border-slate-100 pt-5' : ''}
-                  >
-                    <Link
-                      to={`/government/departments/${off.slug}`}
-                      className='group block'
+                {involvedOffices.map((off, idx) => {
+                  const officePath =
+                    off.type === 'executive'
+                      ? `/government/executive/${off.slug}`
+                      : off.type === 'legislative'
+                        ? `/government/legislative/${off.slug}`
+                        : `/government/departments/${off.slug}`;
+
+                  return (
+                    <div
+                      key={off.slug}
+                      className={
+                        idx > 0 ? 'border-t border-kapwa-border-weak pt-5' : ''
+                      }
                     >
-                      <h3 className='group-hover:text-primary-600 leading-tight font-bold text-slate-900 transition-colors'>
-                        {toTitleCase(off.office_name)}
-                      </h3>
-                      <span className='text-primary-600 mt-2 flex items-center gap-1 text-[10px] font-bold tracking-widest uppercase'>
-                        View Profile{' '}
-                        <ArrowRight className='h-3 w-3 transition-transform group-hover:translate-x-1' />
-                      </span>
-                    </Link>
-                  </div>
-                ))}
+                      <Link to={officePath} className='group block'>
+                        <h3 className='group-hover:text-kapwa-text-brand text-kapwa-text-strong leading-tight font-bold transition-colors'>
+                          {toTitleCase(off.name)}
+                        </h3>
+                        <span className='text-kapwa-text-brand mt-2 flex items-center gap-1 text-[10px] font-bold tracking-widest uppercase'>
+                          View Profile{' '}
+                          <ArrowRight className='h-3 w-3 transition-transform group-hover:translate-x-1' />
+                        </span>
+                      </Link>
+                    </div>
+                  );
+                })}
               </div>
             </DetailSection>
           )}
 
           {/* SUGGEST AN EDIT - NEW PLACEMENT & STYLE */}
-          <div className='space-y-4 rounded-2xl border border-slate-200 bg-white p-6 shadow-sm'>
+          <div className='border-kapwa-border-weak bg-kapwa-bg-surface space-y-4 rounded-2xl border p-6 shadow-sm'>
             <div className='flex items-center gap-3'>
-              <div className='bg-secondary-50 text-secondary-600 rounded-lg p-2'>
+              <div className='bg-kapwa-bg-accent-orange-weak text-kapwa-text-accent-orange rounded-lg p-2'>
                 <HeartHandshake className='h-5 w-5' />
               </div>
-              <h4 className='text-sm leading-tight font-bold text-slate-900'>
+              <h4 className='text-kapwa-text-strong text-sm leading-tight font-bold'>
                 Help improve this data
               </h4>
             </div>
-            <p className='text-xs leading-relaxed text-slate-500'>
+            <p className='text-kapwa-text-disabled text-xs leading-relaxed'>
               Find an error or outdated info? Our community helps keep this
               portal accurate.
             </p>
             <Link
               to={`/contribute?edit=${service.slug}`}
-              className='group flex min-h-[44px] w-full items-center justify-center gap-2 rounded-xl border-2 border-slate-100 px-4 py-2.5 text-xs font-bold text-slate-600 transition-all hover:border-slate-200 hover:bg-slate-50'
+              className='group border-kapwa-border-weak text-kapwa-text-support hover:border-kapwa-border-weak hover:bg-kapwa-bg-surface-raised flex min-h-[44px] w-full items-center justify-center gap-2 rounded-xl border-2 px-4 py-2.5 text-xs font-bold transition-all'
             >
-              <Edit3 className='group-hover:text-secondary-600 h-3.5 w-3.5 text-slate-400 transition-colors' />
+              <Edit3 className='group-hover:text-kapwa-text-accent-orange text-kapwa-text-disabled h-3.5 w-3.5 transition-colors' />
               Suggest an Edit
             </Link>
           </div>

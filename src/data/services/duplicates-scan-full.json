@@ -1,0 +1,539 @@
+{
+  "scan_date": "2026-02-19",
+  "total_services_scanned": 194,
+  "potential_duplicates_found": 28,
+  "duplicates": [
+    {
+      "type": "SIMILAR_NAME",
+      "severity": "MEDIUM",
+      "similarity": "100.00%",
+      "service1": {
+        "slug": "collection-of-other-payments",
+        "service": "Collection of Other Payments",
+        "serviceNumber": "1.6",
+        "category": "Taxation & Payments",
+        "source": "citizens-charter"
+      },
+      "service2": {
+        "slug": "29-29-1-collection-of-other-payments",
+        "service": "Collection of Other Payments",
+        "serviceNumber": "29.1",
+        "category": "Taxation & Payments",
+        "source": "citizens-charter"
+      }
+    },
+    {
+      "type": "SIMILAR_NAME",
+      "severity": "MEDIUM",
+      "similarity": "100.00%",
+      "service1": {
+        "slug": "inquiriesassistance-to-new-cooperatives",
+        "service": "INQUIRIES/ASSISTANCE TO NEW COOPERATIVES",
+        "serviceNumber": "16.1",
+        "category": "Agriculture & Economic Development",
+        "source": "citizens-charter"
+      },
+      "service2": {
+        "slug": "8-8-1-inquiriesassistance-to-new-cooperatives",
+        "service": "Inquiries/Assistance to New Cooperatives",
+        "serviceNumber": "8.1",
+        "category": "Agriculture & Economic Development",
+        "source": "citizens-charter"
+      }
+    },
+    {
+      "type": "SIMILAR_NAME",
+      "severity": "MEDIUM",
+      "similarity": "100.00%",
+      "service1": {
+        "slug": "issuance-of-assorted-vegetable-seedsseedlings",
+        "service": "ISSUANCE OF ASSORTED VEGETABLE SEEDS/SEEDLINGS",
+        "serviceNumber": "16.2",
+        "category": "Agriculture & Economic Development",
+        "source": "citizens-charter"
+      },
+      "service2": {
+        "slug": "8-8-2-issuance-of-assorted-vegetable-seedsseedlings",
+        "service": "Issuance of Assorted Vegetable Seeds/Seedlings",
+        "serviceNumber": "8.2",
+        "category": "Agriculture & Economic Development",
+        "source": "citizens-charter"
+      }
+    },
+    {
+      "type": "SIMILAR_NAME",
+      "severity": "LOW",
+      "similarity": "94.25%",
+      "service1": {
+        "slug": "inspection-of-electrical-installation-final",
+        "service": "INSPECTION OF ELECTRICAL INSTALLATION (FINAL)",
+        "serviceNumber": "20.3",
+        "category": "Infrastructure & Public Works",
+        "source": "citizens-charter"
+      },
+      "service2": {
+        "slug": "inspection-of-electronics-installation-final",
+        "service": "INSPECTION OF ELECTRONICS INSTALLATION (FINAL)",
+        "serviceNumber": "20.8",
+        "category": "Infrastructure & Public Works",
+        "source": "citizens-charter"
+      }
+    },
+    {
+      "type": "SIMILAR_NAME",
+      "severity": "LOW",
+      "similarity": "93.75%",
+      "service1": {
+        "slug": "delayed-registration-of-regular-and-timely-certificate-of-live-birth",
+        "service": "Delayed Registration of Regular and Timely Certificate of Live Birth",
+        "serviceNumber": "5.2",
+        "category": "Certificates & Vital Records",
+        "source": "citizens-charter"
+      },
+      "service2": {
+        "slug": "registration-of-regular-and-timely-certificate-of-live-birth",
+        "service": "Registration of Regular and Timely Certificate of Live Birth",
+        "serviceNumber": "5.1",
+        "category": "Certificates & Vital Records",
+        "source": "citizens-charter"
+      }
+    },
+    {
+      "type": "SIMILAR_NAME",
+      "severity": "LOW",
+      "similarity": "93.55%",
+      "service1": {
+        "slug": "issuance-of-zoning-certificate",
+        "service": "ISSUANCE OF ZONING CERTIFICATE",
+        "serviceNumber": "25.1",
+        "category": "Infrastructure & Public Works",
+        "source": "citizens-charter"
+      },
+      "service2": {
+        "slug": "issuance-of-zoning-certification",
+        "service": "Issuance of Zoning Certification",
+        "serviceNumber": "4.4",
+        "category": "Infrastructure & Public Works",
+        "source": "citizens-charter"
+      }
+    },
+    {
+      "type": "SIMILAR_NAME",
+      "severity": "LOW",
+      "similarity": "93.53%",
+      "service1": {
+        "slug": "issuance-of-updated-tax-declaration-for-new-or-reassessment-of-building",
+        "service": "Issuance of Updated Tax Declaration for New or Reassessment of Building/",
+        "serviceNumber": "2.2",
+        "category": "Taxation & Payments",
+        "source": "citizens-charter"
+      },
+      "service2": {
+        "slug": "issuance-of-updated-tax-declaration-for-new-or-reassessment-of-lands",
+        "service": "Issuance of Updated Tax Declaration for New or Reassessment of Lands",
+        "serviceNumber": "2.3",
+        "category": "Taxation & Payments",
+        "source": "citizens-charter"
+      }
+    },
+    {
+      "type": "SIMILAR_NAME",
+      "severity": "LOW",
+      "similarity": "92.99%",
+      "service1": {
+        "slug": "slaughtering-of-animals-and-issuance-of-local-meat-inspection-certificate",
+        "service": "SLAUGHTERING OF ANIMALS AND ISSUANCE OF LOCAL MEAT INSPECTION CERTIFICATE",
+        "serviceNumber": "19.1",
+        "category": "Agriculture & Economic Development",
+        "source": "citizens-charter"
+      },
+      "service2": {
+        "slug": "slaughtering-of-smalllarge-animals-and-issuance-of-local-meat-inspection-certificate",
+        "service": "Slaughtering of Small/Large Animals and Issuance of Local Meat Inspection Certificate",
+        "serviceNumber": "7.2",
+        "category": "Agriculture & Economic Development",
+        "source": "citizens-charter"
+      }
+    },
+    {
+      "type": "SIMILAR_NAME",
+      "severity": "LOW",
+      "similarity": "92.17%",
+      "service1": {
+        "slug": "registration-of-regular-and-timely-certificate-of-death",
+        "service": "Registration of Regular and Timely Certificate of Death",
+        "serviceNumber": "5.6",
+        "category": "Certificates & Vital Records",
+        "source": "citizens-charter"
+      },
+      "service2": {
+        "slug": "registration-of-regular-and-timely-certificate-of-live-birth",
+        "service": "Registration of Regular and Timely Certificate of Live Birth",
+        "serviceNumber": "5.1",
+        "category": "Certificates & Vital Records",
+        "source": "citizens-charter"
+      }
+    },
+    {
+      "type": "SIMILAR_NAME",
+      "severity": "LOW",
+      "similarity": "91.23%",
+      "service1": {
+        "slug": "request-for-cremation-permit",
+        "service": "Request for Cremation Permit",
+        "serviceNumber": "5.10",
+        "category": "Certificates & Vital Records",
+        "source": "citizens-charter"
+      },
+      "service2": {
+        "slug": "request-for-exhumation-permit",
+        "service": "Request for Exhumation Permit",
+        "serviceNumber": "5.8",
+        "category": "Certificates & Vital Records",
+        "source": "citizens-charter"
+      }
+    },
+    {
+      "type": "SIMILAR_NAME",
+      "severity": "LOW",
+      "similarity": "90.70%",
+      "service1": {
+        "slug": "inspection-of-electrical-installation-final",
+        "service": "INSPECTION OF ELECTRICAL INSTALLATION (FINAL)",
+        "serviceNumber": "20.3",
+        "category": "Infrastructure & Public Works",
+        "source": "citizens-charter"
+      },
+      "service2": {
+        "slug": "inspection-of-mechanical-installation-final",
+        "service": "INSPECTION OF MECHANICAL INSTALLATION (FINAL)",
+        "serviceNumber": "20.4",
+        "category": "Infrastructure & Public Works",
+        "source": "citizens-charter"
+      }
+    },
+    {
+      "type": "SIMILAR_NAME",
+      "severity": "LOW",
+      "similarity": "90.57%",
+      "service1": {
+        "slug": "late-registration-of-marriage",
+        "service": "LATE REGISTRATION OF MARRIAGE",
+        "serviceNumber": "13.12",
+        "category": "Certificates & Vital Records",
+        "source": "citizens-charter"
+      },
+      "service2": {
+        "slug": "registration-of-marriage",
+        "service": "REGISTRATION OF MARRIAGE",
+        "serviceNumber": "13.11",
+        "category": "Certificates & Vital Records",
+        "source": "citizens-charter"
+      }
+    },
+    {
+      "type": "SIMILAR_NAME",
+      "severity": "LOW",
+      "similarity": "90.48%",
+      "service1": {
+        "slug": "issuance-of-electrical-installation-permit",
+        "service": "ISSUANCE OF ELECTRICAL INSTALLATION PERMIT",
+        "serviceNumber": "20.15",
+        "category": "Infrastructure & Public Works",
+        "source": "citizens-charter"
+      },
+      "service2": {
+        "slug": "issuance-of-mechanical-installation-permit",
+        "service": "ISSUANCE OF MECHANICAL INSTALLATION PERMIT",
+        "serviceNumber": "20.16",
+        "category": "Infrastructure & Public Works",
+        "source": "citizens-charter"
+      }
+    },
+    {
+      "type": "SIMILAR_NAME",
+      "severity": "LOW",
+      "similarity": "90.27%",
+      "service1": {
+        "slug": "registration-of-regular-and-timely-certificate-of-death",
+        "service": "Registration of Regular and Timely Certificate of Death",
+        "serviceNumber": "5.6",
+        "category": "Certificates & Vital Records",
+        "source": "citizens-charter"
+      },
+      "service2": {
+        "slug": "registration-of-regular-and-timely-certificate-of-marriage",
+        "service": "Registration of Regular and Timely Certificate of Marriage",
+        "serviceNumber": "5.4",
+        "category": "Certificates & Vital Records",
+        "source": "citizens-charter"
+      }
+    },
+    {
+      "type": "SIMILAR_NAME",
+      "severity": "LOW",
+      "similarity": "89.36%",
+      "service1": {
+        "slug": "late-registration-of-death",
+        "service": "LATE REGISTRATION OF DEATH",
+        "serviceNumber": "13.10",
+        "category": "Certificates & Vital Records",
+        "source": "citizens-charter"
+      },
+      "service2": {
+        "slug": "registration-of-death",
+        "service": "REGISTRATION OF DEATH",
+        "serviceNumber": "13.9",
+        "category": "Certificates & Vital Records",
+        "source": "citizens-charter"
+      }
+    },
+    {
+      "type": "SIMILAR_NAME",
+      "severity": "LOW",
+      "similarity": "88.89%",
+      "service1": {
+        "slug": "business-registration-new-applicant-face-to-face",
+        "service": "Business Registration (New Applicant) – Face to Face",
+        "serviceNumber": "1.3",
+        "category": "Taxation & Payments",
+        "source": "citizens-charter"
+      },
+      "service2": {
+        "slug": "business-registration-renewal-face-to-face",
+        "service": "Business Registration (Renewal) – Face to Face",
+        "serviceNumber": "1.1",
+        "category": "Taxation & Payments",
+        "source": "citizens-charter"
+      }
+    },
+    {
+      "type": "SIMILAR_NAME",
+      "severity": "LOW",
+      "similarity": "88.89%",
+      "service1": {
+        "slug": "legal-instruments-that-will-affect-the-certificate-of-live-birth",
+        "service": "LEGAL INSTRUMENTS THAT WILL AFFECT THE CERTIFICATE OF LIVE BIRTH",
+        "serviceNumber": "13.5",
+        "category": "Certificates & Vital Records",
+        "source": "citizens-charter"
+      },
+      "service2": {
+        "slug": "legal-instruments-that-will-affect-the-certificate-of-marriage",
+        "service": "LEGAL INSTRUMENTS THAT WILL AFFECT THE CERTIFICATE OF MARRIAGE",
+        "serviceNumber": "13.4",
+        "category": "Certificates & Vital Records",
+        "source": "citizens-charter"
+      }
+    },
+    {
+      "type": "SIMILAR_NAME",
+      "severity": "LOW",
+      "similarity": "88.46%",
+      "service1": {
+        "slug": "late-registration-of-birth",
+        "service": "LATE REGISTRATION OF BIRTH",
+        "serviceNumber": "13.8",
+        "category": "Certificates & Vital Records",
+        "source": "citizens-charter"
+      },
+      "service2": {
+        "slug": "late-registration-of-death",
+        "service": "LATE REGISTRATION OF DEATH",
+        "serviceNumber": "13.10",
+        "category": "Certificates & Vital Records",
+        "source": "citizens-charter"
+      }
+    },
+    {
+      "type": "SIMILAR_NAME",
+      "severity": "LOW",
+      "similarity": "88.14%",
+      "service1": {
+        "slug": "registration-of-regular-and-timely-certificate-of-live-birth",
+        "service": "Registration of Regular and Timely Certificate of Live Birth",
+        "serviceNumber": "5.1",
+        "category": "Certificates & Vital Records",
+        "source": "citizens-charter"
+      },
+      "service2": {
+        "slug": "registration-of-regular-and-timely-certificate-of-marriage",
+        "service": "Registration of Regular and Timely Certificate of Marriage",
+        "serviceNumber": "5.4",
+        "category": "Certificates & Vital Records",
+        "source": "citizens-charter"
+      }
+    },
+    {
+      "type": "SIMILAR_NAME",
+      "severity": "LOW",
+      "similarity": "88.10%",
+      "service1": {
+        "slug": "inspection-of-mechanical-installation-final",
+        "service": "INSPECTION OF MECHANICAL INSTALLATION (FINAL)",
+        "serviceNumber": "20.4",
+        "category": "Infrastructure & Public Works",
+        "source": "citizens-charter"
+      },
+      "service2": {
+        "slug": "inspection-of-sanitary-installation-final",
+        "service": "INSPECTION OF SANITARY INSTALLATION (FINAL)",
+        "serviceNumber": "20.5",
+        "category": "Infrastructure & Public Works",
+        "source": "citizens-charter"
+      }
+    },
+    {
+      "type": "SIMILAR_NAME",
+      "severity": "LOW",
+      "similarity": "87.91%",
+      "service1": {
+        "slug": "delayed-registration-of-certificate-of-death",
+        "service": "Delayed Registration of Certificate of Death",
+        "serviceNumber": "5.7",
+        "category": "Certificates & Vital Records",
+        "source": "citizens-charter"
+      },
+      "service2": {
+        "slug": "delayed-registration-of-certificate-of-marriage",
+        "service": "Delayed Registration of Certificate of Marriage",
+        "serviceNumber": "5.5",
+        "category": "Certificates & Vital Records",
+        "source": "citizens-charter"
+      }
+    },
+    {
+      "type": "SIMILAR_NAME",
+      "severity": "LOW",
+      "similarity": "87.36%",
+      "service1": {
+        "slug": "inspection-of-electronics-installation-final",
+        "service": "INSPECTION OF ELECTRONICS INSTALLATION (FINAL)",
+        "serviceNumber": "20.8",
+        "category": "Infrastructure & Public Works",
+        "source": "citizens-charter"
+      },
+      "service2": {
+        "slug": "inspection-of-mechanical-installation-final",
+        "service": "INSPECTION OF MECHANICAL INSTALLATION (FINAL)",
+        "serviceNumber": "20.4",
+        "category": "Infrastructure & Public Works",
+        "source": "citizens-charter"
+      }
+    },
+    {
+      "type": "SIMILAR_NAME",
+      "severity": "LOW",
+      "similarity": "87.18%",
+      "service1": {
+        "slug": "business-registration-new-applicant---online",
+        "service": "Business Registration (New Applicant) - Online",
+        "serviceNumber": "1.4",
+        "category": "Business, Trade & Investment",
+        "source": "citizens-charter"
+      },
+      "service2": {
+        "slug": "business-registration-renewal-online",
+        "service": "Business Registration (Renewal) – Online",
+        "serviceNumber": "1.2",
+        "category": "Taxation & Payments",
+        "source": "citizens-charter"
+      }
+    },
+    {
+      "type": "SIMILAR_NAME",
+      "severity": "LOW",
+      "similarity": "86.96%",
+      "service1": {
+        "slug": "issuance-of-barangay-business-clearance",
+        "service": "ISSUANCE OF BARANGAY BUSINESS CLEARANCE",
+        "serviceNumber": "9.1",
+        "category": "Certificates & Vital Records",
+        "source": "citizens-charter"
+      },
+      "service2": {
+        "slug": "issuance-of-barangay-clearance",
+        "service": "ISSUANCE OF BARANGAY CLEARANCE",
+        "serviceNumber": "9.2",
+        "category": "Certificates & Vital Records",
+        "source": "citizens-charter"
+      }
+    },
+    {
+      "type": "SIMILAR_NAME",
+      "severity": "LOW",
+      "similarity": "86.40%",
+      "service1": {
+        "slug": "issuance-of-locational-clearance-for-building-application",
+        "service": "Issuance of Locational Clearance for Building Application",
+        "serviceNumber": "4.2",
+        "category": "Infrastructure & Public Works",
+        "source": "citizens-charter"
+      },
+      "service2": {
+        "slug": "issuance-of-locational-clearance-for-titling-application-free-patent",
+        "service": "Issuance of Locational Clearance for Titling Application (Free Patent)",
+        "serviceNumber": "4.1",
+        "category": "Infrastructure & Public Works",
+        "source": "citizens-charter"
+      }
+    },
+    {
+      "type": "SIMILAR_NAME",
+      "severity": "LOW",
+      "similarity": "86.24%",
+      "service1": {
+        "slug": "issuance-of-building-permit-residentialcommercial-new",
+        "service": "ISSUANCE OF BUILDING PERMIT RESIDENTIAL/COMMERCIAL (NEW)",
+        "serviceNumber": "20.14",
+        "category": "Infrastructure & Public Works",
+        "source": "citizens-charter"
+      },
+      "service2": {
+        "slug": "issuance-of-development-permit-residentialcommercial-new",
+        "service": "ISSUANCE OF DEVELOPMENT PERMIT RESIDENTIAL/COMMERCIAL (NEW)",
+        "serviceNumber": "20.7",
+        "category": "Infrastructure & Public Works",
+        "source": "citizens-charter"
+      }
+    },
+    {
+      "type": "SIMILAR_NAME",
+      "severity": "LOW",
+      "similarity": "86.21%",
+      "service1": {
+        "slug": "issuance-of-certifications",
+        "service": "ISSUANCE OF CERTIFICATIONS",
+        "serviceNumber": "32.5",
+        "category": "Infrastructure & Public Works",
+        "source": "citizens-charter"
+      },
+      "service2": {
+        "slug": "issuance-of-zoning-certification",
+        "service": "Issuance of Zoning Certification",
+        "serviceNumber": "4.4",
+        "category": "Infrastructure & Public Works",
+        "source": "citizens-charter"
+      }
+    },
+    {
+      "type": "SIMILAR_NAME",
+      "severity": "LOW",
+      "similarity": "86.18%",
+      "service1": {
+        "slug": "delayed-registration-of-regular-and-timely-certificate-of-live-birth",
+        "service": "Delayed Registration of Regular and Timely Certificate of Live Birth",
+        "serviceNumber": "5.2",
+        "category": "Certificates & Vital Records",
+        "source": "citizens-charter"
+      },
+      "service2": {
+        "slug": "registration-of-regular-and-timely-certificate-of-death",
+        "service": "Registration of Regular and Timely Certificate of Death",
+        "serviceNumber": "5.6",
+        "category": "Certificates & Vital Records",
+        "source": "citizens-charter"
+      }
+    }
+  ]
+}

@@ -1,44 +1,5 @@
 [
   {
-    "slug": "office-of-the-mayor",
-    "office_name": "OFFICE OF THE MAYOR",
-    "address": null,
-    "trunkline": ["530-2981 ext 3000"],
-    "website": null,
-    "email": "mayorsoffice@losbanos.gov.ph",
-    "department_head": {
-      "name": null,
-      "contact": null,
-      "email": null
-    }
-  },
-  {
-    "slug": "office-of-the-vice-mayor",
-    "office_name": "OFFICE OF THE VICE MAYOR",
-    "address": null,
-    "trunkline": ["530-2981 ext 2000"],
-    "website": null,
-    "email": "vmo@losbanos.gov.ph",
-    "department_head": {
-      "name": null,
-      "contact": null,
-      "email": null
-    }
-  },
-  {
-    "slug": "sangguniang-bayan",
-    "office_name": "SANGGUNIANG BAYAN",
-    "address": null,
-    "trunkline": ["530-2981 ext 2001"],
-    "website": null,
-    "email": "sb@losbanos.gov.ph",
-    "department_head": {
-      "name": null,
-      "contact": null,
-      "email": null
-    }
-  },
-  {
     "slug": "operation-center",
     "office_name": "OPERATION CENTER",
     "address": null,
@@ -422,6 +383,45 @@
     "trunkline": ["530-2981 ext 3006"],
     "website": null,
     "email": "bac@losbanos.gov.ph",
+    "department_head": {
+      "name": null,
+      "contact": null,
+      "email": null
+    }
+  },
+  {
+    "slug": "market",
+    "office_name": "MUNICIPAL ECONOMIC ENTERPRISE - MARKET",
+    "address": null,
+    "trunkline": [null],
+    "website": null,
+    "email": null,
+    "department_head": {
+      "name": null,
+      "contact": null,
+      "email": null
+    }
+  },
+  {
+    "slug": "slaughterhouse",
+    "office_name": "MUNICIPAL ECONOMIC ENTERPRISE - SLAUGHTERHOUSE",
+    "address": null,
+    "trunkline": [null],
+    "website": null,
+    "email": null,
+    "department_head": {
+      "name": null,
+      "contact": null,
+      "email": null
+    }
+  },
+  {
+    "slug": "public-order-and-safety-office",
+    "office_name": "PUBLIC ORDER AND SAFETY OFFICE",
+    "address": null,
+    "trunkline": [null],
+    "website": null,
+    "email": null,
     "department_head": {
       "name": null,
       "contact": null,

@@ -2,6 +2,7 @@ import { FC, ReactNode, useState } from 'react';
 
 import { useNavigate } from 'react-router-dom';
 
+import { Button } from '@bettergov/kapwa';
 import {
   GithubIcon,
   LightbulbIcon,
@@ -11,8 +12,6 @@ import {
   UsersIcon,
 } from 'lucide-react';
 import { Helmet } from 'react-helmet-async';
-
-import Button from '@/components/ui/Button';
 
 import { Card, CardContent } from '../components/ui/Card';
 
@@ -35,7 +34,7 @@ const initialProjectIdeas: ProjectIdea[] = [
     description:
       'A transparent, immutable platform where citizens can report and track government projects in their communities. Uses blockchain technology to ensure data integrity and prevent tampering with project reports and progress updates.',
     category: 'Transparency & Accountability',
-    icon: <TrendingUpIcon className='w-6 h-6' />,
+    icon: <TrendingUpIcon className='h-6 w-6' />,
     priority: 'high',
     complexity: 'complex',
     upvotes: 42,
@@ -47,7 +46,7 @@ const initialProjectIdeas: ProjectIdea[] = [
     description:
       'An anonymous review platform where government employees and citizens can rate and review government agencies, departments, and services. Provides insights into workplace culture, service quality, and areas for improvement.',
     category: 'Public Feedback',
-    icon: <StarIcon className='w-6 h-6' />,
+    icon: <StarIcon className='h-6 w-6' />,
     priority: 'high',
     complexity: 'moderate',
     upvotes: 38,
@@ -59,7 +58,7 @@ const initialProjectIdeas: ProjectIdea[] = [
     description:
       'Comprehensive design system and guidelines for the BetterGov.ph platform. Includes UI components, color schemes, typography, accessibility standards, and best practices for government web services.',
     category: 'Platform Development',
-    icon: <LightbulbIcon className='w-6 h-6' />,
+    icon: <LightbulbIcon className='h-6 w-6' />,
     priority: 'medium',
     complexity: 'simple',
     upvotes: 25,
@@ -71,7 +70,7 @@ const initialProjectIdeas: ProjectIdea[] = [
     description:
       'A citizen-driven platform to rate and review elected officials based on their performance, campaign promises, voting records, and public service delivery. Includes fact-checking and transparency features.',
     category: 'Political Accountability',
-    icon: <UsersIcon className='w-6 h-6' />,
+    icon: <UsersIcon className='h-6 w-6' />,
     priority: 'high',
     complexity: 'moderate',
     upvotes: 56,
@@ -82,26 +81,26 @@ const initialProjectIdeas: ProjectIdea[] = [
 const getPriorityColor = (priority: string) => {
   switch (priority) {
     case 'high':
-      return 'bg-red-100 text-red-800';
+      return 'bg-kapwa-bg-danger-weak text-kapwa-text-danger';
     case 'medium':
-      return 'bg-yellow-100 text-yellow-800';
+      return 'bg-kapwa-bg-warning-weak text-kapwa-text-warning';
     case 'low':
-      return 'bg-green-100 text-green-800';
+      return 'bg-kapwa-bg-success-weak text-kapwa-text-success';
     default:
-      return 'bg-gray-100 text-gray-800';
+      return 'bg-kapwa-bg-surface-raised text-kapwa-text-strong';
   }
 };
 
 const getComplexityColor = (complexity: string) => {
   switch (complexity) {
     case 'simple':
-      return 'bg-blue-100 text-blue-800';
+      return 'bg-kapwa-bg-info-weak text-kapwa-text-info';
     case 'moderate':
-      return 'bg-purple-100 text-purple-800';
+      return 'bg-kapwa-bg-accent-purple-weak text-kapwa-text-accent-purple';
     case 'complex':
-      return 'bg-orange-100 text-orange-800';
+      return 'bg-kapwa-bg-accent-orange-weak text-kapwa-text-accent-orange';
     default:
-      return 'bg-gray-100 text-gray-800';
+      return 'bg-kapwa-bg-surface-raised text-kapwa-text-strong';
   }
 };
 
@@ -120,7 +119,7 @@ const Ideas: FC = () => {
     window.open(githubUrl, '_blank');
   };
   return (
-    <div className='min-h-screen bg-gray-50'>
+    <div className='bg-kapwa-bg-surface-raised min-h-screen'>
       <Helmet>
         <title>Project Ideas | BetterGov.ph</title>
         <meta
@@ -144,18 +143,18 @@ const Ideas: FC = () => {
         <meta property='og:image' content='https://bettergov.ph/ph-logo.png' />
       </Helmet>
 
-      <div className='container px-4 py-6 mx-auto md:py-12'>
+      <div className='container mx-auto px-4 py-6 md:py-12'>
         {/* Header */}
         <header className='mb-8 text-center md:mb-12'>
-          <div className='flex justify-center items-center mb-4'>
-            <div className='p-3 mr-4 rounded-full bg-primary-50 text-primary-600'>
-              <LightbulbIcon className='w-8 h-8' />
+          <div className='mb-4 flex items-center justify-center'>
+            <div className='bg-kapwa-bg-surface text-kapwa-text-brand mr-4 rounded-full p-3'>
+              <LightbulbIcon className='h-8 w-8' />
             </div>
-            <h1 className='text-3xl font-bold text-gray-900 md:text-4xl'>
+            <h1 className='text-kapwa-text-strong text-3xl font-bold md:text-4xl'>
               Project Ideas
             </h1>
           </div>
-          <p className='mx-auto max-w-3xl text-sm text-gray-800 md:text-lg'>
+          <p className='text-kapwa-text-support mx-auto max-w-3xl text-sm md:text-lg'>
             Innovative concepts to enhance government transparency,
             accountability, and citizen engagement. These ideas aim to bridge
             the gap between citizens and government through technology and
@@ -164,53 +163,63 @@ const Ideas: FC = () => {
         </header>
 
         {/* Stats */}
-        <div className='grid grid-cols-2 gap-4 mb-8 md:mb-12 md:grid-cols-5'>
-          <div className='p-4 text-center bg-white rounded-lg shadow-xs'>
-            <div className='text-2xl font-bold text-primary-600'>
+        <div className='mb-8 grid grid-cols-2 gap-4 md:mb-12 md:grid-cols-5'>
+          <div className='bg-kapwa-bg-surface rounded-lg p-4 text-center shadow-xs'>
+            <div className='text-kapwa-text-brand text-2xl font-bold'>
               {projectIdeas.length}
             </div>
-            <div className='text-sm text-gray-600'>Total Ideas</div>
+            <div className='text-kapwa-text-on-disabled text-sm'>
+              Total Ideas
+            </div>
           </div>
-          <div className='p-4 text-center bg-white rounded-lg shadow-xs'>
-            <div className='text-2xl font-bold text-red-600'>
+          <div className='bg-kapwa-bg-surface rounded-lg p-4 text-center shadow-xs'>
+            <div className='text-kapwa-text-danger text-2xl font-bold'>
               {projectIdeas.filter(idea => idea.priority === 'high').length}
             </div>
-            <div className='text-sm text-gray-600'>High Priority</div>
+            <div className='text-kapwa-text-on-disabled text-sm'>
+              High Priority
+            </div>
           </div>
-          <div className='p-4 text-center bg-white rounded-lg shadow-xs'>
-            <div className='text-2xl font-bold text-blue-600'>
+          <div className='bg-kapwa-bg-surface rounded-lg p-4 text-center shadow-xs'>
+            <div className='text-kapwa-text-info text-2xl font-bold'>
               {new Set(projectIdeas.map(idea => idea.category)).size}
             </div>
-            <div className='text-sm text-gray-600'>Categories</div>
+            <div className='text-kapwa-text-on-disabled text-sm'>
+              Categories
+            </div>
           </div>
-          <div className='p-4 text-center bg-white rounded-lg shadow-xs'>
-            <div className='text-2xl font-bold text-green-600'>
+          <div className='bg-kapwa-bg-surface rounded-lg p-4 text-center shadow-xs'>
+            <div className='text-kapwa-text-success text-2xl font-bold'>
               {projectIdeas.filter(idea => idea.complexity === 'simple').length}
             </div>
-            <div className='text-sm text-gray-600'>Simple Projects</div>
+            <div className='text-kapwa-text-on-disabled text-sm'>
+              Simple Projects
+            </div>
           </div>
-          <div className='p-4 text-center bg-white rounded-lg shadow-xs'>
-            <div className='text-2xl font-bold text-purple-600'>
+          <div className='bg-kapwa-bg-surface rounded-lg p-4 text-center shadow-xs'>
+            <div className='text-kapwa-text-accent-purple text-2xl font-bold'>
               {projectIdeas.reduce((sum, idea) => sum + idea.upvotes, 0)}
             </div>
-            <div className='text-sm text-gray-600'>Total Votes</div>
+            <div className='text-kapwa-text-on-disabled text-sm'>
+              Total Votes
+            </div>
           </div>
         </div>
 
         {/* Submit New Idea Button */}
-        <div className='flex justify-center mb-8'>
+        <div className='mb-8 flex justify-center'>
           <div className='flex flex-col gap-3 sm:flex-row'>
             <Button
               onClick={handleSubmitIdea}
               variant='primary'
-              leftIcon={<GithubIcon className='w-5 h-5' />}
+              leftIcon={<GithubIcon className='h-5 w-5' />}
             >
               Submit Idea
             </Button>
             <Button
               onClick={handleSubmitPR}
               variant='outline'
-              leftIcon={<PlusIcon className='w-5 h-5' />}
+              leftIcon={<PlusIcon className='h-5 w-5' />}
             >
               Contribute a Pull Request
             </Button>
@@ -219,7 +228,7 @@ const Ideas: FC = () => {
 
         {/* Project Ideas List */}
         <main>
-          <h2 className='mb-6 text-2xl font-bold text-gray-900'>
+          <h2 className='text-kapwa-text-strong mb-6 text-2xl font-bold'>
             All Project Ideas
           </h2>
           <div className='grid grid-cols-1 gap-6 lg:grid-cols-2'>
@@ -228,29 +237,33 @@ const Ideas: FC = () => {
                 (a, b) => b.upvotes - b.downvotes - (a.upvotes - a.downvotes)
               )
               .map(idea => (
-                <Card key={idea.id} hoverable className='h-full bg-white'>
+                <Card
+                  key={idea.id}
+                  hoverable
+                  className='bg-kapwa-bg-surface h-full'
+                >
                   <CardContent className='p-6'>
-                    <div className='flex justify-between items-start mb-4'>
+                    <div className='mb-4 flex items-start justify-between'>
                       <div className='flex flex-1 items-center'>
-                        <div className='p-2 mr-3 rounded-lg bg-primary-50 text-primary-600'>
+                        <div className='bg-kapwa-bg-surface text-kapwa-text-brand mr-3 rounded-lg p-2'>
                           {idea.icon}
                         </div>
                         <div className='flex-1'>
-                          <h3 className='mb-1 text-xl font-semibold text-gray-900'>
+                          <h3 className='text-kapwa-text-strong mb-1 text-xl font-semibold'>
                             {idea.title}
                           </h3>
-                          <span className='inline-block px-2 py-1 text-xs font-medium text-gray-800 bg-gray-100 rounded-sm'>
+                          <span className='bg-kapwa-bg-hover text-kapwa-text-support inline-block rounded-sm px-2 py-1 text-xs font-medium'>
                             {idea.category}
                           </span>
                         </div>
                       </div>
                     </div>
 
-                    <p className='mb-4 leading-relaxed text-gray-700'>
+                    <p className='text-kapwa-text-support mb-4 leading-relaxed'>
                       {idea.description}
                     </p>
 
-                    <div className='flex flex-wrap gap-2 mb-3'>
+                    <div className='mb-3 flex flex-wrap gap-2'>
                       <span
                         className={`inline-block rounded px-2 py-1 text-xs font-medium ${getPriorityColor(
                           idea.priority
@@ -277,20 +290,20 @@ const Ideas: FC = () => {
         </main>
 
         {/* Call to Action */}
-        <section className='p-8 mt-12 text-center bg-white rounded-lg shadow-xs'>
-          <h2 className='mb-4 text-2xl font-bold text-gray-900'>
+        <section className='bg-kapwa-bg-surface mt-12 rounded-lg p-8 text-center shadow-xs'>
+          <h2 className='text-kapwa-text-strong mb-4 text-2xl font-bold'>
             Have an Idea?
           </h2>
-          <p className='mx-auto mb-6 max-w-2xl text-gray-700'>
+          <p className='text-kapwa-text-support mx-auto mb-6 max-w-2xl'>
             We&apos;re always looking for innovative ways to improve government
             services and citizen engagement. Submit your ideas via GitHub or
             learn more about our mission.
           </p>
-          <div className='flex flex-col gap-4 justify-center sm:flex-row'>
+          <div className='flex flex-col justify-center gap-4 sm:flex-row'>
             <Button
               onClick={handleSubmitIdea}
               variant='primary'
-              leftIcon={<GithubIcon className='w-5 h-5' />}
+              leftIcon={<GithubIcon className='h-5 w-5' />}
             >
               Submit via GitHub
             </Button>

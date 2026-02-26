@@ -46,42 +46,48 @@ export default function CurrentTermCard({
             <Badge variant='primary' dot>
               {term.ordinal} Term
             </Badge>
-            <ChevronRight className='group-hover:text-primary-600 h-5 w-5 text-slate-300 transition-colors' />
+            <ChevronRight className='group-hover:text-kapwa-text-brand text-kapwa-text-support h-5 w-5 transition-colors' />
           </div>
-          <h3 className='mb-1 text-lg font-extrabold text-slate-900'>
+          <h3 className='text-kapwa-text-strong mb-1 text-lg font-extrabold'>
             {term.name}
           </h3>
-          <p className='mb-4 flex items-center gap-2 text-xs font-medium text-slate-500'>
+          <p className='text-kapwa-text-disabled mb-4 flex items-center gap-2 text-xs font-medium'>
             <Calendar className='h-3.5 w-3.5' />
             {term.year_range}
           </p>
-          <div className='grid grid-cols-3 gap-3'>
-            <div className='bg-primary-50 border-primary-100 flex flex-col items-center gap-1 rounded-xl border p-3'>
-              <FileText className='text-primary-600 h-5 w-5' />
-              <span className='text-primary-700 text-lg font-black'>
-                {ordCount}
-              </span>
-              <span className='text-primary-500 text-[9px] font-bold tracking-wider uppercase'>
-                Ordinances
-              </span>
+          <div className='flex flex-col gap-2'>
+            <div className='border-kapwa-brand-600 bg-kapwa-brand-50 flex items-center gap-3 rounded-lg border p-3'>
+              <FileText className='text-kapwa-brand-700 h-5 w-5 shrink-0' />
+              <div className='flex-1'>
+                <span className='text-kapwa-brand-700 text-lg font-black'>
+                  {ordCount}
+                </span>
+                <span className='text-kapwa-brand-700 ml-2 text-xs font-bold uppercase'>
+                  Ordinances
+                </span>
+              </div>
             </div>
-            <div className='bg-secondary-50 border-secondary-100 flex flex-col items-center gap-1 rounded-xl border p-3'>
-              <BookOpen className='text-secondary-600 h-5 w-5' />
-              <span className='text-secondary-700 text-lg font-black'>
-                {resCount}
-              </span>
-              <span className='text-secondary-500 text-[9px] font-bold tracking-wider uppercase'>
-                Resolutions
-              </span>
+            <div className='border-kapwa-border-accent-orange bg-kapwa-bg-accent-orange-weak flex items-center gap-3 rounded-lg border p-3'>
+              <BookOpen className='text-kapwa-text-accent-orange h-5 w-5 shrink-0' />
+              <div className='flex-1'>
+                <span className='text-kapwa-text-accent-orange text-lg font-black'>
+                  {resCount}
+                </span>
+                <span className='text-kapwa-text-accent-orange ml-2 text-xs font-bold uppercase'>
+                  Resolutions
+                </span>
+              </div>
             </div>
-            <div className='flex flex-col items-center gap-1 rounded-xl border border-purple-100 bg-purple-50 p-3'>
-              <ScrollText className='h-5 w-5 text-purple-600' />
-              <span className='text-lg font-black text-purple-700'>
-                {eoCount}
-              </span>
-              <span className='text-[9px] font-bold tracking-wider text-purple-500 uppercase'>
-                Exec. Orders
-              </span>
+            <div className='border-kapwa-border-warning bg-kapwa-bg-warning-weak flex items-center gap-3 rounded-lg border p-3'>
+              <ScrollText className='text-kapwa-text-warning h-5 w-5 shrink-0' />
+              <div className='flex-1'>
+                <span className='text-kapwa-text-warning text-lg font-black'>
+                  {eoCount}
+                </span>
+                <span className='text-kapwa-text-warning ml-2 text-xs font-bold uppercase'>
+                  Exec. Orders
+                </span>
+              </div>
             </div>
           </div>
         </CardContent>
