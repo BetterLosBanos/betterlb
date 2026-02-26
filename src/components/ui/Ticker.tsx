@@ -136,15 +136,14 @@ const Ticker: FC = () => {
                 }`}
               >
                 <div className='inline-flex items-center space-x-1'>
-                  <span className='opacity-80 text-kapwa-text-warning'>
+                  <span className='opacity-80' style={{ color: '#d4a855' }}>
                     {getCurrencyIcon(currentRate.code)}
                   </span>
                   <span className='text-kapwa-text-inverse kapwa-body-xs-default kapwa-body-xs-strong'>
                     {currentRate.code}
                   </span>
                   <span className='opacity-90 text-kapwa-text-inverse kapwa-body-xs-default'>
-                    <span className='currency-symbol'>₱</span>
-                    {currentRate.rate.toFixed(2)}
+                    ₱{currentRate.rate.toFixed(2)}
                   </span>
                 </div>
               </div>
