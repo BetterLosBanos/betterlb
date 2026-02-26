@@ -143,7 +143,8 @@ const Ticker: FC = () => {
                     {currentRate.code}
                   </span>
                   <span className='opacity-90 text-kapwa-text-inverse kapwa-body-xs-default'>
-                    ₱{currentRate.rate.toFixed(2)}
+                    <span className='currency-symbol'>₱</span>
+                    {currentRate.rate.toFixed(2)}
                   </span>
                 </div>
               </div>

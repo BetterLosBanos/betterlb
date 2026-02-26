@@ -95,6 +95,11 @@
   }
 }
 
+/* Currency symbol in gold */
+.currency-symbol {
+  color: #d4a855;
+}
+
 /* --- LEAFLET MAP OVERRIDES --- */
 .leaflet-popup-content-wrapper {
   border-radius: 12px !important;
