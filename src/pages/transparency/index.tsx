@@ -139,7 +139,7 @@ export default function TransparencyIndex() {
               href='https://github.com/BetterLosBanos/betterlb/issues'
               target='_blank'
               rel='noreferrer'
-              className='bg-kapwa-blue-50 text-kapwa-blue-600 hover:bg-kapwa-blue-100 inline-flex w-full items-center justify-center gap-2 rounded-lg px-4 py-2.5 text-xs font-bold transition-colors'
+              className='text-kapwa-text-inverse bg-kapwa-brand-600 hover:bg-kapwa-brand-700 inline-flex w-full items-center justify-center gap-2 rounded-lg px-4 py-2.5 text-xs font-bold transition-colors'
             >
               <Users className='h-4 w-4' /> Report an Issue
             </a>
