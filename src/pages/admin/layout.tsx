@@ -2,8 +2,8 @@ import { Outlet, useLocation } from 'react-router-dom';
 
 import { Shield } from 'lucide-react';
 
-import Footer from '@/components/layout/Footer';
-import Navbar from '@/components/layout/Navbar';
+import { Footer } from '@/components/layout/Footer';
+import { Navbar } from '@/components/layout/Navbar';
 import {
   Breadcrumb,
   BreadcrumbHome,
@@ -71,15 +71,15 @@ function AdminContent() {
         <div className='mb-8 flex items-center justify-between'>
           <div>
             <div className='mb-2 flex items-center gap-3'>
-              <Shield className='text-primary-500 h-8 w-8' />
-              <h1 className='text-3xl font-extrabold text-slate-900'>
+              <Shield className='text-kapwa-text-brand h-8 w-8' />
+              <h1 className='text-kapwa-text-strong text-3xl font-extrabold'>
                 Admin Dashboard
               </h1>
               <Badge variant={USE_MOCK_AUTH ? 'info' : 'warning'}>
                 {USE_MOCK_AUTH ? 'Mock Mode' : 'Admin Only'}
               </Badge>
             </div>
-            <p className='text-slate-600'>
+            <p className='text-kapwa-text-support'>
               Review and manage legislative data pipeline issues
             </p>
           </div>

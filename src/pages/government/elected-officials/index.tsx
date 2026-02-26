@@ -2,6 +2,7 @@ import { useMemo } from 'react';
 
 import { Link } from 'react-router-dom';
 
+import { Button } from '@bettergov/kapwa';
 import {
   ArrowRight,
   BookOpen,
@@ -21,7 +22,6 @@ import {
   ContactItem,
 } from '@/components/data-display/ContactInfo';
 import { DetailSection, ModuleHeader } from '@/components/layout/PageLayouts';
-import Button from '@/components/ui/Button';
 import { Card, CardContent } from '@/components/ui/Card';
 
 import { toTitleCase } from '@/lib/stringUtils';
@@ -87,7 +87,7 @@ export default function ElectedOfficialsIndex() {
           <DetailSection
             title='Executive Branch'
             icon={Landmark}
-            className='border-l-primary-600 h-full border-l-4 shadow-sm'
+            className='border-l-kapwa-border-brand h-full border-l-4 shadow-sm'
           >
             <div className='grid grid-cols-1 gap-6'>
               {mayor && (
@@ -113,7 +113,7 @@ export default function ElectedOfficialsIndex() {
           <DetailSection
             title='Legislative Branch'
             icon={Gavel}
-            className='border-l-secondary-600 h-full border-l-4 shadow-sm'
+            className='border-l-kapwa-border-accent-orange h-full border-l-4 shadow-sm'
           >
             <div className='grid grid-cols-1 gap-4'>
               {/* SB Card */}
@@ -121,20 +121,20 @@ export default function ElectedOfficialsIndex() {
                 to='/government/elected-officials/12th-sangguniang-bayan'
                 className='group min-h-[44px]'
               >
-                <Card hover className='h-full border-slate-100'>
+                <Card hover className='border-kapwa-border-weak h-full'>
                   <CardContent className='flex items-center gap-5 p-5'>
-                    <div className='bg-secondary-600 shadow-secondary-900/10 flex h-14 w-14 shrink-0 items-center justify-center rounded-2xl text-white shadow-md'>
+                    <div className='bg-kapwa-bg-accent-orange-default text-kapwa-text-inverse flex h-14 w-14 shrink-0 items-center justify-center rounded-2xl shadow-md'>
                       <Users className='h-7 w-7' />
                     </div>
                     <div className='flex-1'>
-                      <h3 className='group-hover:text-secondary-700 text-lg leading-tight font-bold text-slate-900 transition-colors'>
+                      <h3 className='group-hover:text-kapwa-text-accent-orange text-kapwa-text-strong text-lg leading-tight font-bold transition-colors'>
                         12th Sangguniang Bayan
                       </h3>
-                      <p className='mt-1 text-xs font-medium text-slate-500'>
+                      <p className='text-kapwa-text-disabled mt-1 text-xs font-medium'>
                         Council Members & Profiles
                       </p>
                     </div>
-                    <ChevronRight className='group-hover:text-secondary-600 h-5 w-5 text-slate-300 transition-all group-hover:translate-x-1' />
+                    <ChevronRight className='group-hover:text-kapwa-text-accent-orange text-kapwa-text-support h-5 w-5 transition-all group-hover:translate-x-1' />
                   </CardContent>
                 </Card>
               </Link>
@@ -144,20 +144,20 @@ export default function ElectedOfficialsIndex() {
                 to='/government/elected-officials/municipal-committees'
                 className='group min-h-[44px]'
               >
-                <Card hover className='h-full border-slate-100'>
+                <Card hover className='border-kapwa-border-weak h-full'>
                   <CardContent className='flex items-center gap-5 p-5'>
-                    <div className='bg-secondary-50 text-secondary-600 border-secondary-100 flex h-14 w-14 shrink-0 items-center justify-center rounded-2xl border'>
+                    <div className='bg-kapwa-bg-accent-orange-weak text-kapwa-text-accent-orange border-kapwa-border-accent-orange flex h-14 w-14 shrink-0 items-center justify-center rounded-2xl border'>
                       <BookOpen className='h-7 w-7' />
                     </div>
                     <div className='flex-1'>
-                      <h3 className='group-hover:text-secondary-700 text-lg leading-tight font-bold text-slate-900 transition-colors'>
+                      <h3 className='group-hover:text-kapwa-text-accent-orange text-kapwa-text-strong text-lg leading-tight font-bold transition-colors'>
                         Municipal Committees
                       </h3>
-                      <p className='mt-1 text-xs font-medium text-slate-500'>
+                      <p className='text-kapwa-text-disabled mt-1 text-xs font-medium'>
                         {committeeCount} Standing Committees
                       </p>
                     </div>
-                    <ChevronRight className='group-hover:text-secondary-600 h-5 w-5 text-slate-300 transition-all group-hover:translate-x-1' />
+                    <ChevronRight className='group-hover:text-kapwa-text-accent-orange text-kapwa-text-support h-5 w-5 transition-all group-hover:translate-x-1' />
                   </CardContent>
                 </Card>
               </Link>
@@ -171,23 +171,23 @@ export default function ElectedOfficialsIndex() {
         <DetailSection
           title='Office of the Mayor: Key Staff'
           icon={Briefcase}
-          className='border-l-4 border-l-slate-400 shadow-sm'
+          className='border-l-4 border-l-kapwa-border-strong shadow-sm'
         >
           <div className='grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3'>
             {keyAdminStaff.map((official: ExecutiveOfficial) => (
               <Card
                 key={official.slug}
-                className='border-slate-100 bg-white shadow-xs'
+                className='bg-kapwa-bg-surface border-kapwa-border-weak shadow-xs'
               >
                 <CardContent className='flex items-start gap-3 p-4'>
-                  <div className='shrink-0 rounded-lg border border-slate-200 bg-slate-50 p-2 text-slate-400'>
+                  <div className='border-kapwa-border-weak bg-kapwa-bg-surface-raised text-kapwa-text-disabled shrink-0 rounded-lg border p-2'>
                     <User2 className='h-5 w-5' />
                   </div>
                   <div className='min-w-0 flex-1'>
-                    <h4 className='text-sm leading-snug font-bold text-slate-900'>
+                    <h4 className='text-kapwa-text-strong text-sm leading-snug font-bold'>
                       {toTitleCase(official.name)}
                     </h4>
-                    <p className='text-primary-600 mt-0.5 truncate text-[10px] font-bold tracking-widest uppercase'>
+                    <p className='text-kapwa-text-brand mt-0.5 truncate text-[10px] font-bold tracking-widest uppercase'>
                       {official.role}
                     </p>
                   </div>
@@ -197,13 +197,13 @@ export default function ElectedOfficialsIndex() {
           </div>
 
           {/* Call to Action for Departments */}
-          <div className='mt-6 border-t border-slate-100 pt-6 text-center'>
-            <div className='flex flex-col items-center justify-between gap-4 rounded-xl bg-slate-50 p-6 md:flex-row'>
+          <div className='border-kapwa-border-weak mt-6 border-t pt-6 text-center'>
+            <div className='bg-kapwa-bg-surface-raised flex flex-col items-center justify-between gap-4 rounded-xl p-6 md:flex-row'>
               <div className='text-left'>
-                <h4 className='font-bold text-slate-900'>
+                <h4 className='text-kapwa-text-strong font-bold'>
                   Looking for specific departments?
                 </h4>
-                <p className='text-sm text-slate-500'>
+                <p className='text-kapwa-text-disabled text-sm'>
                   Find the Assessor, Treasurer, Engineer, and other department
                   heads in the directory.
                 </p>
@@ -230,25 +230,28 @@ export default function ElectedOfficialsIndex() {
 function OfficialCard({ href, official, icon: Icon }: OfficialCardProps) {
   return (
     <Link to={href} className='group block'>
-      <Card hover className='flex h-full flex-col border-slate-100 shadow-xs'>
+      <Card
+        hover
+        className='border-kapwa-border-weak flex h-full flex-col shadow-xs'
+      >
         <CardContent className='flex flex-col space-y-6 p-6'>
           {/* Header Section */}
           <div className='flex items-start gap-5'>
             {/* Large Neutral Icon Box */}
-            <div className='bg-primary-50 text-primary-600 border-primary-100 flex h-16 w-16 shrink-0 items-center justify-center rounded-2xl border shadow-sm'>
+            <div className='bg-kapwa-bg-surface text-kapwa-text-brand border-kapwa-border-brand flex h-16 w-16 shrink-0 items-center justify-center rounded-2xl border shadow-sm'>
               <Icon className='h-8 w-8' />
             </div>
 
             <div className='min-w-0 flex-1 py-1'>
-              <p className='text-primary-600 mb-1.5 text-[10px] leading-none font-bold tracking-widest uppercase'>
+              <p className='text-kapwa-text-brand mb-1.5 text-[10px] leading-none font-bold tracking-widest uppercase'>
                 {official.role}
               </p>
-              <h3 className='group-hover:text-primary-700 text-xl leading-tight font-extrabold text-slate-900 transition-colors'>
+              <h3 className='group-hover:text-kapwa-text-brand text-kapwa-text-strong text-xl leading-tight font-extrabold transition-colors'>
                 Hon. {toTitleCase(official.name)}
               </h3>
             </div>
 
-            <div className='group-hover:bg-primary-50 group-hover:text-primary-600 shrink-0 rounded-lg bg-slate-50 p-2 text-slate-300 transition-all'>
+            <div className='group-hover:bg-kapwa-bg-surface-brand group-hover:text-kapwa-text-brand bg-kapwa-bg-surface-raised text-kapwa-text-support shrink-0 rounded-lg p-2 transition-all'>
               <ChevronRight className='h-5 w-5' />
             </div>
           </div>

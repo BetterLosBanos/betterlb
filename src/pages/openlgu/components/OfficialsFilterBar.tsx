@@ -1,7 +1,7 @@
+import { Button } from '@bettergov/kapwa';
 import { X } from 'lucide-react';
 
 import { Badge } from '@/components/ui/Badge';
-import Button from '@/components/ui/Button';
 import SelectPicker from '@/components/ui/SelectPicker';
 
 import type { Term } from '@/lib/openlgu';
@@ -60,10 +60,10 @@ export default function OfficialsFilterBar({
           value={searchQuery}
           onChange={e => setSearchQuery(e.target.value)}
           placeholder='Search officials by name...'
-          className='focus:border-primary-500 focus:ring-primary-500/20 w-full rounded-lg border border-slate-300 bg-white px-4 py-2.5 pl-10 text-sm focus:ring-2 focus:outline-none'
+          className='focus:border-kapwa-border-brand focus:ring-kapwa-border-brand/20 border-kapwa-border-weak bg-kapwa-bg-surface w-full rounded-lg border px-4 py-2.5 pl-10 text-sm focus:ring-2 focus:outline-none'
         />
         <svg
-          className='absolute top-1/2 left-3 h-4 w-4 -translate-y-1/2 text-slate-400'
+          className='text-kapwa-text-disabled absolute top-1/2 left-3 h-4 w-4 -translate-y-1/2'
           fill='none'
           stroke='currentColor'
           viewBox='0 0 24 24'
@@ -78,7 +78,7 @@ export default function OfficialsFilterBar({
         {searchQuery && (
           <button
             onClick={() => setSearchQuery('')}
-            className='absolute top-1/2 right-3 -translate-y-1/2 text-slate-400 hover:text-slate-600'
+            className='text-kapwa-text-disabled hover:text-kapwa-text-support absolute top-1/2 right-3 -translate-y-1/2'
             aria-label='Clear search'
           >
             <X className='h-4 w-4' />

@@ -39,11 +39,11 @@ export function ChartTooltip({
     );
 
     return (
-      <div className='animate-in fade-in zoom-in-95 min-w-[220px] rounded-xl border border-slate-200 bg-white p-3 shadow-xl duration-200'>
+      <div className='animate-in fade-in zoom-in-95 border-kapwa-border-weak bg-kapwa-bg-surface min-w-[220px] rounded-xl border p-3 shadow-xl duration-200'>
         {/* Uses CHART_THEME.text for the label color */}
         <p
           style={{ color: CHART_THEME.text }}
-          className='mb-2 border-b border-slate-50 pb-1 text-[10px] font-bold tracking-widest uppercase'
+          className='mb-2 border-b border-kapwa-border-weak pb-1 text-[10px] font-bold tracking-widest uppercase'
         >
           Year: {label}
         </p>
@@ -64,15 +64,15 @@ export function ChartTooltip({
                     'max-w-[130px] truncate text-[11px] font-bold transition-colors',
                     // Use CHART_THEME.fontWeight for consistency
                     index === 0
-                      ? 'text-primary-700'
-                      : 'text-slate-600 group-hover:text-slate-900'
+                      ? 'text-kapwa-text-brand-bold'
+                      : 'group-hover:text-kapwa-text-strong text-kapwa-text-support'
                   )}
                 >
                   {entry.name}
                 </span>
               </div>
               <span
-                className='text-[11px] font-black text-slate-900 tabular-nums'
+                className='text-kapwa-text-strong text-[11px] font-black tabular-nums'
                 style={{ fontWeight: CHART_THEME.fontWeight + 200 }} // Slightly bolder than axis
               >
                 {formatter ? formatter(Number(entry.value)) : entry.value}
@@ -81,9 +81,9 @@ export function ChartTooltip({
           ))}
         </div>
 
-        <div className='mt-2 flex items-center justify-between border-t border-slate-50 pt-2 text-[9px] font-bold tracking-tight text-slate-300 uppercase'>
+        <div className='text-kapwa-text-support mt-2 flex items-center justify-between border-t border-kapwa-border-weak pt-2 text-[9px] font-bold tracking-tight uppercase'>
           <span>Ranked by Value</span>
-          <div className='h-1 w-1 rounded-full bg-slate-200' />
+          <div className='bg-kapwa-bg-active h-1 w-1 rounded-full' />
         </div>
       </div>
     );
@@ -103,7 +103,7 @@ export function ChartContainer({
   return (
     <div
       className={cn(
-        'animate-in fade-in slide-in-from-bottom-2 w-full rounded-3xl border border-slate-200 bg-white p-4 shadow-sm duration-700 md:p-6',
+        'animate-in fade-in slide-in-from-bottom-2 border-kapwa-border-weak bg-kapwa-bg-surface w-full rounded-3xl border p-4 shadow-sm duration-700 md:p-6',
         className
       )}
       role='region'

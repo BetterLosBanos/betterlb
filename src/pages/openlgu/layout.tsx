@@ -2,8 +2,8 @@ import { Outlet, useLocation } from 'react-router-dom';
 
 import { parseAsStringEnum, useQueryState } from 'nuqs';
 
-import { ModuleHeader, PageHero } from '@/components/layout/PageLayouts';
-import SidebarLayout from '@/components/layout/SidebarLayout';
+import { PageHeader } from '@/components/layout';
+import { SidebarLayout } from '@/components/layout/SidebarLayout';
 import SearchInput from '@/components/ui/SearchInput';
 
 import useOpenLGU from '@/hooks/useOpenLGU';
@@ -55,34 +55,37 @@ export default function OpenLGULayout() {
     <SidebarLayout
       collapsible={true}
       defaultCollapsed={!isIndexPage}
-      // HEADER LOGIC
+      // Unified header using PageHeader component
       headerNode={
         isIndexPage ? (
-          <PageHero
+          <PageHeader
+            variant='hero'
             title='OpenLGU Portal'
             description='Browse official local ordinances, resolutions, and executive orders of Los Baños.'
-          >
-            <div className='animate-in fade-in slide-in-from-top-2 mx-auto max-w-xl duration-1000'>
+            actions={
               <SearchInput
                 placeholder='Search by title, number, or author...'
                 value={searchQuery}
                 onChangeValue={setSearchQuery}
                 size='md'
               />
-            </div>
-          </PageHero>
+            }
+          />
         ) : (
-          <ModuleHeader
+          <PageHeader
+            variant='compact'
             title='OpenLGU Document'
             description='Official record from the Sangguniang Bayan.'
-          >
-            <SearchInput
-              placeholder='Search by title, number, or author...'
-              value={searchQuery}
-              onChangeValue={setSearchQuery}
-              size='sm'
-            />
-          </ModuleHeader>
+            autoBreadcrumbs={true}
+            actions={
+              <SearchInput
+                placeholder='Search by title, number, or author...'
+                value={searchQuery}
+                onChangeValue={setSearchQuery}
+                size='sm'
+              />
+            }
+          />
         )
       }
       // SIDEBAR
@@ -92,6 +95,8 @@ export default function OpenLGULayout() {
           setFilterType={setFilterType}
           terms={legislation.terms}
           persons={legislation.persons}
+          term={legislation.term}
+          documents={legislation.documents}
         />
       }
     >

@@ -73,7 +73,7 @@ export default function ServiceTimeline({
 
   if (sortedMemberships.length === 0) {
     return (
-      <div className='py-4 text-center text-sm text-slate-500'>
+      <div className='text-kapwa-text-disabled py-4 text-center text-sm'>
         No service history available
       </div>
     );
@@ -93,15 +93,15 @@ export default function ServiceTimeline({
         return (
           <div
             key={membership.term_id}
-            className='relative border-l-2 border-slate-200 pb-4 pl-6 last:border-0 last:pb-0'
+            className='border-kapwa-border-weak relative border-l-2 pb-4 pl-6 last:border-0 last:pb-0'
           >
             {/* Timeline dot */}
-            <div className='border-primary-500 absolute top-1.5 left-0 h-3 w-3 -translate-x-[5px] rounded-full border-2 bg-white' />
+            <div className='border-kapwa-border-brand bg-kapwa-bg-surface absolute top-1.5 left-0 h-3 w-3 -translate-x-[5px] rounded-full border-2' />
 
             <div className='space-y-2'>
               {/* Term header */}
               <div className='flex flex-wrap items-center gap-2'>
-                <span className='text-sm font-bold text-slate-900'>
+                <span className='text-kapwa-text-strong text-sm font-bold'>
                   {term.year_range}
                 </span>
               </div>
@@ -112,17 +112,17 @@ export default function ServiceTimeline({
               </Badge>
 
               {/* Stats row */}
-              <div className='flex flex-wrap gap-4 text-xs text-slate-600'>
+              <div className='text-kapwa-text-support flex flex-wrap gap-4 text-xs'>
                 {!isExecutive && (
                   <div className='flex items-center gap-1'>
                     <Calendar className='h-3 w-3' />
                     <span
                       className={
                         attendanceRate >= 90
-                          ? 'font-semibold text-emerald-600'
+                          ? 'font-semibold text-kapwa-text-success'
                           : attendanceRate >= 70
-                            ? 'text-slate-600'
-                            : 'text-amber-600'
+                            ? 'text-kapwa-text-support'
+                            : 'text-kapwa-text-warning'
                       }
                     >
                       {attendanceRate}% attendance
@@ -154,7 +154,7 @@ export default function ServiceTimeline({
                   {membership.committees.map(committee => (
                     <span
                       key={committee.id}
-                      className='inline-flex items-center gap-1 rounded-full bg-slate-100 px-2 py-0.5 text-[10px] font-medium text-slate-600'
+                      className='bg-kapwa-bg-hover text-kapwa-text-support inline-flex items-center gap-1 rounded-full px-2 py-0.5 text-[10px] font-medium'
                     >
                       <Users className='h-2.5 w-2.5' />
                       {committee.role}

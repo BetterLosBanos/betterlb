@@ -14,10 +14,10 @@ export function SidebarContainer({
 }) {
   return (
     <aside className='w-full shrink-0 md:w-64'>
-      <div className='sticky top-32 overflow-hidden rounded-lg border border-gray-200 bg-white shadow-sm'>
+      <div className='border-kapwa-border-weak bg-kapwa-bg-surface sticky top-32 overflow-hidden rounded-lg border shadow-sm'>
         {title && (
-          <div className='border-b border-gray-100 bg-gray-50/50 px-4 py-3'>
-            <h2 className='text-[11px] font-semibold tracking-widest text-gray-900 uppercase'>
+          <div className='border-kapwa-border-weak bg-kapwa-bg-surface-raised/50 border-b px-4 py-3'>
+            <h2 className='text-kapwa-text-strong text-[11px] font-semibold tracking-widest uppercase'>
               {title}
             </h2>
           </div>
@@ -40,7 +40,7 @@ export function SidebarGroup({
 }) {
   return (
     <div className='mb-4 last:mb-0'>
-      <h3 className='px-3 py-2 text-[10px] font-bold tracking-widest text-gray-400 uppercase'>
+      <h3 className='text-kapwa-text-disabled px-3 py-2 text-[10px] font-bold tracking-widest uppercase'>
         {title}
       </h3>
       <ul className='space-y-1'>{children}</ul>
@@ -76,8 +76,8 @@ export function SidebarItem({
     border-l-2 
     ${
       active
-        ? 'bg-primary-50 text-primary-700 font-semibold border-primary-600'
-        : 'text-gray-600 hover:bg-gray-50 hover:text-gray-900 border-transparent'
+        ? 'bg-kapwa-bg-surface text-kapwa-text-brand-bold font-semibold border-kapwa-border-brand'
+        : 'text-kapwa-text-support hover:bg-kapwa-bg-surface-raised hover:text-kapwa-text-strong border-transparent'
     }
   `;
 
@@ -85,14 +85,14 @@ export function SidebarItem({
     <>
       {Icon && (
         <Icon
-          className={`mt-0.5 h-4 w-4 shrink-0 ${active ? 'text-primary-600' : 'text-gray-400 group-hover:text-gray-600'}`}
+          className={`mt-0.5 h-4 w-4 shrink-0 ${active ? 'text-kapwa-text-brand' : 'group-hover:text-kapwa-text-on-disabled text-kapwa-text-disabled'}`}
         />
       )}
       <div className='flex flex-col overflow-hidden text-left'>
         <span className='truncate'>{label}</span>
         {description && (
           <span
-            className={`text-[11px] leading-tight ${active ? 'text-primary-600/70' : 'text-gray-400'}`}
+            className={`text-[11px] leading-tight ${active ? 'text-kapwa-text-brand/70' : 'text-kapwa-text-disabled'}`}
           >
             {description}
           </span>

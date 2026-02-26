@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 
 import { Link } from 'react-router-dom';
 
+import { Button } from '@bettergov/kapwa';
 import {
   Activity,
   AlertTriangle,
@@ -15,7 +16,6 @@ import {
 } from 'lucide-react';
 
 import { Badge } from '@/components/ui/Badge';
-import Button from '@/components/ui/Button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/Card';
 import { CardGrid } from '@/components/ui/Card';
 
@@ -193,7 +193,7 @@ export default function AdminDashboard() {
       {/* Stats Overview */}
       <section>
         <div className='mb-4 flex items-center justify-between'>
-          <h2 className='text-xl font-bold text-slate-900'>Overview</h2>
+          <h2 className='text-kapwa-text-strong text-xl font-bold'>Overview</h2>
           <Button
             variant='outline'
             size='sm'
@@ -228,7 +228,7 @@ export default function AdminDashboard() {
                               ? 'text-amber-500'
                               : stat.variant === 'success'
                                 ? 'text-emerald-500'
-                                : 'text-blue-500'
+                                : 'text-kapwa-text-brand'
                         }`}
                       />
                       <Badge
@@ -243,7 +243,9 @@ export default function AdminDashboard() {
                     <CardTitle level='h3' className='mb-1'>
                       {stat.title}
                     </CardTitle>
-                    <p className='text-sm text-slate-500'>{stat.description}</p>
+                    <p className='text-kapwa-text-disabled text-sm'>
+                      {stat.description}
+                    </p>
                   </CardContent>
                 </Card>
               </Link>
@@ -254,7 +256,9 @@ export default function AdminDashboard() {
 
       {/* Quick Actions */}
       <section>
-        <h2 className='mb-4 text-xl font-bold text-slate-900'>Quick Actions</h2>
+        <h2 className='text-kapwa-text-strong mb-4 text-xl font-bold'>
+          Quick Actions
+        </h2>
         <div className='grid gap-4 sm:grid-cols-2 lg:grid-cols-3'>
           {quickActions.map(action => (
             <Card
@@ -264,11 +268,15 @@ export default function AdminDashboard() {
               className='flex items-center justify-between'
             >
               <CardContent className='flex-1 py-4'>
-                <h3 className='font-bold text-slate-900'>{action.title}</h3>
-                <p className='text-sm text-slate-500'>{action.description}</p>
+                <h3 className='text-kapwa-text-strong font-bold'>
+                  {action.title}
+                </h3>
+                <p className='text-kapwa-text-disabled text-sm'>
+                  {action.description}
+                </p>
               </CardContent>
               <Link to={action.link} className='px-4'>
-                <ArrowRight className='h-5 w-5 text-slate-400' />
+                <ArrowRight className='text-kapwa-text-disabled h-5 w-5' />
               </Link>
             </Card>
           ))}
@@ -278,7 +286,9 @@ export default function AdminDashboard() {
       {/* Recent Activity */}
       <section>
         <div className='mb-4 flex items-center justify-between'>
-          <h2 className='text-xl font-bold text-slate-900'>Recent Activity</h2>
+          <h2 className='text-kapwa-text-strong text-xl font-bold'>
+            Recent Activity
+          </h2>
           <Button
             variant='outline'
             size='sm'
@@ -297,11 +307,11 @@ export default function AdminDashboard() {
           <CardContent className='p-0'>
             {activityLoading ? (
               <div className='flex items-center justify-center py-6'>
-                <RefreshCw className='h-6 w-6 animate-spin text-slate-400' />
+                <RefreshCw className='text-kapwa-text-disabled h-6 w-6 animate-spin' />
               </div>
             ) : recentActivity.length === 0 ? (
-              <div className='py-6 text-center text-slate-500'>
-                <CheckCircle className='mx-auto mb-2 h-8 w-8 text-slate-400' />
+              <div className='text-kapwa-text-disabled py-6 text-center'>
+                <CheckCircle className='text-kapwa-text-disabled mx-auto mb-2 h-8 w-8' />
                 <p className='text-sm'>No recent activity to display</p>
               </div>
             ) : (
@@ -309,7 +319,7 @@ export default function AdminDashboard() {
                 {recentActivity.map(item => (
                   <div
                     key={item.id}
-                    className='flex items-start gap-4 p-4 hover:bg-slate-50'
+                    className='hover:bg-kapwa-bg-surface-raised flex items-start gap-4 p-4'
                   >
                     <div className='flex-shrink-0'>
                       <CheckCircle className='h-5 w-5 text-emerald-500' />
@@ -319,36 +329,36 @@ export default function AdminDashboard() {
                         <Badge variant='slate' className='text-xs'>
                           {item.item_type}
                         </Badge>
-                        <span className='text-sm font-medium text-slate-900'>
+                        <span className='text-kapwa-text-strong text-sm font-medium'>
                           {item.issue_type.replace(/_/g, ' ')}
                         </span>
                       </div>
                       {item.description && (
-                        <p className='mb-1 line-clamp-2 text-sm text-slate-600'>
+                        <p className='text-kapwa-text-support mb-1 line-clamp-2 text-sm'>
                           {item.description}
                         </p>
                       )}
                       {item.document && (
                         <Link
                           to={`/openlgu/documents/${item.document.id}`}
-                          className='text-primary-600 mb-1 inline-flex items-center gap-1 text-sm font-medium hover:underline'
+                          className='text-kapwa-text-brand mb-1 inline-flex items-center gap-1 text-sm font-medium hover:underline'
                         >
                           <FileText className='h-3 w-3' />
                           {item.document.type === 'ordinance'
                             ? 'Ordinance'
                             : 'Resolution'}{' '}
                           {item.document.number}
-                          <span className='ml-1 line-clamp-1 font-normal text-slate-600'>
+                          <span className='text-kapwa-text-support ml-1 line-clamp-1 font-normal'>
                             - {item.document.title}
                           </span>
                         </Link>
                       )}
                       {item.resolution && (
-                        <p className='text-sm text-slate-500 italic'>
+                        <p className='text-kapwa-text-disabled text-sm italic'>
                           &quot;{item.resolution}&quot;
                         </p>
                       )}
-                      <div className='mt-1 flex flex-wrap items-center gap-3 text-xs text-slate-500'>
+                      <div className='text-kapwa-text-disabled mt-1 flex flex-wrap items-center gap-3 text-xs'>
                         <div className='flex items-center gap-1'>
                           <Calendar className='h-3 w-3' />
                           {new Date(item.resolved_at).toLocaleDateString()}

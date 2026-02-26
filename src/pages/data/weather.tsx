@@ -79,22 +79,24 @@ const WeatherPage: FC = () => {
   };
 
   return (
-    <div className='min-h-screen bg-gray-50'>
+    <div className='bg-kapwa-bg-surface-raised min-h-screen'>
       <div className='container mx-auto px-4 py-8'>
         {isLoading ? (
           <div className='flex h-64 items-center justify-center'>
-            <div className='border-primary-600 h-12 w-12 animate-spin rounded-full border-t-2 border-b-2'></div>
+            <div className='border-kapwa-border-brand h-12 w-12 animate-spin rounded-full border-t-2 border-b-2'></div>
           </div>
         ) : error ? (
-          <div className='rounded-sm border-l-4 border-red-500 bg-red-100 p-4 text-red-700 shadow-md'>
+          <div className='bg-kapwa-bg-danger-weak text-kapwa-text-danger rounded-sm border-l-4 border-red-500 p-4 shadow-md'>
             <p className='font-bold'>Error</p>
             <p>{error}</p>
           </div>
         ) : (
           <div className='grid grid-cols-1 gap-8 lg:grid-cols-3'>
             {/* City Selection Panel */}
-            <div className='rounded-lg bg-white p-6 shadow-md'>
-              <h2 className='mb-4 text-xl font-bold text-gray-800'>Cities</h2>
+            <div className='bg-kapwa-bg-surface rounded-lg p-6 shadow-md'>
+              <h2 className='text-kapwa-text-support mb-4 text-xl font-bold'>
+                Cities
+              </h2>
               <div className='space-y-2'>
                 {weatherData.map(city => (
                   <button
@@ -102,8 +104,8 @@ const WeatherPage: FC = () => {
                     onClick={() => setSelectedCity(city.location)}
                     className={`flex w-full items-center justify-between rounded-md px-4 py-3 text-left transition-all ${
                       selectedCity === city.location
-                        ? 'bg-primary-100 text-primary-800'
-                        : 'hover:bg-gray-100'
+                        ? 'bg-kapwa-bg-brand-weak text-kapwa-text-brand-bold'
+                        : 'hover:bg-kapwa-bg-hover'
                     }`}
                   >
                     <div className='flex items-center'>
@@ -148,26 +150,32 @@ const WeatherPage: FC = () => {
                   </div>
 
                   <div className='grid grid-cols-2 gap-4 text-center md:grid-cols-4'>
-                    <div className='rounded-lg bg-white/20 p-4 backdrop-blur-xs'>
-                      <div className='mb-1 text-black/80'>Humidity</div>
+                    <div className='bg-kapwa-bg-surface/20 rounded-lg p-4 backdrop-blur-xs'>
+                      <div className='text-kapwa-text-strong/80 mb-1'>
+                        Humidity
+                      </div>
                       <div className='text-xl font-semibold'>
                         {selectedCityData.humidity}%
                       </div>
                     </div>
-                    <div className='rounded-lg bg-white/20 p-4 backdrop-blur-xs'>
-                      <div className='mb-1 text-black/80'>Wind</div>
+                    <div className='bg-kapwa-bg-surface/20 rounded-lg p-4 backdrop-blur-xs'>
+                      <div className='text-kapwa-text-strong/80 mb-1'>Wind</div>
                       <div className='text-xl font-semibold'>
                         {Math.round(selectedCityData.windSpeed * 3.6)} km/h
                       </div>
                     </div>
-                    <div className='rounded-lg bg-white/20 p-4 backdrop-blur-xs'>
-                      <div className='mb-1 text-black/80'>Pressure</div>
+                    <div className='bg-kapwa-bg-surface/20 rounded-lg p-4 backdrop-blur-xs'>
+                      <div className='text-kapwa-text-strong/80 mb-1'>
+                        Pressure
+                      </div>
                       <div className='text-xl font-semibold'>
                         {selectedCityData.pressure} hPa
                       </div>
                     </div>
-                    <div className='rounded-lg bg-white/20 p-4 backdrop-blur-xs'>
-                      <div className='mb-1 text-black/80'>Visibility</div>
+                    <div className='bg-kapwa-bg-surface/20 rounded-lg p-4 backdrop-blur-xs'>
+                      <div className='text-kapwa-text-strong/80 mb-1'>
+                        Visibility
+                      </div>
                       <div className='text-xl font-semibold'>
                         {selectedCityData.visibility} km
                       </div>
@@ -176,8 +184,8 @@ const WeatherPage: FC = () => {
                 </div>
 
                 {/* Weather Forecast */}
-                <div className='mt-8 hidden rounded-lg bg-white p-6 shadow-md'>
-                  <h3 className='mb-4 text-xl font-bold text-gray-800'>
+                <div className='bg-kapwa-bg-surface mt-8 hidden rounded-lg p-6 shadow-md'>
+                  <h3 className='text-kapwa-text-support mb-4 text-xl font-bold'>
                     5-Day Forecast
                   </h3>
                   <div className='grid grid-cols-1 gap-4 sm:grid-cols-5'>
@@ -199,14 +207,21 @@ const WeatherPage: FC = () => {
                       return (
                         <div
                           key={index}
-                          className='rounded-lg bg-gray-50 p-4 text-center'
+                          className='bg-kapwa-bg-surface-raised rounded-lg p-4 text-center'
                         >
-                          <p className='font-medium text-gray-800'>{dayName}</p>
-                          <p className='mb-2 text-sm text-gray-800'>{dayNum}</p>
+                          <p className='text-kapwa-text-support font-medium'>
+                            {dayName}
+                          </p>
+                          <p className='text-kapwa-text-support mb-2 text-sm'>
+                            {dayNum}
+                          </p>
                           <div className='my-2 flex justify-center'>
-                            {getWeatherIcon(mockIcon, 'h-8 w-8 text-gray-700')}
+                            {getWeatherIcon(
+                              mockIcon,
+                              'h-8 w-8 text-kapwa-text-support'
+                            )}
                           </div>
-                          <p className='text-lg font-semibold text-gray-800'>
+                          <p className='text-kapwa-text-support text-lg font-semibold'>
                             {mockTemp}°C
                           </p>
                         </div>
@@ -220,11 +235,11 @@ const WeatherPage: FC = () => {
         )}
 
         {/* Weather Information Section */}
-        <div className='mt-12 rounded-lg bg-white p-6 shadow-md'>
-          <h2 className='mb-4 text-2xl font-bold text-gray-800'>
+        <div className='bg-kapwa-bg-surface mt-12 rounded-lg p-6 shadow-md'>
+          <h2 className='text-kapwa-text-support mb-4 text-2xl font-bold'>
             About Weather Data
           </h2>
-          <p className='mb-4 text-gray-800'>
+          <p className='text-kapwa-text-support mb-4'>
             The weather data displayed on this page is sourced from the
             Philippine Atmospheric, Geophysical and Astronomical Services
             Administration (PAGASA) and other reliable weather services. The
@@ -233,26 +248,26 @@ const WeatherPage: FC = () => {
             cities.
           </p>
           <div className='mt-6 grid grid-cols-1 gap-6 md:grid-cols-2'>
-            <div className='border-primary-500 border-l-4 pl-4'>
-              <h3 className='mb-2 text-lg font-semibold text-gray-800'>
+            <div className='border-kapwa-border-brand border-l-4 pl-4'>
+              <h3 className='text-kapwa-text-support mb-2 text-lg font-semibold'>
                 Understanding the Data
               </h3>
-              <p className='text-gray-800'>
+              <p className='text-kapwa-text-strong'>
                 Temperature is displayed in Celsius (°C). Weather conditions are
                 categorized based on current atmospheric observations. The
                 forecast provides a 5-day outlook to help you plan ahead.
               </p>
             </div>
-            <div className='border-primary-500 border-l-4 pl-4'>
-              <h3 className='mb-2 text-lg font-semibold text-gray-800'>
+            <div className='border-kapwa-border-brand border-l-4 pl-4'>
+              <h3 className='text-kapwa-text-support mb-2 text-lg font-semibold'>
                 Weather Advisories
               </h3>
-              <p className='text-gray-800'>
+              <p className='text-kapwa-text-strong'>
                 For official weather advisories, warnings, and detailed
                 forecasts, please visit the{' '}
                 <a
                   href='https://bagong.pagasa.dost.gov.ph/'
-                  className='text-primary-600 hover:underline'
+                  className='text-kapwa-text-brand hover:underline'
                   target='_blank'
                   rel='noopener noreferrer'
                 >
@@ -262,11 +277,11 @@ const WeatherPage: FC = () => {
               </p>
             </div>
           </div>
-          <p className='mt-4 text-right text-sm text-gray-700'>
+          <p className='text-kapwa-text-support mt-4 text-right text-sm'>
             Weather data provided by{' '}
             <a
               href='https://openweathermap.org/'
-              className='text-gray-800 underline hover:text-gray-900'
+              className='hover:text-kapwa-text-strong text-kapwa-text-strong underline'
               target='_blank'
               rel='noopener noreferrer'
             >

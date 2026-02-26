@@ -1,18 +1,6 @@
 import { Link } from 'react-router-dom';
 
-import {
-  BookOpen,
-  Briefcase,
-  DollarSign,
-  FileText,
-  Hammer,
-  Heart,
-  Leaf,
-  LucideIcon,
-  PlusCircle,
-  Shield,
-  Users,
-} from 'lucide-react';
+import { FileText, LucideIcon, PlusCircle } from 'lucide-react';
 
 import {
   SidebarContainer,
@@ -20,21 +8,9 @@ import {
 } from '@/components/navigation/SidebarNavigation';
 
 import { scrollToTop } from '@/lib/scrollUtils';
+import { getCategoryIconBySlug } from '@/lib/serviceIcons';
 
 import serviceCategories from '@/data/service_categories.json';
-
-const categoryIcons: Record<string, LucideIcon> = {
-  'certificates-vital-records': FileText,
-  'business-licensing': Briefcase,
-  'taxation-assessment': DollarSign,
-  'infrastructure-engineering': Hammer,
-  'social-services': Users,
-  'health-wellness': Heart,
-  'agriculture-livelihood': Leaf,
-  'environment-waste': Leaf,
-  'education-scholarship': BookOpen,
-  'public-safety': Shield,
-};
 
 interface ServicesSidebarProps {
   selectedCategorySlug: string;
@@ -64,7 +40,7 @@ export default function ServicesSidebar({
           <SidebarItem
             key={category.slug}
             label={category.name}
-            icon={categoryIcons[category.slug] || FileText}
+            icon={getCategoryIconBySlug(category.slug)}
             isActive={selectedCategorySlug === category.slug}
             onClick={() => {
               scrollToTop();
@@ -73,17 +49,17 @@ export default function ServicesSidebar({
           />
         ))}
       </SidebarContainer>
-      <div className='border-secondary-100 bg-secondary-50/30 mt-8 space-y-4 rounded-2xl border-2 p-5 shadow-sm'>
+      <div className='border-kapwa-orange-100 bg-kapwa-bg-accent-orange-weak/30 mt-8 space-y-4 rounded-2xl border-2 p-5 shadow-sm'>
         <div className='flex items-center gap-3'>
-          <div className='bg-secondary-100 text-secondary-600 rounded-lg p-2'>
+          <div className='bg-kapwa-bg-accent-orange-weak text-kapwa-text-accent-orange rounded-lg p-2'>
             <PlusCircle className='h-5 w-5' />
           </div>
-          <h4 className='text-sm leading-tight font-bold text-slate-900'>
+          <h4 className='text-kapwa-text-strong text-sm leading-tight font-bold'>
             Missing a service?
           </h4>
         </div>
 
-        <p className='text-xs leading-relaxed text-slate-600'>
+        <p className='text-kapwa-text-on-disabled text-xs leading-relaxed'>
           Better LB is community-maintained. Help your fellow citizens by
           suggesting a new service directory.
         </p>
@@ -91,7 +67,7 @@ export default function ServicesSidebar({
         <Link
           to='/contribute'
           onClick={() => console.log('Link was clicked!')}
-          className='bg-secondary-600 hover:bg-secondary-700 shadow-secondary-900/10 flex min-h-[44px] w-full items-center justify-center gap-2 rounded-xl px-4 py-2.5 text-xs font-bold text-white shadow-md transition-all'
+          className='bg-kapwa-bg-accent-orange-default hover:bg-kapwa-orange-700 shadow-md text-kapwa-text-inverse flex min-h-[44px] w-full items-center justify-center gap-2 rounded-xl px-4 py-2.5 text-xs font-bold shadow-md transition-all'
         >
           Suggest New Service
         </Link>

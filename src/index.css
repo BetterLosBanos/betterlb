@@ -1,106 +1,88 @@
-/* Kapwa Design System */
-@import './kapwa/kapwa.css';
+/* Inter - Regular (400) */
+@font-face {
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url('https://fonts.bunny.net/inter/files/inter-latin-400-normal.woff2')
+    format('woff2');
+}
+
+/* Inter - Medium (500) */
+@font-face {
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url('https://fonts.bunny.net/inter/files/inter-latin-500-normal.woff2')
+    format('woff2');
+}
+
+/* Inter - Semi Bold (600) */
+@font-face {
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+  src: url('https://fonts.bunny.net/inter/files/inter-latin-600-normal.woff2')
+    format('woff2');
+}
+
+/* Inter - Bold (700) */
+@font-face {
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url('https://fonts.bunny.net/inter/files/inter-latin-700-normal.woff2')
+    format('woff2');
+}
+
+/* Roboto Mono - Regular (400) */
+@font-face {
+  font-family: 'Roboto Mono';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url('https://fonts.bunny.net/roboto-mono/files/roboto-mono-latin-400-normal.woff2')
+    format('woff2');
+}
+
+/* Roboto Mono - Medium (500) */
+@font-face {
+  font-family: 'Roboto Mono';
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url('https://fonts.bunny.net/roboto-mono/files/roboto-mono-latin-500-normal.woff2')
+    format('woff2');
+}
+
+/* Roboto Mono - Semi Bold (600) */
+@font-face {
+  font-family: 'Roboto Mono';
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+  src: url('https://fonts.bunny.net/roboto-mono/files/roboto-mono-latin-600-normal.woff2')
+    format('woff2');
+}
 
 /* Local styles */
 @import 'tailwindcss';
 
-@theme {
-  /* --- TYPOGRAPHY --- */
-  /* Keeping Figtree as it is close to Inter but distinct for your brand */
-  --font-sans: 'Figtree', ui-sans-serif, system-ui, sans-serif;
+/* Scan shared packages for Tailwind classes */
+@source '../node_modules/@betterlb/kapwa/dist/**/*.js';
 
-  /* --- SEMANTIC ALIASES --- */
-  /* These map your specific domain needs to the color palette below */
-  --color-brand-executive: var(--color-primary-600);
-  --color-brand-legislative: var(
-    --color-orange-600
-  ); /* Renamed to orange to match guide */
-  --color-status-verified: var(--color-emerald-600);
-  --color-status-audit: var(--color-gray-500);
+/* Import Kapwa Design System tokens */
+@import '@betterlb/kapwa/kapwa.css';
 
-  /* --- COLOR PALETTE (From Design Guide) --- */
-
-  /* Primary (Kapwa Blue) */
-  /* Based on 500: #3b82f6, 600: #2563eb */
-  --color-primary-50: #eff6ff;
-  --color-primary-100: #dbeafe;
-  --color-primary-200: #bfdbfe;
-  --color-primary-300: #93c5fd;
-  --color-primary-400: #60a5fa;
-  --color-primary-500: #3b82f6; /* Design Guide Standard */
-  --color-primary-600: #2563eb; /* Design Guide Standard */
-  --color-primary-700: #1d4ed8; /* Design Guide Standard */
-  --color-primary-800: #1e40af;
-  --color-primary-900: #1e3a8a;
-  --color-primary-950: #172554;
-
-  /* Secondary / CivicTech (Orange) */
-  /* Based on 500: #f97316, 600: #ea580c */
-  --color-secondary-50: #fff7ed;
-  --color-secondary-100: #ffedd5;
-  --color-secondary-200: #fed7aa;
-  --color-secondary-300: #fdba74;
-  --color-secondary-400: #fb923c;
-  --color-secondary-500: #f97316; /* Design Guide Standard */
-  --color-secondary-600: #ea580c; /* Design Guide Standard */
-  --color-secondary-700: #c2410c;
-  --color-secondary-800: #9a3412;
-  --color-secondary-900: #7c2d12;
-
-  /* Accent (Pink - From Guidelines) */
-  --color-accent-50: #fdf2f8;
-  --color-accent-100: #fce7f3;
-  --color-accent-200: #fbcfe8;
-  --color-accent-300: #f9a8d4;
-  --color-accent-400: #f472b6;
-  --color-accent-500: #ec4899; /* Design Guide Standard */
-  --color-accent-600: #db2777; /* Design Guide Standard */
-  --color-accent-700: #be185d;
-  --color-accent-800: #9d174d;
-  --color-accent-900: #831843;
-
-  /* Neutral (Gray - Matching Design Guide) */
-  /* Replaces previous Slate to align with Guide's #111827/Gray-900 */
-  --color-slate-50: #f9fafb;
-  --color-slate-100: #f3f4f6;
-  --color-slate-200: #e5e7eb;
-  --color-slate-300: #d1d5db;
-  --color-slate-400: #9ca3af;
-  --color-slate-500: #6b7280; /* Design Guide Standard */
-  --color-slate-600: #4b5563;
-  --color-slate-700: #374151; /* Design Guide Standard */
-  --color-slate-800: #1f2937;
-  --color-slate-900: #111827; /* Design Guide Standard */
-  --color-slate-950: #030712;
-
-  /* Keep legacy gray mapping for compatibility */
-  --color-gray-50: var(--color-slate-50);
-  --color-gray-100: var(--color-slate-100);
-  --color-gray-200: var(--color-slate-200);
-  --color-gray-300: var(--color-slate-300);
-  --color-gray-400: var(--color-slate-400);
-  --color-gray-500: var(--color-slate-500);
-  --color-gray-600: var(--color-slate-600);
-  --color-gray-700: var(--color-slate-700);
-  --color-gray-800: var(--color-slate-800);
-  --color-gray-900: var(--color-slate-900);
-  --color-gray-950: var(--color-slate-950);
-
-  /* Semantic Status Colors */
-  --color-success-50: #ecfdf5;
-  --color-success-500: #10b981;
-  --color-success-600: #059669;
-
-  --color-warning-50: #fffbeb;
-  --color-warning-500: #f59e0b;
-  --color-warning-600: #d97706;
-
-  --color-error-50: #fef2f2;
-  --color-error-500: #ef4444; /* Design Guide Red-500 */
-  --color-error-600: #dc2626;
-
-  /* --- SHADOWS --- */
-  --shadow-xs: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+:root {
+  --font-kapwa-sans:
+    'Inter', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont,
+    sans-serif;
+  --font-kapwa-mono:
+    'Roboto Mono', ui-monospace, SFMono-Regular, Menlo, monospace;
 }
 
 @layer base {
@@ -109,8 +91,13 @@
   ::before,
   ::backdrop,
   ::file-selector-button {
-    border-color: var(--color-slate-200, currentcolor);
+    border-color: var(--color-border-kapwa-border-weak, currentcolor);
   }
+}
+
+/* Currency symbol in gold */
+.currency-symbol {
+  color: #d4a855;
 }
 
 /* --- LEAFLET MAP OVERRIDES --- */
@@ -126,7 +113,7 @@
   line-height: 1.5 !important;
   font-family: var(--font-sans) !important;
   font-size: 14px !important;
-  color: var(--color-slate-700) !important;
+  color: var(--color-text-kapwa-text-support) !important;
   padding: 16px;
   min-width: 280px;
 }
@@ -137,97 +124,48 @@
 }
 
 .leaflet-popup-close-button {
-  color: var(--color-slate-400) !important;
+  color: var(--color-text-kapwa-text-disabled) !important;
   padding: 8px !important;
 }
 
 /* --- ANIMATIONS --- */
-@keyframes marquee {
-  0% {
-    transform: translateX(100%);
+@theme {
+  @keyframes marquee {
+    0% {
+      transform: translateX(100%);
+    }
+    100% {
+      transform: translateX(-100%);
+    }
   }
-  100% {
-    transform: translateX(-100%);
-  }
-}
-.animate-marquee {
-  animation: marquee 30s linear infinite;
-}
 
-@keyframes fadeIn {
-  from {
-    opacity: 0;
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
   }
-  to {
-    opacity: 1;
-  }
-}
-@keyframes slideUp {
-  from {
-    transform: translateY(10px);
-    opacity: 0;
-  }
-  to {
-    transform: translateY(0);
-    opacity: 1;
-  }
-}
 
-@utility animate-fade-in {
-  animation: fadeIn 0.5s ease-in-out;
-}
-
-@utility animate-slide-in {
-  animation: slideUp 0.5s ease-out;
-}
-
-/* --- SCROLLBAR --- */
-.scrollbar-thin {
-  scrollbar-width: thin;
-  scrollbar-color: var(--color-slate-300) var(--color-slate-100);
-}
-.scrollbar-thin::-webkit-scrollbar {
-  width: 6px;
-}
-.scrollbar-thin::-webkit-scrollbar-track {
-  background: var(--color-slate-100);
-}
-.scrollbar-thin::-webkit-scrollbar-thumb {
-  background: var(--color-slate-300);
-  border-radius: 4px;
-}
-.scrollbar-thin::-webkit-scrollbar-thumb:hover {
-  background: var(--color-slate-400);
+  @keyframes slideUp {
+    from {
+      transform: translateY(10px);
+      opacity: 0;
+    }
+    to {
+      transform: translateY(0);
+      opacity: 1;
+    }
+  }
 }
 
 @layer components {
-  /* 
-     Design Guide Typography Implementation 
-     Matching: "Heading 1 - text-4xl font-bold"
-  */
-
-  .heading-hero {
-    @apply text-3xl font-bold tracking-tight text-slate-900 md:text-5xl;
-  }
-
-  .heading-section {
-    @apply text-2xl font-bold text-slate-900 md:text-3xl;
-  }
-
-  /* Matching: "Small - text-sm" + "Caps" from previous system */
-  .heading-label {
-    @apply text-[10px] font-bold tracking-widest text-slate-500 uppercase;
-  }
-
-  /* 
-     Design Guide Card Style
-     Matching: "p-4 bg-white border border-gray-200 rounded-lg"
-  */
-  .card-better {
-    @apply rounded-xl border border-slate-200 bg-white shadow-sm transition-all duration-200;
-  }
-
   .sidebar-active {
-    @apply bg-primary-50 text-primary-700 border-primary-600 border-l-2 font-semibold;
+    background-color: var(--color-bg-kapwa-bg-brand-weak);
+    color: var(--color-text-kapwa-text-brand);
+    border-color: var(--color-border-kapwa-border-brand);
+    border-left-width: 2px;
+    font-weight: 600;
   }
 }

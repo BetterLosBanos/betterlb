@@ -1,6 +1,6 @@
 import { Outlet, useLocation } from 'react-router-dom';
 
-import SidebarLayout from '@/components/layout/SidebarLayout';
+import { SidebarLayout } from '@/components/layout/SidebarLayout';
 
 import ElectedOfficialsSidebar from './components/ElectedOfficialsSidebar';
 

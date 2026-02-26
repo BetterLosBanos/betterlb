@@ -1,13 +1,12 @@
 import { Link } from 'react-router-dom';
 
+import { Button } from '@bettergov/kapwa';
 import { AlertTriangleIcon, HomeIcon } from 'lucide-react';
 import { Helmet } from 'react-helmet-async';
 
-import Button from '../components/ui/Button';
-
 export default function NotFound() {
   return (
-    <div className='min-h-screen bg-gradient-to-br from-blue-600 via-blue-700 to-blue-800'>
+    <div className='min-h-screen bg-linear-to-br from-kapwa-brand-600 via-kapwa-brand-700 to-kapwa-brand-800'>
       <Helmet>
         <title>Page Not Found! | BetterGov.ph</title>
         <meta
@@ -32,17 +31,17 @@ export default function NotFound() {
         <div className='relative mx-auto max-w-6xl px-4 pt-16 pb-10 sm:px-6 lg:px-8'>
           {/* 404 Section */}
           <div className='mb-16 text-center'>
-            <div className='mb-8 inline-flex h-24 w-24 items-center justify-center rounded-full bg-white/20 backdrop-blur-sm'>
-              <AlertTriangleIcon className='h-12 w-12 text-white' />
+            <div className='bg-kapwa-bg-surface/20 mb-8 inline-flex h-24 w-24 items-center justify-center rounded-full backdrop-blur-sm'>
+              <AlertTriangleIcon className='text-kapwa-text-inverse h-12 w-12' />
             </div>
-            <h1 className='mb-4 text-6xl font-bold tracking-tight text-white md:text-8xl'>
+            <h1 className='text-kapwa-text-inverse mb-4 text-6xl font-bold tracking-tight md:text-8xl'>
               404
             </h1>
             <div className='mb-8 space-y-4'>
-              <h2 className='text-2xl font-semibold text-white md:text-3xl'>
+              <h2 className='text-kapwa-text-inverse kapwa-heading font-semibold'>
                 Lost in the Digital Bureaucracy?
               </h2>
-              <p className='mx-auto max-w-2xl text-lg leading-relaxed text-blue-100'>
+              <p className='mx-auto max-w-2xl text-lg leading-relaxed text-kapwa-text-inverse/80'>
                 Relax, even the best systems have their maze-like moments. This
                 page seems to have gotten stuck in processing... probably
                 waiting for approval from three (or more) different departments.
@@ -53,7 +52,7 @@ export default function NotFound() {
               <Link to='/'>
                 <Button
                   size='lg'
-                  className='bg-white px-8 font-semibold text-blue-600 hover:bg-blue-50'
+                  className='text-kapwa-text-info hover:bg-kapwa-bg-info-weak bg-kapwa-bg-surface px-8 font-semibold'
                 >
                   <HomeIcon className='mr-2 h-5 w-5' />
                   Return to Homepage
@@ -62,7 +61,7 @@ export default function NotFound() {
               <Button
                 variant='outline'
                 size='lg'
-                className='border-white px-8 text-white hover:bg-white/10'
+                className='text-kapwa-text-inverse hover:bg-kapwa-bg-surface/10 border-white px-8'
                 onClick={() => window.history.back()}
               >
                 Go Back

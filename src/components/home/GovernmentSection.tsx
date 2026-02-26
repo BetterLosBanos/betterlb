@@ -2,12 +2,12 @@ import { FC } from 'react';
 
 import { useNavigate } from 'react-router-dom';
 
+import { Banner, Button } from '@bettergov/kapwa';
 import { Building2Icon, HomeIcon, UsersIcon } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
 
-import { config } from '@/lib/lguConfig';
-import Button from '../ui/Button';
-import { Card, CardContent } from '../ui/Card';
+import { Badge } from '@/components/ui/Badge';
+import { Card, CardContent, CardGrid } from '@/components/ui/Card';
 
 const GovernmentSection: FC = () => {
   const { t } = useTranslation('common');
@@ -21,7 +21,7 @@ const GovernmentSection: FC = () => {
         'government.electedofficialsDescription',
         'Meet your Mayor, Vice Mayor, and Councilors.'
       ),
-      icon: <UsersIcon className='w-10 h-10 text-primary-600' />,
+      icon: <UsersIcon className='text-kapwa-text-brand h-10 w-10' />,
       link: '/government/elected-officials',
     },
     {
@@ -31,46 +31,62 @@ const GovernmentSection: FC = () => {
         'government.departmentsDescription',
         'Services and offices under the Executive branch.'
       ),
-      icon: <Building2Icon className='w-10 h-10 text-primary-600' />,
+      icon: <Building2Icon className='text-kapwa-text-brand h-10 w-10' />,
       link: '/government/departments',
     },
     {
       id: 'barangays',
       title: t('government.barangaysTitle'),
       description: t('government.barangaysDescription'),
-      icon: <HomeIcon className='w-10 h-10 text-primary-600' />,
+      icon: <HomeIcon className='text-kapwa-text-brand h-10 w-10' />,
       link: '/government/barangays',
     },
   ];
 
   return (
-    <section className='py-12 bg-white'>
-      <div className='container px-4 mx-auto'>
+    <section className='bg-kapwa-bg-surface py-12'>
+      <div className='container mx-auto px-4'>
         <div className='mb-12 text-center'>
-          <h2 className='mb-4 text-2xl font-bold text-gray-900 md:text-3xl'>
+          <h2 className='text-kapwa-text-strong mb-4 kapwa-heading font-bold'>
             {t('government.title')}
           </h2>
-          <p className='mx-auto max-w-2xl text-gray-800'>
+          <p className='text-kapwa-text-support mx-auto max-w-2xl'>
             {t('government.description')}
           </p>
         </div>
 
-        <div className='grid grid-cols-1 gap-6 md:grid-cols-3'>
+        {/* Quick stats using documented Badge component */}
+        <div className='flex flex-wrap justify-center gap-4 mb-8'>
+          <Badge variant='primary' className='px-4 py-2 text-sm'>
+            18 Barangays
+          </Badge>
+          <Badge variant='secondary' className='px-4 py-2 text-sm'>
+            15 Departments
+          </Badge>
+          <Badge variant='slate' className='px-4 py-2 text-sm'>
+            Elected Officials
+          </Badge>
+        </div>
+
+        {/* Using documented CardGrid pattern */}
+        <CardGrid columns={3}>
           {branches.map(branch => (
-            <Card key={branch.id} hoverable className='text-center'>
+            <Card key={branch.id} hover className='text-center'>
               <CardContent className='p-6'>
-                <div className='flex justify-center mb-4'>{branch.icon}</div>
-                <h3 className='mb-2 text-xl font-semibold text-gray-900'>
+                <div className='mb-4 flex justify-center'>{branch.icon}</div>
+                <h3 className='text-kapwa-text-strong mb-2 text-xl font-semibold'>
                   {branch.title}
                 </h3>
-                <p className='mb-4 text-gray-800'>{branch.description}</p>
+                <p className='text-kapwa-text-support mb-4'>
+                  {branch.description}
+                </p>
                 <Button
                   onClick={() => navigate(branch.link)}
                   variant='link'
                   size='sm'
                   rightIcon={
                     <svg
-                      className='w-4 h-4'
+                      className='h-4 w-4'
                       viewBox='0 0 24 24'
                       fill='none'
                       stroke='currentColor'
@@ -88,28 +104,21 @@ const GovernmentSection: FC = () => {
               </CardContent>
             </Card>
           ))}
-        </div>
+        </CardGrid>
 
-        <div className='p-6 mt-12 bg-gray-50 rounded-lg'>
-          <div className='items-center md:flex'>
-            <div className='mb-6 md:mb-0 md:w-2/3 md:pr-8'>
-              <h3 className='mb-2 text-xl font-semibold text-gray-900'>
-                {t('government.directoryTitle')}
-              </h3>
-              <p className='text-gray-800'>
-                {t('government.directoryDescription')}
-              </p>
-            </div>
-            <div className='flex justify-center md:w-1/3 md:justify-end'>
-              <a
-                href='/government/'
-                className='inline-flex justify-center items-center px-6 py-3 font-medium text-white rounded-md transition-colors bg-primary-500 hover:bg-primary-600 focus:ring-primary-500 shadow-xs focus:ring-2 focus:ring-offset-2 focus:outline-hidden'
-              >
-                {t('government.viewDirectory')}
-              </a>
-            </div>
-          </div>
-        </div>
+        {/* Banner CTA - using documented Banner component */}
+        <Banner
+          className='p-kapwa-lg mt-12'
+          type='default'
+          title={t('government.directoryTitle')}
+          description={t('government.directoryDescription')}
+          cta={{
+            label: t('government.viewDirectory'),
+            onClick: () => navigate('/government/'),
+            variant: 'primary',
+            size: 'lg',
+          }}
+        />
       </div>
     </section>
   );

@@ -104,14 +104,14 @@ const Hit: FC<HitProps> = ({ hit }) => {
   const link = hit.url || `/directory/${hit.slug}`;
 
   return (
-    <article className='hit-item border-b border-gray-200 p-4 hover:bg-gray-50'>
+    <article className='hit-item border-kapwa-border-weak hover:bg-kapwa-bg-surface-raised border-b p-4'>
       <a
         href={link}
         target='_blank'
         rel='noopener noreferrer'
         className='block'
       >
-        <h2 className='text-lg font-semibold text-blue-600 hover:underline'>
+        <h2 className='text-kapwa-text-info text-lg font-semibold hover:underline'>
           {title}
           {/* <Highlight
             attribute={
@@ -127,11 +127,11 @@ const Hit: FC<HitProps> = ({ hit }) => {
           /> */}
         </h2>
         {hit.description && (
-          <p className='mt-1 text-sm text-gray-800'>
+          <p className='text-kapwa-text-support mt-1 text-sm'>
             <Snippet attribute='description' hit={hit as SearchHit} />
           </p>
         )}
-        <div className='text-xs text-gray-800'>
+        <div className='text-kapwa-text-support text-xs'>
           {hit.category && (
             <span>
               <Highlight
@@ -159,7 +159,7 @@ const Hit: FC<HitProps> = ({ hit }) => {
           )}
         </div>
         {(hit.url || hit.website) && (
-          <p className='mt-1 truncate text-xs text-blue-500'>
+          <p className='text-kapwa-text-link mt-1 truncate text-xs'>
             {hit.url || hit.website}
           </p>
         )}
@@ -223,19 +223,19 @@ const MeilisearchInstantSearch: FC = () => {
               root: 'mb-2',
               form: 'relative',
               input:
-                'w-full p-3 pl-10 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-hidden transition duration-150 ease-in-out',
+                'w-full p-3 pl-10 border border-kapwa-border-weak rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-hidden transition duration-150 ease-in-out',
               submit:
-                'absolute top-0 right-0 h-full px-3 text-gray-800 hover:text-blue-600',
+                'absolute top-0 right-0 h-full px-3 text-kapwa-text-strong hover:text-kapwa-text-info',
               reset:
-                'absolute top-0 right-8 h-full px-3 text-gray-400 hover:text-gray-800',
+                'absolute top-0 right-8 h-full px-3 text-kapwa-text-disabled hover:text-kapwa-text-support',
             }}
           />
 
           {hasInteracted && (
-            <div className='absolute z-30 h-96 w-[calc(100%-2rem)] max-w-[calc(100%-4rem)] overflow-y-scroll rounded-lg bg-white shadow-sm lg:w-1/2'>
+            <div className='bg-kapwa-bg-surface absolute z-30 h-96 w-[calc(100%-2rem)] max-w-[calc(100%-4rem)] overflow-y-scroll rounded-lg shadow-sm lg:w-1/2'>
               <Stats
                 classNames={{
-                  root: 'text-sm text-gray-800 p-2 text-right text-xs',
+                  root: 'text-sm text-kapwa-text-strong p-2 text-right text-xs',
                 }}
               />
               <Hits

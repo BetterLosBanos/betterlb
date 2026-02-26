@@ -12,17 +12,11 @@ import {
   YAxis,
 } from 'recharts';
 
-import {
-  ChartContainer,
-  ChartTooltip,
-} from '@/components/data-display/ChartContainer';
-import {
-  StatsCard,
-  StatsFooter,
-  StatsHero,
-} from '@/components/data-display/StatsUI';
-import { DetailSection } from '@/components/layout/PageLayouts';
+import { StatCard } from '@/components/ui/StatCard';
 import { Badge } from '@/components/ui/Badge';
+import { ChartTooltip } from '@/components/data-display/ChartContainer';
+import { DetailSection } from '@/components/layout/PageLayouts';
+import { PageHero } from '@/components/layout/PageLayouts';
 
 import { cn } from '@/lib/utils';
 
@@ -77,21 +71,28 @@ export default function CompetitivenessPage() {
 
   return (
     <div className='animate-in fade-in space-y-8 duration-500'>
-      <StatsHero
+      {/* PageHero - documented pattern for layout headers */}
+      <PageHero
         title='Competitiveness'
         description='National evaluation of municipal progress across pillars of governance and development.'
-        badges={`CMCI ${latestYear}`}
-        icon={Trophy}
-      />
+      >
+        <div className='flex flex-wrap justify-center gap-2'>
+          <Badge variant='primary' dot>
+            CMCI {latestYear}
+          </Badge>
+          <Badge variant='slate'>DTI Standards</Badge>
+        </div>
+      </PageHero>
 
-      <div className='grid grid-cols-1 gap-4 md:grid-cols-3'>
-        <StatsCard
+      {/* KPI Cards - using new StatCard component */}
+      <div className='grid grid-cols-1 gap-4 md:grid-cols-3 items-stretch'>
+        <StatCard
           label='Overall Score'
           value={cmciData.overall_score[latestIdx].toFixed(2)}
           subtext='CMCI Index'
           variant='primary'
         />
-        <StatsCard
+        <StatCard
           label='Official Rank'
           value='33'
           subtext='1st Class Municipality'
@@ -101,16 +102,18 @@ export default function CompetitivenessPage() {
             <ArrowUp className='h-3 w-3 stroke-3' />
             <span className='text-[10px] font-black uppercase'>Up</span>
           </div>
-        </StatsCard>
-        <StatsCard
+        </StatCard>
+        <StatCard
           label='Pillars Tracked'
           value={cmciData.pillars.length}
           subtext='DTI Standards'
           variant='slate'
+          icon={Trophy}
         />
       </div>
 
-      <nav className='flex gap-1.5 rounded-2xl bg-slate-100 p-1.5'>
+      {/* Tab Switcher */}
+      <nav className='bg-kapwa-bg-hover flex gap-1.5 rounded-2xl p-1.5'>
         {(['trends', 'pillars'] as const).map(tab => (
           <button
             key={tab}
@@ -118,8 +121,8 @@ export default function CompetitivenessPage() {
             className={cn(
               'min-h-[48px] flex-1 rounded-xl py-3 text-xs font-bold tracking-widest uppercase transition-all',
               activeTab === tab
-                ? 'text-primary-700 bg-white shadow-md'
-                : 'text-slate-500 hover:text-slate-700'
+                ? 'text-kapwa-text-brand-bold bg-kapwa-bg-surface shadow-md'
+                : 'hover:text-kapwa-text-support text-kapwa-text-strong0'
             )}
           >
             {tab === 'trends' ? (
@@ -132,50 +135,53 @@ export default function CompetitivenessPage() {
         ))}
       </nav>
 
+      {/* Trends Chart wrapped in DetailSection */}
       {activeTab === 'trends' ? (
-        <ChartContainer title='Pillar Trends'>
-          <LineChart
-            data={trendData}
-            margin={{ top: 10, right: 10, left: -20, bottom: 20 }}
-          >
-            <CartesianGrid
-              vertical={false}
-              stroke={CHART_THEME.grid}
-              strokeDasharray='3 3'
-            />
-            <XAxis dataKey='year' {...standardAxisProps} dy={10} />
-            <YAxis {...standardAxisProps} />
-            <Tooltip content={<ChartTooltip />} />
-            <Legend
-              verticalAlign='top'
-              iconType='circle'
-              wrapperStyle={{
-                paddingBottom: '20px',
-                fontSize: '10px',
-                fontWeight: 'bold',
-                textTransform: 'uppercase',
-              }}
-            />
-            <Line
-              type='monotone'
-              dataKey='Overall'
-              stroke={PILLAR_COLORS.Overall}
-              strokeWidth={4}
-              dot={{ r: 4 }}
-              activeDot={{ r: 8 }}
-            />
-            {cmciData.pillars.map(p => (
-              <Line
-                key={p.name}
-                type='monotone'
-                dataKey={p.name}
-                stroke={PILLAR_COLORS[p.name]}
-                strokeWidth={2}
-                dot={false}
+        <DetailSection title='Pillar Trends' icon={TrendingUp}>
+          <div className='h-96'>
+            <LineChart
+              data={trendData}
+              margin={{ top: 10, right: 10, left: -20, bottom: 20 }}
+            >
+              <CartesianGrid
+                vertical={false}
+                stroke={CHART_THEME.grid}
+                strokeDasharray='3 3'
               />
-            ))}
-          </LineChart>
-        </ChartContainer>
+              <XAxis dataKey='year' {...standardAxisProps} dy={10} />
+              <YAxis {...standardAxisProps} />
+              <Tooltip content={<ChartTooltip />} />
+              <Legend
+                verticalAlign='top'
+                iconType='circle'
+                wrapperStyle={{
+                  paddingBottom: '20px',
+                  fontSize: '10px',
+                  fontWeight: 'bold',
+                  textTransform: 'uppercase',
+                }}
+              />
+              <Line
+                type='monotone'
+                dataKey='Overall'
+                stroke={PILLAR_COLORS.Overall}
+                strokeWidth={4}
+                dot={{ r: 4 }}
+                activeDot={{ r: 8 }}
+              />
+              {cmciData.pillars.map(p => (
+                <Line
+                  key={p.name}
+                  type='monotone'
+                  dataKey={p.name}
+                  stroke={PILLAR_COLORS[p.name]}
+                  strokeWidth={2}
+                  dot={false}
+                />
+              ))}
+            </LineChart>
+          </div>
+        </DetailSection>
       ) : (
         <div className='grid grid-cols-1 gap-8 lg:grid-cols-12'>
           <div className='space-y-3 lg:col-span-5'>
@@ -186,16 +192,16 @@ export default function CompetitivenessPage() {
                 className={cn(
                   'flex min-h-[56px] w-full items-center justify-between rounded-2xl border p-4 text-left transition-all',
                   selectedPillar === p.name
-                    ? 'bg-primary-50 border-primary-200 shadow-sm'
-                    : 'border-slate-200 bg-white'
+                    ? 'bg-kapwa-bg-surface border-kapwa-border-brand shadow-sm'
+                    : 'border-kapwa-border-weak bg-kapwa-bg-surface'
                 )}
               >
                 <span
                   className={cn(
                     'text-sm font-bold',
                     selectedPillar === p.name
-                      ? 'text-primary-900'
-                      : 'text-slate-700'
+                      ? 'text-kapwa-text-brand-bold'
+                      : 'text-kapwa-text-support'
                   )}
                 >
                   {p.name}
@@ -210,18 +216,18 @@ export default function CompetitivenessPage() {
             <DetailSection
               title={`${selectedPillar} Indicators`}
               icon={Target}
-              className='bg-slate-50/30'
+              className='bg-kapwa-bg-surface/30'
             >
               <div className='grid grid-cols-1 gap-3 sm:grid-cols-2'>
                 {currentPillar?.indicators.map((ind, idx) => (
                   <div
                     key={idx}
-                    className='flex min-h-[100px] flex-col justify-between rounded-xl border border-slate-100 bg-white p-4 shadow-xs'
+                    className='border-kapwa-border-weak bg-kapwa-bg-surface flex min-h-[100px] flex-col justify-between rounded-xl border p-4 shadow-xs'
                   >
-                    <span className='text-[10px] leading-tight font-bold tracking-widest text-slate-500 uppercase'>
+                    <span className='text-kapwa-text-disabled text-[10px] leading-tight font-bold tracking-widest uppercase'>
                       {ind.name}
                     </span>
-                    <span className='mt-2 text-xl font-black text-slate-900'>
+                    <span className='text-kapwa-text-strong mt-2 text-xl font-black'>
                       {ind.values[latestIdx]?.toFixed(4) || '0.0000'}
                     </span>
                   </div>
@@ -231,10 +237,41 @@ export default function CompetitivenessPage() {
           </div>
         </div>
       )}
-      <StatsFooter
-        source={cmciData.meta.source}
-        sourceUrl='https://cmci.dti.gov.ph/data-portal.php'
-      />
+
+      {/* Footer */}
+      <footer className='border-kapwa-border-weak space-y-4 border-t pt-10 text-center'>
+        <div className='mx-auto flex h-6 w-6 items-center justify-center rounded-full bg-emerald-100 text-emerald-600'>
+          <svg
+            className='h-4 w-4'
+            fill='none'
+            viewBox='0 0 24 24'
+            stroke='currentColor'
+          >
+            <path
+              strokeLinecap='round'
+              strokeLinejoin='round'
+              strokeWidth={2}
+              d='M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z'
+            />
+          </svg>
+        </div>
+        <div className='space-y-1'>
+          <p className='text-kapwa-text-strong text-[10px] font-bold tracking-widest uppercase'>
+            Verified Data Audit
+          </p>
+          <p className='text-kapwa-text-disabled text-[10px] font-bold tracking-widest uppercase'>
+            Source:{' '}
+            <a
+              href='https://cmci.dti.gov.ph/data-portal.php'
+              target='_blank'
+              rel='noreferrer'
+              className='hover:text-kapwa-text-brand underline'
+            >
+              {cmciData.meta.source}
+            </a>
+          </p>
+        </div>
+      </footer>
     </div>
   );
 }

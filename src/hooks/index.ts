@@ -9,3 +9,4 @@
 
 export * from './useFinancialData';
 export * from './useLegislation';
+export { useBreadcrumbs } from '@/components/layout/UnifiedLayouts';

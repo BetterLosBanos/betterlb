@@ -4,16 +4,19 @@ import { Link } from 'react-router-dom';
 
 import Fuse from 'fuse.js';
 import {
-  BookOpenIcon,
-  BriefcaseIcon,
+  BarChart3Icon,
+  BuildingIcon,
+  DollarSignIcon,
   FileTextIcon,
-  HeartIcon,
+  GavelIcon,
 } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
 
+import { Badge } from '@/components/ui/Badge';
 import SearchInput from '@/components/ui/SearchInput';
 
 import servicesData from '@/data/services/services.json';
+import mergedServicesData from '@/data/citizens-charter/merged-services.json';
 
 interface Service {
   slug: string;
@@ -25,11 +28,24 @@ interface Service {
   subcategory?: { name: string; slug: string };
 }
 
+interface MergedService {
+  slug: string;
+  service: string;
+  plainLanguageName?: string;
+  officeSlug: string;
+}
+
+interface QuickAccessCard {
+  title: string;
+  description: string;
+  to: string;
+  icon: JSX.Element;
+}
+
 const Hero: FC = () => {
   const { t } = useTranslation('common');
   const [query, setQuery] = useState('');
 
-  // Fuse.js setup
   const fuse = useMemo(() => {
     return new Fuse(servicesData as Service[], {
       keys: [
@@ -49,65 +65,56 @@ const Hero: FC = () => {
     return fuse.search(query).map(r => r.item);
   }, [query, fuse]);
 
-  // Popular services (random 3)
-  const popularServices = useMemo(() => {
-    if (!servicesData || servicesData.length === 0) return [];
-
-    // Shuffle array
-    const shuffled = [...servicesData].sort(() => 0.5 - Math.random());
-
-    // Pick 3
-    return shuffled.slice(0, 3).map(service => ({
-      label: service.service || 'Service',
-      href: `/services?category=${encodeURIComponent(service.category?.slug || '')}&subcategory=${encodeURIComponent(service.slug)}`,
-    }));
+  // Random services from merged-services - using plain language titles
+  const randomServices = useMemo(() => {
+    const services = mergedServicesData as MergedService[];
+    // Filter services that have plainLanguageName
+    const servicesWithPlainNames = services.filter(s => s.plainLanguageName);
+    // Shuffle and pick 2
+    const shuffled = [...servicesWithPlainNames].sort(
+      () => Math.random() - 0.5
+    );
+    return shuffled.slice(0, 2);
   }, []);
 
-  // Quick access categories
-
-  interface QuickCategory {
-    name: string;
-    slug: string;
-    label: string;
-    icon: JSX.Element;
-  }
-  const quickCategories: QuickCategory[] = [
+  // Quick access cards for key sections
+  const quickAccessCards: QuickAccessCard[] = [
     {
-      name: 'Certificates & Civil Registry',
-      slug: 'certificates-civil-registry',
-      label: 'Citizenship & ID',
-      icon: <FileTextIcon className='h-6 w-6 text-white' />,
+      title: 'Financial Reports',
+      description: 'Budget & income statements',
+      to: '/transparency/financial',
+      icon: <DollarSignIcon className='w-6 h-6' />,
     },
     {
-      name: 'Business & Licensing',
-      slug: 'business-licensing',
-      label: 'Business',
-      icon: <BriefcaseIcon className='h-6 w-6 text-white' />,
+      title: 'Infrastructure',
+      description: 'Track municipal projects',
+      to: '/transparency/infrastructure',
+      icon: <BuildingIcon className='w-6 h-6' />,
     },
     {
-      name: 'Education & Learning',
-      slug: 'education-learning',
-      label: 'Education',
-      icon: <BookOpenIcon className='h-6 w-6 text-white' />,
+      title: 'Legislation',
+      description: 'Ordinances & resolutions',
+      to: '/openlgu',
+      icon: <GavelIcon className='w-6 h-6' />,
     },
     {
-      name: 'Health & Nutrition',
-      slug: 'health-nutrition',
-      label: 'Health',
-      icon: <HeartIcon className='h-6 w-6 text-white' />,
+      title: 'Statistics',
+      description: 'Population & demographics',
+      to: '/statistics',
+      icon: <BarChart3Icon className='w-6 h-6' />,
     },
   ];
 
   return (
-    <div className='from-primary-600 to-primary-700 bg-linear-to-r py-12 text-white md:py-24'>
-      <div className='container mx-auto px-4'>
-        <div className='grid grid-cols-1 items-center gap-8 lg:grid-cols-2'>
-          {/* Left section: title + search + popular */}
+    <div className='py-12 from-kapwa-brand-600 to-kapwa-brand-700 bg-linear-to-r text-kapwa-text-inverse md:py-24'>
+      <div className='container px-4 mx-auto'>
+        <div className='grid grid-cols-1 gap-8 items-center lg:grid-cols-2'>
+          {/* Left section: title + search + quick categories */}
           <div className='animate-fade-in'>
-            <h1 className='mb-4 text-3xl leading-tight font-bold md:text-4xl lg:text-5xl'>
+            <h1 className='mb-4 text-kapwa-text-inverse kapwa-heading'>
               {t('hero.title')}
             </h1>
-            <p className='mb-8 max-w-lg text-lg text-blue-200'>
+            <p className='mb-8 max-w-lg opacity-80 text-kapwa-text-inverse kapwa-body-md-default'>
               {t('hero.subtitle')}
             </p>
 
@@ -117,70 +124,75 @@ const Hero: FC = () => {
                 value={query}
                 onChangeValue={setQuery}
                 placeholder={'Search services...'}
-                className='bg-white/80'
+                className='bg-kapwa-bg-surface/80'
               />
             </div>
 
             {/* Top 5 search results */}
             {query && results.length > 0 && (
-              <div className='max-h-80 overflow-y-auto rounded-lg bg-white/90 text-gray-900 shadow-md'>
+              <div className='overflow-y-auto max-h-80 rounded-lg shadow-md bg-kapwa-bg-surface/90 text-kapwa-text-strong'>
                 {results.slice(0, 5).map(hit => (
                   <Link
                     key={hit.slug}
                     to={`/services/${hit.slug}`}
-                    className='block border-b p-3 last:border-none hover:bg-gray-100'
+                    className='block p-3 border-b hover:bg-kapwa-bg-hover last:border-none'
                   >
                     <strong>
                       {hit.service || hit.office_name || hit.office}
                     </strong>
                     {hit.description && (
-                      <p className='text-sm text-gray-700'>{hit.description}</p>
+                      <p className='text-kapwa-text-support kapwa-body-sm-default'>
+                        {hit.description}
+                      </p>
                     )}
                   </Link>
                 ))}
               </div>
             )}
 
-            {/* Popular services */}
-            <div className='mt-4 flex flex-wrap gap-2'>
-              {popularServices.map(service => (
-                <Link
-                  key={service.label}
-                  className='rounded-xl border-white/20 bg-white/10 px-4 py-2 text-sm text-white hover:bg-white/20'
-                  to={service.href}
-                >
-                  {service.label}
+            {/* Random services - using plain language titles */}
+            <div className='flex flex-wrap gap-2 mt-4'>
+              {randomServices.map(service => (
+                <Link key={service.slug} to={`/services/${service.slug}`}>
+                  <Badge
+                    variant='outline'
+                    className='cursor-pointer border-white/20 text-kapwa-text-inverse hover:bg-kapwa-bg-surface/20'
+                  >
+                    <FileTextIcon className='w-4 h-4' />
+                    <span className='ml-1'>
+                      {service.plainLanguageName || service.service}
+                    </span>
+                  </Badge>
                 </Link>
               ))}
             </div>
           </div>
 
-          {/* Right section: quick access */}
-          <div className='animate-slide-in rounded-xl bg-white/10 p-6 shadow-lg backdrop-blur-sm'>
-            <h2 className='mb-4 text-2xl font-semibold'>
-              {t('services.title')}
+          {/* Right section: quick access to key sections */}
+          <div className='p-6 rounded-xl shadow-lg backdrop-blur-sm animate-slide-in bg-kapwa-bg-surface/10'>
+            <h2 className='mb-4 text-kapwa-text-inverse kapwa-heading-lg'>
+              {t('hero.quickAccess')}
             </h2>
             <div className='grid grid-cols-2 gap-4'>
-              {quickCategories.map(cat => (
+              {quickAccessCards.map(card => (
                 <Link
-                  key={cat.slug}
-                  to={`/services?category=${encodeURIComponent(cat.slug)}`}
-                  className='flex flex-col items-center rounded-lg bg-white/10 p-4 text-center transition-all duration-200 hover:bg-white/20'
+                  key={card.to}
+                  to={card.to}
+                  className='flex flex-col items-center p-4 text-center rounded-lg transition-all duration-200 bg-kapwa-bg-surface/10 hover:bg-kapwa-bg-surface/20'
                 >
-                  <div className='bg-primary-500 mb-3 rounded-full p-3'>
-                    {cat.icon}
+                  <div className='p-3 mb-3 rounded-full bg-kapwa-brand-500'>
+                    <div className='w-6 h-6 text-kapwa-text-inverse'>
+                      {card.icon}
+                    </div>
                   </div>
-                  <span className='font-medium'>{cat.label}</span>
+                  <span className='text-kapwa-text-inverse kapwa-body-md-strong'>
+                    {card.title}
+                  </span>
+                  <span className='text-kapwa-text-inverse/70 kapwa-body-sm-default'>
+                    {card.description}
+                  </span>
                 </Link>
               ))}
-            </div>
-            <div className='mt-4 flex'>
-              <Link
-                className='w-full rounded-lg bg-white/10 p-4 text-center text-white transition-all duration-500 hover:bg-white/20'
-                to='/services'
-              >
-                {t('services.viewAll')}
-              </Link>
             </div>
           </div>
         </div>

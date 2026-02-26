@@ -1,5 +1,6 @@
 import { useEffect, useMemo, useState } from 'react';
 
+import { Button } from '@bettergov/kapwa';
 import {
   BarChart3,
   Briefcase,
@@ -15,7 +16,6 @@ import {
 import { StatsCard } from '@/components/data-display/StatsUI';
 import { ModuleHeader } from '@/components/layout/PageLayouts';
 import { Badge } from '@/components/ui/Badge';
-import Button from '@/components/ui/Button';
 import { CardGrid } from '@/components/ui/Card';
 import { EmptyState } from '@/components/ui/EmptyState';
 import { PaginationControls } from '@/components/ui/Pagination';
@@ -57,6 +57,61 @@ export default function ProcurementPage() {
   // Constants
   const ORG_NAME = config.transparency.procurement.organizationName;
   const ORG_FILTER = `organization_name = "${ORG_NAME}"`;
+  const orgDashboardUrl = `${config.transparency.procurement.externalDashboard}${encodeURIComponent(ORG_NAME)}`;
+
+  // Helper function to get badge variant based on award status
+  const getAwardStatusBadgeVariant = (
+    status: string | undefined
+  ): 'success' | 'warning' | 'error' | 'slate' | 'primary' => {
+    switch (status) {
+      case 'Awarded':
+        return 'success';
+      case 'Failed':
+      case 'Cancelled':
+      case 'Disapproved':
+      case 'Declined':
+        return 'error';
+      case 'Pending':
+      case 'Under Review':
+      case 'Published':
+        return 'warning';
+      default:
+        return 'slate';
+    }
+  };
+
+  // Helper function to get badge variant based on business category
+  const getBusinessCategoryBadgeVariant = (
+    category: string | undefined
+  ): 'primary' | 'secondary' | 'warning' | 'success' => {
+    if (!category) return 'slate';
+    const cat = category.toLowerCase();
+    if (
+      cat.includes('construction') ||
+      cat.includes('infrastructure') ||
+      cat.includes('building')
+    )
+      return 'primary';
+    if (
+      cat.includes('service') ||
+      cat.includes('consultancy') ||
+      cat.includes('professional')
+    )
+      return 'secondary';
+    if (
+      cat.includes('supply') ||
+      cat.includes('material') ||
+      cat.includes('equipment')
+    )
+      return 'success';
+    if (
+      cat.includes('maintenance') ||
+      cat.includes('repair') ||
+      cat.includes('contract')
+    )
+      return 'warning';
+    return 'primary';
+  };
 
   // --- Data Loading ---
   useEffect(() => {
@@ -213,36 +268,36 @@ export default function ProcurementPage() {
       <CardGrid columns={4}>
         <StatsCard
           icon={Tags}
-          iconBg='bg-slate-100'
           label='Categories'
           value={detailedStats.uniqueCategories}
           subtext='Business Sectors'
+          iconBg='bg-kapwa-bg-surface-raised text-kapwa-text-strong'
         />
 
         <StatsCard
           icon={Briefcase}
-          iconBg='bg-slate-100'
           label='Total Value'
           value={
             formatPesoAdaptive(detailedStats.totalContractAmount).fullString
           }
           subtext='Accumulated Contract Value'
+          iconBg='bg-kapwa-green-50 text-kapwa-green-600'
         />
 
         <StatsCard
           icon={TrendingUp}
-          iconBg='bg-slate-100'
           label='Average'
           value={formatPesoAdaptive(detailedStats.averageCost).fullString}
           subtext='Per Contract'
+          iconBg='bg-kapwa-bg-brand-weak text-kapwa-text-brand'
         />
 
         <StatsCard
           icon={FileText}
-          iconBg='bg-slate-100'
           label='Volume'
           value={detailedStats.totalContractCount.toLocaleString()}
           subtext='Total Contracts'
+          iconBg='bg-kapwa-bg-surface-raised text-kapwa-text-strong'
         />
       </CardGrid>
 
@@ -252,7 +307,7 @@ export default function ProcurementPage() {
           {[1, 2, 3, 4, 5].map(i => (
             <div
               key={i}
-              className='h-16 animate-pulse rounded-xl bg-slate-50'
+              className='bg-kapwa-bg-surface-raised h-16 animate-pulse rounded-xl'
             />
           ))}
         </div>
@@ -263,46 +318,56 @@ export default function ProcurementPage() {
           icon={Search}
         />
       ) : (
-        <div className='overflow-hidden rounded-xl border border-slate-200 bg-white shadow-sm'>
+        <div className='border-kapwa-border-weak bg-kapwa-bg-surface overflow-hidden rounded-xl border shadow-sm'>
           <div className='overflow-x-auto'>
             <table className='w-full text-left text-sm'>
-              <thead className='border-b border-slate-200 bg-slate-50 text-xs font-bold tracking-wider text-slate-500 uppercase'>
+              <thead className='border-kapwa-border-weak bg-kapwa-bg-surface-raised text-kapwa-text-disabled border-b text-xs font-bold tracking-wider uppercase'>
                 <tr>
-                  <th className='hidden w-32 px-6 py-4 md:table-cell'>
+                  <th className='hidden w-32 px-3 py-3 md:table-cell md:px-6 md:py-4'>
                     Ref ID
                   </th>
-                  <th className='px-6 py-4'>Contract Title</th>
-                  <th className='px-6 py-4 text-right'>Amount</th>
-                  <th className='hidden px-6 py-4 md:table-cell'>Date</th>
-                  <th className='px-6 py-4 text-center'>Status</th>
+                  <th className='px-3 py-3 sm:px-6 sm:py-4'>Contract Title</th>
+                  <th className='px-3 py-3 text-right sm:px-6 sm:py-4'>
+                    Amount
+                  </th>
+                  <th className='hidden px-3 py-3 md:table-cell md:px-6 md:py-4'>
+                    Date
+                  </th>
+                  <th className='px-3 py-3 text-center sm:px-6 sm:py-4'>
+                    Status
+                  </th>
                 </tr>
               </thead>
-              <tbody className='divide-y divide-slate-100'>
+              <tbody className='divide-y divide-kapwa-border-weak'>
                 {paginatedResults.map(row => (
                   <tr
                     key={row.id}
-                    className='group transition-colors hover:bg-slate-50/50'
+                    className='group hover:bg-kapwa-bg-surface-raised/50 transition-colors'
                   >
-                    <td className='group-hover:text-primary-600 hidden px-6 py-4 font-mono text-xs text-slate-500 transition-colors md:table-cell'>
+                    <td className='group-hover:text-kapwa-text-brand text-kapwa-text-disabled hidden px-3 py-3 font-mono text-xs transition-colors md:table-cell md:px-6 md:py-4'>
                       {row.reference_id}
                     </td>
-                    <td className='px-6 py-4'>
+                    <td className='px-3 py-3 sm:px-6 sm:py-4'>
                       <p
-                        className='line-clamp-2 leading-snug font-bold text-slate-900'
+                        className='text-kapwa-text-strong line-clamp-2 leading-snug font-bold'
                         title={row.notice_title}
                       >
                         {row.notice_title}
                       </p>
-                      <div className='mt-1 flex items-center gap-2'>
+                      <div className='mt-1 flex flex-wrap items-center gap-2'>
                         <Badge
-                          variant='slate'
-                          className='h-4 border-slate-200 bg-slate-50 px-1.5 py-0 text-[9px] text-slate-500'
+                          variant={getBusinessCategoryBadgeVariant(
+                            row.business_category
+                          )}
+                          className='max-w-full text-[9px] sm:h-4 sm:px-1.5 sm:py-0'
                         >
-                          {row.business_category}
+                          <span className='truncate max-w-[100px] sm:max-w-[150px]'>
+                            {row.business_category}
+                          </span>
                         </Badge>
                         {row.awardee_name && (
                           <span
-                            className='max-w-[200px] truncate text-xs text-slate-500'
+                            className='text-kapwa-text-disabled max-w-[150px] truncate text-xs sm:max-w-[200px]'
                             title={row.awardee_name}
                           >
                             • {row.awardee_name}
@@ -310,20 +375,20 @@ export default function ProcurementPage() {
                         )}
                       </div>
                     </td>
-                    <td className='px-6 py-4 text-right font-mono font-bold text-slate-900'>
+                    <td className='text-kapwa-text-strong px-3 py-3 text-right font-mono font-bold sm:px-6 sm:py-4'>
                       {formatPesoAdaptive(row.contract_amount).fullString}
                     </td>
-                    <td className='hidden px-6 py-4 text-xs whitespace-nowrap text-slate-600 md:table-cell'>
+                    <td className='text-kapwa-text-support hidden px-3 py-3 text-xs whitespace-nowrap md:table-cell md:px-6 md:py-4'>
                       {formatDate(row.award_date)}
                     </td>
-                    <td className='px-6 py-4 text-center'>
+                    <td className='px-3 py-4 text-center sm:px-6'>
                       <Badge
-                        variant={
-                          row.award_status === 'Awarded' ? 'success' : 'slate'
-                        }
-                        className='text-[10px]'
+                        variant={getAwardStatusBadgeVariant(row.award_status)}
+                        className='max-w-full text-[10px]'
                       >
-                        {row.award_status}
+                        <span className='truncate max-w-[80px] sm:max-w-[120px] inline-block align-bottom'>
+                          {row.award_status}
+                        </span>
                       </Badge>
                     </td>
                   </tr>
@@ -348,42 +413,42 @@ export default function ProcurementPage() {
       {/* --- EXTERNAL LINKS FOOTER --- */}
       <div className='grid grid-cols-1 gap-4 md:grid-cols-2'>
         {/* Link 1: Local Analytics */}
-        <div className='hover:border-primary-200 flex h-full flex-col justify-between rounded-xl border border-slate-200 bg-white p-6 shadow-sm transition-all'>
+        <div className='hover:border-kapwa-border-brand border-kapwa-border-weak bg-kapwa-bg-surface flex h-full flex-col justify-between rounded-xl border p-6 shadow-sm transition-all'>
           <div className='mb-4 flex items-start gap-4'>
-            <div className='shrink-0 rounded-xl bg-blue-50 p-3 text-blue-600'>
+            <div className='bg-kapwa-blue-50 text-kapwa-blue-600 shrink-0 rounded-xl p-3'>
               <BarChart3 className='h-6 w-6' />
             </div>
             <div>
-              <h4 className='mb-1 font-bold text-slate-900'>
+              <h4 className='text-kapwa-text-strong mb-1 font-bold'>
                 Advanced Analytics
               </h4>
-              <p className='text-xs leading-relaxed text-slate-500'>
+              <p className='text-kapwa-text-disabled text-xs leading-relaxed'>
                 View detailed spending charts, top supplier breakdowns, and
                 historical procurement trends for Los Baños.
               </p>
             </div>
           </div>
           <a
-            href='https://transparency.bettergov.ph/organizations/MUNICIPALITY%20OF%20LOS%20BA%C3%91OS%2C%20LAGUNA'
+            href={orgDashboardUrl}
             target='_blank'
             rel='noreferrer'
-            className='inline-flex w-full items-center justify-center gap-2 rounded-lg bg-blue-50 px-4 py-2.5 text-xs font-bold text-blue-700 transition-colors hover:bg-blue-100'
+            className='bg-kapwa-blue-50 text-kapwa-blue-600 hover:bg-kapwa-blue-100 inline-flex w-full items-center justify-center gap-2 rounded-lg px-4 py-2.5 text-xs font-bold transition-colors'
           >
             View Los Baños Charts <ExternalLink className='h-3 w-3' />
           </a>
         </div>
 
         {/* Link 2: National Comparison */}
-        <div className='hover:border-primary-200 flex h-full flex-col justify-between rounded-xl border border-slate-200 bg-white p-6 shadow-sm transition-all'>
+        <div className='hover:border-kapwa-border-brand border-kapwa-border-weak bg-kapwa-bg-surface flex h-full flex-col justify-between rounded-xl border p-6 shadow-sm transition-all'>
           <div className='mb-4 flex items-start gap-4'>
-            <div className='shrink-0 rounded-xl bg-slate-900 p-3 text-white'>
+            <div className='text-kapwa-text-inverse bg-kapwa-brand-600 shrink-0 rounded-xl p-3'>
               <Building2 className='h-6 w-6' />
             </div>
             <div>
-              <h4 className='mb-1 font-bold text-slate-900'>
+              <h4 className='text-kapwa-text-strong mb-1 font-bold'>
                 Transparency Dashboard
               </h4>
-              <p className='text-xs leading-relaxed text-slate-500'>
+              <p className='text-kapwa-text-disabled text-xs leading-relaxed'>
                 Access the full Philippine procurement database to compare local
                 spending against national averages.
               </p>
@@ -393,9 +458,9 @@ export default function ProcurementPage() {
             href='https://transparency.bettergov.ph/procurement'
             target='_blank'
             rel='noreferrer'
-            className='inline-flex w-full items-center justify-center gap-2 rounded-lg bg-slate-900 px-4 py-2.5 text-xs font-bold text-white transition-colors hover:bg-slate-800'
+            className='text-kapwa-text-inverse bg-kapwa-brand-600 hover:bg-kapwa-brand-700 inline-flex w-full items-center justify-center gap-2 rounded-lg px-4 py-2.5 text-xs font-bold transition-colors'
           >
-            Open National Engine <ExternalLink className='h-3 w-3' />
+            View Dashboard <ExternalLink className='h-3 w-3' />
           </a>
         </div>
       </div>

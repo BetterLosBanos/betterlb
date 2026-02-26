@@ -9,8 +9,8 @@ const JoinUsStrip: FC = () => {
   const { t } = useTranslation('common');
 
   return (
-    <div className='relative overflow-hidden bg-linear-to-r from-orange-500 via-red-500 to-pink-500 py-3 text-white'>
-      <div className='absolute inset-0 bg-black/10'></div>
+    <div className='text-kapwa-text-inverse relative overflow-hidden bg-linear-to-r from-orange-500 via-red-500 to-pink-500 py-3'>
+      <div className='bg-kapwa-bg-surface-bold/10 absolute inset-0'></div>
 
       {/* Animated background elements */}
       <div className='absolute top-0 left-0 h-full w-full opacity-20'>
@@ -42,7 +42,7 @@ const JoinUsStrip: FC = () => {
           <div className='flex items-center gap-3'>
             <Link
               to='/join-us'
-              className='inline-flex transform items-center gap-2 rounded-full bg-yellow-300 px-4 py-1.5 text-sm font-semibold whitespace-nowrap text-gray-900 transition-all hover:scale-105 hover:bg-yellow-200'
+              className='text-kapwa-text-strong inline-flex transform items-center gap-2 rounded-full bg-yellow-300 px-4 py-1.5 text-sm font-semibold whitespace-nowrap transition-all hover:scale-105 hover:bg-yellow-200'
             >
               {t('joinUs.joinNow')}
               <ArrowRightIcon className='h-3 w-3' />

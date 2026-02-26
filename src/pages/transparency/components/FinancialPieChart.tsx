@@ -60,22 +60,22 @@ const CustomTooltip = ({ active, payload }: TooltipProps<number, string>) => {
     const isDetail = !data.payload.details; // Detail items don't have sub-details
 
     return (
-      <div className='z-50 rounded-lg border border-slate-200 bg-white p-3 text-sm shadow-xl'>
+      <div className='border-kapwa-border-weak bg-kapwa-bg-surface z-50 rounded-lg border p-3 text-sm shadow-xl'>
         <div className='mb-1 flex items-center gap-2'>
           <span
             className='h-2 w-2 rounded-full'
             style={{ backgroundColor: data.payload.fill }}
           />
-          <p className='font-semibold text-slate-800'>{data.name}</p>
+          <p className='text-kapwa-text-strong font-semibold'>{data.name}</p>
         </div>
-        <p className='pl-4 font-mono font-medium text-emerald-600'>
+        <p className='pl-4 font-mono font-medium text-kapwa-text-success'>
           {formatPesoAdaptive(data.value as number).fullString}
         </p>
-        <p className='mt-1 pl-4 text-xs text-slate-500'>
+        <p className='text-kapwa-text-disabled mt-1 pl-4 text-xs'>
           {((data.payload.percent || 0) * 100).toFixed(1)}% of total
         </p>
         {!isDetail && data.payload.details?.length > 0 && (
-          <p className='mt-2 flex items-center gap-1 pl-4 text-[10px] font-medium text-indigo-500'>
+          <p className='mt-2 flex items-center gap-1 pl-4 text-[10px] font-medium text-kapwa-text-brand'>
             <ZoomIn className='h-3 w-3' /> Click to view breakdown
           </p>
         )}
@@ -132,7 +132,7 @@ const renderCustomizedLabel = ({
         y={ly}
         textAnchor={textAnchor}
         dy={-5}
-        className='fill-slate-700 text-[10px] font-medium md:text-xs'
+        className='fill-[var(--color-kapwa-text-strong)] text-[10px] font-medium md:text-xs'
       >
         {name}
       </text>
@@ -141,7 +141,7 @@ const renderCustomizedLabel = ({
         y={ly}
         textAnchor={textAnchor}
         dy={10}
-        className='fill-slate-500 text-[10px]'
+        className='fill-[var(--color-kapwa-text-support)] text-[10px]'
       >
         {formatPesoAdaptive(value).fullString} ({(percent * 100).toFixed(0)}%)
       </text>
@@ -184,19 +184,19 @@ export default function FinancialPieChart({
   const getFillColor = (index: number) => colors[index % colors.length];
 
   return (
-    <Card className='relative flex h-full flex-col overflow-hidden border-slate-200 shadow-sm transition-all'>
+    <Card className='border-kapwa-border-weak relative flex h-full flex-col overflow-hidden shadow-sm transition-all'>
       {/* --- Card Header --- */}
-      <CardHeader className='flex min-h-[60px] flex-row items-center justify-between border-b border-slate-100 bg-slate-50/50 px-6 py-4'>
+      <CardHeader className='border-kapwa-border-weak bg-kapwa-bg-surface-raised/50 flex min-h-[60px] flex-row items-center justify-between border-b px-6 py-4'>
         <div className='flex items-center gap-3'>
-          <div className='rounded-lg border border-slate-200 bg-white p-2 shadow-sm'>
-            <Icon className='h-4 w-4 text-slate-600' />
+          <div className='border-kapwa-border-weak bg-kapwa-bg-surface rounded-lg border p-2 shadow-sm'>
+            <Icon className='text-kapwa-text-support h-4 w-4' />
           </div>
           <div className='flex flex-col'>
-            <span className='leading-none font-semibold text-slate-800'>
+            <span className='text-kapwa-text-strong leading-none font-semibold'>
               {drillDownItem ? drillDownItem.name : title}
             </span>
             {drillDownItem && (
-              <span className='animate-in fade-in mt-1 text-[10px] font-medium tracking-wide text-slate-500 uppercase'>
+              <span className='animate-in fade-in text-kapwa-text-disabled mt-1 text-[10px] font-medium tracking-wide uppercase'>
                 Breakdown View
               </span>
             )}
@@ -207,7 +207,7 @@ export default function FinancialPieChart({
           {drillDownItem && (
             <button
               onClick={resetView}
-              className='animate-in fade-in slide-in-from-right-2 mr-2 flex items-center gap-1 rounded-md border border-slate-200 bg-white px-2 py-1 text-xs font-medium text-slate-600 hover:bg-slate-50'
+              className='animate-in fade-in slide-in-from-right-2 border-kapwa-border-weak bg-kapwa-bg-surface text-kapwa-text-support hover:bg-kapwa-bg-surface-raised mr-2 flex items-center gap-1 rounded-md border px-2 py-1 text-xs font-medium'
             >
               <Undo2 className='h-3 w-3' /> Back
             </button>
@@ -218,8 +218,8 @@ export default function FinancialPieChart({
             title='Toggle Labels'
             className={`rounded-md p-1.5 transition-colors ${
               showLabels
-                ? 'bg-slate-200 text-slate-800'
-                : 'text-slate-400 hover:bg-slate-100'
+                ? 'bg-kapwa-bg-brand-weak text-kapwa-text-brand'
+                : 'hover:bg-kapwa-bg-surface-raised text-kapwa-text-disabled'
             }`}
           >
             <Tag className='h-3.5 w-3.5' />
@@ -227,7 +227,7 @@ export default function FinancialPieChart({
 
           <button
             onClick={() => setShowBreakdownList(!showBreakdownList)}
-            className='p-1 text-slate-400 transition-colors hover:text-slate-800'
+            className='text-kapwa-text-disabled hover:text-kapwa-text-strong p-1 transition-colors'
             title='Toggle List'
           >
             {showBreakdownList ? (
@@ -291,19 +291,19 @@ export default function FinancialPieChart({
             {drillDownItem ? (
               <button
                 onClick={resetView}
-                className='group pointer-events-auto flex h-24 w-24 flex-col items-center justify-center rounded-full bg-slate-50/0 transition-colors hover:bg-slate-50'
+                className='group bg-kapwa-bg-surface-raised/0 hover:bg-kapwa-bg-surface-raised pointer-events-auto flex h-24 w-24 flex-col items-center justify-center rounded-full transition-colors'
               >
-                <Undo2 className='mb-1 h-5 w-5 text-slate-400 group-hover:text-slate-700' />
-                <span className='text-[10px] font-semibold tracking-widest text-slate-500 uppercase group-hover:text-slate-800'>
+                <Undo2 className='text-kapwa-text-disabled group-hover:text-kapwa-text-support mb-1 h-5 w-5' />
+                <span className='text-kapwa-text-disabled group-hover:text-kapwa-text-strong text-[10px] font-semibold tracking-widest uppercase'>
                   Return
                 </span>
               </button>
             ) : (
               <div className='flex flex-col items-center justify-center'>
-                <span className='text-[10px] font-medium tracking-widest text-slate-400 uppercase'>
+                <span className='text-kapwa-text-disabled text-[10px] font-medium tracking-widest uppercase'>
                   Total
                 </span>
-                <span className='mt-1 text-xs font-bold text-slate-700'>
+                <span className='text-kapwa-text-support mt-1 text-xs font-bold'>
                   {
                     formatPesoAdaptive(
                       activeData.reduce((acc, curr) => acc + curr.value, 0)
@@ -317,7 +317,7 @@ export default function FinancialPieChart({
 
         {/* Breakdown List */}
         {showBreakdownList && (
-          <div className='animate-in fade-in slide-in-from-top-2 mt-4 max-h-[200px] space-y-2 overflow-y-auto border-t border-slate-100 pt-4 pr-2'>
+          <div className='animate-in fade-in slide-in-from-top-2 border-kapwa-border-weak mt-4 max-h-[200px] space-y-2 overflow-y-auto border-t pt-4 pr-2'>
             {activeData.map((item, index) => {
               const total = activeData.reduce(
                 (acc, curr) => acc + curr.value,
@@ -336,7 +336,7 @@ export default function FinancialPieChart({
                   onClick={() => canDrill && onSliceClick(item)}
                   className={`group flex items-center justify-between rounded-md p-1.5 text-sm transition-colors ${
                     canDrill
-                      ? 'cursor-pointer hover:bg-slate-50'
+                      ? 'hover:bg-kapwa-bg-surface-raised cursor-pointer'
                       : 'cursor-default'
                   }`}
                 >
@@ -346,23 +346,23 @@ export default function FinancialPieChart({
                       style={{ backgroundColor: getFillColor(index) }}
                     />
                     <span
-                      className={`text-slate-600 transition-colors ${
+                      className={`text-kapwa-text-support transition-colors ${
                         canDrill
-                          ? 'group-hover:font-medium group-hover:text-emerald-700'
+                          ? 'group-hover:font-medium group-hover:text-kapwa-text-success'
                           : ''
                       }`}
                     >
                       {item.name}
                     </span>
                     {canDrill && (
-                      <ZoomIn className='h-3 w-3 text-slate-300 group-hover:text-emerald-500' />
+                      <ZoomIn className='text-kapwa-text-support h-3 w-3 group-hover:text-kapwa-text-success' />
                     )}
                   </div>
                   <div className='flex items-center gap-3'>
-                    <span className='font-medium text-slate-900'>
+                    <span className='text-kapwa-text-strong font-medium'>
                       {formatPesoAdaptive(item.value).fullString}
                     </span>
-                    <span className='w-10 text-right text-xs text-slate-400'>
+                    <span className='text-kapwa-text-disabled w-10 text-right text-xs'>
                       {percent.toFixed(1)}%
                     </span>
                   </div>

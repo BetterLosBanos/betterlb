@@ -1,6 +1,5 @@
+import { Button } from '@bettergov/kapwa';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
-
-import Button from './Button';
 
 interface PaginationProps {
   currentPage: number;
@@ -57,16 +56,16 @@ export function PaginationControls({
   const end = Math.min(currentPage * resultsPerPage, totalItems);
 
   return (
-    <div className='flex flex-col items-center gap-4 border-t border-slate-200 bg-slate-50 p-4 md:flex-row md:justify-between'>
+    <div className='border-kapwa-border-weak bg-kapwa-bg-surface-raised flex flex-col items-center gap-4 border-t p-4 md:flex-row md:justify-between'>
       {/* Left: Info & Selector */}
-      <div className='flex flex-wrap items-center justify-center gap-4 text-xs font-medium text-slate-500'>
+      <div className='text-kapwa-text-disabled flex flex-wrap items-center justify-center gap-4 text-xs font-medium'>
         <span>
           Showing{' '}
-          <span className='font-bold text-slate-900'>
+          <span className='text-kapwa-text-strong font-bold'>
             {Math.max(0, start)}-{Math.max(0, end)}
           </span>{' '}
           of{' '}
-          <span className='font-bold text-slate-900'>
+          <span className='text-kapwa-text-strong font-bold'>
             {totalItems.toLocaleString()}
           </span>
         </span>
@@ -76,7 +75,7 @@ export function PaginationControls({
           <select
             value={resultsPerPage}
             onChange={e => onResultsPerPageChange(Number(e.target.value))}
-            className='focus:border-primary-500 focus:ring-primary-500 h-8 rounded-lg border-slate-300 bg-white text-xs font-medium text-slate-700'
+            className='focus:border-kapwa-border-brand focus:ring-kapwa-border-brand border-kapwa-border-weak bg-kapwa-bg-surface text-kapwa-text-support h-8 rounded-lg text-xs font-medium'
           >
             {[10, 20, 50, 100].map(val => (
               <option key={val} value={val}>
@@ -104,7 +103,7 @@ export function PaginationControls({
             page === '...' ? (
               <span
                 key={`ellipsis-${idx}`}
-                className='px-2 py-1 text-xs text-slate-400'
+                className='text-kapwa-text-disabled px-2 py-1 text-xs'
               >
                 ...
               </span>
@@ -114,8 +113,8 @@ export function PaginationControls({
                 onClick={() => onPageChange(page as number)}
                 className={`h-8 w-8 rounded-lg text-xs font-bold transition-colors ${
                   currentPage === page
-                    ? 'bg-primary-600 text-white'
-                    : 'border border-slate-200 bg-white text-slate-600 hover:bg-slate-50'
+                    ? 'bg-kapwa-bg-brand-default text-kapwa-text-inverse'
+                    : 'hover:bg-kapwa-bg-surface-raised border-kapwa-border-weak bg-kapwa-bg-surface text-kapwa-text-support border'
                 }`}
               >
                 {page}

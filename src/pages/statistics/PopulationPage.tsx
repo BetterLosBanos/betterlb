@@ -1,13 +1,7 @@
 import { useMemo, useState } from 'react';
 
 import { CHART_THEME, standardAxisProps } from '@/constants/charts';
-import {
-  ArrowUpRight,
-  Info,
-  LineChart as LineIcon,
-  TrendingUp,
-  Users,
-} from 'lucide-react';
+import { Info, LineChart as LineIcon, TrendingUp, Users } from 'lucide-react';
 import {
   CartesianGrid,
   Legend,
@@ -18,15 +12,11 @@ import {
   YAxis,
 } from 'recharts';
 
-import {
-  ChartContainer,
-  ChartTooltip,
-} from '@/components/data-display/ChartContainer';
-import {
-  StatsCard,
-  StatsFooter,
-  StatsHero,
-} from '@/components/data-display/StatsUI';
+import { StatCard } from '@/components/ui/StatCard';
+import { Badge } from '@/components/ui/Badge';
+import { ChartTooltip } from '@/components/data-display/ChartContainer';
+import { DetailSection } from '@/components/layout/PageLayouts';
+import { PageHero } from '@/components/layout/PageLayouts';
 
 import { cn } from '@/lib/utils';
 
@@ -91,48 +81,52 @@ export default function PopulationPage() {
 
   return (
     <div className='animate-in fade-in space-y-8 pb-20 duration-500'>
-      <StatsHero
+      {/* PageHero - documented pattern for layout headers */}
+      <PageHero
         title='Population Profile'
         description='Detailed demographic analysis tracking growth from the municipal level down to individual barangays.'
-        badges={`Census ${latestMuni.year}`}
-        icon={Users}
-      />
+      >
+        <div className='flex flex-wrap justify-center gap-2'>
+          <Badge variant='primary' dot>
+            Census {latestMuni.year}
+          </Badge>
+          <Badge variant='slate'>{barangays.length} Barangays</Badge>
+        </div>
+      </PageHero>
 
-      {/* KPI Cards */}
+      {/* KPI Cards - using new StatCard component */}
       <div className='grid grid-cols-1 gap-4 md:grid-cols-3'>
-        <StatsCard
+        <StatCard
           label='Total Population'
           value={latestMuni.population.toLocaleString()}
           subtext='Actual Resident Count'
           variant='primary'
-        >
-          <div className='flex items-center gap-1 text-xs font-bold text-emerald-600'>
-            <ArrowUpRight className='h-3 w-3' /> +{growth}%
-          </div>
-        </StatsCard>
-        <StatsCard
+          trend={{ value: growth || 0, positive: true }}
+        />
+        <StatCard
           label='Growth Rate'
           value={`${growth}%`}
           subtext='Annual (2020-2024)'
           variant='secondary'
         />
-        <StatsCard
+        <StatCard
           label='Admin Units'
           value={barangays.length}
           subtext='Official Barangays'
           variant='slate'
+          icon={Users}
         />
       </div>
 
       {/* Unified Tab Switcher */}
-      <div className='flex gap-1.5 rounded-2xl bg-slate-100 p-1.5'>
+      <div className='bg-kapwa-bg-hover flex gap-1.5 rounded-2xl p-1.5'>
         <button
           onClick={() => setActiveTab('municipality')}
           className={cn(
             'flex min-h-[48px] flex-1 items-center justify-center gap-2 rounded-xl py-3 text-xs font-bold tracking-widest uppercase transition-all',
             activeTab === 'municipality'
-              ? 'text-primary-700 bg-white shadow-md'
-              : 'text-slate-500 hover:text-slate-700'
+              ? 'text-kapwa-text-brand-bold bg-kapwa-bg-surface shadow-md'
+              : 'hover:text-kapwa-text-support text-kapwa-text-strong0'
           )}
         >
           <TrendingUp className='h-4 w-4' /> Municipal Growth
@@ -142,121 +136,143 @@ export default function PopulationPage() {
           className={cn(
             'flex min-h-[48px] flex-1 items-center justify-center gap-2 rounded-xl py-3 text-xs font-bold tracking-widest uppercase transition-all',
             activeTab === 'barangays'
-              ? 'text-primary-700 bg-white shadow-md'
-              : 'text-slate-500 hover:text-slate-700'
+              ? 'text-kapwa-text-brand-bold bg-kapwa-bg-surface shadow-md'
+              : 'hover:text-kapwa-text-support text-kapwa-text-strong0'
           )}
         >
           <LineIcon className='h-4 w-4' /> Barangay Comparison
         </button>
       </div>
 
-      {/* Unified Chart Logic */}
-      <ChartContainer
+      {/* Chart wrapped in DetailSection - documented pattern */}
+      <DetailSection
         title={
           activeTab === 'municipality'
             ? 'Total Municipal Growth'
             : 'Barangay Trends'
         }
-        height={activeTab === 'barangays' ? 550 : 400} // Increase height for the complex legend
+        icon={TrendingUp}
       >
-        {activeTab === 'municipality' ? (
-          <LineChart
-            data={municipality.history}
-            margin={{ top: 10, right: 10, left: 0, bottom: 0 }}
-          >
-            <CartesianGrid
-              vertical={false}
-              stroke={CHART_THEME.grid}
-              strokeDasharray='3 3'
-            />
-            <XAxis dataKey='year' {...standardAxisProps} dy={10} />
-            <YAxis
-              {...standardAxisProps}
-              tickFormatter={val => `${val / 1000}k`}
-            />
-            <Tooltip
-              content={<ChartTooltip formatter={v => v.toLocaleString()} />}
-            />
-            <Line
-              type='monotone'
-              dataKey='population'
-              name='Total Residents'
-              stroke='var(--color-primary-600)'
-              strokeWidth={5}
-              dot={{
-                fill: 'var(--color-primary-600)',
-                r: 4,
-                strokeWidth: 2,
-                stroke: '#fff',
-              }}
-              activeDot={{ r: 8, strokeWidth: 4, stroke: '#fff' }}
-            />
-          </LineChart>
-        ) : (
-          <LineChart
-            data={comparativeData}
-            margin={{ top: 10, right: 10, left: 0, bottom: 20 }}
-          >
-            <CartesianGrid
-              vertical={false}
-              stroke={CHART_THEME.grid}
-              strokeDasharray='3 3'
-            />
-            <XAxis dataKey='year' {...standardAxisProps} dy={10} />
-            <YAxis {...standardAxisProps} />
-            <Tooltip
-              content={<ChartTooltip formatter={v => v.toLocaleString()} />}
-            />
-            <Legend
-              verticalAlign='top'
-              iconType='circle'
-              wrapperStyle={{
-                paddingBottom: '30px',
-                fontSize: '10px',
-                fontWeight: 'bold',
-                textTransform: 'uppercase',
-                letterSpacing: '1px',
-              }}
-            />
-            {sortedBarangaysForLine.map((b, i) => {
-              const isTop3 = i < 3;
+        <div className={activeTab === 'barangays' ? 'h-[550px]' : 'h-[400px]'}>
+          {activeTab === 'municipality' ? (
+            <LineChart
+              data={municipality.history}
+              margin={{ top: 10, right: 10, left: 0, bottom: 0 }}
+            >
+              <CartesianGrid
+                vertical={false}
+                stroke={CHART_THEME.grid}
+                strokeDasharray='3 3'
+              />
+              <XAxis dataKey='year' {...standardAxisProps} dy={10} />
+              <YAxis
+                {...standardAxisProps}
+                tickFormatter={val => `${val / 1000}k`}
+              />
+              <Tooltip
+                content={<ChartTooltip formatter={v => v.toLocaleString()} />}
+              />
+              <Line
+                type='monotone'
+                dataKey='population'
+                name='Total Residents'
+                stroke='var(--color-kapwa-blue-600)'
+                strokeWidth={5}
+                dot={{
+                  fill: 'var(--color-kapwa-blue-600)',
+                  r: 4,
+                  strokeWidth: 2,
+                  stroke: '#fff',
+                }}
+                activeDot={{ r: 8, strokeWidth: 4, stroke: '#fff' }}
+              />
+            </LineChart>
+          ) : (
+            <LineChart
+              data={comparativeData}
+              margin={{ top: 10, right: 10, left: 0, bottom: 20 }}
+            >
+              <CartesianGrid
+                vertical={false}
+                stroke={CHART_THEME.grid}
+                strokeDasharray='3 3'
+              />
+              <XAxis dataKey='year' {...standardAxisProps} dy={10} />
+              <YAxis {...standardAxisProps} />
+              <Tooltip
+                content={<ChartTooltip formatter={v => v.toLocaleString()} />}
+              />
+              <Legend
+                verticalAlign='top'
+                iconType='circle'
+                wrapperStyle={{
+                  paddingBottom: '30px',
+                  fontSize: '10px',
+                  fontWeight: 'bold',
+                  textTransform: 'uppercase',
+                  letterSpacing: '1px',
+                }}
+              />
+              {sortedBarangaysForLine.map((b, i) => {
+                const isTop3 = i < 3;
 
-              return (
-                <Line
-                  key={b.id}
-                  type='monotone'
-                  dataKey={b.name}
-                  // 0 = Blue, 1 = Orange, 2 = Emerald
-                  stroke={BRGY_COLORS[i % BRGY_COLORS.length]}
-                  // Make the top 3 lines bolder (Accessibility: emphasis)
-                  strokeWidth={isTop3 ? 4 : 2}
-                  // Only show dots on top 3 to reduce visual clutter on 14 lines
-                  dot={
-                    isTop3 ? { r: 4, strokeWidth: 2, stroke: '#555' } : false
-                  }
-                  activeDot={{ r: 8, strokeWidth: 4, stroke: '#fff' }}
-                />
-              );
-            })}
-          </LineChart>
-        )}
-      </ChartContainer>
+                return (
+                  <Line
+                    key={b.id}
+                    type='monotone'
+                    dataKey={b.name}
+                    // 0 = Blue, 1 = Orange, 2 = Emerald
+                    stroke={BRGY_COLORS[i % BRGY_COLORS.length]}
+                    // Make the top 3 lines bolder (Accessibility: emphasis)
+                    strokeWidth={isTop3 ? 4 : 2}
+                    // Only show dots on top 3 to reduce visual clutter on 14 lines
+                    dot={
+                      isTop3 ? { r: 4, strokeWidth: 2, stroke: '#555' } : false
+                    }
+                    activeDot={{ r: 8, strokeWidth: 4, stroke: '#fff' }}
+                  />
+                );
+              })}
+            </LineChart>
+          )}
+        </div>
+      </DetailSection>
 
-      <div className='flex gap-4 rounded-2xl border border-slate-100 bg-slate-50 p-6 shadow-inner'>
-        <Info className='text-primary-600 mt-0.5 h-5 w-5 shrink-0' />
-        <div className='space-y-2'>
-          <p className='text-xs font-bold tracking-widest text-slate-900 uppercase'>
-            How to read this data
+      {/* Info box using DetailSection for consistency */}
+      <DetailSection title='How to read this data' icon={Info}>
+        <p className='text-kapwa-text-disabled text-xs leading-relaxed italic'>
+          {activeTab === 'municipality'
+            ? 'The municipal growth chart tracks long-term population expansion from 1960 to current estimates.'
+            : 'The comparison chart allows you to track which barangays are experiencing the fastest urban growth relative to their 2010 baseline.'}
+        </p>
+      </DetailSection>
+
+      {/* Footer using documented footer pattern */}
+      <footer className='border-kapwa-border-weak space-y-4 border-t pt-10 text-center'>
+        <div className='mx-auto flex h-6 w-6 items-center justify-center rounded-full bg-emerald-100 text-emerald-600'>
+          <svg
+            className='h-4 w-4'
+            fill='none'
+            viewBox='0 0 24 24'
+            stroke='currentColor'
+          >
+            <path
+              strokeLinecap='round'
+              strokeLinejoin='round'
+              strokeWidth={2}
+              d='M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z'
+            />
+          </svg>
+        </div>
+        <div className='space-y-1'>
+          <p className='text-kapwa-text-strong text-[10px] font-bold tracking-widest uppercase'>
+            Verified Data Audit
           </p>
-          <p className='text-xs leading-relaxed text-slate-500 italic'>
-            {activeTab === 'municipality'
-              ? 'The municipal growth chart tracks long-term population expansion from 1960 to current estimates.'
-              : 'The comparison chart allows you to track which barangays are experiencing the fastest urban growth relative to their 2010 baseline.'}
+          <p className='text-kapwa-text-disabled text-[10px] font-bold tracking-widest uppercase'>
+            Source: {meta.source}
           </p>
         </div>
-      </div>
-
-      <StatsFooter source={meta.source} />
+      </footer>
     </div>
   );
 }

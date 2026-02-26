@@ -96,34 +96,34 @@ export default function MunicipalCommitteesPage() {
             <Card
               key={index}
               hover
-              className='flex h-full flex-col border-slate-200 shadow-xs'
+              className='border-kapwa-border-weak flex h-full flex-col shadow-xs'
             >
               <CardContent className='flex h-full flex-col space-y-4 p-4'>
                 {/* Top Row: Icon & Title */}
                 <div className='flex items-start gap-3'>
-                  <div className='bg-secondary-50 text-secondary-600 border-secondary-100 shrink-0 rounded-lg border p-2 shadow-sm'>
+                  <div className='bg-kapwa-bg-accent-orange-weak text-kapwa-text-accent-orange border-kapwa-border-weak shrink-0 rounded-lg border p-2 shadow-sm'>
                     <BookOpenIcon className='h-5 w-5' />
                   </div>
                   <div className='min-w-0 flex-1'>
-                    <h3 className='text-base leading-tight font-bold text-slate-900'>
+                    <h3 className='text-kapwa-text-strong text-base leading-tight font-bold'>
                       {toTitleCase(committee.committee)}
                     </h3>
-                    <p className='mt-0.5 text-[10px] font-bold tracking-widest text-slate-400 uppercase'>
+                    <p className='text-kapwa-text-disabled mt-0.5 text-[10px] font-bold tracking-widest uppercase'>
                       Standing Committee
                     </p>
                   </div>
                 </div>
 
                 {/* Middle Row: Chairperson Highlight Box */}
-                <div className='flex items-center gap-2 rounded-xl border border-slate-100 bg-slate-50/50 px-3 py-2.5'>
-                  <div className='shrink-0 rounded-full border border-slate-200 bg-white p-1 text-slate-400 shadow-sm'>
+                <div className='border-kapwa-border-weak bg-kapwa-bg-surface-raised/50 flex items-center gap-2 rounded-xl border px-3 py-2.5'>
+                  <div className='border-kapwa-border-weak bg-kapwa-bg-surface text-kapwa-text-disabled shrink-0 rounded-full border p-1 shadow-sm'>
                     <User2 className='h-3.5 w-3.5' />
                   </div>
                   <div className='min-w-0'>
-                    <p className='mb-0.5 text-[9px] leading-none font-bold tracking-tighter text-slate-400 uppercase'>
+                    <p className='text-kapwa-text-disabled mb-0.5 text-[9px] leading-none font-bold tracking-tighter uppercase'>
                       Chairperson
                     </p>
-                    <p className='truncate text-xs leading-tight font-bold text-slate-800'>
+                    <p className='text-kapwa-text-strong truncate text-xs leading-tight font-bold'>
                       {toTitleCase(committee.chairperson)}
                     </p>
                   </div>
@@ -131,10 +131,10 @@ export default function MunicipalCommitteesPage() {
 
                 {/* Expanded Member List */}
                 {committee.members && committee.members.length > 0 && (
-                  <div className='border-t border-slate-50 pt-2'>
+                  <div className='border-t border-kapwa-border-weak pt-2'>
                     <div className='mb-2.5 flex items-center gap-1.5'>
-                      <UsersIcon className='text-secondary-500 h-3 w-3' />
-                      <span className='text-[10px] font-bold tracking-widest text-slate-400 uppercase'>
+                      <UsersIcon className='text-kapwa-text-accent-orange h-3 w-3' />
+                      <span className='text-kapwa-text-disabled text-[10px] font-bold tracking-widest uppercase'>
                         Committee Members
                       </span>
                     </div>
@@ -142,9 +142,9 @@ export default function MunicipalCommitteesPage() {
                       {committee.members.map((member, i) => (
                         <li
                           key={i}
-                          className='flex items-start gap-2 px-1 text-xs font-semibold text-slate-600'
+                          className='text-kapwa-text-on-disabled flex items-start gap-2 px-1 text-xs font-semibold'
                         >
-                          <span className='bg-secondary-300 mt-1.5 h-1 w-1 shrink-0 rounded-full' />
+                          <span className='bg-kapwa-bg-disabled mt-1.5 h-1 w-1 shrink-0 rounded-full' />
                           <span className='flex-1 leading-snug'>
                             {toTitleCase(member.name)}
                           </span>

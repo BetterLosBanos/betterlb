@@ -31,28 +31,28 @@ const ProjectMarker: FC<ProjectMarkerProps> = ({ project, icon }) => {
     <Marker position={[lat, lng]} icon={icon}>
       <Popup>
         <div className='min-w-[200px]'>
-          <h3 className='font-bold text-gray-900'>
+          <h3 className='text-kapwa-text-strong font-bold'>
             {project.ProjectDescription || 'Unnamed Project'}
           </h3>
-          <p className='mt-1 text-sm text-gray-800'>
+          <p className='text-kapwa-text-support mt-1 text-sm'>
             <strong>Region:</strong> {project.Region || 'N/A'}
           </p>
-          <p className='text-sm text-gray-800'>
+          <p className='text-kapwa-text-support text-sm'>
             <strong>Province:</strong> {project.Province || 'N/A'}
           </p>
-          <p className='text-sm text-gray-800'>
+          <p className='text-kapwa-text-support text-sm'>
             <strong>Municipality:</strong> {project.Municipality || 'N/A'}
           </p>
-          <p className='text-sm text-gray-800'>
+          <p className='text-kapwa-text-support text-sm'>
             <strong>Contractor:</strong> {project.Contractor || 'N/A'}
           </p>
-          <p className='text-sm text-gray-800'>
+          <p className='text-kapwa-text-support text-sm'>
             <strong>Cost:</strong> ₱
             {project.ContractCost
               ? Number(project.ContractCost).toLocaleString()
               : 'N/A'}
           </p>
-          <p className='text-sm text-gray-800'>
+          <p className='text-kapwa-text-support text-sm'>
             <strong>Year:</strong> {project.InfraYear || 'N/A'}
           </p>
         </div>

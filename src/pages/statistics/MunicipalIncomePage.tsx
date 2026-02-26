@@ -2,12 +2,10 @@ import { useMemo } from 'react';
 
 import { Coins, Landmark, Wallet } from 'lucide-react';
 
-import {
-  StatsFooter,
-  StatsGrid,
-  StatsHero,
-} from '@/components/data-display/StatsUI';
+import { StatGrid } from '@/components/ui/StatCard';
+import { Badge } from '@/components/ui/Badge';
 import { DetailSection } from '@/components/layout/PageLayouts';
+import { PageHero } from '@/components/layout/PageLayouts';
 
 import FinancialPieChart from '@/pages/transparency/components/FinancialPieChart';
 
@@ -66,20 +64,28 @@ export default function MunicipalIncomePage() {
 
   return (
     <div className='animate-in fade-in space-y-10 pb-20 duration-500'>
-      <StatsHero
+      {/* PageHero - documented pattern for layout headers */}
+      <PageHero
         title='Municipal Income'
         description='Detailed analysis of revenue sources, fiscal autonomy, and national tax dependency.'
-        badges={data.period}
-        icon={Wallet}
-      />
+      >
+        <div className='flex flex-wrap justify-center gap-2'>
+          <Badge variant='primary' dot>
+            {data.period}
+          </Badge>
+          <Badge variant='slate'>BLGF Data</Badge>
+        </div>
+      </PageHero>
 
-      <StatsGrid
+      {/* KPI Cards - using StatGrid with StatCard */}
+      <StatGrid
         columns={3}
-        alreadyInMillions={true}
         stats={[
           {
             label: 'Total Income',
-            value: data.summary_indicators.annual_regular_income,
+            value: formatPesoAdaptive(
+              data.summary_indicators.annual_regular_income * 1_000_000
+            ).fullString,
             subtext: 'Annual Revenue',
             variant: 'primary',
           },
@@ -94,25 +100,37 @@ export default function MunicipalIncomePage() {
             value: `${data.summary_indicators.dependency_rates.nta_dependency}`,
             subtext: 'National Allotment',
             variant: 'slate',
+            icon: Wallet,
           },
         ]}
       />
 
-      <FinancialPieChart
-        title='Revenue Composition'
-        icon={Landmark}
-        data={drillDownIncomeData}
-        colors={[COLORS.national, COLORS.local, COLORS.special, COLORS.other]}
-      />
+      {/* Chart wrapped in DetailSection */}
+      <DetailSection title='Revenue Composition' icon={Landmark}>
+        <div className='flex justify-center'>
+          <FinancialPieChart
+            title='Revenue Composition'
+            icon={Landmark}
+            data={drillDownIncomeData}
+            colors={[
+              COLORS.national,
+              COLORS.local,
+              COLORS.special,
+              COLORS.other,
+            ]}
+          />
+        </div>
+      </DetailSection>
 
+      {/* Full Financial Itemization */}
       <DetailSection title='Full Financial Itemization' icon={Coins}>
         <div className='grid grid-cols-1 gap-8 md:grid-cols-3'>
           <div className='space-y-4'>
-            <h4 className='text-secondary-600 border-b pb-2 text-[10px] font-black tracking-widest uppercase'>
+            <h4 className='text-kapwa-text-accent-orange border-b pb-2 text-[10px] font-black tracking-widest uppercase'>
               Local Tax
             </h4>
-            <div className='space-y-2 text-sm font-bold text-slate-700'>
-              <div className='flex justify-between rounded-lg bg-slate-50 p-2'>
+            <div className='text-kapwa-text-support space-y-2 text-sm font-bold'>
+              <div className='bg-kapwa-bg-surface-raised flex justify-between rounded-lg p-2'>
                 <span>Real Property</span>
                 <span>
                   {
@@ -123,7 +141,7 @@ export default function MunicipalIncomePage() {
                   }
                 </span>
               </div>
-              <div className='flex justify-between rounded-lg bg-slate-50 p-2'>
+              <div className='bg-kapwa-bg-surface-raised flex justify-between rounded-lg p-2'>
                 <span>Business Tax</span>
                 <span>
                   {
@@ -136,11 +154,11 @@ export default function MunicipalIncomePage() {
             </div>
           </div>
           <div className='space-y-4'>
-            <h4 className='text-primary-600 border-b pb-2 text-[10px] font-black tracking-widest uppercase'>
+            <h4 className='text-kapwa-text-brand border-b pb-2 text-[10px] font-black tracking-widest uppercase'>
               Non-Tax
             </h4>
-            <div className='space-y-2 text-sm font-bold text-slate-700'>
-              <div className='flex justify-between rounded-lg bg-slate-50 p-2'>
+            <div className='text-kapwa-text-support space-y-2 text-sm font-bold'>
+              <div className='bg-kapwa-bg-surface-raised flex justify-between rounded-lg p-2'>
                 <span>Fees</span>
                 <span>
                   {
@@ -151,7 +169,7 @@ export default function MunicipalIncomePage() {
                   }
                 </span>
               </div>
-              <div className='flex justify-between rounded-lg bg-slate-50 p-2'>
+              <div className='bg-kapwa-bg-surface-raised flex justify-between rounded-lg p-2'>
                 <span>Enterprises</span>
                 <span>
                   {
@@ -168,8 +186,8 @@ export default function MunicipalIncomePage() {
             <h4 className='border-b pb-2 text-[10px] font-black tracking-widest text-emerald-600 uppercase'>
               External
             </h4>
-            <div className='space-y-2 text-sm font-bold text-slate-700'>
-              <div className='flex justify-between rounded-lg bg-slate-50 p-2'>
+            <div className='text-kapwa-text-support space-y-2 text-sm font-bold'>
+              <div className='bg-kapwa-bg-surface-raised flex justify-between rounded-lg p-2'>
                 <span>Allotment</span>
                 <span>
                   {
@@ -179,7 +197,7 @@ export default function MunicipalIncomePage() {
                   }
                 </span>
               </div>
-              <div className='flex justify-between rounded-lg bg-slate-50 p-2'>
+              <div className='bg-kapwa-bg-surface-raised flex justify-between rounded-lg p-2'>
                 <span>Other Shares</span>
                 <span>
                   {
@@ -195,10 +213,40 @@ export default function MunicipalIncomePage() {
         </div>
       </DetailSection>
 
-      <StatsFooter
-        source='Bureau of Local Government Finance (BLGF)'
-        sourceUrl='https://data.bettergov.ph/datasets/9/resources/31'
-      />
+      {/* Footer */}
+      <footer className='border-kapwa-border-weak space-y-4 border-t pt-10 text-center'>
+        <div className='mx-auto flex h-6 w-6 items-center justify-center rounded-full bg-emerald-100 text-emerald-600'>
+          <svg
+            className='h-4 w-4'
+            fill='none'
+            viewBox='0 0 24 24'
+            stroke='currentColor'
+          >
+            <path
+              strokeLinecap='round'
+              strokeLinejoin='round'
+              strokeWidth={2}
+              d='M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z'
+            />
+          </svg>
+        </div>
+        <div className='space-y-1'>
+          <p className='text-kapwa-text-strong text-[10px] font-bold tracking-widest uppercase'>
+            Verified Data Audit
+          </p>
+          <p className='text-kapwa-text-disabled text-[10px] font-bold tracking-widest uppercase'>
+            Source:{' '}
+            <a
+              href='https://data.bettergov.ph/datasets/9/resources/31'
+              target='_blank'
+              rel='noreferrer'
+              className='hover:text-kapwa-text-brand underline'
+            >
+              Bureau of Local Government Finance (BLGF)
+            </a>
+          </p>
+        </div>
+      </footer>
     </div>
   );
 }

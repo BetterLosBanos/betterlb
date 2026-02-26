@@ -2,16 +2,15 @@ import { FC } from 'react';
 
 import { Link } from 'react-router-dom';
 
+import { Button } from '@bettergov/kapwa';
 import { ArrowRightIcon, UsersIcon, ZapIcon } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
-
-import Button from '@/components/ui/Button';
 
 const JoinUsBanner: FC = () => {
   const { t } = useTranslation('common');
 
   return (
-    <section className='relative overflow-hidden bg-linear-to-br from-gray-700 via-gray-800 to-gray-900 py-16 text-white'>
+    <section className='text-kapwa-text-inverse relative overflow-hidden bg-linear-to-br from-gray-700 via-gray-800 to-gray-900 py-16'>
       <div className='absolute inset-0 bg-linear-to-t from-black/30 to-transparent'></div>
 
       {/* Decorative elements */}
@@ -47,7 +46,7 @@ const JoinUsBanner: FC = () => {
           <div className='flex flex-col items-center justify-center gap-4 sm:flex-row'>
             <Link to='/join-us'>
               <Button
-                className='transform bg-white text-gray-900 shadow-lg hover:scale-105 hover:bg-gray-100'
+                className='bg-kapwa-bg-surface text-kapwa-text-strong hover:bg-kapwa-bg-hover transform shadow-lg hover:scale-105'
                 size='lg'
                 leftIcon={<UsersIcon className='h-5 w-5' />}
                 rightIcon={<ArrowRightIcon className='h-5 w-5' />}
@@ -62,7 +61,7 @@ const JoinUsBanner: FC = () => {
               href='https://discord.gg/mHtThpN8bT'
               target='_blank'
               rel='noreferrer'
-              className='border-white text-white hover:bg-white hover:text-gray-900'
+              className='text-kapwa-text-inverse hover:bg-kapwa-bg-surface hover:text-kapwa-text-strong border-white'
               size='lg'
               variant='outline'
             >

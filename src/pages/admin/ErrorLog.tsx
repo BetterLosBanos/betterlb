@@ -1,10 +1,10 @@
 import { useCallback, useEffect, useState } from 'react';
 
-import { Banner } from '@/kapwa/banner';
+import { Banner } from '@bettergov/kapwa';
+import { Button } from '@bettergov/kapwa';
 import { AlertTriangle, ExternalLink, FileText, RefreshCw } from 'lucide-react';
 
 import { Badge } from '@/components/ui/Badge';
-import Button from '@/components/ui/Button';
 import { Card, CardContent } from '@/components/ui/Card';
 import { EmptyState } from '@/components/ui/EmptyState';
 
@@ -106,7 +106,7 @@ export default function ErrorLog() {
   if (loading) {
     return (
       <div className='flex items-center justify-center py-12'>
-        <RefreshCw className='h-8 w-8 animate-spin text-slate-400' />
+        <RefreshCw className='text-kapwa-text-disabled h-8 w-8 animate-spin' />
       </div>
     );
   }
@@ -135,8 +135,10 @@ export default function ErrorLog() {
       {/* Header */}
       <div className='flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between'>
         <div>
-          <h2 className='text-2xl font-bold text-slate-900'>Parse Errors</h2>
-          <p className='text-slate-600'>
+          <h2 className='text-kapwa-text-strong text-2xl font-bold'>
+            Parse Errors
+          </h2>
+          <p className='text-kapwa-text-support'>
             Documents that failed during pipeline processing
           </p>
         </div>
@@ -144,7 +146,7 @@ export default function ErrorLog() {
           <select
             value={filter}
             onChange={e => setFilter(e.target.value)}
-            className='rounded-md border border-slate-300 bg-white px-3 py-2 text-sm'
+            className='border-kapwa-border-weak bg-kapwa-bg-surface rounded-md border px-3 py-2 text-sm'
           >
             <option value='all'>All Stages</option>
             <option value='scrape'>Scrape</option>
@@ -178,21 +180,21 @@ export default function ErrorLog() {
                   {/* Header */}
                   <div className='flex items-center gap-3'>
                     {getStageBadge(error.stage)}
-                    <span className='text-xs text-slate-500'>
+                    <span className='text-kapwa-text-disabled text-xs'>
                       {new Date(error.timestamp).toLocaleString()}
                     </span>
                   </div>
 
                   {/* Document Info */}
                   <div>
-                    <h3 className='font-bold text-slate-900'>
+                    <h3 className='text-kapwa-text-strong font-bold'>
                       {error.document_number || 'Unknown Document'}
                     </h3>
                     <a
                       href={error.pdf_url}
                       target='_blank'
                       rel='noopener noreferrer'
-                      className='text-primary-600 mt-1 inline-flex items-center gap-1 text-sm hover:underline'
+                      className='text-kapwa-text-brand mt-1 inline-flex items-center gap-1 text-sm hover:underline'
                     >
                       <FileText className='h-3 w-3' />
                       View PDF

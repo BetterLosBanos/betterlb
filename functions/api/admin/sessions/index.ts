@@ -95,18 +95,23 @@ async function handleCreateSession(context: {
     // Generate session ID using cryptographically secure randomness
     const generateCryptoId = (): string => {
       if (typeof crypto === 'undefined') {
-        throw new Error('Cryptographic random generator is not available in this environment');
+        throw new Error(
+          'Cryptographic random generator is not available in this environment'
+        );
       }
 
       if ('randomUUID' in crypto && typeof crypto.randomUUID === 'function') {
         return crypto.randomUUID();
       }
 
-      if ('getRandomValues' in crypto && typeof crypto.getRandomValues === 'function') {
+      if (
+        'getRandomValues' in crypto &&
+        typeof crypto.getRandomValues === 'function'
+      ) {
         const buf = new Uint8Array(16);
         crypto.getRandomValues(buf);
         return Array.from(buf)
-          .map((b) => b.toString(16).padStart(2, '0'))
+          .map(b => b.toString(16).padStart(2, '0'))
           .join('');
       }
 

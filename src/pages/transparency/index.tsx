@@ -14,7 +14,7 @@ import {
 
 import { DetailSection } from '@/components/layout/PageLayouts';
 import { Badge } from '@/components/ui/Badge';
-import { Card, CardContent } from '@/components/ui/Card';
+import { Card, CardContent, CardGrid } from '@/components/ui/Card';
 
 export default function TransparencyIndex() {
   const sections = [
@@ -48,27 +48,29 @@ export default function TransparencyIndex() {
   ];
 
   return (
-    <div className='animate-in fade-in mx-auto max-w-5xl space-y-10 pb-20 duration-500'>
+    <div className='animate-in fade-in duration-500'>
       {/* 1. Grassroots Mission Box - Uses Brand Orange to signify "Community" */}
-      <div className='flex flex-col items-center gap-6 rounded-3xl border-2 border-orange-100 bg-orange-50 p-6 shadow-sm md:flex-row'>
-        <div className='text-secondary-600 rounded-2xl bg-white p-4 shadow-md'>
-          <HeartHandshake className='h-8 w-8' />
-        </div>
-        <div className='flex-1 space-y-2 text-center md:text-left'>
-          <h3 className='text-[10px] font-bold tracking-widest text-orange-900 uppercase'>
-            Independent Grassroots Initiative
-          </h3>
-          <p className='text-sm leading-relaxed text-orange-800'>
-            Better LB is <strong>not an official government portal</strong>. We
-            are a volunteer movement mirroring public records to empower
-            citizens with the information they need to engage in local
-            governance.
-          </p>
+      <div className='mb-10'>
+        <div className='bg-kapwa-orange-50 flex flex-col items-center gap-6 rounded-3xl border-0 p-6 shadow-sm md:flex-row'>
+          <div className='text-kapwa-orange-600 bg-kapwa-bg-surface rounded-2xl p-4 shadow-md'>
+            <HeartHandshake className='h-8 w-8' />
+          </div>
+          <div className='flex-1 space-y-2 text-center md:text-left'>
+            <h3 className='text-[10px] font-bold tracking-widest text-kapwa-orange-600 uppercase'>
+              Independent Grassroots Initiative
+            </h3>
+            <p className='text-sm leading-relaxed text-kapwa-orange-600'>
+              Better LB is <strong>not an official government portal</strong>.
+              We are a volunteer movement mirroring public records to empower
+              citizens with the information they need to engage in local
+              governance.
+            </p>
+          </div>
         </div>
       </div>
 
-      {/* 2. The Three Pillars of Oversight */}
-      <div className='grid grid-cols-1 gap-6 md:grid-cols-3' role='list'>
+      {/* 2. The Three Pillars of Oversight - Using CardGrid */}
+      <CardGrid columns={3}>
         {sections.map(section => (
           <Link
             key={section.href}
@@ -76,14 +78,17 @@ export default function TransparencyIndex() {
             className='group'
             role='listitem'
           >
-            <Card hover className='flex h-full flex-col border-slate-200'>
+            <Card
+              hover
+              className='border-kapwa-border-weak flex h-full flex-col'
+            >
               <CardContent className='flex h-full flex-col p-6'>
                 <div className='mb-6 flex items-start justify-between'>
                   <div
                     className={`rounded-2xl p-3 shadow-sm transition-all ${
                       section.color === 'blue'
-                        ? 'bg-primary-50 text-primary-600 group-hover:bg-primary-600 group-hover:text-white'
-                        : 'bg-secondary-50 text-secondary-600 group-hover:bg-secondary-600 group-hover:text-white'
+                        ? 'bg-kapwa-bg-surface text-kapwa-text-brand group-hover:bg-kapwa-bg-brand-default group-hover:text-kapwa-text-inverse'
+                        : 'bg-kapwa-orange-50 text-kapwa-orange-600 group-hover:bg-kapwa-orange-100 group-hover:text-kapwa-text-inverse'
                     }`}
                   >
                     <section.icon className='h-6 w-6' />
@@ -97,72 +102,77 @@ export default function TransparencyIndex() {
                 </div>
 
                 <div className='flex-1 space-y-2'>
-                  <h4 className='group-hover:text-primary-600 text-lg font-extrabold text-slate-900 transition-colors'>
+                  <h4 className='group-hover:text-kapwa-text-brand text-kapwa-text-strong text-lg font-extrabold transition-colors'>
                     {section.title}
                   </h4>
-                  <p className='text-xs leading-relaxed text-slate-500'>
+                  <p className='text-kapwa-text-disabled text-xs leading-relaxed'>
                     {section.description}
                   </p>
                 </div>
 
-                <div className='mt-8 flex items-center justify-between border-t border-slate-50 pt-4 transition-transform group-hover:translate-x-1'>
-                  <span className='text-primary-600 text-[10px] font-black tracking-widest uppercase'>
+                <div className='mt-8 flex items-center justify-between border-t border-kapwa-border-weak pt-4 transition-transform group-hover:translate-x-1'>
+                  <span className='text-kapwa-text-brand text-[10px] font-black tracking-widest uppercase'>
                     Analyze Data
                   </span>
-                  <ChevronRight className='h-4 w-4 text-slate-300' />
+                  <ChevronRight className='text-kapwa-text-support h-4 w-4' />
                 </div>
               </CardContent>
             </Card>
           </Link>
         ))}
-      </div>
+      </CardGrid>
 
       {/* 3. Community Engagement Block */}
-      <div className='grid grid-cols-1 gap-8 md:grid-cols-2'>
+      <div className='mt-10 grid grid-cols-1 gap-8 md:grid-cols-2'>
         <DetailSection
           title='Help Our Audit'
           icon={Search}
-          className='border-slate-200 bg-slate-50'
+          className='bg-kapwa-bg-surface-raised border-kapwa-border-weak flex h-full flex-col'
         >
-          <p className='mb-6 text-sm leading-relaxed text-slate-600'>
-            Our data depends on volunteers like you. If you find a project that
-            is missing or an expense that seems incorrect, please let us know.
-          </p>
-          <Link
-            to='/contribute'
-            className='hover:border-primary-500 hover:text-primary-600 inline-flex min-h-[44px] items-center gap-2 rounded-xl border border-slate-200 bg-white px-6 py-3 text-xs font-bold text-slate-700 shadow-sm transition-all hover:bg-white'
-          >
-            <Users className='h-4 w-4' /> Join the Community Audit
-          </Link>
-        </DetailSection>
-
-        <DetailSection title='Data Sources' icon={FileText}>
-          <div className='space-y-3'>
-            <p className='mb-2 text-[11px] font-medium text-slate-400 italic'>
-              We mirror and verify data from the following platforms:
+          <div className='flex h-full flex-col justify-between'>
+            <p className='text-kapwa-text-support mb-6 text-sm leading-relaxed'>
+              Our data depends on volunteers like you. If you find a project
+              that is missing or an expense that seems incorrect, please let us
+              know.
             </p>
             <a
-              href='https://transparency.bettergov.ph'
+              href='https://github.com/BetterLosBanos/betterlb/issues'
               target='_blank'
               rel='noreferrer'
-              className='group flex items-center justify-between rounded-lg border border-slate-100 p-3 transition-colors hover:bg-slate-50'
+              className='bg-kapwa-blue-50 text-kapwa-blue-600 hover:bg-kapwa-blue-100 inline-flex w-full items-center justify-center gap-2 rounded-lg px-4 py-2.5 text-xs font-bold transition-colors'
             >
-              <span className='text-xs font-bold text-slate-700'>
-                BetterGov National Database
-              </span>
-              <ExternalLink className='group-hover:text-primary-600 h-3.5 w-3.5 text-slate-300' />
+              <Users className='h-4 w-4' /> Report an Issue
             </a>
-            <a
-              href='https://losbanos.gov.ph/full_disclosure_transparency'
-              target='_blank'
-              rel='noreferrer'
-              className='group flex items-center justify-between rounded-lg border border-slate-100 p-3 transition-colors hover:bg-slate-50'
-            >
-              <span className='text-xs font-bold text-slate-700'>
-                Official LGU FDP Files
-              </span>
-              <ExternalLink className='group-hover:text-primary-600 h-3.5 w-3.5 text-slate-300' />
-            </a>
+          </div>
+        </DetailSection>
+
+        <DetailSection
+          title='Data Sources'
+          icon={FileText}
+          className='flex h-full flex-col'
+        >
+          <div className='flex h-full flex-col justify-between'>
+            <p className='text-kapwa-text-disabled mb-6 text-[11px] font-medium italic'>
+              We mirror and verify data from the following platforms:
+            </p>
+            <div className='flex flex-col gap-3'>
+              <a
+                href='https://transparency.bettergov.ph'
+                target='_blank'
+                rel='noreferrer'
+                className='bg-kapwa-blue-50 text-kapwa-blue-600 hover:bg-kapwa-blue-100 inline-flex w-full items-center justify-center gap-2 rounded-lg px-4 py-2.5 text-xs font-bold transition-colors'
+              >
+                Transparency Dashboard <ExternalLink className='h-3 w-3' />
+              </a>
+              <a
+                href='https://data.bettergov.ph/'
+                target='_blank'
+                rel='noreferrer'
+                className='bg-kapwa-blue-50 text-kapwa-blue-600 hover:bg-kapwa-blue-100 inline-flex w-full items-center justify-center gap-2 rounded-lg px-4 py-2.5 text-xs font-bold transition-colors'
+              >
+                BetterGov Data Portal <ExternalLink className='h-3 w-3' />
+              </a>
+            </div>
           </div>
         </DetailSection>
       </div>
