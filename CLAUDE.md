@@ -201,6 +201,37 @@ pip3 install --break-system-packages aiohttp jsonschema tqdm  # Validation utili
 - Empty `agency_action` fields are common (unused in UI) - may be removed in future
 - Missing `where_to_secure` (20% of requirements) - default to "Contact the office" if unknown
 
+**Core Data Fields** (see `src/types/citizens-charter.ts` for full schema):
+
+Required fields (all services):
+- `service_number`: Unique ID (e.g., "1.1", "5.2")
+- `service_name`: Official name from Citizens Charter document
+- `plain_language_name`: User-friendly name following UK GOV.UK plain language principles
+  - Starts with action verbs: "Get", "Apply for", "Pay", "Renew"
+  - Removes bureaucratic language: "Issuance of" → "Get"
+  - Under 65 characters where possible
+- `office_division`: Responsible office/division
+- `classification`: Service complexity - "Simple" or "Complex"
+- `type_of_transaction`: Transaction type - "G2C" (citizen) or "G2B" (business)
+- `who_may_avail`: Description of eligible users
+- `requirements`: Array of requirements with sources
+- `client_steps`: Step-by-step process (imperative language)
+- `fees`: Fee information (dict format: {amount, description})
+- `processing_time`: In-person transaction time
+
+Optional fields:
+- `turnaround_time`: Total time for complex services including waiting/approval periods
+- `supporting_documents_detail`: Complex nested structure for conditional requirements
+- `website`: Online portal URL
+
+**Utility Functions:**
+- See `src/lib/citizens-charter.ts` for helper functions:
+  - `getAllServices()` - Get all services
+  - `getServiceByNumber(number)` - Get by service number
+  - `getServicesByOffice(office)` - Filter by office
+  - `filterServices(options)` - Advanced filtering
+  - `searchServices(query)` - Search in name, office, who_may_avail
+
 ## Shared Components (@betterlb/ui)
 
 ### Important: No Shared UI Package
@@ -332,3 +363,46 @@ npm publish --access public     # Requires granular token with bypass 2FA
 - Common UI patterns (contact info, search, filters, empty/loading/error states)
 
 **Kapwa Semantic Guide** (`KAPWA_SEMANTIC_GUIDE.md`) - Quick reference for semantic token usage with common mistakes to avoid.
+
+---
+
+## QA Review Process
+
+**When tasks lack clear requirements:**
+- Create comprehensive QA reports in `docs/qa-reports/T-XXX-task-name-QA-Report.md`
+- Document what exists, what's missing, and provide clear recommendations
+- Update todo.md with `[qa] BLOCKED - ...` notes explaining the issue
+- Offer 2-3 resolution options (define requirements, close as complete, split into smaller tasks)
+
+**Example blocked tasks:** T-009 (OpenLGU enhancements), T-037 (Design Guide redesign), T-010 (Admin dashboard improvements)
+
+## Documentation File Locations
+
+- `docs/qa-reports/` - QA reports for blocked/returned tasks
+- `.local/docs/plan/` - Local planning documents (not in git, e.g., VISUAL_CONSISTENCY_PLAN.md)
+- `docs/` - Shared documentation (checked into git)
+
+## Component Architecture Clarification
+
+**UI Components are maintained locally:**
+- Location: `src/components/ui/` (NOT a separate `@betterlb/ui` package)
+- Components: Badge, Card, Dialog, EmptyState, Pagination, ScrollArea, SearchInput, SelectPicker, Skeletons, StatCard, Tabs, Ticker, Timeline
+- Import pattern: `import { Card, Badge } from '@/components/ui';`
+- Kapwa base components: `import { Button, Input } from '@bettergov/kapwa';`
+
+## Code Quality Notes
+
+**E2E Tests:**
+- Located in `e2e/` directory
+- Excluded from ESLint (see `.eslintignore`: `src/e2e/**`)
+- Should still follow project code style standards (Kapwa tokens, TypeScript strict mode)
+- Use Playwright with `@visual`, `@a11y` tags for visual regression and accessibility tests
+
+## Task Management (todo.md)
+
+**Format:**
+- Task line: `- [x/-] T-XXX | Title | @assignee | deps: T-YYY | status:pending/in-progress/done:timestamp`
+- Pipeline notes in indented lines below task: `> [pipeline] Handed off to qa stage`
+- QA notes: `> [qa] BLOCKED - ...` or `> [review] APPROVED/COMPLETED`
+
+**Pipeline stages:** develop → qa → review → done

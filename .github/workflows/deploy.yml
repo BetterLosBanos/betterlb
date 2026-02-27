@@ -11,10 +11,41 @@ permissions:
   pull-requests: write
 
 jobs:
+  quality-gate:
+    runs-on: ubuntu-latest
+    name: Quality Gate
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@1af3b93b681bc44a9784bd300feb67ff0d1eeb3 # v6.0.0
+        with:
+          persist-credentials: false
+
+      - name: Setup Node.js
+        uses: actions/setup-node@6044e13b5dc448c55e2357c09f80417699197238 # v6.2.0
+        with:
+          node-version: 20
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm install --legacy-peer-deps
+
+      - name: Merge service data
+        run: python3 scripts/merge_services.py
+
+      - name: Type check
+        run: npx tsc --noEmit
+
+      - name: Lint
+        run: npm run lint
+
+      - name: Format check
+        run: npx prettier --check .
+
   deploy:
     runs-on: ubuntu-latest
     name: Deploy to Cloudflare Pages
     environment: ${{ github.event_name == 'pull_request' && 'preview' || 'production' }}
+    needs: quality-gate
     steps:
       - name: Checkout
         uses: actions/checkout@1af3b93b6815bc44a9784bd300feb67ff0d1eeb3 # v6.0.0

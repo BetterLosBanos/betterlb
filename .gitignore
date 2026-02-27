@@ -49,3 +49,8 @@ pipeline/__pycache__/
 
 # Git worktrees
 .worktrees/
+
+# Maestro
+.agents/*
+.maestro/*
+maestro.yaml
