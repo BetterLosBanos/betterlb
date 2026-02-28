@@ -5,6 +5,9 @@ import {
   useSearchParams,
 } from 'react-router-dom';
 
+/* eslint-disable @typescript-eslint/no-explicit-any */
+// Type assertions for extended document properties
+
 import {
   Activity,
   Calendar,

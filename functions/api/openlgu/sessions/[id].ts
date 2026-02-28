@@ -1,3 +1,5 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
+// D1 database result typing uses any for dynamic schema mapping
 /**
  * Legislation Session Detail API
  * GET /api/legislation/sessions/:id - Get session details with attendance

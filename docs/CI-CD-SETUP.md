@@ -242,7 +242,9 @@ Coverage configuration excludes:
 2. **Visual Regression**: Integrate with Percy or Chromatic for advanced visual testing
 3. **Dependency Updates**: Add Dependabot or Renovate for automated dependency updates
 4. **Slack Notifications**: Notify team on deployment success/failure
-5. **Staging Environment**: Add staging deployment workflow for pre-production testing
+
+### Note: Staging Environment
+As of 2026-02-28, the project uses Cloudflare Pages preview environments for pre-production testing. Preview deployments are automatically created for every pull request, providing isolated testing environments before code merges to production. This approach serves the same purpose as a traditional staging environment with less operational overhead. See `.github/workflows/deploy.yml` for the current deployment configuration.
 
 ### Monitoring Improvements
 1. **Test Flakiness Detection**: Track flaky tests over time

@@ -4,6 +4,11 @@
  */
 import { Env } from '../../types';
 import { AuthContext, withAuth } from '../../utils/admin-auth';
+import {
+  logAudit,
+  AuditActions,
+  AuditTargetTypes,
+} from '../../utils/audit-log';
 
 interface AttendanceUpdateData {
   absent_person_ids: string[];
@@ -58,6 +63,18 @@ async function handleUpdateAttendance(context: {
       .bind(new Date().toISOString(), sessionId)
       .run();
 
+    // 4. Log the audit entry
+    await logAudit(env, {
+      action: AuditActions.UPDATE_ATTENDANCE,
+      performedBy: context.auth.user.login,
+      targetType: AuditTargetTypes.SESSION,
+      targetId: sessionId,
+      details: {
+        absent_count: absent_person_ids.length,
+        absent_person_ids,
+      },
+    });
+
     return Response.json({
       success: true,
       absent_count: absent_person_ids.length,
@@ -76,5 +93,5 @@ export async function onRequestPost(context: {
   env: Env;
   params: { sessionId: string };
 }) {
-  return withAuth(handleUpdateAttendance)(context);
+  return withAuth(handleUpdateAttendance, { requireCSRF: true })(context);
 }

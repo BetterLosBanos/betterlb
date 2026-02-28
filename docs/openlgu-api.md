@@ -4,7 +4,9 @@
 
 The OpenLGU API is a RESTful API built with Cloudflare Pages Functions that provides access to legislative data stored in Cloudflare D1 (SQLite). All endpoints are prefixed with `/api/openlgu/`.
 
-**Base URL:** `https://betterlb.org/api/openlgu/`
+**Base URLs:**
+- Production: `https://betterlb.gov.ph/api/openlgu/`
+- Preview: `https://betterlb.pages.dev/api/openlgu/`
 
 ## Response Format
 
@@ -42,11 +44,41 @@ All responses return JSON. The API does not use a wrapper format - responses are
 
 The API uses Cloudflare KV for caching with different TTLs:
 
-| Endpoint Type | TTL | Cache Key Pattern |
-|--------------|-----|-------------------|
-| Static data (terms list) | 24 hours | `openlgu:terms` |
-| List endpoints | 1 hour | `openlgu:{endpoint}:{params}` |
-| Detail endpoints | 30 minutes | `openlgu:{endpoint}:{id}` |
+| Endpoint Type | TTL | Seconds | Cache Key Pattern |
+|--------------|-----|---------|-------------------|
+| Static data (terms list) | 1 hour | 3,600 | `openlgu:terms` |
+| List endpoints | 15 minutes | 900 | `openlgu:{endpoint}:{params}` |
+| Detail endpoints | 5 minutes | 300 | `openlgu:{endpoint}:{id}` |
+| Count/query endpoints | 2 minutes | 120 | `openlgu:{endpoint}:count` |
+
+## Rate Limiting
+
+The API implements rate limiting to prevent abuse and ensure fair usage.
+
+**Limits:**
+- 100 requests per minute per IP address
+
+**Rate-Limited Endpoints:**
+- Documents (list and detail)
+- Persons (list and detail)
+- Sessions (list and detail)
+
+**Response When Rate Limited:**
+HTTP Status: `429 Too Many Requests`
+
+**Headers:**
+- `Retry-After`: Seconds until limit resets
+- `X-RateLimit-Limit`: 100 (requests per minute)
+- `X-RateLimit-Remaining`: Remaining requests in current window
+- `X-RateLimit-Reset`: Unix timestamp when limit resets
+
+**Body:**
+```json
+{
+  "error": "Too many requests",
+  "retryAfter": 45
+}
+```
 
 ## Endpoints
 
@@ -65,7 +97,7 @@ Retrieves a paginated list of legislative documents.
 | `type` | string | - | Filter by document type (ordinance, resolution, executive_order) |
 | `term` | string | - | Filter by term ID |
 | `session_id` | string | - | Filter by session ID |
-| `q` | string | - | Search query (title search with LIKE) |
+| `q` | string | - | Search query (title search with LIKE). Max 100 characters. Special characters (`\`, `%`, `_`) are automatically escaped for SQL safety. |
 | `needs_review` | string | - | Filter documents needing review (0 or 1) |
 | `limit` | number | 100 | Results per page (max: varies) |
 | `offset` | number | 0 | Pagination offset |
@@ -88,7 +120,7 @@ GET /api/openlgu/documents?type=ordinance&term=1&limit=12&offset=0
       "status": "approved",
       "date_enacted": "2024-01-15",
       "pdf_url": "https://...",
-      "link": "https://...",
+      "link": "https://...", // Alias for `pdf_url`, provided for frontend compatibility
       "moved_by": null,
       "seconded_by": null,
       "source_type": "pdf",
@@ -293,6 +325,12 @@ Retrieves full profile information for a specific person.
 **Implementation Notes:**
 - Committee memberships are batch-fetched to avoid N+1 queries
 - Attendance uses absence-only model (present = total - absences)
+- The `authored_documents` array is limited to the 100 most recent documents
+```
+
+**Implementation Notes:**
+- Committee memberships are batch-fetched to avoid N+1 queries
+- Attendance uses absence-only model (present = total - absences)
 
 ---
 
@@ -413,7 +451,7 @@ Retrieves legislative sessions with attendance data.
 | Parameter | Type | Default | Description |
 |-----------|------|---------|-------------|
 | `term` | string | - | Filter by term ID |
-| `type` | string | - | Filter by session type (Regular, Special, Inaugural) |
+| `type` | string | - | Filter by session type. Case-sensitive. Accepted values: `"Regular"`, `"Special"`, `"Inaugural"`. |
 | `limit` | number | 1000 | Results per page |
 | `offset` | number | 0 | Pagination offset |
 
@@ -448,6 +486,66 @@ Retrieves legislative sessions with attendance data.
 - Batch processing (BATCH_SIZE=100) for fetching absences
 - Term memberships are fetched in a single batch query
 
+#### Get Session Details
+
+**GET** `/api/openlgu/sessions/:id`
+
+Retrieves detailed information for a specific session including all members and their attendance status.
+
+**Path Parameters:**
+- `id` (string) - Session ID
+
+**Example Response:**
+```json
+{
+  "id": "5",
+  "term_id": "1",
+  "number": 1,
+  "type": "Regular",
+  "date": "2024-01-15",
+  "ordinal_number": "1st",
+  "all_members": [
+    {
+      "id": "1",
+      "first_name": "Juan",
+      "middle_name": "Santos",
+      "last_name": "Dela Cruz",
+      "role": "councilor",
+      "rank": 1,
+      "status": "present",
+      "reason": null
+    },
+    {
+      "id": "6",
+      "first_name": "Maria",
+      "middle_name": "Garcia",
+      "last_name": "Santos",
+      "role": "councilor",
+      "rank": 6,
+      "status": "absent",
+      "reason": "Official business"
+    }
+  ],
+  "absent_count": 1,
+  "present_count": 11,
+  "documents": [
+    {
+      "id": "10",
+      "type": "ordinance",
+      "number": "2024-005",
+      "title": "An Ordinance Establishing...",
+      "status": "approved"
+    }
+  ]
+}
+```
+
+**Implementation Notes:**
+- Uses absence-only attendance model (present = all members - absent)
+- `all_members` includes all term members with their attendance status
+- `status` field values: `present` or `absent`
+- `reason` field is only present for absent members
+
 ---
 
 ### Committees
@@ -460,6 +558,10 @@ Retrieves committee information with members.
 
 **Query Parameters:**
 - `term` (string) - Filter by term ID
+
+**Implementation Notes:**
+- All committee members are fetched in a single batch query to avoid N+1
+- When filtered by term, uses detail TTL (5 minutes); otherwise uses list TTL (15 minutes)
 
 **Example Response:**
 ```json
@@ -656,8 +758,10 @@ CREATE TABLE document_subjects (
 
 ## Error Handling
 
-| HTTP Code | Description |
-|-----------|-------------|
-| 200 | Success |
-| 404 | Resource not found |
-| 500 | Internal server error (database or processing error) |
+| HTTP Code | Description | Response Format |
+|-----------|-------------|-----------------|
+| 200 | Success | Endpoint-specific |
+| 400 | Bad Request | `{ "error": "Error message" }` |
+| 404 | Resource Not Found | `{ "error": "Resource not found" }` |
+| 429 | Too Many Requests | `{ "error": "Too many requests", "retryAfter": 45 }` |
+| 500 | Internal Server Error | `{ "error": "Internal server error" }` |

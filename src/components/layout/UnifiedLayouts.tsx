@@ -132,6 +132,7 @@ function formatLabel(slug: string): string {
  * // ]
  * ```
  */
+/* eslint-disable-next-line react-refresh/only-export-components */
 export function useBreadcrumbs(
   config: Record<string, string> = {}
 ): BreadcrumbItem[] {
@@ -251,12 +252,12 @@ export function SectionBlock({
       className={cn(
         'py-12 md:py-16',
         variants[variant],
-        'animate-in fade-in duration-700',
+        'duration-700 animate-in fade-in',
         className
       )}
       style={{ animationDelay: `${stagger}ms` }}
     >
-      <div className='container mx-auto px-4'>
+      <div className='container px-4 mx-auto'>
         {(title || Icon || action) && (
           <div
             className={cn(
@@ -266,14 +267,14 @@ export function SectionBlock({
             )}
             style={{ animationDelay: `${stagger + 100}ms` }}
           >
-            <div className='flex items-center gap-3'>
+            <div className='flex gap-3 items-center'>
               {Icon && (
                 <div className='bg-kapwa-bg-surface rounded-xl p-2.5 shadow-sm ring-1 ring-kapwa-border-weak'>
-                  <Icon className='text-kapwa-text-brand h-5 w-5' />
+                  <Icon className='w-5 h-5 text-kapwa-text-brand' />
                 </div>
               )}
               {title && (
-                <h2 className='text-kapwa-text-strong kapwa-heading font-extrabold tracking-tight'>
+                <h2 className='font-extrabold tracking-tight text-kapwa-text-strong kapwa-heading'>
                   {title}
                 </h2>
               )}
@@ -365,11 +366,11 @@ export function PageHeader({
           {generatedBreadcrumbs.map((crumb, index) => {
             const isLast = index === generatedBreadcrumbs.length - 1;
             return (
-              <div key={crumb.href} className='flex items-center gap-2'>
+              <div key={crumb.href} className='flex gap-2 items-center'>
                 {index === 0 ? (
                   <BreadcrumbItem>
                     <BreadcrumbLink href={crumb.href}>
-                      <HomeIcon className='h-4 w-4' />
+                      <HomeIcon className='w-4 h-4' />
                     </BreadcrumbLink>
                   </BreadcrumbItem>
                 ) : (
@@ -398,18 +399,18 @@ export function PageHeader({
     return (
       <header
         className={cn(
-          'bg-gradient-to-b from-kapwa-bg-surface-raised to-kapwa-bg-surface py-12 md:py-16',
-          'animate-in fade-in duration-700',
+          'py-12 bg-linear-to-b from-kapwa-bg-surface-raised to-kapwa-bg-surface md:py-16',
+          'duration-700 animate-in fade-in',
           className
         )}
       >
-        <div className='container mx-auto px-4'>
+        <div className='container px-4 mx-auto'>
           <div className='flex flex-col items-center text-center'>
-            <h1 className='text-kapwa-text-strong mb-4 kapwa-heading font-bold tracking-tight'>
+            <h1 className='mb-4 font-bold tracking-tight text-kapwa-text-strong kapwa-heading'>
               {title}
             </h1>
             {description && (
-              <p className='text-kapwa-text-disabled mx-auto max-w-2xl text-sm leading-relaxed md:text-base'>
+              <p className='mx-auto max-w-2xl text-sm leading-relaxed text-kapwa-text-disabled md:text-base'>
                 {description}
               </p>
             )}
@@ -426,18 +427,18 @@ export function PageHeader({
       <header
         className={cn(
           'py-8 md:py-12',
-          'animate-in fade-in duration-700',
+          'duration-700 animate-in fade-in',
           className
         )}
       >
-        <div className='container mx-auto px-4'>
+        <div className='container px-4 mx-auto'>
           <div className='flex flex-col items-center text-center'>
             {breadcrumbContent}
-            <h1 className='text-kapwa-text-strong mb-4 kapwa-heading font-bold tracking-tight'>
+            <h1 className='mb-4 font-bold tracking-tight text-kapwa-text-strong kapwa-heading'>
               {title}
             </h1>
             {description && (
-              <p className='text-kapwa-text-disabled mx-auto max-w-2xl text-sm leading-relaxed md:text-base'>
+              <p className='mx-auto max-w-2xl text-sm leading-relaxed text-kapwa-text-disabled md:text-base'>
                 {description}
               </p>
             )}
@@ -452,20 +453,20 @@ export function PageHeader({
   return (
     <header
       className={cn(
-        'border-kapwa-border-weak border-b py-6 md:py-8',
-        'animate-in fade-in duration-700',
+        'py-6 border-b border-kapwa-border-weak md:py-8',
+        'duration-700 animate-in fade-in',
         className
       )}
     >
-      <div className='container mx-auto px-4'>
+      <div className='container px-4 mx-auto'>
         {breadcrumbContent}
-        <div className='flex flex-col justify-between gap-4 md:flex-row md:items-start'>
+        <div className='flex flex-col gap-4 justify-between md:flex-row md:items-start'>
           <div className='max-w-2xl'>
-            <h1 className='text-kapwa-text-strong kapwa-heading font-extrabold tracking-tight'>
+            <h1 className='font-extrabold tracking-tight text-kapwa-text-strong kapwa-heading'>
               {title}
             </h1>
             {description && (
-              <p className='text-kapwa-text-disabled mt-1 text-sm md:text-base'>
+              <p className='mt-1 text-sm text-kapwa-text-disabled md:text-base'>
                 {description}
               </p>
             )}
@@ -535,7 +536,7 @@ export function StaggeredGrid({
         ? children.map((child, index) => (
             <div
               key={(child as { key?: ReactNode }).key || index}
-              className='animate-in fade-in slide-in-from-bottom-4 duration-500'
+              className='duration-500 animate-in fade-in slide-in-from-bottom-4'
               style={{ animationDelay: `${baseDelay + index * delayStep}ms` }}
             >
               {child}

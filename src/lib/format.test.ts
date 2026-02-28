@@ -3,7 +3,6 @@ import {
   formatPeso,
   formatPesoAdaptive,
   formatPesoAdaptiveString,
-  type FormattedPeso,
 } from './format';
 
 describe('formatPeso() - standard currency formatter', () => {

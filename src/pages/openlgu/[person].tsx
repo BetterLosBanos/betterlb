@@ -1,5 +1,8 @@
 import { Link, useOutletContext, useParams } from 'react-router-dom';
 
+/* eslint-disable @typescript-eslint/no-explicit-any */
+// Type assertions for extended person properties
+
 import {
   BookOpen,
   Calendar,

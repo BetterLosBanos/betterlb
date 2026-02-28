@@ -6,6 +6,11 @@
 import { Env } from '../../types';
 import { AuthContext, withAuth } from '../../utils/admin-auth';
 import { parseJsonBody } from '../../utils/request';
+import {
+  logAudit,
+  AuditActions,
+  AuditTargetTypes,
+} from '../../utils/audit-log';
 
 interface Person {
   id: string;
@@ -386,21 +391,18 @@ async function handleMerge(context: {
     }
 
     // 9. Log the merge action
-    await env.BETTERLB_DB.prepare(
-      `INSERT INTO admin_audit_log (action, performed_by, target_type, target_id, details, created_at)
-       VALUES ('merge_persons', ?1, 'person', ?2, ?3, datetime('now'))`
-    )
-      .bind(
-        auth.user.login,
-        keep_person_id,
-        JSON.stringify({
-          merged_ids: merge_person_ids,
-          strategy: merge_strategy,
-          deletion_mode,
-          updated_tables: updatedTables,
-        })
-      )
-      .run();
+    await logAudit(env, {
+      action: AuditActions.MERGE_PERSONS,
+      performedBy: auth.user.login,
+      targetType: AuditTargetTypes.PERSON,
+      targetId: keep_person_id,
+      details: {
+        merged_ids: merge_person_ids,
+        strategy: merge_strategy,
+        deletion_mode,
+        updated_tables: updatedTables,
+      },
+    });
 
     const result: MergeResult = {
       success: true,
@@ -416,5 +418,7 @@ async function handleMerge(context: {
   }
 }
 
-export const onRequestGet = withAuth(handleGetDuplicates);
-export const onRequestPost = withAuth(handleMerge);
+export const onRequestGet = withAuth(handleGetDuplicates, {
+  requireCSRF: true,
+});
+export const onRequestPost = withAuth(handleMerge, { requireCSRF: true });

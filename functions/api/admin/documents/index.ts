@@ -1,3 +1,5 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
+// D1 database result typing uses any for dynamic schema mapping
 /**
  * Admin Documents API
  * GET /api/admin/documents - List all documents with filtering
@@ -259,5 +261,9 @@ async function handleBulkCreateDocuments(context: {
   }
 }
 
-export const onRequestGet = withAuth(handleListDocuments);
-export const onRequestPost = withAuth(handleBulkCreateDocuments);
+export const onRequestGet = withAuth(handleListDocuments, {
+  requireCSRF: true,
+});
+export const onRequestPost = withAuth(handleBulkCreateDocuments, {
+  requireCSRF: true,
+});

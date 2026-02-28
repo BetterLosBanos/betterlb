@@ -1,7 +1,6 @@
 import { useState } from 'react';
 
 import { Banner } from '@bettergov/kapwa';
-import { Input } from '@bettergov/kapwa';
 import { Label } from '@bettergov/kapwa';
 import { Button } from '@bettergov/kapwa';
 import { AlertTriangle, Check, Flag } from 'lucide-react';

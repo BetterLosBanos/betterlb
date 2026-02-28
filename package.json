@@ -17,7 +17,11 @@
     "flag:sessions": "python3 scripts/flag_sessions_for_review.py",
     "wrangler": "wrangler",
     "functions:dev": "npx wrangler pages dev --proxy 5173",
-    "generate:sitemap": "node ./scripts/generate-sitemap.js"
+    "generate:sitemap": "node ./scripts/generate-sitemap.js",
+    "db:migrate": "./scripts/migrate.sh local",
+    "db:migrate:remote": "./scripts/migrate.sh remote",
+    "db:migrate:status": "./scripts/migrate.sh status",
+    "db:migrate:create": "./scripts/migrate.sh create"
   },
   "dependencies": {
     "@betterlb/kapwa": "^1.2.3",

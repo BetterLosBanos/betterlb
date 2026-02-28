@@ -125,19 +125,7 @@ See [ARCHITECTURE.md](../ARCHITECTURE.md) for complete system architecture inclu
 - JAMstack architecture (static frontend + serverless backend)
 - Cloudflare Pages deployment
 - D1 database schema
-- Data pipeline workflow
-
-### BetterLB vs BetterGov.ph
-
-| Aspect | BetterGov.ph | BetterLB |
-|--------|--------------|----------|
-| Scope | National government | Municipal (Los Baños) |
-| Backend | Generic | Cloudflare Functions + D1 |
-| Database | Not specified | SQLite (D1) with migrations |
-| Search | Basic | Meilisearch integration |
-| Data Pipeline | Not specified | Python PDF processing |
-| Tech Stack | Generic | React 19, Vite 6, Tailwind v4 |
-| LGU Focus | N/A | Forkable for municipalities |
+- Data pipeline workflows
 
 ### Key Concepts
 
@@ -865,17 +853,52 @@ curl http://localhost:8788/api/my-endpoint
 
 ### Add Database Migration
 
+**Automated Migration System (Recommended):**
+
 1. Create migration file:
 
+```bash
+npm run db:migrate:create add_my_table
+```
+
+This creates `db/migrations/TIMESTAMP_add_my_table.sql`
+
+2. Edit the migration file:
+
 ```sql
--- db/migrations/002_add_my_table.sql
+-- Migration: 20260228153045_add_my_table.sql
+-- Created: 2026-02-28 15:30:45
+-- Description: add_my_table
+
 CREATE TABLE IF NOT EXISTS my_table (
   id INTEGER PRIMARY KEY,
   name TEXT NOT NULL
 );
+
+-- Don't forget to create indexes for performance
+CREATE INDEX IF NOT EXISTS idx_my_table_name ON my_table(name);
 ```
 
-2. Run migration:
+3. Verify safety:
+
+```bash
+./scripts/migrate.sh verify
+```
+
+4. Run migration:
+
+```bash
+# Local (development)
+npm run db:migrate
+
+# Check status
+npm run db:migrate:status
+
+# Production (runs automatically on merge to main, or manual:)
+npm run db:migrate:remote
+```
+
+**Manual Migration (Legacy, not recommended):**
 
 ```bash
 # Local
@@ -883,6 +906,16 @@ npx wrangler d1 execute BETTERLB_DB --local --file=db/migrations/002_add_my_tabl
 
 # Production
 npx wrangler d1 execute betterlb_openlgu --file=db/migrations/002_add_my_table.sql
+```
+
+**Migration Automation Features:**
+- ✅ Tracks applied migrations in `schema_migrations` table
+- ✅ Skips already-applied migrations automatically
+- ✅ Safety checks (DROP TABLE detection, UPDATE/DELETE without WHERE)
+- ✅ Production confirmation prompts
+- ✅ CI/CD integration (auto-runs on main branch deployment)
+
+See `docs/DATABASE-MIGRATION-AUTOMATION.md` for complete guide.
 
 ---
 
@@ -1415,6 +1448,17 @@ npx wrangler pages deploy dist
 
 Auto-deploys on push to main branch.
 
+**CI/CD Migration Automation:**
+
+When you merge a PR to `main` branch:
+1. GitHub Actions workflow triggers (`.github/workflows/deploy.yml`)
+2. Quality gates run (type check, lint, format)
+3. Application builds (`npm run build`)
+4. **Database migrations run automatically** (`./scripts/migrate.sh remote`)
+5. Application deploys to Cloudflare Pages
+
+⚠️ **Important:** Migrations only run on production deployments (main branch), not on PR previews. PRs share the production database.
+
 ### Environment Variables
 
 Set in Cloudflare Pages Dashboard:
@@ -1426,19 +1470,34 @@ VITE_MEILISEARCH_API_KEY=your-api-key
 
 ### D1 Database Migration
 
-#### Local Development
+**Automated Migration System (Recommended):**
 
 ```bash
-npx wrangler d1 execute BETTERLB_DB --local --file=db/migrations/001_initial_schema.sql
+# Local development
+npm run db:migrate              # Apply pending migrations
+npm run db:migrate:status       # Check migration status
+npm run db:migrate:create <name>  # Create new migration
+
+# Production (manual, if needed)
+npm run db:migrate:remote       # Apply pending migrations (with confirmation)
 ```
 
-#### Production
+**Manual Migration (Legacy):**
 
 ```bash
+# Local
+npx wrangler d1 execute BETTERLB_DB --local --file=db/migrations/001_initial_schema.sql
+
+# Production
 npx wrangler d1 execute betterlb_openlgu --file=db/migrations/001_initial_schema.sql
 ```
 
-**Note:** `betterlb_openlgu` is the production database name (configured in `wrangler.jsonc`)
+**Migration Tracking:**
+- Migrations are tracked in `schema_migrations` table
+- Auto-applied in CI/CD on production deployment (main branch)
+- Preview environments (PRs) do NOT run migrations
+
+**See `docs/DATABASE-MIGRATION-AUTOMATION.md` for complete guide.**
 
 ### D1 Binding Configuration
 

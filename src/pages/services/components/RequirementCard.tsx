@@ -17,6 +17,7 @@ export function RequirementCard({ requirement }: RequirementCardProps) {
 
   const CardContent = () => (
     <div
+      data-testid='requirement-card'
       className={`border-kapwa-border-weak bg-kapwa-bg-surface rounded-xl border p-4 transition-all ${
         isClickable
           ? 'hover:border-kapwa-border-brand hover:bg-kapwa-bg-surface-raised cursor-pointer group'

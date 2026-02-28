@@ -5,14 +5,10 @@ import { Link, useOutletContext } from 'react-router-dom';
 import {
   Calendar,
   ChevronRight,
-  Crown,
   FileText,
   Landmark,
-  ScrollText,
   Users,
 } from 'lucide-react';
-
-import { DetailSection } from '@/components/layout/PageLayouts';
 import {
   Breadcrumb,
   BreadcrumbHome,

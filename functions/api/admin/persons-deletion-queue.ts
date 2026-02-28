@@ -6,6 +6,7 @@
  */
 import { Env } from '../../types';
 import { AuthContext, withAuth } from '../../utils/admin-auth';
+import { logAudit, AuditTargetTypes } from '../../utils/audit-log';
 
 interface Person {
   id: string;
@@ -128,16 +129,13 @@ async function handleRestore(context: {
       .run();
 
     // Log the action
-    await env.BETTERLB_DB.prepare(
-      `INSERT INTO admin_audit_log (action, performed_by, target_type, target_id, details, created_at)
-       VALUES ('restore_person', ?1, 'person', ?2, ?3, datetime('now'))`
-    )
-      .bind(
-        auth.user.login,
-        person_id,
-        JSON.stringify({ restored_at: new Date().toISOString() })
-      )
-      .run();
+    await logAudit(env, {
+      action: 'restore_person',
+      performedBy: auth.user.login,
+      targetType: AuditTargetTypes.PERSON,
+      targetId: person_id,
+      details: { restored_at: new Date().toISOString() },
+    });
 
     return Response.json({ success: true });
   } catch (error) {
@@ -215,16 +213,13 @@ async function handlePermanentDelete(context: {
       .run();
 
     // Log the action
-    await env.BETTERLB_DB.prepare(
-      `INSERT INTO admin_audit_log (action, performed_by, target_type, target_id, details, created_at)
-       VALUES ('permanent_delete_person', ?1, 'person', ?2, ?3, datetime('now'))`
-    )
-      .bind(
-        auth.user.login,
-        person_id,
-        JSON.stringify({ deleted_at: new Date().toISOString() })
-      )
-      .run();
+    await logAudit(env, {
+      action: 'permanent_delete_person',
+      performedBy: auth.user.login,
+      targetType: AuditTargetTypes.PERSON,
+      targetId: person_id,
+      details: { deleted_at: new Date().toISOString() },
+    });
 
     return Response.json({ success: true });
   } catch (error) {
@@ -272,16 +267,13 @@ async function handleBulkRestore(context: {
     }
 
     // Log the action
-    await env.BETTERLB_DB.prepare(
-      `INSERT INTO admin_audit_log (action, performed_by, target_type, target_id, details, created_at)
-       VALUES ('bulk_restore_persons', ?1, 'person', ?2, ?3, datetime('now'))`
-    )
-      .bind(
-        auth.user.login,
-        'bulk',
-        JSON.stringify({ restored_count: restoredCount, ids: person_ids })
-      )
-      .run();
+    await logAudit(env, {
+      action: 'bulk_restore_persons',
+      performedBy: auth.user.login,
+      targetType: AuditTargetTypes.BATCH,
+      targetId: `bulk_restore_${Date.now()}`,
+      details: { restored_count: restoredCount, ids: person_ids },
+    });
 
     return Response.json({ success: true, restored_count: restoredCount });
   } catch (error) {
@@ -350,16 +342,13 @@ async function handleBulkPermanentDelete(context: {
     }
 
     // Log the action
-    await env.BETTERLB_DB.prepare(
-      `INSERT INTO admin_audit_log (action, performed_by, target_type, target_id, details, created_at)
-       VALUES ('bulk_permanent_delete_persons', ?1, 'person', ?2, ?3, datetime('now'))`
-    )
-      .bind(
-        auth.user.login,
-        'bulk',
-        JSON.stringify({ deleted_count: deletedCount, errors, ids: person_ids })
-      )
-      .run();
+    await logAudit(env, {
+      action: 'bulk_permanent_delete_persons',
+      performedBy: auth.user.login,
+      targetType: AuditTargetTypes.BATCH,
+      targetId: `bulk_delete_${Date.now()}`,
+      details: { deleted_count: deletedCount, errors, ids: person_ids },
+    });
 
     return Response.json({
       success: true,

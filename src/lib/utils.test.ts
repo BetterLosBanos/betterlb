@@ -19,7 +19,8 @@ describe('cn() - className merge utility', () => {
   });
 
   it('handles conditional classes', () => {
-    const result = cn('base-class', false && 'conditional-class');
+    const showConditional = false;
+    const result = cn('base-class', showConditional && 'conditional-class');
     expect(result).toBe('base-class');
   });
 

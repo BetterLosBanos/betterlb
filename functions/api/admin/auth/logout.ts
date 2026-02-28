@@ -4,6 +4,11 @@
  */
 import { Env } from '../../../types';
 import { parseCookies } from '../../../utils/cookies';
+import {
+  logAudit,
+  AuditActions,
+  AuditTargetTypes,
+} from '../../../utils/audit-log';
 
 export async function onRequestPost(context: { request: Request; env: Env }) {
   const { request, env } = context;
@@ -15,7 +20,26 @@ export async function onRequestPost(context: { request: Request; env: Env }) {
 
   if (sessionId) {
     try {
+      // Get the session data before deleting for audit log
+      const sessionData = await env.WEATHER_KV.get(
+        `session:${sessionId}`,
+        'json'
+      );
+      const userLogin = sessionData?.user?.login || 'unknown';
+
+      // Delete the session
       await env.WEATHER_KV.delete(`session:${sessionId}`);
+
+      // Log the logout action
+      await logAudit(env, {
+        action: AuditActions.LOGOUT,
+        performedBy: userLogin,
+        targetType: AuditTargetTypes.USER,
+        targetId: userLogin,
+        details: {
+          session_id: sessionId,
+        },
+      });
     } catch (error) {
       console.error('Failed to delete session during logout:', error);
       // Continue with redirect - cookie clearing will effectively log user out

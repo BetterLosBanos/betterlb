@@ -3,6 +3,11 @@
  * Handle GitHub OAuth callback
  */
 import { Env } from '../../../types';
+import {
+  logAudit,
+  AuditActions,
+  AuditTargetTypes,
+} from '../../../utils/audit-log';
 
 const GITHUB_CLIENT_ID = '__GITHUB_CLIENT_ID__';
 const GITHUB_CLIENT_SECRET = '__GITHUB_CLIENT_SECRET__';
@@ -140,6 +145,18 @@ export async function onRequestGet(context: { request: Request; env: Env }) {
 
     // Always enforce authorization - empty list means NO ONE is authorized
     if (authorizedList.length === 0 || !authorizedList.includes(user.login)) {
+      // Log unauthorized access attempt
+      await logAudit(env, {
+        action: AuditActions.LOGIN_FAILED,
+        performedBy: user.login,
+        targetType: AuditTargetTypes.USER,
+        targetId: user.login,
+        details: {
+          reason: 'not_in_authorized_list',
+          authorized_count: authorizedList.length,
+        },
+      });
+
       return Response.redirect(`${url.origin}/admin?unauthorized`, 302);
     }
 
@@ -154,6 +171,19 @@ export async function onRequestGet(context: { request: Request; env: Env }) {
     // Store session in KV
     await env.WEATHER_KV.put(`session:${sessionId}`, JSON.stringify(session), {
       expirationTtl: 24 * 60 * 60,
+    });
+
+    // Log successful login
+    await logAudit(env, {
+      action: AuditActions.LOGIN,
+      performedBy: user.login,
+      targetType: AuditTargetTypes.USER,
+      targetId: user.login,
+      details: {
+        session_id: sessionId,
+        name: user.name,
+        email: user.email,
+      },
     });
 
     // Set cookie and redirect

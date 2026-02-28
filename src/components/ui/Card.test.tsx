@@ -426,13 +426,6 @@ describe('Card Component', () => {
   });
 
   describe('CardContactInfo', () => {
-    const mockContact = {
-      address: '123 Main St',
-      phone: '(049) 123-4567',
-      email: 'test@example.com',
-      website: 'example.com',
-    };
-
     it('renders address when provided', () => {
       render(
         <Card>
@@ -538,7 +531,7 @@ describe('Card Component', () => {
 
   describe('CardGrid', () => {
     it('renders children correctly', () => {
-      const { container } = render(
+      render(
         <CardGrid>
           <Card>Card 1</Card>
           <Card>Card 2</Card>
@@ -549,12 +542,12 @@ describe('Card Component', () => {
     });
 
     it('has list role', () => {
-      const { container } = render(
+      render(
         <CardGrid>
           <Card>Card</Card>
         </CardGrid>
       );
-      const grid = container.querySelector('[role="list"]');
+      const grid = screen.getByRole('list');
       expect(grid).toBeInTheDocument();
     });
 

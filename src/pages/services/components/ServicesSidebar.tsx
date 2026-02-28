@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom';
 
-import { FileText, LucideIcon, PlusCircle } from 'lucide-react';
+import { FileText, PlusCircle } from 'lucide-react';
 
 import {
   SidebarContainer,

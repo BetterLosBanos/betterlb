@@ -13,7 +13,7 @@ export function ProcessTimeline({ steps }: ProcessTimelineProps) {
 
   return (
     <DetailSection title='How to Apply' icon={ClipboardList}>
-      <div className='space-y-6'>
+      <div className='space-y-6' data-testid='process-timeline'>
         {steps.map((step, idx) => (
           <div key={idx} className='group'>
             <div className='flex gap-4'>

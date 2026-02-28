@@ -7,13 +7,15 @@ This guide covers all administrative functions for managing legislative data, de
 ## Table of Contents
 
 1. [Authentication](#authentication)
-2. [Dashboard](#dashboard)
-3. [Review Queue](#review-queue)
-4. [Person Merge Tool](#person-merge-tool)
-5. [Reconciliation Tool](#reconciliation-tool)
-6. [Error Log & Retry](#error-log--retry)
-7. [Flag for Review](#flag-for-review)
-8. [Database Scanner](#database-scanner)
+2. [Role-Based Access Control (RBAC)](#role-based-access-control-rbac)
+3. [Dashboard](#dashboard)
+4. [Review Queue](#review-queue)
+5. [Person Merge Tool](#person-merge-tool)
+6. [Reconciliation Tool](#reconciliation-tool)
+7. [Error Log & Retry](#error-log--retry)
+8. [Flag for Review](#flag-for-review)
+9. [Database Scanner](#database-scanner)
+10. [Audit Logs](#audit-logs)
 
 ---
 
@@ -67,6 +69,61 @@ Add GitHub usernames and/or Google emails that should have admin access.
 
 ---
 
+## Role-Based Access Control (RBAC)
+
+The admin panel supports fine-grained access control through roles and permissions, allowing you to grant appropriate access levels to different users.
+
+### User Roles
+
+| Role | Description | Access Level |
+|------|-------------|--------------|
+| **ADMIN** | Full access to all operations | All permissions |
+| **EDITOR** | Limited write access | Can create and edit, but cannot delete or merge |
+| **VIEWER** | Read-only access | View data only, no modifications |
+
+### Permissions Matrix
+
+| Category | Permissions | ADMIN | EDITOR | VIEWER |
+|----------|-------------|-------|--------|--------|
+| **Documents** | create, read, update, delete | ✅ | ✅ (no delete) | ✅ (read only) |
+| **Persons** | read, update, delete, merge | ✅ | ✅ (no delete/merge) | ✅ (read only) |
+| **Sessions** | read, update, delete | ✅ | ✅ (no delete) | ✅ (read only) |
+| **Review Queue** | assign, update_status | ✅ | ✅ | ❌ |
+| **Reconciliation** | reconcile_data | ✅ | ✅ | ❌ |
+| **Admin** | manage_admin, audit_logs | ✅ | ❌ | ❌ |
+
+### How It Works
+
+- Each admin user is assigned a role (defaults to ADMIN for backward compatibility)
+- API endpoints check permissions before allowing actions
+- Users without required permissions receive "Forbidden" error
+- All actions are logged to audit trail (see [Audit Logs](#audit-logs))
+
+### Assigning Roles
+
+Roles are assigned during the OAuth authentication flow. To configure role assignment:
+
+1. **For simple setups**: All authorized users default to ADMIN
+2. **For role-based access**: Configure environment variables in `wrangler.jsonc`:
+
+```json
+{
+  "ADMIN_USERS": '["admin_user", "manager@example.com"]',
+  "EDITOR_USERS": '["editor_user", "staff@example.com"]'
+}
+```
+
+Users not in these lists will default to VIEWER access.
+
+### For Developers
+
+See `docs/RBAC-IMPLEMENTATION-GUIDE.md` for complete implementation details, including:
+- Permission checking functions
+- Endpoint protection examples
+- Custom role configuration
+
+---
+
 ## Dashboard
 
 **Location:** `/admin`
@@ -81,6 +138,7 @@ The dashboard provides an overview of the system status and quick access to comm
 | **Review Queue** | Items pending manual review | `/admin/review-queue` |
 | **Reconcile** | Facebook vs gov.ph data conflicts | `/admin/reconcile` |
 | **Documents** | Total documents processed | `/admin/documents` |
+| **Audit Logs** | Track all admin actions | `/admin/audit-logs` |
 
 ### Quick Actions
 
@@ -324,6 +382,88 @@ Edit the script to adjust:
 
 ---
 
+## Audit Logs
+
+**Location:** `/admin/audit-logs`
+
+View and track all admin actions for compliance, security monitoring, and forensic analysis.
+
+### Features
+
+- **Action Filtering** - Filter logs by specific action types (create_document, merge_persons, etc.)
+- **User Filtering** - View actions performed by a specific admin user
+- **Date Range** - Filter by custom date/time ranges
+- **Target Type Filtering** - Filter by the type of object affected (document, person, session, etc.)
+- **Auto-Refresh** - Toggle automatic refresh every 30 seconds
+- **Pagination** - Navigate through large log datasets (50 items per page)
+- **CSV Export** - Download filtered logs for external analysis and reporting
+- **Color-Coded Badges** - Visual indicators for action categories
+
+### Logged Actions
+
+All state-changing operations are automatically logged:
+
+**Document Operations:**
+- `create_document` - New document created
+- `update_document` - Document metadata updated
+- `delete_document` - Document deleted
+
+**Person Operations:**
+- `merge_persons` - Duplicate person records merged
+- `delete_person` - Person record deleted
+- `update_person` - Person information updated
+
+**Session Operations:**
+- `create_session` - New legislative session created
+- `update_session` - Session details modified
+- `delete_session` - Session deleted
+
+**Review Queue Operations:**
+- `assign_review` - Review item assigned to user
+- `update_review_status` - Review status changed (approved/skipped)
+
+**Reconciliation Operations:**
+- `reconcile_data_accept` - Data reconciliation accepted
+- `reconcile_data_reject` - Data reconciliation rejected
+
+**Authentication Events:**
+- `login` - User logged in
+- `logout` - User logged out
+- `login_failed` - Failed login attempt
+
+### Audit Trail Details
+
+Each log entry includes:
+- **Timestamp** - Date and time of the action
+- **Performed By** - Admin user who performed the action
+- **Action Type** - Category of action performed
+- **Target Type** - Type of object affected (document, person, session, etc.)
+- **Target ID** - ID of the affected object
+- **Details** - Additional context in JSON format (title, changes, etc.)
+
+### Best Practices
+
+1. **Review Regularly** - Check audit logs weekly for suspicious activity
+2. **Export Monthly** - Download monthly logs for external compliance records
+3. **Investigate Anomalies** - Follow up on unusual patterns (e.g., bulk deletions, failed logins)
+4. **Monitor Failed Logins** - Multiple failed attempts may indicate brute force attacks
+5. **Cross-Reference** - Use audit logs to troubleshoot data quality issues
+
+### Example Use Cases
+
+**Investigation Scenario:**
+- A document was deleted unexpectedly
+- Filter by action `delete_document`
+- Filter by date range when deletion occurred
+- See which user performed the action and review the details
+
+**Compliance Reporting:**
+- Select date range for the reporting period
+- Export to CSV for external auditing
+- All admin actions are documented with timestamps and user attribution
+
+---
+
 ## API Endpoints Reference
 
 ### Authentication
@@ -382,6 +522,14 @@ Edit the script to adjust:
 |----------|--------|-------------|
 | `/api/admin/errors` | GET | List error log entries |
 | `/api/admin/errors/:id/retry` | POST | Retry failed operation |
+| `/api/admin/errors/:id` | DELETE | Delete error log entry |
+
+### Audit Logs
+
+| Endpoint | Method | Description |
+|----------|--------|-------------|
+| `/api/admin/audit-logs` | GET | List audit log entries with filtering |
+| `/api/admin/audit-logs/export` | GET | Export audit logs as CSV |
 
 ---
 
@@ -441,15 +589,79 @@ Edit the script to adjust:
 - Verify the issue type matches the problem
 - Try refreshing and re-opening the item
 
+### RBAC Permission Issues
+
+**Problem:** "Forbidden" error when performing action
+- Check your user role in the system
+- Verify your role has the required permission
+- Contact an admin to request elevated permissions
+
+**Problem:** Can't see Audit Logs page
+- Audit logs require ADMIN role
+- EDITOR and VIEWER roles cannot access audit logs
+- Check with system administrator if you need access
+
+### Audit Log Issues
+
+**Problem:** Audit logs not showing recent actions
+- Check date range filters (default may not show today)
+- Try refreshing the page
+- Verify auto-refresh is enabled
+- Check browser console for errors
+
 ---
 
-## Security Notes
+## Security Features
+
+The admin panel includes multiple security features to protect against common web vulnerabilities.
+
+### CSRF Protection
+
+All state-changing admin operations are protected against Cross-Site Request Forgery (CSRF) attacks.
+
+**What This Means:**
+- **Automated protection** - No action required by admins
+- **Tokens generated automatically** - Each authenticated session receives unique CSRF tokens
+- **One-time use tokens** - Tokens expire after use, preventing replay attacks
+- **24-hour expiration** - Tokens automatically expire after 24 hours
+
+**Protected Operations:**
+- All POST/PUT/PATCH/DELETE requests to admin APIs
+- Examples: Create/update/delete documents, merge persons, reconcile data, update review queue
+
+**For Developers:**
+See the Audit Logging Pattern section in `CLAUDE.md` for implementation details.
+
+### Security Headers
+
+All admin API responses include comprehensive security headers for protection against common attacks:
+
+| Header | Purpose |
+|--------|---------|
+| **X-Content-Type-Options: nosniff** | Prevents browsers from MIME-sniffing responses |
+| **X-Frame-Options: DENY** | Prevents clickjacking attacks |
+| **Strict-Transport-Security** | Enforces HTTPS and protects against protocol downgrading |
+| **Content-Security-Policy** | Controls which resources the browser is allowed to load |
+| **X-XSS-Protection** | Enables XSS filtering in modern browsers |
+| **Referrer-Policy** | Controls how much referrer information is sent |
+| **Permissions-Policy** | Restricts browser features and APIs |
+
+These headers are applied automatically - no action required by admins.
+
+### Audit Logging
+
+Every state-changing operation is logged to the `admin_audit_log` table for compliance and security monitoring. See the [Audit Logs](#audit-logs) section for details.
+
+## Security Best Practices
 
 1. **Never commit OAuth secrets** - Use environment variables only
 2. **Rotate credentials regularly** - Update OAuth secrets periodically
-3. **Audit access logs** - Review `admin_audit_log` table for suspicious activity
+3. **Review audit logs** - Check audit logs weekly for suspicious activity (see [Audit Logs](#audit-logs))
 4. **Limit authorized users** - Only add people who need admin access
 5. **Use HTTPS** - Always access admin panel over HTTPS
+6. **Assign appropriate roles** - Use RBAC to grant minimum necessary access (see [Role-Based Access Control](#role-based-access-control-rbac))
+7. **Monitor failed logins** - Multiple failed attempts may indicate brute force attacks
+8. **Keep dependencies updated** - Regularly update npm packages for security patches
 
 ---
 
@@ -459,6 +671,7 @@ Edit the script to adjust:
 
 - `src/pages/admin/index.tsx` - Dashboard
 - `src/pages/admin/ReviewQueue.tsx` - Review queue UI
+- `src/pages/admin/AuditLog.tsx` - Audit logs viewer
 - `src/pages/admin/components/PersonMergeTool.tsx` - Person merge UI
 - `src/pages/admin/components/SessionDataForm.tsx` - Session editing form
 - `src/pages/admin/components/AttendanceForm.tsx` - Attendance editing form
@@ -474,6 +687,15 @@ Edit the script to adjust:
 - `functions/api/admin/persons-merge.ts` - Person merge
 - `functions/api/admin/stats.ts` - Dashboard stats
 - `functions/api/admin/errors.ts` - Error log and retry
+- `functions/api/admin/audit-logs.ts` - Audit log viewing and export
+
+### Utilities
+
+- `functions/utils/admin-auth.ts` - Authentication wrapper with RBAC support
+- `functions/utils/rbac.ts` - Role-Based Access Control utilities
+- `functions/utils/audit-log.ts` - Audit logging utilities
+- `functions/utils/csrf.ts` - CSRF protection utilities
+- `functions/utils/security-headers.ts` - Security headers middleware
 
 ### Scripts
 

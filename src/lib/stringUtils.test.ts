@@ -1,3 +1,5 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
+// Test code uses any for mock data which is acceptable in test context
 import { describe, it, expect } from 'vitest';
 import { formatGovName, toTitleCase } from './stringUtils';
 

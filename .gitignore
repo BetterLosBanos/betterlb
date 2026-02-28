@@ -54,3 +54,7 @@ pipeline/__pycache__/
 .agents/*
 .maestro/*
 maestro.yaml
+todo.md
+docs/qa-reports/*
+docs/decisions/*
+docs/plans/*

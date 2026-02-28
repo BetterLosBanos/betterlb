@@ -26,6 +26,7 @@ import SearchPage from '@/pages/Search';
 import TermsOfService from '@/pages/TermsOfService';
 import AboutPage from '@/pages/about';
 import AccessibilityPage from '@/pages/accessibility';
+import AdminAuditLog from '@/pages/admin/AuditLog';
 import AdminDocuments from '@/pages/admin/Documents';
 import AdminErrorLog from '@/pages/admin/ErrorLog';
 import AdminReconcile from '@/pages/admin/Reconcile';
@@ -196,6 +197,7 @@ function AppContent() {
           <Route path='persons/merge' element={<PersonMergeTool />} />
           <Route path='persons/deletion-queue' element={<DeletionQueue />} />
           <Route path='errors' element={<AdminErrorLog />} />
+          <Route path='audit-logs' element={<AdminAuditLog />} />
           <Route path='review-queue' element={<AdminReviewQueue />} />
           <Route path='reconcile' element={<AdminReconcile />} />
         </Route>

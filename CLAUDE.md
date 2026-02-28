@@ -24,7 +24,14 @@ npm run test:e2e                     # Playwright E2E tests
 
 # Cloudflare/Wrangler
 npx wrangler pages dev --proxy 5173  # Dev server with Functions backend
-npx wrangler d1 execute BETTERLB_DB --local --file=db/migrations/001_initial_schema.sql  # Local DB migration
+npx wrangler d1 execute BETTERLB_DB --local --file=db/migrations/001_initial_schema.sql  # Manual local DB migration (legacy)
+
+# Database Migrations (Automated)
+npm run db:migrate              # Run pending migrations on local database
+npm run db:migrate:remote       # Run pending migrations on production (with confirmation)
+npm run db:migrate:status       # Show migration status (local + production)
+npm run db:migrate:create       # Create a new migration file: npm run db:migrate:create <name>
+./scripts/migrate.sh verify     # Verify migration file safety (pre-deployment check)
 ```
 
 ## Project Architecture
@@ -44,6 +51,11 @@ npx wrangler d1 execute BETTERLB_DB --local --file=db/migrations/001_initial_sch
 - **KV namespace** for weather caching (`WEATHER_KV`)
 - Proxied in dev via Vite: `/api` → `http://localhost:8788`
 
+**Base URLs:**
+- Production: `https://betterlb.gov.ph`
+- Preview: `https://betterlb.pages.dev`
+- All API endpoints prefixed with `/api/` (e.g., `/api/openlgu/`, `/api/admin/`)
+
 ### Data Pipeline (Python)
 - Scripts in `pipeline/` for processing legislative PDFs → structured JSON
 - Run numbered scripts in sequence: `1_scrape.py` → `1.5_normalize.py` → `2_download.py` → `3_parse.py` → `4_generate.py`
@@ -57,12 +69,69 @@ Key tables for legislation tracking:
 - **review_queue** - Items needing manual review
 - **data_conflicts** - Reconciliation between data sources (Facebook vs govph)
 
+### OpenLGU API Caching
+OpenLGU API (`functions/api/openlgu/`) uses Cloudflare KV with these TTL values:
+- Static data (terms list): 1 hour (3,600s)
+- List endpoints: 15 minutes (900s)
+- Detail endpoints: 5 minutes (300s)
+- Count/query endpoints: 2 minutes (120s)
+- Rate limiting: 100 requests per minute per IP
+- API documentation: `docs/openlgu-api.md`
+- Cache implementation: `functions/utils/kv-cache.ts`
+
 See `db/migrations/001_initial_schema.sql` for full schema including views like `v_author_productivity`.
+
+### Database Migration Automation
+
+**Migration Tracking:**
+- `schema_migrations` table tracks applied migrations (auto-created on first run)
+- Migration files in `db/migrations/` with numeric prefixes (e.g., `001_initial_schema.sql`)
+- Automated script: `scripts/migrate.sh`
+
+**Running Migrations:**
+```bash
+# Local development
+npm run db:migrate              # Apply pending migrations to local database
+
+# Production deployment
+npm run db:migrate:remote       # Apply pending migrations to production (with confirmation)
+# Note: Migrations run automatically in CI/CD when merging to main branch
+
+# Check status
+npm run db:migrate:status       # Show applied/pending migrations for local and production
+
+# Create new migration
+npm run db:migrate:create add_user_settings  # Creates db/migrations/TIMESTAMP_add_user_settings.sql
+
+# Verify safety
+./scripts/migrate.sh verify     # Check for dangerous SQL (DROP TABLE, UPDATE without WHERE, etc.)
+```
+
+**Best Practices:**
+1. Always use `IF NOT EXISTS` for CREATE TABLE statements
+2. Add indexes for columns used in WHERE, JOIN, ORDER BY clauses
+3. Test migrations locally first: `npm run db:migrate`
+4. Verify safety before committing: `./scripts/migrate.sh verify`
+5. Migrations run automatically on production deployment (main branch only)
+6. Preview environments (PRs) do NOT run migrations (they share production DB)
+
+**CI/CD Integration:**
+- Migrations run automatically in `.github/workflows/deploy.yml` when merging to `main`
+- Production confirmation prompt prevents accidental execution
+- Applied migrations are tracked and skipped on re-runs
+
+**Documentation:** See `docs/DATABASE-MIGRATION-AUTOMATION.md` for complete guide
 
 ## Key Architectural Patterns
 
 ### Service Data Management
 Services are split by category in `src/data/services/categories/*.json`. The `merge:data` script combines them into `src/data/services/services.json`. **Always run `npm run merge:data` after modifying service category files.**
+
+### API Input Validation
+- Search query parameters (`q`): Max 100 characters, special characters auto-escaped for SQL safety
+- Session type filtering: Case-sensitive values ("Regular", "Special", "Inaugural")
+- All database queries use parameterized statements (`.bind()`) to prevent SQL injection
+- Rate limiting response: HTTP 429 with `retryAfter` field and rate limit headers
 
 ### Translation Pattern
 - Namespaces in `public/locales/{locale}/{namespace}.json`
@@ -113,6 +182,44 @@ python3 -c "import json; d=json.load(open('f.json')); print(set(s['field'] for s
 - `citizens-charter.json` exceeds 256KB - use Read with offset/limit or Python: `python3 -c "import json; print(len(json.load(open('file.json'))['services']))"`
 ```
 
+### Audit Logging Pattern
+
+All admin state-changing operations MUST log audit entries for compliance and security tracking.
+
+**Import the utility:**
+```typescript
+import { logAudit, AuditActions, AuditTargetTypes } from '../../utils/audit-log';
+```
+
+**Log an action in your endpoint handler:**
+```typescript
+await logAudit(env, {
+  action: AuditActions.CREATE_DOCUMENT,  // or custom string
+  performedBy: context.auth.user.login,
+  targetType: AuditTargetTypes.DOCUMENT,
+  targetId: documentId,
+  details: {
+    title: 'Ordinance 001',
+    type: 'ordinance',
+    // Additional context about the action
+  },
+});
+```
+
+**Key points:**
+- Use `AuditActions` constants when available (see `functions/utils/audit-log.ts`)
+- Use `AuditTargetTypes` constants for target_type
+- Include meaningful `details` object for forensic analysis
+- Audit logging failures are non-blocking (logged to console only)
+- View audit logs at `/admin/audit-logs` with filtering and CSV export
+
+**Common actions:**
+- `create_document`, `update_document`, `delete_document`
+- `merge_persons`, `delete_person`, `update_attendance`
+- `assign_review`, `update_review_status`
+- `login`, `logout`, `login_failed`
+- `reconcile_data`, `parse_facebook_post`
+
 ### Icon Naming Convention
 - This codebase uses `*Icon` suffix for Lucide icons (e.g., `ArrowRightIcon`, not `ArrowRight`)
 - Check existing imports before using new icons to avoid ESLint errors
@@ -132,6 +239,14 @@ python3 -c "import json; d=json.load(open('f.json')); print(set(s['field'] for s
 - **Conventional Commits**: Enforced via commitlint
 - **Pre-commit hooks**: Husky + lint-staged auto-format on commit
 - **TypeScript strict mode** enabled
+
+### Security Documentation
+- **Security Guide**: `docs/SECURITY-GUIDE.md` - Comprehensive security architecture, authentication patterns, data protection, API security
+- **Privacy Documentation**: `docs/PRIVACY.md` - Data collection, user rights, GDPR/DPA compliance
+- **Security Checklist**: `docs/SECURITY-CHECKLIST.md` - Developer security checklist with best practices
+- **RBAC Guide**: `docs/RBAC-IMPLEMENTATION-GUIDE.md` - Role-based access control usage
+- All admin state-changing operations must use audit logging (see Audit Logging Pattern below)
+- CSRF protection required for all admin POST/PUT/PATCH/DELETE endpoints
 
 ## CI/CD Workflows
 
@@ -373,6 +488,12 @@ npm publish --access public     # Requires granular token with bypass 2FA
 - Document what exists, what's missing, and provide clear recommendations
 - Update todo.md with `[qa] BLOCKED - ...` notes explaining the issue
 - Offer 2-3 resolution options (define requirements, close as complete, split into smaller tasks)
+
+**Documentation QA Process:**
+- Verify API documentation against implementation code for accuracy
+- Check TTL values, endpoint paths, response formats match actual code
+- QA reports identify critical/important issues with specific line numbers and fixes
+- Example: `docs/qa-reports/T-022-OpenLGU-API-Documentation-QA-Report.md`
 
 **Example blocked tasks:** T-009 (OpenLGU enhancements), T-037 (Design Guide redesign), T-010 (Admin dashboard improvements)
 

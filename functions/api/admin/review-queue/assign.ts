@@ -1,9 +1,16 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
+// D1 database result typing uses any for dynamic schema mapping
 /**
  * POST /api/admin/review-queue/assign
  * Assign a review queue item to the current user
  */
 import { Env } from '../../../types';
 import { AuthContext, withAuth } from '../../../utils/admin-auth';
+import {
+  logAudit,
+  AuditActions,
+  AuditTargetTypes,
+} from '../../../utils/audit-log';
 
 export async function onRequestPost(context: {
   request: Request;
@@ -32,6 +39,17 @@ export async function onRequestPost(context: {
       `;
 
         await env.BETTERLB_DB.prepare(updateSql).bind(userId, item_id).run();
+
+        // Log the assignment
+        await logAudit(env, {
+          action: AuditActions.ASSIGN_REVIEW,
+          performedBy: userId,
+          targetType: AuditTargetTypes.REVIEW_QUEUE,
+          targetId: item_id,
+          details: {
+            assigned_to: userId,
+          },
+        });
 
         return Response.json({ success: true });
       } catch (error) {
