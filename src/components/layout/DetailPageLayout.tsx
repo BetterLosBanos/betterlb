@@ -1,5 +1,16 @@
 // src/components/layout/DetailPageLayout.tsx
+import { React } from 'react';
 import { cn } from '@/lib/utils';
+import {
+  Breadcrumb,
+  BreadcrumbHome,
+  BreadcrumbItem,
+  BreadcrumbLink,
+  BreadcrumbList,
+  BreadcrumbPage,
+  BreadcrumbSeparator,
+} from '@/components/navigation/Breadcrumb';
+import { PageHero, DetailSection } from './PageLayouts';
 import type { DetailPageLayoutProps } from '@/types/components';
 
 /**
@@ -12,21 +23,13 @@ import type { DetailPageLayoutProps } from '@/types/components';
  * All styling uses Kapwa semantic tokens.
  */
 export function DetailPageLayout({
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   title,
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   description,
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   breadcrumbs,
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   metadata,
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   heroActions,
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   sections,
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   contact,
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   related,
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   variant = 'default',
@@ -39,10 +42,79 @@ export function DetailPageLayout({
         className
       )}
     >
-      {/* Hero section will be added in next task */}
-      {/* Sections will be added in next task */}
-      {/* Contact section will be added in next task */}
-      {/* Related items will be added in next task */}
+      {/* === HERO SECTION === */}
+      <PageHero title={title} description={description}>
+        {breadcrumbs && (
+          <Breadcrumb>
+            <BreadcrumbList>
+              <BreadcrumbItem>
+                <BreadcrumbHome href='/' />
+              </BreadcrumbItem>
+              {breadcrumbs.map((crumb, index) => (
+                <React.Fragment key={`${crumb.href}-${index}`}>
+                  <BreadcrumbSeparator />
+                  {index === breadcrumbs.length - 1 ? (
+                    <BreadcrumbItem>
+                      <BreadcrumbPage>{crumb.label}</BreadcrumbPage>
+                    </BreadcrumbItem>
+                  ) : (
+                    <BreadcrumbItem>
+                      <BreadcrumbLink href={crumb.href}>
+                        {crumb.label}
+                      </BreadcrumbLink>
+                    </BreadcrumbItem>
+                  )}
+                </React.Fragment>
+              ))}
+            </BreadcrumbList>
+          </Breadcrumb>
+        )}
+
+        <div className='flex items-center justify-between gap-4 mt-6'>
+          <div className='flex items-center gap-3'>{metadata}</div>
+          {heroActions && <div className='shrink-0'>{heroActions}</div>}
+        </div>
+      </PageHero>
+
+      {/* === CONTENT SECTIONS === */}
+      <div className='space-y-8'>
+        {sections.map(section => (
+          <DetailSection
+            key={section.id}
+            title={section.title}
+            description={section.description}
+            className={
+              section.variant === 'highlighted'
+                ? 'border-l-4 border-l-kapwa-border-brand'
+                : section.variant === 'compact'
+                  ? 'py-4'
+                  : ''
+            }
+          >
+            {section.content}
+          </DetailSection>
+        ))}
+      </div>
+
+      {/* === CONTACT INFORMATION === */}
+      {contact && (
+        <DetailSection
+          title='Contact Information'
+          className='border-l-4 border-l-kapwa-border-brand'
+        >
+          <div>Contact section to be implemented in next task</div>
+        </DetailSection>
+      )}
+
+      {/* === RELATED ITEMS === */}
+      {related && related.items.length > 0 && (
+        <DetailSection
+          title={related.title}
+          className='border-l-4 border-l-kapwa-border-accent'
+        >
+          <div>Related items to be implemented in next task</div>
+        </DetailSection>
+      )}
     </div>
   );
 }
