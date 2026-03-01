@@ -16,6 +16,14 @@ export { SidebarLayout, type SidebarLayoutProps } from './SidebarLayout';
 // PageLayouts components
 export { PageHero, ModuleHeader, DetailSection } from './PageLayouts';
 
+// Reusable Page Layout Components
+export { IndexPageLayout } from './IndexPageLayout';
+export type {
+  IndexPageLayoutProps,
+  BreadcrumbItem,
+  FilterConfig,
+} from './IndexPageLayout';
+
 // Unified Layout Components
 export {
   PageHeader,
