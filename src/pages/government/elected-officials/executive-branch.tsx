@@ -18,16 +18,7 @@ import {
   ContactContainer,
   ContactItem,
 } from '@/components/data-display/ContactInfo';
-import { DetailSection, ModuleHeader } from '@/components/layout/PageLayouts';
-import {
-  Breadcrumb,
-  BreadcrumbHome,
-  BreadcrumbItem,
-  BreadcrumbLink,
-  BreadcrumbList,
-  BreadcrumbPage,
-  BreadcrumbSeparator,
-} from '@/components/navigation/Breadcrumb';
+import { DetailSection, PageHero } from '@/components/layout/PageLayouts';
 import { Badge } from '@/components/ui/Badge';
 import { Card, CardContent } from '@/components/ui/Card';
 
@@ -67,28 +58,18 @@ export default function ExecutiveBranchPage() {
   }, [data]);
 
   return (
-    <div className='animate-in fade-in mx-auto max-w-7xl space-y-8 duration-500'>
-      <Breadcrumb>
-        <BreadcrumbList>
-          <BreadcrumbItem>
-            <BreadcrumbHome href='/' />
-          </BreadcrumbItem>
-          <BreadcrumbSeparator />
-          <BreadcrumbItem>
-            <BreadcrumbLink href='/government/elected-officials'>
-              Elected Officials
-            </BreadcrumbLink>
-          </BreadcrumbItem>
-          <BreadcrumbSeparator />
-          <BreadcrumbItem>
-            <BreadcrumbPage>Executive Branch</BreadcrumbPage>
-          </BreadcrumbItem>
-        </BreadcrumbList>
-      </Breadcrumb>
-
-      <ModuleHeader
+    <div className='animate-in fade-in space-y-8 duration-500'>
+      <PageHero
         title='Executive Branch'
         description='The administrative leadership of the Municipal Government.'
+        breadcrumb={[
+          { label: 'Government', href: '/government' },
+          { label: 'Elected Officials', href: '/government/elected-officials' },
+          {
+            label: 'Executive Branch',
+            href: '/government/elected-officials/executive-branch',
+          },
+        ]}
       />
 
       {/* --- SECTION 1: ELECTED LEADERSHIP --- */}

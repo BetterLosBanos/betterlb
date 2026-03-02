@@ -109,7 +109,7 @@ export default function MunicipalIncomePage() {
       <DetailSection title='Revenue Composition' icon={Landmark}>
         <div className='flex justify-center'>
           <FinancialPieChart
-            title='Revenue Composition'
+            title='Overview'
             icon={Landmark}
             data={drillDownIncomeData}
             colors={[
@@ -183,7 +183,7 @@ export default function MunicipalIncomePage() {
             </div>
           </div>
           <div className='space-y-4'>
-            <h4 className='border-b pb-2 text-[10px] font-black tracking-widest text-emerald-600 uppercase'>
+            <h4 className='border-b pb-2 text-[10px] font-black tracking-widest text-kapwa-text-success uppercase'>
               External
             </h4>
             <div className='text-kapwa-text-support space-y-2 text-sm font-bold'>
@@ -215,7 +215,7 @@ export default function MunicipalIncomePage() {
 
       {/* Footer */}
       <footer className='border-kapwa-border-weak space-y-4 border-t pt-10 text-center'>
-        <div className='mx-auto flex h-6 w-6 items-center justify-center rounded-full bg-emerald-100 text-emerald-600'>
+        <div className='bg-kapwa-bg-success-weak text-kapwa-text-success mx-auto flex h-6 w-6 items-center justify-center rounded-full'>
           <svg
             className='h-4 w-4'
             fill='none'

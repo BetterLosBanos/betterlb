@@ -2,9 +2,11 @@ import { useCallback, useMemo, useState } from 'react';
 
 import { useOutletContext } from 'react-router-dom';
 
-import { Users } from 'lucide-react';
-
-import { EmptyState, PageLoadingState } from '@/components/ui';
+import { PageLoadingState } from '@/components/ui';
+import {
+  IndexPageLayout,
+  type BreadcrumbItem,
+} from '@/components/layout/IndexPageLayout';
 
 import type { DocumentItem, Person, Session, Term } from '@/lib/openlgu';
 import { getPersonName } from '@/lib/openlgu';
@@ -104,19 +106,33 @@ export default function OfficialsIndex() {
     return Array.from(personsByLetter.keys()).sort();
   }, [personsByLetter]);
 
-  return (
-    <div className='animate-in fade-in mx-auto max-w-5xl space-y-8 pb-20 duration-500'>
-      {/* Header */}
-      <div className='border-kapwa-border-brand bg-kapwa-bg-surface rounded-2xl border-l-8 p-6 shadow-sm md:p-10'>
-        <h1 className='text-kapwa-text-strong text-2xl font-extrabold md:text-3xl'>
-          Officials of Los Baños
-        </h1>
-        <p className='text-kapwa-text-support mt-2'>
-          Browse the historical collection of all LGU politicians who have
-          served Los Baños.
-        </p>
-      </div>
+  const breadcrumbs: BreadcrumbItem[] = [
+    { label: 'Home', href: '/' },
+    { label: 'OpenLGU', href: '/openlgu' },
+    { label: 'Officials', href: '/openlgu/officials' },
+  ];
 
+  return (
+    <IndexPageLayout
+      title='Officials of Los Baños'
+      description='Browse the historical collection of all LGU politicians who have served Los Baños.'
+      breadcrumbs={breadcrumbs}
+      search={{
+        value: searchQuery,
+        onChange: setSearchQuery,
+        placeholder: 'Search officials...',
+      }}
+      resultsCount={filteredPersons.length}
+      resultsLabel={filteredPersons.length === 1 ? 'official' : 'officials'}
+      emptyState={
+        !isLoading && filteredPersons.length === 0
+          ? {
+              title: 'No officials found',
+              message: "We couldn't find any officials matching your filters",
+            }
+          : undefined
+      }
+    >
       {/* Filter Bar */}
       <OfficialsFilterBar
         searchQuery={searchQuery}
@@ -131,20 +147,8 @@ export default function OfficialsIndex() {
       {/* Loading State */}
       {isLoading ? (
         <PageLoadingState message='Loading officials...' />
-      ) : filteredPersons.length === 0 ? (
-        <EmptyState
-          title='No officials found'
-          message={`We couldn't find any officials matching your filters`}
-          icon={Users}
-        />
       ) : (
         <>
-          {/* Results count */}
-          <div className='text-kapwa-text-disabled text-sm'>
-            Showing {filteredPersons.length} official
-            {filteredPersons.length !== 1 ? 's' : ''}
-          </div>
-
           {/* A-Z grouped list */}
           <div className='space-y-8'>
             {sortedLetters.map(letter => {
@@ -191,6 +195,6 @@ export default function OfficialsIndex() {
           </div>
         </>
       )}
-    </div>
+    </IndexPageLayout>
   );
 }

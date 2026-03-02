@@ -21,7 +21,7 @@ import {
   ContactContainer,
   ContactItem,
 } from '@/components/data-display/ContactInfo';
-import { DetailSection, ModuleHeader } from '@/components/layout/PageLayouts';
+import { DetailSection, PageHero } from '@/components/layout/PageLayouts';
 import { Card, CardContent } from '@/components/ui/Card';
 
 import { toTitleCase } from '@/lib/stringUtils';
@@ -76,9 +76,13 @@ export default function ElectedOfficialsIndex() {
 
   return (
     <div className='animate-in fade-in space-y-8 pb-20 duration-500'>
-      <ModuleHeader
+      <PageHero
         title='Municipal Leadership'
         description='Meet the elected leaders and appointed management of the Science and Nature City.'
+        breadcrumb={[
+          { label: 'Government', href: '/government' },
+          { label: 'Elected Officials', href: '/government/elected-officials' },
+        ]}
       />
 
       <div className='grid grid-cols-1 gap-8 xl:grid-cols-2'>

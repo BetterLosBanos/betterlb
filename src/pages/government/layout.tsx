@@ -74,7 +74,7 @@ export default function GovernmentRootLayout() {
                   className={cn(
                     'group relative flex min-h-[160px] flex-col justify-between rounded-2xl border-2 p-6 transition-all duration-300',
                     isActive
-                      ? 'bg-kapwa-bg-brand-default border-kapwa-border-brand shadow-lg text-kapwa-text-inverse shadow-xl'
+                      ? 'bg-kapwa-bg-brand-default border-kapwa-border-brand shadow-lg text-kapwa-text-inverse'
                       : 'hover:border-kapwa-border-brand border-kapwa-border-weak bg-kapwa-bg-surface text-kapwa-text-strong shadow-sm hover:shadow-md'
                   )}
                   state={{ scrollToContent: true }}

@@ -17,8 +17,21 @@ export { default as SearchInput } from './SearchInput';
 export { default as SelectPicker } from './SelectPicker';
 
 // Data display components
+export {
+  Dialog,
+  DialogPortal,
+  DialogOverlay,
+  DialogTrigger,
+  DialogClose,
+  DialogContent,
+  DialogHeader,
+  DialogFooter,
+  DialogTitle,
+  DialogDescription,
+} from './Dialog';
 export { EmptyState } from './EmptyState';
 export { PaginationControls } from './Pagination';
+export { default as ScrollArea } from './ScrollArea';
 export { Timeline } from './Timeline';
 export { default as Ticker } from './Ticker';
 export {
@@ -26,8 +39,3 @@ export {
   DirectoryGridSkeleton,
   PageLoadingState,
 } from './Skeletons';
-
-// NOTE: The following components exist but are currently unused and commented out:
-// - Dialog: Modal dialog component
-// - ScrollArea: Scrollable area wrapper
-// These can be reinstated if needed in the future

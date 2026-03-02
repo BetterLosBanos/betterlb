@@ -72,10 +72,8 @@
 @import 'tailwindcss';
 
 /* Scan shared packages for Tailwind classes */
-@source '../node_modules/@betterlb/kapwa/dist/**/*.js';
-
-/* Import Kapwa Design System tokens */
-@import '@betterlb/kapwa/kapwa.css';
+@source '../node_modules/@bettergov/kapwa/dist';
+@import '@bettergov/kapwa/styles';
 
 :root {
   --font-kapwa-sans:

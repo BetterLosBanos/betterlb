@@ -24,6 +24,9 @@ export type {
   FilterConfig,
 } from './IndexPageLayout';
 
+export { DetailPageLayout } from './DetailPageLayout';
+export type { DetailPageLayoutProps } from './DetailPageLayout';
+
 // Unified Layout Components
 export {
   PageHeader,

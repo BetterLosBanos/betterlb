@@ -2,16 +2,7 @@ import { useMemo, useState } from 'react';
 
 import { BookOpenIcon, User2, UsersIcon } from 'lucide-react';
 
-import { ModuleHeader } from '@/components/layout/PageLayouts';
-import {
-  Breadcrumb,
-  BreadcrumbHome,
-  BreadcrumbItem,
-  BreadcrumbLink,
-  BreadcrumbList,
-  BreadcrumbPage,
-  BreadcrumbSeparator,
-} from '@/components/navigation/Breadcrumb';
+import { PageHero } from '@/components/layout/PageLayouts';
 import { Badge } from '@/components/ui/Badge';
 import { Card, CardContent } from '@/components/ui/Card';
 import { EmptyState } from '@/components/ui/EmptyState';
@@ -52,36 +43,27 @@ export default function MunicipalCommitteesPage() {
   }, [committees, searchTerm]);
 
   return (
-    <div className='animate-in fade-in mx-auto max-w-7xl space-y-6 pb-20 duration-500'>
-      <Breadcrumb>
-        <BreadcrumbList>
-          <BreadcrumbItem>
-            <BreadcrumbHome href='/' />
-          </BreadcrumbItem>
-          <BreadcrumbSeparator />
-          <BreadcrumbItem>
-            <BreadcrumbLink href='/government/elected-officials'>
-              Elected Officials
-            </BreadcrumbLink>
-          </BreadcrumbItem>
-          <BreadcrumbSeparator />
-          <BreadcrumbItem>
-            <BreadcrumbPage>Municipal Committees</BreadcrumbPage>
-          </BreadcrumbItem>
-        </BreadcrumbList>
-      </Breadcrumb>
-
-      <ModuleHeader
+    <div className='animate-in fade-in space-y-6 pb-20 duration-500'>
+      <PageHero
         title='Municipal Committees'
         description={`Active standing committees of the ${sbData?.chamber || 'Sangguniang Bayan'}.`}
-      >
-        <SearchInput
-          value={searchTerm}
-          onChangeValue={setSearchTerm}
-          placeholder='Search committees...'
-          className='md:w-72'
-        />
-      </ModuleHeader>
+        breadcrumb={[
+          { label: 'Government', href: '/government' },
+          { label: 'Elected Officials', href: '/government/elected-officials' },
+          {
+            label: 'Municipal Committees',
+            href: '/government/elected-officials/municipal-committees',
+          },
+        ]}
+        heroActions={
+          <SearchInput
+            value={searchTerm}
+            onChangeValue={setSearchTerm}
+            placeholder='Search committees...'
+            className='md:w-72'
+          />
+        }
+      />
 
       {filteredCommittees.length === 0 ? (
         <EmptyState

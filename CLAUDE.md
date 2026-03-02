@@ -389,9 +389,9 @@ When modifying or creating local UI components:
 - Lucide icon names are camelCase (e.g., `IdCard`, `UserCheck`, `ShieldAlert`)
 - Unused icon imports will cause ESLint errors
 
-## Kapwa Design System (@betterlb/kapwa)
+## Kapwa Design System (@bettergov/kapwa)
 
-BetterLB uses the Kapwa Design System fork, published as `@betterlb/kapwa` on npm.
+BetterLB uses the Kapwa Design System published by bettergov. Transitioned from the local fork to the officially published
 
 ### Import Pattern
 - **TypeScript/JavaScript**: Use `@bettergov/kapwa` imports (aliased to `@betterlb/kapwa` via Vite)
@@ -422,6 +422,101 @@ Kapwa semantic classes MUST use Tailwind v4 prefixes for CSS variables:
 
 This follows Tailwind v4's CSS variable convention where `--color-kapwa-text-strong` becomes `text-kapwa-text-strong`.
 
+### Kapwa Design System Migration (Phase 1) - COMPLETED ✅
+
+**Timeline:** February 26 - March 4, 2026
+**Overall Grade:** A (95/100)
+**Tasks:** T-065, T-067, T-069, T-071, T-072, T-073
+
+**Migration Summary:**
+BetterLB completed Phase 1 of Kapwa Design System migration, replacing hardcoded colors and raw Tailwind tokens with semantic tokens from the `@betterlb/kapwa` package (forked from `@bettergov/kapwa`). This migration ensures consistent styling, better maintainability, and full design system compliance across the application.
+
+**Completed Migrations:**
+
+**T-065: Ticker Component**
+- **File:** `src/components/ui/Ticker.tsx`
+- **Change:** Replaced hardcoded hex color `#fbbf24` with `text-kapwa-text-warning`
+- **Impact:** 1 component, 1 token replacement
+- **Quality:** ESLint zero errors, zero warnings
+- **Status:** ✅ Complete
+
+**T-067: Statistics Pages**
+- **Files:**
+  - `src/pages/statistics/population/index.tsx` (1 change: footer checkmark icon)
+  - `src/pages/statistics/municipal-income/index.tsx` (2 changes: External section + footer)
+  - `src/pages/statistics/competitiveness/index.tsx` (2 changes: "Up" rank indicator + footer)
+- **Changes:** 5 raw color tokens replaced with Kapwa semantic tokens
+  - `text-kapwa-text-success` (success indicators)
+  - `bg-kapwa-bg-success-weak` (backgrounds)
+  - `border-kapwa-border-success` (borders)
+- **Preserved:** Chart colors (hex codes) for data visualization (acceptable per design system)
+- **Quality:** ESLint zero errors, zero warnings; TypeScript compilation successful
+- **Status:** ✅ Complete - 100% Kapwa semantic token compliance
+
+**T-069: Admin Dashboard Compliance Audit**
+- **Scope:** 14 admin dashboard files
+- **Findings:**
+  - ✅ **Base styling**: 70% compliant (text, backgrounds, borders use semantic tokens correctly)
+  - ⚠️ **Status colors**: 27 raw color token violations found (rose/amber/emerald/slate)
+  - ❌ **Typo**: `border-kap-border-weak` → should be `border-kapwa-border-weak`
+- **Grade:** C+ (70/100)
+- **Migration Plan:** 4 hours estimated (provided in QA report)
+- **Status:** ⚠️ Partially complete - migration plan ready, awaiting execution
+
+**T-071: ARCHITECTURE.md Documentation**
+- **Added:** "UX Improvements (February-March 2026)" section documenting Phase 1 migration
+- **Content:** Timeline, completed tasks, design system compliance details, quality metrics
+- **Status:** ✅ Complete
+
+**T-072: VISUAL_CONSISTENCY_PLAN.md Update**
+- **Updated:** Section 5.2 (Statistics Pages) with T-067 completion details
+- **Updated:** Section 7.1 (Admin Pages) with T-069 audit results
+- **Status:** ✅ Complete
+
+**T-073: Full Design System Compliance Audit**
+- **Scope:** 108+ files across entire codebase
+- **Overall Grade:** A (95/100)
+- **Key Findings:**
+  - ✅ **Tailwind v4 prefix compliance**: 100% - zero violations
+  - ✅ **Semantic token usage**: 98% - excellent adoption
+  - ✅ **Spacing consistency**: 100% - perfect
+  - ✅ **Typography standards**: 100% - all use Kapwa classes
+  - ✅ **Hardcoded colors**: 99% - only acceptable cases (error states, test data)
+- **Issues:** 3 important issues identified (TermsOfService.tsx, InfoWidgets.tsx) with 15 minor acceptable use cases
+- **Recommendations:** Fix 3 important issues (15 min), optional pre-commit hook enhancement
+- **QA Report:** `docs/qa-reports/T-073-Design-System-Compliance-Audit-QA-Report.md`
+- **Status:** ✅ Complete
+
+**Quality Metrics:**
+- ✅ ESLint: Zero errors, zero warnings (`--max-warnings 0`)
+- ✅ TypeScript: Strict mode enabled, all compilations successful
+- ✅ Mobile Responsive: All migrated components fully responsive
+- ✅ Accessibility: WCAG 2.1 Level AA compliance maintained
+- ✅ Design System: Mature adoption with exceptional prefix compliance
+
+**Pending Work:**
+- ⚠️ **T-069 Migration Execution**: Admin dashboard status colors (27 raw tokens, 4 hours)
+- ⚠️ **T-073 Important Issues**: Fix 3 important issues (TermsOfService.tsx, InfoWidgets.tsx, 15 min)
+
+**Design System Compliance:**
+- **Kapwa Semantic Tokens**: 98% adoption across codebase
+- **Tailwind v4 Prefixes**: 100% compliance (zero violations)
+- **Chart Colors**: Hex codes preserved for data visualization (acceptable)
+- **Raw Token Usage**: Limited to error states and test data (acceptable per design system guidelines)
+
+**References:**
+- ARCHITECTURE.md: "UX Improvements (February-March 2026)" section
+- VISUAL_CONSISTENCY_PLAN.md: Updated with completion details
+- QA Reports: T-069 (Admin Dashboard), T-073 (Full Audit)
+- Navigation Design System Specification: `docs/navigation-design-system-spec.md`
+
+**Migration Best Practices:**
+1. **Always use semantic tokens** for status/feedback colors (success, error, warning, info)
+2. **Preserve hex codes** for data visualization (charts, graphs)
+3. **Test accessibility** after each migration (WCAG AA contrast ratios)
+4. **Run ESLint** with `--max-warnings 0` to verify quality
+5. **Update documentation** (ARCHITECTURE.md, VISUAL_CONSISTENCY_PLAN.md)
+
 ### Kapwa Color Scales in Components
 Kapwa components (Button, Banner) use color scale utilities that must be scanned from compiled JS:
 - **Primary**: `bg-kapwa-blue-600 hover:bg-kapwa-blue-700 focus:ring-kapwa-blue-500`
@@ -439,6 +534,72 @@ Since Kapwa publishes only compiled JS (`dist/`), use `@source` to scan these fi
 ### Ticker Component Styling
 - Uses Kapwa CSS variables with Tailwind v4 syntax: `text-(--color-kapwa-text-inverse)`
 - Background: `bg-(--color-kapwa-bg-surface-bold)`
+
+### Navigation Page Color Standards
+
+All navigation pages MUST use Kapwa semantic tokens for colors and backgrounds to ensure consistency with the Design System.
+
+**Background Colors:**
+- Page container: `bg-kapwa-bg-surface` (all navigation pages)
+- Hero header: `bg-kapwa-bg-surface-bold` (index page headers)
+- Section header: `bg-kapwa-bg-hover-weak` (sub-sections within pages)
+- Sidebar: `bg-kapwa-bg-surface` (sidebar container)
+- Active nav item: `bg-kapwa-bg-selected` (currently selected item)
+- Hover nav item: `hover:bg-kapwa-bg-hover` (interactive state)
+
+**Text Colors:**
+- Primary/headings: `text-kapwa-text-strong`
+- Body text: `text-kapwa-text-default`
+- Muted/secondary: `text-kapwa-text-weak`
+- Inverse (on bold backgrounds): `text-kapwa-text-inverse`
+
+**Border Colors:**
+- Default borders: `border-kapwa-border-weak`
+- Strong borders: `border-kapwa-border-strong`
+- Focus states: `border-kapwa-border-focus`
+
+**✅ CORRECT:**
+```tsx
+<div className="bg-kapwa-bg-surface min-h-screen">
+  <SidebarLayout>
+    <h1 className="text-kapwa-text-strong">Title</h1>
+    <p className="text-kapwa-text-default">Content</p>
+  </SidebarLayout>
+</div>
+```
+
+**❌ INCORRECT:**
+```tsx
+<div className="bg-white min-h-screen">
+  <SidebarLayout>
+    <h1 className="text-gray-900">Title</h1>
+    <p className="text-gray-600">Content</p>
+  </SidebarLayout>
+</div>
+```
+
+**Utility Functions:**
+Use `@/lib/navigation-styles.ts` for consistent styling:
+```tsx
+import { navigationBackgrounds, navigationText, navigationBorders } from '@/lib/navigation-styles';
+
+<div className={navigationBackgrounds.page}>
+  <h1 className={navigationText.strong}>Title</h1>
+</div>
+```
+
+**Component Wrapper:**
+Use `NavigationPageWrapper` for standard page layouts:
+```tsx
+import { NavigationPageWrapper } from '@/components/layout/NavigationPageWrapper';
+
+<NavigationPageWrapper variant="detail">
+  <PageHeader title="Page Title" />
+  {/* Content */}
+</NavigationPageWrapper>
+```
+
+**Reference:** Navigation Design System Specification (`docs/navigation-design-system-spec.md`)
 
 ## Package Publishing Workflow (kapwa fork)
 

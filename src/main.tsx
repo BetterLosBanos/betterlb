@@ -7,6 +7,9 @@ import App from './App.tsx';
 import './i18n';
 import './index.css';
 
+import './fonts.css';
+import '@bettergov/kapwa/kapwa.css';
+
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
     <HelmetProvider>

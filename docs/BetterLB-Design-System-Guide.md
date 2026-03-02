@@ -629,6 +629,307 @@ The document type colors extend to other UI elements for consistency:
 5. **Accessibility**: All Kapwa raw tokens meet WCAG AA contrast requirements
 6. **Distinctive**: Each document type has a unique, easily distinguishable color
 
+### Chart Components
+
+**Location:** `src/components/data-display/ChartContainer.tsx`
+
+BetterLB uses **Recharts 2.15.3** for data visualization with custom wrapper components that ensure consistent styling, accessibility, and responsiveness.
+
+#### Available Components
+
+**ChartTooltip**
+- Unified, accessible tooltip with Kapwa styling
+- Automatic value sorting (highest values first)
+- Custom formatter support
+- Responsive max-height with scroll (320px)
+
+**ResponsiveChart**
+- Lightweight wrapper for charts in existing containers
+- No card styling (just ResponsiveContainer)
+- Use when chart lives inside `DetailSection` or other styled containers
+
+**ChartContainer**
+- Full card-style wrapper with animations
+- Includes border, shadow, and rounded corners
+- Use when chart needs standalone presentation
+
+#### Basic Usage
+
+```tsx
+import { ChartTooltip, ResponsiveChart } from '@/components/data-display/ChartContainer';
+import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend } from 'recharts';
+import { CHART_THEME, standardAxisProps } from '@/constants/charts';
+
+// Basic line chart
+<ResponsiveChart height={400}>
+  <LineChart data={chartData}>
+    <CartesianGrid vertical={false} stroke={CHART_THEME.grid} strokeDasharray='3 3' />
+    <XAxis dataKey='year' {...standardAxisProps} />
+    <YAxis {...standardAxisProps} />
+    <Tooltip content={<ChartTooltip />} />
+    <Legend verticalAlign='top' iconType='circle' />
+    <Line type='monotone' dataKey='value' stroke='#0066eb' strokeWidth={2} />
+  </LineChart>
+</ResponsiveChart>
+```
+
+#### Chart Theme Configuration
+
+All charts use the standardized `CHART_THEME` from `@/constants/charts`:
+
+```tsx
+export const CHART_THEME = {
+  grid: '#f1f5f9',    // slate-100 - grid lines
+  text: '#94a3b8',    // slate-400 - axis labels
+  fontSize: 10,       // base font size for axis text
+  fontWeight: 700,    // bold weight for readability
+};
+
+// Standard axis props (applied to all X/Y axes)
+export const standardAxisProps = {
+  axisLine: false,
+  tickLine: false,
+  tick: {
+    fontSize: CHART_THEME.fontSize,
+    fontWeight: CHART_THEME.fontWeight,
+    fill: CHART_THEME.text,
+  },
+};
+```
+
+#### When to Use Each Component
+
+**ResponsiveChart** (Most Common)
+- Charts inside `DetailSection` components
+- Charts in page layouts with existing containers
+- When you want full control over chart container styling
+
+**ChartContainer** (Specialized)
+- Standalone charts needing card presentation
+- Dashboard widgets
+- Highlighted statistical visualizations
+
+**ChartTooltip** (Always)
+- All charts must use this for consistent tooltip styling
+- Provides accessibility (role='region', aria-label)
+- Ensures Kapwa design system compliance
+
+#### Chart Color Standards
+
+**Brand-Aligned Palette:**
+Charts use colors derived from the Los Baños seal and brand identity:
+
+| Color | Hex | Usage |
+|-------|-----|-------|
+| Municipal Blue | `#0066eb` | Primary data, key metrics |
+| Brand Orange | `#cc3e00` | Secondary data, comparisons |
+| Emerald Green | `#059669` | Tertiary data, positive indicators |
+
+**Multi-Chart Color Arrays:**
+
+For charts with many data series (e.g., 14 barangays), use high-contrast, distinct colors:
+
+```tsx
+const BRGY_COLORS = [
+  '#0066eb', // 1. Municipal Blue (top priority)
+  '#cc3e00', // 2. Brand Orange
+  '#059669', // 3. Emerald Green
+  '#8b5cf6', // 4. Purple
+  '#ec4899', // 5. Pink
+  '#f59e0b', // 6. Amber
+  '#06b6d4', // 7. Cyan
+  '#6366f1', // 8. Indigo
+  '#ef4444', // 9. Red
+  '#10b981', // 10. Green
+  '#f97316', // 11. Orange
+  '#3b82f6', // 12. Blue
+  '#84cc16', // 13. Lime
+  '#a855f7', // 14. Purple
+];
+
+// Usage: map through data array
+{dataArray.map((item, i) => (
+  <Line
+    key={item.id}
+    dataKey={item.name}
+    stroke={BRGY_COLORS[i % BRGY_COLORS.length]}
+    strokeWidth={i < 3 ? 4 : 2}  // Top 3 emphasized
+  />
+))}
+```
+
+#### Accessibility Best Practices
+
+**1. Emphasis for Key Data:**
+```tsx
+// Top 3 items get thicker lines (accessibility emphasis)
+strokeWidth={isTop3 ? 4 : 2}
+dot={isTop3 ? { r: 4, strokeWidth: 2, stroke: '#555' } : false}
+```
+
+**2. High Contrast Colors:**
+- Use `BRGY_COLORS` palette for multi-line charts (14 colors tested for contrast)
+- Use brand-aligned colors for 3-5 data series
+- Verify WCAG AA contrast (4.5:1 for normal text)
+
+**3. Clear Axis Labels:**
+```tsx
+<XAxis dataKey='year' {...standardAxisProps} dy={10} />
+<YAxis {...standardAxisProps} tickFormatter={val => `${val / 1000}k`} />
+```
+
+**4. ARIA Labels:**
+```tsx
+<div
+  role='region'
+  aria-label={`Statistical chart showing ${title}`}
+>
+  <ResponsiveChart>{/* chart */}</ResponsiveChart>
+</div>
+```
+
+#### Common Chart Patterns
+
+**Multi-Line Trend Chart:**
+```tsx
+<DetailSection title='Population Trends' icon={TrendingUp}>
+  <ResponsiveChart height={400}>
+    <LineChart data={trendData}>
+      <CartesianGrid vertical={false} stroke={CHART_THEME.grid} strokeDasharray='3 3' />
+      <XAxis dataKey='year' {...standardAxisProps} dy={10} />
+      <YAxis {...standardAxisProps} />
+      <Tooltip content={<ChartTooltip formatter={v => v.toLocaleString()} />} />
+      <Legend verticalAlign='top' iconType='circle' wrapperStyle={{ paddingBottom: '20px' }} />
+      {dataSeries.map((series, i) => (
+        <Line
+          key={series.name}
+          type='monotone'
+          dataKey={series.name}
+          stroke={BRGY_COLORS[i % BRGY_COLORS.length]}
+          strokeWidth={i < 3 ? 4 : 2}
+          dot={i < 3 ? { r: 4, strokeWidth: 2, stroke: '#555' } : false}
+          activeDot={{ r: 8, strokeWidth: 4, stroke: '#fff' }}
+        />
+      ))}
+    </LineChart>
+  </ResponsiveChart>
+</DetailSection>
+```
+
+**Single-Line with Custom Formatter:**
+```tsx
+<ResponsiveChart height={400}>
+  <LineChart data={municipalityData}>
+    <CartesianGrid vertical={false} stroke={CHART_THEME.grid} strokeDasharray='3 3' />
+    <XAxis dataKey='year' {...standardAxisProps} />
+    <YAxis {...standardAxisProps} tickFormatter={val => `${val / 1000}k`} />
+    <Tooltip content={<ChartTooltip formatter={v => v.toLocaleString()} />} />
+    <Line
+      type='monotone'
+      dataKey='population'
+      name='Total Residents'
+      stroke='#0066eb'
+      strokeWidth={3}
+      dot={{ r: 5, strokeWidth: 2, stroke: '#fff' }}
+      activeDot={{ r: 7, strokeWidth: 3, stroke: '#fff' }}
+    />
+  </LineChart>
+</ResponsiveChart>
+```
+
+**Pie Chart (FinancialPieChart):**
+```tsx
+import { FinancialPieChart } from '@/components/data-display/FinancialPieChart';
+
+<FinancialPieChart
+  title='Revenue Breakdown'
+  icon={DollarSign}
+  data={incomeData}
+  colors={[COLORS.national, COLORS.local, COLORS.special]}
+/>
+```
+
+#### Data Quality Patterns
+
+**Handle Missing/Zero Data:**
+
+```tsx
+// ✅ CORRECT: Use nullish coalescing (??) to preserve zero scores
+const trendData = years.map((year, idx) => ({
+  year,
+  value: data.values[idx] ?? null,  // 0 is preserved, null/undefined → null
+}));
+
+// ❌ WRONG: Logical OR (||) treats 0 as falsy
+const trendData = years.map((year, idx) => ({
+  year,
+  value: data.values[idx] || null,  // 0 becomes null, filtered out
+}));
+```
+
+**Why this matters:**
+- Year 2018 CMCI score is `0.0` (no data collected)
+- `0 || null` → `null` → filtered out of chart ❌
+- `0 ?? null` → `0` → preserved in chart ✅
+
+#### Performance Optimization
+
+**Use useMemo for Data Transformation:**
+```tsx
+const trendData = useMemo(() =>
+  years.map((year, idx) => ({
+    year,
+    Overall: cmciData.overall_score[idx] ?? null,
+  })),
+  [cmciData]
+);
+```
+
+**Responsive Chart Heights:**
+- Mobile: `300-350px`
+- Tablet: `350-400px`
+- Desktop: `400-550px` (depending on data density)
+
+#### When to Use Charts
+
+**Statistics Pages:**
+- Population trends (multi-line: 14 barangays)
+- Municipality growth (single-line)
+- Competitiveness rankings (multi-line: 6 pillars)
+- Municipal income breakdown (pie chart)
+
+**Dashboard Displays:**
+- KPI trends with StatCard components
+- Comparative metrics over time
+- Category breakdowns (pie/donut)
+
+**Transparency Section:**
+- Budget allocation (FinancialPieChart with drill-down)
+- Revenue sources (interactive pie chart)
+
+#### Testing Requirements
+
+**Visual Regression:**
+- Charts render with `.recharts-wrapper` class
+- All data series visible and distinct
+- Tooltips appear on hover
+- Responsive on mobile (375x667 viewport)
+
+**E2E Tests:**
+```tsx
+// Example from e2e/statistics/index.spec.ts
+await expect(page.locator('.recharts-wrapper')).toBeVisible();
+await expect(page.locator('text=CMCI 2024')).toBeVisible();
+```
+
+#### Reference Implementation
+
+See the following files for complete examples:
+- `src/pages/statistics/PopulationPage.tsx` - Multi-line chart with 14 series
+- `src/pages/statistics/CompetitivenessPage.tsx` - Multi-line chart with 6 pillars
+- `src/pages/statistics/MunicipalIncomePage.tsx` - Pie chart with drill-down
+- `src/components/data-display/ChartContainer.tsx` - Component source
+
 ### Button Component
 
 **Location:** `@betterlb/ui` package

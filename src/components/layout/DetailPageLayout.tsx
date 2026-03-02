@@ -1,27 +1,56 @@
-// src/components/layout/DetailPageLayout.tsx
-import { React } from 'react';
-import { cn } from '@/lib/utils';
+import type { ReactNode } from 'react';
+import { Link } from 'react-router-dom';
 import {
-  Breadcrumb,
-  BreadcrumbHome,
-  BreadcrumbItem,
-  BreadcrumbLink,
-  BreadcrumbList,
-  BreadcrumbPage,
-  BreadcrumbSeparator,
-} from '@/components/navigation/Breadcrumb';
-import { PageHero, DetailSection } from './PageLayouts';
-import type { DetailPageLayoutProps } from '@/types/components';
+  MailIcon,
+  MapPinIcon,
+  PhoneIcon,
+  GlobeIcon,
+  ClockIcon,
+} from 'lucide-react';
 
-/**
- * DetailPageLayout component
- *
- * Standard layout for detail pages with hero section,
- * content sections, contact info, and related items.
- *
- * Follows T-079 Navigation Design System Spec.
- * All styling uses Kapwa semantic tokens.
- */
+import { PageHero, type BreadcrumbItem, DetailSection } from './PageLayouts';
+import {
+  ContactContainer,
+  ContactItem,
+} from '@/components/data-display/ContactInfo';
+import { Card, CardContent } from '@/components/ui/Card';
+
+export interface DetailPageLayoutProps {
+  title: string;
+  description?: string;
+  breadcrumbs?: BreadcrumbItem[];
+  metadata?: ReactNode;
+  heroActions?: ReactNode;
+  sections: Array<{
+    id: string;
+    title: string;
+    description?: string;
+    content: ReactNode;
+    variant?: 'default' | 'highlighted' | 'compact';
+  }>;
+  contact?: {
+    email?: string;
+    phone?: string;
+    address?: string;
+    website?: string;
+    hours?: string;
+    custom?: Array<{
+      label: string;
+      value: string;
+    }>;
+  };
+  related?: {
+    title: string;
+    items: Array<{
+      title: string;
+      href: string;
+      description?: string;
+    }>;
+  };
+  variant?: 'default' | 'wide' | 'sidebar';
+  className?: string;
+}
+
 export function DetailPageLayout({
   title,
   description,
@@ -31,92 +60,110 @@ export function DetailPageLayout({
   sections,
   contact,
   related,
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  variant = 'default',
-  className,
+  className = '',
 }: DetailPageLayoutProps) {
   return (
-    <div
-      className={cn(
-        'animate-in fade-in space-y-8 pb-20 duration-500',
-        className
-      )}
-    >
-      {/* === HERO SECTION === */}
-      <PageHero title={title} description={description}>
-        {breadcrumbs && (
-          <Breadcrumb>
-            <BreadcrumbList>
-              <BreadcrumbItem>
-                <BreadcrumbHome href='/' />
-              </BreadcrumbItem>
-              {breadcrumbs.map((crumb, index) => (
-                <React.Fragment key={`${crumb.href}-${index}`}>
-                  <BreadcrumbSeparator />
-                  {index === breadcrumbs.length - 1 ? (
-                    <BreadcrumbItem>
-                      <BreadcrumbPage>{crumb.label}</BreadcrumbPage>
-                    </BreadcrumbItem>
-                  ) : (
-                    <BreadcrumbItem>
-                      <BreadcrumbLink href={crumb.href}>
-                        {crumb.label}
-                      </BreadcrumbLink>
-                    </BreadcrumbItem>
-                  )}
-                </React.Fragment>
-              ))}
-            </BreadcrumbList>
-          </Breadcrumb>
-        )}
-
-        <div className='flex items-center justify-between gap-4 mt-6'>
-          <div className='flex items-center gap-3'>{metadata}</div>
-          {heroActions && <div className='shrink-0'>{heroActions}</div>}
-        </div>
+    <div className={`bg-kapwa-bg-surface min-h-screen space-y-6 ${className}`}>
+      {/* Hero Section */}
+      <PageHero
+        title={title}
+        description={description}
+        breadcrumb={breadcrumbs}
+        metadata={metadata}
+      >
+        {heroActions && <div className='shrink-0'>{heroActions}</div>}
       </PageHero>
 
-      {/* === CONTENT SECTIONS === */}
-      <div className='space-y-8'>
-        {sections.map(section => (
-          <DetailSection
-            key={section.id}
-            title={section.title}
-            description={section.description}
-            className={
-              section.variant === 'highlighted'
-                ? 'border-l-4 border-l-kapwa-border-brand'
-                : section.variant === 'compact'
-                  ? 'py-4'
-                  : ''
-            }
-          >
-            {section.content}
-          </DetailSection>
-        ))}
-      </div>
-
-      {/* === CONTACT INFORMATION === */}
+      {/* Contact Section */}
       {contact && (
-        <DetailSection
-          title='Contact Information'
-          className='border-l-4 border-l-kapwa-border-brand'
-        >
-          <div>Contact section to be implemented in next task</div>
+        <DetailSection title='Contact Information'>
+          <ContactContainer variant='stack'>
+            {contact.email && (
+              <ContactItem
+                icon={MailIcon}
+                label='Email'
+                value={contact.email}
+                href={`mailto:${contact.email}`}
+              />
+            )}
+            {contact.phone && (
+              <ContactItem
+                icon={PhoneIcon}
+                label='Phone'
+                value={contact.phone}
+                href={`tel:${contact.phone}`}
+              />
+            )}
+            {contact.address && (
+              <ContactItem
+                icon={MapPinIcon}
+                label='Address'
+                value={contact.address}
+              />
+            )}
+            {contact.website && (
+              <ContactItem
+                icon={GlobeIcon}
+                label='Website'
+                value={contact.website}
+                href={contact.website}
+                isExternal
+              />
+            )}
+            {contact.hours && (
+              <ContactItem
+                icon={ClockIcon}
+                label='Hours'
+                value={contact.hours}
+              />
+            )}
+            {contact.custom?.map((item, index) => (
+              <ContactItem
+                key={index}
+                icon={MailIcon}
+                label={item.label}
+                value={item.value}
+              />
+            ))}
+          </ContactContainer>
         </DetailSection>
       )}
 
-      {/* === RELATED ITEMS === */}
-      {related && related.items.length > 0 && (
+      {/* Content Sections */}
+      {sections.map(section => (
         <DetailSection
-          title={related.title}
-          className='border-l-4 border-l-kapwa-border-accent'
+          key={section.id}
+          title={section.title}
+          description={section.description}
+          variant={section.variant}
         >
-          <div>Related items to be implemented in next task</div>
+          {section.content}
+        </DetailSection>
+      ))}
+
+      {/* Related Items */}
+      {related && related.items.length > 0 && (
+        <DetailSection title={related.title}>
+          <div className='grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3'>
+            {related.items.map(item => (
+              <Link key={item.href} to={item.href} className='group block'>
+                <Card hover>
+                  <CardContent>
+                    <h3 className='group-hover:text-kapwa-text-link text-kapwa-text-strong font-semibold transition-colors'>
+                      {item.title}
+                    </h3>
+                    {item.description && (
+                      <p className='text-kapwa-text-default mt-2 text-sm'>
+                        {item.description}
+                      </p>
+                    )}
+                  </CardContent>
+                </Card>
+              </Link>
+            ))}
+          </div>
         </DetailSection>
       )}
     </div>
   );
 }
-
-export default DetailPageLayout;

@@ -24,7 +24,7 @@
     "db:migrate:create": "./scripts/migrate.sh create"
   },
   "dependencies": {
-    "@betterlb/kapwa": "^1.2.3",
+    "@bettergov/kapwa": "^1.2.4",
     "@betterlb/ui": "file:../betterlb-ui",
     "@icons-pack/react-simple-icons": "^13.7.0",
     "@radix-ui/react-dialog": "^1.0.5",
@@ -32,6 +32,7 @@
     "@radix-ui/react-label": "^2.1.8",
     "@radix-ui/react-scroll-area": "^1.0.5",
     "@radix-ui/react-tabs": "^1.0.4",
+    "@testing-library/dom": "^10.4.1",
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.0",
     "date-fns": "^4.1.0",
@@ -82,6 +83,7 @@
     "eslint-plugin-react-refresh": "^0.4.11",
     "glob": "^10.4.5",
     "globals": "^15.9.0",
+    "happy-dom": "^20.7.0",
     "husky": "^9.1.7",
     "jsdom": "^28.1.0",
     "lint-staged": "^16.1.6",

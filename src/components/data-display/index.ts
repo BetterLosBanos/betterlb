@@ -8,6 +8,7 @@
  */
 
 export { StatsUI } from './StatsUI';
+export { ChartTooltip, ResponsiveChart } from './ChartContainer';
 
 // NOTE: The following components exist but are currently unused:
 // - ChartContainer: Wrapper for chart components

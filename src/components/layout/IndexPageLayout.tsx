@@ -1,6 +1,6 @@
 import type { ReactNode } from 'react';
 import { ModuleHeader } from './PageLayouts';
-import { SearchInput } from '@/components/ui/SearchInput';
+import SearchInput from '@/components/ui/SearchInput';
 import { Badge } from '@/components/ui/Badge';
 import { EmptyState } from '@/components/ui/EmptyState';
 
@@ -64,11 +64,12 @@ export function IndexPageLayout({
   resultsLabel = 'items',
   children,
   emptyState,
+  className = '',
 }: IndexPageLayoutProps) {
   const hasNoResults = children === null || children === undefined;
 
   return (
-    <div className='bg-kapwa-bg-surface min-h-screen'>
+    <div className={`bg-kapwa-bg-surface min-h-screen ${className}`}>
       <ModuleHeader title={title} description={description}>
         {search && (
           <SearchInput

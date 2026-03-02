@@ -16,16 +16,7 @@ import {
   ContactContainer,
   ContactItem,
 } from '@/components/data-display/ContactInfo';
-import { DetailSection, ModuleHeader } from '@/components/layout/PageLayouts';
-import {
-  Breadcrumb,
-  BreadcrumbHome,
-  BreadcrumbItem,
-  BreadcrumbLink,
-  BreadcrumbList,
-  BreadcrumbPage,
-  BreadcrumbSeparator,
-} from '@/components/navigation/Breadcrumb';
+import { DetailSection, PageHero } from '@/components/layout/PageLayouts';
 import { Badge } from '@/components/ui/Badge';
 import { Card, CardContent } from '@/components/ui/Card';
 import { EmptyState } from '@/components/ui/EmptyState';
@@ -89,30 +80,19 @@ export default function LegislativeChamber() {
   };
 
   return (
-    <div className='pb-20 mx-auto space-y-8 max-w-7xl duration-500 animate-in fade-in'>
-      {/* --- Breadcrumbs --- */}
-      <Breadcrumb>
-        <BreadcrumbList>
-          <BreadcrumbItem>
-            <BreadcrumbHome href='/' />
-          </BreadcrumbItem>
-          <BreadcrumbSeparator />
-          <BreadcrumbItem>
-            <BreadcrumbLink href='/government/elected-officials'>
-              Elected Officials
-            </BreadcrumbLink>
-          </BreadcrumbItem>
-          <BreadcrumbSeparator />
-          <BreadcrumbItem>
-            <BreadcrumbPage>{data.chamber}</BreadcrumbPage>
-          </BreadcrumbItem>
-        </BreadcrumbList>
-      </Breadcrumb>
-
-      {/* --- Header --- */}
-      <ModuleHeader
+    <div className='pb-20 space-y-8 duration-500 animate-in fade-in'>
+      {/* --- Header with Breadcrumbs --- */}
+      <PageHero
         title={data.chamber}
         description={`Official members and legislative officers of the municipal council.`}
+        breadcrumb={[
+          { label: 'Government', href: '/government' },
+          { label: 'Elected Officials', href: '/government/elected-officials' },
+          {
+            label: data.chamber,
+            href: `/government/elected-officials/${slug}`,
+          },
+        ]}
       />
 
       {/* --- Contact Info --- */}

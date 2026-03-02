@@ -15,10 +15,6 @@ export default defineConfig({
         find: '@',
         replacement: path.resolve(__dirname, 'src'),
       },
-      {
-        find: /^@bettergov\/kapwa(.*)$/,
-        replacement: '@betterlb/kapwa$1',
-      },
     ],
   },
   server: {
