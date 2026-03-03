@@ -18,12 +18,12 @@ jobs:
 
     steps:
       - name: Checkout repository
-        uses: actions/checkout@1af3b93b681bc44a9784bd300feb67ff0d1eeb3 # v6.0.0
+        uses: actions/checkout@v4 # v6.0.0
         with:
           persist-credentials: false
 
       - name: Setup Node.js
-        uses: actions/setup-node@6044e13b5dc448c55e2357c09f80417699197238 # v6.2.0
+        uses: actions/setup-node@v4
         with:
           node-version: 20
           cache: 'npm'
@@ -43,7 +43,7 @@ jobs:
           CI: true
 
       - name: Upload Playwright Report
-        uses: actions/upload-artifact@65c4c4a1ddee5b72f698fdd19549f0f0fb45cd08 # v4.6.1
+        uses: actions/upload-artifact@v4
         if: always()
         with:
           name: playwright-report
@@ -51,7 +51,7 @@ jobs:
           retention-days: 7
 
       - name: Upload Playwright Blob Report
-        uses: actions/upload-artifact@65c4c4a1ddee5b72f698fdd19549f0f0fb45cd08 # v4.6.1
+        uses: actions/upload-artifact@v4
         if: always()
         with:
           name: playwright-blob-report
@@ -66,13 +66,13 @@ jobs:
 
     steps:
       - name: Checkout repository
-        uses: actions/checkout@1af3b93b681bc44a9784bd300feb67ff0d1eeb3 # v6.0.0
+        uses: actions/checkout@v4 # v6.0.0
         with:
           persist-credentials: false
           fetch-depth: 0 # Fetch all history for visual regression comparison
 
       - name: Setup Node.js
-        uses: actions/setup-node@6044e13b5dc448c55e2357c09f80417699197238 # v6.2.0
+        uses: actions/setup-node@v4
         with:
           node-version: 20
           cache: 'npm'
@@ -93,7 +93,7 @@ jobs:
         continue-on-error: true
 
       - name: Upload visual regression results
-        uses: actions/upload-artifact@65c4c4a1ddee5b72f698fdd19549f0f0fb45cd08 # v4.6.1
+        uses: actions/upload-artifact@v4
         if: always()
         with:
           name: visual-regression-report
@@ -107,12 +107,12 @@ jobs:
 
     steps:
       - name: Checkout repository
-        uses: actions/checkout@1af3b93b681bc44a9784bd300feb67ff0d1eeb3 # v6.0.0
+        uses: actions/checkout@v4 # v6.0.0
         with:
           persist-credentials: false
 
       - name: Setup Node.js
-        uses: actions/setup-node@6044e13b5dc448c55e2357c09f80417699197238 # v6.2.0
+        uses: actions/setup-node@v4
         with:
           node-version: 20
           cache: 'npm'
@@ -133,7 +133,7 @@ jobs:
         continue-on-error: true
 
       - name: Upload accessibility report
-        uses: actions/upload-artifact@65c4c4a1ddee5b72f698fdd19549f0f0fb45cd08 # v4.6.1
+        uses: actions/upload-artifact@v4
         if: always()
         with:
           name: accessibility-report
