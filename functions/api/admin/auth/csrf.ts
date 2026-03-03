@@ -5,9 +5,9 @@
  * Returns a CSRF token for the authenticated admin session
  */
 
-import { Env } from '../../../types';
-import { withAuth } from '../../../utils/admin-auth';
-import { getCSRFTokenForSession } from '../../../utils/csrf';
+import { Env } from '../../types';
+import { withAuth } from '../../utils/admin-auth';
+import { getCSRFTokenForSession } from '../../utils/csrf';
 
 export async function onRequestGet(context: { request: Request; env: Env }) {
   return withAuth(async ({ env, auth }) => {

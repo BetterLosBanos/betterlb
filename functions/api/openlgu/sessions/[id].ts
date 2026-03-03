@@ -4,7 +4,7 @@
  * Legislation Session Detail API
  * GET /api/legislation/sessions/:id - Get session details with attendance
  */
-import { Env } from '../../../types';
+import { Env } from '../../types';
 
 interface Session {
   id: string;

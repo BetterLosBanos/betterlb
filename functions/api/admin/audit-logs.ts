@@ -2,9 +2,9 @@
  * Admin Audit Logs API
  * GET /api/admin/audit-logs - Fetch audit logs with filtering and pagination
  */
-import { Env } from '../../../types';
-import { AuthContext, withAuth } from '../../../utils/admin-auth';
-import { cachedJson } from '../../../utils/cache';
+import { Env } from '../../types';
+import { AuthContext, withAuth } from '../../utils/admin-auth';
+import { cachedJson } from '../../utils/cache';
 
 /**
  * Query parameters for fetching audit logs

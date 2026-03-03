@@ -5,9 +5,9 @@
  * GET /api/admin/review-queue - List items needing review
  * POST /api/admin/review-queue - Add new item to review queue
  */
-import { Env } from '../../../types';
-import { AuthContext, withAuth } from '../../../utils/admin-auth';
-import { logAudit, AuditTargetTypes } from '../../../utils/audit-log';
+import { Env } from '../../types';
+import { AuthContext, withAuth } from '../../utils/admin-auth';
+import { logAudit, AuditTargetTypes } from '../../utils/audit-log';
 
 type ReviewStatus = 'pending' | 'in_progress' | 'resolved' | 'skipped';
 type ItemType = 'document' | 'session' | 'attendance';

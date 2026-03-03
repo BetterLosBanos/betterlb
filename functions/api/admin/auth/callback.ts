@@ -2,12 +2,12 @@
  * GET /api/admin/auth/callback
  * Handle GitHub OAuth callback
  */
-import { Env } from '../../../types';
+import { Env } from '../../types';
 import {
   logAudit,
   AuditActions,
   AuditTargetTypes,
-} from '../../../utils/audit-log';
+} from '../../utils/audit-log';
 
 const GITHUB_CLIENT_ID = '__GITHUB_CLIENT_ID__';
 const GITHUB_CLIENT_SECRET = '__GITHUB_CLIENT_SECRET__';

@@ -4,8 +4,8 @@
  * Admin Terms API
  * GET /api/admin/terms/:id/members - Get members for a term
  */
-import { Env } from '../../../types';
-import { AuthContext, withAuth } from '../../../utils/admin-auth';
+import { Env } from '../../types';
+import { AuthContext, withAuth } from '../../utils/admin-auth';
 
 interface TermMember {
   id: string;

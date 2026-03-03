@@ -4,8 +4,8 @@
  * Admin Documents API
  * GET /api/admin/documents - List all documents with filtering
  */
-import { Env } from '../../../types';
-import { AuthContext, withAuth } from '../../../utils/admin-auth';
+import { Env } from '../../types';
+import { AuthContext, withAuth } from '../../utils/admin-auth';
 
 interface Document {
   id: string;

@@ -188,9 +188,6 @@ jobs:
       - name: Install dependencies
         run: npm install --legacy-peer-deps
 
-      - name: Install complexity tools
-        run: npm install -g eslint-complexity-report
-
       - name: Run complexity analysis
         run: |
           npx eslint src/ --format json > eslint-report.json || true

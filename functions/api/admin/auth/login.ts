@@ -2,7 +2,7 @@
  * GET /api/admin/auth/login
  * Redirect to GitHub OAuth
  */
-import { Env } from '../../../types';
+import { Env } from '../../types';
 
 const GITHUB_CLIENT_ID = '__GITHUB_CLIENT_ID__';
 

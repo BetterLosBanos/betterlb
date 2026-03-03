@@ -3,8 +3,8 @@
  * GET /api/admin/sessions - List all sessions
  * POST /api/admin/sessions - Create new session
  */
-import { Env } from '../../../types';
-import { AuthContext, withAuth } from '../../../utils/admin-auth';
+import { Env } from '../../types';
+import { AuthContext, withAuth } from '../../utils/admin-auth';
 
 interface CreateSessionData {
   term_id: string;

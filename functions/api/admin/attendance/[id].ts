@@ -2,8 +2,8 @@
  * Admin Attendance API
  * POST /api/admin/attendance/:id - Update attendance (absences) for a session
  */
-import { Env } from '../../../types';
-import { AuthContext, withAuth } from '../../../utils/admin-auth';
+import { Env } from '../../types';
+import { AuthContext, withAuth } from '../../utils/admin-auth';
 
 interface UpdateAttendanceData {
   absent_person_ids: string[];
