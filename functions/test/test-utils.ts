@@ -139,8 +139,9 @@ class MockD1PreparedStatement implements D1PreparedStatement {
     let rows = [...(this.data.get(tableName) || [])];
 
     // Apply WHERE filters
+    // Handle both "WHERE 1=1 AND conditions" and "WHERE conditions" patterns
     const whereMatch = this.sql.match(
-      /WHERE\s+1=1(.+?)(?:ORDER BY|LIMIT|GROUP BY|$)/is
+      /WHERE\s+(?:1=1\s+AND\s+)?(.+?)(?:ORDER BY|LIMIT|GROUP BY|GROUP\s+BY|$)/is
     );
     if (whereMatch && this.params.length > 0) {
       const whereClause = whereMatch[1];

@@ -386,7 +386,7 @@ describe('Terms API - GET /api/openlgu/terms', () => {
       );
       const response = await onRequestGet({ request, env: mockEnv });
 
-      expect(response.headers).toHaveProperty('cache-control');
+      expect(response.headers.has('cache-control')).toBe(true);
     });
 
     it('should include cache headers for detail endpoint', async () => {
@@ -395,7 +395,7 @@ describe('Terms API - GET /api/openlgu/terms', () => {
       );
       const response = await onRequestGet({ request, env: mockEnv });
 
-      expect(response.headers).toHaveProperty('cache-control');
+      expect(response.headers.has('cache-control')).toBe(true);
     });
   });
 

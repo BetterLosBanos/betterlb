@@ -353,7 +353,7 @@ describe('Documents API - GET /api/openlgu/documents', () => {
       );
       const response = await onRequestGet({ request, env: mockEnv });
 
-      expect(response.headers).toHaveProperty('cache-control');
+      expect(response.headers.has('cache-control')).toBe(true);
     });
   });
 });

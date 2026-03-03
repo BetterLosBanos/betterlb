@@ -444,7 +444,7 @@ describe('Persons API - GET /api/openlgu/persons', () => {
       );
       const response = await onRequestGet({ request, env: mockEnv });
 
-      expect(response.headers).toHaveProperty('cache-control');
+      expect(response.headers.has('cache-control')).toBe(true);
     });
   });
 });
