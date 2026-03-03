@@ -109,12 +109,15 @@ export function ChartContainer({
       role='region'
       aria-label={`Statistical chart showing ${title}`}
     >
-      {/* 
-          Standardized Chart Inner Spacing 
-          Driven by CHART_THEME.fontSize to ensure the container scales 
+      {/*
+          Standardized Chart Inner Spacing
+          Driven by CHART_THEME.fontSize to ensure the container scales
           proportionally with the text size.
       */}
-      <div style={{ width: '100%', height, fontSize: CHART_THEME.fontSize }}>
+      <div
+        data-testid='responsive-container'
+        style={{ width: '100%', height, fontSize: CHART_THEME.fontSize }}
+      >
         <ResponsiveContainer>
           {React.Children.only(children as React.ReactElement)}
         </ResponsiveContainer>
@@ -140,6 +143,7 @@ export function ResponsiveChart({
 }: ResponsiveChartProps) {
   return (
     <div
+      data-testid='responsive-container'
       style={{ width: '100%', height, fontSize: CHART_THEME.fontSize }}
       className={className}
     >

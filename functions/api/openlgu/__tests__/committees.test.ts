@@ -12,9 +12,9 @@ import {
   createMockEnv,
   createMockRequest,
   MockD1Database,
-} from '../../test/test-utils';
-import { createSampleDatabase } from '../../test/fixtures/sample-data';
-import type { CommitteeResponse } from '../../test/test-types';
+} from '../../../test/test-utils';
+import { createSampleDatabase } from '../../../test/fixtures/sample-data';
+import type { CommitteeResponse } from '../../../test/test-types';
 
 describe('Committees API - GET /api/openlgu/committees', () => {
   let mockEnv: ReturnType<typeof createMockEnv>;

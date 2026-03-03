@@ -12,8 +12,8 @@ import {
   createMockEnv,
   createMockRequest,
   MockD1Database,
-} from '../../test/test-utils';
-import { createSampleDatabase } from '../../test/fixtures/sample-data';
+} from '../../../test/test-utils';
+import { createSampleDatabase } from '../../../test/fixtures/sample-data';
 
 describe('Persons API - GET /api/openlgu/persons', () => {
   let mockEnv: ReturnType<typeof createMockEnv>;

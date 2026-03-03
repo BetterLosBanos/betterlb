@@ -28,11 +28,7 @@ vi.mock('recharts', async () => {
       children: React.ReactNode;
       width?: number | string;
       height?: number | string;
-    }) => (
-      <div data-testid='responsive-container' style={{ width, height }}>
-        {children}
-      </div>
-    ),
+    }) => <div style={{ width, height }}>{children}</div>,
   };
 });
 
