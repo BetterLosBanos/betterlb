@@ -5,8 +5,8 @@
  * GET /api/admin/documents/:id - Get document details for editing
  * PATCH /api/admin/documents/:id - Update document data
  */
-import { Env } from '../../types';
-import { AuthContext, withAuth } from '../../utils/admin-auth';
+import { Env } from '../../../types';
+import { AuthContext, withAuth } from '../../../utils/admin-auth';
 
 interface Person {
   id: string;

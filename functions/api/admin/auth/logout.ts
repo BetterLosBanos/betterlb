@@ -2,13 +2,13 @@
  * POST /api/admin/auth/logout
  * Logout and clear session
  */
-import { Env } from '../../types';
-import { parseCookies } from '../../utils/cookies';
+import { Env } from '../../../types';
+import { parseCookies } from '../../../utils/cookies';
 import {
   logAudit,
   AuditActions,
   AuditTargetTypes,
-} from '../../utils/audit-log';
+} from '../../../utils/audit-log';
 
 export async function onRequestPost(context: { request: Request; env: Env }) {
   const { request, env } = context;

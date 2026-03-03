@@ -5,8 +5,8 @@
  * GET /api/admin/sessions/:id - Get session with attendees and absences
  * POST /api/admin/sessions/:id - Update session data
  */
-import { Env } from '../../types';
-import { AuthContext, withAuth } from '../../utils/admin-auth';
+import { Env } from '../../../types';
+import { AuthContext, withAuth } from '../../../utils/admin-auth';
 
 interface SessionMember {
   id: string;

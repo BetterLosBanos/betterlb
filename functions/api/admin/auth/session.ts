@@ -2,8 +2,8 @@
  * GET /api/admin/auth/session
  * Get current session
  */
-import { Env } from '../../types';
-import { parseCookies } from '../../utils/cookies';
+import { Env } from '../../../types';
+import { parseCookies } from '../../../utils/cookies';
 
 interface GitHubUser {
   id: number;

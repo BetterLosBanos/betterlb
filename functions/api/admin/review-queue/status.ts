@@ -4,13 +4,13 @@
  * POST /api/admin/review-queue/status
  * Update the status of a review queue item
  */
-import { Env } from '../../types';
-import { AuthContext, withAuth } from '../../utils/admin-auth';
+import { Env } from '../../../types';
+import { AuthContext, withAuth } from '../../../utils/admin-auth';
 import {
   logAudit,
   AuditActions,
   AuditTargetTypes,
-} from '../../utils/audit-log';
+} from '../../../utils/audit-log';
 
 export async function onRequestPost(context: {
   request: Request;

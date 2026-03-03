@@ -2,7 +2,7 @@
  * GET /api/admin/auth-google/callback
  * Handle Google OAuth callback
  */
-import { Env } from '../../types';
+import { Env } from '../../../types';
 
 interface GoogleUser {
   id: string;

@@ -2,7 +2,7 @@
  * GET /api/admin/auth/google/login
  * Redirect to Google OAuth
  */
-import { Env } from '../../types';
+import { Env } from '../../../types';
 
 export async function onRequestGet(context: { request: Request; env: Env }) {
   const { env } = context;

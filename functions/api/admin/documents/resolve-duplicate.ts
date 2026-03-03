@@ -2,8 +2,8 @@
  * Admin Documents Duplicate Resolution API
  * POST /api/admin/documents/resolve-duplicate - Resolve/merge duplicate documents
  */
-import { Env } from '../../types';
-import { AuthContext, withAuth } from '../../utils/admin-auth';
+import { Env } from '../../../types';
+import { AuthContext, withAuth } from '../../../utils/admin-auth';
 
 /**
  * Resolution Actions:

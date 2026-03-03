@@ -2,14 +2,14 @@
  * Admin Documents Bulk API
  * POST /api/admin/documents/bulk - Bulk create documents with authors
  */
-import { Env } from '../../types';
-import { AuthContext, withAuth } from '../../utils/admin-auth';
-import { parseJsonBody, validateJsonContentType } from '../../utils/request';
+import { Env } from '../../../types';
+import { AuthContext, withAuth } from '../../../utils/admin-auth';
+import { parseJsonBody, validateJsonContentType } from '../../../utils/request';
 import {
   logAudit,
   AuditActions,
   AuditTargetTypes,
-} from '../../utils/audit-log';
+} from '../../../utils/audit-log';
 
 const MAX_BATCH_SIZE = 100;
 
