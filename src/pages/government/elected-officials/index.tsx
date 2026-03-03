@@ -2,7 +2,7 @@ import { useMemo } from 'react';
 
 import { Link } from 'react-router-dom';
 
-import { Button } from '@bettergov/kapwa';
+import { Button } from '@bettergov/kapwa/button';
 import {
   ArrowRight,
   BookOpen,
@@ -75,7 +75,7 @@ export default function ElectedOfficialsIndex() {
   const committeeCount = sbChamber?.permanent_committees?.length || 0;
 
   return (
-    <div className='animate-in fade-in space-y-8 pb-20 duration-500'>
+    <>
       <PageHero
         title='Municipal Leadership'
         description='Meet the elected leaders and appointed management of the Science and Nature City.'
@@ -226,7 +226,7 @@ export default function ElectedOfficialsIndex() {
           </div>
         </DetailSection>
       )}
-    </div>
+    </>
   );
 }
 

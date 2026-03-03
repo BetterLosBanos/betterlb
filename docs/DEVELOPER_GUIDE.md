@@ -934,6 +934,12 @@ npm install @betterlb/kapwa
 **Import Components:**
 
 ```typescript
+// ✅ Correct - use subpath imports for each component
+import { Button } from '@bettergov/kapwa/button';
+import { Input } from '@bettergov/kapwa/input';
+import { Label } from '@bettergov/kapwa/label';
+
+// ❌ Incorrect - importing from package root
 import { Button, Input, Label } from '@bettergov/kapwa';
 ```
 
@@ -991,7 +997,7 @@ import { Card, CardHeader, CardContent } from '@/components/ui';
 **Button Pattern:**
 
 ```tsx
-import { Button } from '@bettergov/kapwa';
+import { Button} from '@bettergov/kapwa/button';
 
 <Button variant="primary" onClick={handleClick}>
   Click Me

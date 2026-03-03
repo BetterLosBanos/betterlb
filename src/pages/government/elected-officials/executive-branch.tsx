@@ -58,7 +58,7 @@ export default function ExecutiveBranchPage() {
   }, [data]);
 
   return (
-    <div className='animate-in fade-in space-y-8 duration-500'>
+    <>
       <PageHero
         title='Executive Branch'
         description='The administrative leadership of the Municipal Government.'
@@ -266,6 +266,6 @@ export default function ExecutiveBranchPage() {
           </span>
         </div>
       </footer>
-    </div>
+    </>
   );
 }

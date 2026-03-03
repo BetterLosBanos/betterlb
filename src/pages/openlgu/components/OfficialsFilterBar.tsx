@@ -1,4 +1,4 @@
-import { Button } from '@bettergov/kapwa';
+import { Button } from '@bettergov/kapwa/button';
 import { X } from 'lucide-react';
 
 import { Badge } from '@/components/ui/Badge';

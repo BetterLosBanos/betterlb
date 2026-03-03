@@ -1102,6 +1102,136 @@ import { InfoIcon } from 'lucide-react';
 - Icon support in header (optional)
 - Consistent padding
 
+### SidebarLayout
+
+**Location:** `src/components/layout/SidebarLayout.tsx`
+
+Flexible layout component for pages with sidebar navigation. Provides responsive behavior with mobile toggle and optional collapse mode.
+
+```tsx
+import { SidebarLayout } from '@/components/layout/SidebarLayout';
+
+<SidebarLayout
+  header={{
+    title: "Departments",
+    subtitle: "Municipal government offices"
+  }}
+  sidebar={<DepartmentsSidebar />}
+  collapsible={true}
+  defaultCollapsed={false}
+>
+  {/* Main content */}
+</SidebarLayout>
+```
+
+**When to use:**
+- Pages with sidebar navigation (departments, barangays, services, etc.)
+- Need responsive sidebar behavior
+- Optional collapse mode for more content space
+
+**Props:**
+```typescript
+interface SidebarLayoutProps {
+  children: ReactNode;
+  sidebar: ReactNode;
+  header?: {
+    title: string;
+    subtitle?: string;
+    actions?: ReactNode;
+  };
+  headerNode?: ReactNode;  // Overrides header
+  collapsible?: boolean;
+  defaultCollapsed?: boolean;
+  className?: string;
+}
+```
+
+**Responsive features:**
+- **Mobile:** Toggle button shows/hides sidebar
+- **Desktop:** Sidebar always visible, optionally collapsible
+- **Collapse mode:** Expand/collapse button with smooth animations
+- **Transitions:** 500ms ease-in-out with cubic-bezier
+
+**Styling:**
+- Mobile: `py-6` container
+- Desktop: `py-8` container
+- Sidebar width: 256px (mobile hidden), 288px (desktop lg)
+- Content area: Rounded card with padding
+
+### IndexPageLayout
+
+**Location:** `src/components/layout/IndexPageLayout.tsx`
+
+**Introduced:** T-125 (Unified Layout Implementation)
+
+Specialized layout for index/listing pages with integrated search, filters, and pagination.
+
+```tsx
+import { IndexPageLayout } from '@/components/layout/IndexPageLayout';
+
+<IndexPageLayout
+  title="Services"
+  description="Browse all available municipal services"
+  search={{
+    value: searchTerm,
+    onChange: setSearch,
+    placeholder: "Search services..."
+  }}
+  resultsCount={services.length}
+  pagination={{
+    type: "traditional",
+    currentPage: page,
+    totalPages: Math.ceil(services.length / pageSize),
+    onPageChange: setPage
+  }}
+>
+  {/* Grid/list of items */}
+</IndexPageLayout>
+```
+
+**When to use:**
+- Index pages with search/filter functionality
+- Pages needing consistent layout structure
+- Reduces boilerplate code (40-60% reduction)
+
+### DetailPageLayout
+
+**Location:** `src/components/layout/DetailPageLayout.tsx`
+
+**Introduced:** T-126 (Unified Layout Implementation)
+
+Specialized layout for detail pages with automatic section navigation and breadcrumb support.
+
+```tsx
+import { DetailPageLayout } from '@/components/layout/DetailPageLayout';
+
+<DetailPageLayout
+  title="Service Name"
+  description="Service description"
+  breadcrumbs={[
+    { label: 'Services', href: '/services' },
+    { label: 'Category', href: '/services/category' }
+  ]}
+  sections={[
+    {
+      id: 'overview',
+      title: 'Overview',
+      content: <ServiceOverview />
+    },
+    {
+      id: 'requirements',
+      title: 'Requirements',
+      content: <RequirementsList />
+    }
+  ]}
+/>
+```
+
+**When to use:**
+- Detail pages with multiple sections
+- Pages needing automatic section navigation
+- Reduces boilerplate code (50-70% reduction)
+
 ---
 
 ## 5. Page Layout Patterns
@@ -1429,110 +1559,481 @@ The statistics pages were migrated from custom components (`StatsHero`, `StatsCa
 
 ## 6. Navigation Patterns
 
-### Navbar
+> **Comprehensive navigation patterns are documented in** [Navigation Design System Specification](navigation-design-system-spec.md)
+>
+> This section provides a quick reference for common navigation patterns. See the full specification for detailed patterns, examples, migration guidelines, and accessibility requirements.
 
-**Location:** `src/components/layout/Navbar.tsx`
+### 6.1 Overview
 
-The main navigation provides multi-level navigation with dropdowns.
+Navigation pages in BetterLB use a unified design system with consistent layouts, components, and styling. These patterns apply to:
 
-**Features:**
-- Multi-level navigation with dropdowns
-- Mobile-responsive with overlay menu
-- Language switcher in top bar
-- Sticky positioning with z-index management
+- **Services** (`/services/*`)
+- **Government** (departments, elected officials, barangays)
+- **Statistics** (`/statistics/*`)
+- **Transparency** (`/transparency/*`)
+- **OpenLGU** (`/openlgu/*`)
 
-**Usage:**
-```tsx
-// Automatically included in main layout
-// Navigation data defined in navigation config
+### 6.2 Page Layout Patterns
+
+BetterLB uses three main layout patterns for navigation pages:
+
+#### Pattern A: Index Page with Sidebar
+
+**Use for:** List/grid views with filtering (services index, departments index, statistics index)
+
+**Structure:**
+```
+SidebarLayout (collapsible=true, defaultCollapsed=false)
+├── PageHero (variant="hero", centered, with search)
+├── Sidebar (section-specific, collapsible)
+└── Content (filterable grid/list)
 ```
 
-### SidebarLayout
+**Example:**
+```tsx
+import { SidebarLayout } from '@/components/layout/SidebarLayout';
+import { PageHero } from '@/components/layout/PageLayouts';
+
+export default function ServicesIndex() {
+  const [search, setSearch] = useState('');
+
+  return (
+    <SidebarLayout collapsible={true} defaultCollapsed={false}>
+      <PageHero
+        title="Services"
+        description={`${services.length} government services available`}
+      >
+        <SearchInput
+          value={search}
+          onChange={setSearch}
+          placeholder="Search services..."
+        />
+      </PageHero>
+
+      <div className="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3">
+        {services.map(service => (
+          <ServiceCard key={service.id} service={service} />
+        ))}
+      </div>
+    </SidebarLayout>
+  );
+}
+```
+
+**Key Features:**
+- Hero header with centered title
+- Integrated search/filter controls
+- Collapsible sidebar (expanded by default)
+- Grid layout for content cards
+
+#### Pattern B: Detail Page with Sidebar
+
+**Use for:** Individual item views (service detail, department detail, statistics detail)
+
+**Structure:**
+```
+SidebarLayout (collapsible=true, defaultCollapsed=true)
+├── PageHero/ModuleHeader (variant="compact" with breadcrumbs)
+├── Sidebar (section-specific, collapsed by default)
+└── Content (detail sections)
+```
+
+**Example:**
+```tsx
+import { SidebarLayout } from '@/components/layout/SidebarLayout';
+import { PageHero } from '@/components/layout/PageLayouts';
+import { DetailSection } from '@/components/layout/PageLayouts';
+
+export default function ServiceDetail() {
+  return (
+    <SidebarLayout collapsible={true} defaultCollapsed={true}>
+      <PageHero
+        title="Business Permit"
+        description="Requirements and application process"
+        breadcrumb={[
+          { label: 'Home', href: '/' },
+          { label: 'Services', href: '/services' },
+          { label: 'Business Permits', href: '/services/business-permits' },
+        ]}
+      />
+
+      <DetailSection title="Requirements" icon={CheckCircle}>
+        <RequirementsList items={requirements} />
+      </DetailSection>
+
+      <DetailSection title="Application Process" icon={Clock}>
+        <ProcessTimeline steps={processSteps} />
+      </DetailSection>
+    </SidebarLayout>
+  );
+}
+```
+
+**Key Features:**
+- Compact header with breadcrumbs
+- Sidebar collapsed by default (focus on content)
+- Detail sections with consistent spacing
+- Contact information section
+
+#### Pattern C: Hub Page
+
+**Use for:** Root section pages that link to sub-sections (government root)
+
+**Structure:**
+```
+SidebarLayout (collapsible=false)
+├── PageHero (variant="hero", centered)
+└── Content (card-based navigation to sub-sections)
+```
+
+**Example:**
+```tsx
+import { SidebarLayout } from '@/components/layout/SidebarLayout';
+import { PageHero } from '@/components/layout/PageLayouts';
+
+export default function GovernmentHub() {
+  return (
+    <SidebarLayout collapsible={false}>
+      <PageHero
+        title="Government"
+        description="Elected officials, departments, and barangays"
+      />
+
+      <div className="grid grid-cols-1 gap-6 md:grid-cols-3">
+        <HubCard
+          title="Departments"
+          description="Municipal offices and services"
+          href="/government/departments"
+          icon={Building}
+        />
+        <HubCard
+          title="Elected Officials"
+          description="Mayor, Vice Mayor, Sangguniang Bayan"
+          href="/government/elected-officials"
+          icon={Users}
+        />
+        <HubCard
+          title="Barangays"
+          description="Local communities and officials"
+          href="/government/barangays"
+          icon={MapPin}
+        />
+      </div>
+    </SidebarLayout>
+  );
+}
+```
+
+### 6.3 Color & Background Standards
+
+All navigation pages MUST use Kapwa semantic tokens. See [T-084 implementation](../plans/2026-03-01-color-background-consolidation-plan.md) for details.
+
+**Page Backgrounds:**
+```tsx
+// All navigation pages
+<div className="bg-kapwa-bg-surface min-h-screen">
+  {/* Content */}
+</div>
+```
+
+**Header Backgrounds:**
+```tsx
+// Hero headers (index pages)
+<PageHero className="bg-kapwa-bg-surface-bold" />
+
+// Compact headers (detail pages)
+<ModuleHeader className="bg-kapwa-bg-surface border-b border-kapwa-border-weak" />
+```
+
+**Text Colors:**
+- Headings: `text-kapwa-text-strong`
+- Body text: `text-kapwa-text-default`
+- Muted text: `text-kapwa-text-weak`
+- Links: `text-kapwa-text-link`
+
+**Borders:**
+- Default dividers: `border-kapwa-border-weak`
+- Emphasis borders: `border-kapwa-border-strong`
+- Focus states: `border-kapwa-border-focus`
+
+### 6.4 Component Usage
+
+#### PageHero
+
+**Use for:** Index page headers with centered layout
+
+**Location:** `src/components/layout/PageLayouts.tsx`
+
+```tsx
+<PageHero
+  title="Services"
+  description="Browse government services"
+  breadcrumb={[
+    { label: 'Home', href: '/' },
+    { label: 'Services', href: '/services' },
+  ]}
+>
+  {/* Optional: Search input or filters */}
+</PageHero>
+```
+
+**Styling:**
+- Background: `bg-kapwa-bg-surface-bold`
+- Title: `kapwa-display-xl text-kapwa-text-strong`
+- Description: `kapwa-body-lg text-kapwa-text-default`
+- Padding: `py-8 md:py-12`
+
+#### ModuleHeader
+
+**Use for:** Detail page headers with left-aligned layout
+
+**Location:** `src/components/layout/PageLayouts.tsx`
+
+```tsx
+<ModuleHeader
+  title="Business Permit"
+  description="Requirements for obtaining business permits"
+>
+  {/* Optional: Action buttons or metadata */}
+</ModuleHeader>
+```
+
+**Styling:**
+- Background: `bg-kapwa-bg-surface border-b border-kapwa-border-weak`
+- Title: `kapwa-heading-lg text-kapwa-text-strong`
+- Description: `kapwa-body-md text-kapwa-text-weak`
+- Padding: `pb-6`
+
+#### DetailSection
+
+**Use for:** Content sections within detail pages
+
+**Location:** `src/components/layout/PageLayouts.tsx`
+
+```tsx
+<DetailSection
+  title="Requirements"
+  icon={CheckCircle}
+  className="border-l-4 border-l-kapwa-border-brand"
+>
+  {/* Section content */}
+</DetailSection>
+```
+
+**Features:**
+- Icon indicator (optional)
+- Left accent border (optional)
+- Consistent spacing (`space-y-4` for content)
+
+#### Breadcrumb
+
+**Location:** `src/components/navigation/Breadcrumb.tsx`
+
+**Usage:** Integrated into PageHero via `breadcrumb` prop
+
+```tsx
+<PageHero
+  title="Page Title"
+  breadcrumb={[
+    { label: 'Home', href: '/' },
+    { label: 'Section', href: '/section' },
+    { label: 'Current Page', href: '/section/page' },
+  ]}
+/>
+```
+
+**Rules:**
+- ALWAYS use the breadcrumb prop on PageHero
+- NEVER use manual Breadcrumb components
+- Let PageHero handle breadcrumb generation
+
+### 6.5 Layout Components
+
+#### SidebarLayout
 
 **Location:** `src/components/layout/SidebarLayout.tsx`
 
-Use for admin/dashboard pages with hierarchical navigation.
+**Purpose:** Provides collapsible sidebar navigation for hierarchical content
 
 ```tsx
-import { SidebarLayout } from '@/components/layout/SidebarLayout';
-
 <SidebarLayout
-  title="Admin Dashboard"
-  sidebarItems={[
-    { label: 'Documents', href: '/admin/documents', icon: FileIcon },
-    { label: 'Review Queue', href: '/admin/review', icon: CheckIcon },
-    { label: 'Settings', href: '/admin/settings', icon: SettingsIcon },
-  ]}
+  sidebar={<SectionsSidebar />}
+  collapsible={true}
+  defaultCollapsed={false}
 >
   {/* Page content */}
 </SidebarLayout>
 ```
 
-**Features:**
-- Collapsible sidebar pattern
-- Mobile responsive with hamburger menu
-- Scroll reset functionality
-- Dual header option
+**Configuration:**
+- Index pages: `collapsible={true}`, `defaultCollapsed={false}`
+- Detail pages: `collapsible={true}`, `defaultCollapsed={true}`
+- Hub pages: `collapsible={false}` (no sidebar)
 
-### Breadcrumb
+### 6.6 Typography Standards
 
-**Location:** `src/components/navigation/Breadcrumb.tsx`
+**Kapwa Typography Tokens:**
+- Display: `kapwa-display-xl` (hero titles)
+- Headings: `kapwa-heading-lg`, `kapwa-heading-md` (section titles)
+- Body: `kapwa-body-lg`, `kapwa-body-md` (content)
+- Labels: `kapwa-label-md` (metadata, tags)
 
-Use for hierarchical navigation on detail pages.
-
+**Text Hierarchy:**
 ```tsx
-import { Breadcrumb } from '@/components/navigation/Breadcrumb';
-
-<Breadcrumb
-  items={[
-    { label: 'Home', href: '/' },
-    { label: 'Services', href: '/services' },
-    { label: 'Business Permits', href: '/services/business-permits' },
-  ]}
-/>
+<h1 className="kapwa-display-xl text-kapwa-text-strong">
+  Page Title
+</h1>
+<h2 className="kapwa-heading-lg text-kapwa-text-strong">
+  Section Title
+</h2>
+<p className="kapwa-body-md text-kapwa-text-default">
+  Body text content
+</p>
+<span className="kapwa-label-md text-kapwa-text-weak uppercase">
+  Metadata Label
+</span>
 ```
 
-### Tab Navigation
+### 6.7 Spacing Standards
 
-Use for organizing content within a page.
+All spacing uses Kapwa tokens following the 4px base unit:
 
-```tsx
-import { Tabs, TabsList, TabsTrigger, TabsContent } from '@/components/ui/Tabs';
+**Layout Spacing:**
+- Page padding: `p-kapwa-lg` (32px)
+- Section gaps: `gap-kapwa-lg` (32px between sections)
+- Card gaps: `gap-kapwa-md` (16px between cards)
 
-<Tabs defaultValue="overview">
-  <TabsList>
-    <TabsTrigger value="overview">Overview</TabsTrigger>
-    <TabsTrigger value="requirements">Requirements</TabsTrigger>
-    <TabsTrigger value="process">Process</TabsTrigger>
-  </TabsList>
-  <TabsContent value="overview">
-    {/* Overview content */}
-  </TabsContent>
-  <TabsContent value="requirements">
-    {/* Requirements content */}
-  </TabsContent>
-  <TabsContent value="process">
-    {/* Process content */}
-  </TabsContent>
-</Tabs>
-```
+**Component Spacing:**
+- Header padding: `py-8 md:py-12` (PageHero)
+- Section padding: `space-y-4` (within DetailSection)
+- Card padding: `p-4 md:p-6` (CardContent)
 
-### Pagination
+### 6.8 Quick Examples
 
-Use for navigating through paginated content.
+#### Index Page with Search
 
 ```tsx
-import { PaginationControls } from '@/components/ui/Pagination';
+export default function ServicesIndex() {
+  const [search, setSearch] = useState('');
 
-<PaginationControls
-  currentPage={page}
-  totalPages={totalPages}
-  onPageChange={setPage}
-  resultsPerPage={itemsPerPage}
-  onResultsPerPageChange={setItemsPerPage}
-  totalResults={totalItems}
-/>
+  return (
+    <SidebarLayout collapsible={true} defaultCollapsed={false}>
+      <PageHero
+        title="Services"
+        description={`${filteredServices.length} services found`}
+      >
+        <SearchInput
+          value={search}
+          onChange={setSearch}
+          placeholder="Search services..."
+        />
+      </PageHero>
+
+      <div className="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3">
+        {filteredServices.map(service => (
+          <ServiceCard key={service.id} service={service} />
+        ))}
+      </div>
+    </SidebarLayout>
+  );
+}
 ```
+
+#### Detail Page with Sections
+
+```tsx
+export default function ServiceDetail() {
+  return (
+    <SidebarLayout collapsible={true} defaultCollapsed={true}>
+      <PageHero
+        title="Business Permit"
+        description="Requirements and process"
+        breadcrumb={[
+          { label: 'Home', href: '/' },
+          { label: 'Services', href: '/services' },
+        ]}
+      />
+
+      <div className="space-y-6">
+        <DetailSection title="Requirements" icon={CheckCircle}>
+          <RequirementsList items={requirements} />
+        </DetailSection>
+
+        <DetailSection title="Process" icon={Clock}>
+          <ProcessTimeline steps={steps} />
+        </DetailSection>
+
+        <DetailSection title="Contact" icon={Mail}>
+          <ContactInfo email="bplo@betterlb.gov.ph" phone="530-2981" />
+        </DetailSection>
+      </div>
+    </SidebarLayout>
+  );
+}
+```
+
+### 6.9 DO/DON'T Examples
+
+**DO:**
+- ✅ Use SidebarLayout directly for pages with sidebar navigation
+- ✅ Use Kapwa semantic tokens for all colors and spacing
+- ✅ Use PageHero for index pages, ModuleHeader for detail pages
+- ✅ Use DetailSection for content sections
+- ✅ Integrate breadcrumbs via PageHero breadcrumb prop
+- ✅ Follow the layout patterns (index/detail/hub)
+- ✅ Use consistent spacing with Kapwa tokens
+
+**DON'T:**
+- ❌ Use raw color tokens (`bg-gray-900`, `text-slate-600`)
+- ❌ Use arbitrary spacing values (`p-8`, `gap-6`)
+- ❌ Use manual Breadcrumb components
+- ❌ Skip heading levels (h1 → h3)
+- ❌ Use non-Kapwa typography classes (`text-lg`, `text-xl`)
+- ❌ Mix SidebarLayout with page-level backgrounds
+- ❌ Use different spacing patterns across pages
+
+### 6.10 Migration Checklist
+
+When refactoring existing pages to use navigation patterns:
+
+1. **Add SidebarLayout**
+   - Wrap page content with `SidebarLayout`
+   - Configure collapsible and defaultCollapsed props appropriately
+
+2. **Replace Headers**
+   - Index pages: Use `PageHero` with centered layout
+   - Detail pages: Use `ModuleHeader` or `PageHero` with breadcrumbs
+
+3. **Update Colors**
+   - Replace `bg-white` with `bg-kapwa-bg-surface`
+   - Replace `text-gray-900` with `text-kapwa-text-strong`
+   - Replace `border-gray-200` with `border-kapwa-border-weak`
+
+4. **Update Spacing**
+   - Replace arbitrary values with Kapwa tokens
+   - Use `gap-kapwa-*` for grid/flex gaps
+   - Use `space-y-*` for vertical spacing
+
+5. **Update Typography**
+   - Replace `text-*` with Kapwa tokens
+   - Use `kapwa-heading-*` for headings
+   - Use `kapwa-body-*` for body text
+
+6. **Add Detail Sections**
+   - Group related content in `DetailSection` components
+   - Use icons for visual clarity
+   - Maintain consistent spacing
+
+7. **Test Responsiveness**
+   - Verify mobile layout (sidebar collapses)
+   - Test grid breakpoints
+   - Check touch targets (min 44x44px)
+
+8. **Verify Accessibility**
+   - Check keyboard navigation
+   - Verify ARIA labels
+   - Test with screen reader
+   - Confirm color contrast ratios
 
 ---
 

@@ -73,7 +73,7 @@ export default function CompetitivenessPage() {
   );
 
   return (
-    <div className='space-y-8 duration-500 animate-in fade-in'>
+    <>
       {/* PageHero - documented pattern for layout headers */}
       <PageHero
         title='Competitiveness'
@@ -275,6 +275,6 @@ export default function CompetitivenessPage() {
           </p>
         </div>
       </footer>
-    </div>
+    </>
   );
 }

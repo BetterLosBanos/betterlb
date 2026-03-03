@@ -1,6 +1,6 @@
 import { useEffect, useMemo, useState } from 'react';
 
-import { Button } from '@bettergov/kapwa';
+import { Button } from '@bettergov/kapwa/button';
 import {
   BarChart3,
   Briefcase,

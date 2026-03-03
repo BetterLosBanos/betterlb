@@ -182,4 +182,14 @@ test.describe('Transparency Index Page', () => {
     expect(bodyHTML).toMatch(/text-kapwa-text-/);
     expect(bodyHTML).toMatch(/bg-kapwa-bg-/);
   });
+
+  test('bids and awards page visual snapshot @visual', async ({ page }) => {
+    // Wait for page to fully load
+    await page.waitForLoadState('networkidle');
+
+    // Take full page screenshot
+    await expect(page).toHaveScreenshot('bids-awards.png', {
+      maxDiffPixels: 150,
+    });
+  });
 });

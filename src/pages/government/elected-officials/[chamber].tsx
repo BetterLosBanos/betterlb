@@ -80,7 +80,7 @@ export default function LegislativeChamber() {
   };
 
   return (
-    <div className='pb-20 space-y-8 duration-500 animate-in fade-in'>
+    <>
       {/* --- Header with Breadcrumbs --- */}
       <PageHero
         title={data.chamber}
@@ -251,6 +251,6 @@ export default function LegislativeChamber() {
 
         <GavelIcon className='text-kapwa-text-inverse/5 absolute right-[-5%] bottom-[-20%] h-64 w-64 -rotate-12 transition-transform duration-700 group-hover:scale-110 group-hover:rotate-0' />
       </div>
-    </div>
+    </>
   );
 }

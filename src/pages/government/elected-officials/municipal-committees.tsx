@@ -43,7 +43,7 @@ export default function MunicipalCommitteesPage() {
   }, [committees, searchTerm]);
 
   return (
-    <div className='animate-in fade-in space-y-6 pb-20 duration-500'>
+    <>
       <PageHero
         title='Municipal Committees'
         description={`Active standing committees of the ${sbData?.chamber || 'Sangguniang Bayan'}.`}
@@ -148,6 +148,6 @@ export default function MunicipalCommitteesPage() {
           ))}
         </div>
       )}
-    </div>
+    </>
   );
 }

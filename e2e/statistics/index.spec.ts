@@ -349,4 +349,27 @@ test.describe('Statistics Pages', () => {
       await expect(loader.first()).not.toBeVisible();
     }
   });
+
+  test('statistics index page visual snapshot @visual', async ({ page }) => {
+    // Wait for page to fully load
+    await page.waitForLoadState('networkidle');
+
+    // Take full page screenshot
+    await expect(page).toHaveScreenshot('statistics-index.png', {
+      maxDiffPixels: 150,
+    });
+  });
+
+  test('statistics index page hero section visual snapshot @visual', async ({
+    page,
+  }) => {
+    // Wait for page to fully load
+    await page.waitForLoadState('networkidle');
+
+    // Take snapshot of hero section
+    const heroSection = page.locator('main').first();
+    await expect(heroSection).toHaveScreenshot('statistics-hero.png', {
+      maxDiffPixels: 100,
+    });
+  });
 });

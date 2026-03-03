@@ -9,7 +9,7 @@
 
 // Basic interactive components
 export { Badge } from './Badge';
-export { Button } from '@bettergov/kapwa';
+export { Button } from '@bettergov/kapwa/button';
 export { Card } from './Card';
 
 // Form and input components
@@ -31,7 +31,7 @@ export {
 } from './Dialog';
 export { EmptyState } from './EmptyState';
 export { PaginationControls } from './Pagination';
-export { default as ScrollArea } from './ScrollArea';
+export { ScrollArea } from './ScrollArea';
 export { Timeline } from './Timeline';
 export { default as Ticker } from './Ticker';
 export {

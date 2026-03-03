@@ -83,7 +83,7 @@ export default function PopulationPage() {
   }, [barangays]);
 
   return (
-    <div className='pb-20 space-y-8 duration-500 animate-in fade-in'>
+    <>
       {/* PageHero - documented pattern for layout headers */}
       <PageHero
         title='Population Profile'
@@ -276,6 +276,6 @@ export default function PopulationPage() {
           </p>
         </div>
       </footer>
-    </div>
+    </>
   );
 }

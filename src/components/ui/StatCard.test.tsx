@@ -1,6 +1,6 @@
 import { render, screen } from '@testing-library/react';
 import { describe, it, expect } from 'vitest';
-import { TrendingUp, Users, DollarSign } from 'lucide-react';
+import { Users, DollarSign } from 'lucide-react';
 
 import { StatCard, StatGrid } from './StatCard';
 
@@ -218,27 +218,25 @@ describe('StatCard Component', () => {
 
   describe('Kapwa Design System Compliance', () => {
     it('uses Kapwa semantic tokens for label text', () => {
-      const { container } = render(<StatCard label='Test' value='123' />);
+      render(<StatCard label='Test' value='123' />);
       const label = screen.getByText('Test');
       expect(label).toHaveClass('text-kapwa-text-disabled');
     });
 
     it('uses Kapwa semantic tokens for value text', () => {
-      const { container } = render(<StatCard label='Test' value='123' />);
+      render(<StatCard label='Test' value='123' />);
       const value = screen.getByText('123');
       expect(value).toHaveClass('text-kapwa-text-strong');
     });
 
     it('uses Kapwa semantic tokens for subtext', () => {
-      const { container } = render(
-        <StatCard label='Test' value='123' subtext='Supporting text' />
-      );
+      render(<StatCard label='Test' value='123' subtext='Supporting text' />);
       const subtext = screen.getByText('Supporting text');
       expect(subtext).toHaveClass('text-kapwa-text-disabled');
     });
 
     it('uses Kapwa semantic tokens for trend colors', () => {
-      const { container } = render(
+      render(
         <StatCard
           label='Test'
           value='123'

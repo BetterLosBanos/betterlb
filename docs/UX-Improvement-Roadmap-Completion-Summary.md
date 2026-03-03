@@ -282,7 +282,7 @@ className="border-kapwa-border-success"
 **Implementation:**
 - Vite resolve alias configured in `vite.config.ts`
 - CSS import: `@import '@betterlb/kapwa/kapwa.css'`
-- TypeScript imports: `import { Button } from '@bettergov/kapwa'`
+- TypeScript imports: `import { Button} from '@bettergov/kapwa/button'`
 
 **Token Categories:**
 - Text colors: `text-kapwa-text-*`

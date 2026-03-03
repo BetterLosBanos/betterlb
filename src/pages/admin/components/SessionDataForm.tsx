@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 
-import { Button } from '@bettergov/kapwa';
+import { Button } from '@bettergov/kapwa/button';
 import { Calendar, Check, FileText, Users } from 'lucide-react';
 import { X } from 'lucide-react';
 

@@ -372,8 +372,11 @@ Available local components:
 // All local components - import from @/components/ui
 import { Badge, Card, SearchInput, EmptyState } from '@/components/ui';
 
-// Kapwa base components - import from @bettergov/kapwa (aliased)
-import { Button, Input, Label, Banner } from '@bettergov/kapwa';
+// Kapwa base components - use subpath imports for each component
+import { Button } from '@bettergov/kapwa/button';
+import { Input } from '@bettergov/kapwa/input';
+import { Label } from '@bettergov/kapwa/label';
+import { Banner } from '@bettergov/kapwa/banner';
 ```
 
 ### Component Development Guidelines
@@ -394,11 +397,18 @@ When modifying or creating local UI components:
 BetterLB uses the Kapwa Design System published by bettergov. Transitioned from the local fork to the officially published
 
 ### Import Pattern
-- **TypeScript/JavaScript**: Use `@bettergov/kapwa` imports (aliased to `@betterlb/kapwa` via Vite)
+- **TypeScript/JavaScript**: Use `@bettergov/kapwa` subpath imports (one per component)
 - **CSS**: Must use `@betterlb/kapwa/kapwa.css` (Tailwind plugin bypasses Vite resolver)
 
 ```tsx
-import { Button, Banner, Input, Label } from '@bettergov/kapwa'; // ✅ Works via alias
+// ✅ Correct - use subpath imports for each component
+import { Button } from '@bettergov/kapwa/button';
+import { Input } from '@bettergov/kapwa/input';
+import { Label } from '@bettergov/kapwa/label';
+import { Banner } from '@bettergov/kapwa/banner';
+
+// ❌ Incorrect - importing from package root
+import { Button, Input, Label } from '@bettergov/kapwa';
 ```
 
 ```css
@@ -589,14 +599,14 @@ import { navigationBackgrounds, navigationText, navigationBorders } from '@/lib/
 ```
 
 **Component Wrapper:**
-Use `NavigationPageWrapper` for standard page layouts:
+Use `SidebarLayout` directly for pages with sidebar navigation:
 ```tsx
-import { NavigationPageWrapper } from '@/components/layout/NavigationPageWrapper';
+import { SidebarLayout } from '@/components/layout/SidebarLayout';
 
-<NavigationPageWrapper variant="detail">
+<SidebarLayout collapsible={true} defaultCollapsed={false}>
   <PageHeader title="Page Title" />
   {/* Content */}
-</NavigationPageWrapper>
+</SidebarLayout>
 ```
 
 **Reference:** Navigation Design System Specification (`docs/navigation-design-system-spec.md`)
@@ -670,7 +680,7 @@ npm publish --access public     # Requires granular token with bypass 2FA
 - Location: `src/components/ui/` (NOT a separate `@betterlb/ui` package)
 - Components: Badge, Card, Dialog, EmptyState, Pagination, ScrollArea, SearchInput, SelectPicker, Skeletons, StatCard, Tabs, Ticker, Timeline
 - Import pattern: `import { Card, Badge } from '@/components/ui';`
-- Kapwa base components: `import { Button, Input } from '@bettergov/kapwa';`
+- Kapwa base components (use subpath imports): `import { Button } from '@bettergov/kapwa/button'; import { Input } from '@bettergov/kapwa/input';`
 
 ## Code Quality Notes
 
@@ -688,3 +698,131 @@ npm publish --access public     # Requires granular token with bypass 2FA
 - QA notes: `> [qa] BLOCKED - ...` or `> [review] APPROVED/COMPLETED`
 
 **Pipeline stages:** develop → qa → review → done
+
+---
+
+## Navigation Page Layout Standard
+
+**All navigation pages** (services, government, statistics, transparency, OpenLGU) use `SidebarLayout`:
+
+```tsx
+import { SidebarLayout } from '@/components/layout/SidebarLayout';
+
+// Index pages (expanded sidebar)
+<SidebarLayout collapsible={true} defaultCollapsed={false}>
+  <PageHero title="Page Title" />
+  {/* Content */}
+</SidebarLayout>
+
+// Detail pages (collapsed sidebar)
+<SidebarLayout collapsible={true} defaultCollapsed={true}>
+  <PageHero title="Detail Title" />
+  {/* Content */}
+</SidebarLayout>
+```
+
+**Benefits:**
+- Consistent `bg-kapwa-bg-surface` background
+- Responsive sidebar with mobile toggle
+- Collapse mode for content-focused pages
+- 100% Kapwa semantic token compliance
+
+**Components Introduced:**
+- T-133: SidebarLayout improvements (responsive mobile toggle, collapse mode)
+- T-125: IndexPageLayout - For index/listing pages with search/pagination
+- T-126: DetailPageLayout - For detail pages with section navigation
+
+**Reference:** `docs/navigation-design-system-spec.md`, `docs/BetterLB-Design-System-Guide.md` Section 4
+
+---
+
+## Chart Component Standards
+
+**All charts** MUST follow the Chart Component Design System Specification (`docs/chart-component-design-system-spec.md`):
+
+**Components:**
+- `ChartTooltip` - Unified accessible tooltip (REQUIRED for all charts)
+- `ResponsiveChart` - Lightweight wrapper for charts in existing containers
+- `ChartContainer` - Full card-style wrapper for standalone charts
+
+**Theme Configuration:**
+```tsx
+import { CHART_THEME, standardAxisProps } from '@/constants/charts';
+
+// ALWAYS use these for consistency
+<LineChart data={chartData}>
+  <CartesianGrid vertical={false} stroke={CHART_THEME.grid} />
+  <XAxis dataKey='year' {...standardAxisProps} />
+  <YAxis {...standardAxisProps} />
+  <Tooltip content={<ChartTooltip />} />
+</LineChart>
+```
+
+**Color Standards:**
+- Single series: Municipal Blue (`#0066eb`)
+- Multi-series (2-3): Brand-aligned palette (Blue, Orange, Green)
+- Multi-series (4+): BRGY_COLORS array (14 distinct colors)
+
+**Quality Requirements:**
+- TypeScript strict mode (no `any` types)
+- ESLint `--max-warnings 0` compliance
+- Kapwa semantic tokens for non-chart styling
+- WCAG 2.1 Level AA accessibility
+
+**Reference:** T-124 (Chart Component Design System Specification, 1,200+ lines)
+
+---
+
+## Component Documentation
+
+**BetterLB Design System Guide** (`docs/BetterLB-Design-System-Guide.md`) is comprehensive:
+
+**Section 3: Component Library**
+- All Kapwa base components (Button, Banner, Input, Label, Card)
+- Local UI components (Badge, Card, EmptyState, SearchInput, etc.)
+
+**Section 4: Layout Components** (Updated T-134)
+- PageHero, ModuleHeader, DetailSection (existing)
+- SidebarLayout ✅ NEW (T-133)
+- IndexPageLayout ✅ NEW (T-125)
+- DetailPageLayout ✅ NEW (T-126)
+
+**Section 5: Page Layout Patterns**
+- Homepage, index/list, detail, dashboard, search results
+- Navigation patterns with sidebar layouts
+
+**Reference:** Always check the Design System Guide before creating new components or pages.
+
+---
+
+## Code Quality Enforcement
+
+**ESLint:** Zero tolerance policy
+```bash
+npm run lint  # Must pass with --max-warnings 0
+```
+
+**Kapwa Semantic Tokens:** Required for all styling
+- ✅ `text-kapwa-text-*` for text colors
+- ✅ `bg-kapwa-bg-*` for backgrounds
+- ✅ `border-kapwa-border-*` for borders
+- ❌ NO raw color tokens (gray, slate, white)
+- ❌ NO hardcoded hex colors (except acceptable cases: error states, chart data)
+
+**Verification Commands:**
+```bash
+# Check for raw color tokens
+grep -rn "text-gray\|bg-gray\|border-gray\|text-slate\|bg-slate\|border-slate" src/
+
+# Should return: No raw color tokens found
+```
+
+**TypeScript:** Strict mode required
+- No `any` types
+- Proper interface definitions
+- Type-safe data transformations
+
+**Documentation:** JSDoc required for public APIs
+- Component props interfaces
+- Exported functions
+- Complex utilities

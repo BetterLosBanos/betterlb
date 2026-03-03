@@ -286,4 +286,58 @@ test.describe('Elected Officials Pages', () => {
       await expect(arrows.first()).toBeVisible();
     }
   });
+
+  test('elected officials index page visual snapshot @visual', async ({
+    page,
+  }) => {
+    // Wait for page to fully load
+    await page.waitForLoadState('networkidle');
+
+    // Take full page screenshot
+    await expect(page).toHaveScreenshot('elected-officials-index.png', {
+      maxDiffPixels: 150,
+    });
+  });
+
+  test('elected officials index page hero section visual snapshot @visual', async ({
+    page,
+  }) => {
+    // Wait for page to fully load
+    await page.waitForLoadState('networkidle');
+
+    // Take snapshot of hero section
+    const heroSection = page.locator('main').first();
+    await expect(heroSection).toHaveScreenshot('elected-officials-hero.png', {
+      maxDiffPixels: 100,
+    });
+  });
+
+  test('elected officials detail page visual snapshot @visual', async ({
+    page,
+  }) => {
+    // Navigate to executive branch (if available)
+    const executiveLink = page.locator('a[href*="executive-branch"]');
+    const hasExecutive = (await executiveLink.count()) > 0;
+
+    if (hasExecutive) {
+      await executiveLink.first().click();
+      await page.waitForURL(/executive-branch/);
+      await page.waitForLoadState('networkidle');
+
+      // Take full page screenshot
+      await expect(page).toHaveScreenshot('executive-branch.png', {
+        maxDiffPixels: 150,
+      });
+    } else {
+      // Navigate to first available link
+      const firstLink = page.locator('a[href]').nth(2);
+      await firstLink.click();
+      await page.waitForLoadState('networkidle');
+
+      // Take full page screenshot
+      await expect(page).toHaveScreenshot('elected-officials-detail.png', {
+        maxDiffPixels: 150,
+      });
+    }
+  });
 });

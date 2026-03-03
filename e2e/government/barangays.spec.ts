@@ -220,4 +220,42 @@ test.describe('Barangays Pages', () => {
       await expect(mobileMenuButton).toBeVisible();
     }
   });
+
+  test('barangays index page visual snapshot @visual', async ({ page }) => {
+    // Wait for page to fully load
+    await page.waitForLoadState('networkidle');
+
+    // Take full page screenshot
+    await expect(page).toHaveScreenshot('barangays-index.png', {
+      maxDiffPixels: 150,
+    });
+  });
+
+  test('barangays index page hero section visual snapshot @visual', async ({
+    page,
+  }) => {
+    // Wait for page to fully load
+    await page.waitForLoadState('networkidle');
+
+    // Take snapshot of hero section
+    const heroSection = page.locator('main').first();
+    await expect(heroSection).toHaveScreenshot('barangays-hero.png', {
+      maxDiffPixels: 100,
+    });
+  });
+
+  test('barangay detail page visual snapshot @visual', async ({ page }) => {
+    // Navigate to first barangay
+    const firstCard = page.locator('a[href*="/government/barangays/"]').first();
+    await firstCard.click();
+
+    // Wait for navigation and load
+    await page.waitForURL(/\/government\/barangays\/.+/);
+    await page.waitForLoadState('networkidle');
+
+    // Take full page screenshot
+    await expect(page).toHaveScreenshot('barangay-detail.png', {
+      maxDiffPixels: 150,
+    });
+  });
 });

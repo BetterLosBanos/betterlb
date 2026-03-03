@@ -40,6 +40,7 @@ interface LegislationContext {
 export default function LegislationIndex() {
   const {
     searchQuery,
+    setSearchQuery,
     filterType,
     setFilterType,
     authorIds,

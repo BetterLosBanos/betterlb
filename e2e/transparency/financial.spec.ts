@@ -135,4 +135,16 @@ test.describe('Financial Transparency Page', () => {
       await expect(page.locator('body')).toBeVisible();
     }
   });
+
+  test('financial transparency page visual snapshot @visual', async ({
+    page,
+  }) => {
+    // Wait for page to fully load
+    await page.waitForLoadState('networkidle');
+
+    // Take full page screenshot
+    await expect(page).toHaveScreenshot('financial-transparency.png', {
+      maxDiffPixels: 150,
+    });
+  });
 });

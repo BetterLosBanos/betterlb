@@ -263,4 +263,44 @@ test.describe('Departments Pages', () => {
       await expect(leadershipSection.first()).toBeVisible();
     }
   });
+
+  test('departments index page visual snapshot @visual', async ({ page }) => {
+    // Wait for page to fully load
+    await page.waitForLoadState('networkidle');
+
+    // Take full page screenshot
+    await expect(page).toHaveScreenshot('departments-index.png', {
+      maxDiffPixels: 150,
+    });
+  });
+
+  test('departments index page hero section visual snapshot @visual', async ({
+    page,
+  }) => {
+    // Wait for page to fully load
+    await page.waitForLoadState('networkidle');
+
+    // Take snapshot of hero section
+    const heroSection = page.locator('main').first();
+    await expect(heroSection).toHaveScreenshot('departments-hero.png', {
+      maxDiffPixels: 100,
+    });
+  });
+
+  test('department detail page visual snapshot @visual', async ({ page }) => {
+    // Navigate to first department
+    const firstCard = page
+      .locator('a[href*="/government/departments/"]')
+      .first();
+    await firstCard.click();
+
+    // Wait for navigation and load
+    await page.waitForURL(/\/government\/departments\/.+/);
+    await page.waitForLoadState('networkidle');
+
+    // Take full page screenshot
+    await expect(page).toHaveScreenshot('department-detail.png', {
+      maxDiffPixels: 150,
+    });
+  });
 });

@@ -182,4 +182,16 @@ test.describe('Procurement Transparency Page', () => {
       expect(firstCardText?.length).toBeGreaterThan(0);
     }
   });
+
+  test('procurement transparency page visual snapshot @visual', async ({
+    page,
+  }) => {
+    // Wait for page to fully load
+    await page.waitForLoadState('networkidle');
+
+    // Take full page screenshot
+    await expect(page).toHaveScreenshot('procurement-transparency.png', {
+      maxDiffPixels: 150,
+    });
+  });
 });

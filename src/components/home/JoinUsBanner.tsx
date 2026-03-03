@@ -2,7 +2,7 @@ import { FC } from 'react';
 
 import { Link } from 'react-router-dom';
 
-import { Button } from '@bettergov/kapwa';
+import { Button } from '@bettergov/kapwa/button';
 import { ArrowRightIcon, UsersIcon, ZapIcon } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
 

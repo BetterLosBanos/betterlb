@@ -171,4 +171,16 @@ test.describe('Infrastructure Detail Page', () => {
       await expect(heading).toBeVisible();
     }
   });
+
+  test('infrastructure transparency page visual snapshot @visual', async ({
+    page,
+  }) => {
+    // Wait for page to fully load
+    await page.waitForLoadState('networkidle');
+
+    // Take full page screenshot
+    await expect(page).toHaveScreenshot('infrastructure-transparency.png', {
+      maxDiffPixels: 150,
+    });
+  });
 });

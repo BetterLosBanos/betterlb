@@ -63,7 +63,7 @@ export default function MunicipalIncomePage() {
   );
 
   return (
-    <div className='animate-in fade-in space-y-10 pb-20 duration-500'>
+    <>
       {/* PageHero - documented pattern for layout headers */}
       <PageHero
         title='Municipal Income'
@@ -247,6 +247,6 @@ export default function MunicipalIncomePage() {
           </p>
         </div>
       </footer>
-    </div>
+    </>
   );
 }

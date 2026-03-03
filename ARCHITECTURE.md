@@ -153,7 +153,7 @@ App
   - Import pattern: `import { Card, Badge } from '@/components/ui';`
 - **`@betterlb/kapwa`** - Base design system components (Button, Input, Label, Banner)
   - Custom fork of bettergovph/kapwa with municipal branding
-  - Import pattern: `import { Button, Input } from '@bettergov/kapwa';`
+  - Import pattern: `import { Button } from '@bettergov/kapwa/button'; import { Input } from '@bettergov/kapwa/input';` (use subpath for each component)
 - **`src/components/data-display/`** - Data visualization components
 - **`src/components/layout/`** - Layout structure components
 - **`src/components/navigation/`** - Navigation components (breadcrumbs, menus)
@@ -186,8 +186,11 @@ App
 
 **Import Pattern:**
 ```tsx
-// TypeScript/JavaScript - use aliased import
-import { Button, Input } from '@bettergov/kapwa';
+// TypeScript/JavaScript - use subpath imports for each component
+import { Button } from '@bettergov/kapwa/button';
+import { Input } from '@bettergov/kapwa/input';
+import { Label } from '@bettergov/kapwa/label';
+import { Banner } from '@bettergov/kapwa/banner';
 
 // CSS - use real package name
 @import '@betterlb/kapwa/kapwa.css';

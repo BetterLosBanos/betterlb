@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom';
 
-import { Button } from '@bettergov/kapwa';
+import { Button } from '@bettergov/kapwa/button';
 import { AlertTriangleIcon, HomeIcon } from 'lucide-react';
 import { Helmet } from 'react-helmet-async';
 

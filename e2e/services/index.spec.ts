@@ -234,4 +234,27 @@ test.describe('Services Index Page', () => {
     const filterToggle = page.locator('[data-testid="filter-bar-toggle"]');
     await expect(filterToggle).toHaveAttribute('type', 'button');
   });
+
+  test('services index page visual snapshot @visual', async ({ page }) => {
+    // Wait for page to fully load
+    await page.waitForLoadState('networkidle');
+
+    // Take full page screenshot
+    await expect(page).toHaveScreenshot('services-index.png', {
+      maxDiffPixels: 150,
+    });
+  });
+
+  test('services index page hero section visual snapshot @visual', async ({
+    page,
+  }) => {
+    // Wait for page to fully load
+    await page.waitForLoadState('networkidle');
+
+    // Take snapshot of hero section
+    const heroSection = page.locator('main').first();
+    await expect(heroSection).toHaveScreenshot('services-hero.png', {
+      maxDiffPixels: 100,
+    });
+  });
 });

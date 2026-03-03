@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 
 import { ArrowRight, Building2Icon, Globe, Phone, User2 } from 'lucide-react';
 
-import { ModuleHeader } from '@/components/layout/PageLayouts';
+import { PageHero } from '@/components/layout/PageLayouts';
 import { Card, CardContent } from '@/components/ui/Card';
 import SearchInput from '@/components/ui/SearchInput';
 
@@ -26,8 +26,8 @@ export default function DepartmentsIndex() {
     });
 
   return (
-    <div className='animate-in fade-in space-y-6 duration-500'>
-      <ModuleHeader
+    <>
+      <PageHero
         title='Municipal Departments'
         description={`${filtered.length} active offices.`}
       >
@@ -37,7 +37,7 @@ export default function DepartmentsIndex() {
           placeholder='Search departments...'
           className='md:w-72'
         />
-      </ModuleHeader>
+      </PageHero>
 
       <div className='grid grid-cols-1 gap-4 md:grid-cols-2 xl:grid-cols-3'>
         {filtered.map(dept => {
@@ -139,6 +139,6 @@ export default function DepartmentsIndex() {
           );
         })}
       </div>
-    </div>
+    </>
   );
 }
