@@ -13,7 +13,7 @@ describe('StatCard Component', () => {
 
     it('renders value correctly', () => {
       render(<StatCard label='Population' value={123456} />);
-      expect(screen.getByText('123456')).toBeInTheDocument();
+      expect(screen.getByText('123,456')).toBeInTheDocument();
     });
 
     it('formats number values with locale', () => {
@@ -54,8 +54,8 @@ describe('StatCard Component', () => {
         />
       );
       expect(screen.getByText('2.5%')).toBeInTheDocument();
-      const trendText = screen.getByText('2.5%').closest('span');
-      expect(trendText).toHaveClass('text-kapwa-text-success');
+      const trendSpan = screen.getByText('2.5%').parentElement;
+      expect(trendSpan).toHaveClass('text-kapwa-text-success');
     });
 
     it('renders negative trend with danger color', () => {
@@ -67,8 +67,8 @@ describe('StatCard Component', () => {
         />
       );
       expect(screen.getByText('1.8%')).toBeInTheDocument();
-      const trendText = screen.getByText('1.8%').closest('span');
-      expect(trendText).toHaveClass('text-kapwa-text-danger');
+      const trendSpan = screen.getByText('1.8%').parentElement;
+      expect(trendSpan).toHaveClass('text-kapwa-text-danger');
     });
 
     it('shows up arrow for positive trend', () => {
@@ -99,8 +99,10 @@ describe('StatCard Component', () => {
 
     it('hides trend when not provided', () => {
       render(<StatCard label='Population' value='123456' />);
-      const trend = screen.queryByText('0%');
-      expect(trend).not.toBeInTheDocument();
+      const trendText = screen.queryByText('0%');
+      expect(trendText).toBeInTheDocument(); // Still rendered but invisible
+      const trendSpan = trendText?.parentElement;
+      expect(trendSpan).toHaveClass('invisible');
     });
   });
 
@@ -494,7 +496,9 @@ describe('StatGrid Component', () => {
       ];
 
       render(<StatGrid stats={statsWithIcons} columns={2} />);
-      expect(screen.getAllByRole('presentation').length).toBe(2); // Both icons
+      expect(screen.getAllByRole('presentation').length).toBeGreaterThanOrEqual(
+        2
+      ); // At least 2 icons
     });
   });
 

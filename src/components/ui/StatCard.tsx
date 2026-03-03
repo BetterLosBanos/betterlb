@@ -101,7 +101,9 @@ export function StatCard({
                 trend ? trendColor : 'invisible'
               )}
             >
-              <TrendIcon className='h-4 w-4' />
+              <span role='presentation'>
+                <TrendIcon className='h-4 w-4' />
+              </span>
               <span className='ml-0.5'>
                 {trend ? Math.abs(trend.value) : 0}%
               </span>
@@ -121,7 +123,9 @@ export function StatCard({
               children ? 'h-auto' : 'h-10 w-10'
             )}
           >
-            {Icon ? <Icon className='h-6 w-6' /> : children}
+            <span role='presentation'>
+              {Icon ? <Icon className='h-6 w-6' /> : children}
+            </span>
           </div>
         )}
       </CardContent>
