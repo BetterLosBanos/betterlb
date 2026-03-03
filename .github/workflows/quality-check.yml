@@ -9,7 +9,6 @@ on:
 
 permissions:
   contents: read
-  pull-requests: write
 
 jobs:
   quality:
@@ -46,6 +45,9 @@ jobs:
   unit-tests:
     name: Unit Tests
     runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      pull-requests: write
 
     steps:
       - name: Checkout repository
@@ -88,7 +90,7 @@ jobs:
           retention-days: 7
 
       - name: PR Comment with Coverage
-        uses: romeovs/lcov-reporter-action@v0.2.19
+        uses: romeovs/lcov-reporter-action@422f0e88f1c50366976e56eeae30f344d21b0ec5 # v0.2.19
         if: github.event_name == 'pull_request' && always()
         with:
           lcov-file: ./coverage/lcov.info

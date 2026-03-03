@@ -5,15 +5,14 @@ on:
   pull_request:
     branches: [main]
 
-permissions:
-  contents: write
-  deployments: write
-  pull-requests: write
+permissions: {}
 
 jobs:
   quality-gate:
     runs-on: ubuntu-latest
     name: Quality Gate
+    permissions:
+      contents: read
     steps:
       - name: Checkout repository
         uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5 # v4
@@ -46,9 +45,13 @@ jobs:
     name: Deploy to Cloudflare Pages
     environment: ${{ github.event_name == 'pull_request' && 'preview' || 'production' }}
     needs: quality-gate
+    permissions:
+      contents: write
+      deployments: write
+      pull-requests: write
     steps:
       - name: Checkout
-        uses: actions/checkout@v4
+        uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5 # v4
         with:
           persist-credentials: false
 
