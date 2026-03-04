@@ -217,7 +217,7 @@ describe('Card Component', () => {
         </Card>
       );
       const footer = container.querySelector('footer');
-      expect(footer).toHaveClass('bg-kapwa-bg-surface');
+      expect(footer).toHaveClass('bg-kapwa-bg-surface/50');
     });
   });
 
