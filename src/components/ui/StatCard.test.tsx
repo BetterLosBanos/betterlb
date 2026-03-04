@@ -206,10 +206,10 @@ describe('StatCard Component', () => {
       expect(card).not.toHaveClass('hover:shadow-lg');
     });
 
-    it('does not apply hover class when not specified', () => {
+    it('applies hover class by default when not specified', () => {
       const { container } = render(<StatCard label='Test' value='123' />);
       const card = container.firstChild as HTMLElement;
-      expect(card).not.toHaveClass('hover:shadow-lg');
+      expect(card).toHaveClass('hover:shadow-lg');
     });
   });
 

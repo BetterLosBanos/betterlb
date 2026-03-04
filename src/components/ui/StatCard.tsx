@@ -54,7 +54,7 @@ export function StatCard(props: StatCardProps) {
     icon: Icon,
     iconBg,
     children,
-    hover = false,
+    hover = true,
     className,
     // variant is reserved for future use, extracted to avoid unused warning
   } = props;
