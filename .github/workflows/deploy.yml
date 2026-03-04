@@ -72,10 +72,11 @@ jobs:
 
       - name: Run Database Migrations (Production only)
         if: github.event_name == 'push' && github.ref == 'refs/heads/main'
-        run: ./scripts/migrate.sh remote
+        run: ./scripts/migrate.sh remote --yes
         env:
           CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          CI: true
 
       - name: Deploy to Cloudflare Pages
         uses: cloudflare/wrangler-action@da0e0dfe58b7a431659754fdf3f186c529afbe65 # v3
