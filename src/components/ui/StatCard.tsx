@@ -23,7 +23,7 @@ export interface StatCardProps extends HTMLAttributes<HTMLElement> {
     value: number; // percentage
     positive: boolean;
   };
-  /** Color variant for the bottom border */
+  /** Variant prop reserved for future use (not currently applied to styling) */
   variant?: 'primary' | 'secondary' | 'slate';
   /** Optional icon to display */
   icon?: LucideIcon;
@@ -41,35 +41,23 @@ export interface StatCardProps extends HTMLAttributes<HTMLElement> {
  * A specialized card component for displaying statistical KPIs with trend indicators.
  * Extends the standard Card component with data visualization features.
  *
- * @example
- * ```tsx
- * <StatCard
- *   label="Total Population"
- *   value={population.toLocaleString()}
- *   subtext="Actual Resident Count"
- *   variant="primary"
- *   trend={{ value: 2.5, positive: true }}
- * />
- * ```
+ * @remarks
+ * - Uses brand color hover effect on border
+ * - variant prop reserved for future extensibility
  */
-export function StatCard({
-  label,
-  value,
-  subtext,
-  trend,
-  variant = 'slate',
-  icon: Icon,
-  iconBg,
-  children,
-  hover = false,
-  className,
-}: StatCardProps) {
-  const variantClasses = {
-    primary: 'border-b-kapwa-border-brand',
-    secondary: 'border-b-kapwa-border-orange',
-    slate: 'border-b-kapwa-border-weak',
-  };
-
+export function StatCard(props: StatCardProps) {
+  const {
+    label,
+    value,
+    subtext,
+    trend,
+    icon: Icon,
+    iconBg,
+    children,
+    hover = true,
+    className,
+    // variant is reserved for future use, extracted to avoid unused warning
+  } = props;
   const trendColor = trend?.positive
     ? 'text-kapwa-text-success'
     : 'text-kapwa-text-danger';
@@ -83,8 +71,7 @@ export function StatCard({
     >
       <CardContent
         className={cn(
-          'flex h-full flex-col items-start justify-between gap-2 border-b-4 sm:flex-row sm:items-center',
-          variantClasses[variant]
+          'flex h-full flex-col items-start justify-between gap-2 sm:flex-row sm:items-center'
         )}
       >
         <div className='flex min-w-0 flex-1 flex-col gap-1'>
@@ -101,7 +88,9 @@ export function StatCard({
                 trend ? trendColor : 'invisible'
               )}
             >
-              <TrendIcon className='h-4 w-4' />
+              <span role='presentation'>
+                <TrendIcon className='h-4 w-4' />
+              </span>
               <span className='ml-0.5'>
                 {trend ? Math.abs(trend.value) : 0}%
               </span>
@@ -121,7 +110,9 @@ export function StatCard({
               children ? 'h-auto' : 'h-10 w-10'
             )}
           >
-            {Icon ? <Icon className='h-6 w-6' /> : children}
+            <span role='presentation'>
+              {Icon ? <Icon className='h-6 w-6' /> : children}
+            </span>
           </div>
         )}
       </CardContent>

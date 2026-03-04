@@ -52,9 +52,9 @@ export function ChartTooltip({
           {sortedPayload.map((entry, index) => (
             <div
               key={`${entry.name}-${index}`}
-              className='group flex items-center justify-between gap-6'
+              className='flex gap-6 justify-between items-center group'
             >
-              <div className='flex items-center gap-2'>
+              <div className='flex gap-2 items-center'>
                 <div
                   className='h-1.5 w-1.5 shrink-0 rounded-full shadow-xs'
                   style={{ backgroundColor: entry.color }}
@@ -83,7 +83,7 @@ export function ChartTooltip({
 
         <div className='text-kapwa-text-support mt-2 flex items-center justify-between border-t border-kapwa-border-weak pt-2 text-[9px] font-bold tracking-tight uppercase'>
           <span>Ranked by Value</span>
-          <div className='bg-kapwa-bg-active h-1 w-1 rounded-full' />
+          <div className='w-1 h-1 rounded-full bg-kapwa-bg-active' />
         </div>
       </div>
     );
@@ -103,22 +103,53 @@ export function ChartContainer({
   return (
     <div
       className={cn(
-        'animate-in fade-in slide-in-from-bottom-2 border-kapwa-border-weak bg-kapwa-bg-surface w-full rounded-3xl border p-4 shadow-sm duration-700 md:p-6',
+        'p-4 w-full rounded-3xl border shadow-sm duration-700 animate-in fade-in slide-in-from-bottom-2 border-kapwa-border-weak bg-kapwa-bg-surface md:p-6',
         className
       )}
       role='region'
       aria-label={`Statistical chart showing ${title}`}
     >
-      {/* 
-          Standardized Chart Inner Spacing 
-          Driven by CHART_THEME.fontSize to ensure the container scales 
+      {/*
+          Standardized Chart Inner Spacing
+          Driven by CHART_THEME.fontSize to ensure the container scales
           proportionally with the text size.
       */}
-      <div style={{ width: '100%', height, fontSize: CHART_THEME.fontSize }}>
+      <div
+        data-testid='responsive-container'
+        style={{ width: '100%', height, fontSize: CHART_THEME.fontSize }}
+      >
         <ResponsiveContainer>
           {React.Children.only(children as React.ReactElement)}
         </ResponsiveContainer>
       </div>
+    </div>
+  );
+}
+
+interface ResponsiveChartProps {
+  children: ReactNode;
+  height?: number | string;
+  className?: string;
+}
+
+/**
+ * Lightweight responsive wrapper — no card styling, just ResponsiveContainer.
+ * Use this when the chart lives inside an existing styled container (e.g. DetailSection).
+ */
+export function ResponsiveChart({
+  children,
+  height = 400,
+  className,
+}: ResponsiveChartProps) {
+  return (
+    <div
+      data-testid='responsive-container'
+      style={{ width: '100%', height, fontSize: CHART_THEME.fontSize }}
+      className={className}
+    >
+      <ResponsiveContainer width='100%' height='100%'>
+        {React.Children.only(children as React.ReactElement)}
+      </ResponsiveContainer>
     </div>
   );
 }

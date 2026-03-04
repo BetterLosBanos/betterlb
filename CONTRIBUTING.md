@@ -46,7 +46,31 @@
 
 Welcome to the Better Gov Contributing Guide and thank you for your interest in supporting the project!
 
-We welcome contributions of all kinds. Whether you are a developer, designer, writer, or just someone with a great idea, there’s a place for you here.
+We welcome contributions of all kinds. Whether you are a developer, designer, writer, or just someone with a great idea, there's a place for you here.
+
+---
+
+## BetterLB Developer Guide
+
+**NEW:** For BetterLB-specific development setup, workflows, and architecture, see our comprehensive [Developer Guide](docs/DEVELOPER_GUIDE.md).
+
+The Developer Guide covers:
+- Quick start (5-minute setup)
+- Development environment (frontend + backend + database)
+- Project structure and architecture
+- Development workflows (frontend, backend, data pipeline)
+- Common tasks with code examples
+- Design system (Kapwa)
+- Testing guide (Vitest + Playwright)
+- Deployment to Cloudflare Pages
+- For LGU adopters (forking guide)
+- Troubleshooting
+
+**Contributors should read both documents:**
+1. This file (CONTRIBUTING.md) - General contribution workflow
+2. Developer Guide - BetterLB-specific technical details
+
+Continue below for general contribution guidelines...
 
 Here are the types of contributions we currently accept and where to learn more in this guide:
 

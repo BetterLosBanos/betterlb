@@ -1,6 +1,6 @@
 import { FC } from 'react';
 
-import { Button } from '@bettergov/kapwa';
+import { Button } from '@bettergov/kapwa/button';
 import {
   ArrowRightIcon,
   BuildingIcon,

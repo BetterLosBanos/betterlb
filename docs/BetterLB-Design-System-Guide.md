@@ -249,7 +249,7 @@ Use Kapwa spacing utilities with `kapwa-` prefix:
 | `kapwa-brand-*` | 50, 100, 200, 300, 400, 500, 600, 700, 800, 900, 950 | Brand colors, primary actions |
 | `kapwa-red-*` | 50, 100, 200, 300, 400, 500, 600, 700, 800, 900, 950 | Errors, destructive actions, data viz |
 | `kapwa-green-*` | 50, 100, 200, 300, 400, 500, 600, 700, 800, 900, 950 | Success states, positive trends, data viz |
-| `kapwa-yellow-*` | 50, 100, 200, 300, 400, 500, 600, 700, 800, 900, 950 | Warnings, highlights, data viz |
+| `kapwa-yellow-*` | 50, 100, 200, 300, 400, 500, 600, 700, 800, 900, 950 | Warnings, highlights, currency/gold accents (use `text-kapwa-yellow-500` for forex), data viz |
 | `kapwa-orange-*` | 50, 100, 200, 300, 400, 500, 600, 700, 800, 900, 950 | Warnings, secondary brand, data viz |
 | `kapwa-purple-*` | 50, 100, 200, 300, 400, 500, 600, 700, 800, 900, 950 | Decorative, data visualization |
 | `kapwa-blue-*` | 50, 100, 200, 300, 400, 500, 600, 700, 800, 900, 950 | Info, links, data visualization |
@@ -629,6 +629,307 @@ The document type colors extend to other UI elements for consistency:
 5. **Accessibility**: All Kapwa raw tokens meet WCAG AA contrast requirements
 6. **Distinctive**: Each document type has a unique, easily distinguishable color
 
+### Chart Components
+
+**Location:** `src/components/data-display/ChartContainer.tsx`
+
+BetterLB uses **Recharts 2.15.3** for data visualization with custom wrapper components that ensure consistent styling, accessibility, and responsiveness.
+
+#### Available Components
+
+**ChartTooltip**
+- Unified, accessible tooltip with Kapwa styling
+- Automatic value sorting (highest values first)
+- Custom formatter support
+- Responsive max-height with scroll (320px)
+
+**ResponsiveChart**
+- Lightweight wrapper for charts in existing containers
+- No card styling (just ResponsiveContainer)
+- Use when chart lives inside `DetailSection` or other styled containers
+
+**ChartContainer**
+- Full card-style wrapper with animations
+- Includes border, shadow, and rounded corners
+- Use when chart needs standalone presentation
+
+#### Basic Usage
+
+```tsx
+import { ChartTooltip, ResponsiveChart } from '@/components/data-display/ChartContainer';
+import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend } from 'recharts';
+import { CHART_THEME, standardAxisProps } from '@/constants/charts';
+
+// Basic line chart
+<ResponsiveChart height={400}>
+  <LineChart data={chartData}>
+    <CartesianGrid vertical={false} stroke={CHART_THEME.grid} strokeDasharray='3 3' />
+    <XAxis dataKey='year' {...standardAxisProps} />
+    <YAxis {...standardAxisProps} />
+    <Tooltip content={<ChartTooltip />} />
+    <Legend verticalAlign='top' iconType='circle' />
+    <Line type='monotone' dataKey='value' stroke='#0066eb' strokeWidth={2} />
+  </LineChart>
+</ResponsiveChart>
+```
+
+#### Chart Theme Configuration
+
+All charts use the standardized `CHART_THEME` from `@/constants/charts`:
+
+```tsx
+export const CHART_THEME = {
+  grid: '#f1f5f9',    // slate-100 - grid lines
+  text: '#94a3b8',    // slate-400 - axis labels
+  fontSize: 10,       // base font size for axis text
+  fontWeight: 700,    // bold weight for readability
+};
+
+// Standard axis props (applied to all X/Y axes)
+export const standardAxisProps = {
+  axisLine: false,
+  tickLine: false,
+  tick: {
+    fontSize: CHART_THEME.fontSize,
+    fontWeight: CHART_THEME.fontWeight,
+    fill: CHART_THEME.text,
+  },
+};
+```
+
+#### When to Use Each Component
+
+**ResponsiveChart** (Most Common)
+- Charts inside `DetailSection` components
+- Charts in page layouts with existing containers
+- When you want full control over chart container styling
+
+**ChartContainer** (Specialized)
+- Standalone charts needing card presentation
+- Dashboard widgets
+- Highlighted statistical visualizations
+
+**ChartTooltip** (Always)
+- All charts must use this for consistent tooltip styling
+- Provides accessibility (role='region', aria-label)
+- Ensures Kapwa design system compliance
+
+#### Chart Color Standards
+
+**Brand-Aligned Palette:**
+Charts use colors derived from the Los Baños seal and brand identity:
+
+| Color | Hex | Usage |
+|-------|-----|-------|
+| Municipal Blue | `#0066eb` | Primary data, key metrics |
+| Brand Orange | `#cc3e00` | Secondary data, comparisons |
+| Emerald Green | `#059669` | Tertiary data, positive indicators |
+
+**Multi-Chart Color Arrays:**
+
+For charts with many data series (e.g., 14 barangays), use high-contrast, distinct colors:
+
+```tsx
+const BRGY_COLORS = [
+  '#0066eb', // 1. Municipal Blue (top priority)
+  '#cc3e00', // 2. Brand Orange
+  '#059669', // 3. Emerald Green
+  '#8b5cf6', // 4. Purple
+  '#ec4899', // 5. Pink
+  '#f59e0b', // 6. Amber
+  '#06b6d4', // 7. Cyan
+  '#6366f1', // 8. Indigo
+  '#ef4444', // 9. Red
+  '#10b981', // 10. Green
+  '#f97316', // 11. Orange
+  '#3b82f6', // 12. Blue
+  '#84cc16', // 13. Lime
+  '#a855f7', // 14. Purple
+];
+
+// Usage: map through data array
+{dataArray.map((item, i) => (
+  <Line
+    key={item.id}
+    dataKey={item.name}
+    stroke={BRGY_COLORS[i % BRGY_COLORS.length]}
+    strokeWidth={i < 3 ? 4 : 2}  // Top 3 emphasized
+  />
+))}
+```
+
+#### Accessibility Best Practices
+
+**1. Emphasis for Key Data:**
+```tsx
+// Top 3 items get thicker lines (accessibility emphasis)
+strokeWidth={isTop3 ? 4 : 2}
+dot={isTop3 ? { r: 4, strokeWidth: 2, stroke: '#555' } : false}
+```
+
+**2. High Contrast Colors:**
+- Use `BRGY_COLORS` palette for multi-line charts (14 colors tested for contrast)
+- Use brand-aligned colors for 3-5 data series
+- Verify WCAG AA contrast (4.5:1 for normal text)
+
+**3. Clear Axis Labels:**
+```tsx
+<XAxis dataKey='year' {...standardAxisProps} dy={10} />
+<YAxis {...standardAxisProps} tickFormatter={val => `${val / 1000}k`} />
+```
+
+**4. ARIA Labels:**
+```tsx
+<div
+  role='region'
+  aria-label={`Statistical chart showing ${title}`}
+>
+  <ResponsiveChart>{/* chart */}</ResponsiveChart>
+</div>
+```
+
+#### Common Chart Patterns
+
+**Multi-Line Trend Chart:**
+```tsx
+<DetailSection title='Population Trends' icon={TrendingUp}>
+  <ResponsiveChart height={400}>
+    <LineChart data={trendData}>
+      <CartesianGrid vertical={false} stroke={CHART_THEME.grid} strokeDasharray='3 3' />
+      <XAxis dataKey='year' {...standardAxisProps} dy={10} />
+      <YAxis {...standardAxisProps} />
+      <Tooltip content={<ChartTooltip formatter={v => v.toLocaleString()} />} />
+      <Legend verticalAlign='top' iconType='circle' wrapperStyle={{ paddingBottom: '20px' }} />
+      {dataSeries.map((series, i) => (
+        <Line
+          key={series.name}
+          type='monotone'
+          dataKey={series.name}
+          stroke={BRGY_COLORS[i % BRGY_COLORS.length]}
+          strokeWidth={i < 3 ? 4 : 2}
+          dot={i < 3 ? { r: 4, strokeWidth: 2, stroke: '#555' } : false}
+          activeDot={{ r: 8, strokeWidth: 4, stroke: '#fff' }}
+        />
+      ))}
+    </LineChart>
+  </ResponsiveChart>
+</DetailSection>
+```
+
+**Single-Line with Custom Formatter:**
+```tsx
+<ResponsiveChart height={400}>
+  <LineChart data={municipalityData}>
+    <CartesianGrid vertical={false} stroke={CHART_THEME.grid} strokeDasharray='3 3' />
+    <XAxis dataKey='year' {...standardAxisProps} />
+    <YAxis {...standardAxisProps} tickFormatter={val => `${val / 1000}k`} />
+    <Tooltip content={<ChartTooltip formatter={v => v.toLocaleString()} />} />
+    <Line
+      type='monotone'
+      dataKey='population'
+      name='Total Residents'
+      stroke='#0066eb'
+      strokeWidth={3}
+      dot={{ r: 5, strokeWidth: 2, stroke: '#fff' }}
+      activeDot={{ r: 7, strokeWidth: 3, stroke: '#fff' }}
+    />
+  </LineChart>
+</ResponsiveChart>
+```
+
+**Pie Chart (FinancialPieChart):**
+```tsx
+import { FinancialPieChart } from '@/components/data-display/FinancialPieChart';
+
+<FinancialPieChart
+  title='Revenue Breakdown'
+  icon={DollarSign}
+  data={incomeData}
+  colors={[COLORS.national, COLORS.local, COLORS.special]}
+/>
+```
+
+#### Data Quality Patterns
+
+**Handle Missing/Zero Data:**
+
+```tsx
+// ✅ CORRECT: Use nullish coalescing (??) to preserve zero scores
+const trendData = years.map((year, idx) => ({
+  year,
+  value: data.values[idx] ?? null,  // 0 is preserved, null/undefined → null
+}));
+
+// ❌ WRONG: Logical OR (||) treats 0 as falsy
+const trendData = years.map((year, idx) => ({
+  year,
+  value: data.values[idx] || null,  // 0 becomes null, filtered out
+}));
+```
+
+**Why this matters:**
+- Year 2018 CMCI score is `0.0` (no data collected)
+- `0 || null` → `null` → filtered out of chart ❌
+- `0 ?? null` → `0` → preserved in chart ✅
+
+#### Performance Optimization
+
+**Use useMemo for Data Transformation:**
+```tsx
+const trendData = useMemo(() =>
+  years.map((year, idx) => ({
+    year,
+    Overall: cmciData.overall_score[idx] ?? null,
+  })),
+  [cmciData]
+);
+```
+
+**Responsive Chart Heights:**
+- Mobile: `300-350px`
+- Tablet: `350-400px`
+- Desktop: `400-550px` (depending on data density)
+
+#### When to Use Charts
+
+**Statistics Pages:**
+- Population trends (multi-line: 14 barangays)
+- Municipality growth (single-line)
+- Competitiveness rankings (multi-line: 6 pillars)
+- Municipal income breakdown (pie chart)
+
+**Dashboard Displays:**
+- KPI trends with StatCard components
+- Comparative metrics over time
+- Category breakdowns (pie/donut)
+
+**Transparency Section:**
+- Budget allocation (FinancialPieChart with drill-down)
+- Revenue sources (interactive pie chart)
+
+#### Testing Requirements
+
+**Visual Regression:**
+- Charts render with `.recharts-wrapper` class
+- All data series visible and distinct
+- Tooltips appear on hover
+- Responsive on mobile (375x667 viewport)
+
+**E2E Tests:**
+```tsx
+// Example from e2e/statistics/index.spec.ts
+await expect(page.locator('.recharts-wrapper')).toBeVisible();
+await expect(page.locator('text=CMCI 2024')).toBeVisible();
+```
+
+#### Reference Implementation
+
+See the following files for complete examples:
+- `src/pages/statistics/PopulationPage.tsx` - Multi-line chart with 14 series
+- `src/pages/statistics/CompetitivenessPage.tsx` - Multi-line chart with 6 pillars
+- `src/pages/statistics/MunicipalIncomePage.tsx` - Pie chart with drill-down
+- `src/components/data-display/ChartContainer.tsx` - Component source
+
 ### Button Component
 
 **Location:** `@betterlb/ui` package
@@ -703,6 +1004,33 @@ import { PaginationControls } from '@/components/ui/Pagination';
   totalResults={totalItems}
 />
 ```
+
+### Ticker Component
+
+**Location:** `src/components/ui/Ticker.tsx`
+
+The Ticker displays real-time forex rates and weather information. It automatically cycles through multiple currency pairs.
+
+```tsx
+import { Ticker } from '@/components/ui/Ticker';
+
+// Auto-displays in the footer
+<Ticker />
+```
+
+**Features:**
+- Auto-rotating forex ticker (USD, EUR, JPY, GBP to PHP)
+- Weather display for multiple locations
+- Graceful loading and error states
+- CI-friendly error handling for missing API backend
+
+**Color Usage:**
+- Currency icons: `text-kapwa-yellow-500` (gold for monetary value)
+- Background: `bg-kapwa-blue-950` (dark blue footer)
+- Text: `text-kapwa-text-inverse` (white on dark)
+
+**Implementation Note:**
+The Ticker uses a proxy error handler in `vite.config.ts` to return graceful 503 responses when the Functions backend is unavailable (e.g., in CI environments), preventing crashes during E2E tests.
 
 ---
 
@@ -800,6 +1128,136 @@ import { InfoIcon } from 'lucide-react';
 - Raised background header with uppercase label
 - Icon support in header (optional)
 - Consistent padding
+
+### SidebarLayout
+
+**Location:** `src/components/layout/SidebarLayout.tsx`
+
+Flexible layout component for pages with sidebar navigation. Provides responsive behavior with mobile toggle and optional collapse mode.
+
+```tsx
+import { SidebarLayout } from '@/components/layout/SidebarLayout';
+
+<SidebarLayout
+  header={{
+    title: "Departments",
+    subtitle: "Municipal government offices"
+  }}
+  sidebar={<DepartmentsSidebar />}
+  collapsible={true}
+  defaultCollapsed={false}
+>
+  {/* Main content */}
+</SidebarLayout>
+```
+
+**When to use:**
+- Pages with sidebar navigation (departments, barangays, services, etc.)
+- Need responsive sidebar behavior
+- Optional collapse mode for more content space
+
+**Props:**
+```typescript
+interface SidebarLayoutProps {
+  children: ReactNode;
+  sidebar: ReactNode;
+  header?: {
+    title: string;
+    subtitle?: string;
+    actions?: ReactNode;
+  };
+  headerNode?: ReactNode;  // Overrides header
+  collapsible?: boolean;
+  defaultCollapsed?: boolean;
+  className?: string;
+}
+```
+
+**Responsive features:**
+- **Mobile:** Toggle button shows/hides sidebar
+- **Desktop:** Sidebar always visible, optionally collapsible
+- **Collapse mode:** Expand/collapse button with smooth animations
+- **Transitions:** 500ms ease-in-out with cubic-bezier
+
+**Styling:**
+- Mobile: `py-6` container
+- Desktop: `py-8` container
+- Sidebar width: 256px (mobile hidden), 288px (desktop lg)
+- Content area: Rounded card with padding
+
+### IndexPageLayout
+
+**Location:** `src/components/layout/IndexPageLayout.tsx`
+
+**Introduced:** T-125 (Unified Layout Implementation)
+
+Specialized layout for index/listing pages with integrated search, filters, and pagination.
+
+```tsx
+import { IndexPageLayout } from '@/components/layout/IndexPageLayout';
+
+<IndexPageLayout
+  title="Services"
+  description="Browse all available municipal services"
+  search={{
+    value: searchTerm,
+    onChange: setSearch,
+    placeholder: "Search services..."
+  }}
+  resultsCount={services.length}
+  pagination={{
+    type: "traditional",
+    currentPage: page,
+    totalPages: Math.ceil(services.length / pageSize),
+    onPageChange: setPage
+  }}
+>
+  {/* Grid/list of items */}
+</IndexPageLayout>
+```
+
+**When to use:**
+- Index pages with search/filter functionality
+- Pages needing consistent layout structure
+- Reduces boilerplate code (40-60% reduction)
+
+### DetailPageLayout
+
+**Location:** `src/components/layout/DetailPageLayout.tsx`
+
+**Introduced:** T-126 (Unified Layout Implementation)
+
+Specialized layout for detail pages with automatic section navigation and breadcrumb support.
+
+```tsx
+import { DetailPageLayout } from '@/components/layout/DetailPageLayout';
+
+<DetailPageLayout
+  title="Service Name"
+  description="Service description"
+  breadcrumbs={[
+    { label: 'Services', href: '/services' },
+    { label: 'Category', href: '/services/category' }
+  ]}
+  sections={[
+    {
+      id: 'overview',
+      title: 'Overview',
+      content: <ServiceOverview />
+    },
+    {
+      id: 'requirements',
+      title: 'Requirements',
+      content: <RequirementsList />
+    }
+  ]}
+/>
+```
+
+**When to use:**
+- Detail pages with multiple sections
+- Pages needing automatic section navigation
+- Reduces boilerplate code (50-70% reduction)
 
 ---
 
@@ -1128,110 +1586,481 @@ The statistics pages were migrated from custom components (`StatsHero`, `StatsCa
 
 ## 6. Navigation Patterns
 
-### Navbar
+> **Comprehensive navigation patterns are documented in** [Navigation Design System Specification](navigation-design-system-spec.md)
+>
+> This section provides a quick reference for common navigation patterns. See the full specification for detailed patterns, examples, migration guidelines, and accessibility requirements.
 
-**Location:** `src/components/layout/Navbar.tsx`
+### 6.1 Overview
 
-The main navigation provides multi-level navigation with dropdowns.
+Navigation pages in BetterLB use a unified design system with consistent layouts, components, and styling. These patterns apply to:
 
-**Features:**
-- Multi-level navigation with dropdowns
-- Mobile-responsive with overlay menu
-- Language switcher in top bar
-- Sticky positioning with z-index management
+- **Services** (`/services/*`)
+- **Government** (departments, elected officials, barangays)
+- **Statistics** (`/statistics/*`)
+- **Transparency** (`/transparency/*`)
+- **OpenLGU** (`/openlgu/*`)
 
-**Usage:**
-```tsx
-// Automatically included in main layout
-// Navigation data defined in navigation config
+### 6.2 Page Layout Patterns
+
+BetterLB uses three main layout patterns for navigation pages:
+
+#### Pattern A: Index Page with Sidebar
+
+**Use for:** List/grid views with filtering (services index, departments index, statistics index)
+
+**Structure:**
+```
+SidebarLayout (collapsible=true, defaultCollapsed=false)
+├── PageHero (variant="hero", centered, with search)
+├── Sidebar (section-specific, collapsible)
+└── Content (filterable grid/list)
 ```
 
-### SidebarLayout
+**Example:**
+```tsx
+import { SidebarLayout } from '@/components/layout/SidebarLayout';
+import { PageHero } from '@/components/layout/PageLayouts';
+
+export default function ServicesIndex() {
+  const [search, setSearch] = useState('');
+
+  return (
+    <SidebarLayout collapsible={true} defaultCollapsed={false}>
+      <PageHero
+        title="Services"
+        description={`${services.length} government services available`}
+      >
+        <SearchInput
+          value={search}
+          onChange={setSearch}
+          placeholder="Search services..."
+        />
+      </PageHero>
+
+      <div className="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3">
+        {services.map(service => (
+          <ServiceCard key={service.id} service={service} />
+        ))}
+      </div>
+    </SidebarLayout>
+  );
+}
+```
+
+**Key Features:**
+- Hero header with centered title
+- Integrated search/filter controls
+- Collapsible sidebar (expanded by default)
+- Grid layout for content cards
+
+#### Pattern B: Detail Page with Sidebar
+
+**Use for:** Individual item views (service detail, department detail, statistics detail)
+
+**Structure:**
+```
+SidebarLayout (collapsible=true, defaultCollapsed=true)
+├── PageHero/ModuleHeader (variant="compact" with breadcrumbs)
+├── Sidebar (section-specific, collapsed by default)
+└── Content (detail sections)
+```
+
+**Example:**
+```tsx
+import { SidebarLayout } from '@/components/layout/SidebarLayout';
+import { PageHero } from '@/components/layout/PageLayouts';
+import { DetailSection } from '@/components/layout/PageLayouts';
+
+export default function ServiceDetail() {
+  return (
+    <SidebarLayout collapsible={true} defaultCollapsed={true}>
+      <PageHero
+        title="Business Permit"
+        description="Requirements and application process"
+        breadcrumb={[
+          { label: 'Home', href: '/' },
+          { label: 'Services', href: '/services' },
+          { label: 'Business Permits', href: '/services/business-permits' },
+        ]}
+      />
+
+      <DetailSection title="Requirements" icon={CheckCircle}>
+        <RequirementsList items={requirements} />
+      </DetailSection>
+
+      <DetailSection title="Application Process" icon={Clock}>
+        <ProcessTimeline steps={processSteps} />
+      </DetailSection>
+    </SidebarLayout>
+  );
+}
+```
+
+**Key Features:**
+- Compact header with breadcrumbs
+- Sidebar collapsed by default (focus on content)
+- Detail sections with consistent spacing
+- Contact information section
+
+#### Pattern C: Hub Page
+
+**Use for:** Root section pages that link to sub-sections (government root)
+
+**Structure:**
+```
+SidebarLayout (collapsible=false)
+├── PageHero (variant="hero", centered)
+└── Content (card-based navigation to sub-sections)
+```
+
+**Example:**
+```tsx
+import { SidebarLayout } from '@/components/layout/SidebarLayout';
+import { PageHero } from '@/components/layout/PageLayouts';
+
+export default function GovernmentHub() {
+  return (
+    <SidebarLayout collapsible={false}>
+      <PageHero
+        title="Government"
+        description="Elected officials, departments, and barangays"
+      />
+
+      <div className="grid grid-cols-1 gap-6 md:grid-cols-3">
+        <HubCard
+          title="Departments"
+          description="Municipal offices and services"
+          href="/government/departments"
+          icon={Building}
+        />
+        <HubCard
+          title="Elected Officials"
+          description="Mayor, Vice Mayor, Sangguniang Bayan"
+          href="/government/elected-officials"
+          icon={Users}
+        />
+        <HubCard
+          title="Barangays"
+          description="Local communities and officials"
+          href="/government/barangays"
+          icon={MapPin}
+        />
+      </div>
+    </SidebarLayout>
+  );
+}
+```
+
+### 6.3 Color & Background Standards
+
+All navigation pages MUST use Kapwa semantic tokens. See [T-084 implementation](../plans/2026-03-01-color-background-consolidation-plan.md) for details.
+
+**Page Backgrounds:**
+```tsx
+// All navigation pages
+<div className="bg-kapwa-bg-surface min-h-screen">
+  {/* Content */}
+</div>
+```
+
+**Header Backgrounds:**
+```tsx
+// Hero headers (index pages)
+<PageHero className="bg-kapwa-bg-surface-bold" />
+
+// Compact headers (detail pages)
+<ModuleHeader className="bg-kapwa-bg-surface border-b border-kapwa-border-weak" />
+```
+
+**Text Colors:**
+- Headings: `text-kapwa-text-strong`
+- Body text: `text-kapwa-text-default`
+- Muted text: `text-kapwa-text-weak`
+- Links: `text-kapwa-text-link`
+
+**Borders:**
+- Default dividers: `border-kapwa-border-weak`
+- Emphasis borders: `border-kapwa-border-strong`
+- Focus states: `border-kapwa-border-focus`
+
+### 6.4 Component Usage
+
+#### PageHero
+
+**Use for:** Index page headers with centered layout
+
+**Location:** `src/components/layout/PageLayouts.tsx`
+
+```tsx
+<PageHero
+  title="Services"
+  description="Browse government services"
+  breadcrumb={[
+    { label: 'Home', href: '/' },
+    { label: 'Services', href: '/services' },
+  ]}
+>
+  {/* Optional: Search input or filters */}
+</PageHero>
+```
+
+**Styling:**
+- Background: `bg-kapwa-bg-surface-bold`
+- Title: `kapwa-display-xl text-kapwa-text-strong`
+- Description: `kapwa-body-lg text-kapwa-text-default`
+- Padding: `py-8 md:py-12`
+
+#### ModuleHeader
+
+**Use for:** Detail page headers with left-aligned layout
+
+**Location:** `src/components/layout/PageLayouts.tsx`
+
+```tsx
+<ModuleHeader
+  title="Business Permit"
+  description="Requirements for obtaining business permits"
+>
+  {/* Optional: Action buttons or metadata */}
+</ModuleHeader>
+```
+
+**Styling:**
+- Background: `bg-kapwa-bg-surface border-b border-kapwa-border-weak`
+- Title: `kapwa-heading-lg text-kapwa-text-strong`
+- Description: `kapwa-body-md text-kapwa-text-weak`
+- Padding: `pb-6`
+
+#### DetailSection
+
+**Use for:** Content sections within detail pages
+
+**Location:** `src/components/layout/PageLayouts.tsx`
+
+```tsx
+<DetailSection
+  title="Requirements"
+  icon={CheckCircle}
+  className="border-l-4 border-l-kapwa-border-brand"
+>
+  {/* Section content */}
+</DetailSection>
+```
+
+**Features:**
+- Icon indicator (optional)
+- Left accent border (optional)
+- Consistent spacing (`space-y-4` for content)
+
+#### Breadcrumb
+
+**Location:** `src/components/navigation/Breadcrumb.tsx`
+
+**Usage:** Integrated into PageHero via `breadcrumb` prop
+
+```tsx
+<PageHero
+  title="Page Title"
+  breadcrumb={[
+    { label: 'Home', href: '/' },
+    { label: 'Section', href: '/section' },
+    { label: 'Current Page', href: '/section/page' },
+  ]}
+/>
+```
+
+**Rules:**
+- ALWAYS use the breadcrumb prop on PageHero
+- NEVER use manual Breadcrumb components
+- Let PageHero handle breadcrumb generation
+
+### 6.5 Layout Components
+
+#### SidebarLayout
 
 **Location:** `src/components/layout/SidebarLayout.tsx`
 
-Use for admin/dashboard pages with hierarchical navigation.
+**Purpose:** Provides collapsible sidebar navigation for hierarchical content
 
 ```tsx
-import { SidebarLayout } from '@/components/layout/SidebarLayout';
-
 <SidebarLayout
-  title="Admin Dashboard"
-  sidebarItems={[
-    { label: 'Documents', href: '/admin/documents', icon: FileIcon },
-    { label: 'Review Queue', href: '/admin/review', icon: CheckIcon },
-    { label: 'Settings', href: '/admin/settings', icon: SettingsIcon },
-  ]}
+  sidebar={<SectionsSidebar />}
+  collapsible={true}
+  defaultCollapsed={false}
 >
   {/* Page content */}
 </SidebarLayout>
 ```
 
-**Features:**
-- Collapsible sidebar pattern
-- Mobile responsive with hamburger menu
-- Scroll reset functionality
-- Dual header option
+**Configuration:**
+- Index pages: `collapsible={true}`, `defaultCollapsed={false}`
+- Detail pages: `collapsible={true}`, `defaultCollapsed={true}`
+- Hub pages: `collapsible={false}` (no sidebar)
 
-### Breadcrumb
+### 6.6 Typography Standards
 
-**Location:** `src/components/navigation/Breadcrumb.tsx`
+**Kapwa Typography Tokens:**
+- Display: `kapwa-display-xl` (hero titles)
+- Headings: `kapwa-heading-lg`, `kapwa-heading-md` (section titles)
+- Body: `kapwa-body-lg`, `kapwa-body-md` (content)
+- Labels: `kapwa-label-md` (metadata, tags)
 
-Use for hierarchical navigation on detail pages.
-
+**Text Hierarchy:**
 ```tsx
-import { Breadcrumb } from '@/components/navigation/Breadcrumb';
-
-<Breadcrumb
-  items={[
-    { label: 'Home', href: '/' },
-    { label: 'Services', href: '/services' },
-    { label: 'Business Permits', href: '/services/business-permits' },
-  ]}
-/>
+<h1 className="kapwa-display-xl text-kapwa-text-strong">
+  Page Title
+</h1>
+<h2 className="kapwa-heading-lg text-kapwa-text-strong">
+  Section Title
+</h2>
+<p className="kapwa-body-md text-kapwa-text-default">
+  Body text content
+</p>
+<span className="kapwa-label-md text-kapwa-text-weak uppercase">
+  Metadata Label
+</span>
 ```
 
-### Tab Navigation
+### 6.7 Spacing Standards
 
-Use for organizing content within a page.
+All spacing uses Kapwa tokens following the 4px base unit:
 
-```tsx
-import { Tabs, TabsList, TabsTrigger, TabsContent } from '@/components/ui/Tabs';
+**Layout Spacing:**
+- Page padding: `p-kapwa-lg` (32px)
+- Section gaps: `gap-kapwa-lg` (32px between sections)
+- Card gaps: `gap-kapwa-md` (16px between cards)
 
-<Tabs defaultValue="overview">
-  <TabsList>
-    <TabsTrigger value="overview">Overview</TabsTrigger>
-    <TabsTrigger value="requirements">Requirements</TabsTrigger>
-    <TabsTrigger value="process">Process</TabsTrigger>
-  </TabsList>
-  <TabsContent value="overview">
-    {/* Overview content */}
-  </TabsContent>
-  <TabsContent value="requirements">
-    {/* Requirements content */}
-  </TabsContent>
-  <TabsContent value="process">
-    {/* Process content */}
-  </TabsContent>
-</Tabs>
-```
+**Component Spacing:**
+- Header padding: `py-8 md:py-12` (PageHero)
+- Section padding: `space-y-4` (within DetailSection)
+- Card padding: `p-4 md:p-6` (CardContent)
 
-### Pagination
+### 6.8 Quick Examples
 
-Use for navigating through paginated content.
+#### Index Page with Search
 
 ```tsx
-import { PaginationControls } from '@/components/ui/Pagination';
+export default function ServicesIndex() {
+  const [search, setSearch] = useState('');
 
-<PaginationControls
-  currentPage={page}
-  totalPages={totalPages}
-  onPageChange={setPage}
-  resultsPerPage={itemsPerPage}
-  onResultsPerPageChange={setItemsPerPage}
-  totalResults={totalItems}
-/>
+  return (
+    <SidebarLayout collapsible={true} defaultCollapsed={false}>
+      <PageHero
+        title="Services"
+        description={`${filteredServices.length} services found`}
+      >
+        <SearchInput
+          value={search}
+          onChange={setSearch}
+          placeholder="Search services..."
+        />
+      </PageHero>
+
+      <div className="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3">
+        {filteredServices.map(service => (
+          <ServiceCard key={service.id} service={service} />
+        ))}
+      </div>
+    </SidebarLayout>
+  );
+}
 ```
+
+#### Detail Page with Sections
+
+```tsx
+export default function ServiceDetail() {
+  return (
+    <SidebarLayout collapsible={true} defaultCollapsed={true}>
+      <PageHero
+        title="Business Permit"
+        description="Requirements and process"
+        breadcrumb={[
+          { label: 'Home', href: '/' },
+          { label: 'Services', href: '/services' },
+        ]}
+      />
+
+      <div className="space-y-6">
+        <DetailSection title="Requirements" icon={CheckCircle}>
+          <RequirementsList items={requirements} />
+        </DetailSection>
+
+        <DetailSection title="Process" icon={Clock}>
+          <ProcessTimeline steps={steps} />
+        </DetailSection>
+
+        <DetailSection title="Contact" icon={Mail}>
+          <ContactInfo email="bplo@betterlb.gov.ph" phone="530-2981" />
+        </DetailSection>
+      </div>
+    </SidebarLayout>
+  );
+}
+```
+
+### 6.9 DO/DON'T Examples
+
+**DO:**
+- ✅ Use SidebarLayout directly for pages with sidebar navigation
+- ✅ Use Kapwa semantic tokens for all colors and spacing
+- ✅ Use PageHero for index pages, ModuleHeader for detail pages
+- ✅ Use DetailSection for content sections
+- ✅ Integrate breadcrumbs via PageHero breadcrumb prop
+- ✅ Follow the layout patterns (index/detail/hub)
+- ✅ Use consistent spacing with Kapwa tokens
+
+**DON'T:**
+- ❌ Use raw color tokens (`bg-gray-900`, `text-slate-600`)
+- ❌ Use arbitrary spacing values (`p-8`, `gap-6`)
+- ❌ Use manual Breadcrumb components
+- ❌ Skip heading levels (h1 → h3)
+- ❌ Use non-Kapwa typography classes (`text-lg`, `text-xl`)
+- ❌ Mix SidebarLayout with page-level backgrounds
+- ❌ Use different spacing patterns across pages
+
+### 6.10 Migration Checklist
+
+When refactoring existing pages to use navigation patterns:
+
+1. **Add SidebarLayout**
+   - Wrap page content with `SidebarLayout`
+   - Configure collapsible and defaultCollapsed props appropriately
+
+2. **Replace Headers**
+   - Index pages: Use `PageHero` with centered layout
+   - Detail pages: Use `ModuleHeader` or `PageHero` with breadcrumbs
+
+3. **Update Colors**
+   - Replace `bg-white` with `bg-kapwa-bg-surface`
+   - Replace `text-gray-900` with `text-kapwa-text-strong`
+   - Replace `border-gray-200` with `border-kapwa-border-weak`
+
+4. **Update Spacing**
+   - Replace arbitrary values with Kapwa tokens
+   - Use `gap-kapwa-*` for grid/flex gaps
+   - Use `space-y-*` for vertical spacing
+
+5. **Update Typography**
+   - Replace `text-*` with Kapwa tokens
+   - Use `kapwa-heading-*` for headings
+   - Use `kapwa-body-*` for body text
+
+6. **Add Detail Sections**
+   - Group related content in `DetailSection` components
+   - Use icons for visual clarity
+   - Maintain consistent spacing
+
+7. **Test Responsiveness**
+   - Verify mobile layout (sidebar collapses)
+   - Test grid breakpoints
+   - Check touch targets (min 44x44px)
+
+8. **Verify Accessibility**
+   - Check keyboard navigation
+   - Verify ARIA labels
+   - Test with screen reader
+   - Confirm color contrast ratios
 
 ---
 

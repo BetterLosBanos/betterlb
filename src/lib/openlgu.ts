@@ -2,6 +2,9 @@
 // Types
 // ------------------
 
+/* eslint-disable @typescript-eslint/no-explicit-any */
+// API response mapping uses any for external JSON data
+
 export type DocumentType = 'ordinance' | 'resolution' | 'executive_order';
 
 export interface DocumentItem {

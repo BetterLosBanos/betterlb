@@ -1,8 +1,7 @@
-import { useEffect, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 
-import { Button } from '@bettergov/kapwa';
+import { Button } from '@bettergov/kapwa/button';
 import {
-  AlertCircle,
   Check,
   ChevronLeft,
   ChevronRight,
@@ -15,7 +14,6 @@ import {
   Save,
   Undo,
   User,
-  X,
 } from 'lucide-react';
 
 import { Badge } from '@/components/ui/Badge';
@@ -146,11 +144,7 @@ export default function Reconcile() {
   const [editMode, setEditMode] = useState(false);
   const [editedValue, setEditedValue] = useState('');
 
-  useEffect(() => {
-    fetchConflicts();
-  }, [statusFilter, conflictTypeFilter, page]);
-
-  const fetchConflicts = async () => {
+  const fetchConflicts = useCallback(async () => {
     setLoading(true);
     try {
       const params = new URLSearchParams({
@@ -176,7 +170,11 @@ export default function Reconcile() {
     } finally {
       setLoading(false);
     }
-  };
+  }, [page, statusFilter, conflictTypeFilter]);
+
+  useEffect(() => {
+    fetchConflicts();
+  }, [fetchConflicts]);
 
   const fetchDocumentDetail = async (documentId: string) => {
     try {

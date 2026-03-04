@@ -1,3 +1,5 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
+// D1 database result typing uses any for dynamic schema mapping
 /**
  * Admin Sessions API - Individual Session
  * GET /api/admin/sessions/:id - Get session with attendees and absences

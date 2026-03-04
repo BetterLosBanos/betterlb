@@ -1,3 +1,5 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
+// D1 database result typing uses any for dynamic schema mapping
 /**
  * Admin Documents API
  * GET /api/admin/documents/:id - Get document details for editing
@@ -310,7 +312,7 @@ async function handleGetDocument(context: {
 }
 
 export const onRequestGet = (context: { request: Request; env: Env }) =>
-  withAuth(handleGetDocument as any)(context as any);
+  withAuth(handleGetDocument as any, { requireCSRF: true })(context as any);
 
 export const onRequestPatch = (context: { request: Request; env: Env }) =>
-  withAuth(handlePatchDocument as any)(context as any);
+  withAuth(handlePatchDocument as any, { requireCSRF: true })(context as any);

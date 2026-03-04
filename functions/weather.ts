@@ -4,14 +4,56 @@
  */
 import { Env } from './types';
 
+/**
+ * CORS Configuration
+ * Restricts API access to trusted origins only (security fix for T-059)
+ */
+const ALLOWED_ORIGINS = [
+  'https://betterlb.pages.dev',
+  'https://betterlb.gov.ph', // Custom domain if configured
+  'http://localhost:5173', // Vite dev server
+  'http://localhost:8788', // Wrangler dev server
+];
+
+/**
+ * Get appropriate CORS headers based on request origin
+ */
+function getCorsHeaders(origin: string | null): Record<string, string> {
+  const isAllowed = origin && ALLOWED_ORIGINS.includes(origin);
+
+  if (isAllowed) {
+    return {
+      'Access-Control-Allow-Origin': origin,
+      'Access-Control-Allow-Methods': 'GET, OPTIONS',
+      'Access-Control-Allow-Headers': 'Content-Type',
+      'Access-Control-Max-Age': '86400',
+    };
+  }
+
+  return {
+    'Access-Control-Allow-Methods': 'GET, OPTIONS',
+    'Access-Control-Allow-Headers': 'Content-Type',
+  };
+}
+
 export async function onRequest(context: {
   request: Request;
   env: Env;
   ctx: ExecutionContext;
 }): Promise<Response> {
+  const url = new URL(context.request.url);
+  const origin = url.origin;
+
   try {
-    const url = new URL(context.request.url);
     const cityParam = url.searchParams.get('city');
+
+    // Handle OPTIONS preflight requests
+    if (context.request.method === 'OPTIONS') {
+      return new Response(null, {
+        status: 204,
+        headers: getCorsHeaders(origin),
+      });
+    }
 
     // Get data from KV store
     const cachedData = (await context.env.WEATHER_KV.get(
@@ -30,7 +72,7 @@ export async function onRequest(context: {
           status: 404,
           headers: {
             'Content-Type': 'application/json',
-            'Access-Control-Allow-Origin': '*',
+            ...getCorsHeaders(origin),
           },
         }
       );
@@ -45,7 +87,7 @@ export async function onRequest(context: {
           {
             headers: {
               'Content-Type': 'application/json',
-              'Access-Control-Allow-Origin': '*',
+              ...getCorsHeaders(origin),
               'Cache-Control': 'max-age=3600',
             },
           }
@@ -60,7 +102,7 @@ export async function onRequest(context: {
             status: 404,
             headers: {
               'Content-Type': 'application/json',
-              'Access-Control-Allow-Origin': '*',
+              ...getCorsHeaders(origin),
             },
           }
         );
@@ -71,7 +113,7 @@ export async function onRequest(context: {
     return new Response(JSON.stringify(cachedData), {
       headers: {
         'Content-Type': 'application/json',
-        'Access-Control-Allow-Origin': '*',
+        ...getCorsHeaders(origin),
         'Cache-Control': 'max-age=3600',
       },
     });
@@ -88,7 +130,7 @@ export async function onRequest(context: {
         status: 500,
         headers: {
           'Content-Type': 'application/json',
-          'Access-Control-Allow-Origin': '*',
+          ...getCorsHeaders(url.origin),
         },
       }
     );

@@ -40,12 +40,16 @@ export default function FilterBar({
     selectedClassification !== 'all';
 
   return (
-    <div className='border-kapwa-border-weak bg-kapwa-bg-surface rounded-2xl border shadow-sm'>
+    <div
+      className='border-kapwa-border-weak bg-kapwa-bg-surface rounded-2xl border shadow-sm'
+      data-testid='filter-bar'
+    >
       {/* Filter Bar Header */}
       <button
         type='button'
         onClick={() => setIsExpanded(!isExpanded)}
         className='flex w-full items-center justify-between px-4 py-3 transition-colors hover:bg-kapwa-bg-surface-raised sm:px-5'
+        data-testid='filter-bar-toggle'
       >
         <div className='flex items-center gap-3'>
           <span className='text-kapwa-text-strong text-sm font-bold'>
@@ -81,16 +85,19 @@ export default function FilterBar({
                   label='All'
                   selected={selectedSource === 'all'}
                   onClick={() => onSourceChange('all')}
+                  data-testid='filter-source-all'
                 />
                 <FilterPill
                   label='Official'
                   selected={selectedSource === 'citizens-charter'}
                   onClick={() => onSourceChange('citizens-charter')}
+                  data-testid='filter-source-official'
                 />
                 <FilterPill
                   label='Community'
                   selected={selectedSource === 'community'}
                   onClick={() => onSourceChange('community')}
+                  data-testid='filter-source-community'
                 />
               </div>
             </div>
@@ -108,16 +115,19 @@ export default function FilterBar({
                   label='All'
                   selected={selectedClassification === 'all'}
                   onClick={() => onClassificationChange('all')}
+                  data-testid='filter-classification-all'
                 />
                 <FilterPill
                   label='Simple'
                   selected={selectedClassification === 'Simple'}
                   onClick={() => onClassificationChange('Simple')}
+                  data-testid='filter-classification-simple'
                 />
                 <FilterPill
                   label='Complex'
                   selected={selectedClassification === 'Complex'}
                   onClick={() => onClassificationChange('Complex')}
+                  data-testid='filter-classification-complex'
                 />
               </div>
             </div>
@@ -134,6 +144,7 @@ export default function FilterBar({
                 value={selectedOfficeDivision}
                 onChange={e => onOfficeDivisionChange(e.target.value)}
                 className='border-kapwa-border-weak bg-kapwa-bg-surface-raised text-kapwa-text-strong w-full rounded-lg border px-3 py-1.5 text-xs font-medium focus:outline-none focus:ring-2 focus:ring-kapwa-border-brand'
+                data-testid='filter-office-select'
               >
                 <option value='all'>All Offices</option>
                 {officeDivisions.map(division => (
@@ -155,6 +166,7 @@ export default function FilterBar({
                     onClassificationChange('all');
                   }}
                   className='text-kapwa-text-brand hover:text-kapwa-text-accent-orange text-xs font-bold transition-colors'
+                  data-testid='filter-clear-all'
                 >
                   Clear All
                 </button>
@@ -172,13 +184,20 @@ interface FilterPillProps {
   label: string;
   selected: boolean;
   onClick: () => void;
+  'data-testid'?: string;
 }
 
-function FilterPill({ label, selected, onClick }: FilterPillProps) {
+function FilterPill({
+  label,
+  selected,
+  onClick,
+  'data-testid': testId,
+}: FilterPillProps) {
   return (
     <button
       type='button'
       onClick={onClick}
+      data-testid={testId}
       className={`transition-all ${
         selected
           ? 'border-kapwa-border-brand bg-kapwa-bg-brand-weak text-kapwa-text-brand'

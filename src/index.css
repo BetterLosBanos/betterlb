@@ -1,81 +1,9 @@
-/* Inter - Regular (400) */
-@font-face {
-  font-family: 'Inter';
-  font-style: normal;
-  font-weight: 400;
-  font-display: swap;
-  src: url('https://fonts.bunny.net/inter/files/inter-latin-400-normal.woff2')
-    format('woff2');
-}
-
-/* Inter - Medium (500) */
-@font-face {
-  font-family: 'Inter';
-  font-style: normal;
-  font-weight: 500;
-  font-display: swap;
-  src: url('https://fonts.bunny.net/inter/files/inter-latin-500-normal.woff2')
-    format('woff2');
-}
-
-/* Inter - Semi Bold (600) */
-@font-face {
-  font-family: 'Inter';
-  font-style: normal;
-  font-weight: 600;
-  font-display: swap;
-  src: url('https://fonts.bunny.net/inter/files/inter-latin-600-normal.woff2')
-    format('woff2');
-}
-
-/* Inter - Bold (700) */
-@font-face {
-  font-family: 'Inter';
-  font-style: normal;
-  font-weight: 700;
-  font-display: swap;
-  src: url('https://fonts.bunny.net/inter/files/inter-latin-700-normal.woff2')
-    format('woff2');
-}
-
-/* Roboto Mono - Regular (400) */
-@font-face {
-  font-family: 'Roboto Mono';
-  font-style: normal;
-  font-weight: 400;
-  font-display: swap;
-  src: url('https://fonts.bunny.net/roboto-mono/files/roboto-mono-latin-400-normal.woff2')
-    format('woff2');
-}
-
-/* Roboto Mono - Medium (500) */
-@font-face {
-  font-family: 'Roboto Mono';
-  font-style: normal;
-  font-weight: 500;
-  font-display: swap;
-  src: url('https://fonts.bunny.net/roboto-mono/files/roboto-mono-latin-500-normal.woff2')
-    format('woff2');
-}
-
-/* Roboto Mono - Semi Bold (600) */
-@font-face {
-  font-family: 'Roboto Mono';
-  font-style: normal;
-  font-weight: 600;
-  font-display: swap;
-  src: url('https://fonts.bunny.net/roboto-mono/files/roboto-mono-latin-600-normal.woff2')
-    format('woff2');
-}
-
 /* Local styles */
 @import 'tailwindcss';
 
 /* Scan shared packages for Tailwind classes */
-@source '../node_modules/@betterlb/kapwa/dist/**/*.js';
-
-/* Import Kapwa Design System tokens */
-@import '@betterlb/kapwa/kapwa.css';
+@source '../node_modules/@bettergov/kapwa/dist';
+@import '@bettergov/kapwa/styles';
 
 :root {
   --font-kapwa-sans:
@@ -93,11 +21,6 @@
   ::file-selector-button {
     border-color: var(--color-border-kapwa-border-weak, currentcolor);
   }
-}
-
-/* Currency symbol in gold */
-.currency-symbol {
-  color: #d4a855;
 }
 
 /* --- LEAFLET MAP OVERRIDES --- */

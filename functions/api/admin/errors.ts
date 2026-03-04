@@ -2,9 +2,15 @@
  * Admin Errors API
  * GET /api/admin/errors - List all parse errors with filtering
  * POST /api/admin/errors/:id/retry - Retry processing a failed document
+ * DELETE /api/admin/errors/:id - Delete an error log entry
  */
 import { Env } from '../../types';
 import { AuthContext, withAuth } from '../../utils/admin-auth';
+import {
+  logAudit,
+  AuditActions,
+  AuditTargetTypes,
+} from '../../utils/audit-log';
 
 interface ParseError {
   id: string;
@@ -19,6 +25,17 @@ interface ParseError {
 interface ErrorResponse {
   errors: ParseError[];
   total: number;
+}
+
+// Type for D1 database row
+interface ParseErrorRow {
+  id: string;
+  document_number?: string;
+  pdf_url: string;
+  error_type: string;
+  error_message: string;
+  timestamp: string;
+  stage: 'scrape' | 'download' | 'parse' | 'extract' | 'migrate';
 }
 
 async function handleGetErrors(context: {
@@ -56,8 +73,8 @@ async function handleGetErrors(context: {
     try {
       const result = await env.BETTERLB_DB.prepare(sql)
         .bind(...params)
-        .all();
-      errors = (result.results as any[]).map((row: any) => ({
+        .all<ParseErrorRow>();
+      errors = result.results.map(row => ({
         id: row.id,
         document_number: row.document_number,
         pdf_url: row.pdf_url,
@@ -114,7 +131,7 @@ async function retryError(context: {
       `SELECT * FROM parse_errors WHERE id = ?1`
     )
       .bind(errorId)
-      .first<any>();
+      .first<ParseErrorRow>();
 
     if (!errorRecord) {
       return Response.json({ error: 'Error not found' }, { status: 404 });
@@ -126,6 +143,18 @@ async function retryError(context: {
     )
       .bind(errorId)
       .run();
+
+    // Log the retry action
+    await logAudit(env, {
+      action: 'retry_parse_error',
+      performedBy: context.auth.user.login,
+      targetType: AuditTargetTypes.ERROR_LOG,
+      targetId: errorId,
+      details: {
+        stage: errorRecord.stage,
+        error_type: errorRecord.error_type,
+      },
+    });
 
     // TODO: Implement actual retry logic based on error stage
     // This would trigger the appropriate pipeline step:
@@ -149,12 +178,76 @@ async function retryError(context: {
   }
 }
 
-export const onRequestGet = withAuth(handleGetErrors);
+/**
+ * DELETE /api/admin/errors/:id
+ * Delete an error log entry
+ */
+async function deleteError(context: {
+  request: Request;
+  env: Env;
+  auth: AuthContext;
+  params: { id: string };
+}) {
+  const { env, params } = context;
+  const errorId = params.id;
+
+  try {
+    // Get the error record before deleting for audit log
+    const errorRecord = await env.BETTERLB_DB.prepare(
+      `SELECT * FROM parse_errors WHERE id = ?1`
+    )
+      .bind(errorId)
+      .first<ParseErrorRow>();
+
+    if (!errorRecord) {
+      return Response.json({ error: 'Error not found' }, { status: 404 });
+    }
+
+    // Delete the error record
+    await env.BETTERLB_DB.prepare(`DELETE FROM parse_errors WHERE id = ?1`)
+      .bind(errorId)
+      .run();
+
+    // Log the deletion
+    await logAudit(env, {
+      action: AuditActions.DELETE_ERROR_LOG,
+      performedBy: context.auth.user.login,
+      targetType: AuditTargetTypes.ERROR_LOG,
+      targetId: errorId,
+      details: {
+        stage: errorRecord.stage,
+        error_type: errorRecord.error_type,
+        document_number: errorRecord.document_number,
+      },
+    });
+
+    return Response.json({
+      success: true,
+      message: `Error ${errorId} deleted`,
+    });
+  } catch (error) {
+    console.error('Error deleting error log:', error);
+    return Response.json(
+      { error: 'Failed to delete error log' },
+      { status: 500 }
+    );
+  }
+}
+
+export const onRequestGet = withAuth(handleGetErrors, { requireCSRF: true });
 
 export async function onRequestPost(context: {
   request: Request;
   env: Env;
   params: { id: string };
 }) {
-  return withAuth(retryError)(context);
+  return withAuth(retryError, { requireCSRF: true })(context);
+}
+
+export async function onRequestDelete(context: {
+  request: Request;
+  env: Env;
+  params: { id: string };
+}) {
+  return withAuth(deleteError, { requireCSRF: true })(context);
 }

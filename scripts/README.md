@@ -9,6 +9,56 @@ Scripts in this directory handle:
 - Sitemap generation
 - Build automation
 - Data validation
+- **Database migrations**
+
+---
+
+## Database Migration Scripts
+
+### `migrate.sh`
+
+Automated D1 database migration management with safety checks and tracking.
+
+**Purpose:**
+Manages database schema changes across local, preview, and production environments with automatic migration tracking and safety verification.
+
+**Features:**
+- ✅ Automatic migration discovery and execution
+- ✅ Migration state tracking (applied vs pending)
+- ✅ Safety checks (DROP TABLE, UPDATE/DELETE without WHERE)
+- ✅ Production confirmation prompts
+- ✅ Status reporting across environments
+- ✅ CI/CD integration
+
+**Usage:**
+
+```bash
+# Run migrations on local database
+npm run db:migrate
+# or: ./scripts/migrate.sh local
+
+# Run migrations on production (with confirmation)
+npm run db:migrate:remote
+# or: ./scripts/migrate.sh remote
+
+# Check migration status
+npm run db:migrate:status
+# or: ./scripts/migrate.sh status
+
+# Create new migration file
+npm run db:migrate:create <migration_name>
+# or: ./scripts/migrate.sh create <migration_name>
+
+# Verify migration safety
+./scripts/migrate.sh verify
+```
+
+**Migration Tracking:**
+- `schema_migrations` table tracks applied migrations
+- Migration files in `db/migrations/` with numeric prefixes
+- Skips already-applied migrations automatically
+
+**See `docs/DATABASE-MIGRATION-AUTOMATION.md` for complete guide.**
 
 ---
 

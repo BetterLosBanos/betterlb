@@ -36,7 +36,7 @@ export const Footer: FC = () => {
   };
 
   return (
-    <footer className='bg-gray-900 selection:bg-primary-500 text-kapwa-text-inverse selection:text-kapwa-text-inverse'>
+    <footer className='bg-kapwa-bg-surface-bold selection:bg-primary-500 text-kapwa-text-inverse selection:text-kapwa-text-inverse'>
       <div className='container px-4 pt-16 pb-12 mx-auto'>
         <div className='grid grid-cols-1 gap-x-8 gap-y-12 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-6'>
           {/* Brand Column */}

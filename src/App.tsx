@@ -26,6 +26,7 @@ import SearchPage from '@/pages/Search';
 import TermsOfService from '@/pages/TermsOfService';
 import AboutPage from '@/pages/about';
 import AccessibilityPage from '@/pages/accessibility';
+import AdminAuditLog from '@/pages/admin/AuditLog';
 import AdminDocuments from '@/pages/admin/Documents';
 import AdminErrorLog from '@/pages/admin/ErrorLog';
 import AdminReconcile from '@/pages/admin/Reconcile';
@@ -47,8 +48,6 @@ import DepartmentDetail from '@/pages/government/departments/[department]';
 import DepartmentsLayout from '@/pages/government/departments/layout';
 // --- Directory Modules ---
 import ElectedOfficialsIndex from '@/pages/government/elected-officials';
-import LegislativeChamber from '@/pages/government/elected-officials/[chamber]';
-import ExecutiveBranchPage from '@/pages/government/elected-officials/executive-branch';
 import ElectedOfficialsLayout from '@/pages/government/elected-officials/layout';
 import MunicipalCommitteesPage from '@/pages/government/elected-officials/municipal-committees';
 import GovernmentRootLayout from '@/pages/government/layout';
@@ -125,19 +124,10 @@ function AppContent() {
         <Route path='/government' element={<GovernmentRootLayout />}>
           <Route index element={<Navigate to='elected-officials' replace />} />
 
-          {/* 1. Elected Officials & Executive Branch */}
+          {/* 1. Elected Officials */}
           <Route path='elected-officials' element={<ElectedOfficialsLayout />}>
             <Route index element={<ElectedOfficialsIndex />} />
-
-            {/* Unified Executive Route */}
-            <Route path='executive-branch' element={<ExecutiveBranchPage />} />
-
-            {/* Legislative Chamber Details */}
-            <Route path=':chamber' element={<LegislativeChamber />} />
-            <Route
-              path='municipal-committees'
-              element={<MunicipalCommitteesPage />}
-            />
+            <Route path='committees' element={<MunicipalCommitteesPage />} />
           </Route>
 
           {/* 2. Municipal Departments */}
@@ -196,6 +186,7 @@ function AppContent() {
           <Route path='persons/merge' element={<PersonMergeTool />} />
           <Route path='persons/deletion-queue' element={<DeletionQueue />} />
           <Route path='errors' element={<AdminErrorLog />} />
+          <Route path='audit-logs' element={<AdminAuditLog />} />
           <Route path='review-queue' element={<AdminReviewQueue />} />
           <Route path='reconcile' element={<AdminReconcile />} />
         </Route>

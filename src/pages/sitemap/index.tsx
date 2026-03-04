@@ -29,7 +29,7 @@ const SitemapPage: FC = () => {
   const sitemapSections: SitemapSection[] = [
     {
       title: 'Main Pages',
-      icon: <Home className='h-5 w-5' />,
+      icon: <Home className='w-5 h-5' />,
       links: [
         { title: 'Home', url: '/', description: 'Main landing page' },
         { title: 'About', url: '/about', description: 'About BetterGov.ph' },
@@ -47,7 +47,7 @@ const SitemapPage: FC = () => {
     },
     {
       title: 'Philippines',
-      icon: <Globe className='h-5 w-5' />,
+      icon: <Globe className='w-5 h-5' />,
       links: [
         {
           title: 'About the Philippines',
@@ -81,14 +81,14 @@ const SitemapPage: FC = () => {
         },
         {
           title: 'Hotlines',
-          url: 'https://hotlines.bettergov.ph/',
+          url: 'https://hotlines.bettergov.ph/?city=los%20baños&province=laguna',
           description: 'Emergency and important contact numbers',
         },
       ],
     },
     {
       title: 'Government',
-      icon: <Building2 className='h-5 w-5' />,
+      icon: <Building2 className='w-5 h-5' />,
       links: [
         {
           title: 'Executive Branch',
@@ -175,7 +175,7 @@ const SitemapPage: FC = () => {
     },
     {
       title: 'Services',
-      icon: <FileText className='h-5 w-5' />,
+      icon: <FileText className='w-5 h-5' />,
       links: [
         {
           title: 'All Services',
@@ -251,7 +251,7 @@ const SitemapPage: FC = () => {
     },
     {
       title: 'Travel',
-      icon: <Briefcase className='h-5 w-5' />,
+      icon: <Briefcase className='w-5 h-5' />,
       links: [
         {
           title: 'Visa Information',
@@ -272,7 +272,7 @@ const SitemapPage: FC = () => {
     },
     {
       title: 'Data Services',
-      icon: <FileCheck className='h-5 w-5' />,
+      icon: <FileCheck className='w-5 h-5' />,
       links: [
         {
           title: 'Weather',
@@ -288,7 +288,7 @@ const SitemapPage: FC = () => {
     },
     {
       title: 'Infrastructure',
-      icon: <Waves className='h-5 w-5' />,
+      icon: <Waves className='w-5 h-5' />,
       links: [
         {
           title: 'Flood Control Projects',
@@ -317,7 +317,7 @@ const SitemapPage: FC = () => {
   ];
 
   return (
-    <div className='bg-kapwa-bg-surface-raised min-h-screen py-12'>
+    <div className='py-12 min-h-screen bg-kapwa-bg-surface-raised'>
       <SEO
         title='Sitemap | BetterGov.ph'
         description='Complete sitemap of BetterGov.ph - Find all pages and services available on the Philippine Government Portal.'
@@ -330,14 +330,14 @@ const SitemapPage: FC = () => {
         ]}
       />
 
-      <div className='container mx-auto px-4'>
+      <div className='container px-4 mx-auto'>
         <div className='mx-auto max-w-5xl'>
-          <div className='bg-kapwa-bg-surface overflow-hidden rounded-xl shadow-xs'>
-            <div className='border-kapwa-border-weak border-b p-6 md:p-8'>
-              <h1 className='text-kapwa-text-strong text-3xl font-bold'>
+          <div className='overflow-hidden rounded-xl bg-kapwa-bg-surface shadow-xs'>
+            <div className='p-6 border-b border-kapwa-border-weak md:p-8'>
+              <h1 className='text-3xl font-bold text-kapwa-text-strong'>
                 Sitemap
               </h1>
-              <p className='text-kapwa-text-support mt-2'>
+              <p className='mt-2 text-kapwa-text-support'>
                 A complete guide to all pages and services available on
                 BetterGov.ph
               </p>
@@ -347,11 +347,11 @@ const SitemapPage: FC = () => {
               <div className='space-y-12'>
                 {sitemapSections.map((section, index) => (
                   <div key={index}>
-                    <div className='mb-4 flex items-center'>
-                      <div className='bg-kapwa-bg-surface text-kapwa-text-brand mr-3 rounded-md p-2'>
+                    <div className='flex items-center mb-4'>
+                      <div className='p-2 mr-3 rounded-md bg-kapwa-bg-surface text-kapwa-text-brand'>
                         {section.icon}
                       </div>
-                      <h2 className='text-kapwa-text-strong text-xl font-bold'>
+                      <h2 className='text-xl font-bold text-kapwa-text-strong'>
                         {section.title}
                       </h2>
                     </div>
@@ -361,16 +361,16 @@ const SitemapPage: FC = () => {
                         <Link
                           key={linkIndex}
                           to={link.url}
-                          className='group hover:border-kapwa-border-brand hover:bg-kapwa-bg-surface-brand border-kapwa-border-weak flex flex-col rounded-lg border p-4 transition-colors'
+                          className='flex flex-col p-4 rounded-lg border transition-colors group hover:border-kapwa-border-brand hover:bg-kapwa-bg-surface-brand border-kapwa-border-weak'
                         >
-                          <div className='mb-2 flex items-center justify-between'>
-                            <h3 className='group-hover:text-kapwa-text-brand text-kapwa-text-strong font-medium'>
+                          <div className='flex justify-between items-center mb-2'>
+                            <h3 className='font-medium group-hover:text-kapwa-text-brand text-kapwa-text-strong'>
                               {link.title}
                             </h3>
-                            <ChevronRight className='group-hover:text-kapwa-text-link text-kapwa-text-disabled h-4 w-4' />
+                            <ChevronRight className='w-4 h-4 group-hover:text-kapwa-text-link text-kapwa-text-disabled' />
                           </div>
                           {link.description && (
-                            <p className='text-kapwa-text-support text-sm'>
+                            <p className='text-sm text-kapwa-text-support'>
                               {link.description}
                             </p>
                           )}
@@ -383,7 +383,7 @@ const SitemapPage: FC = () => {
             </div>
           </div>
 
-          <div className='text-kapwa-text-support mt-8 text-center text-sm'>
+          <div className='mt-8 text-sm text-center text-kapwa-text-support'>
             <p>
               Can&apos;t find what you&apos;re looking for? Try using our{' '}
               <Link

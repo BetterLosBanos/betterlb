@@ -1,0 +1,36 @@
+#!/bin/sh
+# Pre-commit hook to validate code quality
+# Prevents raw color tokens in navigation pages and runs lint-staged
+
+set -e
+
+echo "🔍 Running pre-commit checks..."
+
+# Check for raw color tokens in navigation pages
+echo ""
+echo "🎨 Checking for raw color tokens in navigation pages..."
+
+if grep -rn "bg-gray-\|text-gray-\|border-gray-\|bg-slate-\|text-slate-\|border-slate-" \
+  src/pages/services src/pages/government src/pages/statistics \
+  src/pages/transparency src/pages/openlgu --include="*.tsx" 2>/dev/null | \
+  grep -v "reference-implementation"; then
+  echo ""
+  echo "❌ Raw color tokens found in navigation pages!"
+  echo "Please use Kapwa semantic tokens:"
+  echo "  - Backgrounds: bg-kapwa-bg-*"
+  echo "  - Text: text-kapwa-text-*"
+  echo "  - Borders: border-kapwa-border-*"
+  echo ""
+  echo "Reference: Navigation Design System Specification (docs/navigation-design-system-spec.md)"
+  exit 1
+fi
+
+echo "✅ No raw color tokens found in navigation pages"
+
+# Run lint-staged for automatic formatting and linting
+echo ""
+echo "🔧 Running lint-staged..."
+npx lint-staged
+
+echo ""
+echo "✅ Pre-commit checks passed!"

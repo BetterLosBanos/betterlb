@@ -5,7 +5,7 @@ import { Link, useLocation } from 'react-router-dom';
 import { ChevronDownIcon, MenuIcon, SearchIcon, XIcon } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
 
-import { Button } from '@bettergov/kapwa';
+import { Button } from '@bettergov/kapwa/button';
 
 import { config } from '@/lib/lguConfig';
 import { cn } from '@/lib/utils';
@@ -51,8 +51,8 @@ export const Navbar: FC = () => {
     >
       {/* 1. TOP BAR: Responsive & Aligned Right */}
       <div className='border-b border-kapwa-border-weak bg-kapwa-bg-surface-raised'>
-        <div className='container mx-auto px-4'>
-          <div className='flex h-10 items-center justify-end gap-3 sm:gap-4 md:gap-6'>
+        <div className='container px-4 mx-auto'>
+          <div className='flex gap-3 justify-end items-center h-10 sm:gap-4 md:gap-6'>
             <Link
               to='/join-us'
               className='text-kapwa-text-brand hover:text-kapwa-text-link-hover hidden text-[10px] font-bold tracking-widest whitespace-nowrap uppercase md:inline-flex md:text-xs'
@@ -75,12 +75,12 @@ export const Navbar: FC = () => {
               <span className='hidden sm:inline'>Official Gov.ph</span>
             </a>
             <Link
-              to='https://hotlines.bettergov.ph/'
+              to='https://hotlines.bettergov.ph/?city=los%20baños&province=laguna'
               className='hover:text-kapwa-text-brand inline-flex text-[9px] font-bold tracking-widest whitespace-nowrap text-kapwa-text-support uppercase sm:text-[10px] md:text-xs'
             >
               Hotlines
             </Link>
-            <div className='flex shrink-0 items-center border-l border-kapwa-border-weak pl-2'>
+            <div className='flex items-center pl-2 border-l shrink-0 border-kapwa-border-weak'>
               <select
                 aria-label='Select Language'
                 value={i18n.language}
@@ -99,8 +99,8 @@ export const Navbar: FC = () => {
       </div>
 
       {/* 2. MAIN NAV: Desktop Dropdowns + Mobile Toggle */}
-      <div className='container mx-auto px-4'>
-        <div className='flex h-16 items-center justify-between md:h-20'>
+      <div className='container px-4 mx-auto'>
+        <div className='flex justify-between items-center h-16 md:h-20'>
           {/* Brand/Logo Section (Constrained) */}
           <Link
             to='/'
@@ -110,10 +110,10 @@ export const Navbar: FC = () => {
             <img
               src='/logos/webp/betterlb-blue-outline.webp'
               alt='BetterLB Logo'
-              className='mr-3 h-10 w-10 shrink-0 transition-transform group-hover:scale-105 md:h-12 md:w-12'
+              className='mr-3 w-10 h-10 transition-transform shrink-0 group-hover:scale-105 md:h-12 md:w-12'
             />
-            <div className='flex min-w-0 flex-col justify-center'>
-              <div className='text-lg leading-none font-black tracking-tighter text-kapwa-text-strong md:text-xl'>
+            <div className='flex flex-col justify-center min-w-0'>
+              <div className='text-lg font-black tracking-tighter leading-none text-kapwa-text-strong md:text-xl'>
                 {config.portal.name}
               </div>
               <div className='line-clamp-2 text-[9px] leading-tight font-medium text-kapwa-text-support md:line-clamp-1 md:text-xs md:leading-normal'>
@@ -131,7 +131,7 @@ export const Navbar: FC = () => {
               return (
                 <div
                   key={item.label}
-                  className='relative flex h-full items-center'
+                  className='flex relative items-center h-full'
                   onMouseEnter={() =>
                     hasChildren && setHoveredDropdown(item.label)
                   }
@@ -140,10 +140,10 @@ export const Navbar: FC = () => {
                   <Link
                     to={item.href}
                     className={cn(
-                      'flex items-center gap-1 border-b-2 px-3 py-2 text-sm font-bold tracking-widest uppercase transition-all',
+                      'flex gap-1 items-center px-3 py-2 text-sm font-bold tracking-widest uppercase border-b-2 transition-all',
                       active
                         ? 'text-kapwa-text-brand border-kapwa-border-brand'
-                        : 'hover:text-kapwa-text-brand border-transparent text-kapwa-text-strong'
+                        : 'border-transparent hover:text-kapwa-text-brand text-kapwa-text-strong'
                     )}
                   >
                     {t(`navbar.${item.label.toLowerCase()}`)}
@@ -159,12 +159,12 @@ export const Navbar: FC = () => {
 
                   {/* Desktop Dropdown Menu */}
                   {hasChildren && hoveredDropdown === item.label && (
-                    <div className='animate-in fade-in slide-in-from-top-2 absolute top-full left-0 w-64 rounded-b-xl border border-kapwa-border-weak bg-kapwa-bg-surface py-2 shadow-xl duration-200'>
+                    <div className='absolute left-0 top-full py-2 w-64 rounded-b-xl border shadow-xl duration-200 animate-in fade-in slide-in-from-top-2 border-kapwa-border-weak bg-kapwa-bg-surface'>
                       {item.children?.map(child => (
                         <Link
                           key={child.label}
                           to={child.href}
-                          className='hover:bg-kapwa-bg-surface-raised hover:text-kapwa-text-link-hover block px-5 py-3 text-xs font-bold tracking-wider text-kapwa-text-strong uppercase transition-colors'
+                          className='block px-5 py-3 text-xs font-bold tracking-wider uppercase transition-colors hover:bg-kapwa-bg-surface-raised hover:text-kapwa-text-link-hover text-kapwa-text-strong'
                           onClick={closeMenu}
                         >
                           {child.label}
@@ -177,32 +177,32 @@ export const Navbar: FC = () => {
             })}
             <Link
               to='/search'
-              className='hover:text-kapwa-text-brand ml-4 p-3 text-kapwa-text-strong transition-colors'
+              className='p-3 ml-4 transition-colors hover:text-kapwa-text-brand text-kapwa-text-strong'
               aria-label='Search'
             >
-              <SearchIcon className='h-5 w-5' />
+              <SearchIcon className='w-5 h-5' />
             </Link>
           </div>
 
           {/* Mobile Buttons */}
-          <div className='flex items-center gap-1 lg:hidden'>
+          <div className='flex gap-1 items-center lg:hidden'>
             <Link
               to='/search'
               className='p-3 text-kapwa-text-strong'
               aria-label='Search'
             >
-              <SearchIcon className='h-6 w-6' />
+              <SearchIcon className='w-6 h-6' />
             </Link>
             <Button
               onClick={toggleMenu}
               variant='ghost'
               aria-label='Toggle Menu'
-              className='rounded-xl bg-kapwa-bg-surface-raised p-3 text-kapwa-text-strong'
+              className='p-3 rounded-xl bg-kapwa-bg-surface-raised text-kapwa-text-strong'
             >
               {isOpen ? (
-                <XIcon className='h-6 w-6' />
+                <XIcon className='w-6 h-6' />
               ) : (
-                <MenuIcon className='h-6 w-6' />
+                <MenuIcon className='w-6 h-6' />
               )}
             </Button>
           </div>
@@ -256,13 +256,13 @@ export const Navbar: FC = () => {
 
                   {/* Mobile Submenu Items */}
                   {hasChildren && isSubOpen && (
-                    <div className='animate-in slide-in-from-top-2 mx-2 mb-2 overflow-hidden rounded-2xl bg-kapwa-bg-surface-raised'>
+                    <div className='overflow-hidden mx-2 mb-2 rounded-2xl animate-in slide-in-from-top-2 bg-kapwa-bg-surface-raised'>
                       {item.children?.map(child => (
                         <Link
                           key={child.label}
                           to={child.href}
                           onClick={closeMenu}
-                          className='block border-b border-kapwa-bg-surface p-4 text-sm font-bold text-kapwa-text-strong last:border-0'
+                          className='block p-4 text-sm font-bold border-b border-kapwa-bg-surface text-kapwa-text-strong last:border-0'
                         >
                           {child.label}
                         </Link>
@@ -274,25 +274,25 @@ export const Navbar: FC = () => {
             })}
 
             {/* Mobile-only additional links */}
-            <div className='mt-4 space-y-1 border-t border-kapwa-border-weak pt-4'>
+            <div className='pt-4 mt-4 space-y-1 border-t border-kapwa-border-weak'>
               <Link
                 to='/join-us'
                 onClick={closeMenu}
-                className='text-kapwa-text-brand block p-4 text-xs font-black tracking-widest uppercase'
+                className='block p-4 text-xs font-black tracking-widest uppercase text-kapwa-text-brand'
               >
                 🚀 Join the Revolution
               </Link>
               <Link
                 to='/about'
                 onClick={closeMenu}
-                className='block p-4 text-xs font-bold tracking-widest text-kapwa-text-support uppercase'
+                className='block p-4 text-xs font-bold tracking-widest uppercase text-kapwa-text-support'
               >
                 About Better LB
               </Link>
               <Link
                 to='/contact'
                 onClick={closeMenu}
-                className='block p-4 text-xs font-bold tracking-widest text-kapwa-text-support uppercase'
+                className='block p-4 text-xs font-bold tracking-widest uppercase text-kapwa-text-support'
               >
                 Contact Us
               </Link>

@@ -1,6 +1,6 @@
 import { useEffect, useMemo, useState } from 'react';
 
-import { Button } from '@bettergov/kapwa';
+import { Button } from '@bettergov/kapwa/button';
 import {
   BarChart3,
   Briefcase,
@@ -171,7 +171,7 @@ export default function ProcurementPage() {
 
     const timer = setTimeout(fetchData, 400);
     return () => clearTimeout(timer);
-  }, [query, currentPage, resultsPerPage]);
+  }, [query, currentPage, resultsPerPage]); // eslint-disable-line react-hooks/exhaustive-deps -- ORG_NAME and ORG_FILTER are config-derived constants; precomputedStats is only read conditionally
 
   // --- Derived Statistics ---
   const detailedStats = useMemo(() => {

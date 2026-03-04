@@ -63,7 +63,7 @@ export default function MunicipalIncomePage() {
   );
 
   return (
-    <div className='animate-in fade-in space-y-10 pb-20 duration-500'>
+    <>
       {/* PageHero - documented pattern for layout headers */}
       <PageHero
         title='Municipal Income'
@@ -78,49 +78,53 @@ export default function MunicipalIncomePage() {
       </PageHero>
 
       {/* KPI Cards - using StatGrid with StatCard */}
-      <StatGrid
-        columns={3}
-        stats={[
-          {
-            label: 'Total Income',
-            value: formatPesoAdaptive(
-              data.summary_indicators.annual_regular_income * 1_000_000
-            ).fullString,
-            subtext: 'Annual Revenue',
-            variant: 'primary',
-          },
-          {
-            label: 'Local Sufficiency',
-            value: `${data.summary_indicators.dependency_rates.lsr_dependency}`,
-            subtext: 'LSR Share',
-            variant: 'secondary',
-          },
-          {
-            label: 'NTA Dependency',
-            value: `${data.summary_indicators.dependency_rates.nta_dependency}`,
-            subtext: 'National Allotment',
-            variant: 'slate',
-            icon: Wallet,
-          },
-        ]}
-      />
+      <div className='mb-kapwa-lg'>
+        <StatGrid
+          columns={3}
+          stats={[
+            {
+              label: 'Total Income',
+              value: formatPesoAdaptive(
+                data.summary_indicators.annual_regular_income * 1_000_000
+              ).fullString,
+              subtext: 'Annual Revenue',
+              variant: 'primary',
+            },
+            {
+              label: 'Local Sufficiency',
+              value: `${data.summary_indicators.dependency_rates.lsr_dependency}`,
+              subtext: 'LSR Share',
+              variant: 'secondary',
+            },
+            {
+              label: 'NTA Dependency',
+              value: `${data.summary_indicators.dependency_rates.nta_dependency}`,
+              subtext: 'National Allotment',
+              variant: 'slate',
+              icon: Wallet,
+            },
+          ]}
+        />
+      </div>
 
       {/* Chart wrapped in DetailSection */}
-      <DetailSection title='Revenue Composition' icon={Landmark}>
-        <div className='flex justify-center'>
-          <FinancialPieChart
-            title='Revenue Composition'
-            icon={Landmark}
-            data={drillDownIncomeData}
-            colors={[
-              COLORS.national,
-              COLORS.local,
-              COLORS.special,
-              COLORS.other,
-            ]}
-          />
-        </div>
-      </DetailSection>
+      <div className='mb-kapwa-lg'>
+        <DetailSection title='Revenue Composition' icon={Landmark}>
+          <div className='flex justify-center'>
+            <FinancialPieChart
+              title='Overview'
+              icon={Landmark}
+              data={drillDownIncomeData}
+              colors={[
+                COLORS.national,
+                COLORS.local,
+                COLORS.special,
+                COLORS.other,
+              ]}
+            />
+          </div>
+        </DetailSection>
+      </div>
 
       {/* Full Financial Itemization */}
       <DetailSection title='Full Financial Itemization' icon={Coins}>
@@ -183,7 +187,7 @@ export default function MunicipalIncomePage() {
             </div>
           </div>
           <div className='space-y-4'>
-            <h4 className='border-b pb-2 text-[10px] font-black tracking-widest text-emerald-600 uppercase'>
+            <h4 className='border-b pb-2 text-[10px] font-black tracking-widest text-kapwa-text-success uppercase'>
               External
             </h4>
             <div className='text-kapwa-text-support space-y-2 text-sm font-bold'>
@@ -215,7 +219,7 @@ export default function MunicipalIncomePage() {
 
       {/* Footer */}
       <footer className='border-kapwa-border-weak space-y-4 border-t pt-10 text-center'>
-        <div className='mx-auto flex h-6 w-6 items-center justify-center rounded-full bg-emerald-100 text-emerald-600'>
+        <div className='bg-kapwa-bg-success-weak text-kapwa-text-success mx-auto flex h-6 w-6 items-center justify-center rounded-full'>
           <svg
             className='h-4 w-4'
             fill='none'
@@ -247,6 +251,6 @@ export default function MunicipalIncomePage() {
           </p>
         </div>
       </footer>
-    </div>
+    </>
   );
 }

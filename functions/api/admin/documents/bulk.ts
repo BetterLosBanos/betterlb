@@ -5,6 +5,11 @@
 import { Env } from '../../../types';
 import { AuthContext, withAuth } from '../../../utils/admin-auth';
 import { parseJsonBody, validateJsonContentType } from '../../../utils/request';
+import {
+  logAudit,
+  AuditActions,
+  AuditTargetTypes,
+} from '../../../utils/audit-log';
 
 const MAX_BATCH_SIZE = 100;
 
@@ -222,27 +227,18 @@ async function handleBulkCreateDocuments(context: {
       }
     }
 
-    // Log to audit trail
-    try {
-      await env.BETTERLB_DB.prepare(
-        `INSERT INTO admin_audit_log (action, performed_by, target_type, target_id, details, created_at)
-         VALUES (?1, ?2, ?3, ?4, ?5, datetime('now'))`
-      )
-        .bind(
-          'bulk_create_documents',
-          auth.user.login,
-          'batch',
-          body.session_id,
-          JSON.stringify({
-            created_count: created.length,
-            duplicate_count: duplicates.length,
-            error_count: errors.length,
-          })
-        )
-        .run();
-    } catch (logError) {
-      console.error('Failed to write audit log:', logError);
-    }
+    // Log to audit trail using centralized utility
+    await logAudit(env, {
+      action: AuditActions.BULK_CREATE_DOCUMENTS,
+      performedBy: auth.user.login,
+      targetType: AuditTargetTypes.BATCH,
+      targetId: body.session_id,
+      details: {
+        created_count: created.length,
+        duplicate_count: duplicates.length,
+        error_count: errors.length,
+      },
+    });
 
     return Response.json({
       success: true,

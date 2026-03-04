@@ -1,6 +1,6 @@
 import { useCallback, useEffect, useState } from 'react';
 
-import { Button } from '@bettergov/kapwa';
+import { Button } from '@bettergov/kapwa/button';
 import { AlertCircle, UserCheck, UserX } from 'lucide-react';
 
 import { Badge } from '@/components/ui/Badge';

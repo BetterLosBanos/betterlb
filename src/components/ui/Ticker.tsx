@@ -136,7 +136,7 @@ const Ticker: FC = () => {
                 }`}
               >
                 <div className='inline-flex items-center space-x-1'>
-                  <span className='opacity-80' style={{ color: '#d4a855' }}>
+                  <span className='opacity-80 text-kapwa-yellow-500'>
                     {getCurrencyIcon(currentRate.code)}
                   </span>
                   <span className='text-kapwa-text-inverse kapwa-body-xs-default kapwa-body-xs-strong'>

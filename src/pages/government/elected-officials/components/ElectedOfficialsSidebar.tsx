@@ -1,4 +1,4 @@
-import { BookOpenIcon, BuildingIcon, UsersIcon } from 'lucide-react';
+import { BookOpenIcon, BuildingIcon } from 'lucide-react';
 
 import {
   SidebarContainer,
@@ -9,12 +9,12 @@ import {
 export default function ElectedOfficialsSidebar() {
   const groups = [
     {
-      title: 'Executive',
+      title: 'Officials',
       items: [
         {
-          label: 'Leadership & Management',
+          label: 'Elected Officials',
           icon: BuildingIcon,
-          path: '/government/elected-officials/executive-branch',
+          path: '/government/elected-officials',
         },
       ],
     },
@@ -22,21 +22,16 @@ export default function ElectedOfficialsSidebar() {
       title: 'Legislative',
       items: [
         {
-          label: 'Municipal Council',
-          icon: UsersIcon,
-          path: '/government/elected-officials/12th-sangguniang-bayan',
-        },
-        {
           label: 'Standing Committees',
           icon: BookOpenIcon,
-          path: '/government/elected-officials/municipal-committees',
+          path: '/government/elected-officials/committees',
         },
       ],
     },
   ];
 
   return (
-    <SidebarContainer title='Elected Officials'>
+    <SidebarContainer title='Municipal Government'>
       {groups.map(group => (
         <SidebarGroup key={group.title} title={group.title}>
           {group.items.map(item => (

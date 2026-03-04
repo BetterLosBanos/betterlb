@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 
-import { Button } from '@bettergov/kapwa';
+import { Button } from '@bettergov/kapwa/button';
 import { Calendar, Check, RefreshCw, Users, X } from 'lucide-react';
 
 import { Badge } from '@/components/ui/Badge';

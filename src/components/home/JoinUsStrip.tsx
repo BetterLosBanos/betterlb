@@ -9,7 +9,7 @@ const JoinUsStrip: FC = () => {
   const { t } = useTranslation('common');
 
   return (
-    <div className='text-kapwa-text-inverse relative overflow-hidden bg-linear-to-r from-orange-500 via-red-500 to-pink-500 py-3'>
+    <div className='text-kapwa-text-inverse relative overflow-hidden bg-linear-to-r from-kapwa-accent-orange-default via-kapwa-accent-red-default to-kapwa-accent-pink-default py-3'>
       <div className='bg-kapwa-bg-surface-bold/10 absolute inset-0'></div>
 
       {/* Animated background elements */}
@@ -27,14 +27,12 @@ const JoinUsStrip: FC = () => {
         <div className='flex flex-col items-center justify-between gap-2 sm:flex-row'>
           <div className='flex items-center gap-3'>
             <div className='flex items-center gap-2'>
-              <div className='rounded-full bg-yellow-300/30 p-1.5'>
-                <UsersIcon className='h-4 w-4 text-yellow-200' />
+              <div className='rounded-full bg-kapwa-bg-warning-weak p-1.5'>
+                <UsersIcon className='h-4 w-4 text-kapwa-text-inverse' />
               </div>
-              <span className='text-sm font-bold'>
-                {t('joinUs.stripTitle')}
-              </span>
+              <span className='kapwa-label-md'>{t('joinUs.stripTitle')}</span>
             </div>
-            <span className='hidden text-sm text-orange-100 md:inline'>
+            <span className='hidden kapwa-body-md-default text-kapwa-text-inverse md:inline'>
               {t('joinUs.stripSubtitle')}
             </span>
           </div>
@@ -42,7 +40,7 @@ const JoinUsStrip: FC = () => {
           <div className='flex items-center gap-3'>
             <Link
               to='/join-us'
-              className='text-kapwa-text-strong inline-flex transform items-center gap-2 rounded-full bg-yellow-300 px-4 py-1.5 text-sm font-semibold whitespace-nowrap transition-all hover:scale-105 hover:bg-yellow-200'
+              className='text-kapwa-text-strong inline-flex transform items-center gap-2 rounded-full bg-kapwa-bg-warning-default px-4 py-1.5 kapwa-label-md whitespace-nowrap transition-all hover:scale-105 hover:bg-kapwa-bg-warning-hover'
             >
               {t('joinUs.joinNow')}
               <ArrowRightIcon className='h-3 w-3' />
@@ -51,7 +49,7 @@ const JoinUsStrip: FC = () => {
               href='https://discord.gg/mHtThpN8bT'
               target='_blank'
               rel='noreferrer'
-              className='text-xs text-yellow-200 underline transition-colors hover:text-yellow-100'
+              className='kapwa-body-sm-default text-kapwa-text-inverse underline transition-colors hover:text-kapwa-text-inverse-strong'
             >
               {t('joinUs.discord')}
             </a>
