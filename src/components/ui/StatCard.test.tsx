@@ -318,9 +318,10 @@ describe('StatCard Component', () => {
 
     it('handles very long values', () => {
       // Pass as number to trigger toLocaleString formatting
-      render(<StatCard label='Test' value={999999999999999999999} />);
-      // toLocaleString formats this as 1,000,000,000,000,000,000,000
-      const value = screen.getByText('1,000,000,000,000,000,000,000');
+      // Use number within safe integer range (Number.MAX_SAFE_INTEGER = 9007199254740991)
+      render(<StatCard label='Test' value={9007199254740991} />);
+      // toLocaleString formats this as 9,007,199,254,740,991
+      const value = screen.getByText('9,007,199,254,740,991');
       expect(value).toHaveClass('truncate');
     });
 

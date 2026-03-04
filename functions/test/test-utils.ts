@@ -169,7 +169,7 @@ class MockD1PreparedStatement implements D1PreparedStatement {
     const selectedColumns: string[] = [];
     // Maps source column (e.g., "m.role") to target alias (e.g., "m_role")
     // If no alias, maps to itself
-    let columnMap: Record<string, string> = {};
+    const columnMap: Record<string, string> = {};
 
     if (selectMatch) {
       const selectClause = selectMatch[1];

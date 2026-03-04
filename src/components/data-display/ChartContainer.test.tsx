@@ -283,7 +283,7 @@ describe('ChartTooltip Component', () => {
     });
 
     it('handles null values', () => {
-      const { container } = render(
+      render(
         <ChartTooltip
           active={true}
           payload={[{ name: 'Null', value: null, color: '#059669' }]}
@@ -298,7 +298,7 @@ describe('ChartTooltip Component', () => {
     });
 
     it('handles undefined values', () => {
-      const { container } = render(
+      render(
         <ChartTooltip
           active={true}
           payload={[{ name: 'Undefined', value: undefined, color: '#059669' }]}
