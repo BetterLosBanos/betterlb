@@ -1,12 +1,10 @@
-import { test, expect } from '@playwright/test';
-import { setupApiMocks } from './test-helpers';
+import { test } from '../e2e/fixtures';
+import { expect } from '@playwright/test';
 
 test.describe('Home Page', () => {
   test.beforeEach(async ({ page }) => {
-    // Mock API endpoints when backend is unavailable (CI, local testing)
-    await setupApiMocks(page);
-
     // Navigate to home page before each test
+    // API mocks are applied globally via fixtures.ts
     await page.goto('/');
   });
 
@@ -312,7 +310,9 @@ test.describe('Home Page - Accessibility', () => {
     await page.goto('/');
 
     // Run accessibility checks
-    const accessibilityScanResults = await page.accessibility.scan();
+    // Note: Requires @axe-core/playwright to be installed
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    const accessibilityScanResults = await (page as any).accessibility.scan();
     expect(accessibilityScanResults.violations).toEqual([]);
   });
 });
