@@ -1,3 +1,5 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
+// D1 database result typing uses any for dynamic schema mapping
 /**
  * Admin Reconcile API
  * GET /api/admin/reconcile - List conflicts between sources
@@ -6,6 +8,11 @@
  */
 import { Env } from '../../types';
 import { AuthContext, withAuth } from '../../utils/admin-auth';
+import {
+  logAudit,
+  AuditActions,
+  AuditTargetTypes,
+} from '../../utils/audit-log';
 
 type ReconcileStatus = 'unresolved' | 'resolved' | 'skipped';
 type ConflictType = 'moved_by' | 'seconded_by' | 'authors' | 'title' | 'none';
@@ -178,6 +185,19 @@ async function resolveConflict(context: {
       .bind(resolved_value, notes || '', documentId)
       .run();
 
+    // Log the reconciliation action
+    await logAudit(env, {
+      action: AuditActions.ACCEPT_RECONCILIATION,
+      performedBy: context.auth.user.login,
+      targetType: AuditTargetTypes.DOCUMENT,
+      targetId: documentId,
+      details: {
+        conflict_type: conflictType,
+        resolved_value,
+        notes,
+      },
+    });
+
     return Response.json({ success: true });
   } catch (error) {
     console.error('Error resolving conflict:', error);
@@ -209,6 +229,18 @@ async function skipConflict(context: {
 
     // For skipping, we just return success
     // In a real implementation with a conflicts table, we'd update it there
+
+    // Log the skip action
+    await logAudit(env, {
+      action: AuditActions.REJECT_RECONCILIATION,
+      performedBy: context.auth.user.login,
+      targetType: AuditTargetTypes.CONFLICT,
+      targetId: conflict_id,
+      details: {
+        skipped: true,
+      },
+    });
+
     return Response.json({ success: true, skipped: true });
   } catch (error) {
     console.error('Error skipping conflict:', error);
@@ -216,7 +248,7 @@ async function skipConflict(context: {
   }
 }
 
-export const onRequestGet = withAuth(handleGetReconcile);
+export const onRequestGet = withAuth(handleGetReconcile, { requireCSRF: true });
 
 export async function onRequestPost(context: { request: Request; env: Env }) {
   const { request } = context;
@@ -226,8 +258,8 @@ export async function onRequestPost(context: { request: Request; env: Env }) {
   // Route to appropriate handler
   // /api/admin/reconcile/skip -> pathParts[3] = "skip"
   if (pathParts[3] === 'skip') {
-    return withAuth(skipConflict)(context);
+    return withAuth(skipConflict, { requireCSRF: true })(context);
   }
 
-  return withAuth(resolveConflict)(context);
+  return withAuth(resolveConflict, { requireCSRF: true })(context);
 }

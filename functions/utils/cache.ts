@@ -3,7 +3,11 @@
  *
  * Provides standardized cache-control headers for different types of API responses.
  * This enables browser and CDN caching to reduce server load and improve response times.
+ *
+ * Now includes security headers middleware for all responses.
  */
+
+import { setSecurityHeaders } from './security-headers';
 
 /**
  * Cache configuration presets
@@ -101,7 +105,10 @@ export function cachedJson<T>(
   status: number = 200
 ): Response {
   const response = Response.json(data, { status });
-  return setCacheHeaders(response, config, data);
+  const withCache = setCacheHeaders(response, config, data);
+
+  // Apply security headers to all responses
+  return applySecurityHeaders(withCache);
 }
 
 /**
@@ -120,4 +127,15 @@ export function checkETag(
     return new Response(null, { status: 304 });
   }
   return null;
+}
+
+/**
+ * Apply security headers to a response
+ * Wrapper function for consistency with cache utilities
+ *
+ * @param response - Response object
+ * @returns Response with security headers
+ */
+function applySecurityHeaders(response: Response): Response {
+  return setSecurityHeaders(response);
 }

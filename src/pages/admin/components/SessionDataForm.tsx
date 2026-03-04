@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 
-import { Button } from '@bettergov/kapwa';
+import { Button } from '@bettergov/kapwa/button';
 import { Calendar, Check, FileText, Users } from 'lucide-react';
 import { X } from 'lucide-react';
 
@@ -122,7 +122,9 @@ export default function SessionDataForm({
         if (!response.ok) throw new Error('Failed to load session');
 
         const data = await response.json();
-        const absentIds = new Set(data.absences.map((a: any) => a.person_id));
+        const absentIds = new Set(
+          data.absences.map((a: { person_id: number }) => a.person_id)
+        );
         setAbsentPersonIds(absentIds);
       } catch (error) {
         console.error('Error loading absences:', error);
@@ -214,14 +216,6 @@ export default function SessionDataForm({
     } finally {
       setSaving(false);
     }
-  };
-
-  // Get display value with proper fallback
-  const getDisplayValue = (value: string | number): string => {
-    if (typeof value === 'number') {
-      return value.toLocaleString();
-    }
-    return value;
   };
 
   const presentCount = members.length - absentPersonIds.size;

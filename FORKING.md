@@ -72,6 +72,243 @@ The `/config/lgu.config.json` file contains all LGU-specific branding values in 
 
 ---
 
+## 🎨 Visual Assets (Branding)
+
+To replace BetterLB branding with your LGU's visual identity, you'll need to update logos, seals, and brand colors.
+
+### Quick Overview
+
+**What to Replace:**
+- ✅ Logo files (icon, horizontal, vertical variants)
+- ✅ LGU seal (official municipal seal)
+- ✅ Brand colors (primary, secondary colors)
+- ⚠️ Code references (if filenames change)
+
+**Estimated Time:** 30-60 minutes
+
+---
+
+### Step 1: Prepare Your Logo
+
+**Required Format:**
+- ✅ **SVG** (mandatory) - Scalable vector format for best quality
+- ⚠️ **PNG** (recommended) - Fallback for older browsers
+- ⚠️ **WebP** (optional) - Optimized web format for better performance
+
+**Recommended Logo Variants:**
+
+| Variant | Usage | Recommended Size |
+|---------|-------|------------------|
+| **Icon** | Favicons, avatars, small spaces | 64x64 to 256x256 |
+| **Horizontal** | Navbar, headers, wide layouts | 200-300px wide |
+| **Vertical** | Sidebars, cards, narrow spaces | 150-200px tall |
+
+**Tools for Creating Logos:**
+- **Vector (SVG):** [Inkscape](https://inkscape.org/) (free), [Figma](https://www.figma.com/) (free)
+- **Raster (PNG/WebP):** [GIMP](https://www.gimp.org/) (free), [Photopea](https://www.photopea.com/) (free online)
+- **Optimization:** [Squoosh](https://squoosh.app/), [TinyPNG](https://tinypng.com/)
+
+---
+
+### Step 2: Replace Logo Files
+
+#### Option A: Direct Replacement (Recommended for Quick Start)
+
+1. **Navigate to logo directory:**
+   ```bash
+   cd public/logos/
+   ```
+
+2. **Backup existing logos (optional):**
+   ```bash
+   mkdir -p backup
+   cp *.svg backup/
+   cp *.png backup/
+   cp *.webp backup/
+   ```
+
+3. **Replace logo files:**
+   - Create your LGU logo variants (icon, horizontal, vertical)
+   - Save with **same filenames** as existing files:
+     - `BetterLB_Icon.svg` → Your icon variant
+     - `BetterLB_Icon-Primary.svg` → Your primary color variant
+     - `betterlb-blue-outline.webp` → Your web-optimized version
+   - Copy files to `public/logos/`
+
+4. **Replace LGU seal:**
+   ```bash
+   # Replace Los Baños seal with your seal
+   cp /path/to/your-municipality-seal.png public/logos/lb-seal.png
+   ```
+
+#### Option B: New Filenames (Requires Code Updates)
+
+If you prefer new filenames (e.g., `sanpablo-icon.svg`):
+
+1. **Add your logo files** to `public/logos/`
+2. **Update code references** (see Step 4 below)
+
+---
+
+### Step 3: Update Brand Colors
+
+**Extract Your LGU's Brand Colors:**
+
+1. **Use a color picker tool:**
+   - Online: [Adobe Color](https://color.adobe.com/), [Coolors](https://coolors.co/)
+   - Design software: Eyedropper tool in Figma, Illustrator, Photoshop
+
+2. **Extract colors from your logo:**
+   - Primary color (dominant brand color)
+   - Secondary color (accent color, if any)
+
+3. **Update Tailwind config:**
+
+   Edit `tailwind.config.js`:
+
+   ```javascript
+   module.exports = {
+     theme: {
+       extend: {
+         colors: {
+           // Replace with your LGU's colors
+           primary: '#1A237E',     // Your primary color
+           secondary: '#C62828',   // Your secondary color (optional)
+         }
+       }
+     }
+   }
+   ```
+
+4. **Test across components:**
+   - Check buttons, links, headers use new colors
+   - Verify contrast ratios (WCAG AA: 4.5:1 for text)
+   - Ensure readability on all backgrounds
+
+---
+
+### Step 4: Update Code References (If Needed)
+
+**Only required if you changed filenames or file locations.**
+
+**Files to Check:**
+
+1. **Navbar Component** (`src/components/layout/Navbar.tsx`):
+   ```tsx
+   // Search for:
+   src='/logos/webp/betterlb-blue-outline.webp'
+
+   // Update to your filename if different
+   src='/logos/webp/[your-lgu]-blue-outline.webp'
+   ```
+
+2. **SEO Component** (`src/components/layout/SEO.tsx`):
+   ```tsx
+   // Search for:
+   ogImage = '/logos/png/betterlb-white.jpg'
+
+   // Update if filename changed
+   ogImage = '/logos/png/[your-lgu]-white.png'
+   ```
+
+3. **Favicon** (`index.html`):
+   ```html
+   <!-- Check for: -->
+   <link rel="icon" href="/logos/...">
+
+   <!-- Update if needed -->
+   <link rel="icon" href="/logos/[your-lgu]-icon.svg">
+   ```
+
+**Search for all logo references:**
+```bash
+grep -r "betterlb" src/ --include="*.tsx" --include="*.ts"
+grep -r "BetterLB" src/ --include="*.tsx" --include="*.ts"
+```
+
+---
+
+### Step 5: Verify Your Changes
+
+**After replacing visual assets, verify:**
+
+- [ ] **Logo appears in navbar** (desktop and mobile)
+- [ ] **Logo appears in footer** (if used)
+- [ ] **Favicon displays correctly** in browser tab
+- [ ] **All logo variants work** (icon, horizontal, vertical)
+- [ ] **Logo scales properly** on different screen sizes
+- [ ] **LGU seal appears** on government pages
+- [ ] **Brand colors applied** across components
+- [ ] **No broken images** (check browser console)
+- [ ] **Cross-browser test** (Chrome, Firefox, Safari, Edge)
+
+**Performance Check:**
+- [ ] SVG files under 50KB
+- [ ] PNG files optimized (under 200KB)
+- [ ] WebP files load quickly (check Network tab in DevTools)
+
+---
+
+### Advanced: Custom Brand Colors in Components
+
+If your LGU uses custom brand colors beyond the primary color:
+
+**Option 1: Extend Tailwind Theme**
+
+```javascript
+// tailwind.config.js
+module.exports = {
+  theme: {
+     extend: {
+       colors: {
+         'lgu-primary': '#1A237E',
+         'lgu-secondary': '#C62828',
+         'lgu-accent': '#FF6F00',
+       }
+     }
+   }
+}
+```
+
+**Usage in components:**
+```tsx
+<div className="bg-lgu-primary text-white">
+  <h1 className="text-lgu-secondary">Your LGU Name</h1>
+</div>
+```
+
+**Option 2: CSS Variables**
+
+```css
+/* src/index.css */
+:root {
+  --color-lgu-primary: #1A237E;
+  --color-lgu-secondary: #C62828;
+}
+```
+
+**Usage in components:**
+```tsx
+<div style={{ backgroundColor: 'var(--color-lgu-primary)' }}>
+  Your content
+</div>
+```
+
+---
+
+### For Complete Details
+
+See the **[Visual Assets Guide](visual-assets.md)** for comprehensive documentation on:
+- Complete asset inventory (all logos, seals, map assets)
+- Detailed format specifications (SVG, PNG, WebP requirements)
+- Logo variants and when to use each
+- File organization and naming conventions
+- Image optimization guidelines
+- Accessibility considerations
+- Troubleshooting common issues
+
+---
+
 ## 💾 D1 Database (Legislative Data)
 
 The D1 database (`betterlb_openlgu` remote, `BETTERLB_DB` local) contains all legislative data.

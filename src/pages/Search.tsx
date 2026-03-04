@@ -3,7 +3,7 @@ import { FC, useMemo, useState } from 'react';
 import Fuse from 'fuse.js';
 import { Helmet } from 'react-helmet-async';
 
-import { Input } from '@bettergov/kapwa';
+import { Input } from '@bettergov/kapwa/input';
 import { SearchIcon } from 'lucide-react';
 
 import mergedServicesData from '@/data/citizens-charter/merged-services.json';

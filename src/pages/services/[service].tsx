@@ -19,7 +19,6 @@ import {
   Info,
   LinkIcon,
   LucideIcon,
-  ShieldCheck,
   Users,
 } from 'lucide-react';
 
@@ -62,12 +61,13 @@ const QUICK_INFO_CONFIG: Record<
 
 export default function ServiceDetail() {
   const { service: serviceSlug } = useParams<{ service: string }>();
+
+  // Auto-generate breadcrumbs using the hook (must be called before early returns)
+  const breadcrumbs = useBreadcrumbs();
+
   if (!serviceSlug) return null;
 
   const service = getServiceBySlug(decodeURIComponent(serviceSlug));
-
-  // Auto-generate breadcrumbs using the hook
-  const breadcrumbs = useBreadcrumbs();
   if (!service)
     return (
       <div className='text-kapwa-text-disabled p-20 text-center font-bold tracking-widest uppercase'>

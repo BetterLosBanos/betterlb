@@ -44,9 +44,9 @@ export function toTelUri(phone: string | null): string | null {
   if (mainNumber.length === 7) {
     // Local: 5302981 → add 049 area code → +63495302981
     return `tel:+6349${mainNumber}`;
-  } else if (mainNumber.length === 9 && mainNumber.startsWith('049')) {
-    // With area code: 0495367965 → +63495367965
-    return `tel:+63${mainNumber}`;
+  } else if (mainNumber.length === 10 && mainNumber.startsWith('049')) {
+    // With area code: 0495367965 → +63495367965 (remove leading 0)
+    return `tel:+63${mainNumber.slice(1)}`;
   } else if (mainNumber.length === 11 && mainNumber.startsWith('0')) {
     // Mobile: 09275091198 → +639275091198
     return `tel:+63${mainNumber.slice(1)}`;

@@ -1,3 +1,5 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
+// D1 database result typing uses any for dynamic schema mapping
 /**
  * Admin Terms API
  * GET /api/admin/terms/:id/members - Get members for a term

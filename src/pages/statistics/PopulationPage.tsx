@@ -14,7 +14,10 @@ import {
 
 import { StatCard } from '@/components/ui/StatCard';
 import { Badge } from '@/components/ui/Badge';
-import { ChartTooltip } from '@/components/data-display/ChartContainer';
+import {
+  ChartTooltip,
+  ResponsiveChart,
+} from '@/components/data-display/ChartContainer';
 import { DetailSection } from '@/components/layout/PageLayouts';
 import { PageHero } from '@/components/layout/PageLayouts';
 
@@ -80,13 +83,13 @@ export default function PopulationPage() {
   }, [barangays]);
 
   return (
-    <div className='animate-in fade-in space-y-8 pb-20 duration-500'>
+    <>
       {/* PageHero - documented pattern for layout headers */}
       <PageHero
         title='Population Profile'
         description='Detailed demographic analysis tracking growth from the municipal level down to individual barangays.'
       >
-        <div className='flex flex-wrap justify-center gap-2'>
+        <div className='flex flex-wrap gap-2 justify-center'>
           <Badge variant='primary' dot>
             Census {latestMuni.year}
           </Badge>
@@ -95,7 +98,7 @@ export default function PopulationPage() {
       </PageHero>
 
       {/* KPI Cards - using new StatCard component */}
-      <div className='grid grid-cols-1 gap-4 md:grid-cols-3'>
+      <div className='grid grid-cols-1 gap-4 md:grid-cols-3 mb-kapwa-lg'>
         <StatCard
           label='Total Population'
           value={latestMuni.population.toLocaleString()}
@@ -119,7 +122,7 @@ export default function PopulationPage() {
       </div>
 
       {/* Unified Tab Switcher */}
-      <div className='bg-kapwa-bg-hover flex gap-1.5 rounded-2xl p-1.5'>
+      <div className='mb-kapwa-lg bg-kapwa-bg-hover flex gap-1.5 rounded-2xl p-1.5'>
         <button
           onClick={() => setActiveTab('municipality')}
           className={cn(
@@ -129,7 +132,7 @@ export default function PopulationPage() {
               : 'hover:text-kapwa-text-support text-kapwa-text-strong0'
           )}
         >
-          <TrendingUp className='h-4 w-4' /> Municipal Growth
+          <TrendingUp className='w-4 h-4' /> Municipal Growth
         </button>
         <button
           onClick={() => setActiveTab('barangays')}
@@ -140,7 +143,7 @@ export default function PopulationPage() {
               : 'hover:text-kapwa-text-support text-kapwa-text-strong0'
           )}
         >
-          <LineIcon className='h-4 w-4' /> Barangay Comparison
+          <LineIcon className='w-4 h-4' /> Barangay Comparison
         </button>
       </div>
 
@@ -153,7 +156,7 @@ export default function PopulationPage() {
         }
         icon={TrendingUp}
       >
-        <div className={activeTab === 'barangays' ? 'h-[550px]' : 'h-[400px]'}>
+        <ResponsiveChart height={activeTab === 'barangays' ? 550 : 400}>
           {activeTab === 'municipality' ? (
             <LineChart
               data={municipality.history}
@@ -235,12 +238,12 @@ export default function PopulationPage() {
               })}
             </LineChart>
           )}
-        </div>
+        </ResponsiveChart>
       </DetailSection>
 
       {/* Info box using DetailSection for consistency */}
       <DetailSection title='How to read this data' icon={Info}>
-        <p className='text-kapwa-text-disabled text-xs leading-relaxed italic'>
+        <p className='text-xs italic leading-relaxed text-kapwa-text-disabled'>
           {activeTab === 'municipality'
             ? 'The municipal growth chart tracks long-term population expansion from 1960 to current estimates.'
             : 'The comparison chart allows you to track which barangays are experiencing the fastest urban growth relative to their 2010 baseline.'}
@@ -248,10 +251,10 @@ export default function PopulationPage() {
       </DetailSection>
 
       {/* Footer using documented footer pattern */}
-      <footer className='border-kapwa-border-weak space-y-4 border-t pt-10 text-center'>
-        <div className='mx-auto flex h-6 w-6 items-center justify-center rounded-full bg-emerald-100 text-emerald-600'>
+      <footer className='pt-10 space-y-4 text-center border-t border-kapwa-border-weak'>
+        <div className='flex justify-center items-center mx-auto w-6 h-6 rounded-full bg-kapwa-bg-success-weak text-kapwa-text-success'>
           <svg
-            className='h-4 w-4'
+            className='w-4 h-4'
             fill='none'
             viewBox='0 0 24 24'
             stroke='currentColor'
@@ -273,6 +276,6 @@ export default function PopulationPage() {
           </p>
         </div>
       </footer>
-    </div>
+    </>
   );
 }

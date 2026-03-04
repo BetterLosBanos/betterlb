@@ -54,6 +54,8 @@ export default function ServiceCard({ service }: ServiceCardProps) {
     <Link
       to={`/services/${service.slug}`}
       className='group min-h-[200px]'
+      data-testid='service-card'
+      data-service-slug={service.slug}
       aria-label={`View details for ${service.plainLanguageName || service.service}`}
     >
       <Card
@@ -115,21 +117,21 @@ export default function ServiceCard({ service }: ServiceCardProps) {
             <div className='flex items-center gap-1.5 text-[10px] font-bold tracking-widest uppercase'>
               {needsVerification ? (
                 <>
-                  <AlertCircle className='h-3 w-3 text-amber-600' />
+                  <AlertCircle className='h-3 w-3 text-kapwa-text-warning' />
                   <span className='text-kapwa-text-warning'>
                     Pending Verification
                   </span>
                 </>
               ) : hasValidDate ? (
                 <>
-                  <ClockIcon className='h-3 w-3 text-emerald-600' />
+                  <ClockIcon className='h-3 w-3 text-kapwa-text-success' />
                   <span className='text-kapwa-text-strong0'>
                     {format(new Date(service.updatedAt!), 'MMM yyyy')}
                   </span>
                 </>
               ) : isOfficialSource ? (
                 <>
-                  <ShieldCheck className='h-3 w-3 text-emerald-600' />
+                  <ShieldCheck className='h-3 w-3 text-kapwa-text-success' />
                   <span className='text-kapwa-text-success'>Official Data</span>
                 </>
               ) : (

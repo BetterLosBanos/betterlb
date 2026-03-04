@@ -1,6 +1,5 @@
 import {
   Apple,
-  Ban,
   Briefcase,
   Building2,
   Calculator,

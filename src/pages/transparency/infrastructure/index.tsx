@@ -35,13 +35,13 @@ export default function InfrastructurePage() {
   const dpwhDashboardUrl = useMemo(
     () =>
       `https://transparency.bettergov.ph/dpwh?q=${encodeURIComponent(config.lgu.name)}&regions=${encodeURIComponent(config.lgu.region)}&provinces=${encodeURIComponent(config.lgu.region)}%2C${encodeURIComponent(config.lgu.districtEngineeringOffice || config.lgu.province)}`,
-    [config]
+    []
   );
 
   const bistoProjectsUrl = useMemo(
     () =>
       `https://bisto.ph/projects?search=${encodeURIComponent(config.lgu.name)}&region=${encodeURIComponent(config.lgu.region)}`,
-    [config]
+    []
   );
 
   // Filters & Search
@@ -184,7 +184,7 @@ export default function InfrastructurePage() {
 
     const timer = setTimeout(fetchData, 400);
     return () => clearTimeout(timer);
-  }, [query, selectedStatuses, config]);
+  }, [query, selectedStatuses]);
 
   //  Pagination helpers
   const [resultsPerPage, setResultsPerPage] = useState(10);

@@ -4,6 +4,11 @@
  */
 import { Env } from '../../types';
 import { AuthContext, withAuth } from '../../utils/admin-auth';
+import {
+  logAudit,
+  AuditActions,
+  AuditTargetTypes,
+} from '../../utils/audit-log';
 
 interface ParsedLegislativeItem {
   type: 'ordinance' | 'resolution' | 'executive_order';
@@ -505,6 +510,21 @@ async function handleParseLegislativePost(context: {
     const matched_persons: { [raw_name: string]: MatchedPerson | null } = {};
     matchedPersonsMap.forEach((value, key) => {
       matched_persons[key] = value;
+    });
+
+    // Log the parsing action
+    await logAudit(env, {
+      action: AuditActions.PARSE_LEGISLATIVE_POST,
+      performedBy: context.auth.user.login,
+      targetType: AuditTargetTypes.DOCUMENT,
+      details: {
+        session_type: session_info.type,
+        session_ordinal: session_info.ordinal,
+        items_parsed: items.length,
+        persons_matched: Object.keys(matched_persons).filter(
+          k => matched_persons[k] !== null
+        ).length,
+      },
     });
 
     return Response.json({

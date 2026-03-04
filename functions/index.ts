@@ -6,9 +6,42 @@ import {
 } from './api/weather';
 import { Env } from './types';
 import { onRequest as weatherKVRequest } from './weather';
+import { setSecurityHeaders } from './utils/security-headers';
 
 // Export the scheduled handlers
 export { scheduled as scheduled_getWeather } from './api/weather';
+
+/**
+ * CORS Configuration
+ * Restricts API access to trusted origins only (security fix for T-059)
+ */
+const ALLOWED_ORIGINS = [
+  'https://betterlb.pages.dev',
+  'https://betterlb.gov.ph', // Custom domain if configured
+  'http://localhost:5173', // Vite dev server
+  'http://localhost:8788', // Wrangler dev server
+];
+
+/**
+ * Get appropriate CORS headers based on request origin
+ */
+function getCorsHeaders(origin: string | null): Record<string, string> {
+  const isAllowed = origin && ALLOWED_ORIGINS.includes(origin);
+
+  if (isAllowed) {
+    return {
+      'Access-Control-Allow-Origin': origin,
+      'Access-Control-Allow-Methods': 'GET, OPTIONS',
+      'Access-Control-Allow-Headers': 'Content-Type',
+      'Access-Control-Max-Age': '86400',
+    };
+  }
+
+  return {
+    'Access-Control-Allow-Methods': 'GET, OPTIONS',
+    'Access-Control-Allow-Headers': 'Content-Type',
+  };
+}
 
 // Handler for HTTP requests
 export default {
@@ -28,18 +61,13 @@ export default {
   ): Promise<Response> {
     const url = new URL(request.url);
     const path = url.pathname;
-
-    // Add CORS headers to all responses
-    const corsHeaders: Record<string, string> = {
-      'Access-Control-Allow-Origin': '*',
-      'Access-Control-Allow-Methods': 'GET, OPTIONS',
-      'Access-Control-Allow-Headers': 'Content-Type',
-    };
+    const origin = url.origin;
 
     // Handle OPTIONS requests for CORS
     if (request.method === 'OPTIONS') {
       return new Response(null, {
-        headers: corsHeaders,
+        status: 204,
+        headers: getCorsHeaders(origin),
       });
     }
 
@@ -48,14 +76,17 @@ export default {
       const response = await weatherRequest({ request, env, ctx });
       // Add CORS headers to the response
       const newHeaders = new Headers(response.headers);
+      const corsHeaders = getCorsHeaders(origin);
       Object.keys(corsHeaders).forEach(key => {
         newHeaders.set(key, corsHeaders[key]);
       });
-      return new Response(response.body, {
+      const withCors = new Response(response.body, {
         status: response.status,
         statusText: response.statusText,
         headers: newHeaders,
       });
+      // Apply security headers
+      return setSecurityHeaders(withCors, env);
     }
 
     // Handle the new KV-only endpoints
@@ -63,19 +94,22 @@ export default {
       const response = await weatherKVRequest({ request, env, ctx });
       // Add CORS headers to the response
       const newHeaders = new Headers(response.headers);
+      const corsHeaders = getCorsHeaders(origin);
       Object.keys(corsHeaders).forEach(key => {
         newHeaders.set(key, corsHeaders[key]);
       });
-      return new Response(response.body, {
+      const withCors = new Response(response.body, {
         status: response.status,
         statusText: response.statusText,
         headers: newHeaders,
       });
+      // Apply security headers
+      return setSecurityHeaders(withCors, env);
     }
 
     // Simple API to check if the functions are running
     if (path === '/api/status') {
-      return new Response(
+      const response = new Response(
         JSON.stringify({
           status: 'online',
           functions: ['weather'],
@@ -115,14 +149,15 @@ export default {
         {
           headers: {
             'Content-Type': 'application/json',
-            ...corsHeaders,
+            ...getCorsHeaders(origin),
           },
         }
       );
+      return setSecurityHeaders(response, env);
     }
 
     // Return 404 for any other routes
-    return new Response(
+    const notFoundResponse = new Response(
       JSON.stringify({
         error: 'Not found',
         availableEndpoints: ['/api/status', '/api/weather', '/weather'],
@@ -131,9 +166,10 @@ export default {
         status: 404,
         headers: {
           'Content-Type': 'application/json',
-          ...corsHeaders,
+          ...getCorsHeaders(origin),
         },
       }
     );
+    return setSecurityHeaders(notFoundResponse, env);
   },
 };

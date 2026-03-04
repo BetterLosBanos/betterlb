@@ -2,7 +2,8 @@ import { FC } from 'react';
 
 import { useNavigate } from 'react-router-dom';
 
-import { Banner, Button } from '@bettergov/kapwa';
+import { Banner } from '@bettergov/kapwa/banner';
+import { Button } from '@bettergov/kapwa/button';
 import { Building2Icon, HomeIcon, UsersIcon } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
 

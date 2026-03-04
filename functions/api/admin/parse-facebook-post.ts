@@ -4,6 +4,11 @@
  */
 import { Env } from '../../types';
 import { AuthContext, withAuth } from '../../utils/admin-auth';
+import {
+  logAudit,
+  AuditActions,
+  AuditTargetTypes,
+} from '../../utils/audit-log';
 
 interface ParsedSessionData {
   session_type: 'regular' | 'special' | 'inaugural' | null;
@@ -194,6 +199,20 @@ async function handleParsePost(context: {
       }
     }
 
+    // Log the parsing action
+    await logAudit(env, {
+      action: AuditActions.PARSE_FACEBOOK_POST,
+      performedBy: context.auth.user.login,
+      targetType: AuditTargetTypes.SESSION,
+      details: {
+        session_type: parsed.session_type,
+        ordinal: parsed.ordinal,
+        date: parsed.date,
+        attendees_found: matchedAttendees.length,
+        attendees_matched: matchedAttendees.length,
+      },
+    });
+
     return Response.json({
       success: true,
       parsed,
@@ -206,5 +225,5 @@ async function handleParsePost(context: {
 }
 
 export async function onRequestPost(context: { request: Request; env: Env }) {
-  return withAuth(handleParsePost)(context);
+  return withAuth(handleParsePost, { requireCSRF: true })(context);
 }

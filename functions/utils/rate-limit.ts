@@ -93,6 +93,39 @@ export function getClientIdentifier(request: Request): string {
 }
 
 /**
+ * Create rate limit headers for inclusion in responses
+ * Returns an object with standardized rate limit header names
+ */
+export function createRateLimitHeaders(
+  result: RateLimitResult,
+  limit: number
+): Record<string, string> {
+  return {
+    'ratelimit-limit': limit.toString(),
+    'ratelimit-remaining': result.remaining.toString(),
+    'ratelimit-reset': new Date(result.resetAt).toISOString(),
+  };
+}
+
+/**
+ * Add rate limit headers to an existing Response
+ * Modifies the Response headers in place and returns the same Response
+ */
+export function addRateLimitHeaders(
+  response: Response,
+  result: RateLimitResult,
+  limit: number
+): Response {
+  const rateLimitHeaders = createRateLimitHeaders(result, limit);
+
+  for (const [key, value] of Object.entries(rateLimitHeaders)) {
+    response.headers.set(key, value);
+  }
+
+  return response;
+}
+
+/**
  * Create a 429 Too Many Requests response with proper headers
  */
 export function createRateLimitResponse(
@@ -111,9 +144,7 @@ export function createRateLimitResponse(
         'Retry-After': Math.ceil(
           (result.resetAt - Date.now()) / 1000
         ).toString(),
-        'X-RateLimit-Limit': limit.toString(),
-        'X-RateLimit-Remaining': '0',
-        'X-RateLimit-Reset': new Date(result.resetAt).toISOString(),
+        ...createRateLimitHeaders(result, limit),
       },
     }
   );

@@ -17,11 +17,11 @@ export function formatGovName(text: string, _type: 'department' | 'barangay') {
     .toLowerCase()
     .split(' ')
     .map((word, index) => {
+      // Keep acronyms uppercase (check first before other rules)
+      if (acronyms.includes(word.toUpperCase())) return word.toUpperCase();
+
       // Always capitalize the first word
       if (index === 0) return word.charAt(0).toUpperCase() + word.slice(1);
-
-      // Keep acronyms uppercase
-      if (acronyms.includes(word.toUpperCase())) return word.toUpperCase();
 
       // Keep minor words lowercase
       if (minorWords.includes(word)) return word;

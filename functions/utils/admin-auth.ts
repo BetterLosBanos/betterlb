@@ -4,6 +4,13 @@
  */
 import { Env } from '../types';
 import { parseCookies } from './cookies';
+import { validateCSRFToken } from './csrf';
+import {
+  UserRole,
+  Permission,
+  hasPermission,
+  requireRole as checkRole,
+} from './rbac';
 
 export interface GitHubUser {
   id: number;
@@ -17,11 +24,13 @@ export interface AdminSession {
   user: GitHubUser;
   login_at: string;
   expires_at: string;
+  role?: UserRole; // Optional for backward compatibility
 }
 
 interface AuthContext {
   user: GitHubUser;
   sessionId: string;
+  role: UserRole;
 }
 
 /**
@@ -97,9 +106,13 @@ export async function verifyAdminSession(
     throw new AuthError('User no longer authorized', 403);
   }
 
+  // Extract role from session, default to ADMIN for backward compatibility
+  const role = session.role || UserRole.ADMIN;
+
   return {
     user: session.user,
     sessionId,
+    role,
   };
 }
 
@@ -119,13 +132,66 @@ export class AuthError extends Error {
 /**
  * Wrapper function to add authentication to API handlers
  * Returns a 401/403 response if authentication fails
+ *
+ * @param handler - Request handler function
+ * @param options - Configuration options
+ * @param options.requireCSRF - Whether to require CSRF token for non-GET requests (default: false)
+ * @param options.requirePermission - Required permission for the endpoint
+ * @param options.requireRole - Required role or array of allowed roles
  */
 export function withAuth<T extends { request: Request; env: Env }>(
-  handler: (context: T & { auth: AuthContext }) => Promise<Response> | Response
+  handler: (context: T & { auth: AuthContext }) => Promise<Response> | Response,
+  options: {
+    requireCSRF?: boolean;
+    requirePermission?: Permission;
+    requireRole?: UserRole | UserRole[];
+  } = {}
 ): (context: T) => Promise<Response> {
   return async (context: T) => {
     try {
       const auth = await verifyAdminSession(context.request, context.env);
+
+      // RBAC: Check required permission
+      if (options.requirePermission) {
+        if (!hasPermission(auth.role, options.requirePermission)) {
+          return Response.json(
+            { error: 'Insufficient permissions' },
+            { status: 403 }
+          );
+        }
+      }
+
+      // RBAC: Check required role
+      if (options.requireRole) {
+        try {
+          checkRole(auth.role, options.requireRole);
+        } catch {
+          return Response.json(
+            { error: 'Insufficient permissions' },
+            { status: 403 }
+          );
+        }
+      }
+
+      // CSRF validation for non-GET requests
+      if (options.requireCSRF) {
+        const method = context.request.method;
+        if (method !== 'GET' && method !== 'HEAD' && method !== 'OPTIONS') {
+          const csrfToken = context.request.headers.get('X-CSRF-Token');
+          const valid = await validateCSRFToken(
+            context.env,
+            auth.sessionId,
+            csrfToken || ''
+          );
+          if (!valid) {
+            return Response.json(
+              { error: 'Invalid CSRF token' },
+              { status: 403 }
+            );
+          }
+        }
+      }
+
       return handler({ ...context, auth });
     } catch (error) {
       if (error instanceof AuthError) {

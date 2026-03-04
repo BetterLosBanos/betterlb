@@ -10,6 +10,43 @@ import type {
   WeatherResponseData,
 } from '../types';
 
+/**
+ * CORS Configuration
+ * Restricts API access to trusted origins only (security fix for T-059)
+ * Production: betterlb.pages.dev and custom domain
+ * Development: localhost for local development
+ */
+const ALLOWED_ORIGINS = [
+  'https://betterlb.pages.dev',
+  'https://betterlb.gov.ph', // Custom domain if configured
+  'http://localhost:5173', // Vite dev server
+  'http://localhost:8788', // Wrangler dev server
+];
+
+/**
+ * Get appropriate CORS headers based on request origin
+ * Returns restrictive headers for untrusted origins
+ */
+function getCorsHeaders(origin: string | null): Record<string, string> {
+  // Check if origin is allowed
+  const isAllowed = origin && ALLOWED_ORIGINS.includes(origin);
+
+  if (isAllowed) {
+    return {
+      'Access-Control-Allow-Origin': origin,
+      'Access-Control-Allow-Methods': 'GET, OPTIONS',
+      'Access-Control-Allow-Headers': 'Content-Type',
+      'Access-Control-Max-Age': '86400', // 24 hours
+    };
+  }
+
+  // Return restrictive headers for untrusted origins
+  return {
+    'Access-Control-Allow-Methods': 'GET, OPTIONS',
+    'Access-Control-Allow-Headers': 'Content-Type',
+  };
+}
+
 // CONFIGURATION - Easy to change for other municipalities
 const DEFAULT_CITY: CityCoordinates = {
   name: 'Los Baños',
@@ -65,11 +102,18 @@ async function fetchCityWeather(
     let hourly: HourlyForecast[] = [];
 
     if (forecastResponse.ok) {
-      const forecastJson: any = await forecastResponse.json();
+      const forecastJson = (await forecastResponse.json()) as {
+        list?: Array<{
+          dt: number;
+          main: { temp: number; feels_like: number; humidity: number };
+          weather: Array<{ icon: string; description: string }>;
+          wind: { speed: number };
+        }>;
+      };
       // Take first 8 entries (next 24 hours in 3-hour intervals)
       const forecastList = forecastJson.list?.slice(0, 8) || [];
 
-      hourly = forecastList.map((entry: any) => ({
+      hourly = forecastList.map(entry => ({
         dt: entry.dt,
         temp: entry.main.temp,
         feels_like: entry.main.feels_like,
@@ -170,8 +214,17 @@ export async function onRequest(context: {
 }): Promise<Response> {
   try {
     const url = new URL(context.request.url);
+    const origin = url.origin;
     const cityParam = url.searchParams.get('city');
     const forceUpdate = url.searchParams.get('update') === 'true';
+
+    // Handle OPTIONS preflight requests
+    if (context.request.method === 'OPTIONS') {
+      return new Response(null, {
+        status: 204,
+        headers: getCorsHeaders(origin),
+      });
+    }
 
     // Always fetch fresh data if update=true is specified
     if (forceUpdate) {
@@ -204,11 +257,11 @@ export async function onRequest(context: {
         );
       }
 
-      // Return the fresh data
+      // Return the fresh data with secure CORS headers
       return new Response(JSON.stringify(weatherData), {
         headers: {
           'Content-Type': 'application/json',
-          'Access-Control-Allow-Origin': '*',
+          ...getCorsHeaders(origin),
           'Cache-Control': 'max-age=3600',
         },
       });
@@ -229,7 +282,7 @@ export async function onRequest(context: {
           {
             headers: {
               'Content-Type': 'application/json',
-              'Access-Control-Allow-Origin': '*',
+              ...getCorsHeaders(origin),
               'Cache-Control': 'max-age=3600',
             },
           }
@@ -242,7 +295,7 @@ export async function onRequest(context: {
       return new Response(JSON.stringify(cachedData), {
         headers: {
           'Content-Type': 'application/json',
-          'Access-Control-Allow-Origin': '*',
+          ...getCorsHeaders(origin),
           'Cache-Control': 'max-age=3600',
         },
       });
@@ -285,7 +338,7 @@ export async function onRequest(context: {
     return new Response(JSON.stringify(weatherData), {
       headers: {
         'Content-Type': 'application/json',
-        'Access-Control-Allow-Origin': '*',
+        ...getCorsHeaders(origin),
         'Cache-Control': 'max-age=3600',
       },
     });
@@ -294,7 +347,7 @@ export async function onRequest(context: {
       status: 500,
       headers: {
         'Content-Type': 'application/json',
-        'Access-Control-Allow-Origin': '*',
+        ...getCorsHeaders(origin),
       },
     });
   }

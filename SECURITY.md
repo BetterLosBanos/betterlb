@@ -1,8 +1,41 @@
 # Security Policy
 
+**Version:** 1.1
+**Last Updated:** 2026-02-28
+**Security Posture:** MEDIUM Risk (improved from HIGH)
+
+---
+
+## Security Features
+
+BetterLB implements comprehensive security controls to protect user data and ensure system integrity:
+
+### Implemented Security Measures
+
+| Feature | Status | Description |
+|---------|--------|-------------|
+| **Authentication** | ✅ Implemented | OAuth 2.0 (GitHub + Google) |
+| **CSRF Protection** | ✅ Implemented | One-time use tokens (24-hour TTL) |
+| **Audit Logging** | ✅ Implemented | All state-changing operations logged |
+| **Security Headers** | ✅ Implemented | CSP, X-Frame-Options, HSTS, etc. |
+| **CORS Protection** | ✅ Implemented | Restrictive origin whitelist |
+| **RBAC** | ✅ Implemented | 3-tier role system (ADMIN/EDITOR/VIEWER) |
+| **Rate Limiting** | ✅ Implemented | 100 req/min for public APIs |
+| **SQL Injection Protection** | ✅ Implemented | Parameterized queries |
+| **XSS Protection** | ✅ Implemented | Content Security Policy |
+| **Encryption** | ✅ Implemented | TLS 1.3, encryption at rest |
+
+### Security Documentation
+
+- **[Security Guide](docs/SECURITY-GUIDE.md)** - Comprehensive security documentation for developers
+- **[Privacy Documentation](docs/PRIVACY.md)** - Data protection and user rights
+- **[RBAC Implementation Guide](docs/RBAC-IMPLEMENTATION-GUIDE.md)** - Role-based access control usage
+
+---
+
 ## Reporting Vulnerabilities
 
-If you discover a security vulnerability in BetterGov.ph, please report it responsibly by emailing [security@bettergov.ph](mailto:security@bettergov.ph).
+If you discover a security vulnerability in BetterLB, please report it responsibly by emailing [security@betterlb.gov.ph](mailto:security@betterlb.gov.ph).
 
 When reporting, please include:
 
@@ -15,12 +48,12 @@ We will acknowledge your report within 48 hours and provide a more detailed resp
 
 ## Scope
 
-This security policy applies to the BetterGov.ph website, its associated services, and any related infrastructure.
+This security policy applies to the BetterLB website (betterlb.gov.ph, betterlb.pages.dev), its associated services, and any related infrastructure.
 
 
 ### Out of Scope
 The following issues are considered out of scope for security reports:
-- Scam & phishing attempts involving BetterGovPh services
+- Scam & phishing attempts involving BetterLB services
 - Physical security vulnerabilities
 - Social engineering attacks
 - Functional, UI, and UX bugs including:
@@ -75,4 +108,33 @@ We will not take legal action against you if you:
 
 ## Contact
 
-For any security-related inquiries, contact us at [security@bettergov.ph](mailto:security@bettergov.ph).
+For any security-related inquiries, contact us at [security@betterlb.gov.ph](mailto:security@betterlb.gov.ph).
+
+---
+
+## Incident Response
+
+### Severity Classifications
+
+| Severity | Description | Response Time |
+|----------|-------------|---------------|
+| **P0 - Critical** | System compromise, data breach | 1 hour |
+| **P1 - High** | Security control failure (CSRF bypass, auth bypass) | 4 hours |
+| **P2 - Medium** | Potential security issue | 24 hours |
+| **P3 - Low** | Minor security issue | 7 days |
+
+### Reporting Security Incidents
+
+For active security incidents (not vulnerability reports), contact:
+- **Email:** security@betterlb.gov.ph
+- **Response:** We will acknowledge within 4 hours for P0/P1 incidents
+
+### Security Posture Timeline
+
+- **2026-02-03:** Initial Security Audit - HIGH risk (25 vulnerabilities)
+- **2026-02-27:** Security Improvements Complete - MEDIUM risk (8/10 critical+high fixed)
+- **2026-02-28:** Documentation Complete - MEDIUM risk (comprehensive security and privacy docs)
+
+**Current Status:** MEDIUM risk with comprehensive security controls in place
+
+For detailed security documentation, see [Security Guide](docs/SECURITY-GUIDE.md).

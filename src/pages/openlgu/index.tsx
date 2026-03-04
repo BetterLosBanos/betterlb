@@ -2,12 +2,11 @@ import { useEffect, useMemo } from 'react';
 
 import { Link, useOutletContext } from 'react-router-dom';
 
-import { FileText } from 'lucide-react';
 import { parseAsInteger, useQueryState } from 'nuqs';
 
 import { Badge } from '@/components/ui/Badge';
-import { EmptyState } from '@/components/ui/EmptyState';
 import { CardSkeleton } from '@/components/ui/Skeletons';
+import { IndexPageLayout } from '@/components/layout/IndexPageLayout';
 
 import type {
   Committee,
@@ -41,6 +40,7 @@ interface LegislationContext {
 export default function LegislationIndex() {
   const {
     searchQuery,
+    setSearchQuery,
     filterType,
     setFilterType,
     authorIds,
@@ -140,26 +140,44 @@ export default function LegislationIndex() {
   // Show loading skeleton while data is being fetched
   if (isLoading) {
     return (
-      <section className='animate-in fade-in space-y-4 duration-500'>
-        {Array.from({ length: 10 }).map((_, i) => (
-          <CardSkeleton key={i} />
-        ))}
-      </section>
-    );
-  }
-
-  if (filteredDocs.length === 0) {
-    return (
-      <EmptyState
-        title='No documents found'
-        message={`We couldn't find matches for "${searchQuery}"`}
-        icon={FileText}
-      />
+      <IndexPageLayout
+        title='Legislation'
+        description='Browse ordinances, resolutions, and executive orders from the Sangguniang Bayan.'
+        search={{
+          value: searchQuery,
+          onChange: setSearchQuery,
+          placeholder: 'Search legislation...',
+        }}
+      >
+        <section className='space-y-4'>
+          {Array.from({ length: 10 }).map((_, i) => (
+            <CardSkeleton key={i} />
+          ))}
+        </section>
+      </IndexPageLayout>
     );
   }
 
   return (
-    <section className='animate-in fade-in space-y-6 duration-500'>
+    <IndexPageLayout
+      title='Legislation'
+      description='Browse ordinances, resolutions, and executive orders from the Sangguniang Bayan.'
+      search={{
+        value: searchQuery,
+        onChange: setSearchQuery,
+        placeholder: 'Search legislation...',
+      }}
+      resultsCount={filteredDocs.length}
+      resultsLabel='Results'
+      emptyState={
+        filteredDocs.length === 0
+          ? {
+              title: 'No documents found',
+              message: `We couldn't find matches for "${searchQuery}"`,
+            }
+          : undefined
+      }
+    >
       {/* Filter Bar */}
       <DocumentFilters
         filterType={filterType}
@@ -171,16 +189,6 @@ export default function LegislationIndex() {
         authorOptions={authorOptions}
         yearOptions={yearOptions}
       />
-
-      {/* Results Badge */}
-      {filteredDocs.length > 0 && (
-        <Badge
-          variant='slate'
-          className='bg-kapwa-bg-surface-raised border-kapwa-border-weak'
-        >
-          {filteredDocs.length} Results
-        </Badge>
-      )}
 
       {/* Document Cards */}
       {paginatedDocs.map(doc => {
@@ -282,6 +290,6 @@ export default function LegislationIndex() {
           </nav>
         </div>
       )}
-    </section>
+    </IndexPageLayout>
   );
 }

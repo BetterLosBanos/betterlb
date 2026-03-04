@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 
 import { ArrowRight, MapPinIcon, Phone, User2 } from 'lucide-react';
 
-import { ModuleHeader } from '@/components/layout/PageLayouts';
+import { PageHero } from '@/components/layout/PageLayouts';
 import { Card, CardContent } from '@/components/ui/Card';
 import SearchInput from '@/components/ui/SearchInput';
 
@@ -20,8 +20,8 @@ export default function BarangaysIndex() {
     .sort((a, b) => a.barangay_name.localeCompare(b.barangay_name));
 
   return (
-    <div className='container mx-auto px-4 animate-in fade-in space-y-6 duration-500'>
-      <ModuleHeader
+    <>
+      <PageHero
         title='Local Barangays'
         description={`${filtered.length} component barangays of the Municipality of Los Baños.`}
       >
@@ -31,7 +31,7 @@ export default function BarangaysIndex() {
           placeholder='Search by name (e.g. Mayondon)...'
           className='md:w-72'
         />
-      </ModuleHeader>
+      </PageHero>
 
       <div className='grid grid-cols-1 gap-4 md:grid-cols-2 xl:grid-cols-3'>
         {filtered.map(brgy => {
@@ -108,6 +108,6 @@ export default function BarangaysIndex() {
           );
         })}
       </div>
-    </div>
+    </>
   );
 }

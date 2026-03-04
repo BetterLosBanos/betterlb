@@ -7,6 +7,7 @@ import { Env } from '../../types';
 import { cachedJson } from '../../utils/cache';
 import { CACHE_TTL, createKVCache } from '../../utils/kv-cache';
 import {
+  addRateLimitHeaders,
   checkRateLimit,
   createRateLimitResponse,
   getClientIdentifier,
@@ -53,7 +54,7 @@ async function getDocumentsList(context: { request: Request; env: Env }) {
   );
 
   if (!rateLimitResult.allowed) {
-    return createRateLimitResponse(rateLimitResult);
+    return createRateLimitResponse(rateLimitResult, 100);
   }
 
   const type = url.searchParams.get('type');
@@ -288,7 +289,11 @@ async function getDocumentsList(context: { request: Request; env: Env }) {
       CACHE_TTL.list
     );
 
-    return cachedJson(result, 'list');
+    return addRateLimitHeaders(
+      cachedJson(result, 'list'),
+      rateLimitResult,
+      100
+    );
   } catch (error) {
     console.error('Error fetching documents:', error);
     return cachedJson({ error: 'Failed to fetch documents' }, 'none', 500);

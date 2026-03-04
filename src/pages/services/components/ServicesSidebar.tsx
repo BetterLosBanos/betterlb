@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom';
 
-import { FileText, LucideIcon, PlusCircle } from 'lucide-react';
+import { FileText, PlusCircle } from 'lucide-react';
 
 import {
   SidebarContainer,
@@ -49,17 +49,17 @@ export default function ServicesSidebar({
           />
         ))}
       </SidebarContainer>
-      <div className='border-kapwa-orange-100 bg-kapwa-bg-accent-orange-weak/30 mt-8 space-y-4 rounded-2xl border-2 p-5 shadow-sm'>
-        <div className='flex items-center gap-3'>
-          <div className='bg-kapwa-bg-accent-orange-weak text-kapwa-text-accent-orange rounded-lg p-2'>
-            <PlusCircle className='h-5 w-5' />
+      <div className='p-5 mt-8 space-y-4 rounded-2xl border-2 shadow-sm border-kapwa-orange-100 bg-kapwa-bg-accent-orange-weak/30'>
+        <div className='flex gap-3 items-center'>
+          <div className='p-2 rounded-lg bg-kapwa-bg-accent-orange-weak text-kapwa-text-accent-orange'>
+            <PlusCircle className='w-5 h-5' />
           </div>
-          <h4 className='text-kapwa-text-strong text-sm leading-tight font-bold'>
+          <h4 className='text-sm font-bold leading-tight text-kapwa-text-strong'>
             Missing a service?
           </h4>
         </div>
 
-        <p className='text-kapwa-text-on-disabled text-xs leading-relaxed'>
+        <p className='text-xs leading-relaxed text-kapwa-text-on-disabled'>
           Better LB is community-maintained. Help your fellow citizens by
           suggesting a new service directory.
         </p>
@@ -67,7 +67,7 @@ export default function ServicesSidebar({
         <Link
           to='/contribute'
           onClick={() => console.log('Link was clicked!')}
-          className='bg-kapwa-bg-accent-orange-default hover:bg-kapwa-orange-700 shadow-md text-kapwa-text-inverse flex min-h-[44px] w-full items-center justify-center gap-2 rounded-xl px-4 py-2.5 text-xs font-bold shadow-md transition-all'
+          className='bg-kapwa-bg-accent-orange-default hover:bg-kapwa-orange-700 shadow-md text-kapwa-text-inverse flex min-h-[44px] w-full items-center justify-center gap-2 rounded-xl px-4 py-2.5 text-xs font-bold transition-all'
         >
           Suggest New Service
         </Link>

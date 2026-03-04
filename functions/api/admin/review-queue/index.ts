@@ -1,3 +1,5 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
+// D1 database result typing uses any for dynamic schema mapping
 /**
  * Admin Review Queue API
  * GET /api/admin/review-queue - List items needing review
@@ -5,6 +7,7 @@
  */
 import { Env } from '../../../types';
 import { AuthContext, withAuth } from '../../../utils/admin-auth';
+import { logAudit, AuditTargetTypes } from '../../../utils/audit-log';
 
 type ReviewStatus = 'pending' | 'in_progress' | 'resolved' | 'skipped';
 type ItemType = 'document' | 'session' | 'attendance';
@@ -253,6 +256,20 @@ async function createReviewItem(context: {
         auth.user.login
       )
       .run();
+
+    // Log the review queue item creation
+    await logAudit(env, {
+      action: 'create_review_item',
+      performedBy: auth.user.login,
+      targetType: AuditTargetTypes.REVIEW_QUEUE,
+      targetId: reviewItemId,
+      details: {
+        item_type,
+        item_id,
+        issue_type,
+        source_type: source_type || 'manual',
+      },
+    });
 
     // Fetch and return the created item
     const newItem = await env.BETTERLB_DB.prepare(
