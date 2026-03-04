@@ -68,11 +68,7 @@ function ElectedLeaderCard({ leader }: { leader: ExecutiveOfficial }) {
     <DetailSection
       title={leader.office || 'Elected Official'}
       icon={Icon}
-      className={
-        isMayor
-          ? 'shadow-sm'
-          : 'bg-kapwa-bg-surface/30'
-      }
+      className={isMayor ? 'shadow-sm' : 'bg-kapwa-bg-surface/30'}
     >
       <div className='flex flex-col items-center space-y-4 py-4 text-center'>
         <div className='relative'>
@@ -245,7 +241,6 @@ export default function ElectedOfficialsPage() {
     () => allExecutive.filter(o => o.isElected),
     [allExecutive]
   );
-
 
   const sbData = legislativeData.find(
     item => item.slug === '12th-sangguniang-bayan'

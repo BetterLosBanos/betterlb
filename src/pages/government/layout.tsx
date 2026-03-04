@@ -3,10 +3,7 @@ import { Link, Outlet, useLocation } from 'react-router-dom';
 import { Building2Icon, ChevronRight, HomeIcon, UsersIcon } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
 
-import {
-  PageHeader,
-  SectionBlock,
-} from '@/components/layout';
+import { PageHeader, SectionBlock } from '@/components/layout';
 
 import { cn } from '@/lib/utils';
 
