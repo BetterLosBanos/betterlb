@@ -22,8 +22,19 @@ export default defineConfig({
       '/api': {
         target: 'http://localhost:8788',
         changeOrigin: true,
-        // secure: false,
         rewrite: path => path,
+        configure: proxy => {
+          proxy.on('error', (_err, _req, res) => {
+            // In CI, the Functions backend isn't running — return empty JSON
+            // instead of crashing the proxy and spamming the console.
+            if (!res.headersSent) {
+              res.writeHead(503, { 'Content-Type': 'application/json' });
+              res.end(
+                JSON.stringify({ error: 'API unavailable', offline: true })
+              );
+            }
+          });
+        },
       },
     },
   },

@@ -174,7 +174,7 @@ function CouncilMemberCard({
 
         {/* Row 2: Committee Chair box */}
         {chairedCommittees.length > 0 ? (
-          <div className='border-kapwa-border-weak bg-kapwa-bg-surface-raised/50 flex flex-1 flex-col gap-2 rounded-xl border p-3'>
+          <div className='border-kapwa-border-weak bg-kapwa-bg-surface-raised/50 flex flex-col gap-2 rounded-xl border p-3'>
             <div className='mb-1 flex items-center gap-2'>
               <BookOpenIcon className='text-kapwa-text-disabled h-3 w-3' />
               <span className='text-kapwa-text-disabled text-[10px] font-bold tracking-widest uppercase'>
@@ -345,7 +345,7 @@ export default function ElectedOfficialsPage() {
           )}
 
           {/* Council members grid */}
-          <div className='grid grid-cols-1 gap-4 md:grid-cols-2 xl:grid-cols-3'>
+          <div className='grid grid-cols-1 gap-4 items-stretch md:grid-cols-2 xl:grid-cols-3'>
             {(sbData.officials as CouncilMember[]).map(member => (
               <CouncilMemberCard
                 key={member.name}
