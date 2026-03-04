@@ -7,7 +7,7 @@
  * Test-Driven Development: Write failing tests first
  */
 
-import { describe, it, expect, beforeEach } from 'vitest';
+import { describe, it, expect, beforeEach, afterEach, vi } from 'vitest';
 import { withAuth, AuthContext } from '../admin-auth';
 import { MockKVNamespace } from '../../test/test-utils';
 import { generateCSRFToken } from '../csrf';
@@ -45,13 +45,46 @@ describe('withAuth with CSRF Protection', () => {
     validCSRFToken = await generateCSRFToken(mockEnv, validSessionId);
   });
 
+  afterEach(() => {
+    vi.restoreAllMocks();
+  });
+
+  /**
+   * Helper function to create a Request with mocked Cookie header
+   * This is needed because happy-dom doesn't support setting the Cookie header
+   */
+  function createMockRequestWithCookie(
+    url: string,
+    options: { method?: string; headers?: Record<string, string> } = {}
+  ): Request {
+    const request = new Request(url, { method: options.method || 'GET' });
+
+    // Mock the get method to return the Cookie value when requested
+    // Also preserve other headers
+    const originalGet = request.headers.get.bind(request.headers);
+    vi.spyOn(request.headers, 'get').mockImplementation((name: string) => {
+      if (name === 'Cookie') {
+        return options.headers?.['Cookie'] || '';
+      }
+      if (name === 'X-CSRF-Token') {
+        return options.headers?.['X-CSRF-Token'] || '';
+      }
+      return originalGet(name);
+    });
+
+    return request;
+  }
+
   describe('without CSRF requirement', () => {
     it('should allow requests without CSRF token', async () => {
-      const request = new Request('https://example.com/api/test', {
-        headers: {
-          Cookie: `admin_session=${validSessionId}`,
-        },
-      });
+      const request = createMockRequestWithCookie(
+        'https://example.com/api/test',
+        {
+          headers: {
+            Cookie: `admin_session=${validSessionId}`,
+          },
+        }
+      );
 
       const handler = async ({ auth }: { auth: AuthContext }) => {
         return Response.json({ success: true, user: auth.user.login });
@@ -67,12 +100,15 @@ describe('withAuth with CSRF Protection', () => {
     });
 
     it('should allow POST requests without CSRF token', async () => {
-      const request = new Request('https://example.com/api/test', {
-        method: 'POST',
-        headers: {
-          Cookie: `admin_session=${validSessionId}`,
-        },
-      });
+      const request = createMockRequestWithCookie(
+        'https://example.com/api/test',
+        {
+          method: 'POST',
+          headers: {
+            Cookie: `admin_session=${validSessionId}`,
+          },
+        }
+      );
 
       const handler = async ({ auth }: { auth: AuthContext }) => {
         return Response.json({ success: true });
@@ -87,12 +123,15 @@ describe('withAuth with CSRF Protection', () => {
 
   describe('with CSRF requirement', () => {
     it('should reject POST requests without CSRF token', async () => {
-      const request = new Request('https://example.com/api/test', {
-        method: 'POST',
-        headers: {
-          Cookie: `admin_session=${validSessionId}`,
-        },
-      });
+      const request = createMockRequestWithCookie(
+        'https://example.com/api/test',
+        {
+          method: 'POST',
+          headers: {
+            Cookie: `admin_session=${validSessionId}`,
+          },
+        }
+      );
 
       const handler = async ({ auth }: { auth: AuthContext }) => {
         return Response.json({ success: true });
@@ -107,13 +146,16 @@ describe('withAuth with CSRF Protection', () => {
     });
 
     it('should accept POST requests with valid CSRF token', async () => {
-      const request = new Request('https://example.com/api/test', {
-        method: 'POST',
-        headers: {
-          Cookie: `admin_session=${validSessionId}`,
-          'X-CSRF-Token': validCSRFToken,
-        },
-      });
+      const request = createMockRequestWithCookie(
+        'https://example.com/api/test',
+        {
+          method: 'POST',
+          headers: {
+            Cookie: `admin_session=${validSessionId}`,
+            'X-CSRF-Token': validCSRFToken,
+          },
+        }
+      );
 
       const handler = async ({ auth }: { auth: AuthContext }) => {
         return Response.json({ success: true, user: auth.user.login });
@@ -128,13 +170,16 @@ describe('withAuth with CSRF Protection', () => {
     });
 
     it('should reject POST requests with invalid CSRF token', async () => {
-      const request = new Request('https://example.com/api/test', {
-        method: 'POST',
-        headers: {
-          Cookie: `admin_session=${validSessionId}`,
-          'X-CSRF-Token': 'invalid-token-12345',
-        },
-      });
+      const request = createMockRequestWithCookie(
+        'https://example.com/api/test',
+        {
+          method: 'POST',
+          headers: {
+            Cookie: `admin_session=${validSessionId}`,
+            'X-CSRF-Token': 'invalid-token-12345',
+          },
+        }
+      );
 
       const handler = async ({ auth }: { auth: AuthContext }) => {
         return Response.json({ success: true });
@@ -149,14 +194,6 @@ describe('withAuth with CSRF Protection', () => {
     });
 
     it('should reject POST requests with consumed CSRF token', async () => {
-      const request1 = new Request('https://example.com/api/test', {
-        method: 'POST',
-        headers: {
-          Cookie: `admin_session=${validSessionId}`,
-          'X-CSRF-Token': validCSRFToken,
-        },
-      });
-
       const handler = async ({ auth }: { auth: AuthContext }) => {
         return Response.json({ success: true });
       };
@@ -164,6 +201,16 @@ describe('withAuth with CSRF Protection', () => {
       const wrappedHandler = withAuth(handler, { requireCSRF: true });
 
       // First request should succeed
+      const request1 = createMockRequestWithCookie(
+        'https://example.com/api/test',
+        {
+          method: 'POST',
+          headers: {
+            Cookie: `admin_session=${validSessionId}`,
+            'X-CSRF-Token': validCSRFToken,
+          },
+        }
+      );
       const response1 = await wrappedHandler({
         request: request1,
         env: mockEnv,
@@ -171,13 +218,16 @@ describe('withAuth with CSRF Protection', () => {
       expect(response1.status).toBe(200);
 
       // Second request with same token should fail
-      const request2 = new Request('https://example.com/api/test', {
-        method: 'POST',
-        headers: {
-          Cookie: `admin_session=${validSessionId}`,
-          'X-CSRF-Token': validCSRFToken,
-        },
-      });
+      const request2 = createMockRequestWithCookie(
+        'https://example.com/api/test',
+        {
+          method: 'POST',
+          headers: {
+            Cookie: `admin_session=${validSessionId}`,
+            'X-CSRF-Token': validCSRFToken,
+          },
+        }
+      );
 
       const response2 = await wrappedHandler({
         request: request2,
@@ -190,12 +240,15 @@ describe('withAuth with CSRF Protection', () => {
     });
 
     it('should allow GET requests without CSRF token', async () => {
-      const request = new Request('https://example.com/api/test', {
-        method: 'GET',
-        headers: {
-          Cookie: `admin_session=${validSessionId}`,
-        },
-      });
+      const request = createMockRequestWithCookie(
+        'https://example.com/api/test',
+        {
+          method: 'GET',
+          headers: {
+            Cookie: `admin_session=${validSessionId}`,
+          },
+        }
+      );
 
       const handler = async ({ auth }: { auth: AuthContext }) => {
         return Response.json({ success: true });
@@ -208,12 +261,15 @@ describe('withAuth with CSRF Protection', () => {
     });
 
     it('should allow HEAD requests without CSRF token', async () => {
-      const request = new Request('https://example.com/api/test', {
-        method: 'HEAD',
-        headers: {
-          Cookie: `admin_session=${validSessionId}`,
-        },
-      });
+      const request = createMockRequestWithCookie(
+        'https://example.com/api/test',
+        {
+          method: 'HEAD',
+          headers: {
+            Cookie: `admin_session=${validSessionId}`,
+          },
+        }
+      );
 
       const handler = async ({ auth }: { auth: AuthContext }) => {
         return Response.json({ success: true });
@@ -226,12 +282,15 @@ describe('withAuth with CSRF Protection', () => {
     });
 
     it('should allow OPTIONS requests without CSRF token', async () => {
-      const request = new Request('https://example.com/api/test', {
-        method: 'OPTIONS',
-        headers: {
-          Cookie: `admin_session=${validSessionId}`,
-        },
-      });
+      const request = createMockRequestWithCookie(
+        'https://example.com/api/test',
+        {
+          method: 'OPTIONS',
+          headers: {
+            Cookie: `admin_session=${validSessionId}`,
+          },
+        }
+      );
 
       const handler = async ({ auth }: { auth: AuthContext }) => {
         return Response.json({ success: true });
@@ -244,12 +303,15 @@ describe('withAuth with CSRF Protection', () => {
     });
 
     it('should reject PUT requests without CSRF token', async () => {
-      const request = new Request('https://example.com/api/test', {
-        method: 'PUT',
-        headers: {
-          Cookie: `admin_session=${validSessionId}`,
-        },
-      });
+      const request = createMockRequestWithCookie(
+        'https://example.com/api/test',
+        {
+          method: 'PUT',
+          headers: {
+            Cookie: `admin_session=${validSessionId}`,
+          },
+        }
+      );
 
       const handler = async ({ auth }: { auth: AuthContext }) => {
         return Response.json({ success: true });
@@ -264,12 +326,15 @@ describe('withAuth with CSRF Protection', () => {
     });
 
     it('should reject DELETE requests without CSRF token', async () => {
-      const request = new Request('https://example.com/api/test', {
-        method: 'DELETE',
-        headers: {
-          Cookie: `admin_session=${validSessionId}`,
-        },
-      });
+      const request = createMockRequestWithCookie(
+        'https://example.com/api/test',
+        {
+          method: 'DELETE',
+          headers: {
+            Cookie: `admin_session=${validSessionId}`,
+          },
+        }
+      );
 
       const handler = async ({ auth }: { auth: AuthContext }) => {
         return Response.json({ success: true });
@@ -284,12 +349,15 @@ describe('withAuth with CSRF Protection', () => {
     });
 
     it('should reject PATCH requests without CSRF token', async () => {
-      const request = new Request('https://example.com/api/test', {
-        method: 'PATCH',
-        headers: {
-          Cookie: `admin_session=${validSessionId}`,
-        },
-      });
+      const request = createMockRequestWithCookie(
+        'https://example.com/api/test',
+        {
+          method: 'PATCH',
+          headers: {
+            Cookie: `admin_session=${validSessionId}`,
+          },
+        }
+      );
 
       const handler = async ({ auth }: { auth: AuthContext }) => {
         return Response.json({ success: true });
@@ -304,13 +372,16 @@ describe('withAuth with CSRF Protection', () => {
     });
 
     it('should still validate authentication when CSRF is required', async () => {
-      const request = new Request('https://example.com/api/test', {
-        method: 'POST',
-        headers: {
-          Cookie: 'admin_session=invalid-session',
-          'X-CSRF-Token': validCSRFToken,
-        },
-      });
+      const request = createMockRequestWithCookie(
+        'https://example.com/api/test',
+        {
+          method: 'POST',
+          headers: {
+            Cookie: 'admin_session=invalid-session',
+            'X-CSRF-Token': validCSRFToken,
+          },
+        }
+      );
 
       const handler = async ({ auth }: { auth: AuthContext }) => {
         return Response.json({ success: true });

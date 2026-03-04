@@ -14,6 +14,7 @@ export const sampleTerms = [
     end_date: '2025-06-30',
     mayor_id: 'mayor_1',
     vice_mayor_id: 'vm_1',
+    created_at: '2022-07-01T00:00:00.000Z',
   },
   {
     id: 'sb_11',
@@ -25,6 +26,7 @@ export const sampleTerms = [
     end_date: '2022-06-30',
     mayor_id: 'mayor_2',
     vice_mayor_id: 'vm_2',
+    created_at: '2019-07-01T00:00:00.000Z',
   },
 ];
 

@@ -7,7 +7,7 @@
  * Test-Driven Development: Write failing tests first
  */
 
-import { describe, it, expect, beforeEach } from 'vitest';
+import { describe, it, expect, beforeEach, afterEach, vi } from 'vitest';
 import { withAuth, AuthContext } from '../admin-auth';
 import { UserRole, Permission } from '../rbac';
 import { MockKVNamespace } from '../../test/test-utils';
@@ -26,6 +26,10 @@ describe('withAuth with RBAC', () => {
         'vieweruser',
       ]),
     };
+  });
+
+  afterEach(() => {
+    vi.restoreAllMocks();
   });
 
   const createSessionWithRole = async (login: string, role: UserRole) => {
@@ -47,17 +51,42 @@ describe('withAuth with RBAC', () => {
     return sessionId;
   };
 
+  /**
+   * Helper function to create a Request with mocked Cookie header
+   * This is needed because happy-dom doesn't support setting the Cookie header
+   */
+  function createMockRequestWithCookie(
+    url: string,
+    options: { method?: string; headers?: Record<string, string> } = {}
+  ): Request {
+    const request = new Request(url, { method: options.method || 'GET' });
+
+    // Mock the get method to return the Cookie value when requested
+    const originalGet = request.headers.get.bind(request.headers);
+    vi.spyOn(request.headers, 'get').mockImplementation((name: string) => {
+      if (name === 'Cookie') {
+        return options.headers?.['Cookie'] || '';
+      }
+      return originalGet(name);
+    });
+
+    return request;
+  }
+
   describe('without RBAC requirement', () => {
     it('should allow authenticated users regardless of role', async () => {
       const sessionId = await createSessionWithRole(
         'testuser',
         UserRole.VIEWER
       );
-      const request = new Request('https://example.com/api/test', {
-        headers: {
-          Cookie: `admin_session=${sessionId}`,
-        },
-      });
+      const request = createMockRequestWithCookie(
+        'https://example.com/api/test',
+        {
+          headers: {
+            Cookie: `admin_session=${sessionId}`,
+          },
+        }
+      );
 
       const handler = async ({ auth }: { auth: AuthContext }) => {
         return Response.json({ success: true, user: auth.user.login });
@@ -75,12 +104,15 @@ describe('withAuth with RBAC', () => {
   describe('with RBAC permission requirement', () => {
     it('should allow users with required permission', async () => {
       const sessionId = await createSessionWithRole('testuser', UserRole.ADMIN);
-      const request = new Request('https://example.com/api/test', {
-        method: 'POST',
-        headers: {
-          Cookie: `admin_session=${sessionId}`,
-        },
-      });
+      const request = createMockRequestWithCookie(
+        'https://example.com/api/test',
+        {
+          method: 'POST',
+          headers: {
+            Cookie: `admin_session=${sessionId}`,
+          },
+        }
+      );
 
       const handler = async ({ auth }: { auth: AuthContext }) => {
         return Response.json({ success: true });
@@ -99,12 +131,15 @@ describe('withAuth with RBAC', () => {
         'vieweruser',
         UserRole.VIEWER
       );
-      const request = new Request('https://example.com/api/test', {
-        method: 'POST',
-        headers: {
-          Cookie: `admin_session=${sessionId}`,
-        },
-      });
+      const request = createMockRequestWithCookie(
+        'https://example.com/api/test',
+        {
+          method: 'POST',
+          headers: {
+            Cookie: `admin_session=${sessionId}`,
+          },
+        }
+      );
 
       const handler = async ({ auth }: { auth: AuthContext }) => {
         return Response.json({ success: true });
@@ -125,12 +160,15 @@ describe('withAuth with RBAC', () => {
         'editoruser',
         UserRole.EDITOR
       );
-      const request = new Request('https://example.com/api/test', {
-        method: 'POST',
-        headers: {
-          Cookie: `admin_session=${sessionId}`,
-        },
-      });
+      const request = createMockRequestWithCookie(
+        'https://example.com/api/test',
+        {
+          method: 'POST',
+          headers: {
+            Cookie: `admin_session=${sessionId}`,
+          },
+        }
+      );
 
       const handler = async ({ auth }: { auth: AuthContext }) => {
         return Response.json({ success: true });
@@ -149,12 +187,15 @@ describe('withAuth with RBAC', () => {
         'editoruser',
         UserRole.EDITOR
       );
-      const request = new Request('https://example.com/api/test', {
-        method: 'DELETE',
-        headers: {
-          Cookie: `admin_session=${sessionId}`,
-        },
-      });
+      const request = createMockRequestWithCookie(
+        'https://example.com/api/test',
+        {
+          method: 'DELETE',
+          headers: {
+            Cookie: `admin_session=${sessionId}`,
+          },
+        }
+      );
 
       const handler = async ({ auth }: { auth: AuthContext }) => {
         return Response.json({ success: true });
@@ -174,11 +215,14 @@ describe('withAuth with RBAC', () => {
   describe('with RBAC role requirement', () => {
     it('should allow users with required role', async () => {
       const sessionId = await createSessionWithRole('testuser', UserRole.ADMIN);
-      const request = new Request('https://example.com/api/test', {
-        headers: {
-          Cookie: `admin_session=${sessionId}`,
-        },
-      });
+      const request = createMockRequestWithCookie(
+        'https://example.com/api/test',
+        {
+          headers: {
+            Cookie: `admin_session=${sessionId}`,
+          },
+        }
+      );
 
       const handler = async ({ auth }: { auth: AuthContext }) => {
         return Response.json({ success: true });
@@ -197,11 +241,14 @@ describe('withAuth with RBAC', () => {
         'editoruser',
         UserRole.EDITOR
       );
-      const request = new Request('https://example.com/api/test', {
-        headers: {
-          Cookie: `admin_session=${sessionId}`,
-        },
-      });
+      const request = createMockRequestWithCookie(
+        'https://example.com/api/test',
+        {
+          headers: {
+            Cookie: `admin_session=${sessionId}`,
+          },
+        }
+      );
 
       const handler = async ({ auth }: { auth: AuthContext }) => {
         return Response.json({ success: true });
@@ -220,11 +267,14 @@ describe('withAuth with RBAC', () => {
         'vieweruser',
         UserRole.VIEWER
       );
-      const request = new Request('https://example.com/api/test', {
-        headers: {
-          Cookie: `admin_session=${sessionId}`,
-        },
-      });
+      const request = createMockRequestWithCookie(
+        'https://example.com/api/test',
+        {
+          headers: {
+            Cookie: `admin_session=${sessionId}`,
+          },
+        }
+      );
 
       const handler = async ({ auth }: { auth: AuthContext }) => {
         return Response.json({ success: true });
@@ -260,11 +310,14 @@ describe('withAuth with RBAC', () => {
 
       await mockKV.put(`session:${sessionId}`, JSON.stringify(sessionData));
 
-      const request = new Request('https://example.com/api/test', {
-        headers: {
-          Cookie: `admin_session=${sessionId}`,
-        },
-      });
+      const request = createMockRequestWithCookie(
+        'https://example.com/api/test',
+        {
+          headers: {
+            Cookie: `admin_session=${sessionId}`,
+          },
+        }
+      );
 
       const handler = async ({ auth }: { auth: AuthContext }) => {
         return Response.json({ success: true });

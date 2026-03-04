@@ -20,7 +20,21 @@ npm run lint                         # ESLint with --max-warnings 0 (zero tolera
 npm run format                       # Prettier formatting
 
 # Testing
-npm run test:e2e                     # Playwright E2E tests
+npm run test:e2e                     # Playwright E2E tests (full user flows)
+
+## OpenLGU API Testing
+The OpenLGU API endpoints in `functions/api/openlgu/` are tested manually or via integration testing with `wrangler pages dev` rather than unit tests with mocks.
+
+**Why no unit tests for OpenLGU APIs:**
+- The MockD1Database has fundamental limitations with complex JOINs, parameterized queries, and concurrent operations
+- Mocks cannot accurately simulate D1's LEFT JOIN behavior with multiple tables
+- Rate limiting and caching require real KV operations to test properly
+
+**Recommended testing approach:**
+1. Start local development: `npm run functions:dev` (starts Functions dev server on port 8788)
+2. Start proxy dev server: `npx wrangler pages dev --proxy 5173` (with real D1 database)
+3. Test API endpoints manually using curl, Postman, or browser
+4. Use Playwright E2E tests for full user flow testing
 
 # Cloudflare/Wrangler
 npx wrangler pages dev --proxy 5173  # Dev server with Functions backend
