@@ -1,4 +1,4 @@
-import { BookOpenIcon, BuildingIcon, UsersIcon } from 'lucide-react';
+import { BookOpenIcon, BuildingIcon } from 'lucide-react';
 
 import {
   SidebarContainer,

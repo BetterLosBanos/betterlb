@@ -5,7 +5,6 @@ import { useTranslation } from 'react-i18next';
 
 import {
   PageHeader,
-  SectionAlternator,
   SectionBlock,
 } from '@/components/layout';
 

@@ -13,7 +13,6 @@ import {
   Landmark,
   MapPinIcon,
   ShieldCheck,
-  User2,
   UserIcon,
   UsersIcon,
 } from 'lucide-react';
@@ -247,20 +246,6 @@ export default function ElectedOfficialsPage() {
     [allExecutive]
   );
 
-  const supportStaff = useMemo(
-    () =>
-      allExecutive.filter(o => {
-        if (o.isElected) return false;
-        const r = o.role.toLowerCase();
-        return (
-          r.includes('administrator') ||
-          r.includes('secretary') ||
-          r.includes('chief of staff') ||
-          r.includes('legal officer')
-        );
-      }),
-    [allExecutive]
-  );
 
   const sbData = legislativeData.find(
     item => item.slug === '12th-sangguniang-bayan'
