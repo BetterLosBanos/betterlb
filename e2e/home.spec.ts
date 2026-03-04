@@ -1,7 +1,11 @@
 import { test, expect } from '@playwright/test';
+import { setupApiMocks } from './test-helpers';
 
 test.describe('Home Page', () => {
   test.beforeEach(async ({ page }) => {
+    // Mock API endpoints when backend is unavailable (CI, local testing)
+    await setupApiMocks(page);
+
     // Navigate to home page before each test
     await page.goto('/');
   });
