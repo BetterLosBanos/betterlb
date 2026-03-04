@@ -24,16 +24,40 @@ export default defineConfig({
         changeOrigin: true,
         rewrite: path => path,
         configure: proxy => {
-          proxy.on('error', (_err, _req, res) => {
-            // In CI, the Functions backend isn't running — return empty JSON
-            // instead of crashing the proxy and spamming the console.
-            if (!res.headersSent) {
-              res.writeHead(503, { 'Content-Type': 'application/json' });
-              res.end(
-                JSON.stringify({ error: 'API unavailable', offline: true })
-              );
+          // Handle proxy errors (ECONNREFUSED, ECONNRESET, etc.)
+          proxy.on(
+            'error',
+            (
+              _err: Error,
+              _req: unknown,
+              res: {
+                headersSent: boolean;
+                writeHead: (
+                  code: number,
+                  headers: Record<string, string>
+                ) => void;
+                end: (data: string) => void;
+              }
+            ) => {
+              if (!res.headersSent) {
+                res.writeHead(503, { 'Content-Type': 'application/json' });
+                res.end(
+                  JSON.stringify({ error: 'API unavailable', offline: true })
+                );
+              }
             }
-          });
+          );
+          // Handle proxy request errors (connection failures)
+          proxy.on(
+            'proxyReq',
+            (proxyReq: {
+              on: (event: string, handler: () => void) => void;
+            }) => {
+              proxyReq.on('error', () => {
+                // Error will be caught by the main error handler above
+              });
+            }
+          );
         },
       },
     },
