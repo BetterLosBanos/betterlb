@@ -142,6 +142,7 @@ run_migration() {
 run_migrations() {
     local local_flag=$1
     local target_env=$2
+    local auto_confirm=${3:-false}
 
     log_info "Starting migrations for ${target_env}..."
 
@@ -191,10 +192,16 @@ run_migrations() {
             echo "  - $(basename $migration)"
         done
         echo ""
-        read -p "Continue? (yes/no): " confirm
-        if [ "$confirm" != "yes" ]; then
-            log_info "Migration cancelled"
-            exit 0
+
+        # Skip confirmation if auto_confirm is true or CI is set
+        if [ "$auto_confirm" = "true" ] || [ "$CI" = "true" ]; then
+            log_info "Auto-confirming migrations (CI environment)"
+        else
+            read -p "Continue? (yes/no): " confirm
+            if [ "$confirm" != "yes" ]; then
+                log_info "Migration cancelled"
+                exit 0
+            fi
         fi
     fi
 
@@ -348,7 +355,7 @@ case "${1:-}" in
         run_migrations "--local" "local"
         ;;
     remote|production|prod)
-        run_migrations "" "production"
+        run_migrations "" "production" "true"
         ;;
     status)
         show_status
@@ -367,6 +374,7 @@ case "${1:-}" in
         echo "Commands:"
         echo "  local              Run migrations on local database"
         echo "  remote             Run migrations on remote (production) database"
+        echo "  remote --yes       Run migrations on production (auto-confirm, for CI)"
         echo "  status             Show migration status for local and remote"
         echo "  create <name>      Create a new migration file"
         echo "  verify             Verify migration file safety"
@@ -374,6 +382,7 @@ case "${1:-}" in
         echo "Examples:"
         echo "  $0 local                    # Run migrations locally"
         echo "  $0 remote                   # Run migrations on production (with confirmation)"
+        echo "  $0 remote --yes              # Run migrations on production (auto-confirm, for CI)"
         echo "  $0 status                   # Check migration status"
         echo "  $0 create add_user_table    # Create new migration"
         echo "  $0 verify                   # Verify migration safety"
