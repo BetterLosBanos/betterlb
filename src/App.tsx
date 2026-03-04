@@ -48,8 +48,6 @@ import DepartmentDetail from '@/pages/government/departments/[department]';
 import DepartmentsLayout from '@/pages/government/departments/layout';
 // --- Directory Modules ---
 import ElectedOfficialsIndex from '@/pages/government/elected-officials';
-import LegislativeChamber from '@/pages/government/elected-officials/[chamber]';
-import ExecutiveBranchPage from '@/pages/government/elected-officials/executive-branch';
 import ElectedOfficialsLayout from '@/pages/government/elected-officials/layout';
 import MunicipalCommitteesPage from '@/pages/government/elected-officials/municipal-committees';
 import GovernmentRootLayout from '@/pages/government/layout';
@@ -126,19 +124,10 @@ function AppContent() {
         <Route path='/government' element={<GovernmentRootLayout />}>
           <Route index element={<Navigate to='elected-officials' replace />} />
 
-          {/* 1. Elected Officials & Executive Branch */}
+          {/* 1. Elected Officials */}
           <Route path='elected-officials' element={<ElectedOfficialsLayout />}>
             <Route index element={<ElectedOfficialsIndex />} />
-
-            {/* Unified Executive Route */}
-            <Route path='executive-branch' element={<ExecutiveBranchPage />} />
-
-            {/* Legislative Chamber Details */}
-            <Route path=':chamber' element={<LegislativeChamber />} />
-            <Route
-              path='municipal-committees'
-              element={<MunicipalCommitteesPage />}
-            />
+            <Route path='committees' element={<MunicipalCommitteesPage />} />
           </Route>
 
           {/* 2. Municipal Departments */}
