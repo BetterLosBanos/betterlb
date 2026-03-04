@@ -5,6 +5,13 @@ const HOST =
   import.meta.env.VITE_MEILISEARCH_HOST || 'https://search2.bettergov.ph';
 const KEY = import.meta.env.VITE_MEILISEARCH_API_KEY || '';
 
+// Debug: log env vars (remove after fixing)
+console.log('[MeiliSearch Debug] HOST:', HOST);
+console.log(
+  '[MeiliSearch Debug] KEY:',
+  KEY ? 'SET (length=' + KEY.length + ')' : 'EMPTY/UNSET'
+);
+
 export const client = new MeiliSearch({
   host: HOST,
   apiKey: KEY,
