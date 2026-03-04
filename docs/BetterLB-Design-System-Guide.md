@@ -249,7 +249,7 @@ Use Kapwa spacing utilities with `kapwa-` prefix:
 | `kapwa-brand-*` | 50, 100, 200, 300, 400, 500, 600, 700, 800, 900, 950 | Brand colors, primary actions |
 | `kapwa-red-*` | 50, 100, 200, 300, 400, 500, 600, 700, 800, 900, 950 | Errors, destructive actions, data viz |
 | `kapwa-green-*` | 50, 100, 200, 300, 400, 500, 600, 700, 800, 900, 950 | Success states, positive trends, data viz |
-| `kapwa-yellow-*` | 50, 100, 200, 300, 400, 500, 600, 700, 800, 900, 950 | Warnings, highlights, data viz |
+| `kapwa-yellow-*` | 50, 100, 200, 300, 400, 500, 600, 700, 800, 900, 950 | Warnings, highlights, currency/gold accents (use `text-kapwa-yellow-500` for forex), data viz |
 | `kapwa-orange-*` | 50, 100, 200, 300, 400, 500, 600, 700, 800, 900, 950 | Warnings, secondary brand, data viz |
 | `kapwa-purple-*` | 50, 100, 200, 300, 400, 500, 600, 700, 800, 900, 950 | Decorative, data visualization |
 | `kapwa-blue-*` | 50, 100, 200, 300, 400, 500, 600, 700, 800, 900, 950 | Info, links, data visualization |
@@ -1004,6 +1004,33 @@ import { PaginationControls } from '@/components/ui/Pagination';
   totalResults={totalItems}
 />
 ```
+
+### Ticker Component
+
+**Location:** `src/components/ui/Ticker.tsx`
+
+The Ticker displays real-time forex rates and weather information. It automatically cycles through multiple currency pairs.
+
+```tsx
+import { Ticker } from '@/components/ui/Ticker';
+
+// Auto-displays in the footer
+<Ticker />
+```
+
+**Features:**
+- Auto-rotating forex ticker (USD, EUR, JPY, GBP to PHP)
+- Weather display for multiple locations
+- Graceful loading and error states
+- CI-friendly error handling for missing API backend
+
+**Color Usage:**
+- Currency icons: `text-kapwa-yellow-500` (gold for monetary value)
+- Background: `bg-kapwa-blue-950` (dark blue footer)
+- Text: `text-kapwa-text-inverse` (white on dark)
+
+**Implementation Note:**
+The Ticker uses a proxy error handler in `vite.config.ts` to return graceful 503 responses when the Functions backend is unavailable (e.g., in CI environments), preventing crashes during E2E tests.
 
 ---
 

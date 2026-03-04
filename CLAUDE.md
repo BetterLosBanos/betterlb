@@ -173,6 +173,37 @@ Services are split by category in `src/data/services/categories/*.json`. The `me
   - `ServiceCard` - Service listing card
   - `ServiceFilters` - Service filtering options
 
+### Grid Card Consistency Pattern
+When displaying cards with variable content heights in a grid, use these patterns to ensure consistent card heights:
+
+**For grid layout:**
+```tsx
+// Use items-stretch to make cards stretch to equal height
+<div className='grid grid-cols-1 gap-4 items-stretch md:grid-cols-2 xl:grid-cols-3'>
+  {items.map(item => (
+    <Card className='flex h-full flex-col'>
+      {/* Card content */}
+    </Card>
+  ))}
+</div>
+```
+
+**For card content with variable sections:**
+```tsx
+// DO NOT use flex-1 on variable content sections
+// This causes inconsistent expansion
+
+// Instead, let the content take its natural height
+<div className='flex flex-col gap-2 rounded-xl border p-3'>
+  {/* Committee list - let this expand naturally based on content */}
+</div>
+```
+
+**Example: Council Member Cards**
+- Council members may chair 1-3 committees, causing variable card heights
+- Use `items-stretch` on the grid to align cards
+- Avoid `flex-1` on variable content sections to prevent uneven expansion
+
 ### Citizens Charter Merge Script
 `scripts/merge_citizens_charter.py` - Merges Citizens Charter data with services.json:
 - Maps office divisions to office slugs using `map_office_division_to_slug()`
@@ -241,6 +272,33 @@ await logAudit(env, {
 
 ### Path Aliases
 `@` maps to `src/` (configured in `vite.config.ts` and `tsconfig.json`)
+
+### Development Proxy Configuration
+The Vite dev server proxies API requests to the Cloudflare Functions backend (`http://localhost:8788`).
+
+**CI-Friendly Error Handling:**
+The proxy includes an error handler that returns graceful 503 responses when the Functions backend is unavailable (e.g., in CI environments during E2E tests). This prevents the Vite dev server from crashing and spamming console errors.
+
+```typescript
+// vite.config.ts
+server: {
+  proxy: {
+    '/api': {
+      target: 'http://localhost:8788',
+      changeOrigin: true,
+      rewrite: path => path,
+      configure: proxy => {
+        proxy.on('error', (_err, _req, res) => {
+          if (!res.headersSent) {
+            res.writeHead(503, { 'Content-Type': 'application/json' });
+            res.end(JSON.stringify({ error: 'API unavailable', offline: true }));
+          }
+        });
+      },
+    },
+  },
+}
+```
 
 ### Slug Naming Convention (Directory Data)
 - Use full-name, hyphenated lowercase slugs (e.g., `gender-and-development-office`, `public-employment-service-office`)
