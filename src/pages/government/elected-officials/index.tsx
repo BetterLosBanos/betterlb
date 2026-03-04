@@ -117,7 +117,7 @@ export default function ElectedOfficialsIndex() {
           <DetailSection
             title='Legislative Branch'
             icon={Gavel}
-            className='border-l-kapwa-border-accent-orange h-full border-l-4 shadow-sm'
+            className='border-l-kapwa-orange-600 h-full border-l-4 shadow-sm'
           >
             <div className='grid grid-cols-1 gap-4'>
               {/* SB Card */}

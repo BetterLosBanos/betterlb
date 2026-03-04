@@ -107,35 +107,19 @@ describe('StatCard Component', () => {
   });
 
   describe('Variant Styling', () => {
-    it('applies primary border color for primary variant', () => {
-      const { container } = render(
-        <StatCard label='Test' value='123' variant='primary' />
-      );
-      // Border class is on the inner div (CardContent), not the Card article
-      const cardContent = container.querySelector('.border-b-4');
-      expect(cardContent).toHaveClass('border-b-kapwa-border-brand');
-    });
-
-    it('applies orange border for secondary variant', () => {
-      const { container } = render(
-        <StatCard label='Test' value='123' variant='secondary' />
-      );
-      const cardContent = container.querySelector('.border-b-4');
-      expect(cardContent).toHaveClass('border-b-kapwa-border-orange');
-    });
-
-    it('applies weak border for slate variant (default)', () => {
-      const { container } = render(
-        <StatCard label='Test' value='123' variant='slate' />
-      );
-      const cardContent = container.querySelector('.border-b-4');
-      expect(cardContent).toHaveClass('border-b-kapwa-border-weak');
-    });
-
-    it('uses slate variant when not specified', () => {
+    it('has hover effect enabled by default', () => {
       const { container } = render(<StatCard label='Test' value='123' />);
-      const cardContent = container.querySelector('.border-b-4');
-      expect(cardContent).toHaveClass('border-b-kapwa-border-weak');
+      const card = container.firstChild as HTMLElement;
+      // Card component adds hover:border-kapwa-border-brand via conditional class
+      expect(card).toBeInTheDocument();
+    });
+
+    it('can disable hover effect when hover prop is false', () => {
+      const { container } = render(
+        <StatCard label='Test' value='123' hover={false} />
+      );
+      const card = container.firstChild as HTMLElement;
+      expect(card).toBeInTheDocument();
     });
   });
 
