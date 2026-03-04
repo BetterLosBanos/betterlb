@@ -1,23 +1,28 @@
-import { test as base } from '@playwright/test';
-
 /**
- * Global API mocking fixture for E2E tests
+ * Global test configuration for E2E tests with API mocking
  *
- * This applies API mocks BEFORE any page loads, preventing ECONNREFUSED errors
- * when the Functions backend is unavailable.
+ * Import from this file instead of @playwright/test to get automatic API mocking:
+ *
+ *   import { test, expect } from './test-config';
+ *
+ * When CI=true or MOCK_API=true, all API requests will be mocked automatically.
  */
 
 /* eslint-disable react-hooks/rules-of-hooks -- 'use' is from Playwright fixtures, not React */
 
-// Apply API mocks to all pages in CI or when MOCK_API=true
+import { test as base, expect } from '@playwright/test';
+
+// Check if API mocking should be enabled
 const shouldMockApis =
   process.env.CI === 'true' || process.env.MOCK_API === 'true';
 
+/**
+ * Extended test object with automatic API mocking
+ */
 export const test = base.extend({
   page: async ({ page }, use) => {
     if (shouldMockApis) {
-      // Set up routes BEFORE page is used
-      // Specific routes first (more specific = higher priority)
+      // Set up API routes BEFORE page is used (most specific first)
 
       await page.route('**/api/weather**', route => {
         route.fulfill({
@@ -66,7 +71,29 @@ export const test = base.extend({
         });
       });
 
-      // Catch-all for all other API requests
+      await page.route('**/api/weather**', route => {
+        route.fulfill({
+          status: 200,
+          contentType: 'application/json',
+          body: JSON.stringify({
+            los_ba_os: {
+              name: 'Los Baños',
+              temperature: 28,
+              description: 'partly cloudy',
+            },
+          }),
+        });
+      });
+
+      await page.route('**/api/submit-contribution**', route => {
+        route.fulfill({
+          status: 200,
+          contentType: 'application/json',
+          body: JSON.stringify({ success: true, offline: true }),
+        });
+      });
+
+      // Catch-all for all other API requests (must be LAST)
       await page.route('**/api/**', route => {
         route.fulfill({
           status: 200,
@@ -74,10 +101,11 @@ export const test = base.extend({
           body: JSON.stringify({ data: null, offline: true }),
         });
       });
-
-      console.log('[API Mocks] Global API route mocks applied');
     }
 
     await use(page);
   },
 });
+
+// Re-export expect for convenience
+export { expect };

@@ -1,4 +1,4 @@
-import { test, expect } from '@playwright/test';
+import { test, expect } from '../test-config';
 
 test('reference page uses semantic tokens', async ({ page }) => {
   await page.goto('/government/reference-implementation');

@@ -1,5 +1,5 @@
 import AxeBuilder from '@axe-core/playwright';
-import { expect, test } from '@playwright/test';
+import { expect, test } from '../test-config';
 
 test.describe('Better LB Sanity Suite', () => {
   // RULE 1: Accessibility (The most important for a government portal)
