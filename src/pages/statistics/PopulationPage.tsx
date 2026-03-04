@@ -98,7 +98,7 @@ export default function PopulationPage() {
       </PageHero>
 
       {/* KPI Cards - using new StatCard component */}
-      <div className='grid grid-cols-1 gap-4 md:grid-cols-3'>
+      <div className='grid grid-cols-1 gap-4 md:grid-cols-3 mb-kapwa-lg'>
         <StatCard
           label='Total Population'
           value={latestMuni.population.toLocaleString()}
@@ -122,7 +122,7 @@ export default function PopulationPage() {
       </div>
 
       {/* Unified Tab Switcher */}
-      <div className='bg-kapwa-bg-hover flex gap-1.5 rounded-2xl p-1.5'>
+      <div className='mb-kapwa-lg bg-kapwa-bg-hover flex gap-1.5 rounded-2xl p-1.5'>
         <button
           onClick={() => setActiveTab('municipality')}
           className={cn(

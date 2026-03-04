@@ -88,7 +88,7 @@ export default function CompetitivenessPage() {
       </PageHero>
 
       {/* KPI Cards - using new StatCard component */}
-      <div className='grid grid-cols-1 gap-4 items-stretch md:grid-cols-3'>
+      <div className='grid grid-cols-1 gap-4 items-stretch md:grid-cols-3 mb-kapwa-lg'>
         <StatCard
           label='Overall Score'
           value={cmciData.overall_score[latestIdx].toFixed(2)}
@@ -116,7 +116,7 @@ export default function CompetitivenessPage() {
       </div>
 
       {/* Tab Switcher */}
-      <nav className='bg-kapwa-bg-hover flex gap-1.5 rounded-2xl p-1.5'>
+      <nav className='mb-kapwa-lg bg-kapwa-bg-hover flex gap-1.5 rounded-2xl p-1.5'>
         {(['trends', 'pillars'] as const).map(tab => (
           <button
             key={tab}
