@@ -80,7 +80,7 @@ export default function LegislativeChamber() {
   };
 
   return (
-    <>
+    <div className='space-y-8'>
       {/* --- Header with Breadcrumbs --- */}
       <PageHero
         title={data.chamber}
@@ -115,7 +115,7 @@ export default function LegislativeChamber() {
 
       {/* --- COUNCIL MEMBERS GRID --- */}
       <DetailSection title='Council Members' icon={UsersIcon}>
-        <div className='grid grid-cols-1 gap-4 items-start md:grid-cols-2 xl:grid-cols-3'>
+        <div className='grid grid-cols-1 gap-4 md:grid-cols-2 xl:grid-cols-3'>
           {data.officials?.map(member => {
             const chaired = getChairedCommittees(member.name);
 
@@ -149,7 +149,7 @@ export default function LegislativeChamber() {
 
                   {/* Row 2: Committee Highlight Box */}
                   {chaired.length > 0 ? (
-                    <div className='flex flex-col gap-2 p-3 rounded-xl border border-kapwa-border-weak bg-kapwa-bg-surface-raised/50'>
+                    <div className='flex flex-col flex-1 gap-2 p-3 rounded-xl border border-kapwa-border-weak bg-kapwa-bg-surface-raised/50'>
                       {/* Section Label */}
                       <div className='flex gap-2 items-center mb-1'>
                         <BookOpenIcon className='w-3 h-3 text-kapwa-text-disabled' />
@@ -251,6 +251,6 @@ export default function LegislativeChamber() {
 
         <GavelIcon className='text-kapwa-text-inverse/5 absolute right-[-5%] bottom-[-20%] h-64 w-64 -rotate-12 transition-transform duration-700 group-hover:scale-110 group-hover:rotate-0' />
       </div>
-    </>
+    </div>
   );
 }
