@@ -177,7 +177,7 @@ function AppContent() {
         </Route>
 
         {/* Community Contribution Flow */}
-        <Route path='contribute' element={<ContributePage />} />
+        {/* <Route path='contribute' element={<ContributePage />} /> */}
 
         {/* Admin Routes */}
         <Route path='/admin' element={<AdminLayout />}>
