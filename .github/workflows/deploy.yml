@@ -79,7 +79,7 @@ jobs:
           CI: true
 
       - name: Deploy to Cloudflare Pages
-        uses: cloudflare/wrangler-action@7e7bf0c8e6115335e3921112a998319cb562e0a7 # v3.13.2
+        uses: cloudflare/wrangler-action@7e7bf0c8e611533bfa7528e97ce3c22b7401b160 # v3.13.2
         with:
           apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
