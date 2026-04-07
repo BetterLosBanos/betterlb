@@ -48,7 +48,7 @@ const GovernmentSection: FC = () => {
     <section className='bg-kapwa-bg-surface py-12'>
       <div className='container mx-auto px-4'>
         <div className='mb-12 text-center'>
-          <h2 className='text-kapwa-text-strong mb-4 kapwa-heading font-bold'>
+          <h2 className='text-kapwa-text-strong mb-4 kapwa-heading-lg font-bold'>
             {t('government.title')}
           </h2>
           <p className='text-kapwa-text-support mx-auto max-w-2xl'>

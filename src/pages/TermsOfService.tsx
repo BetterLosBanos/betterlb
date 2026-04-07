@@ -63,7 +63,7 @@ const TermsOfService: FC = () => {
           <section>
             <div className='mb-4 flex items-center gap-3'>
               <FileText className='text-kapwa-text-brand h-6 w-6' />
-              <h2 className='text-kapwa-text-strong kapwa-heading font-bold'>
+              <h2 className='text-kapwa-text-strong kapwa-heading-lg font-bold'>
                 Acceptance of Terms
               </h2>
             </div>
@@ -77,7 +77,7 @@ const TermsOfService: FC = () => {
           <section>
             <div className='mb-4 flex items-center gap-3'>
               <Shield className='text-kapwa-text-brand h-6 w-6' />
-              <h2 className='text-kapwa-text-strong kapwa-heading font-bold'>
+              <h2 className='text-kapwa-text-strong kapwa-heading-lg font-bold'>
                 Public Domain Content and Volunteer Operation
               </h2>
             </div>
@@ -101,7 +101,7 @@ const TermsOfService: FC = () => {
           <section>
             <div className='mb-4 flex items-center gap-3'>
               <AlertTriangle className='h-6 w-6 text-kapwa-text-warning' />
-              <h2 className='text-kapwa-text-strong kapwa-heading font-bold'>
+              <h2 className='text-kapwa-text-strong kapwa-heading-lg font-bold'>
                 &quot;AS IS&quot; Disclaimer
               </h2>
             </div>
@@ -125,7 +125,7 @@ const TermsOfService: FC = () => {
 
           {/* Limitation of Liability */}
           <section>
-            <h2 className='text-kapwa-text-strong mb-4 kapwa-heading font-bold'>
+            <h2 className='text-kapwa-text-strong mb-4 kapwa-heading-lg font-bold'>
               Limitation of Liability
             </h2>
             <div className='text-kapwa-text-support space-y-4 leading-relaxed'>
@@ -155,7 +155,7 @@ const TermsOfService: FC = () => {
 
           {/* User Responsibilities */}
           <section>
-            <h2 className='text-kapwa-text-strong mb-4 kapwa-heading font-bold'>
+            <h2 className='text-kapwa-text-strong mb-4 kapwa-heading-lg font-bold'>
               User Responsibilities and Research Guidelines
             </h2>
             <div className='text-kapwa-text-support space-y-4 leading-relaxed'>
@@ -214,7 +214,7 @@ const TermsOfService: FC = () => {
 
           {/* No Professional Advice */}
           <section>
-            <h2 className='text-kapwa-text-strong mb-4 kapwa-heading font-bold'>
+            <h2 className='text-kapwa-text-strong mb-4 kapwa-heading-lg font-bold'>
               No Professional Advice
             </h2>
             <p className='text-kapwa-text-support leading-relaxed'>
@@ -229,7 +229,7 @@ const TermsOfService: FC = () => {
           <section>
             <div className='mb-4 flex items-center gap-3'>
               <ExternalLink className='text-kapwa-text-brand h-6 w-6' />
-              <h2 className='text-kapwa-text-strong kapwa-heading font-bold'>
+              <h2 className='text-kapwa-text-strong kapwa-heading-lg font-bold'>
                 Source Links and External References
               </h2>
             </div>
@@ -257,7 +257,7 @@ const TermsOfService: FC = () => {
 
           {/* Website Availability */}
           <section>
-            <h2 className='text-kapwa-text-strong mb-4 kapwa-heading font-bold'>
+            <h2 className='text-kapwa-text-strong mb-4 kapwa-heading-lg font-bold'>
               Website Availability
             </h2>
             <div className='text-kapwa-text-support space-y-4 leading-relaxed'>
@@ -273,7 +273,7 @@ const TermsOfService: FC = () => {
 
           {/* Indemnification */}
           <section>
-            <h2 className='text-kapwa-text-strong mb-4 kapwa-heading font-bold'>
+            <h2 className='text-kapwa-text-strong mb-4 kapwa-heading-lg font-bold'>
               Indemnification
             </h2>
             <p className='text-kapwa-text-support leading-relaxed'>
@@ -285,7 +285,7 @@ const TermsOfService: FC = () => {
 
           {/* Modifications */}
           <section>
-            <h2 className='text-kapwa-text-strong mb-4 kapwa-heading font-bold'>
+            <h2 className='text-kapwa-text-strong mb-4 kapwa-heading-lg font-bold'>
               Modifications
             </h2>
             <p className='text-kapwa-text-support leading-relaxed'>
@@ -296,7 +296,7 @@ const TermsOfService: FC = () => {
 
           {/* Governing Law */}
           <section>
-            <h2 className='text-kapwa-text-strong mb-4 kapwa-heading font-bold'>
+            <h2 className='text-kapwa-text-strong mb-4 kapwa-heading-lg font-bold'>
               Governing Law
             </h2>
             <p className='text-kapwa-text-support leading-relaxed'>
@@ -307,7 +307,7 @@ const TermsOfService: FC = () => {
 
           {/* Severability */}
           <section>
-            <h2 className='text-kapwa-text-strong mb-4 kapwa-heading font-bold'>
+            <h2 className='text-kapwa-text-strong mb-4 kapwa-heading-lg font-bold'>
               Severability
             </h2>
             <p className='text-kapwa-text-support leading-relaxed'>
@@ -318,7 +318,7 @@ const TermsOfService: FC = () => {
 
           {/* Content Concerns */}
           <section>
-            <h2 className='text-kapwa-text-strong mb-4 kapwa-heading font-bold'>
+            <h2 className='text-kapwa-text-strong mb-4 kapwa-heading-lg font-bold'>
               Content Concerns and Takedown Requests
             </h2>
             <div className='text-kapwa-text-support space-y-4 leading-relaxed'>
@@ -403,7 +403,7 @@ const TermsOfService: FC = () => {
           <section className='border-t pt-8'>
             <div className='mb-4 flex items-center gap-3'>
               <Mail className='text-kapwa-text-brand h-6 w-6' />
-              <h2 className='text-kapwa-text-strong kapwa-heading font-bold'>
+              <h2 className='text-kapwa-text-strong kapwa-heading-lg font-bold'>
                 Contact Information
               </h2>
             </div>

@@ -111,7 +111,7 @@ const Hero: FC = () => {
         <div className='grid grid-cols-1 gap-8 items-center lg:grid-cols-2'>
           {/* Left section: title + search + quick categories */}
           <div className='animate-fade-in'>
-            <h1 className='mb-4 text-kapwa-text-inverse kapwa-heading'>
+            <h1 className='mb-4 text-kapwa-text-inverse kapwa-heading-xl'>
               {t('hero.title')}
             </h1>
             <p className='mb-8 max-w-lg opacity-80 text-kapwa-text-inverse kapwa-body-md-default'>

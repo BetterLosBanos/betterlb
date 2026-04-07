@@ -16,7 +16,7 @@ const NewsSection: FC = () => {
     <section className='bg-kapwa-bg-surface py-12'>
       <div className='container mx-auto px-4'>
         <div className='mb-8 flex items-center justify-between'>
-          <h2 className='text-kapwa-text-strong kapwa-heading font-bold'>
+          <h2 className='text-kapwa-text-strong kapwa-heading-lg font-bold'>
             {t('news.title')}
           </h2>
           <a
