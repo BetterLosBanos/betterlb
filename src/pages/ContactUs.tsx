@@ -170,7 +170,7 @@ const ContactUs: FC = () => {
         <div className='bg-kapwa-bg-surface mt-8 rounded-lg border p-6 shadow-xs md:p-8'>
           <div className='mx-auto max-w-4xl'>
             <div className='mb-8 text-center'>
-              <h2 className='text-kapwa-text-strong mb-4 kapwa-heading font-bold'>
+              <h2 className='text-kapwa-text-strong mb-4 kapwa-heading-lg font-bold'>
                 Frequently Asked Questions
               </h2>
               <p className='text-kapwa-text-support'>
@@ -231,7 +231,7 @@ const ContactUs: FC = () => {
 
         {/* Call to Action */}
         <div className='from-kapwa-brand-600 to-kapwa-purple-600 bg-linear-to-r mt-8 rounded-lg p-8 text-center'>
-          <h3 className='text-kapwa-text-inverse mb-4 kapwa-heading font-bold'>
+          <h3 className='text-kapwa-text-inverse mb-4 kapwa-heading-md font-bold'>
             Ready to Make a Difference?
           </h3>
           <p className='text-kapwa-text-inverse/80 mx-auto mb-6 max-w-2xl'>

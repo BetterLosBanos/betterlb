@@ -1,4 +1,5 @@
 import { test, expect } from '../test-config';
+import { assertKapwaTokens } from '../utils/kapwa';
 
 test.describe('Barangays Pages', () => {
   test.beforeEach(async ({ page }) => {
@@ -7,30 +8,7 @@ test.describe('Barangays Pages', () => {
   });
 
   test('barangays index page uses Kapwa semantic tokens', async ({ page }) => {
-    // Check page title is visible
-    await expect(
-      page.locator('h1').filter({ hasText: 'Local Barangays' })
-    ).toBeVisible();
-
-    // Check search input exists
-    const searchInput = page.locator('input[placeholder*="Search"]');
-    await expect(searchInput).toBeVisible();
-
-    // Verify Kapwa semantic tokens are used
-    const body = page.locator('body');
-    const bodyHTML = await body.innerHTML();
-
-    // These patterns should not appear (raw Tailwind colors)
-    expect(bodyHTML).not.toMatch(/text-(slate|gray|blue|green|red|yellow)-\d+/);
-    expect(bodyHTML).not.toMatch(/bg-(slate|gray|blue|green|red|yellow)-\d+/);
-    expect(bodyHTML).not.toMatch(
-      /border-(slate|gray|blue|green|red|yellow)-\d+/
-    );
-
-    // Kapwa semantic tokens should be present
-    expect(bodyHTML).toMatch(/text-kapwa-text-/);
-    expect(bodyHTML).toMatch(/bg-kapwa-bg-/);
-    expect(bodyHTML).toMatch(/border-kapwa-border-/);
+    await assertKapwaTokens(page);
   });
 
   test('barangays index displays all barangay cards', async ({ page }) => {
@@ -89,15 +67,7 @@ test.describe('Barangays Pages', () => {
     const header = page.locator('header[role="banner"]');
     await expect(header).toBeVisible();
 
-    // Check for semantic tokens in detail page
-    const bodyHTML = await page.locator('body').innerHTML();
-    expect(bodyHTML).toMatch(/text-kapwa-text-/);
-    expect(bodyHTML).toMatch(/bg-kapwa-bg-/);
-    expect(bodyHTML).toMatch(/border-kapwa-border-/);
-
-    // Should not have raw color classes
-    expect(bodyHTML).not.toMatch(/text-(slate|gray)-\d+/);
-    expect(bodyHTML).not.toMatch(/bg-(slate|gray|white)-\d+/);
+    await assertKapwaTokens(page);
   });
 
   test('barangay detail page displays officials section', async ({ page }) => {

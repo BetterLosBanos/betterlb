@@ -1,421 +1,244 @@
-# Better Gov Contributing Guide
+# Contributing to BetterLB
 
-<a id="readme-top"></a>
-
-<details>
-  <summary>Table of Contents</summary>
-  <ol>
-    <li>
-      <a href="#welcome">Welcome</a>
-    </li>
-    <li>
-      <a href="#better-gov-overview">Better Gov Overview</a>
-    </li>
-    <li>
-      <a href="#ground-rules">Ground Rules</a>
-    </li>
-    <li>
-      <a href="#community-engagement">Community Engagement</a>
-    </li>
-    <li>
-      <a href="#share-ideas">Share Ideas</a>
-    </li>
-    <li>
-      <a href="#report-issues-and-bugs">Report issues and bugs</a>
-    </li>
-    <li>
-      <a href="#before-you-start">Before you start</a>
-    </li>
-    <li>
-      <a href="#environment-setup">Environment setup</a>
-    </li>
-    <li>
-      <a href="#contribution-workflow">Contribution Workflow</a>
-      <ul>
-        <li><a href="#initial-setup">Initial Setup</a></li>
-        <li><a href="#branch-creation">Branch creation</a></li>
-        <li><a href="#development-loop">Development Loop</a></li>
-        <li><a href="#pull-requests">Pull requests</a></li>
-      </ul>
-    </li>
-    <li><a href="#resources">Resources</a></li>
-  </ol>
-</details>
-
-## Welcome
-
-Welcome to the Better Gov Contributing Guide and thank you for your interest in supporting the project!
-
-We welcome contributions of all kinds. Whether you are a developer, designer, writer, or just someone with a great idea, there's a place for you here.
+Thank you for your interest in contributing! We welcome developers, designers, writers, and anyone passionate about better government transparency.
 
 ---
 
-## BetterLB Developer Guide
+## Quick Start
 
-**NEW:** For BetterLB-specific development setup, workflows, and architecture, see our comprehensive [Developer Guide](docs/DEVELOPER_GUIDE.md).
+1. **Fork and Clone**
+   ```bash
+   git clone https://github.com/<your-username>/betterlb
+   cd betterlb
+   npm install
+   ```
 
-The Developer Guide covers:
-- Quick start (5-minute setup)
-- Development environment (frontend + backend + database)
-- Project structure and architecture
-- Development workflows (frontend, backend, data pipeline)
-- Common tasks with code examples
-- Design system (Kapwa)
-- Testing guide (Vitest + Playwright)
-- Deployment to Cloudflare Pages
-- For LGU adopters (forking guide)
-- Troubleshooting
+2. **Create a Branch**
+   ```bash
+   git checkout -b feature/your-feature-name
+   ```
 
-**Contributors should read both documents:**
-1. This file (CONTRIBUTING.md) - General contribution workflow
-2. Developer Guide - BetterLB-specific technical details
+3. **Make Changes**
+   - Follow the code patterns below
+   - Test your changes
+   - Commit with conventional commits
 
-Continue below for general contribution guidelines...
+4. **Submit Pull Request**
+   - Target the `main` branch
+   - Describe your changes clearly
+   - Link related issues
 
-Here are the types of contributions we currently accept and where to learn more in this guide:
+---
 
-- Source Code – Fix bugs, add features, or improve existing code
-- Ideas – Share suggestions for improvements or new features
-- Bug Reporting – Help us identify and document issues
-- Translations – Make the project accessible in different languages
-- Documentation – Improve guides, tutorials, or reference docs
-- Data Scraping – Contribute data collection scripts or improvements
+## Code Conventions
 
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
+### Commit Messages
 
-## Better Gov overview
+Follow [Conventional Commits](https://www.conventionalcommits.org/):
 
-Better Gov is a community-led initiative to create a better and more usable Philippine national government website.
-It is an open-source project dedicated to improving access to government-related information and services through technology, transparency, and collaboration.
-To learn more about our purpose and goals, please read the [README](./README.md).
+```
+<type>[optional scope]: <short description>
 
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
+Types:
+feat:     New feature
+fix:      Bug fix
+docs:     Documentation only
+style:    Code style (no logic change)
+refactor: Code refactoring
+test:     Adding or updating tests
+chore:    Maintenance tasks
 
-## Ground rules
+Examples:
+feat(services): add search filter by category
+fix(navbar): correct mobile menu toggle
+docs: update setup instructions
+```
 
-Before contributing, read our [CODE OF CONDUCT](./CODE_OF_CONDUCT.md) to learn more about our community guidelines and expectations.
+### Code Style
 
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
+- **Prettier** auto-formats on commit (via Husky)
+- **ESLint** enforces rules (max warnings = 0)
+- **TypeScript** strict mode enabled
 
-## Community engagement
+### Design System (Kapwa)
 
-Refer to the following channels to connect with fellow contributors or to stay up-to-date with news about the Better Gov:
+**Always use semantic tokens, never raw colors:**
 
-- Join our project contributors on [Discord][discord].
+```tsx
+// ✅ Correct
+<div className="bg-kapwa-surface text-kapwa-text-strong">
 
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
+// ❌ Wrong
+<div className="bg-blue-500 text-white">
+```
 
-## Share ideas
+### Component Guidelines
 
-To share your new ideas for the project, perform the following actions:
+- **Keep components under 200 lines** - split if larger
+- **Extract complex logic to hooks** - keeps components clean
+- **Use barrel exports** - `index.ts` in component folders
+- **Document exports** - JSDoc comments on public APIs
 
-1. Reach out via email [volunteers@bettergov.ph](mailto:volunteers@bettergov.ph)
-2. Discord Ideas Forum: ⁠[ideas](https://discord.com/channels/1415670958710325270/1418544879717318826)
-3. Submit ideas in [Github Discussions][discussions]
+```tsx
+// src/components/example/index.ts
+export { Example } from './Example';
+export type { ExampleProps };
+```
 
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
+---
 
-### Report issues and bugs
+## Development Workflow
 
-If you encounter a problem with the project, please open an issue in this [repository][issues].
+### Setup
 
-When reporting an issue, please include the following details to help us investigate:
+```bash
+# Use correct Node version
+nvm use  # or fnm use
 
-- Description – A clear and concise explanation of the problem.
-- Steps to reproduce – How to reproduce the issue (step by step).
-- Expected behavior – What you thought should happen.
-- Actual behavior – What actually happened instead.
-- Environment details – Your operating system, browser (if applicable), Node.js version, etc.
-- Screenshots or logs – If relevant, add screenshots or error logs.
+# Install dependencies
+npm install
 
-> Tip: Check existing issues before creating a new one to avoid duplicates.
+# Prepare data files
+python3 scripts/merge_services.py
 
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
+# Start dev server
+npm run dev
+```
 
-## Before you start
+### Testing
 
-Before you start contributing, ensure you have the following:
+```bash
+# Run E2E tests
+npm run test:e2e
 
-- Node.js (v22 or above recommended)
-- npm (v10 or above) or yarn (optional)
-- Git
-- A code editor like VS Code
+# Run specific test file
+npx playwright test services.spec.ts
 
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
+# Check linting
+npm run lint
 
-## Environment setup
+# Format code
+npm run format
+```
 
-To set up your environment, perform the following actions:
+### Pre-commit Hooks
 
-- At the root of the project, create a `.env` file. See [env.example](.env.example) for reference
-- Use the Node.js version specified in .nvmrc (recommended)
+Husky runs automatically:
+- **Prettier** formats code
+- **ESLint** checks quality
+- **Kapwa token check** prevents raw colors
 
-  ```
-  # If you have nvm installed:
+---
 
-  nvm use
+## Project Patterns
 
-  # Or if you have fnm installed:
+### Data Fetching
 
-  fnm use
-  ```
+```tsx
+// Static data - direct import
+import services from '@/data/services.json';
 
-- Install the dependencies
+// Dynamic data - API endpoint
+const response = await fetch('/api/legislation/documents');
+```
 
-  ```sh
-  npm install
-  ```
+### Custom Hooks
 
-- Start the development server
-  ```sh
-  npm run dev
-  ```
-
-### JSON Schema Validation
-
-JSON schemas are used throughout the project to validate data files and ensure data integrity. Schemas are located in their respective data directories (e.g., `src/data/directory/lgu/schema/`).
-
-#### IDE Integration
-
-Schemas provide autocomplete, validation, and inline error detection when editing JSON files.
-
-**VS Code Setup**
-
-Add schema mappings to `.vscode/settings.json`:
-
-```json
-{
-  "json.schemas": [
-    {
-      "fileMatch": ["src/data/directory/lgu/*.json"],
-      "url": "./src/data/directory/lgu/schema/lgu-region.schema.json"
-    }
-  ]
+```tsx
+// Extract complex logic to hooks
+function useServiceData(slug: string) {
+  const [data, setData] = useState(null);
+  // ... logic
+  return { data, loading, error };
 }
 ```
 
-**JetBrains IDEs Setup (WebStorm, IntelliJ IDEA)**
+### Page Structure
 
-1. Open **Preferences/Settings** → **Languages & Frameworks** → **Schemas and DTDs** → **JSON Schema Mappings**
-2. Click the **+** button to add a new mapping
-3. Configure each schema:
-   - **Name:** Descriptive name (e.g., "LGU Region Schema")
-   - **Schema file or URL:** Browse to schema file (e.g., `src/data/directory/lgu/schema/lgu-region.schema.json`)
-   - **Schema version:** JSON Schema version 7
-   - **File path pattern:** Add pattern (e.g., `src/data/directory/lgu/*.json`)
+```tsx
+// Standard page pattern
+export default function PageName() {
+  // 1. Hooks first
+  const { data } = useData();
 
-#### Running Validation Locally
+  // 2. Early returns
+  if (!data) return <Loading />;
 
-To validate JSON files against a schema:
-
-```sh
-node scripts/validate-json-schema.js <schema-path> <files-pattern>
+  // 3. Render
+  return (
+    <PageLayout>
+      <PageHeader>...</PageHeader>
+      <Content>...</Content>
+    </PageLayout>
+  );
+}
 ```
 
-**Examples:**
+---
 
-```sh
-# Validate all LGU region files
-node scripts/validate-json-schema.js \
-  src/data/directory/lgu/schema/lgu-region.schema.json \
-  "src/data/directory/lgu/*.json"
+## Common Tasks
 
-# Validate specific files
-node scripts/validate-json-schema.js \
-  src/data/directory/lgu/schema/lgu-region.schema.json \
-  "src/data/directory/lgu/region-vi-western-visayas.json"
+### Adding a New Service
+
+1. Update service data in `src/data/citizens-charter/`
+2. Run `python3 scripts/merge_services.py`
+3. Test the service detail page
+
+### Adding a New Page
+
+1. Create file in `src/pages/your-page/`
+2. Add route in `src/App.tsx`
+3. Add navigation link if needed
+4. Add E2E test in `e2e/`
+
+### Updating LGU Config
+
+Edit `config/lgu.config.json` - changes apply automatically.
+
+---
+
+## Pull Request Guidelines
+
+### Before Submitting
+
+- [ ] Tests pass locally (`npm run test:e2e`)
+- [ ] No linting errors (`npm run lint`)
+- [ ] Code is formatted (`npm run format`)
+- [ ] Commits follow conventional format
+- [ ] PR description explains changes
+
+### PR Description Template
+
+```markdown
+## Summary
+Brief description of changes
+
+## Changes
+- Change 1
+- Change 2
+
+## Testing
+- Tested on: [browsers]
+- E2E tests: [pass/fail/NA]
+
+## Related Issues
+Closes #123
 ```
 
-Schema validation runs automatically in CI/CD when changes are made to:
-- JSON data files (`src/data/**/*.json`)
-- Schema files (`src/data/**/schema/*.json`)
-- The validation script (`scripts/validate-json-schema.js`)
+---
 
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
+## Getting Help
 
-<!-- This can be added later -->
+- **Issues:** [github.com/BetterLosBanos/betterlb/issues](https://github.com/BetterLosBanos/betterlb/issues)
+- **Discussions:** [github.com/BetterLosBanos/betterlb/discussions](https://github.com/BetterLosBanos/betterlb/discussions)
+- **Live Site:** [https://betterlb.org](https://betterlb.org)
 
-<!-- ### Troubleshoot
+---
 
-If you encounter issues as you set up your environment, refer to the following:
+## License
 
-- Windows: {share a link to an external page that shares troubleshooting steps or share the procedure as sub-bullets}
-- macOS: {share a link to an external page that shares troubleshooting steps or share the procedure as sub-bullets}
-- Linux: {share a link to an external page that shares troubleshooting steps or share the procedure as sub-bullets} -->
+By contributing, you agree that your code will be released under the [Creative Commons CC0](https://creativecommons.org/publicdomain/zero/1.0/) license.
 
-<!-- This can be added later -->
+---
 
-<!-- ## Best practices -->
-
-<!-- {Option 1} Our project has adopted the following best practices for contributing:
-
-- {Item 1}
-- {Item 2}
-- {Item 3}
-
-{Option 2} Our project uses the {name and link to resource for best practices, such as a coding style guide or writing style guide} as our parent guide for best practices. Reference the guide to familiarize yourself with the best practices we want contributors to follow. -->
-
-<!-- This can be added later -->
-<!--
-## Content style guide
-
-Read our {name and link to your style guide} to understand our guidelines for writing and formatting documents. The purpose of our style guide is to ensure consistency in the tone, voice, and structure of our documentation. -->
-
-## Contribution workflow
-
-Official Github Docs on [Forking a repository][forking]
-
-### Initial Setup
-
-**Fork the Repository on GitHub**
-
-- Go to the main project repository (`github.com/bettergovph/bettergov`).
-- Click the **"Fork"** button to create a copy under your Github account.
-
-**Clone the Forked Repository to Local Machine**
-
-```sh
-git clone https://github.com/<your-username>/bettergov.git
-cd bettergov
-```
-
-**Add the Original Repository as an Upstream**
-
-```sh
-git remote add upstream https://github.com/bettergovph/bettergov.git
-```
-
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
-
-### Branch creation
-
-**Update local main before creating a new branch**
-
-```sh
-git checkout main
-git fetch upstream
-git merge upstream/main
-git push origin main
-```
-
-**Create a New Feature Branch**
-
-Create a branch using a prefix-based convention (feature/, fix/, docs/, etc.) to maintain clarity.
-
-**Format**
-
-```text
-<prefix>/<short-description>
-```
-
-**Example**
-
-```sh
-feature/add-login-form
-fix/navbar-responsive-issue
-docs/add-contributing-and-code-of-conduct
-```
-
-> Tip: Keep branch names short, descriptive, and kebab-case.
-
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
-
-### Development Loop
-
-**Make Changes**
-Make sure your code passes linting and tests before committing.
-
-```sh
-git add .
-git commit -a
-```
-
-**⚠️ Important:** Commit your changes following the Conventional Commits standard.
-
-**Commit messages**
-
-We follow [Conventional Commits][commits] for all commit messages.
-This helps keep our history clean and readable.
-
-**Format**
-
-```text
-<type>[optional scope]: <short description>
-```
-
-**Common Types Used**
-
-- feat: → A new feature
-- fix: → A bug fix
-- docs: → Documentation only changes
-- style: → Code style or formatting changes (no logic)
-- refactor: → Code refactoring (no feature or fix)
-- test: → Adding or updating tests
-- chore: → Maintenance tasks (build process, dependencies, etc.)
-
-**Example**
-
-```sh
-feat(button): add primary button variant
-fix(navbar): correct mobile menu toggle
-docs: add CONTRIBUTING.md and CODE_OF_CONDUCT.md
-```
-
-**Push to the Forked Repository**
-
-```sh
-git push -u origin feat/add-new-component
-```
-
-**Sync with Upstream Again**
-
-- If the upstream `main` branch has been updated while working, integrate changes into your feature branch to avoid conflicts.
-
-```sh
-git fetch upstream
-git rebase upstream/main
-git push
-```
-
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
-
-### Pull requests
-
-We use Pull Requests (PRs) to review and merge changes. Follow these steps when creating a PR:
-
-**Open a Pull Request to the main repository:**
-
-- Target the main branch (or the branch specified by maintainers).
-- Provide a clear title and detailed description of your changes.
-- Reference any related issues (e.g., Closes #12).
-- **AI-Assisted Work Disclosure:** If you used AI tools to help generate or significantly modify code in your PR, please disclose this in the PR description. This helps maintainers conduct a more thorough review.
-
-**Wait for review:**
-
-- Maintain open communication with reviewers.
-- Make any requested changes by committing in local feature branch
-- After making changes, commit and push to the same branch—the PR will update automatically..
-
-```sh
-git add .
-git commit -m "refactor: address review feedback"
-git push
-```
-
-**A maintainer will merge your PR once it’s approved.**
-
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
-
-### Resources
-
-- https://www.thegooddocsproject.dev/template/contributing-guide
-- https://www.conventionalcommits.org/en/v1.0.0/
-- https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/working-with-forks/fork-a-repo
-
-<!-- Urls -->
-
-[commits]: https://www.conventionalcommits.org/en/v1.0.0/
-[issues]: https://github.com/betterlosbanos/betterlb/issues/new
-[forking]: https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/working-with-forks/fork-a-repo
-[discord]: https://discord.gg/mHtThpN8bT
-[discussions]: https://github.com/orgs/betterlb/discussions
+**Thank you for contributing to BetterLB!** 🇵🇭

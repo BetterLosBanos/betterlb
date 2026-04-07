@@ -5,21 +5,11 @@ A community-led, open-source portal designed to make the government of the **Mun
 This project is a municipal-focused fork of [BetterGov.ph](https://bettergov.ph), adapted to meet the specific needs of Los Bañenses.
 
 ---
+### Inspirations
 
-## Why We're Building This Project
-Official government websites are often difficult to navigate on mobile devices, lack standardized accessibility features, and can be slow to update. **Better LB** provides a high-performance alternative that mirrors official data (built by BetterGov.PH volunteers) in a modern, inclusive, and community-audited format.
-
-## 🏛️ About Los Baños
-
-**Los Baños** (officially the Municipality of Los Baños) is a first-class municipality in the province of Laguna, Philippines. Known as the "Special Science and Nature City of the Philippines," it hosts prestigious institutions including the University of the Philippines Los Baños (UPLB) and the International Rice Research Institute (IRRI).
-
-### Quick Facts
-- **Province:** Laguna
-- **Region:** Region IV-A (CALABARZON)
-- **Coordinates:** 14.1763°N, 121.2219°E
-- **Official Website:** https://losbanos.gov.ph
-- **Type:** Municipality
-- **Barangays:** 14 barangays
+BetterGov.PH https://github.com/bettergovph/bettergov
+BetterSolano.org https://github.com/BetterSolano/bettersolano
+Betterlocalgov https://github.com/iyanski/betterlocalgov
 
 ### Portal Features
 BetterLB provides Los Baños with:
@@ -39,7 +29,7 @@ BetterLB is designed to be easily adapted for any Local Government Unit (LGU) in
 
 1. **Edit Configuration**: Update `/config/lgu.config.json` with your LGU details
 2. **Update Translations**: Modify `/public/locales/en/common.json` for LGU-specific text
-3. **Add Your Data**: Replace data files in `/src/data/lgu/` with your municipality's information
+3. **Add Your Data**: Replace data files in `/src/data/` with your municipality's information
 4. **Build and Test**: Run `npm install && npm run build`
 
 ### Configuration Files to Edit
@@ -48,9 +38,9 @@ BetterLB is designed to be easily adapted for any Local Government Unit (LGU) in
 |------|------------------|
 | `/config/lgu.config.json` | All LGU settings (name, province, coordinates, branding, transparency config) |
 | `/public/locales/en/common.json` | UI text strings (hero title, footer copyright, government section) |
-| `/src/data/lgu/yourlgu/directory/departments.json` | Municipal departments and offices |
-| `/src/data/lgu/yourlgu/directory/barangays.json` | Barangay information |
-| `/src/data/lgu/yourlgu/services/categories/` | Public services data |
+| `/src/data/directory/departments.json` | Municipal departments and offices |
+| `/src/data/directory/barangays.json` | Barangay information |
+| `/src/data/services/categories/*.json` | Public services data by category |
 
 ### Key Configuration Fields
 
@@ -162,7 +152,7 @@ betterlb/
 ```
 
 ### Key Components
-- **Service Directory**: Categorized services merged from `src/data/lgu/losbanos/services/categories/`
+- **Service Directory**: Categorized services from `src/data/services/categories/`
 - **Legislative Portal**: Ordinances, resolutions, executive orders with document parsing
 - **Transparency Portal**: Financial data, procurement, bids, infrastructure projects
 - **Search Integration**: Meilisearch-powered search with real-time indexing
@@ -174,9 +164,9 @@ BetterLB includes structured data for Los Baños:
 
 | Data Type | Location | Description |
 |-----------|----------|-------------|
-| **Departments** | `/src/data/lgu/losbanos/directory/departments.json` | Municipal departments and offices with contact info |
-| **Barangays** | `/src/data/lgu/losbanos/directory/barangays.json` | 14 barangay profiles and officials |
-| **Services** | `/src/data/lgu/losbanos/services/categories/*.json` | Public services by category (BPLO, Assessor, Engineering, etc.) |
+| **Departments** | `/src/data/directory/departments.json` | Municipal departments and offices with contact info |
+| **Barangays** | `/src/data/directory/barangays.json` | 14 barangay profiles and officials |
+| **Services** | `/src/data/services/categories/*.json` | Public services by category (BPLO, Assessor, Engineering, etc.) |
 | **Citizens Charter** | `/src/data/citizens-charter/citizens-charter.json` | Service requirements, fees, and client steps |
 | **Legislation** | Cloudflare D1 Database | Ordinances, resolutions, executive orders |
 | **Statistics** | `/src/data/statistics/` | Municipal demographics and indicators |
@@ -328,10 +318,3 @@ BetterLB aggregates data from multiple sources:
 - **Forking Guide**: See [`FORKING.md`](./FORKING.md) for detailed instructions
 - **Architecture**: See [`ARCHITECTURE.md`](./ARCHITECTURE.md) for system design
 - **Documentation**: See [`docs/`](./docs/) for comprehensive guides
-
----
-
-**Built by the community, for the community.**
-*Cost to the People of Los Baños = ₱0*
-
-**A proud fork of [BetterGov.ph](https://bettergov.ph) 🇵🇭**

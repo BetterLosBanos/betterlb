@@ -274,7 +274,7 @@ export function SectionBlock({
                 </div>
               )}
               {title && (
-                <h2 className='font-extrabold tracking-tight text-kapwa-text-strong kapwa-heading'>
+                <h2 className='font-extrabold tracking-tight text-kapwa-text-strong kapwa-heading-lg'>
                   {title}
                 </h2>
               )}
@@ -406,7 +406,7 @@ export function PageHeader({
       >
         <div className='container px-4 mx-auto'>
           <div className='flex flex-col items-center text-center'>
-            <h1 className='mb-4 font-bold tracking-tight text-kapwa-text-strong kapwa-heading'>
+            <h1 className='mb-4 font-bold tracking-tight text-kapwa-text-strong kapwa-heading-xl'>
               {title}
             </h1>
             {description && (
@@ -434,7 +434,7 @@ export function PageHeader({
         <div className='container px-4 mx-auto'>
           <div className='flex flex-col items-center text-center'>
             {breadcrumbContent}
-            <h1 className='mb-4 font-bold tracking-tight text-kapwa-text-strong kapwa-heading'>
+            <h1 className='mb-4 font-bold tracking-tight text-kapwa-text-strong kapwa-heading-xl'>
               {title}
             </h1>
             {description && (
@@ -462,7 +462,7 @@ export function PageHeader({
         {breadcrumbContent}
         <div className='flex flex-col gap-4 justify-between md:flex-row md:items-start'>
           <div className='max-w-2xl'>
-            <h1 className='font-extrabold tracking-tight text-kapwa-text-strong kapwa-heading'>
+            <h1 className='font-extrabold tracking-tight text-kapwa-text-strong kapwa-heading-xl'>
               {title}
             </h1>
             {description && (

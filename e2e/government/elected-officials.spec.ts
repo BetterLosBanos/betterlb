@@ -1,4 +1,5 @@
 import { test, expect } from '../test-config';
+import { assertKapwaTokens } from '../utils/kapwa';
 
 test.describe('Elected Officials Pages', () => {
   test.beforeEach(async ({ page }) => {
@@ -8,23 +9,7 @@ test.describe('Elected Officials Pages', () => {
   test('elected officials index page uses Kapwa semantic tokens', async ({
     page,
   }) => {
-    const heading = page
-      .locator('h1')
-      .filter({ hasText: /Elected Officials/i });
-    await expect(heading).toBeVisible();
-
-    const body = page.locator('body');
-    const bodyHTML = await body.innerHTML();
-
-    expect(bodyHTML).not.toMatch(/text-(slate|gray|blue|green|red|yellow)-\d+/);
-    expect(bodyHTML).not.toMatch(/bg-(slate|gray|blue|green|red|yellow)-\d+/);
-    expect(bodyHTML).not.toMatch(
-      /border-(slate|gray|blue|green|red|yellow)-\d+/
-    );
-
-    expect(bodyHTML).toMatch(/text-kapwa-text-/);
-    expect(bodyHTML).toMatch(/bg-kapwa-bg-/);
-    expect(bodyHTML).toMatch(/border-kapwa-border-/);
+    await assertKapwaTokens(page);
   });
 
   test('elected officials index displays executive branch', async ({
@@ -100,13 +85,7 @@ test.describe('Elected Officials Pages', () => {
   test('committees page uses semantic tokens', async ({ page }) => {
     await page.goto('/government/elected-officials/committees');
 
-    const bodyHTML = await page.locator('body').innerHTML();
-    expect(bodyHTML).toMatch(/text-kapwa-text-/);
-    expect(bodyHTML).toMatch(/bg-kapwa-bg-/);
-    expect(bodyHTML).toMatch(/border-kapwa-border-/);
-
-    expect(bodyHTML).not.toMatch(/text-(slate|gray)-\d+/);
-    expect(bodyHTML).not.toMatch(/bg-(slate|gray|white)-\d+/);
+    await assertKapwaTokens(page);
   });
 
   test('committees page has search functionality', async ({ page }) => {

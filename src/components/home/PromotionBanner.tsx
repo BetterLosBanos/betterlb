@@ -13,7 +13,7 @@ const PromotionBanner: FC = () => {
       <div className='container mx-auto px-4'>
         <div className='items-center justify-between md:flex'>
           <div>
-            <h2 className='mb-2 kapwa-heading font-bold'>
+            <h2 className='mb-2 kapwa-heading-lg font-bold'>
               {t('promotion.philsysTitle')}
             </h2>
             <p className='text-kapwa-text-inverse/90 mb-6 max-w-xl md:mb-0'>

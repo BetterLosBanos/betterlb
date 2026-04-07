@@ -1,4 +1,5 @@
 import { test, expect } from '../test-config';
+import { assertKapwaTokens } from '../utils/kapwa';
 
 test.describe('Services Index Page', () => {
   test.beforeEach(async ({ page }) => {
@@ -13,13 +14,7 @@ test.describe('Services Index Page', () => {
     ).toBeVisible();
 
     // Verify Kapwa semantic tokens are used
-    const body = page.locator('body');
-    const bodyHTML = await body.innerHTML();
-
-    // Kapwa semantic tokens should be present
-    expect(bodyHTML).toMatch(/text-kapwa-text-/);
-    expect(bodyHTML).toMatch(/bg-kapwa-bg-/);
-    expect(bodyHTML).toMatch(/border-kapwa-border-/);
+    await assertKapwaTokens(page);
   });
 
   test('services index displays service cards', async ({ page }) => {
@@ -197,10 +192,8 @@ test.describe('Services Index Page', () => {
     await page.waitForURL(/\/services\/.+/);
     expect(page.url()).toMatch(/\/services\/.+/);
 
-    // Check detail page has content
-    const body = page.locator('body');
-    const bodyHTML = await body.innerHTML();
-    expect(bodyHTML).toMatch(/kapwa/); // Kapwa design tokens present
+    // Verify Kapwa design tokens are present on detail page
+    await assertKapwaTokens(page);
   });
 
   test('empty state shows when no results', async ({ page }) => {

@@ -1,71 +1,56 @@
 ## Inspiration
-
-The inspiration for BetterGov.ph came from recognizing the need to modernize and streamline access to Philippine government services. While the government provides numerous essential services, finding and accessing them can be challenging for citizens. We wanted to create a user-friendly, intuitive platform that brings these services together in one place, making government services more accessible to all Filipinos.
+The inspiration for BetterLB came from recognizing that the Municipality of Los Baños deserved a modern, accessible portal that residents could actually rely on. Official government websites are often difficult to navigate on mobile, slow to update, and lack accessibility features. We wanted to build something community-driven and open-source — a portal that puts Los Bañenses first.
 
 ## What it does
-
-BetterGov.ph serves as a centralized portal for Philippine government services, offering:
-
-- A modern, user-friendly interface for accessing government services
-- Real-time information widgets (weather updates, forex rates)
-- Comprehensive service directory with easy filtering and search
+BetterLB serves as a community-built portal for the Municipality of Los Baños, offering:
+- A modern, user-friendly interface for accessing municipal government services
+- Comprehensive public services directory with requirements, fees, and step-by-step processes
+- Legislative portal with ordinances, resolutions, and executive orders from the Sangguniang Bayan
+- Transparency dashboard covering financial data, procurement bids, and infrastructure projects
+- Government directory with contact information for all municipal departments and officials
 - Multilingual support (English and Filipino)
 - Mobile-responsive design for access on any device
-- Latest news and updates from government agencies
-- Detailed information about government structure and officials
 
 ## How we built it
-
 The platform is built using modern web technologies:
-
-- React for the frontend framework
-- TypeScript for type safety and better development experience
-- Tailwind CSS for responsive and maintainable styling
+- React 19 for the frontend framework
+- TypeScript (strict mode) for type safety and better development experience
+- Tailwind CSS v4 for responsive and maintainable styling
 - Radix UI for accessible component primitives
 - Lucide React for consistent iconography
 - React Router for client-side routing
-- Context API for state management
 - Vite for fast development and optimized builds
+- Cloudflare Pages and D1 for deployment and legislative data storage
+- Meilisearch with Fuse.js for fast, fuzzy search
+- Python pipeline for processing legislative PDFs
 
 ## Challenges we ran into
-
-- Organizing and categorizing the vast number of government services effectively
+- Sourcing, cleaning, and structuring legislative documents from official PDFs
+- Organizing the large number of municipal services into a navigable directory
 - Implementing a responsive design that works across all device sizes
-- Ensuring accessibility for users with different abilities
+- Ensuring accessibility for residents with different abilities
 - Managing multilingual support while maintaining content consistency
-- Creating an intuitive navigation system for complex service hierarchies
-- Optimizing performance with real-time data updates
+- Keeping data accurate and up-to-date through community contribution workflows
 
 ## Accomplishments that we're proud of
-
-- Created a modern, accessible interface for government services
-- Implemented a powerful search and filtering system
+- Built a fully open-source, community-audited portal at zero cost to Los Baños residents
+- Created a searchable legislative archive of ordinances, resolutions, and executive orders
+- Implemented a powerful fuzzy search and filtering system for services and legislation
 - Developed a responsive design that works seamlessly on all devices
-- Built a scalable architecture that can accommodate future features
-- Achieved excellent performance metrics and load times
-- Successfully integrated real-time data feeds for weather and forex
-- Created a comprehensive design system for consistent user experience
+- Built a scalable, forkable architecture so other LGUs in the Philippines can adopt it
+- Achieved excellent performance metrics through Cloudflare's edge network
+- Created a structured data pipeline for processing and publishing legislative documents
 
 ## What we learned
-
-- Best practices for organizing large-scale government service directories
-- Techniques for optimizing search functionality across large datasets
+- Best practices for organizing municipal government service directories
+- Techniques for extracting and structuring data from government PDFs at scale
 - Strategies for managing multilingual content effectively
-- Approaches to building accessible government service platforms
-- Methods for integrating real-time data feeds efficiently
-- Importance of user-centered design in government service portals
+- Approaches to building accessible local government portals
+- How to design community contribution workflows that non-developers can participate in
+- The importance of open data and transparency in local governance
 
-## What's next for Philippine Government Website
-
-Future development plans include:
-
-- Integration with government authentication systems
-- Real-time status tracking for government applications
-- Mobile app development
-- Enhanced personalization features
-- Integration with more government services
-- Advanced analytics for service usage patterns
-- Expanded language support for regional dialects
-- AI-powered chatbot for service recommendations
-- Offline functionality for essential services
-- Integration with digital payment systems
+## What's next for BetterLB
+- Expanding coverage of barangay-level services and officials
+- Adding more real-time transparency data (budget execution, project tracking)
+- Growing the volunteer community of data auditors and translators
+- Helping other LGUs fork and deploy their own portals based on BetterLB

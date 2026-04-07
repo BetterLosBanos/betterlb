@@ -16,13 +16,6 @@
       "migrations_dir": "db/migrations",
       "remote": true
     }
-    // Old database (betterlb_opencouncil) kept for reference/backup:
-    // {
-    // 	"binding": "BETTERLB_DB",
-    // 	"database_name": "betterlb_opencouncil",
-    // 	"database_id": "3b868cf4-3b83-4ed7-9f71-4287fe28d713",
-    // 	"migrations_dir": "db/migrations"
-    // }
   ],
   "vars": {
     "GITHUB_REPO": "BetterLosBanos/betterlb",
