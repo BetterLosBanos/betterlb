@@ -86,7 +86,7 @@ export default function ServicesPage() {
         message={
           "We couldn't find any services matching your filters. Try adjusting your search or filters."
         }
-        actionHref='/contribute'
+        actionHref='https://github.com/BetterLosBanos/betterlb/issues/new?template=contribution.yml'
         actionLabel='Suggest New Service'
       />
     );
