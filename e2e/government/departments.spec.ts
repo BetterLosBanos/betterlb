@@ -1,4 +1,5 @@
 import { test, expect } from '../test-config';
+import { assertKapwaTokens } from '../utils/kapwa';
 
 test.describe('Departments Pages', () => {
   test.beforeEach(async ({ page }) => {
@@ -9,30 +10,7 @@ test.describe('Departments Pages', () => {
   test('departments index page uses Kapwa semantic tokens', async ({
     page,
   }) => {
-    // Check page title is visible
-    await expect(
-      page.locator('h1').filter({ hasText: 'Municipal Departments' })
-    ).toBeVisible();
-
-    // Check search input exists
-    const searchInput = page.locator('input[placeholder*="Search"]');
-    await expect(searchInput).toBeVisible();
-
-    // Verify Kapwa semantic tokens are used
-    const body = page.locator('body');
-    const bodyHTML = await body.innerHTML();
-
-    // These patterns should not appear (raw Tailwind colors)
-    expect(bodyHTML).not.toMatch(/text-(slate|gray|blue|green|red|yellow)-\d+/);
-    expect(bodyHTML).not.toMatch(/bg-(slate|gray|blue|green|red|yellow)-\d+/);
-    expect(bodyHTML).not.toMatch(
-      /border-(slate|gray|blue|green|red|yellow)-\d+/
-    );
-
-    // Kapwa semantic tokens should be present
-    expect(bodyHTML).toMatch(/text-kapwa-text-/);
-    expect(bodyHTML).toMatch(/bg-kapwa-bg-/);
-    expect(bodyHTML).toMatch(/border-kapwa-border-/);
+    await assertKapwaTokens(page);
   });
 
   test('departments index displays all department cards', async ({ page }) => {
@@ -90,15 +68,7 @@ test.describe('Departments Pages', () => {
     const heading = page.locator('h1, h2').first();
     await expect(heading).toBeVisible();
 
-    // Check for semantic tokens in detail page
-    const bodyHTML = await page.locator('body').innerHTML();
-    expect(bodyHTML).toMatch(/text-kapwa-text-/);
-    expect(bodyHTML).toMatch(/bg-kapwa-bg-/);
-    expect(bodyHTML).toMatch(/border-kapwa-border-/);
-
-    // Should not have raw color classes
-    expect(bodyHTML).not.toMatch(/text-(slate|gray)-\d+/);
-    expect(bodyHTML).not.toMatch(/bg-(slate|gray|white)-\d+/);
+    await assertKapwaTokens(page);
   });
 
   test('department detail page has breadcrumbs', async ({ page }) => {

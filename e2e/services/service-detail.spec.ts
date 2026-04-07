@@ -1,4 +1,5 @@
 import { test, expect } from '../test-config';
+import { assertKapwaTokens } from '../utils/kapwa';
 
 test.describe('Service Detail Page', () => {
   test.beforeEach(async ({ page }) => {
@@ -9,13 +10,7 @@ test.describe('Service Detail Page', () => {
 
   test('service detail page uses Kapwa semantic tokens', async ({ page }) => {
     // Verify Kapwa semantic tokens are used
-    const body = page.locator('body');
-    const bodyHTML = await body.innerHTML();
-
-    // Kapwa semantic tokens should be present
-    expect(bodyHTML).toMatch(/text-kapwa-text-/);
-    expect(bodyHTML).toMatch(/bg-kapwa-bg-/);
-    expect(bodyHTML).toMatch(/border-kapwa-border-/);
+    await assertKapwaTokens(page);
   });
 
   test('service detail page displays quick info section', async ({ page }) => {
@@ -23,10 +18,8 @@ test.describe('Service Detail Page', () => {
     const h1 = page.locator('h1');
     await expect(h1).toBeVisible();
 
-    // May or may not have quick info depending on service
-    // Just verify the page structure is present
-    const bodyHTML = await page.locator('body').innerHTML();
-    expect(bodyHTML).toMatch(/kapwa/); // Kapwa design tokens present
+    // Verify Kapwa design tokens are present
+    await assertKapwaTokens(page);
   });
 
   test('service detail page displays requirements section', async ({
@@ -47,8 +40,7 @@ test.describe('Service Detail Page', () => {
       await expect(firstCard).toBeVisible();
 
       // Check that requirement card uses Kapwa tokens
-      const cardHTML = await firstCard.innerHTML();
-      expect(cardHTML).toMatch(/kapwa/);
+      await assertKapwaTokens(page);
     }
   });
 

@@ -65,12 +65,8 @@ function ElectedLeaderCard({ leader }: { leader: ExecutiveOfficial }) {
   const Icon = isMayor ? Landmark : Gavel;
 
   const card = (
-    <DetailSection
-      title={leader.office || 'Elected Official'}
-      icon={Icon}
-      className={isMayor ? 'shadow-sm' : 'bg-kapwa-bg-surface/30'}
-    >
-      <div className='flex flex-col items-center space-y-4 py-4 text-center'>
+    <Card hover={!!leader.personId} className='group h-full'>
+      <CardContent className='flex h-full flex-col items-center space-y-4 py-6 text-center'>
         <div className='relative'>
           <div
             className={`flex h-20 w-20 items-center justify-center rounded-full border-4 shadow-sm ${
@@ -88,7 +84,10 @@ function ElectedLeaderCard({ leader }: { leader: ExecutiveOfficial }) {
           )}
         </div>
 
-        <div className='min-w-0 pb-2'>
+        <div className='min-w-0 flex-1'>
+          <p className='text-kapwa-text-brand text-[10px] font-bold tracking-widest uppercase mb-1'>
+            {leader.office || 'Elected Official'}
+          </p>
           <h2 className='text-kapwa-text-strong text-2xl leading-tight font-black'>
             Hon. {toTitleCase(leader.name)}
           </h2>
@@ -122,12 +121,15 @@ function ElectedLeaderCard({ leader }: { leader: ExecutiveOfficial }) {
             </span>
           </div>
         )}
-      </div>
-    </DetailSection>
+      </CardContent>
+    </Card>
   );
 
   return leader.personId ? (
-    <Link to={`/openlgu/person/${leader.personId}`} className='group block'>
+    <Link
+      to={`/openlgu/person/${leader.personId}`}
+      className='group block h-full'
+    >
       {card}
     </Link>
   ) : (

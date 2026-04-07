@@ -98,7 +98,7 @@ const JoinUs: FC = () => {
             <div className='bg-kapwa-bg-brand-weak mb-4 inline-flex items-center justify-center rounded-full p-3'>
               <TargetIcon className='text-kapwa-text-brand h-8 w-8' />
             </div>
-            <h2 className='text-kapwa-text-strong mb-4 kapwa-heading font-bold'>
+            <h2 className='text-kapwa-text-strong mb-4 kapwa-heading-lg font-bold'>
               Our Mission
             </h2>
             <p className='text-kapwa-text-support mx-auto max-w-3xl text-xl'>
@@ -134,7 +134,7 @@ const JoinUs: FC = () => {
       <section className='bg-kapwa-bg-surface py-16 md:py-20'>
         <div className='container mx-auto px-4'>
           <div className='mb-12 text-center'>
-            <h2 className='text-kapwa-text-strong mb-4 kapwa-heading font-bold'>
+            <h2 className='text-kapwa-text-strong mb-4 kapwa-heading-lg font-bold'>
               What We Provide
             </h2>
             <p className='text-kapwa-text-support text-xl'>
@@ -206,8 +206,8 @@ const JoinUs: FC = () => {
               WE&apos;RE DONE WAITING
             </h2>
             <div className='rounded-3xl border border-white/20 bg-linear-to-r from-white/20 to-white/10 p-10 shadow-2xl backdrop-blur-lg md:p-16'>
-              <blockquote className='space-y-8 text-center kapwa-heading leading-relaxed font-bold'>
-                <p className='kapwa-heading font-black tracking-wider text-kapwa-text-accent-yellow uppercase'>
+              <blockquote className='space-y-8 text-center kapwa-heading-lg leading-relaxed font-bold'>
+                <p className='kapwa-heading-xl font-black tracking-wider text-kapwa-text-accent-yellow uppercase'>
                   &ldquo;WE&apos;RE ANGRY. YOU&apos;RE ANGRY.&rdquo;
                 </p>
                 <p className='text-kapwa-text-inverse text-xl md:text-2xl'>
@@ -261,7 +261,7 @@ const JoinUs: FC = () => {
       <section className='from-kapwa-brand-600 bg-linear-to-r to-kapwa-blue-600 py-16 md:py-20'>
         <div className='container mx-auto px-4 text-center'>
           <div className='mx-auto max-w-3xl'>
-            <h2 className='text-kapwa-text-inverse mb-6 kapwa-heading font-bold'>
+            <h2 className='text-kapwa-text-inverse mb-6 kapwa-heading-lg font-bold'>
               Ready to Make a Difference?
             </h2>
             <p className='mb-8 text-xl text-kapwa-text-inverse/80'>

@@ -6,16 +6,6 @@ Translation files live in `public/locales/`:
 
 - `en` - English (required - fallback language)
 - `fil` - Filipino
-- `bcl` - Bikol Central
-- `ceb` - Cebuano
-- `hil` - Hiligaynon
-- `ilo` - Ilocano
-- `mag` - Maranao
-- `mdh` - Maguindanaon
-- `pag` - Pangasinan
-- `pam` - Kapampangan
-- `tsg` - Tausug
-- `war` - Waray
 
 To organize translations better the concept of namespacing is used
 

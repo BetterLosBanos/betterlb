@@ -183,7 +183,7 @@ export default function TermDetail() {
           </Badge>
           <Badge variant='slate'>{term.year_range}</Badge>
         </div>
-        <h1 className='text-kapwa-text-strong mt-3 kapwa-heading font-extrabold'>
+        <h1 className='text-kapwa-text-strong mt-3 kapwa-heading-xl font-extrabold'>
           {term.name}
         </h1>
         <p className='text-kapwa-text-disabled mt-2 flex items-center gap-2 text-xs font-bold'>

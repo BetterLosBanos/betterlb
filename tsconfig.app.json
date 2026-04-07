@@ -23,9 +23,7 @@
     /* Import alias */
     "baseUrl": ".",
     "paths": {
-      "@/*": ["./src/*"],
-      "@bettergov/kapwa": ["./node_modules/@betterlb/kapwa"],
-      "@bettergov/kapwa/*": ["./node_modules/@betterlb/kapwa/*"]
+      "@/*": ["./src/*"]
     }
   },
   "include": ["src"]

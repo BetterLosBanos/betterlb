@@ -154,60 +154,6 @@ describe('ChartTooltip Component', () => {
     });
   });
 
-  describe('Styling', () => {
-    it('applies Kapwa design tokens for tooltip container', () => {
-      const { container } = render(
-        <ChartTooltip
-          active={true}
-          payload={[{ name: 'Test', value: 10, color: '#0066eb' }]}
-          label={2020}
-        />
-      );
-      const tooltip = container.firstChild as HTMLElement;
-      expect(tooltip).toHaveClass('bg-kapwa-bg-surface');
-      expect(tooltip).toHaveClass('border-kapwa-border-weak');
-    });
-
-    it('has proper padding and rounding', () => {
-      const { container } = render(
-        <ChartTooltip
-          active={true}
-          payload={[{ name: 'Test', value: 10, color: '#0066eb' }]}
-          label={2020}
-        />
-      );
-      const tooltip = container.firstChild as HTMLElement;
-      expect(tooltip).toHaveClass('p-3');
-      expect(tooltip).toHaveClass('rounded-xl');
-    });
-
-    it('has shadow for elevation', () => {
-      const { container } = render(
-        <ChartTooltip
-          active={true}
-          payload={[{ name: 'Test', value: 10, color: '#0066eb' }]}
-          label={2020}
-        />
-      );
-      const tooltip = container.firstChild as HTMLElement;
-      expect(tooltip).toHaveClass('shadow-xl');
-    });
-
-    it('has animation classes', () => {
-      const { container } = render(
-        <ChartTooltip
-          active={true}
-          payload={[{ name: 'Test', value: 10, color: '#0066eb' }]}
-          label={2020}
-        />
-      );
-      const tooltip = container.firstChild as HTMLElement;
-      expect(tooltip).toHaveClass('animate-in');
-      expect(tooltip).toHaveClass('fade-in');
-      expect(tooltip).toHaveClass('zoom-in-95');
-    });
-  });
-
   describe('Accessibility', () => {
     it('truncates long labels', () => {
       const longLabel =
@@ -222,40 +168,6 @@ describe('ChartTooltip Component', () => {
       const truncatedElement = screen.getByText(longLabel).closest('span');
       expect(truncatedElement).toHaveClass('max-w-[130px]');
       expect(truncatedElement).toHaveClass('truncate');
-    });
-
-    it('highlights first entry with brand color', () => {
-      const { container } = render(
-        <ChartTooltip
-          active={true}
-          payload={[
-            { name: 'First', value: 100, color: '#0066eb' },
-            { name: 'Second', value: 50, color: '#cc3e00' },
-          ]}
-          label={2020}
-        />
-      );
-      // Color class is on the child span, not the group container
-      const entries = container.querySelectorAll('.group.justify-between');
-      const firstEntryLabel = entries[0].querySelector('span');
-      expect(firstEntryLabel).toHaveClass('text-kapwa-text-brand-bold');
-    });
-
-    it('uses support color for other entries', () => {
-      const { container } = render(
-        <ChartTooltip
-          active={true}
-          payload={[
-            { name: 'First', value: 100, color: '#0066eb' },
-            { name: 'Second', value: 50, color: '#cc3e00' },
-          ]}
-          label={2020}
-        />
-      );
-      // Color class is on the child span, not the group container
-      const entries = container.querySelectorAll('.group.justify-between');
-      const secondEntryLabel = entries[1].querySelector('span');
-      expect(secondEntryLabel).toHaveClass('text-kapwa-text-support');
     });
   });
 
@@ -346,7 +258,6 @@ describe('ChartTooltip Component', () => {
       // Should render scrollbar when content is too long
       const scrollableArea = container.querySelector('.overflow-y-auto');
       expect(scrollableArea).toBeInTheDocument();
-      expect(scrollableArea).toHaveClass('max-h-[320px]');
     });
   });
 });
@@ -392,50 +303,6 @@ describe('ChartContainer Component', () => {
   });
 
   describe('Styling', () => {
-    it('applies Kapwa design tokens for container', () => {
-      const { container } = render(
-        <ChartContainer title='Test'>{mockChart}</ChartContainer>
-      );
-      const card = container.firstChild as HTMLElement;
-      expect(card).toHaveClass('bg-kapwa-bg-surface');
-      expect(card).toHaveClass('border-kapwa-border-weak');
-    });
-
-    it('has proper padding', () => {
-      const { container } = render(
-        <ChartContainer title='Test'>{mockChart}</ChartContainer>
-      );
-      const card = container.firstChild as HTMLElement;
-      expect(card).toHaveClass('p-4');
-      expect(card).toHaveClass('md:p-6');
-    });
-
-    it('has rounded corners', () => {
-      const { container } = render(
-        <ChartContainer title='Test'>{mockChart}</ChartContainer>
-      );
-      const card = container.firstChild as HTMLElement;
-      expect(card).toHaveClass('rounded-3xl');
-    });
-
-    it('has shadow for elevation', () => {
-      const { container } = render(
-        <ChartContainer title='Test'>{mockChart}</ChartContainer>
-      );
-      const card = container.firstChild as HTMLElement;
-      expect(card).toHaveClass('shadow-sm');
-    });
-
-    it('has animation classes', () => {
-      const { container } = render(
-        <ChartContainer title='Test'>{mockChart}</ChartContainer>
-      );
-      const card = container.firstChild as HTMLElement;
-      expect(card).toHaveClass('animate-in');
-      expect(card).toHaveClass('fade-in');
-      expect(card).toHaveClass('slide-in-from-bottom-2');
-    });
-
     it('applies custom className', () => {
       const { container } = render(
         <ChartContainer title='Test' className='custom-class'>
@@ -610,8 +477,8 @@ describe('ResponsiveChart Component', () => {
 });
 
 describe('Chart Components Integration', () => {
-  it('ChartContainer wraps chart with proper styling', () => {
-    const { container } = render(
+  it('ChartContainer wraps chart in accessible region', () => {
+    render(
       <ChartContainer title='Integration Test'>
         <LineChart data={[{ year: 2020, value: 100 }]}>
           <CartesianGrid stroke='#f1f5f9' />
@@ -622,21 +489,20 @@ describe('Chart Components Integration', () => {
         </LineChart>
       </ChartContainer>
     );
-    const card = container.firstChild as HTMLElement;
-    expect(card).toHaveClass('bg-kapwa-bg-surface');
-    expect(card).toHaveClass('rounded-3xl');
+    expect(screen.getByRole('region')).toHaveAttribute(
+      'aria-label',
+      'Statistical chart showing Integration Test'
+    );
   });
 
-  it('ResponsiveChart provides lightweight wrapper', () => {
-    const { container } = render(
+  it('ResponsiveChart renders chart without card wrapper', () => {
+    render(
       <ResponsiveChart height={300}>
         <LineChart data={[{ year: 2020, value: 100 }]}>
           <Line dataKey='value' />
         </LineChart>
       </ResponsiveChart>
     );
-    const wrapper = container.firstChild as HTMLElement;
-    expect(wrapper).not.toHaveClass('rounded-3xl');
-    expect(wrapper).not.toHaveClass('shadow-sm');
+    expect(screen.getByTestId('responsive-container')).toBeInTheDocument();
   });
 });

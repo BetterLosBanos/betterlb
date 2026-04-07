@@ -36,7 +36,6 @@ import PersonMergeTool from '@/pages/admin/components/PersonMergeTool';
 import AdminDashboard from '@/pages/admin/index';
 // Admin Routes
 import AdminLayout from '@/pages/admin/layout';
-import ContributePage from '@/pages/contribute';
 import ForexPage from '@/pages/data/forex';
 // --- Data Pages ---
 import WeatherPage from '@/pages/data/weather';
@@ -51,6 +50,7 @@ import ElectedOfficialsIndex from '@/pages/government/elected-officials';
 import ElectedOfficialsLayout from '@/pages/government/elected-officials/layout';
 import MunicipalCommitteesPage from '@/pages/government/elected-officials/municipal-committees';
 import GovernmentRootLayout from '@/pages/government/layout';
+import ReferenceImplementationPage from '@/pages/government/reference-implementation';
 import LegacyDocumentRedirect from '@/pages/openlgu/LegacyDocumentRedirect';
 import LegislationDetail from '@/pages/openlgu/[document]';
 import PersonDetail from '@/pages/openlgu/[person]';
@@ -91,7 +91,7 @@ function AppContent() {
   const isAdminRoute = location.pathname.startsWith('/admin');
 
   return (
-    <div className='flex min-h-screen flex-col'>
+    <div className='flex flex-col min-h-screen'>
       <SEO />
       {!isAdminRoute && <Navbar />}
       {!isAdminRoute && <Ticker />}
@@ -141,6 +141,12 @@ function AppContent() {
             <Route index element={<BarangaysIndex />} />
             <Route path=':barangay' element={<BarangayDetail />} />
           </Route>
+
+          {/* 4. Reference Implementation */}
+          <Route
+            path='reference-implementation'
+            element={<ReferenceImplementationPage />}
+          />
         </Route>
 
         {/* Statistics Dashboard */}

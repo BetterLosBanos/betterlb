@@ -1,4 +1,5 @@
 import { test, expect } from '../test-config';
+import { assertKapwaTokens } from '../utils/kapwa';
 
 test.describe('Procurement Transparency Page', () => {
   test.beforeEach(async ({ page }) => {
@@ -13,20 +14,7 @@ test.describe('Procurement Transparency Page', () => {
     ).toBeVisible();
 
     // Verify Kapwa semantic tokens are used
-    const body = page.locator('body');
-    const bodyHTML = await body.innerHTML();
-
-    // These patterns should not appear (raw Tailwind colors)
-    expect(bodyHTML).not.toMatch(/text-(slate|gray|blue|green|red|yellow)-\d+/);
-    expect(bodyHTML).not.toMatch(/bg-(slate|gray|blue|green|red|yellow)-\d+/);
-    expect(bodyHTML).not.toMatch(
-      /border-(slate|gray|blue|green|red|yellow)-\d+/
-    );
-
-    // Kapwa semantic tokens should be present
-    expect(bodyHTML).toMatch(/text-kapwa-text-/);
-    expect(bodyHTML).toMatch(/bg-kapwa-bg-/);
-    expect(bodyHTML).toMatch(/border-kapwa-border-/);
+    await assertKapwaTokens(page);
   });
 
   test('procurement page displays stats cards', async ({ page }) => {

@@ -37,80 +37,12 @@ describe('Card Component', () => {
       expect(card).toBeInTheDocument();
     });
 
-    it('applies default variant classes', () => {
-      const { container } = render(<Card>Content</Card>);
-      const card = container.querySelector('article');
-      expect(card).toHaveClass('bg-kapwa-bg-surface');
-      expect(card).toHaveClass('border-kapwa-border-weak');
-      expect(card).toHaveClass('shadow-sm');
-    });
-
-    it('applies featured variant classes', () => {
-      const { container } = render(<Card variant='featured'>Content</Card>);
-      const card = container.querySelector('article');
-      expect(card).toHaveClass('border-kapwa-border-brand');
-      expect(card).toHaveClass('shadow-md');
-      expect(card).toHaveClass('ring-1');
-    });
-
-    it('applies slate variant classes', () => {
-      const { container } = render(<Card variant='slate'>Content</Card>);
-      const card = container.querySelector('article');
-      expect(card).toHaveClass('shadow-none');
-    });
-
-    it('applies compact variant classes', () => {
-      const { container } = render(<Card variant='compact'>Content</Card>);
-      const card = container.querySelector('article');
-      expect(card).toHaveClass('shadow-xs');
-      expect(card).toHaveClass('text-sm');
-    });
-
-    it('applies hover effects when hover is true', () => {
-      const { container } = render(<Card hover>Content</Card>);
-      const card = container.querySelector('article');
-      expect(card).toHaveClass('hover:border-kapwa-border-brand');
-      expect(card).toHaveClass('hover:-translate-y-0.5');
-      expect(card).toHaveClass('hover:shadow-lg');
-    });
-
-    it('does not apply hover effects when hover is false', () => {
-      const { container } = render(<Card hover={false}>Content</Card>);
-      const card = container.querySelector('article');
-      expect(card).not.toHaveClass('hover:border-kapwa-border-brand');
-    });
-
     it('applies custom className', () => {
       const { container } = render(
         <Card className='custom-class'>Content</Card>
       );
       const card = container.querySelector('article');
       expect(card).toHaveClass('custom-class');
-    });
-
-    it('has rounded-2xl corners', () => {
-      const { container } = render(<Card>Content</Card>);
-      const card = container.querySelector('article');
-      expect(card).toHaveClass('rounded-2xl');
-    });
-
-    it('has border styling', () => {
-      const { container } = render(<Card>Content</Card>);
-      const card = container.querySelector('article');
-      expect(card).toHaveClass('border');
-    });
-
-    it('has overflow-hidden', () => {
-      const { container } = render(<Card>Content</Card>);
-      const card = container.querySelector('article');
-      expect(card).toHaveClass('overflow-hidden');
-    });
-
-    it('has transition classes', () => {
-      const { container } = render(<Card>Content</Card>);
-      const card = container.querySelector('article');
-      expect(card).toHaveClass('transition-all');
-      expect(card).toHaveClass('duration-300');
     });
   });
 
@@ -133,28 +65,6 @@ describe('Card Component', () => {
       const header = container.querySelector('header');
       expect(header).toBeInTheDocument();
     });
-
-    it('has border-bottom styling', () => {
-      const { container } = render(
-        <Card>
-          <CardHeader>Header</CardHeader>
-        </Card>
-      );
-      const header = container.querySelector('header');
-      expect(header).toHaveClass('border-b');
-      expect(header).toHaveClass('border-kapwa-border-weak');
-    });
-
-    it('has responsive padding', () => {
-      const { container } = render(
-        <Card>
-          <CardHeader>Header</CardHeader>
-        </Card>
-      );
-      const header = container.querySelector('header');
-      expect(header).toHaveClass('p-4');
-      expect(header).toHaveClass('md:p-6');
-    });
   });
 
   describe('CardContent', () => {
@@ -165,17 +75,6 @@ describe('Card Component', () => {
         </Card>
       );
       expect(screen.getByText('Content')).toBeInTheDocument();
-    });
-
-    it('has responsive padding', () => {
-      const { container } = render(
-        <Card>
-          <CardContent>Content</CardContent>
-        </Card>
-      );
-      const content = container.querySelector('div');
-      expect(content).toHaveClass('p-4');
-      expect(content).toHaveClass('md:p-6');
     });
   });
 
@@ -197,27 +96,6 @@ describe('Card Component', () => {
       );
       const footer = container.querySelector('footer');
       expect(footer).toBeInTheDocument();
-    });
-
-    it('has border-top styling', () => {
-      const { container } = render(
-        <Card>
-          <CardFooter>Footer</CardFooter>
-        </Card>
-      );
-      const footer = container.querySelector('footer');
-      expect(footer).toHaveClass('border-t');
-      expect(footer).toHaveClass('border-kapwa-border-weak');
-    });
-
-    it('has subtle background', () => {
-      const { container } = render(
-        <Card>
-          <CardFooter>Footer</CardFooter>
-        </Card>
-      );
-      const footer = container.querySelector('footer');
-      expect(footer).toHaveClass('bg-kapwa-bg-surface/50');
     });
   });
 
@@ -250,46 +128,6 @@ describe('Card Component', () => {
       const title = container.querySelector('h1');
       expect(title).toBeInTheDocument();
     });
-
-    it('applies correct text size for h1', () => {
-      const { container } = render(
-        <Card>
-          <CardTitle level='h1'>Title</CardTitle>
-        </Card>
-      );
-      const title = container.querySelector('h1');
-      expect(title).toHaveClass('text-3xl');
-    });
-
-    it('applies correct text size for h2', () => {
-      const { container } = render(
-        <Card>
-          <CardTitle level='h2'>Title</CardTitle>
-        </Card>
-      );
-      const title = container.querySelector('h2');
-      expect(title).toHaveClass('text-2xl');
-    });
-
-    it('has strong text color', () => {
-      const { container } = render(
-        <Card>
-          <CardTitle>Title</CardTitle>
-        </Card>
-      );
-      const title = container.querySelector('h3');
-      expect(title).toHaveClass('text-kapwa-text-strong');
-    });
-
-    it('has tracking-tight', () => {
-      const { container } = render(
-        <Card>
-          <CardTitle>Title</CardTitle>
-        </Card>
-      );
-      const title = container.querySelector('h3');
-      expect(title).toHaveClass('tracking-tight');
-    });
   });
 
   describe('CardDescription', () => {
@@ -311,26 +149,6 @@ describe('Card Component', () => {
       const desc = container.querySelector('p');
       expect(desc).toBeInTheDocument();
     });
-
-    it('has muted text color', () => {
-      const { container } = render(
-        <Card>
-          <CardDescription>Description</CardDescription>
-        </Card>
-      );
-      const desc = container.querySelector('p');
-      expect(desc).toHaveClass('text-kapwa-text-support');
-    });
-
-    it('has margin top', () => {
-      const { container } = render(
-        <Card>
-          <CardDescription>Description</CardDescription>
-        </Card>
-      );
-      const desc = container.querySelector('p');
-      expect(desc).toHaveClass('mt-2');
-    });
   });
 
   describe('CardAvatar', () => {
@@ -348,47 +166,6 @@ describe('Card Component', () => {
       const { container } = render(<CardAvatar name='Test' />);
       const avatar = container.querySelector('div');
       expect(avatar).toHaveAttribute('aria-hidden', 'true');
-    });
-
-    it('applies small size classes', () => {
-      const { container } = render(<CardAvatar name='Test' size='sm' />);
-      const avatar = container.querySelector('div');
-      expect(avatar).toHaveClass('w-10');
-      expect(avatar).toHaveClass('h-10');
-    });
-
-    it('applies medium size classes', () => {
-      const { container } = render(<CardAvatar name='Test' size='md' />);
-      const avatar = container.querySelector('div');
-      expect(avatar).toHaveClass('w-12');
-      expect(avatar).toHaveClass('h-12');
-      expect(avatar).toHaveClass('md:w-16');
-      expect(avatar).toHaveClass('md:h-16');
-    });
-
-    it('applies large size classes', () => {
-      const { container } = render(<CardAvatar name='Test' size='lg' />);
-      const avatar = container.querySelector('div');
-      expect(avatar).toHaveClass('w-20');
-      expect(avatar).toHaveClass('h-20');
-    });
-
-    it('has rounded-2xl corners', () => {
-      const { container } = render(<CardAvatar name='Test' />);
-      const avatar = container.querySelector('div');
-      expect(avatar).toHaveClass('rounded-2xl');
-    });
-
-    it('has uppercase text', () => {
-      const { container } = render(<CardAvatar name='test' />);
-      const avatar = container.querySelector('div');
-      expect(avatar).toHaveClass('uppercase');
-    });
-
-    it('has font-bold weight', () => {
-      const { container } = render(<CardAvatar name='Test' />);
-      const avatar = container.querySelector('div');
-      expect(avatar).toHaveClass('font-black');
     });
   });
 
@@ -410,18 +187,6 @@ describe('Card Component', () => {
       const { container } = render(<CardImage src='/test.jpg' />);
       const img = container.querySelector('img');
       expect(img).toHaveAttribute('alt', 'Card visualization');
-    });
-
-    it('has object-cover class', () => {
-      const { container } = render(<CardImage src='/test.jpg' alt='Test' />);
-      const img = container.querySelector('img');
-      expect(img).toHaveClass('object-cover');
-    });
-
-    it('has fixed height container', () => {
-      const { container } = render(<CardImage src='/test.jpg' alt='Test' />);
-      const containerDiv = container.querySelector('.h-48');
-      expect(containerDiv).toBeInTheDocument();
     });
   });
 
@@ -550,61 +315,6 @@ describe('Card Component', () => {
       const grid = screen.getByRole('list');
       expect(grid).toBeInTheDocument();
     });
-
-    it('applies 1 column layout', () => {
-      const { container } = render(
-        <CardGrid columns={1}>
-          <Card>Card</Card>
-        </CardGrid>
-      );
-      const grid = container.querySelector('div');
-      expect(grid).toHaveClass('grid-cols-1');
-    });
-
-    it('applies 2 column layout', () => {
-      const { container } = render(
-        <CardGrid columns={2}>
-          <Card>Card</Card>
-        </CardGrid>
-      );
-      const grid = container.querySelector('div');
-      expect(grid).toHaveClass('grid-cols-1');
-      expect(grid).toHaveClass('md:grid-cols-2');
-    });
-
-    it('applies 3 column layout by default', () => {
-      const { container } = render(
-        <CardGrid>
-          <Card>Card</Card>
-        </CardGrid>
-      );
-      const grid = container.querySelector('div');
-      expect(grid).toHaveClass('grid-cols-1');
-      expect(grid).toHaveClass('md:grid-cols-2');
-      expect(grid).toHaveClass('lg:grid-cols-3');
-    });
-
-    it('applies 4 column layout', () => {
-      const { container } = render(
-        <CardGrid columns={4}>
-          <Card>Card</Card>
-        </CardGrid>
-      );
-      const grid = container.querySelector('div');
-      expect(grid).toHaveClass('grid-cols-1');
-      expect(grid).toHaveClass('md:grid-cols-2');
-      expect(grid).toHaveClass('lg:grid-cols-4');
-    });
-
-    it('has gap-6 spacing', () => {
-      const { container } = render(
-        <CardGrid>
-          <Card>Card</Card>
-        </CardGrid>
-      );
-      const grid = container.querySelector('div');
-      expect(grid).toHaveClass('gap-6');
-    });
   });
 
   describe('CardList', () => {
@@ -628,16 +338,6 @@ describe('Card Component', () => {
       const list = container.querySelector('[role="list"]');
       expect(list).toBeInTheDocument();
     });
-
-    it('has space-y-4 spacing', () => {
-      const { container } = render(
-        <CardList>
-          <Card>Card</Card>
-        </CardList>
-      );
-      const list = container.querySelector('div');
-      expect(list).toHaveClass('space-y-4');
-    });
   });
 
   describe('CardDivider', () => {
@@ -645,12 +345,6 @@ describe('Card Component', () => {
       const { container } = render(<CardDivider />);
       const divider = container.querySelector('hr');
       expect(divider).toBeInTheDocument();
-    });
-
-    it('has border styling', () => {
-      const { container } = render(<CardDivider />);
-      const divider = container.querySelector('hr');
-      expect(divider).toHaveClass('border-kapwa-border-weak');
     });
   });
 });

@@ -1,4 +1,5 @@
 import { test, expect } from '../test-config';
+import { assertKapwaTokens } from '../utils/kapwa';
 
 test.describe('Bids Transparency Page', () => {
   test.beforeEach(async ({ page }) => {
@@ -13,20 +14,7 @@ test.describe('Bids Transparency Page', () => {
     ).toBeVisible();
 
     // Verify Kapwa semantic tokens are used
-    const body = page.locator('body');
-    const bodyHTML = await body.innerHTML();
-
-    // These patterns should not appear (raw Tailwind colors)
-    expect(bodyHTML).not.toMatch(/text-(slate|gray|blue|green|red|yellow)-\d+/);
-    expect(bodyHTML).not.toMatch(/bg-(slate|gray|blue|green|red|yellow)-\d+/);
-    expect(bodyHTML).not.toMatch(
-      /border-(slate|gray|blue|green|red|yellow)-\d+/
-    );
-
-    // Kapwa semantic tokens should be present
-    expect(bodyHTML).toMatch(/text-kapwa-text-/);
-    expect(bodyHTML).toMatch(/bg-kapwa-bg-/);
-    expect(bodyHTML).toMatch(/border-kapwa-border-/);
+    await assertKapwaTokens(page);
   });
 
   test('bids page has accessible skip link', async ({ page }) => {
@@ -105,20 +93,7 @@ test.describe('Transparency Index Page', () => {
     ).toBeVisible();
 
     // Verify Kapwa semantic tokens are used
-    const body = page.locator('body');
-    const bodyHTML = await body.innerHTML();
-
-    // These patterns should not appear (raw Tailwind colors)
-    expect(bodyHTML).not.toMatch(/text-(slate|gray|blue|green|red|yellow)-\d+/);
-    expect(bodyHTML).not.toMatch(/bg-(slate|gray|blue|green|red|yellow)-\d+/);
-    expect(bodyHTML).not.toMatch(
-      /border-(slate|gray|blue|green|red|yellow)-\d+/
-    );
-
-    // Kapwa semantic tokens should be present
-    expect(bodyHTML).toMatch(/text-kapwa-text-/);
-    expect(bodyHTML).toMatch(/bg-kapwa-bg-/);
-    expect(bodyHTML).toMatch(/border-kapwa-border-/);
+    await assertKapwaTokens(page);
   });
 
   test('transparency index has navigation to subpages', async ({ page }) => {
@@ -178,9 +153,7 @@ test.describe('Transparency Index Page', () => {
     await expect(page).toHaveURL(/\/transparency\/.+/);
 
     // Verify new page uses Kapwa tokens
-    const bodyHTML = await page.locator('body').innerHTML();
-    expect(bodyHTML).toMatch(/text-kapwa-text-/);
-    expect(bodyHTML).toMatch(/bg-kapwa-bg-/);
+    await assertKapwaTokens(page);
   });
 
   test('bids and awards page visual snapshot @visual', async ({ page }) => {
