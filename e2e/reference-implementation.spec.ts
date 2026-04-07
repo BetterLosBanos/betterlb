@@ -5,11 +5,11 @@ test('reference page uses semantic tokens', async ({ page }) => {
   await page.goto('/government/reference-implementation');
 
   // Check page title and subtitle
-  const title = page.locator('h1');
+  const title = page.locator('h1').last();
   await expect(title).toContainText('Reference Implementation');
 
   // Check Kapwa semantic classes are used
-  const hero = page.locator('[class*="bg-kapwa-bg-surface-bold"]');
+  const hero = page.locator('[class*="bg-kapwa-bg-surface-bold"]').first();
   await expect(hero).toBeVisible();
 
   const heading = page.locator('.kapwa-heading-md').first();
@@ -30,9 +30,11 @@ test('reference page uses semantic tokens', async ({ page }) => {
 test('reference page displays all example cards', async ({ page }) => {
   await page.goto('/government/reference-implementation');
 
-  // Check that all example cards are visible
-  const cards = page.locator('.bg-kapwa-bg-surface.border-kapwa-border-weak');
-  await expect(cards).toHaveCount(6);
+  // Check that all example cards are visible (article elements with Card classes)
+  const cards = page.locator(
+    'article.bg-kapwa-bg-surface.border-kapwa-border-weak'
+  );
+  await expect(cards).toHaveCount(8);
 
   // Verify specific card content
   await expect(cards.nth(0)).toContainText('Basic Card');
@@ -41,6 +43,8 @@ test('reference page displays all example cards', async ({ page }) => {
   await expect(cards.nth(3)).toContainText('Spacing Tokens');
   await expect(cards.nth(4)).toContainText('Border Variants');
   await expect(cards.nth(5)).toContainText('Interactive States');
+  await expect(cards.nth(6)).toContainText('DO: Use Semantic Tokens');
+  await expect(cards.nth(7)).toContainText("DON'T: Use Raw Colors");
 });
 
 test('reference page shows semantic status colors', async ({ page }) => {
