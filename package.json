@@ -103,7 +103,7 @@
     "react": "$react",
     "react-dom": "$react-dom",
     "esbuild": "0.25.0",
-    "undici": "6.23.0",
+    "undici": "8.0.2",
     "lucide-react": "^0.575.0"
   }
 }
