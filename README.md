@@ -255,7 +255,7 @@ See the [Government Directory](https://betterlb.org/government) on the live site
 We are looking for volunteers passionate individuals who want to make Los Baños a better place. You don't need to be a developer to help!
 
 ### How You Can Contribute:
-1.  **Non-Developers**: Visit the `/contribute` page on the live site to suggest new services or fix outdated information using our simple web form.
+1.  **Non-Developers**: Visit the `/contribute` page on the live site to suggest new services or fix outdated information via GitHub Issues (requires a free GitHub account).
 2.  **Developers**: Check the [Issues](https://github.com/BetterLosBanos/betterlb/issues) tab for "Help Wanted" or "Good First Issue" labels.
 3.  **Data Auditors**: Help us verify community submissions on GitHub to ensure the portal remains an authoritative source of information.
 4.  **Translators**: Help translate the portal to Filipino and other Philippine languages by working on `public/locales/` files.

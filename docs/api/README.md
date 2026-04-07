@@ -27,12 +27,7 @@ https://betterlb.gov.ph/api/
    curl https://betterlb.gov.ph/api/weather
    ```
 
-2. **Contribution API** - Submit community contributions
-   ```bash
-   curl -X POST https://betterlb.gov.ph/api/submit-contribution \
-     -H "Content-Type: application/json" \
-     -d '{"title":"Bug fix","content":"Description"}'
-   ```
+2. **Contribution Flow** - Community contributions are submitted via [GitHub Issues](https://github.com/BetterLosBanos/betterlb/issues/new?template=contribution.yml) using the contribution issue template. The `/contribute` page on the site links users directly to GitHub.
 
 ### Admin APIs (Authentication Required)
 
