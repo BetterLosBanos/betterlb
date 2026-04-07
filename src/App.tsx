@@ -91,7 +91,7 @@ function AppContent() {
   const isAdminRoute = location.pathname.startsWith('/admin');
 
   return (
-    <div className='flex min-h-screen flex-col'>
+    <div className='flex flex-col min-h-screen'>
       <SEO />
       {!isAdminRoute && <Navbar />}
       {!isAdminRoute && <Ticker />}
@@ -177,7 +177,7 @@ function AppContent() {
         </Route>
 
         {/* Community Contribution Flow */}
-        <Route path='contribute' element={<ContributePage />} />
+        {/* <Route path='contribute' element={<ContributePage />} /> */}
 
         {/* Admin Routes */}
         <Route path='/admin' element={<AdminLayout />}>

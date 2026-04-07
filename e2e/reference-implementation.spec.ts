@@ -1,4 +1,5 @@
 import { test, expect } from './test-config';
+import { assertKapwaTokens } from './utils/kapwa';
 
 test('reference page uses semantic tokens', async ({ page }) => {
   await page.goto('/government/reference-implementation');
@@ -15,19 +16,11 @@ test('reference page uses semantic tokens', async ({ page }) => {
   await expect(heading).toBeVisible();
   await expect(heading).toContainText('Basic Card');
 
-  // Check no raw color classes
-  const body = page.locator('body');
-  const bodyHTML = await body.innerHTML();
+  // Verify Kapwa semantic tokens are used (positive + negative checks)
+  await assertKapwaTokens(page);
 
-  // These patterns should not appear (raw Tailwind colors)
-  expect(bodyHTML).not.toMatch(/text-(slate|gray)-\d+/);
-  expect(bodyHTML).not.toMatch(/bg-(slate|gray|white)-\d+/);
-  expect(bodyHTML).not.toMatch(/border-(slate|gray)-\d+/);
-
-  // Verify Kapwa semantic tokens are present
-  expect(bodyHTML).toMatch(/text-kapwa-text-/);
-  expect(bodyHTML).toMatch(/bg-kapwa-bg-/);
-  expect(bodyHTML).toMatch(/border-kapwa-border-/);
+  // Additional reference-page-specific tokens
+  const bodyHTML = await page.locator('body').innerHTML();
   expect(bodyHTML).toMatch(/kapwa-heading-/);
   expect(bodyHTML).toMatch(/kapwa-body-/);
   expect(bodyHTML).toMatch(/p-kapwa-/);
