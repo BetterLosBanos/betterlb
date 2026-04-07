@@ -36,7 +36,6 @@ import PersonMergeTool from '@/pages/admin/components/PersonMergeTool';
 import AdminDashboard from '@/pages/admin/index';
 // Admin Routes
 import AdminLayout from '@/pages/admin/layout';
-import ContributePage from '@/pages/contribute';
 import ForexPage from '@/pages/data/forex';
 // --- Data Pages ---
 import WeatherPage from '@/pages/data/weather';
