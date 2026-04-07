@@ -50,6 +50,7 @@ import ElectedOfficialsIndex from '@/pages/government/elected-officials';
 import ElectedOfficialsLayout from '@/pages/government/elected-officials/layout';
 import MunicipalCommitteesPage from '@/pages/government/elected-officials/municipal-committees';
 import GovernmentRootLayout from '@/pages/government/layout';
+import ReferenceImplementationPage from '@/pages/government/reference-implementation';
 import LegacyDocumentRedirect from '@/pages/openlgu/LegacyDocumentRedirect';
 import LegislationDetail from '@/pages/openlgu/[document]';
 import PersonDetail from '@/pages/openlgu/[person]';
@@ -140,6 +141,12 @@ function AppContent() {
             <Route index element={<BarangaysIndex />} />
             <Route path=':barangay' element={<BarangayDetail />} />
           </Route>
+
+          {/* 4. Reference Implementation */}
+          <Route
+            path='reference-implementation'
+            element={<ReferenceImplementationPage />}
+          />
         </Route>
 
         {/* Statistics Dashboard */}

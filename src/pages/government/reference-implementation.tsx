@@ -1,5 +1,5 @@
 import { PageHero } from '@/components/layout';
-import { Card, CardHeader, CardContent } from '@/components/ui';
+import { Card, CardHeader, CardContent } from '@/components/ui/Card';
 
 /**
  * Reference Implementation Page
