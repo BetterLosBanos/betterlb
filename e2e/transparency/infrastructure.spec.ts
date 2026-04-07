@@ -1,5 +1,5 @@
 import { test, expect } from '../test-config';
-import { assertKapwaTokens } from '../../utils/kapwa';
+import { assertKapwaTokens } from '../utils/kapwa';
 
 test.describe('Infrastructure Transparency Page', () => {
   test.beforeEach(async ({ page }) => {
