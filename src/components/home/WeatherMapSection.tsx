@@ -201,7 +201,7 @@ export default function WeatherMapSection() {
                   Loading weather...
                 </div>
               ) : error ? (
-                <p className='text-red-500'>{error}</p>
+                <p className='text-kapwa-text-danger'>{error}</p>
               ) : weather ? (
                 <>
                   {/* Top: Temp & Condition */}

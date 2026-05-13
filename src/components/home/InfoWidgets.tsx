@@ -104,7 +104,7 @@ const InfoWidgets: FC = () => {
                   <LucideIcons.Loader className='text-kapwa-text-brand h-8 w-8 animate-spin' />
                 </div>
               ) : weatherError ? (
-                <div className='p-4 text-center text-red-500'>
+                <div className='p-4 text-center text-kapwa-text-danger'>
                   <LucideIcons.AlertCircle className='mx-auto mb-2 h-8 w-8' />
                   <p>{weatherError}</p>
                 </div>
@@ -187,7 +187,7 @@ const InfoWidgets: FC = () => {
                       <tr>
                         <td
                           colSpan={3}
-                          className='px-3 py-4 text-center text-red-500'
+                          className='px-3 py-4 text-center text-kapwa-text-danger'
                         >
                           <LucideIcons.AlertCircle className='mx-auto mb-2 h-6 w-6' />
                           <p>{forexError}</p>

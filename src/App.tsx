@@ -6,6 +6,7 @@ import {
   useLocation,
 } from 'react-router-dom';
 
+import { ThemeProvider } from 'next-themes';
 import { NuqsAdapter } from 'nuqs/adapters/react-router/v6';
 
 import { Footer } from '@/components/layout/Footer';
@@ -79,11 +80,13 @@ import ProcurementPage from '@/pages/transparency/procurement';
 
 function App() {
   return (
-    <Router>
-      <NuqsAdapter>
-        <AppContent />
-      </NuqsAdapter>
-    </Router>
+    <ThemeProvider attribute='class' defaultTheme='system' enableSystem>
+      <Router>
+        <NuqsAdapter>
+          <AppContent />
+        </NuqsAdapter>
+      </Router>
+    </ThemeProvider>
   );
 }
 

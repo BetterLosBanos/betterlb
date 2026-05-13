@@ -192,11 +192,11 @@ export default function ReferenceImplementation() {
               </h3>
               <pre className='bg-kapwa-bg-surface-bold border-kapwa-border-weak border p-kapwa-md text-kapwa-text-inverse kapwa-body-sm overflow-x-auto rounded-lg'>
                 {`// ❌ Wrong - Raw color classes
-<div className="bg-white border-gray-200">
-  <h2 className="text-xl font-semibold text-slate-900">
+<div className="bg-kapwa-bg-surface border-kapwa-border-weak">
+  <h2 className="text-xl font-semibold text-kapwa-text-strong">
     Title
   </h2>
-  <p className="text-base text-slate-600">
+  <p className="text-base text-kapwa-text-support">
     Description
   </p>
 </div>`}
