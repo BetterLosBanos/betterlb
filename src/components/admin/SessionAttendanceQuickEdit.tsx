@@ -225,7 +225,7 @@ export default function SessionAttendanceQuickEdit({
               <div
                 key={member.id}
                 className={`hover:bg-kapwa-bg-surface-raised flex items-center justify-between p-3 transition-colors ${
-                  isAbsent ? 'bg-red-50' : ''
+                  isAbsent ? 'bg-kapwa-bg-danger-weak' : ''
                 }`}
               >
                 <div className='flex-1'>

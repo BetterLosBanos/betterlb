@@ -73,8 +73,8 @@ const NewsSection: FC = () => {
             ))}
           </CardGrid>
         ) : error ? (
-          <div className='rounded-lg border border-red-200 bg-red-50 p-6 text-center'>
-            <AlertCircle className='mx-auto h-8 w-8 text-red-400' />
+          <div className='rounded-lg border border-kapwa-border-danger bg-kapwa-bg-danger-weak p-6 text-center'>
+            <AlertCircle className='mx-auto h-8 w-8 text-kapwa-text-danger' />
             <p className='mt-2 text-kapwa-text-muted'>
               Unable to load news at this time.
             </p>

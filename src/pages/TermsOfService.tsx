@@ -354,11 +354,11 @@ const TermsOfService: FC = () => {
                 </ul>
               </div>
 
-              <div className='bg-kapwa-bg-success-weak rounded-lg border border-green-200 p-4'>
-                <h3 className='mb-2 font-semibold text-green-900'>
+              <div className='bg-kapwa-bg-success-weak rounded-lg border border-kapwa-border-success p-4'>
+                <h3 className='mb-2 font-semibold text-kapwa-text-success'>
                   Our Response Process:
                 </h3>
-                <ul className='list-inside list-disc space-y-1 text-green-800'>
+                <ul className='list-inside list-disc space-y-1 text-kapwa-text-success'>
                   <li>We will review all legitimate concerns in good faith</li>
                   <li>Response time may vary due to our volunteer nature</li>
                   <li>
@@ -376,8 +376,8 @@ const TermsOfService: FC = () => {
                 </ul>
               </div>
 
-              <div className='bg-kapwa-bg-danger-weak rounded-lg border border-red-200 p-4'>
-                <p className='text-red-800'>
+              <div className='bg-kapwa-bg-danger-weak rounded-lg border border-kapwa-border-danger p-4'>
+                <p className='text-kapwa-text-danger'>
                   <strong>False or Frivolous Complaints:</strong> Submitting
                   knowingly false takedown requests or complaints may result in
                   being blocked from contacting our volunteers.
