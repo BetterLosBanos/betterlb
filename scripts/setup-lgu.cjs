@@ -240,6 +240,29 @@ async function main() {
     }
   }
 
+  // ─── Update index.html with config paths ───────────────────────────
+  try {
+    const htmlPath = path.join(ROOT, 'index.html');
+    let html = fs.readFileSync(htmlPath, 'utf8');
+
+    const slug = slugify(lguName);
+    const replacements = {
+      '/logos/svg/betterlb-logo-primary.svg': `/logos/svg/${slug}-logo-primary.svg`,
+      '/logos/png/betterlb-banner-inverted.png': `/logos/png/${slug}-banner-inverted.png`,
+      '/logos/png/betterlb-blue.png': `/logos/png/${slug}-blue.png`,
+    };
+
+    for (const [from, to] of Object.entries(replacements)) {
+      if (html.includes(from)) {
+        html = html.replaceAll(from, to);
+      }
+    }
+    fs.writeFileSync(htmlPath, html);
+    console.log('✅ Updated index.html logo paths');
+  } catch {
+    console.log('⚠️  Could not update index.html (non-critical)');
+  }
+
   // ─── Summary ───────────────────────────────────────────────────────
   console.log('\n════════════════════════════════════════════');
   console.log(`  ${portalName} — ${fullName}`);

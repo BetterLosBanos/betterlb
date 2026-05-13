@@ -246,62 +246,68 @@ function AppContent() {
             />
           </Route>
 
-          {/* Statistics Dashboard */}
-          <Route path='statistics' element={<StatisticsLayout />}>
-            <Route index element={<PopulationPage />} />
-            <Route path='population' element={<PopulationPage />} />
-            <Route
-              path='municipal-income'
-              element={<MunicipalIncomePage />}
-            />
-            <Route
-              path='competitiveness'
-              element={<CompetitivenessPage />}
-            />
-          </Route>
-
-          {/* OpenLGU Portal */}
-          <Route path='openlgu' element={<OpenLGULayout />}>
-            <Route index element={<LegislationIndex />} />
-            <Route path='officials' element={<OfficialsIndex />} />
-            <Route path='terms' element={<TermsIndex />} />
-            {/* Legacy redirect for backward compatibility */}
-            <Route
-              path=':type/:document'
-              element={<LegacyDocumentRedirect />}
-            />
-            {/* New unified document route */}
-            <Route
-              path='documents/:document'
-              element={<LegislationDetail />}
-            />
-            <Route
-              path='session/:sessionId'
-              element={<SessionDetail />}
-            />
-            <Route
-              path='person/:personId'
-              element={<PersonDetail />}
-            />
-            <Route path='term/:termId' element={<TermDetail />} />
-          </Route>
-
-          {/* Transparency Portal */}
-          <Route
-            path='/transparency'
-            element={<TransparencyLayout />}
-          >
-            <Route index element={<TransparencyIndex />} />
-            <Route path='financial' element={<FinancialPage />} />
-            <Route path='procurement' element={<ProcurementPage />} />
-            <Route path='/transparency/infrastructure'>
-              <Route index element={<InfrastructurePage />} />
+          {/* Statistics Dashboard — feature gated */}
+          {config.features.statistics && (
+            <Route path='statistics' element={<StatisticsLayout />}>
+              <Route index element={<PopulationPage />} />
+              <Route path='population' element={<PopulationPage />} />
               <Route
-                path=':contractId'
-                element={<InfrastructureDetail />}
+                path='municipal-income'
+                element={<MunicipalIncomePage />}
+              />
+              <Route
+                path='competitiveness'
+                element={<CompetitivenessPage />}
               />
             </Route>
-          </Route>
+          )}
+
+          {/* OpenLGU Portal — feature gated */}
+          {config.features.openLGU && (
+            <Route path='openlgu' element={<OpenLGULayout />}>
+              <Route index element={<LegislationIndex />} />
+              <Route path='officials' element={<OfficialsIndex />} />
+              <Route path='terms' element={<TermsIndex />} />
+              {/* Legacy redirect for backward compatibility */}
+              <Route
+                path=':type/:document'
+                element={<LegacyDocumentRedirect />}
+              />
+              {/* New unified document route */}
+              <Route
+                path='documents/:document'
+                element={<LegislationDetail />}
+              />
+              <Route
+                path='session/:sessionId'
+                element={<SessionDetail />}
+              />
+              <Route
+                path='person/:personId'
+                element={<PersonDetail />}
+              />
+              <Route path='term/:termId' element={<TermDetail />} />
+            </Route>
+          )}
+
+          {/* Transparency Portal — feature gated */}
+          {config.features.transparency && (
+            <Route
+              path='/transparency'
+              element={<TransparencyLayout />}
+            >
+              <Route index element={<TransparencyIndex />} />
+              <Route path='financial' element={<FinancialPage />} />
+              <Route path='procurement' element={<ProcurementPage />} />
+              <Route path='/transparency/infrastructure'>
+                <Route index element={<InfrastructurePage />} />
+                <Route
+                  path=':contractId'
+                  element={<InfrastructureDetail />}
+                />
+              </Route>
+            </Route>
+          )}
 
           {/* Community Contribution Flow */}
           <Route path='contribute' element={<ContributePage />} />

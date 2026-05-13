@@ -7,8 +7,9 @@ export interface LGUConfig {
     province: string;
     districtEngineeringOffice?: string;
     region: string;
+    /** ISO-like region code (e.g. "040000000") */
     regionCode: string;
-    type: 'municipality' | 'city';
+    type: 'municipality' | 'city' | 'province';
     officialWebsite: string;
     provinceWebsite: string;
   };
