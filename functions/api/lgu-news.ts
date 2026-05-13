@@ -107,9 +107,9 @@ async function fetchAndParse(): Promise<LGUNewsResponse> {
       const excerptMatch = block.match(/<\/small>([\s\S]*?)<\/div>/);
       let excerpt = '';
       if (excerptMatch) {
-        // Strip HTML tags and trim
+        // Remove HTML delimiters and normalize whitespace
         excerpt = excerptMatch[1]
-          .replace(/<[^>]*>/g, '')
+          .replace(/[<>]/g, '')
           .replace(/\s+/g, ' ')
           .trim();
       }
