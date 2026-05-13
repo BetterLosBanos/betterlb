@@ -47,10 +47,7 @@
     },
     "infrastructure": {
       "searchString": "Los Baños",
-      "exactMatchTargets": [
-        "los baños",
-        "los banos"
-      ]
+      "exactMatchTargets": ["los baños", "los banos"]
     }
   },
   "dataPaths": {

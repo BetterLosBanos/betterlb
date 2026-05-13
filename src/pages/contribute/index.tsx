@@ -12,8 +12,7 @@ import {
 import { ModuleHeader } from '@/components/layout/PageLayouts';
 import { config } from '@/lib/lguConfig';
 
-const GITHUB_ISSUE_URL =
-  `${config.portal.githubUrl}/issues/new?template=contribution.yml`;
+const GITHUB_ISSUE_URL = `${config.portal.githubUrl}/issues/new?template=contribution.yml`;
 
 export default function ContributePage() {
   return (

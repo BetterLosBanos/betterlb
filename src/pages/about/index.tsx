@@ -28,7 +28,13 @@ const AboutPage: FC = () => {
       <SEO
         title='About'
         description='A volunteer-led tech initiative committed to creating #civictech projects aimed at making government more transparent, efficient, and accessible to citizens.'
-        keywords={['government projects', 'civic tech', 'transparency', 'accountability', 'innovation']}
+        keywords={[
+          'government projects',
+          'civic tech',
+          'transparency',
+          'accountability',
+          'innovation',
+        ]}
       />
       <div className='container mx-auto px-4 py-6 md:py-8'>
         <div className='bg-kapwa-bg-surface mt-4 rounded-lg border p-6 shadow-xs md:p-8 md:py-24'>
