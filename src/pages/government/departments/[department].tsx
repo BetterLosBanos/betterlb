@@ -89,8 +89,9 @@ export default function DepartmentDetail() {
       </Breadcrumb>
 
       {/* --- COMPACT IDENTITY HEADER --- */}
-      <header
-        className='bg-kapwa-bg-surface border-kapwa-border-weak rounded-xl border p-6 shadow-sm'
+      <Card
+        hover={false}
+        className='rounded-xl p-6'
         role='banner'
         aria-label='Department information header'
       >
@@ -149,7 +150,7 @@ export default function DepartmentDetail() {
             </a>
           )}
         </div>
-      </header>
+      </Card>
 
       {/* --- MAIN CONTENT --- */}
       <main id='main-content' className='space-y-6'>
@@ -164,7 +165,7 @@ export default function DepartmentDetail() {
             <p className='text-kapwa-text-disabled pl-1 text-[10px] font-bold tracking-widest uppercase'>
               Office Leadership
             </p>
-            <div className='bg-kapwa-bg-surface border-kapwa-border-weak rounded-xl border p-6 shadow-sm'>
+            <Card hover={false} className='rounded-xl'>
               <div className='flex flex-col gap-4 md:flex-row md:items-center md:gap-6'>
                 <div className='border-kapwa-border-brand text-kapwa-text-brand bg-kapwa-bg-surface flex h-16 w-16 shrink-0 items-center justify-center rounded-full border-2'>
                   <UserIcon className='h-8 w-8' />
@@ -187,7 +188,7 @@ export default function DepartmentDetail() {
                   )}
                 </div>
               </div>
-            </div>
+            </Card>
           </div>
         )}
 
