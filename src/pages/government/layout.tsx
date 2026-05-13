@@ -6,6 +6,7 @@ import { useTranslation } from 'react-i18next';
 import { PageHeader, SectionBlock } from '@/components/layout';
 
 import { cn } from '@/lib/utils';
+import { lguLabels } from '@/lib/lguLabels';
 
 export default function GovernmentRootLayout() {
   const location = useLocation();
@@ -37,7 +38,7 @@ export default function GovernmentRootLayout() {
       title: t('government.barangaysTitle', 'Barangays'),
       description: t(
         'government.barangaysDescription',
-        'The 14 local component units of Los Baños.'
+        `The 14 local component units of ${lguLabels.name}.`
       ),
       icon: HomeIcon,
       path: '/government/barangays',
@@ -51,7 +52,7 @@ export default function GovernmentRootLayout() {
       <PageHeader
         variant='centered'
         title='Government'
-        description='Access information on elected leaders, municipal departments, and the 14 component barangays of Los Baños.'
+        description={`Access information on elected leaders, ${lguLabels.adjective.toLowerCase()} departments, and the 14 component barangays of ${lguLabels.name}.`}
       />
 
       <SectionBlock className='pb-kapwa-xs md:pb-kapwa-sm'>

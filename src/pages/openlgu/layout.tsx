@@ -3,6 +3,7 @@ import { Outlet, useLocation } from 'react-router-dom';
 import { parseAsStringEnum, useQueryState } from 'nuqs';
 
 import { PageHeader } from '@/components/layout';
+import { lguLabels } from '@/lib/lguLabels';
 import { SidebarLayout } from '@/components/layout/SidebarLayout';
 import SearchInput from '@/components/ui/SearchInput';
 
@@ -61,7 +62,7 @@ export default function OpenLGULayout() {
           <PageHeader
             variant='hero'
             title='OpenLGU Portal'
-            description='Browse official local ordinances, resolutions, and executive orders of Los Baños.'
+            description={`Browse official local ordinances, resolutions, and executive orders of ${lguLabels.name}.`}
             actions={
               <SearchInput
                 placeholder='Search by title, number, or author...'

@@ -9,6 +9,7 @@ import { Card, CardContent } from '@/components/ui/Card';
 import SearchInput from '@/components/ui/SearchInput';
 
 import { toTitleCase } from '@/lib/stringUtils';
+import { lguLabels } from '@/lib/lguLabels';
 
 import barangaysData from '@/data/directory/barangays.json';
 
@@ -23,7 +24,7 @@ export default function BarangaysIndex() {
     <>
       <PageHero
         title='Local Barangays'
-        description={`${filtered.length} component barangays of the Municipality of Los Baños.`}
+        description={`${filtered.length} component barangays of the ${lguLabels.fullName}.`}
       >
         <SearchInput
           value={search}

@@ -26,6 +26,7 @@ import SelectPicker from '@/components/ui/SelectPicker';
 
 import { formatPesoAdaptive } from '@/lib/format';
 import { config } from '@/lib/lguConfig';
+import { lguLabels } from '@/lib/lguLabels';
 import { DPWHProject, INDICES, client } from '@/lib/meilisearch';
 
 export default function InfrastructurePage() {
@@ -201,7 +202,7 @@ export default function InfrastructurePage() {
       {/* Header + Search + Status Toggle  */}
       <ModuleHeader
         title='Infrastructure Projects'
-        description='Monitoring of national DPWH infrastructure projects within Los Baños.'
+        description={`Monitoring of national DPWH infrastructure projects within ${lguLabels.name}.`}
       >
         <div className='flex w-full flex-col items-center gap-4 md:w-auto md:flex-row'>
           <SearchInput
@@ -343,7 +344,7 @@ export default function InfrastructurePage() {
                             {item.location.barangay
                               ? `${item.location.barangay}, `
                               : ''}
-                            {item.location.municipality || 'Los Baños'}
+                            {item.location.municipality || lguLabels.name}
                           </span>
                         </span>
                       </div>
