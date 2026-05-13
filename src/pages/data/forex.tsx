@@ -186,7 +186,7 @@ const ForexPage: FC = () => {
 
   return (
     <div className='bg-kapwa-bg-surface-raised min-h-screen'>
-      <div className='container mx-auto px-4 py-8'>
+      <div className='container mx-auto px-4 py-8 md:py-12'>
         {isLoading ? (
           <div className='flex h-64 items-center justify-center'>
             <div className='border-kapwa-border-brand h-12 w-12 animate-spin rounded-full border-t-2 border-b-2'></div>

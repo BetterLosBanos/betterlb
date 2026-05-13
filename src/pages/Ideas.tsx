@@ -130,7 +130,7 @@ const Ideas: FC = () => {
         ]}
       />
 
-      <div className='container mx-auto px-4 py-6 md:py-12'>
+      <div className='container mx-auto px-4 py-8 md:py-12'>
         {/* Header */}
         <header className='mb-8 text-center md:mb-12'>
           <div className='mb-4 flex items-center justify-center'>

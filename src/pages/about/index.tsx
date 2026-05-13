@@ -36,7 +36,7 @@ const AboutPage: FC = () => {
           'innovation',
         ]}
       />
-      <div className='container mx-auto px-4 py-6 md:py-8'>
+      <div className='container mx-auto px-4 py-8 md:py-12'>
         <div className='bg-kapwa-bg-surface mt-4 rounded-lg border p-6 shadow-xs md:p-8 md:py-24'>
           <div className='mx-auto max-w-3xl'>
             <h1 className='text-kapwa-text-strong kapwa-heading-xl font-extrabold'>

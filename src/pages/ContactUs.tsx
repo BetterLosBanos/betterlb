@@ -98,7 +98,7 @@ const ContactUs: FC = () => {
         keywords={['contact', 'volunteer', 'feedback', 'support']}
       />
 
-      <div className='container mx-auto px-4 py-6 md:py-8'>
+      <div className='container mx-auto px-4 py-8 md:py-12'>
         {/* Header Section */}
         <div className='bg-kapwa-bg-surface border-kapwa-border-weak mt-4 rounded-lg border p-6 shadow-xs md:p-8 md:py-16'>
           <div className='mx-auto max-w-4xl text-center'>

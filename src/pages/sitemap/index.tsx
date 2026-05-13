@@ -335,7 +335,7 @@ const SitemapPage: FC = () => {
         ]}
       />
 
-      <div className='container px-4 mx-auto'>
+      <div className='container mx-auto px-4 py-8 md:py-12'>
         <div className='mx-auto max-w-5xl'>
           <div className='overflow-hidden rounded-xl bg-kapwa-bg-surface shadow-xs'>
             <div className='p-6 border-b border-kapwa-border-weak md:p-8'>
