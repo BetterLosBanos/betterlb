@@ -18,6 +18,7 @@ import {
 } from 'lucide-react';
 
 import { config } from '@/lib/lguConfig';
+import { SEO } from '@/components/layout/SEO';
 
 const JoinUs: FC = () => {
   return (
