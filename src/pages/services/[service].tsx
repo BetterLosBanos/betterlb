@@ -39,6 +39,7 @@ import { SupportingDocumentsDetail } from './components/SupportingDocumentsDetai
 import { FeesCard } from './components/FeesCard';
 
 import { getServiceBySlug } from '@/lib/services';
+import { config } from '@/lib/lguConfig';
 import { toTitleCase } from '@/lib/stringUtils';
 
 import departmentsData from '@/data/directory/departments.json';
@@ -521,7 +522,7 @@ export default function ServiceDetail() {
               portal accurate.
             </p>
             <a
-              href={`https://github.com/BetterLosBanos/betterlb/issues/new?template=contribution.yml&title=${encodeURIComponent(`[Edit] ${service.service}`)}`}
+              href={`${config.portal.githubUrl}/issues/new?template=contribution.yml&title=${encodeURIComponent(`[Edit] ${service.service}`)}`}
               target='_blank'
               rel='noopener noreferrer'
               className='group border-kapwa-border-weak text-kapwa-text-support hover:border-kapwa-border-weak hover:bg-kapwa-bg-surface-raised flex min-h-[44px] w-full items-center justify-center gap-2 rounded-xl border-2 px-4 py-2.5 text-xs font-bold transition-all'

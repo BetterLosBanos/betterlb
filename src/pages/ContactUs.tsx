@@ -13,7 +13,8 @@ import {
   MessageCircleIcon,
   UsersIcon,
 } from 'lucide-react';
-import { Helmet } from 'react-helmet-async';
+
+import { config } from '@/lib/lguConfig';
 
 const ContactUs: FC = () => {
   const contactMethods = [
@@ -22,8 +23,8 @@ const ContactUs: FC = () => {
       title: 'Email Us',
       description:
         'Send us an email for general inquiries and collaboration opportunities',
-      contact: 'volunteers@bettergov.ph',
-      action: 'mailto:volunteers@bettergov.ph',
+      contact: config.portal.contactEmail,
+      action: `mailto:${config.portal.contactEmail}`,
       color: 'bg-kapwa-bg-brand-weak text-kapwa-text-brand',
     },
     {
@@ -31,8 +32,8 @@ const ContactUs: FC = () => {
       title: 'Discord Community',
       description:
         'Join our volunteer community for real-time discussions and support',
-      contact: 'discord.gg/bettergov',
-      action: 'https://discord.gg/mHtThpN8bT',
+      contact: 'Discord',
+      action: config.portal.discordUrl,
       color: 'bg-kapwa-bg-brand-weak text-kapwa-text-brand',
     },
     {
@@ -48,7 +49,7 @@ const ContactUs: FC = () => {
       title: 'Report Issues',
       description: 'Found a bug or have a suggestion? Open an issue on GitHub',
       contact: 'GitHub Issues',
-      action: 'https://github.com/bettergovph/bettergov/issues',
+      action: `${config.portal.githubUrl}/issues`,
       color: 'bg-kapwa-bg-brand-weak text-kapwa-text-brand',
     },
   ];
@@ -71,7 +72,7 @@ const ContactUs: FC = () => {
         'The best way is to open an issue on our GitHub repository. This helps us track and prioritize all requests.',
       link: {
         text: 'GitHub repository',
-        href: 'https://github.com/bettergovph/bettergov/issues',
+        href: `${config.portal.githubUrl}/issues`,
       },
     },
     {
@@ -90,26 +91,11 @@ const ContactUs: FC = () => {
 
   return (
     <div className='bg-kapwa-bg-surface-raised min-h-screen'>
-      <Helmet>
-        <title>Contact Us | BetterGov.ph</title>
-        <meta
-          name='description'
-          content='Contact the BetterGov.ph team. Get in touch with our volunteers, report issues, or join our community.'
+        <SEO
+          title='Contact Us'
+          description='Get in touch with our volunteers, report issues, or join our community.'
+          keywords={['contact', 'volunteer', 'feedback', 'support']}
         />
-        <meta
-          name='keywords'
-          content='contact, bettergov, volunteer, feedback, support, philippines government'
-        />
-        <link rel='canonical' href='https://bettergov.ph/contact' />
-        <meta property='og:title' content='Contact Us | BetterGov.ph' />
-        <meta
-          property='og:description'
-          content='Contact the BetterGov.ph team. Get in touch with our volunteers, report issues, or join our community.'
-        />
-        <meta property='og:type' content='website' />
-        <meta property='og:url' content='https://bettergov.ph/contact' />
-        <meta property='og:image' content='https://bettergov.ph/ph-logo.png' />
-      </Helmet>
 
       <div className='container mx-auto px-4 py-6 md:py-8'>
         {/* Header Section */}

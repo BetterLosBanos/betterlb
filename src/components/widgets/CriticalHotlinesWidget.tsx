@@ -35,7 +35,7 @@ const CriticalHotlinesWidget: FC<CriticalHotlinesWidgetProps> = ({
           </h3>
         </div>
         <Link
-          to='https://hotlines.bettergov.ph/?city=los%20baños&province=laguna'
+          to='https://hotlines.bettergov.ph/'
           className='flex items-center text-sm text-kapwa-text-inverse hover:underline'
         >
           View all <ChevronRightIcon className='ml-1 w-4 h-4' />

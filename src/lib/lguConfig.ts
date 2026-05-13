@@ -9,7 +9,6 @@ export interface LGUConfig {
     region: string;
     regionCode: string;
     type: 'municipality' | 'city';
-    logoPath: string;
     officialWebsite: string;
     provinceWebsite: string;
   };
@@ -24,6 +23,15 @@ export interface LGUConfig {
     footerBrandName: string;
     footerTagline: string;
     logoWhitePath: string;
+    navbarLogoPath: string;
+    defaultOgImagePath: string;
+    faviconPath: string;
+    faviconSvgPath: string;
+    appleTouchIconPath: string;
+    githubUrl: string;
+    discordUrl: string;
+    facebookUrl: string;
+    contactEmail: string;
   };
   location: {
     coordinates: { lat: number; lon: number };
