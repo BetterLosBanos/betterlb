@@ -1,4 +1,5 @@
 import { config } from '../lib/lguConfig';
+import { lguLabels } from '../lib/lguLabels';
 import { NavigationItem } from '../types';
 import serviceCategories from './service_categories.json';
 
@@ -31,7 +32,7 @@ export const mainNavigation: NavigationItem[] = [
     children: [
       { label: 'Demographics', href: '/statistics' },
       { label: 'Competitiveness', href: '/statistics/competitiveness' },
-      { label: 'Municipal Income', href: '/statistics/municipal-income' },
+      { label: `${lguLabels.adjective} Income`, href: '/statistics/municipal-income' },
     ],
   },
   {
@@ -167,17 +168,17 @@ export const footerNavigation = {
   socialLinks: [
     {
       label: 'Facebook',
-      href: 'https://facebook.com/betterlb.org',
+      href: config.portal.facebookUrl,
       target: '_blank',
     },
     {
       label: 'Discord',
-      href: 'https://discord.gg/dA6tkU4FYS',
+      href: config.portal.discordUrl,
       target: '_blank',
     },
     {
       label: 'GitHub',
-      href: 'https://github.com/BetterLosBanos/betterlb',
+      href: config.portal.githubUrl,
       target: '_blank',
     },
   ],
