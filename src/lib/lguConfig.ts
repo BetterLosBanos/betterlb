@@ -17,7 +17,6 @@ export interface LGUConfig {
     name: string;
     domain: string;
     baseUrl: string;
-    tagline: string;
     description: string;
     brandColor: string;
     navbarTagline: string;

@@ -1,7 +1,7 @@
 {
   "lgu": {
-    "name": "Los Baños",
-    "fullName": "Municipality of Los Baños",
+    "name": "Los Ba\u00f1os",
+    "fullName": "Municipality of Los Ba\u00f1os",
     "province": "Laguna",
     "districtEngineeringOffice": "Laguna 2nd DEO",
     "region": "Region IV-A",
@@ -14,11 +14,10 @@
     "name": "BetterLB",
     "domain": "betterlb.org",
     "baseUrl": "https://betterlb.org",
-    "tagline": "Community Powered Los Baños Portal",
-    "description": "Community-powered portal of the Municipality of Los Baños.",
+    "description": "Community-powered portal of the Municipality of Los Ba\u00f1os.",
     "brandColor": "#0066eb",
     "navbarTagline": "A Community-run portal for",
-    "footerBrandName": "Better Los Baños",
+    "footerBrandName": "Better Los Ba\u00f1os",
     "footerTagline": "Community Civic Portal",
     "logoWhitePath": "/logos/svg/betterlb-icon-white.svg",
     "navbarLogoPath": "/logos/svg/betterlb-icon-colored.svg",
@@ -37,17 +36,20 @@
       "lon": 121.2219
     },
     "weather": {
-      "defaultCity": "Los Baños"
+      "defaultCity": "Los Ba\u00f1os"
     }
   },
   "transparency": {
     "procurement": {
-      "organizationName": "MUNICIPALITY OF LOS BAÑOS, LAGUNA",
+      "organizationName": "MUNICIPALITY OF LOS BA\u00d1OS, LAGUNA",
       "externalDashboard": "https://transparency.bettergov.ph/organizations/"
     },
     "infrastructure": {
-      "searchString": "Los Baños",
-      "exactMatchTargets": ["los baños", "los banos"]
+      "searchString": "Los Ba\u00f1os",
+      "exactMatchTargets": [
+        "los ba\u00f1os",
+        "los banos"
+      ]
     }
   },
   "dataPaths": {
