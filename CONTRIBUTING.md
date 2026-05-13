@@ -114,6 +114,9 @@ npm run test:e2e
 # Run specific test file
 npx playwright test services.spec.ts
 
+# Run with debug mode
+npx playwright test --debug
+
 # Check linting
 npm run lint
 
@@ -121,12 +124,24 @@ npm run lint
 npm run format
 ```
 
+**Note:** E2E tests use Playwright with shared utilities in `e2e/utils/` for common testing patterns like semantic token validation.
+
 ### Pre-commit Hooks
 
 Husky runs automatically:
 - **Prettier** formats code
 - **ESLint** checks quality
-- **Kapwa token check** prevents raw colors
+- **Kapwa token check** prevents raw colors in component files
+
+### Testing Utilities
+
+The project includes shared E2E testing utilities in `e2e/utils/`:
+
+- **`kapwa.ts`** - Semantic token validation helper that enforces Kapwa design token usage
+  - `assertKapwaTokens()` - Validates no raw Tailwind colors are used
+  - Automatically excludes code examples from validation
+
+These utilities help maintain design system consistency across the application.
 
 ---
 

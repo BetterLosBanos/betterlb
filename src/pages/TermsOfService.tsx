@@ -8,7 +8,9 @@ import {
   Scale,
   Shield,
 } from 'lucide-react';
-import { Helmet } from 'react-helmet-async';
+
+import { config } from '@/lib/lguConfig';
+import { SEO } from '@/components/layout/SEO';
 
 const TermsOfService: FC = () => {
   const currentDate = new Date().toLocaleDateString('en-US', {
@@ -19,25 +21,10 @@ const TermsOfService: FC = () => {
 
   return (
     <div className='bg-kapwa-bg-surface-raised min-h-screen'>
-      <Helmet>
-        <title>Terms of Service | BetterGov.ph</title>
-        <meta
-          name='description'
-          content='Terms of Service for BetterGov.ph - Public domain content, volunteer operation, and user responsibilities for accessing government information.'
-        />
-        <link rel='canonical' href='https://bettergov.ph/terms-of-service' />
-        <meta property='og:title' content='Terms of Service | BetterGov.ph' />
-        <meta
-          property='og:description'
-          content='Terms of Service for BetterGov.ph - Public domain content and volunteer operation guidelines.'
-        />
-        <meta property='og:type' content='website' />
-        <meta
-          property='og:url'
-          content='https://bettergov.ph/terms-of-service'
-        />
-        <meta property='og:image' content='https://bettergov.ph/ph-logo.webp' />
-      </Helmet>
+      <SEO
+        title='Terms of Service'
+        description='Public domain content, volunteer operation, and user responsibilities for accessing government information.'
+      />
 
       {/* Header Section */}
       <section className='from-kapwa-brand-600 text-kapwa-text-inverse bg-linear-to-r to-kapwa-blue-700 py-16'>
@@ -350,10 +337,10 @@ const TermsOfService: FC = () => {
                   <p className='font-semibold'>
                     Please contact us at:{' '}
                     <a
-                      href='mailto:volunteers@bettergov.ph'
+                      href={`mailto:${config.portal.contactEmail}`}
                       className='text-kapwa-text-brand hover:text-kapwa-text-brand'
                     >
-                      volunteers@bettergov.ph
+                      {config.portal.contactEmail}
                     </a>
                   </p>
                 </div>

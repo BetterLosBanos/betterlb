@@ -7,7 +7,6 @@
     "region": "Region IV-A",
     "regionCode": "CALABARZON",
     "type": "municipality",
-    "logoPath": "/logos/png/betterlb-blue.png",
     "officialWebsite": "https://losbanos.gov.ph",
     "provinceWebsite": "https://laguna.gov.ph"
   },
@@ -21,7 +20,16 @@
     "navbarTagline": "A Community-run portal for",
     "footerBrandName": "Better Los Baños",
     "footerTagline": "Community Civic Portal",
-    "logoWhitePath": "/logos/webp/betterlb-white-outline.webp"
+    "logoWhitePath": "/logos/svg/betterlb-icon-white.svg",
+    "navbarLogoPath": "/logos/svg/betterlb-icon-colored.svg",
+    "defaultOgImagePath": "/logos/svg/betterlb-icon-colored.svg",
+    "faviconPath": "/logos/png/betterlb-banner-colored.png",
+    "faviconSvgPath": "/logos/svg/betterlb-logo-primary.svg",
+    "appleTouchIconPath": "/logos/png/betterlb-banner-inverted.png",
+    "githubUrl": "https://github.com/BetterLosBanos/betterlb",
+    "discordUrl": "https://discord.gg/dA6tkU4FYS",
+    "facebookUrl": "https://facebook.com/betterlb.org",
+    "contactEmail": "volunteers@bettergov.ph"
   },
   "location": {
     "coordinates": {

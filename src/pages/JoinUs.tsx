@@ -16,27 +16,17 @@ import {
   UsersIcon,
   ZapIcon,
 } from 'lucide-react';
-import { Helmet } from 'react-helmet-async';
+
+import { config } from '@/lib/lguConfig';
+import { SEO } from '@/components/layout/SEO';
 
 const JoinUs: FC = () => {
   return (
     <div className='min-h-screen bg-linear-to-br from-kapwa-blue-50 via-white to-kapwa-purple-50'>
-      <Helmet>
-        <title>Join Us | BetterGov.ph</title>
-        <meta
-          name='description'
-          content='Join BetterGov.ph—A volunteer-led civic tech initiative building open-source tools to make government more transparent, efficient, and accessible.'
-        />
-        <link rel='canonical' href='https://bettergov.ph/join-us' />
-        <meta property='og:title' content='Join Us | BetterGov.ph' />
-        <meta
-          property='og:description'
-          content='Be part of a volunteer-led civic tech initiative building open-source projects for a better government.'
-        />
-        <meta property='og:type' content='website' />
-        <meta property='og:url' content='https://bettergov.ph/join-us' />
-        <meta property='og:image' content='https://bettergov.ph/ph-logo.webp' />
-      </Helmet>
+      <SEO
+        title='Join Us'
+        description='A volunteer-led civic tech initiative building open-source tools to make government more transparent, efficient, and accessible.'
+      />
 
       {/* Hero Section */}
       <section className='from-kapwa-brand-600 text-kapwa-text-inverse relative overflow-hidden bg-linear-to-r via-kapwa-blue-700 to-kapwa-purple-700'>
@@ -55,8 +45,8 @@ const JoinUs: FC = () => {
             </h1>
             <p className='mb-8 kapwa-body leading-relaxed text-kapwa-text-inverse/80'>
               Together with industry veterans, we&apos;re building{' '}
-              <strong>BetterGov.ph</strong> — making government transparent,
-              efficient, and accessible to every Filipino.
+              <strong>{config.portal.name}</strong> — making government
+              transparent, efficient, and accessible to every Filipino.
             </p>
             <div className='flex flex-col justify-center gap-4 sm:flex-row'>
               <Button
@@ -286,7 +276,7 @@ const JoinUs: FC = () => {
               <div className='text-kapwa-text-inverse font-medium'>or</div>
 
               <Button
-                href='https://bettergov.ph/ideas'
+                href='/ideas'
                 target='_blank'
                 rel='noreferrer'
                 variant='outline'

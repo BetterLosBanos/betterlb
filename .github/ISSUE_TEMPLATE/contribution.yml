@@ -1,0 +1,58 @@
+name: Service Contribution
+description: Suggest a new service or update an existing one
+title: '[Contribution] '
+labels: [contribution]
+body:
+  - type: input
+    id: service-name
+    attributes:
+      label: Service Name
+      description: Name of the government service
+      placeholder: e.g., Business Permit Renewal
+    validations:
+      required: true
+
+  - type: dropdown
+    id: contribution-type
+    attributes:
+      label: Type
+      description: Is this a new service or an update?
+      options:
+        - New Service
+        - Update to Existing Service
+    validations:
+      required: true
+
+  - type: textarea
+    id: details
+    attributes:
+      label: Details
+      description: Provide steps, requirements, or corrections
+      placeholder: |
+        For new services:
+        - Steps to avail the service
+        - Requirements needed
+        - Office/department handling this
+
+        For updates:
+        - What needs to be changed
+        - Correct information
+    validations:
+      required: true
+
+  - type: input
+    id: source
+    attributes:
+      label: Source URL
+      description: Official government source for this information
+      placeholder: https://losbanos.gov.ph/...
+    validations:
+      required: true
+
+  - type: textarea
+    id: additional
+    attributes:
+      label: Additional Notes
+      description: Any other context or information
+    validations:
+      required: false

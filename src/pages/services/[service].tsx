@@ -39,6 +39,7 @@ import { SupportingDocumentsDetail } from './components/SupportingDocumentsDetai
 import { FeesCard } from './components/FeesCard';
 
 import { getServiceBySlug } from '@/lib/services';
+import { config } from '@/lib/lguConfig';
 import { toTitleCase } from '@/lib/stringUtils';
 
 import departmentsData from '@/data/directory/departments.json';
@@ -520,13 +521,15 @@ export default function ServiceDetail() {
               Find an error or outdated info? Our community helps keep this
               portal accurate.
             </p>
-            <Link
-              to={`/contribute?edit=${service.slug}`}
+            <a
+              href={`${config.portal.githubUrl}/issues/new?template=contribution.yml&title=${encodeURIComponent(`[Edit] ${service.service}`)}`}
+              target='_blank'
+              rel='noopener noreferrer'
               className='group border-kapwa-border-weak text-kapwa-text-support hover:border-kapwa-border-weak hover:bg-kapwa-bg-surface-raised flex min-h-[44px] w-full items-center justify-center gap-2 rounded-xl border-2 px-4 py-2.5 text-xs font-bold transition-all'
             >
               <Edit3 className='group-hover:text-kapwa-text-accent-orange text-kapwa-text-disabled h-3.5 w-3.5 transition-colors' />
               Suggest an Edit
-            </Link>
+            </a>
           </div>
         </aside>
       </div>

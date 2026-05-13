@@ -22,6 +22,9 @@ export function EmptyState({
     actionLabel.toLowerCase().includes('suggest') ||
     actionLabel.toLowerCase().includes('add');
 
+  // Auto-detect external links
+  const isExternal = actionHref?.startsWith('http');
+
   return (
     <div className='animate-in fade-in zoom-in-95 flex flex-col items-center justify-center py-20 text-center duration-500'>
       {/* Icon Wrapper */}
@@ -41,19 +44,34 @@ export function EmptyState({
       </p>
 
       {/* Conditional Action Button */}
-      {actionHref && (
-        <Link
-          to={actionHref}
-          className='border-kapwa-border-weak bg-kapwa-bg-surface text-kapwa-text-support hover:border-kapwa-border-weak hover:bg-kapwa-bg-surface-raised mt-8 inline-flex min-h-[48px] items-center gap-2 rounded-xl border px-6 py-3 text-sm font-bold transition-all hover:shadow-md'
-        >
-          {isContribution ? (
-            <PlusCircle className='text-kapwa-text-brand h-4 w-4' />
-          ) : (
-            <ArrowLeft className='text-kapwa-text-disabled h-4 w-4' />
-          )}
-          {actionLabel}
-        </Link>
-      )}
+      {actionHref &&
+        (isExternal ? (
+          <a
+            href={actionHref}
+            target='_blank'
+            rel='noopener noreferrer'
+            className='border-kapwa-border-weak bg-kapwa-bg-surface text-kapwa-text-support hover:border-kapwa-border-weak hover:bg-kapwa-bg-surface-raised mt-8 inline-flex min-h-[48px] items-center gap-2 rounded-xl border px-6 py-3 text-sm font-bold transition-all hover:shadow-md'
+          >
+            {isContribution ? (
+              <PlusCircle className='text-kapwa-text-brand h-4 w-4' />
+            ) : (
+              <ArrowLeft className='text-kapwa-text-disabled h-4 w-4' />
+            )}
+            {actionLabel}
+          </a>
+        ) : (
+          <Link
+            to={actionHref}
+            className='border-kapwa-border-weak bg-kapwa-bg-surface text-kapwa-text-support hover:border-kapwa-border-weak hover:bg-kapwa-bg-surface-raised mt-8 inline-flex min-h-[48px] items-center gap-2 rounded-xl border px-6 py-3 text-sm font-bold transition-all hover:shadow-md'
+          >
+            {isContribution ? (
+              <PlusCircle className='text-kapwa-text-brand h-4 w-4' />
+            ) : (
+              <ArrowLeft className='text-kapwa-text-disabled h-4 w-4' />
+            )}
+            {actionLabel}
+          </Link>
+        ))}
     </div>
   );
 }
