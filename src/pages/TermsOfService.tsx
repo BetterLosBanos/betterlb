@@ -35,7 +35,7 @@ const TermsOfService: FC = () => {
                 <Scale className='text-kapwa-text-inverse h-12 w-12' />
               </div>
             </div>
-            <h1 className='mb-4 text-4xl font-bold md:text-5xl'>
+            <h1 className='text-kapwa-text-strong kapwa-heading-xl font-extrabold'>
               Terms of Service
             </h1>
             <p className='text-xl opacity-90'>Last Updated: {currentDate}</p>

@@ -152,7 +152,7 @@ export default function AuditLog() {
     <div className='space-y-6'>
       <div className='flex items-center justify-between'>
         <div>
-          <h1 className='kapwa-heading-lg mb-1'>Audit Logs</h1>
+          <h1 className='text-kapwa-text-strong kapwa-heading-xl font-extrabold'>Audit Logs</h1>
           <p className='kapwa-body-md text-kapwa-text-weak'>
             Track all administrative actions in the system
           </p>

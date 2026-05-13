@@ -137,7 +137,7 @@ const Ideas: FC = () => {
             <div className='bg-kapwa-bg-surface text-kapwa-text-brand mr-4 rounded-full p-3'>
               <LightbulbIcon className='h-8 w-8' />
             </div>
-            <h1 className='text-kapwa-text-strong text-3xl font-bold md:text-4xl'>
+            <h1 className='text-kapwa-text-strong kapwa-heading-xl font-extrabold'>
               Project Ideas
             </h1>
           </div>

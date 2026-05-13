@@ -107,7 +107,7 @@ const ContactUs: FC = () => {
                 <HeartHandshakeIcon className='text-kapwa-text-info h-12 w-12' />
               </div>
             </div>
-            <h1 className='text-kapwa-text-strong mb-6 text-3xl font-bold md:text-5xl'>
+            <h1 className='text-kapwa-text-strong kapwa-heading-xl font-extrabold'>
               Connect with Us
             </h1>
             <p className='text-kapwa-text-support mx-auto mb-8 max-w-3xl text-lg md:text-xl'>

@@ -207,7 +207,7 @@ export default function ServiceDetail() {
             )}
           </div>
 
-          <h1 className='text-kapwa-text-strong mb-6 text-3xl leading-tight font-bold tracking-tight md:text-4xl'>
+          <h1 className='text-kapwa-text-strong kapwa-heading-xl font-extrabold'>
             {service.plainLanguageName || service.service}
           </h1>
 

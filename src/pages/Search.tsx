@@ -88,7 +88,7 @@ const SearchPage: FC = () => {
         />
       </Helmet>
 
-      <h1 className='mb-6 kapwa-heading-xl text-kapwa-text-strong'>Search</h1>
+      <h1 className='kapwa-heading-xl text-kapwa-text-strong font-extrabold'>Search</h1>
 
       <div className='mb-6'>
         <div className='relative'>

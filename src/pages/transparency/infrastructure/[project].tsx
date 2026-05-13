@@ -323,7 +323,7 @@ export default function InfrastructureDetail() {
                 <Badge variant='success'>DPWH Verified</Badge>
               )}
             </div>
-            <h1 className='text-2xl font-black leading-tight text-kapwa-text-strong md:text-3xl'>
+            <h1 className='text-kapwa-text-strong kapwa-heading-xl font-extrabold leading-tight'>
               {project.description}
             </h1>
           </div>

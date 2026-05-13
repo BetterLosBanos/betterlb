@@ -101,7 +101,7 @@ export default function DepartmentDetail() {
               aria-hidden='true'
               className='text-kapwa-text-brand h-5 w-5'
             />
-            <h1 className='kapwa-heading-lg text-kapwa-text-strong'>
+            <h1 className='text-kapwa-text-strong kapwa-heading-xl font-extrabold'>
               {toTitleCase(dept.office_name)}
             </h1>
           </div>

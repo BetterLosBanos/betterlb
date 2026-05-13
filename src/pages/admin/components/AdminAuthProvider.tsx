@@ -109,7 +109,7 @@ export function AdminAuthProvider({ children }: AdminAuthProviderProps) {
               <div className='bg-kapwa-bg-brand-weak mx-auto mb-4 flex h-16 w-16 items-center justify-center rounded-full'>
                 <Shield className='text-kapwa-text-brand h-8 w-8' />
               </div>
-              <h1 className='text-kapwa-text-strong text-2xl font-bold'>
+              <h1 className='text-kapwa-text-strong kapwa-heading-xl font-extrabold'>
                 Admin Access Required
               </h1>
               <p className='text-kapwa-text-support mt-2'>
