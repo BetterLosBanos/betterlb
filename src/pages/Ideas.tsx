@@ -11,8 +11,8 @@ import {
   TrendingUpIcon,
   UsersIcon,
 } from 'lucide-react';
-import { Helmet } from 'react-helmet-async';
 
+import { config } from '@/lib/lguConfig';
 import { Card, CardContent } from '../components/ui/Card';
 
 interface ProjectIdea {
@@ -54,9 +54,9 @@ const initialProjectIdeas: ProjectIdea[] = [
   },
   {
     id: '3',
-    title: 'Design guidelines for Bettergov.ph',
+    title: `Design guidelines for ${config.portal.name}`,
     description:
-      'Comprehensive design system and guidelines for the BetterGov.ph platform. Includes UI components, color schemes, typography, accessibility standards, and best practices for government web services.',
+      `Comprehensive design system and guidelines for the ${config.portal.name} platform. Includes UI components, color schemes, typography, accessibility standards, and best practices for government web services.`,
     category: 'Platform Development',
     icon: <LightbulbIcon className='h-6 w-6' />,
     priority: 'medium',
@@ -110,38 +110,21 @@ const Ideas: FC = () => {
 
   const handleSubmitIdea = () => {
     const githubUrl =
-      'https://github.com/bettergovph/bettergov/issues/new?assignees=&labels=enhancement%2Cidea&projects=&template=idea-submission.md&title=%5BIDEA%5D+';
+      `${config.portal.githubUrl}/issues/new?assignees=&labels=enhancement%2Cidea&projects=&template=idea-submission.md&title=%5BIDEA%5D+`;
     window.open(githubUrl, '_blank');
   };
 
   const handleSubmitPR = () => {
-    const githubUrl = 'https://github.com/bettergovph/bettergov/contribute';
+    const githubUrl = `${config.portal.githubUrl}/contribute`;
     window.open(githubUrl, '_blank');
   };
   return (
     <div className='bg-kapwa-bg-surface-raised min-h-screen'>
-      <Helmet>
-        <title>Project Ideas | BetterGov.ph</title>
-        <meta
-          name='description'
-          content='Explore innovative project ideas to improve government transparency, accountability, and citizen engagement in the Philippines.'
-        />
-        <meta
-          name='keywords'
-          content='government projects, civic tech, transparency, accountability, Philippines, innovation'
-        />
-        <link rel='canonical' href='https://bettergov.ph/ideas' />
-
-        {/* Open Graph / Social */}
-        <meta property='og:title' content='Project Ideas | BetterGov.ph' />
-        <meta
-          property='og:description'
-          content='Explore innovative project ideas to improve government transparency, accountability, and citizen engagement in the Philippines.'
-        />
-        <meta property='og:type' content='website' />
-        <meta property='og:url' content='https://bettergov.ph/ideas' />
-        <meta property='og:image' content='https://bettergov.ph/ph-logo.png' />
-      </Helmet>
+      <SEO
+        title='Project Ideas'
+        description='Explore innovative project ideas to improve government transparency, accountability, and citizen engagement.'
+        keywords={['government projects', 'civic tech', 'transparency', 'innovation']}
+      />
 
       <div className='container mx-auto px-4 py-6 md:py-12'>
         {/* Header */}

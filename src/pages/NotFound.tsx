@@ -2,30 +2,18 @@ import { Link } from 'react-router-dom';
 
 import { Button } from '@bettergov/kapwa/button';
 import { AlertTriangleIcon, HomeIcon } from 'lucide-react';
-import { Helmet } from 'react-helmet-async';
+
+import { SEO } from '@/components/layout/SEO';
 
 export default function NotFound() {
   return (
     <div className='min-h-screen bg-linear-to-br from-kapwa-brand-600 via-kapwa-brand-700 to-kapwa-brand-800'>
-      <Helmet>
-        <title>Page Not Found! | BetterGov.ph</title>
-        <meta
-          name='description'
-          content='You might be lost, like some of our government (ghost) services..'
-        />
-        <meta name='keywords' content='Not Found, 404, Page Not Found' />
-        <link rel='canonical' href='https://bettergov.ph/not-found' />
-
-        {/* Open Graph / Social */}
-        <meta property='og:title' content='Page Not Found! | BetterGov.ph' />
-        <meta
-          property='og:description'
-          content='You might be lost, like some of our government (ghost) services..'
-        />
-        <meta property='og:type' content='website' />
-        <meta property='og:url' content='https://bettergov.ph/not-found' />
-        <meta property='og:image' content='https://bettergov.ph/ph-logo.png' />
-      </Helmet>
+      <SEO
+        title='Page Not Found!'
+        description='You might be lost, like some of our government (ghost) services..'
+        keywords={['Not Found', '404', 'Page Not Found']}
+        noIndex
+      />
 
       <div className='relative'>
         <div className='relative mx-auto max-w-6xl px-4 pt-16 pb-10 sm:px-6 lg:px-8'>

@@ -37,6 +37,7 @@ import { Card, CardContent } from '@/components/ui/Card';
 import { EmptyState } from '@/components/ui/EmptyState';
 
 import { formatPesoAdaptive } from '@/lib/format';
+import { config } from '@/lib/lguConfig';
 
 // --- Strict Types (Matched to API Response) ---
 interface ProjectComponent {
@@ -776,7 +777,7 @@ export default function InfrastructureDetail() {
             rel='noopener noreferrer'
             className='inline-flex gap-1 items-center font-bold transition-colors text-kapwa-text-brand hover:text-kapwa-text-brand-bold hover:underline'
           >
-            DPWH Infrastructure Transparency Interface via BetterGov.ph
+             DPWH Infrastructure Transparency Interface via {config.portal.name}
             <ExternalLink className='w-3 h-3' />
           </a>
         </p>

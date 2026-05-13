@@ -10,9 +10,10 @@ import {
   BreadcrumbSeparator,
 } from '@/components/navigation/Breadcrumb';
 import { ModuleHeader } from '@/components/layout/PageLayouts';
+import { config } from '@/lib/lguConfig';
 
 const GITHUB_ISSUE_URL =
-  'https://github.com/BetterLosBanos/betterlb/issues/new?template=contribution.yml';
+  `${config.portal.githubUrl}/issues/new?template=contribution.yml`;
 
 export default function ContributePage() {
   return (

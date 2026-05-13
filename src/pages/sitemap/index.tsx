@@ -14,6 +14,7 @@ import {
 } from 'lucide-react';
 
 import { SEO } from '@/components/layout/SEO';
+import { config } from '@/lib/lguConfig';
 
 interface SitemapSection {
   title: string;
@@ -32,7 +33,7 @@ const SitemapPage: FC = () => {
       icon: <Home className='w-5 h-5' />,
       links: [
         { title: 'Home', url: '/', description: 'Main landing page' },
-        { title: 'About', url: '/about', description: 'About BetterGov.ph' },
+        { title: 'About', url: '/about', description: `About ${config.portal.name}` },
         {
           title: 'Accessibility',
           url: '/accessibility',
@@ -81,7 +82,7 @@ const SitemapPage: FC = () => {
         },
         {
           title: 'Hotlines',
-          url: 'https://hotlines.bettergov.ph/?city=los%20baños&province=laguna',
+          url: 'https://hotlines.bettergov.ph/',
           description: 'Emergency and important contact numbers',
         },
       ],
@@ -319,8 +320,8 @@ const SitemapPage: FC = () => {
   return (
     <div className='py-12 min-h-screen bg-kapwa-bg-surface-raised'>
       <SEO
-        title='Sitemap | BetterGov.ph'
-        description='Complete sitemap of BetterGov.ph - Find all pages and services available on the Philippine Government Portal.'
+        title='Sitemap'
+        description='Complete sitemap — find all pages and services available on this portal.'
         keywords={[
           'sitemap',
           'navigation',
@@ -339,7 +340,7 @@ const SitemapPage: FC = () => {
               </h1>
               <p className='mt-2 text-kapwa-text-support'>
                 A complete guide to all pages and services available on
-                BetterGov.ph
+                {config.portal.name}
               </p>
             </div>
 

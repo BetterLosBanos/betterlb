@@ -12,7 +12,8 @@ import {
   Users,
 } from 'lucide-react';
 
-import { DetailSection } from '@/components/layout/PageLayouts';
+import { ModuleHeader } from '@/components/layout/PageLayouts';
+import { config } from '@/lib/lguConfig';
 import { Badge } from '@/components/ui/Badge';
 import { Card, CardContent, CardGrid } from '@/components/ui/Card';
 
@@ -136,7 +137,7 @@ export default function TransparencyIndex() {
               know.
             </p>
             <a
-              href='https://github.com/BetterLosBanos/betterlb/issues'
+              href={`${config.portal.githubUrl}/issues`}
               target='_blank'
               rel='noreferrer'
               className='text-kapwa-text-inverse bg-kapwa-brand-600 hover:bg-kapwa-brand-700 inline-flex w-full items-center justify-center gap-2 rounded-lg px-4 py-2.5 text-xs font-bold transition-colors'

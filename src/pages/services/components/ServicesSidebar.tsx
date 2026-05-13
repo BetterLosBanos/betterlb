@@ -9,6 +9,7 @@ import { scrollToTop } from '@/lib/scrollUtils';
 import { getCategoryIconBySlug } from '@/lib/serviceIcons';
 
 import serviceCategories from '@/data/service_categories.json';
+import { config } from '@/lib/lguConfig';
 
 interface ServicesSidebarProps {
   selectedCategorySlug: string;
@@ -63,7 +64,7 @@ export default function ServicesSidebar({
         </p>
 
         <a
-          href='https://github.com/BetterLosBanos/betterlb/issues/new?template=contribution.yml'
+          href={`${config.portal.githubUrl}/issues/new?template=contribution.yml`}
           target='_blank'
           rel='noopener noreferrer'
           className='bg-kapwa-bg-accent-orange-default hover:bg-kapwa-orange-700 shadow-md text-kapwa-text-inverse flex min-h-[44px] w-full items-center justify-center gap-2 rounded-xl px-4 py-2.5 text-xs font-bold transition-all'
