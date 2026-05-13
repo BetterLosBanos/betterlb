@@ -10,6 +10,7 @@ import { lazy, Suspense } from 'react';
 
 import { NuqsAdapter } from 'nuqs/adapters/react-router/v6';
 
+import { config } from '@/lib/lguConfig';
 import { Footer } from '@/components/layout/Footer';
 // --- Layouts ---
 import { Navbar } from '@/components/layout/Navbar';
