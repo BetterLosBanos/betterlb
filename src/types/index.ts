@@ -146,14 +146,6 @@ export interface ForexData {
   changePercent: number;
 }
 
-export interface NewsItem {
-  title: string;
-  summary: string;
-  url: string;
-  publishedAt: string;
-  source: string;
-}
-
 export interface BlogPost {
   title: string;
   excerpt: string;

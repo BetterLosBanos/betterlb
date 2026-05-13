@@ -20,6 +20,7 @@ import {
   SectionBlock,
 } from '@/components/layout';
 import { SEO } from '@/components/layout/SEO';
+import { config } from '@/lib/lguConfig';
 
 const AccessibilityPage: FC = () => {
   const accessibilityFeatures = [
@@ -137,8 +138,8 @@ const AccessibilityPage: FC = () => {
   return (
     <div className='min-h-screen'>
       <SEO
-        title='Accessibility Statement | BetterGov.ph'
-        description="Learn about BetterGov.ph's commitment to web accessibility, including WCAG compliance, accessibility features, and how to request assistance."
+        title='Accessibility Statement'
+        description='Our commitment to web accessibility, including WCAG compliance, accessibility features, and how to request accommodations.'
         keywords={[
           'accessibility',
           'WCAG',
@@ -152,7 +153,7 @@ const AccessibilityPage: FC = () => {
       <PageHeader
         variant='centered'
         title='Accessibility Statement'
-        description='BetterGov.ph is committed to ensuring digital accessibility for people with disabilities. We are continually improving the user experience for everyone and applying the relevant accessibility standards.'
+        description={`${config.portal.name} is committed to ensuring digital accessibility for people with disabilities. We are continually improving the user experience for everyone and applying the relevant accessibility standards.`}
         autoBreadcrumbs={true}
       />
 
@@ -292,9 +293,9 @@ const AccessibilityPage: FC = () => {
         <SectionBlock title='Feedback and Support' icon={MailIcon}>
           <div className='mx-auto max-w-4xl'>
             <p className='text-kapwa-text-support mb-6 text-lg'>
-              We welcome your feedback on the accessibility of BetterGov.ph. If
-              you encounter accessibility barriers or have suggestions for
-              improvement, please let us know.
+              We welcome your feedback on the accessibility of{' '}
+              {config.portal.name}. If you encounter accessibility barriers or
+              have suggestions for improvement, please let us know.
             </p>
 
             <div className='grid grid-cols-1 gap-6 md:grid-cols-2'>
@@ -309,10 +310,10 @@ const AccessibilityPage: FC = () => {
                   Send us your accessibility feedback or request assistance.
                 </p>
                 <a
-                  href='mailto:accessibility@bettergov.ph'
+                  href={`mailto:${config.portal.contactEmail}`}
                   className='text-kapwa-text-brand hover:text-kapwa-text-brand font-medium'
                 >
-                  accessibility@bettergov.ph
+                  {config.portal.contactEmail}
                 </a>
               </div>
 

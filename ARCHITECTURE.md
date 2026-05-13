@@ -9,7 +9,7 @@ High-level architecture overview for developers working on BetterLB.
 ```
 ┌─────────────────────────────────────────────────────────────┐
 │                        Browser (Client)                     │
-│  React 19 SPA + Tailwind CSS v4 + Kapwa Design System      │
+│  React 19 SPA + Tailwind CSS v4 + @bettergov/kapwa        │
 └─────────────────────────────────────────────────────────────┘
                               │
                               ▼
@@ -71,7 +71,7 @@ App.tsx
 
 ### Import Patterns
 ```tsx
-// Base components from Kapwa
+// Base components from Kapwa (@bettergov/kapwa)
 import { Button } from '@bettergov/kapwa/button';
 import { Input } from '@bettergov/kapwa/input';
 
@@ -160,6 +160,10 @@ Located in `e2e/`:
 - Search functionality
 - Service directory navigation
 - Admin dashboard operations
+- Semantic token validation (via `e2e/utils/kapwa.ts`)
+
+**Shared Testing Utilities:**
+- `e2e/utils/kapwa.ts` - Validates Kapwa design token usage and prevents raw Tailwind colors
 
 ### Unit Tests (Vitest)
 Component testing for complex UI components.
@@ -173,6 +177,7 @@ Component testing for complex UI components.
 - **Database:** D1 `betterlb_openlgu`
 - **Search:** Self-hosted Meilisearch
 - **Domain:** betterlb.org
+- **Wrangler:** 4.70.0 (pinned for compatibility)
 
 ### For Other LGUs
 1. Connect GitHub repo to Cloudflare Pages
@@ -180,6 +185,8 @@ Component testing for complex UI components.
 3. Set custom domain
 4. Run database migrations
 5. Deploy own Meilisearch or use alternative
+
+**Note:** The deployment workflow pins Wrangler to version 4.70.0 to avoid compatibility issues with newer versions. Update both `.github/workflows/deploy.yml` and `package.json` if upgrading.
 
 ---
 

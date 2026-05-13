@@ -7,6 +7,7 @@ import { SearchXIcon } from 'lucide-react';
 import { Badge } from '@/components/ui/Badge';
 import { CardGrid } from '@/components/ui/Card';
 import { EmptyState } from '@/components/ui/EmptyState';
+import { config } from '@/lib/lguConfig';
 import { filterServices } from '@/lib/services';
 
 import ServiceCard from './components/ServiceCard';
@@ -86,7 +87,7 @@ export default function ServicesPage() {
         message={
           "We couldn't find any services matching your filters. Try adjusting your search or filters."
         }
-        actionHref='/contribute'
+        actionHref={`${config.portal.githubUrl}/issues/new?template=contribution.yml`}
         actionLabel='Suggest New Service'
       />
     );

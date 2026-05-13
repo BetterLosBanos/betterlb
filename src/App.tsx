@@ -16,6 +16,7 @@ import { ScrollToTop } from '@/components/layout/ScrollToTop';
 import Ticker from '@/components/ui/Ticker';
 
 import ContactUs from '@/pages/ContactUs';
+import ContributePage from '@/pages/contribute';
 import Discord from '@/pages/Discord';
 // --- Pages ---
 import Home from '@/pages/Home';
@@ -183,7 +184,7 @@ function AppContent() {
         </Route>
 
         {/* Community Contribution Flow */}
-        {/* <Route path='contribute' element={<ContributePage />} /> */}
+        <Route path='contribute' element={<ContributePage />} />
 
         {/* Admin Routes */}
         <Route path='/admin' element={<AdminLayout />}>

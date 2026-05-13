@@ -1,16 +1,44 @@
-import { FC } from 'react';
-
-import { ArrowRightIcon, Calendar } from 'lucide-react';
+import { FC, useEffect, useState } from 'react';
+import { Calendar, ExternalLinkIcon, AlertCircle } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
-
+import { Card, CardContent, CardGrid, CardImage } from '@/components/ui/Card';
 import { Badge } from '@/components/ui/Badge';
-import { Card, CardContent, CardGrid } from '@/components/ui/Card';
 
-import { news } from '../../data/news';
-import { formatDate, truncateText } from '../../lib/utils';
+interface LGUNewsPost {
+  title: string;
+  url: string;
+  date: string;
+  excerpt: string;
+  imageUrl: string;
+}
+
+interface LGUNewsResponse {
+  posts: LGUNewsPost[];
+  source: string;
+  cached: boolean;
+}
 
 const NewsSection: FC = () => {
   const { t } = useTranslation('common');
+  const [posts, setPosts] = useState<LGUNewsPost[]>([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
+
+  useEffect(() => {
+    const fetchNews = async () => {
+      try {
+        const response = await fetch('/api/lgu-news');
+        const data: LGUNewsResponse = await response.json();
+        setPosts(data.posts);
+      } catch {
+        setError('Failed to load news');
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchNews();
+  }, []);
 
   return (
     <section className='bg-kapwa-bg-surface py-12'>
@@ -20,49 +48,70 @@ const NewsSection: FC = () => {
             {t('news.title')}
           </h2>
           <a
-            href='/news'
-            className='text-kapwa-text-brand hover:text-kapwa-text-brand flex items-center font-medium transition-colors'
+            href='https://losbanos.gov.ph/all'
+            target='_blank'
+            rel='noopener noreferrer'
+            className='flex items-center font-medium text-kapwa-text-brand transition-colors hover:text-kapwa-text-brand'
           >
-            View All
-            <ArrowRightIcon className='ml-1 h-4 w-4' />
+            View All Posts
+            <ExternalLinkIcon className='ml-1 h-4 w-4' />
           </a>
         </div>
 
-        {/* Using documented CardGrid pattern */}
-        <CardGrid columns={3}>
-          {news.slice(0, 6).map(item => (
-            <a
-              key={item.id}
-              href={`/news/${item.id}`}
-              className='group flex h-full flex-col'
-            >
-              <Card hover className='flex h-full flex-col'>
-                <CardContent className='flex flex-1 flex-col p-6'>
-                  <div className='mb-3 flex flex-wrap items-center gap-2'>
-                    <Badge variant='outline' className='w-fit'>
-                      {item.category.charAt(0).toUpperCase() +
-                        item.category.slice(1)}
-                    </Badge>
-                    <div className='flex items-center gap-1 text-kapwa-text-support text-xs'>
-                      <Calendar className='h-3 w-3' />
-                      {formatDate(new Date(item.date))}
-                    </div>
-                  </div>
-                  <h3 className='text-kapwa-text-strong mb-2 text-lg font-semibold group-hover:text-kapwa-text-brand transition-colors'>
-                    {item.title}
-                  </h3>
-                  <p className='text-kapwa-text-support mb-4 flex-1 text-sm'>
-                    {truncateText(item.excerpt, 100)}
-                  </p>
-                  <span className='text-kapwa-text-link group-hover:text-kapwa-text-link-hover mt-auto flex items-center text-sm font-medium transition-colors'>
-                    Read More
-                    <ArrowRightIcon className='ml-1 h-4 w-4 transition-transform group-hover:translate-x-1' />
-                  </span>
+        {loading ? (
+          <CardGrid columns={3}>
+            {[1, 2, 3].map(i => (
+              <Card key={i} className='animate-pulse overflow-hidden'>
+                <div className='h-48 bg-kapwa-bg-muted' />
+                <CardContent>
+                  <div className='h-4 w-1/3 rounded bg-kapwa-bg-muted' />
+                  <div className='mt-3 h-6 w-full rounded bg-kapwa-bg-muted' />
+                  <div className='mt-2 h-4 w-full rounded bg-kapwa-bg-muted' />
                 </CardContent>
               </Card>
-            </a>
-          ))}
-        </CardGrid>
+            ))}
+          </CardGrid>
+        ) : error ? (
+          <div className='rounded-lg border border-red-200 bg-red-50 p-6 text-center'>
+            <AlertCircle className='mx-auto h-8 w-8 text-red-400' />
+            <p className='mt-2 text-kapwa-text-muted'>
+              Unable to load news at this time.
+            </p>
+          </div>
+        ) : (
+          <CardGrid columns={3}>
+            {posts.map(post => (
+              <Card
+                key={post.url}
+                className='overflow-hidden transition-shadow hover:shadow-lg'
+              >
+                <CardImage src={post.imageUrl} alt={post.title} />
+                <CardContent>
+                  <Badge variant='outline'>Los Baños</Badge>
+                  <div className='mt-2 flex items-center gap-1.5 text-sm text-kapwa-text-muted'>
+                    <Calendar className='h-3.5 w-3.5' />
+                    <span>{post.date}</span>
+                  </div>
+                  <h3 className='mt-2 line-clamp-2 text-lg font-semibold text-kapwa-text-strong'>
+                    {post.title}
+                  </h3>
+                  <p className='mt-1 line-clamp-3 text-sm text-kapwa-text-muted'>
+                    {post.excerpt}
+                  </p>
+                  <a
+                    href={post.url}
+                    target='_blank'
+                    rel='noopener noreferrer'
+                    className='mt-3 inline-flex items-center text-sm font-medium text-kapwa-text-brand hover:underline'
+                  >
+                    Read More
+                    <ExternalLinkIcon className='ml-1 h-3.5 w-3.5' />
+                  </a>
+                </CardContent>
+              </Card>
+            ))}
+          </CardGrid>
+        )}
       </div>
     </section>
   );

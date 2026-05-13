@@ -62,7 +62,9 @@ BetterLB is designed to be easily adapted for any Local Government Unit (LGU) in
 ## Technical Stack
 *   **Frontend**: React 19, Vite, TypeScript (Strict mode)
 *   **Styling**: Tailwind CSS v4 (CSS variables, high-contrast tokens)
+*   **Design System**: @bettergov/kapwa (semantic tokens, component library)
 *   **Backend**: Cloudflare Pages Functions (TypeScript)
+*   **Deployment**: Wrangler 4.70.0 (pinned for compatibility)
 *   **Data**: Structured JSON (Modular category-based architecture)
 *   **Search**: Meilisearch with Fuse.js fuzzy search
 *   **Localization**: i18next with English & Filipino support
@@ -70,6 +72,7 @@ BetterLB is designed to be easily adapted for any Local Government Unit (LGU) in
 *   **Data Pipeline**: Python scripts for legislative document processing
 *   **Testing**: Playwright (E2E tests across multiple browsers)
 *   **Code Quality**: ESLint, Prettier, Husky pre-commit hooks
+*   **Security**: Undici 8.0.2 (pinned for security fixes)
 
 ---
 
@@ -252,7 +255,7 @@ See the [Government Directory](https://betterlb.org/government) on the live site
 We are looking for volunteers passionate individuals who want to make Los Baños a better place. You don't need to be a developer to help!
 
 ### How You Can Contribute:
-1.  **Non-Developers**: Visit the `/contribute` page on the live site to suggest new services or fix outdated information using our simple web form.
+1.  **Non-Developers**: Visit the `/contribute` page on the live site to suggest new services or fix outdated information via GitHub Issues (requires a free GitHub account).
 2.  **Developers**: Check the [Issues](https://github.com/BetterLosBanos/betterlb/issues) tab for "Help Wanted" or "Good First Issue" labels.
 3.  **Data Auditors**: Help us verify community submissions on GitHub to ensure the portal remains an authoritative source of information.
 4.  **Translators**: Help translate the portal to Filipino and other Philippine languages by working on `public/locales/` files.
@@ -274,6 +277,7 @@ BetterLB is deployed on **Cloudflare Pages** with:
 - **Database**: Cloudflare D1 (`betterlb_openlgu`) for legislative data
 - **Search**: Meilisearch instance for fuzzy search
 - **KV Storage**: Weather data caching with automatic updates
+- **Wrangler**: Version 4.70.0 (pinned for compatibility)
 
 ### Deployment for Other LGUs
 
@@ -284,6 +288,8 @@ When deploying for your own LGU:
 3. **Custom Domain**: Set up your custom domain (e.g., `betterlgu.gov.ph`)
 4. **Database Migration**: Run database migrations on remote D1 instance
 5. **Meilisearch**: Deploy your own Meilisearch instance or use alternative search
+
+**Note:** The deployment workflow uses Wrangler 4.70.0 (pinned in both `.github/workflows/deploy.yml` and `package.json`). If upgrading, ensure compatibility with the Wrangler Action and test thoroughly.
 
 See [`ARCHITECTURE.md`](./ARCHITECTURE.md#deployment) for detailed deployment strategies.
 

@@ -75,7 +75,7 @@ export const Navbar: FC = () => {
               <span className='hidden sm:inline'>Official Gov.ph</span>
             </a>
             <Link
-              to='https://hotlines.bettergov.ph/?city=los%20baños&province=laguna'
+              to={`https://hotlines.bettergov.ph/?city=${encodeURIComponent(config.lgu.name)}&province=${encodeURIComponent(config.lgu.province)}`}
               className='hover:text-kapwa-text-brand inline-flex text-[9px] font-bold tracking-widest whitespace-nowrap text-kapwa-text-support uppercase sm:text-[10px] md:text-xs'
             >
               Hotlines
@@ -108,8 +108,8 @@ export const Navbar: FC = () => {
             onClick={closeMenu}
           >
             <img
-              src='/logos/webp/betterlb-blue-outline.webp'
-              alt='BetterLB Logo'
+              src={config.portal.navbarLogoPath}
+              alt={`${config.portal.name} Logo`}
               className='mr-3 w-10 h-10 transition-transform shrink-0 group-hover:scale-105 md:h-12 md:w-12'
             />
             <div className='flex flex-col justify-center min-w-0'>
@@ -117,7 +117,7 @@ export const Navbar: FC = () => {
                 {config.portal.name}
               </div>
               <div className='line-clamp-2 text-[9px] leading-tight font-medium text-kapwa-text-support md:line-clamp-1 md:text-xs md:leading-normal'>
-                A Community-run portal for the Municipality of Los Baños
+                {config.portal.navbarTagline} the {config.lgu.fullName}
               </div>
             </div>
           </Link>

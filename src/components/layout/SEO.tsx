@@ -30,7 +30,7 @@ export interface SEOProps {
 export function SEO({
   title,
   description,
-  ogImage = '/logos/png/betterlb-white.jpg',
+  ogImage = config.portal.defaultOgImagePath,
   ogType = 'website',
   noIndex = false,
   keywords = [],
