@@ -1,5 +1,6 @@
 /* Local styles */
 @import 'tailwindcss';
+@custom-variant dark (&:is(.dark *));
 
 /* Scan shared packages for Tailwind classes */
 @source '../node_modules/@bettergov/kapwa/dist';
@@ -92,3 +93,100 @@
     font-weight: 600;
   }
 }
+
+/*
+ * Kapwa dark mode overrides — forward-ported from kapwa v1.2.5 source.
+ * DELETE this entire block when @bettergov/kapwa publishes >=1.2.5.
+ * Upstream source: kapwa/src/styles/kapwa.css lines 240-329
+ */
+.dark,
+[data-theme='dark'] {
+  --color-kapwa-bg-overlay: hsla(210, 16%, 6%, 0.72);
+
+  --color-kapwa-text-strong: var(--color-kapwa-neutral-50);
+  --color-kapwa-text-support: var(--color-kapwa-gray-300);
+  --color-kapwa-text-disabled: var(--color-kapwa-gray-500);
+  --color-kapwa-text-on-disabled: var(--color-kapwa-gray-400);
+  --color-kapwa-text-inverse: var(--color-kapwa-gray-950);
+  --color-kapwa-text-inverse-subtle: var(--color-kapwa-gray-700);
+  --color-kapwa-text-link: var(--color-kapwa-blue-300);
+  --color-kapwa-text-link-hover: var(--color-kapwa-blue-200);
+  --color-kapwa-text-link-visited: var(--color-kapwa-blue-400);
+  --color-kapwa-text-brand: var(--color-kapwa-brand-300);
+  --color-kapwa-text-brand-bold: var(--color-kapwa-brand-100);
+  --color-kapwa-text-success: var(--color-kapwa-green-300);
+  --color-kapwa-text-danger: var(--color-kapwa-red-300);
+  --color-kapwa-text-warning: var(--color-kapwa-orange-300);
+  --color-kapwa-text-info: var(--color-kapwa-blue-300);
+  --color-kapwa-text-accent-purple: var(--color-kapwa-purple-300);
+  --color-kapwa-text-accent-green: var(--color-kapwa-green-300);
+  --color-kapwa-text-accent-red: var(--color-kapwa-red-300);
+  --color-kapwa-text-accent-orange: var(--color-kapwa-orange-300);
+  --color-kapwa-text-accent-blue: var(--color-kapwa-blue-300);
+
+  --color-kapwa-bg-surface: var(--color-kapwa-gray-950);
+  --color-kapwa-bg-surface-raised: var(--color-kapwa-gray-900);
+  --color-kapwa-bg-surface-brand: var(--color-kapwa-brand-950);
+  --color-kapwa-bg-surface-bold: var(--color-kapwa-neutral-50);
+  --color-kapwa-bg-surface-adaptive: var(--color-kapwa-gray-900);
+  --color-kapwa-bg-hover: var(--color-kapwa-gray-800);
+  --color-kapwa-bg-active: var(--color-kapwa-gray-800);
+  --color-kapwa-bg-disabled: var(--color-kapwa-gray-900);
+  --color-kapwa-bg-focus: var(--color-kapwa-yellow-400);
+  --color-kapwa-bg-surface-brand-active: var(--color-kapwa-brand-900);
+
+  --color-kapwa-bg-gray-default: var(--color-kapwa-gray-900);
+  --color-kapwa-bg-gray-hover: var(--color-kapwa-gray-800);
+  --color-kapwa-bg-gray-active: var(--color-kapwa-gray-700);
+  --color-kapwa-bg-gray-disabled: var(--color-kapwa-gray-900);
+
+  --color-kapwa-bg-brand-default: var(--color-kapwa-brand-500);
+  --color-kapwa-bg-brand-hover: var(--color-kapwa-brand-400);
+  --color-kapwa-bg-brand-active: var(--color-kapwa-brand-300);
+  --color-kapwa-bg-brand-weak: var(--color-kapwa-brand-950);
+
+  --color-kapwa-bg-info-default: var(--color-kapwa-blue-500);
+  --color-kapwa-bg-info-hover: var(--color-kapwa-blue-400);
+  --color-kapwa-bg-info-active: var(--color-kapwa-blue-300);
+  --color-kapwa-bg-info-weak: var(--color-kapwa-blue-950);
+
+  --color-kapwa-bg-danger-default: var(--color-kapwa-red-600);
+  --color-kapwa-bg-danger-hover: var(--color-kapwa-red-500);
+  --color-kapwa-bg-danger-active: var(--color-kapwa-red-400);
+  --color-kapwa-bg-danger-weak: var(--color-kapwa-red-950);
+
+  --color-kapwa-bg-warning-default: var(--color-kapwa-orange-500);
+  --color-kapwa-bg-warning-hover: var(--color-kapwa-orange-400);
+  --color-kapwa-bg-warning-active: var(--color-kapwa-orange-300);
+  --color-kapwa-bg-warning-weak: var(--color-kapwa-orange-950);
+
+  --color-kapwa-bg-success-default: var(--color-kapwa-green-500);
+  --color-kapwa-bg-success-hover: var(--color-kapwa-green-400);
+  --color-kapwa-bg-success-active: var(--color-kapwa-green-300);
+  --color-kapwa-bg-success-weak: var(--color-kapwa-green-950);
+
+  --color-kapwa-bg-accent-purple-default: var(--color-kapwa-purple-500);
+  --color-kapwa-bg-accent-purple-weak: var(--color-kapwa-purple-950);
+  --color-kapwa-bg-accent-green-default: var(--color-kapwa-green-500);
+  --color-kapwa-bg-accent-green-weak: var(--color-kapwa-green-950);
+  --color-kapwa-bg-accent-red-default: var(--color-kapwa-red-500);
+  --color-kapwa-bg-accent-red-weak: var(--color-kapwa-red-950);
+  --color-kapwa-bg-accent-orange-default: var(--color-kapwa-orange-500);
+  --color-kapwa-bg-accent-orange-weak: var(--color-kapwa-orange-950);
+  --color-kapwa-bg-accent-blue-default: var(--color-kapwa-blue-500);
+  --color-kapwa-bg-accent-blue-weak: var(--color-kapwa-blue-950);
+  --color-kapwa-bg-accent-yellow-default: var(--color-kapwa-yellow-400);
+  --color-kapwa-bg-accent-yellow-weak: var(--color-kapwa-yellow-950);
+
+  --color-kapwa-border-strong: var(--color-kapwa-gray-700);
+  --color-kapwa-border-weak: var(--color-kapwa-gray-800);
+  --color-kapwa-border-inverse: var(--color-kapwa-gray-950);
+  --color-kapwa-border-on-disabled: var(--color-kapwa-gray-700);
+  --color-kapwa-border-focus: var(--color-kapwa-blue-300);
+  --color-kapwa-border-brand: var(--color-kapwa-brand-400);
+  --color-kapwa-border-success: var(--color-kapwa-green-400);
+  --color-kapwa-border-danger: var(--color-kapwa-red-400);
+  --color-kapwa-border-warning: var(--color-kapwa-orange-400);
+  --color-kapwa-border-info: var(--color-kapwa-blue-400);
+}
+/* END kapwa dark mode overrides — DELETE when @bettergov/kapwa >=1.2.5 */

@@ -1,8 +1,16 @@
-import { FC, useState } from 'react';
+import { FC, useEffect, useState } from 'react';
 
 import { Link, useLocation } from 'react-router-dom';
 
-import { ChevronDownIcon, MenuIcon, SearchIcon, XIcon } from 'lucide-react';
+import {
+  ChevronDownIcon,
+  MenuIcon,
+  MoonIcon,
+  SearchIcon,
+  SunIcon,
+  XIcon,
+} from 'lucide-react';
+import { useTheme } from 'next-themes';
 import { useTranslation } from 'react-i18next';
 
 import { Button } from '@bettergov/kapwa/button';
@@ -22,6 +30,10 @@ export const Navbar: FC = () => {
   const [hoveredDropdown, setHoveredDropdown] = useState<string | null>(null);
   const { t, i18n } = useTranslation('common');
   const location = useLocation();
+  const { resolvedTheme, setTheme } = useTheme();
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => setMounted(true), []);
 
   const toggleMenu = () => {
     setIsOpen(!isOpen);
@@ -80,7 +92,7 @@ export const Navbar: FC = () => {
             >
               Hotlines
             </Link>
-            <div className='flex items-center pl-2 border-l shrink-0 border-kapwa-border-weak'>
+            <div className='flex items-center gap-2 pl-2 border-l shrink-0 border-kapwa-border-weak'>
               <select
                 aria-label='Select Language'
                 value={i18n.language}
@@ -93,6 +105,26 @@ export const Navbar: FC = () => {
                   </option>
                 ))}
               </select>
+              <button
+                type='button'
+                onClick={() =>
+                  setTheme(resolvedTheme === 'dark' ? 'light' : 'dark')
+                }
+                className='text-kapwa-text-support hover:text-kapwa-text-brand transition-colors'
+                aria-label={
+                  mounted
+                    ? resolvedTheme === 'dark'
+                      ? 'Switch to light mode'
+                      : 'Switch to dark mode'
+                    : 'Toggle theme'
+                }
+              >
+                {mounted && resolvedTheme === 'dark' ? (
+                  <SunIcon className='h-3.5 w-3.5' />
+                ) : (
+                  <MoonIcon className='h-3.5 w-3.5' />
+                )}
+              </button>
             </div>
           </div>
         </div>
