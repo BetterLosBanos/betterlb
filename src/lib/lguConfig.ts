@@ -19,9 +19,7 @@ export interface LGUConfig {
     baseUrl: string;
     description: string;
     brandColor: string;
-    navbarTagline: string;
     footerBrandName: string;
-    footerTagline: string;
     logoWhitePath: string;
     navbarLogoPath: string;
     defaultOgImagePath: string;

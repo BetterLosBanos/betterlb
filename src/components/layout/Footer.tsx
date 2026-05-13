@@ -52,7 +52,7 @@ export const Footer: FC = () => {
                   {config.portal.footerBrandName}
                 </div>
                 <div className='text-[10px] font-bold tracking-widest text-kapwa-text-disabled uppercase'>
-                  {config.portal.footerTagline}
+                  Community Civic Portal
                 </div>
               </div>
             </div>
