@@ -12,7 +12,7 @@ import {
   Users,
 } from 'lucide-react';
 
-import { ModuleHeader } from '@/components/layout/PageLayouts';
+import { DetailSection } from '@/components/layout';
 import { config } from '@/lib/lguConfig';
 import { Badge } from '@/components/ui/Badge';
 import { Card, CardContent, CardGrid } from '@/components/ui/Card';

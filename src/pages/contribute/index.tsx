@@ -48,7 +48,7 @@ export default function ContributePage() {
                 </span>
                 <span>
                   Click the button below to open a contribution form on GitHub.
-                  You'll need a free GitHub account.
+                  You&apos;ll need a free GitHub account.
                 </span>
               </li>
               <li className='flex gap-3'>

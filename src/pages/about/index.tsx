@@ -16,6 +16,7 @@ import {
   UsersIcon,
   ZapIcon,
 } from 'lucide-react';
+import { SEO } from '@/components/layout/SEO';
 import { useTranslation } from 'react-i18next';
 
 import { Card, CardContent } from '@/components/ui/Card';

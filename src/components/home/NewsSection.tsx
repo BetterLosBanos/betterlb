@@ -30,7 +30,7 @@ const NewsSection: FC = () => {
         const response = await fetch('/api/lgu-news');
         const data: LGUNewsResponse = await response.json();
         setPosts(data.posts);
-      } catch (err) {
+      } catch {
         setError('Failed to load news');
       } finally {
         setLoading(false);

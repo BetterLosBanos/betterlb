@@ -10,6 +10,7 @@ import {
 } from 'lucide-react';
 
 import { config } from '@/lib/lguConfig';
+import { SEO } from '@/components/layout/SEO';
 
 const TermsOfService: FC = () => {
   const currentDate = new Date().toLocaleDateString('en-US', {
