@@ -139,7 +139,7 @@ const AccessibilityPage: FC = () => {
     <div className='min-h-screen'>
       <SEO
         title='Accessibility Statement'
-description="Our commitment to web accessibility, including WCAG compliance, accessibility features, and how to request accommodations."
+        description='Our commitment to web accessibility, including WCAG compliance, accessibility features, and how to request accommodations.'
         keywords={[
           'accessibility',
           'WCAG',
@@ -153,7 +153,7 @@ description="Our commitment to web accessibility, including WCAG compliance, acc
       <PageHeader
         variant='centered'
         title='Accessibility Statement'
-          description={`${config.portal.name} is committed to ensuring digital accessibility for people with disabilities. We are continually improving the user experience for everyone and applying the relevant accessibility standards.`}
+        description={`${config.portal.name} is committed to ensuring digital accessibility for people with disabilities. We are continually improving the user experience for everyone and applying the relevant accessibility standards.`}
         autoBreadcrumbs={true}
       />
 
@@ -293,9 +293,9 @@ description="Our commitment to web accessibility, including WCAG compliance, acc
         <SectionBlock title='Feedback and Support' icon={MailIcon}>
           <div className='mx-auto max-w-4xl'>
             <p className='text-kapwa-text-support mb-6 text-lg'>
-              We welcome your feedback on the accessibility of {config.portal.name}. If
-              you encounter accessibility barriers or have suggestions for
-              improvement, please let us know.
+              We welcome your feedback on the accessibility of{' '}
+              {config.portal.name}. If you encounter accessibility barriers or
+              have suggestions for improvement, please let us know.
             </p>
 
             <div className='grid grid-cols-1 gap-6 md:grid-cols-2'>

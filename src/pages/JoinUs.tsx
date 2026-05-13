@@ -45,8 +45,8 @@ const JoinUs: FC = () => {
             </h1>
             <p className='mb-8 kapwa-body leading-relaxed text-kapwa-text-inverse/80'>
               Together with industry veterans, we&apos;re building{' '}
-              <strong>{config.portal.name}</strong> — making government transparent,
-              efficient, and accessible to every Filipino.
+              <strong>{config.portal.name}</strong> — making government
+              transparent, efficient, and accessible to every Filipino.
             </p>
             <div className='flex flex-col justify-center gap-4 sm:flex-row'>
               <Button

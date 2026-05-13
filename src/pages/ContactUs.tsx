@@ -92,11 +92,11 @@ const ContactUs: FC = () => {
 
   return (
     <div className='bg-kapwa-bg-surface-raised min-h-screen'>
-        <SEO
-          title='Contact Us'
-          description='Get in touch with our volunteers, report issues, or join our community.'
-          keywords={['contact', 'volunteer', 'feedback', 'support']}
-        />
+      <SEO
+        title='Contact Us'
+        description='Get in touch with our volunteers, report issues, or join our community.'
+        keywords={['contact', 'volunteer', 'feedback', 'support']}
+      />
 
       <div className='container mx-auto px-4 py-6 md:py-8'>
         {/* Header Section */}

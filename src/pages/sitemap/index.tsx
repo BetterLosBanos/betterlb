@@ -33,7 +33,11 @@ const SitemapPage: FC = () => {
       icon: <Home className='w-5 h-5' />,
       links: [
         { title: 'Home', url: '/', description: 'Main landing page' },
-        { title: 'About', url: '/about', description: `About ${config.portal.name}` },
+        {
+          title: 'About',
+          url: '/about',
+          description: `About ${config.portal.name}`,
+        },
         {
           title: 'Accessibility',
           url: '/accessibility',

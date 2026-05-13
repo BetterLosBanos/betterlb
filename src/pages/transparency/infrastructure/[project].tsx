@@ -777,7 +777,7 @@ export default function InfrastructureDetail() {
             rel='noopener noreferrer'
             className='inline-flex gap-1 items-center font-bold transition-colors text-kapwa-text-brand hover:text-kapwa-text-brand-bold hover:underline'
           >
-             DPWH Infrastructure Transparency Interface via {config.portal.name}
+            DPWH Infrastructure Transparency Interface via {config.portal.name}
             <ExternalLink className='w-3 h-3' />
           </a>
         </p>

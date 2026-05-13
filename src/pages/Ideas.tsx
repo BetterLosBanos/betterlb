@@ -56,8 +56,7 @@ const initialProjectIdeas: ProjectIdea[] = [
   {
     id: '3',
     title: `Design guidelines for ${config.portal.name}`,
-    description:
-      `Comprehensive design system and guidelines for the ${config.portal.name} platform. Includes UI components, color schemes, typography, accessibility standards, and best practices for government web services.`,
+    description: `Comprehensive design system and guidelines for the ${config.portal.name} platform. Includes UI components, color schemes, typography, accessibility standards, and best practices for government web services.`,
     category: 'Platform Development',
     icon: <LightbulbIcon className='h-6 w-6' />,
     priority: 'medium',
@@ -110,8 +109,7 @@ const Ideas: FC = () => {
   const navigate = useNavigate();
 
   const handleSubmitIdea = () => {
-    const githubUrl =
-      `${config.portal.githubUrl}/issues/new?assignees=&labels=enhancement%2Cidea&projects=&template=idea-submission.md&title=%5BIDEA%5D+`;
+    const githubUrl = `${config.portal.githubUrl}/issues/new?assignees=&labels=enhancement%2Cidea&projects=&template=idea-submission.md&title=%5BIDEA%5D+`;
     window.open(githubUrl, '_blank');
   };
 
@@ -124,7 +122,12 @@ const Ideas: FC = () => {
       <SEO
         title='Project Ideas'
         description='Explore innovative project ideas to improve government transparency, accountability, and citizen engagement.'
-        keywords={['government projects', 'civic tech', 'transparency', 'innovation']}
+        keywords={[
+          'government projects',
+          'civic tech',
+          'transparency',
+          'innovation',
+        ]}
       />
 
       <div className='container mx-auto px-4 py-6 md:py-12'>
