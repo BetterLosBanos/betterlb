@@ -81,7 +81,7 @@ const NewsSection: FC = () => {
           </div>
         ) : (
           <CardGrid columns={3}>
-            {posts.map(post => (
+            {(posts ?? []).map(post => (
               <Card
                 key={post.url}
                 className='overflow-hidden transition-shadow hover:shadow-lg'

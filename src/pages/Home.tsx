@@ -10,25 +10,36 @@ import Hero from '@/components/home/Hero';
 import ServicesSection from '@/components/home/ServicesSection';
 import TimelineSection from '@/components/home/TimelineSection';
 import WeatherMapSection from '@/components/home/WeatherMapSection';
+import { ErrorBoundary } from '@/components/ui/ErrorBoundary';
 
 const Home: FC = () => {
   return (
     <main className='grow'>
       {/* Documented animation pattern: animate-in fade-in */}
       <div className='animate-in fade-in duration-700'>
-        <Hero />
+        <ErrorBoundary name='Hero'>
+          <Hero />
+        </ErrorBoundary>
 
         {/* Using space-y-16 for consistent section spacing per design system */}
         <div className='space-y-16 py-12'>
-          <ServicesSection />
+          <ErrorBoundary name='Services'>
+            <ServicesSection />
+          </ErrorBoundary>
 
-          <TimelineSection />
+          <ErrorBoundary name='Timeline'>
+            <TimelineSection />
+          </ErrorBoundary>
 
-          <WeatherMapSection />
+          <ErrorBoundary name='WeatherMap'>
+            <WeatherMapSection />
+          </ErrorBoundary>
 
           {/* <NewsSection /> */}
 
-          <GovernmentSection />
+          <ErrorBoundary name='Government'>
+            <GovernmentSection />
+          </ErrorBoundary>
         </div>
       </div>
     </main>
