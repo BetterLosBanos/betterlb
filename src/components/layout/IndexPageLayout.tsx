@@ -3,11 +3,7 @@ import { ModuleHeader } from './PageLayouts';
 import SearchInput from '@/components/ui/SearchInput';
 import { Badge } from '@/components/ui/Badge';
 import { EmptyState } from '@/components/ui/EmptyState';
-
-export interface BreadcrumbItem {
-  label: string;
-  href: string;
-}
+import type { BreadcrumbItem } from '@/types/components';
 
 export interface FilterConfig {
   id: string;

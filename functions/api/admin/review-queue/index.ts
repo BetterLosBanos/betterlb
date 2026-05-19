@@ -9,6 +9,7 @@ import { Env } from '../../../types';
 import { AuthContext, withAuth } from '../../../utils/admin-auth';
 import { logAudit, AuditTargetTypes } from '../../../utils/audit-log';
 import { parsePaginationParam, PAGINATION_LIMITS } from '../../../utils/pagination';
+import { badRequest, conflict, serverError } from '../../../utils/error-response';
 
 type ReviewStatus = 'pending' | 'in_progress' | 'resolved' | 'skipped';
 type ItemType = 'document' | 'session' | 'attendance';
@@ -178,10 +179,7 @@ async function handleGetReviewQueue(context: {
     } as ReviewQueueResponse);
   } catch (error) {
     console.error('Error fetching review queue:', error);
-    return Response.json(
-      { error: 'Failed to fetch review queue' },
-      { status: 500 }
-    );
+    return serverError('Failed to fetch review queue');
   }
 }
 
@@ -209,20 +207,13 @@ async function createReviewItem(context: {
 
     // Validate required fields
     if (!item_type || !item_id || !issue_type) {
-      return Response.json(
-        { error: 'Missing required fields: item_type, item_id, issue_type' },
-        { status: 400 }
-      );
+      return badRequest('Missing required fields: item_type, item_id, issue_type');
     }
 
     // Validate item_type
     if (!['document', 'session', 'attendance'].includes(item_type)) {
-      return Response.json(
-        {
-          error:
-            'Invalid item_type. Must be one of: document, session, attendance',
-        },
-        { status: 400 }
+      return badRequest(
+        'Invalid item_type. Must be one of: document, session, attendance'
       );
     }
 
@@ -234,13 +225,9 @@ async function createReviewItem(context: {
       .first<{ id: string }>();
 
     if (existing) {
-      return Response.json(
-        {
-          error: 'Item already exists in review queue',
-          existing_id: existing.id,
-        },
-        { status: 409 }
-      );
+      return conflict('Item already exists in review queue', {
+        existing_id: existing.id,
+      });
     }
 
     // Generate review item ID
@@ -298,10 +285,7 @@ async function createReviewItem(context: {
     );
   } catch (error) {
     console.error('Error creating review item:', error);
-    return Response.json(
-      { error: 'Failed to create review item' },
-      { status: 500 }
-    );
+    return serverError('Failed to create review item');
   }
 }
 

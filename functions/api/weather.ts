@@ -232,29 +232,35 @@ export async function onRequest(context: {
       const weatherData = await fetchWeatherData(context.env, cityParam);
 
       // Store the data in KV regardless of whether a specific city was requested
+      // Use waitUntil for fire-and-forget cache write
       if (!cityParam) {
-        await context.env.WEATHER_KV.put(
-          'philippines_weather',
-          JSON.stringify(weatherData),
-          {
-            expirationTtl: 3600, // Expire after 1 hour
-          }
+        context.ctx.waitUntil(
+          context.env.WEATHER_KV.put(
+            'philippines_weather',
+            JSON.stringify(weatherData),
+            {
+              expirationTtl: 3600, // Expire after 1 hour
+            }
+          )
         );
       } else if (cityParam && weatherData[normalizeCityKey(cityParam)]) {
         // If a specific city was requested and found, update just that city in the KV store
-        const existingData =
-          ((await context.env.WEATHER_KV.get('philippines_weather', {
-            type: 'json',
-          })) as WeatherResponseData) || {};
-        const cityKey = normalizeCityKey(cityParam);
-        existingData[cityKey] = weatherData[cityKey];
-        await context.env.WEATHER_KV.put(
-          'philippines_weather',
-          JSON.stringify(existingData),
-          {
-            expirationTtl: 3600, // Expire after 1 hour
-          }
-        );
+        context.env.WEATHER_KV.get('philippines_weather', {
+          type: 'json',
+        }).then(existingDataRaw => {
+          const existingData = (existingDataRaw as WeatherResponseData) || {};
+          const cityKey = normalizeCityKey(cityParam);
+          existingData[cityKey] = weatherData[cityKey];
+          return context.env.WEATHER_KV.put(
+            'philippines_weather',
+            JSON.stringify(existingData),
+            {
+              expirationTtl: 3600, // Expire after 1 hour
+            }
+          );
+        }).catch(err => {
+          console.error('Failed to update weather cache:', err);
+        });
       }
 
       // Return the fresh data with secure CORS headers
@@ -308,30 +314,35 @@ export async function onRequest(context: {
     // So we fetch fresh data
     const weatherData = await fetchWeatherData(context.env, cityParam);
 
-    // Store the data in KV
+    // Store the data in KV - use waitUntil for fire-and-forget cache write
     if (!cityParam) {
-      await context.env.WEATHER_KV.put(
-        'philippines_weather',
-        JSON.stringify(weatherData),
-        {
-          expirationTtl: 3600, // Expire after 1 hour
-        }
+      context.ctx.waitUntil(
+        context.env.WEATHER_KV.put(
+          'philippines_weather',
+          JSON.stringify(weatherData),
+          {
+            expirationTtl: 3600, // Expire after 1 hour
+          }
+        )
       );
     } else if (cityParam && weatherData[normalizeCityKey(cityParam)]) {
       // If a specific city was requested and found, update just that city in the KV store
-      const existingData =
-        ((await context.env.WEATHER_KV.get('philippines_weather', {
-          type: 'json',
-        })) as WeatherResponseData) || {};
-      const cityKey = normalizeCityKey(cityParam);
-      existingData[cityKey] = weatherData[cityKey];
-      await context.env.WEATHER_KV.put(
-        'philippines_weather',
-        JSON.stringify(existingData),
-        {
-          expirationTtl: 3600, // Expire after 1 hour
-        }
-      );
+      context.env.WEATHER_KV.get('philippines_weather', {
+        type: 'json',
+      }).then(existingDataRaw => {
+        const existingData = (existingDataRaw as WeatherResponseData) || {};
+        const cityKey = normalizeCityKey(cityParam);
+        existingData[cityKey] = weatherData[cityKey];
+        return context.env.WEATHER_KV.put(
+          'philippines_weather',
+          JSON.stringify(existingData),
+          {
+            expirationTtl: 3600, // Expire after 1 hour
+          }
+        );
+      }).catch(err => {
+        console.error('Failed to update weather cache:', err);
+      });
     }
 
     // Return the response

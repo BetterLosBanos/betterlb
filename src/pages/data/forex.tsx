@@ -14,6 +14,7 @@ import {
 
 import { fetchForexData, getCurrencyIconName } from '../../lib/forex';
 import { ForexRate } from '../../types';
+import { getCurrencyFlag } from '../../data/currencyFlags';
 
 const ForexPage: FC = () => {
   const [forexRates, setForexRates] = useState<ForexRate[]>([]);
@@ -41,50 +42,6 @@ const ForexPage: FC = () => {
     return Icon ? <Icon className={size} /> : null;
   };
 
-  // Function to get flag emoji for currency code
-  const getCurrencyFlag = (code: string) => {
-    const flagMap: Record<string, string> = {
-      USD: '🇺🇸', // United States Dollar
-      EUR: '🇪🇺', // Euro
-      GBP: '🇬🇧', // British Pound
-      JPY: '🇯🇵', // Japanese Yen
-      AUD: '🇦🇺', // Australian Dollar
-      CAD: '🇨🇦', // Canadian Dollar
-      CHF: '🇨🇭', // Swiss Franc
-      CNY: '🇨🇳', // Chinese Yuan
-      SEK: '🇸🇪', // Swedish Krona
-      NZD: '🇳🇿', // New Zealand Dollar
-      MXN: '🇲🇽', // Mexican Peso
-      SGD: '🇸🇬', // Singapore Dollar
-      HKD: '🇭🇰', // Hong Kong Dollar
-      NOK: '🇳🇴', // Norwegian Krone
-      KRW: '🇰🇷', // South Korean Won
-      TRY: '🇹🇷', // Turkish Lira
-      RUB: '🇷🇺', // Russian Ruble
-      INR: '🇮🇳', // Indian Rupee
-      BRL: '🇧🇷', // Brazilian Real
-      ZAR: '🇿🇦', // South African Rand
-      DKK: '🇩🇰', // Danish Krone
-      PLN: '🇵🇱', // Polish Zloty
-      TWD: '🇹🇼', // Taiwan Dollar
-      THB: '🇹🇭', // Thai Baht
-      MYR: '🇲🇾', // Malaysian Ringgit
-      IDR: '🇮🇩', // Indonesian Rupiah
-      VND: '🇻🇳', // Vietnamese Dong
-      CZK: '🇨🇿', // Czech Koruna
-      HUF: '🇭🇺', // Hungarian Forint
-      ILS: '🇮🇱', // Israeli Shekel
-      CLP: '🇨🇱', // Chilean Peso
-      PEN: '🇵🇪', // Peruvian Sol
-      COP: '🇨🇴', // Colombian Peso
-      BHD: '🇧🇭', // Bahraini Dinar
-      KWD: '🇰🇼', // Kuwaiti Dinar
-      SAR: '🇸🇦', // Saudi Riyal
-      AED: '🇦🇪', // UAE Dirham
-      BND: '🇧🇳', // Brunei Dollar
-    };
-    return flagMap[code] || '🏴';
-  };
 
   // Fetch forex data
   useEffect(() => {
