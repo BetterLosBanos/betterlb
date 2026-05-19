@@ -231,7 +231,7 @@ async function createReviewItem(context: {
       `SELECT id FROM review_queue WHERE item_id = ?1 AND item_type = ?2`
     )
       .bind(item_id, item_type)
-      .first();
+      .first<{ id: string }>();
 
     if (existing) {
       return Response.json(
@@ -287,7 +287,7 @@ async function createReviewItem(context: {
       `SELECT * FROM review_queue WHERE id = ?1`
     )
       .bind(reviewItemId)
-      .first();
+      .first<Record<string, unknown>>();
 
     return Response.json(
       {

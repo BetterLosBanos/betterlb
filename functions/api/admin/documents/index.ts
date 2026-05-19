@@ -200,7 +200,7 @@ async function handleBulkCreateDocuments(context: {
           `SELECT id FROM documents WHERE number = ?1`
         )
           .bind(doc.number)
-          .first();
+          .first<{ id: string }>();
 
         if (existing) {
           errors.push({

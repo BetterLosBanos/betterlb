@@ -128,7 +128,7 @@ async function handlePatchDocument(context: {
             `SELECT id FROM persons WHERE first_name = ?1 AND last_name = ?2`
           )
             .bind(author.first_name, author.last_name)
-            .first();
+            .first<{ id: string }>();
 
           if (existingPerson) {
             personId = existingPerson.id;
@@ -173,7 +173,7 @@ async function handlePatchDocument(context: {
           `SELECT id FROM subjects WHERE name = ?1`
         )
           .bind(subjectName)
-          .first();
+          .first<{ id: string }>();
 
         if (!subject) {
           const subjectId = `subject_${Date.now()}_${Math.random().toString(36).substr(2, 9)}`;

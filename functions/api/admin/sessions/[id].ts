@@ -189,7 +189,7 @@ async function handleUpdateSession(context: {
       `SELECT * FROM sessions WHERE id = ?1`
     )
       .bind(sessionId)
-      .first();
+      .first<Record<string, unknown>>();
 
     return Response.json({
       success: true,

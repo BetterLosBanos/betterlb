@@ -117,7 +117,7 @@ async function handleGetReconcile(context: {
           `SELECT moved_by, seconded_by FROM documents WHERE number = ?1 AND type = ?2 AND source_type = 'pdf'`
         )
           .bind(doc.number, doc.type)
-          .first();
+          .first<{ moved_by: string | null; seconded_by: string | null }>();
 
         if (pdfDoc && pdfDoc.moved_by !== doc.moved_by) {
           items.push({

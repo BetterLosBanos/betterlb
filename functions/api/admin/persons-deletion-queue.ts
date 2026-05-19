@@ -113,7 +113,7 @@ async function handleRestore(context: {
       `SELECT id, deleted_at FROM persons WHERE id = ?1`
     )
       .bind(person_id)
-      .first();
+      .first<{ id: string; deleted_at: string | null }>();
 
     if (!person) {
       return Response.json({ error: 'Person not found' }, { status: 404 });
@@ -180,7 +180,7 @@ async function handlePermanentDelete(context: {
       `SELECT id FROM persons WHERE id = ?1`
     )
       .bind(person_id)
-      .first();
+      .first<{ id: string }>();
 
     if (!person) {
       return Response.json({ error: 'Person not found' }, { status: 404 });
