@@ -20,6 +20,7 @@ import { Badge } from '@/components/ui/Badge';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/Card';
 import { EmptyState } from '@/components/ui/EmptyState';
 import SelectPicker from '@/components/ui/SelectPicker';
+import { adminApi } from '@/lib/admin-api';
 
 // Define the interface locally since it's not exported
 interface SelectPickerOption {
@@ -147,22 +148,11 @@ export default function Reconcile() {
   const fetchConflicts = useCallback(async () => {
     setLoading(true);
     try {
-      const params = new URLSearchParams({
-        limit: '20',
-        offset: String(page * 20),
+      const data = await adminApi.reconcile.list({
+        limit: 20,
+        offset: page * 20,
+        status: statusFilter !== 'all' ? statusFilter : undefined,
       });
-
-      if (statusFilter !== 'all') {
-        params.append('status', statusFilter);
-      }
-      if (conflictTypeFilter !== 'all') {
-        params.append('conflict_type', conflictTypeFilter);
-      }
-
-      const response = await fetch(`/api/admin/reconcile?${params}`);
-      if (!response.ok) throw new Error('Failed to fetch conflicts');
-
-      const data: ReconcileResponse = await response.json();
       setItems(data.items || []);
       setPagination(data.pagination);
     } catch (error) {
@@ -202,17 +192,11 @@ export default function Reconcile() {
     notes?: string
   ) => {
     try {
-      const response = await fetch('/api/admin/reconcile', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          conflict_id: itemId,
-          resolved_value: resolvedValue,
-          notes,
-        }),
+      await adminApi.reconcile.resolve({
+        conflict_id: itemId,
+        resolved_value: resolvedValue,
+        notes,
       });
-
-      if (!response.ok) throw new Error('Failed to resolve conflict');
       fetchConflicts();
       if (selectedItem?.id === itemId) {
         setSelectedItem(null);
