@@ -12,6 +12,13 @@ import {
   AuditTargetTypes,
 } from '../../../utils/audit-log';
 
+type ReviewStatus = 'pending' | 'in_progress' | 'resolved' | 'skipped';
+
+interface UpdateReviewStatusBody {
+  item_id: string;
+  status: ReviewStatus;
+}
+
 export async function onRequestPost(context: {
   request: Request;
   env: Env;
@@ -22,7 +29,7 @@ export async function onRequestPost(context: {
       const { request, env } = c;
 
       try {
-        const body = await request.json();
+        const body = await request.json() as UpdateReviewStatusBody;
         const { item_id, status } = body;
 
         if (!item_id || !status) {

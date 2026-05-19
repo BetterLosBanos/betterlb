@@ -13,6 +13,15 @@ import { parsePaginationParam, PAGINATION_LIMITS } from '../../../utils/paginati
 type ReviewStatus = 'pending' | 'in_progress' | 'resolved' | 'skipped';
 type ItemType = 'document' | 'session' | 'attendance';
 
+interface CreateReviewItemBody {
+  item_type: ItemType;
+  item_id: string;
+  issue_type: string;
+  description?: string;
+  source_type?: 'pdf' | 'facebook' | 'manual' | 'other';
+  source_url?: string;
+}
+
 interface ReviewItem {
   id: string;
   item_type: ItemType;
@@ -188,7 +197,7 @@ async function createReviewItem(context: {
   const { request, env, auth } = context;
 
   try {
-    const body = await request.json();
+    const body = await request.json() as CreateReviewItemBody;
     const {
       item_type,
       item_id,
@@ -196,14 +205,7 @@ async function createReviewItem(context: {
       description,
       source_type,
       source_url,
-    } = body as {
-      item_type: ItemType;
-      item_id: string;
-      issue_type: string;
-      description?: string;
-      source_type?: 'pdf' | 'facebook' | 'manual' | 'other';
-      source_url?: string;
-    };
+    } = body;
 
     // Validate required fields
     if (!item_type || !item_id || !issue_type) {

@@ -10,6 +10,10 @@ import {
   AuditTargetTypes,
 } from '../../utils/audit-log';
 
+interface ParseLegislativePostBody {
+  content: string;
+}
+
 interface ParsedLegislativeItem {
   type: 'ordinance' | 'resolution' | 'executive_order';
   number: string;
@@ -475,7 +479,7 @@ async function handleParseLegislativePost(context: {
   const { request, env } = context;
 
   try {
-    const body = await request.json();
+    const body = await request.json() as ParseLegislativePostBody;
     const { content } = body;
 
     if (!content || typeof content !== 'string') {

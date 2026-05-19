@@ -12,6 +12,10 @@ import {
   AuditTargetTypes,
 } from '../../../utils/audit-log';
 
+interface AssignReviewBody {
+  item_id: string;
+}
+
 export async function onRequestPost(context: {
   request: Request;
   env: Env;
@@ -22,7 +26,7 @@ export async function onRequestPost(context: {
       const { request, env, auth } = c;
 
       try {
-        const body = await request.json();
+        const body = await request.json() as AssignReviewBody;
         const { item_id } = body;
 
         if (!item_id) {

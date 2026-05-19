@@ -48,6 +48,16 @@ interface ReconcileResponse {
   };
 }
 
+interface ResolveConflictBody {
+  conflict_id: string;
+  resolved_value: string;
+  notes?: string;
+}
+
+interface SkipConflictBody {
+  conflict_id: string;
+}
+
 /**
  * GET /api/admin/reconcile
  * Query parameters:
@@ -165,7 +175,7 @@ async function resolveConflict(context: {
   const { request, env } = context;
 
   try {
-    const body = await request.json();
+    const body = await request.json() as ResolveConflictBody;
     const { conflict_id, resolved_value, notes } = body;
 
     if (!conflict_id || resolved_value === undefined) {
@@ -229,7 +239,7 @@ async function skipConflict(context: {
   const { request, env } = context;
 
   try {
-    const body = await request.json();
+    const body = await request.json() as SkipConflictBody;
     const { conflict_id } = body;
 
     if (!conflict_id) {

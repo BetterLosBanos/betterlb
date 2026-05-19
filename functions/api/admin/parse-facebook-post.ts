@@ -10,6 +10,10 @@ import {
   AuditTargetTypes,
 } from '../../utils/audit-log';
 
+interface ParseFacebookPostBody {
+  content: string;
+}
+
 interface ParsedSessionData {
   session_type: 'regular' | 'special' | 'inaugural' | null;
   ordinal: number | null;
@@ -139,7 +143,7 @@ async function handleParsePost(context: {
   const { request, env } = context;
 
   try {
-    const body = await request.json();
+    const body = await request.json() as ParseFacebookPostBody;
     const { content } = body;
 
     if (!content || typeof content !== 'string') {
