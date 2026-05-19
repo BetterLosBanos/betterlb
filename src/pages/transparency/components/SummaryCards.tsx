@@ -1,6 +1,6 @@
 import { Landmark, ReceiptText, Scale, Vault } from 'lucide-react';
 
-import { StatsCard } from '@/components/data-display/StatsUI';
+import { StatCard } from '@/components/ui/StatCard';
 
 import {
   computeNetIncome,
@@ -27,6 +27,14 @@ interface SummaryCardsProps {
   };
 }
 
+// Helper to calculate YoY trend
+const calculateTrend = (current: number, previous?: number) => {
+  if (previous === undefined || previous === 0) return undefined;
+  const diff = current - previous;
+  const pct = (diff / previous) * 100;
+  return { value: Math.abs(pct), positive: diff >= 0 };
+};
+
 // --- Summary Cards Component ---
 export default function SummaryCards({
   income,
@@ -43,28 +51,28 @@ export default function SummaryCards({
     {
       label: 'Total Revenue (M)',
       value: totalIncome,
-      prevValue: prevYear?.totalIncome,
+      trend: calculateTrend(totalIncome, prevYear?.totalIncome),
       icon: Landmark,
       iconBg: 'bg-kapwa-green-50 text-kapwa-green-600',
     },
     {
       label: 'Total Expenditure (M)',
       value: totalExpenditure,
-      prevValue: prevYear?.totalExpenditure,
+      trend: calculateTrend(totalExpenditure, prevYear?.totalExpenditure),
       icon: ReceiptText,
       iconBg: 'bg-kapwa-red-50 text-kapwa-red-600',
     },
     {
       label: 'Net Operating Income (M)',
       value: netIncome,
-      prevValue: prevYear?.netIncome,
+      trend: calculateTrend(netIncome, prevYear?.netIncome),
       icon: Scale,
       iconBg: 'bg-kapwa-bg-brand-weak text-kapwa-text-brand',
     },
     {
       label: 'Treasury Balance (M)',
       value: fundBalance,
-      prevValue: prevYear?.fundCashEnd,
+      trend: calculateTrend(fundBalance, prevYear?.fundCashEnd),
       icon: Vault,
       iconBg: 'bg-kapwa-orange-50 text-kapwa-orange-600',
     },
@@ -73,7 +81,7 @@ export default function SummaryCards({
   return (
     <div className='grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4'>
       {cards.map(card => (
-        <StatsCard key={card.label} {...card} hover={true} />
+        <StatCard key={card.label} {...card} hover={true} />
       ))}
     </div>
   );

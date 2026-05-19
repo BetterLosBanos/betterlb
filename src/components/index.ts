@@ -6,13 +6,10 @@
  *
  * @example
  * // UI Components
- * import { Button, Card } from '@/components/ui';
+ * import { Button, Card, StatCard } from '@/components/ui';
  *
  * // Layout Components
  * import { Navbar, Footer } from '@/components/layout';
- *
- * // Data Display
- * import { StatsUI } from '@/components/data-display';
  *
  * @module components
  */

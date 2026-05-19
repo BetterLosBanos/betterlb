@@ -13,7 +13,7 @@ import {
   TrendingUp,
 } from 'lucide-react';
 
-import { StatsCard } from '@/components/data-display/StatsUI';
+import { StatCard } from '@/components/ui/StatCard';
 import { ModuleHeader } from '@/components/layout/PageLayouts';
 import { Badge } from '@/components/ui/Badge';
 import { CardGrid } from '@/components/ui/Card';
@@ -267,7 +267,7 @@ export default function ProcurementPage() {
 
       {/* --- STATS GRID --- */}
       <CardGrid columns={4}>
-        <StatsCard
+        <StatCard
           icon={Tags}
           label='Categories'
           value={detailedStats.uniqueCategories}
@@ -275,7 +275,7 @@ export default function ProcurementPage() {
           iconBg='bg-kapwa-bg-surface-raised text-kapwa-text-strong'
         />
 
-        <StatsCard
+        <StatCard
           icon={Briefcase}
           label='Total Value'
           value={
@@ -285,7 +285,7 @@ export default function ProcurementPage() {
           iconBg='bg-kapwa-green-50 text-kapwa-green-600'
         />
 
-        <StatsCard
+        <StatCard
           icon={TrendingUp}
           label='Average'
           value={formatPesoAdaptive(detailedStats.averageCost).fullString}
@@ -293,7 +293,7 @@ export default function ProcurementPage() {
           iconBg='bg-kapwa-bg-brand-weak text-kapwa-text-brand'
         />
 
-        <StatsCard
+        <StatCard
           icon={FileText}
           label='Volume'
           value={detailedStats.totalContractCount.toLocaleString()}
