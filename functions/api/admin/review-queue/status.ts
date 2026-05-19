@@ -66,7 +66,7 @@ export async function onRequestPost(context: {
         );
       }
     }
-  )(context as any), {
+  )(context), {
     requireCSRF: true,
   };
 }

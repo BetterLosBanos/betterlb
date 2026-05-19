@@ -78,5 +78,5 @@ async function handleUpdateAttendance(context: {
   }
 }
 
-export const onRequestPost = (context: { request: Request; env: Env }) =>
-  withAuth(handleUpdateAttendance as any, { requireCSRF: true })(context as any); // eslint-disable-line @typescript-eslint/no-explicit-any
+export const onRequestPost = (context: { request: Request; env: Env; params?: { id: string } }) =>
+  withAuth(handleUpdateAttendance, { requireCSRF: true })(context);

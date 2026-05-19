@@ -311,8 +311,8 @@ async function handleGetDocument(context: {
   }
 }
 
-export const onRequestGet = (context: { request: Request; env: Env }) =>
-  withAuth(handleGetDocument as any, { requireCSRF: true })(context as any);
+export const onRequestGet = (context: { request: Request; env: Env; params?: { id: string } }) =>
+  withAuth(handleGetDocument, { requireCSRF: true })(context);
 
-export const onRequestPatch = (context: { request: Request; env: Env }) =>
-  withAuth(handlePatchDocument as any, { requireCSRF: true })(context as any);
+export const onRequestPatch = (context: { request: Request; env: Env; params?: { id: string } }) =>
+  withAuth(handlePatchDocument, { requireCSRF: true })(context);

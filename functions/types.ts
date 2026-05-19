@@ -27,6 +27,13 @@ export interface Env {
   AUTHORIZED_USERS?: string;
 }
 
+// Cloudflare Pages function context with dynamic route params
+export interface PagesContext {
+  request: Request;
+  env: Env;
+  params?: Record<string, string>;
+}
+
 // Interface for Philippine city coordinates
 export interface CityCoordinates {
   name: string;

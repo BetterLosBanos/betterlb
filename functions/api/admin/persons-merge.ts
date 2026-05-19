@@ -84,18 +84,14 @@ async function handleGetDuplicates(context: {
     }>) {
       const ids = row.person_ids.split(',');
 
-      // Get actual person records
-      const personRecords: Person[] = [];
-      for (const id of ids) {
-        const person = await env.BETTERLB_DB.prepare(
-          `SELECT id, first_name, middle_name, last_name, suffix FROM persons WHERE id = ?1`
-        )
-          .bind(id)
-          .first();
-        if (person) personRecords.push(person as unknown as Person);
-      }
+      // Single query to get all person records for this duplicate group
+      const placeholders = ids.map(() => '?1').join(',');
+      const personRecordsResult = await env.BETTERLB_DB.prepare(
+        `SELECT id, first_name, middle_name, last_name, suffix FROM persons WHERE id IN (${ids.map(() => '?').join(',')})`
+      ).bind(...ids).all();
+      const personRecords = personRecordsResult.results as unknown as Person[];
 
-      // Count related records for the first person
+      // Count related records with single queries each
       const docCount = await env.BETTERLB_DB.prepare(
         `SELECT COUNT(*) as count FROM document_authors WHERE person_id IN (${ids.map(() => '?').join(',')})`
       )
@@ -147,31 +143,22 @@ async function handleGetDuplicates(context: {
       mn2: string | null;
       suffix: string | null;
     }>) {
-      const person1 = await env.BETTERLB_DB.prepare(
-        `SELECT id, first_name, middle_name, last_name, suffix FROM persons WHERE id = ?1`
+      // Single query to fetch both persons
+      const personsResult = await env.BETTERLB_DB.prepare(
+        `SELECT id, first_name, middle_name, last_name, suffix FROM persons WHERE id IN (?1, ?2)`
       )
-        .bind(row.id1)
-        .first<{
-          id: string;
-          first_name: string;
-          middle_name: string | null;
-          last_name: string;
-          suffix: string | null;
-        }>();
+        .bind(row.id1, row.id2)
+        .all();
 
-      const person2 = await env.BETTERLB_DB.prepare(
-        `SELECT id, first_name, middle_name, last_name, suffix FROM persons WHERE id = ?1`
-      )
-        .bind(row.id2)
-        .first<{
-          id: string;
-          first_name: string;
-          middle_name: string | null;
-          last_name: string;
-          suffix: string | null;
-        }>();
+      const persons = personsResult.results as Array<{
+        id: string;
+        first_name: string;
+        middle_name: string | null;
+        last_name: string;
+        suffix: string | null;
+      }>;
 
-      if (person1 && person2) {
+      if (persons.length === 2) {
         const docCount = await env.BETTERLB_DB.prepare(
           `SELECT COUNT(*) as count FROM document_authors WHERE person_id IN (?1, ?2)`
         )
@@ -192,7 +179,7 @@ async function handleGetDuplicates(context: {
 
         duplicates.push({
           person_ids: [row.id1, row.id2],
-          persons: [person1, person2],
+          persons: persons as unknown as Person[],
           document_count: docCount?.count || 0,
           membership_count: memberCount?.count || 0,
           committee_count: committeeCount?.count || 0,

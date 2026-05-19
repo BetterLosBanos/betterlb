@@ -75,5 +75,5 @@ async function handleGetTermMembers(context: {
   }
 }
 
-export const onRequestGet = (context: { request: Request; env: Env }) =>
-  withAuth(handleGetTermMembers as any)(context as any);
+export const onRequestGet = (context: { request: Request; env: Env; params?: { id: string } }) =>
+  withAuth(handleGetTermMembers)(context);
