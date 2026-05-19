@@ -11,6 +11,7 @@ import {
   createRateLimitResponse,
   getClientIdentifier,
 } from '../../utils/rate-limit';
+import { parsePaginationParam, PAGINATION_LIMITS } from '../../utils/pagination';
 
 export async function onRequestGet(context: { request: Request; env: Env }) {
   return getSessionsList(context);
@@ -45,8 +46,16 @@ async function getSessionsList(context: { request: Request; env: Env }) {
 
   const termId = url.searchParams.get('term');
   const type = url.searchParams.get('type');
-  const limit = parseInt(url.searchParams.get('limit') || '1000');
-  const offset = parseInt(url.searchParams.get('offset') || '0');
+  const limit = parsePaginationParam(
+    url.searchParams.get('limit'),
+    1000,
+    2000 // Higher limit for public API (sessions can be numerous)
+  );
+  const offset = parsePaginationParam(
+    url.searchParams.get('offset'),
+    PAGINATION_LIMITS.DEFAULT_OFFSET,
+    Number.MAX_SAFE_INTEGER
+  );
 
   const kvCache = createKVCache(env);
   const cacheKey = kvCache.sessionsKey({

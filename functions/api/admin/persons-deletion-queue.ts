@@ -7,6 +7,7 @@
 import { Env } from '../../types';
 import { AuthContext, withAuth } from '../../utils/admin-auth';
 import { logAudit, AuditTargetTypes } from '../../utils/audit-log';
+import { parsePaginationParam, PAGINATION_LIMITS } from '../../utils/pagination';
 
 interface Person {
   id: string;
@@ -34,7 +35,11 @@ async function handleGetQueue(context: {
 
   try {
     const url = new URL(request.url);
-    const limit = parseInt(url.searchParams.get('limit') || '50');
+    const limit = parsePaginationParam(
+      url.searchParams.get('limit'),
+      PAGINATION_LIMITS.DEFAULT_LIMIT,
+      PAGINATION_LIMITS.MAX_LIMIT
+    );
 
     const sql = `
       SELECT

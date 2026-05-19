@@ -13,6 +13,7 @@ import {
   AuditActions,
   AuditTargetTypes,
 } from '../../utils/audit-log';
+import { parsePaginationParam, PAGINATION_LIMITS } from '../../utils/pagination';
 
 type ReconcileStatus = 'unresolved' | 'resolved' | 'skipped';
 type ConflictType = 'moved_by' | 'seconded_by' | 'authors' | 'title' | 'none';
@@ -66,8 +67,16 @@ async function handleGetReconcile(context: {
   // TODO: Implement status and conflict_type filters
   // const statusFilter = url.searchParams.get('status');
   // const conflictTypeFilter = url.searchParams.get('conflict_type');
-  const limit = parseInt(url.searchParams.get('limit') || '20');
-  const offset = parseInt(url.searchParams.get('offset') || '0');
+  const limit = parsePaginationParam(
+    url.searchParams.get('limit'),
+    20,
+    PAGINATION_LIMITS.MAX_LIMIT
+  );
+  const offset = parsePaginationParam(
+    url.searchParams.get('offset'),
+    PAGINATION_LIMITS.DEFAULT_OFFSET,
+    Number.MAX_SAFE_INTEGER
+  );
 
   // Build query - for now we generate conflicts from documents with different source data
   // In a real implementation, you'd have a conflicts table

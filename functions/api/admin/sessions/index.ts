@@ -5,6 +5,7 @@
  */
 import { Env } from '../../../types';
 import { AuthContext, withAuth } from '../../../utils/admin-auth';
+import { parsePaginationParam, PAGINATION_LIMITS } from '../../../utils/pagination';
 
 interface CreateSessionData {
   term_id: string;
@@ -27,8 +28,16 @@ async function handleListSessions(context: {
   const url = new URL(request.url);
 
   const termId = url.searchParams.get('term');
-  const limit = parseInt(url.searchParams.get('limit') || '50');
-  const offset = parseInt(url.searchParams.get('offset') || '0');
+  const limit = parsePaginationParam(
+    url.searchParams.get('limit'),
+    PAGINATION_LIMITS.DEFAULT_LIMIT,
+    PAGINATION_LIMITS.MAX_LIMIT
+  );
+  const offset = parsePaginationParam(
+    url.searchParams.get('offset'),
+    PAGINATION_LIMITS.DEFAULT_OFFSET,
+    Number.MAX_SAFE_INTEGER
+  );
 
   try {
     let sql = `

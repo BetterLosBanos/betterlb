@@ -4,6 +4,7 @@
  */
 import { Env } from '../../types';
 import { AuthContext, withAuth } from '../../utils/admin-auth';
+import { parsePaginationParam, PAGINATION_LIMITS } from '../../utils/pagination';
 
 async function handleListTerms(context: {
   request: Request;
@@ -13,7 +14,11 @@ async function handleListTerms(context: {
   const { request, env } = context;
   const url = new URL(request.url);
 
-  const limit = parseInt(url.searchParams.get('limit') || '50');
+  const limit = parsePaginationParam(
+    url.searchParams.get('limit'),
+    PAGINATION_LIMITS.DEFAULT_LIMIT,
+    PAGINATION_LIMITS.MAX_LIMIT
+  );
 
   try {
     const sql = `

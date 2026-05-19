@@ -12,6 +12,7 @@ import {
   createRateLimitResponse,
   getClientIdentifier,
 } from '../../utils/rate-limit';
+import { parsePaginationParam, PAGINATION_LIMITS } from '../../utils/pagination';
 
 export async function onRequestGet(context: { request: Request; env: Env }) {
   const url = new URL(context.request.url);
@@ -82,8 +83,16 @@ async function getPersonsList(context: { request: Request; env: Env }) {
 
   const termId = url.searchParams.get('term');
   const committeeId = url.searchParams.get('committee');
-  const limit = parseInt(url.searchParams.get('limit') || '100');
-  const offset = parseInt(url.searchParams.get('offset') || '0');
+  const limit = parsePaginationParam(
+    url.searchParams.get('limit'),
+    100,
+    200 // Higher limit for public API
+  );
+  const offset = parsePaginationParam(
+    url.searchParams.get('offset'),
+    PAGINATION_LIMITS.DEFAULT_OFFSET,
+    Number.MAX_SAFE_INTEGER
+  );
 
   const kvCache = createKVCache(env);
   const cacheKey = kvCache.personsKey({

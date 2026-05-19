@@ -8,6 +8,7 @@
 import { Env } from '../../../types';
 import { AuthContext, withAuth } from '../../../utils/admin-auth';
 import { logAudit, AuditTargetTypes } from '../../../utils/audit-log';
+import { parsePaginationParam, PAGINATION_LIMITS } from '../../../utils/pagination';
 
 type ReviewStatus = 'pending' | 'in_progress' | 'resolved' | 'skipped';
 type ItemType = 'document' | 'session' | 'attendance';
@@ -62,8 +63,16 @@ async function handleGetReviewQueue(context: {
 
   const statusFilter = url.searchParams.get('status');
   const itemTypeFilter = url.searchParams.get('item_type');
-  const limit = parseInt(url.searchParams.get('limit') || '20');
-  const offset = parseInt(url.searchParams.get('offset') || '0');
+  const limit = parsePaginationParam(
+    url.searchParams.get('limit'),
+    20,
+    PAGINATION_LIMITS.MAX_LIMIT
+  );
+  const offset = parsePaginationParam(
+    url.searchParams.get('offset'),
+    PAGINATION_LIMITS.DEFAULT_OFFSET,
+    Number.MAX_SAFE_INTEGER
+  );
 
   // Build query
   let sql = `

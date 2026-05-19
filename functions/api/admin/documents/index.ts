@@ -6,6 +6,7 @@
  */
 import { Env } from '../../../types';
 import { AuthContext, withAuth } from '../../../utils/admin-auth';
+import { parsePaginationParam, PAGINATION_LIMITS } from '../../../utils/pagination';
 
 interface Document {
   id: string;
@@ -37,8 +38,16 @@ async function handleListDocuments(context: {
   const status = url.searchParams.get('status');
   const type = url.searchParams.get('type');
   const needsReview = url.searchParams.get('needs_review');
-  const limit = parseInt(url.searchParams.get('limit') || '50');
-  const offset = parseInt(url.searchParams.get('offset') || '0');
+  const limit = parsePaginationParam(
+    url.searchParams.get('limit'),
+    PAGINATION_LIMITS.DEFAULT_LIMIT,
+    PAGINATION_LIMITS.MAX_LIMIT
+  );
+  const offset = parsePaginationParam(
+    url.searchParams.get('offset'),
+    PAGINATION_LIMITS.DEFAULT_OFFSET,
+    Number.MAX_SAFE_INTEGER
+  );
 
   // Build query
   let sql = `

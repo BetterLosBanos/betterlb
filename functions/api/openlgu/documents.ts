@@ -12,6 +12,7 @@ import {
   createRateLimitResponse,
   getClientIdentifier,
 } from '../../utils/rate-limit';
+import { parsePaginationParam, PAGINATION_LIMITS } from '../../utils/pagination';
 
 export async function onRequestGet(context: { request: Request; env: Env }) {
   const url = new URL(context.request.url);
@@ -62,8 +63,16 @@ async function getDocumentsList(context: { request: Request; env: Env }) {
   const sessionId = url.searchParams.get('session_id');
   const query = url.searchParams.get('q');
   const needsReview = url.searchParams.get('needs_review');
-  const limit = parseInt(url.searchParams.get('limit') || '100');
-  const offset = parseInt(url.searchParams.get('offset') || '0');
+  const limit = parsePaginationParam(
+    url.searchParams.get('limit'),
+    100,
+    200 // Higher limit for public API
+  );
+  const offset = parsePaginationParam(
+    url.searchParams.get('offset'),
+    PAGINATION_LIMITS.DEFAULT_OFFSET,
+    Number.MAX_SAFE_INTEGER
+  );
 
   // Input validation: Limit query length to prevent DoS
   if (query && query.length > 100) {

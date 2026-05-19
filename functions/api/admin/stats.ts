@@ -79,8 +79,9 @@ async function handleGetStats(context: {
 
       errorTotal = errorStats?.total || 0;
       errorRecent = errorStats?.recent || 0;
-    } catch {
-      // Table doesn't exist yet
+    } catch (err) {
+      // Table doesn't exist yet - log for visibility
+      console.warn('parse_errors table not found - skipping error stats');
     }
 
     // Get conflict stats
@@ -92,8 +93,9 @@ async function handleGetStats(context: {
       ).first<{ active: number }>();
 
       conflictActive = conflictStats?.active || 0;
-    } catch {
-      // Table doesn't exist yet
+    } catch (err) {
+      // Table doesn't exist yet - log for visibility
+      console.warn('data_conflicts table not found - skipping conflict stats');
     }
 
     // Get deletion queue stats
@@ -105,8 +107,9 @@ async function handleGetStats(context: {
       ).first<{ total: number }>();
 
       deletionQueueTotal = deletionQueueStats?.total || 0;
-    } catch {
-      // Column doesn't exist yet
+    } catch (err) {
+      // Column doesn't exist yet - log for visibility
+      console.warn('persons.deleted_at column not found - skipping deletion queue stats');
     }
 
     const stats: DashboardStats = {
