@@ -39,29 +39,39 @@ async function handleUpdateAttendance(context: {
       );
     }
 
-    // Start a transaction
-    // 1. Delete all existing absences for this session
-    await env.BETTERLB_DB.prepare(
-      `DELETE FROM session_absences WHERE session_id = ?1`
-    )
-      .bind(sessionId)
-      .run();
+    // Use batch() for atomic transaction
+    const statements: D1PreparedStatement[] = [];
 
-    // 2. Insert new absences
-    for (const personId of absent_person_ids) {
-      await env.BETTERLB_DB.prepare(
-        `INSERT INTO session_absences (session_id, person_id) VALUES (?1, ?2)`
-      )
-        .bind(sessionId, personId)
-        .run();
+    // 1. Delete all existing absences for this session
+    statements.push(
+      env.BETTERLB_DB.prepare(
+        `DELETE FROM session_absences WHERE session_id = ?1`
+      ).bind(sessionId)
+    );
+
+    // 2. Insert new absences (batch all inserts)
+    if (absent_person_ids.length > 0) {
+      const placeholders = absent_person_ids
+        .map((_, index) => `(?${index * 2 + 1}, ?${index * 2 + 2})`)
+        .join(', ');
+      const values = absent_person_ids.flatMap(personId => [sessionId, personId]);
+
+      statements.push(
+        env.BETTERLB_DB.prepare(
+          `INSERT INTO session_absences (session_id, person_id) VALUES ${placeholders}`
+        ).bind(...values)
+      );
     }
 
     // 3. Update the session's updated_at timestamp
-    await env.BETTERLB_DB.prepare(
-      `UPDATE sessions SET updated_at = ?1 WHERE id = ?2`
-    )
-      .bind(new Date().toISOString(), sessionId)
-      .run();
+    statements.push(
+      env.BETTERLB_DB.prepare(
+        `UPDATE sessions SET updated_at = ?1 WHERE id = ?2`
+      ).bind(new Date().toISOString(), sessionId)
+    );
+
+    // Execute atomically
+    await env.BETTERLB_DB.batch(statements);
 
     // 4. Log the audit entry
     await logAudit(env, {

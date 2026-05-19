@@ -275,4 +275,6 @@ async function handleResolveDuplicate(context: {
   }
 }
 
-export const onRequestPost = withAuth(handleResolveDuplicate);
+export const onRequestPost = withAuth(handleResolveDuplicate, {
+  requireCSRF: true,
+});

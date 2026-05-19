@@ -267,127 +267,135 @@ async function handleMerge(context: {
       }
     }
 
-    // Perform the merge in a transaction-like manner
+    // Perform the merge using D1 batch for transactional safety
     const updatedTables: MergeResult['updated_tables'] = {};
     const deleted_ids: string[] = [];
     const flagged_ids: string[] = [];
 
-    // 1. Update memberships - change person_id to keep_person_id
-    const memberUpdate = await env.BETTERLB_DB.prepare(
-      `UPDATE memberships SET person_id = ?1 WHERE person_id IN (${merge_person_ids.map(() => '?').join(',')})`
-    )
-      .bind(keep_person_id, ...merge_person_ids)
-      .run();
+    // Build all statements for the batch operation
+    const statements: D1PreparedStatement[] = [];
 
-    updatedTables.memberships = memberUpdate.meta.changes || 0;
+    // 1. Update memberships - change person_id to keep_person_id
+    statements.push(
+      env.BETTERLB_DB.prepare(
+        `UPDATE memberships SET person_id = ?1 WHERE person_id IN (${merge_person_ids.map(() => '?').join(',')})`
+      ).bind(keep_person_id, ...merge_person_ids)
+    );
 
     // 2. Update document_authors
-    const authorUpdate = await env.BETTERLB_DB.prepare(
-      `UPDATE document_authors SET person_id = ?1 WHERE person_id IN (${merge_person_ids.map(() => '?').join(',')})`
-    )
-      .bind(keep_person_id, ...merge_person_ids)
-      .run();
-
-    updatedTables.document_authors = authorUpdate.meta.changes || 0;
+    statements.push(
+      env.BETTERLB_DB.prepare(
+        `UPDATE document_authors SET person_id = ?1 WHERE person_id IN (${merge_person_ids.map(() => '?').join(',')})`
+      ).bind(keep_person_id, ...merge_person_ids)
+    );
 
     // 3. Update session_absences
-    const absenceUpdate = await env.BETTERLB_DB.prepare(
-      `UPDATE session_absences SET person_id = ?1 WHERE person_id IN (${merge_person_ids.map(() => '?').join(',')})`
-    )
-      .bind(keep_person_id, ...merge_person_ids)
-      .run();
-
-    updatedTables.session_absences = absenceUpdate.meta.changes || 0;
+    statements.push(
+      env.BETTERLB_DB.prepare(
+        `UPDATE session_absences SET person_id = ?1 WHERE person_id IN (${merge_person_ids.map(() => '?').join(',')})`
+      ).bind(keep_person_id, ...merge_person_ids)
+    );
 
     // 4. Update committee_memberships
-    const committeeUpdate = await env.BETTERLB_DB.prepare(
-      `UPDATE committee_memberships SET person_id = ?1 WHERE person_id IN (${merge_person_ids.map(() => '?').join(',')})`
-    )
-      .bind(keep_person_id, ...merge_person_ids)
-      .run();
-
-    updatedTables.committee_memberships = committeeUpdate.meta.changes || 0;
+    statements.push(
+      env.BETTERLB_DB.prepare(
+        `UPDATE committee_memberships SET person_id = ?1 WHERE person_id IN (${merge_person_ids.map(() => '?').join(',')})`
+      ).bind(keep_person_id, ...merge_person_ids)
+    );
 
     // 5. Detect and remove duplicate committee_memberships
-    const committeeDuplicates = await env.BETTERLB_DB.prepare(
+    statements.push(
+      env.BETTERLB_DB.prepare(
+        `
+        DELETE FROM committee_memberships
+        WHERE id IN (
+          SELECT cm2.id
+          FROM committee_memberships cm1
+          INNER JOIN committee_memberships cm2
+            ON cm1.committee_id = cm2.committee_id
+            AND cm1.term_id = cm2.term_id
+            AND cm1.role = cm2.role
+            AND cm1.person_id = cm2.person_id
+            AND cm1.id < cm2.id
+          WHERE cm1.person_id = ?1
+        )
       `
-      DELETE FROM committee_memberships
-      WHERE id IN (
-        SELECT cm2.id
-        FROM committee_memberships cm1
-        INNER JOIN committee_memberships cm2
-          ON cm1.committee_id = cm2.committee_id
-          AND cm1.term_id = cm2.term_id
-          AND cm1.role = cm2.role
-          AND cm1.person_id = cm2.person_id
-          AND cm1.id < cm2.id
-        WHERE cm1.person_id = ?1
-      )
-    `
-    )
-      .bind(keep_person_id)
-      .run();
-    updatedTables.committee_duplicates_removed =
-      committeeDuplicates.meta.changes || 0;
+      ).bind(keep_person_id)
+    );
 
     // 6. Detect and remove duplicate session_absences
-    const absenceDuplicates = await env.BETTERLB_DB.prepare(
+    statements.push(
+      env.BETTERLB_DB.prepare(
+        `
+        DELETE FROM session_absences
+        WHERE id IN (
+          SELECT sa2.id
+          FROM session_absences sa1
+          INNER JOIN session_absences sa2
+            ON sa1.session_id = sa2.session_id
+            AND sa1.person_id = sa2.person_id
+            AND sa1.id < sa2.id
+          WHERE sa1.person_id = ?1
+        )
       `
-      DELETE FROM session_absences
-      WHERE id IN (
-        SELECT sa2.id
-        FROM session_absences sa1
-        INNER JOIN session_absences sa2
-          ON sa1.session_id = sa2.session_id
-          AND sa1.person_id = sa2.person_id
-          AND sa1.id < sa2.id
-        WHERE sa1.person_id = ?1
-      )
-    `
-    )
-      .bind(keep_person_id)
-      .run();
-    updatedTables.absence_duplicates_removed =
-      absenceDuplicates.meta.changes || 0;
+      ).bind(keep_person_id)
+    );
 
     // 7. Detect and remove duplicate memberships
-    const membershipDuplicates = await env.BETTERLB_DB.prepare(
+    statements.push(
+      env.BETTERLB_DB.prepare(
+        `
+        DELETE FROM memberships
+        WHERE id IN (
+          SELECT m2.id
+          FROM memberships m1
+          INNER JOIN memberships m2
+            ON m1.term_id = m2.term_id
+            AND m1.person_id = m2.person_id
+            AND m1.id < m2.id
+          WHERE m1.person_id = ?1
+        )
       `
-      DELETE FROM memberships
-      WHERE id IN (
-        SELECT m2.id
-        FROM memberships m1
-        INNER JOIN memberships m2
-          ON m1.term_id = m2.term_id
-          AND m1.person_id = m2.person_id
-          AND m1.id < m2.id
-        WHERE m1.person_id = ?1
-      )
-    `
-    )
-      .bind(keep_person_id)
-      .run();
-    updatedTables.membership_duplicates_removed =
-      membershipDuplicates.meta.changes || 0;
+      ).bind(keep_person_id)
+    );
 
-    // 8. Handle deletion based on deletion_mode
+    // 8. Handle deletion based on deletion_mode (add to batch)
     for (const id of merge_person_ids) {
       if (deletion_mode === 'delete') {
-        // Immediate deletion
-        await env.BETTERLB_DB.prepare(`DELETE FROM persons WHERE id = ?1`)
-          .bind(id)
-          .run();
+        statements.push(
+          env.BETTERLB_DB.prepare(`DELETE FROM persons WHERE id = ?1`).bind(id)
+        );
         deleted_ids.push(id);
       } else if (deletion_mode === 'flag') {
-        // Soft delete - set deleted_at timestamp
-        await env.BETTERLB_DB.prepare(
-          `UPDATE persons SET deleted_at = datetime('now') WHERE id = ?1`
-        )
-          .bind(id)
-          .run();
+        statements.push(
+          env.BETTERLB_DB.prepare(
+            `UPDATE persons SET deleted_at = datetime('now') WHERE id = ?1`
+          ).bind(id)
+        );
         flagged_ids.push(id);
       }
-      // 'skip' mode - don't touch the records
+      // 'skip' mode - don't add statements for these records
+    }
+
+    // Execute all statements in a single batch transaction
+    const results = await env.BETTERLB_DB.batch(statements);
+
+    // Check results and populate updated_tables
+    // Results are in the same order as statements
+    let resultIndex = 0;
+
+    updatedTables.memberships = results[resultIndex++].meta.changes || 0;
+    updatedTables.document_authors = results[resultIndex++].meta.changes || 0;
+    updatedTables.session_absences = results[resultIndex++].meta.changes || 0;
+    updatedTables.committee_memberships = results[resultIndex++].meta.changes || 0;
+    updatedTables.committee_duplicates_removed = results[resultIndex++].meta.changes || 0;
+    updatedTables.absence_duplicates_removed = results[resultIndex++].meta.changes || 0;
+    updatedTables.membership_duplicates_removed = results[resultIndex++].meta.changes || 0;
+
+    // Person deletion/flag results come next
+    for (let i = 0; i < merge_person_ids.length; i++) {
+      const changes = results[resultIndex++].meta.changes || 0;
+      // Track that the operation completed (changes will be 1 if record existed)
     }
 
     // 9. Log the merge action

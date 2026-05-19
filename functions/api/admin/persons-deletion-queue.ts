@@ -383,4 +383,6 @@ export const onRequestPost = withAuth(async context => {
     default:
       return Response.json({ error: 'Invalid action' }, { status: 400 });
   }
+}, {
+  requireCSRF: true,
 });

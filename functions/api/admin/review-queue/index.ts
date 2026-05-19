@@ -295,4 +295,6 @@ async function createReviewItem(context: {
 }
 
 export const onRequestGet = withAuth(handleGetReviewQueue);
-export const onRequestPost = withAuth(createReviewItem);
+export const onRequestPost = withAuth(createReviewItem, {
+  requireCSRF: true,
+});

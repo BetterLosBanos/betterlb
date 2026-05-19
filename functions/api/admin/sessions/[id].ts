@@ -208,4 +208,4 @@ export const onRequestGet = (context: { request: Request; env: Env }) =>
   withAuth(handleGetSession as any)(context as any);
 
 export const onRequestPost = (context: { request: Request; env: Env }) =>
-  withAuth(handleUpdateSession as any)(context as any);
+  withAuth(handleUpdateSession as any, { requireCSRF: true })(context as any);

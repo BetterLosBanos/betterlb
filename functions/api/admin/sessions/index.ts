@@ -160,4 +160,6 @@ async function handleCreateSession(context: {
 
 export const onRequestGet = withAuth(handleListSessions);
 
-export const onRequestPost = withAuth(handleCreateSession);
+export const onRequestPost = withAuth(handleCreateSession, {
+  requireCSRF: true,
+});

@@ -29,19 +29,6 @@ export interface Committee {
   terms: string[];
 }
 
-export interface DocumentItem {
-  id: string;
-  type: DocumentType;
-  number: string;
-  title: string;
-  session_id: string;
-  author_ids: string[];
-  status: string;
-  date_enacted: string;
-  link: string;
-  subjects: string[];
-}
-
 export interface PersonCommitteeRole {
   id: string;
   role: string;
