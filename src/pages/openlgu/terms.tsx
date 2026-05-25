@@ -28,6 +28,7 @@ export default function TermsIndex() {
       .map(term => {
         const termSessions = sessions.filter(s => s.term_id === term.id);
         const termDocuments = documents.filter(d => {
+          if (d.term_id === term.id) return true;
           if (!d.session_id) return false;
           const session = sessions.find(s => s.id === d.session_id);
           return session?.term_id === term.id;
@@ -94,7 +95,10 @@ export default function TermsIndex() {
             to={`/openlgu/term/${term.id}`}
             className='group block'
           >
-            <Card hover={false} className='h-full hover:border-kapwa-border-brand hover:shadow-md'>
+            <Card
+              hover={false}
+              className='h-full hover:border-kapwa-border-brand hover:shadow-md'
+            >
               <header className='mb-4 flex items-start justify-between'>
                 <div>
                   <Badge variant='primary' dot className='mb-2'>

@@ -54,7 +54,10 @@ async function handleUpdateAttendance(context: {
       const placeholders = absent_person_ids
         .map((_, index) => `(?${index * 2 + 1}, ?${index * 2 + 2})`)
         .join(', ');
-      const values = absent_person_ids.flatMap(personId => [sessionId, personId]);
+      const values = absent_person_ids.flatMap(personId => [
+        sessionId,
+        personId,
+      ]);
 
       statements.push(
         env.BETTERLB_DB.prepare(

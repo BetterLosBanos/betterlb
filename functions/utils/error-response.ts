@@ -103,7 +103,9 @@ export function conflict(message: string, details?: unknown): Response {
   return errorResponse(message, 409, ErrorCodes.CONFLICT, details);
 }
 
-export function serverError(message: string = 'Internal server error'): Response {
+export function serverError(
+  message: string = 'Internal server error'
+): Response {
   return errorResponse(message, 500, ErrorCodes.INTERNAL_ERROR);
 }
 

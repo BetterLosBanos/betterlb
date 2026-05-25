@@ -64,3 +64,6 @@ docs/qa-reports/*
 docs/decisions/*
 docs/plans/*
 docs/audits/*
+
+# Graphify output
+graphify-out/

@@ -479,7 +479,7 @@ async function handleParseLegislativePost(context: {
   const { request, env } = context;
 
   try {
-    const body = await request.json() as ParseLegislativePostBody;
+    const body = (await request.json()) as ParseLegislativePostBody;
     const { content } = body;
 
     if (!content || typeof content !== 'string') {

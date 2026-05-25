@@ -88,7 +88,9 @@ async function handleGetDuplicates(context: {
       const placeholders = ids.map(() => '?1').join(',');
       const personRecordsResult = await env.BETTERLB_DB.prepare(
         `SELECT id, first_name, middle_name, last_name, suffix FROM persons WHERE id IN (${ids.map(() => '?').join(',')})`
-      ).bind(...ids).all();
+      )
+        .bind(...ids)
+        .all();
       const personRecords = personRecordsResult.results as unknown as Person[];
 
       // Count related records with single queries each
@@ -374,10 +376,14 @@ async function handleMerge(context: {
     updatedTables.memberships = results[resultIndex++].meta.changes || 0;
     updatedTables.document_authors = results[resultIndex++].meta.changes || 0;
     updatedTables.session_absences = results[resultIndex++].meta.changes || 0;
-    updatedTables.committee_memberships = results[resultIndex++].meta.changes || 0;
-    updatedTables.committee_duplicates_removed = results[resultIndex++].meta.changes || 0;
-    updatedTables.absence_duplicates_removed = results[resultIndex++].meta.changes || 0;
-    updatedTables.membership_duplicates_removed = results[resultIndex++].meta.changes || 0;
+    updatedTables.committee_memberships =
+      results[resultIndex++].meta.changes || 0;
+    updatedTables.committee_duplicates_removed =
+      results[resultIndex++].meta.changes || 0;
+    updatedTables.absence_duplicates_removed =
+      results[resultIndex++].meta.changes || 0;
+    updatedTables.membership_duplicates_removed =
+      results[resultIndex++].meta.changes || 0;
 
     // Person deletion/flag results come next
     for (let i = 0; i < merge_person_ids.length; i++) {

@@ -4,7 +4,15 @@
  */
 import { Env } from '../../types';
 import { AuthContext, withAuth } from '../../utils/admin-auth';
-import { parsePaginationParam, PAGINATION_LIMITS } from '../../utils/pagination';
+import {
+  formatTermName,
+  formatYearRange,
+  formatOrdinal,
+} from '../../utils/formatters';
+import {
+  parsePaginationParam,
+  PAGINATION_LIMITS,
+} from '../../utils/pagination';
 
 async function handleListTerms(context: {
   request: Request;
@@ -22,17 +30,29 @@ async function handleListTerms(context: {
 
   try {
     const sql = `
-      SELECT id, name, year_range, ordinal
+      SELECT id, term_number, start_date, end_date
       FROM terms
-      ORDER BY ordinal DESC
+      ORDER BY term_number DESC
       LIMIT ?1
     `;
 
     const result = await env.BETTERLB_DB.prepare(sql).bind(limit).all();
 
-    return Response.json({
-      terms: result.results,
-    });
+    const terms = result.results.map(
+      (row: {
+        id: string;
+        term_number: number;
+        start_date: string;
+        end_date: string;
+      }) => ({
+        id: row.id,
+        name: formatTermName(row.term_number),
+        year_range: formatYearRange(row.start_date, row.end_date),
+        ordinal: formatOrdinal(row.term_number),
+      })
+    );
+
+    return Response.json({ terms });
   } catch (error) {
     console.error('Error fetching terms:', error);
     return Response.json({ error: 'Failed to fetch terms' }, { status: 500 });

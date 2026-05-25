@@ -51,7 +51,9 @@ function getCsrfToken(): string {
 /**
  * Build query string from params
  */
-function buildQueryString(params: Record<string, string | number | boolean | undefined>): string {
+function buildQueryString(
+  params: Record<string, string | number | boolean | undefined>
+): string {
   const searchParams = new URLSearchParams();
   for (const [key, value] of Object.entries(params)) {
     if (value !== undefined) {
@@ -100,13 +102,15 @@ export const documentsApi = {
   /**
    * List documents with optional filters
    */
-  list: (params: {
-    limit?: number;
-    offset?: number;
-    type?: string;
-    status?: string;
-    term?: string;
-  } = {}) => {
+  list: (
+    params: {
+      limit?: number;
+      offset?: number;
+      type?: string;
+      status?: string;
+      term?: string;
+    } = {}
+  ) => {
     const queryString = buildQueryString(params);
     return fetchApi<PaginatedResponse<unknown>>(`/documents?${queryString}`);
   },
@@ -160,10 +164,7 @@ export const documentsApi = {
   /**
    * Resolve duplicate document
    */
-  resolveDuplicate: (data: {
-    keep_id: string;
-    remove_id: string;
-  }) => {
+  resolveDuplicate: (data: { keep_id: string; remove_id: string }) => {
     return fetchApi<{ success: boolean }>('/documents/resolve-duplicate', {
       method: 'POST',
       body: JSON.stringify(data),
@@ -178,13 +179,15 @@ export const personsApi = {
   /**
    * List persons with optional filters
    */
-  list: (params: {
-    limit?: number;
-    offset?: number;
-    search?: string;
-    committee_id?: string;
-    term_id?: string;
-  } = {}) => {
+  list: (
+    params: {
+      limit?: number;
+      offset?: number;
+      search?: string;
+      committee_id?: string;
+      term_id?: string;
+    } = {}
+  ) => {
     const queryString = buildQueryString(params);
     return fetchApi<PaginatedResponse<unknown>>(`/persons?${queryString}`);
   },
@@ -199,21 +202,22 @@ export const personsApi = {
   /**
    * Find potential duplicates
    */
-  findDuplicates: (params: {
-    limit?: number;
-    offset?: number;
-  } = {}) => {
+  findDuplicates: (
+    params: {
+      limit?: number;
+      offset?: number;
+    } = {}
+  ) => {
     const queryString = buildQueryString(params);
-    return fetchApi<PaginatedResponse<unknown>>(`/persons/duplicates?${queryString}`);
+    return fetchApi<PaginatedResponse<unknown>>(
+      `/persons/duplicates?${queryString}`
+    );
   },
 
   /**
    * Merge persons
    */
-  merge: (data: {
-    keep_id: string;
-    remove_ids: string[];
-  }) => {
+  merge: (data: { keep_id: string; remove_ids: string[] }) => {
     return fetchApi<{ success: boolean }>('/persons/merge', {
       method: 'POST',
       body: JSON.stringify(data),
@@ -228,11 +232,13 @@ export const sessionsApi = {
   /**
    * List sessions
    */
-  list: (params: {
-    limit?: number;
-    offset?: number;
-    term_id?: string;
-  } = {}) => {
+  list: (
+    params: {
+      limit?: number;
+      offset?: number;
+      term_id?: string;
+    } = {}
+  ) => {
     const queryString = buildQueryString(params);
     return fetchApi<PaginatedResponse<unknown>>(`/sessions?${queryString}`);
   },
@@ -272,12 +278,14 @@ export const reviewQueueApi = {
   /**
    * List review queue items
    */
-  list: (params: {
-    limit?: number;
-    offset?: number;
-    status?: string;
-    item_type?: string;
-  } = {}) => {
+  list: (
+    params: {
+      limit?: number;
+      offset?: number;
+      status?: string;
+      item_type?: string;
+    } = {}
+  ) => {
     const queryString = buildQueryString(params);
     return fetchApi<PaginatedResponse<unknown>>(`/review-queue?${queryString}`);
   },
@@ -319,11 +327,13 @@ export const reconcileApi = {
   /**
    * List conflicts
    */
-  list: (params: {
-    limit?: number;
-    offset?: number;
-    status?: string;
-  } = {}) => {
+  list: (
+    params: {
+      limit?: number;
+      offset?: number;
+      status?: string;
+    } = {}
+  ) => {
     const queryString = buildQueryString(params);
     return fetchApi<PaginatedResponse<unknown>>(`/reconcile?${queryString}`);
   },

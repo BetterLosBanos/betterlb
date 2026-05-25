@@ -32,7 +32,10 @@ export const mainNavigation: NavigationItem[] = [
     children: [
       { label: 'Demographics', href: '/statistics' },
       { label: 'Competitiveness', href: '/statistics/competitiveness' },
-      { label: `${lguLabels.adjective} Income`, href: '/statistics/municipal-income' },
+      {
+        label: `${lguLabels.adjective} Income`,
+        href: '/statistics/municipal-income',
+      },
     ],
     ...(config.features.statistics ? {} : { hidden: true }),
   },

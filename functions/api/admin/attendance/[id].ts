@@ -78,5 +78,8 @@ async function handleUpdateAttendance(context: {
   }
 }
 
-export const onRequestPost = (context: { request: Request; env: Env; params?: { id: string } }) =>
-  withAuth(handleUpdateAttendance, { requireCSRF: true })(context);
+export const onRequestPost = (context: {
+  request: Request;
+  env: Env;
+  params?: { id: string };
+}) => withAuth(handleUpdateAttendance, { requireCSRF: true })(context);

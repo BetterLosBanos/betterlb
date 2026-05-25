@@ -143,7 +143,7 @@ async function handleParsePost(context: {
   const { request, env } = context;
 
   try {
-    const body = await request.json() as ParseFacebookPostBody;
+    const body = (await request.json()) as ParseFacebookPostBody;
     const { content } = body;
 
     if (!content || typeof content !== 'string') {

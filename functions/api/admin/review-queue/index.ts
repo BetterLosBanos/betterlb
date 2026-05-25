@@ -8,8 +8,15 @@
 import { Env } from '../../../types';
 import { AuthContext, withAuth } from '../../../utils/admin-auth';
 import { logAudit, AuditTargetTypes } from '../../../utils/audit-log';
-import { parsePaginationParam, PAGINATION_LIMITS } from '../../../utils/pagination';
-import { badRequest, conflict, serverError } from '../../../utils/error-response';
+import {
+  parsePaginationParam,
+  PAGINATION_LIMITS,
+} from '../../../utils/pagination';
+import {
+  badRequest,
+  conflict,
+  serverError,
+} from '../../../utils/error-response';
 
 type ReviewStatus = 'pending' | 'in_progress' | 'resolved' | 'skipped';
 type ItemType = 'document' | 'session' | 'attendance';
@@ -195,7 +202,7 @@ async function createReviewItem(context: {
   const { request, env, auth } = context;
 
   try {
-    const body = await request.json() as CreateReviewItemBody;
+    const body = (await request.json()) as CreateReviewItemBody;
     const {
       item_type,
       item_id,
@@ -207,7 +214,9 @@ async function createReviewItem(context: {
 
     // Validate required fields
     if (!item_type || !item_id || !issue_type) {
-      return badRequest('Missing required fields: item_type, item_id, issue_type');
+      return badRequest(
+        'Missing required fields: item_type, item_id, issue_type'
+      );
     }
 
     // Validate item_type

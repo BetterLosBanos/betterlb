@@ -40,52 +40,42 @@ const Services = lazy(() => import('@/pages/services'));
 const ServiceDetail = lazy(() => import('@/pages/services/[service]'));
 
 // Government Directory
-const GovernmentRootLayout = lazy(
-  () => import('@/pages/government/layout'),
-);
+const GovernmentRootLayout = lazy(() => import('@/pages/government/layout'));
 const ElectedOfficialsLayout = lazy(
-  () => import('@/pages/government/elected-officials/layout'),
+  () => import('@/pages/government/elected-officials/layout')
 );
 const ElectedOfficialsIndex = lazy(
-  () => import('@/pages/government/elected-officials'),
+  () => import('@/pages/government/elected-officials')
 );
 const MunicipalCommitteesPage = lazy(
-  () => import('@/pages/government/elected-officials/municipal-committees'),
+  () => import('@/pages/government/elected-officials/municipal-committees')
 );
 const DepartmentsLayout = lazy(
-  () => import('@/pages/government/departments/layout'),
+  () => import('@/pages/government/departments/layout')
 );
-const DepartmentsIndex = lazy(
-  () => import('@/pages/government/departments'),
-);
+const DepartmentsIndex = lazy(() => import('@/pages/government/departments'));
 const DepartmentDetail = lazy(
-  () => import('@/pages/government/departments/[department]'),
+  () => import('@/pages/government/departments/[department]')
 );
 const BarangaysLayout = lazy(
-  () => import('@/pages/government/barangays/layout'),
+  () => import('@/pages/government/barangays/layout')
 );
-const BarangaysIndex = lazy(
-  () => import('@/pages/government/barangays'),
-);
+const BarangaysIndex = lazy(() => import('@/pages/government/barangays'));
 const BarangayDetail = lazy(
-  () => import('@/pages/government/barangays/[barangay]'),
+  () => import('@/pages/government/barangays/[barangay]')
 );
 const ReferenceImplementationPage = lazy(
-  () => import('@/pages/government/reference-implementation'),
+  () => import('@/pages/government/reference-implementation')
 );
 
 // Statistics Dashboard
-const StatisticsLayout = lazy(
-  () => import('@/pages/statistics/layout'),
-);
-const PopulationPage = lazy(
-  () => import('@/pages/statistics/PopulationPage'),
-);
+const StatisticsLayout = lazy(() => import('@/pages/statistics/layout'));
+const PopulationPage = lazy(() => import('@/pages/statistics/PopulationPage'));
 const MunicipalIncomePage = lazy(
-  () => import('@/pages/statistics/MunicipalIncomePage'),
+  () => import('@/pages/statistics/MunicipalIncomePage')
 );
 const CompetitivenessPage = lazy(
-  () => import('@/pages/statistics/CompetitivenessPage'),
+  () => import('@/pages/statistics/CompetitivenessPage')
 );
 
 // OpenLGU Portal
@@ -94,33 +84,23 @@ const LegislationIndex = lazy(() => import('@/pages/openlgu/index'));
 const OfficialsIndex = lazy(() => import('@/pages/openlgu/officials'));
 const TermsIndex = lazy(() => import('@/pages/openlgu/terms'));
 const LegacyDocumentRedirect = lazy(
-  () => import('@/pages/openlgu/LegacyDocumentRedirect'),
+  () => import('@/pages/openlgu/LegacyDocumentRedirect')
 );
-const LegislationDetail = lazy(
-  () => import('@/pages/openlgu/[document]'),
-);
+const LegislationDetail = lazy(() => import('@/pages/openlgu/[document]'));
 const PersonDetail = lazy(() => import('@/pages/openlgu/[person]'));
 const SessionDetail = lazy(() => import('@/pages/openlgu/[session]'));
 const TermDetail = lazy(() => import('@/pages/openlgu/[term]'));
 
 // Transparency Portal
-const TransparencyLayout = lazy(
-  () => import('@/pages/transparency/layout'),
-);
-const TransparencyIndex = lazy(
-  () => import('@/pages/transparency/index'),
-);
-const FinancialPage = lazy(
-  () => import('@/pages/transparency/financial'),
-);
-const ProcurementPage = lazy(
-  () => import('@/pages/transparency/procurement'),
-);
+const TransparencyLayout = lazy(() => import('@/pages/transparency/layout'));
+const TransparencyIndex = lazy(() => import('@/pages/transparency/index'));
+const FinancialPage = lazy(() => import('@/pages/transparency/financial'));
+const ProcurementPage = lazy(() => import('@/pages/transparency/procurement'));
 const InfrastructurePage = lazy(
-  () => import('@/pages/transparency/infrastructure'),
+  () => import('@/pages/transparency/infrastructure')
 );
 const InfrastructureDetail = lazy(
-  () => import('@/pages/transparency/infrastructure/[project]'),
+  () => import('@/pages/transparency/infrastructure/[project]')
 );
 
 // Community
@@ -131,17 +111,32 @@ const AdminLayout = lazy(() => import('@/pages/admin/layout'));
 const AdminDashboard = lazy(() => import('@/pages/admin/index'));
 const AdminDocuments = lazy(() => import('@/pages/admin/Documents'));
 const PersonMergeTool = lazy(
-  () => import('@/pages/admin/components/PersonMergeTool'),
+  () => import('@/pages/admin/components/PersonMergeTool')
 );
 const DeletionQueue = lazy(
-  () => import('@/pages/admin/components/DeletionQueue'),
+  () => import('@/pages/admin/components/DeletionQueue')
 );
 const AdminErrorLog = lazy(() => import('@/pages/admin/ErrorLog'));
 const AdminAuditLog = lazy(() => import('@/pages/admin/AuditLog'));
-const AdminReviewQueue = lazy(
-  () => import('@/pages/admin/ReviewQueue'),
-);
+const AdminReviewQueue = lazy(() => import('@/pages/admin/ReviewQueue'));
 const AdminReconcile = lazy(() => import('@/pages/admin/Reconcile'));
+const AdminOpenLguWorkbench = lazy(
+  () => import('@/pages/admin/OpenLguWorkbench')
+);
+
+/** Dev-only wrapper — shows fallback in production builds */
+function WorkbenchGuard() {
+  if (!import.meta.env.DEV) {
+    return (
+      <div className='flex min-h-[40vh] items-center justify-center'>
+        <p className='text-kapwa-text-muted text-sm'>
+          Review workbench is only available in development mode.
+        </p>
+      </div>
+    );
+  }
+  return <AdminOpenLguWorkbench />;
+}
 
 // NotFound — keep eager, it's tiny and needs to render instantly
 import NotFound from '@/pages/NotFound';
@@ -186,10 +181,7 @@ function AppContent() {
           <Route path='/search' element={<SearchPage />} />
           <Route path='/ideas' element={<Ideas />} />
           <Route path='/join-us' element={<JoinUs />} />
-          <Route
-            path='/terms-of-service'
-            element={<TermsOfService />}
-          />
+          <Route path='/terms-of-service' element={<TermsOfService />} />
           <Route path='/sitemap' element={<SitemapPage />} />
           <Route path='/discord' element={<Discord />} />
 
@@ -204,10 +196,7 @@ function AppContent() {
           </Route>
 
           {/* Government Directory Hub */}
-          <Route
-            path='/government'
-            element={<GovernmentRootLayout />}
-          >
+          <Route path='/government' element={<GovernmentRootLayout />}>
             <Route
               index
               element={<Navigate to='elected-officials' replace />}
@@ -219,19 +208,13 @@ function AppContent() {
               element={<ElectedOfficialsLayout />}
             >
               <Route index element={<ElectedOfficialsIndex />} />
-              <Route
-                path='committees'
-                element={<MunicipalCommitteesPage />}
-              />
+              <Route path='committees' element={<MunicipalCommitteesPage />} />
             </Route>
 
             {/* 2. Municipal Departments */}
             <Route path='departments' element={<DepartmentsLayout />}>
               <Route index element={<DepartmentsIndex />} />
-              <Route
-                path=':department'
-                element={<DepartmentDetail />}
-              />
+              <Route path=':department' element={<DepartmentDetail />} />
             </Route>
 
             {/* 3. Barangay Directory */}
@@ -256,10 +239,7 @@ function AppContent() {
                 path='municipal-income'
                 element={<MunicipalIncomePage />}
               />
-              <Route
-                path='competitiveness'
-                element={<CompetitivenessPage />}
-              />
+              <Route path='competitiveness' element={<CompetitivenessPage />} />
             </Route>
           )}
 
@@ -279,33 +259,21 @@ function AppContent() {
                 path='documents/:document'
                 element={<LegislationDetail />}
               />
-              <Route
-                path='session/:sessionId'
-                element={<SessionDetail />}
-              />
-              <Route
-                path='person/:personId'
-                element={<PersonDetail />}
-              />
+              <Route path='session/:sessionId' element={<SessionDetail />} />
+              <Route path='person/:personId' element={<PersonDetail />} />
               <Route path='term/:termId' element={<TermDetail />} />
             </Route>
           )}
 
           {/* Transparency Portal — feature gated */}
           {config.features.transparency && (
-            <Route
-              path='/transparency'
-              element={<TransparencyLayout />}
-            >
+            <Route path='/transparency' element={<TransparencyLayout />}>
               <Route index element={<TransparencyIndex />} />
               <Route path='financial' element={<FinancialPage />} />
               <Route path='procurement' element={<ProcurementPage />} />
               <Route path='/transparency/infrastructure'>
                 <Route index element={<InfrastructurePage />} />
-                <Route
-                  path=':contractId'
-                  element={<InfrastructureDetail />}
-                />
+                <Route path=':contractId' element={<InfrastructureDetail />} />
               </Route>
             </Route>
           )}
@@ -317,21 +285,13 @@ function AppContent() {
           <Route path='/admin' element={<AdminLayout />}>
             <Route index element={<AdminDashboard />} />
             <Route path='documents' element={<AdminDocuments />} />
-            <Route
-              path='persons/merge'
-              element={<PersonMergeTool />}
-            />
-            <Route
-              path='persons/deletion-queue'
-              element={<DeletionQueue />}
-            />
+            <Route path='persons/merge' element={<PersonMergeTool />} />
+            <Route path='persons/deletion-queue' element={<DeletionQueue />} />
             <Route path='errors' element={<AdminErrorLog />} />
             <Route path='audit-logs' element={<AdminAuditLog />} />
-            <Route
-              path='review-queue'
-              element={<AdminReviewQueue />}
-            />
+            <Route path='review-queue' element={<AdminReviewQueue />} />
             <Route path='reconcile' element={<AdminReconcile />} />
+            <Route path='openlgu/workbench' element={<WorkbenchGuard />} />
           </Route>
 
           {/* Catch-all 404 */}

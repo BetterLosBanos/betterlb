@@ -5,6 +5,11 @@
  */
 import { Env } from '../../types';
 import { cachedJson } from '../../utils/cache';
+import {
+  formatOrdinal,
+  formatTermName,
+  formatYearRange,
+} from '../../utils/formatters';
 import { CACHE_TTL, createKVCache } from '../../utils/kv-cache';
 import {
   addRateLimitHeaders,
@@ -12,7 +17,10 @@ import {
   createRateLimitResponse,
   getClientIdentifier,
 } from '../../utils/rate-limit';
-import { parsePaginationParam, PAGINATION_LIMITS } from '../../utils/pagination';
+import {
+  parsePaginationParam,
+  PAGINATION_LIMITS,
+} from '../../utils/pagination';
 
 export async function onRequestGet(context: { request: Request; env: Env }) {
   const url = new URL(context.request.url);
@@ -39,9 +47,6 @@ interface PersonResultRow {
   role: string | null;
   rank: number | null;
   term_number: number | null;
-  term_ordinal: number | null;
-  term_name: string | null;
-  year_range: string | null;
   term_start: string | null;
   term_end: string | null;
 }
@@ -111,8 +116,7 @@ async function getPersonsList(context: { request: Request; env: Env }) {
           SELECT DISTINCT
             p.id, p.first_name, p.middle_name, p.last_name, p.suffix, p.aliases,
             m.id as membership_id, m.term_id, m.chamber, m.role, m.rank,
-            t.term_number, t.ordinal as term_ordinal, t.name as term_name,
-            t.year_range, t.start_date as term_start, t.end_date as term_end
+            t.term_number, t.start_date as term_start, t.end_date as term_end
           FROM persons p
           LEFT JOIN memberships m ON p.id = m.person_id
           LEFT JOIN terms t ON m.term_id = t.id
@@ -262,9 +266,9 @@ async function getPersonsList(context: { request: Request; env: Env }) {
               membership.term = {
                 id: row.term_id,
                 term_number: row.term_number,
-                ordinal: row.term_ordinal,
-                name: row.term_name,
-                year_range: row.year_range,
+                ordinal: formatOrdinal(row.term_number),
+                name: formatTermName(row.term_number),
+                year_range: formatYearRange(row.term_start, row.term_end),
                 start_date: row.term_start,
                 end_date: row.term_end,
               };
@@ -374,8 +378,7 @@ async function getPersonDetail(context: { request: Request; env: Env }) {
         // Get memberships
         const membershipsSql = `
           SELECT m.id, m.term_id, m.chamber, m.role, m.rank,
-                 t.name as term_name, t.ordinal as term_ordinal,
-                 t.year_range, t.mayor, t.vice_mayor
+                 t.term_number, t.start_date, t.end_date, t.mayor, t.vice_mayor
           FROM memberships m
           JOIN terms t ON m.term_id = t.id
           WHERE m.person_id = ?
@@ -479,7 +482,26 @@ async function getPersonDetail(context: { request: Request; env: Env }) {
 
         return {
           ...person,
-          memberships: membershipsResult.results,
+          memberships: membershipsResult.results.map(
+            (m: Record<string, unknown>) => ({
+              ...m,
+              term_name:
+                m.term_number != null
+                  ? formatTermName(m.term_number as number)
+                  : null,
+              term_ordinal:
+                m.term_number != null
+                  ? formatOrdinal(m.term_number as number)
+                  : null,
+              year_range:
+                m.start_date && m.end_date
+                  ? formatYearRange(
+                      m.start_date as string,
+                      m.end_date as string
+                    )
+                  : null,
+            })
+          ),
           authored_documents: documentsResult.results,
           attendance_stats: {
             total_sessions: totalSessions,

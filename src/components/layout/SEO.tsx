@@ -76,9 +76,15 @@ export function SEO({
   const routeEntry = routeMetaMap[location.pathname] ?? null;
 
   const baseMeta = readMeta(routeEntry);
-  let routeTitle = baseMeta.title ? resolveSeoTokens(baseMeta.title) : undefined;
-  let routeDescription = baseMeta.description ? resolveSeoTokens(baseMeta.description) : undefined;
-  let routeSubject = baseMeta.subject ? resolveSeoTokens(baseMeta.subject) : undefined;
+  let routeTitle = baseMeta.title
+    ? resolveSeoTokens(baseMeta.title)
+    : undefined;
+  let routeDescription = baseMeta.description
+    ? resolveSeoTokens(baseMeta.description)
+    : undefined;
+  let routeSubject = baseMeta.subject
+    ? resolveSeoTokens(baseMeta.subject)
+    : undefined;
 
   if (
     routeEntry &&

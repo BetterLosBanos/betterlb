@@ -59,7 +59,7 @@ async function main() {
   const lguType = await question(
     rl,
     'LGU type (municipality/city/province)',
-    'municipality',
+    'municipality'
   );
 
   const slug = slugify(lguName);
@@ -71,42 +71,56 @@ async function main() {
   const portalName = await question(
     rl,
     'Portal name (e.g. "BetterLB")',
-    `Better${slug.replace(/-/g, '').substring(0, 4).toUpperCase()}`,
+    `Better${slug.replace(/-/g, '').substring(0, 4).toUpperCase()}`
   );
   const domain = await question(
     rl,
     'Domain (e.g. "betterlb.org")',
-    `${slugify(portalName)}.org`,
+    `${slugify(portalName)}.org`
   );
 
   const githubOrg = await question(
     rl,
     'GitHub org or user for this repo',
-    `Better${slug.replace(/-/g, '').substring(0, 6)}`,
+    `Better${slug.replace(/-/g, '').substring(0, 6)}`
   );
   const githubRepo = await question(
     rl,
     'GitHub repo name',
-    slugify(portalName),
+    slugify(portalName)
   );
   const githubUrl = `https://github.com/${githubOrg}/${githubRepo}`;
 
   const contactEmail = await question(
     rl,
     'Contact email',
-    `volunteers@bettergov.ph`,
+    `volunteers@bettergov.ph`
   );
 
   // Optional features
   console.log('\n--- Features ---');
-  const enableTourism = (await question(rl, 'Enable tourism module? (y/n)', 'n')).toLowerCase() === 'y';
-  const enableStats = (await question(rl, 'Enable statistics module? (y/n)', 'y')).toLowerCase() === 'y';
-  const enableOpenLGU = (await question(rl, 'Enable OpenLGU portal? (y/n)', 'y')).toLowerCase() === 'y';
-  const enableTransparency = (await question(rl, 'Enable transparency portal? (y/n)', 'y')).toLowerCase() === 'y';
+  const enableTourism =
+    (await question(rl, 'Enable tourism module? (y/n)', 'n')).toLowerCase() ===
+    'y';
+  const enableStats =
+    (
+      await question(rl, 'Enable statistics module? (y/n)', 'y')
+    ).toLowerCase() === 'y';
+  const enableOpenLGU =
+    (await question(rl, 'Enable OpenLGU portal? (y/n)', 'y')).toLowerCase() ===
+    'y';
+  const enableTransparency =
+    (
+      await question(rl, 'Enable transparency portal? (y/n)', 'y')
+    ).toLowerCase() === 'y';
 
   // MeiliSearch
   console.log('\n--- MeiliSearch ---');
-  const msHost = await question(rl, 'MeiliSearch host', 'https://search2.bettergov.ph');
+  const msHost = await question(
+    rl,
+    'MeiliSearch host',
+    'https://search2.bettergov.ph'
+  );
   const msPort = await question(rl, 'MeiliSearch port', '443');
   const msKey = await question(rl, 'MeiliSearch search API key');
 
@@ -114,12 +128,12 @@ async function main() {
   const orgName = await question(
     rl,
     'PhilGEPS organization name for procurement',
-    fullName.toUpperCase(),
+    fullName.toUpperCase()
   );
   const infraSearch = await question(
     rl,
     'DPWH infrastructure search string',
-    lguName,
+    lguName
   );
 
   rl.close();
@@ -189,11 +203,12 @@ async function main() {
   console.log(`\n✅ Written config/lgu.config.json`);
 
   // ─── Generate .env ─────────────────────────────────────────────────
-  const envContent = [
-    `VITE_MEILISEARCH_HOST=${msHost}`,
-    `VITE_MEILISEARCH_PORT=${msPort}`,
-    msKey ? `VITE_MEILISEARCH_API_KEY=${msKey}` : 'VITE_MEILISEARCH_API_KEY=',
-  ].join('\n') + '\n';
+  const envContent =
+    [
+      `VITE_MEILISEARCH_HOST=${msHost}`,
+      `VITE_MEILISEARCH_PORT=${msPort}`,
+      msKey ? `VITE_MEILISEARCH_API_KEY=${msKey}` : 'VITE_MEILISEARCH_API_KEY=',
+    ].join('\n') + '\n';
   fs.writeFileSync(path.join(ROOT, '.env'), envContent);
   console.log('✅ Written .env');
 
@@ -211,7 +226,12 @@ async function main() {
         '{{lgu.fullName}}': fullName,
         '{{lgu.province}}': province,
         '{{lgu.type}}': lguType,
-        '{{lgu.adjective}}': lguType === 'city' ? 'City' : lguType === 'province' ? 'Provincial' : 'Municipal',
+        '{{lgu.adjective}}':
+          lguType === 'city'
+            ? 'City'
+            : lguType === 'province'
+              ? 'Provincial'
+              : 'Municipal',
       };
       for (const [token, value] of Object.entries(tokens)) {
         seo = seo.replaceAll(token, value);
@@ -232,7 +252,13 @@ async function main() {
   };
 
   for (const [file, data] of Object.entries(placeholderDir)) {
-    const filePath = path.join(ROOT, 'src', 'data', 'directory', `${file}.json`);
+    const filePath = path.join(
+      ROOT,
+      'src',
+      'data',
+      'directory',
+      `${file}.json`
+    );
     if (!fs.existsSync(filePath)) {
       fs.mkdirSync(path.dirname(filePath), { recursive: true });
       fs.writeFileSync(filePath, JSON.stringify(data, null, 2) + '\n');
@@ -271,7 +297,9 @@ async function main() {
   console.log('════════════════════════════════════════════\n');
   console.log('Next steps:');
   console.log('  1. Add LGU data to src/data/directory/');
-  console.log('  2. Add service categories to src/data/service_categories.json');
+  console.log(
+    '  2. Add service categories to src/data/service_categories.json'
+  );
   console.log('  3. Replace logos in public/logos/');
   console.log('  4. Run: npm install && npm run dev\n');
 }

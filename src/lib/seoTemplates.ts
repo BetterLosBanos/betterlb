@@ -4,7 +4,7 @@ import { config } from './lguConfig';
 
 export function formatStandardTitle(
   subject: string,
-  portalName?: string,
+  portalName?: string
 ): string {
   return `${subject} | ${portalName || config.portal.name}`;
 }
@@ -12,7 +12,7 @@ export function formatStandardTitle(
 export function formatStandardDescription(
   subject: string,
   portalName?: string,
-  lguFullName?: string,
+  lguFullName?: string
 ): string {
   const name = portalName || config.portal.name;
   const lgu = lguFullName || config.lgu.fullName;

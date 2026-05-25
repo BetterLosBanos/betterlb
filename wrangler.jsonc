@@ -14,16 +14,10 @@
       "database_name": "betterlb_openlgu",
       "database_id": "67f71e98-fece-4460-b3b6-40f6f8742d89",
       "migrations_dir": "db/migrations",
-      "remote": true
+      "remote": false
     }
   ],
   "vars": {
-    "GITHUB_REPO": "BetterLosBanos/betterlb",
-    "GITHUB_CLIENT_ID": "__GITHUB_CLIENT_ID__",
-    "GITHUB_CLIENT_SECRET": "__GITHUB_CLIENT_SECRET__",
-    "GOOGLE_CLIENT_ID": "__GOOGLE_CLIENT_ID__",
-    "GOOGLE_CLIENT_SECRET": "__GOOGLE_CLIENT_SECRET__",
-    "GOOGLE_REDIRECT_URI": "__GOOGLE_REDIRECT_URI__",
-    "AUTHORIZED_USERS": "__AUTHORIZED_USERS__"
+    "GITHUB_REPO": "BetterLosBanos/betterlb"
   }
 }

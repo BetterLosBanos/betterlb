@@ -39,7 +39,11 @@ let replacements = 0;
 for (const [token, value] of Object.entries(tokens)) {
   const before = seo;
   seo = seo.replaceAll(token, value);
-  replacements += (before.match(new RegExp(token.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'), 'g')) || []).length;
+  replacements += (
+    before.match(
+      new RegExp(token.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'), 'g')
+    ) || []
+  ).length;
 }
 
 fs.writeFileSync(seoPath, seo, 'utf8');

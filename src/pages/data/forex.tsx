@@ -42,7 +42,6 @@ const ForexPage: FC = () => {
     return Icon ? <Icon className={size} /> : null;
   };
 
-
   // Fetch forex data
   useEffect(() => {
     const getForexData = async () => {

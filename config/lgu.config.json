@@ -44,10 +44,7 @@
     },
     "infrastructure": {
       "searchString": "Los Ba\u00f1os",
-      "exactMatchTargets": [
-        "los ba\u00f1os",
-        "los banos"
-      ]
+      "exactMatchTargets": ["los ba\u00f1os", "los banos"]
     }
   },
   "dataPaths": {

@@ -13,7 +13,10 @@ import {
   AuditActions,
   AuditTargetTypes,
 } from '../../utils/audit-log';
-import { parsePaginationParam, PAGINATION_LIMITS } from '../../utils/pagination';
+import {
+  parsePaginationParam,
+  PAGINATION_LIMITS,
+} from '../../utils/pagination';
 
 type ReconcileStatus = 'unresolved' | 'resolved' | 'skipped';
 type ConflictType = 'moved_by' | 'seconded_by' | 'authors' | 'title' | 'none';
@@ -175,7 +178,7 @@ async function resolveConflict(context: {
   const { request, env } = context;
 
   try {
-    const body = await request.json() as ResolveConflictBody;
+    const body = (await request.json()) as ResolveConflictBody;
     const { conflict_id, resolved_value, notes } = body;
 
     if (!conflict_id || resolved_value === undefined) {
@@ -239,7 +242,7 @@ async function skipConflict(context: {
   const { request, env } = context;
 
   try {
-    const body = await request.json() as SkipConflictBody;
+    const body = (await request.json()) as SkipConflictBody;
     const { conflict_id } = body;
 
     if (!conflict_id) {

@@ -204,8 +204,14 @@ async function handleUpdateSession(context: {
   }
 }
 
-export const onRequestGet = (context: { request: Request; env: Env; params?: { sessionId: string } }) =>
-  withAuth(handleGetSession)(context);
+export const onRequestGet = (context: {
+  request: Request;
+  env: Env;
+  params?: { sessionId: string };
+}) => withAuth(handleGetSession)(context);
 
-export const onRequestPost = (context: { request: Request; env: Env; params?: { sessionId: string } }) =>
-  withAuth(handleUpdateSession, { requireCSRF: true })(context);
+export const onRequestPost = (context: {
+  request: Request;
+  env: Env;
+  params?: { sessionId: string };
+}) => withAuth(handleUpdateSession, { requireCSRF: true })(context);

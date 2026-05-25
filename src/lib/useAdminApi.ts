@@ -79,19 +79,22 @@ export function useAdminMutation<TData = unknown, TVariables = unknown>(
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<Error | null>(null);
 
-  const mutate = useCallback(async (variables: TVariables): Promise<TData | null> => {
-    try {
-      setLoading(true);
-      setError(null);
-      const result = await mutationFn(variables);
-      return result;
-    } catch (err) {
-      setError(err instanceof Error ? err : new Error('Unknown error'));
-      return null;
-    } finally {
-      setLoading(false);
-    }
-  }, [mutationFn]);
+  const mutate = useCallback(
+    async (variables: TVariables): Promise<TData | null> => {
+      try {
+        setLoading(true);
+        setError(null);
+        const result = await mutationFn(variables);
+        return result;
+      } catch (err) {
+        setError(err instanceof Error ? err : new Error('Unknown error'));
+        return null;
+      } finally {
+        setLoading(false);
+      }
+    },
+    [mutationFn]
+  );
 
   const reset = useCallback(() => {
     setLoading(false);

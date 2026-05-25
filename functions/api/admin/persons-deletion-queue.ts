@@ -7,8 +7,16 @@
 import { Env } from '../../types';
 import { AuthContext, withAuth } from '../../utils/admin-auth';
 import { logAudit, AuditTargetTypes } from '../../utils/audit-log';
-import { parsePaginationParam, PAGINATION_LIMITS } from '../../utils/pagination';
-import { badRequest, conflict, notFound, serverError } from '../../utils/error-response';
+import {
+  parsePaginationParam,
+  PAGINATION_LIMITS,
+} from '../../utils/pagination';
+import {
+  badRequest,
+  conflict,
+  notFound,
+  serverError,
+} from '../../utils/error-response';
 
 interface Person {
   id: string;
@@ -104,6 +112,7 @@ async function handleRestore(context: {
 
     if (!person_id) {
       return badRequest('Missing person_id');
+    }
 
     // Check if person exists and is soft-deleted
     const person = await env.BETTERLB_DB.prepare(
@@ -114,6 +123,7 @@ async function handleRestore(context: {
 
     if (!person) {
       return notFound('Person');
+    }
 
     if (!person.deleted_at) {
       return Response.json(
@@ -166,6 +176,7 @@ async function handlePermanentDelete(context: {
 
     if (!person_id) {
       return badRequest('Missing person_id');
+    }
 
     // Check if person exists
     const person = await env.BETTERLB_DB.prepare(
@@ -176,6 +187,7 @@ async function handlePermanentDelete(context: {
 
     if (!person) {
       return notFound('Person');
+    }
 
     // Check for remaining references
     const memberCount = await env.BETTERLB_DB.prepare(
@@ -239,6 +251,7 @@ async function handleBulkRestore(context: {
 
     if (!person_ids || person_ids.length === 0) {
       return badRequest('Missing person_ids');
+    }
 
     let restoredCount = 0;
 
@@ -289,6 +302,7 @@ async function handleBulkPermanentDelete(context: {
 
     if (!person_ids || person_ids.length === 0) {
       return badRequest('Missing person_ids');
+    }
 
     let deletedCount = 0;
     const errors: Array<{ id: string; reason: string }> = [];
@@ -345,23 +359,26 @@ async function handleBulkPermanentDelete(context: {
 }
 
 export const onRequestGet = withAuth(handleGetQueue);
-export const onRequestPost = withAuth(async context => {
-  const { request } = context;
-  const url = new URL(request.url);
-  const action = url.searchParams.get('action');
+export const onRequestPost = withAuth(
+  async context => {
+    const { request } = context;
+    const url = new URL(request.url);
+    const action = url.searchParams.get('action');
 
-  switch (action) {
-    case 'restore':
-      return handleRestore(context);
-    case 'permanent-delete':
-      return handlePermanentDelete(context);
-    case 'bulk-restore':
-      return handleBulkRestore(context);
-    case 'bulk-permanent-delete':
-      return handleBulkPermanentDelete(context);
-    default:
-      return badRequest('Invalid action');
+    switch (action) {
+      case 'restore':
+        return handleRestore(context);
+      case 'permanent-delete':
+        return handlePermanentDelete(context);
+      case 'bulk-restore':
+        return handleBulkRestore(context);
+      case 'bulk-permanent-delete':
+        return handleBulkPermanentDelete(context);
+      default:
+        return badRequest('Invalid action');
+    }
+  },
+  {
+    requireCSRF: true,
   }
-}, {
-  requireCSRF: true,
-});
+);

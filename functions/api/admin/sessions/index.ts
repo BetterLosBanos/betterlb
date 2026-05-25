@@ -5,7 +5,11 @@
  */
 import { Env } from '../../../types';
 import { AuthContext, withAuth } from '../../../utils/admin-auth';
-import { parsePaginationParam, PAGINATION_LIMITS } from '../../../utils/pagination';
+import { formatSessionOrdinal } from '../../../utils/formatters';
+import {
+  parsePaginationParam,
+  PAGINATION_LIMITS,
+} from '../../../utils/pagination';
 
 interface CreateSessionData {
   term_id: string;
@@ -42,7 +46,7 @@ async function handleListSessions(context: {
   try {
     let sql = `
       SELECT
-        s.id, s.term_id, s.type, s.number, s.date, s.ordinal_number,
+        s.id, s.term_id, s.type, s.number, s.date,
         s.created_at, s.updated_at
       FROM sessions s
       WHERE 1=1
@@ -64,7 +68,13 @@ async function handleListSessions(context: {
       .all();
 
     return Response.json({
-      sessions: result.results,
+      sessions: result.results.map((s: Record<string, unknown>) => ({
+        ...s,
+        ordinal_number: formatSessionOrdinal(
+          s.number as number,
+          (s.type as string) || 'Regular'
+        ),
+      })),
       pagination: {
         limit,
         offset,

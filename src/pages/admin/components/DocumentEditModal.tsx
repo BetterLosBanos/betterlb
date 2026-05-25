@@ -67,7 +67,6 @@ interface DocumentData {
   status: string;
   date_enacted: string;
   pdf_url: string;
-  content_preview: string | null;
   source_type: string;
   needs_review: number;
   review_notes: string | null;
@@ -222,7 +221,6 @@ export default function DocumentEditModal({
           status: 'Approved',
           date_enacted: '2024-01-15T00:00:00Z',
           pdf_url: 'https://example.com/document.pdf',
-          content_preview: 'Sample content preview...',
           source_type: 'pdf',
           needs_review: 1,
           review_notes: null,

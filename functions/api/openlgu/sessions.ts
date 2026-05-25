@@ -11,7 +11,10 @@ import {
   createRateLimitResponse,
   getClientIdentifier,
 } from '../../utils/rate-limit';
-import { parsePaginationParam, PAGINATION_LIMITS } from '../../utils/pagination';
+import {
+  parsePaginationParam,
+  PAGINATION_LIMITS,
+} from '../../utils/pagination';
 
 export async function onRequestGet(context: { request: Request; env: Env }) {
   return getSessionsList(context);

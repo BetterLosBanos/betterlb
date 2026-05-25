@@ -24,12 +24,12 @@ export async function onRequestPost(context: {
   env: Env;
   params?: Record<string, string>;
 }) {
-  return withAuth(
-    async (c: { request: Request; env: Env; auth: AuthContext }) => {
+  return (
+    withAuth(async (c: { request: Request; env: Env; auth: AuthContext }) => {
       const { request, env } = c;
 
       try {
-        const body = await request.json() as UpdateReviewStatusBody;
+        const body = (await request.json()) as UpdateReviewStatusBody;
         const { item_id, status } = body;
 
         if (!item_id || !status) {
@@ -72,8 +72,9 @@ export async function onRequestPost(context: {
           { status: 500 }
         );
       }
+    })(context),
+    {
+      requireCSRF: true,
     }
-  )(context), {
-    requireCSRF: true,
-  };
+  );
 }

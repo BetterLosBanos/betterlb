@@ -11,7 +11,12 @@ export default defineConfig({
       output: {
         manualChunks: {
           // React core — loaded on every page
-          'vendor-react': ['react', 'react-dom', 'react-router-dom', '@remix-run/router'],
+          'vendor-react': [
+            'react',
+            'react-dom',
+            'react-router-dom',
+            '@remix-run/router',
+          ],
           // Maps — only needed on map pages
           'vendor-leaflet': ['leaflet', 'react-leaflet'],
           // Charts — only needed on stats/transparency pages

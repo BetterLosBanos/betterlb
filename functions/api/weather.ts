@@ -247,20 +247,22 @@ export async function onRequest(context: {
         // If a specific city was requested and found, update just that city in the KV store
         context.env.WEATHER_KV.get('philippines_weather', {
           type: 'json',
-        }).then(existingDataRaw => {
-          const existingData = (existingDataRaw as WeatherResponseData) || {};
-          const cityKey = normalizeCityKey(cityParam);
-          existingData[cityKey] = weatherData[cityKey];
-          return context.env.WEATHER_KV.put(
-            'philippines_weather',
-            JSON.stringify(existingData),
-            {
-              expirationTtl: 3600, // Expire after 1 hour
-            }
-          );
-        }).catch(err => {
-          console.error('Failed to update weather cache:', err);
-        });
+        })
+          .then(existingDataRaw => {
+            const existingData = (existingDataRaw as WeatherResponseData) || {};
+            const cityKey = normalizeCityKey(cityParam);
+            existingData[cityKey] = weatherData[cityKey];
+            return context.env.WEATHER_KV.put(
+              'philippines_weather',
+              JSON.stringify(existingData),
+              {
+                expirationTtl: 3600, // Expire after 1 hour
+              }
+            );
+          })
+          .catch(err => {
+            console.error('Failed to update weather cache:', err);
+          });
       }
 
       // Return the fresh data with secure CORS headers
@@ -329,20 +331,22 @@ export async function onRequest(context: {
       // If a specific city was requested and found, update just that city in the KV store
       context.env.WEATHER_KV.get('philippines_weather', {
         type: 'json',
-      }).then(existingDataRaw => {
-        const existingData = (existingDataRaw as WeatherResponseData) || {};
-        const cityKey = normalizeCityKey(cityParam);
-        existingData[cityKey] = weatherData[cityKey];
-        return context.env.WEATHER_KV.put(
-          'philippines_weather',
-          JSON.stringify(existingData),
-          {
-            expirationTtl: 3600, // Expire after 1 hour
-          }
-        );
-      }).catch(err => {
-        console.error('Failed to update weather cache:', err);
-      });
+      })
+        .then(existingDataRaw => {
+          const existingData = (existingDataRaw as WeatherResponseData) || {};
+          const cityKey = normalizeCityKey(cityParam);
+          existingData[cityKey] = weatherData[cityKey];
+          return context.env.WEATHER_KV.put(
+            'philippines_weather',
+            JSON.stringify(existingData),
+            {
+              expirationTtl: 3600, // Expire after 1 hour
+            }
+          );
+        })
+        .catch(err => {
+          console.error('Failed to update weather cache:', err);
+        });
     }
 
     // Return the response
