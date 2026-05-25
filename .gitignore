@@ -67,3 +67,9 @@ docs/audits/*
 
 # Graphify output
 graphify-out/
+
+# AI artifacts
+.graphify_python/
+.codex/
+.aider*
+.augment/
