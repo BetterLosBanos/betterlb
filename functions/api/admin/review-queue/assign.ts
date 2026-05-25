@@ -21,8 +21,8 @@ export async function onRequestPost(context: {
   env: Env;
   params?: Record<string, string>;
 }) {
-  return (
-    withAuth(async (c: { request: Request; env: Env; auth: AuthContext }) => {
+  return withAuth(
+    async (c: { request: Request; env: Env; auth: AuthContext }) => {
       const { request, env, auth } = c;
 
       try {
@@ -33,7 +33,6 @@ export async function onRequestPost(context: {
           return Response.json({ error: 'Missing item_id' }, { status: 400 });
         }
 
-        // Get user from session
         const userId = auth.user.login;
 
         const updateSql = `
@@ -44,7 +43,6 @@ export async function onRequestPost(context: {
 
         await env.BETTERLB_DB.prepare(updateSql).bind(userId, item_id).run();
 
-        // Log the assignment
         await logAudit(env, {
           action: AuditActions.ASSIGN_REVIEW,
           performedBy: userId,
@@ -63,9 +61,7 @@ export async function onRequestPost(context: {
           { status: 500 }
         );
       }
-    })(context),
-    {
-      requireCSRF: true,
-    }
-  );
+    },
+    { requireCSRF: true }
+  )(context);
 }

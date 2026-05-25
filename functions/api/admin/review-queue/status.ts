@@ -24,8 +24,8 @@ export async function onRequestPost(context: {
   env: Env;
   params?: Record<string, string>;
 }) {
-  return (
-    withAuth(async (c: { request: Request; env: Env; auth: AuthContext }) => {
+  return withAuth(
+    async (c: { request: Request; env: Env; auth: AuthContext }) => {
       const { request, env } = c;
 
       try {
@@ -53,7 +53,6 @@ export async function onRequestPost(context: {
 
         await env.BETTERLB_DB.prepare(updateSql).bind(status, item_id).run();
 
-        // Log the status update
         await logAudit(env, {
           action: AuditActions.UPDATE_REVIEW_STATUS,
           performedBy: c.auth.user.login,
@@ -72,9 +71,7 @@ export async function onRequestPost(context: {
           { status: 500 }
         );
       }
-    })(context),
-    {
-      requireCSRF: true,
-    }
-  );
+    },
+    { requireCSRF: true }
+  )(context);
 }

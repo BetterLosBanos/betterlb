@@ -56,7 +56,6 @@ pipeline/__pycache__/
 .worktrees/
 
 # Maestro
-.agents/*
 .maestro/*
 maestro.yaml
 todo.md
@@ -64,12 +63,16 @@ docs/qa-reports/*
 docs/decisions/*
 docs/plans/*
 docs/audits/*
-
-# Graphify output
-graphify-out/
+!docs/adr/
+!docs/superpowers/plans/
+!docs/superpowers/specs/
 
 # AI artifacts
+.agents/
 .graphify_python/
 .codex/
 .aider*
 .augment/
+
+# Graphify output
+graphify-out/
