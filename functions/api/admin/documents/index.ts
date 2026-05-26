@@ -11,19 +11,6 @@ import {
   PAGINATION_LIMITS,
 } from '../../../utils/pagination';
 
-interface Document {
-  id: string;
-  type: string;
-  number: string;
-  title: string;
-  date_enacted: string;
-  status: string;
-  review_status: string;
-  pdf_url: string;
-  created_at: string;
-  updated_at: string;
-}
-
 /**
  * GET /api/admin/documents
  * List all documents with filtering and pagination

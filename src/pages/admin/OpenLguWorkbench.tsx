@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useState } from 'react';
+import { useCallback, useEffect, useMemo, useState } from 'react';
 
 import { Button } from '@bettergov/kapwa/button';
 import {
@@ -137,7 +137,7 @@ export default function OpenLguWorkbench() {
 
   const activeTab = tabs.find(candidate => candidate.id === tab) || tabs[0];
 
-  async function load() {
+  const load = useCallback(async () => {
     setLoading(true);
     setServerError(null);
     try {
@@ -163,11 +163,11 @@ export default function OpenLguWorkbench() {
     } finally {
       setLoading(false);
     }
-  }
+  }, [tab, status, page, search]);
 
   useEffect(() => {
     load();
-  }, [tab, status, page]);
+  }, [load]);
 
   useEffect(() => {
     const handle = window.setTimeout(() => {
@@ -175,7 +175,7 @@ export default function OpenLguWorkbench() {
       load();
     }, 250);
     return () => window.clearTimeout(handle);
-  }, [search]);
+  }, [search, load]);
 
   async function reloadArtifacts() {
     await workbenchApi.reload();

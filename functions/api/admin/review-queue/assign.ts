@@ -1,5 +1,3 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
-// D1 database result typing uses any for dynamic schema mapping
 /**
  * POST /api/admin/review-queue/assign
  * Assign a review queue item to the current user

@@ -84,8 +84,6 @@ async function handleGetDuplicates(context: {
     }>) {
       const ids = row.person_ids.split(',');
 
-      // Single query to get all person records for this duplicate group
-      const placeholders = ids.map(() => '?1').join(',');
       const personRecordsResult = await env.BETTERLB_DB.prepare(
         `SELECT id, first_name, middle_name, last_name, suffix FROM persons WHERE id IN (${ids.map(() => '?').join(',')})`
       )
@@ -387,8 +385,7 @@ async function handleMerge(context: {
 
     // Person deletion/flag results come next
     for (let i = 0; i < merge_person_ids.length; i++) {
-      const changes = results[resultIndex++].meta.changes || 0;
-      // Track that the operation completed (changes will be 1 if record existed)
+      resultIndex++;
     }
 
     // 9. Log the merge action

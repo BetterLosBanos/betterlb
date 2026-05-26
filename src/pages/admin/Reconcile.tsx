@@ -51,16 +51,6 @@ interface ConflictRecord {
   };
 }
 
-interface ReconcileResponse {
-  items: ConflictRecord[];
-  pagination: {
-    total: number;
-    limit: number;
-    offset: number;
-    has_more: boolean;
-  };
-}
-
 interface DocumentDetail {
   id: string;
   type: string;
@@ -160,7 +150,7 @@ export default function Reconcile() {
     } finally {
       setLoading(false);
     }
-  }, [page, statusFilter, conflictTypeFilter]);
+  }, [page, statusFilter]);
 
   useEffect(() => {
     fetchConflicts();
