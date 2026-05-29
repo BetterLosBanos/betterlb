@@ -14,6 +14,7 @@ import {
 
 import { fetchForexData, getCurrencyIconName } from '../../lib/forex';
 import { ForexRate } from '../../types';
+import { getCurrencyFlag } from '../../data/currencyFlags';
 
 const ForexPage: FC = () => {
   const [forexRates, setForexRates] = useState<ForexRate[]>([]);
@@ -39,51 +40,6 @@ const ForexPage: FC = () => {
       >
     )[iconName];
     return Icon ? <Icon className={size} /> : null;
-  };
-
-  // Function to get flag emoji for currency code
-  const getCurrencyFlag = (code: string) => {
-    const flagMap: Record<string, string> = {
-      USD: '🇺🇸', // United States Dollar
-      EUR: '🇪🇺', // Euro
-      GBP: '🇬🇧', // British Pound
-      JPY: '🇯🇵', // Japanese Yen
-      AUD: '🇦🇺', // Australian Dollar
-      CAD: '🇨🇦', // Canadian Dollar
-      CHF: '🇨🇭', // Swiss Franc
-      CNY: '🇨🇳', // Chinese Yuan
-      SEK: '🇸🇪', // Swedish Krona
-      NZD: '🇳🇿', // New Zealand Dollar
-      MXN: '🇲🇽', // Mexican Peso
-      SGD: '🇸🇬', // Singapore Dollar
-      HKD: '🇭🇰', // Hong Kong Dollar
-      NOK: '🇳🇴', // Norwegian Krone
-      KRW: '🇰🇷', // South Korean Won
-      TRY: '🇹🇷', // Turkish Lira
-      RUB: '🇷🇺', // Russian Ruble
-      INR: '🇮🇳', // Indian Rupee
-      BRL: '🇧🇷', // Brazilian Real
-      ZAR: '🇿🇦', // South African Rand
-      DKK: '🇩🇰', // Danish Krone
-      PLN: '🇵🇱', // Polish Zloty
-      TWD: '🇹🇼', // Taiwan Dollar
-      THB: '🇹🇭', // Thai Baht
-      MYR: '🇲🇾', // Malaysian Ringgit
-      IDR: '🇮🇩', // Indonesian Rupiah
-      VND: '🇻🇳', // Vietnamese Dong
-      CZK: '🇨🇿', // Czech Koruna
-      HUF: '🇭🇺', // Hungarian Forint
-      ILS: '🇮🇱', // Israeli Shekel
-      CLP: '🇨🇱', // Chilean Peso
-      PEN: '🇵🇪', // Peruvian Sol
-      COP: '🇨🇴', // Colombian Peso
-      BHD: '🇧🇭', // Bahraini Dinar
-      KWD: '🇰🇼', // Kuwaiti Dinar
-      SAR: '🇸🇦', // Saudi Riyal
-      AED: '🇦🇪', // UAE Dirham
-      BND: '🇧🇳', // Brunei Dollar
-    };
-    return flagMap[code] || '🏴';
   };
 
   // Fetch forex data
@@ -186,7 +142,7 @@ const ForexPage: FC = () => {
 
   return (
     <div className='bg-kapwa-bg-surface-raised min-h-screen'>
-      <div className='container mx-auto px-4 py-8'>
+      <div className='container mx-auto px-4 py-8 md:py-12'>
         {isLoading ? (
           <div className='flex h-64 items-center justify-center'>
             <div className='border-kapwa-border-brand h-12 w-12 animate-spin rounded-full border-t-2 border-b-2'></div>

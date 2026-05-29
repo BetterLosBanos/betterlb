@@ -13,6 +13,7 @@ import { HomeIcon } from 'lucide-react';
 import { useLocation } from 'react-router-dom';
 
 import { cn } from '@/lib/utils';
+import type { BreadcrumbItem as BreadcrumbItemType } from '@/types/components';
 
 import {
   Breadcrumb,
@@ -26,16 +27,6 @@ import {
 // ============================================================================
 // TYPES
 // ============================================================================
-
-/**
- * Breadcrumb item configuration.
- */
-interface BreadcrumbItem {
-  /** Display label for the breadcrumb */
-  label: string;
-  /** Navigation path */
-  href: string;
-}
 
 /**
  * Props for the SectionBlock component.
@@ -135,7 +126,7 @@ function formatLabel(slug: string): string {
 /* eslint-disable-next-line react-refresh/only-export-components */
 export function useBreadcrumbs(
   config: Record<string, string> = {}
-): BreadcrumbItem[] {
+): BreadcrumbItemType[] {
   const location = useLocation();
   const mergedConfig = { ...DEFAULT_BREADCRUMB_CONFIG, ...config };
 

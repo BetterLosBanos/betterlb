@@ -106,7 +106,7 @@ export default function TermDetail() {
   const termDocuments = useMemo(() => {
     if (!term) return [];
     return documents.filter((doc: DocumentItem) => {
-      // Handle null session_id
+      if (doc.term_id === term.id) return true;
       if (!doc.session_id) return false;
       const session = sessions.find((s: Session) => s.id === doc.session_id);
       return session?.term_id === term.id || doc.session_id.startsWith(term.id);

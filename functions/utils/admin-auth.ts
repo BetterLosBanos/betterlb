@@ -27,7 +27,7 @@ export interface AdminSession {
   role?: UserRole; // Optional for backward compatibility
 }
 
-interface AuthContext {
+export interface AuthContext {
   user: GitHubUser;
   sessionId: string;
   role: UserRole;
@@ -106,8 +106,9 @@ export async function verifyAdminSession(
     throw new AuthError('User no longer authorized', 403);
   }
 
-  // Extract role from session, default to ADMIN for backward compatibility
-  const role = session.role || UserRole.ADMIN;
+  // Extract role from session, default to VIEWER for security
+  // Old sessions without role must re-authenticate for admin access
+  const role = session.role ?? UserRole.VIEWER;
 
   return {
     user: session.user,

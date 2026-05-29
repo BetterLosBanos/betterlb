@@ -8,9 +8,27 @@
 import { Env } from '../../../types';
 import { AuthContext, withAuth } from '../../../utils/admin-auth';
 import { logAudit, AuditTargetTypes } from '../../../utils/audit-log';
+import {
+  parsePaginationParam,
+  PAGINATION_LIMITS,
+} from '../../../utils/pagination';
+import {
+  badRequest,
+  conflict,
+  serverError,
+} from '../../../utils/error-response';
 
 type ReviewStatus = 'pending' | 'in_progress' | 'resolved' | 'skipped';
 type ItemType = 'document' | 'session' | 'attendance';
+
+interface CreateReviewItemBody {
+  item_type: ItemType;
+  item_id: string;
+  issue_type: string;
+  description?: string;
+  source_type?: 'pdf' | 'facebook' | 'manual' | 'other';
+  source_url?: string;
+}
 
 interface ReviewItem {
   id: string;
@@ -62,8 +80,16 @@ async function handleGetReviewQueue(context: {
 
   const statusFilter = url.searchParams.get('status');
   const itemTypeFilter = url.searchParams.get('item_type');
-  const limit = parseInt(url.searchParams.get('limit') || '20');
-  const offset = parseInt(url.searchParams.get('offset') || '0');
+  const limit = parsePaginationParam(
+    url.searchParams.get('limit'),
+    20,
+    PAGINATION_LIMITS.MAX_LIMIT
+  );
+  const offset = parsePaginationParam(
+    url.searchParams.get('offset'),
+    PAGINATION_LIMITS.DEFAULT_OFFSET,
+    Number.MAX_SAFE_INTEGER
+  );
 
   // Build query
   let sql = `
@@ -160,10 +186,7 @@ async function handleGetReviewQueue(context: {
     } as ReviewQueueResponse);
   } catch (error) {
     console.error('Error fetching review queue:', error);
-    return Response.json(
-      { error: 'Failed to fetch review queue' },
-      { status: 500 }
-    );
+    return serverError('Failed to fetch review queue');
   }
 }
 
@@ -179,7 +202,7 @@ async function createReviewItem(context: {
   const { request, env, auth } = context;
 
   try {
-    const body = await request.json();
+    const body = (await request.json()) as CreateReviewItemBody;
     const {
       item_type,
       item_id,
@@ -187,31 +210,19 @@ async function createReviewItem(context: {
       description,
       source_type,
       source_url,
-    } = body as {
-      item_type: ItemType;
-      item_id: string;
-      issue_type: string;
-      description?: string;
-      source_type?: 'pdf' | 'facebook' | 'manual' | 'other';
-      source_url?: string;
-    };
+    } = body;
 
     // Validate required fields
     if (!item_type || !item_id || !issue_type) {
-      return Response.json(
-        { error: 'Missing required fields: item_type, item_id, issue_type' },
-        { status: 400 }
+      return badRequest(
+        'Missing required fields: item_type, item_id, issue_type'
       );
     }
 
     // Validate item_type
     if (!['document', 'session', 'attendance'].includes(item_type)) {
-      return Response.json(
-        {
-          error:
-            'Invalid item_type. Must be one of: document, session, attendance',
-        },
-        { status: 400 }
+      return badRequest(
+        'Invalid item_type. Must be one of: document, session, attendance'
       );
     }
 
@@ -220,16 +231,12 @@ async function createReviewItem(context: {
       `SELECT id FROM review_queue WHERE item_id = ?1 AND item_type = ?2`
     )
       .bind(item_id, item_type)
-      .first();
+      .first<{ id: string }>();
 
     if (existing) {
-      return Response.json(
-        {
-          error: 'Item already exists in review queue',
-          existing_id: existing.id,
-        },
-        { status: 409 }
-      );
+      return conflict('Item already exists in review queue', {
+        existing_id: existing.id,
+      });
     }
 
     // Generate review item ID
@@ -276,7 +283,7 @@ async function createReviewItem(context: {
       `SELECT * FROM review_queue WHERE id = ?1`
     )
       .bind(reviewItemId)
-      .first();
+      .first<Record<string, unknown>>();
 
     return Response.json(
       {
@@ -287,12 +294,11 @@ async function createReviewItem(context: {
     );
   } catch (error) {
     console.error('Error creating review item:', error);
-    return Response.json(
-      { error: 'Failed to create review item' },
-      { status: 500 }
-    );
+    return serverError('Failed to create review item');
   }
 }
 
 export const onRequestGet = withAuth(handleGetReviewQueue);
-export const onRequestPost = withAuth(createReviewItem);
+export const onRequestPost = withAuth(createReviewItem, {
+  requireCSRF: true,
+});

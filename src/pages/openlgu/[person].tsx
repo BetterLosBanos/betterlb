@@ -30,6 +30,7 @@ import {
 } from '@/components/navigation/Breadcrumb';
 import { PageLoadingState } from '@/components/ui';
 import { Badge } from '@/components/ui/Badge';
+import { Card } from '@/components/ui/Card';
 
 // Use the library types as the source of truth to ensure compatibility with helpers
 import type {
@@ -244,7 +245,7 @@ export default function PersonDetail() {
       </Breadcrumb>
 
       {/* Unified Profile Header with Stats */}
-      <header className='border-kapwa-border-weak bg-kapwa-bg-surface rounded-2xl border p-6 shadow-sm md:p-8'>
+      <Card hover={false} className='p-6 md:p-8'>
         {/* Main profile row */}
         <div className='flex flex-col items-center gap-6 md:flex-row md:items-start'>
           {/* Avatar */}
@@ -258,7 +259,7 @@ export default function PersonDetail() {
 
           {/* Name and role info */}
           <div className='flex-1 text-center md:text-left'>
-            <h1 className='text-kapwa-text-strong kapwa-heading-xl font-bold'>
+            <h1 className='text-kapwa-text-strong kapwa-heading-xl font-extrabold'>
               Hon. {officialName}
             </h1>
             <div className='mt-3 flex flex-col gap-2 sm:flex-row sm:items-center sm:justify-between'>
@@ -372,7 +373,7 @@ export default function PersonDetail() {
             </div>
           )}
         </div>
-      </header>
+      </Card>
 
       {/* Two-column layout for main content */}
       <div className='grid grid-cols-1 gap-8 lg:grid-cols-3'>
@@ -707,7 +708,7 @@ export default function PersonDetail() {
         </div>
 
         {/* Sidebar column */}
-        <aside className='space-y-8'>
+        <aside className='space-y-6'>
           {/* Attendance Log - only show for legislative roles */}
           {hasLegislativeRole ? (
             <DetailSection

@@ -32,6 +32,9 @@ export interface DocumentItem {
   session_id: string;
   status: string;
   link: string;
+  subjects: string[];
+  term_id?: string;
+  mayor_id?: string;
 }
 
 export interface Session {

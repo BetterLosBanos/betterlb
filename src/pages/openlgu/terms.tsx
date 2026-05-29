@@ -8,6 +8,7 @@ import {
   type BreadcrumbItem,
 } from '@/components/layout/IndexPageLayout';
 import { Badge } from '@/components/ui/Badge';
+import { Card, CardGrid } from '@/components/ui/Card';
 
 import type { DocumentItem, Person, Session, Term } from '@/lib/openlgu';
 
@@ -27,6 +28,7 @@ export default function TermsIndex() {
       .map(term => {
         const termSessions = sessions.filter(s => s.term_id === term.id);
         const termDocuments = documents.filter(d => {
+          if (d.term_id === term.id) return true;
           if (!d.session_id) return false;
           const session = sessions.find(s => s.id === d.session_id);
           return session?.term_id === term.id;
@@ -86,14 +88,17 @@ export default function TermsIndex() {
         message: 'No legislative terms are available at this time.',
       }}
     >
-      <div className='grid gap-6 md:grid-cols-2 lg:grid-cols-3'>
+      <CardGrid columns={3}>
         {termsWithStats.map(term => (
           <Link
             key={term.id}
             to={`/openlgu/term/${term.id}`}
             className='group block'
           >
-            <article className='hover:border-kapwa-border-brand border-kapwa-border-weak bg-kapwa-bg-surface h-full rounded-2xl border p-6 shadow-sm transition-all hover:shadow-md'>
+            <Card
+              hover={false}
+              className='h-full hover:border-kapwa-border-brand hover:shadow-md'
+            >
               <header className='mb-4 flex items-start justify-between'>
                 <div>
                   <Badge variant='primary' dot className='mb-2'>
@@ -160,10 +165,10 @@ export default function TermsIndex() {
                   )}
                 </div>
               )}
-            </article>
+            </Card>
           </Link>
         ))}
-      </div>
+      </CardGrid>
     </IndexPageLayout>
   );
 }

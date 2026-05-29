@@ -33,6 +33,7 @@ const ADMIN_ROUTES: Record<string, string> = {
   '/admin/errors': 'Error Log',
   '/admin/review-queue': 'Review Queue',
   '/admin/reconcile': 'Reconcile',
+  '/admin/openlgu/workbench': 'OpenLGU Workbench',
   '/admin/persons': 'Persons',
   '/admin/persons/merge': 'Merge',
   '/admin/persons/deletion-queue': 'Deletion Queue',
@@ -72,7 +73,7 @@ function AdminContent() {
           <div>
             <div className='mb-2 flex items-center gap-3'>
               <Shield className='text-kapwa-text-brand h-8 w-8' />
-              <h1 className='text-kapwa-text-strong text-3xl font-extrabold'>
+              <h1 className='text-kapwa-text-strong kapwa-heading-xl font-extrabold'>
                 Admin Dashboard
               </h1>
               <Badge variant={USE_MOCK_AUTH ? 'info' : 'warning'}>

@@ -23,6 +23,7 @@ import { Card, CardContent } from '@/components/ui/Card';
 
 import { toTitleCase } from '@/lib/stringUtils';
 import { toTelUri } from '@/lib/utils';
+import { lguLabels } from '@/lib/lguLabels';
 
 import departmentsData from '@/data/directory/departments.json';
 import mergedServicesData from '@/data/citizens-charter/merged-services.json';
@@ -88,8 +89,9 @@ export default function DepartmentDetail() {
       </Breadcrumb>
 
       {/* --- COMPACT IDENTITY HEADER --- */}
-      <header
-        className='bg-kapwa-bg-surface border-kapwa-border-weak rounded-xl border p-6 shadow-sm'
+      <Card
+        hover={false}
+        className='rounded-xl p-6'
         role='banner'
         aria-label='Department information header'
       >
@@ -100,7 +102,7 @@ export default function DepartmentDetail() {
               aria-hidden='true'
               className='text-kapwa-text-brand h-5 w-5'
             />
-            <h1 className='kapwa-heading-lg text-kapwa-text-strong'>
+            <h1 className='text-kapwa-text-strong kapwa-heading-xl font-extrabold'>
               {toTitleCase(dept.office_name)}
             </h1>
           </div>
@@ -112,7 +114,7 @@ export default function DepartmentDetail() {
         {/* Middle: Address */}
         {dept.address && (
           <p className='text-kapwa-text-support mb-4 text-sm'>
-            {dept.address}, Los Baños, Laguna
+            {dept.address}, {lguLabels.location}
           </p>
         )}
 
@@ -148,7 +150,7 @@ export default function DepartmentDetail() {
             </a>
           )}
         </div>
-      </header>
+      </Card>
 
       {/* --- MAIN CONTENT --- */}
       <main id='main-content' className='space-y-6'>
@@ -163,7 +165,7 @@ export default function DepartmentDetail() {
             <p className='text-kapwa-text-disabled pl-1 text-[10px] font-bold tracking-widest uppercase'>
               Office Leadership
             </p>
-            <div className='bg-kapwa-bg-surface border-kapwa-border-weak rounded-xl border p-6 shadow-sm'>
+            <Card hover={false} className='rounded-xl'>
               <div className='flex flex-col gap-4 md:flex-row md:items-center md:gap-6'>
                 <div className='border-kapwa-border-brand text-kapwa-text-brand bg-kapwa-bg-surface flex h-16 w-16 shrink-0 items-center justify-center rounded-full border-2'>
                   <UserIcon className='h-8 w-8' />
@@ -186,7 +188,7 @@ export default function DepartmentDetail() {
                   )}
                 </div>
               </div>
-            </div>
+            </Card>
           </div>
         )}
 
@@ -245,10 +247,10 @@ export default function DepartmentDetail() {
             <CardContent className='p-6'>
               <p className='text-kapwa-text-support text-sm leading-relaxed'>
                 The {toTitleCase(dept.office_name)} is a frontline office of the
-                Municipal Government of Los Baños. It is responsible for
-                executing administrative mandates and technical functions to
-                ensure the delivery of high-quality public services within the
-                Science and Nature City.
+                {lguLabels.fullName}. It is responsible for executing
+                administrative mandates and technical functions to ensure the
+                delivery of high-quality public services within the Science and
+                Nature City.
               </p>
             </CardContent>
           </Card>

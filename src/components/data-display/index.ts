@@ -7,7 +7,6 @@
  * @module components/data-display
  */
 
-export { StatsUI } from './StatsUI';
 export { ChartTooltip, ResponsiveChart } from './ChartContainer';
 
 // NOTE: The following components exist but are currently unused:

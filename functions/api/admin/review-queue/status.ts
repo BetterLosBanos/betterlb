@@ -1,5 +1,3 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
-// D1 database result typing uses any for dynamic schema mapping
 /**
  * POST /api/admin/review-queue/status
  * Update the status of a review queue item
@@ -12,6 +10,13 @@ import {
   AuditTargetTypes,
 } from '../../../utils/audit-log';
 
+type ReviewStatus = 'pending' | 'in_progress' | 'resolved' | 'skipped';
+
+interface UpdateReviewStatusBody {
+  item_id: string;
+  status: ReviewStatus;
+}
+
 export async function onRequestPost(context: {
   request: Request;
   env: Env;
@@ -22,7 +27,7 @@ export async function onRequestPost(context: {
       const { request, env } = c;
 
       try {
-        const body = await request.json();
+        const body = (await request.json()) as UpdateReviewStatusBody;
         const { item_id, status } = body;
 
         if (!item_id || !status) {
@@ -46,7 +51,6 @@ export async function onRequestPost(context: {
 
         await env.BETTERLB_DB.prepare(updateSql).bind(status, item_id).run();
 
-        // Log the status update
         await logAudit(env, {
           action: AuditActions.UPDATE_REVIEW_STATUS,
           performedBy: c.auth.user.login,
@@ -65,6 +69,7 @@ export async function onRequestPost(context: {
           { status: 500 }
         );
       }
-    }
-  )(context as any);
+    },
+    { requireCSRF: true }
+  )(context);
 }

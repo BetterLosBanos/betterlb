@@ -34,13 +34,15 @@ async function handleUpdateAttendance(context: {
       );
     }
 
-    // Start a transaction-like operation
+    // Use batch() for atomic transaction: delete all, then insert new
+    const statements: D1PreparedStatement[] = [];
+
     // 1. Delete all existing absences for this session
-    await env.BETTERLB_DB.prepare(
-      `DELETE FROM session_absences WHERE session_id = ?1`
-    )
-      .bind(sessionId)
-      .run();
+    statements.push(
+      env.BETTERLB_DB.prepare(
+        `DELETE FROM session_absences WHERE session_id = ?1`
+      ).bind(sessionId)
+    );
 
     // 2. Insert new absences
     if (absent_person_ids.length > 0) {
@@ -53,12 +55,15 @@ async function handleUpdateAttendance(context: {
         personId,
       ]);
 
-      await env.BETTERLB_DB.prepare(
-        `INSERT INTO session_absences (session_id, person_id) VALUES ${placeholders}`
-      )
-        .bind(...values)
-        .run();
+      statements.push(
+        env.BETTERLB_DB.prepare(
+          `INSERT INTO session_absences (session_id, person_id) VALUES ${placeholders}`
+        ).bind(...values)
+      );
     }
+
+    // Execute atomically - if insert fails, delete is rolled back
+    await env.BETTERLB_DB.batch(statements);
 
     return Response.json({
       success: true,
@@ -73,5 +78,8 @@ async function handleUpdateAttendance(context: {
   }
 }
 
-export const onRequestPost = (context: { request: Request; env: Env }) =>
-  withAuth(handleUpdateAttendance as any)(context as any); // eslint-disable-line @typescript-eslint/no-explicit-any
+export const onRequestPost = (context: {
+  request: Request;
+  env: Env;
+  params?: { id: string };
+}) => withAuth(handleUpdateAttendance, { requireCSRF: true })(context);

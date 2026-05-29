@@ -79,7 +79,7 @@ const SearchPage: FC = () => {
   const activeFiltersCount = (typeFilter ? 1 : 0) + (categoryFilter ? 1 : 0);
 
   return (
-    <div className='container mx-auto px-4 py-8'>
+    <div className='container mx-auto px-4 py-8 md:py-12'>
       <Helmet>
         <title>Search - Better Government Portal</title>
         <meta
@@ -88,7 +88,9 @@ const SearchPage: FC = () => {
         />
       </Helmet>
 
-      <h1 className='mb-6 kapwa-heading-xl text-kapwa-text-strong'>Search</h1>
+      <h1 className='kapwa-heading-xl text-kapwa-text-strong font-extrabold'>
+        Search
+      </h1>
 
       <div className='mb-6'>
         <div className='relative'>

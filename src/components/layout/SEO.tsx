@@ -8,6 +8,7 @@ import { config } from '@/lib/lguConfig';
 import {
   formatStandardDescription,
   formatStandardTitle,
+  resolveSeoTokens,
 } from '@/lib/seoTemplates';
 
 import routeMeta from '@/data/seo-metadata.json';
@@ -75,9 +76,15 @@ export function SEO({
   const routeEntry = routeMetaMap[location.pathname] ?? null;
 
   const baseMeta = readMeta(routeEntry);
-  let routeTitle = baseMeta.title;
-  let routeDescription = baseMeta.description;
-  let routeSubject = baseMeta.subject;
+  let routeTitle = baseMeta.title
+    ? resolveSeoTokens(baseMeta.title)
+    : undefined;
+  let routeDescription = baseMeta.description
+    ? resolveSeoTokens(baseMeta.description)
+    : undefined;
+  let routeSubject = baseMeta.subject
+    ? resolveSeoTokens(baseMeta.subject)
+    : undefined;
 
   if (
     routeEntry &&
@@ -93,24 +100,24 @@ export function SEO({
     const defaultMeta = readMeta(entryObj['_default']);
 
     if (queryMeta.title !== undefined) {
-      routeTitle = queryMeta.title;
+      routeTitle = resolveSeoTokens(queryMeta.title);
     } else if (routeTitle === undefined && defaultMeta.title !== undefined) {
-      routeTitle = defaultMeta.title;
+      routeTitle = resolveSeoTokens(defaultMeta.title);
     }
     if (queryMeta.subject !== undefined) {
-      routeSubject = queryMeta.subject;
+      routeSubject = resolveSeoTokens(queryMeta.subject);
     }
 
     if (queryMeta.description !== undefined) {
-      routeDescription = queryMeta.description;
+      routeDescription = resolveSeoTokens(queryMeta.description);
     } else if (
       routeDescription === undefined &&
       defaultMeta.description !== undefined
     ) {
-      routeDescription = defaultMeta.description;
+      routeDescription = resolveSeoTokens(defaultMeta.description);
     }
     if (routeSubject === undefined && defaultMeta.subject !== undefined) {
-      routeSubject = defaultMeta.subject;
+      routeSubject = resolveSeoTokens(defaultMeta.subject);
     }
   }
 

@@ -12,12 +12,12 @@ export interface DocumentItem {
   type: DocumentType;
   number: string;
   title: string;
-  session_id: string;
+  session_id: string | null;
   status: string;
   date_enacted: string;
   link: string;
   author_ids: string[];
-  term_id?: string;
+  term_id?: string | null;
   mayor_id?: string;
   subjects: string[];
 }
@@ -27,19 +27,6 @@ export interface Committee {
   name: string;
   type: string;
   terms: string[];
-}
-
-export interface DocumentItem {
-  id: string;
-  type: DocumentType;
-  number: string;
-  title: string;
-  session_id: string;
-  author_ids: string[];
-  status: string;
-  date_enacted: string;
-  link: string;
-  subjects: string[];
 }
 
 export interface PersonCommitteeRole {
@@ -199,25 +186,41 @@ export async function loadPersonsFromAPI(): Promise<Person[]> {
 
 export async function loadDocumentsFromAPI(): Promise<DocumentItem[]> {
   try {
-    const response = await fetch('/api/openlgu/documents?limit=5000');
-    if (!response.ok) {
-      throw new Error(`API error: ${response.status}`);
+    const pageSize = 200;
+    const documents: DocumentItem[] = [];
+    let offset = 0;
+    let hasMore = true;
+
+    while (hasMore) {
+      const response = await fetch(
+        `/api/openlgu/documents?limit=${pageSize}&offset=${offset}`
+      );
+      if (!response.ok) {
+        throw new Error(`API error: ${response.status}`);
+      }
+
+      const data = await response.json();
+      const page = (data.documents || []).map((d: any) => ({
+        id: d.id,
+        type: d.type,
+        number: d.number,
+        title: d.title,
+        session_id: d.session_id,
+        status: d.status,
+        date_enacted: d.date_enacted,
+        link: d.pdf_url || d.link,
+        author_ids: d.author_ids || [],
+        term_id: d.term_id,
+        mayor_id: d.mayor_id,
+        subjects: [],
+      }));
+
+      documents.push(...page);
+      hasMore = Boolean(data.pagination?.has_more) && page.length > 0;
+      offset += page.length;
     }
-    const data = await response.json();
-    return (data.documents || []).map((d: any) => ({
-      id: d.id,
-      type: d.type,
-      number: d.number,
-      title: d.title,
-      session_id: d.session_id,
-      status: d.status,
-      date_enacted: d.date_enacted,
-      link: d.pdf_url || d.link,
-      author_ids: d.author_ids || [],
-      term_id: d.term_id,
-      mayor_id: d.mayor_id,
-      subjects: [],
-    }));
+
+    return documents;
   } catch (error) {
     console.error('Failed to load documents from API:', error);
     return [];

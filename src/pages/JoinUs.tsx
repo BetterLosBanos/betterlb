@@ -38,7 +38,7 @@ const JoinUs: FC = () => {
                 <UsersIcon className='text-kapwa-text-inverse h-12 w-12' />
               </div>
             </div>
-            <h1 className='mb-6 text-4xl leading-tight font-bold md:text-6xl'>
+            <h1 className='text-kapwa-text-strong kapwa-heading-xl font-extrabold leading-tight'>
               Join the{' '}
               <span className='text-kapwa-text-accent-yellow'>#CivicTech</span>{' '}
               Revolution

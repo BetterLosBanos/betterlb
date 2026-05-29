@@ -28,8 +28,8 @@ export default function CurrentTermCard({
 
   // Calculate statistics for the current term
   const termDocuments = documents.filter(doc => {
-    if (!doc.session_id) return false;
-    return doc.session_id.startsWith(term.id) || doc.term_id === term.id;
+    if (doc.term_id === term.id) return true;
+    return doc.session_id?.startsWith(term.id) || false;
   });
 
   const ordCount = termDocuments.filter(d => d.type === 'ordinance').length;

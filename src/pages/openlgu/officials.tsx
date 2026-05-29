@@ -3,6 +3,7 @@ import { useCallback, useMemo, useState } from 'react';
 import { useOutletContext } from 'react-router-dom';
 
 import { PageLoadingState } from '@/components/ui';
+import { lguLabels } from '@/lib/lguLabels';
 import {
   IndexPageLayout,
   type BreadcrumbItem,
@@ -114,8 +115,8 @@ export default function OfficialsIndex() {
 
   return (
     <IndexPageLayout
-      title='Officials of Los Baños'
-      description='Browse the historical collection of all LGU politicians who have served Los Baños.'
+      title={`Officials of ${lguLabels.name}`}
+      description={`Browse the historical collection of all LGU politicians who have served ${lguLabels.name}.`}
       breadcrumbs={breadcrumbs}
       search={{
         value: searchQuery,

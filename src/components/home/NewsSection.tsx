@@ -3,6 +3,7 @@ import { Calendar, ExternalLinkIcon, AlertCircle } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
 import { Card, CardContent, CardGrid, CardImage } from '@/components/ui/Card';
 import { Badge } from '@/components/ui/Badge';
+import { config } from '@/lib/lguConfig';
 
 interface LGUNewsPost {
   title: string;
@@ -72,22 +73,22 @@ const NewsSection: FC = () => {
             ))}
           </CardGrid>
         ) : error ? (
-          <div className='rounded-lg border border-red-200 bg-red-50 p-6 text-center'>
-            <AlertCircle className='mx-auto h-8 w-8 text-red-400' />
+          <div className='rounded-lg border border-kapwa-border-danger bg-kapwa-bg-danger-weak p-6 text-center'>
+            <AlertCircle className='mx-auto h-8 w-8 text-kapwa-text-danger' />
             <p className='mt-2 text-kapwa-text-muted'>
               Unable to load news at this time.
             </p>
           </div>
         ) : (
           <CardGrid columns={3}>
-            {posts.map(post => (
+            {(posts ?? []).map(post => (
               <Card
                 key={post.url}
                 className='overflow-hidden transition-shadow hover:shadow-lg'
               >
                 <CardImage src={post.imageUrl} alt={post.title} />
                 <CardContent>
-                  <Badge variant='outline'>Los Baños</Badge>
+                  <Badge variant='outline'>{config.lgu.name}</Badge>
                   <div className='mt-2 flex items-center gap-1.5 text-sm text-kapwa-text-muted'>
                     <Calendar className='h-3.5 w-3.5' />
                     <span>{post.date}</span>

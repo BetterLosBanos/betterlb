@@ -261,4 +261,6 @@ async function handleBulkCreateDocuments(context: {
   }
 }
 
-export const onRequestPost = withAuth(handleBulkCreateDocuments);
+export const onRequestPost = withAuth(handleBulkCreateDocuments, {
+  requireCSRF: true,
+});

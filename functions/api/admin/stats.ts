@@ -60,8 +60,8 @@ async function handleGetStats(context: {
     const documentStats = await env.BETTERLB_DB.prepare(
       `SELECT
         COUNT(*) as total,
-        SUM(CASE WHEN needs_review = 1 THEN 1 ELSE 0 END) as pending_review,
-        SUM(CASE WHEN processed = 1 THEN 1 ELSE 0 END) as processed
+        SUM(CASE WHEN review_status = 'in_review' THEN 1 ELSE 0 END) as pending_review,
+        SUM(CASE WHEN review_status = 'approved' THEN 1 ELSE 0 END) as processed
        FROM documents`
     ).first<{ total: number; pending_review: number; processed: number }>();
 
@@ -80,7 +80,7 @@ async function handleGetStats(context: {
       errorTotal = errorStats?.total || 0;
       errorRecent = errorStats?.recent || 0;
     } catch {
-      // Table doesn't exist yet
+      console.warn('parse_errors table not found - skipping error stats');
     }
 
     // Get conflict stats
@@ -93,7 +93,7 @@ async function handleGetStats(context: {
 
       conflictActive = conflictStats?.active || 0;
     } catch {
-      // Table doesn't exist yet
+      console.warn('data_conflicts table not found - skipping conflict stats');
     }
 
     // Get deletion queue stats
@@ -106,7 +106,9 @@ async function handleGetStats(context: {
 
       deletionQueueTotal = deletionQueueStats?.total || 0;
     } catch {
-      // Column doesn't exist yet
+      console.warn(
+        'persons.deleted_at column not found - skipping deletion queue stats'
+      );
     }
 
     const stats: DashboardStats = {

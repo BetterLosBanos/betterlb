@@ -33,6 +33,7 @@ import {
   BreadcrumbSeparator,
 } from '@/components/navigation/Breadcrumb';
 import { Badge } from '@/components/ui/Badge';
+import { Card } from '@/components/ui/Card';
 import { RequirementGrid } from './components/RequirementGrid';
 import { ProcessTimeline } from './components/ProcessTimeline';
 import { SupportingDocumentsDetail } from './components/SupportingDocumentsDetail';
@@ -207,7 +208,7 @@ export default function ServiceDetail() {
             )}
           </div>
 
-          <h1 className='text-kapwa-text-strong mb-6 text-3xl leading-tight font-bold tracking-tight md:text-4xl'>
+          <h1 className='text-kapwa-text-strong kapwa-heading-xl font-extrabold'>
             {service.plainLanguageName || service.service}
           </h1>
 
@@ -508,7 +509,7 @@ export default function ServiceDetail() {
           )}
 
           {/* SUGGEST AN EDIT - NEW PLACEMENT & STYLE */}
-          <div className='border-kapwa-border-weak bg-kapwa-bg-surface space-y-4 rounded-2xl border p-6 shadow-sm'>
+          <Card hover={false} className='space-y-4'>
             <div className='flex items-center gap-3'>
               <div className='bg-kapwa-bg-accent-orange-weak text-kapwa-text-accent-orange rounded-lg p-2'>
                 <HeartHandshake className='h-5 w-5' />
@@ -530,7 +531,7 @@ export default function ServiceDetail() {
               <Edit3 className='group-hover:text-kapwa-text-accent-orange text-kapwa-text-disabled h-3.5 w-3.5 transition-colors' />
               Suggest an Edit
             </a>
-          </div>
+          </Card>
         </aside>
       </div>
     </div>

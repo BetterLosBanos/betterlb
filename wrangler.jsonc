@@ -14,7 +14,7 @@
       "database_name": "betterlb_openlgu",
       "database_id": "67f71e98-fece-4460-b3b6-40f6f8742d89",
       "migrations_dir": "db/migrations",
-      "remote": true
+      "remote": false
     }
   ],
   "vars": {

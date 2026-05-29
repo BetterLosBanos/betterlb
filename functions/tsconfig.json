@@ -4,7 +4,7 @@
     "module": "ESNext",
     "moduleResolution": "node",
     "esModuleInterop": true,
-    "strict": false,
+    "strict": true,
     "lib": ["ES2022"],
     "types": ["@cloudflare/workers-types"],
     "jsx": "react-jsx",

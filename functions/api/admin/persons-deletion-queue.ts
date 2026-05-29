@@ -7,6 +7,16 @@
 import { Env } from '../../types';
 import { AuthContext, withAuth } from '../../utils/admin-auth';
 import { logAudit, AuditTargetTypes } from '../../utils/audit-log';
+import {
+  parsePaginationParam,
+  PAGINATION_LIMITS,
+} from '../../utils/pagination';
+import {
+  badRequest,
+  conflict,
+  notFound,
+  serverError,
+} from '../../utils/error-response';
 
 interface Person {
   id: string;
@@ -34,7 +44,11 @@ async function handleGetQueue(context: {
 
   try {
     const url = new URL(request.url);
-    const limit = parseInt(url.searchParams.get('limit') || '50');
+    const limit = parsePaginationParam(
+      url.searchParams.get('limit'),
+      PAGINATION_LIMITS.DEFAULT_LIMIT,
+      PAGINATION_LIMITS.MAX_LIMIT
+    );
 
     const sql = `
       SELECT
@@ -73,10 +87,7 @@ async function handleGetQueue(context: {
     return Response.json({ persons } satisfies QueueResponse);
   } catch (error) {
     console.error('Error fetching deletion queue:', error);
-    return Response.json(
-      { error: 'Failed to fetch deletion queue' },
-      { status: 500 }
-    );
+    return serverError('Failed to fetch deletion queue');
   }
 }
 
@@ -100,7 +111,7 @@ async function handleRestore(context: {
     const { person_id } = body;
 
     if (!person_id) {
-      return Response.json({ error: 'Missing person_id' }, { status: 400 });
+      return badRequest('Missing person_id');
     }
 
     // Check if person exists and is soft-deleted
@@ -108,10 +119,10 @@ async function handleRestore(context: {
       `SELECT id, deleted_at FROM persons WHERE id = ?1`
     )
       .bind(person_id)
-      .first();
+      .first<{ id: string; deleted_at: string | null }>();
 
     if (!person) {
-      return Response.json({ error: 'Person not found' }, { status: 404 });
+      return notFound('Person');
     }
 
     if (!person.deleted_at) {
@@ -140,10 +151,7 @@ async function handleRestore(context: {
     return Response.json({ success: true });
   } catch (error) {
     console.error('Error restoring person:', error);
-    return Response.json(
-      { error: 'Failed to restore person' },
-      { status: 500 }
-    );
+    return serverError('Failed to restore person');
   }
 }
 
@@ -167,7 +175,7 @@ async function handlePermanentDelete(context: {
     const { person_id } = body;
 
     if (!person_id) {
-      return Response.json({ error: 'Missing person_id' }, { status: 400 });
+      return badRequest('Missing person_id');
     }
 
     // Check if person exists
@@ -175,10 +183,10 @@ async function handlePermanentDelete(context: {
       `SELECT id FROM persons WHERE id = ?1`
     )
       .bind(person_id)
-      .first();
+      .first<{ id: string }>();
 
     if (!person) {
-      return Response.json({ error: 'Person not found' }, { status: 404 });
+      return notFound('Person');
     }
 
     // Check for remaining references
@@ -195,16 +203,10 @@ async function handlePermanentDelete(context: {
       .first<{ count: number }>();
 
     if ((memberCount?.count || 0) > 0 || (authorCount?.count || 0) > 0) {
-      return Response.json(
-        {
-          error: 'Cannot delete person with remaining references',
-          details: {
-            memberships: memberCount?.count || 0,
-            document_authors: authorCount?.count || 0,
-          },
-        },
-        { status: 400 }
-      );
+      return conflict('Cannot delete person with remaining references', {
+        memberships: memberCount?.count || 0,
+        document_authors: authorCount?.count || 0,
+      });
     }
 
     // Permanently delete the person
@@ -224,10 +226,7 @@ async function handlePermanentDelete(context: {
     return Response.json({ success: true });
   } catch (error) {
     console.error('Error permanently deleting person:', error);
-    return Response.json(
-      { error: 'Failed to permanently delete person' },
-      { status: 500 }
-    );
+    return serverError('Failed to permanently delete person');
   }
 }
 
@@ -251,7 +250,7 @@ async function handleBulkRestore(context: {
     const { person_ids } = body;
 
     if (!person_ids || person_ids.length === 0) {
-      return Response.json({ error: 'Missing person_ids' }, { status: 400 });
+      return badRequest('Missing person_ids');
     }
 
     let restoredCount = 0;
@@ -278,10 +277,7 @@ async function handleBulkRestore(context: {
     return Response.json({ success: true, restored_count: restoredCount });
   } catch (error) {
     console.error('Error bulk restoring persons:', error);
-    return Response.json(
-      { error: 'Failed to bulk restore persons' },
-      { status: 500 }
-    );
+    return serverError('Failed to bulk restore persons');
   }
 }
 
@@ -305,7 +301,7 @@ async function handleBulkPermanentDelete(context: {
     const { person_ids } = body;
 
     if (!person_ids || person_ids.length === 0) {
-      return Response.json({ error: 'Missing person_ids' }, { status: 400 });
+      return badRequest('Missing person_ids');
     }
 
     let deletedCount = 0;
@@ -358,29 +354,31 @@ async function handleBulkPermanentDelete(context: {
     });
   } catch (error) {
     console.error('Error bulk permanently deleting persons:', error);
-    return Response.json(
-      { error: 'Failed to bulk permanently delete persons' },
-      { status: 500 }
-    );
+    return serverError('Failed to bulk permanently delete persons');
   }
 }
 
 export const onRequestGet = withAuth(handleGetQueue);
-export const onRequestPost = withAuth(async context => {
-  const { request } = context;
-  const url = new URL(request.url);
-  const action = url.searchParams.get('action');
+export const onRequestPost = withAuth(
+  async context => {
+    const { request } = context;
+    const url = new URL(request.url);
+    const action = url.searchParams.get('action');
 
-  switch (action) {
-    case 'restore':
-      return handleRestore(context);
-    case 'permanent-delete':
-      return handlePermanentDelete(context);
-    case 'bulk-restore':
-      return handleBulkRestore(context);
-    case 'bulk-permanent-delete':
-      return handleBulkPermanentDelete(context);
-    default:
-      return Response.json({ error: 'Invalid action' }, { status: 400 });
+    switch (action) {
+      case 'restore':
+        return handleRestore(context);
+      case 'permanent-delete':
+        return handlePermanentDelete(context);
+      case 'bulk-restore':
+        return handleBulkRestore(context);
+      case 'bulk-permanent-delete':
+        return handleBulkPermanentDelete(context);
+      default:
+        return badRequest('Invalid action');
+    }
+  },
+  {
+    requireCSRF: true,
   }
-});
+);

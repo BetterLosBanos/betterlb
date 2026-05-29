@@ -13,6 +13,10 @@ import {
   AuditActions,
   AuditTargetTypes,
 } from '../../utils/audit-log';
+import {
+  parsePaginationParam,
+  PAGINATION_LIMITS,
+} from '../../utils/pagination';
 
 type ReconcileStatus = 'unresolved' | 'resolved' | 'skipped';
 type ConflictType = 'moved_by' | 'seconded_by' | 'authors' | 'title' | 'none';
@@ -47,6 +51,16 @@ interface ReconcileResponse {
   };
 }
 
+interface ResolveConflictBody {
+  conflict_id: string;
+  resolved_value: string;
+  notes?: string;
+}
+
+interface SkipConflictBody {
+  conflict_id: string;
+}
+
 /**
  * GET /api/admin/reconcile
  * Query parameters:
@@ -66,8 +80,16 @@ async function handleGetReconcile(context: {
   // TODO: Implement status and conflict_type filters
   // const statusFilter = url.searchParams.get('status');
   // const conflictTypeFilter = url.searchParams.get('conflict_type');
-  const limit = parseInt(url.searchParams.get('limit') || '20');
-  const offset = parseInt(url.searchParams.get('offset') || '0');
+  const limit = parsePaginationParam(
+    url.searchParams.get('limit'),
+    20,
+    PAGINATION_LIMITS.MAX_LIMIT
+  );
+  const offset = parsePaginationParam(
+    url.searchParams.get('offset'),
+    PAGINATION_LIMITS.DEFAULT_OFFSET,
+    Number.MAX_SAFE_INTEGER
+  );
 
   // Build query - for now we generate conflicts from documents with different source data
   // In a real implementation, you'd have a conflicts table
@@ -98,7 +120,7 @@ async function handleGetReconcile(context: {
           `SELECT moved_by, seconded_by FROM documents WHERE number = ?1 AND type = ?2 AND source_type = 'pdf'`
         )
           .bind(doc.number, doc.type)
-          .first();
+          .first<{ moved_by: string | null; seconded_by: string | null }>();
 
         if (pdfDoc && pdfDoc.moved_by !== doc.moved_by) {
           items.push({
@@ -156,7 +178,7 @@ async function resolveConflict(context: {
   const { request, env } = context;
 
   try {
-    const body = await request.json();
+    const body = (await request.json()) as ResolveConflictBody;
     const { conflict_id, resolved_value, notes } = body;
 
     if (!conflict_id || resolved_value === undefined) {
@@ -220,7 +242,7 @@ async function skipConflict(context: {
   const { request, env } = context;
 
   try {
-    const body = await request.json();
+    const body = (await request.json()) as SkipConflictBody;
     const { conflict_id } = body;
 
     if (!conflict_id) {

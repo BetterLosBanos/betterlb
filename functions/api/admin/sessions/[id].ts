@@ -189,7 +189,7 @@ async function handleUpdateSession(context: {
       `SELECT * FROM sessions WHERE id = ?1`
     )
       .bind(sessionId)
-      .first();
+      .first<Record<string, unknown>>();
 
     return Response.json({
       success: true,
@@ -204,8 +204,14 @@ async function handleUpdateSession(context: {
   }
 }
 
-export const onRequestGet = (context: { request: Request; env: Env }) =>
-  withAuth(handleGetSession as any)(context as any);
+export const onRequestGet = (context: {
+  request: Request;
+  env: Env;
+  params?: { sessionId: string };
+}) => withAuth(handleGetSession)(context);
 
-export const onRequestPost = (context: { request: Request; env: Env }) =>
-  withAuth(handleUpdateSession as any)(context as any);
+export const onRequestPost = (context: {
+  request: Request;
+  env: Env;
+  params?: { sessionId: string };
+}) => withAuth(handleUpdateSession, { requireCSRF: true })(context);

@@ -15,7 +15,7 @@ import {
   Wallet,
 } from 'lucide-react';
 
-import { StatsCard } from '@/components/data-display/StatsUI';
+import { StatCard } from '@/components/ui/StatCard';
 import { ModuleHeader } from '@/components/layout/PageLayouts';
 import { Badge } from '@/components/ui/Badge';
 import { CardGrid } from '@/components/ui/Card';
@@ -26,6 +26,7 @@ import SelectPicker from '@/components/ui/SelectPicker';
 
 import { formatPesoAdaptive } from '@/lib/format';
 import { config } from '@/lib/lguConfig';
+import { lguLabels } from '@/lib/lguLabels';
 import { DPWHProject, INDICES, client } from '@/lib/meilisearch';
 
 export default function InfrastructurePage() {
@@ -201,7 +202,7 @@ export default function InfrastructurePage() {
       {/* Header + Search + Status Toggle  */}
       <ModuleHeader
         title='Infrastructure Projects'
-        description='Monitoring of national DPWH infrastructure projects within Los Baños.'
+        description={`Monitoring of national DPWH infrastructure projects within ${lguLabels.name}.`}
       >
         <div className='flex w-full flex-col items-center gap-4 md:w-auto md:flex-row'>
           <SearchInput
@@ -226,7 +227,7 @@ export default function InfrastructurePage() {
 
       {/* Stats Grid  */}
       <CardGrid columns={4}>
-        <StatsCard
+        <StatCard
           label='Total Allocation'
           value={stats.totalBudget}
           subtext='Current List'
@@ -234,7 +235,7 @@ export default function InfrastructurePage() {
           iconBg='bg-kapwa-green-50 text-kapwa-green-600'
         />
 
-        <StatsCard
+        <StatCard
           label='Avg Progress'
           value={`${stats.avgProgress.toFixed(1)}%`}
           subtext='Completion Rate'
@@ -242,7 +243,7 @@ export default function InfrastructurePage() {
           iconBg='bg-kapwa-bg-brand-weak text-kapwa-text-brand'
         />
 
-        <StatsCard
+        <StatCard
           label='Project Count'
           value={stats.count}
           subtext='Projects Found'
@@ -250,7 +251,7 @@ export default function InfrastructurePage() {
           iconBg='bg-kapwa-bg-surface-raised text-kapwa-text-strong'
         />
 
-        <StatsCard
+        <StatCard
           label='Fiscal Year'
           value={stats.infraYear || 'N/A'}
           subtext='Most Recent'
@@ -343,7 +344,7 @@ export default function InfrastructurePage() {
                             {item.location.barangay
                               ? `${item.location.barangay}, `
                               : ''}
-                            {item.location.municipality || 'Los Baños'}
+                            {item.location.municipality || lguLabels.name}
                           </span>
                         </span>
                       </div>

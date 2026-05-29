@@ -24,7 +24,7 @@ interface DocumentUpdateData {
   moved_by?: string;
   seconded_by?: string;
   review_notes?: string;
-  needs_review?: number;
+  review_status?: string;
   authors?: Person[];
   subjects?: string[];
 }
@@ -87,9 +87,9 @@ async function handlePatchDocument(context: {
       updateFields.push(`review_notes = ?${paramIndex++}`);
       updateValues.push(body.review_notes);
     }
-    if (body.needs_review !== undefined) {
-      updateFields.push(`needs_review = ?${paramIndex++}`);
-      updateValues.push(body.needs_review);
+    if (body.review_status !== undefined) {
+      updateFields.push(`review_status = ?${paramIndex++}`);
+      updateValues.push(body.review_status);
     }
 
     updateFields.push(`updated_at = ?${paramIndex++}`);
@@ -128,7 +128,7 @@ async function handlePatchDocument(context: {
             `SELECT id FROM persons WHERE first_name = ?1 AND last_name = ?2`
           )
             .bind(author.first_name, author.last_name)
-            .first();
+            .first<{ id: string }>();
 
           if (existingPerson) {
             personId = existingPerson.id;
@@ -173,7 +173,7 @@ async function handlePatchDocument(context: {
           `SELECT id FROM subjects WHERE name = ?1`
         )
           .bind(subjectName)
-          .first();
+          .first<{ id: string }>();
 
         if (!subject) {
           const subjectId = `subject_${Date.now()}_${Math.random().toString(36).substr(2, 9)}`;
@@ -236,9 +236,9 @@ async function handleGetDocument(context: {
     const sql = `
       SELECT
         d.id, d.type, d.number, d.title, d.session_id, d.status,
-        d.date_enacted, d.date_filed, d.pdf_url,
+        d.date_enacted, d.pdf_url,
         d.moved_by, d.seconded_by, d.source_type,
-        d.needs_review, d.review_notes, d.processed,
+        d.review_status, d.review_notes,
         d.created_at, d.updated_at
       FROM documents d
       WHERE d.id = ?
@@ -289,14 +289,12 @@ async function handleGetDocument(context: {
       session_id: doc.session_id,
       status: doc.status,
       date_enacted: doc.date_enacted,
-      date_filed: doc.date_filed,
       pdf_url: doc.pdf_url,
       moved_by: doc.moved_by,
       seconded_by: doc.seconded_by,
       source_type: doc.source_type,
-      needs_review: doc.needs_review,
+      review_status: doc.review_status,
       review_notes: doc.review_notes,
-      processed: doc.processed,
       created_at: doc.created_at,
       updated_at: doc.updated_at,
       authors,
@@ -311,8 +309,14 @@ async function handleGetDocument(context: {
   }
 }
 
-export const onRequestGet = (context: { request: Request; env: Env }) =>
-  withAuth(handleGetDocument as any, { requireCSRF: true })(context as any);
+export const onRequestGet = (context: {
+  request: Request;
+  env: Env;
+  params?: { id: string };
+}) => withAuth(handleGetDocument, { requireCSRF: true })(context);
 
-export const onRequestPatch = (context: { request: Request; env: Env }) =>
-  withAuth(handlePatchDocument as any, { requireCSRF: true })(context as any);
+export const onRequestPatch = (context: {
+  request: Request;
+  env: Env;
+  params?: { id: string };
+}) => withAuth(handlePatchDocument, { requireCSRF: true })(context);

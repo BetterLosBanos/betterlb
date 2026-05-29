@@ -1,5 +1,3 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
-// D1 database result typing uses any for dynamic schema mapping
 /**
  * POST /api/admin/review-queue/assign
  * Assign a review queue item to the current user
@@ -12,6 +10,10 @@ import {
   AuditTargetTypes,
 } from '../../../utils/audit-log';
 
+interface AssignReviewBody {
+  item_id: string;
+}
+
 export async function onRequestPost(context: {
   request: Request;
   env: Env;
@@ -22,14 +24,13 @@ export async function onRequestPost(context: {
       const { request, env, auth } = c;
 
       try {
-        const body = await request.json();
+        const body = (await request.json()) as AssignReviewBody;
         const { item_id } = body;
 
         if (!item_id) {
           return Response.json({ error: 'Missing item_id' }, { status: 400 });
         }
 
-        // Get user from session
         const userId = auth.user.login;
 
         const updateSql = `
@@ -40,7 +41,6 @@ export async function onRequestPost(context: {
 
         await env.BETTERLB_DB.prepare(updateSql).bind(userId, item_id).run();
 
-        // Log the assignment
         await logAudit(env, {
           action: AuditActions.ASSIGN_REVIEW,
           performedBy: userId,
@@ -59,6 +59,7 @@ export async function onRequestPost(context: {
           { status: 500 }
         );
       }
-    }
-  )(context as any);
+    },
+    { requireCSRF: true }
+  )(context);
 }

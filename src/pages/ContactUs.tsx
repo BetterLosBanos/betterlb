@@ -98,7 +98,7 @@ const ContactUs: FC = () => {
         keywords={['contact', 'volunteer', 'feedback', 'support']}
       />
 
-      <div className='container mx-auto px-4 py-6 md:py-8'>
+      <div className='container mx-auto px-4 py-8 md:py-12'>
         {/* Header Section */}
         <div className='bg-kapwa-bg-surface border-kapwa-border-weak mt-4 rounded-lg border p-6 shadow-xs md:p-8 md:py-16'>
           <div className='mx-auto max-w-4xl text-center'>
@@ -107,7 +107,7 @@ const ContactUs: FC = () => {
                 <HeartHandshakeIcon className='text-kapwa-text-info h-12 w-12' />
               </div>
             </div>
-            <h1 className='text-kapwa-text-strong mb-6 text-3xl font-bold md:text-5xl'>
+            <h1 className='text-kapwa-text-strong kapwa-heading-xl font-extrabold'>
               Connect with Us
             </h1>
             <p className='text-kapwa-text-support mx-auto mb-8 max-w-3xl text-lg md:text-xl'>

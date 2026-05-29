@@ -1,44 +1,35 @@
-// Create a cache for API responses
-type ApiCache = {
-  [url: string]: {
-    data: unknown;
-    timestamp: number;
-  };
-};
-
-const apiCache: ApiCache = {};
-
 /**
- * Fetch data from an API with caching
- * @param url The URL to fetch data from
- * @param cacheDuration Duration in milliseconds to cache the data (default: 1 hour)
- * @returns The fetched data
+ * Simple fetch wrapper with caching
+ * Cache duration: 5 minutes
  */
-export const fetchWithCache = async (
-  url: string,
-  cacheDuration = 60 * 60 * 1000
-) => {
-  const now = Date.now();
+const CACHE_DURATION = 5 * 60 * 1000; // 5 minutes
 
-  // Check if we have a cached response and it's still valid
-  if (apiCache[url] && now - apiCache[url].timestamp < cacheDuration) {
-    return apiCache[url].data;
+interface CachedResponse<T> {
+  data: T;
+  timestamp: number;
+}
+
+const cache = new Map<string, CachedResponse<unknown>>();
+
+export async function fetchWithCache<T>(
+  url: string,
+  options?: RequestInit
+): Promise<T> {
+  const now = Date.now();
+  const cached = cache.get(url);
+
+  if (cached && now - cached.timestamp < CACHE_DURATION) {
+    return cached.data as T;
   }
 
-  // If no cache or expired, fetch new data
-  const response = await fetch(url);
-
+  const response = await fetch(url, options);
   if (!response.ok) {
-    throw new Error(`API request failed with status ${response.status}`);
+    throw new Error(`HTTP error! status: ${response.status}`);
   }
 
   const data = await response.json();
 
-  // Cache the new data
-  apiCache[url] = {
-    data,
-    timestamp: now,
-  };
+  cache.set(url, { data, timestamp: now });
 
-  return data;
-};
+  return data as T;
+}

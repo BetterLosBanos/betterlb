@@ -5,6 +5,11 @@
  */
 import { Env } from '../../../types';
 import { AuthContext, withAuth } from '../../../utils/admin-auth';
+import { formatSessionOrdinal } from '../../../utils/formatters';
+import {
+  parsePaginationParam,
+  PAGINATION_LIMITS,
+} from '../../../utils/pagination';
 
 interface CreateSessionData {
   term_id: string;
@@ -27,13 +32,21 @@ async function handleListSessions(context: {
   const url = new URL(request.url);
 
   const termId = url.searchParams.get('term');
-  const limit = parseInt(url.searchParams.get('limit') || '50');
-  const offset = parseInt(url.searchParams.get('offset') || '0');
+  const limit = parsePaginationParam(
+    url.searchParams.get('limit'),
+    PAGINATION_LIMITS.DEFAULT_LIMIT,
+    PAGINATION_LIMITS.MAX_LIMIT
+  );
+  const offset = parsePaginationParam(
+    url.searchParams.get('offset'),
+    PAGINATION_LIMITS.DEFAULT_OFFSET,
+    Number.MAX_SAFE_INTEGER
+  );
 
   try {
     let sql = `
       SELECT
-        s.id, s.term_id, s.type, s.number, s.date, s.ordinal_number,
+        s.id, s.term_id, s.type, s.number, s.date,
         s.created_at, s.updated_at
       FROM sessions s
       WHERE 1=1
@@ -55,7 +68,13 @@ async function handleListSessions(context: {
       .all();
 
     return Response.json({
-      sessions: result.results,
+      sessions: result.results.map((s: Record<string, unknown>) => ({
+        ...s,
+        ordinal_number: formatSessionOrdinal(
+          s.number as number,
+          (s.type as string) || 'Regular'
+        ),
+      })),
       pagination: {
         limit,
         offset,
@@ -160,4 +179,6 @@ async function handleCreateSession(context: {
 
 export const onRequestGet = withAuth(handleListSessions);
 
-export const onRequestPost = withAuth(handleCreateSession);
+export const onRequestPost = withAuth(handleCreateSession, {
+  requireCSRF: true,
+});

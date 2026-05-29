@@ -233,7 +233,7 @@ export default function FinancialPage() {
               <span>Millions (PHP)</span>
             </div>
           </div>
-          <h1 className='text-kapwa-text-strong flex items-center gap-3 text-3xl font-black tracking-tight md:text-4xl'>
+          <h1 className='text-kapwa-text-strong kapwa-heading-xl font-extrabold flex items-center gap-3'>
             <BarChart2Icon className='h-8 w-8 text-kapwa-text-success' />
             Financial Performance
           </h1>

@@ -7,6 +7,27 @@ import { defineConfig } from 'vite';
 export default defineConfig({
   build: {
     outDir: 'dist',
+    rollupOptions: {
+      output: {
+        manualChunks: {
+          // React core — loaded on every page
+          'vendor-react': [
+            'react',
+            'react-dom',
+            'react-router-dom',
+            '@remix-run/router',
+          ],
+          // Maps — only needed on map pages
+          'vendor-leaflet': ['leaflet', 'react-leaflet'],
+          // Charts — only needed on stats/transparency pages
+          'vendor-recharts': ['recharts'],
+          // Search — only needed on search page
+          'vendor-search': ['meilisearch', 'fuse.js'],
+          // i18n — loaded early but large
+          'vendor-i18n': ['i18next', 'react-i18next'],
+        },
+      },
+    },
   },
   plugins: [react(), tailwindcss()],
   resolve: {

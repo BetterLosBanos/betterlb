@@ -136,7 +136,7 @@ export default function LegislationDocument() {
           </div>
           <h1
             id='doc-title'
-            className='text-kapwa-text-strong text-xl leading-relaxed font-extrabold md:text-2xl'
+            className='text-kapwa-text-strong kapwa-heading-xl font-extrabold'
           >
             {doc.title}
           </h1>

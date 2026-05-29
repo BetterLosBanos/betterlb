@@ -6,20 +6,10 @@
  */
 import { Env } from '../../../types';
 import { AuthContext, withAuth } from '../../../utils/admin-auth';
-
-interface Document {
-  id: string;
-  type: string;
-  number: string;
-  title: string;
-  date_enacted: string;
-  status: string;
-  processed: number;
-  needs_review: number;
-  pdf_url: string;
-  created_at: string;
-  updated_at: string;
-}
+import {
+  parsePaginationParam,
+  PAGINATION_LIMITS,
+} from '../../../utils/pagination';
 
 /**
  * GET /api/admin/documents
@@ -36,15 +26,23 @@ async function handleListDocuments(context: {
   const search = url.searchParams.get('search');
   const status = url.searchParams.get('status');
   const type = url.searchParams.get('type');
-  const needsReview = url.searchParams.get('needs_review');
-  const limit = parseInt(url.searchParams.get('limit') || '50');
-  const offset = parseInt(url.searchParams.get('offset') || '0');
+  const reviewStatus = url.searchParams.get('review_status');
+  const limit = parsePaginationParam(
+    url.searchParams.get('limit'),
+    PAGINATION_LIMITS.DEFAULT_LIMIT,
+    PAGINATION_LIMITS.MAX_LIMIT
+  );
+  const offset = parsePaginationParam(
+    url.searchParams.get('offset'),
+    PAGINATION_LIMITS.DEFAULT_OFFSET,
+    Number.MAX_SAFE_INTEGER
+  );
 
   // Build query
   let sql = `
     SELECT
       id, type, number, title, date_enacted, status,
-      processed, needs_review, pdf_url, created_at, updated_at
+      review_status, pdf_url, created_at, updated_at
     FROM documents
     WHERE 1=1
   `;
@@ -71,9 +69,12 @@ async function handleListDocuments(context: {
     params.push(type);
   }
 
-  if (needsReview === '1' || needsReview === '0') {
-    sql += ` AND needs_review = ?${paramIndex++}`;
-    params.push(needsReview);
+  if (
+    reviewStatus &&
+    ['pending', 'in_review', 'approved'].includes(reviewStatus)
+  ) {
+    sql += ` AND review_status = ?${paramIndex++}`;
+    params.push(reviewStatus);
   }
 
   // Get total count
@@ -95,15 +96,14 @@ async function handleListDocuments(context: {
       .bind(...params)
       .all();
 
-    const documents: Document[] = (result.results as any[]).map((row: any) => ({
+    const documents = (result.results as any[]).map((row: any) => ({
       id: row.id,
       type: row.type,
       number: row.number,
       title: row.title,
       date_enacted: row.date_enacted,
       status: row.status,
-      processed: row.processed,
-      needs_review: row.needs_review,
+      review_status: row.review_status,
       pdf_url: row.pdf_url,
       created_at: row.created_at,
       updated_at: row.updated_at,
@@ -191,7 +191,7 @@ async function handleBulkCreateDocuments(context: {
           `SELECT id FROM documents WHERE number = ?1`
         )
           .bind(doc.number)
-          .first();
+          .first<{ id: string }>();
 
         if (existing) {
           errors.push({
@@ -206,7 +206,7 @@ async function handleBulkCreateDocuments(context: {
 
         // Insert document
         await env.BETTERLB_DB.prepare(
-          `INSERT INTO documents (id, type, number, title, session_id, status, source_type, moved_by, seconded_by, processed)
+          `INSERT INTO documents (id, type, number, title, session_id, status, source_type, moved_by, seconded_by, review_status)
            VALUES (?1, ?2, ?3, ?4, ?5, ?6, ?7, ?8, ?9, ?10)`
         )
           .bind(
@@ -219,7 +219,7 @@ async function handleBulkCreateDocuments(context: {
             'facebook',
             doc.moved_by || null,
             doc.seconded_by || null,
-            0
+            'pending'
           )
           .run();
 

@@ -130,14 +130,14 @@ const Ideas: FC = () => {
         ]}
       />
 
-      <div className='container mx-auto px-4 py-6 md:py-12'>
+      <div className='container mx-auto px-4 py-8 md:py-12'>
         {/* Header */}
         <header className='mb-8 text-center md:mb-12'>
           <div className='mb-4 flex items-center justify-center'>
             <div className='bg-kapwa-bg-surface text-kapwa-text-brand mr-4 rounded-full p-3'>
               <LightbulbIcon className='h-8 w-8' />
             </div>
-            <h1 className='text-kapwa-text-strong text-3xl font-bold md:text-4xl'>
+            <h1 className='text-kapwa-text-strong kapwa-heading-xl font-extrabold'>
               Project Ideas
             </h1>
           </div>

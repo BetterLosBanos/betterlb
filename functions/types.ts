@@ -21,10 +21,14 @@ export interface Env {
   // Admin Authentication
   GITHUB_CLIENT_ID?: string;
   GITHUB_CLIENT_SECRET?: string;
-  GOOGLE_CLIENT_ID?: string;
-  GOOGLE_CLIENT_SECRET?: string;
-  GOOGLE_REDIRECT_URI?: string;
   AUTHORIZED_USERS?: string;
+}
+
+// Cloudflare Pages function context with dynamic route params
+export interface PagesContext {
+  request: Request;
+  env: Env;
+  params?: Record<string, string>;
 }
 
 // Interface for Philippine city coordinates

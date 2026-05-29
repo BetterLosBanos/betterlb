@@ -77,7 +77,6 @@ export interface SessionResponse {
   date: string;
   present: string[];
   absent: string[];
-  ordinal_number: string;
   term?: Term;
 }
 

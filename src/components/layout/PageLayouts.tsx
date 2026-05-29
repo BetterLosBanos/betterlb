@@ -1,16 +1,12 @@
 import { ComponentType, ReactNode } from 'react';
 
 import { cn } from '@/lib/utils';
+import type { BreadcrumbItem } from '@/types/components';
 
 /**
  * 1. PageHero: Used in Layout files (centered, large)
  * Matches the "Portal" header style of BetterGov.ph
  */
-
-export interface BreadcrumbItem {
-  label: string;
-  href: string;
-}
 
 export function PageHero({
   title,

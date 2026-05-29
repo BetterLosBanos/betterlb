@@ -5,27 +5,27 @@
  */
 import { Env } from '../../types';
 import { cachedJson } from '../../utils/cache';
+import {
+  formatOrdinal,
+  formatTermName,
+  formatYearRange,
+} from '../../utils/formatters';
 import { CACHE_TTL, createKVCache } from '../../utils/kv-cache';
 
 interface TermResultRow {
   id: string;
   term_number: number;
-  ordinal: number;
-  name: string;
   start_date: string;
   end_date: string;
-  year_range: string;
-  mayor_id: string;
-  vice_mayor_id: string;
-  mayor_name: string;
-  mayor_first_name: string;
-  mayor_middle_name: string | null;
-  mayor_last_name: string;
-  vice_mayor_name: string;
-  vice_mayor_first_name: string;
-  vice_mayor_middle_name: string | null;
-  vice_mayor_last_name: string;
   created_at: string;
+  mayor_person_id: string | null;
+  mayor_first_name: string | null;
+  mayor_middle_name: string | null;
+  mayor_last_name: string | null;
+  vice_mayor_person_id: string | null;
+  vice_mayor_first_name: string | null;
+  vice_mayor_middle_name: string | null;
+  vice_mayor_last_name: string | null;
 }
 
 interface MemberCountRow {
@@ -62,19 +62,18 @@ async function getTermsList(context: { request: Request; env: Env }) {
     const result = await kvCache.get(
       cacheKey,
       async () => {
-        // Get all terms with mayor/vice mayor info
         const termsSql = `
           SELECT
-            t.id, t.term_number, t.ordinal, t.name, t.start_date, t.end_date, t.year_range,
-            t.mayor_id, t.vice_mayor_id,
-            pm.first_name || ' ' || pm.last_name as mayor_name,
+            t.id, t.term_number, t.start_date, t.end_date, t.created_at,
+            pm.id as mayor_person_id,
             pm.first_name as mayor_first_name, pm.middle_name as mayor_middle_name, pm.last_name as mayor_last_name,
-            pv.first_name || ' ' || pv.last_name as vice_mayor_name,
-            pv.first_name as vice_mayor_first_name, pv.middle_name as vice_mayor_middle_name, pv.last_name as vice_mayor_last_name,
-            t.created_at
+            pv.id as vice_mayor_person_id,
+            pv.first_name as vice_mayor_first_name, pv.middle_name as vice_mayor_middle_name, pv.last_name as vice_mayor_last_name
           FROM terms t
-          LEFT JOIN persons pm ON t.mayor_id = pm.id
-          LEFT JOIN persons pv ON t.vice_mayor_id = pv.id
+          LEFT JOIN memberships mm ON mm.term_id = t.id AND mm.role = 'Mayor'
+          LEFT JOIN persons pm ON mm.person_id = pm.id
+          LEFT JOIN memberships vm ON vm.term_id = t.id AND vm.role = 'Vice Mayor'
+          LEFT JOIN persons pv ON vm.person_id = pv.id
           ORDER BY t.term_number DESC
         `;
         const termsResult = await env.BETTERLB_DB.prepare(termsSql).all();
@@ -83,11 +82,9 @@ async function getTermsList(context: { request: Request; env: Env }) {
           return { terms: [] };
         }
 
-        // Get all term IDs for batch fetching counts (fixes N+1)
         const termIds = termsResult.results.map((t: TermResultRow) => t.id);
-
-        // Single aggregated query for all term member counts
         const placeholders = termIds.map(() => '?').join(',');
+
         const memberCountsSql = `
           SELECT term_id, COUNT(DISTINCT person_id) as count
           FROM memberships
@@ -105,13 +102,11 @@ async function getTermsList(context: { request: Request; env: Env }) {
           memberCountsMap.set(row.term_id, row.count);
         }
 
-        // Single aggregated query for all term document counts
         const docCountsSql = `
-          SELECT s.term_id, COUNT(d.id) as count
-          FROM documents d
-          JOIN sessions s ON d.session_id = s.id
-          WHERE s.term_id IN (${placeholders})
-          GROUP BY s.term_id
+          SELECT term_id, COUNT(*) as count
+          FROM documents
+          WHERE term_id IN (${placeholders})
+          GROUP BY term_id
         `;
         const docCountsResult = await env.BETTERLB_DB.prepare(docCountsSql)
           .bind(...termIds)
@@ -122,20 +117,23 @@ async function getTermsList(context: { request: Request; env: Env }) {
           docCountsMap.set(row.term_id, row.count);
         }
 
-        // Combine all data
         const terms = termsResult.results.map((term: TermResultRow) => ({
           id: term.id,
           term_number: term.term_number,
-          ordinal: term.ordinal,
-          name: term.name,
+          ordinal: formatOrdinal(term.term_number),
+          name: formatTermName(term.term_number),
           start_date: term.start_date,
           end_date: term.end_date,
-          year_range: term.year_range,
+          year_range: formatYearRange(term.start_date, term.end_date),
           executive: {
-            mayor_id: term.mayor_id,
-            mayor: term.mayor_name || term.mayor_id || 'TBD',
-            vice_mayor_id: term.vice_mayor_id,
-            vice_mayor: term.vice_mayor_name || term.vice_mayor_id || 'TBD',
+            mayor_id: term.mayor_person_id,
+            mayor: term.mayor_first_name
+              ? `${term.mayor_first_name} ${term.mayor_last_name}`
+              : 'TBD',
+            vice_mayor_id: term.vice_mayor_person_id,
+            vice_mayor: term.vice_mayor_first_name
+              ? `${term.vice_mayor_first_name} ${term.vice_mayor_last_name}`
+              : 'TBD',
           },
           member_count: memberCountsMap.get(term.id) || 0,
           document_count: docCountsMap.get(term.id) || 0,
@@ -157,21 +155,16 @@ async function getTermsList(context: { request: Request; env: Env }) {
 interface TermDetailRow {
   id: string;
   term_number: number;
-  ordinal: number;
-  name: string;
   start_date: string;
   end_date: string;
-  year_range: string;
-  mayor_id: string;
-  vice_mayor_id: string;
-  mayor_first_name: string;
+  mayor_person_id: string | null;
+  mayor_first_name: string | null;
   mayor_middle_name: string | null;
-  mayor_last_name: string;
-  vice_mayor_first_name: string;
+  mayor_last_name: string | null;
+  vice_mayor_person_id: string | null;
+  vice_mayor_first_name: string | null;
   vice_mayor_middle_name: string | null;
-  vice_mayor_last_name: string;
-  mayor: string;
-  vice_mayor: string;
+  vice_mayor_last_name: string | null;
 }
 
 interface CommitteeResultRow {
@@ -195,7 +188,6 @@ interface DocStatsResultRow {
 
 /**
  * GET /api/legislation/terms/:id
- * Get term with all members and statistics
  */
 async function getTermDetail(context: { request: Request; env: Env }) {
   const { env } = context;
@@ -210,15 +202,16 @@ async function getTermDetail(context: { request: Request; env: Env }) {
     const result = await kvCache.get(
       cacheKey,
       async () => {
-        // Get term with mayor and vice mayor details
         const termSql = `
           SELECT
             t.*,
             pm.id as mayor_person_id, pm.first_name as mayor_first_name, pm.middle_name as mayor_middle_name, pm.last_name as mayor_last_name,
             pv.id as vice_mayor_person_id, pv.first_name as vice_mayor_first_name, pv.middle_name as vice_mayor_middle_name, pv.last_name as vice_mayor_last_name
           FROM terms t
-          LEFT JOIN persons pm ON t.mayor_id = pm.id
-          LEFT JOIN persons pv ON t.vice_mayor_id = pv.id
+          LEFT JOIN memberships mm ON mm.term_id = t.id AND mm.role = 'Mayor'
+          LEFT JOIN persons pm ON mm.person_id = pm.id
+          LEFT JOIN memberships vm ON vm.term_id = t.id AND vm.role = 'Vice Mayor'
+          LEFT JOIN persons pv ON vm.person_id = pv.id
           WHERE t.id = ?
         `;
         const term = await env.BETTERLB_DB.prepare(termSql)
@@ -229,7 +222,6 @@ async function getTermDetail(context: { request: Request; env: Env }) {
           return { error: 'Term not found' };
         }
 
-        // Get all members with their roles and committee memberships
         const membersSql = `
           SELECT
             p.id, p.first_name, p.middle_name, p.last_name,
@@ -247,7 +239,6 @@ async function getTermDetail(context: { request: Request; env: Env }) {
           .bind(termId)
           .all();
 
-        // Reconstruct the frontend-expected structure: persons with memberships
         const personsMap = new Map<
           string,
           {
@@ -292,7 +283,6 @@ async function getTermDetail(context: { request: Request; env: Env }) {
               ],
             });
           }
-          // Add committee if present
           if (rowTyped.committee_id) {
             const person = personsMap.get(rowTyped.id)!;
             const committeeRow = row as { committee_role: string };
@@ -305,7 +295,6 @@ async function getTermDetail(context: { request: Request; env: Env }) {
 
         const persons = Array.from(personsMap.values());
 
-        // Get committees for this term
         const committeesSql = `
           SELECT
             c.id, c.name, c.type,
@@ -324,7 +313,6 @@ async function getTermDetail(context: { request: Request; env: Env }) {
           .bind(termId)
           .all<CommitteeResultRow>();
 
-        // Get session statistics
         const statsSql = `
           SELECT
             COUNT(*) as total_sessions,
@@ -338,14 +326,12 @@ async function getTermDetail(context: { request: Request; env: Env }) {
           .bind(termId)
           .first<StatsResultRow>();
 
-        // Get document statistics
         const docStatsSql = `
           SELECT
             type,
             COUNT(*) as count
-          FROM documents d
-          JOIN sessions s ON d.session_id = s.id
-          WHERE s.term_id = ?
+          FROM documents
+          WHERE term_id = ?
           GROUP BY type
         `;
         const docStatsResult = await env.BETTERLB_DB.prepare(docStatsSql)
@@ -355,22 +341,22 @@ async function getTermDetail(context: { request: Request; env: Env }) {
         return {
           id: term.id,
           term_number: term.term_number,
-          ordinal: term.ordinal,
-          name: term.name,
+          ordinal: formatOrdinal(term.term_number),
+          name: formatTermName(term.term_number),
           start_date: term.start_date,
           end_date: term.end_date,
-          year_range: term.year_range,
+          year_range: formatYearRange(term.start_date, term.end_date),
           executive: {
-            mayor_id: term.mayor_id,
+            mayor_id: term.mayor_person_id,
             mayor: term.mayor_first_name
               ? `${term.mayor_first_name} ${term.mayor_middle_name || ''} ${term.mayor_last_name}`.trim()
-              : term.mayor || 'TBD',
-            vice_mayor_id: term.vice_mayor_id,
+              : 'TBD',
+            vice_mayor_id: term.vice_mayor_person_id,
             vice_mayor: term.vice_mayor_first_name
               ? `${term.vice_mayor_first_name} ${term.vice_mayor_middle_name || ''} ${term.vice_mayor_last_name}`.trim()
-              : term.vice_mayor || 'TBD',
+              : 'TBD',
           },
-          persons, // Frontend expects persons array with memberships
+          persons,
           committees: committeesResult.results.map(c => ({
             id: c.id,
             name: c.name,

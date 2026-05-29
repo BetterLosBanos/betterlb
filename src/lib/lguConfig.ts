@@ -7,8 +7,9 @@ export interface LGUConfig {
     province: string;
     districtEngineeringOffice?: string;
     region: string;
+    /** ISO-like region code (e.g. "040000000") */
     regionCode: string;
-    type: 'municipality' | 'city';
+    type: 'municipality' | 'city' | 'province';
     officialWebsite: string;
     provinceWebsite: string;
   };
@@ -16,12 +17,9 @@ export interface LGUConfig {
     name: string;
     domain: string;
     baseUrl: string;
-    tagline: string;
     description: string;
     brandColor: string;
-    navbarTagline: string;
     footerBrandName: string;
-    footerTagline: string;
     logoWhitePath: string;
     navbarLogoPath: string;
     defaultOgImagePath: string;
