@@ -21,7 +21,7 @@ NC='\033[0m' # No Color
 # Configuration
 MIGRATIONS_DIR="db/migrations"
 DB_BINDING="BETTERLB_DB"
-DB_NAME="betterlb_openlgu"
+DB_NAME="betterlb-openlgu"
 WRANGLER_CMD="npx wrangler d1 execute"
 
 # Functions
@@ -64,9 +64,9 @@ check_schema_table() {
     local local_flag=$1
 
     if [ "$local_flag" = "--local" ]; then
-        result=$(npx wrangler d1 execute ${DB_BINDING} --local --command="SELECT name FROM sqlite_master WHERE type='table' AND name='schema_migrations';" 2>/dev/null || echo "")
+        result=$(${WRANGLER_CMD} ${DB_BINDING} --local --command="SELECT name FROM sqlite_master WHERE type='table' AND name='schema_migrations';" 2>/dev/null || echo "")
     else
-        result=$(npx wrangler d1 execute ${DB_NAME} --command="SELECT name FROM sqlite_master WHERE type='table' AND name='schema_migrations';" 2>/dev/null || echo "")
+        result=$(${WRANGLER_CMD} ${DB_NAME} --remote --command="SELECT name FROM sqlite_master WHERE type='table' AND name='schema_migrations';" 2>/dev/null || echo "")
     fi
 
     if echo "$result" | grep -q "schema_migrations"; then
@@ -83,14 +83,14 @@ create_schema_table() {
     log_info "Creating schema_migrations table..."
 
     local sql="CREATE TABLE IF NOT EXISTS schema_migrations (
-        migration TEXT PRIMARY KEY,
+        name TEXT PRIMARY KEY,
         applied_at DATETIME DEFAULT CURRENT_TIMESTAMP
     );"
 
     if [ "$local_flag" = "--local" ]; then
-        npx wrangler d1 execute ${DB_BINDING} --local --command="$sql"
+        ${WRANGLER_CMD} ${DB_BINDING} --local --command="$sql"
     else
-        npx wrangler d1 execute ${DB_NAME} --command="$sql"
+        ${WRANGLER_CMD} ${DB_NAME} --remote --command="$sql"
     fi
 
     log_success "Schema migrations table created"
@@ -102,9 +102,9 @@ get_applied_migrations() {
 
     if check_schema_table "$local_flag"; then
         if [ "$local_flag" = "--local" ]; then
-            npx wrangler d1 execute ${DB_BINDING} --local --command="SELECT migration FROM schema_migrations ORDER BY migration;" 2>/dev/null | grep -v "^─" | tail -n +3 | sed 's/^| //' | sed 's/ |$//' || echo ""
+            ${WRANGLER_CMD} ${DB_BINDING} --local --command="SELECT name FROM schema_migrations ORDER BY name;" 2>/dev/null | grep -v "^─" | tail -n +3 | sed 's/^| //' | sed 's/ |$//' || echo ""
         else
-            npx wrangler d1 execute ${DB_NAME} --command="SELECT migration FROM schema_migrations ORDER BY migration;" 2>/dev/null | grep -v "^─" | tail -n +3 | sed 's/^| //' | sed 's/ |$//' || echo ""
+            ${WRANGLER_CMD} ${DB_NAME} --remote --command="SELECT name FROM schema_migrations ORDER BY name;" 2>/dev/null | grep -v "^─" | tail -n +3 | sed 's/^| //' | sed 's/ |$//' || echo ""
         fi
     else
         echo ""
@@ -121,18 +121,18 @@ run_migration() {
 
     # Read and execute migration
     if [ "$local_flag" = "--local" ]; then
-        npx wrangler d1 execute ${DB_BINDING} --local --file="$migration_file"
+        ${WRANGLER_CMD} ${DB_BINDING} --local --file="$migration_file"
     else
-        npx wrangler d1 execute ${DB_NAME} --file="$migration_file"
+        ${WRANGLER_CMD} ${DB_NAME} --remote --file="$migration_file"
     fi
 
     # Record migration
-    local sql="INSERT INTO schema_migrations (migration) VALUES ('$migration_name');"
+    local sql="INSERT INTO schema_migrations (name) VALUES ('$migration_name');"
 
     if [ "$local_flag" = "--local" ]; then
-        npx wrangler d1 execute ${DB_BINDING} --local --command="$sql" > /dev/null
+        ${WRANGLER_CMD} ${DB_BINDING} --local --command="$sql" > /dev/null
     else
-        npx wrangler d1 execute ${DB_NAME} --command="$sql" > /dev/null
+        ${WRANGLER_CMD} ${DB_NAME} --remote --command="$sql" > /dev/null
     fi
 
     log_success "Migration applied: $migration_name"
@@ -327,7 +327,7 @@ verify_migrations() {
             has_errors=1
         fi
 
-        if grep -E "DELETE FROM" "$migration" | grep -v "WHERE" | grep -v "DELETE FROM.*;" > /dev/null; then
+        if grep -Ei "DELETE FROM" "$migration" | grep -viE "(WHERE|^\s*--)" > /dev/null; then
             log_error "$migration_name contains DELETE without WHERE clause"
             has_errors=1
         fi
@@ -355,7 +355,9 @@ case "${1:-}" in
         run_migrations "--local" "local"
         ;;
     remote|production|prod)
-        run_migrations "" "production" "true"
+        auto_confirm="false"
+        [ "${2:-}" = "--yes" ] && auto_confirm="true"
+        run_migrations "" "production" "$auto_confirm"
         ;;
     status)
         show_status
