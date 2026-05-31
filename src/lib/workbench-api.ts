@@ -1,6 +1,8 @@
 const WORKBENCH_API =
   import.meta.env.VITE_OPENLGU_REVIEW_API ||
-  'http://127.0.0.1:8789/api/workbench';
+  (import.meta.env.DEV
+    ? 'http://127.0.0.1:8789/api/workbench'
+    : '/api/admin/workbench');
 
 export type WorkbenchTab =
   | 'missing_dates'
@@ -112,6 +114,7 @@ async function fetchWorkbench<T>(
 ): Promise<T> {
   const response = await fetch(`${WORKBENCH_API}${endpoint}`, {
     ...options,
+    credentials: 'include',
     headers: {
       'Content-Type': 'application/json',
       ...options.headers,
@@ -144,9 +147,15 @@ export const workbenchApi = {
   stats: () => fetchWorkbench<WorkbenchStats>('/stats'),
   terms: () => fetchWorkbench<{ items: WorkbenchTerm[] }>('/terms'),
   reload: () =>
-    fetchWorkbench<{ ok: boolean; error: string | null }>('/reload', {
-      method: 'POST',
-    }),
+    // Deployed workbench doesn't need reload — data lives in D1
+    import.meta.env.DEV
+      ? fetchWorkbench<{ ok: boolean; error: string | null }>('/reload', {
+          method: 'POST',
+        })
+      : Promise.resolve({ ok: true, error: null } as {
+          ok: boolean;
+          error: string | null;
+        }),
   stagedDocuments: (params: {
     tab: WorkbenchTab;
     status: WorkbenchStatus;

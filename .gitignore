@@ -76,3 +76,7 @@ docs/audits/*
 
 # Graphify output
 graphify-out/
+
+# Memory system
+context/transcripts/
+.memsearch/
