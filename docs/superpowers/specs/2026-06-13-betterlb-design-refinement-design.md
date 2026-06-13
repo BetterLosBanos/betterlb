@@ -79,16 +79,16 @@ Sidebar currently appears on all 7 major sections, each with a bespoke `*Sidebar
 
 ### Tiering
 
-**Keep sidebar** (deep catalogs with real lateral nav):
+**Keep sidebar** (deep catalogs with real lateral nav over many siblings):
 - `src/pages/services/layout.tsx` → `ServicesSidebar`
 - `src/pages/openlgu/layout.tsx` → `OpenLGUSidebar`
+- `src/pages/government/departments/layout.tsx` → `DepartmentsSidebar` (~18 offices, detail-page catalog)
+- `src/pages/government/barangays/layout.tsx` → `BarangaysSidebar` (all barangays, detail-page catalog)
 
-**Drop sidebar** → `PageHeader` + horizontal `SubNav` (where sub-pages exist), else plain content:
-- `src/pages/statistics/layout.tsx` → remove `StatisticsSidebar`
-- `src/pages/transparency/layout.tsx` → remove `TransparencySidebar`
-- `src/pages/government/departments/layout.tsx` → remove `DepartmentsSidebar`
-- `src/pages/government/barangays/layout.tsx` → remove `BarangaysSidebar`
-- `src/pages/government/elected-officials/layout.tsx` → remove `ElectedOfficialsSidebar`
+**Drop sidebar** → `PageHeader` + horizontal `SubNav` (only 2–3 shallow sub-pages each):
+- `src/pages/statistics/layout.tsx` → remove `StatisticsSidebar` (3 items)
+- `src/pages/transparency/layout.tsx` → remove `TransparencySidebar` (3 items)
+- `src/pages/government/elected-officials/layout.tsx` → remove `ElectedOfficialsSidebar` (2 items)
 
 ### New shared component: `SubNav`
 - Location: `src/components/navigation/SubNav.tsx` (+ barrel export).
@@ -101,13 +101,13 @@ Sidebar currently appears on all 7 major sections, each with a bespoke `*Sidebar
 - Lighten `ModuleHeader` weight (reduce competing frames). Sidebar-retaining pages (Services, OpenLGU) keep a lighter divider rather than a full bordered box where feasible.
 
 ### Cleanup
-- Delete the 5 unused bespoke sidebar components after migration: `StatisticsSidebar`, `TransparencySidebar`, `DepartmentsSidebar`, `BarangaysSidebar`, `ElectedOfficialsSidebar`.
-- `SidebarLayout` remains (used by Services + OpenLGU).
+- Delete the 3 unused bespoke sidebar components after migration: `StatisticsSidebar`, `TransparencySidebar`, `ElectedOfficialsSidebar`.
+- `SidebarLayout` remains (used by Services, OpenLGU, Departments, Barangays).
 
 ### Acceptance
-- Statistics, Transparency, Departments, Barangays, Elected Officials render with no sidebar; lateral nav (where applicable) via `SubNav`.
-- Services + OpenLGU retain sidebars.
-- 5 bespoke sidebar components deleted; no dead imports.
+- Statistics, Transparency, Elected Officials render with no sidebar; lateral nav via `SubNav`.
+- Services, OpenLGU, Departments, Barangays retain sidebars.
+- 3 bespoke sidebar components deleted; no dead imports.
 - No nested bordered-card-inside-header on de-sidebar'd pages.
 - `SubNav` keyboard-navigable, `aria-current` on active, focus visible.
 - Existing layout tests updated and passing.
