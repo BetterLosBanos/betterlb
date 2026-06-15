@@ -106,15 +106,53 @@ export async function verifyAdminSession(
     throw new AuthError('User no longer authorized', 403);
   }
 
-  // Extract role from session, default to VIEWER for security
-  // Old sessions without role must re-authenticate for admin access
-  const role = session.role ?? UserRole.VIEWER;
+  // Resolve role fresh from env on every request (authoritative source of
+  // truth). This means role changes take effect immediately and existing
+  // sessions don't need to re-authenticate. Defaults to VIEWER for security.
+  const role = resolveUserRole(session.user.login, env);
 
   return {
     user: session.user,
     sessionId,
     role,
   };
+}
+
+/**
+ * Parse a JSON array of GitHub logins from an env var.
+ * Returns [] on missing/invalid input (fail closed).
+ */
+function parseLoginList(raw: string | undefined, varName: string): string[] {
+  if (!raw) return [];
+  try {
+    const parsed = JSON.parse(raw);
+    if (!Array.isArray(parsed)) {
+      console.error(`${varName} is not an array:`, typeof parsed);
+      return [];
+    }
+    return parsed;
+  } catch (error) {
+    console.error(`Failed to parse ${varName} environment variable:`, error);
+    return [];
+  }
+}
+
+/**
+ * Resolve a user's role from env-configured login lists.
+ * Precedence: ADMIN_USERS > EDITOR_USERS > VIEWER (default).
+ *
+ * @param login - GitHub login of an already-authorized user
+ * @param env - Worker environment
+ * @returns The user's role (VIEWER if not listed)
+ */
+export function resolveUserRole(login: string, env: Env): UserRole {
+  const admins = parseLoginList(env.ADMIN_USERS, 'ADMIN_USERS');
+  if (admins.includes(login)) return UserRole.ADMIN;
+
+  const editors = parseLoginList(env.EDITOR_USERS, 'EDITOR_USERS');
+  if (editors.includes(login)) return UserRole.EDITOR;
+
+  return UserRole.VIEWER;
 }
 
 /**

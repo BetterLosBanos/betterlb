@@ -4,6 +4,7 @@
  */
 import { Env } from '../../../types';
 import { parseCookies } from '../../../utils/cookies';
+import { resolveUserRole } from '../../../utils/admin-auth';
 
 interface GitHubUser {
   id: number;
@@ -63,5 +64,6 @@ export async function onRequestGet(context: { request: Request; env: Env }) {
   return Response.json({
     authenticated: true,
     user: session.user,
+    role: resolveUserRole(session.user.login, env),
   });
 }

@@ -124,20 +124,6 @@ const AdminOpenLguWorkbench = lazy(
   () => import('@/pages/admin/OpenLguWorkbench')
 );
 
-/** Dev-only wrapper — shows fallback in production builds */
-function WorkbenchGuard() {
-  if (!import.meta.env.DEV) {
-    return (
-      <div className='flex min-h-[40vh] items-center justify-center'>
-        <p className='text-kapwa-text-muted text-sm'>
-          Review workbench is only available in development mode.
-        </p>
-      </div>
-    );
-  }
-  return <AdminOpenLguWorkbench />;
-}
-
 // NotFound — keep eager, it's tiny and needs to render instantly
 import NotFound from '@/pages/NotFound';
 
@@ -291,7 +277,10 @@ function AppContent() {
             <Route path='audit-logs' element={<AdminAuditLog />} />
             <Route path='review-queue' element={<AdminReviewQueue />} />
             <Route path='reconcile' element={<AdminReconcile />} />
-            <Route path='openlgu/workbench' element={<WorkbenchGuard />} />
+            <Route
+              path='openlgu/workbench'
+              element={<AdminOpenLguWorkbench />}
+            />
           </Route>
 
           {/* Catch-all 404 */}
