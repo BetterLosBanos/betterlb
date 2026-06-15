@@ -1,0 +1,16 @@
+# Copy to `.dev.vars` (gitignored) and fill in real values.
+# Wrangler auto-loads `.dev.vars` for `wrangler pages dev`.
+#
+# Create a GitHub OAuth App for local dev:
+#   https://github.com/settings/developers -> New OAuth App
+#   Homepage URL:               http://localhost:8788
+#   Authorization callback URL: http://localhost:8788/api/admin/auth/callback
+GITHUB_CLIENT_ID=your_dev_oauth_client_id
+GITHUB_CLIENT_SECRET=your_dev_oauth_client_secret
+
+# Who may sign in (JSON array of GitHub logins). Empty = nobody (fail-closed).
+AUTHORIZED_USERS=["miconficker"]
+
+# Role assignment (JSON arrays). Absent from both -> viewer (read-only).
+ADMIN_USERS=["miconficker"]
+# EDITOR_USERS=["some-volunteer"]
