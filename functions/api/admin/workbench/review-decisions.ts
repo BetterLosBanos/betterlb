@@ -6,7 +6,11 @@
 
 import { Env } from '../../../types';
 import { AuthContext, withAuth } from '../../../utils/admin-auth';
-import { createDecision, type ReviewEvidence } from './utils';
+import {
+  createDecision,
+  type ReviewEvidence,
+  type ReviewDecisionRow,
+} from './utils';
 import { badRequest, serverError } from '../../../utils/error-response';
 import { Permission } from '../../../utils/rbac';
 
@@ -36,9 +40,11 @@ export async function handleGetReviewDecisions(context: {
   }
   sql += ' ORDER BY created_at DESC';
 
-  const result = await env.BETTERLB_DB.prepare(sql).bind(...params).all();
+  const result = await env.BETTERLB_DB.prepare(sql)
+    .bind(...params)
+    .all<ReviewDecisionRow>();
 
-  const items = result.results.map((d: any) => ({
+  const items = result.results.map(d => ({
     id: d.id,
     source_record_id: d.source_record_id,
     staged_document_id: d.staged_document_id,

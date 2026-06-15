@@ -122,6 +122,21 @@ export interface SourceRecordRow {
   raw_payload_json: string;
 }
 
+/** Raw `review_decisions` row as stored in D1 (JSON columns unparsed). */
+export interface ReviewDecisionRow {
+  id: string;
+  source_record_id: string;
+  staged_document_id: string | null;
+  source_content_hash: string | null;
+  decision_type: ReviewDecision['decision_type'];
+  field: ReviewDecision['field'];
+  value: string | null;
+  derived_json: string | null;
+  evidence_json: string | null;
+  created_at: string;
+  created_by: string;
+}
+
 // ============================================================================
 // Stats
 // ============================================================================
@@ -458,9 +473,9 @@ export async function queryDecoratedDocument(
       `SELECT * FROM review_decisions WHERE source_record_id = ? ORDER BY created_at DESC`
     )
     .bind(row.source_record_id)
-    .all();
+    .all<ReviewDecisionRow>();
 
-  const decisions: ReviewDecision[] = decisionsResult.results.map((d: any) => ({
+  const decisions: ReviewDecision[] = decisionsResult.results.map(d => ({
     id: d.id,
     source_record_id: d.source_record_id,
     staged_document_id: d.staged_document_id,
