@@ -64,8 +64,10 @@ docs/decisions/*
 docs/plans/*
 docs/audits/*
 !docs/adr/
-!docs/superpowers/plans/
-!docs/superpowers/specs/
+
+# AI planning artifacts live in the workspace-level workbench, not in-repo
+# (../workbench/betterlb/) — see workbench/README.md
+docs/superpowers/
 
 # AI artifacts
 .agents/
