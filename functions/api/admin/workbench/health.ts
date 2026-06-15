@@ -5,6 +5,7 @@
 
 import { Env } from '../../../types';
 import { AuthContext, withAuth } from '../../../utils/admin-auth';
+import { Permission } from '../../../utils/rbac';
 
 export async function handleGetHealth(context: {
   request: Request;
@@ -46,4 +47,6 @@ export async function handleGetHealth(context: {
   });
 }
 
-export const onRequestGet = withAuth(handleGetHealth);
+export const onRequestGet = withAuth(handleGetHealth, {
+  requirePermission: Permission.WORKBENCH_READ,
+});

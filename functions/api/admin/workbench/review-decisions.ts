@@ -6,12 +6,9 @@
 
 import { Env } from '../../../types';
 import { AuthContext, withAuth } from '../../../utils/admin-auth';
-import {
-  queryDecoratedDocument,
-  createDecision,
-  type ReviewEvidence,
-} from './utils';
+import { createDecision, type ReviewEvidence } from './utils';
 import { badRequest, serverError } from '../../../utils/error-response';
+import { Permission } from '../../../utils/rbac';
 
 export interface CreateDecisionBody {
   source_record_id: string;
@@ -32,12 +29,14 @@ export async function handleGetReviewDecisions(context: {
   const sourceRecordId = url.searchParams.get('source_record_id');
 
   let sql = 'SELECT * FROM review_decisions';
+  const params: string[] = [];
   if (sourceRecordId) {
-    sql += ` WHERE source_record_id = '${sourceRecordId}'`;
+    sql += ' WHERE source_record_id = ?';
+    params.push(sourceRecordId);
   }
   sql += ' ORDER BY created_at DESC';
 
-  const result = await env.BETTERLB_DB.prepare(sql).all();
+  const result = await env.BETTERLB_DB.prepare(sql).bind(...params).all();
 
   const items = result.results.map((d: any) => ({
     id: d.id,
@@ -141,7 +140,10 @@ export async function handleCreateDecision(context: {
   }
 }
 
-export const onRequestGet = withAuth(handleGetReviewDecisions);
+export const onRequestGet = withAuth(handleGetReviewDecisions, {
+  requirePermission: Permission.WORKBENCH_READ,
+});
 export const onRequestPost = withAuth(handleCreateDecision, {
   requireCSRF: true,
+  requirePermission: Permission.WORKBENCH_WRITE,
 });

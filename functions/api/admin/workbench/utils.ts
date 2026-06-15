@@ -335,16 +335,19 @@ export async function queryStagedDocuments(
     }
   }
 
-  // Search filter
+  // Search filter (bound params — never interpolate user input)
   let searchFilter = '';
+  const searchParams: string[] = [];
   if (search) {
     searchFilter = `AND (
-      sd.document_type LIKE '%${search}%'
-      OR sd.number LIKE '%${search}%'
-      OR sd.normalized_number LIKE '%${search}%'
-      OR sd.title LIKE '%${search}%'
-      OR sd.source_record_id LIKE '%${search}%'
+      sd.document_type LIKE ?
+      OR sd.number LIKE ?
+      OR sd.normalized_number LIKE ?
+      OR sd.title LIKE ?
+      OR sd.source_record_id LIKE ?
     )`;
+    const like = `%${search}%`;
+    searchParams.push(like, like, like, like, like);
   }
 
   const whereSQL = `WHERE ${whereClause} ${statusFilter} ${searchFilter}`;
@@ -352,6 +355,7 @@ export async function queryStagedDocuments(
   // Count query
   const countResult = await db
     .prepare(`SELECT COUNT(*) as count FROM staged_documents sd ${whereSQL}`)
+    .bind(...searchParams)
     .first<{ count: number }>();
   const total = countResult?.count || 0;
 
@@ -372,7 +376,10 @@ export async function queryStagedDocuments(
     LIMIT ? OFFSET ?
   `;
 
-  const itemsResult = await db.prepare(dataQuery).bind(limit, offset).all();
+  const itemsResult = await db
+    .prepare(dataQuery)
+    .bind(...searchParams, limit, offset)
+    .all();
 
   return {
     items: itemsResult.results.map(row => ({

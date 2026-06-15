@@ -15,6 +15,7 @@ import {
   parsePaginationParam,
   PAGINATION_LIMITS,
 } from '../../../utils/pagination';
+import { Permission } from '../../../utils/rbac';
 
 export async function handleGetStagedDocuments(context: {
   request: Request;
@@ -72,4 +73,6 @@ export async function handleGetStagedDocuments(context: {
   return Response.json(result);
 }
 
-export const onRequestGet = withAuth(handleGetStagedDocuments);
+export const onRequestGet = withAuth(handleGetStagedDocuments, {
+  requirePermission: Permission.WORKBENCH_READ,
+});

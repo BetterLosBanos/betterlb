@@ -5,6 +5,7 @@
 
 import { Env } from '../../../types';
 import { AuthContext, withAuth } from '../../../utils/admin-auth';
+import { Permission } from '../../../utils/rbac';
 import { queryTerms } from './utils';
 
 export async function handleGetTerms(context: {
@@ -17,4 +18,6 @@ export async function handleGetTerms(context: {
   return Response.json({ items: terms });
 }
 
-export const onRequestGet = withAuth(handleGetTerms);
+export const onRequestGet = withAuth(handleGetTerms, {
+  requirePermission: Permission.WORKBENCH_READ,
+});

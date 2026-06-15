@@ -5,6 +5,7 @@
 
 import { Env } from '../../../types';
 import { AuthContext, withAuth } from '../../../utils/admin-auth';
+import { Permission } from '../../../utils/rbac';
 import { queryStats } from './utils';
 
 export async function handleGetStats(context: {
@@ -17,4 +18,6 @@ export async function handleGetStats(context: {
   return Response.json(stats);
 }
 
-export const onRequestGet = withAuth(handleGetStats);
+export const onRequestGet = withAuth(handleGetStats, {
+  requirePermission: Permission.WORKBENCH_READ,
+});
