@@ -9,9 +9,6 @@ import {
   AuditTargetTypes,
 } from '../../../utils/audit-log';
 
-const GITHUB_CLIENT_ID = '__GITHUB_CLIENT_ID__';
-const GITHUB_CLIENT_SECRET = '__GITHUB_CLIENT_SECRET__';
-
 const AUTHORIZED_USERS: string[] = [];
 
 interface GitHubUser {
@@ -31,6 +28,14 @@ interface AdminSession {
 export async function onRequestGet(context: { request: Request; env: Env }) {
   const { request, env } = context;
   const url = new URL(request.url);
+
+  // Fail loudly if the OAuth app isn't configured (see login.ts).
+  if (!env.GITHUB_CLIENT_ID || !env.GITHUB_CLIENT_SECRET) {
+    console.error(
+      'GITHUB_CLIENT_ID/GITHUB_CLIENT_SECRET not configured for this environment'
+    );
+    return Response.redirect(`${url.origin}/admin?error=config`, 302);
+  }
 
   const code = url.searchParams.get('code');
   const state = url.searchParams.get('state');
@@ -59,8 +64,8 @@ export async function onRequestGet(context: { request: Request; env: Env }) {
           'Content-Type': 'application/json',
         },
         body: JSON.stringify({
-          client_id: env.GITHUB_CLIENT_ID || GITHUB_CLIENT_ID,
-          client_secret: env.GITHUB_CLIENT_SECRET || GITHUB_CLIENT_SECRET,
+          client_id: env.GITHUB_CLIENT_ID,
+          client_secret: env.GITHUB_CLIENT_SECRET,
           code,
           redirect_uri: `${url.origin}/api/admin/auth/callback`,
         }),
