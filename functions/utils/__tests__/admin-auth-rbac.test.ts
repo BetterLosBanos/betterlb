@@ -33,6 +33,21 @@ describe('withAuth with RBAC', () => {
   });
 
   const createSessionWithRole = async (login: string, role: UserRole) => {
+    // Roles are resolved from env (authoritative source of truth), not from
+    // the session blob. Register the login in the matching env list so
+    // resolveUserRole() returns the intended role. VIEWER is the default.
+    if (role === UserRole.ADMIN) {
+      const admins = mockEnv.ADMIN_USERS ? JSON.parse(mockEnv.ADMIN_USERS) : [];
+      admins.push(login);
+      mockEnv.ADMIN_USERS = JSON.stringify(admins);
+    } else if (role === UserRole.EDITOR) {
+      const editors = mockEnv.EDITOR_USERS
+        ? JSON.parse(mockEnv.EDITOR_USERS)
+        : [];
+      editors.push(login);
+      mockEnv.EDITOR_USERS = JSON.stringify(editors);
+    }
+
     const sessionId = `session-${login}-${Math.random()}`;
     const sessionData = {
       user: {
@@ -44,7 +59,6 @@ describe('withAuth with RBAC', () => {
       },
       login_at: new Date().toISOString(),
       expires_at: new Date(Date.now() + 3600000).toISOString(),
-      role, // Include role in session
     };
 
     await mockKV.put(`session:${sessionId}`, JSON.stringify(sessionData));

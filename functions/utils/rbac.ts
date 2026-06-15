@@ -44,6 +44,10 @@ export enum Permission {
   RECONCILE = 'reconcile',
   PARSE_FACEBOOK = 'parse_facebook',
 
+  // Workbench permissions
+  WORKBENCH_READ = 'workbench:read',
+  WORKBENCH_WRITE = 'workbench:write',
+
   // Admin permissions
   ADMIN_SETTINGS = 'admin:settings',
   ADMIN_AUDIT_LOGS = 'admin:audit_logs',
@@ -76,6 +80,9 @@ const ROLE_PERMISSIONS: Record<UserRole, Permission[]> = {
     // Reconciliation
     Permission.RECONCILE,
     Permission.PARSE_FACEBOOK,
+    // Workbench
+    Permission.WORKBENCH_READ,
+    Permission.WORKBENCH_WRITE,
     // Admin
     Permission.ADMIN_SETTINGS,
     Permission.ADMIN_AUDIT_LOGS,
@@ -97,6 +104,9 @@ const ROLE_PERMISSIONS: Record<UserRole, Permission[]> = {
     // Reconciliation - allowed
     Permission.RECONCILE,
     Permission.PARSE_FACEBOOK,
+    // Workbench - read and write
+    Permission.WORKBENCH_READ,
+    Permission.WORKBENCH_WRITE,
   ],
   [UserRole.VIEWER]: [
     // Read-only permissions
@@ -104,6 +114,8 @@ const ROLE_PERMISSIONS: Record<UserRole, Permission[]> = {
     Permission.PERSONS_READ,
     Permission.SESSIONS_READ,
     Permission.REVIEW_QUEUE_READ,
+    // Workbench - read only
+    Permission.WORKBENCH_READ,
   ],
 };
 

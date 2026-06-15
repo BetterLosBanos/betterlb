@@ -35,7 +35,6 @@
   },
   "dependencies": {
     "@bettergov/kapwa": "^1.2.4",
-    "@betterlb/ui": "file:../betterlb-ui",
     "@icons-pack/react-simple-icons": "^13.7.0",
     "@radix-ui/react-dialog": "^1.0.5",
     "@radix-ui/react-dropdown-menu": "^2.1.0",

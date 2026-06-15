@@ -48,6 +48,46 @@ The Authentication API handles GitHub OAuth login, session management, logout, a
 
 ---
 
+## Roles & Environment Configuration
+
+Roles are resolved **fresh on every request** from environment variables (the
+authoritative source of truth), not stored in the session. This means role
+changes take effect immediately without requiring re-login.
+
+| Role | Source env var | Workbench access |
+| --- | --- | --- |
+| `admin` | `ADMIN_USERS` | read + write, all admin operations |
+| `editor` | `EDITOR_USERS` | read + write |
+| `viewer` | _default_ (in `AUTHORIZED_USERS` but neither list) | read-only |
+
+Resolution precedence: `ADMIN_USERS` → `EDITOR_USERS` → `viewer`.
+
+### Required secrets (set in Cloudflare — never commit)
+
+The public repo contains **no secrets**. The security boundary is config stored
+in Cloudflare, not code. Set these before deploying:
+
+```bash
+# Encrypted secrets:
+npx wrangler pages secret put GITHUB_CLIENT_SECRET
+npx wrangler pages secret put AUTHORIZED_USERS   # e.g. ["miconficker"]
+npx wrangler pages secret put ADMIN_USERS        # e.g. ["miconficker"]
+npx wrangler pages secret put EDITOR_USERS       # optional, e.g. ["volunteer1"]
+
+# Plain var (not sensitive):
+#   GITHUB_CLIENT_ID
+```
+
+> **Fail-closed:** if `AUTHORIZED_USERS` is empty or unset, **no one** is
+> authorized. This is by design. Cloning the public repo grants no DB access —
+> writes require a valid OAuth session, allowlist membership, the matching
+> permission, and a CSRF token, all enforced server-side in the deployed Worker.
+>
+> **Never** set `VITE_ADMIN_MOCK_MODE` in any deployed environment — it bypasses
+> all authentication.
+
+---
+
 ## Endpoints
 
 ### Login

@@ -22,6 +22,10 @@ export interface Env {
   GITHUB_CLIENT_ID?: string;
   GITHUB_CLIENT_SECRET?: string;
   AUTHORIZED_USERS?: string;
+  // Role assignment (JSON arrays of GitHub logins). A login absent from both
+  // lists but present in AUTHORIZED_USERS defaults to VIEWER (read-only).
+  ADMIN_USERS?: string;
+  EDITOR_USERS?: string;
 }
 
 // Cloudflare Pages function context with dynamic route params

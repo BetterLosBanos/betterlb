@@ -182,19 +182,6 @@ export default function OpenLguWorkbench() {
     await load();
   }
 
-  if (!import.meta.env.DEV) {
-    return (
-      <Card className='mt-8'>
-        <CardContent>
-          <p className='text-kapwa-text-support text-sm'>
-            OpenLGU Local Review Workbench is only available in local
-            development.
-          </p>
-        </CardContent>
-      </Card>
-    );
-  }
-
   return (
     <div className='mt-8 space-y-6'>
       <section className='flex flex-col gap-4 lg:flex-row lg:items-end lg:justify-between'>
@@ -202,9 +189,9 @@ export default function OpenLguWorkbench() {
           <div className='flex items-center gap-3'>
             <FileSearch className='text-kapwa-text-brand h-7 w-7' />
             <h2 className='text-kapwa-text-strong text-2xl font-bold'>
-              OpenLGU Local Review Workbench
+              OpenLGU Review Workbench
             </h2>
-            <Badge variant='warning'>Local Only</Badge>
+            {import.meta.env.DEV && <Badge variant='warning'>Local Only</Badge>}
           </div>
           <p className='text-kapwa-text-support mt-2 max-w-3xl text-sm'>
             Review staged source records and write append-only local decisions.
