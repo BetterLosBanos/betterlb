@@ -1,4 +1,4 @@
-import { FC, useMemo, useState } from 'react';
+import { FC, useId, useMemo, useState } from 'react';
 
 import { Link } from 'react-router-dom';
 
@@ -45,6 +45,8 @@ interface QuickAccessCard {
 const Hero: FC = () => {
   const { t } = useTranslation('common');
   const [query, setQuery] = useState('');
+  const listboxId = useId();
+  const showResults = query.trim().length > 0;
 
   const fuse = useMemo(() => {
     return new Fuse(servicesData as Service[], {
@@ -68,38 +70,35 @@ const Hero: FC = () => {
   // Random services from merged-services - using plain language titles
   const randomServices = useMemo(() => {
     const services = mergedServicesData as MergedService[];
-    // Filter services that have plainLanguageName
     const servicesWithPlainNames = services.filter(s => s.plainLanguageName);
-    // Shuffle and pick 2
     const shuffled = [...servicesWithPlainNames].sort(
       () => Math.random() - 0.5
     );
     return shuffled.slice(0, 2);
   }, []);
 
-  // Quick access cards for key sections
   const quickAccessCards: QuickAccessCard[] = [
     {
-      title: 'Financial Reports',
-      description: 'Budget & income statements',
+      title: t('hero.financialReports'),
+      description: t('hero.financialReportsDesc'),
       to: '/transparency/financial',
       icon: <DollarSignIcon className='w-6 h-6' />,
     },
     {
-      title: 'Infrastructure',
-      description: 'Track municipal projects',
+      title: t('hero.infrastructure'),
+      description: t('hero.infrastructureDesc'),
       to: '/transparency/infrastructure',
       icon: <BuildingIcon className='w-6 h-6' />,
     },
     {
-      title: 'Legislation',
-      description: 'Ordinances & resolutions',
+      title: t('hero.legislation'),
+      description: t('hero.legislationDesc'),
       to: '/openlgu',
       icon: <GavelIcon className='w-6 h-6' />,
     },
     {
-      title: 'Statistics',
-      description: 'Population & demographics',
+      title: t('hero.statistics'),
+      description: t('hero.statisticsDesc'),
       to: '/statistics',
       icon: <BarChart3Icon className='w-6 h-6' />,
     },
@@ -109,7 +108,6 @@ const Hero: FC = () => {
     <div className='py-12 from-kapwa-brand-600 to-kapwa-brand-700 bg-linear-to-r text-kapwa-text-inverse md:py-24'>
       <div className='container px-4 mx-auto'>
         <div className='grid grid-cols-1 gap-8 items-center lg:grid-cols-2'>
-          {/* Left section: title + search + quick categories */}
           <div className='animate-fade-in'>
             <h1 className='mb-4 text-kapwa-text-inverse kapwa-heading-xl'>
               {t('hero.title')}
@@ -118,39 +116,70 @@ const Hero: FC = () => {
               {t('hero.subtitle')}
             </p>
 
-            {/* Search input */}
             <div className='mb-4'>
+              <label htmlFor='hero-service-search' className='sr-only'>
+                {t('hero.searchLabel')}
+              </label>
               <SearchInput
+                id='hero-service-search'
+                role='combobox'
+                aria-expanded={showResults}
+                aria-controls={listboxId}
+                aria-autocomplete='list'
+                aria-label={t('hero.searchLabel')}
                 value={query}
                 onChangeValue={setQuery}
-                placeholder={'Search services...'}
+                placeholder={t('hero.searchPlaceholder')}
                 className='bg-kapwa-bg-surface/80'
               />
             </div>
 
-            {/* Top 5 search results */}
-            {query && results.length > 0 && (
-              <div className='overflow-y-auto max-h-80 rounded-lg shadow-md bg-kapwa-bg-surface/90 text-kapwa-text-strong'>
+            <div
+              id={listboxId}
+              role='status'
+              aria-live='polite'
+              className='sr-only'
+            >
+              {showResults
+                ? `${results.length} result${results.length === 1 ? '' : 's'}`
+                : ''}
+            </div>
+
+            {showResults && results.length > 0 && (
+              <ul
+                role='listbox'
+                aria-label='Matching services'
+                className='overflow-y-auto max-h-80 rounded-lg shadow-md bg-kapwa-bg-surface/90 text-kapwa-text-strong'
+              >
                 {results.slice(0, 5).map(hit => (
-                  <Link
-                    key={hit.slug}
-                    to={`/services/${hit.slug}`}
-                    className='block p-3 border-b hover:bg-kapwa-bg-hover last:border-none'
-                  >
-                    <strong>
-                      {hit.service || hit.office_name || hit.office}
-                    </strong>
-                    {hit.description && (
-                      <p className='text-kapwa-text-support kapwa-body-sm-default'>
-                        {hit.description}
-                      </p>
-                    )}
-                  </Link>
+                  <li key={hit.slug} role='option'>
+                    <Link
+                      to={`/services/${hit.slug}`}
+                      className='block p-3 border-b border-kapwa-border-weak hover:bg-kapwa-bg-hover focus-visible:bg-kapwa-bg-hover focus-visible:outline-none last:border-none'
+                    >
+                      <strong>
+                        {hit.service || hit.office_name || hit.office}
+                      </strong>
+                      {hit.description && (
+                        <p className='text-kapwa-text-support kapwa-body-sm-default'>
+                          {hit.description}
+                        </p>
+                      )}
+                    </Link>
+                  </li>
                 ))}
-              </div>
+              </ul>
             )}
 
-            {/* Random services - using plain language titles */}
+            {showResults && results.length === 0 && (
+              <p
+                role='status'
+                className='rounded-lg bg-kapwa-bg-surface/90 px-4 py-3 text-sm text-kapwa-text-strong'
+              >
+                {t('hero.noResults')}
+              </p>
+            )}
+
             <div className='flex flex-wrap gap-2 mt-4'>
               {randomServices.map(service => (
                 <Link key={service.slug} to={`/services/${service.slug}`}>
@@ -168,7 +197,6 @@ const Hero: FC = () => {
             </div>
           </div>
 
-          {/* Right section: quick access to key sections */}
           <div className='p-6 rounded-xl shadow-lg backdrop-blur-sm animate-slide-in bg-kapwa-bg-surface/10'>
             <h2 className='mb-4 text-kapwa-text-inverse kapwa-heading-lg'>
               {t('hero.quickAccess')}
@@ -178,7 +206,7 @@ const Hero: FC = () => {
                 <Link
                   key={card.to}
                   to={card.to}
-                  className='flex flex-col items-center p-4 text-center rounded-lg transition-all duration-200 bg-kapwa-bg-surface/10 hover:bg-kapwa-bg-surface/20'
+                  className='flex flex-col items-center p-4 text-center rounded-lg transition-all duration-200 bg-kapwa-bg-surface/10 hover:bg-kapwa-bg-surface/20 focus-visible:ring-2 focus-visible:ring-kapwa-text-inverse focus-visible:outline-none'
                 >
                   <div className='p-3 mb-3 rounded-full bg-kapwa-brand-500'>
                     <div className='w-6 h-6 text-kapwa-text-inverse'>

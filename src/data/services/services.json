@@ -4,7 +4,9 @@
     "slug": "animal-bite-treatment-center",
     "type": "transaction",
     "description": "Anti-rabies vaccination and wound management for individuals bitten by animals.",
-    "officeSlug": ["municipal-health-office"],
+    "officeSlug": [
+      "municipal-health-office"
+    ],
     "category": {
       "name": "Health & Wellness",
       "slug": "health-wellness"
@@ -21,10 +23,12 @@
     "slug": "solo-parents-cash-subsidy",
     "type": "transaction",
     "description": "Financial assistance provided semi-annually to qualified solo parents in the municipality.",
-    "officeSlug": ["municipal-social-welfare-and-development-office"],
+    "officeSlug": [
+      "municipal-social-welfare-and-development-office"
+    ],
     "category": {
-      "name": "Social Services",
-      "slug": "social-services"
+      "name": "Social Services & Assistance",
+      "slug": "social-services-assistance"
     },
     "steps": [
       "Register as a Solo Parent with the MSWDO.",
@@ -54,10 +58,12 @@
     "type": "transaction",
     "description": "Provision of cash incentives for elderly residents reaching milestone ages of 80, 85, 90, and 95, facilitated by the National Commission of Senior Citizens (NCSC).",
     "url": "",
-    "officeSlug": ["municipal-treasurers-office"],
+    "officeSlug": [
+      "municipal-treasurers-office"
+    ],
     "category": {
-      "name": "Social Services",
-      "slug": "social-services"
+      "name": "Social Services & Assistance",
+      "slug": "social-services-assistance"
     },
     "steps": [
       "Verify if the senior's name is included in the official NCSC Masterlist (January to June 2025 batch).",
@@ -106,10 +112,12 @@
     "slug": "fire-safety-inspection-certificate",
     "type": "transaction",
     "description": "Required for occupancy and business permits to ensure the structure meets fire safety standards.",
-    "officeSlug": ["bureau-fire-protection"],
+    "officeSlug": [
+      "bureau-fire-protection"
+    ],
     "category": {
-      "name": "Public Safety",
-      "slug": "public-safety"
+      "name": "Public Safety & Security",
+      "slug": "public-safety-security"
     },
     "requirements": [
       "Unified Application Form",
@@ -133,10 +141,12 @@
     "slug": "garbage-collection-schedule",
     "type": "information",
     "description": "Weekly schedule for waste collection per barangay. Please segregate biodegradable and non-biodegradable waste.",
-    "officeSlug": ["municipal-environment-and-natural-resources-office"],
+    "officeSlug": [
+      "municipal-environment-and-natural-resources-office"
+    ],
     "category": {
-      "name": "Environment & Waste",
-      "slug": "environment-waste"
+      "name": "Environment & Natural Resources",
+      "slug": "environment-natural-resources"
     },
     "steps": [
       "Monday & Thursday: Batong Malake, San Antonio, Maahas (Biodegradable)",
@@ -170,10 +180,12 @@
     "slug": "medical-assistance-aics",
     "type": "transaction",
     "description": "Assistance to Individuals in Crisis Situations for medical needs.",
-    "officeSlug": ["municipal-social-welfare-and-development-office"],
+    "officeSlug": [
+      "municipal-social-welfare-and-development-office"
+    ],
     "category": {
-      "name": "Social Services",
-      "slug": "social-services"
+      "name": "Social Services & Assistance",
+      "slug": "social-services-assistance"
     },
     "steps": [
       "Submit requirements for screening.",
@@ -208,7 +220,9 @@
     "slug": "public-school-directory",
     "type": "information",
     "description": "A comprehensive list of public elementary and secondary schools in the municipality.",
-    "officeSlug": ["department-of-education"],
+    "officeSlug": [
+      "department-of-education"
+    ],
     "category": {
       "name": "Education & Scholarship",
       "slug": "education-scholarship"
@@ -224,7 +238,9 @@
       "University of the Philippines Rural High School"
     ],
     "requirements": [],
-    "relatedServices": ["scholarship-application"],
+    "relatedServices": [
+      "scholarship-application"
+    ],
     "faqs": [
       {
         "question": "When does enrollment start?",
@@ -244,7 +260,9 @@
     "slug": "rhu-locations",
     "type": "information",
     "description": "Locations of health centers providing free primary care, immunization, and maternal services.",
-    "officeSlug": ["municipal-health-office"],
+    "officeSlug": [
+      "municipal-health-office"
+    ],
     "category": {
       "name": "Health & Wellness",
       "slug": "health-wellness"
@@ -256,7 +274,9 @@
       "Animal Bite Center: Municipal Hall Compound"
     ],
     "requirements": [],
-    "relatedServices": ["health-certificate"],
+    "relatedServices": [
+      "health-certificate"
+    ],
     "updatedAt": null,
     "sources": [
       {

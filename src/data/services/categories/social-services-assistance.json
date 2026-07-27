@@ -4,10 +4,12 @@
     "slug": "medical-assistance-aics",
     "type": "transaction",
     "description": "Assistance to Individuals in Crisis Situations for medical needs.",
-    "officeSlug": ["municipal-social-welfare-and-development-office"],
+    "officeSlug": [
+      "municipal-social-welfare-and-development-office"
+    ],
     "category": {
-      "name": "Social Services",
-      "slug": "social-services"
+      "name": "Social Services & Assistance",
+      "slug": "social-services-assistance"
     },
     "steps": [
       "Submit requirements for screening.",
@@ -42,10 +44,12 @@
     "slug": "solo-parents-cash-subsidy",
     "type": "transaction",
     "description": "Financial assistance provided semi-annually to qualified solo parents in the municipality.",
-    "officeSlug": ["municipal-social-welfare-and-development-office"],
+    "officeSlug": [
+      "municipal-social-welfare-and-development-office"
+    ],
     "category": {
-      "name": "Social Services",
-      "slug": "social-services"
+      "name": "Social Services & Assistance",
+      "slug": "social-services-assistance"
     },
     "steps": [
       "Register as a Solo Parent with the MSWDO.",
@@ -75,10 +79,12 @@
     "type": "transaction",
     "description": "Provision of cash incentives for elderly residents reaching milestone ages of 80, 85, 90, and 95, facilitated by the National Commission of Senior Citizens (NCSC).",
     "url": "",
-    "officeSlug": ["municipal-treasurers-office"],
+    "officeSlug": [
+      "municipal-treasurers-office"
+    ],
     "category": {
-      "name": "Social Services",
-      "slug": "social-services"
+      "name": "Social Services & Assistance",
+      "slug": "social-services-assistance"
     },
     "steps": [
       "Verify if the senior's name is included in the official NCSC Masterlist (January to June 2025 batch).",
@@ -118,7 +124,7 @@
         "url": "https://ncsc.gov.ph"
       },
       {
-        "name": "Office of the Senior Citizens Affairs (OSCA) Los Ba\u00f1os"
+        "name": "Office of the Senior Citizens Affairs (OSCA) Los Baños"
       }
     ]
   }

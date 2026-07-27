@@ -239,7 +239,7 @@ const SitemapPage: FC = () => {
         },
         {
           title: 'Social Services',
-          url: '/services?category=social-services',
+          url: '/services?category=social-services-assistance',
           description: 'Social welfare and assistance programs',
         },
         {

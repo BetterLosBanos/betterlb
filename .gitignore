@@ -82,3 +82,4 @@ graphify-out/
 # Memory system
 context/transcripts/
 .memsearch/
+ide_state.json/
