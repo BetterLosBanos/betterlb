@@ -17,6 +17,7 @@ import SearchInput from '@/components/ui/SearchInput';
 
 import servicesData from '@/data/services/services.json';
 import mergedServicesData from '@/data/citizens-charter/merged-services.json';
+import { config } from '@/lib/lguConfig';
 
 interface Service {
   slug: string;
@@ -77,7 +78,7 @@ const Hero: FC = () => {
     return shuffled.slice(0, 2);
   }, []);
 
-  // Quick access cards for key sections
+  // Quick access cards for key sections (respect feature flags)
   const quickAccessCards: QuickAccessCard[] = [
     {
       title: 'Financial Reports',
@@ -91,12 +92,19 @@ const Hero: FC = () => {
       to: '/transparency/infrastructure',
       icon: <BuildingIcon className='w-6 h-6' />,
     },
-    {
-      title: 'Legislation',
-      description: 'Ordinances & resolutions',
-      to: '/openlgu',
-      icon: <GavelIcon className='w-6 h-6' />,
-    },
+    config.features.openLGU
+      ? {
+          title: 'Legislation',
+          description: 'Ordinances & resolutions',
+          to: '/openlgu',
+          icon: <GavelIcon className='w-6 h-6' />,
+        }
+      : {
+          title: 'Government',
+          description: 'Officials & departments',
+          to: '/government/elected-officials',
+          icon: <GavelIcon className='w-6 h-6' />,
+        },
     {
       title: 'Statistics',
       description: 'Population & demographics',
