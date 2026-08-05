@@ -4,9 +4,7 @@
     "slug": "fire-safety-inspection-certificate",
     "type": "transaction",
     "description": "Required for occupancy and business permits to ensure the structure meets fire safety standards.",
-    "officeSlug": [
-      "bureau-fire-protection"
-    ],
+    "officeSlug": ["bureau-fire-protection"],
     "category": {
       "name": "Public Safety & Security",
       "slug": "public-safety-security"
