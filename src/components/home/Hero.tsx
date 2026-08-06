@@ -72,26 +72,30 @@ const Hero: FC = () => {
   const visibleResults = results.slice(0, 5);
 
   const handleChangeValue = (value: string) => {
-  setQuery(value);
-  setActiveIndex(-1);
+    setQuery(value);
+    setActiveIndex(-1);
   };
 
   const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
-    console.log('keydown fired:', e.key, { showResults, visibleResults, activeIndex });
+    console.log('keydown fired:', e.key, {
+      showResults,
+      visibleResults,
+      activeIndex,
+    });
     if (!showResults || visibleResults.length === 0) return;
     if (e.key === 'ArrowDown') {
       e.preventDefault();
       setActiveIndex(i => (i + 1) % visibleResults.length);
-    } 
-    else if (e.key === 'ArrowUp') {
+    } else if (e.key === 'ArrowUp') {
       e.preventDefault();
-      setActiveIndex(i => (i - 1 + visibleResults.length) % visibleResults.length);
+      setActiveIndex(
+        i => (i - 1 + visibleResults.length) % visibleResults.length
+      );
+    } else if (e.key === 'Enter' && activeIndex >= 0) {
+      navigate(`services/${visibleResults[activeIndex].slug}`);
     }
-    else if (e.key === 'Enter' && activeIndex >= 0) {
-      navigate(`services/${visibleResults[activeIndex].slug}`)
-    }
-  }
-  
+  };
+
   const randomServices = useMemo(() => {
     const services = mergedServicesData as MergedService[];
     const servicesWithPlainNames = services.filter(s => s.plainLanguageName);
@@ -155,7 +159,9 @@ const Hero: FC = () => {
                 onChangeValue={handleChangeValue}
                 onKeyDown={handleKeyDown}
                 aria-activedescendant={
-                  activeIndex >= 0 ? `${listboxId}-opt-${visibleResults[activeIndex]?.slug}` : undefined
+                  activeIndex >= 0
+                    ? `${listboxId}-opt-${visibleResults[activeIndex]?.slug}`
+                    : undefined
                 }
                 placeholder={t('hero.searchPlaceholder')}
                 className='bg-kapwa-bg-surface/80'
@@ -180,12 +186,12 @@ const Hero: FC = () => {
                 className='overflow-y-auto max-h-80 rounded-lg shadow-md bg-kapwa-bg-surface/90 text-kapwa-text-strong'
               >
                 {visibleResults.map((hit, index) => (
-                    <li
-                      key={hit.slug}
-                      id={`${listboxId}-opt-${hit.slug}`}
-                      role='option'
-                      aria-selected={index === activeIndex}
-                    >
+                  <li
+                    key={hit.slug}
+                    id={`${listboxId}-opt-${hit.slug}`}
+                    role='option'
+                    aria-selected={index === activeIndex}
+                  >
                     <Link
                       to={`/services/${hit.slug}`}
                       className={`block p-3 border-b border-kapwa-border-weak hover:bg-kapwa-bg-hover focus-visible:bg-kapwa-bg-hover focus-visible:outline-none last:border-none ${
