@@ -1,6 +1,6 @@
 import { FC, useId, useMemo, useState } from 'react';
 
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 import Fuse from 'fuse.js';
 import {
@@ -45,6 +45,8 @@ interface QuickAccessCard {
 const Hero: FC = () => {
   const { t } = useTranslation('common');
   const [query, setQuery] = useState('');
+  const [activeIndex, setActiveIndex] = useState(-1);
+  const navigate = useNavigate();
   const listboxId = useId();
   const showResults = query.trim().length > 0;
 
@@ -67,7 +69,29 @@ const Hero: FC = () => {
     return fuse.search(query).map(r => r.item);
   }, [query, fuse]);
 
-  // Random services from merged-services - using plain language titles
+  const visibleResults = results.slice(0, 5);
+
+  const handleChangeValue = (value: string) => {
+  setQuery(value);
+  setActiveIndex(-1);
+  };
+
+  const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
+    console.log('keydown fired:', e.key, { showResults, visibleResults, activeIndex });
+    if (!showResults || visibleResults.length === 0) return;
+    if (e.key === 'ArrowDown') {
+      e.preventDefault();
+      setActiveIndex(i => (i + 1) % visibleResults.length);
+    } 
+    else if (e.key === 'ArrowUp') {
+      e.preventDefault();
+      setActiveIndex(i => (i - 1 + visibleResults.length) % visibleResults.length);
+    }
+    else if (e.key === 'Enter' && activeIndex >= 0) {
+      navigate(`services/${visibleResults[activeIndex].slug}`)
+    }
+  }
+  
   const randomServices = useMemo(() => {
     const services = mergedServicesData as MergedService[];
     const servicesWithPlainNames = services.filter(s => s.plainLanguageName);
@@ -128,7 +152,11 @@ const Hero: FC = () => {
                 aria-autocomplete='list'
                 aria-label={t('hero.searchLabel')}
                 value={query}
-                onChangeValue={setQuery}
+                onChangeValue={handleChangeValue}
+                onKeyDown={handleKeyDown}
+                aria-activedescendant={
+                  activeIndex >= 0 ? `${listboxId}-opt-${visibleResults[activeIndex]?.slug}` : undefined
+                }
                 placeholder={t('hero.searchPlaceholder')}
                 className='bg-kapwa-bg-surface/80'
               />
@@ -151,11 +179,18 @@ const Hero: FC = () => {
                 aria-label='Matching services'
                 className='overflow-y-auto max-h-80 rounded-lg shadow-md bg-kapwa-bg-surface/90 text-kapwa-text-strong'
               >
-                {results.slice(0, 5).map(hit => (
-                  <li key={hit.slug} role='option'>
+                {visibleResults.map((hit, index) => (
+                    <li
+                      key={hit.slug}
+                      id={`${listboxId}-opt-${hit.slug}`}
+                      role='option'
+                      aria-selected={index === activeIndex}
+                    >
                     <Link
                       to={`/services/${hit.slug}`}
-                      className='block p-3 border-b border-kapwa-border-weak hover:bg-kapwa-bg-hover focus-visible:bg-kapwa-bg-hover focus-visible:outline-none last:border-none'
+                      className={`block p-3 border-b border-kapwa-border-weak hover:bg-kapwa-bg-hover focus-visible:bg-kapwa-bg-hover focus-visible:outline-none last:border-none ${
+                        index === activeIndex ? 'bg-kapwa-bg-hover' : ''
+                      }`}
                     >
                       <strong>
                         {hit.service || hit.office_name || hit.office}
@@ -174,7 +209,7 @@ const Hero: FC = () => {
             {showResults && results.length === 0 && (
               <p
                 role='status'
-                className='rounded-lg bg-kapwa-bg-surface/90 px-4 py-3 text-sm text-kapwa-text-strong'
+                className='px-4 py-3 text-sm rounded-lg bg-kapwa-bg-surface/90 text-kapwa-text-strong'
               >
                 {t('hero.noResults')}
               </p>
