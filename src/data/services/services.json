@@ -23,8 +23,8 @@
     "description": "Financial assistance provided semi-annually to qualified solo parents in the municipality.",
     "officeSlug": ["municipal-social-welfare-and-development-office"],
     "category": {
-      "name": "Social Services",
-      "slug": "social-services"
+      "name": "Social Services & Assistance",
+      "slug": "social-services-assistance"
     },
     "steps": [
       "Register as a Solo Parent with the MSWDO.",
@@ -56,8 +56,8 @@
     "url": "",
     "officeSlug": ["municipal-treasurers-office"],
     "category": {
-      "name": "Social Services",
-      "slug": "social-services"
+      "name": "Social Services & Assistance",
+      "slug": "social-services-assistance"
     },
     "steps": [
       "Verify if the senior's name is included in the official NCSC Masterlist (January to June 2025 batch).",
@@ -108,8 +108,8 @@
     "description": "Required for occupancy and business permits to ensure the structure meets fire safety standards.",
     "officeSlug": ["bureau-fire-protection"],
     "category": {
-      "name": "Public Safety",
-      "slug": "public-safety"
+      "name": "Public Safety & Security",
+      "slug": "public-safety-security"
     },
     "requirements": [
       "Unified Application Form",
@@ -135,8 +135,8 @@
     "description": "Weekly schedule for waste collection per barangay. Please segregate biodegradable and non-biodegradable waste.",
     "officeSlug": ["municipal-environment-and-natural-resources-office"],
     "category": {
-      "name": "Environment & Waste",
-      "slug": "environment-waste"
+      "name": "Environment & Natural Resources",
+      "slug": "environment-natural-resources"
     },
     "steps": [
       "Monday & Thursday: Batong Malake, San Antonio, Maahas (Biodegradable)",
@@ -172,8 +172,8 @@
     "description": "Assistance to Individuals in Crisis Situations for medical needs.",
     "officeSlug": ["municipal-social-welfare-and-development-office"],
     "category": {
-      "name": "Social Services",
-      "slug": "social-services"
+      "name": "Social Services & Assistance",
+      "slug": "social-services-assistance"
     },
     "steps": [
       "Submit requirements for screening.",
