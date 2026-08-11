@@ -1,4 +1,4 @@
-import { FC } from 'react';
+import { FC, useMemo } from 'react';
 
 import { useNavigate } from 'react-router-dom';
 
@@ -10,9 +10,21 @@ import { useTranslation } from 'react-i18next';
 import { Badge } from '@/components/ui/Badge';
 import { Card, CardContent, CardGrid } from '@/components/ui/Card';
 
+import barangaysData from '@/data/directory/barangays.json';
+import departmentsData from '@/data/directory/departments.json';
+
 const GovernmentSection: FC = () => {
   const { t } = useTranslation('common');
   const navigate = useNavigate();
+
+  const barangayCount = useMemo(
+    () => (Array.isArray(barangaysData) ? barangaysData.length : 0),
+    []
+  );
+  const departmentCount = useMemo(
+    () => (Array.isArray(departmentsData) ? departmentsData.length : 0),
+    []
+  );
 
   const branches = [
     {
@@ -59,10 +71,10 @@ const GovernmentSection: FC = () => {
         {/* Quick stats using documented Badge component */}
         <div className='flex flex-wrap justify-center gap-4 mb-8'>
           <Badge variant='primary' className='px-4 py-2 text-sm'>
-            18 Barangays
+            {barangayCount} Barangays
           </Badge>
           <Badge variant='secondary' className='px-4 py-2 text-sm'>
-            15 Departments
+            {departmentCount} Departments
           </Badge>
           <Badge variant='slate' className='px-4 py-2 text-sm'>
             Elected Officials
