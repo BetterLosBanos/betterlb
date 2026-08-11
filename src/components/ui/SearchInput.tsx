@@ -9,8 +9,8 @@ interface SearchInputProps extends Omit<
   InputHTMLAttributes<HTMLInputElement>,
   'size'
 > {
-  value: string; // Now required from parent
-  onChangeValue: (value: string) => void; // Standardized callback
+  value: string;
+  onChangeValue: (value: string) => void;
   className?: string;
   placeholder?: string;
   icon?: ReactNode;
@@ -26,6 +26,12 @@ const SearchInput = ({
   icon = <SearchIcon className='text-kapwa-text-disabled h-4 w-4' />,
   size = 'md',
   clearable = true,
+  id,
+  'aria-label': ariaLabel,
+  'aria-controls': ariaControls,
+  'aria-expanded': ariaExpanded,
+  'aria-autocomplete': ariaAutocomplete,
+  role,
   ...props
 }: SearchInputProps) => {
   const handleClear = () => {
@@ -44,13 +50,19 @@ const SearchInput = ({
         {icon}
       </div>
       <input
+        id={id}
         type='text'
+        role={role}
         value={value}
         onChange={e => onChangeValue(e.target.value)}
+        aria-label={ariaLabel ?? placeholder}
+        aria-controls={ariaControls}
+        aria-expanded={ariaExpanded}
+        aria-autocomplete={ariaAutocomplete}
         className={cn(
           'border-kapwa-border-weak bg-kapwa-bg-surface/50 w-full rounded-xl border transition-all duration-200',
           'text-kapwa-text-strong placeholder:text-kapwa-text-disabled',
-          'focus:border-kapwa-border-brand focus:ring-kapwa-border-brand/5 focus:bg-kapwa-bg-surface outline-none focus:ring-4',
+          'focus:border-kapwa-border-brand focus:ring-kapwa-border-brand/5 focus:bg-kapwa-bg-surface outline-none focus-visible:ring-4',
           sizes[size],
           'pl-11',
           clearable && value ? 'pr-10' : 'pr-4'
@@ -61,10 +73,11 @@ const SearchInput = ({
       {clearable && value && (
         <button
           type='button'
-          className='text-kapwa-text-disabled hover:text-kapwa-text-on-disabled absolute inset-y-0 right-0 flex items-center pr-3 transition-colors'
+          aria-label='Clear search'
+          className='text-kapwa-text-disabled hover:text-kapwa-text-strong focus-visible:ring-kapwa-border-focus absolute inset-y-0 right-0 flex items-center pr-3 transition-colors focus-visible:ring-2 focus-visible:outline-none'
           onClick={handleClear}
         >
-          <XIcon className='h-4 w-4' />
+          <XIcon className='h-4 w-4' aria-hidden='true' />
         </button>
       )}
     </div>

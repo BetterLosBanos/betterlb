@@ -2,10 +2,30 @@
   "hero": {
     "title": "Maligayang Pagdating sa BetterLB",
     "subtitle": "Ang volunteer-run portal ng Munisipalidad ng Los Baños. Maghanap ng impormasyon, i-access ang mga serbisyo ng pamahalaan, manatiling updated sa pinakabagong balita tungkol sa Los Baños.",
-    "quickAccess": "Mabilisang Puntahan"
+    "quickAccess": "Mabilisang Puntahan",
+    "nationalId": "National ID",
+    "birthCertificate": "Sertipiko ng Kapanganakan",
+    "businessRegistration": "Rehistrasyon ng Negosyo",
+    "searchPlaceholder": "Maghanap ng serbisyo...",
+    "searchLabel": "Maghanap ng mga serbisyo ng pamahalaan",
+    "noResults": "Walang tumugmang serbisyo.",
+    "financialReports": "Mga Ulat Pinansyal",
+    "financialReportsDesc": "Badyet at pahayag ng kita",
+    "infrastructure": "Imprastraktura",
+    "infrastructureDesc": "Subaybayan ang mga proyektong munisipal",
+    "legislation": "Lehislasyon",
+    "legislationDesc": "Mga ordinansa at resolusyon",
+    "government": "Pamahalaan",
+    "governmentDesc": "Mga opisyal at departamento",
+    "statistics": "Istatistika",
+    "statisticsDesc": "Populasyon at demograpiya"
   },
   "services": {
-    "title": "Mga Sikat na Serbisyo"
+    "title": "Mga Sikat na Serbisyo",
+    "governmentServices": "Mga Serbisyo ng Pamahalaan",
+    "description": "I-access ang opisyal na mga serbisyo ng pamahalaan nang mabilis at madali. Hanapin ang kailangan para sa pagkamamamayan, negosyo, edukasyon, at iba pa.",
+    "viewAll": "Tingnan ang Lahat ng Serbisyo",
+    "viewAllCategory": "Tingnan ang Mga Serbisyo"
   },
   "weather": {
     "title": "Mga Update sa Panahon"
@@ -17,14 +37,75 @@
     "title": "Pinakabagong Balita at Updates"
   },
   "footer": {
-    "copyright": "2025 BetterGov.ph - Lahat ng nilalaman ay public domain maliban kung iba ang nakasaad."
+    "copyright": "2025 BetterLB.org - Lahat ng nilalaman ay public domain maliban kung iba ang nakasaad."
   },
   "navbar": {
-    "philippines": "Pilipinas",
+    "home": "Home",
     "services": "Mga Serbisyo",
-    "travel": "Paglalakbay",
+    "statistics": "Istatistika",
     "government": "Pamahalaan",
-    "flood control projects": "Mga Proyekto sa Pagkontrol ng Baha",
-    "openlgu": "OpenLGU"
+    "legislative": "Lehislatura",
+    "transparency": "Transparency",
+    "contact": "Makipag-ugnayan",
+    "legislation": "Lehislasyon",
+    "openlgu": "OpenLGU",
+    "philippines": "Pilipinas",
+    "travel": "Paglalakbay",
+    "flood control projects": "Mga Proyekto sa Pagkontrol ng Baha"
+  },
+  "joinUs": {
+    "stripTitle": "🚀 Sumali sa #CivicTech Revolution",
+    "stripSubtitle": "Tulungan ang pagbuo ng hinaharap ng Pilipinas at pamamahala sa pamamagitan ng teknolohiya",
+    "joinNow": "Sumali Ngayon",
+    "discord": "Discord",
+    "bannerTitle": "Sumali sa #CivicTech Revolution",
+    "bannerSubtitle": "Tulungan ang pagbuo ng hinaharap ng Pilipinas at pamamahala sa pamamagitan ng teknolohiya.",
+    "bannerHighlight": "Pinapatakbo ng boluntaryo. Open source. Community-driven.",
+    "joinMovement": "Sumali sa Aming Kilusan",
+    "or": "o",
+    "joinDiscord": "Sumali sa Discord",
+    "features": "🚀 Infrastructure • 💡 Mentorship • 🤝 Community • 🏢 Office Space"
+  },
+  "data": {
+    "title": "Mga Real-Time na Serbisyo ng Datos",
+    "description": "I-access ang napapanahong impormasyon tungkol sa panahon at palitan ng pera sa buong Pilipinas.",
+    "weatherForecast": "Pagtataya ng Panahon",
+    "realtimeConditions": "Mga kondisyon sa real time",
+    "viewArrow": "Tingnan →",
+    "weatherDescription": "Kunin ang kasalukuyang kondisyon at pagtataya ng panahon para sa mga pangunahing lungsod sa Pilipinas.",
+    "manila": "Manila",
+    "cebu": "Cebu",
+    "davao": "Davao",
+    "moreCities": "Higit pang Lungsod",
+    "forexRates": "Mga Rate ng Forex",
+    "liveExchange": "Mga live na exchange rate",
+    "forexDescription": "Subaybayan ang mga foreign exchange rate mula sa Bangko Sentral ng Pilipinas (BSP).",
+    "usd": "USD",
+    "eur": "EUR",
+    "jpy": "JPY",
+    "moreCurrencies": "Higit pang Pera"
+  },
+  "promotion": {
+    "philsysTitle": "Rehistrasyon sa PhilSys National ID",
+    "philsysDescription": "Magparehistro para sa iyong PhilSys ID card. Isang opisyal na pagkakakilanlan para sa lahat ng mamamayan.",
+    "registerNow": "Magparehistro Ngayon"
+  },
+  "government": {
+    "title": "Lokal na Pamahalaan ng Munisipalidad ng Los Baños",
+    "description": "Alamin ang mga pangunahing opisina, konseho, at lokal na yunit na bumubuo sa Munisipal na Pamahalaan ng Los Baños.",
+    "executiveTitle": "Sangay na Tagapagpaganap",
+    "executiveDescription": "Pinangungunahan ng Alkalde, responsable sa pagpapatupad ng mga patakaran, programa, at ordinansa ng munisipyo.",
+    "legislativeTitle": "Sangay na Tagapagbatas",
+    "legislativeDescription": "Binubuo ng Sangguniang Bayan, responsable sa paggawa ng mga lokal na batas.",
+    "barangaysTitle": "Mga Barangay",
+    "barangaysDescription": "Mga lokal na yunit ng pamahalaan sa loob ng munisipyo, pinangungunahan ng mga nahalal na opisyal na namamahala sa mga serbisyo sa komunidad.",
+    "departmentsTitle": "Mga Kagawaran ng Munisipyo",
+    "departmentsDescription": "Mga kagawaran at ahensya ng munisipyo na responsable sa mga partikular na larangan ng pamamahala.",
+    "electedofficialsTitle": "Mga Nahalal na Opisyal",
+    "electedofficialsDescription": "Ang nahalal na pamumuno ng Sangay na Tagapagpaganap at Tagapagbatas, responsable sa pagpapatupad ng patakaran at paggawa ng batas.",
+    "learnMore": "Alamin pa",
+    "directoryTitle": "Opisyal na Direktoryo",
+    "directoryDescription": "Maghanap ng impormasyon ng kontak para sa mga opisyal ng pamahalaan, ahensya, at opisina sa pambansa at lokal na antas.",
+    "viewDirectory": "Tingnan ang Direktoryo"
   }
 }

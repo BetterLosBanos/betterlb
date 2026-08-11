@@ -27,14 +27,21 @@ import type { Service } from '@/types/servicesTypes';
 const categoryIcons: Record<string, LucideIcon> = {
   'certificates-vital-records': FileTextIcon,
   'business-licensing': BriefcaseIcon,
+  'business-trade-investment': BriefcaseIcon,
   'taxation-assessment': DollarSignIcon,
+  'taxation-payments': DollarSignIcon,
   'infrastructure-engineering': HammerIcon,
+  'infrastructure-public-works': HammerIcon,
   'social-services': UsersIcon,
+  'social-services-assistance': UsersIcon,
   'health-wellness': HeartIcon,
   'agriculture-livelihood': LeafIcon,
+  'agriculture-economic-development': LeafIcon,
   'environment-waste': LeafIcon,
+  'environment-natural-resources': LeafIcon,
   'education-scholarship': BookOpenIcon,
   'public-safety': ShieldIcon,
+  'public-safety-security': ShieldIcon,
   'other-municipal': FileTextIcon,
 };
 

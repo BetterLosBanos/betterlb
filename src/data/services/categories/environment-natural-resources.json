@@ -6,8 +6,8 @@
     "description": "Weekly schedule for waste collection per barangay. Please segregate biodegradable and non-biodegradable waste.",
     "officeSlug": ["municipal-environment-and-natural-resources-office"],
     "category": {
-      "name": "Environment & Waste",
-      "slug": "environment-waste"
+      "name": "Environment & Natural Resources",
+      "slug": "environment-natural-resources"
     },
     "steps": [
       "Monday & Thursday: Batong Malake, San Antonio, Maahas (Biodegradable)",

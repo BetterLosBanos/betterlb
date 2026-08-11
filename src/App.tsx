@@ -16,6 +16,7 @@ import { Footer } from '@/components/layout/Footer';
 import { Navbar } from '@/components/layout/Navbar';
 import { SEO } from '@/components/layout/SEO';
 import { ScrollToTop } from '@/components/layout/ScrollToTop';
+import { SkipLink } from '@/components/layout/SkipLink';
 import Ticker from '@/components/ui/Ticker';
 
 // --- Lazy-loaded Pages ---
@@ -152,141 +153,156 @@ function AppContent() {
 
   return (
     <div className='flex flex-col min-h-screen'>
+      <SkipLink />
       <SEO />
       {!isAdminRoute && <Navbar />}
       {!isAdminRoute && <Ticker />}
       <ScrollToTop />
 
-      <Suspense fallback={<PageLoader />}>
-        <Routes>
-          {/* Standard Global Pages */}
-          <Route path='/' element={<Home />} />
-          <Route path='/about' element={<AboutPage />} />
-          <Route path='/contact' element={<ContactUs />} />
-          <Route path='/accessibility' element={<AccessibilityPage />} />
-          <Route path='/search' element={<SearchPage />} />
-          <Route path='/ideas' element={<Ideas />} />
-          <Route path='/join-us' element={<JoinUs />} />
-          <Route path='/terms-of-service' element={<TermsOfService />} />
-          <Route path='/sitemap' element={<SitemapPage />} />
-          <Route path='/discord' element={<Discord />} />
+      <main id='main-content' className='flex-1'>
+        <Suspense fallback={<PageLoader />}>
+          <Routes>
+            {/* Standard Global Pages */}
+            <Route path='/' element={<Home />} />
+            <Route path='/about' element={<AboutPage />} />
+            <Route path='/contact' element={<ContactUs />} />
+            <Route path='/accessibility' element={<AccessibilityPage />} />
+            <Route path='/search' element={<SearchPage />} />
+            <Route path='/ideas' element={<Ideas />} />
+            <Route path='/join-us' element={<JoinUs />} />
+            <Route path='/terms-of-service' element={<TermsOfService />} />
+            <Route path='/sitemap' element={<SitemapPage />} />
+            <Route path='/discord' element={<Discord />} />
 
-          {/* Data Utilities */}
-          <Route path='/data/weather' element={<WeatherPage />} />
-          <Route path='/data/forex' element={<ForexPage />} />
+            {/* Data Utilities */}
+            <Route path='/data/weather' element={<WeatherPage />} />
+            <Route path='/data/forex' element={<ForexPage />} />
 
-          {/* Services Module */}
-          <Route path='/services' element={<ServicesLayout />}>
-            <Route index element={<Services />} />
-            <Route path=':service' element={<ServiceDetail />} />
-          </Route>
-
-          {/* Government Directory Hub */}
-          <Route path='/government' element={<GovernmentRootLayout />}>
-            <Route
-              index
-              element={<Navigate to='elected-officials' replace />}
-            />
-
-            {/* 1. Elected Officials */}
-            <Route
-              path='elected-officials'
-              element={<ElectedOfficialsLayout />}
-            >
-              <Route index element={<ElectedOfficialsIndex />} />
-              <Route path='committees' element={<MunicipalCommitteesPage />} />
+            {/* Services Module */}
+            <Route path='/services' element={<ServicesLayout />}>
+              <Route index element={<Services />} />
+              <Route path=':service' element={<ServiceDetail />} />
             </Route>
 
-            {/* 2. Municipal Departments */}
-            <Route path='departments' element={<DepartmentsLayout />}>
-              <Route index element={<DepartmentsIndex />} />
-              <Route path=':department' element={<DepartmentDetail />} />
-            </Route>
-
-            {/* 3. Barangay Directory */}
-            <Route path='barangays' element={<BarangaysLayout />}>
-              <Route index element={<BarangaysIndex />} />
-              <Route path=':barangay' element={<BarangayDetail />} />
-            </Route>
-
-            {/* 4. Reference Implementation */}
-            <Route
-              path='reference-implementation'
-              element={<ReferenceImplementationPage />}
-            />
-          </Route>
-
-          {/* Statistics Dashboard — feature gated */}
-          {config.features.statistics && (
-            <Route path='statistics' element={<StatisticsLayout />}>
-              <Route index element={<PopulationPage />} />
-              <Route path='population' element={<PopulationPage />} />
+            {/* Government Directory Hub */}
+            <Route path='/government' element={<GovernmentRootLayout />}>
               <Route
-                path='municipal-income'
-                element={<MunicipalIncomePage />}
+                index
+                element={<Navigate to='elected-officials' replace />}
               />
-              <Route path='competitiveness' element={<CompetitivenessPage />} />
-            </Route>
-          )}
 
-          {/* OpenLGU Portal — feature gated */}
-          {config.features.openLGU && (
-            <Route path='openlgu' element={<OpenLGULayout />}>
-              <Route index element={<LegislationIndex />} />
-              <Route path='officials' element={<OfficialsIndex />} />
-              <Route path='terms' element={<TermsIndex />} />
-              {/* Legacy redirect for backward compatibility */}
+              {/* 1. Elected Officials */}
               <Route
-                path=':type/:document'
-                element={<LegacyDocumentRedirect />}
-              />
-              {/* New unified document route */}
-              <Route
-                path='documents/:document'
-                element={<LegislationDetail />}
-              />
-              <Route path='session/:sessionId' element={<SessionDetail />} />
-              <Route path='person/:personId' element={<PersonDetail />} />
-              <Route path='term/:termId' element={<TermDetail />} />
-            </Route>
-          )}
-
-          {/* Transparency Portal — feature gated */}
-          {config.features.transparency && (
-            <Route path='/transparency' element={<TransparencyLayout />}>
-              <Route index element={<TransparencyIndex />} />
-              <Route path='financial' element={<FinancialPage />} />
-              <Route path='procurement' element={<ProcurementPage />} />
-              <Route path='/transparency/infrastructure'>
-                <Route index element={<InfrastructurePage />} />
-                <Route path=':contractId' element={<InfrastructureDetail />} />
+                path='elected-officials'
+                element={<ElectedOfficialsLayout />}
+              >
+                <Route index element={<ElectedOfficialsIndex />} />
+                <Route
+                  path='committees'
+                  element={<MunicipalCommitteesPage />}
+                />
               </Route>
+
+              {/* 2. Municipal Departments */}
+              <Route path='departments' element={<DepartmentsLayout />}>
+                <Route index element={<DepartmentsIndex />} />
+                <Route path=':department' element={<DepartmentDetail />} />
+              </Route>
+
+              {/* 3. Barangay Directory */}
+              <Route path='barangays' element={<BarangaysLayout />}>
+                <Route index element={<BarangaysIndex />} />
+                <Route path=':barangay' element={<BarangayDetail />} />
+              </Route>
+
+              {/* 4. Reference Implementation */}
+              <Route
+                path='reference-implementation'
+                element={<ReferenceImplementationPage />}
+              />
             </Route>
-          )}
 
-          {/* Community Contribution Flow */}
-          <Route path='contribute' element={<ContributePage />} />
+            {/* Statistics Dashboard — feature gated */}
+            {config.features.statistics && (
+              <Route path='statistics' element={<StatisticsLayout />}>
+                <Route index element={<PopulationPage />} />
+                <Route path='population' element={<PopulationPage />} />
+                <Route
+                  path='municipal-income'
+                  element={<MunicipalIncomePage />}
+                />
+                <Route
+                  path='competitiveness'
+                  element={<CompetitivenessPage />}
+                />
+              </Route>
+            )}
 
-          {/* Admin Routes */}
-          <Route path='/admin' element={<AdminLayout />}>
-            <Route index element={<AdminDashboard />} />
-            <Route path='documents' element={<AdminDocuments />} />
-            <Route path='persons/merge' element={<PersonMergeTool />} />
-            <Route path='persons/deletion-queue' element={<DeletionQueue />} />
-            <Route path='errors' element={<AdminErrorLog />} />
-            <Route path='audit-logs' element={<AdminAuditLog />} />
-            <Route path='review-queue' element={<AdminReviewQueue />} />
-            <Route path='reconcile' element={<AdminReconcile />} />
-            <Route
-              path='openlgu/workbench'
-              element={<AdminOpenLguWorkbench />}
-            />
-          </Route>
+            {/* OpenLGU Portal — feature gated */}
+            {config.features.openLGU && (
+              <Route path='openlgu' element={<OpenLGULayout />}>
+                <Route index element={<LegislationIndex />} />
+                <Route path='officials' element={<OfficialsIndex />} />
+                <Route path='terms' element={<TermsIndex />} />
+                {/* Legacy redirect for backward compatibility */}
+                <Route
+                  path=':type/:document'
+                  element={<LegacyDocumentRedirect />}
+                />
+                {/* New unified document route */}
+                <Route
+                  path='documents/:document'
+                  element={<LegislationDetail />}
+                />
+                <Route path='session/:sessionId' element={<SessionDetail />} />
+                <Route path='person/:personId' element={<PersonDetail />} />
+                <Route path='term/:termId' element={<TermDetail />} />
+              </Route>
+            )}
 
-          {/* Catch-all 404 */}
-          <Route path='*' element={<NotFound />} />
-        </Routes>
-      </Suspense>
+            {/* Transparency Portal — feature gated */}
+            {config.features.transparency && (
+              <Route path='/transparency' element={<TransparencyLayout />}>
+                <Route index element={<TransparencyIndex />} />
+                <Route path='financial' element={<FinancialPage />} />
+                <Route path='procurement' element={<ProcurementPage />} />
+                <Route path='/transparency/infrastructure'>
+                  <Route index element={<InfrastructurePage />} />
+                  <Route
+                    path=':contractId'
+                    element={<InfrastructureDetail />}
+                  />
+                </Route>
+              </Route>
+            )}
+
+            {/* Community Contribution Flow */}
+            <Route path='contribute' element={<ContributePage />} />
+
+            {/* Admin Routes */}
+            <Route path='/admin' element={<AdminLayout />}>
+              <Route index element={<AdminDashboard />} />
+              <Route path='documents' element={<AdminDocuments />} />
+              <Route path='persons/merge' element={<PersonMergeTool />} />
+              <Route
+                path='persons/deletion-queue'
+                element={<DeletionQueue />}
+              />
+              <Route path='errors' element={<AdminErrorLog />} />
+              <Route path='audit-logs' element={<AdminAuditLog />} />
+              <Route path='review-queue' element={<AdminReviewQueue />} />
+              <Route path='reconcile' element={<AdminReconcile />} />
+              <Route
+                path='openlgu/workbench'
+                element={<AdminOpenLguWorkbench />}
+              />
+            </Route>
+
+            {/* Catch-all 404 */}
+            <Route path='*' element={<NotFound />} />
+          </Routes>
+        </Suspense>
+      </main>
 
       {!isAdminRoute && <Footer />}
     </div>

@@ -14,6 +14,18 @@ import type {
 // Import the merged services data
 import mergedServicesData from '@/data/citizens-charter/merged-services.json';
 
+/** Legacy category slugs → current nav / merged-services slugs */
+const CATEGORY_SLUG_ALIASES: Record<string, string> = {
+  'social-services': 'social-services-assistance',
+  'public-safety': 'public-safety-security',
+  'environment-waste': 'environment-natural-resources',
+};
+
+export function normalizeCategorySlug(slug: string): string {
+  if (!slug || slug === 'all') return slug;
+  return CATEGORY_SLUG_ALIASES[slug] ?? slug;
+}
+
 /**
  * Get all merged services (Citizens Charter + community)
  * @returns Array of all services
@@ -31,8 +43,9 @@ export function getServicesByCategory(categorySlug: string): Service[] {
   if (categorySlug === 'all') {
     return getMergedServices();
   }
+  const normalized = normalizeCategorySlug(categorySlug);
   return getMergedServices().filter(
-    service => service.category.slug === categorySlug
+    service => service.category.slug === normalized
   );
 }
 
@@ -81,9 +94,10 @@ export function searchServices(query: string): Service[] {
 export function filterServices(options: ServiceFilterOptions): Service[] {
   let services = getMergedServices();
 
-  // Filter by category
+  // Filter by category (accept legacy slugs)
   if (options.category && options.category !== 'all') {
-    services = services.filter(s => s.category.slug === options.category);
+    const category = normalizeCategorySlug(options.category);
+    services = services.filter(s => s.category.slug === category);
   }
 
   // Filter by office division

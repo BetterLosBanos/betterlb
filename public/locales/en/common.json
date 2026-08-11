@@ -5,14 +5,27 @@
     "quickAccess": "Quick Access",
     "nationalId": "National ID",
     "birthCertificate": "Birth Certificate",
-    "businessRegistration": "Business Registration"
+    "businessRegistration": "Business Registration",
+    "searchPlaceholder": "Search services...",
+    "searchLabel": "Search government services",
+    "noResults": "No matching services.",
+    "financialReports": "Financial Reports",
+    "financialReportsDesc": "Budget & income statements",
+    "infrastructure": "Infrastructure",
+    "infrastructureDesc": "Track municipal projects",
+    "legislation": "Legislation",
+    "legislationDesc": "Ordinances & resolutions",
+    "government": "Government",
+    "governmentDesc": "Officials & departments",
+    "statistics": "Statistics",
+    "statisticsDesc": "Population & demographics"
   },
   "services": {
     "title": "Popular Services",
     "governmentServices": "Government Services",
     "description": "Access official government services quickly and easily. Find what you need for citizenship, business, education, and more.",
     "viewAll": "View All Services",
-    "viewAllCategory": "View All"
+    "viewAllCategory": "View Services"
   },
   "weather": {
     "title": "Weather Updates"
@@ -33,7 +46,7 @@
     "government": "Government",
     "legislative": "Legislative",
     "transparency": "Transparency",
-    "contact": "[REDACTED]",
+    "contact": "Contact",
     "legislation": "Legislation",
     "openlgu": "OpenLGU"
   },
