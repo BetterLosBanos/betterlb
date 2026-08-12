@@ -90,7 +90,7 @@ jobs:
           retention-days: 7
 
       - name: PR Comment with Coverage
-        uses: romeovs/lcov-reporter-action@422f0e88f1c50366976e56eeae30f344d21b0ec5 # v0.2.19
+        uses: romeovs/lcov-reporter-action@87a815f34ec27a5826abba44ce09bbc688da58fd # v0.4.0
         if: github.event_name == 'pull_request' && always()
         with:
           lcov-file: ./coverage/lcov.info
