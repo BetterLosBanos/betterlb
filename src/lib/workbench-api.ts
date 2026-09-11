@@ -5,7 +5,10 @@ const WORKBENCH_API =
     : '/api/admin/workbench');
 
 export type WorkbenchTab =
-  'missing_dates' | 'missing_titles' | 'missing_terms' | 'turnover_markers';
+  | 'missing_dates'
+  | 'missing_titles'
+  | 'missing_terms'
+  | 'turnover_markers';
 export type WorkbenchStatus = 'active' | 'resolved' | 'blocked' | 'all';
 
 export interface WorkbenchStats {

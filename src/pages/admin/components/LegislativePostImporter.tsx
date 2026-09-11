@@ -802,7 +802,9 @@ Seconded By: Hon. Miko C. Pelegrina
                         onChange={e =>
                           setSessionType(
                             e.target.value as
-                              'Regular' | 'Special' | 'Inaugural'
+                              | 'Regular'
+                              | 'Special'
+                              | 'Inaugural'
                           )
                         }
                         className='border-kapwa-border-weak bg-kapwa-bg-surface w-full rounded-md border px-3 py-2 text-sm'

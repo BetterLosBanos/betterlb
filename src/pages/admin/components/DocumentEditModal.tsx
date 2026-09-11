@@ -543,7 +543,9 @@ export default function DocumentEditModal({
                           setFormData({
                             ...formData,
                             type: e.target.value as
-                              'ordinance' | 'resolution' | 'executive_order',
+                              | 'ordinance'
+                              | 'resolution'
+                              | 'executive_order',
                           })
                         }
                         className='border-kapwa-border-weak w-full rounded-md border px-3 py-2 text-sm'
