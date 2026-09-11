@@ -282,7 +282,10 @@ export async function queryTerms(db: D1Database): Promise<WorkbenchTerm[]> {
 
 export interface QueryStagedDocumentsParams {
   tab:
-    'missing_dates' | 'missing_titles' | 'missing_terms' | 'turnover_markers';
+    | 'missing_dates'
+    | 'missing_titles'
+    | 'missing_terms'
+    | 'turnover_markers';
   status: 'active' | 'resolved' | 'blocked' | 'all';
   page: number;
   limit: number;

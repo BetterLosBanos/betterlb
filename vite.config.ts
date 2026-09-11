@@ -9,36 +9,22 @@ export default defineConfig({
     outDir: 'dist',
     rollupOptions: {
       output: {
-        // Vite 8 bundles with rolldown, which replaced manualChunks with
-        // advancedChunks. Groups preserve the previous vendor splits.
-        advancedChunks: {
-          groups: [
-            // React core — loaded on every page
-            {
-              name: 'vendor-react',
-              test: /node_modules[\\/](react|react-dom|react-router|react-router-dom|@remix-run[\\/]router)[\\/]/,
-            },
-            // Maps — only needed on map pages
-            {
-              name: 'vendor-leaflet',
-              test: /node_modules[\\/](leaflet|react-leaflet)[\\/]/,
-            },
-            // Charts — only needed on stats/transparency pages
-            {
-              name: 'vendor-recharts',
-              test: /node_modules[\\/]recharts[\\/]/,
-            },
-            // Search — only needed on search page
-            {
-              name: 'vendor-search',
-              test: /node_modules[\\/](meilisearch|fuse\.js)[\\/]/,
-            },
-            // i18n — loaded early but large
-            {
-              name: 'vendor-i18n',
-              test: /node_modules[\\/](i18next|react-i18next)[\\/]/,
-            },
+        manualChunks: {
+          // React core — loaded on every page
+          'vendor-react': [
+            'react',
+            'react-dom',
+            'react-router-dom',
+            '@remix-run/router',
           ],
+          // Maps — only needed on map pages
+          'vendor-leaflet': ['leaflet', 'react-leaflet'],
+          // Charts — only needed on stats/transparency pages
+          'vendor-recharts': ['recharts'],
+          // Search — only needed on search page
+          'vendor-search': ['meilisearch', 'fuse.js'],
+          // i18n — loaded early but large
+          'vendor-i18n': ['i18next', 'react-i18next'],
         },
       },
     },
