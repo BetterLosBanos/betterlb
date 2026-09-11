@@ -43,7 +43,11 @@ jobs:
   deploy:
     runs-on: ubuntu-latest
     name: Deploy to Cloudflare Pages
-    environment: ${{ github.event_name == 'pull_request' && 'preview' || 'production' }}
+    # PR-triggered runs never had access to CLOUDFLARE_API_TOKEN (repo secrets
+    # are not exposed to pull_request events), so every PR deploy failed.
+    # Deploy only on pushes to main; PRs get the Quality Gate above.
+    if: github.event_name == 'push'
+    environment: production
     needs: quality-gate
     permissions:
       contents: write
