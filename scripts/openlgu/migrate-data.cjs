@@ -14,7 +14,14 @@ const REF_DIR = path.join(
 
 function readJson(name) {
   const fp = path.join(REF_DIR, name);
-  if (!fs.existsSync(fp)) return [];
+  if (!fs.existsSync(fp)) {
+    throw new Error(
+      `Missing migration input: ${fp}. Export it from the old D1 first ` +
+        `(see docs/openlgu/schema-rebuild.md). Refusing to emit empty SQL — ` +
+        `a missing input silently produced an empty production database ` +
+        `on 2026-10-29.`
+    );
+  }
   return JSON.parse(fs.readFileSync(fp, 'utf8'));
 }
 
