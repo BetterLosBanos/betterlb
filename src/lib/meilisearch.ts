@@ -3,7 +3,11 @@ import { MeiliSearch } from 'meilisearch';
 // 1. Configuration
 const HOST =
   import.meta.env.VITE_MEILISEARCH_HOST || 'https://search2.bettergov.ph';
-const KEY = import.meta.env.VITE_MEILISEARCH_API_KEY || '';
+const KEY =
+  import.meta.env.VITE_MEILISEARCH_API_KEY ||
+  // Public search-only key (same one shipped in transparency.bettergov.ph's
+  // client bundle); override with VITE_MEILISEARCH_API_KEY if it rotates.
+  '307c9f43a066a443cc37d62b45fa47fde2b39f765139dd964ea151daed65f55c';
 
 export const client = new MeiliSearch({
   host: HOST,

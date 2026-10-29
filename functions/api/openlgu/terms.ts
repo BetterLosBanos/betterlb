@@ -70,9 +70,19 @@ async function getTermsList(context: { request: Request; env: Env }) {
             pv.id as vice_mayor_person_id,
             pv.first_name as vice_mayor_first_name, pv.middle_name as vice_mayor_middle_name, pv.last_name as vice_mayor_last_name
           FROM terms t
-          LEFT JOIN memberships mm ON mm.term_id = t.id AND mm.role = 'Mayor'
+          LEFT JOIN memberships mm ON mm.id = (
+            SELECT id FROM memberships
+            WHERE term_id = t.id AND role = 'Mayor'
+            ORDER BY (end_date IS NULL) DESC, end_date DESC, created_at DESC
+            LIMIT 1
+          )
           LEFT JOIN persons pm ON mm.person_id = pm.id
-          LEFT JOIN memberships vm ON vm.term_id = t.id AND vm.role = 'Vice Mayor'
+          LEFT JOIN memberships vm ON vm.id = (
+            SELECT id FROM memberships
+            WHERE term_id = t.id AND role = 'Vice Mayor'
+            ORDER BY (end_date IS NULL) DESC, end_date DESC, created_at DESC
+            LIMIT 1
+          )
           LEFT JOIN persons pv ON vm.person_id = pv.id
           ORDER BY t.term_number DESC
         `;
@@ -208,9 +218,19 @@ async function getTermDetail(context: { request: Request; env: Env }) {
             pm.id as mayor_person_id, pm.first_name as mayor_first_name, pm.middle_name as mayor_middle_name, pm.last_name as mayor_last_name,
             pv.id as vice_mayor_person_id, pv.first_name as vice_mayor_first_name, pv.middle_name as vice_mayor_middle_name, pv.last_name as vice_mayor_last_name
           FROM terms t
-          LEFT JOIN memberships mm ON mm.term_id = t.id AND mm.role = 'Mayor'
+          LEFT JOIN memberships mm ON mm.id = (
+            SELECT id FROM memberships
+            WHERE term_id = t.id AND role = 'Mayor'
+            ORDER BY (end_date IS NULL) DESC, end_date DESC, created_at DESC
+            LIMIT 1
+          )
           LEFT JOIN persons pm ON mm.person_id = pm.id
-          LEFT JOIN memberships vm ON vm.term_id = t.id AND vm.role = 'Vice Mayor'
+          LEFT JOIN memberships vm ON vm.id = (
+            SELECT id FROM memberships
+            WHERE term_id = t.id AND role = 'Vice Mayor'
+            ORDER BY (end_date IS NULL) DESC, end_date DESC, created_at DESC
+            LIMIT 1
+          )
           LEFT JOIN persons pv ON vm.person_id = pv.id
           WHERE t.id = ?
         `;

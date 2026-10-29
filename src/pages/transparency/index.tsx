@@ -33,7 +33,7 @@ export default function TransparencyIndex() {
       description:
         'Community tracking of road repairs, building constructions, and local infrastructure projects.',
       icon: HardHat,
-      href: '/transparency/infrastructure-projects',
+      href: '/transparency/infrastructure',
       color: 'orange',
       badge: 'Monitoring',
     },
