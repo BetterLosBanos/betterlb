@@ -92,7 +92,12 @@ export function StatCard(props: StatCardProps) {
                 <TrendIcon className='h-4 w-4' />
               </span>
               <span className='ml-0.5'>
-                {trend ? Math.abs(trend.value) : 0}%
+                {/* Trend values arrive as unrounded floats (YoY deltas):
+                    show one decimal, trimmed of a trailing .0 */}
+                {trend
+                  ? Math.abs(trend.value).toFixed(1).replace(/\.0$/, '')
+                  : 0}
+                %
               </span>
             </span>
           </div>

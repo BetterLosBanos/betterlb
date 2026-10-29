@@ -67,6 +67,17 @@ describe('StatCard Component', () => {
       expect(screen.getByText('1.8%')).toBeInTheDocument();
     });
 
+    it('rounds unrounded float trends to one decimal', () => {
+      render(
+        <StatCard
+          label='Total Revenue (M)'
+          value='377'
+          trend={{ value: 14.350489221223436, positive: true }}
+        />
+      );
+      expect(screen.getByText('14.4%')).toBeInTheDocument();
+    });
+
     it('shows up arrow for positive trend', () => {
       render(
         <StatCard
