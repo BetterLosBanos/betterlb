@@ -64,7 +64,7 @@ BetterLB is designed to be easily adapted for any Local Government Unit (LGU) in
 *   **Styling**: Tailwind CSS v4 (CSS variables, high-contrast tokens)
 *   **Design System**: @bettergov/kapwa (semantic tokens, component library)
 *   **Backend**: Cloudflare Pages Functions (TypeScript)
-*   **Deployment**: Wrangler 4.70.0 (pinned for compatibility)
+*   **Deployment**: Wrangler 4.155.0 (pinned for compatibility)
 *   **Data**: Structured JSON (Modular category-based architecture)
 *   **Search**: Meilisearch with Fuse.js fuzzy search
 *   **Localization**: i18next with English & Filipino support
@@ -274,10 +274,10 @@ We are looking for volunteers passionate individuals who want to make Los Baños
 BetterLB is deployed on **Cloudflare Pages** with:
 - **Frontend**: Vite build automatically deployed on push to `main` branch
 - **Backend**: Cloudflare Pages Functions for API endpoints
-- **Database**: Cloudflare D1 (`betterlb_openlgu`) for legislative data
+- **Database**: Cloudflare D1 (`betterlb-openlgu`) for legislative data
 - **Search**: Meilisearch instance for fuzzy search
 - **KV Storage**: Weather data caching with automatic updates
-- **Wrangler**: Version 4.70.0 (pinned for compatibility)
+- **Wrangler**: Version 4.155.0 (pinned for compatibility)
 
 ### Deployment for Other LGUs
 
@@ -289,7 +289,7 @@ When deploying for your own LGU:
 4. **Database Migration**: Run database migrations on remote D1 instance
 5. **Meilisearch**: Deploy your own Meilisearch instance or use alternative search
 
-**Note:** The deployment workflow uses Wrangler 4.70.0 (pinned in both `.github/workflows/deploy.yml` and `package.json`). If upgrading, ensure compatibility with the Wrangler Action and test thoroughly.
+**Note:** The deployment workflow uses Wrangler 4.155.0 (pinned in both `.github/workflows/deploy.yml` and `package.json`). If upgrading, ensure compatibility with the Wrangler Action and test thoroughly.
 
 See [`ARCHITECTURE.md`](./ARCHITECTURE.md#deployment) for detailed deployment strategies.
 

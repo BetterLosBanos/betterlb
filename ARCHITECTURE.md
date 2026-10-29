@@ -174,10 +174,10 @@ Component testing for complex UI components.
 
 ### Production (BetterLB)
 - **Platform:** Cloudflare Pages
-- **Database:** D1 `betterlb_openlgu`
+- **Database:** D1 `betterlb-openlgu`
 - **Search:** Self-hosted Meilisearch
 - **Domain:** betterlb.org
-- **Wrangler:** 4.70.0 (pinned for compatibility)
+- **Wrangler:** 4.155.0 (pinned for compatibility)
 
 ### For Other LGUs
 1. Connect GitHub repo to Cloudflare Pages
@@ -186,7 +186,7 @@ Component testing for complex UI components.
 4. Run database migrations
 5. Deploy own Meilisearch or use alternative
 
-**Note:** The deployment workflow pins Wrangler to version 4.70.0 to avoid compatibility issues with newer versions. Update both `.github/workflows/deploy.yml` and `package.json` if upgrading.
+**Note:** The deployment workflow pins Wrangler to version 4.155.0 to avoid compatibility issues with newer versions. Update both `.github/workflows/deploy.yml` and `package.json` if upgrading.
 
 ---
 
