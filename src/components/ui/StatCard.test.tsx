@@ -45,6 +45,15 @@ describe('StatCard Component', () => {
   });
 
   describe('Trend Indicators', () => {
+    it('renders no trend element when trend is absent', () => {
+      const { container } = render(
+        <StatCard label='Fiscal Year' value='2025' />
+      );
+      expect(container.querySelector('.lucide-arrow-up-right')).toBeNull();
+      expect(container.querySelector('.lucide-arrow-down-right')).toBeNull();
+      expect(container.textContent).not.toContain('%');
+    });
+
     it('renders positive trend with success color', () => {
       render(
         <StatCard
@@ -86,7 +95,7 @@ describe('StatCard Component', () => {
           trend={{ value: 5, positive: true }}
         />
       );
-      // ArrowUpRight icon should be rendered (there's also an invisible trend span)
+      // ArrowUpRight icon should be rendered
       const icons = screen.getAllByRole('presentation');
       expect(icons).toHaveLength(1); // Only trend icon (no optional icon)
     });
@@ -106,8 +115,8 @@ describe('StatCard Component', () => {
 
     it('hides trend when not provided', () => {
       render(<StatCard label='Population' value='123456' />);
-      const trendText = screen.queryByText('0%');
-      expect(trendText).toBeInTheDocument();
+      // No placeholder: it used to take width and truncate long values
+      expect(screen.queryByText('0%')).not.toBeInTheDocument();
     });
   });
 

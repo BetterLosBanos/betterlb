@@ -24,7 +24,7 @@ import { PaginationControls } from '@/components/ui/Pagination';
 import SearchInput from '@/components/ui/SearchInput';
 import SelectPicker from '@/components/ui/SelectPicker';
 
-import { formatPesoAdaptive } from '@/lib/format';
+import { formatPesoAdaptive, formatPesoAdaptiveString } from '@/lib/format';
 import { config } from '@/lib/lguConfig';
 import { lguLabels } from '@/lib/lguLabels';
 import { DPWHProject, INDICES, client } from '@/lib/meilisearch';
@@ -143,8 +143,10 @@ export default function InfrastructurePage() {
       try {
         const index = client.index(INDICES.DPWH);
 
+        // Parenthesised: Meilisearch binds AND tighter than OR, so an ungrouped
+        // OR here would let the status filter apply to only one province branch
         const provinceFilter = config.lgu.districtEngineeringOffice
-          ? `location.province = "${config.lgu.districtEngineeringOffice}" OR location.province = "${config.lgu.province}"`
+          ? `(location.province = "${config.lgu.districtEngineeringOffice}" OR location.province = "${config.lgu.province}")`
           : `location.province = "${config.lgu.province}"`;
 
         const filterConditions: string[] = [
@@ -229,7 +231,7 @@ export default function InfrastructurePage() {
       <CardGrid columns={4}>
         <StatCard
           label='Total Allocation'
-          value={stats.totalBudget}
+          value={formatPesoAdaptiveString(stats.totalBudget)}
           subtext='Current List'
           icon={Wallet}
           iconBg='bg-kapwa-green-50 text-kapwa-green-600'
@@ -253,7 +255,7 @@ export default function InfrastructurePage() {
 
         <StatCard
           label='Fiscal Year'
-          value={stats.infraYear || 'N/A'}
+          value={stats.infraYear ? String(stats.infraYear) : 'N/A'}
           subtext='Most Recent'
           icon={CalendarCheck}
           iconBg='bg-kapwa-orange-50 text-kapwa-orange-600'

@@ -82,24 +82,25 @@ export function StatCard(props: StatCardProps) {
             <span className='truncate'>
               {typeof value === 'number' ? value.toLocaleString() : value}
             </span>
-            <span
-              className={cn(
-                'inline-flex items-center text-lg font-semibold',
-                trend ? trendColor : 'invisible'
-              )}
-            >
-              <span role='presentation'>
-                <TrendIcon className='h-4 w-4' />
+            {/* Only render the trend when there is one: an invisible
+                placeholder still takes width and truncates the value */}
+            {trend && (
+              <span
+                className={cn(
+                  'inline-flex shrink-0 items-center text-lg font-semibold',
+                  trendColor
+                )}
+              >
+                <span role='presentation'>
+                  <TrendIcon className='h-4 w-4' />
+                </span>
+                <span className='ml-0.5'>
+                  {/* Trend values arrive as unrounded floats (YoY deltas):
+                      show one decimal, trimmed of a trailing .0 */}
+                  {Math.abs(trend.value).toFixed(1).replace(/\.0$/, '')}%
+                </span>
               </span>
-              <span className='ml-0.5'>
-                {/* Trend values arrive as unrounded floats (YoY deltas):
-                    show one decimal, trimmed of a trailing .0 */}
-                {trend
-                  ? Math.abs(trend.value).toFixed(1).replace(/\.0$/, '')
-                  : 0}
-                %
-              </span>
-            </span>
+            )}
           </div>
           {subtext && (
             <span className='text-kapwa-text-disabled truncate text-xs font-medium'>
