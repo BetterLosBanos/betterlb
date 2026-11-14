@@ -54,7 +54,6 @@ export default function TimelineSection() {
         <div className='grid grid-cols-1 gap-6 lg:grid-cols-[1fr_320px]'>
           {/* --- LEFT: Timeline --- */}
           <div className='relative'>
-            <div className='border-l-2 border-kapwa-border-brand absolute top-2 bottom-0 left-4 w-0.5' />
             <div className='space-y-6'>
               {visibleHistory.map((event, idx) => (
                 <div
@@ -62,6 +61,14 @@ export default function TimelineSection() {
                   className='relative pl-12 duration-300 group animate-in fade-in slide-in-from-left-4'
                   style={{ animationDelay: `${idx * 50}ms` }}
                 >
+                  {/* Connector to the next dot (dot centre at 28px; gap is 24px), so the line starts and ends on a dot */}
+                  {idx < visibleHistory.length - 1 && (
+                    <div
+                      aria-hidden='true'
+                      className='border-l-2 border-kapwa-border-brand absolute top-7 -bottom-13 left-4 -ml-px'
+                    />
+                  )}
+
                   {/* Dot Marker */}
                   <div className='flex absolute left-0 top-3 justify-center items-center w-8 h-8'>
                     <div className='w-3 h-3 rounded-full border-2 shadow-sm transition-all duration-300 border-kapwa-border-brand group-hover:bg-kapwa-bg-brand-default bg-kapwa-bg-surface group-hover:scale-125' />
